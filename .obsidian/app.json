@@ -1,0 +1,18 @@
+{
+  "useMarkdownLinks": true,
+  "newLinkFormat": "relative",
+  "alwaysUpdateLinks": true,
+  "newFileLocation": "folder",
+  "newFileFolderPath": "Docs-Dashy-Drop",
+  "attachmentFolderPath": "Docs-Dashy-Drop/attachments",
+  "userIgnoreFilters": [
+    "node_modules/",
+    ".sandbox/",
+    "keys/",
+    "target/",
+    ".anchor/",
+    "test-ledger/"
+  ],
+  "showUnsupportedFiles": false,
+  "promptDelete": true
+}

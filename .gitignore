@@ -17,6 +17,20 @@ id.json
 .env.*
 !.env.example
 
+# Obsidian: the vault's shared settings are committed; each person's state is not.
+# Community plugins are never vendored (design/ADR-007-knowledge-vault.md).
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+.obsidian/plugins/
+.obsidian/themes/
+.obsidian/community-plugins.json
+.trash/
+
+# Confidential notes stay on this disk: only the folder's README is tracked.
+kb/private/*
+!kb/private/README.md
+
 # Machine noise
 .DS_Store
 *.log

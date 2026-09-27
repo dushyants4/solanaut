@@ -1,0 +1,9 @@
+{
+  "items": [
+    { "type": "file", "ctime": 1790467200000, "path": "kb/INDEX.md", "title": "Knowledge index" },
+    { "type": "file", "ctime": 1790467200000, "path": "PROGRESS.md", "title": "Progress" },
+    { "type": "file", "ctime": 1790467200000, "path": "kb/DOCUMENTS.md", "title": "Document register" },
+    { "type": "file", "ctime": 1790467200000, "path": "docs/CLAIMS.md", "title": "Claims" },
+    { "type": "file", "ctime": 1790467200000, "path": "CLAUDE.md", "title": "The law" }
+  ]
+}
