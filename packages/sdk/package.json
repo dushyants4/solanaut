@@ -1,0 +1,12 @@
+{
+  "name": "@solanaut/sdk",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "The Solanaut guard: a deterministic transaction policy plus Gubernaut Keel's control loop.",
+  "exports": { ".": "./src/index.ts" },
+  "dependencies": {
+    "@gubernaut/core": "1.0.1",
+    "@solana/web3.js": "1.99.0"
+  }
+}

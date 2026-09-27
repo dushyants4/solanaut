@@ -1,0 +1,5 @@
+# Solanaut's toolchain pins. TOOLCHAIN.md says why each one, and tools/doctor.py checks them.
+# Solana (Agave) and Anchor are not mise tools here: Anza's installer and avm own them, and
+# Anchor 1.2.0 selects its own Agave release (3.1.10). See TOOLCHAIN.md.
+[tools]
+node = "26.7.0"

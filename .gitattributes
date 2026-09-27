@@ -1,0 +1,9 @@
+# Text is stored and checked out with LF on every platform.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.pdf binary
+*.wasm binary
+
+# The intake drop is kept byte for byte, whatever the settings above say.
+Docs-Dashy-Drop/** -text

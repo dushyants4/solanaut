@@ -1,0 +1,16 @@
+{
+  "name": "solanaut-archivist",
+  "displayName": "Solanaut \u00b7 Archivist",
+  "version": "0.1.0",
+  "description": "Keeps runs/, PROGRESS.md and kb/ current, and enforces provenance on anything measured: version, config, run ID.",
+  "author": {
+    "name": "Dushyant",
+    "email": "dushyantstyle@gmail.com"
+  },
+  "keywords": [
+    "solanaut",
+    "office",
+    "sdk",
+    "archivist"
+  ]
+}

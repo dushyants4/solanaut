@@ -1,0 +1,23 @@
+# Dependencies and build output
+node_modules/
+dist/
+target/
+.anchor/
+test-ledger/
+*.tsbuildinfo
+
+# The local sandbox: validator ledger, logs, screenshots taken by tools
+.sandbox/
+
+# Keys and secrets. Never committed, never logged, never echoed.
+keys/
+*-keypair.json
+id.json
+.env
+.env.*
+!.env.example
+
+# Machine noise
+.DS_Store
+*.log
+__pycache__/

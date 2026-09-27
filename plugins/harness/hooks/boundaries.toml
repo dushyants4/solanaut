@@ -1,0 +1,103 @@
+# boundaries.toml -- Solanaut's write boundary, as a permission rather than a preference.
+#
+# tools/boundary_guard.py enforces this on every Write, Edit, NotebookEdit and Bash call in a
+# session rooted at this folder (wired in .claude/settings.json). It is the Office's guard,
+# vendored; this policy is Solanaut's own.
+#
+# FAIL-CLOSED, ON PURPOSE. Missing, unparseable, empty, written for another host, or naming a
+# path that no longer exists: the guard DENIES every guarded call rather than permitting them.
+#
+# WHAT IT IS FOR. Solanaut was split out of the Gubernaut workspace (APEX) and must stay apart
+# from it: no writes into that tree, its memory, or the machine-wide Claude and Codex config.
+# Gubernaut reaches Solanaut only as a published package (@gubernaut/core on npm). Reads are
+# not this file's job: .claude/settings.json denies reading the APEX tree natively.
+#
+# Every rule below was shown necessary on 2026-09-27: with only the secrets rule in place, the
+# fourteen territorial cases in `boundary_guard.py --selftest` failed. See
+# evals/harness/boundary_guard.md.
+
+[meta]
+version = "1"
+machine_hostname = "omarchy"
+required_roots = ["/home/dashy/Projects/Solanaut"]
+source = "CLAUDE.md :: Isolation"
+
+# --- 1. The Gubernaut workspace ------------------------------------------------
+# The tree itself, its ~/Work symlinks, its quarantined intake, and its VS Code workspace file.
+[[rule]]
+name = "gubernaut-workspace"
+reason = '''Solanaut never writes into the Gubernaut workspace (APEX). Gubernaut is an upstream
+dependency, consumed as a published package. If something there looks wrong, say so to the
+human; that tree has its own agents.'''
+deny_paths = [
+  "/home/dashy/Projects/A - Gubernaut Project - APEX",
+  "/home/dashy/Projects/A - Gubernaut Project - APEX.code-workspace",
+  "/home/dashy/Work",
+  "/home/dashy/Lab",
+]
+
+# --- 2. Other projects on this machine -----------------------------------------
+[[rule]]
+name = "other-projects"
+reason = '''Not Solanaut's. A project folder is written only by a session rooted in it.'''
+deny_paths = ["/home/dashy/Projects/Dashy Personal"]
+
+# --- 3. Machine-wide agent configuration, and other projects' memory -----------
+# Solanaut's own memory (~/.claude/projects/-home-dashy-Projects-Solanaut/) stays writable,
+# which is why ~/.claude is not denied wholesale.
+[[rule]]
+name = "machine-agent-config"
+reason = '''The user-level Claude settings, skills, hooks, plugins and plans, APEX's memory, and
+the Codex config are shared by every project on this machine. Changing them from here is how
+one project's state bleeds into another. State the exact change for the human instead.'''
+deny_paths = [
+  "/home/dashy/.claude/settings.json",
+  "/home/dashy/.claude/skills",
+  "/home/dashy/.claude/hooks",
+  "/home/dashy/.claude/plugins",
+  "/home/dashy/.claude/plans",
+  "/home/dashy/.claude/projects/-home-dashy-Projects-A---Gubernaut-Project---APEX",
+  "/home/dashy/.codex",
+]
+
+# --- 4. The intake drop ---------------------------------------------------------
+[[rule]]
+name = "intake-drop"
+reason = '''Docs-Dashy-Drop/ is the human's drop, kept byte for byte and registered with its
+SHA-256 in kb/intake/. Notes about it go in kb/, never into it.'''
+deny_paths = ["/home/dashy/Projects/Solanaut/Docs-Dashy-Drop"]
+
+# --- 5. Anything key-shaped, everywhere ------------------------------------------
+# A Solana keypair is a JSON array of 64 numbers, so it gets its own shapes: *-keypair.json,
+# id.json (the CLI's default name), and anything under keys/. Devnet keys are made with
+# solana-keygen, never written by an agent's Write tool, and never committed.
+[[rule]]
+name = "secrets"
+reason = '''Any .env, key, keypair, pem or credentials file. A secret in git history is not
+removed by the next commit, and a funded key is money.'''
+deny_globs = [
+  "**/.env",
+  "**/.env.*",
+  "**/*.key",
+  "**/*.pem",
+  "**/*.pfx",
+  "**/*.p12",
+  "**/credentials",
+  "**/credentials.*",
+  "**/id_rsa",
+  "**/id_ed25519",
+  "**/*-keypair.json",
+  "**/id.json",
+  "*/keys/*",
+]
+
+# --- Bash mutation verbs ------------------------------------------------------------
+# HEURISTIC by construction; `boundary_guard.py --explain` lists the known bypasses.
+# ">" and ">>" are matched as real redirection by the guard, never as bare substrings.
+[bash]
+mutating = [
+  "rm ", "rmdir ", "mv ", "cp ", "tee ", "truncate ",
+  "touch ", "mkdir ", "chmod ", "chown ", "dd ", "install ",
+  "sed -i", "perl -i", "git checkout", "git reset", "git clean",
+  "git restore", "git rm", "git mv", "git apply", "git push",
+]

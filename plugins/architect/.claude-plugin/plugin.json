@@ -1,0 +1,16 @@
+{
+  "name": "solanaut-architect",
+  "displayName": "Solanaut \u00b7 Architect",
+  "version": "0.1.0",
+  "description": "Designs the AI system before anything is built: agent topology, context strategy, model choice, and the ADR that records why.",
+  "author": {
+    "name": "Dushyant",
+    "email": "dushyantstyle@gmail.com"
+  },
+  "keywords": [
+    "solanaut",
+    "office",
+    "sdk",
+    "architect"
+  ]
+}

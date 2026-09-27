@@ -1,0 +1,16 @@
+{
+  "name": "solanaut-integrator",
+  "displayName": "Solanaut \u00b7 Integrator",
+  "version": "0.1.0",
+  "description": "Owns the public surface: SDK and API design, versioning, packaging, and the docs a consumer outside the repo actually needs.",
+  "author": {
+    "name": "Dushyant",
+    "email": "dushyantstyle@gmail.com"
+  },
+  "keywords": [
+    "solanaut",
+    "office",
+    "sdk",
+    "integrator"
+  ]
+}

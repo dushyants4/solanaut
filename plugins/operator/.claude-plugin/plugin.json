@@ -1,0 +1,16 @@
+{
+  "name": "solanaut-operator",
+  "displayName": "Solanaut \u00b7 Operator",
+  "version": "0.1.0",
+  "description": "CI, containers, release preparation and deploy readiness. Proves it comes up clean on a machine that is not this one.",
+  "author": {
+    "name": "Dushyant",
+    "email": "dushyantstyle@gmail.com"
+  },
+  "keywords": [
+    "solanaut",
+    "office",
+    "sdk",
+    "operator"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "solanaut-evaluator",
+  "displayName": "Solanaut \u00b7 Evaluator",
+  "version": "0.1.0",
+  "description": "Writes and runs the test battery, then reports failures as specific edits for another seat to make. Cannot edit what it finds.",
+  "author": {
+    "name": "Dushyant",
+    "email": "dushyantstyle@gmail.com"
+  },
+  "keywords": [
+    "solanaut",
+    "office",
+    "sdk",
+    "evaluator"
+  ]
+}

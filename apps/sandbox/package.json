@@ -1,0 +1,11 @@
+{
+  "name": "@solanaut/sandbox",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "The plugin sandbox: scripted agent scenarios through the guard, offline or on a local validator.",
+  "dependencies": {
+    "@solanaut/sdk": "0.0.0",
+    "@solana/web3.js": "1.99.0"
+  }
+}

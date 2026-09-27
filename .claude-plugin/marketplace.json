@@ -1,0 +1,48 @@
+{
+  "name": "solanaut-office",
+  "owner": {
+    "name": "Dushyant",
+    "email": "dushyantstyle@gmail.com"
+  },
+  "metadata": {
+    "description": "Solanaut's office: seven seats, vendored from the Office pattern. A seat is a write boundary.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "solanaut-architect",
+      "source": "./plugins/architect",
+      "description": "Designs the AI system before anything is built: agent topology, context strategy, model choice, and the ADR that records why."
+    },
+    {
+      "name": "solanaut-harness",
+      "source": "./plugins/harness",
+      "description": "Owns the agent's own environment \u2014 skills, agents, commands, hooks, MCP wiring and CLAUDE.md files \u2014 and audits them as a system."
+    },
+    {
+      "name": "solanaut-builder",
+      "source": "./plugins/builder",
+      "description": "Implements against an accepted design. Writes source, refactors, and makes the code read like the code around it."
+    },
+    {
+      "name": "solanaut-integrator",
+      "source": "./plugins/integrator",
+      "description": "Owns the public surface: SDK and API design, versioning, packaging, and the docs a consumer outside the repo actually needs."
+    },
+    {
+      "name": "solanaut-evaluator",
+      "source": "./plugins/evaluator",
+      "description": "Writes and runs the test battery, then reports failures as specific edits for another seat to make. Cannot edit what it finds."
+    },
+    {
+      "name": "solanaut-operator",
+      "source": "./plugins/operator",
+      "description": "CI, containers, release preparation and deploy readiness. Proves it comes up clean on a machine that is not this one."
+    },
+    {
+      "name": "solanaut-archivist",
+      "source": "./plugins/archivist",
+      "description": "Keeps runs/, PROGRESS.md and kb/ current, and enforces provenance on anything measured: version, config, run ID."
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "solanaut-builder",
+  "displayName": "Solanaut \u00b7 Builder",
+  "version": "0.1.0",
+  "description": "Implements against an accepted design. Writes source, refactors, and makes the code read like the code around it.",
+  "author": {
+    "name": "Dushyant",
+    "email": "dushyantstyle@gmail.com"
+  },
+  "keywords": [
+    "solanaut",
+    "office",
+    "sdk",
+    "builder"
+  ]
+}

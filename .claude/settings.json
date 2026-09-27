@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "extraKnownMarketplaces": {
+    "solanaut-office": {
+      "source": {
+        "source": "directory",
+        "path": "/home/dashy/Projects/Solanaut"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "general-archivist@general": false,
+    "general-auditor@general": false,
+    "general-ingestor@general": false,
+    "general-librarian@general": false,
+    "general-registrar@general": false,
+    "general-retriever@general": false,
+    "media-archivist@media-center": false,
+    "media-art-director@media-center": false,
+    "media-critic@media-center": false,
+    "media-layout@media-center": false,
+    "media-library@media-center": false,
+    "media-maker@media-center": false,
+    "media-outreach@media-center": false,
+    "media-recon@media-center": false,
+    "media-scribe@media-center": false,
+    "media-strategist@media-center": false,
+    "office-architect@office": false,
+    "office-archivist@office": false,
+    "office-builder@office": false,
+    "office-evaluator@office": false,
+    "office-harness@office": false,
+    "office-integrator@office": false,
+    "office-operator@office": false,
+    "website-archivist@website": false,
+    "website-compositor@website": false,
+    "website-herald@website": false,
+    "website-inspector@website": false,
+    "website-registrar@website": false,
+    "website-scout@website": false,
+    "website-translator@website": false,
+    "solanaut-architect@solanaut-office": true,
+    "solanaut-harness@solanaut-office": true,
+    "solanaut-builder@solanaut-office": true,
+    "solanaut-integrator@solanaut-office": true,
+    "solanaut-evaluator@solanaut-office": true,
+    "solanaut-operator@solanaut-office": true,
+    "solanaut-archivist@solanaut-office": true
+  },
+  "permissions": {
+    "deny": [
+      "Read(//home/dashy/Projects/A - Gubernaut Project - APEX/**)",
+      "Read(//home/dashy/Work/**)",
+      "Read(//home/dashy/Lab/**)",
+      "Read(//home/dashy/Projects/Dashy Personal/**)",
+      "Read(//home/dashy/.claude/projects/-home-dashy-Projects-A---Gubernaut-Project---APEX/**)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|NotebookEdit|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run --script \"$CLAUDE_PROJECT_DIR/tools/boundary_guard.py\"",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}

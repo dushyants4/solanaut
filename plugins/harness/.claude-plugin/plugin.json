@@ -1,0 +1,16 @@
+{
+  "name": "solanaut-harness",
+  "displayName": "Solanaut \u00b7 Harness",
+  "version": "0.1.0",
+  "description": "Owns the agent's own environment \u2014 skills, agents, commands, hooks, MCP wiring and CLAUDE.md files \u2014 and audits them as a system.",
+  "author": {
+    "name": "Dushyant",
+    "email": "dushyantstyle@gmail.com"
+  },
+  "keywords": [
+    "solanaut",
+    "office",
+    "sdk",
+    "harness"
+  ]
+}
