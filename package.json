@@ -3,8 +3,13 @@
   "private": true,
   "type": "module",
   "description": "A transaction firewall for Solana AI agents. Setup and first slice; see README.md.",
-  "workspaces": ["packages/*", "apps/*"],
-  "engines": { "node": ">=22.6" },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=22.6"
+  },
   "scripts": {
     "doctor": "uv run --script tools/doctor.py",
     "test": "node --test packages/sdk/test/*.test.ts",
@@ -14,6 +19,7 @@
   },
   "devDependencies": {
     "@types/node": "26.6.3",
+    "puppeteer-core": "25.12.0",
     "typescript": "7.0.2"
   }
 }

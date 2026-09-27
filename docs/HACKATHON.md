@@ -37,5 +37,23 @@ proxy; token or entity decisions.
 | **H4 · Cockpit** | Oct 8 – 10 | web view of live devnet decisions; the adversarial battery run and recorded honestly | a stranger can watch a drain being refused |
 | **H5 · Submit** | Oct 11 – 12 | pitch and demo videos, README, the §9 disclosure, the repo made public **on the human's word**, the submission **by the human** | submitted before 11:59pm PT Oct 12 |
 
+## The Colosseum entry
+
+**Draft created 2026-09-27** at [colosseum.com/arena/projects/solanaut](https://colosseum.com/arena/projects/solanaut),
+on the human's approval of the exact text: name *Solanaut*, category *Security Tools*, the
+432-character description in `runs/2026-09-27-setup.md`, and the GitHub link
+(`github.com/dushyants4/solanaut`, private). It is a draft, not a submission.
+
+Still to fill before submitting (the editor lists them): project details (7 fields), the demo
+video, the pitch video, the live product link, the team profile, and the accelerator
+application if wanted. Judges need repository access, which means making the repo public or
+granting access. Both are the human's.
+
+**The §9 disclosure, drafted for the "context about your repo" field** (not yet posted):
+
+> Solanaut depends on Gubernaut Keel (`@gubernaut/core` 1.0.1, Apache-2.0), an open-source
+> package by the same author, public since July 2026 and used unmodified from npm. Everything in
+> this repository was written during the contest period, starting 2026-09-27.
+
 **T4 in this plan:** making the repo public, the submission itself, and any post about it are
 the human's, at the moment.

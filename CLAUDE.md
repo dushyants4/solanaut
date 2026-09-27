@@ -99,7 +99,13 @@ npm run sandbox -- --cluster local  # the same scenarios on the validator: allow
 npm run doctor                      # the toolchain against TOOLCHAIN.md
 uv run --script tools/boundary_guard.py --selftest   # the write boundary, 34 cases
 uv run --script tools/session_close.py               # every gate, before closing
+node tools/colosseum_entry.mjs inspect               # read the Colosseum page in the human's Chrome
 ```
+
+`tools/colosseum_entry.mjs` drives a Chrome the human started and logged into
+(`--user-data-dir=~/.cache/solanaut/chrome --remote-debugging-port=9333`). It refuses any click
+that creates, saves or submits unless passed `--confirmed`, which is passed only after the human
+approves the exact text on screen.
 
 Toolchain and pins: `TOOLCHAIN.md` (Node 26.7.0, Agave 3.1.10, Anchor 1.2.0).
 

@@ -4,7 +4,7 @@ Coarser than `runs/`. The archivist keeps it current.
 
 | Phase | State | Record |
 |---|---|---|
-| **0 · Setup** | **done 2026-09-27** | `runs/2026-09-27-setup.md` |
+| **0 · Setup** | **done 2026-09-27**: repo, office, isolation, toolchain, guard, sandbox, private remote, Colosseum draft | `runs/2026-09-27-setup.md` |
 | H1 · Guard (sensor v1, presets, batteries) | next, Sep 28 – Oct 1 | |
 | H2 · Adapters (ElizaOS, AgentKit) | Oct 2 – 4 | |
 | H3 · On-chain vault (devnet) | Oct 5 – 7 | |
