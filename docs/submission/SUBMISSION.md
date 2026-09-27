@@ -43,7 +43,9 @@ adapted from earlier private work (`plugins/VENDORED.md`).
 
 ## Project details: draft answers
 
-Mapped to what the judges weigh. Paste only what the human approves.
+Mapped to what the judges weigh. Paste only what the human approves. Where a field wants more than a
+line, the long form is the written pitch in `PITCH.md`: four paragraphs, what, why, how and results,
+each traced to its `docs/CLAIMS.md` rows.
 
 - **Problem:** AI agents hold wallets and sign what their code hands them. The documented losses come
   from authority held by the model, lost state, and keys in the agent's process [M1–M7].

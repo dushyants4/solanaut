@@ -38,3 +38,5 @@ grep "| research |" kb/LOG.md             # every research pass
 ## [2026-09-27 12:18] review | milestone 0 · setup, reviewed retroactively from its run record | kb/milestones/2026-09-27_P0-setup.md
 
 ## [2026-09-27 12:18] review | milestone R · the research foundation | kb/milestones/2026-09-27_R-research.md, kb/INDEX.md, kb/DOCUMENTS.md, PROGRESS.md
+
+## [2026-09-27 17:33] file-back | the human asked for the whole pitch in four paragraphs (what, why, how, results); the answer is filed as PITCH.md Draft 2, traced to CLAIMS rows | docs/submission/PITCH.md, docs/submission/SUBMISSION.md, kb/DOCUMENTS.md

@@ -22,7 +22,7 @@ substantive change; *last reviewed* moves at every review.
 | [docs/papers/THREAT-MODEL.md](../docs/papers/THREAT-MODEL.md) | Draft 1 | draft | architect, evaluator | reviewers, auditors, judges | 2026-09-27 | H1, H3 |
 | [docs/papers/MARKET.md](../docs/papers/MARKET.md) | Draft 1 | draft | archivist | the human, judges | 2026-09-27 | H4 |
 | [docs/papers/BUSINESS-PLAN.md](../docs/papers/BUSINESS-PLAN.md) | Draft 1 | review | drafted for the human | the human, judges | 2026-09-27 | before H5 |
-| [docs/submission/PITCH.md](../docs/submission/PITCH.md) | Draft 1 | draft | the human (T4) | judges | 2026-09-27 | H4 |
+| [docs/submission/PITCH.md](../docs/submission/PITCH.md) | Draft 2 | draft | the human (T4) | judges | 2026-09-27 | H4 |
 | [docs/submission/DEMO.md](../docs/submission/DEMO.md) | Draft 1 | draft | integrator | judges | 2026-09-27 | H4 |
 | [docs/submission/SUBMISSION.md](../docs/submission/SUBMISSION.md) | Draft 1 | review | the human (T4) | the human | 2026-09-27 | H5 |
 
@@ -34,3 +34,4 @@ substantive change; *last reviewed* moves at every review.
 | Date | Documents | What changed | Record |
 |---|---|---|---|
 | 2026-09-27 | all | Register created. OVERVIEW, SPEC, the four papers and the three submission drafts written; README, ARCHITECTURE, HACKATHON and CLAIMS revised to version 2 | `runs/2026-09-27-research-foundation.md` |
+| 2026-09-27 | PITCH | Draft 2: the written pitch in four paragraphs (what, why, how, results), traced to CLAIMS rows; the script's M8 line scoped to bots | `runs/2026-09-27-written-pitch.md` |
