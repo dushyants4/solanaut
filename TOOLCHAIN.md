@@ -13,6 +13,7 @@ Installed 2026-09-27 on `omarchy` (Omarchy Linux, x86_64).
 | Rust | host stable (1.98.0) | rustup | host tools only; SBF programs build with platform-tools' own compiler |
 | uv | 0.12.x | system | runs the Python tools in `tools/` (stdlib only) |
 | Chrome | system | `/usr/bin/google-chrome-stable` | `tools/colosseum_entry.mjs` drives it over CDP |
+| Obsidian | 1.13.7 (optional) | pacman | reads the repository as a knowledge vault (`design/ADR-007-knowledge-vault.md`). Nothing needs it to build or test, so the doctor does not check it |
 
 ## PATH
 

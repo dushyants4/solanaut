@@ -2,7 +2,7 @@
   "name": "solanaut",
   "private": true,
   "type": "module",
-  "description": "A transaction firewall for Solana AI agents. Setup and first slice; see README.md.",
+  "description": "A transaction firewall for Solana AI agents. See README.md; the MVP baseline is docs/SPEC.md.",
   "workspaces": [
     "packages/*",
     "apps/*"

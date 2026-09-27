@@ -20,6 +20,20 @@ copies on 2026-09-27**, not installed. Why: `design/ADR-002-isolation.md`.
   `.claude/settings.json`.
 - Department routing in `triage` and the `core` release lines in `sync` are rewritten for a
   single project with the human as the only other owner.
+- **2026-09-27, the research foundation.** Instructions that did not fit Solanaut were corrected:
+  - "standing rule 9" became 7, the milestone rule's number in Solanaut's `CLAUDE.md`;
+  - the "project-context block" and "Repos I write to" became Solanaut's isolation rule;
+  - the "leg table" became `PROGRESS.md`;
+  - "this project lost a charter" became the Office's history, which is whose it was.
+
+  The archivist gained `/milestone` and `/compile`, for the knowledge vault (ADR-007).
+
+## Citations that do not resolve here
+
+Vendored text cites `kb/GAPS.md` and `kb/PATTERNS.md`: the Office's measured gaps and patterns, from
+its 31-repo survey. They were not vendored. They are the Office's research, and reading them would
+mean reading the Gubernaut workspace. The citations stay as provenance for where each rule came from,
+so a reader knows the evidence exists elsewhere; they are not files in this repository.
 
 ## Not taken, and why
 

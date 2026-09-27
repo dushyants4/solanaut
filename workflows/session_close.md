@@ -8,9 +8,10 @@ Nothing durable is left only in a context window or only on this disk.
 
 ## Why this workflow exists
 
-This project has already lost a charter to a disk failure. It was gitignored, had no git
-history, and the only surviving description of it was a single line in another file. What
-replaced it is a reconstruction that says openly it may be worse than what it replaced.
+The Office this workflow was vendored from once lost a charter to a disk failure. It was
+gitignored, had no git history, and the only surviving description of it was a single line in
+another file. What replaced it is a reconstruction that says openly it may be worse than what it
+replaced. Solanaut inherits the rule so it never learns the same lesson itself.
 
 **If it is not pushed to a remote, it does not exist.**
 
@@ -55,24 +56,30 @@ nobody can learn from.
 
 Same session, not next time. At minimum check:
 
-- `README.md` — the leg table and the State section
-- `CLAUDE.md` — the project-context block, if paths, tools or rules moved
-- `kb/` — if a measurement changed
+- `README.md` — the Status note
+- `CLAUDE.md` — the architecture block and the paths table, if paths, tools or rules moved
+- `PROGRESS.md` — the phase row, *Measured so far*, *Open*
+- `kb/` — if a measurement changed; `kb/DOCUMENTS.md` if a document changed
 - `design/` — if a decision was superseded
+
+If the session ended a phase, also run `workflows/milestone_review.md`.
 
 ### 3. Record cross-folder debts — do not pay them yourself
 
-Office writes only its own folder. When Office's work made another folder's docs wrong,
-write **the exact edit** into the run record, addressed to that folder's owner.
+Solanaut writes only its own folder. When the work made something outside it wrong (a Gubernaut
+package, the machine's shared config), write **the exact edit** into the run record, addressed to
+its owner.
 
 ### 4. Run the gates
 
 ```
-uv run --script tools/lint_plugins.py
-uv run --script tools/scaffold.py --check
+uv run --script tools/session_close.py --slug <slug>
 ```
 
-Both must exit 0. A failing gate is a finding, not a formality to skip.
+It runs every gate: the manifests, the plugin audit, the boundary guard, the knowledge vault
+(`kb_lint.py`), the secret scan, the run record, the remote, the push and a clean tree. It must exit
+0; the push and clean-tree gates turn green after step 6. A failing gate is a finding, not a formality
+to skip.
 
 ### 5. Scan the diff for anything key-shaped
 

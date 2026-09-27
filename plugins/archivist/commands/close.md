@@ -13,8 +13,8 @@ Close this session properly. Run `workflows/session_close.md`. Slug: $ARGUMENTS
    judgement and is written by hand; nothing generates it for you.
 
 2. **Update every doc the work made wrong**, this session. Check `README.md`,
-   `CLAUDE.md`'s project-context block, `kb/` if a measurement moved, `design/` if a
-   decision was superseded.
+   `CLAUDE.md`'s architecture block and paths table, `PROGRESS.md`, `kb/` if a measurement
+   moved, `design/` if a decision was superseded. If a phase ended, run `/milestone` too.
 
 3. **Record cross-folder debts — do not pay them.** Solanaut writes only its own folder.
    Where the work found something wrong outside it (an upstream Gubernaut package, a

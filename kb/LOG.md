@@ -28,3 +28,13 @@ grep "| research |" kb/LOG.md             # every research pass
 ## [2026-09-27 12:40] research | admission-control patterns, from private research material the human opened read-only; the committed distillation cites public literature only | kb/private/ (untracked), kb/wiki/security/*, kb/sources/2026-09-27_nist-reference-monitor.md, kb/sources/2026-09-27_saltzer-schroeder-1975.md, kb/sources/2026-09-27_schneier-kelsey-secure-audit-logs.md, kb/sources/2026-09-27_stripe-idempotency.md
 
 ## [2026-09-27 12:45] file-back | the glossary, from the terms the research and the spec use | kb/wiki/glossary.md
+
+## [2026-09-27 12:18] fix | the three research entries and the file-back entry above carry estimated times (12:40, 12:45) that are later than the fact; all four were committed in 235f343 at 12:00 UTC. From here on, times are read from the clock | kb/LOG.md
+
+## [2026-09-27 12:18] fix | found by reading: the intake record was linked from nowhere; the index now links it | kb/INDEX.md
+
+## [2026-09-27 12:18] lint | tools/kb_lint.py created; shown failing on 8 + 2 injected faults in scratch copies and through tools/session_close.py (gate 4); the real tree green | tools/kb_lint.py, tools/session_close.py, evals/harness/kb_lint.md
+
+## [2026-09-27 12:18] review | milestone 0 · setup, reviewed retroactively from its run record | kb/milestones/2026-09-27_P0-setup.md
+
+## [2026-09-27 12:18] review | milestone R · the research foundation | kb/milestones/2026-09-27_R-research.md, kb/INDEX.md, kb/DOCUMENTS.md, PROGRESS.md

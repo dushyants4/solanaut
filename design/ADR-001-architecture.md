@@ -1,6 +1,8 @@
 # ADR-001 · Two defences: a deterministic policy, and Gubernaut Keel for loops
 
-**Status:** accepted 2026-09-27 (setup plan, approved by the human).
+**Status:** accepted 2026-09-27 (setup plan, approved by the human). Refined by ADR-004 and ADR-005;
+**point 4 superseded by ADR-006** (2026-09-27): H3 composes with Squads v4 spending limits instead of
+building a vault program.
 
 ## Context
 

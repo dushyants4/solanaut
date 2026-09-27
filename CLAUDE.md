@@ -34,6 +34,10 @@ Solanaut was split out of the Gubernaut workspace and must never bleed into it, 
 - **Never touch the Solana CLI's global config.** Pass `--url` and `--keypair` explicitly.
 - If a Gubernaut package looks wrong, write the finding in `runs/` for the human. Do not work
   around it silently and do not edit it.
+- **Private material the human opens explicitly** (a private workspace, a confidential document) is
+  read-only, for that session. Notes on it go in `kb/private/` (gitignored), and nothing committed
+  cites, quotes or names it. A lesson from it enters a committed file only in Solanaut's own words,
+  with a public source (`design/ADR-007-knowledge-vault.md`).
 
 **Enforced, not described:** `tools/boundary_guard.py` runs on every Write, Edit and Bash call
 (`.claude/settings.json`), against `plugins/harness/hooks/boundaries.toml`. It fails closed. Its
@@ -87,6 +91,10 @@ marketplace declared in `.claude/settings.json`; accept it for this project only
 Workers: Codex may run here as `codex exec -C ~/Projects/Solanaut …` (this folder has its own
 trust entry). Gubernaut's `gub` control plane is **not** used here; it belongs to APEX.
 
+**Plan mode:** by default it writes plans to `~/.claude/plans/`, which the boundary guard denies. The
+fix is `"plansDirectory": "./docs/plans"` in `.claude/settings.json`; that edit is the human's. Until
+it lands, write the plan in chat.
+
 ## Build, run, test
 
 ```bash
@@ -98,6 +106,7 @@ npm run validator                   # a local solana-test-validator (ledger in .
 npm run sandbox -- --cluster local  # the same scenarios on the validator: allowed txs land, denied ones are never sent
 npm run doctor                      # the toolchain against TOOLCHAIN.md
 uv run --script tools/boundary_guard.py --selftest   # the write boundary, 34 cases
+uv run --script tools/kb_lint.py                     # the knowledge vault: links, notes, registers
 uv run --script tools/session_close.py               # every gate, before closing
 node tools/colosseum_entry.mjs inspect               # read the Colosseum page in the human's Chrome
 ```
@@ -112,25 +121,32 @@ Toolchain and pins: `TOOLCHAIN.md` (Node 26.7.0, Agave 3.1.10, Anchor 1.2.0).
 ## Architecture
 
 ```
-agent ── proposes tx ──▶ @solanaut/sdk  guard.evaluate(proposal)
-   policy  (program + destination allowlists, per-tx and per-window caps)  → DENY, whatever the model says
-   sensor  (proposal stream → intensity, valence, repetition)            → v0, unmeasured
-   Keel    (@gubernaut/core 1.0.1, wasm digest checked at startup)      → REGROUND → DENY
-   any error → DENY (fail closed)
+agent ── proposes bytes ──▶ @solanaut/sdk  guard.check()          propose → admit → sign (ADR-004)
+   decode  (legacy, v0 with caller-resolved lookup tables; v1/unknown → DENY)   ADR-005, specified
+   policy  (programs, destinations, mints, per-tx, per-window and fee caps)     → DENY, whatever the model says
+   intents (no re-sign while an earlier attempt could still land)               specified
+   sensor  (proposal stream → intensity, valence, repetition)                   v0 today, v1 in H1
+   Keel    (@gubernaut/core 1.0.1; declared digest pinned, bytes hashed in H1)  → REGROUND → DENY; posture only restricts
+   receipt (message hash, expiry, policy hash) → signer · hash-chained log · any error → DENY (fail closed)
+on-chain (devnet, H3): Squads v4 spending limit bounds a stolen key (ADR-006)
 ```
+
+Today's code implements `guard.evaluate(proposal)` with the policy, sensor v0 and Keel. The rest is
+specified in `docs/SPEC.md`, whose §10 lists the defects fixed first in H1.
 
 | Path | What |
 |---|---|
 | `packages/sdk/` | the guard: `policy.ts`, `sensor.ts`, `guard.ts`, `describe.ts` (web3.js tx → proposal) |
 | `apps/sandbox/` | the plugin sandbox |
-| `programs/` | *(H3)* the Anchor vault: program-enforced caps and allowlist, decision events |
-| `docs/` | `ARCHITECTURE.md` (long term) · `HACKATHON.md` (scope, dates, rules) · `CLAIMS.md` · `plans/` |
-| `design/` | ADRs |
+| `programs/` | *(H3, P2)* `solanaut_anchor`: anchors the decision log's head. On-chain caps come from composing Squads v4 (ADR-006) |
+| `docs/` | `OVERVIEW.md` (the code as it is) · `SPEC.md` (the MVP baseline) · `ARCHITECTURE.md` (long term) · `HACKATHON.md` (scope, dates, rules) · `CLAIMS.md` · `papers/` · `submission/` · `plans/` |
+| `design/` | ADRs 001–007 |
 | `plugins/` `workflows/` `tools/` | the office: seats, SOPs, deterministic gates |
-| `kb/` | intake records and upstream pins (`REGISTRY.md`) |
+| `kb/` | the knowledge vault (ADR-007): `INDEX.md` (front page), `LOG.md`, `DOCUMENTS.md` (the paper register), `REGISTRY.md` (upstream pins), `sources/`, `wiki/`, `milestones/`, `templates/`, `intake/`, and `private/` (gitignored) |
 | `evals/` | receipts: every gate shown failing, then passing |
 | `runs/` | one record per session, `YYYY-MM-DD-<slug>.md` |
-| `Docs-Dashy-Drop/` | the human's drop. **Read-only**, byte for byte; triaged in `kb/intake/` |
+| `.obsidian/` | the vault's shared settings. Open this folder in Obsidian; per-user state is gitignored |
+| `Docs-Dashy-Drop/` | the human's drop and the vault's raw inbox. **Read-only**, byte for byte; triaged in `kb/intake/` |
 
 ## Claims
 
@@ -154,3 +170,7 @@ repeated; `docs/CLAIMS.md` lists each one and why.
 
 `workflows/session_close.md`: write `runs/YYYY-MM-DD-<slug>.md` and update `PROGRESS.md`, then
 run `tools/session_close.py` until it is green, then commit and push.
+
+When a phase in `PROGRESS.md` ends, also close it into the knowledge base with
+`workflows/milestone_review.md` (`/milestone`): the review, the compiled knowledge, the registers, and
+a `milestone/<id>` tag.

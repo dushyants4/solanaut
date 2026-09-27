@@ -59,9 +59,9 @@ If two seats both fit, the work has two phases — run them in seat order, not a
 
 ### 4. Check the target repo is writable
 
-`CLAUDE.md`'s project-context block lists the repos Office may write to. **An unlisted
-repo is read-only.** If the work needs a repo not listed, add it to the block first, with
-the user's confirmation — do not write to it and add the line afterwards.
+Solanaut writes only its own folder (`CLAUDE.md`, *Isolation*), and the boundary guard enforces
+it. **Any other repo is read-only.** If the work needs to change one, state the exact edit for
+its owner instead — do not write to it.
 
 ### 5. Check for an existing workflow
 
@@ -95,5 +95,5 @@ seat: <seat> | tier: T<n> | workflow: <file or "none, ad hoc"> | target: <repo o
 ## When to stop and ask
 
 - The tier is T3 or T4 and the instruction was not explicit.
-- The target repo is not in the project-context block.
+- The work needs a write outside this folder.
 - Two readings of the request lead to materially different work.

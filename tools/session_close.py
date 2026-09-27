@@ -18,14 +18,17 @@ Gates:
   1  the manifests match the seat table        (scaffold.py --check)
   2  the harness audits clean                  (lint_plugins.py)
   3  the boundary guard passes its matrix      (boundary_guard.py --selftest)
-  4  nothing key-shaped in the tree            (secret scan)
-  5  a run record exists for today             (workflows/session_close.md step 1)
-  6  the remote is configured, or said loudly  (the rule this office exists for)
-  7  HEAD is pushed to origin                  (standing rule 9, the milestone rule)
+  4  the knowledge vault lints clean           (kb_lint.py; Solanaut, 2026-09-27)
+  5  nothing key-shaped in the tree            (secret scan)
+  6  a run record exists for today             (workflows/session_close.md step 1)
+  7  the remote is configured, or said loudly  (the rule this office exists for)
+  8  HEAD is pushed to origin                  (standing rule 7, the milestone rule)
+  9  the working tree is committed
 
-Gates 3 and 7 were added in pass 2. Gate 7 matters most: before it,
+Gates 3 and 8 were added in the Office's pass 2. Gate 8 matters most: before it,
 "synchronise at every milestone" was a sentence in CLAUDE.md that nothing
 checked -- the same shape of defect as a boundary described and never enforced.
+Gate 4 is Solanaut's: shown failing on injected faults in evals/harness/kb_lint.md.
 """
 
 from __future__ import annotations
@@ -88,7 +91,8 @@ def main() -> int:
                            ["tools/scaffold.py", "--check"]),
                           ("harness audits clean", ["tools/lint_plugins.py"]),
                           ("boundary guard passes its fault matrix",
-                           ["tools/boundary_guard.py", "--selftest"])):
+                           ["tools/boundary_guard.py", "--selftest"]),
+                          ("the knowledge vault lints clean", ["tools/kb_lint.py"])):
         rc, out, err = run(["uv", "run", "--script"] + script)
         tail = "\n".join((out or err).splitlines()[-4:]) if rc != 0 else ""
         results.append(gate(label, rc == 0, tail))
@@ -155,7 +159,7 @@ def main() -> int:
         else:
             pushed = local == remote_head
             detail = "" if pushed else (
-                "HEAD is ahead of origin/main. Standing rule 9: synchronise at\n"
+                "HEAD is ahead of origin/main. Standing rule 7: synchronise at\n"
                 "every milestone, not once at the end. Unpushed work is one disk\n"
                 "failure from gone, and that has already happened here once.\n"
                 "  git push origin main")
@@ -170,7 +174,7 @@ def main() -> int:
     # The gate above makes it worse rather than better: "HEAD is pushed to
     # origin" is perfectly true and completely useless while the session's work
     # sits outside HEAD. Two green gates, and the work still only on this disk
-    # -- which is the exact way this project lost its charter once already.
+    # -- which is the exact way the Office this was vendored from lost its charter once.
     rc2, dirty, _ = run(["git", "status", "--short"])
     detail = "" if not dirty else (
         f"{len(dirty.splitlines())} uncommitted change(s). A pushed HEAD proves\n"

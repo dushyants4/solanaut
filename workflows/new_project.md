@@ -10,7 +10,8 @@ not re-derive it.
 
 ## Inputs
 
-- The target repo, and written confirmation it is in `CLAUDE.md`'s "Repos I write to"
+- The target repo. Solanaut writes only its own folder (`CLAUDE.md`, *Isolation*); any other repo
+  is read-only unless the human says otherwise, in writing
 - The request that arrived
 - `kb/REGISTRY.md` — what Office points at rather than re-authors
 
@@ -18,9 +19,9 @@ not re-derive it.
 
 ### 1. Establish the write boundary BEFORE reading the code
 
-An unlisted repo is read-only. If the target is not in the project-context block, the
-work that happens now is T0 — reading and reporting — and the block gets updated by the
-human before anything is written. Do not discover this halfway through an edit.
+Any repo other than Solanaut is read-only. If the target is not this folder, the work that
+happens now is T0 — reading and reporting — and the human decides, in writing, before anything
+is written there. Do not discover this halfway through an edit.
 
 ### 2. Read before writing
 

@@ -61,7 +61,8 @@ The convention this office already uses:
 | File | Holds |
 |---|---|
 | `runs/YYYY-MM-DD-<slug>.md` | what was asked, done, changed, found, still open |
-| `README.md` leg table | phase and state, at a glance |
+| `PROGRESS.md` phase table | phase and state, at a glance |
+| `kb/INDEX.md` | what is known, by topic, with its sources |
 | `design/ADR-*.md` | decisions and why, so they are not re-litigated |
 
 Write to them **as you go**, not at the end. A record written after context loss is

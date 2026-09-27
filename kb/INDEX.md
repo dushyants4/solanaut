@@ -15,7 +15,7 @@ pass or milestone review that adds or changes a topic updates it. The archivist 
 | [DOCUMENTS.md](DOCUMENTS.md) | every public document and paper: version, status, owner, next review |
 | [REGISTRY.md](REGISTRY.md) | the upstream code Solanaut depends on, pinned, and findings about it |
 | [LOG.md](LOG.md) | an append-only record of every knowledge operation |
-| [intake/](intake/) | the human's drops (`Docs-Dashy-Drop/`), registered with SHA-256 |
+| [intake/](intake/) | the human's drops (`Docs-Dashy-Drop/`), registered with SHA-256: [2026-09-27, the setup drop](intake/2026-09-27_dashy-drop.md) |
 | [templates/](templates/) | milestone review, source, topic, entity, brief, paper, ADR, run record |
 
 ## Topics

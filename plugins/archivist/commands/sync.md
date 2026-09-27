@@ -1,11 +1,11 @@
 ---
-description: Synchronise a milestone — run every gate, update the record, commit, push origin. Standing rule 9.
+description: Synchronise a milestone — run every gate, update the record, commit, push origin. Standing rule 7.
 argument-hint: [what the milestone was, in a few words]
 ---
 
 A milestone just completed: $ARGUMENTS
 
-**Standing rule 9: synchronise at every milestone, not once at the end.** A milestone is
+**Standing rule 7: synchronise at every milestone, not once at the end.** A milestone is
 any one of — a leg completes · a red gate turns green · `CLAUDE.md`, `plugins/` or
 `tools/` changed · the session ends.
 
@@ -20,7 +20,8 @@ In order, and do not reorder them:
 
 2. **Update the record.** `PROGRESS.md` at minimum. If this milestone made any `.md`
    inaccurate, fix it now rather than next session — `README.md`'s state section and
-   `CLAUDE.md`'s project-context block are the two that rot fastest.
+   `CLAUDE.md`'s architecture block are the two that rot fastest. If a phase ended, run
+   `/milestone` as well.
 
 3. **Scan the diff for anything key-shaped** before it becomes permanent history.
    ```
@@ -34,7 +35,7 @@ In order, and do not reorder them:
 
 5. **If the push fails, say so loudly.** Do not retry silently and do not carry on
    quietly. State what is committed, what is unpushed, and that the work is currently one
-   disk failure from gone. This project has already lost a charter that way.
+   disk failure from gone. The Office this was vendored from lost a charter that way.
 
 `origin` is **private**. Making it public is T4: the human, at the moment, every time. A sync
 never changes a repository's visibility.

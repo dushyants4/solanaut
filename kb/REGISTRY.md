@@ -18,7 +18,25 @@ Toolchain: `TOOLCHAIN.md`. Vendored office: `plugins/VENDORED.md`.
 (`bufferutil`, `utf-8-validate`, both optional speed-ups for the WebSocket library under
 web3.js). They are not needed: the sandbox ran against a local validator without them.
 
+## What the agent frameworks build on
+
+Checked on the npm registry on 2026-09-27
+([source](sources/2026-09-27_npm-agent-frameworks.md)):
+- Solana Agent Kit 2.0.10, ElizaOS's `plugin-solana` 1.2.6 and Anchor's TS client
+  (`@anchor-lang/core` 1.2.0) all depend on `@solana/web3.js` 1.x.
+- `@solana/kit` is at 8.3.0.
+
+That confirms the 1.x pin above for H2. The guard decodes serialized bytes (ADR-005), so kit-built
+transactions are covered too.
+
 ## Findings about upstream
 
-None yet. A defect found in a Gubernaut package is written here and in the run record for the
-human; Solanaut never patches upstream code.
+A defect found in a Gubernaut package is written here and in the run record for the human. Solanaut
+never patches upstream code. It guards against the defect on its own side, and records that here.
+
+| ID | Package | Finding | Checked | Solanaut's side |
+|---|---|---|---|---|
+| U-1 | `@gubernaut/core` 1.0.1 | The README says the controller's digest "is verified at build time by the embed script… and again on load". The shipped `dist/index.js` sets `var wasmDigest = WASM_SHA256;` (a constant), and loading checks only the decoded length (17,082 bytes). Nothing hashes the bytes on load | **first-hand**, 2026-09-27 ([source](sources/2026-09-27_npm-gubernaut-core.md)) | `docs/CLAIMS.md` S4 narrowed; H1 hashes the embedded bytes (`docs/SPEC.md` D4) |
+| U-2 | `@gubernaut/core` 1.0.1 | `tick()` accepts `null`, `"0.5"`, `true` and `[0.7]` (JavaScript coerces them to numbers) while `Governor.accepts()` rejects each | reported by a research agent; **to reproduce** in H1's first eval | validate before ticking (`docs/SPEC.md` D3) |
+| U-3 | `@gubernaut/core` 1.0.1 | `Governor.create(state)` accepts NaN and out-of-range state, and carries it forward | reported by a research agent; to reproduce | Solanaut never restores a state it did not write and verify |
+| U-4 | `@gubernaut/core` 1.0.1 | The npm description says the package "hard-stops runaway loops"; the README says it decides and "does not intercept". The unpublished 1.0.2 fixes the wording | via the npm record and the repository's `PUBLISH_1.0.2.md` | Solanaut quotes the README, never the description |
