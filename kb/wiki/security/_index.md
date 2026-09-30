@@ -2,7 +2,7 @@
 type: topic
 status: current
 created: 2026-09-27
-updated: 2026-09-27
+updated: 2026-09-30
 ---
 
 # Agent-wallet security
@@ -30,6 +30,7 @@ do?"
 ## Details
 
 - [The admission pattern](admission-pattern.md): how Solanaut decides, receipts, intents, the log.
+- [Readiness standards](readiness-standards.md): what a certified release rests on.
 - [Incidents](../defai/incidents.md), by cause.
 - The full threat model is `docs/papers/THREAT-MODEL.md`.
 
@@ -39,8 +40,11 @@ Three layers, each for what it can actually do:
 
 1. **An SDK guard in the agent's process.** Policy and loop control, against a fooled or confused
    model.
-2. **A signer process that holds the key** (P1). It keeps the monitor tamper-proof from the agent.
+2. **A signer process that holds the key** (the Alpha). It keeps the monitor tamper-proof from the agent, and it
+   fetches time and block heights itself instead of trusting the agent's word (ADR-009).
 3. **On-chain limits** (Squads). They bound a stolen key.
+
+The guard's memory is its log, replayed on every start (ADR-010), so a crash does not reset its caps.
 
 ## Related
 

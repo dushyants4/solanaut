@@ -13,7 +13,9 @@ This is a T3 file: a change needs a source, not a preference. Papers cite rows b
 checked.
 
 Written 2026-09-27. Revised 2026-09-27: row IDs added; S4 narrowed; G6 corrected; G7, G8 and §5
-added. The record of that revision is `runs/2026-09-27-research-foundation.md`.
+added. The record of that revision is `runs/2026-09-27-research-foundation.md`. Revised 2026-09-30: M9 refined from
+Squads' source; M10 and M11 added; the not-yet-claimable list and §4 extended; S5 notes the proposed canary. The
+record is `runs/2026-09-30-verified-review-roadmap.md`.
 
 ## 1. Solanaut's own claims
 
@@ -23,7 +25,7 @@ added. The record of that revision is `runs/2026-09-27-research-foundation.md`.
 | S2 | The policy holds whatever the model says, because the model never sees or sets it | **architectural** | `policy.ts`: configuration outside the model. True only while the policy itself is kept out of the agent's reach, so say that too. **Until H1 fixes it, `guard.policy` can be mutated by code holding the guard** (`docs/SPEC.md` §10, defect D1): do not demo policy immutability |
 | S3 | An identical failing transfer, retried, is stopped by Keel's control loop | **measured (sandbox), sensor v0** | Stopped at **turn 3** (DEFAULT → DEFAULT → REGROUND), with retries 400 ms apart. One scenario, one sensor version, one timing. Not a benchmark: never state it without "in the sandbox" |
 | S4 | Any guard error denies (fail closed). Solanaut pins Keel 1.0.1 and refuses a build that **declares** a different controller digest | **measured (tests), narrowed 2026-09-27** | `guard.test.ts`: NaN telemetry → `fail-closed`; wrong expected digest → creation rejected. **What it does not prove:** Keel 1.0.1 exposes its digest as a constant and checks only the byte length on load ([source](../kb/sources/2026-09-27_npm-gubernaut-core.md)), so the bytes themselves are not yet hashed. Never say "an unverified binary is refused" until H1 hashes the embedded controller |
-| S5 | Runs on devnet; no real funds | **fact, and a decision** | `design/ADR-003-devnet-only.md` |
+| S5 | Runs on devnet; no real funds | **fact, and a decision** | `design/ADR-003-devnet-only.md`. A capped, human-run mainnet canary is **proposed** (`design/ADR-008-mainnet-canary.md`); S5 stays true unless the human accepts it and the canary runs |
 
 **Not yet claimable, and why:**
 - **Any detection rate, block rate or false-stop rate.** Nothing has been measured beyond the sandbox
@@ -36,8 +38,14 @@ added. The record of that revision is `runs/2026-09-27-research-foundation.md`.
 - **That no other product controls retries or fees.** The research found none documenting it
   (`docs/papers/MARKET.md`), but absence of evidence is not a claim. Never say "the only" or "the
   first".
-- **Coverage of SPL tokens, v0 transactions, fee caps, intents or receipts.** They are specified
-  (`docs/SPEC.md`), not built.
+- **That Solanaut's caps or allowlists are new.** Signing services, on-chain programs and at least one open-source
+  agent wallet document them (`docs/papers/MARKET.md`).
+- **Coverage of SPL tokens, v0 or v1 transactions, the allowlist per instruction, pinned lookup tables, fee caps,
+  intents, receipts, or restore on start.** They are specified (`docs/SPEC.md` Draft 2), not built.
+- **Anything about mainnet.** Nothing is said about mainnet until the canary report exists (`docs/ROADMAP.md`,
+  milestone 4.5), and then only within its scope.
+- **Production-ready, audited or certified.** Not until `docs/READINESS.md`'s milestones say so, with their
+  evidence.
 
 ## 2. Gubernaut's figures Solanaut may quote, with their scope
 
@@ -84,12 +92,14 @@ against the sources in §2 and the official hackathon rules.
 
 un-hackable · unhackable · bulletproof · injection-proof · guaranteed · 100% safe · zero risk · the
 only · the first · prevents (of a named incident) · would have prevented · sub-millisecond (as a
-slogan) · "we" in the SDK's reference docs.
+slogan) · "we" in the SDK's reference docs · production-ready, mainnet-ready, audited and certified (each until it is
+true, with its evidence).
 
 ## 5. Facts about the world Solanaut may cite, with their scope
 
-Each fact was re-read first-hand on 2026-09-27. None of these incidents happened on Solanaut's stack.
-Solanaut may say what happened, and which of its rules would deny a transaction **shaped like** it.
+M1 to M9 were re-read first-hand on 2026-09-27; M9's refinement, M10 and M11 on 2026-09-30. None of these incidents
+happened on Solanaut's stack. Solanaut may say what happened, and which of its rules would deny a transaction
+**shaped like** it.
 
 | ID | Fact | Source | Scope that must travel with it |
 |---|---|---|---|
@@ -101,4 +111,6 @@ Solanaut may say what happened, and which of its rules would deny a transaction 
 | M6 | Backdoored `@solana/web3.js` 1.95.6 and 1.95.7 stole private keys from projects that handle them directly; 674.86 SOL ($164,100) was stolen | [The Hacker News, 2024-12-04](../kb/sources/2026-09-27_thehackernews-web3js-backdoor.md) | Not an AI-agent incident; about keys in-process |
 | M7 | 341 of 2,857 audited agent skills on ClawHub were malicious, some posing as Solana wallets, stealing wallet keys | [The Hacker News, 2026-02-02](../kb/sources/2026-09-27_thehackernews-clawhavoc.md) | No theft total is sourced; do not quote one |
 | M8 | From Aug 2023 to Jul 2024, bot accounts' non-vote Solana transactions failed 58.43% of the time and human accounts' 6.22%; expired validity windows caused 17.72% of failures | [arXiv 2504.18055](../kb/sources/2026-09-27_arxiv-solana-failed-transactions.md) | Bots, not AI agents. No documented loss comes from an AI agent escalating its own fees |
-| M9 | Squads v4 spending limits cap one mint per period for named members, optionally only to listed destinations | [docs.rs](../kb/sources/2026-09-27_squads-spending-limit.md) | A description of Squads' program, which Solanaut composes with (ADR-006). It is Squads' guarantee, not Solanaut's |
+| M9 | Squads v4 spending limits cap one mint per period for named members, optionally only to listed destinations. A limit's members need not be members of the multisig, and an empty destination list allows any address | [docs.rs](../kb/sources/2026-09-27_squads-spending-limit.md); [spending_limit_use.rs](../kb/sources/2026-09-30_squads-v4-spending-limit-use.md); [multisig_add_spending_limit.rs](../kb/sources/2026-09-30_squads-v4-add-spending-limit.md) | A description of Squads' program on its `main` branch, read 2026-09-30, which Solanaut composes with (ADR-006). It is Squads' guarantee, not Solanaut's |
+| M10 | Solana's v1 transaction format (SIMD-0296 and SIMD-0385) activated on mainnet on 2026-09-15. It allows 4,096 bytes, has no address lookup tables, and holds the priority fee as a lamport total in a config section; legacy and v0 stay at 1,232 bytes | [solana.com](../kb/sources/2026-09-30_solana-upgrades-larger-transactions.md); [the Foundation's v1 reference](../kb/sources/2026-09-30_solana-dev-skill-transactions-v1.md) | A fact about Solana, not about Solanaut. Solanaut decodes v1 only once milestone 2a.2 is achieved |
+| M11 | Phantom may add Lighthouse assertion instructions to a transaction submitted to it, so the transaction on-chain can differ from the one submitted, and an assertion can make it fail | [Phantom's docs](../kb/sources/2026-09-30_phantom-lighthouse.md) | Phantom's behaviour, per its docs. The page does not say which methods or platforms, or whether a dApp can opt out |

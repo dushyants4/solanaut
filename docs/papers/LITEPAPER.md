@@ -1,6 +1,6 @@
 # Solanaut: a reference monitor for AI agents' Solana wallets
 
-> **Draft 1** · 2026-09-27 · owner: architect · for: judges and developers · not public until the
+> **Draft 2** · 2026-09-30 · owner: architect · for: judges and developers · not public until the
 > human says so. Figures cite `docs/CLAIMS.md` rows as [S1], [G6], [M4]. Register: `kb/DOCUMENTS.md`.
 
 ## Summary
@@ -51,12 +51,13 @@ an agent's signatures.
 
 ```
 agent ── bytes ──▶ guard.check()                        ── receipt ──▶ signer ──▶ RPC
-                    decode legacy / v0 (ALTs from the caller; v1 denied)
+                    decode legacy, v0 (pinned lookup tables) and v1; unknown versions denied
+                    an allowlist per instruction; durable nonces and other signers denied
                     policy: programs, destinations, mints, caps, fees      → DENY by rule
-                    intents: no re-sign while an attempt could still land  → DENY
+                    intents, keyed by effects: no re-sign while an attempt could still land → DENY
                     Keel (@gubernaut/core 1.0.1): REGROUND denies, INHIBIT tightens
-                    log: hash-chained, replayable
-on-chain (devnet): Squads v4 spending limit: N per day, to listed destinations only
+                    log: hash-chained, replayable, and the guard's state after a restart
+on-chain (devnet): Squads v4 spending limit naming the agent key: N per day, to listed destinations only
 ```
 
 1. **The policy is the injection defence.** It reads the transaction's bytes, never the model's text,
@@ -85,19 +86,24 @@ on-chain (devnet): Squads v4 spending limit: N per day, to listed destinations o
 
 - **Built and measured:** policy denials [S1]; the retry loop stopped in the sandbox [S3]; fail-closed on
   bad telemetry [S4]. S4 is narrowed: the controller's bytes are not yet hashed.
-- **Specified, not built:** v0 and token decoding, receipts, intents, the log, the adapters, the signer
-  process, the Squads backstop (`docs/SPEC.md`).
-- **Not claimed:** any detection, block or false-stop rate; any latency for the guard; any fee savings.
+- **Specified, not built:** decoding of v0, v1 and tokens; the allowlist per instruction; receipts; intents; the
+  log as the guard's state; the adapters; the signer process; the Squads backstop (`docs/SPEC.md`, Draft 2).
+- **Not claimed:** any detection, block or false-stop rate; any latency for the guard; any fee savings; anything
+  about mainnet.
 
 ## 6. Roadmap
 
-| Phase | Dates | Delivers |
-|---|---|---|
-| H1 | Sep 28 – Oct 1 | the guard v1: bytes, tokens, fees, receipts, intents, the log; Keel hardening; sensor v1 and batteries |
-| H2 | Oct 2 – 4 | wrappers for Solana Agent Kit and `@solana/kit`; ElizaOS plugin and signer process (P1) |
-| H3 | Oct 5 – 7 | Squads spending limit on devnet; the log-anchor program (P2) |
-| H4 | Oct 8 – 10 | the cockpit, and the incident-shaped scenarios on devnet |
-| H5 | Oct 11 – 12 | videos, and the submission, by the human |
+The roadmap is a sequence of milestones, each reached by passing its gate rather than by a date
+(`docs/ROADMAP.md`). Each leg must be won before the next begins.
+
+| Leg | Won when |
+|---|---|
+| 1 · Define | the product definition (`docs/PRODUCT.md`) is signed off by the human |
+| 2 · Develop: the Beta MVP | the guard v1, both adapters, the Squads limit on devnet and a first dashboard pass the Beta batteries from a clean clone |
+| 3 · The Alpha, tested hard | the signer process, the MCP firewall in front of Phantom's agent wallet, bounds for opaque programs and the other Alpha work meet every threshold in `docs/READINESS.md` |
+| 4 · A live Phantom test | only if the human accepts ADR-008: a capped, human-run mainnet canary whose every scenario gives its expected result, and every lamport reconciles |
+| 5 · Finish and polish | the dashboard and the developer experience pass their usability thresholds |
+| Readiness | an independent audit, a bug bounty and a 1.0 release, each with its evidence |
 
 ## 7. Built on, and disclosed
 
@@ -111,3 +117,4 @@ are working defaults, not the configuration Gubernaut evaluated [G8].
 | Version | Date | What changed |
 |---|---|---|
 | Draft 1 | 2026-09-27 | First draft. |
+| Draft 2 | 2026-09-30 | The verified review: the design strip follows `docs/SPEC.md` Draft 2; the status names what is specified; the roadmap is milestones, not dates. |

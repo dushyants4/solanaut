@@ -1,8 +1,9 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 1** · 2026-09-27 · owner: integrator · for: engineers new to this repository, and judges
-> reading the code · describes the tree **as it is today** (phase 0 plus the research foundation). What
-> it will become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`.
+> **Draft 2** · 2026-09-30 · owner: integrator · for: engineers new to this repository, and judges
+> reading the code · describes the tree **as it is today** (phase 0, the research foundation and the verified
+> review). What it will become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is
+> `docs/ROADMAP.md`.
 
 ## 1. What is here
 
@@ -20,8 +21,8 @@ Solanaut/                        (an Obsidian vault; open this folder, and the f
 │   ├─ src/index.ts              the public surface
 │   └─ test/guard.test.ts        9 evals, written failing first (node:test)
 ├─ apps/sandbox/src/main.ts      three scripted scenarios through the guard, offline or on a local validator
-├─ docs/                         OVERVIEW · SPEC · ARCHITECTURE · HACKATHON · CLAIMS · papers/ · submission/ · plans/
-├─ design/                       ADR-001 … ADR-007
+├─ docs/                         PRODUCT · ROADMAP · READINESS · OVERVIEW · SPEC · ARCHITECTURE · HACKATHON · CLAIMS · papers/ · submission/ · plans/
+├─ design/                       ADR-001 … ADR-011
 ├─ kb/                           the knowledge base: INDEX, LOG, DOCUMENTS, REGISTRY, sources/, wiki/, milestones/, templates/, intake/, private/ (gitignored)
 ├─ evals/                        receipts: each gate shown failing, then passing
 ├─ runs/                         one record per session
@@ -80,6 +81,14 @@ Decision { allow; rule?; reason; posture; telemetry; turn }
 `createGuard` refuses a Keel whose declared digest is not the pinned one. That check compares two
 constants for now (`docs/SPEC.md` §10, D4).
 
+**What the verified review of 2026-09-30 found in this code** (`docs/SPEC.md` §10):
+- **D10.** Only System Program `Transfer` is decoded. With the System Program allowlisted, every other System
+  instruction, including `CreateAccount` and the nonce instructions, passes with 0 lamports counted.
+- **D11.** Reservations, sensor state and Keel's state live in memory, so a restart resets the caps.
+- **D12.** Decoding goes through `@solana/web3.js`; the v1 core decodes bytes without it (ADR-009).
+- The code handles legacy transactions only. v1 transactions have been live on mainnet since 2026-09-15, and v0
+  transactions use lookup tables; both are specified in `docs/SPEC.md` §4.
+
 ## 4. The workflows
 
 | Workflow | Command | What it does |
@@ -97,7 +106,8 @@ constants for now (`docs/SPEC.md` §10, D4).
 ## 5. Configuration and constraints
 
 - **Devnet only** (ADR-003). No key that holds real funds lives in this tree. Devnet keys are in
-  `keys/`, which is gitignored and write-denied to agents.
+  `keys/`, which is gitignored and write-denied to agents. A capped, human-run mainnet canary with a Phantom
+  wallet is **proposed** (ADR-008) and waits for the human's decision.
 - **Isolation** from the Gubernaut workspace (ADR-002):
   - `.claude/settings.json` denies reads of it;
   - `tools/boundary_guard.py` denies writes to it, to machine-wide agent config, to the drop and to
@@ -110,11 +120,12 @@ constants for now (`docs/SPEC.md` §10, D4).
   with the gate shown failing first. T4 (public, mainnet, submission) is the human's.
 - **Environment:** there are no runtime environment variables. The guard keeps no clock; proposals
   carry their time.
-- **What is not here yet:** CI, a licence, `programs/`, `apps/cockpit`. The dates are in
-  `docs/HACKATHON.md`.
+- **What is not here yet:** CI, a licence, `programs/`, `apps/cockpit`. The order they arrive in is the
+  milestone sequence in `docs/ROADMAP.md`; the contest's own dates are in `docs/HACKATHON.md`.
 
 ## Changes
 
 | Version | Date | What changed |
 |---|---|---|
 | Draft 1 | 2026-09-27 | First draft. |
+| Draft 2 | 2026-09-30 | The verified review: the new documents and ADRs in the tree; the defects D10 to D12 found in this code; the proposed canary; milestones in place of dates. |

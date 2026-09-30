@@ -5,6 +5,14 @@ a tiny program (chosen), Solanaut's own Anchor vault as the setup plan had it, o
 It **supersedes ADR-001, point 4** ("On-chain enforcement (H3) repeats the policy in the vault
 program").
 
+**Answered 2026-09-30, from Squads v4's source:** `spending_limit_use` checks only that the caller is on the spending
+limit's own member list, and limit members are not tied to multisig membership
+([source](../kb/sources/2026-09-30_squads-v4-spending-limit-use.md),
+[source](../kb/sources/2026-09-30_squads-v4-add-spending-limit.md)). So the agent's key is **not** a multisig member
+at all: it is named only on the limit. The first "would show this was wrong" condition below cannot occur. The kill
+switch is removing the limit; removing a member revokes nothing. [ADR-011](ADR-011-phantom-roles-and-dashboard.md)
+names the operator's Phantom wallet as the config authority.
+
 ## Context
 
 - **The goal.** The setup plan's H3 was `programs/solanaut_vault`: Solanaut's own Anchor program

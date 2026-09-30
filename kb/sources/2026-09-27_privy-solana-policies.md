@@ -8,7 +8,7 @@ published: "undated"
 fetched: 2026-09-27
 checked: first-hand
 created: 2026-09-27
-updated: 2026-09-27
+updated: 2026-09-30
 ---
 
 # Privy's Solana policies
@@ -31,3 +31,5 @@ updated: 2026-09-27
 
 - Vendor documentation, as it read on 2026-09-27. It describes the product's rules, not their
   effectiveness.
+- Re-checked on 2026-09-30 through a search of this page: Solana policy evaluation still "does not support
+  resolving addresses from Address Lookup Tables". The search result was not a full re-read.

@@ -1,6 +1,6 @@
 # SUBMISSION.md — what Colosseum needs, and who does what
 
-> **Draft 1** · 2026-09-27 · owner: **the human (T4)**, drafted by the archivist · for: the human ·
+> **Draft 2** · 2026-09-30 · owner: **the human (T4)**, drafted by the archivist · for: the human ·
 > not public. Deadline: **2026-10-12, 11:59pm PT**. Sources: the official rules (`docs/HACKATHON.md`),
 > [the FAQ](../../kb/sources/2026-09-27_colosseum-faq.md) and
 > [the World's Fair page](../../kb/sources/2026-09-27_colosseum-worldsfair.md).
@@ -16,7 +16,7 @@
 | Repository access | "private repositories are allowed if access is granted to hackathon@colosseum.com"; open source is encouraged | private today | the human: make it public, or grant access |
 | Licence | none yet; needed before making it public | Apache-2.0 would match Gubernaut's | the human |
 | Prior-work disclosure | "disclose all relevant past development work in the submission form" | **corrected text below** | the human submits it |
-| Live product link | a devnet cockpit, or the repository | after H4 | the human |
+| Live product link | the dashboard on devnet, or the repository | after milestone 2a.10 (`docs/ROADMAP.md`) | the human |
 | Team profile | every member registered on colosseum.com (rules §6) | — | the human |
 | The submission itself | one per team, uploaded by the team leader | — | **the human, at the moment** |
 
@@ -52,8 +52,9 @@ each traced to its `docs/CLAIMS.md` rows.
 - **Solution:** a reference monitor for agent wallets. The agent proposes, Solanaut admits or denies by
   a named rule, the signer signs only receipt-bound bytes. A control loop stops retry loops [S3], and a
   Squads spending limit bounds a stolen key [M9].
-- **Solana integration:** decodes legacy and v0 transactions (System, SPL, Token-2022, fees); composes
-  with Squads v4 spending limits; runs on devnet.
+- **Solana integration:** decodes legacy, v0 and v1 transactions from their bytes (System, SPL, Token-2022, fees),
+  with an allowlist for every instruction; composes with Squads v4 spending limits, naming the agent's key on the
+  limit; runs on devnet. State only what has passed its gate when the human submits (`docs/ROADMAP.md`).
 - **Who it is for:** teams running trading or treasury agents; agent platforms; framework maintainers.
 - **Business model:** `docs/papers/BUSINESS-PLAN.md`, the human's decision.
 - **What is measured:** only what `docs/CLAIMS.md` §1 lists, each with its scope.
@@ -64,3 +65,4 @@ each traced to its `docs/CLAIMS.md` rows.
 | Version | Date | What changed |
 |---|---|---|
 | Draft 1 | 2026-09-27 | First draft. The disclosure is corrected against the release record and `plugins/VENDORED.md`. |
+| Draft 2 | 2026-09-30 | The Solana-integration answer follows `docs/SPEC.md` Draft 2, limited to what has passed its gate; the live link waits for milestone 2a.10. |

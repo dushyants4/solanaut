@@ -1,4 +1,4 @@
-# HACKATHON.md — Crypto World's Fair: the rules, the scope, the dates
+# HACKATHON.md — Crypto World's Fair: the rules, the scope, the milestones
 
 ## The rules, from the official PDF and Colosseum's FAQ
 
@@ -22,52 +22,62 @@ Sources:
 The fair is **multi-chain**: it has ecosystem tracks for Solana, Ethereum, Hyperliquid, Base, Tempo,
 Arbitrum, Zcash and Robinhood Chain. Solanaut enters the Solana track and the overall prizes.
 
-## Scope for the submission (MVP)
+## Milestones, not dates
 
-**In:**
-- the guard SDK v1, measured (`docs/SPEC.md`);
+Solanaut's plan is a sequence of milestones, each reached when its gate passes (`docs/ROADMAP.md`), at the human's
+instruction of 2026-09-30. The contest's deadline above is a fact about the contest, not a milestone. The rule for it:
+
+> **When the human decides to submit, the submission shows exactly the milestones that have passed their gates.**
+> Anything not yet achieved is described as "being built", and nothing unmeasured is claimed.
+
+| Milestone | State | Record |
+|---|---|---|
+| 0 · Setup | **achieved 2026-09-27** | `runs/2026-09-27-setup.md` |
+| R · Research foundation | **achieved 2026-09-27** | `kb/milestones/2026-09-27_R-research.md` |
+| R2 · Verified review and roadmap | **achieved 2026-09-30** | `runs/2026-09-30-verified-review-roadmap.md` |
+| 1.1 · The product is defined | next: the human's sign-off of `docs/PRODUCT.md` | — |
+| 2a.1 to 2a.10 · The Beta MVP, built | after 1.1 | `docs/ROADMAP.md`, Leg 2 |
+| 2b.1 to 2b.4 · QC, validation and verification | after the Beta milestones | `docs/SPEC.md` §11 |
+| S.1 · Submitted | the human's decision, with whatever has passed its gate | `docs/submission/SUBMISSION.md` |
+
+## What the submission can show
+
+**The Beta MVP** (`docs/SPEC.md` Draft 2):
+- the guard v1: legacy, v0 and v1 decoded; an allowlist per instruction; receipts, intents, the latch, and the log as
+  the guard's state;
 - the plugin sandbox;
 - wrappers for Solana Agent Kit and `@solana/kit`;
-- the Squads spending-limit backstop on **devnet** (ADR-006);
-- the cockpit showing live decisions;
+- the Squads spending-limit backstop on **devnet** (ADR-006), with the agent's key named only on the limit;
+- dashboard v0, on localhost;
 - honest numbers from the batteries.
 
-**P1, cut before anything in "In":** the ElizaOS plugin and the signer process.
-**P2, cut first:** the log-anchor program.
+**The build order, most valuable first**, decides what exists if the human submits before every Beta milestone is
+achieved. It is in `docs/ROADMAP.md`, Leg 2. v1 decoding, the kit wrapper, sensor v1, Token-2022 beyond
+TransferChecked and Phantom operator actions come last.
 
-**Out:**
-- mainnet, real funds and pay-to-attack fees (`design/ADR-003-devnet-only.md`);
-- simulation, swap decoding, the RPC proxy;
+**Never dropped:** the fail-closed tests, the nonce denial, the instruction-level deny, receipts, intents, restore on
+start, the claims discipline, and the milestone review.
+
+**Out of the submission:**
+- mainnet and real funds: the canary ADR-008 proposes is Leg 4, after the Alpha, and only if the human accepts it;
+- pay-to-attack fees and public challenges (`design/ADR-003-devnet-only.md`);
+- simulation, swap decoding, the RPC proxy, the signer process, the ElizaOS plugin and the log-anchor program, which
+  are Alpha work;
 - token or entity decisions.
-
-## Dates
-
-| Phase | Dates | Delivers | Done when |
-|---|---|---|---|
-| **0 · Setup** | Sep 27 | isolated repo, office, law, docs, toolchain, first slice, remote, Colosseum entry | `runs/2026-09-27-setup.md` · **done** |
-| **R · Research** | Sep 27 | research on Gubernaut, governor patterns and Solana DeFAI; the MVP spec; the draft-1 papers; the knowledge vault | `kb/milestones/2026-09-27_R-research.md` · **done** |
-| **H1 · Guard** | Sep 28 – Oct 1 | defects D1–D9 fixed test-first; bytes in (legacy, v0), tokens, fees, receipts, intents, latch, log, replay; Keel bytes verified; sensor v1; the fail-closed, drain, double-send, concurrency, loop and benign batteries | batteries green; the loop stop turn and the false-stop rate measured and stated in `docs/CLAIMS.md` |
-| **H2 · Adapters** | Oct 2 – 4 | `guardedWallet` (Solana Agent Kit), the kit signer; P1: the ElizaOS plugin, `solanaut-signer` | a scripted SAK agent governed with a one-line change, with the same verdicts as the SDK |
-| **H3 · On-chain** | Oct 5 – 7 | a half-day Squads spike; the multisig and spending limit on devnet; a stolen-key script; P2: `solanaut_anchor` | the Squads program refuses the stolen key past the limit on devnet |
-| **H4 · Cockpit** | Oct 8 – 10 | a web view of live devnet decisions; the incident-shaped scenarios; the adversarial battery run and recorded honestly | a stranger can watch a drain being refused, with its rule |
-| **H5 · Submit** | Oct 11 – 12 | pitch and demo videos, README, the disclosure, repository access **on the human's word**, the submission **by the human** | submitted before 11:59pm PT Oct 12 |
-
-**If a phase runs late, cut in this order:**
-1. `solanaut_anchor` (P2);
-2. the signer process (P1);
-3. the ElizaOS plugin (P1);
-4. polish in the cockpit.
-
-Never cut the fail-closed tests, the claims discipline, or the milestone review.
 
 ## Risks to the delivery
 
 | Risk | Signal | Response |
 |---|---|---|
-| H1 is the largest phase | not all of the batteries are green by Oct 1 | carry the loop and benign batteries into H2's first day; never ship an unmeasured rate |
-| Squads members cannot use a spending limit without also getting vote or execute rights | the H3 spike | fund the hot wallet through the limit (ADR-006, option 1b), or take Swig |
+| The Beta is large, and the contest window may close before all of it is achieved | Beta milestones still open when the human decides to submit | submit what passed its gate, in the build order; describe the rest as being built; never ship an unmeasured rate |
+| v1 decoding and pinned lookup tables add scope | milestone 2a.2 is not yet achieved | v1 comes last in the build order; while undecoded it stays denied, and the docs say so |
 | Devnet is congested on recording day | failed airdrops, slow confirmations | record the local-validator fallback (`docs/submission/DEMO.md`) and say so on screen |
 | A claim outruns the evidence | a sentence with no `docs/CLAIMS.md` row | the claims check at every milestone review |
+| Phantom warns about an unreviewed dashboard domain | a hosted dashboard | keep the dashboard on localhost for the submission |
+
+**Resolved on 2026-09-30:** the risk that Squads members could not use a spending limit without vote or execute
+rights. Squads v4 checks only the limit's own member list, and the agent's key need not be a multisig member at all
+(`docs/SPEC.md` §9).
 
 ## The Colosseum entry
 

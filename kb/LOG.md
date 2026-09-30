@@ -40,3 +40,13 @@ grep "| research |" kb/LOG.md             # every research pass
 ## [2026-09-27 12:18] review | milestone R · the research foundation | kb/milestones/2026-09-27_R-research.md, kb/INDEX.md, kb/DOCUMENTS.md, PROGRESS.md
 
 ## [2026-09-27 17:33] file-back | the human asked for the whole pitch in four paragraphs (what, why, how, results); the answer is filed as PITCH.md Draft 2, traced to CLAIMS rows | docs/submission/PITCH.md, docs/submission/SUBMISSION.md, kb/DOCUMENTS.md
+
+## [2026-09-30 23:49] research | the verified review: about 30 primary sources read directly (Solana's v1 pages, Squads v4's source, Phantom's docs, kit and Solana Agent Kit interfaces, npm, Anza, SIMD-0312, Alpenglow, Kora, coldstar-agent-signer, Lighthouse, OWASP, npm trusted publishing, verified builds); 22 source notes, 3 of them via-agent | kb/sources/2026-09-30_*.md
+
+## [2026-09-30 23:49] fix | Privy's lookup-table gap re-checked through a search of its page; the competitor page's claim that on-chain caps "are audited" narrowed to Swig's sourced audit | kb/sources/2026-09-27_privy-solana-policies.md, kb/wiki/competitors/_index.md
+
+## [2026-09-30 23:49] restructure | compiled into the wiki: v1, durable nonces and pinned tables; Squads' membership answer; a Phantom entity page; a readiness-standards page; new glossary terms | kb/wiki/solana/_index.md, kb/wiki/competitors/_index.md, kb/wiki/competitors/squads.md, kb/wiki/competitors/phantom.md, kb/wiki/security/readiness-standards.md, kb/wiki/security/_index.md, kb/wiki/glossary.md
+
+## [2026-09-30 23:49] file-back | the 26 verified findings, filed as docs/SPEC.md Draft 2, ADR-008 (proposed) to ADR-011, and the threat model's Draft 2; the roadmap and readiness plan as achievement-based milestones, at the human's instruction | docs/SPEC.md, design/ADR-008..011, docs/papers/THREAT-MODEL.md, docs/PRODUCT.md, docs/ROADMAP.md, docs/READINESS.md
+
+## [2026-09-30 23:49] review | milestone R2 · the verified review and a roadmap by achievement | kb/milestones/2026-09-30_R2-verified-review.md, kb/INDEX.md, kb/DOCUMENTS.md, kb/REGISTRY.md, PROGRESS.md

@@ -12,5 +12,6 @@ seen failing might not be checking anything.
 | `tools/lint_plugins.py`, `tools/scaffold.py --check` | inherited from the Office, where their bite job ran in CI | clean | vendored; not re-shown here yet |
 | `tools/kb_lint.py` (session-close gate 4) | its own first run (a quoted non-ASCII path); 8 faults at once in a scratch copy; a dangling register row; an orphan through `session_close.py` | 0 errors | `harness/kb_lint.md` |
 
-Owed: a CI job that re-runs these fault injections on every push (the Office's `bite` job), when
-the repository gets CI (H1).
+Owed: a CI job that re-runs these fault injections on every push (the Office's `bite` job). Milestone 2a.1 in
+`docs/ROADMAP.md` builds the first job; milestone 3.9 adds the fault-injection jobs and the thresholds in
+`docs/READINESS.md`. The Beta batteries are specified in `docs/SPEC.md` §11.

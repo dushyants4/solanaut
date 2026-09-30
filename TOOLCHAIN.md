@@ -40,6 +40,18 @@ anchor_version = "1.2.0"
 solana_version = "3.1.10"
 ```
 
+## v1 transactions and the test validator
+
+v1 transactions went live on mainnet on 2026-09-15 and are live on devnet
+([source](kb/sources/2026-09-30_solana-upgrades-larger-transactions.md)). A local validator runs them only from
+Agave 4.2.2 ([source](kb/sources/2026-09-30_solana-dev-skill-transactions-v1.md)), so the pinned 3.1.10 cannot.
+
+- **Keep 3.1.10 active.** Anchor 1.2.0 selects it for builds.
+- **For v1 integration tests,** run the installed, inactive 4.3.0's `solana-test-validator` by its absolute path,
+  never by switching the active release. Surfpool 1.5 or later also enables v1.
+- **A pinned check for that validator** in `tools/doctor.py` is a T3 change, shown failing first, owed at milestone
+  2a.2 of `docs/ROADMAP.md`.
+
 ## Keys
 
 The Solana CLI's global config (`~/.config/solana/`) is never used. Every command passes `--url`

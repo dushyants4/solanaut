@@ -1,6 +1,6 @@
 # BUSINESS-PLAN.md — two paths for Solanaut, and a recommendation
 
-> **Draft 1** · 2026-09-27 · owner: drafted by the architect **for the human, whose decision it is**
+> **Draft 2** · 2026-09-30 · owner: drafted by the architect **for the human, whose decision it is**
 > (the entity, the licence and the funding are T4) · for: the human, and judges (rules §8 score a
 > business plan) · not public. Figures cite `docs/CLAIMS.md` or `kb/sources/`. **Every price, target
 > and threshold below is a hypothesis, not a measurement.** Register: `kb/DOCUMENTS.md`.
@@ -44,7 +44,9 @@ rewards, and what can be adopted fastest.
   - platform risk: the wallet providers add loop control themselves;
   - a small, contested market;
   - a crowded category;
-  - selling security to teams that have not yet lost money.
+  - selling security to teams that have not yet lost money;
+  - a hosted control plane holds other teams' policies and logs, so it would first need the readiness track in
+    `docs/READINESS.md`, a SOC 2 Type II or ISO/IEC 27001 programme, and a legal review of custody status.
 
 ## 3. Path B: public-good infrastructure
 
@@ -88,3 +90,4 @@ human's.
 | Version | Date | What changed |
 |---|---|---|
 | Draft 1 | 2026-09-27 | First draft: both paths, one recommendation, as the human asked. |
+| Draft 2 | 2026-09-30 | Path A's risks name what a hosted service would need first (`docs/READINESS.md`). |

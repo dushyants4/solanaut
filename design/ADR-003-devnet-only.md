@@ -1,6 +1,10 @@
 # ADR-003 · The demo runs on devnet. No real funds, no pay-to-attack
 
-**Status:** accepted 2026-09-27, **the human's decision** ("Devnet only").
+**Status:** accepted 2026-09-27, **the human's decision** ("Devnet only"). On 2026-09-30 the human asked for a
+final test with a live Phantom wallet and real money: [ADR-008](ADR-008-mainnet-canary.md) **proposes** a capped,
+human-run mainnet canary that would supersede the "devnet only" line in part. Until the human accepts ADR-008, this
+ADR stands whole. Its other decisions (no pay-to-attack fees, no public challenge, no real-funds key in this tree)
+stand either way.
 
 ## Context
 

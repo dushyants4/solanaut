@@ -1,6 +1,6 @@
 # PITCH.md — the pitch: one line, thirty seconds, four paragraphs, and the video script
 
-> **Draft 2** · 2026-09-27 · owner: drafted for **the human, who delivers it (T4)** · for: Colosseum's
+> **Draft 3** · 2026-09-30 · owner: drafted for **the human, who delivers it (T4)** · for: Colosseum's
 > judges · not public. The video runs 2 to 3 minutes, per Colosseum's FAQ
 > ([source](../../kb/sources/2026-09-27_colosseum-faq.md)). Every fact, spoken or written, carries its
 > `docs/CLAIMS.md` ID; nothing is said that has no row.
@@ -55,9 +55,10 @@ stream of proposals (intensity, valence, repetition) and returns a posture, whic
 ever restrict, never allow.
 
 The v1 now being built adds:
+- decoding of legacy, v0 and v1 transactions from their bytes, with an allowlist for every instruction;
 - receipts that bind each approval to the exact bytes signed;
 - intents, so a payment is never re-signed while an earlier attempt could still land;
-- a hash-chained log that replays every decision;
+- a hash-chained log that replays every decision and is the guard's memory after a restart;
 - one-line wrappers for Solana Agent Kit and `@solana/kit`;
 - composed rather than reinvented, a Squads v4 spending limit on devnet. Squads' own program then caps
   what even a stolen agent key can move, per period and only to listed addresses.
@@ -105,6 +106,9 @@ published.
 - **Nothing is claimed before it is built.** Receipts, intents, the wrappers and the Squads limit
   stay "being built" until their `docs/CLAIMS.md` rows exist. Each milestone review updates the *How*
   and *Results* paragraphs above.
+- **Nothing about mainnet** until the canary report exists (`docs/ROADMAP.md`, milestone 4.5), and then only within
+  its scope.
+- **Never "production-ready", "audited" or "certified"** until `docs/READINESS.md` says so, with its evidence.
 
 ## Changes
 
@@ -112,3 +116,4 @@ published.
 |---|---|---|
 | Draft 1 | 2026-09-27 | First draft. The Squads and cockpit shots exist only after H3 and H4. |
 | Draft 2 | 2026-09-27 | The written pitch in four paragraphs (what, why, how, results), traced to CLAIMS rows. The script's line at 1:40 now says "automated senders", to keep M8's scope (bots, not AI agents). Two rules added. |
+| Draft 3 | 2026-09-30 | The *How* list follows `docs/SPEC.md` Draft 2; two rules added: nothing about mainnet before the canary report, and no "production-ready", "audited" or "certified" before their evidence. |

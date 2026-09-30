@@ -3,7 +3,8 @@
 **A transaction firewall for Solana AI agents.** A deterministic policy decides what an agent may
 sign at all, and an open-source control loop, Gubernaut Keel, stops retry loops and fee
 escalation. It is built for Colosseum's Crypto World's Fair hackathon (submissions close
-**2026-10-12, 11:59pm PT**) and runs on **devnet only**.
+**2026-10-12, 11:59pm PT**) and runs on **devnet**. One capped, human-run mainnet canary with a Phantom wallet is
+**proposed** (`design/ADR-008-mainnet-canary.md`); until the human accepts it, Solanaut is devnet only.
 
 This file is the root router and the law. It points at detail rather than copying it. Read it
 first, every session.
@@ -16,7 +17,7 @@ first, every session.
 |---|---|
 | its own project, with its own repo, agent, memory and history | part of the Gubernaut workspace (APEX), or a place to change Gubernaut |
 | a consumer of `@gubernaut/core` (Keel) from npm, pinned and digest-checked | a fork of Gubernaut's code, or a copy of its private records |
-| a devnet demo with test SOL | a mainnet vault, a pay-to-attack game, or anything holding real funds |
+| a devnet product with test SOL; one capped, human-run mainnet canary is proposed (ADR-008) and waits for the human | a mainnet vault for anyone's funds, a pay-to-attack game, a public challenge, or a real-funds key in this tree |
 | honest about limits: the policy stops drains; the loop stops loops | "un-hackable", "injection-proof", "100% blocked": see `docs/CLAIMS.md` |
 
 ## Isolation — the rule this project exists under
@@ -55,7 +56,9 @@ limits are in `uv run --script tools/boundary_guard.py --explain`.
 | **T4 · Publish** | mainnet, real funds, making the repo public, the Colosseum submission, posting anywhere, a package publish | **the human, at the moment, every time** |
 
 **No key that holds real funds ever lives in this tree.** Devnet keys live in `keys/`
-(gitignored), made with `solana-keygen`, never written by an agent's Write tool.
+(gitignored), made with `solana-keygen`, never written by an agent's Write tool. If the human accepts ADR-008, the
+canary's agent key is made by the human outside this tree; no agent reads it, and every real-funds step is the
+human's (T4).
 
 ## The seven seats
 
@@ -116,31 +119,40 @@ node tools/colosseum_entry.mjs inspect               # read the Colosseum page i
 that creates, saves or submits unless passed `--confirmed`, which is passed only after the human
 approves the exact text on screen.
 
-Toolchain and pins: `TOOLCHAIN.md` (Node 26.7.0, Agave 3.1.10, Anchor 1.2.0).
+Toolchain and pins: `TOOLCHAIN.md` (Node 26.7.0, Agave 3.1.10, Anchor 1.2.0). v1 transactions need a local
+validator from Agave 4.2.2, run by its absolute path, never by switching the active release.
 
 ## Architecture
 
 ```
 agent ── proposes bytes ──▶ @solanaut/sdk  guard.check()          propose → admit → sign (ADR-004)
-   decode  (legacy, v0 with caller-resolved lookup tables; v1/unknown → DENY)   ADR-005, specified
-   policy  (programs, destinations, mints, per-tx, per-window and fee caps)     → DENY, whatever the model says
-   intents (no re-sign while an earlier attempt could still land)               specified
-   sensor  (proposal stream → intensity, valence, repetition)                   v0 today, v1 in H1
-   Keel    (@gubernaut/core 1.0.1; declared digest pinned, bytes hashed in H1)  → REGROUND → DENY; posture only restricts
-   receipt (message hash, expiry, policy hash) → signer · hash-chained log · any error → DENY (fail closed)
-on-chain (devnet, H3): Squads v4 spending limit bounds a stolen key (ADR-006)
+   decode   (legacy; v0 with pinned lookup tables; v1 from its config; unknown → DENY)    ADR-009, specified
+   classify (an allowlist per instruction; durable nonces and other signers → DENY)       ADR-009, specified
+   policy   (principal, programs, destinations, mints, per-tx, per-window and fee caps)   → DENY, whatever the model says
+   intents  (keyed by effects: no re-sign while an earlier attempt could still land)      specified
+   sensor   (proposal stream → intensity, valence, repetition)                            v0 today, v1 at milestone 2a.7
+   Keel     (@gubernaut/core 1.0.1; declared digest pinned, bytes hashed at 2a.7)         → REGROUND → DENY; posture only restricts
+   receipt  (message hash, expiry, policy hash) → signer · the log is the state (ADR-010) · any error → DENY (fail closed)
+on-chain (devnet, milestone 2a.9): a Squads v4 spending limit naming the agent's key bounds a stolen key (ADR-006)
+operator: a Phantom wallet, the Squads config authority and latch release · dashboard: read-only, no keys (ADR-011)
 ```
 
 Today's code implements `guard.evaluate(proposal)` with the policy, sensor v0 and Keel. The rest is
-specified in `docs/SPEC.md`, whose §10 lists the defects fixed first in H1.
+specified in `docs/SPEC.md` Draft 2, whose §10 lists the defects D1 to D12, fixed first.
+
+**The roadmap is milestones, not dates.** `docs/ROADMAP.md` is the five-leg parlay: each milestone is reached when
+its gate passes, with its evidence, never by a calendar. `PROGRESS.md` shows where it stands, and
+`docs/READINESS.md` says what a certified release needs. The contest deadline is an external fact: the human submits
+whatever has passed its gate.
 
 | Path | What |
 |---|---|
 | `packages/sdk/` | the guard: `policy.ts`, `sensor.ts`, `guard.ts`, `describe.ts` (web3.js tx → proposal) |
 | `apps/sandbox/` | the plugin sandbox |
-| `programs/` | *(H3, P2)* `solanaut_anchor`: anchors the decision log's head. On-chain caps come from composing Squads v4 (ADR-006) |
-| `docs/` | `OVERVIEW.md` (the code as it is) · `SPEC.md` (the MVP baseline) · `ARCHITECTURE.md` (long term) · `HACKATHON.md` (scope, dates, rules) · `CLAIMS.md` · `papers/` · `submission/` · `plans/` |
-| `design/` | ADRs 001–007 |
+| `apps/cockpit/` | *(milestone 2a.10)* the dashboard: read-only, reads the log and the chain, holds no keys (ADR-011) |
+| `programs/` | *(Alpha, milestone 3.7)* `solanaut_anchor`: anchors the decision log's head. On-chain caps come from composing Squads v4 (ADR-006) |
+| `docs/` | `PRODUCT.md` (why, what, how) · `ROADMAP.md` (the milestones) · `READINESS.md` (to a certified release) · `OVERVIEW.md` (the code as it is) · `SPEC.md` (the MVP baseline) · `ARCHITECTURE.md` (long term) · `HACKATHON.md` (the contest's rules) · `CLAIMS.md` · `papers/` · `submission/` · `plans/` |
+| `design/` | ADRs 001–011; ADR-008 is proposed, awaiting the human |
 | `plugins/` `workflows/` `tools/` | the office: seats, SOPs, deterministic gates |
 | `kb/` | the knowledge vault (ADR-007): `INDEX.md` (front page), `LOG.md`, `DOCUMENTS.md` (the paper register), `REGISTRY.md` (upstream pins), `sources/`, `wiki/`, `milestones/`, `templates/`, `intake/`, and `private/` (gitignored) |
 | `evals/` | receipts: every gate shown failing, then passing |

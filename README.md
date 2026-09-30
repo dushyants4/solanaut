@@ -11,9 +11,10 @@ decide whether it may:
 
 Every denial names the rule that made it, and nothing denied is ever signed. Any error denies.
 
-> **Status: research foundation done, devnet only.** The guard, its tests and a sandbox exist. The MVP
-> is specified in [docs/SPEC.md](docs/SPEC.md) and scheduled in [docs/HACKATHON.md](docs/HACKATHON.md).
-> No detection rate is claimed yet: see [docs/CLAIMS.md](docs/CLAIMS.md).
+> **Status: verified review done, devnet only.** The guard, its tests and a sandbox exist. The MVP is
+> specified in [docs/SPEC.md](docs/SPEC.md) and built in the order of the milestones in
+> [docs/ROADMAP.md](docs/ROADMAP.md), each reached when its gate passes. No detection rate is claimed yet: see
+> [docs/CLAIMS.md](docs/CLAIMS.md).
 
 ## Try it
 
@@ -31,19 +32,23 @@ local validator the allowed payments land, and the drain and the loop's last att
 ## How it is designed
 
 The agent **proposes** a transaction, Solanaut **admits** or denies it by a named rule, and only then
-is it **signed**. The v1 design adds four things:
+is it **signed**. The v1 design adds five things:
+- decoding of legacy, v0 and v1 transactions from their bytes, with an allowlist for every instruction;
 - a receipt binding each decision to the exact bytes signed;
 - intents, so a payment is never re-signed while an earlier attempt could still land;
-- a hash-chained, replayable log;
-- on devnet, a Squads v4 spending limit that bounds even a stolen key.
+- a hash-chained, replayable log that is also the guard's memory across restarts;
+- on devnet, a Squads v4 spending limit naming the agent's key, which bounds even a stolen key.
 
 | Read | For |
 |---|---|
+| [docs/PRODUCT.md](docs/PRODUCT.md) | what Solanaut is, why it exists and how it works, on one page |
+| [docs/ROADMAP.md](docs/ROADMAP.md) | the milestones, each reached when its gate passes |
+| [docs/READINESS.md](docs/READINESS.md) | what a certified, shippable release requires |
 | [docs/OVERVIEW.md](docs/OVERVIEW.md) | the code as it is: layout, dependencies, logic, workflows, constraints |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | the long-term shape, and its invariants |
 | [docs/SPEC.md](docs/SPEC.md) | the MVP baseline: data models, rules, receipts, adapters, batteries |
 | [docs/papers/](docs/papers/) | the litepaper, the threat model, the market, the business plan (draft 1) |
-| [design/](design/) | the decisions, ADR-001 to ADR-007 |
+| [design/](design/) | the decisions, ADR-001 to ADR-011 |
 
 ## The knowledge vault
 

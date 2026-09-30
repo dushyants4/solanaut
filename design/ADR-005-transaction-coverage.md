@@ -1,6 +1,10 @@
 # ADR-005 · Decode serialized bytes: legacy and v0, System, SPL, Token-2022 and fees; deny the rest
 
-**Status:** accepted 2026-09-27, in the research-foundation plan the human approved.
+**Status:** accepted 2026-09-27, in the research-foundation plan the human approved. **Partly superseded by
+[ADR-009](ADR-009-trust-and-coverage.md)** (2026-09-30): point 2 (v1 is now decoded, and lookup tables are pinned
+rather than supplied by the caller), point 3 (an allowlist per instruction replaces the list of decoded
+instructions) and the consequence "the caller controls lookup-table contents". Its reversal condition below was met:
+v1 went live on mainnet on 2026-09-15, and `@solana/kit` 8 builds it.
 
 ## Context
 
