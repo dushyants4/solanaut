@@ -54,8 +54,11 @@ Coarser than `runs/`. The archivist keeps it current; every phase that ends gets
      `guardedWallet` follows up what it signed.
 2. **Loops that change shape.** A loop alternating two shapes with a changing amount is not stopped by Keel; the fee
    window and the INHIBIT clamp bound it. An open question for the Alpha's red team (`docs/SPEC.md` §12).
-   **Latching on a denied retry** is the other: DEMO.md's re-sign scene latches the guard on every run on devnet. It
-   is to be decided before the demo is recorded.
+   **Latching on a denied retry** is the other. DEMO.md's re-sign scene latches the guard on every run on devnet.
+   - **Measured:** four trip rules, offline (`evals/sdk/latch-variants.md`). None admits a forbidden proposal. Today's
+     rule stops the 10 good payments after the re-sign.
+   - **ADR-012 proposes** that a REGROUND denial latch when Keel is the reason, or when the denial before it was also at
+     REGROUND. The decision is the human's; until then the guard keeps today's rule.
 3. **The human's**, as decided on 2026-09-30:
    - `docs/PRODUCT.md` is signed off, and `"plansDirectory": "./docs/plans"` is in `.claude/settings.json`, done by
      the agent at the human's direction;
@@ -63,7 +66,8 @@ Coarser than `runs/`. The archivist keeps it current; every phase that ends gets
      Alpha;
    - set aside until testing is done: the licence, the judges' repository access, the Colosseum fields, videos and
      submission, and the Copilot check. This seat's work is development;
-   - still open: sign-off on the milestone reviews and the business plan.
+   - still open: sign-off on the milestone reviews and the business plan;
+   - **to decide:** ADR-012, when REGROUND latches, before the demo is recorded.
 4. **Upstream findings.** U-1 to U-4 are written up for the human (`kb/REGISTRY.md`). U-2 and U-3 are reproduced at
    milestone 2a.7.
 5. **CI runs the gates, not yet the fault injections.** The `bite` job that re-runs them on every push is owed at

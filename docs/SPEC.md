@@ -528,6 +528,13 @@ regenerates them.
   **Seen again on devnet, every run:** DEMO.md's scene 5, one re-sign while the first attempt is in flight, is denied
   by rule 14 and meets REGROUND at repetition 1 with valence 0.2. It latches the guard until the operator signs
   (`evals/e2e/scenes-devnet.md`). For the Alpha's red team; to decide before the demo is recorded.
+  **Measured, and answered by a proposal:**
+  - Four trip rules were run on the same streams (`evals/sdk/latch-variants.md`). None admits anything the policy
+    forbids.
+  - After two landed payments, today's rule latches on scene 5's single re-sign, at every share of the cap tried, and
+    stops the next 10 good payments.
+  - [ADR-012](../design/ADR-012-latch-on-reground.md), **proposed for the human:** a REGROUND denial latches when Keel
+    is the reason, or when the denial before it was also at REGROUND. Identical retries still latch at turn 3.
 - Should a run of failed outcomes trip the latch, as a run of denials does? A loop that alternates two shapes and
   changes its amount passes every rule while each send fails, and is bounded only by the fee window and the clamp
   under INHIBIT (`evals/sdk/keel.md`). For the Alpha's red team (milestone 3.10).

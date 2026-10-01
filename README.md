@@ -48,7 +48,7 @@ is it **signed**. The v1 design adds five things:
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | the long-term shape, and its invariants |
 | [docs/SPEC.md](docs/SPEC.md) | the MVP baseline: data models, rules, receipts, adapters, batteries |
 | [docs/papers/](docs/papers/) | the litepaper, the threat model, the market, the business plan (draft 1) |
-| [design/](design/) | the decisions, ADR-001 to ADR-011 |
+| [design/](design/) | the decisions, ADR-001 to ADR-012 (ADR-012 proposed) |
 
 ## The knowledge vault
 

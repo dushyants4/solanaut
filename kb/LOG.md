@@ -62,3 +62,5 @@ grep "| research |" kb/LOG.md             # every research pass
 ## [2026-10-01 12:37] research | Solana Agent Kit 2.0.10's sendTx re-sends until it sees a status; on devnet it reported three landed payments as failed | kb/sources/2026-10-01_solana-agent-kit-signorsendtx.md, docs/CLAIMS.md
 
 ## [2026-10-01 13:05] build | D14 closed test-first: an unreported attempt past expiry holds its intent until reported; guardedWallet follows up what it signed; confirm reads the height before the status | evals/sdk/intents-d14.md, docs/SPEC.md, docs/CLAIMS.md
+
+## [2026-10-01 12:50] decision | the latch on REGROUND measured under four trip rules; none admits a forbidden proposal; today's rule latches on DEMO scene 5's single re-sign; ADR-012 proposes rule C for the human | evals/sdk/latch-variants.md, design/ADR-012-latch-on-reground.md, docs/SPEC.md
