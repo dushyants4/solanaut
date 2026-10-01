@@ -1,0 +1,324 @@
+// Milestone 2a.8, the adapters (docs/SPEC.md §8). guardedWallet wraps a Solana Agent Kit wallet:
+// it exposes exactly BaseWallet's members (read first-hand from solana-agent-kit 2.0.10's types),
+// never the wallet it wraps, and checks every transaction before the wallet sees it. After signing,
+// the signed message must be the admitted one, signed by the wallet's key; anything else is
+// stripped of its signatures and thrown. guardedSigner does the same for a @solana/kit partial
+// signer. Both give the same verdicts as the SDK, and a denial is a typed SolanautDenied.
+
+import { strict as assert } from "node:assert";
+import { generateKeyPairSync } from "node:crypto";
+import { test } from "node:test";
+import {
+  Keypair,
+  PublicKey,
+  SystemProgram,
+  Transaction,
+  TransactionInstruction,
+  TransactionMessage,
+  VersionedTransaction,
+} from "@solana/web3.js";
+import {
+  appendTransactionMessageInstructions,
+  compileTransaction,
+  createKeyPairSignerFromBytes,
+  createNoopSigner,
+  createTransactionMessage,
+  setTransactionMessageFeePayerSigner,
+  setTransactionMessageLifetimeUsingBlockhash,
+  type Address,
+  type Blockhash,
+} from "@solana/kit";
+import { getTransferSolInstruction } from "@solana-program/system";
+import { createGuard, type Guard } from "../src/guard.ts";
+import { guardedWallet, type BaseWalletLike, type RpcLike } from "../src/adapters/agent-kit.ts";
+import { guardedSigner } from "../src/adapters/kit.ts";
+import { jsonRpc } from "../src/adapters/rpc.ts";
+import { createServer } from "node:http";
+import { once } from "node:events";
+import { SolanautDenied } from "../src/errors.ts";
+import { encodeBase58 } from "../src/base58.ts";
+import type { PolicyInput } from "../src/policy.ts";
+import { PROGRAMS } from "../src/classify.ts";
+
+const agent = Keypair.generate();
+const treasury = Keypair.generate().publicKey;
+const attacker = Keypair.generate().publicKey;
+const MEMO = new PublicKey("MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr");
+const LIGHTHOUSE = new PublicKey("L2TExMFKdjpN9kozasaurPirfHy9P8sbXoAN1qA3S95");
+const operator = encodeBase58(Buffer.from(generateKeyPairSync("ed25519").publicKey.export({ format: "jwk" }).x!, "base64url"));
+
+const policy = (principal = agent.publicKey.toBase58()): PolicyInput => ({
+  version: 1,
+  principal: [principal],
+  programs: { allow: [PROGRAMS.system, PROGRAMS.memo], opaque: "deny" },
+  destinations: { allow: [treasury.toBase58()] },
+  sol: { maxPerTx: 1_000_000_000n, maxPerWindow: 3_000_000_000n },
+  tokens: [],
+  fees: { maxPriorityPerTx: 100_000n, maxPerWindow: 1_000_000_000n, tipAccounts: [] },
+  lookupTables: [],
+  windowMs: 60_000,
+  intents: { maxAttempts: 3 },
+  latch: { afterDenials: 100, releaseKey: operator, guardId: "adapters", cluster: "localnet" },
+  messages: { allow: false },
+  cosign: { allow: false },
+  sensor: { expectedPerMinute: 60 },
+});
+
+/** Solana Agent Kit's KeypairWallet, as solana-agent-kit 2.0.10 builds it: it signs the caller's object in place. */
+function keypairWallet(kp = agent, calls: string[] = []): BaseWalletLike {
+  const sign = <T extends Transaction | VersionedTransaction>(tx: T): T => {
+    if (tx instanceof VersionedTransaction) tx.sign([kp]);
+    else tx.partialSign(kp);
+    return tx;
+  };
+  return {
+    publicKey: kp.publicKey,
+    signTransaction: async (tx) => (calls.push("signTransaction"), sign(tx)),
+    signAllTransactions: async (txs) => (calls.push("signAllTransactions"), txs.map(sign)),
+    signAndSendTransaction: async () => { calls.push("signAndSendTransaction"); throw new Error("the guard must never ask the wallet to send"); },
+    signMessage: async (m) => { calls.push("signMessage"); return m; },
+  };
+}
+
+/** An RPC that records what it is sent, at a fixed block height, and lands everything unless told otherwise. */
+function fakeRpc(o: { refuse?: boolean; outcome?: "landed" | "failed" | "unknown" } = {}) {
+  const sent: Uint8Array[] = [];
+  const rpc: RpcLike = {
+    getBlockHeight: async () => 1_000n,
+    sendRawTransaction: async (wire) => {
+      if (o.refuse) throw new Error("Transaction simulation failed: insufficient funds");
+      sent.push(wire);
+      return encodeBase58(wire.subarray(1, 65));
+    },
+    confirm: async () => o.outcome ?? "landed",
+  };
+  return { rpc, sent };
+}
+
+let blockhashSeed = 0;
+const blockhash = () => encodeBase58(Uint8Array.from({ length: 32 }, (_, i) => (i * 7 + ++blockhashSeed) % 256));
+const legacy = (...ixs: TransactionInstruction[]) => new Transaction({ feePayer: agent.publicKey, recentBlockhash: blockhash() }).add(...ixs);
+const versioned = (...ixs: TransactionInstruction[]) =>
+  new VersionedTransaction(new TransactionMessage({ payerKey: agent.publicKey, recentBlockhash: blockhash(), instructions: ixs }).compileToV0Message());
+const pay = (to: PublicKey, lamports: number) => SystemProgram.transfer({ fromPubkey: agent.publicKey, toPubkey: to, lamports });
+
+let clock = 1_000_000;
+const now = () => (clock += 30_000);
+const guard = () => createGuard({ policy: policy() });
+
+async function rejectsWith(p: Promise<unknown>, rule: string) {
+  await assert.rejects(p, (e: unknown) => {
+    assert.ok(e instanceof SolanautDenied, `expected SolanautDenied, got ${(e as Error)?.name}: ${(e as Error)?.message}`);
+    assert.equal(e.rule, rule, e.reason);
+    return true;
+  });
+}
+
+// --- the surface --------------------------------------------------------------------------------------
+
+test("guardedWallet exposes exactly BaseWallet's members, frozen, and never the wallet it wraps", async () => {
+  const inner = keypairWallet();
+  const w = guardedWallet(inner, await guard(), { rpc: fakeRpc().rpc, now });
+  assert.deepEqual(Object.keys(w).sort(), ["publicKey", "sendTransaction", "signAllTransactions", "signAndSendTransaction", "signMessage", "signTransaction"]);
+  assert.ok(Object.isFrozen(w));
+  assert.equal(w.publicKey, inner.publicKey);
+  for (const v of Object.values(w)) assert.notEqual(v, inner, "no member is the wrapped wallet");
+});
+
+test("guardedWallet refuses a wallet whose key is outside the policy's principal, or no RPC to send through", async () => {
+  const g = await guard();
+  assert.throws(() => guardedWallet(keypairWallet(Keypair.generate()), g, { rpc: fakeRpc().rpc }), /principal/);
+  assert.throws(() => guardedWallet(keypairWallet(), g, {} as never), /RPC/);
+});
+
+// --- signTransaction -----------------------------------------------------------------------------------
+
+test("signTransaction: an allowed payment is signed by the wrapped wallet; a drain throws SolanautDenied before the wallet is asked", async () => {
+  const calls: string[] = [];
+  const w = guardedWallet(keypairWallet(agent, calls), await guard(), { rpc: fakeRpc().rpc, now });
+  const ok = await w.signTransaction(legacy(pay(treasury, 1_000)));
+  assert.ok(ok.verifySignatures(), "signed by the agent's key");
+  assert.deepEqual(calls, ["signTransaction"]);
+  const drain = legacy(pay(attacker, 1_000));
+  await assert.rejects(w.signTransaction(drain), (e: unknown) => {
+    assert.ok(e instanceof SolanautDenied);
+    assert.equal(e.rule, "destination-not-allowed");
+    assert.match(e.reason, /not an allowed destination/);
+    assert.equal(e.decision?.allow, false);
+    return true;
+  });
+  assert.deepEqual(calls, ["signTransaction"], "the wallet never saw the drain");
+  assert.ok(drain.signatures.every((s) => s.signature === null));
+});
+
+test("the adapters give the same verdicts as the SDK, for legacy and v0 transactions", async () => {
+  const nonce = Keypair.generate().publicKey;
+  const cases: [string, TransactionInstruction[]][] = [
+    ["a payment", [pay(treasury, 5_000)]],
+    ["a drain", [pay(attacker, 5_000)]],
+    ["over the cap", [pay(treasury, 2_000_000_000)]],
+    ["a durable nonce", [SystemProgram.nonceAdvance({ noncePubkey: nonce, authorizedPubkey: agent.publicKey }), pay(treasury, 1)]],
+    ["an unlisted program", [new TransactionInstruction({ programId: LIGHTHOUSE, keys: [], data: Buffer.from([1]) })]],
+    ["a memo and a payment", [new TransactionInstruction({ programId: MEMO, keys: [], data: Buffer.from("invoice") }), pay(treasury, 7)]],
+  ];
+  for (const build of [legacy, versioned]) {
+    for (const [label, ixs] of cases) {
+      const sdk = await guard();
+      const at = now();
+      const tx = build(...ixs);
+      const message = tx instanceof VersionedTransaction ? tx.message.serialize() : tx.serializeMessage();
+      const expected = sdk.check({ message: new Uint8Array(message), at, blockHeight: 1_000n, lastValidBlockHeight: 1_150n });
+      const w = guardedWallet(keypairWallet(), await guard(), { rpc: fakeRpc().rpc, now: () => at });
+      let got: string;
+      try {
+        await w.signTransaction(tx);
+        got = "allow";
+      } catch (e) {
+        got = (e as SolanautDenied).rule;
+      }
+      assert.equal(got, expected.allow ? "allow" : expected.rule, `${build.name}: ${label}`);
+    }
+  }
+});
+
+test("a re-sign of the same payment while the first could still land throws intent-in-flight", async () => {
+  const w = guardedWallet(keypairWallet(), await guard(), { rpc: fakeRpc().rpc, now });
+  await w.signTransaction(legacy(pay(treasury, 42)));
+  await rejectsWith(w.signTransaction(legacy(pay(treasury, 42))), "intent-in-flight");
+});
+
+// --- what the wallet signed -----------------------------------------------------------------------------
+
+test("a wallet that changes the message before signing it is caught: its signatures are stripped, and the call throws", async () => {
+  const modifying: BaseWalletLike = {
+    ...keypairWallet(),
+    signTransaction: async (tx) => {
+      // Like a wallet that appends its own assertion instruction before it signs (docs/papers/THREAT-MODEL.md, A8).
+      (tx as Transaction).add(new TransactionInstruction({ programId: LIGHTHOUSE, keys: [], data: Buffer.from([9]) }));
+      (tx as Transaction).partialSign(agent);
+      return tx;
+    },
+  };
+  const w = guardedWallet(modifying, await guard(), { rpc: fakeRpc().rpc, now });
+  const tx = legacy(pay(treasury, 1_000));
+  await rejectsWith(w.signTransaction(tx), "wallet-changed-message");
+  assert.ok(tx.signatures.every((s) => s.signature === null), "nothing signed leaves the guard");
+});
+
+test("a wallet whose signature does not verify over the admitted bytes is caught", async () => {
+  const wrongKey: BaseWalletLike = {
+    ...keypairWallet(),
+    signTransaction: async (tx) => {
+      const t = tx as Transaction;
+      t.signatures = t.signatures.map((s) => ({ ...s, signature: Buffer.alloc(64, 1) }));
+      return tx;
+    },
+  };
+  const w = guardedWallet(wrongKey, await guard(), { rpc: fakeRpc().rpc, now });
+  await rejectsWith(w.signTransaction(legacy(pay(treasury, 1_000))), "wallet-changed-message");
+});
+
+// --- batches, sending, messages -----------------------------------------------------------------------
+
+test("signAllTransactions is all or nothing: one denial signs none, and the admitted ones are released", async () => {
+  const calls: string[] = [];
+  const g = await guard();
+  const w = guardedWallet(keypairWallet(agent, calls), g, { rpc: fakeRpc().rpc, now });
+  const batch = [legacy(pay(treasury, 1)), legacy(pay(attacker, 2)), legacy(pay(treasury, 3))];
+  await rejectsWith(w.signAllTransactions(batch), "destination-not-allowed");
+  assert.deepEqual(calls, [], "the wallet was never asked");
+  const reports = g.entries().filter((e) => e.kind === "report");
+  assert.deepEqual(reports.map((e) => e.kind === "report" && e.outcome), ["expired"], "the one admitted before the denial was released as never sent");
+  const signed = await w.signAllTransactions([legacy(pay(treasury, 1)), legacy(pay(treasury, 3))]);
+  assert.ok(signed.every((t) => t.verifySignatures()));
+});
+
+test("signAndSendTransaction: checks, signs, sends exactly the admitted bytes itself, and reports the outcome", async () => {
+  const { rpc, sent } = fakeRpc();
+  const calls: string[] = [];
+  const g = await guard();
+  const w = guardedWallet(keypairWallet(agent, calls), g, { rpc, now });
+  const tx = versioned(pay(treasury, 500));
+  const admitted = tx.message.serialize();
+  const { signature } = await w.signAndSendTransaction(tx);
+  assert.equal(sent.length, 1);
+  assert.deepEqual(VersionedTransaction.deserialize(sent[0]!).message.serialize(), admitted, "the bytes sent are the bytes admitted");
+  assert.equal(signature, encodeBase58(sent[0]!.subarray(1, 65)));
+  assert.deepEqual(calls, ["signTransaction"], "the wallet signed; the guard sent");
+  const last = g.entries().at(-1)!;
+  assert.deepEqual([last.kind, last.kind === "report" && last.outcome], ["report", "landed"]);
+  assert.equal(await w.sendTransaction!(legacy(pay(treasury, 501))), encodeBase58(sent[1]!.subarray(1, 65)), "sendTransaction does the same, and returns the signature");
+});
+
+test("a send the RPC refuses is reported failed, and rethrown", async () => {
+  const g = await guard();
+  const w = guardedWallet(keypairWallet(), g, { rpc: fakeRpc({ refuse: true }).rpc, now });
+  await assert.rejects(w.signAndSendTransaction(legacy(pay(treasury, 9))), /simulation failed/);
+  const last = g.entries().at(-1)!;
+  assert.deepEqual([last.kind, last.kind === "report" && last.outcome], ["report", "failed"]);
+});
+
+test("signMessage is denied: a raw signature over chosen bytes can be a transaction signature", async () => {
+  const calls: string[] = [];
+  const w = guardedWallet(keypairWallet(agent, calls), await guard(), { rpc: fakeRpc().rpc, now });
+  await rejectsWith(w.signMessage(new TextEncoder().encode("hello")), "message-signing-denied");
+  assert.deepEqual(calls, []);
+});
+
+// --- @solana/kit ---------------------------------------------------------------------------------------
+
+test("guardedSigner: checks every transaction first, all or nothing, reads expiry from the lifetime, and verifies the signatures it returns", async () => {
+  const kitSigner = await createKeyPairSignerFromBytes(new Uint8Array([...agent.secretKey]));
+  const g = await guard();
+  const s = guardedSigner(kitSigner, g, { now });
+  assert.equal(s.address, kitSigner.address);
+  const tx = (to: PublicKey, amount: bigint) => {
+    let m: any = createTransactionMessage({ version: 0 });
+    m = setTransactionMessageFeePayerSigner(createNoopSigner(kitSigner.address), m);
+    m = setTransactionMessageLifetimeUsingBlockhash({ blockhash: blockhash() as Blockhash, lastValidBlockHeight: 2_000n }, m);
+    m = appendTransactionMessageInstructions([getTransferSolInstruction({ source: createNoopSigner(kitSigner.address), destination: to.toBase58() as Address, amount })], m);
+    return compileTransaction(m);
+  };
+  const [sig] = await s.signTransactions([tx(treasury, 10n)]);
+  assert.ok(sig![kitSigner.address], "signed");
+  const admitted = g.entries().find((e) => e.kind === "decision" && e.allow);
+  assert.deepEqual(admitted?.kind === "decision" && admitted.expires, { lastValidBlockHeight: "2000" }, "the expiry comes from the transaction's own lifetime");
+  await rejectsWith(s.signTransactions([tx(treasury, 11n), tx(attacker, 12n)]), "destination-not-allowed");
+
+  const forger = { address: kitSigner.address, signTransactions: async (txs: readonly any[]) => txs.map(() => ({ [kitSigner.address]: new Uint8Array(64) })) };
+  await rejectsWith(guardedSigner(forger as never, await guard(), { now }).signTransactions([tx(treasury, 13n)]), "wallet-changed-message");
+});
+
+// --- the JSON-RPC client ----------------------------------------------------------------------------
+
+test("jsonRpc: sends base64 bytes, reads the height, and turns signature statuses into outcomes", async () => {
+  const calls: { method: string; params: unknown[] }[] = [];
+  let height = 100;
+  const statuses: Record<string, unknown> = { landed: { err: null, confirmationStatus: "confirmed" }, failed: { err: { InstructionError: [0, "Custom"] }, confirmationStatus: "finalized" } };
+  const server = createServer(async (req, res) => {
+    let raw = "";
+    for await (const chunk of req) raw += chunk;
+    const { id, method, params } = JSON.parse(raw);
+    calls.push({ method, params });
+    const result =
+      method === "getBlockHeight" ? height++ :
+      method === "sendTransaction" ? "sig-from-rpc" :
+      method === "getSignatureStatuses" ? { context: { slot: 1 }, value: [statuses[(params as string[][])[0]![0]!] ?? null] } : null;
+    res.setHeader("content-type", "application/json");
+    res.end(JSON.stringify(method === "sendTransaction" && (params as unknown[])[0] === "AA==" ? { jsonrpc: "2.0", id, error: { message: "Transaction simulation failed" } } : { jsonrpc: "2.0", id, result }));
+  });
+  server.listen(0, "127.0.0.1");
+  await once(server, "listening");
+  try {
+    const rpc = jsonRpc(`http://127.0.0.1:${(server.address() as { port: number }).port}`, { pollMs: 1, timeoutMs: 2_000 });
+    assert.equal(await rpc.getBlockHeight(), 100n);
+    assert.equal(await rpc.sendRawTransaction(Uint8Array.of(1, 2, 3)), "sig-from-rpc");
+    assert.deepEqual(calls.at(-1)?.params, ["AQID", { encoding: "base64", preflightCommitment: "confirmed" }]);
+    await assert.rejects(rpc.sendRawTransaction(Uint8Array.of(0)), /simulation failed/);
+    assert.equal(await rpc.confirm("landed", 1_000n), "landed");
+    assert.equal(await rpc.confirm("failed", 1_000n), "failed");
+    assert.equal(await rpc.confirm("never-seen", BigInt(height + 2)), "expired", "unseen until its last valid height passed");
+  } finally {
+    server.close();
+  }
+});

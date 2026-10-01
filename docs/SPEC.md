@@ -387,6 +387,27 @@ Built at milestone 2a.7 (`evals/sdk/keel.md`).
 - **`@solana/kit` signer:** a `TransactionPartialSigner` whose `signTransactions` checks each transaction's message
   bytes, then delegates to the wrapped signer ([source](../kb/sources/2026-09-30_solana-kit-signers.md)). Wrapping a
   modifying or sending signer is out of scope in the Beta.
+- **Decided while building the adapters (milestone 2a.8, `evals/sdk/adapters.md`):**
+  - **No web3.js import.** `guardedWallet` reads web3.js transactions by their shape: `serializeMessage()` for a
+    legacy transaction, `message.serialize()` for a versioned one. The SDK keeps one runtime dependency.
+  - **An RPC is required, and the guard sends.** After the wallet signs, the guard sends the exact bytes it compared,
+    through its own RPC, so nothing a wallet adds on send goes out. Then it waits for the outcome and reports it.
+    A send the RPC refuses is reported `failed` and rethrown.
+  - **Expiry, bounded from above.** A transaction names its blockhash, not that blockhash's last valid height, so
+    `guardedWallet` uses the current height plus 150. Too high a bound keeps an attempt in flight longer, and lets a
+    receipt redeem a little late, for bytes the chain would refuse anyway. A kit transaction carries its lifetime, so
+    `guardedSigner`'s expiry is exact.
+  - **After signing**, the message must be the admitted one and the signature must verify by the wallet's key over
+    it. Otherwise every signature on the caller's object is removed, the decision is released, and the call throws
+    `SolanautDenied` with rule `wallet-changed-message`.
+  - **All or nothing, and nothing held for nothing.** A batch is checked whole before the wallet sees any of it. When
+    a batch is refused, or the wallet refuses to sign, every decision admitted for it is reported `expired`: its
+    bytes were never signed, so they cannot land.
+  - **`SolanautDenied`** carries `{ rule, reason, decision }`. Two rules have no decision behind them:
+    `message-signing-denied` and `wallet-changed-message`.
+  - **`jsonRpc(url)`** is the RPC client: `getBlockHeight`, `sendTransaction` with base64 bytes, and
+    `getSignatureStatuses` polled until the signature lands or fails, its blockhash expires, or a timeout gives
+    `unknown`.
 - **ElizaOS plugin (Alpha).** It wraps `plugin-solana`'s signing path; how is decided from its source when the Alpha
   starts.
 - **`solanaut-signer` (Alpha):** a local process holding the key.
@@ -493,4 +514,4 @@ checked. The guard decodes whatever version arrives, so the answer changes no ru
 |---|---|---|
 | Draft 1 | 2026-09-27 | First draft, from the research foundation (`kb/milestones/2026-09-27_R-research.md`). |
 | Draft 2 | 2026-09-30 | The verified review (`runs/2026-09-30-verified-review-roadmap.md`): trust per mode; v1 decoded; tables pinned; an allowlist per instruction; durable nonces and other signers denied; the fee rule corrected; intents keyed by effects; the log as the state; the adapter surface; the structured latch release; the Squads membership question answered; D10 to D12; new battery cases. Phases are now the roadmap's milestones. |
-| Draft 3 | 2026-10-01 | Built through milestone 2a.5 (`runs/2026-10-01-beta-build.md`): the effects model as implemented (`otherSigners`, outflow sources, denial rules, the intent key's definition); the record's four entry kinds; the decisions made while building, in §4 and §7; kit's default version answered; D1, D2, D5, D6, D7, D9, D10 and D12 closed; then 2a.6: the durable record, restore, the lock, replay, the latch as a recorded fact, and D11 closed; then 2a.7: Keel's bytes and telemetry checked, sensor v1 as built and measured, D3, D4 and D8 closed, an open question on runs of failures. |
+| Draft 3 | 2026-10-01 | Built through milestone 2a.5 (`runs/2026-10-01-beta-build.md`): the effects model as implemented (`otherSigners`, outflow sources, denial rules, the intent key's definition); the record's four entry kinds; the decisions made while building, in §4 and §7; kit's default version answered; D1, D2, D5, D6, D7, D9, D10 and D12 closed; then 2a.6: the durable record, restore, the lock, replay, the latch as a recorded fact, and D11 closed; then 2a.7: Keel's bytes and telemetry checked, sensor v1 as built and measured, D3, D4 and D8 closed, an open question on runs of failures; then 2a.8: the adapters as built. |

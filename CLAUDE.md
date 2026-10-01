@@ -149,7 +149,7 @@ whatever has passed its gate.
 
 | Path | What |
 |---|---|
-| `packages/sdk/` | the guard: `message.ts` (bytes), `classify.ts` (effects), `policy.ts`, `guard.ts` (the rules, replay), `state.ts`, `log.ts` and `record.ts` (the record), `latch.ts`, `sensor.ts`; `bin/pin-table.ts`, `bin/replay.ts` |
+| `packages/sdk/` | the guard: `message.ts` (bytes), `classify.ts` (effects), `policy.ts`, `guard.ts` (the rules, replay), `state.ts`, `log.ts` and `record.ts` (the record), `latch.ts`, `sensor.ts`; `adapters/` (Solana Agent Kit, kit, RPC); `bin/pin-table.ts`, `bin/replay.ts` |
 | `apps/sandbox/` | the plugin sandbox |
 | `apps/cockpit/` | *(milestone 2a.10)* the dashboard: read-only, reads the log and the chain, holds no keys (ADR-011) |
 | `programs/` | *(Alpha, milestone 3.7)* `solanaut_anchor`: anchors the decision log's head. On-chain caps come from composing Squads v4 (ADR-006) |
