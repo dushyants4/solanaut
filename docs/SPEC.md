@@ -572,7 +572,7 @@ milestone's code.
 | SIG-7 | It follows up every attempt it signed, reporting landed, failed or expired from the chain | §7, D14 | the double-send battery with no caller reports |
 | SIG-8 | One writer, restore by replay on start, and a failed write shuts it | §7 | the restart battery, 100 kills (`docs/READINESS.md`) |
 | SIG-9 | Reads back off through rate limits; a send is never retried by the client | §8, RK16 | an RPC answering 429 |
-| SIG-10 | It runs as its own OS user, or the documents state that it does not and what that leaves | T9, T29 | **ADR owed:** the signer's process, user and transport |
+| SIG-10 | It runs as its own OS user, or the documents state that it does not and what that leaves | T9, T29 | [ADR-013](../design/ADR-013-signer-process.md), proposed: its own user, a Unix socket in a group-only directory, and a same-user mode that says so |
 | SIG-11 | 500 lines or fewer, stated before it is written and measured after | §8 | a line count in its receipt |
 
 ### 13.2 Operator-signed policy (milestone 3.2)
@@ -583,7 +583,7 @@ milestone's code.
 | POL-2 | No signature, a wrong key, another guard or cluster, a hash that differs, or a version older than the current one: the guard refuses to start | T11 | one test each |
 | POL-3 | The agent's keys cannot sign a policy: the operator key is outside the principal and is not the fee payer | rule 0 | an invalid policy |
 | POL-4 | The record holds each signed policy, so replay knows which policy made each decision | §7 | replay across a policy change |
-| POL-5 | How a signed policy replaces the running one: a restart, or a recorded entry | §7 | **ADR owed:** policy changes |
+| POL-5 | How a signed policy replaces the running one | §7 | [ADR-014](../design/ADR-014-operator-signed-policy.md), proposed: a restart, a recorded `policy` entry, versions that only rise, and a summary the operator reads in Phantom |
 
 ### 13.3 Token-2022 and token accounts (milestone 3.3)
 
@@ -664,8 +664,8 @@ milestone's code.
 | ADR | Decides | Before |
 |---|---|---|
 | ADR-012 | when REGROUND latches the guard (proposed; the human's) | the demo is recorded |
-| owed | the signer's process, OS user and transport (SIG-10) | 3.1 |
-| owed | policy signing and policy changes (POL-5) | 3.2 |
+| [ADR-013](../design/ADR-013-signer-process.md), proposed | the signer's process, OS user and transport (SIG-10) | 3.1 |
+| [ADR-014](../design/ADR-014-operator-signed-policy.md), proposed | policy signing and policy changes (POL-5) | 3.2 |
 | owed | Token-2022's mutable settings and transfer hooks (TOK-5) | 3.3 |
 | owed | bounding opaque programs: simulation and the assertion set (OPQ-7) | 3.4 |
 | owed | the ElizaOS integration point (ELZ-2) | 3.6 |
