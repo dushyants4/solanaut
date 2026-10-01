@@ -319,6 +319,25 @@ proposal has no effects to sense; it counts toward the latch instead.
     the latch and Keel's state.
   - **One writer.** The guard takes an exclusive lock on its log; a second instance refuses to start.
   - Off-chain caps bound one guard identity. The fleet-wide bound is the on-chain limit (§9).
+- **Decided while building durable state (milestone 2a.6):**
+  - **The file.** One canonical JSON entry per line, synced with `fsync` before the guard answers. A last line with no
+    newline is a write a crash cut short and was never acknowledged, so opening the record cuts it off. Any other
+    damage, such as a line that does not parse, a hash that does not match or a broken chain, refuses to start.
+  - **Restore.** Every entry is applied again in order, and Keel is ticked again with each recorded telemetry. If
+    Keel's posture differs from the record's, the guard refuses to start.
+  - **The lock.** `<record>.lock` names the holding process and host. A live holder makes a second guard refuse; a
+    dead holder's lock is taken over. The takeover is not atomic, so run one guard per record.
+  - **A write that fails shuts the guard.** It denies everything, unrecorded, until it is restarted, so nothing is
+    signed on a decision the record does not hold.
+  - **The latch is a recorded fact.** The decision that trips it carries `latch: true`, so restoring under another
+    policy cannot release it.
+  - **A record outlives a policy change.** Restore applies the record under the current policy: windows, intents,
+    receipts and the latch carry over. `replay` under the old policy explains the old decisions.
+  - **`replay(entries, policy)`** recomputes each decision from its bytes and compares allow, rule, intent key,
+    message hash, amounts, posture, telemetry, clamp, expiry and latch. An ill-formed proposal is checked only for its
+    rule, because the record keeps no more of it. `npm run replay -- <record> <policy.json>` runs it.
+  - **Without a `log`, the guard keeps its record in memory,** and a restart forgets it. Pass a log path to run it
+    for real.
 - **Decided while building admission (milestone 2a.5):**
   - **What an outcome releases.** `failed` releases the value a decision reserved but keeps its fees, which may have
     been paid; `expired` releases both; `unknown` releases nothing. Only allowed decisions take reports, and a final
@@ -404,8 +423,9 @@ Each is fixed test-first: the evaluator writes the failing test, and the builder
 | D12 | The core decodes through `@solana/web3.js` | `describe.ts:5`, `packages/sdk/package.json` | decode bytes without it, cross-checked in tests (ADR-009) |
 
 **Status:** closed at milestone 2a.5 (`evals/sdk/admission.md`), test-first: D1, D2, D5, D6, D7, D9, D10 and D12. D12
-closed early: the guard decodes bytes itself, so `packages/sdk/src` imports no web3.js. **Open:** D3 and D4 (Keel's
-telemetry and bytes) and D8 (sensor v0's rate term) at milestone 2a.7, and D11 (state in memory) at 2a.6.
+closed early: the guard decodes bytes itself, so `packages/sdk/src` imports no web3.js. D11 closed at milestone 2a.6
+(`evals/sdk/durable.md`) for every guard given a `log`. **Open:** D3 and D4 (Keel's telemetry and bytes) and D8
+(sensor v0's rate term), at milestone 2a.7.
 
 ## 11. Batteries and acceptance
 
@@ -454,4 +474,4 @@ checked. The guard decodes whatever version arrives, so the answer changes no ru
 |---|---|---|
 | Draft 1 | 2026-09-27 | First draft, from the research foundation (`kb/milestones/2026-09-27_R-research.md`). |
 | Draft 2 | 2026-09-30 | The verified review (`runs/2026-09-30-verified-review-roadmap.md`): trust per mode; v1 decoded; tables pinned; an allowlist per instruction; durable nonces and other signers denied; the fee rule corrected; intents keyed by effects; the log as the state; the adapter surface; the structured latch release; the Squads membership question answered; D10 to D12; new battery cases. Phases are now the roadmap's milestones. |
-| Draft 3 | 2026-10-01 | Built through milestone 2a.5 (`runs/2026-10-01-beta-build.md`): the effects model as implemented (`otherSigners`, outflow sources, denial rules, the intent key's definition); the record's four entry kinds; the decisions made while building, in §4 and §7; kit's default version answered; D1, D2, D5, D6, D7, D9, D10 and D12 closed. |
+| Draft 3 | 2026-10-01 | Built through milestone 2a.5 (`runs/2026-10-01-beta-build.md`): the effects model as implemented (`otherSigners`, outflow sources, denial rules, the intent key's definition); the record's four entry kinds; the decisions made while building, in §4 and §7; kit's default version answered; D1, D2, D5, D6, D7, D9, D10 and D12 closed; then 2a.6: the durable record, restore, the lock, replay, the latch as a recorded fact, and D11 closed. |

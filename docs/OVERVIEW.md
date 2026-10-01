@@ -1,7 +1,7 @@
 # OVERVIEW.md — the codebase, as it is
 
 > **Draft 3** · 2026-10-01 · owner: integrator · for: engineers new to this repository, and judges
-> reading the code · describes the tree **as it is today**, through milestone 2a.5 of `docs/ROADMAP.md`. What it will
+> reading the code · describes the tree **as it is today**, through milestone 2a.6 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
@@ -21,6 +21,7 @@ Solanaut/                        (an Obsidian vault; open this folder, and the f
 │   ├─ src/guard.ts              createGuard(): rules 0 to 19 in order; receipts, reports, the latch
 │   ├─ src/state.ts              the guard's state, changed only by applying an entry of the record
 │   ├─ src/log.ts                the record's entries, hash-chained
+│   ├─ src/record.ts             where the record lives: memory, or a synced, locked file
 │   ├─ src/latch.ts              the release message and its ed25519 check
 │   ├─ src/sensor.ts             sensor v0: the proposal stream → Keel's three numbers
 │   ├─ src/tables.ts, bin/pin-table.ts   a lookup table's account → its pin for the policy
@@ -87,21 +88,24 @@ it binds the message hash, the expiry height and the policy hash. Around it:
 - `releaseText(expires)` and `release(text, signature, at)`: the latch, freed only by the operator's ed25519
   signature over an exact text naming the guard, cluster, policy, latch seq and expiry.
 
-**State** (`state.ts`) changes only by applying an entry, so a restart can rebuild it by replay. That replay is
-milestone 2a.6; today the record lives in memory.
+**State** (`state.ts`) changes only by applying an entry. Given a `log` path, the record is a file (`record.ts`):
+one JSON entry per line, synced before the guard answers, locked to one guard. On start the guard applies every entry
+again, Keel included, and continues where it stopped; `replay(entries, policy)` recomputes every decision from its
+bytes. Without a `log`, the record lives in memory.
 
 **Defects still open** (`docs/SPEC.md` §10): D3 and D4 (Keel's telemetry is not checked before a tick, and its bytes
-are not hashed; the digest check compares two constants), D8 (sensor v0's rate term reads fast payments as full
-intensity on a real clock), and D11 (the record lives in memory, so a restart forgets the caps).
+are not hashed; the digest check compares two constants), and D8 (sensor v0's rate term reads fast payments as full
+intensity on a real clock).
 
 ## 4. The workflows
 
 | Workflow | Command | What it does |
 |---|---|---|
-| Test | `npm test` | the decode, classify, policy, admission and pin-table batteries: 98 tests |
+| Test | `npm test` | the decode, classify, policy, admission, durable-record and pin-table batteries: 109 tests |
 | Typecheck | `npm run typecheck` | `tsc`, no emit |
 | Fuzz the decoder harder | `FUZZ_SEED=<n> FUZZ_RUNS=<count> node --test --test-name-pattern=fuzz packages/sdk/test/decode.test.ts` | mutated messages must decode as kit decodes them, or deny with a named rule |
 | Pin a lookup table | `npm run pin-table -- --url <rpc> <table>` | prints the table's pin for the policy |
+| Replay a record | `npm run replay -- <record.jsonl> <policy.json>` | recomputes every decision; exit 1 at the first divergence |
 | Sandbox, offline | `npm run sandbox` | three scenarios: benign payments are allowed, a drain is denied, a retry loop is stopped at turn 3 |
 | Sandbox, on-chain | `npm run validator`, then `npm run sandbox -- --cluster local` | allowed transfers land; denied ones are never sent |
 | Toolchain | `npm run doctor` | every tool against its pin, the v1 validator included |
@@ -124,7 +128,7 @@ intensity on a real clock), and D11 (the record lives in memory, so a restart fo
 - **Tiers:** T3 files (the guard, the doctor, the claims, the evals, the public surface) change only with the gate
   shown failing first. T4 (public, mainnet, submission) is the human's.
 - **Environment:** there are no runtime environment variables. The guard keeps no clock; proposals carry their time.
-- **What is not here yet:** the durable record (2a.6), Keel's hardening and sensor v1 (2a.7), the adapters (2a.8),
+- **What is not here yet:** Keel's hardening and sensor v1 (2a.7), the adapters (2a.8),
   the on-chain bound (2a.9), the dashboard (2a.10), a licence, and `programs/`.
 
 ## Changes
@@ -133,4 +137,4 @@ intensity on a real clock), and D11 (the record lives in memory, so a restart fo
 |---|---|---|
 | Draft 1 | 2026-09-27 | First draft. |
 | Draft 2 | 2026-09-30 | The verified review: the new documents and ADRs in the tree; the defects D10 to D12 found in this code; the proposed canary; milestones in place of dates. |
-| Draft 3 | 2026-10-01 | The guard as rebuilt through milestone 2a.5: bytes decoded, instructions classified, policy v1, admission by rules 0 to 19, receipts, intents, the latch, a hash-chained record; CI; the SDK's one runtime dependency. |
+| Draft 3 | 2026-10-01 | The guard as rebuilt through milestone 2a.5: bytes decoded, instructions classified, policy v1, admission by rules 0 to 19, receipts, intents, the latch, a hash-chained record made durable and restored by replay; CI; the SDK's one runtime dependency. |

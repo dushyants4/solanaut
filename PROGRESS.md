@@ -10,7 +10,7 @@ Coarser than `runs/`. The archivist keeps it current; every phase that ends gets
 | **R · Research foundation** | **achieved 2026-09-27**: research on Gubernaut, the governor pattern and Solana DeFAI; `docs/SPEC.md`; ADR-004 to ADR-007; draft-1 papers and submission drafts; the Obsidian knowledge vault and `kb_lint` gate | `runs/2026-09-27-research-foundation.md` · [review](kb/milestones/2026-09-27_R-research.md) |
 | **R2 · Verified review and roadmap** | **achieved 2026-09-30**: the docs fact-checked against primary sources; 26 design gaps tested by two independent refuters; `docs/SPEC.md` Draft 2; ADR-008 (proposed) to ADR-011; `docs/PRODUCT.md`, `docs/ROADMAP.md` and `docs/READINESS.md`; every descriptive document refreshed | `runs/2026-09-30-verified-review-roadmap.md` · [review](kb/milestones/2026-09-30_R2-verified-review.md) |
 | **Leg 1 · Define (1.1)** | **achieved 2026-09-30**: the human signed off `docs/PRODUCT.md` | `runs/2026-10-01-beta-build.md` |
-| Leg 2 · Develop: the Beta MVP (2a.1 to 2a.10), QC and verification (2b.1 to 2b.4), the Alpha's scope (2c.1) | **in progress**, in the build order of `docs/ROADMAP.md`. Achieved: **2a.1** safety net (CI, shown failing first), **2a.2** bytes decoded (legacy, v0 with pins, v1; no web3.js), **2a.3** instructions classified (an allowlist per instruction; nonce and other-signer facts; the fee rule), **2a.4** policy v1 (rule 0, frozen, hashed), **2a.5** admission (rules 0 to 19 in order; receipts; intents; the latch; D1, D2, D5, D6, D7, D9, D10 and D12 closed) | `runs/2026-10-01-beta-build.md` · `evals/ci/safety-net.md` · `evals/sdk/decode.md` · `evals/sdk/classify.md` · `evals/sdk/policy.md` · `evals/sdk/admission.md` |
+| Leg 2 · Develop: the Beta MVP (2a.1 to 2a.10), QC and verification (2b.1 to 2b.4), the Alpha's scope (2c.1) | **in progress**, in the build order of `docs/ROADMAP.md`. Achieved: **2a.1** safety net (CI, shown failing first), **2a.2** bytes decoded (legacy, v0 with pins, v1; no web3.js), **2a.3** instructions classified (an allowlist per instruction; nonce and other-signer facts; the fee rule), **2a.4** policy v1 (rule 0, frozen, hashed), **2a.5** admission (rules 0 to 19 in order; receipts; intents; the latch; D1, D2, D5, D6, D7, D9, D10 and D12 closed), **2a.6** durable state (the record synced before each answer; restore by replay; one writer; `replay()`; D11 closed) | `runs/2026-10-01-beta-build.md` · `evals/ci/safety-net.md` · `evals/sdk/decode.md` · `evals/sdk/classify.md` · `evals/sdk/policy.md` · `evals/sdk/admission.md` · `evals/sdk/durable.md` |
 | S.1 · Submitted to Colosseum, an external event whose window closes 2026-10-12 at 11:59pm PT | the human's decision, showing whatever has passed its gate | |
 | Leg 3 · The Alpha, built and tested hard (3.1 to 3.10) | after Leg 2 | |
 | Leg 4 · The live Phantom test (4.1 to 4.5) | after Leg 3: on devnet with the human's Phantom wallet, as the human chose on 2026-09-30; real money only if the human later accepts ADR-008 | |
@@ -26,14 +26,16 @@ Coarser than `runs/`. The archivist keeps it current; every phase that ends gets
   disagreement with kit and no error other than a named rule; 5 of 5 planted bugs caught (`evals/sdk/decode.md`).
 - Classifier (2a.3): every Token and ComputeBudget discriminator, and System's, named as the Solana program clients
   name them; 10 of 10 planted bugs caught (`evals/sdk/classify.md`).
+- Restart battery (2a.6): SIGKILLed at 20 random points, the guard's record ended identical, hash for hash, to an
+  uninterrupted run, and replayed without divergence (`evals/sdk/durable.md`).
 - CI (2a.1): four gates on every push, each seen failing on its own injected fault (`evals/ci/safety-net.md`).
 
 
 ## Open
 
-1. **The defects still open** (`docs/SPEC.md` §10): D3 (telemetry is not checked before Keel ticks), D4 (the Keel
-   digest compares two constants), D11 (the record lives in memory, so a restart resets the caps). D1, D2, D5, D6,
-   D7, D9, D10 and D12 closed at milestone 2a.5. Milestones 2a.6 and 2a.7 fix the rest test-first.
+1. **The defects still open** (`docs/SPEC.md` §10): D3 (telemetry is not checked before Keel ticks) and D4 (the Keel
+   digest compares two constants), fixed test-first at milestone 2a.7. D1, D2, D5, D6, D7, D9, D10 and D12 closed at
+   2a.5; D11 at 2a.6.
 2. **Sensor v0.** On a real clock it reads fast legitimate payments as full intensity (D8). Milestone 2a.7 measures
    it and fixes it.
 3. **The human's**, as decided on 2026-09-30:

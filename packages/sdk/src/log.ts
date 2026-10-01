@@ -80,6 +80,10 @@ export interface DecisionEntry extends EntryBase {
   keel: { version: string; digest: string; verified: "bytes" | "declared" };
   /** Receipts only: the last block height at which the admitted bytes can land. */
   expires?: { lastValidBlockHeight: string };
+  /** Set when the proposal itself was ill-formed (rule 1, before decoding): replay cannot rebuild it. */
+  input?: "invalid";
+  /** Set on the denial that trips the latch: a recorded fact, so no later policy can undo it. */
+  latch?: true;
 }
 
 export interface ReportEntry extends EntryBase {

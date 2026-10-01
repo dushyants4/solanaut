@@ -144,7 +144,7 @@ export function apply(s: GuardState, e: Entry, policy: Policy): void {
         s.allowed.set(e.hash, e);
       }
       s.consecutiveDenials = e.allow ? 0 : s.consecutiveDenials + 1;
-      if (!s.latched && (s.consecutiveDenials >= policy.latch.afterDenials || e.posture === "REGROUND")) s.latched = { seq: e.seq };
+      if (!s.latched && e.latch) s.latched = { seq: e.seq };
       prune(s, policy);
       return;
     }

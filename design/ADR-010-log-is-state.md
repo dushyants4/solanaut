@@ -1,7 +1,8 @@
 # ADR-010 · The decision log is the guard's state
 
 **Status:** accepted 2026-09-30, in the verified-review plan the human approved. It completes
-[ADR-004](ADR-004-admission-and-receipts.md) point 8.
+[ADR-004](ADR-004-admission-and-receipts.md) point 8. **Built** at milestone 2a.6 (`evals/sdk/durable.md`): points 1 to 3;
+the lock is on the record file. Point 5, snapshots, remains Alpha work.
 
 ## Context
 

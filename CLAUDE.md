@@ -107,6 +107,8 @@ npm run sandbox                     # the plugin sandbox, offline: three scenari
 npm run validator                   # a local solana-test-validator (ledger in .sandbox/)
 npm run sandbox -- --cluster local  # the same scenarios on the validator: allowed txs land, denied ones are never sent
 npm run doctor                      # the toolchain against TOOLCHAIN.md
+npm run pin-table -- --url <rpc> <table>         # a lookup table's pin for the policy
+npm run replay -- <record.jsonl> <policy.json>   # recompute a guard's record; exit 1 at the first divergence
 uv run --script tools/boundary_guard.py --selftest   # the write boundary, 34 cases
 uv run --script tools/kb_lint.py                     # the knowledge vault: links, notes, registers
 uv run --script tools/session_close.py               # every gate, before closing
@@ -131,14 +133,14 @@ agent ── proposes bytes ──▶ @solanaut/sdk  guard.check()          prop
    intents  (keyed by effects: no re-sign while an earlier attempt could still land)      built (2a.5)
    sensor   (proposal stream → intensity, valence, repetition)                            v0 today, v1 at milestone 2a.7
    Keel     (@gubernaut/core 1.0.1; declared digest pinned, bytes hashed at 2a.7)         → REGROUND → DENY; posture only restricts
-   receipt  (message hash, expiry, policy hash) → signer · the log is the state (ADR-010; in memory until 2a.6) · any error → DENY
+   receipt  (message hash, expiry, policy hash) → signer · the log is the state (ADR-010; a synced, locked file, restored by replay) · any error → DENY
 on-chain (devnet, milestone 2a.9): a Squads v4 spending limit naming the agent's key bounds a stolen key (ADR-006)
 operator: a Phantom wallet, the Squads config authority and latch release · dashboard: read-only, no keys (ADR-011)
 ```
 
 Today's code implements `guard.check(proposal)`: message bytes in, rules 0 to 19 in order, a hash-chained record,
 receipts, intents and the latch, with sensor v0 and Keel. What remains is specified in `docs/SPEC.md`, whose §10
-lists the defects still open (D3, D4, D8, D11). Each milestone's receipt is in `evals/`.
+lists the defects still open (D3, D4, D8). Each milestone's receipt is in `evals/`.
 
 **The roadmap is milestones, not dates.** `docs/ROADMAP.md` is the five-leg parlay: each milestone is reached when
 its gate passes, with its evidence, never by a calendar. `PROGRESS.md` shows where it stands, and
@@ -147,7 +149,7 @@ whatever has passed its gate.
 
 | Path | What |
 |---|---|
-| `packages/sdk/` | the guard: `message.ts` (bytes), `classify.ts` (effects), `policy.ts`, `guard.ts` (the rules), `state.ts` and `log.ts` (the record), `latch.ts`, `sensor.ts`; `bin/pin-table.ts` |
+| `packages/sdk/` | the guard: `message.ts` (bytes), `classify.ts` (effects), `policy.ts`, `guard.ts` (the rules, replay), `state.ts`, `log.ts` and `record.ts` (the record), `latch.ts`, `sensor.ts`; `bin/pin-table.ts`, `bin/replay.ts` |
 | `apps/sandbox/` | the plugin sandbox |
 | `apps/cockpit/` | *(milestone 2a.10)* the dashboard: read-only, reads the log and the chain, holds no keys (ADR-011) |
 | `programs/` | *(Alpha, milestone 3.7)* `solanaut_anchor`: anchors the decision log's head. On-chain caps come from composing Squads v4 (ADR-006) |

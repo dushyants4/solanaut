@@ -1,4 +1,5 @@
-export { createGuard, VERIFIED_KEEL_DIGEST, type Decision, type Entry, type Guard, type GuardOptions, type GuardStatus, type Outcome, type ProposalV1, type RuleV1, type Sensor, type SensorView } from "./guard.ts";
+export { createGuard, replay, VERIFIED_KEEL_DIGEST, type Decision, type Entry, type EntryStore, type Guard, type GuardOptions, type GuardStatus, type Outcome, type ProposalV1, type ReplayResult, type RuleV1, type Sensor, type SensorView } from "./guard.ts";
+export { fileStore, memoryStore } from "./record.ts";
 export { createPolicy, contextOf, PolicyError, policyHash, type Policy, type PolicyInput, type PolicyV1 } from "./policy.ts";
 export { effectsOf, classify, classifyInstruction, PROGRAMS, type ClassifyContext, type EffectsV1 } from "./classify.ts";
 export { decodeMessage, decodeTransaction, resolveMessage, DecodeError, type DecodedMessage, type PinnedTable, type ResolvedMessage } from "./message.ts";
