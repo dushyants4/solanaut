@@ -23,6 +23,8 @@ from pathlib import Path
 HOME = Path.home()
 # The Solana and Anchor bins are not on a non-interactive PATH; say where they live, once.
 EXTRA = [HOME / ".local/share/solana/install/active_release/bin", HOME / ".avm/bin"]
+# The installed, inactive release that runs v1 transactions (TOOLCHAIN.md).
+V1_VALIDATOR = HOME / ".local/share/solana/install/releases/4.3.0/solana-release/bin/solana-test-validator"
 os.environ["PATH"] = os.pathsep.join([str(p) for p in EXTRA] + [os.environ.get("PATH", "")])
 
 # (label, command, regex capturing the version, check). check is an exact pin (str), or a
@@ -40,6 +42,9 @@ CHECKS = [
     ("solana-test-validator", ["solana-test-validator", "--version"], r"(\d+\.\d+\.\d+)", "3.1.10"),
     ("solana-keygen", ["solana-keygen", "--version"], r"(\d+\.\d+\.\d+)", "3.1.10"),
     ("cargo-build-sbf", ["cargo-build-sbf", "--version"], r"cargo-build-sbf (\d+\.\d+\.\d+)", "3.1.10"),
+    # v1 transactions need a validator from Agave 4.2.2 (TOOLCHAIN.md). It runs by its absolute
+    # path, never by switching the active release, which Anchor 1.2.0 keeps at 3.1.10.
+    ("solana-test-validator, v1", [str(V1_VALIDATOR), "--version"], r"solana-test-validator (\d+\.\d+\.\d+)", at_least((4, 2, 2))),
     ("anchor", ["anchor", "--version"], r"anchor-cli (\d+\.\d+\.\d+)", "1.2.0"),
     ("avm", ["avm", "--version"], r"avm (\d+\.\d+\.\d+)", "1.2.0"),
     ("rustc", ["rustc", "--version"], r"rustc (\d+\.\d+\.\d+)", at_least((1, 85))),

@@ -380,7 +380,6 @@ regenerates them.
 
 ## 12. Open questions
 
-- Does `@solana/kit`'s plugin client build v1 by default, or only when configured? Checked at milestone 2a.2.
 - ElizaOS: wrap the plugin's action handlers, or its wallet? Decided when the Alpha starts.
 - Lighthouse's memory-write instructions fund and write an account. They need their own rule before any wallet that
   appends them is admitted (Alpha).
@@ -390,7 +389,10 @@ regenerates them.
   assumptions (ADR-008).
 
 **Answered 2026-09-30:** a Squads limit member need not be a multisig member (§9); v1's rollout (mainnet, 2026-09-15);
-the kit signer interface to wrap (`TransactionPartialSigner`).
+the kit signer interface to wrap (`TransactionPartialSigner`); and, at milestone 2a.2, kit's default version: in
+`@solana/kit` 8.4.0 there is none. `createTransactionMessage({ version })` requires one, and the transaction planner
+calls a factory the caller supplies, whose documented example uses version 0. Kit's separate plugin packages were not
+checked. The guard decodes whatever version arrives, so the answer changes no rule.
 
 ## Changes
 

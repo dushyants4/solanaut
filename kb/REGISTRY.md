@@ -7,6 +7,7 @@ full tree.
 |---|---|---|---|---|
 | `@gubernaut/core` | **1.0.1** | npm | Gubernaut Keel, the controller in-process. Apache-2.0, pre-existing, disclosed under the hackathon rules §9. Its wasm digest `834015d7…` is checked when a guard is created | 2026-09-27 |
 | `@solana/web3.js` | **1.99.0** | npm | transactions, keys, RPC. The 1.x line, because the agent frameworks Solanaut adapts to (ElizaOS, Solana AgentKit) build on it. `@solana/kit` (8.4.0 on 2026-09-30) is the modern line. The v1 core decodes bytes without web3.js, which stays in the adapters (ADR-009) | 2026-09-30 |
+| `@solana/kit` | **8.4.0** | npm | **dev only**: the reference the byte decoder is checked against (the golden set, and the fuzz harness's differential). `packages/sdk/src` never imports it | 2026-09-30 |
 | `typescript` | **7.0.2** | npm | typecheck only; Node runs the sources directly | 2026-09-27 |
 | `@types/node` | **26.6.3** | npm | Node 26 types | 2026-09-27 |
 
@@ -36,8 +37,8 @@ milestone that needs it adds it, and not before.
 
 | Package | Version seen | For | Milestone |
 |---|---|---|---|
-| `@solana-program/system`, `token`, `token-2022`, `compute-budget` | 0.15.0, 0.17.0, 0.19.0, 0.19.0 | cross-checking the decoder in tests | 2a.2 |
-| `fast-check` | 4.10.2 | property tests | 2a.2 |
+| `@solana-program/system`, `token`, `token-2022`, `compute-budget` | 0.15.0, 0.17.0, 0.19.0, 0.19.0 | cross-checking the instruction classifier in tests | 2a.3 |
+| `fast-check` | 4.10.2 | property tests with shrinking; at 2a.2 a seeded harness with no dependency was enough | 3.9, if needed |
 | `@sqds/multisig` | 2.1.4 | the Squads spending limit on devnet | 2a.9 |
 | `litesvm` | 1.5.0 | in-process integration tests | 3.9 |
 | `@stryker-mutator/core` | 10.0.0 | mutation testing | 3.9 |

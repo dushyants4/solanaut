@@ -49,8 +49,8 @@ Agave 4.2.2 ([source](kb/sources/2026-09-30_solana-dev-skill-transactions-v1.md)
 - **Keep 3.1.10 active.** Anchor 1.2.0 selects it for builds.
 - **For v1 integration tests,** run the installed, inactive 4.3.0's `solana-test-validator` by its absolute path,
   never by switching the active release. Surfpool 1.5 or later also enables v1.
-- **A pinned check for that validator** in `tools/doctor.py` is a T3 change, shown failing first, owed at milestone
-  2a.2 of `docs/ROADMAP.md`.
+- **`tools/doctor.py` checks that validator** by its absolute path, at 4.2.2 or later. It was shown failing first
+  against the 3.1.10 release (`evals/sdk/decode.md`).
 
 ## Keys
 
