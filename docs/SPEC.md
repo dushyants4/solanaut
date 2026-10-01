@@ -392,7 +392,9 @@ Built at milestone 2a.7 (`evals/sdk/keel.md`).
     legacy transaction, `message.serialize()` for a versioned one. The SDK keeps one runtime dependency.
   - **An RPC is required, and the guard sends.** After the wallet signs, the guard sends the exact bytes it compared,
     through its own RPC, so nothing a wallet adds on send goes out. Then it waits for the outcome and reports it.
-    A send the RPC refuses is reported `failed` and rethrown.
+    A send the RPC refuses (`RpcRefused`, a JSON-RPC error answer) is reported `failed` and rethrown. Any other
+    failed send, such as a dropped connection, a timeout or an HTTP error, is reported `unknown` and rethrown: its
+    bytes may still land (D13).
   - **Expiry, bounded from above.** A transaction names its blockhash, not that blockhash's last valid height, so
     `guardedWallet` uses the current height plus 150. Too high a bound keeps an attempt in flight longer, and lets a
     receipt redeem a little late, for bytes the chain would refuse anyway. A kit transaction carries its lifetime, so
@@ -407,7 +409,8 @@ Built at milestone 2a.7 (`evals/sdk/keel.md`).
     `message-signing-denied` and `wallet-changed-message`.
   - **`jsonRpc(url)`** is the RPC client: `getBlockHeight`, `sendTransaction` with base64 bytes, and
     `getSignatureStatuses` polled until the signature lands or fails, its blockhash expires, or a timeout gives
-    `unknown`.
+    `unknown`. Reads back off and try again through a failed read, such as a public RPC's HTTP 429. A send is never
+    retried by the client.
 - **Integrating with Solana Agent Kit (milestone 2b.3, `evals/agentkit/sak-local.md`).** With the one-line change,
   drains are refused on both of the kit's paths, and a whole transaction works unchanged. The kit's plugins hand it
   bare instructions, and the kit signs each such payment twice ([source](../kb/sources/2026-10-01_solana-agent-kit-signorsendtx.md)),
@@ -463,11 +466,27 @@ Each is fixed test-first: the evaluator writes the failing test, and the builder
 | D10 | Only System Transfer is decoded: CreateAccount, CreateAccountWithSeed, TransferWithSeed, WithdrawNonceAccount and every other System instruction pass with 0 lamports counted when System is allowlisted | `describe.ts:11-16` | §4 |
 | D11 | Reservations, sensor state and Keel's state live in memory; a restart resets the caps and would un-latch a guard | `guard.ts:47-51` | §7, ADR-010 |
 | D12 | The core decodes through `@solana/web3.js` | `describe.ts:5`, `packages/sdk/package.json` | decode bytes without it, cross-checked in tests (ADR-009) |
+| D13 | `guardedWallet` reported every rejected send `failed`, which frees the payment's value and admits a re-sign, though a dropped connection, a timeout or an HTTP error leaves the bytes able to land | `adapters/agent-kit.ts`, `adapters/rpc.ts` | `failed` only when the RPC refused the bytes (`RpcRefused`); otherwise `unknown` |
+| D14 | An attempt nobody reports is treated as unable to land once its last valid height passes, so a retry of a payment that landed unreported is admitted. A sign-only integration, where the wallet signs and the caller sends, never reports | `state.ts` (`couldStillLand`), `adapters/agent-kit.ts` (`signTransaction`) | to decide: see the status below |
 
 **Status:** closed at milestone 2a.5 (`evals/sdk/admission.md`), test-first: D1, D2, D5, D6, D7, D9, D10 and D12. D12
 closed early: the guard decodes bytes itself, so `packages/sdk/src` imports no web3.js. D11 closed at milestone 2a.6
 (`evals/sdk/durable.md`) for every guard given a `log`. D3, D4 and D8 closed at milestone 2a.7 (`evals/sdk/keel.md`).
 **Every defect D1 to D12 is closed.**
+
+**Found on 2026-10-01, preparing and running devnet:**
+- **D13 is closed**, test-first ([sdk/adapters.md](../evals/sdk/adapters.md), section 4).
+- **D14 is open.** It was found when the devnet run showed Solana Agent Kit reporting landed payments as failed, which
+  invites the retry ([agentkit/sak-devnet.md](../evals/agentkit/sak-devnet.md)), and confirmed offline. An unreported
+  attempt past its last valid height either landed or never will. Today's rule reads that as "never will".
+
+  The candidate fix is a change to the double-send battery below. The first two parts are the core's; the third is
+  the adapter's:
+  - an unreported attempt past expiry keeps its intent from a further attempt until it is reported, or until its
+    window passes;
+  - an `expired` report frees it, as today;
+  - `guardedWallet` learns the outcomes of the sign-only attempts it signed, from their signatures, before it admits
+    the next proposal.
 
 ## 11. Batteries and acceptance
 
@@ -499,7 +518,9 @@ regenerates them.
 - Should a REGROUND on a proposal an earlier rule already denied trip the latch? In the cockpit's demo, one re-send of
   a payment whose outcome was unknown was denied as `intent-in-flight`, met REGROUND (repetition 1, valence -0.4), and
   latched the guard (`evals/cockpit/v0.md`). The latch guards double-sends, and may be heavy-handed for one retry.
-  Measure retry patterns of real agents first (milestone 2b.3); for the Alpha's red team.
+  **Seen again on devnet, every run:** DEMO.md's scene 5, one re-sign while the first attempt is in flight, is denied
+  by rule 14 and meets REGROUND at repetition 1 with valence 0.2. It latches the guard until the operator signs
+  (`evals/e2e/scenes-devnet.md`). For the Alpha's red team; to decide before the demo is recorded.
 - Should a run of failed outcomes trip the latch, as a run of denials does? A loop that alternates two shapes and
   changes its amount passes every rule while each send fails, and is bounded only by the fee window and the clamp
   under INHIBIT (`evals/sdk/keel.md`). For the Alpha's red team (milestone 3.10).
@@ -523,4 +544,4 @@ checked. The guard decodes whatever version arrives, so the answer changes no ru
 |---|---|---|
 | Draft 1 | 2026-09-27 | First draft, from the research foundation (`kb/milestones/2026-09-27_R-research.md`). |
 | Draft 2 | 2026-09-30 | The verified review (`runs/2026-09-30-verified-review-roadmap.md`): trust per mode; v1 decoded; tables pinned; an allowlist per instruction; durable nonces and other signers denied; the fee rule corrected; intents keyed by effects; the log as the state; the adapter surface; the structured latch release; the Squads membership question answered; D10 to D12; new battery cases. Phases are now the roadmap's milestones. |
-| Draft 3 | 2026-10-01 | Built through milestone 2a.5 (`runs/2026-10-01-beta-build.md`): the effects model as implemented (`otherSigners`, outflow sources, denial rules, the intent key's definition); the record's four entry kinds; the decisions made while building, in §4 and §7; kit's default version answered; D1, D2, D5, D6, D7, D9, D10 and D12 closed; then 2a.6: the durable record, restore, the lock, replay, the latch as a recorded fact, and D11 closed; then 2a.7: Keel's bytes and telemetry checked, sensor v1 as built and measured, D3, D4 and D8 closed, an open question on runs of failures; then 2a.8: the adapters as built; then 2a.10: an open question on latching after a denied retry; then 2b.3: integrating with Solana Agent Kit. |
+| Draft 3 | 2026-10-01 | Built through milestone 2a.5 (`runs/2026-10-01-beta-build.md`): the effects model as implemented (`otherSigners`, outflow sources, denial rules, the intent key's definition); the record's four entry kinds; the decisions made while building, in §4 and §7; kit's default version answered; D1, D2, D5, D6, D7, D9, D10 and D12 closed; then 2a.6: the durable record, restore, the lock, replay, the latch as a recorded fact, and D11 closed; then 2a.7: Keel's bytes and telemetry checked, sensor v1 as built and measured, D3, D4 and D8 closed, an open question on runs of failures; then 2a.8: the adapters as built; then 2a.10: an open question on latching after a denied retry; then 2b.3: integrating with Solana Agent Kit; then devnet (2a.9, 2a.10, 2b.1, 2b.3): D13 found and closed, D14 found, the open question on latching seen on devnet. |

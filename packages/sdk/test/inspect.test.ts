@@ -47,6 +47,19 @@ test("inspectRecord shows a latch, the run of denials, and what is still in flig
   assert.ok(view.intents.some((i) => i.attempts.some((a) => a.status === "pending")) , "some attempts were never reported");
 });
 
+test("inspectRecord marks each decision that latched the guard, and lists the operator's releases", async () => {
+  const g = await createGuard({ policy: WORKLOAD_POLICY });
+  runFrom(g);
+  const view = inspectRecord(g.entries(), WORKLOAD_POLICY);
+  const oldest = view.decisions.at(-1)!.seq;
+  const latching = g.entries().filter((e) => e.kind === "decision" && e.latch === true && e.seq >= oldest).map((e) => e.seq);
+  const releases = g.entries().filter((e) => e.kind === "release");
+  assert.ok(latching.length > 0 && releases.length > 0, "the workload latches the guard, and the operator releases it");
+  assert.ok(view.decisions.every((d) => typeof d.latch === "boolean"));
+  assert.deepEqual(view.decisions.filter((d) => d.latch).map((d) => d.seq), latching.reverse(), "newest first, as the decisions are");
+  assert.deepEqual(view.releases, releases.slice(-20).reverse().map((r) => r.kind === "release" && { seq: r.seq, at: r.at, latchSeq: r.latchSeq }));
+});
+
 test("inspectRecord refuses a record that does not chain, as a restore would", async () => {
   const g = await createGuard({ policy: WORKLOAD_POLICY });
   for (let i = 0; i < 5; i++) step(g, i);

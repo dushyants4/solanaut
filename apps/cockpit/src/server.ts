@@ -58,7 +58,27 @@ async function rpcCall<T>(url: string, method: string, params: unknown[]): Promi
   return body.result as T;
 }
 
-async function chain(o: CockpitOptions) {
+interface Recent {
+  signature: string;
+  slot: number;
+  ok: boolean;
+  /** The program's own name for the error (Anchor's "Error Code"), else the runtime's, else null. */
+  error: string | null;
+  fee: number | null;
+  version: number | "legacy" | null;
+}
+
+/** The error a failed transaction's logs name, as Anchor programs such as Squads log it. */
+export function programError(err: unknown, logs: readonly string[]): string | null {
+  if (err === null || err === undefined) return null;
+  for (const l of logs) {
+    const m = /Error Code: (\w+)/.exec(l);
+    if (m) return m[1]!;
+  }
+  return JSON.stringify(err);
+}
+
+async function chain(o: CockpitOptions, cache: Map<string, Recent>) {
   if (!o.rpc || !o.squads) return { configured: false };
   const s = JSON.parse(readFileSync(o.squads, "utf8")) as { multisig: string; vault: string; spendingLimit: string; agent: string };
   const info = await rpcCall<{ value: { data: [string, string] } | null }>(o.rpc, "getAccountInfo", [s.spendingLimit, { encoding: "base64", commitment: "confirmed" }]);
@@ -75,18 +95,31 @@ async function chain(o: CockpitOptions) {
     };
   }
   const vault = await rpcCall<{ value: number }>(o.rpc, "getBalance", [s.vault, { commitment: "confirmed" }]);
-  const sigs = await rpcCall<{ signature: string; slot: number; err: unknown }[]>(o.rpc, "getSignaturesForAddress", [s.agent, { limit: 10, commitment: "confirmed" }]);
-  const recent = [];
+  const sigs = await rpcCall<{ signature: string; slot: number; err: unknown; confirmationStatus?: string }[]>(o.rpc, "getSignaturesForAddress", [s.agent, { limit: 10, commitment: "confirmed" }]);
+  const recent: Recent[] = [];
   for (const x of sigs) {
+    const known = cache.get(x.signature);
+    if (known) {
+      recent.push(known);
+      continue;
+    }
     // v1 transactions have been live since 2026-09-15: a read that does not opt in fails on them.
-    const tx = await rpcCall<{ slot: number; version: number | "legacy"; meta: { err: unknown; fee: number } | null } | null>(o.rpc, "getTransaction", [x.signature, { encoding: "json", commitment: "confirmed", maxSupportedTransactionVersion: 1 }]);
-    recent.push({ signature: x.signature, slot: x.slot, ok: (tx?.meta?.err ?? x.err) === null, fee: tx?.meta?.fee ?? null, version: tx?.version ?? null });
+    const tx = await rpcCall<{ slot: number; version: number | "legacy"; meta: { err: unknown; fee: number; logMessages?: string[] } | null } | null>(o.rpc, "getTransaction", [x.signature, { encoding: "json", commitment: "confirmed", maxSupportedTransactionVersion: 1 }]);
+    const err = tx?.meta ? tx.meta.err : x.err;
+    const r: Recent = { signature: x.signature, slot: x.slot, ok: err === null, error: programError(err, tx?.meta?.logMessages ?? []), fee: tx?.meta?.fee ?? null, version: tx?.version ?? null };
+    // A finalized transaction never changes, so it is read once; a public RPC limits each method's rate.
+    if (tx && x.confirmationStatus === "finalized") {
+      cache.set(x.signature, r);
+      if (cache.size > 256) cache.delete(cache.keys().next().value!);
+    }
+    recent.push(r);
   }
   return { configured: true, multisig: s.multisig, spendingLimit: s.spendingLimit, limit, vault: String(vault.value), recent };
 }
 
 export function createCockpit(o: CockpitOptions): Server {
   const policy = () => JSON.parse(readFileSync(o.policy, "utf8"));
+  const finalized = new Map<string, Recent>();
   const server = createServer(async (req: IncomingMessage, res: ServerResponse) => {
     const port = (server.address() as { port: number } | null)?.port;
     if (req.headers.host !== `127.0.0.1:${port}` && req.headers.host !== `localhost:${port}`) return send(res, 421, json({ error: "this cockpit answers only on 127.0.0.1 and localhost" }));
@@ -98,7 +131,7 @@ export function createCockpit(o: CockpitOptions): Server {
         return send(res, 200, readFileSync(here(file), "utf8"), type);
       }
       if (path === "/api/state") return send(res, 200, json(inspectRecord(readRecord(o.record), policy())));
-      if (path === "/api/chain") return send(res, 200, json(await chain(o)));
+      if (path === "/api/chain") return send(res, 200, json(await chain(o, finalized)));
       return send(res, 404, json({ error: "not found" }));
     } catch (e) {
       return send(res, 500, json({ error: (e as Error).message }));

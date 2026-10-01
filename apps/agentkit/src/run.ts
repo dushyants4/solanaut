@@ -4,24 +4,32 @@
 //   - new SolanaAgentKit(wallet, rpc, {})
 //   + new SolanaAgentKit(guardedWallet(wallet, guard, { rpc }), rpc, {})
 //
-// It runs on a local validator with fresh in-memory keys. No key touches the disk.
+// It runs with a fresh in-memory agent key, which touches no disk. On a local validator it airdrops
+// the agent's float; on devnet, whose faucet rate-limits, a funder pays it (--funder, a keyfile made by
+// solana-keygen). --treasury names the treasury; otherwise it is a fresh key.
 //
 //   node apps/agentkit/src/run.ts --url http://127.0.0.1:8899
+//   node apps/agentkit/src/run.ts --url https://api.devnet.solana.com --funder keys/devnet-operator.json --treasury <pubkey>
 //
 // It counts how often the kit asks the wallet to sign one payment, then sends payments and drains
 // through the kit's two paths: a whole transaction (signAndSendTransaction) and bare instructions
 // (the path the kit's plugins use, which signs more than once).
 
-import { Connection, Keypair, LAMPORTS_PER_SOL, SystemProgram, Transaction, type TransactionInstruction } from "@solana/web3.js";
+import { readFileSync } from "node:fs";
+import { Connection, Keypair, LAMPORTS_PER_SOL, PublicKey, sendAndConfirmTransaction, SystemProgram, Transaction, type TransactionInstruction } from "@solana/web3.js";
 import { KeypairWallet, SolanaAgentKit, signOrSendTX } from "solana-agent-kit";
 import { createGuard, encodeBase58, guardedWallet, PROGRAMS, SolanautDenied, type BaseWalletLike, type PolicyInput } from "@solanaut/sdk";
 import { generateKeyPairSync } from "node:crypto";
 
-const i = process.argv.indexOf("--url");
-const url = i > 0 ? process.argv[i + 1]! : "http://127.0.0.1:8899";
+const arg = (name: string) => {
+  const i = process.argv.indexOf(`--${name}`);
+  return i > 0 ? process.argv[i + 1] : undefined;
+};
+const url = arg("url") ?? "http://127.0.0.1:8899";
+const funderFile = arg("funder");
 const connection = new Connection(url, "confirmed");
 const agentKey = Keypair.generate();
-const treasury = Keypair.generate().publicKey;
+const treasury = arg("treasury") ? new PublicKey(arg("treasury")!) : Keypair.generate().publicKey;
 const attacker = Keypair.generate().publicKey;
 const operator = encodeBase58(Buffer.from(generateKeyPairSync("ed25519").publicKey.export({ format: "jwk" }).x!, "base64url"));
 
@@ -66,7 +74,7 @@ async function attempt(label: string, run: () => Promise<unknown>, signs: () => 
   reset();
   try {
     const r = await run();
-    console.log(`  ${label.padEnd(58)} landed: ${String(r).slice(0, 16)}…   wallet asked to sign ${signs()}×`);
+    console.log(`  ${label.padEnd(58)} landed: ${String(r)}   wallet asked to sign ${signs()}×`);
     return { label, result: "landed", signs: signs() };
   } catch (e) {
     const rule = e instanceof SolanautDenied ? e.rule : (e as Error).message.split("\n")[0]!.slice(0, 60);
@@ -80,9 +88,15 @@ async function main() {
     console.error(`no validator at ${url}`);
     process.exit(1);
   });
-  const airdrop = await connection.requestAirdrop(agentKey.publicKey, 2 * LAMPORTS_PER_SOL);
-  // The kit's own Connection reads at "finalized", web3.js's default: wait until the airdrop is there too.
-  await connection.confirmTransaction(airdrop, "finalized");
+  // The kit's own Connection reads at "finalized", web3.js's default: wait until the float is there too.
+  if (funderFile) {
+    const funder = Keypair.fromSecretKey(Uint8Array.from(JSON.parse(readFileSync(funderFile, "utf8"))));
+    const funded = await sendAndConfirmTransaction(connection, new Transaction().add(SystemProgram.transfer({ fromPubkey: funder.publicKey, toPubkey: agentKey.publicKey, lamports: 0.08 * LAMPORTS_PER_SOL })), [funder], { commitment: "finalized" });
+    console.log(`the agent ${agentKey.publicKey.toBase58()} was paid a float of 0.08 SOL by ${funder.publicKey.toBase58()}: ${funded}`);
+  } else {
+    const airdrop = await connection.requestAirdrop(agentKey.publicKey, 2 * LAMPORTS_PER_SOL);
+    await connection.confirmTransaction(airdrop, "finalized");
+  }
 
   console.log("\nwithout Solanaut: new SolanaAgentKit(wallet, rpc, {})");
   const bare = counted(new KeypairWallet(agentKey, url));

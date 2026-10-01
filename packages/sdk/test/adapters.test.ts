@@ -32,7 +32,7 @@ import { getTransferSolInstruction } from "@solana-program/system";
 import { createGuard, type Guard } from "../src/guard.ts";
 import { guardedWallet, type BaseWalletLike, type RpcLike } from "../src/adapters/agent-kit.ts";
 import { guardedSigner } from "../src/adapters/kit.ts";
-import { jsonRpc } from "../src/adapters/rpc.ts";
+import { jsonRpc, RpcRefused } from "../src/adapters/rpc.ts";
 import { createServer } from "node:http";
 import { once } from "node:events";
 import { SolanautDenied } from "../src/errors.ts";
@@ -81,12 +81,14 @@ function keypairWallet(kp = agent, calls: string[] = []): BaseWalletLike {
 }
 
 /** An RPC that records what it is sent, at a fixed block height, and lands everything unless told otherwise. */
-function fakeRpc(o: { refuse?: boolean; outcome?: "landed" | "failed" | "unknown" } = {}) {
+function fakeRpc(o: { refuse?: boolean; drop?: boolean; outcome?: "landed" | "failed" | "unknown" } = {}) {
   const sent: Uint8Array[] = [];
   const rpc: RpcLike = {
     getBlockHeight: async () => 1_000n,
     sendRawTransaction: async (wire) => {
-      if (o.refuse) throw new Error("Transaction simulation failed: insufficient funds");
+      if (o.refuse) throw new RpcRefused("sendTransaction", "Transaction simulation failed: insufficient funds");
+      // The request went out and no answer came back: the RPC may have forwarded the bytes.
+      if (o.drop) throw new TypeError("fetch failed: other side closed");
       sent.push(wire);
       return encodeBase58(wire.subarray(1, 65));
     },
@@ -258,6 +260,16 @@ test("a send the RPC refuses is reported failed, and rethrown", async () => {
   assert.deepEqual([last.kind, last.kind === "report" && last.outcome], ["report", "failed"]);
 });
 
+test("a send whose fate is unknown is reported unknown, not failed: the signed bytes may still land, so a re-sign is refused", async () => {
+  const g = await guard();
+  const w = guardedWallet(keypairWallet(), g, { rpc: fakeRpc({ drop: true }).rpc, now });
+  await assert.rejects(w.signAndSendTransaction(legacy(pay(treasury, 10))), /fetch failed/);
+  const last = g.entries().at(-1)!;
+  assert.deepEqual([last.kind, last.kind === "report" && last.outcome], ["report", "unknown"]);
+  // The same payment again, with a new blockhash, while the first could still land: the double-send intents stop.
+  await rejectsWith(w.signAndSendTransaction(legacy(pay(treasury, 10))), "intent-in-flight");
+});
+
 test("signMessage is denied: a raw signature over chosen bytes can be a transaction signature", async () => {
   const calls: string[] = [];
   const w = guardedWallet(keypairWallet(agent, calls), await guard(), { rpc: fakeRpc().rpc, now });
@@ -294,12 +306,24 @@ test("guardedSigner: checks every transaction first, all or nothing, reads expir
 test("jsonRpc: sends base64 bytes, reads the height, and turns signature statuses into outcomes", async () => {
   const calls: { method: string; params: unknown[] }[] = [];
   let height = 100;
-  const statuses: Record<string, unknown> = { landed: { err: null, confirmationStatus: "confirmed" }, failed: { err: { InstructionError: [0, "Custom"] }, confirmationStatus: "finalized" } };
+  const statuses: Record<string, unknown> = { landed: { err: null, confirmationStatus: "confirmed" }, failed: { err: { InstructionError: [0, "Custom"] }, confirmationStatus: "finalized" }, "rate-limited": { err: null, confirmationStatus: "confirmed" } };
+  let limited = 0;
+  let heightLimited = 0;
   const server = createServer(async (req, res) => {
     let raw = "";
     for await (const chunk of req) raw += chunk;
     const { id, method, params } = JSON.parse(raw);
     calls.push({ method, params });
+    // A public RPC's rate limit: HTTP 429, the request not served. Three times for one signature, for
+    // one send, and for the first two height reads.
+    const rateLimited =
+      (method === "getSignatureStatuses" && (params as string[][])[0]![0] === "rate-limited" && limited++ < 3) ||
+      (method === "sendTransaction" && (params as unknown[])[0] === "Ag==") ||
+      (method === "getBlockHeight" && heightLimited++ < 2);
+    if (rateLimited) {
+      res.statusCode = 429;
+      return res.end(JSON.stringify({ jsonrpc: "2.0", id, error: { code: 429, message: "Too many requests for a specific RPC call" } }));
+    }
     const result =
       method === "getBlockHeight" ? height++ :
       method === "sendTransaction" ? "sig-from-rpc" :
@@ -311,10 +335,14 @@ test("jsonRpc: sends base64 bytes, reads the height, and turns signature statuse
   await once(server, "listening");
   try {
     const rpc = jsonRpc(`http://127.0.0.1:${(server.address() as { port: number }).port}`, { pollMs: 1, timeoutMs: 2_000 });
-    assert.equal(await rpc.getBlockHeight(), 100n);
+    assert.equal(await rpc.getBlockHeight(), 100n, "a read is tried again through a rate limit");
+    assert.equal(calls.filter((c) => c.method === "getBlockHeight").length, 3);
     assert.equal(await rpc.sendRawTransaction(Uint8Array.of(1, 2, 3)), "sig-from-rpc");
     assert.deepEqual(calls.at(-1)?.params, ["AQID", { encoding: "base64", preflightCommitment: "confirmed" }]);
-    await assert.rejects(rpc.sendRawTransaction(Uint8Array.of(0)), /simulation failed/);
+    await assert.rejects(rpc.sendRawTransaction(Uint8Array.of(0)), (e: unknown) => e instanceof RpcRefused && /simulation failed/.test(e.message), "the RPC refused the bytes: they were not forwarded");
+    await assert.rejects(rpc.sendRawTransaction(Uint8Array.of(2)), (e: unknown) => !(e instanceof RpcRefused) && /429/.test(String(e)), "an HTTP failure is no refusal: the fate of the bytes is not known");
+    assert.equal(calls.filter((c) => c.method === "sendTransaction" && c.params[0] === "Ag==").length, 1, "a send is never tried again by the client");
+    assert.equal(await rpc.confirm("rate-limited", 1_000n), "landed", "a rate limit on status reads is waited out");
     assert.equal(await rpc.confirm("landed", 1_000n), "landed");
     assert.equal(await rpc.confirm("failed", 1_000n), "failed");
     assert.equal(await rpc.confirm("never-seen", BigInt(height + 2)), "expired", "unseen until its last valid height passed");

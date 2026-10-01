@@ -37,7 +37,11 @@ export interface Inspection {
     telemetry: { intensity: number; valence: number; repetition: number } | null;
     sol: string | null;
     fees: string | null;
+    /** True on the decision that latched the guard. */
+    latch: boolean;
   }[];
+  /** The operator's last 20 releases, newest first: each frees the latch at `latchSeq`. */
+  releases: { seq: number; at: number; latchSeq: number }[];
   counts: { allow: number; deny: Record<string, number> };
 }
 
@@ -45,6 +49,7 @@ export function inspectRecord(entries: readonly Entry[], policyInput: unknown): 
   const { policy, hash } = createPolicy(policyInput);
   const state = initialState();
   const decisions: DecisionEntry[] = [];
+  const releases: { seq: number; at: number; latchSeq: number }[] = [];
   const counts = { allow: 0, deny: {} as Record<string, number> };
   for (const e of entries) {
     if (hashOf(e) !== e.hash) throw new Error(`the record is damaged: the hash of seq ${e.seq} does not match its entry`);
@@ -54,6 +59,7 @@ export function inspectRecord(entries: readonly Entry[], policyInput: unknown): 
       if (e.allow) counts.allow++;
       else counts.deny[e.rule ?? "unknown"] = (counts.deny[e.rule ?? "unknown"] ?? 0) + 1;
     }
+    if (e.kind === "release") releases.push({ seq: e.seq, at: e.at, latchSeq: e.latchSeq });
   }
   const now = state.maxAt ?? 0;
   const w = windowTotals(state, policy, now);
@@ -93,7 +99,9 @@ export function inspectRecord(entries: readonly Entry[], policyInput: unknown): 
       telemetry: d.telemetry,
       sol: d.amounts?.sol ?? null,
       fees: d.amounts?.fees ?? null,
+      latch: d.latch === true,
     })),
+    releases: releases.slice(-20).reverse(),
     counts,
   };
 }

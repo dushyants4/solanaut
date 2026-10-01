@@ -56,3 +56,7 @@ grep "| research |" kb/LOG.md             # every research pass
 ## [2026-10-01 06:58] research | SIMD-0312's layout and SIMD-0266's p-token instructions read first-hand; Solana Agent Kit's BaseWallet checked in the published 2.0.10 package; upstream findings U-2 and U-3 reproduced | kb/sources/2026-09-30_simd-0312-create-account-allow-prefund.md, kb/sources/2026-09-30_simd-0266-p-token.md, kb/sources/2026-09-30_solana-agent-kit-basewallet.md, kb/REGISTRY.md
 
 ## [2026-10-01 07:35] research | Solana Agent Kit 2.0.10 read and run: plugin payments are signed twice; with a Helius key a signed transaction is posted to Helius; an array of transactions throws after the first is sent | kb/sources/2026-10-01_solana-agent-kit-signorsendtx.md, evals/agentkit/sak-local.md, docs/CLAIMS.md
+
+## [2026-10-01 12:37] build | devnet, once the human funded the operator: 2a.9 achieved (Squads v4 refused the stolen key past the limit, to an unlisted address and after the revoke); 2a.10 achieved (the cockpit on devnet); the demo's scenes end to end on devnet with a real SIGKILL and restore; the Solana Agent Kit agent on devnet; D13 found and closed; D14 found | runs/2026-10-01-devnet.md, evals/onchain/squads-devnet.md, evals/e2e/scenes-devnet.md, evals/agentkit/sak-devnet.md, docs/SPEC.md
+
+## [2026-10-01 12:37] research | Solana Agent Kit 2.0.10's sendTx re-sends until it sees a status; on devnet it reported three landed payments as failed | kb/sources/2026-10-01_solana-agent-kit-signorsendtx.md, docs/CLAIMS.md

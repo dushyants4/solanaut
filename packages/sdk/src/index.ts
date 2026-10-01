@@ -11,5 +11,5 @@ export { encodeBase58, decodeBase58, isAddress } from "./base58.ts";
 export { SolanautDenied, type DeniedRule } from "./errors.ts";
 export { guardedWallet, BLOCKHASH_LIFETIME, type BaseWalletLike, type GuardedWalletOptions } from "./adapters/agent-kit.ts";
 export { guardedSigner, type GuardedSignerOptions, type KitTransactionLike, type PartialSignerLike } from "./adapters/kit.ts";
-export { jsonRpc, type JsonRpcOptions, type RpcLike } from "./adapters/rpc.ts";
+export { jsonRpc, RpcRefused, type JsonRpcOptions, type RpcLike } from "./adapters/rpc.ts";
 export { inspectRecord, type Inspection } from "./inspect.ts";

@@ -77,11 +77,56 @@ throws.
 
 The RPC client was written before its test, and the last two rows show that test can fail.
 
-## 4. Limits, stated
+## 4. Then, before devnet: a send's fate, and reads through a rate limit (D13)
+
+Preparing the devnet runs on 2026-10-01 found two gaps in the send path, both fixed test-first.
+
+**D13: a send of unknown fate was reported `failed`.** `guardedWallet` reported every rejected send `failed`.
+`failed` frees the payment's value and ends the attempt, so a re-sign of it is admitted. A rejection is not always a
+refusal:
+- **A JSON-RPC error answer** means the RPC refused the bytes. With preflight on, it did not forward them.
+- **A dropped connection, a timeout or an HTTP error** says nothing about whether the bytes reached a leader.
+
+Reported `failed`, such a send freed a re-sign while the first copy could still land: the double-send intents exist
+to stop.
+
+**The fix:**
+- `jsonRpc` throws `RpcRefused` (exported, `refused: true`) only for a JSON-RPC error answer.
+- `guardedWallet` reports `failed` only for an error whose `refused` is true, and `unknown` for anything else.
+  `unknown` keeps the payment in flight until its blockhash expires.
+- A custom `RpcLike` marks a refusal the same way.
+
+**Reads ride out a public RPC's rate limit:**
+- `confirm` backs off and reads again after a failed read, until its deadline makes the outcome `unknown`.
+- `getBlockHeight` tries up to five times with backoff, unless the RPC refused it.
+- A send is never retried by the client.
+
+Without these, `guardedWallet` failed closed whenever devnet answered a height read with HTTP 429. That was safe, and
+it stopped a well-behaved agent.
+
+**Failing first:**
+- **Against a stub** (the `RpcRefused` class present, the old behaviour kept): `pass 12, fail 2`. The failures were
+  the new unknown-send test and the RPC client's test.
+- **The read-retry assertion** failed until reads were retried: `pass 13, fail 1`.
+- **Two more planted bugs, both caught:** an HTTP error typed as a refusal; `confirm` stopping at the first failed
+  read.
+
+```
+adapters.test.ts: ℹ tests 14   ℹ pass 14   ℹ fail 0
+```
+
+On devnet, the scenes' five payments and the Solana Agent Kit agent's whole transaction went through this path
+([e2e/scenes-devnet.md](../e2e/scenes-devnet.md), [agentkit/sak-devnet.md](../agentkit/sak-devnet.md)).
+
+## 5. Limits, stated
 
 - **`guardedWallet`'s expiry is an upper bound:** the current height plus 150. A kit transaction's is exact.
-- **Run against fakes, not a chain.** The wrapped wallet and the RPC are in-process stand-ins. A real Solana Agent Kit
-  agent, a kit agent and a local validator are milestone 2b.3.
+- **These tests run against fakes, not a chain.** The wrapped wallet and the RPC are in-process stand-ins. A real
+  Solana Agent Kit agent has since run on a local validator and on devnet ([agentkit/](../agentkit/)). A kit-signer
+  agent has not.
+- **A sign-only path learns no outcome (D14, open).** Through `signTransaction`, the wallet signs and the caller
+  sends, so nothing reports the outcome. The guard treats the attempt as able to land until its last valid height, and
+  then as not. A retry of a payment that landed unreported is then admitted. See `docs/SPEC.md` §10.
 - **A wallet outside the guard is outside it.** `guardedWallet` stops what passes through it. Code that holds the raw
   wallet or key can still sign directly; that is why the signer process exists (Alpha, milestone 3.1).
 

@@ -8,7 +8,8 @@
 //     Anything else is stripped of its signatures and thrown: a wallet that appends instructions
 //     before it signs (the threat model's A8) never gets its bytes out through the guard.
 //   - It sends the bytes it checked itself, through its own RPC, so nothing the wrapped wallet
-//     might add on send goes out. Then it waits for the outcome and reports it to the guard.
+//     might add on send goes out. Then it waits for the outcome and reports it to the guard. A send
+//     the RPC refused is reported failed; one whose fate is unknown, unknown.
 //   - signMessage is denied: a raw ed25519 signature over chosen bytes can be a transaction signature.
 //
 // Transactions are web3.js Transaction or VersionedTransaction objects, read by their shape, so the
@@ -162,7 +163,9 @@ export function guardedWallet<Tx = any>(wallet: BaseWalletLike<Tx>, guard: Guard
     try {
       signature = await rpc.sendRawTransaction(new Uint8Array((signed[0] as any).serialize()), options);
     } catch (e) {
-      guard.report(a.decision.hash, "failed");
+      // Only the RPC's refusal proves the bytes went nowhere. After any other failure they may still
+      // land, so the payment stays in flight until its blockhash expires, rather than free a re-sign.
+      guard.report(a.decision.hash, (e as { refused?: unknown } | null)?.refused === true ? "failed" : "unknown");
       throw e;
     }
     const outcome = await rpc.confirm(signature, a.lastValidBlockHeight).catch(() => "unknown" as const);

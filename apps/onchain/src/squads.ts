@@ -11,6 +11,11 @@
 // --keep skips the revoke, leaving the limit in place for the cockpit to show; --out writes the
 // public addresses the cockpit reads.
 //
+// --multisig <pda> resumes on a multisig this script made earlier, so an interrupted run costs no
+// second vault: it skips creating and funding it, and adds a fresh limit. With --limit <pda> it
+// reuses that limit too. Whatever it reuses, it checks first: the operator is the config authority,
+// the agent's key is no member, and the limit names the agent's key and the treasury only.
+//
 // On a local validator (`--url http://127.0.0.1:8899`) it airdrops what it needs; on devnet it
 // needs the operator funded first, and says so. The refused attempts are sent without preflight,
 // so the refusal is the program's, recorded on chain with a signature. It prints public keys,
@@ -50,16 +55,29 @@ const step = (name: string, value: unknown) => {
   console.log(`${name}: ${typeof value === "string" ? value : JSON.stringify(value)}`);
 };
 
-async function confirmed(signature: string): Promise<{ err: unknown; logs: string[] }> {
-  for (let i = 0; i < 120; i++) {
-    const s = (await connection.getSignatureStatuses([signature])).value[0];
-    if (s && (s.confirmationStatus === "confirmed" || s.confirmationStatus === "finalized")) {
-      const tx = await connection.getTransaction(signature, { commitment: "confirmed", maxSupportedTransactionVersion: 1 });
-      return { err: s.err, logs: tx?.meta?.logMessages ?? [] };
+const POLL_MS = local ? 500 : 2_000;
+
+/** Wait for a sent transaction to confirm, and read its logs and slot. `at` is when its status first read confirmed. */
+async function confirmed(signature: string): Promise<{ err: unknown; logs: string[]; at: number; slot: number }> {
+  const deadline = Date.now() + 120_000;
+  let at: number | undefined;
+  while (Date.now() < deadline) {
+    try {
+      const s = (await connection.getSignatureStatuses([signature])).value[0];
+      if (s && (s.confirmationStatus === "confirmed" || s.confirmationStatus === "finalized")) {
+        at ??= performance.now();
+        // A public RPC can report the status before it serves the transaction: wait for both.
+        const tx = await connection.getTransaction(signature, { commitment: "confirmed", maxSupportedTransactionVersion: 1 });
+        if (tx) return { err: s.err, logs: tx.meta?.logMessages ?? [], at, slot: tx.slot };
+      }
+    } catch (e) {
+      // The public devnet RPC limits each method's rate (HTTP 429). The transaction is already sent;
+      // only its status is late, so keep polling until the deadline.
+      if (!String(e).includes("429")) throw e;
     }
-    await new Promise((r) => setTimeout(r, 500));
+    await new Promise((r) => setTimeout(r, POLL_MS));
   }
-  throw new Error(`${signature} was not confirmed in 60 s`);
+  throw new Error(`${signature} was not confirmed in 120 s`);
 }
 
 /** The Squads error a failed transaction's logs name, if any. */
@@ -75,65 +93,85 @@ async function main() {
     await confirmed(await connection.requestAirdrop(operator.publicKey, 2 * LAMPORTS_PER_SOL));
   }
 
-  // 1. A controlled multisig: the operator is its config authority and its only member.
-  const createKey = Keypair.generate();
-  const [multisigPda] = multisig.getMultisigPda({ createKey: createKey.publicKey });
-  const [programConfigPda] = multisig.getProgramConfigPda({});
-  const programConfig = await multisig.accounts.ProgramConfig.fromAccountAddress(connection, programConfigPda);
-  const created = await multisig.rpc.multisigCreateV2({
-    connection,
-    treasury: programConfig.treasury,
-    createKey,
-    creator: operator,
-    multisigPda,
-    configAuthority: operator.publicKey,
-    threshold: 1,
-    members: [{ key: operator.publicKey, permissions: multisig.types.Permissions.all() }],
-    timeLock: 0,
-    rentCollector: null,
-  });
-  await confirmed(created);
-  step("multisig", multisigPda.toBase58());
-  step("create", link(created));
+  const resumed = arg("multisig");
+  let multisigPda: PublicKey;
+  if (!resumed) {
+    // 1. A controlled multisig: the operator is its config authority and its only member.
+    const createKey = Keypair.generate();
+    [multisigPda] = multisig.getMultisigPda({ createKey: createKey.publicKey });
+    const [programConfigPda] = multisig.getProgramConfigPda({});
+    const programConfig = await multisig.accounts.ProgramConfig.fromAccountAddress(connection, programConfigPda);
+    const created = await multisig.rpc.multisigCreateV2({
+      connection,
+      treasury: programConfig.treasury,
+      createKey,
+      creator: operator,
+      multisigPda,
+      configAuthority: operator.publicKey,
+      threshold: 1,
+      members: [{ key: operator.publicKey, permissions: multisig.types.Permissions.all() }],
+      timeLock: 0,
+      rentCollector: null,
+    });
+    await confirmed(created);
+    step("multisig", multisigPda.toBase58());
+    step("create", link(created));
+  } else {
+    multisigPda = new PublicKey(resumed);
+    step("multisig", `${multisigPda.toBase58()} (resumed)`);
+  }
 
   // 2. The vault holds the funds; the agent holds only a fee float.
   const [vaultPda] = multisig.getVaultPda({ multisigPda, index: 0 });
-  const funded = await sendAndConfirmTransaction(connection, new Transaction().add(
-    SystemProgram.transfer({ fromPubkey: operator.publicKey, toPubkey: vaultPda, lamports: sol(0.1) }),
-    SystemProgram.transfer({ fromPubkey: operator.publicKey, toPubkey: agent.publicKey, lamports: sol(0.01) }),
-  ), [operator]);
   step("vault", vaultPda.toBase58());
-  step("fund", link(funded));
+  if (!resumed) {
+    const funded = await sendAndConfirmTransaction(connection, new Transaction().add(
+      SystemProgram.transfer({ fromPubkey: operator.publicKey, toPubkey: vaultPda, lamports: sol(0.1) }),
+      SystemProgram.transfer({ fromPubkey: operator.publicKey, toPubkey: agent.publicKey, lamports: sol(0.01) }),
+    ), [operator]);
+    step("fund", link(funded));
+  }
 
   // 3. The spending limit: SOL, 0.02 a day, the agent's key only, the treasury only.
-  const limitKey = Keypair.generate().publicKey;
-  const [spendingLimit] = multisig.getSpendingLimitPda({ multisigPda, createKey: limitKey });
-  const added = await multisig.rpc.multisigAddSpendingLimit({
-    connection,
-    feePayer: operator,
-    multisigPda,
-    spendingLimit,
-    configAuthority: operator.publicKey,
-    rentPayer: operator,
-    createKey: limitKey,
-    vaultIndex: 0,
-    mint: PublicKey.default,
-    amount: BigInt(LIMIT),
-    period: multisig.types.Period.Day,
-    members: [agent.publicKey],
-    destinations: [treasury],
-  });
-  await confirmed(added);
-  step("spendingLimit", spendingLimit.toBase58());
-  step("addLimit", link(added));
+  let spendingLimit: PublicKey;
+  if (!arg("limit")) {
+    const limitKey = Keypair.generate().publicKey;
+    [spendingLimit] = multisig.getSpendingLimitPda({ multisigPda, createKey: limitKey });
+    const added = await multisig.rpc.multisigAddSpendingLimit({
+      connection,
+      feePayer: operator,
+      multisigPda,
+      spendingLimit,
+      configAuthority: operator.publicKey,
+      rentPayer: operator,
+      createKey: limitKey,
+      vaultIndex: 0,
+      mint: PublicKey.default,
+      amount: BigInt(LIMIT),
+      period: multisig.types.Period.Day,
+      members: [agent.publicKey],
+      destinations: [treasury],
+    });
+    await confirmed(added);
+    step("spendingLimit", spendingLimit.toBase58());
+    step("addLimit", link(added));
+  } else {
+    spendingLimit = new PublicKey(arg("limit")!);
+    step("spendingLimit", `${spendingLimit.toBase58()} (resumed)`);
+  }
 
-  // The agent's key is on the limit, and not in the multisig.
+  // The operator holds the config; the agent's key is on the limit, and not in the multisig.
   const ms = await multisig.accounts.Multisig.fromAccountAddress(connection, multisigPda);
   const sl = await multisig.accounts.SpendingLimit.fromAccountAddress(connection, spendingLimit);
   step("multisigMembers", ms.members.map((m) => m.key.toBase58()));
   step("limitMembers", sl.members.map((k) => k.toBase58()));
   step("limitDestinations", sl.destinations.map((k) => k.toBase58()));
+  step("limitRemaining", Number(sl.remainingAmount) / LAMPORTS_PER_SOL);
+  if (!ms.configAuthority.equals(operator.publicKey)) throw new Error("the operator must be the multisig's config authority");
   if (ms.members.some((m) => m.key.equals(agent.publicKey))) throw new Error("the agent's key must not be a multisig member");
+  if (!sl.multisig.equals(multisigPda) || sl.members.length !== 1 || !sl.members[0]!.equals(agent.publicKey)) throw new Error("the limit must belong to this multisig and name the agent's key only");
+  if (sl.destinations.length !== 1 || !sl.destinations[0]!.equals(treasury)) throw new Error("the limit must name the treasury only");
+  if ((await connection.getBalance(agent.publicKey)) < sol(0.001)) throw new Error("the agent's key needs a fee float of 0.001 SOL: run once without --multisig, or fund it");
 
   // 4. The agent's key alone, as a thief holding it would: within the limit, past it, and elsewhere.
   const use = async (amount: number, destination: PublicKey) => {
@@ -155,11 +193,17 @@ async function main() {
   }
 
   // 5. The revoke, timed from send to confirmed, then the next use.
+  const slot0 = await connection.getSlot("processed");
   const t0 = performance.now();
   const removed = await multisig.rpc.multisigRemoveSpendingLimit({ connection, feePayer: operator, multisigPda, configAuthority: operator.publicKey, spendingLimit, rentCollector: operator.publicKey });
-  await confirmed(removed);
+  const sent = performance.now();
+  const { at, slot } = await confirmed(removed);
   step("revoke", link(removed));
-  step("revokeMs", Math.round(performance.now() - t0));
+  // Timed on the client to the first confirmed status it saw, so at most one poll late; the send
+  // includes the RPC's preflight simulation. The chain's own measure is the slots between the slot
+  // current at the send and the slot the removal landed in.
+  step("revokeMs", { total: Math.round(at - t0), send: Math.round(sent - t0), sentToConfirmed: Math.round(at - sent), pollMs: POLL_MS });
+  step("revokeSlots", slot - slot0);
   step("useAfterRevoke", await use(sol(0.001), treasury));
 
   step("vaultBalance", (await connection.getBalance(vaultPda)) / LAMPORTS_PER_SOL);

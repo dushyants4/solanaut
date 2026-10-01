@@ -110,6 +110,10 @@ npm run doctor                      # the toolchain against TOOLCHAIN.md
 npm run pin-table -- --url <rpc> <table>         # a lookup table's pin for the policy
 npm run replay -- <record.jsonl> <policy.json>   # recompute a guard's record; exit 1 at the first divergence
 npm run cockpit -- --record <r> --policy <p> [--rpc <url> --squads <f>] --port 8790   # the dashboard, on 127.0.0.1
+node apps/onchain/src/squads.ts --url <rpc> --operator keys/devnet-operator.json --agent keys/devnet-agent.json \
+  --treasury keys/devnet-treasury.json [--multisig <pda> [--limit <pda>]] [--keep --out <f>]   # the stolen-key drill
+node apps/onchain/src/scenes.ts --url <rpc> --agent keys/devnet-agent.json --operator keys/devnet-operator.json \
+  --treasury <pubkey> --dir .sandbox/devnet                                  # DEMO.md's scenes, end to end
 uv run --script tools/boundary_guard.py --selftest   # the write boundary, 34 cases
 uv run --script tools/kb_lint.py                     # the knowledge vault: links, notes, registers
 uv run --script tools/session_close.py               # every gate, before closing
@@ -135,7 +139,7 @@ agent ── proposes bytes ──▶ @solanaut/sdk  guard.check()          prop
    sensor   (proposal stream → intensity, valence, repetition)                            v1, measured (2a.7)
    Keel     (@gubernaut/core 1.0.1; wasm and module hashed; telemetry checked first)       → REGROUND → DENY; posture only restricts
    receipt  (message hash, expiry, policy hash) → signer · the log is the state (ADR-010; a synced, locked file, restored by replay) · any error → DENY
-on-chain (devnet, milestone 2a.9): a Squads v4 spending limit naming the agent's key bounds a stolen key (ADR-006)
+on-chain (devnet, achieved at 2a.9): a Squads v4 spending limit naming the agent's key bounds a stolen key (ADR-006)
 operator: a Phantom wallet, the Squads config authority and latch release · dashboard: read-only, no keys (ADR-011)
 ```
 
@@ -153,7 +157,7 @@ whatever has passed its gate.
 | `packages/sdk/` | the guard: `message.ts` (bytes), `classify.ts` (effects), `policy.ts`, `guard.ts` (the rules, replay), `state.ts`, `log.ts` and `record.ts` (the record), `latch.ts`, `sensor.ts`; `adapters/` (Solana Agent Kit, kit, RPC); `bin/pin-table.ts`, `bin/replay.ts` |
 | `apps/sandbox/` | the plugin sandbox |
 | `apps/cockpit/` | the dashboard (milestone 2a.10): read-only, localhost only, reads the record and the chain, holds no keys (ADR-011) |
-| `apps/onchain/` | devnet scripts: the Squads v4 spending-limit drill (milestone 2a.9) |
+| `apps/onchain/` | devnet scripts: `squads.ts`, the Squads v4 spending-limit drill (milestone 2a.9); `scenes.ts`, DEMO.md's scenes end to end through `guardedWallet`, with a real SIGKILL and restore (2b.1, 2b.3) |
 | `apps/agentkit/` | validation: a scripted Solana Agent Kit agent behind `guardedWallet` (milestone 2b.3) |
 | `programs/` | *(Alpha, milestone 3.7)* `solanaut_anchor`: anchors the decision log's head. On-chain caps come from composing Squads v4 (ADR-006) |
 | `docs/` | `PRODUCT.md` (why, what, how) · `ROADMAP.md` (the milestones) · `READINESS.md` (to a certified release) · `OVERVIEW.md` (the code as it is) · `SPEC.md` (the MVP baseline) · `ARCHITECTURE.md` (long term) · `HACKATHON.md` (the contest's rules) · `CLAIMS.md` · `papers/` · `submission/` · `plans/` |

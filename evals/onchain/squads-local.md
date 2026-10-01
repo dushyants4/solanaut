@@ -5,10 +5,11 @@ whose config authority is an operator key, the agent's key named only on the spe
 stolen-key script refused past the limit, and the revoke timed ([ADR-006](../../design/ADR-006-onchain-backstop.md),
 [docs/SPEC.md](../../docs/SPEC.md) §9).
 
-**2a.9 is not achieved yet.** The devnet faucet refused every airdrop from this machine on 2026-10-01 with a rate-limit
-error: 1, 0.5 and 0.2 SOL, then 0.5 again later. The operator key needs about 0.15 devnet SOL. Until it has it, this
-is the rehearsal: the same script, run on a local validator holding **Squads v4's program cloned from devnet**, the
-same bytecode, at `SQDS4ep65T869zMMBKyuUq6aD6EgTu8psMjkvj52pCf`, with its program config.
+**This is the rehearsal. 2a.9 was achieved on devnet later the same day:
+[squads-devnet.md](squads-devnet.md).** The devnet faucet had refused every airdrop from this machine with a
+rate-limit error (1, 0.5 and 0.2 SOL, then 0.5 again), so the same script ran first on a local validator holding
+**Squads v4's program cloned from devnet**: the same bytecode, at `SQDS4ep65T869zMMBKyuUq6aD6EgTu8psMjkvj52pCf`, with
+its program config.
 
 ## The run, 2026-10-01
 
@@ -42,9 +43,9 @@ with a signature. The script prints public keys and signatures only.
 - **Not shown:** devnet's own timing, and devnet's signatures for the run record. The revoke time above is a local
   validator's, which confirms far faster than a public cluster.
 
-## To finish 2a.9
+## Finished on devnet
 
-1. Fund the operator `EnJLeivSjYXLmvmLKzXDy7m9cT23sMBCZpHGkZWtatdq` with at least 0.15 devnet SOL, from
-   [faucet.solana.com](https://faucet.solana.com) or a devnet faucet the human prefers.
-2. `node apps/onchain/src/squads.ts --url https://api.devnet.solana.com --operator keys/devnet-operator.json --agent keys/devnet-agent.json --treasury keys/devnet-treasury.json`
-3. Paste its output into the run record, with the devnet explorer links it prints.
+The human funded the operator, and the drill ran on devnet: [squads-devnet.md](squads-devnet.md). The script gained a
+resume (`--multisig`, `--limit`) and polling that waits out the public RPC's rate limit, both rehearsed here first. A
+local run also showed the client's revoke time inflated by a slow status read, while the removal landed one slot after
+its send. So the script now records the slots as well.

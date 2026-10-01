@@ -116,7 +116,7 @@ test("the page is served with a strict content security policy, its script from 
   }
 });
 
-test("/api/chain reads the Squads limit remaining, and every transaction read opts in to v1", async () => {
+test("/api/chain reads the Squads limit remaining, names the program's error on a refusal, and every transaction read opts in to v1", async () => {
   const f = await fixture();
   const agent = Keypair.generate().publicKey;
   const treasury = Keypair.generate().publicKey;
@@ -136,8 +136,18 @@ test("/api/chain reads the Squads limit remaining, and every transaction read op
     const result =
       method === "getAccountInfo" ? { context: { slot: 1 }, value: { data: [limitData.toString("base64"), "base64"], owner: multisig.PROGRAM_ADDRESS, lamports: 1, executable: false, rentEpoch: 0 } } :
       method === "getBalance" ? { context: { slot: 1 }, value: 90_000_000 } :
-      method === "getSignaturesForAddress" ? [{ signature: "sig1", slot: 9, err: null, blockTime: 1 }] :
-      method === "getTransaction" ? { slot: 9, version: 1, meta: { err: null, fee: 5000 } } : null;
+      method === "getSignaturesForAddress" ? [
+        { signature: "sig3", slot: 11, err: null, blockTime: 3, confirmationStatus: "confirmed" },
+        { signature: "sig2", slot: 10, err: { InstructionError: [0, { Custom: 6013 }] }, blockTime: 2, confirmationStatus: "finalized" },
+        { signature: "sig1", slot: 9, err: null, blockTime: 1, confirmationStatus: "finalized" },
+      ] :
+      method === "getTransaction" && params[0] === "sig3" ? { slot: 11, version: 1, meta: { err: null, fee: 5000, logMessages: [] } } :
+      method === "getTransaction" && params[0] === "sig1" ? { slot: 9, version: 1, meta: { err: null, fee: 5000, logMessages: ["Program SQDS4ep65T869zMMBKyuUq6aD6EgTu8psMjkvj52pCf success"] } } :
+      method === "getTransaction" && params[0] === "sig2" ? { slot: 10, version: 0, meta: { err: { InstructionError: [0, { Custom: 6013 }] }, fee: 5000, logMessages: [
+        "Program SQDS4ep65T869zMMBKyuUq6aD6EgTu8psMjkvj52pCf invoke [1]",
+        "Program log: AnchorError occurred. Error Code: SpendingLimitExceeded. Error Number: 6013. Error Message: Spending limit exceeded.",
+        "Program SQDS4ep65T869zMMBKyuUq6aD6EgTu8psMjkvj52pCf failed: custom program error: 0x177d",
+      ] } } : null;
     res.setHeader("content-type", "application/json");
     res.end(JSON.stringify({ jsonrpc: "2.0", id, result }));
   });
@@ -149,10 +159,18 @@ test("/api/chain reads the Squads limit remaining, and every transaction read op
       const chain = JSON.parse((await get(port, "/api/chain")).body);
       assert.deepEqual(chain.limit, { amount: "20000000", remaining: "5000000", period: "Day", lastReset: "1700000000", members: [agent.toBase58()], destinations: [treasury.toBase58()] });
       assert.equal(chain.vault, "90000000");
-      assert.deepEqual(chain.recent, [{ signature: "sig1", slot: 9, ok: true, fee: 5000, version: 1 }]);
+      assert.deepEqual(chain.recent, [
+        { signature: "sig3", slot: 11, ok: true, error: null, fee: 5000, version: 1 },
+        { signature: "sig2", slot: 10, ok: false, error: "SpendingLimitExceeded", fee: 5000, version: 0 },
+        { signature: "sig1", slot: 9, ok: true, error: null, fee: 5000, version: 1 },
+      ]);
       const txReads = seen.filter((c) => c.method === "getTransaction");
       assert.ok(txReads.length > 0);
       for (const c of txReads) assert.equal((c.params[1] as { maxSupportedTransactionVersion: number }).maxSupportedTransactionVersion, 1);
+      // A finalized transaction never changes: the next poll does not ask for it again, which keeps a
+      // public RPC's per-method rate limit out of the way. One only confirmed is read again.
+      assert.deepEqual(JSON.parse((await get(port, "/api/chain")).body).recent, chain.recent);
+      assert.deepEqual(seen.filter((c) => c.method === "getTransaction").map((c) => c.params[0]), ["sig3", "sig2", "sig1", "sig3"], "each finalized transaction is read once");
     });
   } finally {
     rpc.close();

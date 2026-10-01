@@ -2,7 +2,7 @@
 
 Milestone 2b.3 in [docs/ROADMAP.md](../../docs/ROADMAP.md), its Solana Agent Kit half: a scripted agent built on
 `solana-agent-kit` 2.0.10's own classes is governed by a one-line change. The roadmap asks for this on devnet, with the
-local validator as the fallback. This is the fallback run; devnet waits for SOL.
+local validator as the fallback. This is the fallback run; the devnet run is [sak-devnet.md](sak-devnet.md).
 
 ```
 - new SolanaAgentKit(wallet, rpc, {})
@@ -57,7 +57,8 @@ treasury holds 0.021 SOL; the attacker holds 0.05 SOL     (the 0.05 is the ungua
 
 ## Not shown
 
-- **Devnet.** It waits for devnet SOL.
+- **Devnet.** It ran on devnet later the same day: [sak-devnet.md](sak-devnet.md). With Solanaut, the verdicts were
+  the same. Without it, devnet showed the kit reporting landed payments as failed.
 - **A real model driving the kit.** The agent here is scripted.
 - **The kit's plugin packages.** `@solana-agent-kit/plugin-token` was not installed: it brings Light Protocol,
   Mayan, Metaplex, the pump.fun SDK and ethers. Its transfers go through `signOrSendTX`, read above.

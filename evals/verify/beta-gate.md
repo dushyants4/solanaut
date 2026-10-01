@@ -3,9 +3,13 @@
 Milestone 2b.1 in [docs/ROADMAP.md](../../docs/ROADMAP.md): every Beta battery in [docs/SPEC.md](../../docs/SPEC.md) §11
 passes from a clean clone, run by the evaluator seat, and each new gate was seen failing on an injected fault.
 
-**2b.1 is not achieved yet.** Nine of eleven batteries pass from a clean clone. The on-chain and end-to-end batteries
-need devnet, and devnet needs SOL the faucet would not give this machine
-([onchain/squads-local.md](../onchain/squads-local.md)).
+**Eleven of eleven batteries pass.**
+- **Nine** pass from a clean clone.
+- **The on-chain and end-to-end batteries** passed on devnet on 2026-10-01, once the human funded the operator key:
+  [onchain/squads-devnet.md](../onchain/squads-devnet.md) and [e2e/scenes-devnet.md](../e2e/scenes-devnet.md).
+
+**What remains for 2b.1's gate is procedural.** The batteries were run by this session, playing the evaluator seat. An
+independent run, by a separate session given only the spec, is owed before milestone 2b.4.
 
 ## The clean clone, 2026-10-01
 
@@ -32,9 +36,9 @@ Every measurement in the clone matched this disk's, number for number: they are 
 | latch | released; refused; refused; refused | `admission.test.ts`, the latch battery, and `durable.test.ts`: the latch survives a restore under a lenient policy | **passes** |
 | loop | the stop turn measured and reported | `sensor.battery.test.ts` | **measured**: identical retries turn 3; rising fees turn 4; two alternating shapes not stopped in 12 turns ([sdk/keel.md](../sdk/keel.md)) |
 | benign, at least 500 payments | the false-stop rate measured, with a 95% interval | `sensor.battery.test.ts` | **measured**: sensor v1 stopped 0 of 600 at the expected rate and 0 of 600 in bursts (upper bound 0.64% each) |
-| adapters | the same verdicts as the SDK, a one-line change each | `adapters.test.ts`: six cases, legacy and v0, through `guardedWallet` and a bare guard; the kit signer with kit's own `KeyPairSigner` | **passes against stand-ins.** A real Solana Agent Kit agent is milestone 2b.3 |
-| on-chain | the program refuses past the limit, on devnet | `apps/onchain/src/squads.ts` | **rehearsed on a local validator with Squads v4's devnet program; not yet run on devnet** |
-| end to end | the incident-shaped scenarios on devnet, shown in the dashboard | the sandbox, the drill and the cockpit | **not yet run on devnet**; the cockpit has run against a local validator ([cockpit/v0.md](../cockpit/v0.md)) |
+| adapters | the same verdicts as the SDK, a one-line change each | `adapters.test.ts`: six cases, legacy and v0, through `guardedWallet` and a bare guard; the kit signer with kit's own `KeyPairSigner`. Then a real Solana Agent Kit agent, on a local validator and on devnet | **passes** ([agentkit/sak-devnet.md](../agentkit/sak-devnet.md)); the kit's plugins' path is refused at its second signature, as specified |
+| on-chain | the program refuses past the limit, on devnet | `apps/onchain/src/squads.ts` | **passes on devnet**: `SpendingLimitExceeded`, `InvalidDestination`, and `AccountNotInitialized` after a revoke landed 3 slots after its send ([onchain/squads-devnet.md](../onchain/squads-devnet.md)) |
+| end to end | the incident-shaped scenarios on devnet, shown in the dashboard | `apps/onchain/src/scenes.ts`, the drill and the cockpit | **passes on devnet**: DEMO.md's scenes through `guardedWallet`, a real SIGKILL and restore, each refusal in the dashboard with its rule ([e2e/scenes-devnet.md](../e2e/scenes-devnet.md)) |
 
 ## Each new gate, seen failing first
 

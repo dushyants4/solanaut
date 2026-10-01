@@ -10,7 +10,7 @@ Coarser than `runs/`. The archivist keeps it current; every phase that ends gets
 | **R · Research foundation** | **achieved 2026-09-27**: research on Gubernaut, the governor pattern and Solana DeFAI; `docs/SPEC.md`; ADR-004 to ADR-007; draft-1 papers and submission drafts; the Obsidian knowledge vault and `kb_lint` gate | `runs/2026-09-27-research-foundation.md` · [review](kb/milestones/2026-09-27_R-research.md) |
 | **R2 · Verified review and roadmap** | **achieved 2026-09-30**: the docs fact-checked against primary sources; 26 design gaps tested by two independent refuters; `docs/SPEC.md` Draft 2; ADR-008 (proposed) to ADR-011; `docs/PRODUCT.md`, `docs/ROADMAP.md` and `docs/READINESS.md`; every descriptive document refreshed | `runs/2026-09-30-verified-review-roadmap.md` · [review](kb/milestones/2026-09-30_R2-verified-review.md) |
 | **Leg 1 · Define (1.1)** | **achieved 2026-09-30**: the human signed off `docs/PRODUCT.md` | `runs/2026-10-01-beta-build.md` |
-| Leg 2 · Develop: the Beta MVP (2a.1 to 2a.10), QC and verification (2b.1 to 2b.4), the Alpha's scope (2c.1) | **in progress**, in the build order of `docs/ROADMAP.md`. Achieved: **2a.1** safety net (CI, shown failing first), **2a.2** bytes decoded (legacy, v0 with pins, v1; no web3.js), **2a.3** instructions classified (an allowlist per instruction; nonce and other-signer facts; the fee rule), **2a.4** policy v1 (rule 0, frozen, hashed), **2a.5** admission (rules 0 to 19 in order; receipts; intents; the latch; D1, D2, D5, D6, D7, D9, D10 and D12 closed), **2a.6** durable state (the record synced before each answer; restore by replay; one writer; `replay()`; D11 closed), **2a.7** Keel hardened (bytes hashed; telemetry checked; sensor v1, measured; U-2 and U-3 reproduced; D3, D4, D8 closed), **2a.8** adapters (`guardedWallet` for Solana Agent Kit, `guardedSigner` for kit, `SolanautDenied`; the same verdicts as the SDK). **2a.9** rehearsed on a local validator with Squads v4's devnet program; **the devnet run waits for devnet SOL** (the faucet rate-limits this machine). **2a.10** cockpit built and photographed against a local validator; its devnet shot follows 2a.9. **2b.1** from a clean clone: 147 of 147 tests and 9 of 11 §11 batteries; on-chain and end to end wait for devnet. **2b.3**, the Solana Agent Kit half on a local validator: one line refuses drains on both paths; the kit's plugin path signs twice, and the second signature is refused | `runs/2026-10-01-beta-build.md` · `evals/ci/safety-net.md` · `evals/sdk/decode.md` · `evals/sdk/classify.md` · `evals/sdk/policy.md` · `evals/sdk/admission.md` · `evals/sdk/durable.md` · `evals/sdk/keel.md` · `evals/sdk/adapters.md` · `evals/onchain/squads-local.md` · `evals/cockpit/v0.md` · `evals/verify/beta-gate.md` · `evals/agentkit/sak-local.md` |
+| Leg 2 · Develop: the Beta MVP (2a.1 to 2a.10), QC and verification (2b.1 to 2b.4), the Alpha's scope (2c.1) | **in progress**, in the build order of `docs/ROADMAP.md`. Achieved: **2a.1** safety net (CI, shown failing first), **2a.2** bytes decoded (legacy, v0 with pins, v1; no web3.js), **2a.3** instructions classified (an allowlist per instruction; nonce and other-signer facts; the fee rule), **2a.4** policy v1 (rule 0, frozen, hashed), **2a.5** admission (rules 0 to 19 in order; receipts; intents; the latch; D1, D2, D5, D6, D7, D9, D10 and D12 closed), **2a.6** durable state (the record synced before each answer; restore by replay; one writer; `replay()`; D11 closed), **2a.7** Keel hardened (bytes hashed; telemetry checked; sensor v1, measured; U-2 and U-3 reproduced; D3, D4, D8 closed), **2a.8** adapters (`guardedWallet` for Solana Agent Kit, `guardedSigner` for kit, `SolanautDenied`; the same verdicts as the SDK). **2a.9** the on-chain bound, on devnet (2026-10-01, once the human funded the operator): Squads v4's program refused the stolen key past the limit, to an unlisted address, and after the revoke, which landed 3 slots after its send. **2a.10** the cockpit on devnet: the scenes' record, latches and releases marked, the Squads limit with the program's errors named. **2b.3** validated: the demo's scenes end to end on devnet with the local fallback (a real SIGKILL and restore; replay 0 divergences), and the Solana Agent Kit agent on devnet with the same verdicts as locally. **2b.1**: 11 of 11 §11 batteries pass, nine from a clean clone and two on devnet; **the independent evaluator run is owed** | `runs/2026-10-01-beta-build.md` · `runs/2026-10-01-devnet.md` · `evals/ci/safety-net.md` · `evals/sdk/decode.md` · `evals/sdk/classify.md` · `evals/sdk/policy.md` · `evals/sdk/admission.md` · `evals/sdk/durable.md` · `evals/sdk/keel.md` · `evals/sdk/adapters.md` · `evals/onchain/squads-local.md` · `evals/onchain/squads-devnet.md` · `evals/cockpit/v0.md` · `evals/e2e/scenes-devnet.md` · `evals/verify/beta-gate.md` · `evals/agentkit/sak-local.md` · `evals/agentkit/sak-devnet.md` |
 | S.1 · Submitted to Colosseum, an external event whose window closes 2026-10-12 at 11:59pm PT | the human's decision, showing whatever has passed its gate | |
 | Leg 3 · The Alpha, built and tested hard (3.1 to 3.10) | after Leg 2 | |
 | Leg 4 · The live Phantom test (4.1 to 4.5) | after Leg 3: on devnet with the human's Phantom wallet, as the human chose on 2026-09-30; real money only if the human later accepts ADR-008 | |
@@ -34,14 +34,28 @@ Coarser than `runs/`. The archivist keeps it current; every phase that ends gets
 - Drain battery (2b.1): 40 transactions shaped like the threat model's drains, each denied before signing by its named
   rule (`evals/verify/beta-gate.md`).
 - CI (2a.1): four gates on every push, each seen failing on its own injected fault (`evals/ci/safety-net.md`).
+- On devnet (2a.9, 2a.10, 2b.1, 2b.3), all on 2026-10-01:
+  - **The stolen-key drill:** Squads v4's program refused the agent's key past the limit, to an unlisted address, and
+    after the revoke. The revoke landed 3 slots after its send (`evals/onchain/squads-devnet.md`).
+  - **The demo's scenes:** 5 payments landed and 8 proposals were refused before signing, by their named rules. A
+    SIGKILLed guard restored from its record with replay 0 divergences. The re-sign scene and the loop each latched the
+    guard, and the operator released it (`evals/e2e/scenes-devnet.md`).
+  - **Solana Agent Kit:** the same verdicts as on a local validator. Unguarded, the kit reported its three landed
+    payments as failed (`evals/agentkit/sak-devnet.md`).
 
 
 ## Open
 
-1. **Every defect D1 to D12 is closed** (`docs/SPEC.md` §10): D1, D2, D5, D6, D7, D9, D10 and D12 at 2a.5, D11 at
-   2a.6, D3, D4 and D8 at 2a.7.
+1. **Defects** (`docs/SPEC.md` §10):
+   - D1 to D12 are closed: D1, D2, D5, D6, D7, D9, D10 and D12 at 2a.5, D11 at 2a.6, D3, D4 and D8 at 2a.7.
+   - D13, found and closed before devnet: a send of unknown fate was reported `failed`.
+   - **D14 is open.** An unreported attempt past its last valid height is treated as one that never landed. So a
+     sign-only integration that never reports can have a landed payment's retry admitted. It is the next fix,
+     test-first.
 2. **Loops that change shape.** A loop alternating two shapes with a changing amount is not stopped by Keel; the fee
    window and the INHIBIT clamp bound it. An open question for the Alpha's red team (`docs/SPEC.md` §12).
+   **Latching on a denied retry** is the other: DEMO.md's re-sign scene latches the guard on every run on devnet. It
+   is to be decided before the demo is recorded.
 3. **The human's**, as decided on 2026-09-30:
    - `docs/PRODUCT.md` is signed off, and `"plansDirectory": "./docs/plans"` is in `.claude/settings.json`, done by
      the agent at the human's direction;

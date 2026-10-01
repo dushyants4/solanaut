@@ -55,13 +55,14 @@ function renderState(s) {
     el("p", { class: "muted" }, `${s.consecutiveDenials} denials in a row`));
 
   const denies = Object.entries(s.counts.deny).sort((a, b) => b[1] - a[1]);
-  $("counts").textContent = `${s.counts.allow} allowed · ${denies.reduce((t, [, n]) => t + n, 0)} denied${denies.length ? ": " + denies.map(([r, n]) => `${r} ${n}`).join(", ") : ""}`;
+  const released = s.releases.length ? ` · ${s.releases.length} released by the operator: ${s.releases.map((r) => `the latch at ${r.latchSeq}`).join(", ")}` : "";
+  $("counts").textContent = `${s.counts.allow} allowed · ${denies.reduce((t, [, n]) => t + n, 0)} denied${denies.length ? ": " + denies.map(([r, n]) => `${r} ${n}`).join(", ") : ""}${released}`;
 
   $("decisions").replaceChildren(...s.decisions.map((d) => el("tr", { class: d.allow ? "allow" : "deny" },
     el("td", {}, d.seq),
     el("td", {}, new Date(d.at).toISOString().slice(11, 19)),
     el("td", {}, el("span", { class: `pill ${d.allow ? "allow" : "deny"}` }, d.allow ? "ALLOW" : "DENY")),
-    el("td", {}, d.rule ?? ""),
+    el("td", {}, d.rule ?? "", d.latch ? el("span", { class: "pill deny latch-mark" }, "latched the guard") : ""),
     el("td", {}, d.posture ?? "–"),
     el("td", { class: "num" }, d.telemetry ? `${d.telemetry.intensity.toFixed(2)} · ${d.telemetry.valence.toFixed(2)} · ${d.telemetry.repetition.toFixed(2)}` : "–"),
     el("td", { class: "num" }, sol(d.sol)),
@@ -89,7 +90,7 @@ function renderChain(c) {
   }
   parts.push(el("p", {}, `vault ${sol(c.vault)} SOL`));
   parts.push(el("table", {}, el("thead", {}, el("tr", {}, el("th", {}, "agent's transactions"), el("th", {}, "slot"), el("th", {}, "result"), el("th", {}, "version"))),
-    el("tbody", {}, ...c.recent.map((t) => el("tr", {}, el("td", { title: t.signature }, short(t.signature, 8)), el("td", {}, t.slot), el("td", {}, el("span", { class: `pill ${t.ok ? "allow" : "deny"}` }, t.ok ? "ok" : "failed")), el("td", {}, String(t.version)))))));
+    el("tbody", {}, ...c.recent.map((t) => el("tr", {}, el("td", { title: t.signature }, short(t.signature, 8)), el("td", {}, t.slot), el("td", {}, el("span", { class: `pill ${t.ok ? "allow" : "deny"}` }, t.ok ? "ok" : "refused"), t.error ? ` ${t.error}` : ""), el("td", {}, String(t.version)))))));
   $("chain").replaceChildren(...parts);
 }
 

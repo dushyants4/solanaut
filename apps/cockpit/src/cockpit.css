@@ -60,3 +60,4 @@ tr.allow td:first-child { box-shadow: inset 3px 0 0 var(--allow); }
 .pill.pending, .pill.unknown { color: var(--warn); border-color: color-mix(in srgb, var(--warn) 45%, transparent); }
 footer { padding: 4px 20px 20px; color: var(--muted); font-size: 12px; }
 @media (max-width: 520px) { main { padding: 12px; } header { padding: 12px; } td.reason { max-width: 160px; } }
+.latch-mark { margin-left: 6px; }
