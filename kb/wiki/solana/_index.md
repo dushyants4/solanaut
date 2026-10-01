@@ -18,6 +18,7 @@ updated: 2026-09-30
 - [durable nonces](../../sources/2026-09-30_solana-durable-nonces.md)
 - [lookup-table properties](../../sources/2026-09-30_anza-lookup-table-properties.md)
 - [SIMD-0312](../../sources/2026-09-30_simd-0312-create-account-allow-prefund.md)
+- [SIMD-0266, p-token](../../sources/2026-09-30_simd-0266-p-token.md)
 - [Alpenglow](../../sources/2026-09-30_solana-alpenglow.md)
 
 What a transaction firewall has to understand about a Solana transaction before it can decide anything about it.
@@ -48,10 +49,14 @@ What a transaction firewall has to understand about a Solana transaction before 
 | Program | Moves value | Denied | Benign |
 |---|---|---|---|
 | System | Transfer, TransferWithSeed; CreateAccount, CreateAccountWithSeed and CreateAccountAllowPrefund (SIMD-0312), into an allowed destination | Assign, AssignWithSeed, Allocate, AllocateWithSeed, every nonce instruction | — |
-| SPL Token, Token-2022 | Transfer, TransferChecked | Approve, SetAuthority, CloseAccount, Burn, MintTo, Freeze, Thaw; Token-2022's extension instructions | Revoke, SyncNative, InitializeAccount |
+| SPL Token, Token-2022 | Transfer, TransferChecked | Approve, SetAuthority, CloseAccount, Burn, MintTo, Freeze, Thaw; Token-2022's extension instructions; p-token's Batch, WithdrawExcessLamports and UnwrapLamports (SIMD-0266) | Revoke, SyncNative, InitializeAccount |
 | ComputeBudget, legacy and v0 | — | any ComputeBudget instruction in a v1 message | the limit, price, loaded-data and heap instructions |
 | Memo | — | — | any |
 | anything else | not decoded: **denied unless allowlisted**, and flagged as opaque even when allowlisted | | |
+
+Built at milestone 2a.3 as `packages/sdk/src/classify.ts`, with one addition the table did not foresee: a
+CreateAccountAllowPrefund whose new account is a principal key is denied, because SIMD-0312 says it can brick a funded
+wallet.
 
 Token-2022 mints can carry extensions that run other programs (transfer hooks) or grant standing authority (permanent
 delegate). A mint with either is denied unless the policy names it, and the operator's check of a mint is point in

@@ -14,6 +14,7 @@ seen failing might not be checking anything.
 | CI, `.github/workflows/ci.yml`: the four gates above on every push | four faults on a throwaway branch, one per gate; each failed for its own reason | green on `main` | `ci/safety-net.md` |
 | the byte decoder: `packages/sdk/test/decode.test.ts`, `pin-table.test.ts` | 24 of 24 against a stub; then 5 planted decoder bugs and 2 in the pin command, each caught | 35/35 with the guard's 9; 300,000 fuzz inputs, no disagreement with kit | `sdk/decode.md` |
 | `tools/doctor.py`, the v1 validator | pointed at the 3.1.10 release | 13/13 | `sdk/decode.md` |
+| the instruction classifier: `packages/sdk/test/classify.test.ts` | 24 of 25 against a stub, and rule 6's test before its field existed; then 10 planted bugs, each caught | 61/61 in `npm test` | `sdk/classify.md` |
 
 CI runs the gates on every push since milestone 2a.1 (`ci/safety-net.md`). Still owed: a job that re-runs the fault
 injections on every push (the Office's `bite` job), with the thresholds in `docs/READINESS.md`, at milestone 3.9. The Beta batteries are specified in `docs/SPEC.md` §11.

@@ -13,7 +13,8 @@ updated: 2026-09-30
 
 # A new System Program instruction that funds a new account
 
-Read to complete the System Program's instruction list for the allowlist per instruction.
+Read to complete the System Program's instruction list for the allowlist per instruction. Re-read in full through
+the GitHub API at milestone 2a.3, for its layout.
 
 ## Key facts
 
@@ -22,10 +23,18 @@ Read to complete the System Program's instruction list for the allowlist per ins
 - The funding account is optional, and required only when lamports are more than 0.
 - "This SIMD requires a feature gate, as it adds a new System Program instruction."
 - The proposal's status field reads "Review".
+- **Instruction data:** a `u32` discriminant `13`, then `lamports` (`u64`), `space` (`u64`) and `owner` (a 32-byte
+  `Pubkey`): 52 bytes.
+- **Accounts:** index 0, the new account, `[WRITE, SIGNER]`; index 1, the funding account, `[WRITE, SIGNER]`,
+  optional.
+- Security considerations: "since the lamport check is removed, a wallet account with lamports can be bricked by
+  this instruction."
+- `@solana-program/system` 0.15.0 implements it as `getCreateAccountAllowPrefundInstruction`.
 
 ## What it supports
 
-- `docs/SPEC.md` §4, the System row.
+- `docs/SPEC.md` §4, the System row; `packages/sdk/src/classify.ts` decodes it, and denies it when the new account
+  is a principal key, which it would brick.
 - [ADR-009](../../design/ADR-009-trust-and-coverage.md), context.
 
 ## Caveats

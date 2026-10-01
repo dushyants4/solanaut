@@ -7,6 +7,7 @@ full tree.
 |---|---|---|---|---|
 | `@gubernaut/core` | **1.0.1** | npm | Gubernaut Keel, the controller in-process. Apache-2.0, pre-existing, disclosed under the hackathon rules §9. Its wasm digest `834015d7…` is checked when a guard is created | 2026-09-27 |
 | `@solana/web3.js` | **1.99.0** | npm | transactions, keys, RPC. The 1.x line, because the agent frameworks Solanaut adapts to (ElizaOS, Solana AgentKit) build on it. `@solana/kit` (8.4.0 on 2026-09-30) is the modern line. The v1 core decodes bytes without web3.js, which stays in the adapters (ADR-009) | 2026-09-30 |
+| `@solana-program/system`, `token`, `compute-budget` | **0.15.0**, **0.17.0**, **0.19.0** | npm | **dev only**: the reference the instruction classifier is checked against, names and layouts | 2026-09-30 |
 | `@solana/kit` | **8.4.0** | npm | **dev only**: the reference the byte decoder is checked against (the golden set, and the fuzz harness's differential). `packages/sdk/src` never imports it | 2026-09-30 |
 | `typescript` | **7.0.2** | npm | typecheck only; Node runs the sources directly | 2026-09-27 |
 | `@types/node` | **26.6.3** | npm | Node 26 types | 2026-09-27 |
@@ -18,6 +19,13 @@ Toolchain: `TOOLCHAIN.md`. Vendored office: `plugins/VENDORED.md`.
 `npm install` reports three optional native modules whose install scripts npm 11 did not run
 (`bufferutil`, `utf-8-validate`, both optional speed-ups for the WebSocket library under
 web3.js). They are not needed: the sandbox ran against a local validator without them.
+
+## Audit
+
+`npm audit` on 2026-09-30: 4 moderate advisories, 0 high, 0 critical, all reached through `@solana/web3.js` 1.99.0
+(`jayson`, which brings `uuid` and `stream-json`). The suggested fix downgrades web3.js to 0.0.3, a breaking change, so
+it is not taken. The decoder and classifier do not import web3.js; `describe.ts` still does until defect D12 is closed
+at milestone 2a.7, and the adapters keep it for the frameworks that build on it.
 
 ## What the agent frameworks build on
 
@@ -37,7 +45,7 @@ milestone that needs it adds it, and not before.
 
 | Package | Version seen | For | Milestone |
 |---|---|---|---|
-| `@solana-program/system`, `token`, `token-2022`, `compute-budget` | 0.15.0, 0.17.0, 0.19.0, 0.19.0 | cross-checking the instruction classifier in tests | 2a.3 |
+| `@solana-program/token-2022` | 0.19.0 | not added at 2a.3: it pulls in a zk SDK, and the Token client's layouts cover the instructions the Beta decodes | 3.3 |
 | `fast-check` | 4.10.2 | property tests with shrinking; at 2a.2 a seeded harness with no dependency was enough | 3.9, if needed |
 | `@sqds/multisig` | 2.1.4 | the Squads spending limit on devnet | 2a.9 |
 | `litesvm` | 1.5.0 | in-process integration tests | 3.9 |

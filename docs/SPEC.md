@@ -100,22 +100,26 @@ interface ProposalV1 {
   intent?: string;                            // the caller's grouping key; never used to decide "in flight"
 }
 
-// Derived by the guard from the bytes. Never taken from the agent's word.
+// Derived by the guard from the bytes. Never taken from the agent's word. Built: packages/sdk/src/classify.ts (2a.3).
 interface EffectsV1 {
   version: "legacy" | 0 | 1;
   messageHash: string;                        // sha256(message): what the receipt binds
   feePayer: string;
-  signers: string[];                          // every required signer
-  programs: string[];
-  opaque: string[];                           // allowlisted programs whose instructions are not decoded
-  sol: { to: string; lamports: bigint }[];    // outflows the principal authorises, including lamports into new accounts
-  tokens: { mint: string | null; toOwner: string | null; toAccount: string; amount: bigint }[];
-  denied: { program: string; instruction: string }[]; // authority-granting or unknown instructions (§4)
+  signers: string[];                          // every required signer, in message order
+  otherSigners: string[];                     // required signers outside the principal (rule 6)
+  programs: string[];                         // every program called, in order of first call
+  opaque: string[];                           // called programs whose instructions are not decoded
+  sol: { from: string; to: string; lamports: bigint; kind: "transfer" | "new-account" }[]; // tips excluded
+  tokens: { program: "token" | "token-2022"; mint: string | null; fromAccount: string; authority: string;
+            toAccount: string; toOwner: string | null; amount: bigint; decimals: number | null }[];
+  denied: { index: number; program: string; instruction: string;      // e.g. "Token.Approve", "System.unknown(14)"
+            rule: "instruction-denied" | "durable-nonce-denied"; reason: string }[];
   nonce: boolean;                             // the first instruction advances a durable nonce
+  computeUnitLimit: number;                   // v1: the config's, 0 if unset; legacy and v0: §4, "Fees"
   priorityFee: bigint;                        // §4, "Fees"
-  baseFee: bigint;                            // 5,000 lamports per signature
+  baseFee: bigint;                            // 5,000 lamports per signature, precompile signatures included
   tips: bigint;                               // SOL sent to policy.fees.tipAccounts
-  intentKey: string;                          // sha256(canonical effects minus fees)
+  intentKey: string;                          // sha256(canonical {feePayer, signers, opaque, sol, tokens, nonce})
 }
 
 interface DecisionV1 {
@@ -199,9 +203,29 @@ A message that needs any signer outside the principal is denied as `other-signer
   is SetComputeUnitLimit's value if present, else the runtime default of 200,000 per instruction and 3,000 per
   builtin instruction, at most 1,400,000 ([source](../kb/sources/2026-09-27_solana-docs-fees.md)). No price means no
   priority fee.
-- **Base fee.** 5,000 lamports per signature.
+- **Base fee.** 5,000 lamports per signature, counting each signature a precompile instruction (Ed25519, secp256k1,
+  secp256r1) verifies.
 - **Tips.** SOL sent to `policy.fees.tipAccounts` counts as tips, not as a payment to a destination.
 - Rule 13 caps the priority fee per transaction. The fee window counts priority fees, base fees and tips together.
+- **Builtins, for the default limit:** only System and ComputeBudget are counted at 3,000 units. Any other program is
+  counted at 200,000, which can only over-estimate the fee, so the cap errs toward denying.
+
+**Decided while building the classifier (milestone 2a.3):**
+- **CreateAccountAllowPrefund** is decoded from SIMD-0312's layout (a `u32` 13, `u64` lamports, `u64` space, the
+  owner; accounts: the new account, then an optional funder). It is denied when the new account is a principal key,
+  because the SIMD warns it can brick a funded wallet
+  ([source](../kb/sources/2026-09-30_simd-0312-create-account-allow-prefund.md)).
+- **p-token's additions** to the Token program, Batch (255), WithdrawExcessLamports (38) and UnwrapLamports (45), are
+  denied by not being listed. Batch could otherwise carry a transfer the guard would not see
+  ([source](../kb/sources/2026-09-30_simd-0266-p-token.md)).
+- **A token transfer whose authority does not sign**, that is a multisig authority, is denied.
+- **Two ComputeBudget instructions of the same kind** are denied: the runtime refuses them, and the fee would be
+  ambiguous. So is the deprecated RequestUnits, and any ComputeBudget instruction whose data is not its exact size.
+- **Instruction data must fit its layout exactly.** A value-moving instruction with short or trailing data, or too
+  few accounts, is denied, never counted as if it were understood.
+- **The intent key** leaves out the blockhash, the version, fees, tips, ComputeBudget and Memo instructions. Two
+  calls to the same opaque program share a key whatever their data: while an opaque call is in flight, another
+  waits.
 
 ## 5. The rules, in order
 
