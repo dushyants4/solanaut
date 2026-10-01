@@ -15,7 +15,7 @@ substantive change; *last reviewed* moves at every review.
 | [README.md](../README.md) | 4 | current | integrator | everyone | 2026-10-01 | 2c.1 |
 | [docs/PRODUCT.md](../docs/PRODUCT.md) | 1.0 | current | architect | every seat, judges | 2026-09-30 | 2c.1 |
 | [docs/ROADMAP.md](../docs/ROADMAP.md) | Draft 2 | review | archivist, with the architect | the human, every seat, judges | 2026-09-30 | every leg |
-| [docs/READINESS.md](../docs/READINESS.md) | Draft 1 | review | operator, with the evaluator | the human, every seat, auditors | 2026-09-30 | 2c.1 |
+| [docs/READINESS.md](../docs/READINESS.md) | Draft 2 | review | operator, with the evaluator | the human, every seat, auditors | 2026-10-01 | 2c.1 |
 | [docs/RISKS.md](../docs/RISKS.md) | Draft 1 | draft | architect, with the evaluator | the human, every seat | 2026-10-01 | 2c.1 |
 | [docs/OVERVIEW.md](../docs/OVERVIEW.md) | Draft 3 | draft | integrator | engineers new to the repo, judges | 2026-10-01 | 2a.8 |
 | [docs/SPEC.md](../docs/SPEC.md) | Draft 3 | draft | architect | the builder, evaluator and integrator seats | 2026-10-01 | 2a.6 |

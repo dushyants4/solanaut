@@ -1,6 +1,6 @@
 # READINESS.md — from MVP to a certified, shippable release
 
-> **Draft 1** · 2026-09-30 · owner: operator, with the evaluator · for: the human, every seat, and future auditors ·
+> **Draft 2** · 2026-10-01 · owner: operator, with the evaluator · for: the human, every seat, and future auditors ·
 > not public. Milestones, not dates (`docs/ROADMAP.md`). Nothing here is claimed until its evidence exists
 > (`docs/CLAIMS.md`). This is not legal advice. Register: `kb/DOCUMENTS.md`.
 
@@ -55,6 +55,30 @@ on. `docs/CLAIMS.md` §4 bans it until then.
 - differential tests against library decoders and on-chain execution;
 - integration on LiteSVM, a Surfpool mainnet fork, and a local validator, which must be Agave 4.2.2 or later for v1;
 - end to end on devnet, then the canary on mainnet (Leg 4, if the human accepts ADR-008).
+
+### The Alpha's thresholds against the Beta, for confirmation at 2c.1
+
+Milestone 2c.1 confirms this test plan with the human, so no threshold is dropped silently once Leg 3 starts
+(`docs/RISKS.md`, RK14). Each row gives where the Beta stands, measured on 2026-10-01, and a proposal. **Nothing here
+changes a threshold until the human confirms it.**
+
+| Area | The Beta, measured | Proposal |
+|---|---|---|
+| Rule tests | every rule has tests, seen failing first (`evals/sdk/admission.md`) | keep |
+| Coverage | 98.2% of lines and 91.1% of branches in `packages/sdk/src`, by Node 26's built-in coverage, which counts lines, not statements. Lowest branch coverage: `latch.ts` 60%, `adapters/kit.ts` 68%, `inspect.ts` 76%, `pda.ts` 77%, `record.ts` 79% | keep the totals, measured as statements by a coverage tool in CI (3.9); **add** a floor of 85% of branches for each file that decides, records or releases (`guard.ts`, `state.ts`, `classify.ts`, `message.ts`, `policy.ts`, `record.ts`, `latch.ts`) |
+| Mutation score | about 70 bugs planted by hand across the milestones; no tool score | keep: StrykerJS on the decoder and the policy at 3.9 |
+| Property tests | none with fast-check; the decoder's fuzzing is hand-written | keep |
+| Decoder fuzzing | 300,000 inputs, no disagreement with kit (S9) | keep: one million |
+| Differential decoding | 300 messages built by kit; no real chain traffic | keep. It reads public mainnet blocks through an RPC; no funds move, and nothing is claimed about mainnet |
+| Replay determinism | Node 26 only | keep: Node 22, 24 and 26. Node 22 strips types by default only from 22.18, so pin that minor |
+| Crash recovery | 20 kills, identical records (S6) | keep: 100 kills |
+| Concurrency | 50 proposals in one tick (`evals/verify/beta-gate.md`) | keep: 1,000 |
+| Integration | none on a fork | keep. If a Jupiter route cannot be bounded on the fork, the Alpha ships with opaque programs denied, and says so (RK6) |
+| Soak | none | keep 72 hours. On the public devnet RPC, rate limits would end it first (RK16): run it on a local validator, and on devnet only with an RPC the human provides |
+| Red team | 40 drain shapes, by the session that built the code (S8); the independent evaluator run under way | keep, and **add**: by an evaluator who did not build the code, given only the spec |
+| Benign traffic | 1,200 synthetic proposals in 2 profiles; 95% upper bound 0.64% (S7) | keep: 2,000 in 5 profiles, still synthetic, and said to be |
+| Loops | stop turns reported: identical 3, rising fees 4, alternating not stopped in 12 | keep, and **add** a stream of runs of failed outcomes (`docs/SPEC.md` §12) |
+| Outside developers | none | keep. Only the human can recruit them. A fresh agent following only the README may be reported beside them, never in their place |
 
 ## Security programme
 
@@ -127,3 +151,4 @@ The item-by-item mapping to Solanaut's gates is filled in as each milestone is r
 | Version | Date | What changed |
 |---|---|---|
 | Draft 1 | 2026-09-30 | First draft, from the verified review. |
+| Draft 2 | 2026-10-01 | The Alpha's thresholds against the Beta as measured, with a proposal for each, for the human to confirm at milestone 2c.1. |
