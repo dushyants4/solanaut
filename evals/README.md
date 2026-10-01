@@ -22,6 +22,8 @@ seen failing might not be checking anything.
 | the adapters: `packages/sdk/test/adapters.test.ts` | 12 of 12 against stubs; 10 planted adapter bugs and 2 in the RPC client, each caught | 13/13; `npm test` 136/136 | `sdk/adapters.md` |
 | the on-chain bound, rehearsed: `apps/onchain/src/squads.ts` on a local validator with Squads v4 cloned from devnet | the program itself refused the past-the-limit and unlisted-destination attempts on chain, and the post-revoke one | **rehearsal only**: the devnet run waits for devnet SOL | `onchain/squads-local.md` |
 | the cockpit: `inspect.test.ts`, `apps/cockpit/test/cockpit.test.ts` | 3 of 3 and 6 of 6 against stubs; 4 planted bugs, each caught | 3/3 and 6/6; `npm test` 145/145; a screenshot | `cockpit/v0.md` |
+| the drain battery: `packages/sdk/test/drain.battery.test.ts` | 3 planted guard faults, each letting a drain through | 40 of 40 denied | `verify/beta-gate.md` |
+| the Beta gate, from a clean clone | (each battery's own receipt) | 147/147; 9 of 11 §11 batteries; on-chain and end to end wait for devnet | `verify/beta-gate.md` |
 
 CI runs the gates on every push since milestone 2a.1 (`ci/safety-net.md`). Still owed: a job that re-runs the fault
 injections on every push (the Office's `bite` job), with the thresholds in `docs/READINESS.md`, at milestone 3.9. The Beta batteries are specified in `docs/SPEC.md` §11.

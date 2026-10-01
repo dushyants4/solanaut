@@ -50,3 +50,7 @@ grep "| research |" kb/LOG.md             # every research pass
 ## [2026-09-30 23:49] file-back | the 26 verified findings, filed as docs/SPEC.md Draft 2, ADR-008 (proposed) to ADR-011, and the threat model's Draft 2; the roadmap and readiness plan as achievement-based milestones, at the human's instruction | docs/SPEC.md, design/ADR-008..011, docs/papers/THREAT-MODEL.md, docs/PRODUCT.md, docs/ROADMAP.md, docs/READINESS.md
 
 ## [2026-09-30 23:49] review | milestone R2 · the verified review and a roadmap by achievement | kb/milestones/2026-09-30_R2-verified-review.md, kb/INDEX.md, kb/DOCUMENTS.md, kb/REGISTRY.md, PROGRESS.md
+
+## [2026-10-01 06:58] build | the Beta, test-first: milestones 1.1 and 2a.1 to 2a.8 achieved; 2a.9 rehearsed on a local validator with Squads v4's devnet program; 2a.10 built; 2b.1 at 9 of 11 batteries from a clean clone; every defect D1 to D12 closed | runs/2026-10-01-beta-build.md, evals/
+
+## [2026-10-01 06:58] research | SIMD-0312's layout and SIMD-0266's p-token instructions read first-hand; Solana Agent Kit's BaseWallet checked in the published 2.0.10 package; upstream findings U-2 and U-3 reproduced | kb/sources/2026-09-30_simd-0312-create-account-allow-prefund.md, kb/sources/2026-09-30_simd-0266-p-token.md, kb/sources/2026-09-30_solana-agent-kit-basewallet.md, kb/REGISTRY.md
