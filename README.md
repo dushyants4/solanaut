@@ -53,7 +53,7 @@ is it **signed**. The guard v1 adds five things, all built:
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | the long-term shape, and its invariants |
 | [docs/SPEC.md](docs/SPEC.md) | the MVP baseline: data models, rules, receipts, adapters, batteries |
 | [docs/papers/](docs/papers/) | the litepaper, the threat model, the market, the business plan (drafts) |
-| [design/](design/) | the decisions, ADR-001 to ADR-014 (ADR-012 to ADR-014 proposed) |
+| [design/](design/) | the decisions, ADR-001 to ADR-015 (ADR-012 to ADR-015 proposed) |
 
 ## The knowledge vault
 

@@ -632,7 +632,7 @@ milestone's code.
 | ANC-2 | Only the guard's anchor authority may anchor, and `seq` must increase | T12 | a stale or foreign anchor refused |
 | ANC-3 | Replay checked against the anchored head detects a record rewritten before that anchor | T12 | a rewritten record |
 | ANC-4 | A verified build and a `security.txt` | §9 | the verification result |
-| ANC-5 | How often the head is anchored, and who pays | — | decided in the anchor's ADR before 3.7 |
+| ANC-5 | The head is anchored at most once a minute while entries are new, and at once after a latch, a release or a policy entry, by a dedicated anchor key outside the principal | T12 | [ADR-015](../design/ADR-015-log-anchor-cadence.md), proposed |
 
 ### 13.8 Dashboard v1 (milestone 3.8)
 
@@ -669,7 +669,7 @@ milestone's code.
 | owed | Token-2022's mutable settings and transfer hooks (TOK-5) | 3.3 |
 | owed | bounding opaque programs: simulation and the assertion set (OPQ-7) | 3.4 |
 | owed | the ElizaOS integration point (ELZ-2) | 3.6 |
-| owed | the anchor's cadence and payer (ANC-5) | 3.7 |
+| [ADR-015](../design/ADR-015-log-anchor-cadence.md), proposed | the anchor's cadence and payer (ANC-5) | 3.7 |
 
 ## Changes
 
