@@ -109,6 +109,7 @@ npm run sandbox -- --cluster local  # the same scenarios on the validator: allow
 npm run doctor                      # the toolchain against TOOLCHAIN.md
 npm run pin-table -- --url <rpc> <table>         # a lookup table's pin for the policy
 npm run replay -- <record.jsonl> <policy.json>   # recompute a guard's record; exit 1 at the first divergence
+npm run cockpit -- --record <r> --policy <p> [--rpc <url> --squads <f>] --port 8790   # the dashboard, on 127.0.0.1
 uv run --script tools/boundary_guard.py --selftest   # the write boundary, 34 cases
 uv run --script tools/kb_lint.py                     # the knowledge vault: links, notes, registers
 uv run --script tools/session_close.py               # every gate, before closing
@@ -151,7 +152,8 @@ whatever has passed its gate.
 |---|---|
 | `packages/sdk/` | the guard: `message.ts` (bytes), `classify.ts` (effects), `policy.ts`, `guard.ts` (the rules, replay), `state.ts`, `log.ts` and `record.ts` (the record), `latch.ts`, `sensor.ts`; `adapters/` (Solana Agent Kit, kit, RPC); `bin/pin-table.ts`, `bin/replay.ts` |
 | `apps/sandbox/` | the plugin sandbox |
-| `apps/cockpit/` | *(milestone 2a.10)* the dashboard: read-only, reads the log and the chain, holds no keys (ADR-011) |
+| `apps/cockpit/` | the dashboard (milestone 2a.10): read-only, localhost only, reads the record and the chain, holds no keys (ADR-011) |
+| `apps/onchain/` | devnet scripts: the Squads v4 spending-limit drill (milestone 2a.9) |
 | `programs/` | *(Alpha, milestone 3.7)* `solanaut_anchor`: anchors the decision log's head. On-chain caps come from composing Squads v4 (ADR-006) |
 | `docs/` | `PRODUCT.md` (why, what, how) · `ROADMAP.md` (the milestones) · `READINESS.md` (to a certified release) · `OVERVIEW.md` (the code as it is) · `SPEC.md` (the MVP baseline) · `ARCHITECTURE.md` (long term) · `HACKATHON.md` (the contest's rules) · `CLAIMS.md` · `papers/` · `submission/` · `plans/` |
 | `design/` | ADRs 001–011; ADR-008 is proposed and deferred: devnet only for now |

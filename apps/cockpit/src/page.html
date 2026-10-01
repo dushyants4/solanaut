@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solanaut cockpit</title>
+<link rel="stylesheet" href="/cockpit.css">
+</head>
+<body>
+<header>
+  <div class="brand">Solanaut <span>cockpit</span></div>
+  <div id="identity" class="identity">reading the record…</div>
+</header>
+<div id="latch" class="latch" hidden></div>
+<main>
+  <section class="panel" id="spend-panel">
+    <h2>Spend against the caps <small id="window"></small></h2>
+    <div id="spend"></div>
+  </section>
+  <section class="panel" id="chain-panel">
+    <h2>On chain <small>Squads v4 spending limit</small></h2>
+    <div id="chain"><p class="muted">no chain configured</p></div>
+  </section>
+  <section class="panel wide">
+    <h2>Decisions <small id="counts"></small></h2>
+    <table>
+      <thead><tr><th>seq</th><th>time (UTC)</th><th>verdict</th><th>rule</th><th>Keel</th><th>I · V · R</th><th>SOL</th><th>reason</th></tr></thead>
+      <tbody id="decisions"></tbody>
+    </table>
+  </section>
+  <section class="panel wide">
+    <h2>Intents <small id="inflight"></small></h2>
+    <table>
+      <thead><tr><th>intent</th><th>since (UTC)</th><th>attempts</th></tr></thead>
+      <tbody id="intents"></tbody>
+    </table>
+  </section>
+</main>
+<footer>Read-only. No keys. Every value is the guard's own record, inspected as the guard rebuilds itself; chain reads opt in to v1 transactions.</footer>
+<script src="/cockpit.js"></script>
+</body>
+</html>

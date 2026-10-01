@@ -1,0 +1,12 @@
+{
+  "name": "@solanaut/cockpit",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Dashboard v0 (milestone 2a.10, ADR-011): a guard's record and the Squads limit, read-only, on localhost, with no keys.",
+  "dependencies": {
+    "@solanaut/sdk": "0.0.0",
+    "@solana/web3.js": "1.99.0",
+    "@sqds/multisig": "2.1.4"
+  }
+}

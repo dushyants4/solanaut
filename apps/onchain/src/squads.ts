@@ -6,14 +6,17 @@
 // removes the limit, and the next use fails.
 //
 //   node apps/onchain/src/squads.ts --url <rpc> --operator keys/devnet-operator.json \
-//     --agent keys/devnet-agent.json --treasury keys/devnet-treasury.json
+//     --agent keys/devnet-agent.json --treasury keys/devnet-treasury.json [--keep] [--out <squads.json>]
+//
+// --keep skips the revoke, leaving the limit in place for the cockpit to show; --out writes the
+// public addresses the cockpit reads.
 //
 // On a local validator (`--url http://127.0.0.1:8899`) it airdrops what it needs; on devnet it
 // needs the operator funded first, and says so. The refused attempts are sent without preflight,
 // so the refusal is the program's, recorded on chain with a signature. It prints public keys,
 // signatures and timings, never a secret key. Keys are made with solana-keygen in keys/.
 
-import { readFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { Connection, Keypair, LAMPORTS_PER_SOL, PublicKey, SystemProgram, Transaction, sendAndConfirmTransaction } from "@solana/web3.js";
 import * as multisig from "@sqds/multisig";
 
@@ -143,6 +146,13 @@ async function main() {
   step("useWithinLimit", await use(sol(0.01), treasury));
   step("usePastLimit", await use(sol(0.015), treasury));
   step("useUnlistedDestination", await use(sol(0.001), attacker));
+
+  if (arg("out")) writeFileSync(arg("out")!, JSON.stringify({ cluster: url, multisig: multisigPda.toBase58(), vault: vaultPda.toBase58(), spendingLimit: spendingLimit.toBase58(), agent: agent.publicKey.toBase58() }, null, 2));
+  if (process.argv.includes("--keep")) {
+    step("revoke", "skipped (--keep): the limit stays in place");
+    console.log(`\n${JSON.stringify(record)}`);
+    return;
+  }
 
   // 5. The revoke, timed from send to confirmed, then the next use.
   const t0 = performance.now();

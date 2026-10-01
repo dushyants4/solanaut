@@ -1,7 +1,7 @@
 # OVERVIEW.md — the codebase, as it is
 
 > **Draft 3** · 2026-10-01 · owner: integrator · for: engineers new to this repository, and judges
-> reading the code · describes the tree **as it is today**, through milestone 2a.8 of `docs/ROADMAP.md`. What it will
+> reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
@@ -28,6 +28,8 @@ Solanaut/                        (an Obsidian vault; open this folder, and the f
 │   ├─ src/adapters/             guardedWallet (Solana Agent Kit), guardedSigner (kit), jsonRpc; src/errors.ts: SolanautDenied
 │   └─ test/                     decode, classify, policy, admission and pin-table batteries (node:test)
 ├─ apps/sandbox/src/main.ts      three scripted scenarios through the guard, offline or on a local validator
+├─ apps/onchain/src/squads.ts    the Squads v4 spending-limit drill, for devnet or a local validator
+├─ apps/cockpit/                 the dashboard: the record and the Squads limit, read-only, on 127.0.0.1
 ├─ .github/workflows/ci.yml      the four gates on every push
 ├─ docs/                         PRODUCT · ROADMAP · READINESS · OVERVIEW · SPEC · ARCHITECTURE · HACKATHON · CLAIMS · papers/ · submission/ · plans/
 ├─ design/                       ADR-001 … ADR-011
@@ -105,7 +107,9 @@ bytes. Without a `log`, the record lives in memory.
 
 | Workflow | Command | What it does |
 |---|---|---|
-| Test | `npm test` | the decode, classify, policy, admission, durable-record, Keel, sensor, adapters and pin-table batteries: 136 tests |
+| Test | `npm test` | the SDK's batteries and the cockpit's: 145 tests |
+| The dashboard | `npm run cockpit -- --record <r> --policy <p> [--rpc <url> --squads <f>]` | the guard's record and the Squads limit, on 127.0.0.1 |
+| The on-chain drill | `node apps/onchain/src/squads.ts --url <rpc> …` | a Squads v4 limit naming the agent's key, a stolen-key drill, the revoke timed |
 | Typecheck | `npm run typecheck` | `tsc`, no emit |
 | Fuzz the decoder harder | `FUZZ_SEED=<n> FUZZ_RUNS=<count> node --test --test-name-pattern=fuzz packages/sdk/test/decode.test.ts` | mutated messages must decode as kit decodes them, or deny with a named rule |
 | Pin a lookup table | `npm run pin-table -- --url <rpc> <table>` | prints the table's pin for the policy |
@@ -132,7 +136,7 @@ bytes. Without a `log`, the record lives in memory.
 - **Tiers:** T3 files (the guard, the doctor, the claims, the evals, the public surface) change only with the gate
   shown failing first. T4 (public, mainnet, submission) is the human's.
 - **Environment:** there are no runtime environment variables. The guard keeps no clock; proposals carry their time.
-- **What is not here yet:** the on-chain bound (2a.9), the dashboard (2a.10), a licence, and `programs/`.
+- **What is not here yet:** the devnet run of the on-chain drill (it waits for devnet SOL), a licence, and `programs/`.
 
 ## Changes
 
@@ -140,4 +144,4 @@ bytes. Without a `log`, the record lives in memory.
 |---|---|---|
 | Draft 1 | 2026-09-27 | First draft. |
 | Draft 2 | 2026-09-30 | The verified review: the new documents and ADRs in the tree; the defects D10 to D12 found in this code; the proposed canary; milestones in place of dates. |
-| Draft 3 | 2026-10-01 | The guard as rebuilt through milestone 2a.5: bytes decoded, instructions classified, policy v1, admission by rules 0 to 19, receipts, intents, the latch, a hash-chained record made durable and restored by replay; Keel verified by its bytes; sensor v1; the adapters; CI; the SDK's one runtime dependency. |
+| Draft 3 | 2026-10-01 | The guard as rebuilt through milestone 2a.5: bytes decoded, instructions classified, policy v1, admission by rules 0 to 19, receipts, intents, the latch, a hash-chained record made durable and restored by replay; Keel verified by its bytes; sensor v1; the adapters; the on-chain drill, rehearsed; the cockpit; CI; the SDK's one runtime dependency. |

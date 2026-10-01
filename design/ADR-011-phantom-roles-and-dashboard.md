@@ -1,7 +1,9 @@
 # ADR-011 · Phantom's roles, and a dashboard that holds no keys
 
 **Status:** accepted 2026-09-30 for the Beta and the Alpha, in the verified-review plan the human approved. Any use
-with real funds depends on [ADR-008](ADR-008-mainnet-canary.md).
+with real funds depends on [ADR-008](ADR-008-mainnet-canary.md). **Dashboard v0 built** at milestone 2a.10 (`evals/cockpit/v0.md`):
+localhost only, read-only, no keys, a strict content security policy, and a check of the Host header against DNS
+rebinding.
 
 ## Context
 
