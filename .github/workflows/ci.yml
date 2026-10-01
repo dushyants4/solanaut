@@ -50,6 +50,11 @@ jobs:
           enable-cache: false # the tools are stdlib-only uv scripts; nothing to cache
       - name: kb_lint
         run: uv run --script tools/kb_lint.py
+      - name: claims_lint, and its self-test
+        if: ${{ !cancelled() }}
+        run: |
+          uv run --script tools/claims_lint.py --selftest
+          uv run --script tools/claims_lint.py
       - name: boundary guard self-test, on a runner shaped like its host
         if: ${{ !cancelled() }}
         run: |

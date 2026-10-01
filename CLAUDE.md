@@ -116,6 +116,7 @@ node apps/onchain/src/scenes.ts --url <rpc> --agent keys/devnet-agent.json --ope
   --treasury <pubkey> --dir .sandbox/devnet                                  # DEMO.md's scenes, end to end
 uv run --script tools/boundary_guard.py --selftest   # the write boundary, 34 cases
 uv run --script tools/kb_lint.py                     # the knowledge vault: links, notes, registers
+uv run --script tools/claims_lint.py                 # every measured claim names its command, receipt and date
 uv run --script tools/session_close.py               # every gate, before closing
 node tools/colosseum_entry.mjs inspect               # read the Colosseum page in the human's Chrome
 ```

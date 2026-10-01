@@ -19,6 +19,7 @@ Gates:
   2  the harness audits clean                  (lint_plugins.py)
   3  the boundary guard passes its matrix      (boundary_guard.py --selftest)
   4  the knowledge vault lints clean           (kb_lint.py; Solanaut, 2026-09-27)
+ 4b  every measured claim can be regenerated   (claims_lint.py; Solanaut, 2026-10-01)
   5  nothing key-shaped in the tree            (secret scan)
   6  a run record exists for today             (workflows/session_close.md step 1)
   7  the remote is configured, or said loudly  (the rule this office exists for)
@@ -29,6 +30,8 @@ Gates 3 and 8 were added in the Office's pass 2. Gate 8 matters most: before it,
 "synchronise at every milestone" was a sentence in CLAUDE.md that nothing
 checked -- the same shape of defect as a boundary described and never enforced.
 Gate 4 is Solanaut's: shown failing on injected faults in evals/harness/kb_lint.md.
+Gate 4b is too: shown failing on the claims as they stood, and on planted faults, in
+evals/harness/claims_lint.md.
 """
 
 from __future__ import annotations
@@ -92,7 +95,8 @@ def main() -> int:
                           ("harness audits clean", ["tools/lint_plugins.py"]),
                           ("boundary guard passes its fault matrix",
                            ["tools/boundary_guard.py", "--selftest"]),
-                          ("the knowledge vault lints clean", ["tools/kb_lint.py"])):
+                          ("the knowledge vault lints clean", ["tools/kb_lint.py"]),
+                          ("every measured claim can be regenerated", ["tools/claims_lint.py"])):
         rc, out, err = run(["uv", "run", "--script"] + script)
         tail = "\n".join((out or err).splitlines()[-4:]) if rc != 0 else ""
         results.append(gate(label, rc == 0, tail))
