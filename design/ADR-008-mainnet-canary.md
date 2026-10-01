@@ -1,9 +1,14 @@
 # ADR-008 · A capped, human-run mainnet canary with a Phantom wallet
 
-**Status:** **proposed** 2026-09-30, for the human's decision. If accepted, it supersedes
-[ADR-003](ADR-003-devnet-only.md) **in part**: the "devnet only" line gives way to this one canary. Everything
-else in ADR-003 stands: no pay-to-attack fees, no public challenge, and no key that holds real funds in this tree.
-Until the human accepts it, Solanaut stays devnet-only.
+**Status:** **proposed** 2026-09-30, for the human's decision; **deferred** by the human the same day: devnet only
+for now. Leg 4's live Phantom test runs first on devnet, with the human's Phantom wallet in its Chrome extension as
+the operator, after the Alpha is ready (milestone 3.10). The human offered to set up a dedicated account then, if that
+suits the test better. Real funds wait until the human takes this ADR up again at milestone 4.1
+(`runs/2026-09-30-beta-build.md`).
+
+If accepted, it supersedes [ADR-003](ADR-003-devnet-only.md) **in part**: the "devnet only" line gives way to this
+one canary. Everything else in ADR-003 stands: no pay-to-attack fees, no public challenge, and no key that holds real
+funds in this tree. Until the human accepts it, Solanaut stays devnet-only.
 
 ## Context
 

@@ -9,11 +9,11 @@ Coarser than `runs/`. The archivist keeps it current; every phase that ends gets
 | **0 · Setup** | **achieved 2026-09-27**: repo, office, isolation, toolchain, guard, sandbox, private remote, Colosseum draft | `runs/2026-09-27-setup.md` · [review](kb/milestones/2026-09-27_P0-setup.md) |
 | **R · Research foundation** | **achieved 2026-09-27**: research on Gubernaut, the governor pattern and Solana DeFAI; `docs/SPEC.md`; ADR-004 to ADR-007; draft-1 papers and submission drafts; the Obsidian knowledge vault and `kb_lint` gate | `runs/2026-09-27-research-foundation.md` · [review](kb/milestones/2026-09-27_R-research.md) |
 | **R2 · Verified review and roadmap** | **achieved 2026-09-30**: the docs fact-checked against primary sources; 26 design gaps tested by two independent refuters; `docs/SPEC.md` Draft 2; ADR-008 (proposed) to ADR-011; `docs/PRODUCT.md`, `docs/ROADMAP.md` and `docs/READINESS.md`; every descriptive document refreshed | `runs/2026-09-30-verified-review-roadmap.md` · [review](kb/milestones/2026-09-30_R2-verified-review.md) |
-| Leg 1 · Define (1.1) | next: the human's sign-off of `docs/PRODUCT.md` | |
-| Leg 2 · Develop: the Beta MVP (2a.1 to 2a.10), QC and verification (2b.1 to 2b.4), the Alpha's scope (2c.1) | after 1.1 | |
+| **Leg 1 · Define (1.1)** | **achieved 2026-09-30**: the human signed off `docs/PRODUCT.md` | `runs/2026-09-30-beta-build.md` |
+| Leg 2 · Develop: the Beta MVP (2a.1 to 2a.10), QC and verification (2b.1 to 2b.4), the Alpha's scope (2c.1) | **in progress**: the build order in `docs/ROADMAP.md`, from 2a.1 | `runs/2026-09-30-beta-build.md` |
 | S.1 · Submitted to Colosseum, an external event whose window closes 2026-10-12 at 11:59pm PT | the human's decision, showing whatever has passed its gate | |
 | Leg 3 · The Alpha, built and tested hard (3.1 to 3.10) | after Leg 2 | |
-| Leg 4 · The live Phantom test with real money (4.1 to 4.5) | only if the human accepts ADR-008, after Leg 3 | |
+| Leg 4 · The live Phantom test (4.1 to 4.5) | after Leg 3: on devnet with the human's Phantom wallet, as the human chose on 2026-09-30; real money only if the human later accepts ADR-008 | |
 | Leg 5 · Finish and polish (5.1 to 5.4) | after Leg 4, or after Leg 3 if Leg 4 does not run | |
 | Readiness (R.1 to R.5) | after Leg 5 | `docs/READINESS.md` |
 
@@ -37,16 +37,14 @@ Nothing about the guard was newly measured in R2. It was a review.
    Milestones 2a.4 to 2a.7 fix them test-first.
 2. **Sensor v0.** On a real clock it reads fast legitimate payments as full intensity (D8). Milestone 2a.7 measures
    it and fixes it.
-3. **The human's:**
-   - sign off `docs/PRODUCT.md` (milestone 1.1);
-   - decide on ADR-008, the mainnet canary: accept it, change its caps, or decline it; and whether a legal review
-     comes first;
-   - add `"plansDirectory": "./docs/plans"` to `.claude/settings.json`, and, if ADR-008 is accepted, a read-deny for
-     the folder that will hold the canary's agent key;
-   - a licence, Apache-2.0 recommended, before the repository goes public;
-   - repository access for the judges; the Colosseum fields, videos and submission;
-   - a Colosseum Copilot check;
-   - sign-off on the milestone reviews and the business plan.
+3. **The human's**, as decided on 2026-09-30:
+   - `docs/PRODUCT.md` is signed off, and `"plansDirectory": "./docs/plans"` is in `.claude/settings.json`, done by
+     the agent at the human's direction;
+   - ADR-008 is deferred: devnet only for now. The human connects Phantom's Chrome extension for Leg 4, after the
+     Alpha;
+   - set aside until testing is done: the licence, the judges' repository access, the Colosseum fields, videos and
+     submission, and the Copilot check. This seat's work is development;
+   - still open: sign-off on the milestone reviews and the business plan.
 4. **Upstream findings.** U-1 to U-4 are written up for the human (`kb/REGISTRY.md`). U-2 and U-3 are reproduced at
    milestone 2a.7.
 5. **No CI yet.** Milestone 2a.1 adds it; the fault injections run by hand until then (`evals/README.md`).

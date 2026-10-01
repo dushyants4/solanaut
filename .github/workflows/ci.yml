@@ -1,0 +1,56 @@
+# The safety net: milestone 2a.1 in docs/ROADMAP.md. Every gate here was shown failing on an
+# injected fault before it was trusted; the receipt is evals/ci/safety-net.md.
+#
+# Actions are pinned to full commit SHAs, the tag in a comment. Steps after the first run even
+# when an earlier one fails, so one push reports every gate it breaks.
+
+name: ci
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  sdk:
+    name: guard tests and typecheck
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 26.7.0 # mise.toml
+          cache: npm
+      - run: npm ci
+      - name: npm test
+        run: npm test
+      - name: npm run typecheck
+        if: ${{ !cancelled() }}
+        run: npm run typecheck
+
+  office:
+    name: knowledge vault and write boundary
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+      - name: kb_lint
+        run: uv run --script tools/kb_lint.py
+      - name: boundary guard self-test, on a runner shaped like its host
+        if: ${{ !cancelled() }}
+        run: |
+          uv run --script tools/ci_host_fixture.py
+          cd /home/dashy/Projects/Solanaut
+          uv run --script tools/boundary_guard.py --selftest

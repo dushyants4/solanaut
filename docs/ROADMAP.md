@@ -1,6 +1,6 @@
 # ROADMAP.md — the parlay: five legs, won by achievement
 
-> **Draft 1** · 2026-09-30 · owner: archivist, drafted with the architect · for: the human, every seat, and judges ·
+> **Draft 2** · 2026-09-30 · owner: archivist, drafted with the architect · for: the human, every seat, and judges ·
 > not public. **Milestones, not dates:** each milestone is reached when its gate passes, never by a calendar, at the
 > human's instruction of 2026-09-30. Specs: `docs/SPEC.md`. Tests and certification: `docs/READINESS.md`.
 > Register: `kb/DOCUMENTS.md`.
@@ -35,6 +35,8 @@ valuable subset.
 | 1.1 · The product is defined | `docs/PRODUCT.md` states why, what, how, for whom, what it is not and how success is measured; every factual sentence traces to a `docs/CLAIMS.md` row and every design sentence is marked; the human signs it off | the verified review, done 2026-09-30 | the human's sign-off, recorded in a run record |
 
 **Busts when** the human rejects the definition. Then revise it and ask again.
+
+**Achieved 2026-09-30:** the human signed off `docs/PRODUCT.md` (`runs/2026-09-30-beta-build.md`). Leg 1 is won.
 
 ## Leg 2 · Develop
 
@@ -81,7 +83,7 @@ restore on start, and the claims discipline.
 
 | Milestone | Achieved when | Depends on | Evidence |
 |---|---|---|---|
-| S.1 · Submitted | README, pitch and demo videos recorded only from achieved milestones, the prior-work disclosure, and repository access; submitted by the human (T4) | whatever has passed its gate when the human decides to submit | the Colosseum page, and a run record |
+| S.1 · Submitted | README, pitch and demo videos recorded only from achieved milestones, the prior-work disclosure, and repository access; submitted by the human (T4), who set it, the licence and the judges' access aside until testing is done (2026-09-30) | whatever has passed its gate when the human decides to submit | the Colosseum page, and a run record |
 
 ### 2c · The Alpha, scoped
 
@@ -111,24 +113,26 @@ Solanaut.
 
 **Busts when** any threshold misses, or a critical or high finding stays open.
 
-## Leg 4 · The live Phantom test, with real money
+## Leg 4 · The live Phantom test
 
-It happens only if the human accepts `design/ADR-008-mainnet-canary.md`. Every real-funds step is the human's (T4).
+**On 2026-09-30 the human chose devnet only, for now.** Leg 4 therefore runs on devnet first, after the Alpha is
+ready, with the human's Phantom wallet in its Chrome extension as the operator. Real money comes only if the human
+later accepts `design/ADR-008-mainnet-canary.md`, and every real-funds step is then the human's (T4).
 
 | Milestone | Achieved when | Depends on | Evidence |
 |---|---|---|---|
-| 4.1 · Decision | the human accepts ADR-008, sets the caps, and decides whether a legal review comes first | 3.10 | ADR-008's status line |
+| 4.1 · Decision | the human chooses the network and the wallet: devnet with the human's Phantom wallet (chosen for now on 2026-09-30), or ADR-008's mainnet canary with its caps and, if wanted, a legal review first | 3.10 | ADR-008's status line, and a run record |
 | 4.2 · Rehearsed | the exact runbook passes twice on devnet, including the revoke drill | 4.1 | two run records |
 | 4.3 · Pre-flight | program ids re-verified; Alpenglow's status and the commitment assumptions checked, and no timeout assumes 400 ms slots; at least two RPC providers; caps set; recording set up so no seed phrase or key can appear | 4.2 | the signed checklist |
-| 4.4 · The canary | on mainnet, every scenario below gives its expected verdict and on-chain result, and every lamport reconciles; sessions recorded | 4.3 | the recordings, signatures and reconciliation |
-| 4.5 · Closed | the canary report in `runs/`; `docs/CLAIMS.md` rows scoped to its amounts, date and versions; the limit revoked, the funds swept and the agent key deleted | 4.4 | the report |
+| 4.4 · The live test | on the chosen network, every scenario below gives its expected verdict and on-chain result, and every lamport reconciles; sessions recorded | 4.3 | the recordings, signatures and reconciliation |
+| 4.5 · Closed | the live-test report in `runs/`; `docs/CLAIMS.md` rows scoped to its amounts, date and versions; the limit revoked, the funds swept and the agent key deleted | 4.4 | the report |
 
 **The scenarios for 4.4:**
 - a benign payment lands;
 - a drain, an approval, a durable-nonce proposal and an early re-sign are each denied before signing;
 - a retry loop is stopped;
 - a v1 transaction is decoded and capped;
-- the stolen-key script is refused by Squads on mainnet;
+- the stolen-key script is refused by Squads on the chosen network;
 - an over-cap payment escalates, the human co-signs it in Phantom, and Phantom's Lighthouse additions pass the narrow
   rule;
 - the latch is released from Phantom;
@@ -175,3 +179,4 @@ Alpha MVP, then a 1.0.0 release candidate and 1.0.0.
 | Version | Date | What changed |
 |---|---|---|
 | Draft 1 | 2026-09-30 | First draft: the five-leg parlay, built on achievement-based milestones at the human's instruction. |
+| Draft 2 | 2026-09-30 | Leg 1 achieved. Leg 4 runs on devnet with the human's Phantom wallet first; real money waits for ADR-008. The submission, the licence and the judges' access wait until testing is done. |

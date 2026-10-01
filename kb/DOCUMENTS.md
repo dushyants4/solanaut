@@ -13,8 +13,8 @@ substantive change; *last reviewed* moves at every review.
 | Document | Version | Status | Owner | For | Last reviewed | Next review |
 |---|---|---|---|---|---|---|
 | [README.md](../README.md) | 3 | current | integrator | everyone | 2026-09-30 | 2b.4 |
-| [docs/PRODUCT.md](../docs/PRODUCT.md) | Draft 1 | review | architect, for the human's sign-off | every seat, judges | 2026-09-30 | 1.1 |
-| [docs/ROADMAP.md](../docs/ROADMAP.md) | Draft 1 | review | archivist, with the architect | the human, every seat, judges | 2026-09-30 | every leg |
+| [docs/PRODUCT.md](../docs/PRODUCT.md) | 1.0 | current | architect | every seat, judges | 2026-09-30 | 2c.1 |
+| [docs/ROADMAP.md](../docs/ROADMAP.md) | Draft 2 | review | archivist, with the architect | the human, every seat, judges | 2026-09-30 | every leg |
 | [docs/READINESS.md](../docs/READINESS.md) | Draft 1 | review | operator, with the evaluator | the human, every seat, auditors | 2026-09-30 | 2c.1 |
 | [docs/OVERVIEW.md](../docs/OVERVIEW.md) | Draft 2 | draft | integrator | engineers new to the repo, judges | 2026-09-30 | 2a.5 |
 | [docs/SPEC.md](../docs/SPEC.md) | Draft 2 | draft | architect | the builder, evaluator and integrator seats | 2026-09-30 | 2a.2 |

@@ -1,6 +1,7 @@
 # PRODUCT.md — what Solanaut is, why it exists, and how it works
 
-> **Draft 1** · 2026-09-30 · owner: architect, for **the human's sign-off** (milestone 1.1 in `docs/ROADMAP.md`) ·
+> **1.0** · 2026-09-30 · **signed off by the human on 2026-09-30**, which achieves milestone 1.1 in `docs/ROADMAP.md` ·
+> owner: architect ·
 > for: every seat, judges, and anyone deciding whether to use Solanaut · not public until the human says so. Facts cite
 > `docs/CLAIMS.md` rows as [S1] or [M4]; sentences about the design are marked *design* and describe what is
 > specified, not what is built. Register: `kb/DOCUMENTS.md`.
@@ -89,3 +90,4 @@ No rate is claimed before it is measured.
 | Version | Date | What changed |
 |---|---|---|
 | Draft 1 | 2026-09-30 | First draft, for milestone 1.1. |
+| 1.0 | 2026-09-30 | Signed off by the human; milestone 1.1 achieved. The text is unchanged (`runs/2026-09-30-beta-build.md`). |

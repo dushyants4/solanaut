@@ -4,7 +4,7 @@
 sign at all, and an open-source control loop, Gubernaut Keel, stops retry loops and fee
 escalation. It is built for Colosseum's Crypto World's Fair hackathon (submissions close
 **2026-10-12, 11:59pm PT**) and runs on **devnet**. One capped, human-run mainnet canary with a Phantom wallet is
-**proposed** (`design/ADR-008-mainnet-canary.md`); until the human accepts it, Solanaut is devnet only.
+proposed (`design/ADR-008-mainnet-canary.md`) and **deferred**: on 2026-09-30 the human chose devnet only for now.
 
 This file is the root router and the law. It points at detail rather than copying it. Read it
 first, every session.
@@ -17,7 +17,7 @@ first, every session.
 |---|---|
 | its own project, with its own repo, agent, memory and history | part of the Gubernaut workspace (APEX), or a place to change Gubernaut |
 | a consumer of `@gubernaut/core` (Keel) from npm, pinned and digest-checked | a fork of Gubernaut's code, or a copy of its private records |
-| a devnet product with test SOL; one capped, human-run mainnet canary is proposed (ADR-008) and waits for the human | a mainnet vault for anyone's funds, a pay-to-attack game, a public challenge, or a real-funds key in this tree |
+| a devnet product with test SOL; a capped, human-run mainnet canary is proposed (ADR-008) and deferred by the human | a mainnet vault for anyone's funds, a pay-to-attack game, a public challenge, or a real-funds key in this tree |
 | honest about limits: the policy stops drains; the loop stops loops | "un-hackable", "injection-proof", "100% blocked": see `docs/CLAIMS.md` |
 
 ## Isolation — the rule this project exists under
@@ -94,9 +94,8 @@ marketplace declared in `.claude/settings.json`; accept it for this project only
 Workers: Codex may run here as `codex exec -C ~/Projects/Solanaut …` (this folder has its own
 trust entry). Gubernaut's `gub` control plane is **not** used here; it belongs to APEX.
 
-**Plan mode:** by default it writes plans to `~/.claude/plans/`, which the boundary guard denies. The
-fix is `"plansDirectory": "./docs/plans"` in `.claude/settings.json`; that edit is the human's. Until
-it lands, write the plan in chat.
+**Plan mode** writes plans to `docs/plans/` (`"plansDirectory"` in `.claude/settings.json`). The default,
+`~/.claude/plans/`, is denied by the boundary guard.
 
 ## Build, run, test
 
@@ -152,7 +151,7 @@ whatever has passed its gate.
 | `apps/cockpit/` | *(milestone 2a.10)* the dashboard: read-only, reads the log and the chain, holds no keys (ADR-011) |
 | `programs/` | *(Alpha, milestone 3.7)* `solanaut_anchor`: anchors the decision log's head. On-chain caps come from composing Squads v4 (ADR-006) |
 | `docs/` | `PRODUCT.md` (why, what, how) · `ROADMAP.md` (the milestones) · `READINESS.md` (to a certified release) · `OVERVIEW.md` (the code as it is) · `SPEC.md` (the MVP baseline) · `ARCHITECTURE.md` (long term) · `HACKATHON.md` (the contest's rules) · `CLAIMS.md` · `papers/` · `submission/` · `plans/` |
-| `design/` | ADRs 001–011; ADR-008 is proposed, awaiting the human |
+| `design/` | ADRs 001–011; ADR-008 is proposed and deferred: devnet only for now |
 | `plugins/` `workflows/` `tools/` | the office: seats, SOPs, deterministic gates |
 | `kb/` | the knowledge vault (ADR-007): `INDEX.md` (front page), `LOG.md`, `DOCUMENTS.md` (the paper register), `REGISTRY.md` (upstream pins), `sources/`, `wiki/`, `milestones/`, `templates/`, `intake/`, and `private/` (gitignored) |
 | `evals/` | receipts: every gate shown failing, then passing |
