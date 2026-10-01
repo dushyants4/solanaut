@@ -31,6 +31,7 @@ The interface that `guardedWallet` implements.
 ## What it supports
 
 - `docs/SPEC.md` §8, `guardedWallet`.
+- [How the kit signs and sends](2026-10-01_solana-agent-kit-signorsendtx.md), read in the same package.
 
 ## Caveats
 

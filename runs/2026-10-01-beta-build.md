@@ -98,6 +98,25 @@ The human, on 2026-09-30, in their words, condensed:
 5. **Still the human's, when testing is done:** the licence, the judges' access, the submission; sign-off on the
    milestone reviews.
 
+## Then: milestone 2b.3, the Solana Agent Kit half
+
+After the first close, the session ran a scripted agent built on `solana-agent-kit` 2.0.10's own classes, on a local
+validator, with Solanaut adopted by one changed line (`evals/agentkit/sak-local.md`).
+- **Drains** were refused on both of the kit's paths, before the wallet was asked to sign.
+- **A whole transaction** was checked, signed once, sent by the guard, and landed.
+- **The kit's plugin path** asked the wallet to sign each payment twice. The guard refused the second signature as
+  `intent-in-flight`, because the first, signed and discarded, could still land.
+
+Reading the published package also found:
+- with a Helius key, a signed transaction posted to Helius's mainnet fee API;
+- an array of transactions that throws after the first is sent.
+
+The source note is `kb/sources/2026-10-01_solana-agent-kit-signorsendtx.md`; the claims are S10 and M12.
+- **What got in the way:** the first run failed in the kit's own simulation, because its `Connection` reads at
+  `finalized` and the airdrop was only confirmed. Waiting for finalization fixed it.
+- **New advisories:** the kit brings 7 high-severity ones through LangChain, recorded in `kb/REGISTRY.md` and
+  confined to `apps/agentkit`.
+
 ## Provenance
 
 - **Toolchain:** Node 26.7.0, npm 11.19.0, TypeScript 7.0.2, Agave 3.1.10 (4.3.0 for v1), uv 0.12.10, Chrome 153.

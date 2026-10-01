@@ -23,6 +23,7 @@ seen failing might not be checking anything.
 | the on-chain bound, rehearsed: `apps/onchain/src/squads.ts` on a local validator with Squads v4 cloned from devnet | the program itself refused the past-the-limit and unlisted-destination attempts on chain, and the post-revoke one | **rehearsal only**: the devnet run waits for devnet SOL | `onchain/squads-local.md` |
 | the cockpit: `inspect.test.ts`, `apps/cockpit/test/cockpit.test.ts` | 3 of 3 and 6 of 6 against stubs; 4 planted bugs, each caught | 3/3 and 6/6; `npm test` 145/145; a screenshot | `cockpit/v0.md` |
 | the drain battery: `packages/sdk/test/drain.battery.test.ts` | 3 planted guard faults, each letting a drain through | 40 of 40 denied | `verify/beta-gate.md` |
+| a Solana Agent Kit agent, one line changed: `apps/agentkit/src/run.ts` on a local validator | the unguarded baseline: the same agent pays the attacker | drains refused on both paths; whole transactions land; the plugins' path refused at the kit's second signature | `agentkit/sak-local.md` |
 | the Beta gate, from a clean clone | (each battery's own receipt) | 147/147; 9 of 11 §11 batteries; on-chain and end to end wait for devnet | `verify/beta-gate.md` |
 
 CI runs the gates on every push since milestone 2a.1 (`ci/safety-net.md`). Still owed: a job that re-runs the fault

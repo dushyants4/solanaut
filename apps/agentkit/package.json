@@ -1,0 +1,12 @@
+{
+  "name": "@solanaut/agentkit",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Validation (milestone 2b.3): a scripted Solana Agent Kit agent behind guardedWallet, on a local validator.",
+  "dependencies": {
+    "@solana/web3.js": "1.99.0",
+    "@solanaut/sdk": "0.0.0",
+    "solana-agent-kit": "2.0.10"
+  }
+}

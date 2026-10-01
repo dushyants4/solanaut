@@ -30,6 +30,7 @@ Solanaut/                        (an Obsidian vault; open this folder, and the f
 ├─ apps/sandbox/src/main.ts      three scripted scenarios through the guard, offline or on a local validator
 ├─ apps/onchain/src/squads.ts    the Squads v4 spending-limit drill, for devnet or a local validator
 ├─ apps/cockpit/                 the dashboard: the record and the Squads limit, read-only, on 127.0.0.1
+├─ apps/agentkit/src/run.ts      a scripted Solana Agent Kit agent behind guardedWallet, for validation
 ├─ .github/workflows/ci.yml      the four gates on every push
 ├─ docs/                         PRODUCT · ROADMAP · READINESS · OVERVIEW · SPEC · ARCHITECTURE · HACKATHON · CLAIMS · papers/ · submission/ · plans/
 ├─ design/                       ADR-001 … ADR-011

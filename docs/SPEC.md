@@ -408,6 +408,11 @@ Built at milestone 2a.7 (`evals/sdk/keel.md`).
   - **`jsonRpc(url)`** is the RPC client: `getBlockHeight`, `sendTransaction` with base64 bytes, and
     `getSignatureStatuses` polled until the signature lands or fails, its blockhash expires, or a timeout gives
     `unknown`.
+- **Integrating with Solana Agent Kit (milestone 2b.3, `evals/agentkit/sak-local.md`).** With the one-line change,
+  drains are refused on both of the kit's paths, and a whole transaction works unchanged. The kit's plugins hand it
+  bare instructions, and the kit signs each such payment twice ([source](../kb/sources/2026-10-01_solana-agent-kit-signorsendtx.md)),
+  so the guard refuses the second signature as `intent-in-flight`, rightly. Until the kit signs once, an integrator
+  passes it whole transactions. The finding is recorded for SendAI; Solanaut does not relax the rule for it.
 - **ElizaOS plugin (Alpha).** It wraps `plugin-solana`'s signing path; how is decided from its source when the Alpha
   starts.
 - **`solanaut-signer` (Alpha):** a local process holding the key.
@@ -518,4 +523,4 @@ checked. The guard decodes whatever version arrives, so the answer changes no ru
 |---|---|---|
 | Draft 1 | 2026-09-27 | First draft, from the research foundation (`kb/milestones/2026-09-27_R-research.md`). |
 | Draft 2 | 2026-09-30 | The verified review (`runs/2026-09-30-verified-review-roadmap.md`): trust per mode; v1 decoded; tables pinned; an allowlist per instruction; durable nonces and other signers denied; the fee rule corrected; intents keyed by effects; the log as the state; the adapter surface; the structured latch release; the Squads membership question answered; D10 to D12; new battery cases. Phases are now the roadmap's milestones. |
-| Draft 3 | 2026-10-01 | Built through milestone 2a.5 (`runs/2026-10-01-beta-build.md`): the effects model as implemented (`otherSigners`, outflow sources, denial rules, the intent key's definition); the record's four entry kinds; the decisions made while building, in §4 and §7; kit's default version answered; D1, D2, D5, D6, D7, D9, D10 and D12 closed; then 2a.6: the durable record, restore, the lock, replay, the latch as a recorded fact, and D11 closed; then 2a.7: Keel's bytes and telemetry checked, sensor v1 as built and measured, D3, D4 and D8 closed, an open question on runs of failures; then 2a.8: the adapters as built; then 2a.10: an open question on latching after a denied retry. |
+| Draft 3 | 2026-10-01 | Built through milestone 2a.5 (`runs/2026-10-01-beta-build.md`): the effects model as implemented (`otherSigners`, outflow sources, denial rules, the intent key's definition); the record's four entry kinds; the decisions made while building, in §4 and §7; kit's default version answered; D1, D2, D5, D6, D7, D9, D10 and D12 closed; then 2a.6: the durable record, restore, the lock, replay, the latch as a recorded fact, and D11 closed; then 2a.7: Keel's bytes and telemetry checked, sensor v1 as built and measured, D3, D4 and D8 closed, an open question on runs of failures; then 2a.8: the adapters as built; then 2a.10: an open question on latching after a denied retry; then 2b.3: integrating with Solana Agent Kit. |

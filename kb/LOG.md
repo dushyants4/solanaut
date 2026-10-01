@@ -54,3 +54,5 @@ grep "| research |" kb/LOG.md             # every research pass
 ## [2026-10-01 06:58] build | the Beta, test-first: milestones 1.1 and 2a.1 to 2a.8 achieved; 2a.9 rehearsed on a local validator with Squads v4's devnet program; 2a.10 built; 2b.1 at 9 of 11 batteries from a clean clone; every defect D1 to D12 closed | runs/2026-10-01-beta-build.md, evals/
 
 ## [2026-10-01 06:58] research | SIMD-0312's layout and SIMD-0266's p-token instructions read first-hand; Solana Agent Kit's BaseWallet checked in the published 2.0.10 package; upstream findings U-2 and U-3 reproduced | kb/sources/2026-09-30_simd-0312-create-account-allow-prefund.md, kb/sources/2026-09-30_simd-0266-p-token.md, kb/sources/2026-09-30_solana-agent-kit-basewallet.md, kb/REGISTRY.md
+
+## [2026-10-01 07:35] research | Solana Agent Kit 2.0.10 read and run: plugin payments are signed twice; with a Helius key a signed transaction is posted to Helius; an array of transactions throws after the first is sent | kb/sources/2026-10-01_solana-agent-kit-signorsendtx.md, evals/agentkit/sak-local.md, docs/CLAIMS.md

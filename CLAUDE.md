@@ -154,6 +154,7 @@ whatever has passed its gate.
 | `apps/sandbox/` | the plugin sandbox |
 | `apps/cockpit/` | the dashboard (milestone 2a.10): read-only, localhost only, reads the record and the chain, holds no keys (ADR-011) |
 | `apps/onchain/` | devnet scripts: the Squads v4 spending-limit drill (milestone 2a.9) |
+| `apps/agentkit/` | validation: a scripted Solana Agent Kit agent behind `guardedWallet` (milestone 2b.3) |
 | `programs/` | *(Alpha, milestone 3.7)* `solanaut_anchor`: anchors the decision log's head. On-chain caps come from composing Squads v4 (ADR-006) |
 | `docs/` | `PRODUCT.md` (why, what, how) · `ROADMAP.md` (the milestones) · `READINESS.md` (to a certified release) · `OVERVIEW.md` (the code as it is) · `SPEC.md` (the MVP baseline) · `ARCHITECTURE.md` (long term) · `HACKATHON.md` (the contest's rules) · `CLAIMS.md` · `papers/` · `submission/` · `plans/` |
 | `design/` | ADRs 001–011; ADR-008 is proposed and deferred: devnet only for now |

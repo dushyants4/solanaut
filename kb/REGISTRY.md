@@ -7,6 +7,7 @@ full tree.
 |---|---|---|---|---|
 | `@gubernaut/core` | **1.0.1** | npm | Gubernaut Keel, the controller in-process. Apache-2.0, pre-existing, disclosed under the hackathon rules §9. Its wasm digest `834015d7…` is checked when a guard is created | 2026-09-27 |
 | `@solana/web3.js` | **1.99.0** | npm | transactions, keys, RPC. The 1.x line, because the agent frameworks Solanaut adapts to (ElizaOS, Solana AgentKit) build on it. `@solana/kit` (8.4.0 on 2026-09-30) is the modern line. The v1 core decodes bytes without web3.js, which stays in the adapters (ADR-009) | 2026-09-30 |
+| `solana-agent-kit` | **2.0.10** | npm | `apps/agentkit` only: the scripted agent for milestone 2b.3. Its core only; the plugin packages are not installed. Brings LangChain, and the advisories under "Audit" | 2026-10-01 |
 | `@sqds/multisig` | **2.1.4** | npm | `apps/onchain` only: the Squads v4 multisig and spending limit, for the on-chain bound (milestone 2a.9). Brings the advisories under "Audit" | 2026-10-01 |
 | `@solana-program/system`, `token`, `compute-budget` | **0.15.0**, **0.17.0**, **0.19.0** | npm | **dev only**: the reference the instruction classifier is checked against, names and layouts | 2026-09-30 |
 | `@solana/kit` | **8.4.0** | npm | **dev only**: the reference the byte decoder is checked against (the golden set, and the fuzz harness's differential). `packages/sdk/src` never imports it | 2026-09-30 |
@@ -33,6 +34,11 @@ come through `@sqds/multisig` 2.1.4 → `@solana/spl-token` → `@solana/buffer-
 `toBigIntLE()` can overflow a buffer. The suggested fix downgrades `@sqds/multisig` to 1.3.1, which is not a fix. The
 scripts read only accounts they created, and nothing from `apps/onchain` enters the SDK. Revisit before any script
 runs against mainnet.
+
+**Since milestone 2b.3: 7 high, 9 moderate, 3 low**, the new highs through `solana-agent-kit` 2.0.10 in `apps/agentkit`:
+`langsmith` (server-side request forgery, prototype pollution) and `jsondiffpatch` (XSS, prototype pollution), both under
+`@langchain/core`. The workspace runs a scripted agent against a local validator only, with no model and no network
+beyond it. Neither reaches the SDK, whose one runtime dependency is still `@gubernaut/core`.
 
 ## What the agent frameworks build on
 
