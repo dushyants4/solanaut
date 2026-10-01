@@ -49,9 +49,9 @@ Coarser than `runs/`. The archivist keeps it current; every phase that ends gets
 1. **Defects** (`docs/SPEC.md` §10):
    - D1 to D12 are closed: D1, D2, D5, D6, D7, D9, D10 and D12 at 2a.5, D11 at 2a.6, D3, D4 and D8 at 2a.7.
    - D13, found and closed before devnet: a send of unknown fate was reported `failed`.
-   - **D14 is open.** An unreported attempt past its last valid height is treated as one that never landed. So a
-     sign-only integration that never reports can have a landed payment's retry admitted. It is the next fix,
-     test-first.
+   - D14, found after the devnet runs and closed test-first (`evals/sdk/intents-d14.md`). An unreported attempt
+     past its last valid height had counted as one that never landed. Now it holds its intent until reported, and
+     `guardedWallet` follows up what it signed.
 2. **Loops that change shape.** A loop alternating two shapes with a changing amount is not stopped by Keel; the fee
    window and the INHIBIT clamp bound it. An open question for the Alpha's red team (`docs/SPEC.md` §12).
    **Latching on a denied retry** is the other: DEMO.md's re-sign scene latches the guard on every run on devnet. It

@@ -16,7 +16,7 @@ import { DecodeError } from "./message.ts";
 import { contextOf, createPolicy, type Policy } from "./policy.ts";
 import { fileStore, memoryStore, type EntryStore } from "./record.ts";
 import { sensorV1, type Sensor } from "./sensor.ts";
-import { apply, couldStillLand, currentIntent, initialState, nowFor, windowTotals, type GuardState } from "./state.ts";
+import { apply, couldStillLand, currentIntent, initialState, nowFor, unresolved, windowTotals, type GuardState } from "./state.ts";
 
 export type { Decision, Entry, Outcome, RuleV1 } from "./log.ts";
 export type { EntryStore } from "./record.ts";
@@ -259,6 +259,8 @@ function evaluateRules(env: Env, p: ProposalV1): DecisionBody {
     if (intent) {
       const live = intent.attempts.find((a) => couldStillLand(a, blockHeight));
       if (live) return decide(false, "intent-in-flight", `an earlier attempt at the same effects (decision ${live.decision.slice(0, 12)}…) could still land; report its outcome, or propose once its last valid block height has passed`);
+      const open = intent.attempts.find(unresolved);
+      if (open) return decide(false, "intent-in-flight", `an earlier attempt at the same effects (decision ${open.decision.slice(0, 12)}…) is past its last valid block height, but its outcome was never reported, so it may have landed; report landed, failed or expired, or propose once the window has passed since the first attempt`);
       if (intent.attempts.length >= policy.intents.maxAttempts) return decide(false, "intent-attempts-exhausted", `the same effects have been attempted ${intent.attempts.length} times, the most the policy allows`);
     }
     // Rule 16, counted at admission against what is already reserved.

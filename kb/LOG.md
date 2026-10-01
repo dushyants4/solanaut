@@ -60,3 +60,5 @@ grep "| research |" kb/LOG.md             # every research pass
 ## [2026-10-01 12:37] build | devnet, once the human funded the operator: 2a.9 achieved (Squads v4 refused the stolen key past the limit, to an unlisted address and after the revoke); 2a.10 achieved (the cockpit on devnet); the demo's scenes end to end on devnet with a real SIGKILL and restore; the Solana Agent Kit agent on devnet; D13 found and closed; D14 found | runs/2026-10-01-devnet.md, evals/onchain/squads-devnet.md, evals/e2e/scenes-devnet.md, evals/agentkit/sak-devnet.md, docs/SPEC.md
 
 ## [2026-10-01 12:37] research | Solana Agent Kit 2.0.10's sendTx re-sends until it sees a status; on devnet it reported three landed payments as failed | kb/sources/2026-10-01_solana-agent-kit-signorsendtx.md, docs/CLAIMS.md
+
+## [2026-10-01 13:05] build | D14 closed test-first: an unreported attempt past expiry holds its intent until reported; guardedWallet follows up what it signed; confirm reads the height before the status | evals/sdk/intents-d14.md, docs/SPEC.md, docs/CLAIMS.md

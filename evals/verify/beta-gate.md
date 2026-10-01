@@ -13,6 +13,10 @@ independent run, by a separate session given only the spec, is owed before miles
 
 ## The clean clone, 2026-10-01
 
+Run twice. The second run was after the devnet runs, at `5fa5f91`: `npm ci` added 351 packages, and `npm test` passed
+149 of 149 in 4.7 s, with typecheck clean and `kb_lint` passing. D14 added three tests after that: 152 of 152, on this
+disk and in CI. The first run:
+
 ```
 git clone https://github.com/dushyants4/solanaut.git    # at 0c982ff
 npm ci                                                   # added 202 packages

@@ -135,7 +135,7 @@ agent ── proposes bytes ──▶ @solanaut/sdk  guard.check()          prop
    decode   (legacy; v0 with pinned lookup tables; v1 from its config; unknown → DENY)    ADR-009, built (2a.2)
    classify (an allowlist per instruction; durable nonces and other signers → DENY)       ADR-009, built (2a.3)
    policy   (principal, programs, destinations, mints, per-tx, per-window and fee caps)   → DENY, whatever the model says
-   intents  (keyed by effects: no re-sign while an earlier attempt could still land)      built (2a.5)
+   intents  (keyed by effects: no re-sign while an earlier attempt could still land, or may have landed unreported)  built (2a.5; D14)
    sensor   (proposal stream → intensity, valence, repetition)                            v1, measured (2a.7)
    Keel     (@gubernaut/core 1.0.1; wasm and module hashed; telemetry checked first)       → REGROUND → DENY; posture only restricts
    receipt  (message hash, expiry, policy hash) → signer · the log is the state (ADR-010; a synced, locked file, restored by replay) · any error → DENY

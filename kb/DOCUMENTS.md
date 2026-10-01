@@ -26,7 +26,7 @@ substantive change; *last reviewed* moves at every review.
 | [docs/papers/MARKET.md](../docs/papers/MARKET.md) | Draft 2 | draft | archivist | the human, judges | 2026-09-30 | 2b.4 |
 | [docs/papers/BUSINESS-PLAN.md](../docs/papers/BUSINESS-PLAN.md) | Draft 2 | review | drafted for the human | the human, judges | 2026-09-30 | S.1 |
 | [docs/submission/PITCH.md](../docs/submission/PITCH.md) | Draft 3 | draft | the human (T4) | judges | 2026-09-30 | 2b.4 |
-| [docs/submission/DEMO.md](../docs/submission/DEMO.md) | Draft 2 | draft | integrator | judges | 2026-09-30 | 2b.3 |
+| [docs/submission/DEMO.md](../docs/submission/DEMO.md) | Draft 3 | draft | integrator | judges | 2026-10-01 | S.1 |
 | [docs/submission/SUBMISSION.md](../docs/submission/SUBMISSION.md) | Draft 2 | review | the human (T4) | the human | 2026-09-30 | S.1 |
 
 "Next review" names the milestone in `docs/ROADMAP.md` at which the document is reviewed next, never a date.
@@ -42,4 +42,4 @@ substantive change; *last reviewed* moves at every review.
 | 2026-09-27 | PITCH | Draft 2: the written pitch in four paragraphs (what, why, how, results), traced to CLAIMS rows; the script's M8 line scoped to bots | `runs/2026-09-27-written-pitch.md` |
 | 2026-09-30 | all | The verified review: PRODUCT, ROADMAP and READINESS created; SPEC, OVERVIEW, THREAT-MODEL, LITEPAPER, MARKET, BUSINESS-PLAN, DEMO and SUBMISSION to their next draft; README, ARCHITECTURE, HACKATHON and CLAIMS to version 3; PITCH to Draft 3; "next review" now names milestones | `runs/2026-09-30-verified-review-roadmap.md` |
 | 2026-10-01 | PRODUCT, ROADMAP, SPEC, OVERVIEW, CLAIMS | PRODUCT 1.0, signed off; ROADMAP Draft 2, the human's decisions; SPEC Draft 3, the effects model, the record and the decisions made while building 2a.2 to 2a.5; OVERVIEW Draft 3, the rebuilt guard; CLAIMS 3.1, evidence moved to the admission battery | `runs/2026-10-01-beta-build.md` |
-| 2026-10-01 | SPEC, CLAIMS | After the devnet runs: SPEC Draft 3 gains D13 (closed) and D14 (open) and the adapter decisions as built; CLAIMS 3.2 adds S11, S12 and M13, and S10's devnet evidence | `runs/2026-10-01-devnet.md` |
+| 2026-10-01 | SPEC, CLAIMS, OVERVIEW, DEMO | After the devnet runs: SPEC Draft 3 gains D13 and D14, both closed, §7's intents and §11's double-send battery as now built, and the adapter decisions; CLAIMS 3.2 adds S11, S12 and M13, and S10's devnet evidence; OVERVIEW notes the scenes and the follow-up; DEMO Draft 3, every scene run on devnet | `runs/2026-10-01-devnet.md` |

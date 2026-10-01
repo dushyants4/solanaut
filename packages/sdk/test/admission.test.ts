@@ -215,7 +215,7 @@ test("rule 13: a priority fee over the cap denies as over-fee-cap, in legacy and
 
 // --- rules 14 and 15: intents -----------------------------------------------------------------------
 
-test("rules 14 and 15, the double-send battery: in flight until failed or expired; attempts are counted", async () => {
+test("rules 14 and 15, the double-send battery: in flight until reported failed or expired; attempts are counted", async () => {
   const g = await guardWith();
   const send = (seed: number, blockHeight: bigint, intent?: string) =>
     check(g, [pay(TREASURY, 5n)], { seed, blockHeight, lastValidBlockHeight: blockHeight + 150n, intent, at: tick(1_000) });
@@ -228,8 +228,10 @@ test("rules 14 and 15, the double-send battery: in flight until failed or expire
   denied(send(4, 1_100n), "intent-in-flight", "re-sign after an unknown outcome");
 
   denied(send(41, 1_150n), "intent-in-flight", "at exactly attempt 1's last valid height, it can still land");
+  denied(send(42, 1_151n), "intent-in-flight", "past its expiry, attempt 1's outcome is still unknown: it may have landed (D14)");
+  g.report(first.hash, "expired");
   const second = send(5, 1_151n);
-  allowed(second, "re-sign after expiry: height 1,151 is past attempt 1's 1,150");
+  allowed(second, "re-sign after expiry, once attempt 1 is reported expired");
   g.report(second.hash, "failed");
   const third = send(6, 1_160n);
   allowed(third, "attempt 3, after a reported failure");
@@ -239,6 +241,26 @@ test("rules 14 and 15, the double-send battery: in flight until failed or expire
   allowed(check(g, [pay(TREASURY, 6n)], { blockHeight: 1_170n, lastValidBlockHeight: 1_320n, at: tick(1_000) }), "a different amount is a different intent");
   tick(60_000);
   allowed(send(8, 1_180n), "an exhausted intent may try again once its window has passed since its first attempt");
+});
+
+test("D14: an attempt nobody reported may have landed, so past its expiry it still holds its intent, until reported or until the window passes", async () => {
+  const g = await guardWith();
+  const pay9 = (seed: number, blockHeight: bigint, at = tick(1_000)) => check(g, [pay(SHOP, 9n)], { seed, blockHeight, lastValidBlockHeight: blockHeight + 150n, at });
+  const first = pay9(1, 1_000n);
+  allowed(first, "signed; the caller sends it; nobody reports");
+  const past = pay9(2, 1_151n);
+  denied(past, "intent-in-flight", "past the first attempt's expiry, unreported");
+  assert.match(past.reason, /never reported/, "the reason says why: not that it could still land, but that nobody said whether it did");
+  g.report(first.hash, "landed");
+  allowed(pay9(3, 1_160n), "reported landed: that intent is done, and the same payment again is a new one");
+
+  // Unreported, the intent is held only for its window since the first attempt. The window cap counted it all along.
+  const g2 = await guardWith();
+  const once = check(g2, [pay(SHOP, 10n)], { seed: 1, blockHeight: 1_000n, lastValidBlockHeight: 1_150n, at: tick(1_000) });
+  allowed(once);
+  denied(check(g2, [pay(SHOP, 10n)], { seed: 2, blockHeight: 1_200n, lastValidBlockHeight: 1_350n, at: tick(1_000) }), "intent-in-flight", "within the window");
+  tick(60_000);
+  allowed(check(g2, [pay(SHOP, 10n)], { seed: 3, blockHeight: 1_400n, lastValidBlockHeight: 1_550n, at: tick(1_000) }), "a window after the first attempt, a new intent");
 });
 
 test("intents: a landed intent is done, and the same payment again is a new intent", async () => {

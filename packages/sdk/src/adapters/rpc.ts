@@ -27,6 +27,11 @@ export interface RpcLike {
   sendRawTransaction(wire: Uint8Array, options?: unknown): Promise<string>;
   /** Wait for a sent signature's outcome, until its blockhash's last valid height has passed. */
   confirm(signature: string, lastValidBlockHeight: bigint): Promise<Outcome>;
+  /**
+   * Optional: what the chain says of a signature now, searching history. "pending" is seen but not yet
+   * confirmed; null is not seen. guardedWallet uses it to learn the outcomes of what it only signed (D14).
+   */
+  getSignatureStatus?(signature: string): Promise<"landed" | "failed" | "pending" | null>;
 }
 
 export interface JsonRpcOptions {
@@ -66,6 +71,8 @@ export function jsonRpc(url: string, o: JsonRpcOptions = {}): RpcLike {
     }
   }
   const getBlockHeight = async () => BigInt(await read<number>("getBlockHeight", [{ commitment }]));
+  type Status = { err: unknown; confirmationStatus?: string } | null;
+  const outcomeOf = (s: Status) => (s && (s.confirmationStatus === "confirmed" || s.confirmationStatus === "finalized") ? (s.err ? "failed" : "landed") : null);
   return {
     getBlockHeight,
     sendRawTransaction: (wire, options) =>
@@ -75,10 +82,13 @@ export function jsonRpc(url: string, o: JsonRpcOptions = {}): RpcLike {
       let errors = 0;
       while (Date.now() < deadline) {
         try {
-          const r = await call<{ value: ({ err: unknown; confirmationStatus?: string } | null)[] }>("getSignatureStatuses", [[signature], { searchTransactionHistory: false }]);
-          const s = r.value[0];
-          if (s && (s.confirmationStatus === "confirmed" || s.confirmationStatus === "finalized")) return s.err ? "failed" : "landed";
-          if ((await getBlockHeight()) > lastValidBlockHeight) return "expired";
+          // The height first: past the last valid height, a signature the status read then cannot see never
+          // landed. Read the other way round, one processed at its last valid height could be called expired.
+          const height = await getBlockHeight();
+          const s = (await call<{ value: Status[] }>("getSignatureStatuses", [[signature], { searchTransactionHistory: false }])).value[0] ?? null;
+          const outcome = outcomeOf(s);
+          if (outcome) return outcome;
+          if (s === null && height > lastValidBlockHeight) return "expired";
           errors = 0;
         } catch {
           // A failed read (a public RPC's rate limit, a dropped connection) says nothing about the
@@ -88,6 +98,10 @@ export function jsonRpc(url: string, o: JsonRpcOptions = {}): RpcLike {
         await new Promise((resolve) => setTimeout(resolve, Math.min(pollMs * 2 ** errors, 8_000)));
       }
       return "unknown";
+    },
+    async getSignatureStatus(signature) {
+      const s = (await read<{ value: Status[] }>("getSignatureStatuses", [[signature], { searchTransactionHistory: true }])).value[0] ?? null;
+      return outcomeOf(s) ?? (s ? "pending" : null);
     },
   };
 }

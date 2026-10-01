@@ -124,9 +124,10 @@ On devnet, the scenes' five payments and the Solana Agent Kit agent's whole tran
 - **These tests run against fakes, not a chain.** The wrapped wallet and the RPC are in-process stand-ins. A real
   Solana Agent Kit agent has since run on a local validator and on devnet ([agentkit/](../agentkit/)). A kit-signer
   agent has not.
-- **A sign-only path learns no outcome (D14, open).** Through `signTransaction`, the wallet signs and the caller
-  sends, so nothing reports the outcome. The guard treats the attempt as able to land until its last valid height, and
-  then as not. A retry of a payment that landed unreported is then admitted. See `docs/SPEC.md` §10.
+- **A sign-only path learns no outcome by itself.** Through `signTransaction`, the wallet signs and the caller sends.
+  That was D14, closed in [intents-d14.md](intents-d14.md). The guard now holds an unreported attempt's intent, and
+  `guardedWallet` follows up what it signed. The follow-up lives in memory, so after a restart the hold lasts until a
+  report or the window.
 - **A wallet outside the guard is outside it.** `guardedWallet` stops what passes through it. Code that holds the raw
   wallet or key can still sign directly; that is why the signer process exists (Alpha, milestone 3.1).
 

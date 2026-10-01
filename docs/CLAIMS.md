@@ -20,7 +20,8 @@ admission battery when the guard was rebuilt (milestone 2a.5), and each test it 
 mutable-policy caveat is retired with defect D1; S3 was re-measured; S5 notes the human's deferral of the canary; S6
 added, for the restart battery; S4 widened and S7 added at milestone 2a.7; S8 and S9 added at milestone 2b.1; S10 and M12 at milestone 2b.3. The record is `runs/2026-10-01-beta-build.md`.
 Revised again 2026-10-01, after the devnet runs: S10 measured on devnet too; S11, S12 and M13 added; the
-not-yet-claimable list's coverage line corrected. The record is `runs/2026-10-01-devnet.md`.
+not-yet-claimable list's coverage line corrected, and its double-send line written, then narrowed when D14 was
+closed. The record is `runs/2026-10-01-devnet.md`.
 
 ## 1. Solanaut's own claims
 
@@ -54,9 +55,9 @@ not-yet-claimable list's coverage line corrected. The record is `runs/2026-10-01
   agent wallet document them (`docs/papers/MARKET.md`).
 - **Coverage beyond the rows above.** SPL and Token-2022 transfers, pinned lookup tables and fee caps are built and
   tested in-process (`evals/sdk/`), but none ran on chain, and only the rows above are claims.
-- **That Solanaut prevents every double-send.** Intents refuse a re-sign while an earlier attempt could still land.
-  But a sign-only integration that never reports outcomes can have a landed payment's retry admitted after expiry:
-  defect D14, open (`docs/SPEC.md` §10).
+- **That Solanaut prevents every double-send.** Intents refuse a re-sign while an earlier attempt could still land,
+  or is past its expiry with its outcome never reported (D14, closed: `evals/sdk/intents-d14.md`). That hold ends
+  after the window, when a recurring payment may pay again. A wallet or key used outside the guard is outside it.
 - **Anything about mainnet.** Nothing is said about mainnet until the canary report exists (`docs/ROADMAP.md`,
   milestone 4.5), and then only within its scope.
 - **Production-ready, audited or certified.** Not until `docs/READINESS.md`'s milestones say so, with their

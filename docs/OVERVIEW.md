@@ -29,6 +29,7 @@ Solanaut/                        (an Obsidian vault; open this folder, and the f
 │   └─ test/                     decode, classify, policy, admission and pin-table batteries (node:test)
 ├─ apps/sandbox/src/main.ts      three scripted scenarios through the guard, offline or on a local validator
 ├─ apps/onchain/src/squads.ts    the Squads v4 spending-limit drill, for devnet or a local validator
+├─ apps/onchain/src/scenes.ts    DEMO.md's scenes end to end through guardedWallet, with a real SIGKILL and restore
 ├─ apps/cockpit/                 the dashboard: the record and the Squads limit, read-only, on 127.0.0.1
 ├─ apps/agentkit/src/run.ts      a scripted Solana Agent Kit agent behind guardedWallet, for validation
 ├─ .github/workflows/ci.yml      the four gates on every push
@@ -81,7 +82,8 @@ message the signatures will cover, and the caller's clock and heights (SDK mode 
    every parsed proposal, allowed or denied. Keel's wasm and module were hashed when the guard was created.
 4. **Rules 4 to 18, in order:** latched; durable nonce; other signer; program not allowed; opaque program; instruction
    denied; destination not allowed; mint not allowed or unknown; over the per-transaction cap; over the fee cap;
-   intent in flight; intent attempts exhausted; over a window cap (SOL, each mint, fees), counted at admission;
+   intent in flight (an earlier attempt could still land, or is past its expiry with its outcome never reported);
+   intent attempts exhausted; over a window cap (SOL, each mint, fees), counted at admission;
    Keel's REGROUND; and under INHIBIT, an amount over the cap times Keel's clamp.
 5. **Rule 19.** Anything that throws denies as `fail-closed`. `check` never throws.
 
@@ -94,7 +96,9 @@ it binds the message hash, the expiry height and the policy hash. Around it:
 
 **Adapters** (`src/adapters/`). `guardedWallet(wallet, guard, { rpc })` is a Solana Agent Kit `BaseWallet` with
 exactly its members: it checks before the wallet signs, verifies what the wallet signed, sends the checked bytes
-itself, and reports the outcome. `guardedSigner(signer, guard)` does the same for a kit partial signer. Both throw
+itself, and reports the outcome. What it only signs, it follows up by signature before the next check, and reports what
+the chain says. A failed send is reported `failed` only when the RPC refused the bytes. `guardedSigner(signer, guard)`
+checks and verifies the same way for a kit partial signer. Both throw
 `SolanautDenied { rule, reason, decision }`.
 
 **State** (`state.ts`) changes only by applying an entry. Given a `log` path, the record is a file (`record.ts`):
@@ -108,9 +112,10 @@ bytes. Without a `log`, the record lives in memory.
 
 | Workflow | Command | What it does |
 |---|---|---|
-| Test | `npm test` | the SDK's batteries and the cockpit's: 145 tests |
+| Test | `npm test` | the SDK's batteries and the cockpit's: 152 tests |
 | The dashboard | `npm run cockpit -- --record <r> --policy <p> [--rpc <url> --squads <f>]` | the guard's record and the Squads limit, on 127.0.0.1 |
 | The on-chain drill | `node apps/onchain/src/squads.ts --url <rpc> …` | a Squads v4 limit naming the agent's key, a stolen-key drill, the revoke timed |
+| The demo's scenes | `node apps/onchain/src/scenes.ts --url <rpc> …` | the scenes end to end through `guardedWallet`, with a record for the cockpit |
 | Typecheck | `npm run typecheck` | `tsc`, no emit |
 | Fuzz the decoder harder | `FUZZ_SEED=<n> FUZZ_RUNS=<count> node --test --test-name-pattern=fuzz packages/sdk/test/decode.test.ts` | mutated messages must decode as kit decodes them, or deny with a named rule |
 | Pin a lookup table | `npm run pin-table -- --url <rpc> <table>` | prints the table's pin for the policy |
@@ -137,7 +142,8 @@ bytes. Without a `log`, the record lives in memory.
 - **Tiers:** T3 files (the guard, the doctor, the claims, the evals, the public surface) change only with the gate
   shown failing first. T4 (public, mainnet, submission) is the human's.
 - **Environment:** there are no runtime environment variables. The guard keeps no clock; proposals carry their time.
-- **What is not here yet:** the devnet run of the on-chain drill (it waits for devnet SOL), a licence, and `programs/`.
+- **What is not here yet:** a licence, and `programs/`. The on-chain drill, the scenes and the cockpit have run on
+  devnet (`evals/onchain/squads-devnet.md`, `evals/e2e/scenes-devnet.md`).
 
 ## Changes
 
@@ -145,4 +151,4 @@ bytes. Without a `log`, the record lives in memory.
 |---|---|---|
 | Draft 1 | 2026-09-27 | First draft. |
 | Draft 2 | 2026-09-30 | The verified review: the new documents and ADRs in the tree; the defects D10 to D12 found in this code; the proposed canary; milestones in place of dates. |
-| Draft 3 | 2026-10-01 | The guard as rebuilt through milestone 2a.5: bytes decoded, instructions classified, policy v1, admission by rules 0 to 19, receipts, intents, the latch, a hash-chained record made durable and restored by replay; Keel verified by its bytes; sensor v1; the adapters; the on-chain drill, rehearsed; the cockpit; CI; the SDK's one runtime dependency. |
+| Draft 3 | 2026-10-01 | The guard as rebuilt through milestone 2a.5: bytes decoded, instructions classified, policy v1, admission by rules 0 to 19, receipts, intents, the latch, a hash-chained record made durable and restored by replay; Keel verified by its bytes; sensor v1; the adapters; the on-chain drill, rehearsed; the cockpit; CI; the SDK's one runtime dependency. Then devnet: the drill, the scenes and the cockpit run there; D13 and D14 closed in the adapters and the intents. |

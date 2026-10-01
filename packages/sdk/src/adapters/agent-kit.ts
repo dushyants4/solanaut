@@ -11,6 +11,9 @@
 //     might add on send goes out. Then it waits for the outcome and reports it to the guard. A send
 //     the RPC refused is reported failed; one whose fate is unknown, unknown.
 //   - signMessage is denied: a raw ed25519 signature over chosen bytes can be a transaction signature.
+//   - What it only signed, or sent without learning the outcome, it follows up: before the next
+//     proposal it asks the RPC, by signature, and reports what the chain says (D14). Unseen and past
+//     its last valid height, an attempt is reported expired; seen, landed or failed.
 //
 // Transactions are web3.js Transaction or VersionedTransaction objects, read by their shape, so the
 // SDK imports no web3.js (ADR-009).
@@ -23,6 +26,7 @@
 import type { Guard } from "../guard.ts";
 import type { Decision } from "../log.ts";
 import { verifyEd25519 } from "../latch.ts";
+import { encodeBase58 } from "../base58.ts";
 import { SolanautDenied } from "../errors.ts";
 import { jsonRpc, type RpcLike } from "./rpc.ts";
 
@@ -59,6 +63,13 @@ interface Admitted {
   lastValidBlockHeight: bigint;
 }
 
+/** A signed attempt whose outcome the guard has not been told. */
+interface Unreported {
+  decision: string;
+  signature: string;
+  lastValidBlockHeight: bigint;
+}
+
 const equal = (a: Uint8Array, b: Uint8Array) => a.length === b.length && a.every((x, i) => x === b[i]);
 
 /** The message bytes a web3.js transaction's signatures cover. */
@@ -78,6 +89,13 @@ function signatureOf(tx: any, key: string): Uint8Array | null {
   return i >= 0 && tx.signatures?.[i] ? new Uint8Array(tx.signatures[i]) : null;
 }
 
+/** The transaction's id, its first signature, if the wallet's key made it: the fee payer's. */
+function idOf(tx: any, key: string): string | null {
+  const first = typeof tx.serializeMessage === "function" ? tx.signatures?.[0] : { publicKey: tx.message?.staticAccountKeys?.[0], signature: tx.signatures?.[0] };
+  if (first?.publicKey?.toBase58?.() !== key || !first.signature) return null;
+  return encodeBase58(new Uint8Array(first.signature));
+}
+
 /** Remove every signature from a transaction object the caller holds. */
 function strip(tx: any): void {
   try {
@@ -94,6 +112,41 @@ export function guardedWallet<Tx = any>(wallet: BaseWalletLike<Tx>, guard: Guard
   const now = opts.now ?? Date.now;
   const key = wallet.publicKey.toBase58();
   if (!guard.policy.principal.includes(key)) throw new Error(`the wallet's key ${key} is not in the policy's principal`);
+
+  const unreported = new Map<string, Unreported>();
+
+  /** Follow up what was signed and not seen land: report what the chain says, before the next check. */
+  async function reconcile(): Promise<void> {
+    if (!rpc.getSignatureStatus || unreported.size === 0) return;
+    let height: bigint;
+    try {
+      height = await rpc.getBlockHeight();
+    } catch {
+      return; // Unread, nothing is reported: the guard holds the intents, which is safe.
+    }
+    for (const u of [...unreported.values()]) {
+      let status: "landed" | "failed" | "pending" | null;
+      try {
+        status = await rpc.getSignatureStatus(u.signature);
+      } catch {
+        continue;
+      }
+      // The height was read before the status: past it, a signature the chain does not show never landed.
+      const outcome = status === "landed" || status === "failed" ? status : status === null && height > u.lastValidBlockHeight ? "expired" : null;
+      if (!outcome) continue;
+      try {
+        guard.report(u.decision, outcome);
+      } catch {
+        // Already reported by the caller: nothing left to follow up.
+      }
+      unreported.delete(u.decision);
+    }
+  }
+
+  const follow = (tx: Tx, a: Admitted) => {
+    const id = idOf(tx, key);
+    if (id) unreported.set(a.decision.hash, { decision: a.decision.hash, signature: id, lastValidBlockHeight: a.lastValidBlockHeight });
+  };
 
   /** Release decisions that will never be signed: their bytes cannot land. */
   const expire = (as: Admitted[]) => {
@@ -144,6 +197,7 @@ export function guardedWallet<Tx = any>(wallet: BaseWalletLike<Tx>, guard: Guard
   }
 
   async function signAll(txs: Tx[]): Promise<{ signed: Tx[]; admitted: Admitted[] }> {
+    await reconcile();
     const admitted = await admitAll(txs);
     let signed: Tx[];
     try {
@@ -156,6 +210,13 @@ export function guardedWallet<Tx = any>(wallet: BaseWalletLike<Tx>, guard: Guard
     return { signed, admitted };
   }
 
+  /** Sign only: the caller sends. Follow each up, since nothing else will report it. */
+  async function signOnly(txs: Tx[]): Promise<Tx[]> {
+    const { signed, admitted } = await signAll(txs);
+    signed.forEach((tx, i) => follow(tx, admitted[i]!));
+    return signed;
+  }
+
   async function signAndSend<T extends Tx>(tx: T, options?: unknown): Promise<{ signature: string }> {
     const { signed, admitted } = await signAll([tx]);
     const a = admitted[0]!;
@@ -165,18 +226,21 @@ export function guardedWallet<Tx = any>(wallet: BaseWalletLike<Tx>, guard: Guard
     } catch (e) {
       // Only the RPC's refusal proves the bytes went nowhere. After any other failure they may still
       // land, so the payment stays in flight until its blockhash expires, rather than free a re-sign.
-      guard.report(a.decision.hash, (e as { refused?: unknown } | null)?.refused === true ? "failed" : "unknown");
+      const refused = (e as { refused?: unknown } | null)?.refused === true;
+      guard.report(a.decision.hash, refused ? "failed" : "unknown");
+      if (!refused) follow(signed[0]!, a);
       throw e;
     }
     const outcome = await rpc.confirm(signature, a.lastValidBlockHeight).catch(() => "unknown" as const);
     guard.report(a.decision.hash, outcome);
+    if (outcome === "unknown") follow(signed[0]!, a);
     return { signature };
   }
 
   return Object.freeze({
     publicKey: wallet.publicKey,
-    signTransaction: async <T extends Tx>(tx: T) => (await signAll([tx])).signed[0] as T,
-    signAllTransactions: async <T extends Tx>(txs: T[]) => (await signAll(txs)).signed as T[],
+    signTransaction: async <T extends Tx>(tx: T) => (await signOnly([tx]))[0] as T,
+    signAllTransactions: async <T extends Tx>(txs: T[]) => (await signOnly(txs)) as T[],
     signAndSendTransaction: signAndSend,
     sendTransaction: async <T extends Tx>(tx: T) => (await signAndSend(tx)).signature,
     signMessage: async (_message: Uint8Array): Promise<Uint8Array> => {

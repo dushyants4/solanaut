@@ -80,6 +80,12 @@ export function couldStillLand(a: Attempt, blockHeight: bigint | null): boolean 
 }
 
 /**
+ * An attempt whose outcome nobody has reported as final. Past its last valid height it can no longer
+ * land, but it may already have: until a report says which, it holds its intent (D14).
+ */
+export const unresolved = (a: Attempt): boolean => a.status === "pending" || a.status === "unknown";
+
+/**
  * The live attempts at these effects, or null if the next allowed one starts a new intent. An
  * intent ends when an attempt lands, or once its window has passed since its first attempt with
  * nothing still able to land, so an exhausted intent is not blocked forever.

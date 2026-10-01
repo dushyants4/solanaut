@@ -81,7 +81,8 @@ agent that retries pays again.
   as the kit's `sendTx` does once its double signing is fixed. Nothing reports the outcome to the guard, which learns
   it only from expiry. A retry of a payment that landed unreported is admitted once its first attempt's last valid
   height has passed. The guard knows the first attempt can no longer land; it does not know that it already did. This
-  is defect D14 in `docs/SPEC.md` §10, found here.
+  was defect D14 in `docs/SPEC.md` §10, found here. It was closed the same day ([sdk/intents-d14.md](../sdk/intents-d14.md)):
+  an unreported attempt now holds its intent, and `guardedWallet` follows up what it signed.
 
 ## Not shown
 

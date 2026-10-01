@@ -80,11 +80,12 @@ function keypairWallet(kp = agent, calls: string[] = []): BaseWalletLike {
   };
 }
 
-/** An RPC that records what it is sent, at a fixed block height, and lands everything unless told otherwise. */
-function fakeRpc(o: { refuse?: boolean; drop?: boolean; outcome?: "landed" | "failed" | "unknown" } = {}) {
+/** An RPC that records what it is sent, at a block height the test moves, and lands everything unless told otherwise. */
+function fakeRpc(o: { refuse?: boolean; drop?: boolean; outcome?: "landed" | "failed" | "unknown"; statuses?: Map<string, "landed" | "failed" | "pending"> } = {}) {
   const sent: Uint8Array[] = [];
+  const at = { height: 1_000n };
   const rpc: RpcLike = {
-    getBlockHeight: async () => 1_000n,
+    getBlockHeight: async () => at.height,
     sendRawTransaction: async (wire) => {
       if (o.refuse) throw new RpcRefused("sendTransaction", "Transaction simulation failed: insufficient funds");
       // The request went out and no answer came back: the RPC may have forwarded the bytes.
@@ -93,8 +94,9 @@ function fakeRpc(o: { refuse?: boolean; drop?: boolean; outcome?: "landed" | "fa
       return encodeBase58(wire.subarray(1, 65));
     },
     confirm: async () => o.outcome ?? "landed",
+    ...(o.statuses ? { getSignatureStatus: async (signature: string) => o.statuses!.get(signature) ?? null } : {}),
   };
-  return { rpc, sent };
+  return { rpc, sent, at };
 }
 
 let blockhashSeed = 0;
@@ -270,6 +272,47 @@ test("a send whose fate is unknown is reported unknown, not failed: the signed b
   await rejectsWith(w.signAndSendTransaction(legacy(pay(treasury, 10))), "intent-in-flight");
 });
 
+test("D14, sign-only: before the next proposal, guardedWallet reads the outcome of what it signed and reports it", async () => {
+  const statuses = new Map<string, "landed" | "failed" | "pending">();
+  const { rpc, at } = fakeRpc({ statuses });
+  const g = await guard();
+  const w = guardedWallet(keypairWallet(), g, { rpc, now });
+  const reports = () => g.entries().filter((e) => e.kind === "report").map((e) => e.kind === "report" && e.outcome);
+
+  // Signed, and sent by the caller; it lands. The guard is told before the next proposal is checked.
+  const t1 = await w.signTransaction(legacy(pay(treasury, 20)));
+  statuses.set(encodeBase58(t1.signature!), "landed");
+  await w.signTransaction(legacy(pay(treasury, 21)));
+  assert.deepEqual(reports(), ["landed"], "the landed payment is reported");
+  // Signed and never sent: no status, and once the height passes its last valid one, it is reported expired.
+  at.height = 1_150n;
+  await rejectsWith(w.signTransaction(legacy(pay(treasury, 21))), "intent-in-flight");
+  assert.deepEqual(reports(), ["landed"], "at exactly its last valid height it can still land: nothing to report yet");
+  at.height = 1_151n;
+  const third = await w.signTransaction(legacy(pay(treasury, 21))).then(() => "allowed", (e: SolanautDenied) => e.rule);
+  assert.deepEqual(reports(), ["landed", "expired"], "unseen and past its expiry: it can never land, and it did not");
+  assert.notEqual(third, "intent-in-flight", "the expired report freed the intent; what Keel makes of the retry is Keel's");
+});
+
+test("D14, sign-only: a payment seen but not yet confirmed is not reported, and without a status reader the guard holds the intent", async () => {
+  const statuses = new Map<string, "landed" | "failed" | "pending">();
+  const { rpc, at } = fakeRpc({ statuses });
+  const g = await guard();
+  const w = guardedWallet(keypairWallet(), g, { rpc, now });
+  const t = await w.signTransaction(legacy(pay(treasury, 30)));
+  statuses.set(encodeBase58(t.signature!), "pending");
+  at.height = 2_000n;
+  await rejectsWith(w.signTransaction(legacy(pay(treasury, 30))), "intent-in-flight");
+  assert.equal(g.entries().filter((e) => e.kind === "report").length, 0, "processed, not confirmed: no outcome yet");
+
+  const bare = fakeRpc();
+  const g2 = await guard();
+  const w2 = guardedWallet(keypairWallet(), g2, { rpc: bare.rpc, now });
+  await w2.signTransaction(legacy(pay(treasury, 31)));
+  bare.at.height = 2_000n;
+  await rejectsWith(w2.signTransaction(legacy(pay(treasury, 31))), "intent-in-flight");
+});
+
 test("signMessage is denied: a raw signature over chosen bytes can be a transaction signature", async () => {
   const calls: string[] = [];
   const w = guardedWallet(keypairWallet(agent, calls), await guard(), { rpc: fakeRpc().rpc, now });
@@ -307,6 +350,9 @@ test("jsonRpc: sends base64 bytes, reads the height, and turns signature statuse
   const calls: { method: string; params: unknown[] }[] = [];
   let height = 100;
   const statuses: Record<string, unknown> = { landed: { err: null, confirmationStatus: "confirmed" }, failed: { err: { InstructionError: [0, "Custom"] }, confirmationStatus: "finalized" }, "rate-limited": { err: null, confirmationStatus: "confirmed" } };
+  // Processed at its last valid height: the first read sees it processed, while the height has already moved past.
+  let lateReads = 0;
+  const late = () => (lateReads++ === 0 ? { err: null, confirmationStatus: "processed" } : { err: null, confirmationStatus: "confirmed" });
   let limited = 0;
   let heightLimited = 0;
   const server = createServer(async (req, res) => {
@@ -327,7 +373,7 @@ test("jsonRpc: sends base64 bytes, reads the height, and turns signature statuse
     const result =
       method === "getBlockHeight" ? height++ :
       method === "sendTransaction" ? "sig-from-rpc" :
-      method === "getSignatureStatuses" ? { context: { slot: 1 }, value: [statuses[(params as string[][])[0]![0]!] ?? null] } : null;
+      method === "getSignatureStatuses" ? { context: { slot: 1 }, value: [(params as string[][])[0]![0] === "late" ? late() : statuses[(params as string[][])[0]![0]!] ?? null] } : null;
     res.setHeader("content-type", "application/json");
     res.end(JSON.stringify(method === "sendTransaction" && (params as unknown[])[0] === "AA==" ? { jsonrpc: "2.0", id, error: { message: "Transaction simulation failed" } } : { jsonrpc: "2.0", id, result }));
   });
@@ -346,6 +392,12 @@ test("jsonRpc: sends base64 bytes, reads the height, and turns signature statuse
     assert.equal(await rpc.confirm("landed", 1_000n), "landed");
     assert.equal(await rpc.confirm("failed", 1_000n), "failed");
     assert.equal(await rpc.confirm("never-seen", BigInt(height + 2)), "expired", "unseen until its last valid height passed");
+    assert.equal(await rpc.confirm("late", 1n), "landed", "seen processed with the height already past: not expired, it lands");
+    assert.equal(await rpc.getSignatureStatus!("landed"), "landed");
+    assert.equal(await rpc.getSignatureStatus!("failed"), "failed");
+    assert.equal(await rpc.getSignatureStatus!("never-seen"), null);
+    const lookups = calls.filter((c) => c.method === "getSignatureStatuses").slice(-3);
+    for (const c of lookups) assert.deepEqual((c.params as unknown[])[1], { searchTransactionHistory: true }, "an outcome after the fact searches history");
   } finally {
     server.close();
   }
