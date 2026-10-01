@@ -18,7 +18,7 @@ substantive change; *last reviewed* moves at every review.
 | [docs/READINESS.md](../docs/READINESS.md) | Draft 2 | review | operator, with the evaluator | the human, every seat, auditors | 2026-10-01 | 2c.1 |
 | [docs/RISKS.md](../docs/RISKS.md) | Draft 1 | draft | architect, with the evaluator | the human, every seat | 2026-10-01 | 2c.1 |
 | [docs/OVERVIEW.md](../docs/OVERVIEW.md) | Draft 3 | draft | integrator | engineers new to the repo, judges | 2026-10-01 | 2a.8 |
-| [docs/SPEC.md](../docs/SPEC.md) | Draft 3 | draft | architect | the builder, evaluator and integrator seats | 2026-10-01 | 2a.6 |
+| [docs/SPEC.md](../docs/SPEC.md) | Draft 4 | draft | architect | the builder, evaluator and integrator seats | 2026-10-01 | 2c.1 |
 | [docs/ARCHITECTURE.md](../docs/ARCHITECTURE.md) | 4 | current | architect | everyone | 2026-10-01 | 2c.1 |
 | [docs/HACKATHON.md](../docs/HACKATHON.md) | 3 | current | archivist | the human, every seat | 2026-09-30 | S.1 |
 | [docs/CLAIMS.md](../docs/CLAIMS.md) | 3.2 | current (T3) | archivist, sourced | every public sentence | 2026-10-01 | every milestone |

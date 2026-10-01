@@ -1,13 +1,13 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 3** · 2026-10-01 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4** · 2026-10-01 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
 > Register: `kb/DOCUMENTS.md`.
 
 This is what the Beta MVP builds (milestones 2a.1 to 2a.10 in `docs/ROADMAP.md`), stated concretely enough to write
-the failing tests from. What the Alpha adds is marked **(Alpha)**. The code that exists today is described in
+the failing tests from. What the Alpha adds is marked **(Alpha)**, and §13 states it as requirements with IDs. The code that exists today is described in
 `docs/OVERVIEW.md`, and its defects are in §10. They are fixed first.
 
 ## 1. Scope
@@ -552,6 +552,125 @@ the kit signer interface to wrap (`TransactionPartialSigner`); and, at milestone
 calls a factory the caller supplies, whose documented example uses version 0. Kit's separate plugin packages were not
 checked. The guard decodes whatever version arrives, so the answer changes no rule.
 
+## 13. The Alpha, as requirements (milestone 2c.1)
+
+**A draft for the human to approve at 2c.1.** Each requirement has an ID, is stated so a test can fail it, and names
+where it comes from and what will verify it. Every Beta rule and invariant (§3 to §8) still holds; these add to them.
+A choice that needs research before it can be stated is marked **ADR owed**, and the ADR is written before that
+milestone's code.
+
+### 13.1 Signer process (milestone 3.1)
+
+| ID | Requirement | From | Verified by |
+|---|---|---|---|
+| SIG-1 | The key lives only in `solanaut-signer`. The agent gets receipts and signatures, never key material | §2, T9 | a test that no API reachable from the agent returns key bytes |
+| SIG-2 | It answers `propose`, `report` and `status` over a Unix socket, and refuses every other method | §8 | one test per method, and an unknown method refused |
+| SIG-3 | Every request has an ID and a deadline of 30 s or less. A retried ID returns the first answer, and admits nothing twice | §8 | retried and timed-out requests |
+| SIG-4 | It stamps time from a monotonic clock, and fetches block height, blockhash validity and signature statuses from the operator's RPC. Values a caller sends are ignored, and every decision records `source: "signer"` | §2.1, T20, T21 | a caller lying about time and height changes no decision |
+| SIG-5 | It resolves a lookup table that is not pinned only at finalized commitment, and records what it read | §2.1, T14 | a table extended after its read |
+| SIG-6 | It signs only bytes whose receipt redeems (§3), then compares the signature over the admitted message | §3, §8 | each redeem condition broken once |
+| SIG-7 | It follows up every attempt it signed, reporting landed, failed or expired from the chain | §7, D14 | the double-send battery with no caller reports |
+| SIG-8 | One writer, restore by replay on start, and a failed write shuts it | §7 | the restart battery, 100 kills (`docs/READINESS.md`) |
+| SIG-9 | Reads back off through rate limits; a send is never retried by the client | §8, RK16 | an RPC answering 429 |
+| SIG-10 | It runs as its own OS user, or the documents state that it does not and what that leaves | T9, T29 | **ADR owed:** the signer's process, user and transport |
+| SIG-11 | 500 lines or fewer, stated before it is written and measured after | §8 | a line count in its receipt |
+
+### 13.2 Operator-signed policy (milestone 3.2)
+
+| ID | Requirement | From | Verified by |
+|---|---|---|---|
+| POL-1 | A guard loads a policy only with the operator's ed25519 signature over a structured UTF-8 text naming the guard, the cluster, the policy hash and a version, which Phantom's `signMessage` can sign | ADR-011 §1 | a valid signature loads |
+| POL-2 | No signature, a wrong key, another guard or cluster, a hash that differs, or a version older than the current one: the guard refuses to start | T11 | one test each |
+| POL-3 | The agent's keys cannot sign a policy: the operator key is outside the principal and is not the fee payer | rule 0 | an invalid policy |
+| POL-4 | The record holds each signed policy, so replay knows which policy made each decision | §7 | replay across a policy change |
+| POL-5 | How a signed policy replaces the running one: a restart, or a recorded entry | §7 | **ADR owed:** policy changes |
+
+### 13.3 Token-2022 and token accounts (milestone 3.3)
+
+| ID | Requirement | From | Verified by |
+|---|---|---|---|
+| TOK-1 | Each listed Token-2022 mint's extension set is pinned in the policy. A mint whose extensions differ at admission is denied | §4, T15 | an extension added after listing |
+| TOK-2 | The settings an extension lets an authority change after initialisation are re-read at admission, from the operator's RPC | §4, §12 | each mutable setting changed once |
+| TOK-3 | TransferCheckedWithFee is value-moving: the amount and the fee count against the mint's caps | §4 | a fee that crosses the cap |
+| TOK-4 | Associated Token Account Create and CreateIdempotent are decoded: the rent counts as SOL to the owner, who must be an allowed destination. RecoverNested is denied | §4, T27 | an account created for an unlisted owner |
+| TOK-5 | Which settings are mutable, and whether a transfer hook is ever admitted, is decided from the `spl-token-2022` source | §12 | **ADR owed:** Token-2022 settings |
+
+### 13.4 Opaque programs bounded (milestone 3.4)
+
+| ID | Requirement | From | Verified by |
+|---|---|---|---|
+| OPQ-1 | A transaction calling an allowlisted opaque program is simulated on the operator's RPC. Every change to a principal-controlled account (lamports, token amounts, owner, delegate, close authority) must be within the policy | ADR-009, T3 | a simulated drain denied |
+| OPQ-2 | Lighthouse assertions are appended for every principal-controlled account, holding its balances to the simulated bound and its authorities unchanged. The receipt binds the bytes with the assertions | T3, ADR-009 | the receipt's hash covers them |
+| OPQ-3 | A simulation that fails, is unavailable, or disagrees with the decoded effects is a denial | rule 19 | each failure mode |
+| OPQ-4 | Only read-only assertion instructions are appended or admitted. Lighthouse's memory-write instructions are denied until they have a rule | T28, §12 | a memory-write instruction |
+| OPQ-5 | If the assertions would push the transaction past its size or compute limit, the proposal is denied, never sent unbounded | T3 | an oversized route |
+| OPQ-6 | On a Surfpool mainnet fork, a Jupiter route bounded this way lands, and the same route altered to drain fails on-chain by an assertion | `docs/ROADMAP.md` 3.4 | the fork run's receipt; if it cannot be met, the Alpha denies opaque programs and says so (RK6) |
+| OPQ-7 | The assertion set, and how the simulated bound becomes it | — | **ADR owed:** bounding opaque programs |
+
+### 13.5 Phantom paths (milestone 3.5)
+
+| ID | Requirement | From | Verified by |
+|---|---|---|---|
+| PHX-1 | A proposal denied only by a cap (rules 12, 16 or 18) may become a request for the operator to co-sign in Phantom. What comes back must pass §8's rule for appended instructions and the fee check again before it is sent | ADR-011 §4, T28 | a co-signed result with an appended write instruction is refused |
+| PHX-2 | An escalation and its outcome are recorded, and replay explains them | §7 | replay of an escalated decision |
+| PHX-3 | The MCP firewall exposes only the tools the policy names. `send_solana_transaction`'s bytes go through the guard; `transfer_tokens`' fields are checked, including the rent of the token account it creates by default; `sign_solana_message` and every other tool are denied | ADR-011 §3, T17 | one test per tool |
+| PHX-4 | A `networkId` other than the policy's cluster is refused, including the tool's default, `solana:mainnet`, when the cluster is devnet | the Phantom MCP source note | the default refused on devnet |
+| PHX-5 | Phantom's MCP server runs as a separate OS user, and its agent wallet is funded only through the spending limit. Against a compromise under that user, the firewall is advisory, and the documents say so | T29 | a devnet run record |
+
+### 13.6 ElizaOS plugin (milestone 3.6)
+
+| ID | Requirement | From | Verified by |
+|---|---|---|---|
+| ELZ-1 | The guard sits in `plugin-solana`'s signing path, with the same verdicts as the SDK on the adapters battery's cases | §8 | the adapters battery |
+| ELZ-2 | Whether it wraps the plugin's action handlers or its wallet is decided from the plugin's source | §12 | **ADR owed:** the ElizaOS integration point |
+
+### 13.7 Log anchor (milestone 3.7)
+
+| ID | Requirement | From | Verified by |
+|---|---|---|---|
+| ANC-1 | `solanaut_anchor`, in Anchor 1.2, has one instruction, `anchor(head: [u8; 32], seq: u64)`, which writes the head to one PDA per guard and emits `DecisionAnchored` | §9 | a devnet anchor |
+| ANC-2 | Only the guard's anchor authority may anchor, and `seq` must increase | T12 | a stale or foreign anchor refused |
+| ANC-3 | Replay checked against the anchored head detects a record rewritten before that anchor | T12 | a rewritten record |
+| ANC-4 | A verified build and a `security.txt` | §9 | the verification result |
+| ANC-5 | How often the head is anchored, and who pays | — | decided in the anchor's ADR before 3.7 |
+
+### 13.8 Dashboard v1 (milestone 3.8)
+
+| ID | Requirement | From | Verified by |
+|---|---|---|---|
+| DSH-1 | A view across several guards: decisions, spend against caps, intents, latches and each Squads limit | ADR-011 §5 | screenshots and a run record |
+| DSH-2 | Alerts: a latch, a run of denials, a window near its cap, a limit near its period's total | ADR-011 §5 | each alert triggered once |
+| DSH-3 | Operator actions (release the latch, revoke the limit) are signed in Phantom through the Wallet Standard; the dashboard holds no keys | ADR-011 §5 | a release and a revoke on devnet |
+| DSH-4 | Localhost only, until a hosted domain passes an OWASP ASVS level 2 review and Phantom's domain review | ADR-011 §5 | the server binds 127.0.0.1 |
+
+### 13.9 CI hardened (milestone 3.9)
+
+| ID | Requirement | From | Verified by |
+|---|---|---|---|
+| CI-1 | The fault injections that showed each gate failing re-run on every push (the `bite` job) | `evals/README.md` | a planted fault fails CI |
+| CI-2 | The coverage, mutation, property, fuzz, differential and performance gates in `docs/READINESS.md`, as confirmed at 2c.1, run in CI, each seen failing first | READINESS | each gate's receipt |
+
+### 13.10 Tested hard (milestone 3.10)
+
+| ID | Requirement | From | Verified by |
+|---|---|---|---|
+| RT-1 | Every Leg 3 threshold in `docs/READINESS.md`, as confirmed at 2c.1, is met | READINESS | receipts |
+| RT-2 | The red team: at least 40 cases in at least 10 classes, by an evaluator who did not build the code, given only the spec; each denied by its named rule or bounded on-chain | READINESS, RK12 | the red team's report |
+| RT-3 | The open questions in §12 are decided, each with a measured stream: when REGROUND latches (ADR-012), runs of failed outcomes, and loops that alternate shapes | §12 | the loop battery |
+| RT-4 | Threat model v3 is reviewed, and no critical or high finding is open | `docs/ROADMAP.md` 3.10 | the Alpha milestone review |
+
+### 13.11 Decisions owed before Leg 3 builds
+
+| ADR | Decides | Before |
+|---|---|---|
+| ADR-012 | when REGROUND latches the guard (proposed; the human's) | the demo is recorded |
+| owed | the signer's process, OS user and transport (SIG-10) | 3.1 |
+| owed | policy signing and policy changes (POL-5) | 3.2 |
+| owed | Token-2022's mutable settings and transfer hooks (TOK-5) | 3.3 |
+| owed | bounding opaque programs: simulation and the assertion set (OPQ-7) | 3.4 |
+| owed | the ElizaOS integration point (ELZ-2) | 3.6 |
+| owed | the anchor's cadence and payer (ANC-5) | 3.7 |
+
 ## Changes
 
 | Version | Date | What changed |
@@ -559,3 +678,4 @@ checked. The guard decodes whatever version arrives, so the answer changes no ru
 | Draft 1 | 2026-09-27 | First draft, from the research foundation (`kb/milestones/2026-09-27_R-research.md`). |
 | Draft 2 | 2026-09-30 | The verified review (`runs/2026-09-30-verified-review-roadmap.md`): trust per mode; v1 decoded; tables pinned; an allowlist per instruction; durable nonces and other signers denied; the fee rule corrected; intents keyed by effects; the log as the state; the adapter surface; the structured latch release; the Squads membership question answered; D10 to D12; new battery cases. Phases are now the roadmap's milestones. |
 | Draft 3 | 2026-10-01 | Built through milestone 2a.5 (`runs/2026-10-01-beta-build.md`): the effects model as implemented (`otherSigners`, outflow sources, denial rules, the intent key's definition); the record's four entry kinds; the decisions made while building, in §4 and §7; kit's default version answered; D1, D2, D5, D6, D7, D9, D10 and D12 closed; then 2a.6: the durable record, restore, the lock, replay, the latch as a recorded fact, and D11 closed; then 2a.7: Keel's bytes and telemetry checked, sensor v1 as built and measured, D3, D4 and D8 closed, an open question on runs of failures; then 2a.8: the adapters as built; then 2a.10: an open question on latching after a denied retry; then 2b.3: integrating with Solana Agent Kit; then devnet (2a.9, 2a.10, 2b.1, 2b.3): D13 found and closed, D14 found and closed (§7, §11's double-send battery), the open question on latching seen on devnet. |
+| Draft 4 | 2026-10-01 | For milestone 2c.1: §13, the Alpha as requirements with IDs (SIG, POL, TOK, OPQ, PHX, ELZ, ANC, DSH, CI, RT), each traced to its source and the test that will verify it; six ADRs owed before Leg 3 builds. |
