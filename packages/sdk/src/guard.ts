@@ -5,6 +5,8 @@
 // again, Keel included, and continues where it stopped. Every error is a denial: a guard that
 // cannot decide, or cannot record, does not sign.
 
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { Governor, wasmDigest, type Posture, type Telemetry } from "@gubernaut/core";
 import { effectsOf, type ClassifyContext, type EffectsV1 } from "./classify.ts";
 import { canonicalJSON, sha256hex } from "./canonical.ts";
@@ -13,16 +15,45 @@ import { hashOf, OUTCOMES, seal, type Amounts, type Decision, type DecisionEntry
 import { DecodeError } from "./message.ts";
 import { contextOf, createPolicy, type Policy } from "./policy.ts";
 import { fileStore, memoryStore, type EntryStore } from "./record.ts";
-import { sensorV0, type Sensor } from "./sensor.ts";
+import { sensorV1, type Sensor } from "./sensor.ts";
 import { apply, couldStillLand, currentIntent, initialState, nowFor, windowTotals, type GuardState } from "./state.ts";
 
 export type { Decision, Entry, Outcome, RuleV1 } from "./log.ts";
 export type { EntryStore } from "./record.ts";
 export type { Sensor, SensorView } from "./sensor.ts";
 
-/** The controller Solanaut was built and tested against: @gubernaut/core 1.0.1. */
+/** The controller Solanaut was built and tested against: @gubernaut/core 1.0.1's embedded wasm, by SHA-256. */
 export const VERIFIED_KEEL_DIGEST = "834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8";
+/** The module that runs it, `dist/index.js` of @gubernaut/core 1.0.1, by SHA-256: the JavaScript around the wasm counts too. */
+export const VERIFIED_KEEL_MODULE = "8f642684bf1dccbdaed1e35e0092e11d0cfc309c0491b1c79f6472616b9c7190";
 const KEEL_VERSION = "1.0.1";
+
+/**
+ * Hash a Keel module's source and the controller embedded in it (defect D4). Keel 1.0.1 declares
+ * its digest as a constant and checks only the length of what it loads (upstream finding U-1), so
+ * Solanaut hashes the bytes itself: the wasm against the declared digest, and the whole module,
+ * which is the code that runs the wasm, against the pinned file.
+ */
+export function verifyKeelSource(text: string): { ok: boolean; moduleSha256: string; wasmSha256: string; problem: string } {
+  const moduleSha256 = sha256hex(text);
+  const m = /var WASM_BASE64 = "([A-Za-z0-9+/=]+)";/.exec(text);
+  const wasmSha256 = m ? sha256hex(new Uint8Array(Buffer.from(m[1]!, "base64"))) : "";
+  let problem = "";
+  if (!m) problem = "the module embeds no controller";
+  else if (wasmSha256 !== VERIFIED_KEEL_DIGEST) problem = `the embedded controller hashes to ${wasmSha256}, not the verified ${VERIFIED_KEEL_DIGEST}`;
+  else if (moduleSha256 !== VERIFIED_KEEL_MODULE) problem = `the module that runs the controller hashes to ${moduleSha256}, not the verified ${VERIFIED_KEEL_MODULE}`;
+  return { ok: problem === "", moduleSha256, wasmSha256, problem };
+}
+
+/** Verify the Keel module this process actually loads, by the path Node resolves for it. */
+function verifyLoadedKeel(expectedDigest: string): void {
+  const path = fileURLToPath(import.meta.resolve("@gubernaut/core"));
+  const v = verifyKeelSource(readFileSync(path, "utf8"));
+  if (!v.ok) throw new Error(`Keel's controller failed verification: ${v.problem}. Refusing to guard with an unverified controller.`);
+  if (v.wasmSha256 !== expectedDigest || wasmDigest !== expectedDigest) {
+    throw new Error(`Keel's controller digest is ${v.wasmSha256}, not the expected ${expectedDigest}. Refusing to guard with an unverified controller.`);
+  }
+}
 
 export interface ProposalV1 {
   /** The serialized message the signatures will cover: legacy, v0 or v1. */
@@ -81,7 +112,18 @@ export interface Guard {
 
 const fmt = (n: bigint) => n.toLocaleString("en-US");
 const isHeight = (h: unknown) => h === undefined || (typeof h === "bigint" && h >= 0n);
-const finite = (t: Telemetry | null) => t !== null && [t.intensity, t.valence, t.repetition].every((x) => typeof x === "number" && Number.isFinite(x));
+const telemetryAccepted = (t: unknown): t is Telemetry => {
+  if (t === null || typeof t !== "object") return false;
+  const x = t as Record<string, unknown>;
+  return ["intensity", "valence", "repetition"].every((k) => typeof x[k] === "number") && Governor.accepts(t as Telemetry);
+};
+const describeTelemetry = (t: unknown) => {
+  try {
+    return JSON.stringify(t, (_k, v) => (typeof v === "number" && !Number.isFinite(v) ? String(v) : v)) ?? String(t);
+  } catch {
+    return String(t);
+  }
+};
 
 function proposalProblem(p: unknown): string | null {
   if (p === null || typeof p !== "object") return "the proposal is not an object";
@@ -114,7 +156,8 @@ interface Env {
 
 type DecisionBody = Omit<DecisionEntry, "v" | "seq" | "prev" | "hash">;
 
-const KEEL = { version: KEEL_VERSION, digest: wasmDigest, verified: "declared" as const };
+/** Every guard verifies the controller's bytes before it exists, so every decision it makes says so. */
+const KEEL = { version: KEEL_VERSION, digest: wasmDigest, verified: "bytes" as const };
 
 /**
  * One decision, by rules 1 to 19 in order, against the state as it stands. It ticks Keel for
@@ -166,7 +209,12 @@ function evaluateRules(env: Env, p: ProposalV1): DecisionBody {
 
     // Every parsed proposal reaches Keel, allowed or denied: re-proposing a refused transfer is a loop too.
     const telemetry = env.sensor(e, state.sensor, policy, at, parsed.shape);
-    keelSaw.telemetry = finite(telemetry) ? { intensity: telemetry.intensity, valence: telemetry.valence, repetition: telemetry.repetition } : null;
+    // D3: Keel's tick() coerces null, strings, booleans and arrays (upstream finding U-2), so
+    // telemetry is checked here, and refused before Keel sees it.
+    if (!telemetryAccepted(telemetry)) {
+      return decide(false, "fail-closed", `the sensor's telemetry was refused before Keel saw it: ${describeTelemetry(telemetry)}`);
+    }
+    keelSaw.telemetry = { intensity: telemetry.intensity, valence: telemetry.valence, repetition: telemetry.repetition };
     const k = env.gov.tick(telemetry);
     keelSaw.posture = k.posture;
     keelSaw.temperatureMax = k.temperatureMax;
@@ -251,12 +299,9 @@ function reapply(env: Env, e: Entry): void {
 }
 
 export async function createGuard(opts: GuardOptions): Promise<Guard> {
-  const expected = opts.expectedDigest ?? VERIFIED_KEEL_DIGEST;
-  if (wasmDigest !== expected) {
-    throw new Error(`Keel's controller digest is ${wasmDigest}, not the verified ${expected}. Refusing to guard with an unverified controller.`);
-  }
+  verifyLoadedKeel(opts.expectedDigest ?? VERIFIED_KEEL_DIGEST);
   const { policy, hash: policyHash } = createPolicy(opts.policy);
-  const env: Env = { policy, policyHash, ctx: contextOf(policy), sensor: opts.sensor ?? sensorV0, gov: await Governor.create(), state: initialState() };
+  const env: Env = { policy, policyHash, ctx: contextOf(policy), sensor: opts.sensor ?? sensorV1, gov: await Governor.create(), state: initialState() };
   const { state, gov } = env;
   const store = opts.log === undefined ? memoryStore() : typeof opts.log === "string" ? fileStore(opts.log) : opts.log;
 
@@ -392,7 +437,8 @@ const COMPARED = ["allow", "rule", "intentKey", "messageHash", "amounts", "postu
  * differs. Under the policy it was written with, a sound record replays exactly; under another
  * policy, replay says where that policy would have decided differently.
  */
-export async function replay(entries: readonly Entry[], policyInput: unknown, sensor: Sensor = sensorV0): Promise<ReplayResult> {
+export async function replay(entries: readonly Entry[], policyInput: unknown, sensor: Sensor = sensorV1): Promise<ReplayResult> {
+  verifyLoadedKeel(VERIFIED_KEEL_DIGEST);
   const { policy, hash } = createPolicy(policyInput);
   const env: Env = { policy, policyHash: hash, ctx: contextOf(policy), sensor, gov: await Governor.create(), state: initialState() };
   let decisions = 0;
@@ -433,3 +479,4 @@ export async function replay(entries: readonly Entry[], policyInput: unknown, se
   }
   return { ok: true, decisions, divergence: null };
 }
+

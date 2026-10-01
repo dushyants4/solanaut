@@ -18,6 +18,7 @@ seen failing might not be checking anything.
 | policy v1: `packages/sdk/test/policy.test.ts` | 12 of 12 against a stub; then 8 planted bugs, 7 caught until a known-answer hash test caught the eighth | 13/13 | `sdk/policy.md` |
 | admission: `packages/sdk/test/admission.test.ts` | 31 of 31 against a stub; then 12 planted bugs: 8 caught, 3 more once boundary tests were added, 1 equivalent | 33/33; `npm test` 98/98; the sandbox on a local validator | `sdk/admission.md` |
 | durable state: `packages/sdk/test/durable.test.ts` | 8 of 9 against stubs; the latch test once its drains stopped looking like a loop; then 8 planted bugs: 6 caught, fsync untestable here, 1 equivalent | 11/11, the restart battery's 20 SIGKILLs included; `npm test` 109/109 | `sdk/durable.md` |
+| Keel hardened and sensor v1: `keel.test.ts`, `sensor.battery.test.ts` | 8 of 10 against stubs (2 upstream reproductions pass); the benign battery's first run found a defect in both sensors; 5 planted bugs, 4 caught, the fifth after a through-the-guard test | 12/12 and 2/2; benign on fresh seeds: v1 0 of 1,200 stopped; `npm test` 123/123 | `sdk/keel.md` |
 
 CI runs the gates on every push since milestone 2a.1 (`ci/safety-net.md`). Still owed: a job that re-runs the fault
 injections on every push (the Office's `bite` job), with the thresholds in `docs/READINESS.md`, at milestone 3.9. The Beta batteries are specified in `docs/SPEC.md` §11.

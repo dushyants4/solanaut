@@ -1,7 +1,7 @@
 # OVERVIEW.md — the codebase, as it is
 
 > **Draft 3** · 2026-10-01 · owner: integrator · for: engineers new to this repository, and judges
-> reading the code · describes the tree **as it is today**, through milestone 2a.6 of `docs/ROADMAP.md`. What it will
+> reading the code · describes the tree **as it is today**, through milestone 2a.7 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
@@ -23,7 +23,7 @@ Solanaut/                        (an Obsidian vault; open this folder, and the f
 │   ├─ src/log.ts                the record's entries, hash-chained
 │   ├─ src/record.ts             where the record lives: memory, or a synced, locked file
 │   ├─ src/latch.ts              the release message and its ed25519 check
-│   ├─ src/sensor.ts             sensor v0: the proposal stream → Keel's three numbers
+│   ├─ src/sensor.ts             sensors v1 (the default) and v0: the proposal stream → Keel's three numbers
 │   ├─ src/tables.ts, bin/pin-table.ts   a lookup table's account → its pin for the policy
 │   └─ test/                     decode, classify, policy, admission and pin-table batteries (node:test)
 ├─ apps/sandbox/src/main.ts      three scripted scenarios through the guard, offline or on a local validator
@@ -73,8 +73,8 @@ message the signatures will cover, and the caller's clock and heights (SDK mode 
    class: value-moving, benign or denied. Anything unlisted is denied. It reports SOL and token outflows, signers
    outside the principal, durable nonces, opaque programs, the priority fee, base fee and tips, and the **intent
    key**: a hash of what moves, without fees, version, blockhash or memos.
-3. **Keel.** Sensor v0 turns the effects and the stream into three numbers, and Keel ticks on every parsed proposal,
-   allowed or denied.
+3. **Keel.** Sensor v1 turns the effects and the stream into three numbers; they are checked, and Keel ticks on
+   every parsed proposal, allowed or denied. Keel's wasm and module were hashed when the guard was created.
 4. **Rules 4 to 18, in order:** latched; durable nonce; other signer; program not allowed; opaque program; instruction
    denied; destination not allowed; mint not allowed or unknown; over the per-transaction cap; over the fee cap;
    intent in flight; intent attempts exhausted; over a window cap (SOL, each mint, fees), counted at admission;
@@ -93,15 +93,13 @@ one JSON entry per line, synced before the guard answers, locked to one guard. O
 again, Keel included, and continues where it stopped; `replay(entries, policy)` recomputes every decision from its
 bytes. Without a `log`, the record lives in memory.
 
-**Defects still open** (`docs/SPEC.md` §10): D3 and D4 (Keel's telemetry is not checked before a tick, and its bytes
-are not hashed; the digest check compares two constants), and D8 (sensor v0's rate term reads fast payments as full
-intensity on a real clock).
+**Defects:** every one found in review, D1 to D12, is closed (`docs/SPEC.md` §10). The open questions are in §12.
 
 ## 4. The workflows
 
 | Workflow | Command | What it does |
 |---|---|---|
-| Test | `npm test` | the decode, classify, policy, admission, durable-record and pin-table batteries: 109 tests |
+| Test | `npm test` | the decode, classify, policy, admission, durable-record, Keel, sensor and pin-table batteries: 123 tests |
 | Typecheck | `npm run typecheck` | `tsc`, no emit |
 | Fuzz the decoder harder | `FUZZ_SEED=<n> FUZZ_RUNS=<count> node --test --test-name-pattern=fuzz packages/sdk/test/decode.test.ts` | mutated messages must decode as kit decodes them, or deny with a named rule |
 | Pin a lookup table | `npm run pin-table -- --url <rpc> <table>` | prints the table's pin for the policy |
@@ -128,7 +126,7 @@ intensity on a real clock).
 - **Tiers:** T3 files (the guard, the doctor, the claims, the evals, the public surface) change only with the gate
   shown failing first. T4 (public, mainnet, submission) is the human's.
 - **Environment:** there are no runtime environment variables. The guard keeps no clock; proposals carry their time.
-- **What is not here yet:** Keel's hardening and sensor v1 (2a.7), the adapters (2a.8),
+- **What is not here yet:** the adapters (2a.8),
   the on-chain bound (2a.9), the dashboard (2a.10), a licence, and `programs/`.
 
 ## Changes
@@ -137,4 +135,4 @@ intensity on a real clock).
 |---|---|---|
 | Draft 1 | 2026-09-27 | First draft. |
 | Draft 2 | 2026-09-30 | The verified review: the new documents and ADRs in the tree; the defects D10 to D12 found in this code; the proposed canary; milestones in place of dates. |
-| Draft 3 | 2026-10-01 | The guard as rebuilt through milestone 2a.5: bytes decoded, instructions classified, policy v1, admission by rules 0 to 19, receipts, intents, the latch, a hash-chained record made durable and restored by replay; CI; the SDK's one runtime dependency. |
+| Draft 3 | 2026-10-01 | The guard as rebuilt through milestone 2a.5: bytes decoded, instructions classified, policy v1, admission by rules 0 to 19, receipts, intents, the latch, a hash-chained record made durable and restored by replay; Keel verified by its bytes; sensor v1; CI; the SDK's one runtime dependency. |

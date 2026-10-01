@@ -7,11 +7,11 @@
 //   intents        attempts at the same effects, so a second signature waits while an earlier
 //                  one could still land (docs/SPEC.md §7)
 //   latch          tripped by a run of denials or by REGROUND; released only by the operator
-//   sensor         what sensor v0 remembers of the proposal stream
+//   sensor         what the sensors remember of the proposal stream
 
 import type { Policy } from "./policy.ts";
 import type { DecisionEntry, Entry, Outcome } from "./log.ts";
-import { RECENT } from "./sensor.ts";
+import { RECENT, SENSOR_V1 } from "./sensor.ts";
 
 type Status = "pending" | Outcome;
 
@@ -50,7 +50,7 @@ export interface GuardState {
   reservations: Map<string, Reservation>;
   intents: Map<string, Intent>;
   redeemed: Set<string>;
-  sensor: { recent: { intentKey: string; shape: string }[]; failureStreak: number; lastAt: number | null };
+  sensor: { recent: { intentKey: string; shape: string; fees: bigint; landed: boolean }[]; failureStreak: number; unknownStreak: number; lastAt: number | null; times: number[] };
 }
 
 export function initialState(): GuardState {
@@ -64,7 +64,7 @@ export function initialState(): GuardState {
     reservations: new Map(),
     intents: new Map(),
     redeemed: new Set(),
-    sensor: { recent: [], failureStreak: 0, lastAt: null },
+    sensor: { recent: [], failureStreak: 0, unknownStreak: 0, lastAt: null, times: [] },
   };
 }
 
@@ -119,9 +119,11 @@ export function apply(s: GuardState, e: Entry, policy: Policy): void {
   switch (e.kind) {
     case "decision": {
       if (e.intentKey !== null && e.shape !== null) {
-        s.sensor.recent.push({ intentKey: e.intentKey, shape: e.shape });
+        s.sensor.recent.push({ intentKey: e.intentKey, shape: e.shape, fees: BigInt(e.amounts?.fees ?? "0"), landed: false });
         if (s.sensor.recent.length > RECENT) s.sensor.recent.shift();
         s.sensor.lastAt = e.at;
+        s.sensor.times.push(e.at);
+        s.sensor.times = s.sensor.times.filter((t) => t > s.maxAt! - SENSOR_V1.minuteMs);
         if (!e.allow) s.sensor.failureStreak += 1;
       }
       if (e.allow && e.intentKey !== null && e.amounts !== null) {
@@ -152,16 +154,21 @@ export function apply(s: GuardState, e: Entry, policy: Policy): void {
       const r = s.reservations.get(e.decision);
       const attempt = r && s.intents.get(r.intentKey)?.attempts.find((a) => a.decision === e.decision);
       if (!r || !attempt) throw new Error(`report for ${e.decision}, which holds no reservation`);
+      // An unknown outcome that becomes known stops counting as unknown.
+      if (attempt.status === "unknown") s.sensor.unknownStreak = Math.max(0, s.sensor.unknownStreak - 1);
       attempt.status = e.outcome;
       if (e.outcome === "landed") {
         s.intents.get(r.intentKey)!.done = true;
         s.sensor.failureStreak = 0;
+        s.sensor.unknownStreak = 0;
+        for (const x of s.sensor.recent) if (x.intentKey === r.intentKey) x.landed = true;
       }
       if (e.outcome === "failed" || e.outcome === "expired") {
         r.valueReleased = true;
         if (e.outcome === "expired") r.feesReleased = true;
         s.sensor.failureStreak += 1;
       }
+      if (e.outcome === "unknown") s.sensor.unknownStreak += 1;
       prune(s, policy);
       return;
     }
@@ -169,7 +176,7 @@ export function apply(s: GuardState, e: Entry, policy: Policy): void {
       // The operator has looked: start the stream over. The windows and intents stand.
       s.latched = null;
       s.consecutiveDenials = 0;
-      s.sensor = { recent: [], failureStreak: 0, lastAt: s.sensor.lastAt };
+      s.sensor = { recent: [], failureStreak: 0, unknownStreak: 0, lastAt: s.sensor.lastAt, times: [] };
       return;
     }
     case "redeem":

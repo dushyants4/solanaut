@@ -272,19 +272,35 @@ proposal has no effects to sense; it counts toward the latch instead.
 
 ## 6. Keel and sensor v1
 
-- **Verify the bytes.** `createGuard` decodes Keel's embedded controller, hashes it, and requires
-  `834015d7…ded7d8`. On success `keel.verified` is `"bytes"`. This fixes D4.
-- **Validate before ticking.** Telemetry is checked with `Governor.accepts()` and `typeof === "number"` before
-  `tick()`. This fixes D3.
-- **Restore only by replay.** Keel's state is rebuilt by replaying the log (ADR-010), never loaded from stored numbers
-  (upstream finding U-3).
-- **Sensor v1:**
-  - **intensity** = max(value against the per-transaction cap, rate against `sensor.expectedPerMinute`). The rate
-    term no longer reads normal payments as full intensity (D8).
-  - **valence** falls with failures, *unknown* outcomes and denials, and recovers with landed transactions.
-  - **repetition** is 1 for identical effects; 0.8 for the same effects re-proposed, or the same shape with a rising
-    priority fee (**fee escalation**); 0.5 for the same shape at a different amount; otherwise 0.
-  - Every coefficient is stated. None is tuned after looking at a battery's result.
+Built at milestone 2a.7 (`evals/sdk/keel.md`).
+
+- **Verify the bytes (D4).** `createGuard` and `replay` hash the Keel module Node resolves: the embedded wasm against
+  Keel's declared digest `834015d7…ded7d8`, and the whole module, `dist/index.js`, against `8f642684…9c7190`,
+  because the JavaScript around the wasm runs it too. On success `keel.verified` is `"bytes"`; on failure no guard
+  exists. The module is hashed at creation; a file swapped between import and creation would not be caught.
+- **Validate before ticking (D3).** Telemetry must be three numbers that `Governor.accepts()` takes. Anything else
+  denies as `fail-closed`, and Keel does not tick: its `tick()` coerces `null`, strings, booleans and arrays
+  (upstream finding U-2, reproduced).
+- **Restore only by replay.** Keel's state is rebuilt by replaying the record (ADR-010), never loaded from stored
+  numbers: `Governor.create()` accepts a non-finite state (U-3, reproduced).
+- **Sensor v1,** the default; its coefficients are `SENSOR_V1` in `packages/sdk/src/sensor.ts`:
+  - **intensity** = max(value against the per-transaction cap, the rate term). The rate term counts the proposals
+    of the trailing minute against `sensor.expectedPerMinute`: 0 at or below it, rising linearly to 1 at five times
+    it. It no longer reads normal payments as full intensity (D8).
+  - **valence** = 0.2 less 0.3 for each denial, failed, expired or unknown outcome since the last landed one; a
+    landed transaction resets it.
+  - **repetition**, over the last 8 parsed proposals: 1 for the same intent at the same fees, if that intent has not
+    landed; 0.8 for the same intent at other fees, or the same shape at higher fees (**fee escalation**); 0.5 for the
+    same shape at another amount; otherwise 0. **A landed intent counts only as the same shape.**
+  - Every coefficient is stated, and none was tuned after looking at a battery's result. **One definition changed
+    after the first run:** the first run counted a landed payment, repeated, as a retry, which read recurring payments
+    as a saturating loop. The change touched no coefficient, and the battery was re-run on fresh seeds.
+  - **What the change costs.** A runaway loop of payments that all land reads as the same shape, so Keel does not
+    stop it. The window caps bound it.
+- **Measured** (synthetic streams, `evals/sdk/keel.md`): sensor v1 stopped 0 of 600 benign payments arriving at the
+  expected rate, and 0 of 600 in bursts (95% upper bound 0.64% each), where sensor v0 stopped 82.8% and 21.7%.
+  Identical failing retries stop at turn 3. Retries with rising fees stop at turn 4, by the attempts cap, with Keel at
+  REGROUND too. A loop alternating two shapes, with a changing amount, is not stopped within 12 turns.
 
 ## 7. Receipts, intents, the latch, the log
 
@@ -424,8 +440,8 @@ Each is fixed test-first: the evaluator writes the failing test, and the builder
 
 **Status:** closed at milestone 2a.5 (`evals/sdk/admission.md`), test-first: D1, D2, D5, D6, D7, D9, D10 and D12. D12
 closed early: the guard decodes bytes itself, so `packages/sdk/src` imports no web3.js. D11 closed at milestone 2a.6
-(`evals/sdk/durable.md`) for every guard given a `log`. **Open:** D3 and D4 (Keel's telemetry and bytes) and D8
-(sensor v0's rate term), at milestone 2a.7.
+(`evals/sdk/durable.md`) for every guard given a `log`. D3, D4 and D8 closed at milestone 2a.7 (`evals/sdk/keel.md`).
+**Every defect D1 to D12 is closed.**
 
 ## 11. Batteries and acceptance
 
@@ -454,6 +470,9 @@ regenerates them.
 
 ## 12. Open questions
 
+- Should a run of failed outcomes trip the latch, as a run of denials does? A loop that alternates two shapes and
+  changes its amount passes every rule while each send fails, and is bounded only by the fee window and the clamp
+  under INHIBIT (`evals/sdk/keel.md`). For the Alpha's red team (milestone 3.10).
 - ElizaOS: wrap the plugin's action handlers, or its wallet? Decided when the Alpha starts.
 - Lighthouse's memory-write instructions fund and write an account. They need their own rule before any wallet that
   appends them is admitted (Alpha).
@@ -474,4 +493,4 @@ checked. The guard decodes whatever version arrives, so the answer changes no ru
 |---|---|---|
 | Draft 1 | 2026-09-27 | First draft, from the research foundation (`kb/milestones/2026-09-27_R-research.md`). |
 | Draft 2 | 2026-09-30 | The verified review (`runs/2026-09-30-verified-review-roadmap.md`): trust per mode; v1 decoded; tables pinned; an allowlist per instruction; durable nonces and other signers denied; the fee rule corrected; intents keyed by effects; the log as the state; the adapter surface; the structured latch release; the Squads membership question answered; D10 to D12; new battery cases. Phases are now the roadmap's milestones. |
-| Draft 3 | 2026-10-01 | Built through milestone 2a.5 (`runs/2026-10-01-beta-build.md`): the effects model as implemented (`otherSigners`, outflow sources, denial rules, the intent key's definition); the record's four entry kinds; the decisions made while building, in §4 and §7; kit's default version answered; D1, D2, D5, D6, D7, D9, D10 and D12 closed; then 2a.6: the durable record, restore, the lock, replay, the latch as a recorded fact, and D11 closed. |
+| Draft 3 | 2026-10-01 | Built through milestone 2a.5 (`runs/2026-10-01-beta-build.md`): the effects model as implemented (`otherSigners`, outflow sources, denial rules, the intent key's definition); the record's four entry kinds; the decisions made while building, in §4 and §7; kit's default version answered; D1, D2, D5, D6, D7, D9, D10 and D12 closed; then 2a.6: the durable record, restore, the lock, replay, the latch as a recorded fact, and D11 closed; then 2a.7: Keel's bytes and telemetry checked, sensor v1 as built and measured, D3, D4 and D8 closed, an open question on runs of failures. |
