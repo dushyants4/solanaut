@@ -48,6 +48,7 @@ is it **signed**. The guard v1 adds five things, all built:
 | [docs/PRODUCT.md](docs/PRODUCT.md) | what Solanaut is, why it exists and how it works, on one page |
 | [docs/ROADMAP.md](docs/ROADMAP.md) | the milestones, each reached when its gate passes |
 | [docs/READINESS.md](docs/READINESS.md) | what a certified, shippable release requires |
+| [docs/RISKS.md](docs/RISKS.md) | what could stop the Alpha, each risk with an owner and a mitigation |
 | [docs/OVERVIEW.md](docs/OVERVIEW.md) | the code as it is: layout, dependencies, logic, workflows, constraints |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | the long-term shape, and its invariants |
 | [docs/SPEC.md](docs/SPEC.md) | the MVP baseline: data models, rules, receipts, adapters, batteries |
