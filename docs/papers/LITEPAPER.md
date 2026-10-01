@@ -1,6 +1,6 @@
 # Solanaut: a reference monitor for AI agents' Solana wallets
 
-> **Draft 2** · 2026-09-30 · owner: architect · for: judges and developers · not public until the
+> **Draft 3** · 2026-10-01 · owner: architect · for: judges and developers · not public until the
 > human says so. Figures cite `docs/CLAIMS.md` rows as [S1], [G6], [M4]. Register: `kb/DOCUMENTS.md`.
 
 ## Summary
@@ -64,32 +64,43 @@ on-chain (devnet): Squads v4 spending limit naming the agent key: N per day, to 
    and the model cannot change it [S2]. A drain to an unlisted address is denied before signing [S1].
 2. **The control loop is the loop defence.** Keel reads three numbers about the proposal stream and
    returns a posture [G1]. Solanaut lets the posture only *restrict*: a calm posture never allows what
-   the policy denies. On the sandbox's retry loop, Keel stopped the third identical attempt [S3].
+   the policy denies. On the sandbox's retry loop, Keel stopped the third identical attempt [S3]. On synthetic
+   streams, sensor v1 stopped none of 600 benign payments at the policy's expected rate, and none of 600 in
+   bursts [S7].
 3. **Receipts and intents stop double-sends.** A receipt binds an admission to the exact bytes, an
    expiry and the policy's hash, and it is used once. A new attempt at the same payment is admitted only
-   once the earlier one has definitively failed or its blockhash has expired.
+   once the earlier one is reported failed or expired. An attempt whose outcome nobody reported holds its
+   payment, because it may have landed.
 4. **The chain bounds a stolen key.** The treasury sits behind a Squads v4 spending limit [M9], so
-   whatever happens off the chain, the agent's key cannot exceed it.
-5. **Every decision is logged** in a hash chain, and replay recomputes it.
+   whatever happens off the chain, the agent's key cannot exceed it. On devnet, Squads' program refused the
+   agent's key past the limit, to an unlisted address, and after the operator removed the limit [S11].
+5. **Every decision is logged** in a hash chain, and replay recomputes it. The log is the guard's state: killed
+   at 20 random points, the guard restored an identical record [S6].
 
 ## 4. What each part can and cannot do
 
 | Part | Stops | Does not stop |
 |---|---|---|
 | Policy | transfers to unlisted addresses, unlisted programs and mints, over-cap amounts, approvals | a transfer to an address the operator listed; a policy the agent itself can edit |
-| Keel and the sensor | the same failing transaction retried; fee escalation, once measured | anything the sensor cannot see; its quality is the sensor's quality [G1] |
+| Keel and the sensor | the same failing transaction retried; fee escalation | anything the sensor cannot see, and a loop that changes its shape and amount each turn; its quality is the sensor's quality [G1] |
 | Receipts and intents | signing bytes other than those checked; paying twice while an attempt can still land | a compromised process that uses the key directly |
 | Signer process | the agent's code reading the key | a compromised signer host |
 | Squads spending limit | spending past the on-chain cap, even with a stolen key | spending within the cap |
 
 ## 5. Where it stands
 
-- **Built and measured:** policy denials [S1]; the retry loop stopped in the sandbox [S3]; fail-closed on
-  bad telemetry [S4]. S4 is narrowed: the controller's bytes are not yet hashed.
-- **Specified, not built:** decoding of v0, v1 and tokens; the allowlist per instruction; receipts; intents; the
-  log as the guard's state; the adapters; the signer process; the Squads backstop (`docs/SPEC.md`, Draft 2).
-- **Not claimed:** any detection, block or false-stop rate; any latency for the guard; any fee savings; anything
-  about mainnet.
+- **Built and measured, the Beta:**
+  - policy denials [S1], and 40 drain-shaped transactions each denied by its named rule [S8];
+  - legacy, v0 and v1 decoded from their bytes, matching kit [S9];
+  - the retry loop stopped [S3]; fail-closed, with the controller's bytes hashed [S4];
+  - restart from the log [S6]; no benign payment stopped on synthetic streams [S7];
+  - a Solana Agent Kit agent governed by one changed line [S10];
+  - on devnet, the Squads bound on a stolen key [S11] and the demo's scenes end to end [S12].
+- **Specified, not built (the Alpha):** the signer process; an operator-signed policy; Token-2022 settings; bounds for
+  opaque programs; the MCP firewall in front of Phantom's agent wallet; the ElizaOS plugin; the log's head anchored
+  on-chain (`docs/SPEC.md`).
+- **Not claimed:** any detection or block rate; any false-stop rate beyond synthetic streams; any latency for the
+  guard; any fee savings; that every double-send is prevented; anything about mainnet.
 
 ## 6. Roadmap
 
@@ -101,7 +112,7 @@ The roadmap is a sequence of milestones, each reached by passing its gate rather
 | 1 · Define | the product definition (`docs/PRODUCT.md`) is signed off by the human |
 | 2 · Develop: the Beta MVP | the guard v1, both adapters, the Squads limit on devnet and a first dashboard pass the Beta batteries from a clean clone |
 | 3 · The Alpha, tested hard | the signer process, the MCP firewall in front of Phantom's agent wallet, bounds for opaque programs and the other Alpha work meet every threshold in `docs/READINESS.md` |
-| 4 · A live Phantom test | only if the human accepts ADR-008: a capped, human-run mainnet canary whose every scenario gives its expected result, and every lamport reconciles |
+| 4 · A live Phantom test | on devnet, with the human's Phantom wallet as the operator, as the human chose; a capped mainnet canary only if the human later accepts ADR-008 |
 | 5 · Finish and polish | the dashboard and the developer experience pass their usability thresholds |
 | Readiness | an independent audit, a bug bounty and a 1.0 release, each with its evidence |
 
@@ -118,3 +129,4 @@ are working defaults, not the configuration Gubernaut evaluated [G8].
 |---|---|---|
 | Draft 1 | 2026-09-27 | First draft. |
 | Draft 2 | 2026-09-30 | The verified review: the design strip follows `docs/SPEC.md` Draft 2; the status names what is specified; the roadmap is milestones, not dates. |
+| Draft 3 | 2026-10-01 | The Beta review: the status is what was built and measured, S6 to S12; intents as D14 left them; the Squads bound measured on devnet; Leg 4 on devnet, as the human chose. |

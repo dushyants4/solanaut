@@ -50,6 +50,7 @@ One meaning per word. Updated 2026-09-30.
 | 0 · Setup | [2026-09-27_P0-setup.md](milestones/2026-09-27_P0-setup.md) |
 | R · Research foundation | [2026-09-27_R-research.md](milestones/2026-09-27_R-research.md) |
 | R2 · Verified review and roadmap | [2026-09-30_R2-verified-review.md](milestones/2026-09-30_R2-verified-review.md) |
+| Beta · The MVP built, verified and validated on devnet (draft, for sign-off) | [2026-10-01_2b-beta.md](milestones/2026-10-01_2b-beta.md) |
 
 ## Sources
 

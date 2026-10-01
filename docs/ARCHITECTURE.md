@@ -36,7 +36,7 @@ dashboard: reads the log and the chain; holds no keys
 | Stops | drains: a transfer to an address, a program, an instruction or a mint that was never allowed; approvals; amounts and fees over a cap | loops and escalation: the same failing transaction re-proposed, fees ratcheting up |
 | Decides from | the transaction's decoded bytes, against configuration | three numbers about the stream of proposals |
 | Can the model talk it round? | **no**: it never reads the model's text, and the model cannot set it | its input comes from Solanaut's sensor, so its quality is the sensor's quality. Keel's own README says so |
-| Measured | sandbox and unit tests (`docs/CLAIMS.md` S1) | the sandbox only, sensor v0 (S3). The Beta battery measures it properly |
+| Measured | 40 drain-shaped transactions denied by their named rules; the decoder against kit (`docs/CLAIMS.md` S1, S8, S9) | sensor v1 on synthetic streams: identical retries stopped at turn 3, no benign payment stopped (S3, S7) |
 
 **Why not rely on the loop for injection?** Gubernaut's published limits say its text sensor misses calmly worded
 hostile input, and Keel acts faithfully on whatever numbers it is given. A prompt injection hidden in token metadata is
@@ -68,12 +68,13 @@ Milestones are defined in `docs/ROADMAP.md`. Each is reached by passing its gate
 
 | Component | Milestone | What it is |
 |---|---|---|
-| `packages/sdk` (`@solanaut/sdk`) | **exists**; v1 at 2a.2 to 2a.7 | today: `policy.ts`, `sensor.ts` (v0), `guard.ts`, `describe.ts` (a web3.js legacy transaction → a proposal). v1: bytes in, the allowlist per instruction, receipts, intents, the log as the state |
+| `packages/sdk` (`@solanaut/sdk`) | **built**, 2a.2 to 2a.8 | v1: bytes in (legacy, v0 with pinned tables, v1) without web3.js; the allowlist per instruction; policy v1; receipts, intents and the latch; the log as the state, with replay; Keel's bytes verified; sensor v1; the adapters |
 | `apps/sandbox` | **exists** | the plugin sandbox: benign, drain and loop scenarios, offline or on a local validator |
-| Sensor v1 and the batteries | 2a.7, 2b.1 | measured against labelled proposal streams: loops, fee escalation, double-sends, restarts, benign traffic |
-| `guardedWallet` and a `@solana/kit` signer | 2a.8 | one-line adoption for Solana Agent Kit and kit-based agents; a denial is a typed error, not a hang |
-| Squads v4 spending limit on devnet | 2a.9 | the on-chain bound on a stolen key, composed rather than re-implemented (ADR-006) |
-| `apps/cockpit`, the dashboard | v0 at 2a.10; v1 at 3.8; 1.0 at 5.1 | a read-only view of live decisions, spend against caps, intents, the latch and the chain (ADR-011) |
+| Sensor v1 and the batteries | **built**, 2a.7 and 2b.1 | measured against labelled proposal streams: loops, fee escalation, double-sends, restarts, benign traffic |
+| `guardedWallet` and a `@solana/kit` signer | **built**, 2a.8; validated with Solana Agent Kit on devnet at 2b.3 | one-line adoption for Solana Agent Kit and kit-based agents; a denial is a typed error, not a hang |
+| Squads v4 spending limit on devnet | **achieved on devnet**, 2a.9 | the on-chain bound on a stolen key, composed rather than re-implemented (ADR-006) |
+| `apps/onchain`, `apps/agentkit` | **built**, 2a.9 and 2b.3 | the stolen-key drill and the demo's scenes on devnet; a scripted Solana Agent Kit agent behind the guard |
+| `apps/cockpit`, the dashboard | v0 **built** at 2a.10; v1 at 3.8; 1.0 at 5.1 | a read-only view of live decisions, spend against caps, intents, the latch and the chain (ADR-011) |
 | `solanaut-signer` | 3.1 | the key out of the agent's process; time, heights and tables fetched by the signer |
 | Operator-signed policy | 3.2 | a guard loads only a policy whose hash the operator's wallet signed |
 | Token-2022 settings; associated token accounts | 3.3 | mint extensions pinned and re-read; ATA creation decoded, with its rent counted |
@@ -105,8 +106,9 @@ Milestones are defined in `docs/ROADMAP.md`. Each is reached by passing its gate
 `@gubernaut/core` 1.0.1 comes from npm, pinned by the lockfile. Gubernaut is a pre-existing Apache-2.0 dependency and
 is disclosed as one (rules §9; `docs/submission/SUBMISSION.md`). Solanaut never forks or edits it.
 
-Today `createGuard` refuses a build whose **declared** digest is not `834015d7…`. Keel 1.0.1 checks only the
-controller's length on load, so hashing the bytes themselves is owed at milestone 2a.7 (`docs/SPEC.md` §10, D4).
+`createGuard` hashes the Keel module Node resolves, and the controller embedded in it, against pinned digests, and
+refuses anything else (milestone 2a.7, `docs/SPEC.md` §6, S4). Keel 1.0.1 itself checks only the controller's length on
+load (upstream finding U-1).
 Findings about upstream go to `kb/REGISTRY.md` for the human.
 
 Squads v4 is composed, not changed: `spending_limit_use` checks only the limit's own member list, and limit members

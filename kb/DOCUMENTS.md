@@ -12,20 +12,20 @@ substantive change; *last reviewed* moves at every review.
 
 | Document | Version | Status | Owner | For | Last reviewed | Next review |
 |---|---|---|---|---|---|---|
-| [README.md](../README.md) | 3 | current | integrator | everyone | 2026-09-30 | 2b.4 |
+| [README.md](../README.md) | 4 | current | integrator | everyone | 2026-10-01 | 2c.1 |
 | [docs/PRODUCT.md](../docs/PRODUCT.md) | 1.0 | current | architect | every seat, judges | 2026-09-30 | 2c.1 |
 | [docs/ROADMAP.md](../docs/ROADMAP.md) | Draft 2 | review | archivist, with the architect | the human, every seat, judges | 2026-09-30 | every leg |
 | [docs/READINESS.md](../docs/READINESS.md) | Draft 1 | review | operator, with the evaluator | the human, every seat, auditors | 2026-09-30 | 2c.1 |
 | [docs/OVERVIEW.md](../docs/OVERVIEW.md) | Draft 3 | draft | integrator | engineers new to the repo, judges | 2026-10-01 | 2a.8 |
 | [docs/SPEC.md](../docs/SPEC.md) | Draft 3 | draft | architect | the builder, evaluator and integrator seats | 2026-10-01 | 2a.6 |
-| [docs/ARCHITECTURE.md](../docs/ARCHITECTURE.md) | 3 | current | architect | everyone | 2026-09-30 | 2b.4 |
+| [docs/ARCHITECTURE.md](../docs/ARCHITECTURE.md) | 4 | current | architect | everyone | 2026-10-01 | 2c.1 |
 | [docs/HACKATHON.md](../docs/HACKATHON.md) | 3 | current | archivist | the human, every seat | 2026-09-30 | S.1 |
 | [docs/CLAIMS.md](../docs/CLAIMS.md) | 3.2 | current (T3) | archivist, sourced | every public sentence | 2026-10-01 | every milestone |
-| [docs/papers/LITEPAPER.md](../docs/papers/LITEPAPER.md) | Draft 2 | draft | architect | judges, developers | 2026-09-30 | 2b.4 |
+| [docs/papers/LITEPAPER.md](../docs/papers/LITEPAPER.md) | Draft 3 | draft | architect | judges, developers | 2026-10-01 | 2c.1 |
 | [docs/papers/THREAT-MODEL.md](../docs/papers/THREAT-MODEL.md) | Draft 2 | draft | architect, evaluator | reviewers, auditors, judges | 2026-09-30 | 2b.4, 3.10 |
-| [docs/papers/MARKET.md](../docs/papers/MARKET.md) | Draft 2 | draft | archivist | the human, judges | 2026-09-30 | 2b.4 |
+| [docs/papers/MARKET.md](../docs/papers/MARKET.md) | Draft 2 | draft | archivist | the human, judges | 2026-09-30 | S.1 |
 | [docs/papers/BUSINESS-PLAN.md](../docs/papers/BUSINESS-PLAN.md) | Draft 2 | review | drafted for the human | the human, judges | 2026-09-30 | S.1 |
-| [docs/submission/PITCH.md](../docs/submission/PITCH.md) | Draft 3 | draft | the human (T4) | judges | 2026-09-30 | 2b.4 |
+| [docs/submission/PITCH.md](../docs/submission/PITCH.md) | Draft 3 | draft | the human (T4) | judges | 2026-09-30 | S.1 |
 | [docs/submission/DEMO.md](../docs/submission/DEMO.md) | Draft 3 | draft | integrator | judges | 2026-10-01 | S.1 |
 | [docs/submission/SUBMISSION.md](../docs/submission/SUBMISSION.md) | Draft 2 | review | the human (T4) | the human | 2026-09-30 | S.1 |
 
@@ -43,3 +43,4 @@ substantive change; *last reviewed* moves at every review.
 | 2026-09-30 | all | The verified review: PRODUCT, ROADMAP and READINESS created; SPEC, OVERVIEW, THREAT-MODEL, LITEPAPER, MARKET, BUSINESS-PLAN, DEMO and SUBMISSION to their next draft; README, ARCHITECTURE, HACKATHON and CLAIMS to version 3; PITCH to Draft 3; "next review" now names milestones | `runs/2026-09-30-verified-review-roadmap.md` |
 | 2026-10-01 | PRODUCT, ROADMAP, SPEC, OVERVIEW, CLAIMS | PRODUCT 1.0, signed off; ROADMAP Draft 2, the human's decisions; SPEC Draft 3, the effects model, the record and the decisions made while building 2a.2 to 2a.5; OVERVIEW Draft 3, the rebuilt guard; CLAIMS 3.1, evidence moved to the admission battery | `runs/2026-10-01-beta-build.md` |
 | 2026-10-01 | SPEC, CLAIMS, OVERVIEW, DEMO | After the devnet runs: SPEC Draft 3 gains D13 and D14, both closed, §7's intents and §11's double-send battery as now built, and the adapter decisions; CLAIMS 3.2 adds S11, S12 and M13, and S10's devnet evidence; OVERVIEW notes the scenes and the follow-up; DEMO Draft 3, every scene run on devnet | `runs/2026-10-01-devnet.md` |
+| 2026-10-01 | README, ARCHITECTURE, LITEPAPER, CLAIMS; MARKET and PITCH deferred | The Beta review (2b.4): README 4 and ARCHITECTURE 4, the components as built; LITEPAPER Draft 3, the status as built and measured (S6 to S12); CLAIMS, every measured row's regenerating command (2b.2). MARKET's research was not re-checked and PITCH is the human's, so both move to S.1 unreviewed; PITCH can now cite S6 to S12 | `kb/milestones/2026-10-01_2b-beta.md` |

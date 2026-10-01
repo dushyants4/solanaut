@@ -11,10 +11,10 @@ decide whether it may:
 
 Every denial names the rule that made it, and nothing denied is ever signed. Any error denies.
 
-> **Status: verified review done, devnet only.** The guard, its tests and a sandbox exist. The MVP is
-> specified in [docs/SPEC.md](docs/SPEC.md) and built in the order of the milestones in
-> [docs/ROADMAP.md](docs/ROADMAP.md), each reached when its gate passes. No detection rate is claimed yet: see
-> [docs/CLAIMS.md](docs/CLAIMS.md).
+> **Status: the Beta MVP is built and validated on devnet; devnet only.** The guard, its adapters for Solana Agent
+> Kit and `@solana/kit`, a Squads v4 spending limit and a read-only dashboard are built, each through a gate in
+> [docs/ROADMAP.md](docs/ROADMAP.md). The demo's scenes ran end to end on devnet. Every number claimed is in
+> [docs/CLAIMS.md](docs/CLAIMS.md) with the command that regenerates it, and no detection rate is claimed.
 
 ## Try it
 
@@ -29,13 +29,17 @@ npm run sandbox -- --cluster local    # the same scenarios on it
 The sandbox prints each proposal, the three numbers the loop saw, its posture, and the verdict. On the
 local validator the allowed payments land, and the drain and the loop's last attempt are never sent.
 
+On devnet, `apps/onchain` runs the demo's scenes through the guard and a stolen-key drill against a Squads spending
+limit. Their receipts, with every devnet signature, are [evals/e2e/scenes-devnet.md](evals/e2e/scenes-devnet.md) and
+[evals/onchain/squads-devnet.md](evals/onchain/squads-devnet.md).
+
 ## How it is designed
 
 The agent **proposes** a transaction, Solanaut **admits** or denies it by a named rule, and only then
-is it **signed**. The v1 design adds five things:
+is it **signed**. The guard v1 adds five things, all built:
 - decoding of legacy, v0 and v1 transactions from their bytes, with an allowlist for every instruction;
 - a receipt binding each decision to the exact bytes signed;
-- intents, so a payment is never re-signed while an earlier attempt could still land;
+- intents, so a payment is not re-signed while an earlier attempt could still land, or may have landed unreported;
 - a hash-chained, replayable log that is also the guard's memory across restarts;
 - on devnet, a Squads v4 spending limit naming the agent's key, which bounds even a stolen key.
 
@@ -47,7 +51,7 @@ is it **signed**. The v1 design adds five things:
 | [docs/OVERVIEW.md](docs/OVERVIEW.md) | the code as it is: layout, dependencies, logic, workflows, constraints |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | the long-term shape, and its invariants |
 | [docs/SPEC.md](docs/SPEC.md) | the MVP baseline: data models, rules, receipts, adapters, batteries |
-| [docs/papers/](docs/papers/) | the litepaper, the threat model, the market, the business plan (draft 1) |
+| [docs/papers/](docs/papers/) | the litepaper, the threat model, the market, the business plan (drafts) |
 | [design/](design/) | the decisions, ADR-001 to ADR-012 (ADR-012 proposed) |
 
 ## The knowledge vault
