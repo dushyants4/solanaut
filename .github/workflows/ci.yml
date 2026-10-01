@@ -46,6 +46,8 @@ jobs:
         with:
           persist-credentials: false
       - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          enable-cache: false # the tools are stdlib-only uv scripts; nothing to cache
       - name: kb_lint
         run: uv run --script tools/kb_lint.py
       - name: boundary guard self-test, on a runner shaped like its host
