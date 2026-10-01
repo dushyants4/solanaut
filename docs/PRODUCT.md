@@ -90,4 +90,4 @@ No rate is claimed before it is measured.
 | Version | Date | What changed |
 |---|---|---|
 | Draft 1 | 2026-09-30 | First draft, for milestone 1.1. |
-| 1.0 | 2026-09-30 | Signed off by the human; milestone 1.1 achieved. The text is unchanged (`runs/2026-09-30-beta-build.md`). |
+| 1.0 | 2026-09-30 | Signed off by the human; milestone 1.1 achieved. The text is unchanged (`runs/2026-10-01-beta-build.md`). |

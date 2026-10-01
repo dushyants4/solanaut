@@ -15,21 +15,24 @@ checked.
 Written 2026-09-27. Revised 2026-09-27: row IDs added; S4 narrowed; G6 corrected; G7, G8 and §5
 added. The record of that revision is `runs/2026-09-27-research-foundation.md`. Revised 2026-09-30: M9 refined from
 Squads' source; M10 and M11 added; the not-yet-claimable list and §4 extended; S5 notes the proposed canary. The
-record is `runs/2026-09-30-verified-review-roadmap.md`.
+record is `runs/2026-09-30-verified-review-roadmap.md`. Revised 2026-10-01: the evidence for S1 to S4 moved to the
+admission battery when the guard was rebuilt (milestone 2a.5), and each test it now cites was shown failing first; S2's
+mutable-policy caveat is retired with defect D1; S3 was re-measured; S5 notes the human's deferral of the canary. The
+record is `runs/2026-10-01-beta-build.md`.
 
 ## 1. Solanaut's own claims
 
 | ID | Claim | Status | Evidence |
 |---|---|---|---|
-| S1 | The policy denies a transfer to a destination not on the allowlist, and a program not on the allowlist, before anything is signed | **measured (sandbox)** | `packages/sdk/test/guard.test.ts`; `npm run sandbox -- --cluster local` on 2026-09-27: the drain proposals were never sent, and the chain held only the airdrop and the four allowed payments |
-| S2 | The policy holds whatever the model says, because the model never sees or sets it | **architectural** | `policy.ts`: configuration outside the model. True only while the policy itself is kept out of the agent's reach, so say that too. **Until H1 fixes it, `guard.policy` can be mutated by code holding the guard** (`docs/SPEC.md` §10, defect D1): do not demo policy immutability |
-| S3 | An identical failing transfer, retried, is stopped by Keel's control loop | **measured (sandbox), sensor v0** | Stopped at **turn 3** (DEFAULT → DEFAULT → REGROUND), with retries 400 ms apart. One scenario, one sensor version, one timing. Not a benchmark: never state it without "in the sandbox" |
-| S4 | Any guard error denies (fail closed). Solanaut pins Keel 1.0.1 and refuses a build that **declares** a different controller digest | **measured (tests), narrowed 2026-09-27** | `guard.test.ts`: NaN telemetry → `fail-closed`; wrong expected digest → creation rejected. **What it does not prove:** Keel 1.0.1 exposes its digest as a constant and checks only the byte length on load ([source](../kb/sources/2026-09-27_npm-gubernaut-core.md)), so the bytes themselves are not yet hashed. Never say "an unverified binary is refused" until H1 hashes the embedded controller |
-| S5 | Runs on devnet; no real funds | **fact, and a decision** | `design/ADR-003-devnet-only.md`. A capped, human-run mainnet canary is **proposed** (`design/ADR-008-mainnet-canary.md`); S5 stays true unless the human accepts it and the canary runs |
+| S1 | The policy denies a transfer to a destination not on the allowlist, and a program not on the allowlist, before anything is signed | **measured (tests and sandbox)** | `packages/sdk/test/admission.test.ts`, rules 7 and 10 (`evals/sdk/admission.md`); `npm run sandbox -- --cluster local` on 2026-09-27 and again on 2026-10-01 against the rebuilt guard: the drain proposals were never sent |
+| S2 | The policy holds whatever the model says, because the model never sees or sets it | **architectural; the immutability is tested** | `policy.ts`: configuration outside the model, validated, copied and frozen when the guard is created; `admission.test.ts` and `policy.test.ts` show `guard.policy` cannot be changed (defect D1, closed at milestone 2a.5). True only while the policy itself is kept out of the agent's reach, so say that too |
+| S3 | An identical failing transfer, retried, is stopped by Keel's control loop | **measured (sandbox), sensor v0** | Stopped at **turn 3** (DEFAULT → DEFAULT → REGROUND), with retries 400 ms apart. Re-measured on 2026-10-01 after the guard was rebuilt, with sensor v0 ported to effects and its coefficients unchanged: turn 3 in `admission.test.ts`, and in the sandbox offline and on a local validator. One scenario, one sensor version, one timing. Not a benchmark: never state it without "in the sandbox" |
+| S4 | Any guard error denies (fail closed). Solanaut pins Keel 1.0.1 and refuses a build that **declares** a different controller digest | **measured (tests), narrowed 2026-09-27** | `admission.test.ts`: a sensor that throws, and NaN telemetry, → `fail-closed`; malformed bytes → `malformed-proposal`, never a throw; wrong expected digest → creation rejected. **What it does not prove:** Keel 1.0.1 exposes its digest as a constant and checks only the byte length on load ([source](../kb/sources/2026-09-27_npm-gubernaut-core.md)), so the bytes themselves are not yet hashed. Never say "an unverified binary is refused" until milestone 2a.7 hashes the embedded controller |
+| S5 | Runs on devnet; no real funds | **fact, and a decision** | `design/ADR-003-devnet-only.md`. A capped, human-run mainnet canary is proposed (`design/ADR-008-mainnet-canary.md`) and was **deferred** by the human on 2026-09-30: devnet only for now. S5 stays true unless the human accepts it and the canary runs |
 
 **Not yet claimable, and why:**
 - **Any detection rate, block rate or false-stop rate.** Nothing has been measured beyond the sandbox
-  scenarios. H1 builds the batteries and H4 runs the adversarial one; until then no percentage exists.
+  scenarios. Milestone 2b.1 runs the Beta batteries and 3.10 the adversarial one; until then no percentage exists.
 - **Any latency for the guard as a whole.** Keel's tick is measured upstream (§2); Solanaut's policy,
   sensor and transaction decoding are not.
 - **Priority-fee or SOL savings.** Never measured on Solana (§3).

@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 2** · 2026-09-30 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 3** · 2026-10-01 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -122,26 +122,39 @@ interface EffectsV1 {
   intentKey: string;                          // sha256(canonical {feePayer, signers, opaque, sol, tokens, nonce})
 }
 
-interface DecisionV1 {
+// The record (ADR-010): every entry is hash-chained, and the guard's state is what applying them in order gives.
+// Built: packages/sdk/src/log.ts and state.ts (milestone 2a.5). Amounts and heights are decimal strings.
+interface EntryBase {
   v: 1;
   seq: number;
-  prev: string;                               // hash of the previous decision; "" for the first
+  prev: string;                               // hash of the previous entry; "" for the first
   at: number;
+  hash: string;                               // sha256(canonicalJSON(entry without hash))
+}
+interface DecisionV1 extends EntryBase {
+  kind: "decision";
   source: "caller" | "signer";                // where time, heights and outcomes came from (§2.1)
   message: string;                            // the proposal's bytes, base64, so the log replays on its own
-  intentKey: string | null;
-  group: string | null;                       // the caller's intent key, if any
-  messageHash: string | null;                 // null if the bytes could not be parsed
+  blockHeight: string | null;                 // as the proposal stated them
+  lastValidBlockHeight: string | null;
+  intentKey: string | null;                   // null if the bytes could not be parsed
+  group: string | null;                       // the caller's intent key, if any; recorded, never used to decide
+  messageHash: string | null;
+  shape: string | null;                       // hash of programs and destinations: the sensor's "same shape"
+  amounts: { sol: string; tokens: { mint: string; amount: string }[]; fees: string } | null; // what an ALLOW reserves
   allow: boolean;
   rule?: RuleV1;                              // on every denial
   reason: string;
-  posture: "DEFAULT" | "INHIBIT" | "REGROUND" | null;
+  posture: "DEFAULT" | "INHIBIT" | "REGROUND" | null; // null if Keel never ran for this proposal
   telemetry: { intensity: number; valence: number; repetition: number } | null;
+  temperatureMax: number | null;
   policyHash: string;
   keel: { version: "1.0.1"; digest: string; verified: "bytes" | "declared" };
   expires?: { lastValidBlockHeight: string }; // receipts only
-  hash: string;                               // sha256(canonicalJSON(decision without hash))
 }
+interface ReportV1 extends EntryBase { kind: "report"; decision: string; outcome: "landed" | "failed" | "expired" | "unknown"; source: "caller" | "signer" }
+interface ReleaseV1 extends EntryBase { kind: "release"; latchSeq: number; text: string; signature: string } // signature base64
+interface RedeemV1 extends EntryBase { kind: "redeem"; decision: string; blockHeight: string | null }
 ```
 
 **A receipt is an allowed `DecisionV1`.** The signer signs `bytes` only if all of these hold:
@@ -306,6 +319,19 @@ proposal has no effects to sense; it counts toward the latch instead.
     the latch and Keel's state.
   - **One writer.** The guard takes an exclusive lock on its log; a second instance refuses to start.
   - Off-chain caps bound one guard identity. The fleet-wide bound is the on-chain limit (§9).
+- **Decided while building admission (milestone 2a.5):**
+  - **What an outcome releases.** `failed` releases the value a decision reserved but keeps its fees, which may have
+    been paid; `expired` releases both; `unknown` releases nothing. Only allowed decisions take reports, and a final
+    outcome cannot be reported again.
+  - **When an intent ends.** When an attempt lands, or once a window has passed since its first attempt with nothing
+    still able to land. So an exhausted intent can try again a window later, never sooner.
+  - **No timeout is assumed.** Without block heights, only a report ends an attempt. At exactly an attempt's
+    `lastValidBlockHeight` it can still land.
+  - **A release starts the stream over.** It clears the latch and the run of denials, resets Keel, and empties the
+    sensor's memory. The windows and intents stand.
+  - **Windows run on the latest recorded time.** A caller's clock that steps back cannot shrink a window.
+  - **Receipts are redeemed.** `guard.redeem(bytes, decisionHash, blockHeight)` checks the bytes, the expiry and the
+    policy, and records the use, so a receipt signs once.
 - **Replay.** `replay(log, policy)` recomputes every decision and reports the first divergence. Anchoring the head
   on-chain is Alpha work (§9).
 
@@ -377,8 +403,9 @@ Each is fixed test-first: the evaluator writes the failing test, and the builder
 | D11 | Reservations, sensor state and Keel's state live in memory; a restart resets the caps and would un-latch a guard | `guard.ts:47-51` | §7, ADR-010 |
 | D12 | The core decodes through `@solana/web3.js` | `describe.ts:5`, `packages/sdk/package.json` | decode bytes without it, cross-checked in tests (ADR-009) |
 
-**Status:** D1, D2 and D9 are fixed in `packages/sdk/src/policy-v1.ts` (milestone 2a.4, `evals/sdk/policy.md`). They
-close in the guard when admission takes policy v1 (milestone 2a.5).
+**Status:** closed at milestone 2a.5 (`evals/sdk/admission.md`), test-first: D1, D2, D5, D6, D7, D9, D10 and D12. D12
+closed early: the guard decodes bytes itself, so `packages/sdk/src` imports no web3.js. **Open:** D3 and D4 (Keel's
+telemetry and bytes) and D8 (sensor v0's rate term) at milestone 2a.7, and D11 (state in memory) at 2a.6.
 
 ## 11. Batteries and acceptance
 
@@ -427,3 +454,4 @@ checked. The guard decodes whatever version arrives, so the answer changes no ru
 |---|---|---|
 | Draft 1 | 2026-09-27 | First draft, from the research foundation (`kb/milestones/2026-09-27_R-research.md`). |
 | Draft 2 | 2026-09-30 | The verified review (`runs/2026-09-30-verified-review-roadmap.md`): trust per mode; v1 decoded; tables pinned; an allowlist per instruction; durable nonces and other signers denied; the fee rule corrected; intents keyed by effects; the log as the state; the adapter surface; the structured latch release; the Squads membership question answered; D10 to D12; new battery cases. Phases are now the roadmap's milestones. |
+| Draft 3 | 2026-10-01 | Built through milestone 2a.5 (`runs/2026-10-01-beta-build.md`): the effects model as implemented (`otherSigners`, outflow sources, denial rules, the intent key's definition); the record's four entry kinds; the decisions made while building, in §4 and §7; kit's default version answered; D1, D2, D5, D6, D7, D9, D10 and D12 closed. |

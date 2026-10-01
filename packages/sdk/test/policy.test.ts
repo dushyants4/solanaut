@@ -5,7 +5,7 @@
 
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
-import { contextOf, createPolicy, PolicyError, type PolicyInput } from "../src/policy-v1.ts";
+import { contextOf, createPolicy, PolicyError, type PolicyInput } from "../src/policy.ts";
 import { randomAddress, rng } from "./support/kit.ts";
 
 const r = rng(404);

@@ -16,11 +16,11 @@ substantive change; *last reviewed* moves at every review.
 | [docs/PRODUCT.md](../docs/PRODUCT.md) | 1.0 | current | architect | every seat, judges | 2026-09-30 | 2c.1 |
 | [docs/ROADMAP.md](../docs/ROADMAP.md) | Draft 2 | review | archivist, with the architect | the human, every seat, judges | 2026-09-30 | every leg |
 | [docs/READINESS.md](../docs/READINESS.md) | Draft 1 | review | operator, with the evaluator | the human, every seat, auditors | 2026-09-30 | 2c.1 |
-| [docs/OVERVIEW.md](../docs/OVERVIEW.md) | Draft 2 | draft | integrator | engineers new to the repo, judges | 2026-09-30 | 2a.5 |
-| [docs/SPEC.md](../docs/SPEC.md) | Draft 2 | draft | architect | the builder, evaluator and integrator seats | 2026-09-30 | 2a.2 |
+| [docs/OVERVIEW.md](../docs/OVERVIEW.md) | Draft 3 | draft | integrator | engineers new to the repo, judges | 2026-10-01 | 2a.8 |
+| [docs/SPEC.md](../docs/SPEC.md) | Draft 3 | draft | architect | the builder, evaluator and integrator seats | 2026-10-01 | 2a.6 |
 | [docs/ARCHITECTURE.md](../docs/ARCHITECTURE.md) | 3 | current | architect | everyone | 2026-09-30 | 2b.4 |
 | [docs/HACKATHON.md](../docs/HACKATHON.md) | 3 | current | archivist | the human, every seat | 2026-09-30 | S.1 |
-| [docs/CLAIMS.md](../docs/CLAIMS.md) | 3 | current (T3) | archivist, sourced | every public sentence | 2026-09-30 | every milestone |
+| [docs/CLAIMS.md](../docs/CLAIMS.md) | 3.1 | current (T3) | archivist, sourced | every public sentence | 2026-10-01 | every milestone |
 | [docs/papers/LITEPAPER.md](../docs/papers/LITEPAPER.md) | Draft 2 | draft | architect | judges, developers | 2026-09-30 | 2b.4 |
 | [docs/papers/THREAT-MODEL.md](../docs/papers/THREAT-MODEL.md) | Draft 2 | draft | architect, evaluator | reviewers, auditors, judges | 2026-09-30 | 2b.4, 3.10 |
 | [docs/papers/MARKET.md](../docs/papers/MARKET.md) | Draft 2 | draft | archivist | the human, judges | 2026-09-30 | 2b.4 |
@@ -41,3 +41,4 @@ substantive change; *last reviewed* moves at every review.
 | 2026-09-27 | all | Register created. OVERVIEW, SPEC, the four papers and the three submission drafts written; README, ARCHITECTURE, HACKATHON and CLAIMS revised to version 2 | `runs/2026-09-27-research-foundation.md` |
 | 2026-09-27 | PITCH | Draft 2: the written pitch in four paragraphs (what, why, how, results), traced to CLAIMS rows; the script's M8 line scoped to bots | `runs/2026-09-27-written-pitch.md` |
 | 2026-09-30 | all | The verified review: PRODUCT, ROADMAP and READINESS created; SPEC, OVERVIEW, THREAT-MODEL, LITEPAPER, MARKET, BUSINESS-PLAN, DEMO and SUBMISSION to their next draft; README, ARCHITECTURE, HACKATHON and CLAIMS to version 3; PITCH to Draft 3; "next review" now names milestones | `runs/2026-09-30-verified-review-roadmap.md` |
+| 2026-10-01 | PRODUCT, ROADMAP, SPEC, OVERVIEW, CLAIMS | PRODUCT 1.0, signed off; ROADMAP Draft 2, the human's decisions; SPEC Draft 3, the effects model, the record and the decisions made while building 2a.2 to 2a.5; OVERVIEW Draft 3, the rebuilt guard; CLAIMS 3.1, evidence moved to the admission battery | `runs/2026-10-01-beta-build.md` |

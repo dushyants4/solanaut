@@ -1,7 +1,8 @@
 # ADR-004 · Propose, admit, sign: receipts bind every decision to the bytes signed
 
 **Status:** accepted 2026-09-27, in the research-foundation plan the human approved. It refines
-ADR-001; it does not replace it.
+ADR-001; it does not replace it. **Built** at milestone 2a.5 (`evals/sdk/admission.md`): `guard.check(bytes)`, receipts
+redeemed once, intents and the record; the record becomes durable at 2a.6.
 
 ## Context
 

@@ -36,7 +36,7 @@ valuable subset.
 
 **Busts when** the human rejects the definition. Then revise it and ask again.
 
-**Achieved 2026-09-30:** the human signed off `docs/PRODUCT.md` (`runs/2026-09-30-beta-build.md`). Leg 1 is won.
+**Achieved 2026-09-30:** the human signed off `docs/PRODUCT.md` (`runs/2026-10-01-beta-build.md`). Leg 1 is won.
 
 ## Leg 2 · Develop
 
