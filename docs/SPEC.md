@@ -377,6 +377,9 @@ Each is fixed test-first: the evaluator writes the failing test, and the builder
 | D11 | Reservations, sensor state and Keel's state live in memory; a restart resets the caps and would un-latch a guard | `guard.ts:47-51` | §7, ADR-010 |
 | D12 | The core decodes through `@solana/web3.js` | `describe.ts:5`, `packages/sdk/package.json` | decode bytes without it, cross-checked in tests (ADR-009) |
 
+**Status:** D1, D2 and D9 are fixed in `packages/sdk/src/policy-v1.ts` (milestone 2a.4, `evals/sdk/policy.md`). They
+close in the guard when admission takes policy v1 (milestone 2a.5).
+
 ## 11. Batteries and acceptance
 
 **The Beta gate** (milestone 2b.1 in `docs/ROADMAP.md`). Every case runs from a clean clone.
