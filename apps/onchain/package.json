@@ -1,0 +1,11 @@
+{
+  "name": "@solanaut/onchain",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Devnet scripts for the on-chain bound: a Squads v4 spending limit naming the agent's key (milestone 2a.9, ADR-006).",
+  "dependencies": {
+    "@solana/web3.js": "1.99.0",
+    "@sqds/multisig": "2.1.4"
+  }
+}
