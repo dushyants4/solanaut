@@ -135,6 +135,14 @@ test("sensor v1, repetition: a payment repeated after it landed is a new payment
   assert.equal(sensorV1(effects(), view({ recent: retried }), policy, at, "s").repetition, 1, "not landed: a retry");
 });
 
+// docs/RISKS.md RK20, evals/sdk/fee-escalation.md: a wallet's fee drifts between payments that land.
+test("sensor v1, repetition: the same shape at higher fees is escalation only against a payment that did not land", () => {
+  const landed = [{ intentKey: "a", shape: "s", fees: 5_000n, landed: true }];
+  assert.equal(sensorV1(effects({ intentKey: "b", priorityFee: 9n }), view({ recent: landed }), policy, at, "s").repetition, 0.5, "after a landed payment, a higher fee is a new payment of the same shape");
+  const failed = [{ intentKey: "a", shape: "s", fees: 5_000n, landed: false }];
+  assert.equal(sensorV1(effects({ intentKey: "b", priorityFee: 9n }), view({ recent: failed }), policy, at, "s").repetition, 0.8, "after one that did not land, still escalation");
+});
+
 test("through the guard: the same payment again after it landed reads as the same shape; before it lands, as a retry", async () => {
   const g = await createGuard({ policy: WORKLOAD_POLICY });
   const first = g.check({ message: pay(2, 1_000), at: 1_000 });

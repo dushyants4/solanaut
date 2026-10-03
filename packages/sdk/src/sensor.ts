@@ -72,7 +72,7 @@ export const SENSOR_V1 = {
    * retried. Once an intent lands, the same payment again is a new one, at most the same shape.
    */
   repeatSame: 1,
-  /** The same intent, or the same shape, at higher fees: fee escalation. */
+  /** The same intent at other fees, or the same shape at higher fees than a payment that has not landed: fee escalation. */
   repeatEscalating: 0.8,
   /** The same programs and destinations at another amount. */
   repeatShape: 0.5,
@@ -88,12 +88,15 @@ export const SENSOR_V1 = {
  *               rising linearly to 1 at five times it
  *   valence     0.2, less 0.3 for each denial, failed, expired or unknown outcome since the last landed one
  *   repetition  1, 0.8, 0.5 or 0, as SENSOR_V1 describes, over the last 8 parsed proposals; a
- *               recent intent that has landed counts only as the same shape
+ *               recent intent that has landed counts only as the same shape, and higher fees than
+ *               a payment that landed are not escalation
  *
- * Changed once after its first battery run, in definition, not in any coefficient: the first run
- * counted a landed payment, repeated, as a retry (repetition 1). Recurring payments of one amount
- * to one address then read as a saturating loop, and one REGROUND latched the guard. The battery
- * was re-run on fresh seeds after the change (evals/sdk/keel.md).
+ * Changed twice in definition, never in a coefficient, each time re-run on fresh seeds:
+ *   1. After its first battery run, which counted a landed payment, repeated, as a retry
+ *      (repetition 1): recurring payments read as a saturating loop (evals/sdk/keel.md).
+ *   2. After the independent evaluator's varied-fee streams, where the same shape at higher fees
+ *      than a payment that had landed read as escalation, and 15 of 3,000 benign payments were
+ *      stopped (evals/sdk/fee-escalation.md; docs/RISKS.md RK20).
  */
 export const sensorV1: Sensor = (e, s, policy, at, shape) => {
   const k = SENSOR_V1;
@@ -108,7 +111,8 @@ export const sensorV1: Sensor = (e, s, policy, at, shape) => {
     if (prev.intentKey === e.intentKey && !prev.landed) {
       repetition = Math.max(repetition, fees === prev.fees ? k.repeatSame : k.repeatEscalating);
     } else if (prev.shape === shape) {
-      repetition = Math.max(repetition, fees > prev.fees ? k.repeatEscalating : k.repeatShape);
+      // Fees above a payment that landed are a wallet's estimate moving, not escalation: that payment is done (RK20).
+      repetition = Math.max(repetition, fees > prev.fees && !prev.landed ? k.repeatEscalating : k.repeatShape);
     }
   }
   return { intensity, valence, repetition };

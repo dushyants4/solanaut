@@ -25,7 +25,7 @@ evidence.
 | RK4 | Agent frameworks sign twice or report landed payments as failed, so integrations hit refusals or retry real payments | high | medium | D14 closed; `guardedWallet` follows up what it signed; integrators pass whole transactions; findings sent upstream (M12, M13) | refusals as `intent-in-flight` in the adapters battery | integrator | mitigated for Solana Agent Kit 2.0.10; ElizaOS unknown until 3.6 |
 | RK5 | A listed Token-2022 mint changes a mutable setting after the operator checked it (T15) | low | high | only listed mints; the extension set pinned and re-read at admission (3.3) | — | builder | open until 3.3 |
 | RK6 | Opaque programs, such as a Jupiter route, cannot be bounded within the Alpha (T3, T28) | medium | high | opaque programs stay denied by default; 3.4 is gated on a Jupiter route bounded on a Surfpool mainnet fork; if the gate fails, the Alpha ships with them denied and says so | 3.4's gate | architect | open |
-| RK20 | Wallets that vary the priority fee per payment read as fee escalation: 15 of 3,000 benign payments stopped, each latching the guard | high | medium | S7 scoped to constant fees; candidate: score escalation only against attempts that did not land, measured on fresh seeds before any change (`docs/SPEC.md` §12) | the varied-fee benign battery (`evals/independent/e3-edges/`) | architect, evaluator | open: 0.50%, 95% interval 0.30–0.82%. A candidate, measured offline: 0 of 3,000, every loop's stop turn unchanged (`evals/sdk/fee-escalation.md`); built after the evaluator run, then confirmed on fresh seeds |
+| RK20 | Wallets that vary the priority fee per payment read as fee escalation: 15 of 3,000 benign payments stopped, each latching the guard | low | medium | S7 scoped to constant fees; candidate: score escalation only against attempts that did not land, measured on fresh seeds before any change (`docs/SPEC.md` §12) | the varied-fee benign battery (`evals/independent/e3-edges/`) | architect, evaluator | mitigated: built 2026-10-03; on fresh seeds 0 of 3,000, every loop's stop turn unchanged (`evals/sdk/fee-escalation.md`) |
 | RK7 | Durability across a power loss rests on `fsync` and is not measured | low | medium | S6 says "a crash", never "a power cut"; the on-chain limit bounds what a lost record could cost | — | evaluator | accepted, stated |
 
 ## 2. Dependencies
@@ -60,4 +60,4 @@ evidence.
 | Version | Date | What changed |
 |---|---|---|
 | Draft 1 | 2026-10-01 | First register, for milestone 2c.1: 19 risks, from the Beta's run records, `docs/SPEC.md` §12, the threat model and `kb/REGISTRY.md`. |
-| Draft 1.1 | 2026-10-03 | RK20 added, from the independent evaluator's varied-fee battery; RK12's status updated. |
+| Draft 1.1 | 2026-10-03 | RK20 added, from the independent evaluator's varied-fee battery, then mitigated the same day; RK12's status updated. |

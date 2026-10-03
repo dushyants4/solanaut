@@ -49,7 +49,30 @@ itself, all 154 pass.
 - **What F1 gives up.** A stream of payments that all land, each at a higher fee, no longer reads as escalation.
   Rule 13's per-transaction fee cap and the fee window still bound it, as they bound any spending that lands.
 
-## Not done yet, and why
+## Built, 2026-10-03
+
+After the independent evaluator run ended, F1 was built test-first.
+- **The definition test** in `packages/sdk/test/keel.test.ts` was seen failing first: the same shape at higher fees,
+  after a landed payment, must read 0.5, and after one that did not land, still 0.8.
+- **A varied-fee profile on fresh seeds** joined the benign battery (`sensor.battery.test.ts`): seeds 11 to 15, each
+  payment's price per unit drawn from 5,000 to 20,000 micro-lamports. The operator releases each latch, so each stop
+  is counted once.
+
+| | Before (sensor v1 as built) | After (F1) |
+|---|---|---|
+| varied fees, seeds 11 to 15, 5 × 600 | 421 of 3,000 (14.0%, 95% interval 12.8–15.3%) | **0 of 3,000** (95% upper bound 0.13%) |
+| the evaluator's varied fees, seeds 3003 to 3007 | 15 of 3,000 | 0 of 3,000 |
+| constant fee, 600 at the expected rate · 600 in bursts | 0 · 0 | 0 · 0 |
+| identical retries · rising fees · two shapes alternating | turn 3 · turn 4 · not stopped in 12 | turn 3 · turn 4 · not stopped in 12 |
+
+`npm test` passes 161 of 161.
+
+**Two counting methods, kept apart.** The varied-fee profile counts each stop once, as the evaluator's did. The
+constant-fee battery keeps the method claim S7 has always stated: no operator, so a latch refuses every payment after
+it. That is why sensor v0's figures there are 82.8% and 21.7% while its stops, counted once each, were one per stream.
+S7 now says so.
+
+## Not done yet, and why (as written before it was built)
 
 - **Building it.** It changes the guard's behaviour while the independent evaluator is testing the guard's state. It
   is built after that run, test-first.
@@ -59,4 +82,6 @@ itself, all 154 pass.
 
 ## Regenerate
 
-`uv run --script evals/sdk/fee-escalation/run.py`. It prints the table above.
+- The built rule: `node --test packages/sdk/test/sensor.battery.test.ts packages/sdk/test/keel.test.ts`.
+- The experiment, as it was: `uv run --script evals/sdk/fee-escalation/run.py`. Since F1 is built, the line it patches has
+  changed, so it refuses to run, by design. To reproduce the table above, check out `e7b69ff` first.

@@ -25,14 +25,15 @@ import { createGuard, type Decision } from "../src/guard.ts";
 import type { PolicyInput } from "../src/policy.ts";
 import { sensorV0, sensorV1, type Sensor } from "../src/sensor.ts";
 import { encodeBase58 } from "../src/base58.ts";
-import { generateKeyPairSync } from "node:crypto";
+import { generateKeyPairSync, sign } from "node:crypto";
 import { kitAddress, randomAddress, rng } from "./support/kit.ts";
 
 const r = rng(808);
 const AGENT = randomAddress(r);
 const DESTS = [randomAddress(r), randomAddress(r), randomAddress(r)];
 const SOL = 1_000_000_000n;
-const operator = encodeBase58(Buffer.from(generateKeyPairSync("ed25519").publicKey.export({ format: "jwk" }).x!, "base64url"));
+const operatorPair = generateKeyPairSync("ed25519");
+const operator = encodeBase58(Buffer.from(operatorPair.publicKey.export({ format: "jwk" }).x!, "base64url"));
 
 const policy: PolicyInput = {
   version: 1,
@@ -69,16 +70,27 @@ function wilson(k: number, n: number): [number, number] {
 }
 const pct = (x: number) => `${(100 * x).toFixed(2)}%`;
 
-interface Payment { at: number; to: Address; lamports: bigint }
+interface Payment { at: number; to: Address; lamports: bigint; microLamports?: bigint }
 
-/** A benign stream run through a guard: every payment within policy, every allowed one landing. */
-async function benign(sensor: Sensor, stream: Payment[]) {
+const budget = (microLamports: bigint) => [getSetComputeUnitLimitInstruction({ units: 200_000 }), getSetComputeUnitPriceInstruction({ microLamports })];
+
+/**
+ * A benign stream run through a guard: every payment within policy, every allowed one landing. By default no operator
+ * is present, so a latch refuses every payment after it, and all are counted: the measure claim S7 states. With
+ * `release`, the operator releases each latch at once, so each stop is counted once: how often the operator is called.
+ */
+async function benign(sensor: Sensor, stream: Payment[], release = false) {
   const g = await createGuard({ policy, sensor });
   const stops: Record<string, number> = {};
   stream.forEach((p, i) => {
-    const d = g.check({ message: message([pay(p.to, p.lamports)], i), at: p.at });
+    const ixs = [...(p.microLamports === undefined ? [] : budget(p.microLamports)), pay(p.to, p.lamports)];
+    const d = g.check({ message: message(ixs, i), at: p.at });
     if (d.allow) g.report(d.hash, "landed");
     else stops[d.rule!] = (stops[d.rule!] ?? 0) + 1;
+    if (release && g.status().latched) {
+      const text = g.releaseText(new Date(p.at + 60_000).toISOString());
+      assert.ok(g.release(text, new Uint8Array(sign(null, Buffer.from(text, "utf8"), operatorPair.privateKey)), p.at).released);
+    }
   });
   const k = Object.values(stops).reduce((a, b) => a + b, 0);
   return { k, n: stream.length, stops };
@@ -116,6 +128,29 @@ test("the benign battery: 600 payments at the expected rate, and 600 in bursts; 
     assert.ok(v1.k <= v0.k, `${label}: sensor v1 stopped ${v1.k}, more than sensor v0's ${v0.k}`);
   }
   for (const l of lines) console.log(`  benign: ${l}`);
+});
+
+/** As `poisson`, with the priority fee a wallet's estimate gives: the price per unit drifts, 5,000 to 20,000 micro-lamports. */
+function variedFees(n: number, perMinute: number, seed: number): Payment[] {
+  const g = rng(seed);
+  return poisson(n, perMinute, seed).map((p) => ({ ...p, microLamports: BigInt(Math.round(10_000 * (0.5 + 1.5 * g.next()))) }));
+}
+
+// The independent evaluator's varied-fee streams (seeds 3003 to 3007) found the problem (docs/RISKS.md RK20), so these
+// seeds, 11 to 15, are fresh: they measure the rule as it now stands, and were not used to choose it.
+test("the benign battery with varied priority fees: 5 × 600 payments at the expected rate, on fresh seeds, the operator releasing each latch; v0 against v1, measured", async () => {
+  let k0 = 0, k1 = 0, n = 0;
+  const stops: Record<string, number> = {};
+  for (const seed of [11, 12, 13, 14, 15]) {
+    const stream = variedFees(600, 6, seed);
+    const v0 = await benign(sensorV0, stream, true);
+    const v1 = await benign(sensorV1, stream, true);
+    k0 += v0.k; k1 += v1.k; n += stream.length;
+    for (const [rule, c] of Object.entries(v1.stops)) stops[rule] = (stops[rule] ?? 0) + c;
+  }
+  const [lo, hi] = wilson(k1, n);
+  console.log(`  benign, varied fees · sensor v0: ${k0} of ${n} stopped, ${pct(k0 / n)} · sensor v1: ${k1} of ${n}, ${pct(k1 / n)} (95% CI ${pct(lo)} to ${pct(hi)}) ${JSON.stringify(stops)}`);
+  assert.ok(k1 <= k0, `sensor v1 stopped ${k1}, more than sensor v0's ${k0}`);
 });
 
 /** A loop: the agent proposes, the send fails, it tries again; until a rule stops it, or 12 turns. */

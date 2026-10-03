@@ -308,7 +308,8 @@ Built at milestone 2a.7 (`evals/sdk/keel.md`).
   - **valence** = 0.2 less 0.3 for each denial, failed, expired or unknown outcome since the last landed one,
     clamped at −1, the lowest value Keel accepts; a landed transaction resets it.
   - **repetition**, over the last 8 parsed proposals: 1 for the same intent at the same fees, if that intent has not
-    landed; 0.8 for the same intent at other fees, or the same shape at higher fees (**fee escalation**); 0.5 for the
+    landed; 0.8 for the same intent at other fees, or the same shape at higher fees than a payment that has not landed
+    (**fee escalation**); 0.5 for the
     same shape at another amount; otherwise 0. **A landed intent counts only as the same shape.**
   - Every coefficient is stated, and none was tuned after looking at a battery's result. **One definition changed
     after the first run:** the first run counted a landed payment, repeated, as a retry, which read recurring payments
@@ -317,8 +318,9 @@ Built at milestone 2a.7 (`evals/sdk/keel.md`).
     stop it. The window caps bound it.
 - **Measured** (synthetic streams, `evals/sdk/keel.md`): at a constant priority fee, sensor v1 stopped 0 of 600 benign
   payments arriving at the expected rate, and 0 of 600 in bursts (95% upper bound 0.64% each), where sensor v0 stopped
-  82.8% and 21.7%. With the fee varied per payment, the independent evaluator measured 15 of 3,000 stopped (0.50%,
-  95% interval 0.30–0.82%), each latching the guard (§12).
+  82.8% and 21.7%, each after one stop, refusing every payment after it with no operator to release the latch. With the
+  fee varied per payment, sensor v1 stopped none of 3,000 on fresh seeds, the operator releasing each latch, after its
+  second definition change (below); before it, 15 of 3,000 on the independent evaluator's streams.
   Identical failing retries stop at turn 3. Retries with rising fees stop at turn 4, by the attempts cap, with Keel at
   REGROUND too. A loop alternating two shapes, with a changing amount, is not stopped within 12 turns.
 
@@ -597,13 +599,11 @@ regenerates them.
     stops the next 10 good payments.
   - [ADR-012](../design/ADR-012-latch-on-reground.md), **proposed for the human:** a REGROUND denial latches when Keel
     is the reason, or when the denial before it was also at REGROUND. Identical retries still latch at turn 3.
-- **Benign payments with varied priority fees read as fee escalation.** The independent evaluator ran 3,000 in-policy
-  payments whose priority fee varies as a wallet's would: 15 were stopped (0.50%, Wilson 95% interval 0.30–0.82%),
-  each a REGROUND that latched the guard. Sensor v1 scores "the same shape at higher fees" 0.8 even when the earlier
-  payment landed, so §6's "0 of 600" holds only for constant fees (claim S7 is scoped accordingly). Candidate: count fee
-  escalation only against attempts that did not land; measured offline, it stops none of the 3,000 and leaves every
-  loop's stop turn unchanged (`evals/sdk/fee-escalation.md`). ADR-012 does not help here, because Keel is the reason for these
-  denials. For the Alpha's sensor work (`docs/RISKS.md`, RK20).
+- **Benign payments with varied priority fees read as fee escalation.** **Answered 2026-10-03, and built.** The
+  independent evaluator's varied-fee streams stopped 15 of 3,000 benign payments, because sensor v1 scored the same
+  shape at higher fees as escalation even after the earlier payment landed. The definition now counts escalation only
+  against a payment that has not landed: on fresh seeds, 0 of 3,000 stopped, and every loop's stop turn is unchanged
+  (`evals/sdk/fee-escalation.md`; `docs/RISKS.md` RK20).
 - Should a run of failed outcomes trip the latch, as a run of denials does? A loop that alternates two shapes and
   changes its amount passes every rule while each send fails, and is bounded only by the fee window and the clamp
   under INHIBIT (`evals/sdk/keel.md`). For the Alpha's red team (milestone 3.10).
