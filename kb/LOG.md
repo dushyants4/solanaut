@@ -64,3 +64,5 @@ grep "| research |" kb/LOG.md             # every research pass
 ## [2026-10-01 13:05] build | D14 closed test-first: an unreported attempt past expiry holds its intent until reported; guardedWallet follows up what it signed; confirm reads the height before the status | evals/sdk/intents-d14.md, docs/SPEC.md, docs/CLAIMS.md
 
 ## [2026-10-01 12:50] decision | the latch on REGROUND measured under four trip rules; none admits a forbidden proposal; today's rule latches on DEMO scene 5's single re-sign; ADR-012 proposes rule C for the human | evals/sdk/latch-variants.md, design/ADR-012-latch-on-reground.md, docs/SPEC.md
+
+## [2026-10-03 13:00] review | the independent evaluator run (317 cases, D15 to D20 closed), 2b.2 gated by claims_lint, the Beta review drafted for sign-off, the Alpha scope drafted (SPEC §13, ADR-013 to ADR-018, RISKS, READINESS Draft 2), sensor v1 second definition change (RK20) | kb/milestones/2026-10-01_2b-beta.md, evals/independent/, runs/2026-10-03-independent-run-and-alpha-scope.md
