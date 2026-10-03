@@ -123,6 +123,31 @@ These are recorded in [docs/SPEC.md](../../docs/SPEC.md) §7:
   and intents stand.
 - Windows are measured from the latest recorded time, so a caller's clock stepping back cannot shrink them.
 
+## 6b. Found by the independent evaluator: a released receipt, a release's clock, and a short window (D18 to D20)
+
+The black-box evaluator e2-state found on 2026-10-03:
+- **D18:** a receipt reported `expired` still redeemed (S36).
+- **D19:** a release's expiry read the caller's clock (S80).
+- **D20:** with `windowMs` shorter than a blockhash's life, an attempt still able to land left the window cap (S82).
+
+Each became a test here, seen failing first; the run is in `sdk/durable.md`, section 3b, with D17:
+
+```
+✖ S36: a receipt reported expired, failed or landed no longer redeems          after expired, the receipt redeemed
+✖ S80: a release's expiry is judged on the latest recorded time …              released: true
+✖ S82: an attempt a trusted height shows can still land stays in the window …  got an ALLOW
+✖ S83: a release in the record is verified on restore and in replay …          Missing expected rejection
+✖ S81: a lock file that names no process refuses to start …                    "process undefined on undefined"
+ℹ pass 0 · fail 5
+```
+
+After the fixes, the five pass, and `npm test` passes 159 of 159.
+
+**The fixes:**
+- `redeem` refuses a decision with a final outcome.
+- `release` judges and records the expiry on the latest recorded time.
+- `windowTotals` keeps an attempt that a trusted height shows can still land.
+
 ## Regenerate
 
 - `npm test`

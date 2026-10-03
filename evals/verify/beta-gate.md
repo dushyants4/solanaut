@@ -8,8 +8,14 @@ passes from a clean clone, run by the evaluator seat, and each new gate was seen
 - **The on-chain and end-to-end batteries** passed on devnet on 2026-10-01, once the human funded the operator key:
   [onchain/squads-devnet.md](../onchain/squads-devnet.md) and [e2e/scenes-devnet.md](../e2e/scenes-devnet.md).
 
-**What remains for 2b.1's gate is procedural.** The batteries were run by this session, playing the evaluator seat. An
-independent run, by a separate session given only the spec, is owed before milestone 2b.4.
+**The independent evaluator run is done** (2026-10-03, `evals/independent/`). Three black-box evaluators, each given only
+the spec and the API's declarations, ran 317 cases. The audit found no read of the implementation.
+- **No battery failed.**
+- **Six defects found, all closed test-first:** D15 to D20.
+- **The spec gained precision** in a dozen places.
+- **Claim S7 was scoped** to constant fees.
+
+2b.1's gate is met.
 
 ## The clean clone, 2026-10-01
 
@@ -56,9 +62,10 @@ unchecked, an index past a pin let through. Each fault let at least one drain th
 ## The seat
 
 The evaluator's question is "does it actually pass, on a case that could fail?" These runs answer it for the code as
-built. This session played every seat in turn, so the evaluator's independence is procedural: each battery ran
-against stubs and planted faults, not only against the code it tests. An independent evaluator run, by a separate
-session given only the spec, is owed before milestone 2b.4's review.
+built. This session played every seat in turn, so these runs' independence is procedural: each battery ran
+against stubs and planted faults, not only against the code it tests. The independent run supplies the rest: three
+evaluators that did not build the code, given only the spec (`evals/independent/README.md`). They are the same model
+family as the builder, in separate contexts; outside agent CLIs were refused when run unattended.
 
 ## Regenerate
 

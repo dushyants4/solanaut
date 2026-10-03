@@ -62,9 +62,9 @@ export function inspectRecord(entries: readonly Entry[], policyInput: unknown): 
     if (e.kind === "release") releases.push({ seq: e.seq, at: e.at, latchSeq: e.latchSeq });
   }
   const now = state.maxAt ?? 0;
-  const w = windowTotals(state, policy, now);
   const lastHeight = [...decisions].reverse().find((d) => d.blockHeight !== null)?.blockHeight ?? null;
   const height = lastHeight === null ? null : BigInt(lastHeight);
+  const w = windowTotals(state, policy, now, height);
   const intents = [...state.intents].map(([key, i]) => ({
     key,
     firstAt: i.firstAt,

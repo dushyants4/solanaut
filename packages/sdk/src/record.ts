@@ -57,9 +57,11 @@ function lock(path: string): string {
     } catch {
       // An unreadable lock is still a lock: refuse below.
     }
-    const stale = typeof holder.pid === "number" && holder.host === hostname() && !alive(holder.pid);
-    if (!stale) {
-      throw new Error(`the record ${path} is locked by process ${String(holder.pid)} on ${String(holder.host)}: one guard writes a record at a time`);
+    if (typeof holder.pid !== "number" || typeof holder.host !== "string") {
+      throw new Error(`the record ${path} has a lock file, ${lockPath}, that names no process: if no guard is running on this record, delete the lock file and start again`);
+    }
+    if (holder.host !== hostname() || alive(holder.pid)) {
+      throw new Error(`the record ${path} is locked by process ${holder.pid} on ${holder.host}: one guard writes a record at a time`);
     }
     unlinkSync(lockPath);
   }

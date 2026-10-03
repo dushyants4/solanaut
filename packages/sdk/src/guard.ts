@@ -264,7 +264,7 @@ function evaluateRules(env: Env, p: ProposalV1): DecisionBody {
       if (intent.attempts.length >= policy.intents.maxAttempts) return decide(false, "intent-attempts-exhausted", `the same effects have been attempted ${intent.attempts.length} times, the most the policy allows`);
     }
     // Rule 16, counted at admission against what is already reserved.
-    const w = windowTotals(state, policy, now);
+    const w = windowTotals(state, policy, now, blockHeight);
     if (w.sol + t.sol > policy.sol.maxPerWindow) return decide(false, "over-window-cap", `${fmt(w.sol)} + ${fmt(t.sol)} lamports would pass the cap of ${fmt(policy.sol.maxPerWindow)} per ${policy.windowMs} ms`);
     for (const l of policy.tokens) {
       const held = w.tokens.get(l.mint) ?? 0n;
@@ -375,11 +375,12 @@ export async function createGuard(opts: GuardOptions): Promise<Guard> {
     if (f.cluster !== policy.latch.cluster) return no(`the release names cluster ${f.cluster}, not ${policy.latch.cluster}`);
     if (f.policyHash !== policyHash) return no("the release names another policy");
     if (f.seq !== state.latched.seq) return no(`the release is for the latch at seq ${f.seq}; this guard latched at ${state.latched.seq}`);
-    const expires = Date.parse(f.expires);
-    if (!(typeof at === "number" && Number.isFinite(at) && expires > at)) return no(`the release expired at ${f.expires}`);
+    // Judged on the latest recorded time, as the windows are, so a clock that steps back cannot revive it (D19).
+    const now = typeof at === "number" && Number.isFinite(at) ? nowFor(state, at) : Number.NaN;
+    if (!(Date.parse(f.expires) > now)) return no(`the release expired at ${f.expires}`);
     if (!verifyEd25519(policy.latch.releaseKey, new TextEncoder().encode(text), signature)) return no("the signature is not the release key's, over this text");
     try {
-      commit<ReleaseEntry>({ kind: "release", at, latchSeq: f.seq, text, signature: Buffer.from(signature).toString("base64") });
+      commit<ReleaseEntry>({ kind: "release", at: now, latchSeq: f.seq, text, signature: Buffer.from(signature).toString("base64") });
     } catch (err) {
       return no((err as Error).message);
     }
@@ -392,6 +393,10 @@ export async function createGuard(opts: GuardOptions): Promise<Guard> {
     const d = state.allowed.get(decisionHash);
     if (!d) return no("not an allowed decision of this guard");
     if (state.redeemed.has(decisionHash)) return no("the receipt was already used");
+    // A final outcome released, or spent, what the decision reserved: its bytes must not be signed now (D18).
+    const r = state.reservations.get(decisionHash);
+    const attempt = r && state.intents.get(r.intentKey)?.attempts.find((a) => a.decision === decisionHash);
+    if (attempt && !unresolved(attempt)) return no(`the decision was already reported ${attempt.status}`);
     if (!(message instanceof Uint8Array) || sha256hex(message) !== d.messageHash) return no("these bytes are not the ones the receipt admitted");
     if (d.policyHash !== policyHash) return no("the receipt was issued under another policy");
     if (d.expires) {

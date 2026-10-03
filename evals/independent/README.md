@@ -34,13 +34,14 @@ against stubs and planted faults; this harness gets an evaluator that did not bu
 The evaluators are this session's subagents (the same model family as the builder, with separate contexts).
 Outside agent CLIs were refused when run unattended (`runs/2026-10-01-devnet.md`).
 
-**Results so far:**
+**Results:**
 
 | Evaluator | Cases | Pass · fail · unclear | Black-box audit | Found | Triage |
 |---|---|---|---|---|---|
 | e3-edges | 83 | 80 · 2 · 1 | 0 hits in 76 tool calls | D15, D16; S7 holds only at a constant fee | [e3-edges/TRIAGE.md](e3-edges/TRIAGE.md) |
-| e2-state | — | — | — | — | after e3 |
-| e1-decode | — | — | — | — | after e2 |
+| e2-state | 83 | 76 · 0 · 7 | 0 hits in 108 tool calls | D17 to D20; T12's residual stated | [e2-state/TRIAGE.md](e2-state/TRIAGE.md) |
+| e1-decode | 151 | 141 · 1 · 9 | 0 hits in 74 tool calls | no defect: the intent key's formula and nine edge cases, stated in the spec | [e1-decode/TRIAGE.md](e1-decode/TRIAGE.md) |
+| **all** | **317** | **297 · 3 · 17** | **0 hits** | **six defects, D15 to D20, each closed test-first** | |
 
 **What went wrong on the way:**
 - All three first ran in parallel, and were cut off together by the account's usage limit.

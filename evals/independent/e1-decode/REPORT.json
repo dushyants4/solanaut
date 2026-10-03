@@ -1,0 +1,1392 @@
+{
+  "evaluator": "claude-opus-5-5",
+  "area": "decode",
+  "summary": "151 black-box cases over §3 EffectsV1, §4 and §5 rules 0 to 13, with §11's fail-closed and drain batteries: 141 pass, 1 fail, 9 unclear; every decision the cases check (every §4 table row, every decided item, rule order, rule 0, fees, the twelve drain kinds) matched the spec. The one fail is definitional: §3's formula for the intent key, sha256(canonical {feePayer, signers, opaque, sol, tokens, nonce}), does not reproduce the key the guard computes, though the key behaves as specified (S02, low severity). Messages were built byte by byte (v1 from @solana/kit 8.4.0's SIMD-0385 codec, cross-checked with kit's decoder) under a neutral sensor holding Keel at DEFAULT. The nine unclear cases are places where the spec admits two readings, and each was denied or bounded on the safe side.",
+  "counts": {
+    "pass": 141,
+    "unclear": 9,
+    "fail": 1
+  },
+  "cases": [
+    {
+      "id": "D01",
+      "spec": "§5 rule 1; §11 fail-closed (garbage bytes)",
+      "case": "garbage: a legacy transfer cut short inside its blockhash is malformed-proposal",
+      "expected": "deny malformed-proposal",
+      "observed": "as expected: deny malformed-proposal",
+      "verdict": "pass",
+      "test": "tests/decode.test.mjs: D01 garbage: a legacy transfer cut short inside its blockhash is malformed-proposal"
+    },
+    {
+      "id": "D02",
+      "spec": "§4 Message versions; §5 rule 2; §11 fail-closed (an unknown version)",
+      "case": "version byte 0x82 (v2) on an otherwise well-formed v0 body is unsupported-version",
+      "expected": "deny unsupported-version",
+      "observed": "as expected: deny unsupported-version",
+      "verdict": "pass",
+      "test": "tests/decode.test.mjs: D02 version byte 0x82 (v2) on an otherwise well-formed v0 body is unsupported-version"
+    },
+    {
+      "id": "D03",
+      "spec": "§5 rule 1; API decodeMessage ('every byte belongs to it')",
+      "case": "one trailing byte after a complete legacy message is malformed-proposal",
+      "expected": "the message alone is allowed; with one trailing byte, deny malformed-proposal",
+      "observed": "as expected: the message alone is allowed; with one trailing byte, deny malformed-proposal",
+      "verdict": "pass",
+      "test": "tests/decode.test.mjs: D03 one trailing byte after a complete legacy message is malformed-proposal"
+    },
+    {
+      "id": "D04",
+      "spec": "§5 rule 1 ('a field is ... ill-typed'); §3 ProposalV1.at: number",
+      "case": "a proposal whose `at` is a string, not a number, is malformed-proposal",
+      "expected": "deny malformed-proposal",
+      "observed": "as expected: deny malformed-proposal",
+      "verdict": "pass",
+      "test": "tests/decode.test.mjs: D04 a proposal whose `at` is a string, not a number, is malformed-proposal"
+    },
+    {
+      "id": "D05",
+      "spec": "§4 v0; §5 rule 3; §11 fail-closed (an unpinned table)",
+      "case": "a v0 message loading its destination from an unpinned table is lookup-table-unpinned",
+      "expected": "deny lookup-table-unpinned",
+      "observed": "as expected: deny lookup-table-unpinned",
+      "verdict": "pass",
+      "test": "tests/decode.test.mjs: D05 a v0 message loading its destination from an unpinned table is lookup-table-unpinned"
+    },
+    {
+      "id": "D06",
+      "spec": "§4 v0 ('an index at or past a pin's length is denied'); §5 rule 3; §11 fail-closed (an index past a pin)",
+      "case": "v0 pin boundary: index length-1 resolves and is admitted; index == pinned length is lookup-table-unpinned",
+      "expected": "index length-1 allowed; index == length, deny lookup-table-unpinned",
+      "observed": "as expected: index length-1 allowed; index == length, deny lookup-table-unpinned",
+      "verdict": "pass",
+      "test": "tests/decode.test.mjs: D06 v0 pin boundary: index length-1 resolves and is admitted; index == pinned length is lookup-table-unpinned"
+    },
+    {
+      "id": "D07",
+      "spec": "§4 v0; API ResolvedMessage.accounts order; §5 rule 10; §11 drain (a table index that points at an attacker)",
+      "case": "v0 account order across two tables: all writable entries, then all read-only; the index lands on the attacker",
+      "expected": "deny destination-not-allowed (a table-by-table order would resolve to the allowed owner)",
+      "observed": "as expected: deny destination-not-allowed (a table-by-table order would resolve to the allowed owner)",
+      "verdict": "pass",
+      "test": "tests/decode.test.mjs: D07 v0 account order across two tables: all writable entries, then all read-only; the index lands on the attacker"
+    },
+    {
+      "id": "D08",
+      "spec": "§4 v1 (config section); §4 Fees ('v1: the config's lamport total'); §3 computeUnitLimit, baseFee",
+      "case": "v1: the priority fee is the config's lamport total and the CU limit is the config's; a plain transfer is admitted",
+      "expected": "priorityFee 7777, computeUnitLimit 450, baseFee 5000; allowed; amounts.fees '12777'",
+      "observed": "as expected: priorityFee 7777, computeUnitLimit 450, baseFee 5000; allowed; amounts.fees '12777'",
+      "verdict": "pass",
+      "test": "tests/decode.test.mjs: D08 v1: the priority fee is the config's lamport total and the CU limit is the config's; a plain transfer is admitted"
+    },
+    {
+      "id": "D09",
+      "spec": "§3 computeUnitLimit ('v1: the config's, 0 if unset')",
+      "case": "v1 with no CU limit in its config: computeUnitLimit is 0, not a default",
+      "expected": "computeUnitLimit 0; priorityFee 10",
+      "observed": "as expected: computeUnitLimit 0; priorityFee 10",
+      "verdict": "pass",
+      "test": "tests/decode.test.mjs: D09 v1 with no CU limit in its config: computeUnitLimit is 0, not a default"
+    },
+    {
+      "id": "D10",
+      "spec": "§4 v1 ('Any ComputeBudget instruction in a v1 message is denied'); §5 rule 9; §11 drain (a v1 message with a ComputeBudget decoy)",
+      "case": "v1 with a ComputeBudget SetComputeUnitPrice decoy is instruction-denied",
+      "expected": "deny instruction-denied",
+      "observed": "as expected: deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/decode.test.mjs: D10 v1 with a ComputeBudget SetComputeUnitPrice decoy is instruction-denied"
+    },
+    {
+      "id": "D11",
+      "spec": "§4 table, ComputeBudget row ('any ComputeBudget instruction in a v1 message')",
+      "case": "v1 with SetComputeUnitLimit, benign in legacy, is instruction-denied",
+      "expected": "deny instruction-denied",
+      "observed": "as expected: deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/decode.test.mjs: D11 v1 with SetComputeUnitLimit, benign in legacy, is instruction-denied"
+    },
+    {
+      "id": "D12",
+      "spec": "§4 v1 ('at most 64 inline accounts'); §5 rule 1",
+      "case": "v1 inline-account boundary: 64 accounts admitted, 65 is malformed-proposal",
+      "expected": "64 accounts allowed; 65, deny malformed-proposal",
+      "observed": "as expected: 64 accounts allowed; 65, deny malformed-proposal",
+      "verdict": "pass",
+      "test": "tests/decode.test.mjs: D12 v1 inline-account boundary: 64 accounts admitted, 65 is malformed-proposal"
+    },
+    {
+      "id": "D13",
+      "spec": "§4 Durable nonces ('in every version'); §5 rule 5",
+      "case": "v1 whose first instruction advances a durable nonce is durable-nonce-denied",
+      "expected": "deny durable-nonce-denied",
+      "observed": "as expected: deny durable-nonce-denied",
+      "verdict": "pass",
+      "test": "tests/decode.test.mjs: D13 v1 whose first instruction advances a durable nonce is durable-nonce-denied"
+    },
+    {
+      "id": "C01",
+      "spec": "§4 System row; §5 rule 10; §11 drain (a new recipient)",
+      "case": "[drain] System Transfer to a new recipient is destination-not-allowed",
+      "expected": "deny destination-not-allowed",
+      "observed": "as expected: deny destination-not-allowed",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C01 [drain] System Transfer to a new recipient is destination-not-allowed"
+    },
+    {
+      "id": "C02",
+      "spec": "§4 System row (Transfer, value-moving); §3 amounts",
+      "case": "System Transfer to an allowed owner is admitted and counted as SOL",
+      "expected": "allowed; amounts.sol '123456'",
+      "observed": "as expected: allowed; amounts.sol '123456'",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C02 System Transfer to an allowed owner is admitted and counted as SOL"
+    },
+    {
+      "id": "C03",
+      "spec": "§4 System row (TransferWithSeed, value-moving); §4 The principal; §5 rule 10",
+      "case": "System TransferWithSeed (base is the principal) to the attacker is destination-not-allowed",
+      "expected": "deny destination-not-allowed",
+      "observed": "as expected: deny destination-not-allowed",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C03 System TransferWithSeed (base is the principal) to the attacker is destination-not-allowed"
+    },
+    {
+      "id": "C04",
+      "spec": "§4 System row (CreateAccountWithSeed: the new account must be an allowed destination); §5 rule 10",
+      "case": "System CreateAccountWithSeed funding an address that is not an allowed destination is destination-not-allowed",
+      "expected": "deny destination-not-allowed",
+      "observed": "as expected: deny destination-not-allowed",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C04 System CreateAccountWithSeed funding an address that is not an allowed destination is destination-not-allowed"
+    },
+    {
+      "id": "C05",
+      "spec": "§4 System row (CreateAccount); §3 sol kind 'new-account'",
+      "case": "System CreateAccount funding an allowed destination (a principal key that signs) is admitted as new-account",
+      "expected": "effects.sol [{A→K2, 2000000, new-account}]; allowed",
+      "observed": "as expected: effects.sol [{A→K2, 2000000, new-account}]; allowed",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C05 System CreateAccount funding an allowed destination (a principal key that signs) is admitted as new-account"
+    },
+    {
+      "id": "C06",
+      "spec": "§4 The principal; §5 rule 6 before rule 10; §11 drain (CreateAccount funding a counterparty's key)",
+      "case": "[drain] System CreateAccount funding a counterparty's key (which must sign) is other-signer",
+      "expected": "deny other-signer (the new account must sign)",
+      "observed": "as expected: deny other-signer (the new account must sign)",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C06 [drain] System CreateAccount funding a counterparty's key (which must sign) is other-signer"
+    },
+    {
+      "id": "C07",
+      "spec": "§4 Decided: CreateAccountAllowPrefund ('denied when the new account is a principal key'); §5 rule 9",
+      "case": "CreateAccountAllowPrefund (SIMD-0312 layout) whose new account is a principal key is instruction-denied",
+      "expected": "deny instruction-denied",
+      "observed": "as expected: deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C07 CreateAccountAllowPrefund (SIMD-0312 layout) whose new account is a principal key is instruction-denied"
+    },
+    {
+      "id": "C08",
+      "spec": "§4 System row (Assign: denied); §5 rule 9",
+      "case": "System Assign (grants authority) is instruction-denied",
+      "expected": "deny instruction-denied",
+      "observed": "as expected: deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C08 System Assign (grants authority) is instruction-denied"
+    },
+    {
+      "id": "C09",
+      "spec": "§4 ('Anything not listed is denied as instruction-denied'); §5 rule 9",
+      "case": "System instruction with an unknown discriminator (99) is instruction-denied",
+      "expected": "deny instruction-denied",
+      "observed": "as expected: deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C09 System instruction with an unknown discriminator (99) is instruction-denied"
+    },
+    {
+      "id": "C10",
+      "spec": "§4 Durable nonces; §5 rule 5; §11 drain (a durable-nonce transfer)",
+      "case": "[drain] a durable-nonce transfer (AdvanceNonceAccount first) is durable-nonce-denied",
+      "expected": "deny durable-nonce-denied",
+      "observed": "as expected: deny durable-nonce-denied",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C10 [drain] a durable-nonce transfer (AdvanceNonceAccount first) is durable-nonce-denied"
+    },
+    {
+      "id": "C11",
+      "spec": "§4 Durable nonces ('as is every nonce instruction'); §5 rule 5",
+      "case": "WithdrawNonceAccount as the second instruction is durable-nonce-denied",
+      "expected": "deny durable-nonce-denied",
+      "observed": "as expected: deny durable-nonce-denied",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C11 WithdrawNonceAccount as the second instruction is durable-nonce-denied"
+    },
+    {
+      "id": "C12",
+      "spec": "§4 Decided ('short or trailing data ... is denied'); §5 rule 9",
+      "case": "System Transfer with short data (u64 cut to 7 bytes) is instruction-denied",
+      "expected": "deny instruction-denied",
+      "observed": "as expected: deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C12 System Transfer with short data (u64 cut to 7 bytes) is instruction-denied"
+    },
+    {
+      "id": "C13",
+      "spec": "§4 Decided ('or too few accounts'); §5 rule 9",
+      "case": "System Transfer with too few accounts (no destination) is instruction-denied",
+      "expected": "deny instruction-denied",
+      "observed": "as expected: deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C13 System Transfer with too few accounts (no destination) is instruction-denied"
+    },
+    {
+      "id": "C14",
+      "spec": "§4 SPL Token row (TransferChecked); §4 Rules for tokens; §3 amounts",
+      "case": "Token TransferChecked of a listed mint to an allowed owner's ATA is admitted; amounts name the mint",
+      "expected": "allowed; amounts.tokens [{M, '500000'}]",
+      "observed": "as expected: allowed; amounts.tokens [{M, '500000'}]",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C14 Token TransferChecked of a listed mint to an allowed owner's ATA is admitted; amounts name the mint"
+    },
+    {
+      "id": "C15",
+      "spec": "§4 Rules for tokens (Destination); §5 rule 10; §11 drain (a token sent to a non-associated account)",
+      "case": "[drain] Token TransferChecked to a non-associated account is destination-not-allowed",
+      "expected": "deny destination-not-allowed",
+      "observed": "as expected: deny destination-not-allowed",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C15 [drain] Token TransferChecked to a non-associated account is destination-not-allowed"
+    },
+    {
+      "id": "C16",
+      "spec": "§4 SPL Token row (Approve: denied); §5 rule 9; §11 drain (Approve to an attacker)",
+      "case": "[drain] Token Approve to an attacker is instruction-denied",
+      "expected": "deny instruction-denied",
+      "observed": "as expected: deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C16 [drain] Token Approve to an attacker is instruction-denied"
+    },
+    {
+      "id": "C17",
+      "spec": "§4 SPL Token row (SetAuthority: denied); §11 drain (SetAuthority)",
+      "case": "[drain] Token SetAuthority is instruction-denied",
+      "expected": "deny instruction-denied",
+      "observed": "as expected: deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C17 [drain] Token SetAuthority is instruction-denied"
+    },
+    {
+      "id": "C18",
+      "spec": "§4 SPL Token row (CloseAccount: denied)",
+      "case": "Token CloseAccount (rent to the attacker) is instruction-denied",
+      "expected": "deny instruction-denied",
+      "observed": "as expected: deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C18 Token CloseAccount (rent to the attacker) is instruction-denied"
+    },
+    {
+      "id": "C19",
+      "spec": "§4 SPL Token row (Revoke: benign)",
+      "case": "Token Revoke is benign and admitted",
+      "expected": "allowed",
+      "observed": "as expected: allowed",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C19 Token Revoke is benign and admitted"
+    },
+    {
+      "id": "C20",
+      "spec": "§4 Decided: p-token Batch (255) denied by not being listed",
+      "case": "p-token Batch (255) carrying a transfer to the attacker is instruction-denied",
+      "expected": "deny instruction-denied",
+      "observed": "as expected: deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C20 p-token Batch (255) carrying a transfer to the attacker is instruction-denied"
+    },
+    {
+      "id": "C21",
+      "spec": "§4 Decided: p-token WithdrawExcessLamports (38)",
+      "case": "p-token WithdrawExcessLamports (38) is instruction-denied",
+      "expected": "deny instruction-denied",
+      "observed": "as expected: deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C21 p-token WithdrawExcessLamports (38) is instruction-denied"
+    },
+    {
+      "id": "C22",
+      "spec": "§4 Rules for tokens (Mint inferred from the principal's ATA); §5 rule 12; §11 drain (an oversized send of a listed mint)",
+      "case": "[drain] plain Transfer from the principal's ATA: mint inferred; at the cap admitted, one over is over-per-tx-cap",
+      "expected": "at the cap allowed with mint M; cap+1, deny over-per-tx-cap",
+      "observed": "as expected: at the cap allowed with mint M; cap+1, deny over-per-tx-cap",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C22 [drain] plain Transfer from the principal's ATA: mint inferred; at the cap admitted, one over is over-per-tx-cap"
+    },
+    {
+      "id": "C23",
+      "spec": "§4 Rules for tokens (Mint: 'Otherwise ... token-mint-unknown'); §5 rule 11",
+      "case": "plain Transfer from an account that is not the principal's ATA of a listed mint is token-mint-unknown",
+      "expected": "deny token-mint-unknown",
+      "observed": "as expected: deny token-mint-unknown",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C23 plain Transfer from an account that is not the principal's ATA of a listed mint is token-mint-unknown"
+    },
+    {
+      "id": "C24",
+      "spec": "§3 PolicyV1.tokens ('any mint not listed is denied'); §5 rule 11",
+      "case": "Token TransferChecked of an unlisted mint to an allowed owner's ATA for it is mint-not-allowed",
+      "expected": "deny mint-not-allowed",
+      "observed": "as expected: deny mint-not-allowed",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C24 Token TransferChecked of an unlisted mint to an allowed owner's ATA for it is mint-not-allowed"
+    },
+    {
+      "id": "C25",
+      "spec": "§4 Decided ('A token transfer whose authority does not sign ... is denied')",
+      "case": "Token transfer whose authority is a multisig (does not sign) is instruction-denied",
+      "expected": "deny instruction-denied",
+      "observed": "as expected: deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C25 Token transfer whose authority is a multisig (does not sign) is instruction-denied"
+    },
+    {
+      "id": "C26",
+      "spec": "§4 Decided ('trailing data')",
+      "case": "Token TransferChecked with one trailing data byte is instruction-denied",
+      "expected": "deny instruction-denied",
+      "observed": "as expected: deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C26 Token TransferChecked with one trailing data byte is instruction-denied"
+    },
+    {
+      "id": "C27",
+      "spec": "§4 Token-2022 row (TransferChecked); Rules for tokens (Token-2022 derivation)",
+      "case": "Token-2022 TransferChecked of a listed 2022 mint to the owner's Token-2022 ATA is admitted",
+      "expected": "allowed",
+      "observed": "as expected: allowed",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C27 Token-2022 TransferChecked of a listed 2022 mint to the owner's Token-2022 ATA is admitted"
+    },
+    {
+      "id": "C28",
+      "spec": "§4 Rules for tokens ('Token and Token-2022 derive different addresses'); §5 rule 10",
+      "case": "Token-2022 TransferChecked to the owner's ATA derived with the classic Token program is destination-not-allowed",
+      "expected": "deny destination-not-allowed",
+      "observed": "as expected: deny destination-not-allowed",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C28 Token-2022 TransferChecked to the owner's ATA derived with the classic Token program is destination-not-allowed"
+    },
+    {
+      "id": "C29",
+      "spec": "§4 Token-2022 row ('plus every extension instruction')",
+      "case": "Token-2022 extension instruction (MemoTransfer disable, 30/1) is instruction-denied",
+      "expected": "deny instruction-denied",
+      "observed": "as expected: deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C29 Token-2022 extension instruction (MemoTransfer disable, 30/1) is instruction-denied"
+    },
+    {
+      "id": "C30",
+      "spec": "§4 Memo row ('any')",
+      "case": "Memo v1 and v2 alongside an allowed transfer are admitted",
+      "expected": "allowed",
+      "observed": "as expected: allowed",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C30 Memo v1 and v2 alongside an allowed transfer are admitted"
+    },
+    {
+      "id": "C31",
+      "spec": "§4 'any other program' row; §5 rule 8",
+      "case": "an allowlisted program the guard does not decode, with opaque 'deny', is opaque-program; with 'allow', admitted",
+      "expected": "opaque 'deny': deny opaque-program; opaque 'allow': allowed",
+      "observed": "as expected: opaque 'deny': deny opaque-program; opaque 'allow': allowed",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C31 an allowlisted program the guard does not decode, with opaque 'deny', is opaque-program; with 'allow', admitted"
+    },
+    {
+      "id": "C32",
+      "spec": "§4 'any other program' row; §5 rule 7; §11 drain (an unlisted program)",
+      "case": "[drain] an unlisted program is program-not-allowed",
+      "expected": "deny program-not-allowed",
+      "observed": "as expected: deny program-not-allowed",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C32 [drain] an unlisted program is program-not-allowed"
+    },
+    {
+      "id": "C33",
+      "spec": "§4 The principal; §5 rule 6; §11 drain (another signer's instruction)",
+      "case": "[drain] another signer's instruction (a transfer from a key outside the principal) is other-signer",
+      "expected": "deny other-signer",
+      "observed": "as expected: deny other-signer",
+      "verdict": "pass",
+      "test": "tests/classify.test.mjs: C33 [drain] another signer's instruction (a transfer from a key outside the principal) is other-signer"
+    },
+    {
+      "id": "E01",
+      "spec": "§3 signers ('every required signer'), otherSigners; §5 rule 6",
+      "case": "a required signer outside the principal that no instruction uses is still other-signer",
+      "expected": "otherSigners [C]; deny other-signer",
+      "observed": "as expected: otherSigners [C]; deny other-signer",
+      "verdict": "pass",
+      "test": "tests/edges.test.mjs: E01 a required signer outside the principal that no instruction uses is still other-signer"
+    },
+    {
+      "id": "E02",
+      "spec": "§3 amounts are bigint; §5 rule 12 (the SOL total); §10 D9",
+      "case": "two SOL transfers of 2^63 each (a u64 sum that wraps to 0) are over-per-tx-cap",
+      "expected": "deny over-per-tx-cap",
+      "observed": "as expected: deny over-per-tx-cap",
+      "verdict": "pass",
+      "test": "tests/edges.test.mjs: E02 two SOL transfers of 2^63 each (a u64 sum that wraps to 0) are over-per-tx-cap"
+    },
+    {
+      "id": "E03",
+      "spec": "§3 amounts are bigint; §10 D9; §5 rule 12",
+      "case": "a SOL cap of 2^53 and a transfer of 2^53+1 (equal as JS numbers) is over-per-tx-cap",
+      "expected": "2^53 allowed; 2^53+1, deny over-per-tx-cap",
+      "observed": "as expected: 2^53 allowed; 2^53+1, deny over-per-tx-cap",
+      "verdict": "pass",
+      "test": "tests/edges.test.mjs: E03 a SOL cap of 2^53 and a transfer of 2^53+1 (equal as JS numbers) is over-per-tx-cap"
+    },
+    {
+      "id": "E04",
+      "spec": "§5 rule 12 ('a mint's total')",
+      "case": "two TransferChecked of one listed mint, each under its cap, together over it, are over-per-tx-cap",
+      "expected": "deny over-per-tx-cap",
+      "observed": "as expected: deny over-per-tx-cap",
+      "verdict": "pass",
+      "test": "tests/edges.test.mjs: E04 two TransferChecked of one listed mint, each under its cap, together over it, are over-per-tx-cap"
+    },
+    {
+      "id": "E05",
+      "spec": "§5 rule 12 ('the SOL total'); §4 System row (new-account lamports count)",
+      "case": "a SOL Transfer plus CreateAccount funding, each under the cap, together over it, are over-per-tx-cap",
+      "expected": "deny over-per-tx-cap",
+      "observed": "as expected: deny over-per-tx-cap",
+      "verdict": "pass",
+      "test": "tests/edges.test.mjs: E05 a SOL Transfer plus CreateAccount funding, each under the cap, together over it, are over-per-tx-cap"
+    },
+    {
+      "id": "E06",
+      "spec": "§4 System row (TransferWithSeed: amount checked); §5 rule 12",
+      "case": "TransferWithSeed to an allowed owner counts its lamports: over the SOL cap is over-per-tx-cap",
+      "expected": "deny over-per-tx-cap",
+      "observed": "as expected: deny over-per-tx-cap",
+      "verdict": "pass",
+      "test": "tests/edges.test.mjs: E06 TransferWithSeed to an allowed owner counts its lamports: over the SOL cap is over-per-tx-cap"
+    },
+    {
+      "id": "E07",
+      "spec": "§4 Rules for tokens (the principal's ATA); §3 PolicyV1.principal is a list",
+      "case": "plain Transfer from the second principal key's ATA of a listed mint: mint inferred, admitted",
+      "expected": "allowed; amounts.tokens [{M, '5'}]",
+      "observed": "as expected: allowed; amounts.tokens [{M, '5'}]",
+      "verdict": "pass",
+      "test": "tests/edges.test.mjs: E07 plain Transfer from the second principal key's ATA of a listed mint: mint inferred, admitted"
+    },
+    {
+      "id": "E08",
+      "spec": "§4 Rules for tokens (inference only from the principal's ATA, derived with the mint's token program); §5 rule 11",
+      "case": "plain Token-2022 Transfer from the principal's classic-derived ATA of a 'token' mint cannot infer the mint: token-mint-unknown",
+      "expected": "deny token-mint-unknown",
+      "observed": "as expected: deny token-mint-unknown",
+      "verdict": "pass",
+      "test": "tests/edges.test.mjs: E08 plain Token-2022 Transfer from the principal's classic-derived ATA of a 'token' mint cannot infer the mint: token-mint-unknown"
+    },
+    {
+      "id": "E09",
+      "spec": "§4 ('Anything not listed is denied'); §5 rule 9",
+      "case": "a Token instruction with empty data (no discriminator) is instruction-denied",
+      "expected": "deny instruction-denied",
+      "observed": "as expected: deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/edges.test.mjs: E09 a Token instruction with empty data (no discriminator) is instruction-denied"
+    },
+    {
+      "id": "E10",
+      "spec": "§4 Token-2022 row (TransferCheckedWithFee is Alpha; extension instructions denied)",
+      "case": "Token-2022 TransferCheckedWithFee (26/1, Alpha) is denied in the Beta as instruction-denied",
+      "expected": "deny instruction-denied",
+      "observed": "as expected: deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/edges.test.mjs: E10 Token-2022 TransferCheckedWithFee (26/1, Alpha) is denied in the Beta as instruction-denied"
+    },
+    {
+      "id": "E11",
+      "spec": "§5 rule 1 ('the bytes do not parse')",
+      "case": "an instruction account index past the account list is malformed-proposal",
+      "expected": "deny malformed-proposal",
+      "observed": "as expected: deny malformed-proposal",
+      "verdict": "pass",
+      "test": "tests/edges.test.mjs: E11 an instruction account index past the account list is malformed-proposal"
+    },
+    {
+      "id": "E12",
+      "spec": "§5 rule 1; §3 feePayer",
+      "case": "a header with zero required signatures (no fee payer) is malformed-proposal",
+      "expected": "deny malformed-proposal",
+      "observed": "as expected: deny malformed-proposal",
+      "verdict": "pass",
+      "test": "tests/edges.test.mjs: E12 a header with zero required signatures (no fee payer) is malformed-proposal"
+    },
+    {
+      "id": "E13",
+      "spec": "§5 rule 1 ('ill-typed'); §3 ProposalV1.blockHeight: bigint",
+      "case": "a proposal whose blockHeight is a number, not a bigint, is malformed-proposal",
+      "expected": "deny malformed-proposal",
+      "observed": "as expected: deny malformed-proposal",
+      "verdict": "pass",
+      "test": "tests/edges.test.mjs: E13 a proposal whose blockHeight is a number, not a bigint, is malformed-proposal"
+    },
+    {
+      "id": "E14",
+      "spec": "§4 ComputeBudget row (RequestHeapFrame, SetLoadedAccountsDataSizeLimit: benign)",
+      "case": "ComputeBudget RequestHeapFrame and SetLoadedAccountsDataSizeLimit are benign in legacy: admitted",
+      "expected": "allowed",
+      "observed": "as expected: allowed",
+      "verdict": "pass",
+      "test": "tests/edges.test.mjs: E14 ComputeBudget RequestHeapFrame and SetLoadedAccountsDataSizeLimit are benign in legacy: admitted"
+    },
+    {
+      "id": "E15",
+      "spec": "§3 PolicyV1.destinations (owners); §5 rule 10",
+      "case": "a SOL transfer to an allowed owner's token account (not itself an allowed owner) is destination-not-allowed",
+      "expected": "deny destination-not-allowed",
+      "observed": "as expected: deny destination-not-allowed",
+      "verdict": "pass",
+      "test": "tests/edges.test.mjs: E15 a SOL transfer to an allowed owner's token account (not itself an allowed owner) is destination-not-allowed"
+    },
+    {
+      "id": "F01",
+      "spec": "§4 Fees ('ceil(price × limit / 1,000,000)')",
+      "case": "with SetComputeUnitLimit: ceil(price × limit / 1e6); price 3, limit 333,333 gives 1, not 0",
+      "expected": "computeUnitLimit 333333; priorityFee 1",
+      "observed": "as expected: computeUnitLimit 333333; priorityFee 1",
+      "verdict": "pass",
+      "test": "tests/fees.test.mjs: F01 with SetComputeUnitLimit: ceil(price × limit / 1e6); price 3, limit 333,333 gives 1, not 0"
+    },
+    {
+      "id": "F02",
+      "spec": "§4 Fees (default limit; 3,000 per builtin)",
+      "case": "without SetComputeUnitLimit, builtins only: 3,000 each for ComputeBudget and System (limit 6,000)",
+      "expected": "computeUnitLimit 6000; priorityFee 6000",
+      "observed": "as expected: computeUnitLimit 6000; priorityFee 6000",
+      "verdict": "pass",
+      "test": "tests/fees.test.mjs: F02 without SetComputeUnitLimit, builtins only: 3,000 each for ComputeBudget and System (limit 6,000)"
+    },
+    {
+      "id": "F03",
+      "spec": "§4 Fees ('only System and ComputeBudget are counted at 3,000')",
+      "case": "without SetComputeUnitLimit, Memo is not a builtin: counted at 200,000 (limit 206,000)",
+      "expected": "computeUnitLimit 206000; priorityFee 206000",
+      "observed": "as expected: computeUnitLimit 206000; priorityFee 206000",
+      "verdict": "pass",
+      "test": "tests/fees.test.mjs: F03 without SetComputeUnitLimit, Memo is not a builtin: counted at 200,000 (limit 206,000)"
+    },
+    {
+      "id": "F04",
+      "spec": "§4 Fees ('at most 1,400,000')",
+      "case": "the default limit is capped at 1,400,000 (ComputeBudget + 7 Memos would be 1,403,000)",
+      "expected": "computeUnitLimit 1400000; priorityFee 1400000",
+      "observed": "as expected: computeUnitLimit 1400000; priorityFee 1400000",
+      "verdict": "pass",
+      "test": "tests/fees.test.mjs: F04 the default limit is capped at 1,400,000 (ComputeBudget + 7 Memos would be 1,403,000)"
+    },
+    {
+      "id": "F05",
+      "spec": "§4 Fees; §5 rule 13; §11 drain (a price with no limit)",
+      "case": "[drain] a price with no limit: token transfer at 50,000 µL/CU, default limit 203,000, fee 10,150 > 10,000 is over-fee-cap",
+      "expected": "priorityFee 10150; deny over-fee-cap",
+      "observed": "as expected: priorityFee 10150; deny over-fee-cap",
+      "verdict": "pass",
+      "test": "tests/fees.test.mjs: F05 [drain] a price with no limit: token transfer at 50,000 µL/CU, default limit 203,000, fee 10,150 > 10,000 is over-fee-cap"
+    },
+    {
+      "id": "F06",
+      "spec": "§5 rule 13 ('over fees.maxPriorityPerTx')",
+      "case": "rule 13 boundary: a priority fee exactly at maxPriorityPerTx is admitted, one lamport over is over-fee-cap",
+      "expected": "fee at the cap allowed; cap+1, deny over-fee-cap",
+      "observed": "as expected: fee at the cap allowed; cap+1, deny over-fee-cap",
+      "verdict": "pass",
+      "test": "tests/fees.test.mjs: F06 rule 13 boundary: a priority fee exactly at maxPriorityPerTx is admitted, one lamport over is over-fee-cap"
+    },
+    {
+      "id": "F07",
+      "spec": "§4 Fees ('No price means no priority fee')",
+      "case": "no SetComputeUnitPrice means no priority fee, whatever the limit",
+      "expected": "priorityFee 0",
+      "observed": "as expected: priorityFee 0",
+      "verdict": "pass",
+      "test": "tests/fees.test.mjs: F07 no SetComputeUnitPrice means no priority fee, whatever the limit"
+    },
+    {
+      "id": "F08",
+      "spec": "§3 amounts are bigint; §5 rule 13",
+      "case": "a u64-max price (fee ~2.6e19 lamports) is over-fee-cap, not lost to overflow",
+      "expected": "deny over-fee-cap",
+      "observed": "as expected: deny over-fee-cap",
+      "verdict": "pass",
+      "test": "tests/fees.test.mjs: F08 a u64-max price (fee ~2.6e19 lamports) is over-fee-cap, not lost to overflow"
+    },
+    {
+      "id": "F09",
+      "spec": "§4 Fees (Base fee: 'counting each signature a precompile instruction ... verifies'); §3 baseFee",
+      "case": "base fee: 5,000 per signature, counting precompile signatures (2 signers + Ed25519×2 + secp256k1×1 + secp256r1×3 = 40,000)",
+      "expected": "baseFee 40000; allowed; amounts.fees '40000'",
+      "observed": "as expected: baseFee 40000; allowed; amounts.fees '40000'",
+      "verdict": "pass",
+      "test": "tests/fees.test.mjs: F09 base fee: 5,000 per signature, counting precompile signatures (2 signers + Ed25519×2 + secp256k1×1 + secp256r1×3 = 40,000)"
+    },
+    {
+      "id": "F10",
+      "spec": "§4 Fees (Tips); §3 sol ('tips excluded'), tips",
+      "case": "a tip to a tip account is not a SOL payment: allowed past sol.maxPerTx, counted in fees",
+      "expected": "tips 500000000; sol []; allowed under a 1000-lamport SOL cap; amounts.sol '0', amounts.fees '500005000'",
+      "observed": "as expected: tips 500000000; sol []; allowed under a 1000-lamport SOL cap; amounts.sol '0', amounts.fees '500005000'",
+      "verdict": "pass",
+      "test": "tests/fees.test.mjs: F10 a tip to a tip account is not a SOL payment: allowed past sol.maxPerTx, counted in fees"
+    },
+    {
+      "id": "F11",
+      "spec": "§4 Fees ('The fee window counts priority fees, base fees and tips together'); §5 rule 16",
+      "case": "the fee window counts base + priority + tips together: 15,000 fits a 15,000 window, not a 14,999 one",
+      "expected": "window 15000 allowed with amounts.fees '15000'; window 14999, deny over-window-cap",
+      "observed": "as expected: window 15000 allowed with amounts.fees '15000'; window 14999, deny over-window-cap",
+      "verdict": "pass",
+      "test": "tests/fees.test.mjs: F11 the fee window counts base + priority + tips together: 15,000 fits a 15,000 window, not a 14,999 one"
+    },
+    {
+      "id": "F12",
+      "spec": "§4 Decided ('Two ComputeBudget instructions of the same kind are denied')",
+      "case": "two SetComputeUnitPrice instructions are instruction-denied",
+      "expected": "deny instruction-denied",
+      "observed": "as expected: deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/fees.test.mjs: F12 two SetComputeUnitPrice instructions are instruction-denied"
+    },
+    {
+      "id": "F13",
+      "spec": "§4 Decided ('the deprecated RequestUnits')",
+      "case": "the deprecated RequestUnits (0) is instruction-denied",
+      "expected": "deny instruction-denied",
+      "observed": "as expected: deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/fees.test.mjs: F13 the deprecated RequestUnits (0) is instruction-denied"
+    },
+    {
+      "id": "F14",
+      "spec": "§4 Decided ('any ComputeBudget instruction whose data is not its exact size')",
+      "case": "SetComputeUnitLimit with data one byte short (u32 cut to 3 bytes) is instruction-denied",
+      "expected": "deny instruction-denied",
+      "observed": "as expected: deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/fees.test.mjs: F14 SetComputeUnitLimit with data one byte short (u32 cut to 3 bytes) is instruction-denied"
+    },
+    {
+      "id": "F15",
+      "spec": "§4 Decided ('... not its exact size')",
+      "case": "SetComputeUnitPrice with one trailing byte is instruction-denied",
+      "expected": "deny instruction-denied",
+      "observed": "as expected: deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/fees.test.mjs: F15 SetComputeUnitPrice with one trailing byte is instruction-denied"
+    },
+    {
+      "id": "F16",
+      "spec": "§4 Decided (the intent key leaves out the blockhash, version, fees, tips, ComputeBudget and Memo); §3 intentKey",
+      "case": "the intent key leaves out blockhash, version, fees, tips, ComputeBudget and Memo; the amount is in it",
+      "expected": "same key; a different amount gives a different key",
+      "observed": "as expected: same key; a different amount gives a different key",
+      "verdict": "pass",
+      "test": "tests/fees.test.mjs: F16 the intent key leaves out blockhash, version, fees, tips, ComputeBudget and Memo; the amount is in it"
+    },
+    {
+      "id": "F17",
+      "spec": "§4 Decided ('Two calls to the same opaque program share a key whatever their data')",
+      "case": "two calls to the same opaque program share an intent key whatever their data",
+      "expected": "same key",
+      "observed": "as expected: same key",
+      "verdict": "pass",
+      "test": "tests/fees.test.mjs: F17 two calls to the same opaque program share an intent key whatever their data"
+    },
+    {
+      "id": "O01",
+      "spec": "§5 ('The first failing rule is the reason'): rule 3 before rule 5",
+      "case": "rule 3 before rule 5: v0 with an unpinned table and a durable nonce first is lookup-table-unpinned",
+      "expected": "deny lookup-table-unpinned",
+      "observed": "as expected: deny lookup-table-unpinned",
+      "verdict": "pass",
+      "test": "tests/order.test.mjs: O01 rule 3 before rule 5: v0 with an unpinned table and a durable nonce first is lookup-table-unpinned"
+    },
+    {
+      "id": "O02",
+      "spec": "§5: rule 5 before rule 6",
+      "case": "rule 5 before rule 6: a durable nonce first and a transfer signed by an outside key is durable-nonce-denied",
+      "expected": "deny durable-nonce-denied",
+      "observed": "as expected: deny durable-nonce-denied",
+      "verdict": "pass",
+      "test": "tests/order.test.mjs: O02 rule 5 before rule 6: a durable nonce first and a transfer signed by an outside key is durable-nonce-denied"
+    },
+    {
+      "id": "O03",
+      "spec": "§5: rule 6 before rule 7",
+      "case": "rule 6 before rule 7: an unlisted program's instruction, then one signed by an outside key, is other-signer",
+      "expected": "deny other-signer",
+      "observed": "as expected: deny other-signer",
+      "verdict": "pass",
+      "test": "tests/order.test.mjs: O03 rule 6 before rule 7: an unlisted program's instruction, then one signed by an outside key, is other-signer"
+    },
+    {
+      "id": "O04",
+      "spec": "§5: rule 7 before rule 9",
+      "case": "rule 7 before rule 9: Approve first, then an unlisted program, is program-not-allowed",
+      "expected": "deny program-not-allowed",
+      "observed": "as expected: deny program-not-allowed",
+      "verdict": "pass",
+      "test": "tests/order.test.mjs: O04 rule 7 before rule 9: Approve first, then an unlisted program, is program-not-allowed"
+    },
+    {
+      "id": "O05",
+      "spec": "§5: rule 8 before rule 9",
+      "case": "rule 8 before rule 9: Approve first, then an opaque program under 'deny', is opaque-program",
+      "expected": "deny opaque-program",
+      "observed": "as expected: deny opaque-program",
+      "verdict": "pass",
+      "test": "tests/order.test.mjs: O05 rule 8 before rule 9: Approve first, then an opaque program under 'deny', is opaque-program"
+    },
+    {
+      "id": "O06",
+      "spec": "§5: rule 9 before rule 10",
+      "case": "rule 9 before rule 10: a transfer to the attacker first, then Approve, is instruction-denied",
+      "expected": "deny instruction-denied",
+      "observed": "as expected: deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/order.test.mjs: O06 rule 9 before rule 10: a transfer to the attacker first, then Approve, is instruction-denied"
+    },
+    {
+      "id": "O07",
+      "spec": "§5: rule 10 before rule 11",
+      "case": "rule 10 before rule 11: an unlisted mint sent to the attacker's ATA is destination-not-allowed",
+      "expected": "deny destination-not-allowed",
+      "observed": "as expected: deny destination-not-allowed",
+      "verdict": "pass",
+      "test": "tests/order.test.mjs: O07 rule 10 before rule 11: an unlisted mint sent to the attacker's ATA is destination-not-allowed"
+    },
+    {
+      "id": "O08",
+      "spec": "§5: rule 11 before rule 12",
+      "case": "rule 11 before rule 12: SOL over its cap first, then an unlisted mint to an allowed owner, is mint-not-allowed",
+      "expected": "deny mint-not-allowed",
+      "observed": "as expected: deny mint-not-allowed",
+      "verdict": "pass",
+      "test": "tests/order.test.mjs: O08 rule 11 before rule 12: SOL over its cap first, then an unlisted mint to an allowed owner, is mint-not-allowed"
+    },
+    {
+      "id": "O09",
+      "spec": "§5: rule 12 before rule 13",
+      "case": "rule 12 before rule 13: a priority fee over its cap and SOL over its cap is over-per-tx-cap",
+      "expected": "deny over-per-tx-cap",
+      "observed": "as expected: deny over-per-tx-cap",
+      "verdict": "pass",
+      "test": "tests/order.test.mjs: O09 rule 12 before rule 13: a priority fee over its cap and SOL over its cap is over-per-tx-cap"
+    },
+    {
+      "id": "O10",
+      "spec": "§5: rule 1 before rule 7",
+      "case": "rule 1 before rule 7: an unlisted program's instruction with an account index past the list is malformed-proposal",
+      "expected": "deny malformed-proposal",
+      "observed": "as expected: deny malformed-proposal",
+      "verdict": "pass",
+      "test": "tests/order.test.mjs: O10 rule 1 before rule 7: an unlisted program's instruction with an account index past the list is malformed-proposal"
+    },
+    {
+      "id": "P00",
+      "spec": "§5 rule 0 (precondition: a valid policy creates a guard)",
+      "case": "precondition: the base policy is valid and creates a guard",
+      "expected": "createPolicy and createGuard succeed",
+      "observed": "as expected: createPolicy and createGuard succeed",
+      "verdict": "pass",
+      "test": "tests/policy.test.mjs: P00 precondition: the base policy is valid and creates a guard"
+    },
+    {
+      "id": "P01",
+      "spec": "§5 rule 0 ('a non-finite ... cap'); §10 D2; §11 fail-closed (an invalid policy)",
+      "case": "a NaN cap (sol.maxPerTx) is invalid-policy and no guard exists",
+      "expected": "createPolicy throws PolicyError (rule invalid-policy); createGuard rejects",
+      "observed": "as expected: createPolicy throws PolicyError (rule invalid-policy); createGuard rejects",
+      "verdict": "pass",
+      "test": "tests/policy.test.mjs: P01 a NaN cap (sol.maxPerTx) is invalid-policy and no guard exists"
+    },
+    {
+      "id": "P02",
+      "spec": "§5 rule 0 ('a non-finite ... cap')",
+      "case": "a non-finite cap given as the string \"Infinity\" (fees.maxPerWindow) is invalid-policy",
+      "expected": "PolicyError invalid-policy from both",
+      "observed": "as expected: PolicyError invalid-policy from both",
+      "verdict": "pass",
+      "test": "tests/policy.test.mjs: P02 a non-finite cap given as the string \"Infinity\" (fees.maxPerWindow) is invalid-policy"
+    },
+    {
+      "id": "P03",
+      "spec": "§5 rule 0 ('a ... negative cap')",
+      "case": "a negative cap (a token's maxPerTx = -1n) is invalid-policy",
+      "expected": "PolicyError invalid-policy from both",
+      "observed": "as expected: PolicyError invalid-policy from both",
+      "verdict": "pass",
+      "test": "tests/policy.test.mjs: P03 a negative cap (a token's maxPerTx = -1n) is invalid-policy"
+    },
+    {
+      "id": "P04",
+      "spec": "§5 rule 0 ('a ... negative cap')",
+      "case": "a negative cap given as a decimal string (fees.maxPriorityPerTx = \"-5\") is invalid-policy",
+      "expected": "PolicyError invalid-policy from both",
+      "observed": "as expected: PolicyError invalid-policy from both",
+      "verdict": "pass",
+      "test": "tests/policy.test.mjs: P04 a negative cap given as a decimal string (fees.maxPriorityPerTx = \"-5\") is invalid-policy"
+    },
+    {
+      "id": "P05",
+      "spec": "§5 rule 0 ('an empty ... address')",
+      "case": "an empty address in destinations.allow is invalid-policy",
+      "expected": "PolicyError invalid-policy from both",
+      "observed": "as expected: PolicyError invalid-policy from both",
+      "verdict": "pass",
+      "test": "tests/policy.test.mjs: P05 an empty address in destinations.allow is invalid-policy"
+    },
+    {
+      "id": "P06",
+      "spec": "§5 rule 0 ('an ... invalid address')",
+      "case": "an invalid address (base58 of 31 bytes) in the principal is invalid-policy",
+      "expected": "PolicyError invalid-policy from both",
+      "observed": "as expected: PolicyError invalid-policy from both",
+      "verdict": "pass",
+      "test": "tests/policy.test.mjs: P06 an invalid address (base58 of 31 bytes) in the principal is invalid-policy"
+    },
+    {
+      "id": "P07",
+      "spec": "§5 rule 0 ('an ... invalid address')",
+      "case": "an invalid address (not base58: contains '0') in tipAccounts is invalid-policy",
+      "expected": "PolicyError invalid-policy from both",
+      "observed": "as expected: PolicyError invalid-policy from both",
+      "verdict": "pass",
+      "test": "tests/policy.test.mjs: P07 an invalid address (not base58: contains '0') in tipAccounts is invalid-policy"
+    },
+    {
+      "id": "P08",
+      "spec": "§5 rule 0 ('an empty principal')",
+      "case": "an empty principal is invalid-policy",
+      "expected": "PolicyError invalid-policy from both",
+      "observed": "as expected: PolicyError invalid-policy from both",
+      "verdict": "pass",
+      "test": "tests/policy.test.mjs: P08 an empty principal is invalid-policy"
+    },
+    {
+      "id": "P09",
+      "spec": "§5 rule 0 ('a release key that is ... in the principal')",
+      "case": "a release key that is in the principal is invalid-policy",
+      "expected": "PolicyError invalid-policy from both",
+      "observed": "as expected: PolicyError invalid-policy from both",
+      "verdict": "pass",
+      "test": "tests/policy.test.mjs: P09 a release key that is in the principal is invalid-policy"
+    },
+    {
+      "id": "P10",
+      "spec": "§5 rule 0 ('a pinned table with an invalid entry')",
+      "case": "a pinned lookup table with an invalid entry is invalid-policy",
+      "expected": "PolicyError invalid-policy from both",
+      "observed": "as expected: PolicyError invalid-policy from both",
+      "verdict": "pass",
+      "test": "tests/policy.test.mjs: P10 a pinned lookup table with an invalid entry is invalid-policy"
+    },
+    {
+      "id": "P11",
+      "spec": "§5 rule 0 ('an ... invalid address')",
+      "case": "a pinned lookup table whose own address is invalid is invalid-policy",
+      "expected": "PolicyError invalid-policy from both",
+      "observed": "as expected: PolicyError invalid-policy from both",
+      "verdict": "pass",
+      "test": "tests/policy.test.mjs: P11 a pinned lookup table whose own address is invalid is invalid-policy"
+    },
+    {
+      "id": "G01",
+      "spec": "§4 ('Anything not listed is denied'); §5 rule 9",
+      "case": "a System instruction whose u32 discriminator is 0x01000002 (low byte 2 = Transfer) is unknown: instruction-denied",
+      "expected": "deny instruction-denied (a reader of the low byte alone would see Transfer)",
+      "observed": "as expected: deny instruction-denied (a reader of the low byte alone would see Transfer)",
+      "verdict": "pass",
+      "test": "tests/probes.test.mjs: G01 a System instruction whose u32 discriminator is 0x01000002 (low byte 2 = Transfer) is unknown: instruction-denied"
+    },
+    {
+      "id": "G02",
+      "spec": "§4 Rules for tokens ('the associated token account of an allowed owner for that mint')",
+      "case": "TransferChecked naming listed mint M2 into an allowed owner's ATA for mint M (not for M2) is destination-not-allowed",
+      "expected": "deny destination-not-allowed",
+      "observed": "as expected: deny destination-not-allowed",
+      "verdict": "pass",
+      "test": "tests/probes.test.mjs: G02 TransferChecked naming listed mint M2 into an allowed owner's ATA for mint M (not for M2) is destination-not-allowed"
+    },
+    {
+      "id": "G03",
+      "spec": "§5 rule 12 ('the SOL total, or a mint's total'): separate caps",
+      "case": "caps are per asset: SOL at its cap, M at its cap and M22 at its cap in one message are admitted",
+      "expected": "allowed; amounts.sol '1000000000'",
+      "observed": "as expected: allowed; amounts.sol '1000000000'",
+      "verdict": "pass",
+      "test": "tests/probes.test.mjs: G03 caps are per asset: SOL at its cap, M at its cap and M22 at its cap in one message are admitted"
+    },
+    {
+      "id": "G04",
+      "spec": "§5 rule 10 (no amount exemption)",
+      "case": "a zero-lamport System Transfer to the attacker is still destination-not-allowed",
+      "expected": "deny destination-not-allowed",
+      "observed": "as expected: deny destination-not-allowed",
+      "verdict": "pass",
+      "test": "tests/probes.test.mjs: G04 a zero-lamport System Transfer to the attacker is still destination-not-allowed"
+    },
+    {
+      "id": "G05",
+      "spec": "§4 System row (CreateAccountWithSeed); §4 Rules ('an address the policy names directly'); §3 sol",
+      "case": "CreateAccountWithSeed into an address the policy names directly: admitted, lamports read after the variable-length seed",
+      "expected": "effects.sol [{A→created, 3000000, new-account}]; allowed",
+      "observed": "as expected: effects.sol [{A→created, 3000000, new-account}]; allowed",
+      "verdict": "pass",
+      "test": "tests/probes.test.mjs: G05 CreateAccountWithSeed into an address the policy names directly: admitted, lamports read after the variable-length seed"
+    },
+    {
+      "id": "G06",
+      "spec": "§4 Rules for tokens (Mint inferred; Token-2022 derivation)",
+      "case": "plain Token-2022 Transfer from the principal's Token-2022 ATA of a listed 2022 mint: mint inferred, admitted",
+      "expected": "allowed; amounts.tokens [{M22, '7'}]",
+      "observed": "as expected: allowed; amounts.tokens [{M22, '7'}]",
+      "verdict": "pass",
+      "test": "tests/probes.test.mjs: G06 plain Token-2022 Transfer from the principal's Token-2022 ATA of a listed 2022 mint: mint inferred, admitted"
+    },
+    {
+      "id": "G07",
+      "spec": "§4 v1 (config section); §5 rule 1. The mask's bit layout is kit 8.4.0's (SIMD-0385), not stated in the spec",
+      "case": "v1 whose config mask sets only one of the two priority-fee bits does not parse: malformed-proposal",
+      "expected": "mask 0b100 allowed; 0b101, deny malformed-proposal",
+      "observed": "as expected: mask 0b100 allowed; 0b101, deny malformed-proposal",
+      "verdict": "pass",
+      "test": "tests/probes.test.mjs: G07 v1 whose config mask sets only one of the two priority-fee bits does not parse: malformed-proposal"
+    },
+    {
+      "id": "G08",
+      "spec": "§4 v0 ('every lookup table it uses must be pinned'); §5 rule 3",
+      "case": "v0 loading a read-only account from an unpinned table that no instruction uses is lookup-table-unpinned",
+      "expected": "deny lookup-table-unpinned",
+      "observed": "as expected: deny lookup-table-unpinned",
+      "verdict": "pass",
+      "test": "tests/probes.test.mjs: G08 v0 loading a read-only account from an unpinned table that no instruction uses is lookup-table-unpinned"
+    },
+    {
+      "id": "G09",
+      "spec": "§4 The principal ('the fee payer's fees'); §5 rule 6",
+      "case": "a fee payer outside the principal is other-signer",
+      "expected": "deny other-signer",
+      "observed": "as expected: deny other-signer",
+      "verdict": "pass",
+      "test": "tests/probes.test.mjs: G09 a fee payer outside the principal is other-signer"
+    },
+    {
+      "id": "G10",
+      "spec": "§4 Durable nonces ('in every version'); §5 rule 5",
+      "case": "v0 durable nonce (AdvanceNonceAccount first, no tables) is durable-nonce-denied",
+      "expected": "deny durable-nonce-denied",
+      "observed": "as expected: deny durable-nonce-denied",
+      "verdict": "pass",
+      "test": "tests/probes.test.mjs: G10 v0 durable nonce (AdvanceNonceAccount first, no tables) is durable-nonce-denied"
+    },
+    {
+      "id": "G11",
+      "spec": "§4 Decided ('short ... data')",
+      "case": "CreateAccount whose data stops before the owner (20 of 52 bytes) is instruction-denied",
+      "expected": "deny instruction-denied",
+      "observed": "as expected: deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/probes.test.mjs: G11 CreateAccount whose data stops before the owner (20 of 52 bytes) is instruction-denied"
+    },
+    {
+      "id": "G12",
+      "spec": "§4 Decided ('short ... data')",
+      "case": "TransferWithSeed whose seed length claims 2^40 bytes (data far shorter) is instruction-denied",
+      "expected": "deny instruction-denied",
+      "observed": "as expected: deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/probes.test.mjs: G12 TransferWithSeed whose seed length claims 2^40 bytes (data far shorter) is instruction-denied"
+    },
+    {
+      "id": "G13",
+      "spec": "§5 rule 1; API decodeMessage",
+      "case": "one trailing byte after a complete v1 message is malformed-proposal",
+      "expected": "v1 alone allowed; with one trailing byte, deny malformed-proposal",
+      "observed": "as expected: v1 alone allowed; with one trailing byte, deny malformed-proposal",
+      "verdict": "pass",
+      "test": "tests/probes.test.mjs: G13 one trailing byte after a complete v1 message is malformed-proposal"
+    },
+    {
+      "id": "G14",
+      "spec": "§5 rule 1; API decodeMessage",
+      "case": "one trailing byte after a complete v0 message is malformed-proposal",
+      "expected": "v0 alone allowed; with one trailing byte, deny malformed-proposal",
+      "observed": "as expected: v0 alone allowed; with one trailing byte, deny malformed-proposal",
+      "verdict": "pass",
+      "test": "tests/probes.test.mjs: G14 one trailing byte after a complete v0 message is malformed-proposal"
+    },
+    {
+      "id": "X01",
+      "spec": "§3 programs ('in order of first call'), signers ('in message order'), feePayer",
+      "case": "§3 programs are listed in order of first call; signers in message order",
+      "expected": "programs [Memo, System, ComputeBudget, Token]; signers [A, K2]",
+      "observed": "as expected: programs [Memo, System, ComputeBudget, Token]; signers [A, K2]",
+      "verdict": "pass",
+      "test": "tests/effects.test.mjs: X01 §3 programs are listed in order of first call; signers in message order"
+    },
+    {
+      "id": "X02",
+      "spec": "§3 denied ('Token.Approve', 'System.unknown(14)')",
+      "case": "§3 denied entries name the instruction and index: Token.Approve at 1, System.unknown(14) at 2",
+      "expected": "[[1, Token.Approve, instruction-denied], [2, System.unknown(14), instruction-denied]]",
+      "observed": "as expected: [[1, Token.Approve, instruction-denied], [2, System.unknown(14), instruction-denied]]",
+      "verdict": "pass",
+      "test": "tests/effects.test.mjs: X02 §3 denied entries name the instruction and index: Token.Approve at 1, System.unknown(14) at 2"
+    },
+    {
+      "id": "X03",
+      "spec": "§3 nonce; §4 Durable nonces",
+      "case": "§3 nonce is true when the first instruction advances a durable nonce, and the denial is durable-nonce-denied",
+      "expected": "nonce true; denied[0].rule durable-nonce-denied",
+      "observed": "as expected: nonce true; denied[0].rule durable-nonce-denied",
+      "verdict": "pass",
+      "test": "tests/effects.test.mjs: X03 §3 nonce is true when the first instruction advances a durable nonce, and the denial is durable-nonce-denied"
+    },
+    {
+      "id": "X04",
+      "spec": "§3 tokens (mint, fromAccount, authority, toAccount, toOwner, amount, decimals); §4 Rules for tokens",
+      "case": "§3 tokens: TransferChecked carries mint, decimals and the allowed owner; plain Transfer infers the mint, decimals null",
+      "expected": "both entries exact; plain Transfer: mint M inferred, decimals null",
+      "observed": "as expected: both entries exact; plain Transfer: mint M inferred, decimals null",
+      "verdict": "pass",
+      "test": "tests/effects.test.mjs: X04 §3 tokens: TransferChecked carries mint, decimals and the allowed owner; plain Transfer infers the mint, decimals null"
+    },
+    {
+      "id": "X05",
+      "spec": "§3 opaque",
+      "case": "§3 opaque lists called programs that are not decoded",
+      "expected": "[OP]",
+      "observed": "as expected: [OP]",
+      "verdict": "pass",
+      "test": "tests/effects.test.mjs: X05 §3 opaque lists called programs that are not decoded"
+    },
+    {
+      "id": "X06",
+      "spec": "§4 System row ('every nonce instruction (... Authorize ...)')",
+      "case": "§4 AuthorizeNonceAccount (7), not first, is durable-nonce-denied",
+      "expected": "deny durable-nonce-denied",
+      "observed": "as expected: deny durable-nonce-denied",
+      "verdict": "pass",
+      "test": "tests/effects.test.mjs: X06 §4 AuthorizeNonceAccount (7), not first, is durable-nonce-denied"
+    },
+    {
+      "id": "X07",
+      "spec": "§4 SPL Token row (InitializeAccount3: benign)",
+      "case": "§4 Token InitializeAccount3 is benign and admitted",
+      "expected": "allowed",
+      "observed": "as expected: allowed",
+      "verdict": "pass",
+      "test": "tests/effects.test.mjs: X07 §4 Token InitializeAccount3 is benign and admitted"
+    },
+    {
+      "id": "X08",
+      "spec": "§4 Token-2022 row (Revoke: benign)",
+      "case": "§4 Token-2022 Revoke (benign row) is admitted",
+      "expected": "allowed",
+      "observed": "as expected: allowed",
+      "verdict": "pass",
+      "test": "tests/effects.test.mjs: X08 §4 Token-2022 Revoke (benign row) is admitted"
+    },
+    {
+      "id": "X09",
+      "spec": "§4 Token-2022 row ('the SPL Token list': Approve)",
+      "case": "§4 Token-2022 Approve (the SPL Token list) is instruction-denied",
+      "expected": "deny instruction-denied",
+      "observed": "as expected: deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/effects.test.mjs: X09 §4 Token-2022 Approve (the SPL Token list) is instruction-denied"
+    },
+    {
+      "id": "X10",
+      "spec": "§4 Rules for tokens ('derived offline with the mint's token program'); §5 rules 10, 11",
+      "case": "(unclear) a classic-Token TransferChecked of a mint listed as token-2022, into the owner's classic-derived ATA",
+      "expected": "unclear: destination-not-allowed if 'the mint's token program' is the policy's listing; mint-not-allowed if it is the instruction's program",
+      "observed": "deny mint-not-allowed ('mint … under the token program is not listed')",
+      "verdict": "unclear",
+      "test": "tests/effects.test.mjs: X10 (unclear) a classic-Token TransferChecked of a mint listed as token-2022, into the owner's classic-derived ATA"
+    },
+    {
+      "id": "X11",
+      "spec": "§4 Decided (the intent key leaves out the version)",
+      "case": "§4 intent key leaves out the version: the same transfer as legacy and as v1 shares a key",
+      "expected": "same key, legacy and v1",
+      "observed": "as expected: same key, legacy and v1",
+      "verdict": "pass",
+      "test": "tests/effects.test.mjs: X11 §4 intent key leaves out the version: the same transfer as legacy and as v1 shares a key"
+    },
+    {
+      "id": "U01",
+      "spec": "§4 Rules for tokens; §5 rules 10, 11",
+      "case": "plain Transfer from a non-ATA source into an allowed owner's ATA for a listed mint: rule 10 or rule 11?",
+      "expected": "unclear: with the mint unknown, rule 10 cannot match an ATA for 'that mint'; the spec does not say whether rule 10 or rule 11 names it",
+      "observed": "deny destination-not-allowed ('neither an allowed owner's associated account nor an allowed address')",
+      "verdict": "unclear",
+      "test": "tests/probes.test.mjs: U01 plain Transfer from a non-ATA source into an allowed owner's ATA for a listed mint: rule 10 or rule 11?"
+    },
+    {
+      "id": "U02",
+      "spec": "§4 Fees ('SetComputeUnitLimit's value if present, else the runtime default ..., at most 1,400,000')",
+      "case": "SetComputeUnitLimit above 1,400,000 with a price: is the fee's limit capped?",
+      "expected": "unclear: does 'at most 1,400,000' bind an explicit limit too?",
+      "observed": "computeUnitLimit 1400000, priorityFee 1400000 (explicit 2,000,000 capped); deny over-fee-cap",
+      "verdict": "unclear",
+      "test": "tests/probes.test.mjs: U02 SetComputeUnitLimit above 1,400,000 with a price: is the fee's limit capped?"
+    },
+    {
+      "id": "U03",
+      "spec": "§4 table ('any other program: denied unless allowlisted'); §5 rule 7",
+      "case": "Memo (a decoded program) absent from programs.allow: must decoded programs be allowlisted?",
+      "expected": "unclear: must the decoded programs (System, Token, ComputeBudget, Memo) be on programs.allow?",
+      "observed": "deny program-not-allowed for Memo, and for ComputeBudget, when absent from programs.allow",
+      "verdict": "unclear",
+      "test": "tests/probes.test.mjs: U03 Memo (a decoded program) absent from programs.allow: must decoded programs be allowlisted?"
+    },
+    {
+      "id": "U04",
+      "spec": "§5 rule 1 (silent on duplicate keys)",
+      "case": "a legacy message listing the same static key twice",
+      "expected": "unclear",
+      "observed": "deny malformed-proposal ('an account is listed twice')",
+      "verdict": "unclear",
+      "test": "tests/probes.test.mjs: U04 a legacy message listing the same static key twice"
+    },
+    {
+      "id": "U05",
+      "spec": "§3 PolicyV1.destinations; §4 The principal (silent on a principal paying itself)",
+      "case": "a self-transfer from the principal fee payer to itself (A is not in destinations.allow)",
+      "expected": "unclear",
+      "observed": "deny destination-not-allowed",
+      "verdict": "unclear",
+      "test": "tests/probes.test.mjs: U05 a self-transfer from the principal fee payer to itself (A is not in destinations.allow)"
+    },
+    {
+      "id": "U06",
+      "spec": "§5 rule 1 ('ill-typed'); §3 ProposalV1.at: number",
+      "case": "a proposal with at = NaN",
+      "expected": "unclear: is NaN ill-typed?",
+      "observed": "deny malformed-proposal ('at must be a time in milliseconds')",
+      "verdict": "unclear",
+      "test": "tests/effects.test.mjs: U06 a proposal with at = NaN"
+    },
+    {
+      "id": "U07",
+      "spec": "§5 rule 1; §3 ProposalV1.intent?: string",
+      "case": "a proposal whose intent is a number, not a string",
+      "expected": "unclear: does rule 1 reach the optional, never-decisive intent field?",
+      "observed": "deny malformed-proposal ('intent must be text of at most 256 characters': a 256-character bound the spec does not state)",
+      "verdict": "unclear",
+      "test": "tests/effects.test.mjs: U07 a proposal whose intent is a number, not a string"
+    },
+    {
+      "id": "U08",
+      "spec": "§5 rule 1 (silent on header counts that exceed the key list)",
+      "case": "a legacy header claiming more read-only unsigned accounts than there are unsigned keys",
+      "expected": "unclear",
+      "observed": "deny malformed-proposal ('the header counts 1 signers and 5 read-only accounts, but the message lists 3 accounts')",
+      "verdict": "unclear",
+      "test": "tests/probes.test.mjs: U08 a legacy header claiming more read-only unsigned accounts than there are unsigned keys"
+    },
+    {
+      "id": "R01",
+      "spec": "§4 table, System row (every named instruction); API InstructionClass",
+      "case": "System row: Transfer, TransferWithSeed and the CreateAccount family value-moving; Assign/Allocate families and every nonce instruction denied",
+      "expected": "CreateAccount, Transfer, CreateAccountWithSeed, TransferWithSeed, CreateAccountAllowPrefund value-moving; Assign, Allocate, AllocateWithSeed, AssignWithSeed, the five nonce instructions and unknown(14) denied",
+      "observed": "as expected: CreateAccount, Transfer, CreateAccountWithSeed, TransferWithSeed, CreateAccountAllowPrefund value-moving; Assign, Allocate, AllocateWithSeed, AssignWithSeed, the five nonce instructions and unknown(14) denied",
+      "verdict": "pass",
+      "test": "tests/rows.test.mjs: R01 System row: Transfer, TransferWithSeed and the CreateAccount family value-moving; Assign/Allocate families and every nonce instruction denied"
+    },
+    {
+      "id": "R02",
+      "spec": "§4 table, SPL Token row; §4 Decided (p-token additions)",
+      "case": "SPL Token row: Transfer/TransferChecked value-moving; the denied list; Revoke, SyncNative and InitializeAccount 1/2/3 benign; unlisted and p-token additions denied",
+      "expected": "Transfer, TransferChecked value-moving; the ten denied names, unlisted InitializeMint/InitializeMultisig and 38/45/255 denied; Revoke, SyncNative, InitializeAccount 1/2/3 benign",
+      "observed": "as expected: Transfer, TransferChecked value-moving; the ten denied names, unlisted InitializeMint/InitializeMultisig and 38/45/255 denied; Revoke, SyncNative, InitializeAccount 1/2/3 benign",
+      "verdict": "pass",
+      "test": "tests/rows.test.mjs: R02 SPL Token row: Transfer/TransferChecked value-moving; the denied list; Revoke, SyncNative and InitializeAccount 1/2/3 benign; unlisted and p-token additions denied"
+    },
+    {
+      "id": "R03",
+      "spec": "§4 table, Token-2022 row ('the SPL Token list, plus every extension instruction'; TransferCheckedWithFee is Alpha)",
+      "case": "Token-2022 row: Transfer/TransferChecked value-moving; the SPL Token denied list plus every extension instruction denied; Revoke, SyncNative, InitializeAccount family benign",
+      "expected": "Transfer, TransferChecked value-moving; the SPL Token denied list and extensions 26-30, 33-36 denied; Revoke, SyncNative, InitializeAccount family benign",
+      "observed": "as expected: Transfer, TransferChecked value-moving; the SPL Token denied list and extensions 26-30, 33-36 denied; Revoke, SyncNative, InitializeAccount family benign",
+      "verdict": "pass",
+      "test": "tests/rows.test.mjs: R03 Token-2022 row: Transfer/TransferChecked value-moving; the SPL Token denied list plus every extension instruction denied; Revoke, SyncNative, InitializeAccount family benign"
+    },
+    {
+      "id": "R04",
+      "spec": "§4 table, ComputeBudget row; §4 Decided (RequestUnits)",
+      "case": "ComputeBudget row (legacy and v0): RequestHeapFrame, SetComputeUnitLimit, SetComputeUnitPrice, SetLoadedAccountsDataSizeLimit benign; RequestUnits denied",
+      "expected": "heap, limit, price, loaded-data benign; RequestUnits denied",
+      "observed": "as expected: heap, limit, price, loaded-data benign; RequestUnits denied",
+      "verdict": "pass",
+      "test": "tests/rows.test.mjs: R04 ComputeBudget row (legacy and v0): RequestHeapFrame, SetComputeUnitLimit, SetComputeUnitPrice, SetLoadedAccountsDataSizeLimit benign; RequestUnits denied"
+    },
+    {
+      "id": "R05",
+      "spec": "§4 table, Memo row ('any')",
+      "case": "Memo row, v1 and v2: any instruction is benign, empty or non-UTF-8 data included",
+      "expected": "benign for both programs, any data",
+      "observed": "as expected: benign for both programs, any data",
+      "verdict": "pass",
+      "test": "tests/rows.test.mjs: R05 Memo row, v1 and v2: any instruction is benign, empty or non-UTF-8 data included"
+    },
+    {
+      "id": "R06",
+      "spec": "§4 table, 'any other program' (opaque)",
+      "case": "any other program is opaque, whatever its data",
+      "expected": "opaque",
+      "observed": "as expected: opaque",
+      "verdict": "pass",
+      "test": "tests/rows.test.mjs: R06 any other program is opaque, whatever its data"
+    },
+    {
+      "id": "R07",
+      "spec": "§1 (ATA decoding is Alpha); §4 table, ATA row marked (Alpha)",
+      "case": "the Associated Token Account program is not decoded in the Beta (§1: ATA decoding is Alpha): opaque",
+      "expected": "opaque in the Beta",
+      "observed": "as expected: opaque in the Beta",
+      "verdict": "pass",
+      "test": "tests/rows.test.mjs: R07 the Associated Token Account program is not decoded in the Beta (§1: ATA decoding is Alpha): opaque"
+    },
+    {
+      "id": "R08",
+      "spec": "§4 table, SPL Token denied column; §5 rule 9",
+      "case": "SPL Token denied column through a decision: ApproveChecked, MintTo, MintToChecked, Burn, BurnChecked, FreezeAccount, ThawAccount each instruction-denied",
+      "expected": "each deny instruction-denied",
+      "observed": "as expected: each deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/rows.test.mjs: R08 SPL Token denied column through a decision: ApproveChecked, MintTo, MintToChecked, Burn, BurnChecked, FreezeAccount, ThawAccount each instruction-denied"
+    },
+    {
+      "id": "R09",
+      "spec": "§4 table, System denied column; §5 rule 9",
+      "case": "System denied column through a decision: AssignWithSeed, Allocate, AllocateWithSeed each instruction-denied",
+      "expected": "each deny instruction-denied",
+      "observed": "as expected: each deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/rows.test.mjs: R09 System denied column through a decision: AssignWithSeed, Allocate, AllocateWithSeed each instruction-denied"
+    },
+    {
+      "id": "R10",
+      "spec": "§4 table, System row (every nonce instruction); §5 rule 5 ('any nonce instruction appears')",
+      "case": "InitializeNonceAccount and UpgradeNonceAccount, not first, are each durable-nonce-denied",
+      "expected": "each deny durable-nonce-denied",
+      "observed": "as expected: each deny durable-nonce-denied",
+      "verdict": "pass",
+      "test": "tests/rows.test.mjs: R10 InitializeNonceAccount and UpgradeNonceAccount, not first, are each durable-nonce-denied"
+    },
+    {
+      "id": "R11",
+      "spec": "§4 table, SPL Token and Token-2022 benign columns",
+      "case": "benign column through a decision: Token SyncNative, InitializeAccount, InitializeAccount2 and Token-2022 SyncNative, InitializeAccount3 each admitted",
+      "expected": "each allowed",
+      "observed": "as expected: each allowed",
+      "verdict": "pass",
+      "test": "tests/rows.test.mjs: R11 benign column through a decision: Token SyncNative, InitializeAccount, InitializeAccount2 and Token-2022 SyncNative, InitializeAccount3 each admitted"
+    },
+    {
+      "id": "R12",
+      "spec": "§4 Decided (p-token UnwrapLamports, 45)",
+      "case": "p-token UnwrapLamports (45) through a decision is instruction-denied",
+      "expected": "deny instruction-denied",
+      "observed": "as expected: deny instruction-denied",
+      "verdict": "pass",
+      "test": "tests/rows.test.mjs: R12 p-token UnwrapLamports (45) through a decision is instruction-denied"
+    },
+    {
+      "id": "S01",
+      "spec": "§3 EffectsV1.messageHash ('sha256(message)'), DecisionV1.messageHash; §3 'Hashes are lowercase hex SHA-256'",
+      "case": "§3 messageHash is the lowercase hex SHA-256 of the message bytes, in the effects and in the decision",
+      "expected": "both equal sha256(bytes) in lowercase hex",
+      "observed": "as expected: both equal sha256(bytes) in lowercase hex",
+      "verdict": "pass",
+      "test": "tests/exact.test.mjs: S01 §3 messageHash is the lowercase hex SHA-256 of the message bytes, in the effects and in the decision"
+    },
+    {
+      "id": "S02",
+      "spec": "§3 EffectsV1.intentKey ('sha256(canonical {feePayer, signers, opaque, sol, tokens, nonce})'); §3 'Canonical JSON means sorted keys, no whitespace, and bigints as decimal strings'",
+      "case": "§3 intentKey = sha256(canonical {feePayer, signers, opaque, sol, tokens, nonce}), recomputed independently",
+      "expected": "the key equals sha256 of the canonical JSON of those six fields, as the effects report them",
+      "observed": "a different key, stable across calls. No subset of the 15 EffectsV1 fields (all 32,767, bigints as strings or as numbers), and no framing tried (v:1, version:1, a trailing newline, an ordered array, pretty JSON), hashes to it (probe-intent.mjs). The key's behaviour holds (F16, F17, X11): the spec's formula and the code disagree, and nothing is admitted wrongly",
+      "verdict": "fail",
+      "test": "tests/exact.test.mjs: S02 §3 intentKey = sha256(canonical {feePayer, signers, opaque, sol, tokens, nonce}), recomputed independently"
+    },
+    {
+      "id": "S03",
+      "spec": "§3 DecisionV1.intentKey ('null if the bytes could not be parsed')",
+      "case": "§3 DecisionV1: a proposal whose bytes do not parse records intentKey null",
+      "expected": "deny malformed-proposal; intentKey null",
+      "observed": "as expected: deny malformed-proposal; intentKey null",
+      "verdict": "pass",
+      "test": "tests/exact.test.mjs: S03 §3 DecisionV1: a proposal whose bytes do not parse records intentKey null"
+    },
+    {
+      "id": "S04",
+      "spec": "§4 The principal ('token transfers whose authority (owner or delegate) is a principal key'); §5 rule 12",
+      "case": "§4 The principal: a delegate transfer (principal authority on an outsider's token account) is counted: over the mint's cap is over-per-tx-cap",
+      "expected": "deny over-per-tx-cap",
+      "observed": "as expected: deny over-per-tx-cap",
+      "verdict": "pass",
+      "test": "tests/exact.test.mjs: S04 §4 The principal: a delegate transfer (principal authority on an outsider's token account) is counted: over the mint's cap is over-per-tx-cap"
+    },
+    {
+      "id": "S05",
+      "spec": "§4 v0 ('An index at or past a pin's length is denied'); §5 rule 3",
+      "case": "§4 v0 pins: an empty pin denies index 0, and a read-only index past a pin is denied: lookup-table-unpinned",
+      "expected": "an empty pin with index 0, deny lookup-table-unpinned; a read-only index 1 past a 1-entry pin, deny lookup-table-unpinned",
+      "observed": "as expected: an empty pin with index 0, deny lookup-table-unpinned; a read-only index 1 past a 1-entry pin, deny lookup-table-unpinned",
+      "verdict": "pass",
+      "test": "tests/exact.test.mjs: S05 §4 v0 pins: an empty pin denies index 0, and a read-only index past a pin is denied: lookup-table-unpinned"
+    },
+    {
+      "id": "S06",
+      "spec": "§4 Fees ('Legacy and v0: ceil(price × limit / 1,000,000)')",
+      "case": "§4 Fees: the legacy-and-v0 formula applies to a v0 message (limit 333,333 at price 3 gives 1)",
+      "expected": "version 0; computeUnitLimit 333333; priorityFee 1",
+      "observed": "as expected: version 0; computeUnitLimit 333333; priorityFee 1",
+      "verdict": "pass",
+      "test": "tests/exact.test.mjs: S06 §4 Fees: the legacy-and-v0 formula applies to a v0 message (limit 333,333 at price 3 gives 1)"
+    }
+  ],
+  "spec_questions": [
+    "§4 Rules for tokens: 'derived offline with the mint's token program'. Is that the program the policy lists for the mint, or the program the instruction runs under? A classic-Token TransferChecked of a mint listed as token-2022 is denied as mint-not-allowed (instruction's program); the other reading gives destination-not-allowed (X10).",
+    "§5 rules 10 and 11: when a plain Transfer's mint cannot be inferred and its destination is an ATA, not an address named directly, which rule names the denial? Observed: destination-not-allowed (U01). The spec's token-mint-unknown is reachable only with a directly named destination.",
+    "§4 table and §5 rule 7: must System, Token, Token-2022, ComputeBudget and Memo appear in programs.allow? The table's 'any other program: denied unless allowlisted' suggests not; the guard denies them as program-not-allowed when absent (U03). State it either way.",
+    "§4 Fees: does 'at most 1,400,000' cap an explicit SetComputeUnitLimit as well as the default? The guard caps it (U02), which matches the runtime; the sentence reads as if it bound only the default.",
+    "§5 rule 0: 'a release key that is the fee payer'. PolicyV1 has no fee-payer field, so at creation only principal membership can be checked, and a fee payer outside the principal is already other-signer. Is there a separate check, at creation or at decision time? Not testable from the spec as written.",
+    "§5 rule 1: does 'a field is missing or ill-typed' cover NaN times, optional fields such as intent, and a length bound on intent? The guard denies at = NaN and a numeric intent, and enforces a 256-character intent bound the spec does not state (U06, U07).",
+    "§4 v1: the wire layout (config mask bits, the two-bit priority-fee pair, instruction headers) is not in the spec, only its contents. These cases follow @solana/kit 8.4.0. Should the spec cite SIMD-0385's layout, so that a half-set fee pair (G07) and unknown mask bits have a stated rule?",
+    "§5 rule 1: duplicate static keys (U04) and header counts that exceed the key list (U08) are denied as malformed-proposal. The spec says only 'the bytes do not parse'; worth listing the structural checks."
+  ],
+  "own_mistakes_fixed": [
+    "X10 asserted destination-not-allowed, reading §4's 'the mint's token program' as the policy's listing. The sentence admits the instruction's program too, so the test now asserts only the denial and records the rule; verdict unclear.",
+    "The first run used the brief's `node --test tests/`, which Node 26.7.0 rejects before running anything (a bare directory is loaded as a module). The suite runs with `node --test tests/*.test.mjs`. No test changed.",
+    "After the reboot cleared /tmp, every test file was recreated in /home/dashy/.cache/solanaut/eval/e1-decode from the earlier writes, unchanged except X10 in its corrected form; the 133 recreated tests gave the same results and the same observations."
+  ],
+  "method_notes": [
+    "Fresh guard per case, in memory, with a neutral sensor (intensity 0, valence 0.2, repetition 0) so Keel stays at DEFAULT; a probe with the default sensor gave the same allow.",
+    "ATAs and seeded addresses come from @solana/addresses (kit), not from the SDK's own pda helpers, so a derivation bug in the SDK could not agree with itself.",
+    "For denials whose rule could be reached for an unrelated cause, the guard's reason text was read and names the intended cause (AllowPrefund on a principal, multisig authority, layout mismatch, second SetComputeUnitPrice, deprecated RequestUnits, unknown discriminator).",
+    "Aimed for 30 to 45 cases; went past it because the first 45 all passed, and the brief's own lists (every §4 row allowed and denied, every decided item, every rule-0 condition, rule-order pairs, the twelve drain kinds) need more."
+  ]
+}

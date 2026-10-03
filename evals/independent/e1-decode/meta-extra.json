@@ -1,0 +1,21 @@
+{
+  "R01": ["§4 table, System row (every named instruction); API InstructionClass", "CreateAccount, Transfer, CreateAccountWithSeed, TransferWithSeed, CreateAccountAllowPrefund value-moving; Assign, Allocate, AllocateWithSeed, AssignWithSeed, the five nonce instructions and unknown(14) denied"],
+  "R02": ["§4 table, SPL Token row; §4 Decided (p-token additions)", "Transfer, TransferChecked value-moving; the ten denied names, unlisted InitializeMint/InitializeMultisig and 38/45/255 denied; Revoke, SyncNative, InitializeAccount 1/2/3 benign"],
+  "R03": ["§4 table, Token-2022 row ('the SPL Token list, plus every extension instruction'; TransferCheckedWithFee is Alpha)", "Transfer, TransferChecked value-moving; the SPL Token denied list and extensions 26-30, 33-36 denied; Revoke, SyncNative, InitializeAccount family benign"],
+  "R04": ["§4 table, ComputeBudget row; §4 Decided (RequestUnits)", "heap, limit, price, loaded-data benign; RequestUnits denied"],
+  "R05": ["§4 table, Memo row ('any')", "benign for both programs, any data"],
+  "R06": ["§4 table, 'any other program' (opaque)", "opaque"],
+  "R07": ["§1 (ATA decoding is Alpha); §4 table, ATA row marked (Alpha)", "opaque in the Beta"],
+  "R08": ["§4 table, SPL Token denied column; §5 rule 9", "each deny instruction-denied"],
+  "R09": ["§4 table, System denied column; §5 rule 9", "each deny instruction-denied"],
+  "R10": ["§4 table, System row (every nonce instruction); §5 rule 5 ('any nonce instruction appears')", "each deny durable-nonce-denied"],
+  "R11": ["§4 table, SPL Token and Token-2022 benign columns", "each allowed"],
+  "R12": ["§4 Decided (p-token UnwrapLamports, 45)", "deny instruction-denied"],
+  "S01": ["§3 EffectsV1.messageHash ('sha256(message)'), DecisionV1.messageHash; §3 'Hashes are lowercase hex SHA-256'", "both equal sha256(bytes) in lowercase hex"],
+  "S02": ["§3 EffectsV1.intentKey ('sha256(canonical {feePayer, signers, opaque, sol, tokens, nonce})'); §3 'Canonical JSON means sorted keys, no whitespace, and bigints as decimal strings'", "the key equals sha256 of the canonical JSON of those six fields, as the effects report them",
+    "fail", "a different key, stable across calls. No subset of the 15 EffectsV1 fields (all 32,767, bigints as strings or as numbers), and no framing tried (v:1, version:1, a trailing newline, an ordered array, pretty JSON), hashes to it (probe-intent.mjs). The key's behaviour holds (F16, F17, X11): the spec's formula and the code disagree, and nothing is admitted wrongly"],
+  "S03": ["§3 DecisionV1.intentKey ('null if the bytes could not be parsed')", "deny malformed-proposal; intentKey null"],
+  "S04": ["§4 The principal ('token transfers whose authority (owner or delegate) is a principal key'); §5 rule 12", "deny over-per-tx-cap"],
+  "S05": ["§4 v0 ('An index at or past a pin's length is denied'); §5 rule 3", "an empty pin with index 0, deny lookup-table-unpinned; a read-only index 1 past a 1-entry pin, deny lookup-table-unpinned"],
+  "S06": ["§4 Fees ('Legacy and v0: ceil(price × limit / 1,000,000)')", "version 0; computeUnitLimit 333333; priorityFee 1"]
+}

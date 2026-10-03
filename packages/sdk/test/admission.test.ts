@@ -507,3 +507,39 @@ test("D1: guard.policy is frozen, and changing it is refused", async () => {
 test("a controller that is not the verified binary is refused at creation", async () => {
   await assert.rejects(createGuard({ policy: policyInput(), expectedDigest: "0".repeat(64) }), /digest/);
 });
+
+// --- found by the independent evaluator (evals/independent/e2-state) ------------------------------
+
+test("S36: a receipt reported expired, failed or landed no longer redeems", async () => {
+  for (const outcome of ["expired", "failed", "landed"] as const) {
+    const g = await guardWith();
+    const message = build([pay(TREASURY, SOL / 10n)], { seed: 900 });
+    const d = g.check({ message, at: tick(), blockHeight: 50n, lastValidBlockHeight: 100n });
+    allowed(d, outcome);
+    g.report(d.hash, outcome);
+    const r = g.redeem(message, d.hash, 60n);
+    assert.equal(r.ok, false, `after ${outcome}, the receipt redeemed: ${r.reason}`);
+  }
+});
+
+test("S80: a release's expiry is judged on the latest recorded time, so a clock that steps back cannot revive an expired release", async () => {
+  const g = await guardWith({ afterDenials: 2 });
+  const t0 = tick();
+  check(g, [pay(ATTACKER, 1n)], { at: t0, seed: 903 });
+  check(g, [pay(ATTACKER, 2n)], { at: t0 + 100_000, seed: 904 });
+  assert.equal(g.status().latched, true);
+  const text = g.releaseText(new Date(t0 + 50_000).toISOString());
+  const res = g.release(text, signText(text, operator.privateKey), t0 + 10_000);
+  assert.equal(res.released, false, "expired at t0 + 50 s, against a record already at t0 + 100 s");
+  assert.match(res.reason, /expired/);
+});
+
+test("S82: an attempt a trusted height shows can still land stays in the window past windowMs; reported expired, it leaves", async () => {
+  const g = await guardWith({ windowMs: 10_000, maxPerWindow: SOL });
+  const t0 = tick();
+  const first = check(g, [pay(TREASURY, SOL)], { at: t0, blockHeight: 100n, lastValidBlockHeight: 250n, seed: 901 });
+  allowed(first, "the first payment");
+  denied(check(g, [pay(SHOP, SOL)], { at: t0 + 10_001, blockHeight: 125n, lastValidBlockHeight: 275n, seed: 902 }), "over-window-cap", "beside an attempt that can still land");
+  g.report(first.hash, "expired");
+  allowed(check(g, [pay(SHOP, SOL)], { at: t0 + 10_002, blockHeight: 126n, lastValidBlockHeight: 276n, seed: 902 }), "once the first is reported expired");
+});

@@ -97,7 +97,7 @@ interface ProposalV1 {
   at: number;                                 // ms; the caller's clock in SDK mode, the signer's in signer mode (§2.1)
   blockHeight?: bigint;                       // the current block height, from the source §2.1 names
   lastValidBlockHeight?: bigint;              // from getLatestBlockhash, for the receipt's expiry
-  intent?: string;                            // the caller's grouping key; never used to decide "in flight"
+  intent?: string;                            // the caller's grouping key, at most 256 characters; never used to decide "in flight"
 }
 
 // Derived by the guard from the bytes. Never taken from the agent's word. Built: packages/sdk/src/classify.ts (2a.3).
@@ -119,7 +119,7 @@ interface EffectsV1 {
   priorityFee: bigint;                        // §4, "Fees"
   baseFee: bigint;                            // 5,000 lamports per signature, precompile signatures included
   tips: bigint;                               // SOL sent to policy.fees.tipAccounts
-  intentKey: string;                          // sha256(canonical {feePayer, signers, opaque, sol, tokens, nonce})
+  intentKey: string;                          // sha256(canonical {feePayer, signers, opaque, sol, tokens, nonce}), exactly as §4 states
 }
 
 // The record (ADR-010): every entry is hash-chained, and the guard's state is what applying them in order gives.
@@ -169,7 +169,9 @@ After signing, the adapter compares the signed message with the admitted one and
 ## 4. What the guard decodes (ADR-009)
 
 **Message versions.** A message whose first byte has the high bit clear is legacy; `0x80` is v0; `0x81` is v1. Any
-other version is denied as `unsupported-version`.
+other version is denied as `unsupported-version`. Within a version, a message Solana could not execute does not parse
+(`malformed-proposal`): an account listed twice, a lookup table listed twice, or header counts larger than the
+account list.
 
 - **v0:** every lookup table it uses must be pinned in `policy.lookupTables`. An index at or past a pin's length is
   denied, and so is an unpinned table. Table entries are append-only and a closed table's address can never be
@@ -200,11 +202,22 @@ It is denied as `durable-nonce-denied` in every version, as is every nonce instr
 **The principal.** Effects are the outflows the principal authorises: System transfers and new-account funding from a
 principal account, token transfers whose authority (owner or delegate) is a principal key, and the fee payer's fees.
 A message that needs any signer outside the principal is denied as `other-signer` while `cosign.allow` is false.
+The principal is not an allowed destination unless `destinations.allow` names it, so a principal key paying another,
+or itself, is denied as `destination-not-allowed` until the policy lists it.
+
+**Programs.** Every program a message calls must be on `programs.allow`, decoded or not (rule 7). Decoding a program,
+such as System, Token, ComputeBudget or Memo, decides how its instructions are read, not whether it may run.
 
 **Rules for tokens.**
 - **Destination.** A token transfer's `toAccount` must be the associated token account of an allowed owner for that
   mint, derived offline with the mint's token program (Token and Token-2022 derive different addresses), or an
   address the policy names directly.
+  - "The mint's token program" is the program the instruction runs under. The policy lists a mint with its program,
+    so a transfer of a listed mint under the other token program is a pair the policy does not list:
+    `mint-not-allowed`.
+  - Without a known mint, no destination can be recognised as an associated account. So a plain `Transfer` whose mint
+    cannot be inferred, to an address the policy does not name, is denied by rule 10 (`destination-not-allowed`),
+    which comes before rule 11.
 - **Mint.** TransferChecked names it. A plain `Transfer` names no mint, so the mint is inferred when the source is the
   principal's associated token account of a listed mint. Otherwise the transfer is denied as `token-mint-unknown`.
 - **Token-2022 extensions** are not read in the Beta, because the SDK has no RPC. The operator lists only mints it has
@@ -214,8 +227,8 @@ A message that needs any signer outside the principal is denied as `other-signer
 **Fees.**
 - **Priority fee.** v1: the config's lamport total. Legacy and v0: `ceil(price × limit / 1,000,000)`, where the limit
   is SetComputeUnitLimit's value if present, else the runtime default of 200,000 per instruction and 3,000 per
-  builtin instruction, at most 1,400,000 ([source](../kb/sources/2026-09-27_solana-docs-fees.md)). No price means no
-  priority fee.
+  builtin instruction ([source](../kb/sources/2026-09-27_solana-docs-fees.md)). Either way the limit is at most
+  1,400,000, as the runtime caps it. No price means no priority fee.
 - **Base fee.** 5,000 lamports per signature, counting each signature a precompile instruction (Ed25519, secp256k1,
   secp256r1) verifies.
 - **Tips.** SOL sent to `policy.fees.tipAccounts` counts as tips, not as a payment to a destination.
@@ -239,6 +252,11 @@ A message that needs any signer outside the principal is denied as `other-signer
 - **The intent key** leaves out the blockhash, the version, fees, tips, ComputeBudget and Memo instructions. Two
   calls to the same opaque program share a key whatever their data: while an opaque call is in flight, another
   waits.
+  - **Exactly:** `sha256(canonicalJSON({ feePayer, signers, opaque, sol, tokens, nonce }))`. In it, `signers` and
+    `opaque` are sorted; `sol` and `tokens` are each outflow's own canonical JSON, as a string, sorted; and `nonce` is
+    the boolean.
+  - So the key does not depend on the order of instructions. The evaluator recomputed it from this text alone
+    (`evals/independent/e1-decode/`, case S02).
 
 ## 5. The rules, in order
 
@@ -246,8 +264,8 @@ The first failing rule is the reason for the decision. Every rule has a failing 
 
 | # | Rule | Denies when |
 |---|---|---|
-| 0 | `invalid-policy` | at creation: a non-finite or negative cap, an empty or invalid address, an empty principal, a release key that is the fee payer or in the principal, a pinned table with an invalid entry. Creation throws; no guard exists |
-| 1 | `malformed-proposal` | the bytes do not parse, or a field is missing or ill-typed |
+| 0 | `invalid-policy` | at creation: a non-finite or negative cap, an empty or invalid address, an empty principal, a release key in the principal (every fee payer the guard admits is a principal key, rule 6), a pinned table with an invalid entry. Creation throws; no guard exists |
+| 1 | `malformed-proposal` | the bytes do not parse, or a field is missing or ill-typed: a time that is not a finite number, a height that is not a non-negative bigint, an intent that is not text of at most 256 characters |
 | 2 | `unsupported-version` | the message version is not legacy, v0 or v1 |
 | 3 | `lookup-table-unpinned` | a v0 message uses a table that is not pinned, or an index at or past its pinned length |
 | 4 | `latched` | the guard is latched (§7) |
@@ -317,7 +335,8 @@ Built at milestone 2a.7 (`evals/sdk/keel.md`).
     - **past it,** the attempt can no longer land, but it may already have (D14).
 
     The hold lasts until a report, or until the window has passed since the intent's first attempt. Meanwhile the
-    window caps count the attempt.
+    window caps count the attempt. An attempt that a trusted height shows can still land stays in the windows past
+    `windowMs`, until it is reported or its blockhash expires (D20). Without heights, the windows slide as written.
   - `guardedWallet` reports what it sends. What it only signs, or sends without learning the outcome, it follows up by
     signature before the next proposal: seen landed or failed, it reports that; unseen and past the last valid height,
     read before the status, it reports `expired`.
@@ -338,6 +357,10 @@ Built at milestone 2a.7 (`evals/sdk/keel.md`).
     ```
 
   - The agent's key cannot release it. A wrong guard, cluster, policy or seq, or an expired message, is refused.
+  - A release in the record is verified again on restore and in replay (D17). The checks are its signature by
+    `latch.releaseKey` over its text, its guard and cluster, the seq of the latch it releases, and its expiry against
+    its own recorded time. So an edited record cannot release a latch. A policy that changes `latch.releaseKey` cannot
+    restore a record whose releases the old key signed, until ADR-014's `policy` entries carry each policy.
 - **The log is the state (ADR-010).** One `DecisionV1` per line, JSONL, append-only, synced to disk before the guard
   answers. Each line's `prev` is the previous line's `hash`.
   - **On start**, the guard verifies the chain and replays it, which rebuilds reservations, intents, used receipts,
@@ -349,9 +372,13 @@ Built at milestone 2a.7 (`evals/sdk/keel.md`).
     newline is a write a crash cut short and was never acknowledged, so opening the record cuts it off. Any other
     damage, such as a line that does not parse, a hash that does not match or a broken chain, refuses to start.
   - **Restore.** Every entry is applied again in order, and Keel is ticked again with each recorded telemetry. If
-    Keel's posture differs from the record's, the guard refuses to start.
+    Keel's posture differs from the record's, the guard refuses to start. Restore checks the chain, the releases (D17)
+    and Keel's postures. It does not recompute each decision, so a record rewritten and re-sealed whole restores as
+    written: threat T12's residual. `replay` recomputes every decision and finds such a rewrite. The Alpha closes it
+    at start, once policies are in the record (ADR-014) and its head is anchored (ADR-015).
   - **The lock.** `<record>.lock` names the holding process and host. A live holder makes a second guard refuse; a
-    dead holder's lock is taken over. The takeover is not atomic, so run one guard per record.
+    dead holder's lock is taken over. The takeover is not atomic, so run one guard per record. A lock file that names
+    no process is refused too, with a message saying how to clear it.
   - **A write that fails shuts the guard.** It denies everything, unrecorded, until it is restarted, so nothing is
     signed on a decision the record does not hold.
   - **The latch is a recorded fact.** The decision that trips it carries `latch: true`, so restoring under another
@@ -373,9 +400,12 @@ Built at milestone 2a.7 (`evals/sdk/keel.md`).
     `lastValidBlockHeight` it can still land.
   - **A release starts the stream over.** It clears the latch and the run of denials, resets Keel, and empties the
     sensor's memory. The windows and intents stand.
-  - **Windows run on the latest recorded time.** A caller's clock that steps back cannot shrink a window.
+  - **Windows run on the latest recorded time.** A caller's clock that steps back cannot shrink a window. A
+    release's expiry is judged the same way, so a clock that steps back cannot revive an expired release (D19).
   - **Receipts are redeemed.** `guard.redeem(bytes, decisionHash, blockHeight)` checks the bytes, the expiry and the
-    policy, and records the use, so a receipt signs once.
+    policy, and records the use, so a receipt signs once. A receipt whose decision was already reported landed,
+    failed or expired does not redeem (D18). A receipt with an expiry needs the current height to redeem; without one,
+    it is refused.
 - **Replay.** `replay(log, policy)` recomputes every decision and reports the first divergence. Anchoring the head
   on-chain is Alpha work (§9).
 
@@ -484,6 +514,10 @@ Each is fixed test-first: the evaluator writes the failing test, and the builder
 | D14 | An attempt nobody reports is treated as unable to land once its last valid height passes, so a retry of a payment that landed unreported is admitted. A sign-only integration, where the wallet signs and the caller sends, never reports | `state.ts` (`couldStillLand`), `adapters/agent-kit.ts` (`signTransaction`) | an unresolved attempt holds its intent until reported; `guardedWallet` follows up what it signed (§7) |
 | D15 | A batch the wallet signed in place but returned short kept a valid signature on a caller's object, and its decision was released as never signed | `adapters/agent-kit.ts` (`verify`), `adapters/kit.ts` | strip every caller object; hold a validly signed admission as `unknown`; refuse a short return |
 | D16 | `wallet-changed-message` carried the admitted decision, against §8 | both adapters | `decision: null` |
+| D17 | A release in the record was applied on restore and replay without its signature being checked | `state.ts` (`apply`) | verify each release as the live guard does |
+| D18 | A receipt redeemed after its decision was reported `expired`, `failed` or `landed` | `guard.ts` (`redeem`) | a final outcome refuses the receipt |
+| D19 | A release's expiry was judged on the caller's `at` | `guard.ts` (`release`) | the latest recorded time |
+| D20 | An attempt that could still land left the window cap after `windowMs` | `state.ts` (`windowTotals`) | count it while a trusted height shows it can still land |
 
 **Status:** closed at milestone 2a.5 (`evals/sdk/admission.md`), test-first: D1, D2, D5, D6, D7, D9, D10 and D12. D12
 closed early: the guard decodes bytes itself, so `packages/sdk/src` imports no web3.js. D11 closed at milestone 2a.6
@@ -503,7 +537,7 @@ closed early: the guard decodes bytes itself, so `packages/sdk/src` imports no w
   - **The RPC client:** `confirm` reads the height before the status. Read the other way round, a payment processed
     at its last valid height could be called `expired`.
 
-**Found on 2026-10-03, by the independent evaluator run** (`evals/independent/`), both closed test-first:
+**Found on 2026-10-03, by the independent evaluator run** (`evals/independent/`), each closed test-first:
 - **D15 · signed bytes released as never signed.** A wallet that signed a whole batch in place but returned it short
   left a valid signature on the caller's object for the transaction it did not return. Both decisions were released
   as `expired`, so the guard would admit the same payment again while signed bytes for it existed: a double payment
@@ -512,6 +546,16 @@ closed early: the guard decodes bytes itself, so `packages/sdk/src` imports no w
   let through.
 - **D16 · `wallet-changed-message` carried a decision.** Both adapters attached the admitted decision, with
   `allow: true`, to a denial that §8 says has none (E22). Now it carries `null`.
+- **D17 · a release in the record was not verified.** A sealed release entry with an all-zero signature un-latched a
+  guard on restore, and `replay` called the record sound (e2-state, S83). Restore and replay now verify every
+  release as the live guard does.
+- **D18 · a released receipt still redeemed.** A decision reported `expired`, whose value and fees were freed, still
+  redeemed, so its bytes could be signed outside the caps (S36). A decision with a final outcome no longer redeems.
+- **D19 · a release's expiry read the caller's clock.** A clock stepped back accepted an expired release (S80). The
+  expiry is now judged on the latest recorded time, as the windows are.
+- **D20 · the window let go of an attempt that could still land.** With `windowMs` shorter than a blockhash's life, an
+  attempt still able to land left the window cap. A second payment was then admitted beside it, so twice the cap could
+  land (S82). A trusted height that shows the attempt can still land now keeps it in the windows.
 
 ## 11. Batteries and acceptance
 

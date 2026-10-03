@@ -84,6 +84,31 @@ passed, and `npm test` ran 109 of 109.
 
 The replay command was written before its test; reporting a divergence with exit code 0 fails that test.
 
+## 3b. Found by the independent evaluator: a release the record did not verify (D17), and a lock message
+
+The black-box evaluator e2-state (`evals/independent/e2-state/`) found on 2026-10-03:
+- **D17:** a sealed release entry with an all-zero signature un-latched a guard on restore, and `replay` called the
+  record sound.
+- **The lock:** a lock file naming no process refused correctly, but with "locked by process undefined on undefined".
+
+Their cases became tests in `durable.test.ts` (S83, S81), and in `admission.test.ts` for the three admission defects
+(section 6b of `sdk/admission.md`). All five were seen failing for the evaluator's reason:
+
+```
+✖ S36: a receipt reported expired, failed or landed no longer redeems          after expired, the receipt redeemed
+✖ S80: a release's expiry is judged on the latest recorded time …              released: true
+✖ S82: an attempt a trusted height shows can still land stays in the window …  got an ALLOW
+✖ S83: a release in the record is verified on restore and in replay …          Missing expected rejection
+✖ S81: a lock file that names no process refuses to start …                    "process undefined on undefined"
+ℹ pass 0 · fail 5
+```
+
+After the fixes, the five pass, and `npm test` passes 159 of 159.
+
+**The fix:** `apply` verifies each release as the live guard does: the signature by the release key over its text,
+the guard and cluster, the latch's seq, and the expiry against the entry's own time. Restore, replay and the live
+guard all pass through it. The lock message now names the file and how to clear it.
+
 ## 4. Limits, stated
 
 - **The lock's takeover is not atomic.** Two processes restarting on one record at the same instant could both take a

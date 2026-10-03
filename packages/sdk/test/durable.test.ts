@@ -219,3 +219,27 @@ test("the latch is a fact of the record: restored under a policy with a higher t
   assert.equal(b.status().latched, true, "a policy change does not release a latch; only the operator does");
   b.close();
 });
+
+// --- found by the independent evaluator (evals/independent/e2-state) ------------------------------
+
+test("S83: a release in the record is verified on restore and in replay: a forged one refuses to start, and replay names it", async () => {
+  const a = await createGuard({ policy: WORKLOAD_POLICY });
+  const drain = (to: number) => craftLegacy({ header: [1, 0, 1], keys: [key(1), key(to), key(0)], instructions: [{ program: 2, accounts: [0, 1], data: [2, 0, 0, 0, to, 0, 0, 0, 0, 0, 0, 0] }] });
+  [3, 4, 5].forEach((to, i) => a.check({ message: drain(to), at: 3_000_000 + i * 30_000 }));
+  assert.equal(a.status().latched, true);
+  const es = a.entries();
+  const last = es[es.length - 1]!;
+  const text = a.releaseText(new Date(4_000_000_000_000).toISOString());
+  const forged = seal({ v: 1, kind: "release", seq: es.length, prev: last.hash, at: last.at + 1, latchSeq: a.status().latchSeq!, text, signature: Buffer.alloc(64).toString("base64") } as never) as Entry;
+  const store: EntryStore = { entries: [...es, forged], append: () => {}, close: () => {} } as unknown as EntryStore;
+  await assert.rejects(createGuard({ policy: WORKLOAD_POLICY, log: store }), /release/);
+  const result = await replay([...es, forged], WORKLOAD_POLICY);
+  assert.equal(result.ok, false, "replay calls a record with a forged release sound");
+  assert.equal(result.divergence?.seq, es.length);
+});
+
+test("S81: a lock file that names no process refuses to start, and says so plainly", async () => {
+  const path = join(scratch(), "guard.jsonl");
+  writeFileSync(`${path}.lock`, "");
+  await assert.rejects(createGuard({ policy: WORKLOAD_POLICY, log: path }), (e: Error) => /lock/.test(e.message) && !/undefined/.test(e.message));
+});

@@ -12,6 +12,7 @@
 import type { Policy } from "./policy.ts";
 import type { DecisionEntry, Entry, Outcome } from "./log.ts";
 import { RECENT, SENSOR_V1 } from "./sensor.ts";
+import { parseReleaseText, verifyEd25519 } from "./latch.ts";
 
 type Status = "pending" | Outcome;
 
@@ -97,13 +98,21 @@ export function currentIntent(s: GuardState, policy: Policy, intentKey: string, 
   return i;
 }
 
-/** What the window ending at `now` already holds. */
-export function windowTotals(s: GuardState, policy: Policy, now: number) {
+/**
+ * What the window ending at `now` already holds. An attempt that a trusted height shows can still land stays counted
+ * past the window, or a short window would admit a second payment beside it (D20).
+ */
+export function windowTotals(s: GuardState, policy: Policy, now: number, blockHeight: bigint | null = null) {
   let sol = 0n;
   let fees = 0n;
   const tokens = new Map<string, bigint>();
-  for (const r of s.reservations.values()) {
-    if (r.at <= now - policy.windowMs) continue;
+  const stillLanding = (hash: string, r: Reservation) => {
+    if (blockHeight === null) return false;
+    const a = s.intents.get(r.intentKey)?.attempts.find((x) => x.decision === hash);
+    return a !== undefined && unresolved(a) && a.lastValidBlockHeight !== null && blockHeight <= a.lastValidBlockHeight;
+  };
+  for (const [hash, r] of s.reservations) {
+    if (r.at <= now - policy.windowMs && !stillLanding(hash, r)) continue;
     if (!r.valueReleased) {
       sol += r.sol;
       for (const [mint, amount] of r.tokens) tokens.set(mint, (tokens.get(mint) ?? 0n) + amount);
@@ -179,6 +188,9 @@ export function apply(s: GuardState, e: Entry, policy: Policy): void {
       return;
     }
     case "release": {
+      // Verified again, as the live guard verified it, so an edited record cannot release a latch (D17).
+      const problem = releaseProblem(s, e, policy);
+      if (problem) throw new Error(`the record's release at seq ${e.seq} does not verify: ${problem}`);
       // The operator has looked: start the stream over. The windows and intents stand.
       s.latched = null;
       s.consecutiveDenials = 0;
@@ -189,6 +201,28 @@ export function apply(s: GuardState, e: Entry, policy: Policy): void {
       s.redeemed.add(e.decision);
       return;
   }
+}
+
+/**
+ * Why a recorded release does not hold, or null if it does: the latch it names, the guard and cluster, the expiry
+ * against its own recorded time, and the release key's signature over its text. The policy hash in the text is bound
+ * by the signature, and is not compared, since a record outlives a policy change.
+ */
+function releaseProblem(s: GuardState, e: Extract<Entry, { kind: "release" }>, policy: Policy): string | null {
+  if (!s.latched) return "the guard was not latched";
+  const f = parseReleaseText(e.text);
+  if (!f) return "its text is not a release message";
+  if (f.guardId !== policy.latch.guardId || f.cluster !== policy.latch.cluster) return "it names another guard or cluster";
+  if (f.seq !== e.latchSeq || f.seq !== s.latched.seq) return `it releases the latch at seq ${f.seq}, and the guard latched at ${s.latched.seq}`;
+  if (!(Date.parse(f.expires) > e.at)) return `it had expired at ${f.expires}`;
+  let signature: Uint8Array;
+  try {
+    signature = new Uint8Array(Buffer.from(e.signature, "base64"));
+  } catch {
+    return "its signature is not base64";
+  }
+  if (!verifyEd25519(policy.latch.releaseKey, new TextEncoder().encode(e.text), signature)) return "the signature is not the release key's, over its text";
+  return null;
 }
 
 /**
