@@ -559,7 +559,7 @@ checked. The guard decodes whatever version arrives, so the answer changes no ru
 **A draft for the human to approve at 2c.1.** Each requirement has an ID, is stated so a test can fail it, and names
 where it comes from and what will verify it. Every Beta rule and invariant (§3 to §8) still holds; these add to them.
 A choice that needs research before it can be stated is marked **ADR owed**, and the ADR is written before that
-milestone's code.
+milestone's code. Every such ADR is now written, as a proposal for the human: ADR-013 to ADR-018 (§13.11).
 
 ### 13.1 Signer process (milestone 3.1)
 
@@ -607,7 +607,7 @@ milestone's code.
 | OPQ-4 | Only read-only assertion instructions are appended or admitted. Lighthouse's memory-write instructions are denied until they have a rule | T28, §12 | a memory-write instruction |
 | OPQ-5 | If the assertions would push the transaction past its size or compute limit, the proposal is denied, never sent unbounded | T3 | an oversized route |
 | OPQ-6 | On a Surfpool mainnet fork, a Jupiter route bounded this way lands, and the same route altered to drain fails on-chain by an assertion | `docs/ROADMAP.md` 3.4 | the fork run's receipt; if it cannot be met, the Alpha denies opaque programs and says so (RK6) |
-| OPQ-7 | The assertion set, and how the simulated bound becomes it | — | **ADR owed:** bounding opaque programs |
+| OPQ-7 | The assertion set, and how the simulated bound becomes it | T3 | [ADR-018](../design/ADR-018-bounding-opaque-programs.md), proposed: floors on every held account's balances, its authorities held equal |
 
 ### 13.5 Phantom paths (milestone 3.5)
 
@@ -670,7 +670,7 @@ milestone's code.
 | [ADR-013](../design/ADR-013-signer-process.md), proposed | the signer's process, OS user and transport (SIG-10) | 3.1 |
 | [ADR-014](../design/ADR-014-operator-signed-policy.md), proposed | policy signing and policy changes (POL-5) | 3.2 |
 | [ADR-016](../design/ADR-016-token-2022-settings.md), proposed | Token-2022's mutable settings and transfer hooks (TOK-5) | 3.3 |
-| owed | bounding opaque programs: simulation and the assertion set (OPQ-7) | 3.4 |
+| [ADR-018](../design/ADR-018-bounding-opaque-programs.md), proposed | bounding opaque programs: simulation and the assertion set (OPQ-7) | 3.4 |
 | [ADR-017](../design/ADR-017-elizaos-integration.md), proposed | the ElizaOS integration point (ELZ-2) | 3.6 |
 | [ADR-015](../design/ADR-015-log-anchor-cadence.md), proposed | the anchor's cadence and payer (ANC-5) | 3.7 |
 
