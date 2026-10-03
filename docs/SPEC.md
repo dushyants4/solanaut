@@ -538,7 +538,9 @@ regenerates them.
 - Should a run of failed outcomes trip the latch, as a run of denials does? A loop that alternates two shapes and
   changes its amount passes every rule while each send fails, and is bounded only by the fee window and the clamp
   under INHIBIT (`evals/sdk/keel.md`). For the Alpha's red team (milestone 3.10).
-- ElizaOS: wrap the plugin's action handlers, or its wallet? Decided when the Alpha starts.
+- ElizaOS: wrap the plugin's action handlers, or its wallet? **Answered by a proposal:** neither. The plugin has no wallet
+  and reads the key at five signing sites, so the key stays out of ElizaOS and Solanaut's own plugin signs through the
+  guard ([ADR-017](../design/ADR-017-elizaos-integration.md)).
 - Lighthouse's memory-write instructions fund and write an account. They need their own rule before any wallet that
   appends them is admitted (Alpha).
 - Token-2022's mutable settings: which extension settings can change after initialisation, read against the
@@ -622,7 +624,8 @@ milestone's code.
 | ID | Requirement | From | Verified by |
 |---|---|---|---|
 | ELZ-1 | The guard sits in `plugin-solana`'s signing path, with the same verdicts as the SDK on the adapters battery's cases | §8 | the adapters battery |
-| ELZ-2 | Whether it wraps the plugin's action handlers or its wallet is decided from the plugin's source | §12 | **ADR owed:** the ElizaOS integration point |
+| ELZ-2 | The key never enters ElizaOS: the character holds only the public key, and Solanaut's own plugin signs through the guard | §12 | [ADR-017](../design/ADR-017-elizaos-integration.md), proposed |
+| ELZ-3 | With only a public key set, each of `plugin-solana`'s signing actions signs nothing | ADR-017 | a test against the pinned published version |
 
 ### 13.7 Log anchor (milestone 3.7)
 
@@ -668,7 +671,7 @@ milestone's code.
 | [ADR-014](../design/ADR-014-operator-signed-policy.md), proposed | policy signing and policy changes (POL-5) | 3.2 |
 | [ADR-016](../design/ADR-016-token-2022-settings.md), proposed | Token-2022's mutable settings and transfer hooks (TOK-5) | 3.3 |
 | owed | bounding opaque programs: simulation and the assertion set (OPQ-7) | 3.4 |
-| owed | the ElizaOS integration point (ELZ-2) | 3.6 |
+| [ADR-017](../design/ADR-017-elizaos-integration.md), proposed | the ElizaOS integration point (ELZ-2) | 3.6 |
 | [ADR-015](../design/ADR-015-log-anchor-cadence.md), proposed | the anchor's cadence and payer (ANC-5) | 3.7 |
 
 ## Changes

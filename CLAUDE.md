@@ -162,7 +162,7 @@ whatever has passed its gate.
 | `apps/agentkit/` | validation: a scripted Solana Agent Kit agent behind `guardedWallet` (milestone 2b.3) |
 | `programs/` | *(Alpha, milestone 3.7)* `solanaut_anchor`: anchors the decision log's head. On-chain caps come from composing Squads v4 (ADR-006) |
 | `docs/` | `PRODUCT.md` (why, what, how) · `ROADMAP.md` (the milestones) · `READINESS.md` (to a certified release) · `RISKS.md` (the risk register) · `OVERVIEW.md` (the code as it is) · `SPEC.md` (the MVP baseline) · `ARCHITECTURE.md` (long term) · `HACKATHON.md` (the contest's rules) · `CLAIMS.md` · `papers/` · `submission/` · `plans/` |
-| `design/` | ADRs 001–016; ADR-008 is proposed and deferred: devnet only for now; ADR-012 (when REGROUND latches) and ADR-013 to ADR-016 (the signer, the signed policy, the anchor's cadence, Token-2022) are proposed for the human |
+| `design/` | ADRs 001–017; ADR-008 is proposed and deferred: devnet only for now; ADR-012 (when REGROUND latches) and ADR-013 to ADR-017 (the signer, the signed policy, the anchor's cadence, Token-2022, ElizaOS) are proposed for the human |
 | `plugins/` `workflows/` `tools/` | the office: seats, SOPs, deterministic gates |
 | `kb/` | the knowledge vault (ADR-007): `INDEX.md` (front page), `LOG.md`, `DOCUMENTS.md` (the paper register), `REGISTRY.md` (upstream pins), `sources/`, `wiki/`, `milestones/`, `templates/`, `intake/`, and `private/` (gitignored) |
 | `evals/` | receipts: every gate shown failing, then passing |
