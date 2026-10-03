@@ -181,19 +181,33 @@ export function guardedWallet<Tx = any>(wallet: BaseWalletLike<Tx>, guard: Guard
     }
   }
 
-  /** The signed message must be the admitted one, signed by the wallet's key. Otherwise strip it and throw. */
-  function verify(signed: Tx[], admitted: Admitted[]): void {
-    const bad = signed.findIndex((tx, i) => {
+  /** The admitted message, signed by the wallet's key. */
+  const signedAsAdmitted = (tx: Tx | undefined, a: Admitted): boolean => {
+    if (tx === undefined) return false;
+    try {
+      return equal(messageOf(tx), a.message) && verifyEd25519(key, a.message, signatureOf(tx, key) ?? new Uint8Array());
+    } catch {
+      return false;
+    }
+  };
+
+  /**
+   * After the wallet was asked and the call fails: strip every signature it left, on the caller's objects and on what
+   * it returned. An admitted message it validly signed may yet land, so it is held as unknown and followed up; the
+   * rest were never signed, and are released.
+   */
+  function release(txs: Tx[], returned: Tx[], admitted: Admitted[]): void {
+    admitted.forEach((a, i) => {
+      const seen = [txs[i], returned[i]].find((tx) => signedAsAdmitted(tx, a));
+      if (!seen) return expire([a]);
+      follow(seen, a);
       try {
-        return !(equal(messageOf(tx), admitted[i]!.message) && verifyEd25519(key, admitted[i]!.message, signatureOf(tx, key) ?? new Uint8Array()));
+        guard.report(a.decision.hash, "unknown");
       } catch {
-        return true;
+        // Already final.
       }
     });
-    if (bad < 0 && signed.length === admitted.length) return;
-    signed.forEach(strip);
-    expire(admitted);
-    throw new SolanautDenied("wallet-changed-message", "the wallet signed something other than the admitted message, or not with its key; its signatures were removed", admitted[Math.max(bad, 0)]?.decision ?? null);
+    [...txs, ...returned].forEach(strip);
   }
 
   async function signAll(txs: Tx[]): Promise<{ signed: Tx[]; admitted: Admitted[] }> {
@@ -203,11 +217,12 @@ export function guardedWallet<Tx = any>(wallet: BaseWalletLike<Tx>, guard: Guard
     try {
       signed = txs.length === 1 ? [await wallet.signTransaction(txs[0]!)] : await wallet.signAllTransactions(txs);
     } catch (e) {
-      expire(admitted);
+      release(txs, [], admitted);
       throw e;
     }
-    verify(signed, admitted);
-    return { signed, admitted };
+    if (signed.length === admitted.length && admitted.every((a, i) => signedAsAdmitted(signed[i], a))) return { signed, admitted };
+    release(txs, signed, admitted);
+    throw new SolanautDenied("wallet-changed-message", "the wallet signed something other than the admitted messages, not with its key, or not all of them; its signatures were removed", null);
   }
 
   /** Sign only: the caller sends. Follow each up, since nothing else will report it. */

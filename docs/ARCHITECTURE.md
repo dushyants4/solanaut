@@ -36,7 +36,7 @@ dashboard: reads the log and the chain; holds no keys
 | Stops | drains: a transfer to an address, a program, an instruction or a mint that was never allowed; approvals; amounts and fees over a cap | loops and escalation: the same failing transaction re-proposed, fees ratcheting up |
 | Decides from | the transaction's decoded bytes, against configuration | three numbers about the stream of proposals |
 | Can the model talk it round? | **no**: it never reads the model's text, and the model cannot set it | its input comes from Solanaut's sensor, so its quality is the sensor's quality. Keel's own README says so |
-| Measured | 40 drain-shaped transactions denied by their named rules; the decoder against kit (`docs/CLAIMS.md` S1, S8, S9) | sensor v1 on synthetic streams: identical retries stopped at turn 3, no benign payment stopped (S3, S7) |
+| Measured | 40 drain-shaped transactions denied by their named rules; the decoder against kit (`docs/CLAIMS.md` S1, S8, S9) | sensor v1 on synthetic streams: identical retries stopped at turn 3; at a constant priority fee no benign payment stopped, and with varied fees 0.50% (S3, S7) |
 
 **Why not rely on the loop for injection?** Gubernaut's published limits say its text sensor misses calmly worded
 hostile input, and Keel acts faithfully on whatever numbers it is given. A prompt injection hidden in token metadata is

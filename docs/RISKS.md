@@ -25,6 +25,7 @@ evidence.
 | RK4 | Agent frameworks sign twice or report landed payments as failed, so integrations hit refusals or retry real payments | high | medium | D14 closed; `guardedWallet` follows up what it signed; integrators pass whole transactions; findings sent upstream (M12, M13) | refusals as `intent-in-flight` in the adapters battery | integrator | mitigated for Solana Agent Kit 2.0.10; ElizaOS unknown until 3.6 |
 | RK5 | A listed Token-2022 mint changes a mutable setting after the operator checked it (T15) | low | high | only listed mints; the extension set pinned and re-read at admission (3.3) | — | builder | open until 3.3 |
 | RK6 | Opaque programs, such as a Jupiter route, cannot be bounded within the Alpha (T3, T28) | medium | high | opaque programs stay denied by default; 3.4 is gated on a Jupiter route bounded on a Surfpool mainnet fork; if the gate fails, the Alpha ships with them denied and says so | 3.4's gate | architect | open |
+| RK20 | Wallets that vary the priority fee per payment read as fee escalation: 15 of 3,000 benign payments stopped, each latching the guard | high | medium | S7 scoped to constant fees; candidate: score escalation only against attempts that did not land, measured on fresh seeds before any change (`docs/SPEC.md` §12) | the varied-fee benign battery (`evals/independent/e3-edges/`) | architect, evaluator | open: 0.50%, 95% interval 0.30–0.82% |
 | RK7 | Durability across a power loss rests on `fsync` and is not measured | low | medium | S6 says "a crash", never "a power cut"; the on-chain limit bounds what a lost record could cost | — | evaluator | accepted, stated |
 
 ## 2. Dependencies
@@ -40,7 +41,7 @@ evidence.
 
 | ID | Risk | L | I | Mitigation | Indicator | Owner | Status |
 |---|---|---|---|---|---|---|---|
-| RK12 | Independent evaluation is hard to get: outside agent CLIs are refused when run unattended, and the account's usage limit stopped a multi-agent run | high | medium | runs the human starts; this session's subagents, given only the spec and audited for black-box reads; R.2's external audit | an owed evaluator run | evaluator, the human | open: the Beta's run is under way by subagents |
+| RK12 | Independent evaluation is hard to get: outside agent CLIs are refused when run unattended, and the account's usage limit stopped a multi-agent run | high | medium | runs the human starts; this session's subagents, given only the spec and audited for black-box reads; R.2's external audit | an owed evaluator run | evaluator, the human | open: one of three evaluators done, which found D15 and D16 (`evals/independent/`) |
 | RK13 | Decisions wait on one person: ADRs, sign-offs and every T4 step | high | medium | decisions batched into milestone reviews; reversible work continues while one is open | an open decision older than a milestone | the human, archivist | open: ADR-012, the Beta sign-off |
 | RK14 | The Alpha's thresholds are ambitious, and Leg 3 busts on any miss: 95% coverage, 80% mutation, a million fuzz inputs, 1,000 mainnet transactions, a 72-hour soak, three outside developers | high | medium | 2c.1 confirms or trims each threshold before Leg 3 starts, with the human, so none is dropped silently later | — | evaluator, the human | open: for 2c.1 |
 | RK15 | The contest's deadline (2026-10-12) pressures claims past the evidence | medium | high | every public sentence traces to `docs/CLAIMS.md`; `tools/claims_lint.py` gates each measured row; the human submits only achieved milestones | a sentence in a draft with no row | archivist, the human | mitigated |
@@ -59,3 +60,4 @@ evidence.
 | Version | Date | What changed |
 |---|---|---|
 | Draft 1 | 2026-10-01 | First register, for milestone 2c.1: 19 risks, from the Beta's run records, `docs/SPEC.md` §12, the threat model and `kb/REGISTRY.md`. |
+| Draft 1.1 | 2026-10-03 | RK20 added, from the independent evaluator's varied-fee battery; RK12's status updated. |

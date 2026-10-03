@@ -44,15 +44,14 @@ export function guardedSigner<S extends PartialSignerLike>(signer: S, guard: Gua
   const now = opts.now ?? Date.now;
   if (!guard.policy.principal.includes(signer.address)) throw new Error(`the signer's address ${signer.address} is not in the policy's principal`);
 
-  const expire = (ds: Decision[]) => {
-    for (const d of ds) {
-      try {
-        guard.report(d.hash, "expired");
-      } catch {
-        // Already final.
-      }
+  const report = (d: Decision, outcome: "expired" | "unknown") => {
+    try {
+      guard.report(d.hash, outcome);
+    } catch {
+      // Already final.
     }
   };
+  const expire = (ds: Decision[]) => ds.forEach((d) => report(d, "expired"));
 
   async function signTransactions(transactions: readonly KitTransactionLike[], config?: unknown) {
     const admitted: { message: Uint8Array; decision: Decision }[] = [];
@@ -78,14 +77,19 @@ export function guardedSigner<S extends PartialSignerLike>(signer: S, guard: Gua
       expire(admitted.map((a) => a.decision));
       throw e;
     }
-    signatures.forEach((dict, i) => {
-      const sig = dict?.[signer.address];
-      const a = admitted[i];
-      if (!a || !(sig instanceof Uint8Array) || !verifyEd25519(signer.address, a.message, sig)) {
-        expire(admitted.map((x) => x.decision));
-        throw new SolanautDenied("wallet-changed-message", "the signer returned a signature that does not verify over the admitted message", a?.decision ?? null);
+    const valid = (i: number) => {
+      try {
+        const sig = signatures[i]?.[signer.address];
+        return sig instanceof Uint8Array && verifyEd25519(signer.address, admitted[i]!.message, sig);
+      } catch {
+        return false;
       }
-    });
+    };
+    if (signatures.length !== admitted.length || !admitted.every((_, i) => valid(i))) {
+      // A message the signer validly signed may yet land, so it is held as unknown; the rest were never signed.
+      admitted.forEach((a, i) => report(a.decision, valid(i) ? "unknown" : "expired"));
+      throw new SolanautDenied("wallet-changed-message", "the signer did not return one signature per transaction, each verifying over its admitted message", null);
+    }
     return signatures;
   }
 

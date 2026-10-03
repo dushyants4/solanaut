@@ -34,7 +34,17 @@ against stubs and planted faults; this harness gets an evaluator that did not bu
 The evaluators are this session's subagents (the same model family as the builder, with separate contexts).
 Outside agent CLIs were refused when run unattended (`runs/2026-10-01-devnet.md`).
 
+**Results so far:**
+
+| Evaluator | Cases | Pass · fail · unclear | Black-box audit | Found | Triage |
+|---|---|---|---|---|---|
+| e3-edges | 83 | 80 · 2 · 1 | 0 hits in 76 tool calls | D15, D16; S7 holds only at a constant fee | [e3-edges/TRIAGE.md](e3-edges/TRIAGE.md) |
+| e2-state | — | — | — | — | after e3 |
+| e1-decode | — | — | — | — | after e2 |
+
 **What went wrong on the way:**
 - All three first ran in parallel, and were cut off together by the account's usage limit.
 - A reboot then cleared their folders, which were in `/tmp`. The folders now live in `~/.cache/solanaut/eval/`.
 - The evaluators were resumed one at a time, each writing its report as it went.
+- The brief said to run `node --test tests/`. Node 26 takes a directory as a module path, so the runs use
+  `node --test tests/*.test.mjs`.

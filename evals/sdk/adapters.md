@@ -118,6 +118,34 @@ adapters.test.ts: ℹ tests 14   ℹ pass 14   ℹ fail 0
 On devnet, the scenes' five payments and the Solana Agent Kit agent's whole transaction went through this path
 ([e2e/scenes-devnet.md](../e2e/scenes-devnet.md), [agentkit/sak-devnet.md](../agentkit/sak-devnet.md)).
 
+## 4b. Found by the independent evaluator: signed bytes released, and a decision on a denial (D15, D16)
+
+The black-box evaluator e3-edges (`evals/independent/e3-edges/`) found two defects on 2026-10-03.
+- **D15:** a wallet that signs a batch in place but returns it short left a valid signature on the caller's object,
+  while both decisions were released.
+- **D16:** `wallet-changed-message` carried the admitted decision.
+
+Its cases became three assertions here, each seen failing first:
+
+```
+✖ a wallet that signs a whole batch in place but returns it short: every caller object is stripped, and what was signed is held, not released
+    AssertionError: no signed bytes are left on any caller object
+✖ wallet-changed-message carries no decision, on guardedWallet (guardedSigner: its own test)
+✖ guardedSigner: … verifies the signatures it returns   (the new decision-null assertion)
+ℹ pass 15 · fail 3
+```
+
+**The fix:**
+- `guardedWallet` strips every caller object and every returned one. An admission whose message the wallet validly
+  signed is reported `unknown` and followed up; the rest are released as `expired`.
+- `guardedSigner` also refuses a short return, which it had let through, and holds a validly signed admission the same
+  way.
+- Both carry `decision: null`.
+
+After the fix: 18 of 18 here, and 154 of 154 for `npm test`. The evaluator's own suite, re-run, passes 82 of 83. The
+one left, E20, expected every decision of a refused batch to be released, as §8 then said; §8 was changed to hold a
+signed admission instead (`evals/independent/e3-edges/TRIAGE.md`).
+
 ## 5. Limits, stated
 
 - **`guardedWallet`'s expiry is an upper bound:** the current height plus 150. A kit transaction's is exact.

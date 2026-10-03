@@ -222,6 +222,38 @@ test("a wallet whose signature does not verify over the admitted bytes is caught
   await rejectsWith(w.signTransaction(legacy(pay(treasury, 1_000))), "wallet-changed-message");
 });
 
+// Found by the independent evaluator (evals/independent/, case E78).
+test("a wallet that signs a whole batch in place but returns it short: every caller object is stripped, and what was signed is held, not released", async () => {
+  const short: BaseWalletLike = {
+    ...keypairWallet(),
+    signAllTransactions: async (txs) => {
+      for (const tx of txs) (tx as Transaction).partialSign(agent);
+      return [txs[0]!];
+    },
+  };
+  const g = await guard();
+  const w = guardedWallet(short, g, { rpc: fakeRpc().rpc, now });
+  const batch = [legacy(pay(treasury, 1)), legacy(pay(treasury, 2))];
+  await rejectsWith(w.signAllTransactions(batch), "wallet-changed-message");
+  assert.ok(batch.every((t) => t.signatures.every((s) => s.signature === null)), "no signed bytes are left on any caller object");
+  const reports = g.entries().filter((e) => e.kind === "report").map((e) => e.kind === "report" && e.outcome);
+  assert.deepEqual(reports, ["unknown", "unknown"], "each admitted message was validly signed, so neither is released as never signed");
+});
+
+// Found by the independent evaluator (evals/independent/, case E22). SPEC §8: two rules have no decision behind them.
+test("wallet-changed-message carries no decision, on guardedWallet (guardedSigner: its own test)", async () => {
+  const modifying: BaseWalletLike = {
+    ...keypairWallet(),
+    signTransaction: async (tx) => {
+      (tx as Transaction).add(new TransactionInstruction({ programId: LIGHTHOUSE, keys: [], data: Buffer.from([9]) }));
+      (tx as Transaction).partialSign(agent);
+      return tx;
+    },
+  };
+  const w = guardedWallet(modifying, await guard(), { rpc: fakeRpc().rpc, now });
+  await assert.rejects(w.signTransaction(legacy(pay(treasury, 1_000))), (e: unknown) => e instanceof SolanautDenied && e.rule === "wallet-changed-message" && e.decision === null);
+});
+
 // --- batches, sending, messages -----------------------------------------------------------------------
 
 test("signAllTransactions is all or nothing: one denial signs none, and the admitted ones are released", async () => {
@@ -342,6 +374,7 @@ test("guardedSigner: checks every transaction first, all or nothing, reads expir
 
   const forger = { address: kitSigner.address, signTransactions: async (txs: readonly any[]) => txs.map(() => ({ [kitSigner.address]: new Uint8Array(64) })) };
   await rejectsWith(guardedSigner(forger as never, await guard(), { now }).signTransactions([tx(treasury, 13n)]), "wallet-changed-message");
+  await assert.rejects(guardedSigner(forger as never, await guard(), { now }).signTransactions([tx(treasury, 14n)]), (e: unknown) => e instanceof SolanautDenied && e.decision === null, "SPEC §8: wallet-changed-message carries no decision (evaluator case E22)");
 });
 
 // --- the JSON-RPC client ----------------------------------------------------------------------------

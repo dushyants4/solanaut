@@ -287,8 +287,8 @@ Built at milestone 2a.7 (`evals/sdk/keel.md`).
   - **intensity** = max(value against the per-transaction cap, the rate term). The rate term counts the proposals
     of the trailing minute against `sensor.expectedPerMinute`: 0 at or below it, rising linearly to 1 at five times
     it. It no longer reads normal payments as full intensity (D8).
-  - **valence** = 0.2 less 0.3 for each denial, failed, expired or unknown outcome since the last landed one; a
-    landed transaction resets it.
+  - **valence** = 0.2 less 0.3 for each denial, failed, expired or unknown outcome since the last landed one,
+    clamped at −1, the lowest value Keel accepts; a landed transaction resets it.
   - **repetition**, over the last 8 parsed proposals: 1 for the same intent at the same fees, if that intent has not
     landed; 0.8 for the same intent at other fees, or the same shape at higher fees (**fee escalation**); 0.5 for the
     same shape at another amount; otherwise 0. **A landed intent counts only as the same shape.**
@@ -297,8 +297,10 @@ Built at milestone 2a.7 (`evals/sdk/keel.md`).
     as a saturating loop. The change touched no coefficient, and the battery was re-run on fresh seeds.
   - **What the change costs.** A runaway loop of payments that all land reads as the same shape, so Keel does not
     stop it. The window caps bound it.
-- **Measured** (synthetic streams, `evals/sdk/keel.md`): sensor v1 stopped 0 of 600 benign payments arriving at the
-  expected rate, and 0 of 600 in bursts (95% upper bound 0.64% each), where sensor v0 stopped 82.8% and 21.7%.
+- **Measured** (synthetic streams, `evals/sdk/keel.md`): at a constant priority fee, sensor v1 stopped 0 of 600 benign
+  payments arriving at the expected rate, and 0 of 600 in bursts (95% upper bound 0.64% each), where sensor v0 stopped
+  82.8% and 21.7%. With the fee varied per payment, the independent evaluator measured 15 of 3,000 stopped (0.50%,
+  95% interval 0.30–0.82%), each latching the guard (§12).
   Identical failing retries stop at turn 3. Retries with rising fees stop at turn 4, by the attempts cap, with Keel at
   REGROUND too. A loop alternating two shapes, with a changing amount, is not stopped within 12 turns.
 
@@ -406,12 +408,16 @@ Built at milestone 2a.7 (`evals/sdk/keel.md`).
     `guardedWallet` uses the current height plus 150. Too high a bound keeps an attempt in flight longer, and lets a
     receipt redeem a little late, for bytes the chain would refuse anyway. A kit transaction carries its lifetime, so
     `guardedSigner`'s expiry is exact.
-  - **After signing**, the message must be the admitted one and the signature must verify by the wallet's key over
-    it. Otherwise every signature on the caller's object is removed, the decision is released, and the call throws
-    `SolanautDenied` with rule `wallet-changed-message`.
+  - **After signing**, each message must be the admitted one, its signature must verify by the wallet's key over it,
+    and the wallet must return one transaction for each it was given. Otherwise:
+    - every signature is removed, from the caller's objects and from any the wallet returned;
+    - a decision whose admitted message the wallet did validly sign is reported `unknown` and followed up, because
+      those bytes existed and may land (D15); the rest are released as `expired`;
+    - the call throws `SolanautDenied` with rule `wallet-changed-message`.
   - **All or nothing, and nothing held for nothing.** A batch is checked whole before the wallet sees any of it. When
-    a batch is refused, or the wallet refuses to sign, every decision admitted for it is reported `expired`: its
-    bytes were never signed, so they cannot land.
+    a batch is refused, every decision admitted for it is reported `expired`: its bytes were never signed, so they
+    cannot land. When the wallet throws, the same holds, except for a message it signed in place before throwing,
+    which is held as above.
   - **`SolanautDenied`** carries `{ rule, reason, decision }`. Two rules have no decision behind them:
     `message-signing-denied` and `wallet-changed-message`.
   - **`jsonRpc(url)`** is the RPC client: `getBlockHeight`, `sendTransaction` with base64 bytes, and
@@ -476,6 +482,8 @@ Each is fixed test-first: the evaluator writes the failing test, and the builder
 | D12 | The core decodes through `@solana/web3.js` | `describe.ts:5`, `packages/sdk/package.json` | decode bytes without it, cross-checked in tests (ADR-009) |
 | D13 | `guardedWallet` reported every rejected send `failed`, which frees the payment's value and admits a re-sign, though a dropped connection, a timeout or an HTTP error leaves the bytes able to land | `adapters/agent-kit.ts`, `adapters/rpc.ts` | `failed` only when the RPC refused the bytes (`RpcRefused`); otherwise `unknown` |
 | D14 | An attempt nobody reports is treated as unable to land once its last valid height passes, so a retry of a payment that landed unreported is admitted. A sign-only integration, where the wallet signs and the caller sends, never reports | `state.ts` (`couldStillLand`), `adapters/agent-kit.ts` (`signTransaction`) | an unresolved attempt holds its intent until reported; `guardedWallet` follows up what it signed (§7) |
+| D15 | A batch the wallet signed in place but returned short kept a valid signature on a caller's object, and its decision was released as never signed | `adapters/agent-kit.ts` (`verify`), `adapters/kit.ts` | strip every caller object; hold a validly signed admission as `unknown`; refuse a short return |
+| D16 | `wallet-changed-message` carried the admitted decision, against §8 | both adapters | `decision: null` |
 
 **Status:** closed at milestone 2a.5 (`evals/sdk/admission.md`), test-first: D1, D2, D5, D6, D7, D9, D10 and D12. D12
 closed early: the guard decodes bytes itself, so `packages/sdk/src` imports no web3.js. D11 closed at milestone 2a.6
@@ -494,6 +502,16 @@ closed early: the guard decodes bytes itself, so `packages/sdk/src` imports no w
     chain says.
   - **The RPC client:** `confirm` reads the height before the status. Read the other way round, a payment processed
     at its last valid height could be called `expired`.
+
+**Found on 2026-10-03, by the independent evaluator run** (`evals/independent/`), both closed test-first:
+- **D15 · signed bytes released as never signed.** A wallet that signed a whole batch in place but returned it short
+  left a valid signature on the caller's object for the transaction it did not return. Both decisions were released
+  as `expired`, so the guard would admit the same payment again while signed bytes for it existed: a double payment
+  (evaluator case E78). Now every caller object is stripped, and a validly signed admission is held as `unknown` and
+  followed up. `guardedSigner` also refuses a signer that returns fewer signatures than transactions, which it had
+  let through.
+- **D16 · `wallet-changed-message` carried a decision.** Both adapters attached the admitted decision, with
+  `allow: true`, to a denial that §8 says has none (E22). Now it carries `null`.
 
 ## 11. Batteries and acceptance
 
@@ -535,6 +553,12 @@ regenerates them.
     stops the next 10 good payments.
   - [ADR-012](../design/ADR-012-latch-on-reground.md), **proposed for the human:** a REGROUND denial latches when Keel
     is the reason, or when the denial before it was also at REGROUND. Identical retries still latch at turn 3.
+- **Benign payments with varied priority fees read as fee escalation.** The independent evaluator ran 3,000 in-policy
+  payments whose priority fee varies as a wallet's would: 15 were stopped (0.50%, Wilson 95% interval 0.30–0.82%),
+  each a REGROUND that latched the guard. Sensor v1 scores "the same shape at higher fees" 0.8 even when the earlier
+  payment landed, so §6's "0 of 600" holds only for constant fees (claim S7 is scoped accordingly). Candidate: count fee
+  escalation only against attempts that did not land. ADR-012 does not help here, because Keel is the reason for these
+  denials. For the Alpha's sensor work (`docs/RISKS.md`, RK20).
 - Should a run of failed outcomes trip the latch, as a run of denials does? A loop that alternates two shapes and
   changes its amount passes every rule while each send fails, and is bounded only by the fee window and the clamp
   under INHIBIT (`evals/sdk/keel.md`). For the Alpha's red team (milestone 3.10).

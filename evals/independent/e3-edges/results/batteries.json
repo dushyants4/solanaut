@@ -1,0 +1,1877 @@
+{
+  "loopIdentical": {
+    "attemptsCap3": {
+      "stop": {
+        "turn": 3,
+        "rule": "loop-reground",
+        "posture": "REGROUND"
+      },
+      "turnsRun": 3,
+      "maxAttempts": 3,
+      "trace": [
+        {
+          "turn": 1,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.000001,
+            "valence": 0.2,
+            "repetition": 0
+          }
+        },
+        {
+          "turn": 2,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.000001,
+            "valence": -0.09999999999999998,
+            "repetition": 1
+          }
+        },
+        {
+          "turn": 3,
+          "allow": false,
+          "rule": "loop-reground",
+          "posture": "REGROUND",
+          "telemetry": {
+            "intensity": 0.000001,
+            "valence": -0.39999999999999997,
+            "repetition": 1
+          }
+        }
+      ]
+    },
+    "attemptsCap50": {
+      "stop": {
+        "turn": 3,
+        "rule": "loop-reground",
+        "posture": "REGROUND"
+      },
+      "turnsRun": 3,
+      "maxAttempts": 50,
+      "trace": [
+        {
+          "turn": 1,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.000001,
+            "valence": 0.2,
+            "repetition": 0
+          }
+        },
+        {
+          "turn": 2,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.000001,
+            "valence": -0.09999999999999998,
+            "repetition": 1
+          }
+        },
+        {
+          "turn": 3,
+          "allow": false,
+          "rule": "loop-reground",
+          "posture": "REGROUND",
+          "telemetry": {
+            "intensity": 0.000001,
+            "valence": -0.39999999999999997,
+            "repetition": 1
+          }
+        }
+      ]
+    }
+  },
+  "loopRisingFees": {
+    "attemptsCap3": {
+      "stop": {
+        "turn": 4,
+        "rule": "intent-attempts-exhausted",
+        "posture": "REGROUND"
+      },
+      "turnsRun": 4,
+      "maxAttempts": 3,
+      "trace": [
+        {
+          "turn": 1,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.000001,
+            "valence": 0.2,
+            "repetition": 0
+          }
+        },
+        {
+          "turn": 2,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.000001,
+            "valence": -0.09999999999999998,
+            "repetition": 0.8
+          }
+        },
+        {
+          "turn": 3,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.000001,
+            "valence": -0.39999999999999997,
+            "repetition": 0.8
+          }
+        },
+        {
+          "turn": 4,
+          "allow": false,
+          "rule": "intent-attempts-exhausted",
+          "posture": "REGROUND",
+          "telemetry": {
+            "intensity": 0.000001,
+            "valence": -0.7,
+            "repetition": 0.8
+          }
+        }
+      ]
+    },
+    "attemptsCap50": {
+      "stop": {
+        "turn": 4,
+        "rule": "loop-reground",
+        "posture": "REGROUND"
+      },
+      "turnsRun": 4,
+      "maxAttempts": 50,
+      "trace": [
+        {
+          "turn": 1,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.000001,
+            "valence": 0.2,
+            "repetition": 0
+          }
+        },
+        {
+          "turn": 2,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.000001,
+            "valence": -0.09999999999999998,
+            "repetition": 0.8
+          }
+        },
+        {
+          "turn": 3,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.000001,
+            "valence": -0.39999999999999997,
+            "repetition": 0.8
+          }
+        },
+        {
+          "turn": 4,
+          "allow": false,
+          "rule": "loop-reground",
+          "posture": "REGROUND",
+          "telemetry": {
+            "intensity": 0.000001,
+            "valence": -0.7,
+            "repetition": 0.8
+          }
+        }
+      ]
+    }
+  },
+  "loopAlternating": {
+    "attemptsCap3": {
+      "stop": null,
+      "turnsRun": 30,
+      "maxAttempts": 3,
+      "trace": [
+        {
+          "turn": 1,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.000001001,
+            "valence": 0.2,
+            "repetition": 0
+          }
+        },
+        {
+          "turn": 2,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.000001002,
+            "valence": -0.09999999999999998,
+            "repetition": 0
+          }
+        },
+        {
+          "turn": 3,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.000001003,
+            "valence": -0.39999999999999997,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 4,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.000001004,
+            "valence": -0.7,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 5,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.000001005,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 6,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.000001006,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 7,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.041666666666666685,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 8,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.08333333333333331,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 9,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.125,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 10,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.16666666666666669,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 11,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.20833333333333331,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 12,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 13,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 14,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 15,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 16,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 17,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 18,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 19,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 20,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 21,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 22,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 23,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 24,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 25,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 26,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 27,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 28,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 29,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 30,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        }
+      ]
+    },
+    "attemptsCap50": {
+      "stop": null,
+      "turnsRun": 30,
+      "maxAttempts": 50,
+      "trace": [
+        {
+          "turn": 1,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.000001001,
+            "valence": 0.2,
+            "repetition": 0
+          }
+        },
+        {
+          "turn": 2,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.000001002,
+            "valence": -0.09999999999999998,
+            "repetition": 0
+          }
+        },
+        {
+          "turn": 3,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.000001003,
+            "valence": -0.39999999999999997,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 4,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.000001004,
+            "valence": -0.7,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 5,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.000001005,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 6,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.000001006,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 7,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.041666666666666685,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 8,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.08333333333333331,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 9,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.125,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 10,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.16666666666666669,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 11,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.20833333333333331,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 12,
+          "allow": true,
+          "rule": null,
+          "posture": "DEFAULT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 13,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 14,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 15,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 16,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 17,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 18,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 19,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 20,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 21,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 22,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 23,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 24,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 25,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 26,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 27,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 28,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 29,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        },
+        {
+          "turn": 30,
+          "allow": true,
+          "rule": null,
+          "posture": "INHIBIT",
+          "telemetry": {
+            "intensity": 0.25,
+            "valence": -1,
+            "repetition": 0.5
+          }
+        }
+      ]
+    }
+  },
+  "benignPoisson": {
+    "n": 600,
+    "seed": 1001,
+    "falseStops": 0,
+    "rate": 0,
+    "ci95": [
+      4.336808689942018e-19,
+      0.00636170101370071
+    ],
+    "latches": 0,
+    "stops": {},
+    "postures": {
+      "DEFAULT": 600
+    },
+    "spanMinutes": 100.87531666666666,
+    "perMinute": 5.947936718579488,
+    "context": []
+  },
+  "benignBursts": {
+    "n": 600,
+    "seed": 2002,
+    "falseStops": 0,
+    "rate": 0,
+    "ci95": [
+      4.336808689942018e-19,
+      0.00636170101370071
+    ],
+    "latches": 0,
+    "stops": {},
+    "postures": {
+      "DEFAULT": 600
+    },
+    "spanMinutes": 84.9925,
+    "perMinute": 7.059446421743094,
+    "context": []
+  },
+  "benignVariedFees": {
+    "aggregate": {
+      "n": 3000,
+      "falseStops": 15,
+      "rate": 0.005,
+      "ci95": [
+        0.0030324533483749197,
+        0.008233606889697783
+      ],
+      "latches": 15,
+      "perSeed": [
+        {
+          "seed": 3003,
+          "falseStops": 2,
+          "latches": 2,
+          "stops": {
+            "loop-reground": 2
+          }
+        },
+        {
+          "seed": 3004,
+          "falseStops": 4,
+          "latches": 4,
+          "stops": {
+            "loop-reground": 4
+          }
+        },
+        {
+          "seed": 3005,
+          "falseStops": 4,
+          "latches": 4,
+          "stops": {
+            "loop-reground": 4
+          }
+        },
+        {
+          "seed": 3006,
+          "falseStops": 2,
+          "latches": 2,
+          "stops": {
+            "loop-reground": 2
+          }
+        },
+        {
+          "seed": 3007,
+          "falseStops": 3,
+          "latches": 3,
+          "stops": {
+            "loop-reground": 3
+          }
+        }
+      ]
+    },
+    "runs": [
+      {
+        "n": 600,
+        "seed": 3003,
+        "falseStops": 2,
+        "rate": 0.0033333333333333335,
+        "ci95": [
+          0.0009145966868046472,
+          0.012071359653471395
+        ],
+        "latches": 2,
+        "stops": {
+          "loop-reground": 2
+        },
+        "postures": {
+          "DEFAULT": 598,
+          "REGROUND": 2
+        },
+        "spanMinutes": 100.74295,
+        "perMinute": 5.955751742429619,
+        "context": [
+          {
+            "rule": "loop-reground",
+            "last4": [
+              {
+                "i": 68,
+                "dest": 9,
+                "lamports": "181522087",
+                "fees": "13777",
+                "tel": {
+                  "intensity": 0.181522087,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 69,
+                "dest": 8,
+                "lamports": "26231349",
+                "fees": "6903",
+                "tel": {
+                  "intensity": 0.026231349,
+                  "valence": 0.2,
+                  "repetition": 0
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 70,
+                "dest": 8,
+                "lamports": "43605272",
+                "fees": "13503",
+                "tel": {
+                  "intensity": 0.043605272,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 71,
+                "dest": 8,
+                "lamports": "33320345",
+                "fees": "9119",
+                "tel": {
+                  "intensity": 0.033320345,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "REGROUND"
+              }
+            ]
+          },
+          {
+            "rule": "loop-reground",
+            "last4": [
+              {
+                "i": 450,
+                "dest": 16,
+                "lamports": "103402611",
+                "fees": "13448",
+                "tel": {
+                  "intensity": 0.103402611,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 451,
+                "dest": 12,
+                "lamports": "160701791",
+                "fees": "10642",
+                "tel": {
+                  "intensity": 0.160701791,
+                  "valence": 0.2,
+                  "repetition": 0.5
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 452,
+                "dest": 12,
+                "lamports": "137928436",
+                "fees": "10386",
+                "tel": {
+                  "intensity": 0.137928436,
+                  "valence": 0.2,
+                  "repetition": 0.5
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 453,
+                "dest": 1,
+                "lamports": "146550222",
+                "fees": "10114",
+                "tel": {
+                  "intensity": 0.146550222,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "REGROUND"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "n": 600,
+        "seed": 3004,
+        "falseStops": 4,
+        "rate": 0.006666666666666667,
+        "ci95": [
+          0.0025955012515148645,
+          0.017014710415336507
+        ],
+        "latches": 4,
+        "stops": {
+          "loop-reground": 4
+        },
+        "postures": {
+          "DEFAULT": 596,
+          "REGROUND": 4
+        },
+        "spanMinutes": 94.38241666666667,
+        "perMinute": 6.357116306091618,
+        "context": [
+          {
+            "rule": "loop-reground",
+            "last4": [
+              {
+                "i": 139,
+                "dest": 18,
+                "lamports": "109238644",
+                "fees": "8278",
+                "tel": {
+                  "intensity": 0.109238644,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 140,
+                "dest": 15,
+                "lamports": "76843189",
+                "fees": "8119",
+                "tel": {
+                  "intensity": 0.076843189,
+                  "valence": 0.2,
+                  "repetition": 0
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 141,
+                "dest": 18,
+                "lamports": "117353681",
+                "fees": "12395",
+                "tel": {
+                  "intensity": 0.117353681,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 142,
+                "dest": 18,
+                "lamports": "183266798",
+                "fees": "9056",
+                "tel": {
+                  "intensity": 0.183266798,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "REGROUND"
+              }
+            ]
+          },
+          {
+            "rule": "loop-reground",
+            "last4": [
+              {
+                "i": 234,
+                "dest": 13,
+                "lamports": "162342782",
+                "fees": "8614",
+                "tel": {
+                  "intensity": 0.16666666666666669,
+                  "valence": 0.2,
+                  "repetition": 0
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 235,
+                "dest": 19,
+                "lamports": "160904295",
+                "fees": "12828",
+                "tel": {
+                  "intensity": 0.16666666666666669,
+                  "valence": 0.2,
+                  "repetition": 0.5
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 236,
+                "dest": 14,
+                "lamports": "156040639",
+                "fees": "7361",
+                "tel": {
+                  "intensity": 0.20833333333333331,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 237,
+                "dest": 10,
+                "lamports": "41979863",
+                "fees": "13499",
+                "tel": {
+                  "intensity": 0.25,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "REGROUND"
+              }
+            ]
+          },
+          {
+            "rule": "loop-reground",
+            "last4": [
+              {
+                "i": 256,
+                "dest": 6,
+                "lamports": "33301082",
+                "fees": "10893",
+                "tel": {
+                  "intensity": 0.033301082,
+                  "valence": 0.2,
+                  "repetition": 0
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 257,
+                "dest": 6,
+                "lamports": "106503468",
+                "fees": "14595",
+                "tel": {
+                  "intensity": 0.106503468,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 258,
+                "dest": 7,
+                "lamports": "19710191",
+                "fees": "14623",
+                "tel": {
+                  "intensity": 0.041666666666666685,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 259,
+                "dest": 6,
+                "lamports": "138410296",
+                "fees": "12146",
+                "tel": {
+                  "intensity": 0.138410296,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "REGROUND"
+              }
+            ]
+          },
+          {
+            "rule": "loop-reground",
+            "last4": [
+              {
+                "i": 481,
+                "dest": 19,
+                "lamports": "159707676",
+                "fees": "8848",
+                "tel": {
+                  "intensity": 0.25,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 482,
+                "dest": 5,
+                "lamports": "8332877",
+                "fees": "8404",
+                "tel": {
+                  "intensity": 0.20833333333333331,
+                  "valence": 0.2,
+                  "repetition": 0
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 483,
+                "dest": 8,
+                "lamports": "120702984",
+                "fees": "13964",
+                "tel": {
+                  "intensity": 0.25,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 484,
+                "dest": 1,
+                "lamports": "83889405",
+                "fees": "14205",
+                "tel": {
+                  "intensity": 0.29166666666666663,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "REGROUND"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "n": 600,
+        "seed": 3005,
+        "falseStops": 4,
+        "rate": 0.006666666666666667,
+        "ci95": [
+          0.0025955012515148645,
+          0.017014710415336507
+        ],
+        "latches": 4,
+        "stops": {
+          "loop-reground": 4
+        },
+        "postures": {
+          "DEFAULT": 596,
+          "REGROUND": 4
+        },
+        "spanMinutes": 103.70428333333334,
+        "perMinute": 5.785681947884827,
+        "context": [
+          {
+            "rule": "loop-reground",
+            "last4": [
+              {
+                "i": 88,
+                "dest": 3,
+                "lamports": "34744303",
+                "fees": "6894",
+                "tel": {
+                  "intensity": 0.041666666666666685,
+                  "valence": 0.2,
+                  "repetition": 0
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 89,
+                "dest": 15,
+                "lamports": "112627821",
+                "fees": "8334",
+                "tel": {
+                  "intensity": 0.112627821,
+                  "valence": 0.2,
+                  "repetition": 0.5
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 90,
+                "dest": 17,
+                "lamports": "26256651",
+                "fees": "13159",
+                "tel": {
+                  "intensity": 0.026256651,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 91,
+                "dest": 19,
+                "lamports": "148281251",
+                "fees": "13762",
+                "tel": {
+                  "intensity": 0.148281251,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "REGROUND"
+              }
+            ]
+          },
+          {
+            "rule": "loop-reground",
+            "last4": [
+              {
+                "i": 154,
+                "dest": 5,
+                "lamports": "17001198",
+                "fees": "6053",
+                "tel": {
+                  "intensity": 0.017001198,
+                  "valence": 0.2,
+                  "repetition": 0.5
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 155,
+                "dest": 17,
+                "lamports": "21796058",
+                "fees": "5697",
+                "tel": {
+                  "intensity": 0.021796058,
+                  "valence": 0.2,
+                  "repetition": 0.5
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 156,
+                "dest": 5,
+                "lamports": "86158638",
+                "fees": "8869",
+                "tel": {
+                  "intensity": 0.086158638,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 157,
+                "dest": 5,
+                "lamports": "90186724",
+                "fees": "12550",
+                "tel": {
+                  "intensity": 0.090186724,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "REGROUND"
+              }
+            ]
+          },
+          {
+            "rule": "loop-reground",
+            "last4": [
+              {
+                "i": 193,
+                "dest": 7,
+                "lamports": "35995433",
+                "fees": "10389",
+                "tel": {
+                  "intensity": 0.035995433,
+                  "valence": 0.2,
+                  "repetition": 0
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 194,
+                "dest": 8,
+                "lamports": "121992952",
+                "fees": "8799",
+                "tel": {
+                  "intensity": 0.121992952,
+                  "valence": 0.2,
+                  "repetition": 0.5
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 195,
+                "dest": 11,
+                "lamports": "193437143",
+                "fees": "14434",
+                "tel": {
+                  "intensity": 0.193437143,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 196,
+                "dest": 8,
+                "lamports": "37558018",
+                "fees": "13303",
+                "tel": {
+                  "intensity": 0.037558018,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "REGROUND"
+              }
+            ]
+          },
+          {
+            "rule": "loop-reground",
+            "last4": [
+              {
+                "i": 454,
+                "dest": 4,
+                "lamports": "88579121",
+                "fees": "10082",
+                "tel": {
+                  "intensity": 0.088579121,
+                  "valence": 0.2,
+                  "repetition": 0
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 455,
+                "dest": 1,
+                "lamports": "55811682",
+                "fees": "5000",
+                "tel": {
+                  "intensity": 0.055811682,
+                  "valence": 0.2,
+                  "repetition": 0.5
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 456,
+                "dest": 4,
+                "lamports": "60986145",
+                "fees": "12934",
+                "tel": {
+                  "intensity": 0.060986145,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 457,
+                "dest": 4,
+                "lamports": "5905528",
+                "fees": "14631",
+                "tel": {
+                  "intensity": 0.005905528,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "REGROUND"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "n": 600,
+        "seed": 3006,
+        "falseStops": 2,
+        "rate": 0.0033333333333333335,
+        "ci95": [
+          0.0009145966868046472,
+          0.012071359653471395
+        ],
+        "latches": 2,
+        "stops": {
+          "loop-reground": 2
+        },
+        "postures": {
+          "DEFAULT": 598,
+          "REGROUND": 2
+        },
+        "spanMinutes": 103.10623333333334,
+        "perMinute": 5.819240802447443,
+        "context": [
+          {
+            "rule": "loop-reground",
+            "last4": [
+              {
+                "i": 89,
+                "dest": 0,
+                "lamports": "28564118",
+                "fees": "5000",
+                "tel": {
+                  "intensity": 0.028564118,
+                  "valence": 0.2,
+                  "repetition": 0
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 90,
+                "dest": 3,
+                "lamports": "76839629",
+                "fees": "9776",
+                "tel": {
+                  "intensity": 0.076839629,
+                  "valence": 0.2,
+                  "repetition": 0.5
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 91,
+                "dest": 13,
+                "lamports": "55754003",
+                "fees": "6657",
+                "tel": {
+                  "intensity": 0.055754003,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 92,
+                "dest": 13,
+                "lamports": "179836211",
+                "fees": "10029",
+                "tel": {
+                  "intensity": 0.179836211,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "REGROUND"
+              }
+            ]
+          },
+          {
+            "rule": "loop-reground",
+            "last4": [
+              {
+                "i": 535,
+                "dest": 9,
+                "lamports": "62340901",
+                "fees": "5264",
+                "tel": {
+                  "intensity": 0.062340901,
+                  "valence": 0.2,
+                  "repetition": 0.5
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 536,
+                "dest": 9,
+                "lamports": "178991001",
+                "fees": "6400",
+                "tel": {
+                  "intensity": 0.178991001,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 537,
+                "dest": 11,
+                "lamports": "35683180",
+                "fees": "5271",
+                "tel": {
+                  "intensity": 0.03568318,
+                  "valence": 0.2,
+                  "repetition": 0.5
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 538,
+                "dest": 9,
+                "lamports": "26170718",
+                "fees": "8359",
+                "tel": {
+                  "intensity": 0.026170718,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "REGROUND"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "n": 600,
+        "seed": 3007,
+        "falseStops": 3,
+        "rate": 0.005,
+        "ci95": [
+          0.001701877658278013,
+          0.014596206345285693
+        ],
+        "latches": 3,
+        "stops": {
+          "loop-reground": 3
+        },
+        "postures": {
+          "DEFAULT": 597,
+          "REGROUND": 3
+        },
+        "spanMinutes": 107.36975,
+        "perMinute": 5.5881661268653415,
+        "context": [
+          {
+            "rule": "loop-reground",
+            "last4": [
+              {
+                "i": 32,
+                "dest": 9,
+                "lamports": "105449186",
+                "fees": "9456",
+                "tel": {
+                  "intensity": 0.105449186,
+                  "valence": 0.2,
+                  "repetition": 0.5
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 33,
+                "dest": 19,
+                "lamports": "120300134",
+                "fees": "7284",
+                "tel": {
+                  "intensity": 0.120300134,
+                  "valence": 0.2,
+                  "repetition": 0
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 34,
+                "dest": 9,
+                "lamports": "28026221",
+                "fees": "11754",
+                "tel": {
+                  "intensity": 0.028026221,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 35,
+                "dest": 5,
+                "lamports": "30615758",
+                "fees": "10964",
+                "tel": {
+                  "intensity": 0.030615758,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "REGROUND"
+              }
+            ]
+          },
+          {
+            "rule": "loop-reground",
+            "last4": [
+              {
+                "i": 139,
+                "dest": 2,
+                "lamports": "13377378",
+                "fees": "14027",
+                "tel": {
+                  "intensity": 0.041666666666666685,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 140,
+                "dest": 4,
+                "lamports": "114641364",
+                "fees": "11978",
+                "tel": {
+                  "intensity": 0.114641364,
+                  "valence": 0.2,
+                  "repetition": 0
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 141,
+                "dest": 4,
+                "lamports": "179334975",
+                "fees": "12936",
+                "tel": {
+                  "intensity": 0.179334975,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 142,
+                "dest": 4,
+                "lamports": "146033429",
+                "fees": "14804",
+                "tel": {
+                  "intensity": 0.146033429,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "REGROUND"
+              }
+            ]
+          },
+          {
+            "rule": "loop-reground",
+            "last4": [
+              {
+                "i": 255,
+                "dest": 2,
+                "lamports": "121073839",
+                "fees": "5856",
+                "tel": {
+                  "intensity": 0.121073839,
+                  "valence": 0.2,
+                  "repetition": 0
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 256,
+                "dest": 2,
+                "lamports": "51463629",
+                "fees": "7044",
+                "tel": {
+                  "intensity": 0.051463629,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 257,
+                "dest": 18,
+                "lamports": "113146882",
+                "fees": "13096",
+                "tel": {
+                  "intensity": 0.113146882,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "DEFAULT"
+              },
+              {
+                "i": 258,
+                "dest": 5,
+                "lamports": "62316561",
+                "fees": "12358",
+                "tel": {
+                  "intensity": 0.062316561,
+                  "valence": 0.2,
+                  "repetition": 0.8
+                },
+                "posture": "REGROUND"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

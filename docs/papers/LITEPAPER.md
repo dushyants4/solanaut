@@ -65,8 +65,9 @@ on-chain (devnet): Squads v4 spending limit naming the agent key: N per day, to 
 2. **The control loop is the loop defence.** Keel reads three numbers about the proposal stream and
    returns a posture [G1]. Solanaut lets the posture only *restrict*: a calm posture never allows what
    the policy denies. On the sandbox's retry loop, Keel stopped the third identical attempt [S3]. On synthetic
-   streams, sensor v1 stopped none of 600 benign payments at the policy's expected rate, and none of 600 in
-   bursts [S7].
+   streams at a constant priority fee, sensor v1 stopped none of 600 benign payments at the policy's expected rate,
+   and none of 600 in bursts. With the fee varying per payment, it stopped 0.50% of 3,000, each latching the guard
+   [S7].
 3. **Receipts and intents stop double-sends.** A receipt binds an admission to the exact bytes, an
    expiry and the policy's hash, and it is used once. A new attempt at the same payment is admitted only
    once the earlier one is reported failed or expired. An attempt whose outcome nobody reported holds its
@@ -93,7 +94,8 @@ on-chain (devnet): Squads v4 spending limit naming the agent key: N per day, to 
   - policy denials [S1], and 40 drain-shaped transactions each denied by its named rule [S8];
   - legacy, v0 and v1 decoded from their bytes, matching kit [S9];
   - the retry loop stopped [S3]; fail-closed, with the controller's bytes hashed [S4];
-  - restart from the log [S6]; no benign payment stopped on synthetic streams [S7];
+  - restart from the log [S6]; on synthetic streams, no benign payment stopped at a constant fee, and 0.50% with
+    varied fees [S7];
   - a Solana Agent Kit agent governed by one changed line [S10];
   - on devnet, the Squads bound on a stolen key [S11] and the demo's scenes end to end [S12].
 - **Specified, not built (the Alpha):** the signer process; an operator-signed policy; Token-2022 settings; bounds for

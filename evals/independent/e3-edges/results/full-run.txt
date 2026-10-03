@@ -1,0 +1,218 @@
+✔ E65 §11 loop battery: identical failing retries, stop turn measured (45.696972ms)
+ℹ cap 3: stop {"turn":3,"rule":"loop-reground","posture":"REGROUND"}; cap 50: stop {"turn":3,"rule":"loop-reground","posture":"REGROUND"}
+✔ E66 §11 loop battery: retries with rising fees, stop turn measured (17.470845ms)
+ℹ cap 3: stop {"turn":4,"rule":"intent-attempts-exhausted","posture":"REGROUND"}; cap 50: stop {"turn":4,"rule":"loop-reground","posture":"REGROUND"}
+✔ E67 §11 loop battery: retries alternating two shapes with a changing amount, stop turn measured (30 turns) (43.654819ms)
+ℹ cap 3: stop null after 30 turns, last telemetry {"intensity":0.25,"valence":-1,"repetition":0.5} posture INHIBIT; cap 50: stop null
+✔ E68 §11 benign battery: 600 varied payments at the expected rate (Poisson, 6/min), each landed; false-stop rate with a 95% CI (205.482619ms)
+ℹ {"n":600,"seed":1001,"falseStops":0,"rate":0,"ci95":[4.336808689942018e-19,0.00636170101370071],"latches":0,"stops":{},"postures":{"DEFAULT":600},"spanMinutes":100.87531666666666,"perMinute":5.947936718579488}
+✔ E69 §11 benign battery: 600 varied payments in bursts of 2 to 6, each landed; false-stop rate with a 95% CI (89.24467ms)
+ℹ {"n":600,"seed":2002,"falseStops":0,"rate":0,"ci95":[4.336808689942018e-19,0.00636170101370071],"latches":0,"stops":{},"postures":{"DEFAULT":600},"spanMinutes":84.9925,"perMinute":7.059446421743094}
+✔ E70 §11 benign battery: 5 × 600 varied payments at the expected rate whose priority fee varies as a wallet's estimate does; false-stop rate with a 95% CI (402.974824ms)
+ℹ {"n":3000,"falseStops":15,"rate":0.005,"ci95":[0.0030324533483749197,0.008233606889697783],"latches":15,"perSeed":[{"seed":3003,"falseStops":2,"latches":2,"stops":{"loop-reground":2}},{"seed":3004,"falseStops":4,"latches":4,"stops":{"loop-reground":4}},{"seed":3005,"falseStops":4,"latches":4,"stops":{"loop-reground":4}},{"seed":3006,"falseStops":2,"latches":2,"stops":{"loop-reground":2}},{"seed":3007,"falseStops":3,"latches":3,"stops":{"loop-reground":3}}]}
+✔ E62 §7 §10 D14 an unreported attempt past its last valid height still holds its intent: a re-sign is intent-in-flight (73.646579ms)
+✔ E63 §11 D14 re-sign after expiry with the outcome reported unknown: intent-in-flight (5.382192ms)
+✔ E64 §7 D14 the hold ends once the window has passed since the intent's first attempt (4.837761ms)
+✔ E42 §6 D3 non-number telemetry (null, a string, a boolean, an array, a bigint, an object) denies as fail-closed, and Keel does not run (58.305119ms)
+ℹ intensity null: allow=false rule=fail-closed posture=null
+ℹ valence "0.2": allow=false rule=fail-closed posture=null
+ℹ repetition true: allow=false rule=fail-closed posture=null
+ℹ intensity [0.7]: allow=false rule=fail-closed posture=null
+ℹ repetition 0n: allow=false rule=fail-closed posture=null
+ℹ valence {valueOf}: allow=false rule=fail-closed posture=null
+✔ E43 §6 D3 non-finite, out-of-range or missing telemetry, or a sensor that throws, denies as fail-closed (31.298996ms)
+ℹ intensity NaN: allow=false rule=fail-closed posture=null
+ℹ valence Infinity: allow=false rule=fail-closed posture=null
+ℹ repetition -Infinity: allow=false rule=fail-closed posture=null
+ℹ intensity 1.5: allow=false rule=fail-closed posture=null
+ℹ valence -1.5: allow=false rule=fail-closed posture=null
+ℹ repetition -0.1: allow=false rule=fail-closed posture=null
+ℹ intensity -1e-12: allow=false rule=fail-closed posture=null
+ℹ repetition missing: allow=false rule=fail-closed posture=null
+ℹ sensor returns null: allow=false rule=fail-closed posture=null
+ℹ sensor returns undefined: allow=false rule=fail-closed posture=null
+ℹ sensor throws: allow=false rule=fail-closed posture=null
+✔ E44 §6 D3 Keel does not tick on refused telemetry: three coercible string triples leave its state untouched (6.141332ms)
+✔ E45 §6 D3 boundary telemetry: fail-closed exactly when Governor.accepts() refuses (26.937248ms)
+ℹ no mismatch
+✔ E77 §6 §7 D3 telemetry is read once: getters that change between reads cannot make Keel tick on numbers other than the recorded ones (3.699212ms)
+✔ E46 §6 D4 verifyKeelSource on the real module's text: ok, and both hashes are the bytes' own (2.112823ms)
+✔ E47 §6 D4 verifyKeelSource on altered text: a JS-only edit, a wasm edit with its declared digest updated, and a module with no wasm all fail (1.499149ms)
+ℹ length check removed: ok=false problem=the module that runs the controller hashes to 4c6d66685a9239876c01db34b19b50f9272f910f4525f5b1e5c5f2bbc43744fb, not the verified 8f642684bf1dccbdaed1e35e0092e11d0cfc309c0491b1c79f6472616b9c7190
+ℹ wasm changed, digest constant updated: ok=false problem=the embedded controller hashes to 4458330bc0c4e72f1ae15a39b11b809be602526c84a52ad0ff432b944ac64111, not the verified 834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8
+ℹ no wasm in the text: ok=false problem=the module embeds no controller
+ℹ empty text: ok=false problem=the module embeds no controller
+✔ E48 §6 D4 createGuard with a wrong expectedDigest: no guard exists; with the verified one, decisions carry verified: bytes (4.752721ms)
+✔ E49 §6 sensor v1 intensity, value term: a payment of half the per-transaction cap reads 0.5, a quarter reads 0.25 (2.18758ms)
+✔ E50 §6 sensor v1 intensity, rate term: 0 at or below expectedPerMinute, linear to 1 at five times it, 0 again after a quiet minute (29.815577ms)
+ℹ intensities: 0 0 0 0 0 0 0.041667 0.083333 0.125 0.166667 0.208333 0.25 0.291667 0.333333 0.375 0.416667 0.458333 0.5 0.541667 0.583333 0.625 0.666667 0.708333 0.75 0.791667 0.833333 0.875 0.916667 0.958333 1 1 1 1 1 1 1 1 1 1 1 | after a quiet minute: 1e-9
+✔ E51 §6 sensor v1 valence: 0.2, less 0.3 per failed, expired, denial or unknown since the last landed; a landed one resets (30.925929ms)
+ℹ valences: 0.2 -0.09999999999999998 -0.39999999999999997 -0.7 -1 0.2; rules: allow allow destination-not-allowed allow allow allow
+✔ E52 §6 sensor v1 valence after five failed outcomes: 0.2 - 0.3×5 = -1.3 lies outside Keel's range; what does the guard do? (4.407168ms)
+ℹ p1: valence=0.2 rule=allow posture=DEFAULT | p2: valence=-0.09999999999999998 rule=allow posture=DEFAULT | p3: valence=-0.39999999999999997 rule=allow posture=DEFAULT | p4: valence=-0.7 rule=allow posture=DEFAULT | p5: valence=-1 rule=allow posture=DEFAULT | p6: valence=-1 rule=allow posture=DEFAULT | p7: valence=-1 rule=allow posture=DEFAULT
+✔ E53 §6 sensor v1 repetition 1: the same intent at the same fees, not landed (2.28806ms)
+✔ E54 §6 sensor v1 repetition 0.8: the same intent at other fees, including lower ones (2.905585ms)
+✔ E55 §6 sensor v1 repetition: the same shape at higher fees is 0.8 (escalation); at lower fees and another amount, 0.5 (3.928387ms)
+ℹ b=0.8 c=0.5
+✔ E56 §6 sensor v1 repetition: a landed intent, repeated at the same fees, counts only as the same shape (0.5) (1.503886ms)
+✔ E57 §6 sensor v1 repetition looks back over exactly the last 8 parsed proposals (10.096738ms)
+✔ E58 §5 rule 18 inhibit-cap: under INHIBIT, exactly cap × 0.3 is allowed and one lamport more is denied (3.916494ms)
+ℹ at: INHIBIT 0.3 allow | over: INHIBIT 0.3 inhibit-cap
+✔ E59 §5 rule 17 loop-reground: a REGROUND denies, latches the guard, and the next proposal is denied as latched (2.573442ms)
+✔ E60 §5 §7 a REGROUND on a proposal an earlier rule denies: the earlier rule is named, the posture recorded, and the latch trips (2.734824ms)
+✔ E61 §5 every parsed proposal reaches Keel, a malformed one does not: posture recorded on a denial, null on garbage (1.614937ms)
+✔ E82 §5 every parsed proposal reaches Keel: one denied as latched still has a posture recorded (3.770633ms)
+ℹ rule=latched posture=REGROUND telemetry={"intensity":0,"valence":0.2,"repetition":1}
+✔ E83 §6 D3 §7 restore validates recorded telemetry before ticking: a chained record whose telemetry is strings, or null, does not start (6.677107ms)
+ℹ telemetry as strings: refused to start
+ℹ intensity null (how NaN serialises): refused to start
+✔ E25 §8 jsonRpc reads back off and retry through HTTP 429: getBlockHeight answers after two 429s (6061.883866ms)
+✔ E26 §8 jsonRpc reads retry through a dropped connection: getBlockHeight answers after one drop (509.519358ms)
+✔ E27 §8 D13 a JSON-RPC error answer to sendTransaction rejects with RpcRefused, sent once (1504.293366ms)
+✔ E28 §8 D13 HTTP 429 on sendTransaction: a plain error (not refused), and the send is never retried (1501.996358ms)
+✔ E29 §8 D13 a dropped connection on sendTransaction: a plain error (not refused), never retried (1502.892514ms)
+✔ E30 §8 sendTransaction carries the wire bytes as base64 and resolves to the RPC's signature (2.458451ms)
+✔ E31 §8 §10 D14 confirm reads the height before the status: a tx landing at its last valid height is landed, not expired (69.948391ms)
+✔ E32 §8 confirm: never seen, and the height passes the last valid height: expired (928.779034ms)
+✔ E33 §8 confirm: a timeout before the last valid height gives unknown (520.481183ms)
+✔ E34 §8 getSignatureStatus searches history and maps landed / failed / pending / unseen (4.655939ms)
+✔ E74 §8 confirm: a status only at processed commitment is not landed; before the last valid height a timeout gives unknown (495.937359ms)
+✔ E75 §7 §8 confirm: never seen at exactly the last valid height is not expired (it can still land); a timeout gives unknown (498.771012ms)
+✔ E76 §8 D13 sendTransaction answered HTTP 200 with a non-JSON body (a proxy's page): not refused, never retried (1502.86378ms)
+✔ E80 §8 D14 getSignatureStatus through a failing RPC (JSON-RPC errors): never reads as unseen (null) (1.837095ms)
+ℹ state=rejected value=RpcRefused: getSignatureStatuses: Internal error
+✔ E81 §8 D14 confirm past the last valid height while every status read fails: never expired (2140.591414ms)
+ℹ state=resolved value=unknown
+✔ E35 §8 guardedSigner around kit's KeyPairSigner: an allowed v0 transfer is signed, and its expiry is the lifetime's exact last valid height (62.084583ms)
+✔ E36 §8 guardedSigner: a denied transaction throws SolanautDenied and the wrapped signer never sees it (17.391145ms)
+✔ E37 §8 guardedSigner: a batch with one denied transaction is refused whole, and the admitted one is reported expired (9.861834ms)
+✔ E38 §7 guardedSigner: the same payment signed twice with no outcome reported: the second is intent-in-flight (7.237736ms)
+✔ E39 §8 guardedSigner: a wrapped signer that returns a signature over other bytes (a drain) is refused, not passed back (4.477308ms)
+ℹ threw wallet-changed-message
+✔ E40 §8 guardedSigner: an agent-built transaction whose messageBytes change after the check: no signature over the changed bytes comes back (6.587433ms)
+ℹ threw wallet-changed-message
+✔ E41 §8 §3 guardedSigner with an RPC: past the lifetime's last valid height, the receipt does not redeem and nothing is signed (3.932667ms)
+✔ E01 §8 guardedWallet exposes exactly six members and never the wrapped wallet (17.746027ms)
+✔ E02 §8 signMessage is denied as message-signing-denied, with no decision, and the wallet never signs (2.142976ms)
+✔ E03 §8 signAndSendTransaction: the guard sends the exact admitted bytes through its own RPC, expiry is height+150, outcome reported (21.967923ms)
+✔ E04 §8 sendTransaction: check, sign, send and report, the same as signAndSendTransaction (4.287918ms)
+✔ E05 §8 a policy denial throws SolanautDenied {rule, reason, decision}; the wallet and the RPC never see it (23.548463ms)
+✔ E06 §8 a wallet that changes the message before signing: wallet-changed-message, signatures removed, nothing sent, decision released (2.440251ms)
+✔ E07 §8 a legacy Transaction whose signature does not verify by the wallet's key: wallet-changed-message, signatures removed (5.096293ms)
+✔ E08 §8 a wallet that refuses to sign: the admitted decision is reported expired, so the payment is not held (1.606137ms)
+✔ E09 §8 D13 a send the RPC refuses (RpcRefused) is reported failed and rethrown; a retry is admitted (2.956089ms)
+✔ E10 §8 D13 a dropped connection on send is reported unknown and rethrown; the payment and its window reservation are held (3.040229ms)
+✔ E11 §8 D13 after a good send, a confirm that throws does not release the payment (2.234324ms)
+✔ E12 §7 D14 sign only, then the next proposal: the follow-up sees it landed and reports it first; the same payment is a new intent (2.735435ms)
+✔ E13 §7 D14 sign only, unseen and past its last valid height: reported expired; a retry is admitted (2.761765ms)
+✔ E14 §7 D14 sign only, with an RPC that cannot search history: the attempt holds its intent at any height (2.309039ms)
+✔ E15 §7 §10 D14 the follow-up reads the height before the status: a payment landing at its last valid height is never called expired (2.064596ms)
+✔ E16 §7 D13+D14 a send with an unknown fate, followed up before the next proposal: seen landed, reported landed (2.812162ms)
+✔ E17 §8 §7 a slow RPC: two concurrent sends of the same payment, exactly one admitted and sent (303.534848ms)
+✔ E18 §8 signAllTransactions: one refused in the middle, nothing signed, every admitted decision reported expired (2.056036ms)
+✔ E19 §8 signAllTransactions: the same payment twice in one batch is refused whole (intent-in-flight); nothing held (1.29961ms)
+✔ E20 §8 signAllTransactions: the wallet changes one message; no signature survives on any caller object, every decision released (2.624041ms)
+✔ E21 §8 an RPC is required: guardedWallet without one throws (0.612154ms)
+✖ E22 §8 wallet-changed-message has no decision behind it: SolanautDenied.decision is null (2.631374ms)
+✔ E23 §8 a wallet that returns a new, changed transaction object (input untouched): wallet-changed-message, nothing sent (1.334412ms)
+✔ E24 §8 an agent-built transaction whose message bytes change between reads: the changed bytes are never sent, nothing signed is left (1.163679ms)
+ℹ threw=wallet-changed-message sent=0
+✔ E71 §7 D14 a signed-only batch is followed up whole: both attempts seen landed are reported before the next proposal (4.824068ms)
+✔ E72 §7 D14 a follow-up whose status read throws, past the last valid height: the attempt is held, never called expired (2.985543ms)
+✔ E73 §7 D14 a follow-up at exactly the last valid height, unseen: it can still land, so it is held (3.183647ms)
+✖ E78 §8 signAllTransactions: a wallet that signs both in place but returns only one: all or nothing, no signed bytes left with the caller (4.545806ms)
+ℹ returned=threw wallet-changed-message; signed objects left=1; of them valid signatures over their message=1; decisions: seq 0: expired; seq 2: expired
+✔ E79 §8 signAllTransactions: a wallet that appends an extra signed transaction: it never reaches the caller (2.713676ms)
+ℹ returned=1
+ℹ tests 83
+ℹ suites 0
+ℹ pass 81
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17756.806612
+
+✖ failing tests:
+
+test at tests/wallet.test.mjs:277:1
+✖ E22 §8 wallet-changed-message has no decision behind it: SolanautDenied.decision is null (2.631374ms)
+  AssertionError [ERR_ASSERTION]: decision carried: allow=true seq=0
+  + actual - expected
+  
+  + {
+  +   allow: true,
+  +   amounts: {
+  +     fees: '5000',
+  +     sol: '1000',
+  +     tokens: []
+  +   },
+  +   at: 1790812820000,
+  +   blockHeight: '1000',
+  +   expires: {
+  +     lastValidBlockHeight: '1150'
+  +   },
+  +   group: null,
+  +   hash: '256f6a18796e037a46ee55dc222b1e7374695b72315c52b7d66fdb93cb733fb4',
+  +   intentKey: 'ee059e8ea64ed14510d40b14c74e3f3434b2b074ee7e9c27d3179538ce44222d',
+  +   keel: {
+  +     digest: '834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8',
+  +     verified: 'bytes',
+  +     version: '1.0.1'
+  +   },
+  +   kind: 'decision',
+  +   lastValidBlockHeight: '1150',
+  +   message: 'AQABA2WFLRnrDpea7Tad76pzbQITn3cIhG9Mvnc8B1rwZzGLnWxXmbPSyEJAKoDhs81tcfJqkDNcv92S1WgmqUpiaHUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADoG8kXzyiaYEQO2/3Q7vluMO5hvooMBFI3vkO1fy0HyAQICAAEMAgAAAOgDAAAAAAAA',
+  +   messageHash: 'fd0d2ac6ed766d70a12b298c87e1249d1e26e8a9feb703d496e04d05dd316e2d',
+  +   policyHash: '1f18894b23c175cd303318753d15a519bb626e8b590b8b4644f1d269b62eef0a',
+  +   posture: 'DEFAULT',
+  +   prev: '',
+  +   reason: '',
+  +   seq: 0,
+  +   shape: '638fa66cc0d59a50f8fed96c218c2c8725fde8ef5c1ae786c4b7987dff2cf928',
+  +   source: 'caller',
+  +   telemetry: {
+  +     intensity: 0.000001,
+  +     repetition: 0,
+  +     valence: 0.2
+  +   },
+  +   temperatureMax: 1,
+  +   v: 1
+  + }
+  - null
+  
+      at Object.<anonymous> (file:///home/dashy/.cache/solanaut/eval/e3-edges/tests/wallet.test.mjs:283:12)
+      at expectedException (node:assert:547:17)
+      at expectsError (node:assert:672:21)
+      at strict.rejects (node:assert:738:3)
+      at async TestContext.<anonymous> (file:///home/dashy/.cache/solanaut/eval/e3-edges/tests/wallet.test.mjs:281:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: { v: 1, seq: 0, prev: '', kind: 'decision', at: 1790812820000, source: 'caller', message: 'AQABA2WFLRnrDpea7Tad76pzbQITn3cIhG9Mvnc8B1rwZzGLnWxXmbPSyEJAKoDhs81tcfJqkDNcv92S1WgmqUpiaHUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADoG8kXzyiaYEQO2/3Q7vluMO5hvooMBFI3vkO1fy0HyAQICAAEMAgAAAOgDAAAAAAAA', blockHeight: '1000', lastValidBlockHeight: '1150', group: null, policyHash: '1f18894b23c175cd303318753d15a519bb626e8b590b8b4644f1d269b62eef0a', keel: { version: '1.0.1', digest: '834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8', verified: 'bytes' }, intentKey: 'ee059e8ea64ed14510d40b14c74e3f3434b2b074ee7e9c27d3179538ce44222d', messageHash: 'fd0d2ac6ed766d70a12b298c87e1249d1e26e8a9feb703d496e04d05dd316e2d', shape: '638fa66cc0d59a50f8fed96c218c2c8725fde8ef5c1ae786c4b7987dff2cf928', amounts: { sol: '1000', tokens: [], fees: '5000' }, posture: 'DEFAULT', telemetry: { intensity: 0.000001, valence: 0.2, repetition: 0 }, temperatureMax: 1, allow: true, reason: '', expires: { lastValidBlockHeight: '1150' }, hash: '256f6a18796e037a46ee55dc222b1e7374695b72315c52b7d66fdb93cb733fb4' },
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wallet.test.mjs:356:1
+✖ E78 §8 signAllTransactions: a wallet that signs both in place but returns only one: all or nothing, no signed bytes left with the caller (4.545806ms)
+  AssertionError [ERR_ASSERTION]: signed bytes left on caller objects 1 (valid: 1); decisions: seq 0: expired; seq 2: expired
+  + actual - expected
+  
+  + [
+  +   1
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///home/dashy/.cache/solanaut/eval/e3-edges/tests/wallet.test.mjs:369:10)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ 1 ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

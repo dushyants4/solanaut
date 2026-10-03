@@ -28,8 +28,9 @@ Coarser than `runs/`. The archivist keeps it current; every phase that ends gets
   name them; 10 of 10 planted bugs caught (`evals/sdk/classify.md`).
 - Restart battery (2a.6): SIGKILLed at 20 random points, the guard's record ended identical, hash for hash, to an
   uninterrupted run, and replayed without divergence (`evals/sdk/durable.md`).
-- Sensor v1 (2a.7), synthetic streams: 0 of 600 benign payments stopped at the expected rate, 0 of 600 in bursts
-  (95% upper bound 0.64% each), against 82.8% and 21.7% for sensor v0; identical failing retries stopped at turn 3; a
+- Sensor v1 (2a.7), synthetic streams at a constant priority fee: 0 of 600 benign payments stopped at the expected
+  rate, 0 of 600 in bursts (95% upper bound 0.64% each), against 82.8% and 21.7% for sensor v0. With varied fees, the
+  independent evaluator measured 15 of 3,000 stopped (0.50%), each latching the guard (`evals/independent/e3-edges/`); identical failing retries stopped at turn 3; a
   loop alternating two shapes not stopped in 12 turns, an open question (`evals/sdk/keel.md`).
 - Drain battery (2b.1): 40 transactions shaped like the threat model's drains, each denied before signing by its named
   rule (`evals/verify/beta-gate.md`).

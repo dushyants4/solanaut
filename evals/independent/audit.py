@@ -6,7 +6,7 @@ prints a source path is not a hit. It flags:
 - a write outside the evaluator's own folder.
 It prints counts and each hit, never the transcript.
 
-    python3 evals/independent/audit.py <folder> <transcript.jsonl>
+    python3 evals/independent/audit.py <folder>[,<folder>…] <transcript.jsonl>    (an evaluator moved by a reboot has two)
     python3 evals/independent/audit.py --selftest
 """
 import json
@@ -18,7 +18,7 @@ FORBIDDEN = re.compile(r"(/home/dashy/Projects/Solanaut(?!/node_modules/(?!@sola
 
 
 def audit(folder: str, lines) -> tuple[int, dict, list[str]]:
-    folder = folder.rstrip("/")
+    folders = [f.rstrip("/") for f in folder.split(",")]
     calls, kinds, hits = 0, {}, []
     for line in lines:
         try:
@@ -36,7 +36,7 @@ def audit(folder: str, lines) -> tuple[int, dict, list[str]]:
             kinds[name] = kinds.get(name, 0) + 1
             if name in ("Write", "Edit", "NotebookEdit"):
                 path = inp.get("file_path", "")
-                if not path.startswith(folder + "/"):
+                if not any(path.startswith(f + "/") for f in folders):
                     hits.append(f"{name} outside its folder: {path}")
                 continue
             text = inp.get("command", "") if name == "Bash" else json.dumps(inp)
@@ -74,7 +74,7 @@ if __name__ == "__main__":
     folder, transcript = sys.argv[1], sys.argv[2]
     with open(transcript, errors="replace") as fh:
         calls, kinds, hits = audit(folder, fh)
-    print(f"{folder.rstrip('/').rsplit('/', 1)[-1]}: {calls} tool calls {dict(sorted(kinds.items()))}; black-box hits: {len(hits)}")
+    print(f"{folder.split(',')[-1].rstrip('/').rsplit('/', 1)[-1]}: {calls} tool calls {dict(sorted(kinds.items()))}; black-box hits: {len(hits)}")
     for h in hits:
         print("   HIT:", h)
     sys.exit(1 if hits else 0)
