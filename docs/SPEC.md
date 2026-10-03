@@ -593,7 +593,7 @@ milestone's code.
 | TOK-2 | The settings an extension lets an authority change after initialisation are re-read at admission, from the operator's RPC | §4, §12 | each mutable setting changed once |
 | TOK-3 | TransferCheckedWithFee is value-moving: the amount and the fee count against the mint's caps | §4 | a fee that crosses the cap |
 | TOK-4 | Associated Token Account Create and CreateIdempotent are decoded: the rent counts as SOL to the owner, who must be an allowed destination. RecoverNested is denied | §4, T27 | an account created for an unlisted owner |
-| TOK-5 | Which settings are mutable, and whether a transfer hook is ever admitted, is decided from the `spl-token-2022` source | §12 | **ADR owed:** Token-2022 settings |
+| TOK-5 | Which settings are mutable, and whether a transfer hook is ever admitted, is decided from the `spl-token-2022` source | §12 | [ADR-016](../design/ADR-016-token-2022-settings.md), proposed: a permanent delegate not listable by default; the hook program and the fee ceiling pinned; the rest stated |
 
 ### 13.4 Opaque programs bounded (milestone 3.4)
 
@@ -666,7 +666,7 @@ milestone's code.
 | ADR-012 | when REGROUND latches the guard (proposed; the human's) | the demo is recorded |
 | [ADR-013](../design/ADR-013-signer-process.md), proposed | the signer's process, OS user and transport (SIG-10) | 3.1 |
 | [ADR-014](../design/ADR-014-operator-signed-policy.md), proposed | policy signing and policy changes (POL-5) | 3.2 |
-| owed | Token-2022's mutable settings and transfer hooks (TOK-5) | 3.3 |
+| [ADR-016](../design/ADR-016-token-2022-settings.md), proposed | Token-2022's mutable settings and transfer hooks (TOK-5) | 3.3 |
 | owed | bounding opaque programs: simulation and the assertion set (OPQ-7) | 3.4 |
 | owed | the ElizaOS integration point (ELZ-2) | 3.6 |
 | [ADR-015](../design/ADR-015-log-anchor-cadence.md), proposed | the anchor's cadence and payer (ANC-5) | 3.7 |
