@@ -23,7 +23,7 @@ substantive change; *last reviewed* moves at every review.
 | [docs/HACKATHON.md](../docs/HACKATHON.md) | 3 | current | archivist | the human, every seat | 2026-09-30 | S.1 |
 | [docs/CLAIMS.md](../docs/CLAIMS.md) | 3.2 | current (T3) | archivist, sourced | every public sentence | 2026-10-01 | every milestone |
 | [docs/papers/LITEPAPER.md](../docs/papers/LITEPAPER.md) | Draft 3 | draft | architect | judges, developers | 2026-10-01 | 2c.1 |
-| [docs/papers/THREAT-MODEL.md](../docs/papers/THREAT-MODEL.md) | Draft 2 | draft | architect, evaluator | reviewers, auditors, judges | 2026-09-30 | 2b.4, 3.10 |
+| [docs/papers/THREAT-MODEL.md](../docs/papers/THREAT-MODEL.md) | Draft 3 | draft | architect, evaluator | reviewers, auditors, judges | 2026-10-03 | 3.10 |
 | [docs/papers/MARKET.md](../docs/papers/MARKET.md) | Draft 2 | draft | archivist | the human, judges | 2026-09-30 | S.1 |
 | [docs/papers/BUSINESS-PLAN.md](../docs/papers/BUSINESS-PLAN.md) | Draft 2 | review | drafted for the human | the human, judges | 2026-09-30 | S.1 |
 | [docs/submission/PITCH.md](../docs/submission/PITCH.md) | Draft 3 | draft | the human (T4) | judges | 2026-09-30 | S.1 |
