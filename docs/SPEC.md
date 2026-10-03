@@ -557,7 +557,8 @@ regenerates them.
   payments whose priority fee varies as a wallet's would: 15 were stopped (0.50%, Wilson 95% interval 0.30–0.82%),
   each a REGROUND that latched the guard. Sensor v1 scores "the same shape at higher fees" 0.8 even when the earlier
   payment landed, so §6's "0 of 600" holds only for constant fees (claim S7 is scoped accordingly). Candidate: count fee
-  escalation only against attempts that did not land. ADR-012 does not help here, because Keel is the reason for these
+  escalation only against attempts that did not land; measured offline, it stops none of the 3,000 and leaves every
+  loop's stop turn unchanged (`evals/sdk/fee-escalation.md`). ADR-012 does not help here, because Keel is the reason for these
   denials. For the Alpha's sensor work (`docs/RISKS.md`, RK20).
 - Should a run of failed outcomes trip the latch, as a run of denials does? A loop that alternates two shapes and
   changes its amount passes every rule while each send fails, and is bounded only by the fee window and the clamp
