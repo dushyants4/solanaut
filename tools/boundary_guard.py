@@ -37,6 +37,15 @@ WHAT IT CANNOT SEE
     Bash coverage is heuristic and partial by construction -- see --explain,
     which enumerates the known bypasses instead of implying there are none.
     Write/Edit/NotebookEdit coverage is exact, because the path is structured.
+
+TWO HARNESSES (SOLANAUT, 2026-10-05)
+    Claude Code runs it from .claude/settings.json; Codex from .codex/hooks.json,
+    with --harness codex. Codex edits files through apply_patch, whose patch text
+    names every file it touches on a header line, so that coverage is exact too.
+    Codex reads only through the shell, so a shell command that names the
+    Gubernaut workspace or another project is refused even when it only reads.
+    A rule marked `harness = "codex"` binds Codex alone: the law, its own
+    harness and the gates are the human's and Claude's to change, not Codex's.
 """
 
 from __future__ import annotations
@@ -58,7 +67,13 @@ POLICY = Path(os.environ.get("OFFICE_BOUNDARY_POLICY") or DEFAULT_POLICY)
 PATH_TOOLS = {"Write": "file_path", "Edit": "file_path",
               "NotebookEdit": "notebook_path"}
 BASH_TOOLS = {"Bash"}
-GUARDED = set(PATH_TOOLS) | BASH_TOOLS
+# Codex: the patch text arrives in tool_input.command.
+PATCH_TOOLS = {"apply_patch"}
+GUARDED = set(PATH_TOOLS) | BASH_TOOLS | PATCH_TOOLS
+HARNESSES = ("claude", "codex")
+
+# Codex's patch grammar names each file a patch touches on a header line of its own.
+PATCH_FILE = re.compile(r"^\*\*\* (?:(?:Add|Update|Delete) File|Move to): (.+?)\s*$", re.M)
 
 
 # "a:/x" is absolute on Windows and relative to pathlib on Linux. The guard has
@@ -108,17 +123,25 @@ def real(p: str) -> str:
 # redirect this policy exists to stop was the one shape it could not see. Shown failing in the
 # selftest ("bash redirect into APEX") before this line changed. A ">" that merely precedes a
 # closing quote, as in prose ending "... >", still does not count.
-REDIRECT = re.compile(r'(?:^|[\s;&|(])\d{0,2}>{1,2}(?=\s*(?:["\'][^\s"\']|[^\s"\']))')
+#
+# SOLANAUT, 2026-10-05: ">&" followed by a digit or "-" duplicates or closes a stream ("2>&1") and
+# writes no file. Counted as a write, it refused any command that both named a protected path and
+# kept its errors, which agent shells do constantly. ">& file" still counts. Shown failing in the
+# selftest ("bash 2>&1 beside a protected path") before this line changed.
+REDIRECT = re.compile(r'(?:^|[\s;&|(])\d{0,2}>{1,2}(?!&[\d-])(?=\s*(?:["\'][^\s"\']|[^\s"\']))')
 
 
 def emit_deny(reason: str) -> int:
+    """Deny in both harnesses' terms: the decision as JSON on stdout, the reason on
+    stderr, and exit 2, on which Claude Code and Codex each block the call."""
     json.dump({"hookSpecificOutput": {
         "hookEventName": "PreToolUse",
         "permissionDecision": "deny",
         "permissionDecisionReason": reason,
     }}, sys.stdout)
     sys.stdout.write("\n")
-    return 0
+    sys.stderr.write(reason + "\n")
+    return 2
 
 
 def load_policy(path: Path) -> tuple[dict | None, str]:
@@ -141,6 +164,10 @@ def load_policy(path: Path) -> tuple[dict | None, str]:
             return None, (f"rule '{r.get('name', '?')}' declares neither "
                           f"deny_paths nor deny_globs -- it can match nothing, "
                           f"so the policy would report clean while blind.")
+        if r.get("harness") not in (None, *HARNESSES):
+            return None, (f"rule '{r.get('name', '?')}' is for harness "
+                          f"{r.get('harness')!r}, which is not one of {', '.join(HARNESSES)}: "
+                          f"it would bind no session, so the policy would report clean while blind.")
     meta = data.get("meta") or {}
     expected_host = meta.get("machine_hostname")
     actual_host = os.uname().nodename
@@ -236,21 +263,60 @@ def check_path(target: str, policy: dict, home: bool = True) -> tuple[str, str] 
     return None
 
 
-def check_bash(command: str, policy: dict, home: bool = True) -> tuple[str, str] | None:
-    """HEURISTIC. Denies only when a protected path AND a mutating verb co-occur.
+def spellings(d: str, policy: dict, by_name: bool = False) -> set[str]:
+    """The ways a shell command may spell protected path `d`, normalised: as written; resolved;
+    from the policy's home as ~, $HOME and ${HOME}; and relative to this repository. With
+    `by_name`, for the never-read rules, also its last component alone when that is distinctive
+    (12 characters or more), which a relative climb such as ../<name> leaves in the command."""
+    out = {norm(d)}
+    try:
+        out.add(norm(str(Path(d).resolve())))
+    except OSError:
+        pass
+    home = norm((policy.get("meta") or {}).get("home") or str(Path.home()))
+    repo = real(str(OFFICE))
+    for s in list(out):
+        if s.startswith(home + "/"):
+            rest = s[len(home):]
+            out |= {"~" + rest, "$home" + rest, "${home}" + rest}
+        if s.startswith(repo + "/"):
+            out.add(s[len(repo) + 1:])
+        name = s.rsplit("/", 1)[-1]
+        if by_name and len(name) >= 12:
+            out.add(name)
+    return out
 
-    Reads are allowed deliberately: Office must be able to read the reference
-    corpus and the sibling departments. That choice is exactly what makes this
-    partial, and the limit is stated in --explain rather than hidden.
+
+def mentions(command: str, spelling: str) -> bool:
+    """`spelling` occurs in `command` as a whole path, not as the start of a longer name:
+    /home/dashy/work matches /home/dashy/work/x, never /home/dashy/workspace."""
+    return re.search(re.escape(spelling) + r"(?![a-z0-9_.-])", command) is not None
+
+
+def check_bash(command: str, policy: dict, home: bool = True) -> tuple[str, str, str] | None:
+    """HEURISTIC. Returns (rule_name, reason, "read" or "write") if denied.
+
+    Writes: denied when a protected path AND a mutating verb co-occur. Reads: denied when
+    the command names a path whose rule says `deny_reads = true`, whatever the verb.
+
+    The Office allowed every read, so that it could read its reference corpus and sibling
+    departments. Solanaut may not read the Gubernaut workspace at all, and Codex reads only
+    through the shell, where no harness setting denies it, so those rules refuse a mention.
+    Matching stays partial, and the limit is stated in --explain rather than hidden.
 
     ">"/">>" are matched by REDIRECT, not by substring, so a ">" inside prose,
     a URL, or the mandated commit trailer does not count as mutating (SS2b/2c).
-    Deny_paths are matched against both their literal spelling and their
-    resolved spelling, so a Bash command built from the ~/Work symlink and one
-    built from the canonical path are checked the same way (SS1, best-effort:
-    Bash coverage stays heuristic, see --explain).
+    Deny_paths are matched in every spelling `spellings()` gives, so a command built from
+    the ~/Work symlink, the canonical path, a tilde or a repo-relative path is checked the
+    same way (SS1, best-effort: Bash coverage stays heuristic, see --explain).
     """
     c = norm(command)
+    if home:
+        for rule in policy["rule"]:
+            if rule.get("deny_reads"):
+                for d in rule.get("deny_paths", []):
+                    if any(mentions(c, s) for s in spellings(d, policy, by_name=True)):
+                        return rule["name"], rule.get("reason", ""), "read"
     verbs = [v.lower() for v in policy.get("bash", {}).get("mutating", []) if v not in (">", ">>")]
     mutating = any(v in c for v in verbs) or REDIRECT.search(c) is not None
     if not mutating:
@@ -258,22 +324,17 @@ def check_bash(command: str, policy: dict, home: bool = True) -> tuple[str, str]
     for rule in policy["rule"]:
         if home:
             for d in rule.get("deny_paths", []):
-                variants = {norm(d)}
-                try:
-                    variants.add(norm(str(Path(d).resolve())))
-                except OSError:
-                    pass
-                if any(v in c for v in variants):
-                    return rule["name"], rule.get("reason", "")
+                if any(mentions(c, s) for s in spellings(d, policy)):
+                    return rule["name"], rule.get("reason", ""), "write"
         for g in rule.get("deny_globs", []):
             frag = g.lower().replace("**/", "").replace("*", "")
             if len(frag) > 3 and frag in c:
-                return rule["name"], rule.get("reason", "")
+                return rule["name"], rule.get("reason", ""), "write"
     return None
 
 
-def decide(payload: dict, policy_path: Path | None = None) -> tuple[bool, str]:
-    """Return (denied, reason)."""
+def decide(payload: dict, policy_path: Path | None = None, harness: str = "claude") -> tuple[bool, str]:
+    """Return (denied, reason). `harness` selects the rules marked for one harness."""
     tool = payload.get("tool_name")
     if tool not in GUARDED:
         return False, ""
@@ -281,6 +342,7 @@ def decide(payload: dict, policy_path: Path | None = None) -> tuple[bool, str]:
     policy, err = load_policy(policy_path or POLICY)
     if policy is None:
         return True, f"BOUNDARY GUARD (fail-closed): {err}"
+    policy = {**policy, "rule": [r for r in policy["rule"] if r.get("harness") in (None, harness)]}
 
     ti = payload.get("tool_input")
     if not isinstance(ti, dict):
@@ -305,17 +367,48 @@ def decide(payload: dict, policy_path: Path | None = None) -> tuple[bool, str]:
                           f"owner make it -- CLAUDE.md, the seven seats.")
         return False, ""
 
+    if tool in PATCH_TOOLS:
+        text = ti.get("command")
+        if not isinstance(text, str):
+            return True, ("BOUNDARY GUARD (fail-closed): apply_patch carried no readable "
+                          "patch text, so its targets are unknown. Unknown is denied.")
+        targets = PATCH_FILE.findall(text)
+        if not targets:
+            return True, ("BOUNDARY GUARD (fail-closed): this patch names no file on an "
+                          "'*** Add File:', '*** Update File:', '*** Delete File:' or "
+                          "'*** Move to:' line, so its targets are unknown. Unknown is denied.")
+        cwd = payload.get("cwd") or os.getcwd()
+        home = is_home_session(payload)
+        for raw in targets:
+            target = raw if is_absolute(raw) else str(Path(cwd) / raw)
+            hit = check_path(target, policy, home)
+            if hit:
+                return True, (f"BOUNDARY GUARD: apply_patch to {raw} is denied by rule "
+                              f"'{hit[0]}'.\n\n{hit[1]}\n\n"
+                              f"This is a write boundary, not a warning. Do not work round it. "
+                              f"If the edit is genuinely needed, write the exact edit in the run "
+                              f"record for its owner (AGENTS.md).")
+        return False, ""
+
     cmd = ti.get("command")
+    if isinstance(cmd, list) and all(isinstance(x, str) for x in cmd):
+        cmd = " ".join(cmd)  # an argument list is inspected as the command it spells
     if not isinstance(cmd, str):
         return True, ("BOUNDARY GUARD (fail-closed): Bash carried no readable "
                       "command string.")
     hit = check_bash(cmd, policy, is_home_session(payload))
+    if hit and hit[2] == "read":
+        return True, (f"BOUNDARY GUARD: this command names a path Solanaut never reads "
+                      f"or writes. Denied by rule '{hit[0]}'.\n\n{hit[1]}\n\n"
+                      f"If something there is needed, ask the human; do not reach it by "
+                      f"another spelling.")
     if hit:
         return True, (f"BOUNDARY GUARD: this Bash command names a protected path "
                       f"AND contains a mutating verb. Denied by rule "
                       f"'{hit[0]}'.\n\n{hit[1]}\n\n"
-                      f"Bash matching is heuristic. If this is a false positive, "
-                      f"do the read with Read/Grep rather than a shell mutation.")
+                      f"Bash matching is heuristic. If this is a false positive, make the "
+                      f"edit with the file tool the guard checks exactly (Write or Edit in "
+                      f"Claude Code, apply_patch in Codex), not a shell mutation.")
     return False, ""
 
 
@@ -329,13 +422,20 @@ CAN SEE (exact)
   spell a denied file into an allowed one. No input shape hides the target: a
   missing or non-string path is itself a denial.
 
+  Codex's apply_patch. Every file the patch adds, updates, deletes or moves to
+  is named on a header line; each is checked as above. A patch that names no
+  file, or carries no readable text, is a denial.
+
 CANNOT SEE (partial, by construction)
-  Bash. The guard denies only when a protected path AND a mutating verb appear
-  in the same command string. deny_paths are checked in both their literal and
-  resolved spelling, and ">"/">>"" are matched only when they look like real
-  redirection (REDIRECT), not as a bare substring -- so the mandated commit
-  trailer's "<noreply@anthropic.com>" no longer reads as a write. Known
-  bypasses, stated rather than implied:
+  Bash. The guard denies a write only when a protected path AND a mutating verb
+  appear in the same command string, and a read when the command names a path
+  whose rule says deny_reads. deny_paths are checked as written, resolved, from
+  the home as ~, $HOME or ${HOME}, and relative to this repository; a never-read
+  path also by its last component when that is distinctive. ">"/">>" are
+  matched only when they look like real redirection (REDIRECT), not as a bare
+  substring, so the mandated commit trailer's "<noreply@anthropic.com>" does not
+  read as a write, and neither does "2>&1". Known bypasses, stated rather than
+  implied:
     1. cd into a protected directory first, then write with a relative path.
     2. Build the path from a variable or command substitution.
     3. Write through an interpreter -- python -c, node -e -- whose argument
@@ -344,6 +444,8 @@ CANNOT SEE (partial, by construction)
     5. Quote or encode the path so it does not match literally.
     6. A redirect written with no surrounding whitespace ("cat a>b") evades
        REDIRECT -- traded deliberately so a ">" in prose or a URL does not.
+    7. Reach a never-read path through a symlink or an alias the policy does
+       not name, or a relative climb whose last component is short (../Work).
 
   A full shell parser is not attempted. The threat model is my own mistake,
   not an adversary, and a checker that pretends to cover a surface it cannot
@@ -351,10 +453,23 @@ CANNOT SEE (partial, by construction)
   down: here, in boundaries.toml, and in evals/harness/boundary_guard.md.
 
 NOT GUARDED AT ALL (deliberate)
-  Read, Grep, Glob, WebFetch, everything else. The guard is about writes.
-  Keeping the surface narrow is what makes fail-closed survivable: when the
-  policy breaks, the session can still read, diagnose and repair itself.
+  Read, Grep, Glob, WebFetch, everything else. The guard is about writes, and
+  about shell reads of the paths that are never read. Claude Code's Read tool
+  is kept out of them by .claude/settings.json. Keeping the surface narrow is
+  what makes fail-closed survivable: when the policy breaks, a Claude session
+  can still read, diagnose and repair itself. A Codex session cannot, since its
+  reads are shell commands: the human, or Claude, repairs the policy.
+
+HARNESS RULES
+  A rule marked harness = "codex" binds only a guard run with --harness codex
+  (.codex/hooks.json): Codex may not change the law, its harness or the gates.
 """
+
+
+def patch(cwd: str, body: str) -> dict:
+    """A Codex apply_patch call, as its PreToolUse hook receives it."""
+    return {"tool_name": "apply_patch", "cwd": cwd,
+            "tool_input": {"command": "*** Begin Patch\n" + body + "\n*** End Patch\n"}}
 
 
 def selftest() -> int:
@@ -434,10 +549,39 @@ def selftest() -> int:
             "tool_input": {"command": "echo x > '" + APEX + "/x.md'"}}, True),
         ("prose ending in '>' before a closing quote, naming a protected path (must be ALLOWED)", {
             "tool_name": "Bash", "cwd": here,
-            "tool_input": {"command": 'git commit -m "docs: nothing is written under /home/dashy/Work >"'}}, False),
-        ("bash READ outside Solanaut is not this guard's job (settings deny it)", {
+            "tool_input": {"command": 'git commit -m "docs: nothing is written under /home/dashy/.codex >"'}}, False),
+        ("bash read of a folder no rule protects (must be ALLOWED)", {
             "tool_name": "Bash", "cwd": here,
             "tool_input": {"command": "ls /home/dashy/Projects"}}, False),
+        # --- Reads, 2026-10-05. Codex reads only through the shell, and no harness setting
+        # --- denies it the Gubernaut workspace, so a command that names it is refused here.
+        ("bash read of the APEX tree", {
+            "tool_name": "Bash", "cwd": here,
+            "tool_input": {"command": "cat '" + APEX + "/CLAUDE.md'"}}, True),
+        ("bash read of ~/Work, spelt with a tilde", {
+            "tool_name": "Bash", "cwd": here,
+            "tool_input": {"command": "ls ~/Work/gubernaut"}}, True),
+        ("bash read by relative traversal into APEX", {
+            "tool_name": "Bash", "cwd": here,
+            "tool_input": {"command": 'ls "../A - Gubernaut Project - APEX"'}}, True),
+        ("bash search of another project (Dashy Personal)", {
+            "tool_name": "Bash", "cwd": here,
+            "tool_input": {"command": 'grep -rn solana "/home/dashy/Projects/Dashy Personal"'}}, True),
+        ("bash read of the Codex config, protected from writes only (must be ALLOWED)", {
+            "tool_name": "Bash", "cwd": here,
+            "tool_input": {"command": "cat ~/.codex/config.toml"}}, False),
+        ("bash 2>&1 beside a protected path duplicates a stream, writes nothing (must be ALLOWED)", {
+            "tool_name": "Bash", "cwd": here,
+            "tool_input": {"command": "test -w $HOME/.codex 2>&1 | head -3"}}, False),
+        ("bash >& into a protected file still writes it", {
+            "tool_name": "Bash", "cwd": here,
+            "tool_input": {"command": "echo x >& $HOME/.codex/config.toml"}}, True),
+        ("bash rm in the intake drop, by its path relative to the repo", {
+            "tool_name": "Bash", "cwd": here,
+            "tool_input": {"command": "rm Docs-Dashy-Drop/notes.md"}}, True),
+        ("bash write of a git hook", {
+            "tool_name": "Bash", "cwd": here,
+            "tool_input": {"command": "echo 'exit 0' > .git/hooks/pre-commit"}}, True),
         ("bash write inside Solanaut", {
             "tool_name": "Bash", "cwd": here,
             "tool_input": {"command": "mkdir -p .sandbox && echo hi > .sandbox/scratch.txt"}}, False),
@@ -464,13 +608,40 @@ def selftest() -> int:
         ("a foreign session writing a .env (must STILL DENY -- universal)", {
             "tool_name": "Write", "cwd": APEX,
             "tool_input": {"file_path": APEX + "/.env"}}, True),
+        # --- Codex, 2026-10-05 (.codex/hooks.json runs this guard with --harness codex). Its file
+        # --- edits arrive as apply_patch, the patch text in tool_input.command; every file the
+        # --- patch adds, updates, deletes or moves to is checked. Codex may not edit the law that
+        # --- binds it, its own harness, or the gates that judge its work.
+        ("codex patch adding a file in the APEX tree", patch(here, "*** Add File: " + APEX + "/notes.md\n+x"), True, "codex"),
+        ("codex patch to the machine's Codex config", patch(here, "*** Update File: /home/dashy/.codex/config.toml\n@@\n-a\n+b"), True, "codex"),
+        ("codex patch adding a keypair under keys/, by a relative path", patch(here, "*** Add File: keys/devnet-agent.json\n+[1,2,3]"), True, "codex"),
+        ("codex patch moving a file into the intake drop", patch(here, "*** Update File: README.md\n*** Move to: Docs-Dashy-Drop/README.md\n@@\n-a\n+b"), True, "codex"),
+        ("codex patch whose second file is a .env", patch(here, "*** Update File: README.md\n@@\n-a\n+b\n*** Add File: .env\n+X=1"), True, "codex"),
+        ("codex patch to AGENTS.md, the law that binds it", patch(here, "*** Update File: AGENTS.md\n@@\n-a\n+b"), True, "codex"),
+        ("codex patch to its own hooks", patch(here, "*** Update File: .codex/hooks.json\n@@\n-a\n+b"), True, "codex"),
+        ("codex patch to a gate (session_close.py)", patch(here, "*** Update File: tools/session_close.py\n@@\n-a\n+b"), True, "codex"),
+        ("codex patch adding a git hook", patch(here, "*** Add File: .git/hooks/pre-commit\n+exit 0"), True, "codex"),
+        ("codex patch to ordinary Solanaut files (must be ALLOWED)", patch(here, "*** Update File: packages/sdk/src/guard.ts\n@@\n-a\n+b\n*** Add File: runs/2026-10-05-x.md\n+# x"), False, "codex"),
+        ("codex patch whose text names APEX, to a Solanaut file (must be ALLOWED)", patch(here, "*** Add File: runs/2026-10-05-y.md\n+Nothing is written under " + APEX + "/ or ~/Work."), False, "codex"),
+        ("codex patch naming no file denies", patch(here, "@@\n-a\n+b"), True, "codex"),
+        ("codex patch with no readable text denies", {
+            "tool_name": "apply_patch", "cwd": here, "tool_input": {}}, True, "codex"),
+        ("codex bash as an argument list, rm in APEX", {
+            "tool_name": "Bash", "cwd": here,
+            "tool_input": {"command": ["rm", "-rf", APEX + "/DASHY.md"]}}, True, "codex"),
+        ("codex bash sed -i on AGENTS.md", {
+            "tool_name": "Bash", "cwd": here,
+            "tool_input": {"command": "sed -i 's/a/b/' AGENTS.md"}}, True, "codex"),
+        ("claude editing AGENTS.md: the Codex-only rule must not apply (must be ALLOWED)", {
+            "tool_name": "Edit", "cwd": here,
+            "tool_input": {"file_path": here + "/AGENTS.md"}}, False),
     ]
     print()
     print("boundary_guard.py --selftest")
     print("=" * 74)
     failed = 0
-    for label, payload, expect in cases:
-        got, reason = decide(payload)
+    for label, payload, expect, *rest in cases:
+        got, reason = decide(payload, harness=rest[0] if rest else "claude")
         ok = got == expect
         failed += not ok
         print(f"  [{'PASS' if ok else 'FAIL'}]  "
@@ -515,6 +686,8 @@ def main() -> int:
     ap = argparse.ArgumentParser(description="Office boundary guard (PreToolUse).")
     ap.add_argument("--selftest", action="store_true", help="run the fault matrix")
     ap.add_argument("--explain", action="store_true", help="what it can/cannot see")
+    ap.add_argument("--harness", choices=HARNESSES, default="claude",
+                    help="the agent harness calling the hook; rules marked for one harness bind only it")
     args = ap.parse_args()
 
     if args.explain:
@@ -533,7 +706,13 @@ def main() -> int:
         return emit_deny("BOUNDARY GUARD (fail-closed): hook payload was not "
                          "an object.")
 
-    denied, reason = decide(payload)
+    try:
+        denied, reason = decide(payload, harness=args.harness)
+    except Exception as e:
+        # A hook that crashes exits 1, and both harnesses read that as "proceed". The guard's
+        # own failure is therefore a denial, like every other state it cannot vouch for.
+        return emit_deny(f"BOUNDARY GUARD (fail-closed): the guard itself failed "
+                         f"({type(e).__name__}: {e}). Refusing rather than guessing.")
     if denied:
         return emit_deny(reason)
     return 0

@@ -1,0 +1,26 @@
+# Codex settings for Solanaut, loaded only because ~/.codex/config.toml marks this folder trusted.
+# They set what the project's own commands need, and nothing that is the human's to choose: the
+# model, its reasoning effort and the approval policy stay in the human's settings. AGENTS.md says
+# why each one is here. The write boundary itself is .codex/hooks.json; the T4 refusals are in
+# .codex/rules/.
+
+# Writes stay inside this folder and the roots below; reads are not limited by the sandbox, which
+# is why the boundary guard refuses any command naming the Gubernaut workspace.
+sandbox_mode = "workspace-write"
+
+[sandbox_workspace_write]
+# npm, the devnet RPC, and git push to the private origin.
+network_access = true
+writable_roots = [
+  "/home/dashy/Projects/Solanaut/.git",  # commit and push: the standing grant (tier T3s)
+  "/home/dashy/.cache/uv",                # uv run --script: every gate in tools/
+  "/home/dashy/.npm",                     # npm ci
+  "/home/dashy/.cache/solanaut",          # the independent evaluators' folders (evals/independent/)
+  "/home/dashy/.cache/solana",            # platform-tools, fetched by cargo-build-sbf (milestone 3.7)
+  "/home/dashy/.cargo/registry",          # crates for the Anchor program
+  "/home/dashy/.cargo/git",
+]
+
+# Not here: Codex ignores `skills.config` in a project's config (tested 2026-10-05 with `codex debug
+# prompt-input`; only a -c override took effect). AGENTS.md names the machine-wide Gubernaut skills
+# Codex must not use in this folder.

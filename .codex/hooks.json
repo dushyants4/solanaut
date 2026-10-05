@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "^(Bash|apply_patch)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/python3 /home/dashy/Projects/Solanaut/tools/boundary_guard.py --harness codex",
+            "timeout": 15,
+            "statusMessage": "Solanaut boundary guard"
+          }
+        ]
+      }
+    ]
+  }
+}

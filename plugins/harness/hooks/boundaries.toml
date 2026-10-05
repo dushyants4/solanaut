@@ -1,24 +1,28 @@
 # boundaries.toml -- Solanaut's write boundary, as a permission rather than a preference.
 #
 # tools/boundary_guard.py enforces this on every Write, Edit, NotebookEdit and Bash call in a
-# session rooted at this folder (wired in .claude/settings.json). It is the Office's guard,
-# vendored; this policy is Solanaut's own.
+# Claude Code session rooted at this folder (wired in .claude/settings.json), and on every Bash and
+# apply_patch call in a Codex session (wired in .codex/hooks.json, with --harness codex). It is the
+# Office's guard, vendored; this policy is Solanaut's own.
 #
 # FAIL-CLOSED, ON PURPOSE. Missing, unparseable, empty, written for another host, or naming a
 # path that no longer exists: the guard DENIES every guarded call rather than permitting them.
 #
 # WHAT IT IS FOR. Solanaut was split out of the Gubernaut workspace (APEX) and must stay apart
 # from it: no writes into that tree, its memory, or the machine-wide Claude and Codex config.
-# Gubernaut reaches Solanaut only as a published package (@gubernaut/core on npm). Reads are
-# not this file's job: .claude/settings.json denies reading the APEX tree natively.
+# Gubernaut reaches Solanaut only as a published package (@gubernaut/core on npm). Reads:
+# .claude/settings.json denies Claude's Read tool the APEX tree natively; a rule marked
+# `deny_reads = true` also refuses any shell command that names its paths, which is how Codex,
+# whose reads all go through the shell, is kept out of them.
 #
 # Every rule below was shown necessary on 2026-09-27: with only the secrets rule in place, the
 # fourteen territorial cases in `boundary_guard.py --selftest` failed. See
 # evals/harness/boundary_guard.md.
 
 [meta]
-version = "1"
+version = "2"
 machine_hostname = "omarchy"
+home = "/home/dashy"  # the home that ~, $HOME and ${HOME} name in a shell command
 required_roots = ["/home/dashy/Projects/Solanaut"]
 source = "CLAUDE.md :: Isolation"
 
@@ -26,37 +30,39 @@ source = "CLAUDE.md :: Isolation"
 # The tree itself, its ~/Work symlinks, its quarantined intake, and its VS Code workspace file.
 [[rule]]
 name = "gubernaut-workspace"
-reason = '''Solanaut never writes into the Gubernaut workspace (APEX). Gubernaut is an upstream
-dependency, consumed as a published package. If something there looks wrong, say so to the
-human; that tree has its own agents.'''
+reason = '''Solanaut never reads or writes the Gubernaut workspace (APEX), its ~/Work and ~/Lab
+links, or APEX's agent memory. Gubernaut is an upstream dependency, consumed as a published
+package. If something there looks wrong, say so to the human; that tree has its own agents.'''
+deny_reads = true
 deny_paths = [
   "/home/dashy/Projects/A - Gubernaut Project - APEX",
   "/home/dashy/Projects/A - Gubernaut Project - APEX.code-workspace",
   "/home/dashy/Work",
   "/home/dashy/Lab",
+  "/home/dashy/.claude/projects/-home-dashy-Projects-A---Gubernaut-Project---APEX",
 ]
 
 # --- 2. Other projects on this machine -----------------------------------------
 [[rule]]
 name = "other-projects"
-reason = '''Not Solanaut's. A project folder is written only by a session rooted in it.'''
+reason = '''Not Solanaut's. A project folder is read and written only by a session rooted in it.'''
+deny_reads = true
 deny_paths = ["/home/dashy/Projects/Dashy Personal"]
 
-# --- 3. Machine-wide agent configuration, and other projects' memory -----------
+# --- 3. Machine-wide agent configuration --------------------------------------
 # Solanaut's own memory (~/.claude/projects/-home-dashy-Projects-Solanaut/) stays writable,
-# which is why ~/.claude is not denied wholesale.
+# which is why ~/.claude is not denied wholesale. APEX's memory is in rule 1, never read.
 [[rule]]
 name = "machine-agent-config"
-reason = '''The user-level Claude settings, skills, hooks, plugins and plans, APEX's memory, and
-the Codex config are shared by every project on this machine. Changing them from here is how
-one project's state bleeds into another. State the exact change for the human instead.'''
+reason = '''The user-level Claude settings, skills, hooks, plugins and plans, and the Codex config
+are shared by every project on this machine. Changing them from here is how one project's state
+bleeds into another. State the exact change for the human instead.'''
 deny_paths = [
   "/home/dashy/.claude/settings.json",
   "/home/dashy/.claude/skills",
   "/home/dashy/.claude/hooks",
   "/home/dashy/.claude/plugins",
   "/home/dashy/.claude/plans",
-  "/home/dashy/.claude/projects/-home-dashy-Projects-A---Gubernaut-Project---APEX",
   "/home/dashy/.codex",
 ]
 
@@ -90,6 +96,39 @@ deny_globs = [
   "**/id.json",
   "*/keys/*",
 ]
+
+# --- 6. Git's own machinery -------------------------------------------------------
+# A hook or a config line in .git runs code the next time anyone uses git here, outside any
+# sandbox. Codex's sandbox makes .git writable so that it can commit (.codex/config.toml).
+[[rule]]
+name = "git-internals"
+reason = '''Git hooks and .git/config run code on the next git command, outside every sandbox.
+No agent writes them; the human does, if ever.'''
+deny_paths = [
+  "/home/dashy/Projects/Solanaut/.git/hooks",
+  "/home/dashy/Projects/Solanaut/.git/config",
+]
+
+# --- 7. Codex only: the law, its harness, and the gates ----------------------------
+# Codex runs long and unattended (AGENTS.md). The rules it works under and the gates that judge
+# its work are changed by the human or by Claude, never by Codex: a gate it could edit is a gate
+# it could weaken. Codex writes the exact edit it needs in its run record instead.
+[[rule]]
+name = "codex-harness"
+harness = "codex"
+reason = '''AGENTS.md, CLAUDE.md, the agent harnesses (.codex/, .claude/), this policy and the gates
+(boundary_guard, session_close, claims_lint, kb_lint) are not Codex's to change. Write the exact
+edit in the run record and in docs/HANDOFF.md's owed edits, for the human or Claude.'''
+deny_paths = [
+  "/home/dashy/Projects/Solanaut/.codex",
+  "/home/dashy/Projects/Solanaut/.claude",
+  "/home/dashy/Projects/Solanaut/plugins/harness/hooks",
+  "/home/dashy/Projects/Solanaut/tools/boundary_guard.py",
+  "/home/dashy/Projects/Solanaut/tools/session_close.py",
+  "/home/dashy/Projects/Solanaut/tools/claims_lint.py",
+  "/home/dashy/Projects/Solanaut/tools/kb_lint.py",
+]
+deny_globs = ["**/AGENTS.md", "**/CLAUDE.md"]
 
 # --- Bash mutation verbs ------------------------------------------------------------
 # HEURISTIC by construction; `boundary_guard.py --explain` lists the known bypasses.
