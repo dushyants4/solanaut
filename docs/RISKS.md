@@ -1,7 +1,7 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **Draft 1** · 2026-10-01 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
-> milestone 2c.1 in `docs/ROADMAP.md`, which the human approves. Register: `kb/DOCUMENTS.md`.
+> **1.0** · 2026-10-05 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 The threat model ([docs/papers/THREAT-MODEL.md](papers/THREAT-MODEL.md)) lists what an attacker can do to a running
 guard: threats T1 to T30. This register is wider. It lists what could stop Solanaut being delivered as specified, or
@@ -61,3 +61,4 @@ evidence.
 |---|---|---|
 | Draft 1 | 2026-10-01 | First register, for milestone 2c.1: 19 risks, from the Beta's run records, `docs/SPEC.md` §12, the threat model and `kb/REGISTRY.md`. |
 | Draft 1.1 | 2026-10-03 | RK20 added, from the independent evaluator's varied-fee battery, then mitigated the same day; RK12's status updated. |
+| 1.0 | 2026-10-05 | Approved by the human with the Alpha's scope (milestone 2c.1). |

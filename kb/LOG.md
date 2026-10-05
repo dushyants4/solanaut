@@ -66,3 +66,9 @@ grep "| research |" kb/LOG.md             # every research pass
 ## [2026-10-01 12:50] decision | the latch on REGROUND measured under four trip rules; none admits a forbidden proposal; today's rule latches on DEMO scene 5's single re-sign; ADR-012 proposes rule C for the human | evals/sdk/latch-variants.md, design/ADR-012-latch-on-reground.md, docs/SPEC.md
 
 ## [2026-10-03 13:00] review | the independent evaluator run (317 cases, D15 to D20 closed), 2b.2 gated by claims_lint, the Beta review drafted for sign-off, the Alpha scope drafted (SPEC §13, ADR-013 to ADR-018, RISKS, READINESS Draft 2), sensor v1 second definition change (RK20) | kb/milestones/2026-10-01_2b-beta.md, evals/independent/, runs/2026-10-03-independent-run-and-alpha-scope.md
+
+## [2026-10-05 16:05] review | milestone Beta · signed off by the human; tagged milestone/beta | kb/milestones/2026-10-01_2b-beta.md, PROGRESS.md, docs/ROADMAP.md
+
+## [2026-10-05 16:05] decision | the Alpha's scope approved (2c.1): SPEC §13, ADR-013 to ADR-018, the risk register and the thresholds; ADR-012's option C accepted, to be built first under Codex | design/ADR-012..018, docs/SPEC.md, docs/READINESS.md, docs/RISKS.md, kb/DOCUMENTS.md
+
+## [2026-10-05 16:23] build | Leg 3 handed to Codex: AGENTS.md; docs/HANDOFF.md; .codex/ (the boundary guard as a hook, a workspace-write sandbox, T4 rules); the guard extended to Codex's patches and shell reads, 59/59 | AGENTS.md, docs/HANDOFF.md, .codex/, tools/boundary_guard.py, evals/harness/boundary_guard.md, runs/2026-10-05-handoff-to-codex.md

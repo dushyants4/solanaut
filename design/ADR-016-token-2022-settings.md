@@ -1,6 +1,6 @@
 # ADR-016 · Token-2022: what the policy pins, what the signer re-reads, and what is only stated
 
-**Status:** **proposed** on 2026-10-03, for the human to accept at milestone 2c.1. It answers TOK-5 in
+**Status:** **accepted** by the human on 2026-10-05, with the Alpha's scope (milestone 2c.1); proposed on 2026-10-03. It answers TOK-5 in
 [docs/SPEC.md](../docs/SPEC.md) §13.3, and is written before milestone 3.3's code.
 
 ## Context
@@ -23,7 +23,7 @@
 - **What a permanent delegate can do.** It moves or burns any holder's tokens of that mint without the holder's
   signature. No guard of the holder's signatures can stop it.
 
-## Decision (proposed)
+## Decision (accepted 2026-10-05)
 
 **Sort each mint extension by what it can do to the principal, and act only where the guard can.**
 

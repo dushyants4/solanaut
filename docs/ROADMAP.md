@@ -1,6 +1,6 @@
 # ROADMAP.md — the parlay: five legs, won by achievement
 
-> **Draft 2** · 2026-09-30 · owner: archivist, drafted with the architect · for: the human, every seat, and judges ·
+> **Draft 3** · 2026-10-05 · owner: archivist, drafted with the architect · for: the human, every seat, and judges ·
 > not public. **Milestones, not dates:** each milestone is reached when its gate passes, never by a calendar, at the
 > human's instruction of 2026-09-30. Specs: `docs/SPEC.md`. Tests and certification: `docs/READINESS.md`.
 > Register: `kb/DOCUMENTS.md`.
@@ -96,6 +96,11 @@ Solanaut.
 
 **Leg 2 busts when** a drain-shaped or fail-closed case is admitted, or a gate cannot be shown failing first.
 
+**Achieved 2026-10-05:** the human signed off the Beta review (2b.4, tagged `milestone/beta`) and approved the Alpha's
+scope (2c.1): `docs/SPEC.md` §13, ADR-013 to ADR-018, `docs/RISKS.md` and the thresholds in `docs/READINESS.md`, and
+accepted ADR-012's option C. With 2a.1 to 2b.3 achieved earlier, **Leg 2 is won.** Leg 3 is built next, by Codex under
+`AGENTS.md` (`docs/HANDOFF.md`).
+
 ## Leg 3 · The Alpha, built and tested hard
 
 | Milestone | Achieved when | Depends on | Evidence |
@@ -180,3 +185,4 @@ Alpha MVP, then a 1.0.0 release candidate and 1.0.0.
 |---|---|---|
 | Draft 1 | 2026-09-30 | First draft: the five-leg parlay, built on achievement-based milestones at the human's instruction. |
 | Draft 2 | 2026-09-30 | Leg 1 achieved. Leg 4 runs on devnet with the human's Phantom wallet first; real money waits for ADR-008. The submission, the licence and the judges' access wait until testing is done. |
+| Draft 3 | 2026-10-05 | Leg 2 won: the Beta review signed off (2b.4) and the Alpha's scope approved (2c.1). Leg 3 is handed to Codex (`AGENTS.md`, `docs/HANDOFF.md`). |

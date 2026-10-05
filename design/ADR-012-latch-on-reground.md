@@ -1,7 +1,8 @@
 # ADR-012 · When Keel's REGROUND latches the guard
 
-**Status:** **proposed** on 2026-10-01, for the human to accept or refuse. It answers the first open question in
-[docs/SPEC.md](../docs/SPEC.md) §12. Until it is accepted, the guard keeps today's rule.
+**Status:** **accepted, option C,** by the human on 2026-10-05; proposed on 2026-10-01. It answers the first open
+question in [docs/SPEC.md](../docs/SPEC.md) §12. **Not built yet:** until it is, the guard keeps today's rule (V0). It is
+the first item in the work queue of [docs/HANDOFF.md](../docs/HANDOFF.md).
 
 ## Context
 
@@ -51,7 +52,7 @@ The same proposal streams were run under each option, through a copy of the guar
 **In every stream and every option, nothing the policy forbids was allowed.** The drains stay drains denied, and
 each failing loop has the same number of allowed attempts. Only the moment of the latch moves.
 
-## Decision (proposed)
+## Decision (accepted 2026-10-05)
 
 **C.** A denial at REGROUND latches the guard when Keel is the reason for it (rule 17), or when the denial just before
 it was also at REGROUND. The run of denials latches as today.

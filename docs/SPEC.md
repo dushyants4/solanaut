@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4** · 2026-10-01 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.1** · 2026-10-05 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -597,8 +597,9 @@ regenerates them.
     forbids.
   - After two landed payments, today's rule latches on scene 5's single re-sign, at every share of the cap tried, and
     stops the next 10 good payments.
-  - [ADR-012](../design/ADR-012-latch-on-reground.md), **proposed for the human:** a REGROUND denial latches when Keel
-    is the reason, or when the denial before it was also at REGROUND. Identical retries still latch at turn 3.
+  - [ADR-012](../design/ADR-012-latch-on-reground.md), **accepted by the human on 2026-10-05 (option C), not built
+    yet:** a REGROUND denial latches when Keel is the reason, or when the denial before it was also at REGROUND.
+    Identical retries still latch at turn 3.
 - **Benign payments with varied priority fees read as fee escalation.** **Answered 2026-10-03, and built.** The
   independent evaluator's varied-fee streams stopped 15 of 3,000 benign payments, because sensor v1 scored the same
   shape at higher fees as escalation even after the earlier payment landed. The definition now counts escalation only
@@ -625,10 +626,10 @@ checked. The guard decodes whatever version arrives, so the answer changes no ru
 
 ## 13. The Alpha, as requirements (milestone 2c.1)
 
-**A draft for the human to approve at 2c.1.** Each requirement has an ID, is stated so a test can fail it, and names
-where it comes from and what will verify it. Every Beta rule and invariant (§3 to §8) still holds; these add to them.
-A choice that needs research before it can be stated is marked **ADR owed**, and the ADR is written before that
-milestone's code. Every such ADR is now written, as a proposal for the human: ADR-013 to ADR-018 (§13.11).
+**Approved by the human on 2026-10-05 (milestone 2c.1).** Each requirement has an ID, is stated so a test can fail
+it, and names where it comes from and what will verify it. Every Beta rule and invariant (§3 to §8) still holds; these
+add to them. A choice that needed research before it could be stated was marked **ADR owed**; each such ADR is written
+and accepted: ADR-013 to ADR-018 (§13.11).
 
 ### 13.1 Signer process (milestone 3.1)
 
@@ -643,7 +644,7 @@ milestone's code. Every such ADR is now written, as a proposal for the human: AD
 | SIG-7 | It follows up every attempt it signed, reporting landed, failed or expired from the chain | §7, D14 | the double-send battery with no caller reports |
 | SIG-8 | One writer, restore by replay on start, and a failed write shuts it | §7 | the restart battery, 100 kills (`docs/READINESS.md`) |
 | SIG-9 | Reads back off through rate limits; a send is never retried by the client | §8, RK16 | an RPC answering 429 |
-| SIG-10 | It runs as its own OS user, or the documents state that it does not and what that leaves | T9, T29 | [ADR-013](../design/ADR-013-signer-process.md), proposed: its own user, a Unix socket in a group-only directory, and a same-user mode that says so |
+| SIG-10 | It runs as its own OS user, or the documents state that it does not and what that leaves | T9, T29 | [ADR-013](../design/ADR-013-signer-process.md), accepted: its own user, a Unix socket in a group-only directory, and a same-user mode that says so |
 | SIG-11 | 500 lines or fewer, stated before it is written and measured after | §8 | a line count in its receipt |
 
 ### 13.2 Operator-signed policy (milestone 3.2)
@@ -654,7 +655,7 @@ milestone's code. Every such ADR is now written, as a proposal for the human: AD
 | POL-2 | No signature, a wrong key, another guard or cluster, a hash that differs, or a version older than the current one: the guard refuses to start | T11 | one test each |
 | POL-3 | The agent's keys cannot sign a policy: the operator key is outside the principal and is not the fee payer | rule 0 | an invalid policy |
 | POL-4 | The record holds each signed policy, so replay knows which policy made each decision | §7 | replay across a policy change |
-| POL-5 | How a signed policy replaces the running one | §7 | [ADR-014](../design/ADR-014-operator-signed-policy.md), proposed: a restart, a recorded `policy` entry, versions that only rise, and a summary the operator reads in Phantom |
+| POL-5 | How a signed policy replaces the running one | §7 | [ADR-014](../design/ADR-014-operator-signed-policy.md), accepted: a restart, a recorded `policy` entry, versions that only rise, and a summary the operator reads in Phantom |
 
 ### 13.3 Token-2022 and token accounts (milestone 3.3)
 
@@ -664,7 +665,7 @@ milestone's code. Every such ADR is now written, as a proposal for the human: AD
 | TOK-2 | The settings an extension lets an authority change after initialisation are re-read at admission, from the operator's RPC | §4, §12 | each mutable setting changed once |
 | TOK-3 | TransferCheckedWithFee is value-moving: the amount and the fee count against the mint's caps | §4 | a fee that crosses the cap |
 | TOK-4 | Associated Token Account Create and CreateIdempotent are decoded: the rent counts as SOL to the owner, who must be an allowed destination. RecoverNested is denied | §4, T27 | an account created for an unlisted owner |
-| TOK-5 | Which settings are mutable, and whether a transfer hook is ever admitted, is decided from the `spl-token-2022` source | §12 | [ADR-016](../design/ADR-016-token-2022-settings.md), proposed: a permanent delegate not listable by default; the hook program and the fee ceiling pinned; the rest stated |
+| TOK-5 | Which settings are mutable, and whether a transfer hook is ever admitted, is decided from the `spl-token-2022` source | §12 | [ADR-016](../design/ADR-016-token-2022-settings.md), accepted: a permanent delegate not listable by default; the hook program and the fee ceiling pinned; the rest stated |
 
 ### 13.4 Opaque programs bounded (milestone 3.4)
 
@@ -676,7 +677,7 @@ milestone's code. Every such ADR is now written, as a proposal for the human: AD
 | OPQ-4 | Only read-only assertion instructions are appended or admitted. Lighthouse's memory-write instructions are denied until they have a rule | T28, §12 | a memory-write instruction |
 | OPQ-5 | If the assertions would push the transaction past its size or compute limit, the proposal is denied, never sent unbounded | T3 | an oversized route |
 | OPQ-6 | On a Surfpool mainnet fork, a Jupiter route bounded this way lands, and the same route altered to drain fails on-chain by an assertion | `docs/ROADMAP.md` 3.4 | the fork run's receipt; if it cannot be met, the Alpha denies opaque programs and says so (RK6) |
-| OPQ-7 | The assertion set, and how the simulated bound becomes it | T3 | [ADR-018](../design/ADR-018-bounding-opaque-programs.md), proposed: floors on every held account's balances, its authorities held equal |
+| OPQ-7 | The assertion set, and how the simulated bound becomes it | T3 | [ADR-018](../design/ADR-018-bounding-opaque-programs.md), accepted: floors on every held account's balances, its authorities held equal |
 
 ### 13.5 Phantom paths (milestone 3.5)
 
@@ -693,7 +694,7 @@ milestone's code. Every such ADR is now written, as a proposal for the human: AD
 | ID | Requirement | From | Verified by |
 |---|---|---|---|
 | ELZ-1 | The guard sits in `plugin-solana`'s signing path, with the same verdicts as the SDK on the adapters battery's cases | §8 | the adapters battery |
-| ELZ-2 | The key never enters ElizaOS: the character holds only the public key, and Solanaut's own plugin signs through the guard | §12 | [ADR-017](../design/ADR-017-elizaos-integration.md), proposed |
+| ELZ-2 | The key never enters ElizaOS: the character holds only the public key, and Solanaut's own plugin signs through the guard | §12 | [ADR-017](../design/ADR-017-elizaos-integration.md), accepted |
 | ELZ-3 | With only a public key set, each of `plugin-solana`'s signing actions signs nothing | ADR-017 | a test against the pinned published version |
 
 ### 13.7 Log anchor (milestone 3.7)
@@ -704,7 +705,7 @@ milestone's code. Every such ADR is now written, as a proposal for the human: AD
 | ANC-2 | Only the guard's anchor authority may anchor, and `seq` must increase | T12 | a stale or foreign anchor refused |
 | ANC-3 | Replay checked against the anchored head detects a record rewritten before that anchor | T12 | a rewritten record |
 | ANC-4 | A verified build and a `security.txt` | §9 | the verification result |
-| ANC-5 | The head is anchored at most once a minute while entries are new, and at once after a latch, a release or a policy entry, by a dedicated anchor key outside the principal | T12 | [ADR-015](../design/ADR-015-log-anchor-cadence.md), proposed |
+| ANC-5 | The head is anchored at most once a minute while entries are new, and at once after a latch, a release or a policy entry, by a dedicated anchor key outside the principal | T12 | [ADR-015](../design/ADR-015-log-anchor-cadence.md), accepted |
 
 ### 13.8 Dashboard v1 (milestone 3.8)
 
@@ -731,17 +732,17 @@ milestone's code. Every such ADR is now written, as a proposal for the human: AD
 | RT-3 | The open questions in §12 are decided, each with a measured stream: when REGROUND latches (ADR-012), runs of failed outcomes, and loops that alternate shapes | §12 | the loop battery |
 | RT-4 | Threat model v3 is reviewed, and no critical or high finding is open | `docs/ROADMAP.md` 3.10 | the Alpha milestone review |
 
-### 13.11 Decisions owed before Leg 3 builds
+### 13.11 Decisions before Leg 3 builds: all accepted on 2026-10-05
 
 | ADR | Decides | Before |
 |---|---|---|
-| ADR-012 | when REGROUND latches the guard (proposed; the human's) | the demo is recorded |
-| [ADR-013](../design/ADR-013-signer-process.md), proposed | the signer's process, OS user and transport (SIG-10) | 3.1 |
-| [ADR-014](../design/ADR-014-operator-signed-policy.md), proposed | policy signing and policy changes (POL-5) | 3.2 |
-| [ADR-016](../design/ADR-016-token-2022-settings.md), proposed | Token-2022's mutable settings and transfer hooks (TOK-5) | 3.3 |
-| [ADR-018](../design/ADR-018-bounding-opaque-programs.md), proposed | bounding opaque programs: simulation and the assertion set (OPQ-7) | 3.4 |
-| [ADR-017](../design/ADR-017-elizaos-integration.md), proposed | the ElizaOS integration point (ELZ-2) | 3.6 |
-| [ADR-015](../design/ADR-015-log-anchor-cadence.md), proposed | the anchor's cadence and payer (ANC-5) | 3.7 |
+| [ADR-012](../design/ADR-012-latch-on-reground.md), accepted (option C) | when REGROUND latches the guard | the demo is recorded |
+| [ADR-013](../design/ADR-013-signer-process.md), accepted | the signer's process, OS user and transport (SIG-10) | 3.1 |
+| [ADR-014](../design/ADR-014-operator-signed-policy.md), accepted | policy signing and policy changes (POL-5) | 3.2 |
+| [ADR-016](../design/ADR-016-token-2022-settings.md), accepted | Token-2022's mutable settings and transfer hooks (TOK-5) | 3.3 |
+| [ADR-018](../design/ADR-018-bounding-opaque-programs.md), accepted | bounding opaque programs: simulation and the assertion set (OPQ-7) | 3.4 |
+| [ADR-017](../design/ADR-017-elizaos-integration.md), accepted | the ElizaOS integration point (ELZ-2) | 3.6 |
+| [ADR-015](../design/ADR-015-log-anchor-cadence.md), accepted | the anchor's cadence and payer (ANC-5) | 3.7 |
 
 ## Changes
 
@@ -751,3 +752,4 @@ milestone's code. Every such ADR is now written, as a proposal for the human: AD
 | Draft 2 | 2026-09-30 | The verified review (`runs/2026-09-30-verified-review-roadmap.md`): trust per mode; v1 decoded; tables pinned; an allowlist per instruction; durable nonces and other signers denied; the fee rule corrected; intents keyed by effects; the log as the state; the adapter surface; the structured latch release; the Squads membership question answered; D10 to D12; new battery cases. Phases are now the roadmap's milestones. |
 | Draft 3 | 2026-10-01 | Built through milestone 2a.5 (`runs/2026-10-01-beta-build.md`): the effects model as implemented (`otherSigners`, outflow sources, denial rules, the intent key's definition); the record's four entry kinds; the decisions made while building, in §4 and §7; kit's default version answered; D1, D2, D5, D6, D7, D9, D10 and D12 closed; then 2a.6: the durable record, restore, the lock, replay, the latch as a recorded fact, and D11 closed; then 2a.7: Keel's bytes and telemetry checked, sensor v1 as built and measured, D3, D4 and D8 closed, an open question on runs of failures; then 2a.8: the adapters as built; then 2a.10: an open question on latching after a denied retry; then 2b.3: integrating with Solana Agent Kit; then devnet (2a.9, 2a.10, 2b.1, 2b.3): D13 found and closed, D14 found and closed (§7, §11's double-send battery), the open question on latching seen on devnet. |
 | Draft 4 | 2026-10-01 | For milestone 2c.1: §13, the Alpha as requirements with IDs (SIG, POL, TOK, OPQ, PHX, ELZ, ANC, DSH, CI, RT), each traced to its source and the test that will verify it; six ADRs owed before Leg 3 builds. |
+| Draft 4.1 | 2026-10-05 | The human approved §13 and accepted ADR-012 (option C) and ADR-013 to ADR-018. Nothing else changed. |

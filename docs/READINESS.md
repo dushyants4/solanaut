@@ -1,6 +1,6 @@
 # READINESS.md — from MVP to a certified, shippable release
 
-> **Draft 2** · 2026-10-01 · owner: operator, with the evaluator · for: the human, every seat, and future auditors ·
+> **2.0** · 2026-10-05 · owner: operator, with the evaluator · for: the human, every seat, and future auditors ·
 > not public. Milestones, not dates (`docs/ROADMAP.md`). Nothing here is claimed until its evidence exists
 > (`docs/CLAIMS.md`). This is not legal advice. Register: `kb/DOCUMENTS.md`.
 
@@ -56,11 +56,12 @@ on. `docs/CLAIMS.md` §4 bans it until then.
 - integration on LiteSVM, a Surfpool mainnet fork, and a local validator, which must be Agave 4.2.2 or later for v1;
 - end to end on devnet, then the canary on mainnet (Leg 4, if the human accepts ADR-008).
 
-### The Alpha's thresholds against the Beta, for confirmation at 2c.1
+### The Alpha's thresholds against the Beta, confirmed at 2c.1
 
 Milestone 2c.1 confirms this test plan with the human, so no threshold is dropped silently once Leg 3 starts
-(`docs/RISKS.md`, RK14). Each row gives where the Beta stands, measured on 2026-10-01, and a proposal. **Nothing here
-changes a threshold until the human confirms it.**
+(`docs/RISKS.md`, RK14). Each row gives where the Beta stands, measured on 2026-10-01, and a proposal. **The human
+confirmed every proposal on 2026-10-05** with the Alpha's scope: they are Leg 3's thresholds, and none is lowered
+without the human.
 
 | Area | The Beta, measured | Proposal |
 |---|---|---|
@@ -152,3 +153,4 @@ The item-by-item mapping to Solanaut's gates is filled in as each milestone is r
 |---|---|---|
 | Draft 1 | 2026-09-30 | First draft, from the verified review. |
 | Draft 2 | 2026-10-01 | The Alpha's thresholds against the Beta as measured, with a proposal for each, for the human to confirm at milestone 2c.1. |
+| 2.0 | 2026-10-05 | Confirmed by the human at milestone 2c.1: every proposal is a Leg 3 threshold. |

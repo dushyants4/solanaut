@@ -1,6 +1,6 @@
 # ADR-015 · When the record's head is anchored on-chain, and who pays
 
-**Status:** **proposed** on 2026-10-01, for the human to accept at milestone 2c.1. It answers ANC-5 in
+**Status:** **accepted** by the human on 2026-10-05, with the Alpha's scope (milestone 2c.1); proposed on 2026-10-01. It answers ANC-5 in
 [docs/SPEC.md](../docs/SPEC.md) §13.7, and is written before milestone 3.7's code.
 
 ## Context
@@ -28,7 +28,7 @@
 | 1 | the agent's key | counts against the caps, and a stolen agent key could then anchor a forged head |
 | 2 | a dedicated anchor key, held by the signer, funded by the operator | one more key to fund |
 
-## Decision (proposed)
+## Decision (accepted 2026-10-05)
 
 **C with 2.**
 

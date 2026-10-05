@@ -1,6 +1,6 @@
 # ADR-018 · Bounding opaque programs: simulate, then assert the principal's floor on-chain
 
-**Status:** **proposed** on 2026-10-03, for the human to accept at milestone 2c.1. It answers OPQ-7 in
+**Status:** **accepted** by the human on 2026-10-05, with the Alpha's scope (milestone 2c.1); proposed on 2026-10-03. It answers OPQ-7 in
 [docs/SPEC.md](../docs/SPEC.md) §13.4, and is written before milestone 3.4's code.
 
 ## Context
@@ -30,7 +30,7 @@
 | C | simulate, then append assertions that hold the principal to the simulated result, and sign the bytes with them | more bytes and compute; the guard modifies the message |
 | D | decode each opaque program | per-program work without end; SPEC §1 rules out decoding swap programs |
 
-## Decision (proposed)
+## Decision (accepted 2026-10-05)
 
 **C. A as the fallback**, if 3.4's gate cannot be met (RK6).
 

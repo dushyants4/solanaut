@@ -1,6 +1,6 @@
 # ADR-017 · ElizaOS: the key never enters ElizaOS; Solanaut's own plugin signs through the guard
 
-**Status:** **proposed** on 2026-10-03, for the human to accept at milestone 2c.1. It answers ELZ-2 in
+**Status:** **accepted** by the human on 2026-10-05, with the Alpha's scope (milestone 2c.1); proposed on 2026-10-03. It answers ELZ-2 in
 [docs/SPEC.md](../docs/SPEC.md) §13.6 and the open question in §12 ("wrap the plugin's action handlers, or its
 wallet?"), and is written before milestone 3.6's code.
 
@@ -25,7 +25,7 @@ From the published code of `@elizaos/plugin-solana` 1.2.6 and 2.0.0-alpha.6
 | C | patch web3.js's `sign` and `sendTransaction` in the agent's process | fragile across versions, and in-process code can undo it (T9) |
 | D | keep the private key out of ElizaOS; give it only the public key, and add a Solanaut plugin whose actions sign through the guard | the plugin's own signing actions stop working, which is the intent |
 
-## Decision (proposed)
+## Decision (accepted 2026-10-05)
 
 **D.**
 

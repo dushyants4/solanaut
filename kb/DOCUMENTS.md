@@ -14,11 +14,13 @@ substantive change; *last reviewed* moves at every review.
 |---|---|---|---|---|---|---|
 | [README.md](../README.md) | 4 | current | integrator | everyone | 2026-10-01 | 2c.1 |
 | [docs/PRODUCT.md](../docs/PRODUCT.md) | 1.0 | current | architect | every seat, judges | 2026-09-30 | 2c.1 |
-| [docs/ROADMAP.md](../docs/ROADMAP.md) | Draft 2 | review | archivist, with the architect | the human, every seat, judges | 2026-09-30 | every leg |
-| [docs/READINESS.md](../docs/READINESS.md) | Draft 2 | review | operator, with the evaluator | the human, every seat, auditors | 2026-10-01 | 2c.1 |
-| [docs/RISKS.md](../docs/RISKS.md) | Draft 1 | draft | architect, with the evaluator | the human, every seat | 2026-10-01 | 2c.1 |
+| [docs/ROADMAP.md](../docs/ROADMAP.md) | Draft 3 | review | archivist, with the architect | the human, every seat, judges | 2026-10-05 | every leg |
+| [docs/READINESS.md](../docs/READINESS.md) | 2.0 | current | operator, with the evaluator | the human, every seat, auditors | 2026-10-05 | 3.10 |
+| [docs/RISKS.md](../docs/RISKS.md) | 1.0 | current | architect, with the evaluator | the human, every seat | 2026-10-05 | every Leg 3 milestone |
 | [docs/OVERVIEW.md](../docs/OVERVIEW.md) | Draft 3 | draft | integrator | engineers new to the repo, judges | 2026-10-01 | 2a.8 |
-| [docs/SPEC.md](../docs/SPEC.md) | Draft 4 | draft | architect | the builder, evaluator and integrator seats | 2026-10-01 | 2c.1 |
+| [docs/SPEC.md](../docs/SPEC.md) | Draft 4.1 | current (§13 approved) | architect | the builder, evaluator and integrator seats | 2026-10-05 | 3.10 |
+| [docs/HANDOFF.md](../docs/HANDOFF.md) | Draft 1 | current | Claude; Codex keeps §5 to §7 | Codex, the human, Claude on return | 2026-10-05 | the return to Claude |
+| [AGENTS.md](../AGENTS.md) | 1 | current | harness (Claude or the human; not Codex) | Codex | 2026-10-05 | the return to Claude |
 | [docs/ARCHITECTURE.md](../docs/ARCHITECTURE.md) | 4 | current | architect | everyone | 2026-10-01 | 2c.1 |
 | [docs/HACKATHON.md](../docs/HACKATHON.md) | 3 | current | archivist | the human, every seat | 2026-09-30 | S.1 |
 | [docs/CLAIMS.md](../docs/CLAIMS.md) | 3.2 | current (T3) | archivist, sourced | every public sentence | 2026-10-01 | every milestone |
@@ -45,3 +47,5 @@ substantive change; *last reviewed* moves at every review.
 | 2026-10-01 | PRODUCT, ROADMAP, SPEC, OVERVIEW, CLAIMS | PRODUCT 1.0, signed off; ROADMAP Draft 2, the human's decisions; SPEC Draft 3, the effects model, the record and the decisions made while building 2a.2 to 2a.5; OVERVIEW Draft 3, the rebuilt guard; CLAIMS 3.1, evidence moved to the admission battery | `runs/2026-10-01-beta-build.md` |
 | 2026-10-01 | SPEC, CLAIMS, OVERVIEW, DEMO | After the devnet runs: SPEC Draft 3 gains D13 and D14, both closed, §7's intents and §11's double-send battery as now built, and the adapter decisions; CLAIMS 3.2 adds S11, S12 and M13, and S10's devnet evidence; OVERVIEW notes the scenes and the follow-up; DEMO Draft 3, every scene run on devnet | `runs/2026-10-01-devnet.md` |
 | 2026-10-01 | README, ARCHITECTURE, LITEPAPER, CLAIMS; MARKET and PITCH deferred | The Beta review (2b.4): README 4 and ARCHITECTURE 4, the components as built; LITEPAPER Draft 3, the status as built and measured (S6 to S12); CLAIMS, every measured row's regenerating command (2b.2). MARKET's research was not re-checked and PITCH is the human's, so both move to S.1 unreviewed; PITCH can now cite S6 to S12 | `kb/milestones/2026-10-01_2b-beta.md` |
+| 2026-10-05 | ROADMAP, READINESS, RISKS, SPEC, README | The human's decisions: the Beta review signed off (2b.4); the Alpha's scope approved (2c.1). SPEC Draft 4.1, §13 approved and ADR-012 to ADR-018 accepted; READINESS 2.0, the thresholds confirmed; RISKS 1.0; ROADMAP Draft 3, Leg 2 won; README's design row | `runs/2026-10-05-handoff-to-codex.md` |
+| 2026-10-05 | HANDOFF, AGENTS (new); CLAUDE | Leg 3 handed to Codex: AGENTS.md, the same law for Codex; docs/HANDOFF.md, the state, the queue, the lessons and the return; CLAUDE.md names both, and the guard's Codex hook | `runs/2026-10-05-handoff-to-codex.md` |

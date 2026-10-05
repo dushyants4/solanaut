@@ -25,8 +25,9 @@ first, every session.
 Solanaut was split out of the Gubernaut workspace and must never bleed into it, or it into this.
 
 - **Never read or write the Gubernaut workspace**: `/home/dashy/Projects/A - Gubernaut Project -
-  APEX`, `~/Work/`, `~/Lab/`. Reads are denied in `.claude/settings.json`; writes are denied by
-  the boundary guard. Gubernaut is reached only through its **published** packages and **public**
+  APEX`, `~/Work/`, `~/Lab/`. Claude's Read tool is denied them in `.claude/settings.json`; writes,
+  and any shell command that names them, are denied by the boundary guard. Gubernaut is reached
+  only through its **published** packages and **public**
   pages (github.com/thegubernaut, gubernaut.com), cited by URL.
 - **Never change machine-wide agent config** (`~/.claude/settings.json`, skills, hooks, plugins,
   plans; `~/.codex/`). State the exact change for the human instead.
@@ -41,8 +42,9 @@ Solanaut was split out of the Gubernaut workspace and must never bleed into it, 
   with a public source (`design/ADR-007-knowledge-vault.md`).
 
 **Enforced, not described:** `tools/boundary_guard.py` runs on every Write, Edit and Bash call
-(`.claude/settings.json`), against `plugins/harness/hooks/boundaries.toml`. It fails closed. Its
-limits are in `uv run --script tools/boundary_guard.py --explain`.
+(`.claude/settings.json`), and on every Codex shell command and patch (`.codex/hooks.json`,
+`--harness codex`), against `plugins/harness/hooks/boundaries.toml`. It fails closed. Its limits
+are in `uv run --script tools/boundary_guard.py --explain`.
 
 ## Tiers — how expensive it is to be wrong
 
@@ -91,8 +93,12 @@ Or open **this folder** in VS Code (*File → Open Folder*), in its own window. 
 the APEX `.code-workspace`. First open: Claude Code offers to install the `solanaut-office`
 marketplace declared in `.claude/settings.json`; accept it for this project only.
 
-Workers: Codex may run here as `codex exec -C ~/Projects/Solanaut …` (this folder has its own
-trust entry). Gubernaut's `gub` control plane is **not** used here; it belongs to APEX.
+**Codex develops Leg 3 from 2026-10-05**, at the human's direction, under `AGENTS.md` (the same law
+for Codex) and `.codex/`: the boundary guard as a hook, a workspace-write sandbox, and rules that
+refuse T4 commands. Codex may not edit `AGENTS.md`, this file, `.codex/`, `.claude/`, the policy
+or the gates. The transfer, Codex's work queue and log, the edits it owes, and the return to Claude
+are in `docs/HANDOFF.md`: read it first when resuming. Gubernaut's `gub` control plane is **not**
+used here; it belongs to APEX.
 
 **Plan mode** writes plans to `docs/plans/` (`"plansDirectory"` in `.claude/settings.json`). The default,
 `~/.claude/plans/`, is denied by the boundary guard.
@@ -114,7 +120,7 @@ node apps/onchain/src/squads.ts --url <rpc> --operator keys/devnet-operator.json
   --treasury keys/devnet-treasury.json [--multisig <pda> [--limit <pda>]] [--keep --out <f>]   # the stolen-key drill
 node apps/onchain/src/scenes.ts --url <rpc> --agent keys/devnet-agent.json --operator keys/devnet-operator.json \
   --treasury <pubkey> --dir .sandbox/devnet                                  # DEMO.md's scenes, end to end
-uv run --script tools/boundary_guard.py --selftest   # the write boundary, 34 cases
+uv run --script tools/boundary_guard.py --selftest   # the boundary, 59 cases, Claude's and Codex's
 uv run --script tools/kb_lint.py                     # the knowledge vault: links, notes, registers
 uv run --script tools/claims_lint.py                 # every measured claim names its command, receipt and date
 uv run --script tools/session_close.py               # every gate, before closing
@@ -161,8 +167,9 @@ whatever has passed its gate.
 | `apps/onchain/` | devnet scripts: `squads.ts`, the Squads v4 spending-limit drill (milestone 2a.9); `scenes.ts`, DEMO.md's scenes end to end through `guardedWallet`, with a real SIGKILL and restore (2b.1, 2b.3) |
 | `apps/agentkit/` | validation: a scripted Solana Agent Kit agent behind `guardedWallet` (milestone 2b.3) |
 | `programs/` | *(Alpha, milestone 3.7)* `solanaut_anchor`: anchors the decision log's head. On-chain caps come from composing Squads v4 (ADR-006) |
-| `docs/` | `PRODUCT.md` (why, what, how) · `ROADMAP.md` (the milestones) · `READINESS.md` (to a certified release) · `RISKS.md` (the risk register) · `OVERVIEW.md` (the code as it is) · `SPEC.md` (the MVP baseline) · `ARCHITECTURE.md` (long term) · `HACKATHON.md` (the contest's rules) · `CLAIMS.md` · `papers/` · `submission/` · `plans/` |
-| `design/` | ADRs 001–018; ADR-008 is proposed and deferred: devnet only for now; ADR-012 (when REGROUND latches) and ADR-013 to ADR-018 (the signer, the signed policy, the anchor's cadence, Token-2022, ElizaOS, opaque programs) are proposed for the human |
+| `AGENTS.md` `.codex/` | Codex's law, and its harness: the hook, the sandbox, the rules (2026-10-05) |
+| `docs/` | `HANDOFF.md` (Claude to Codex, and back) · `PRODUCT.md` (why, what, how) · `ROADMAP.md` (the milestones) · `READINESS.md` (to a certified release) · `RISKS.md` (the risk register) · `OVERVIEW.md` (the code as it is) · `SPEC.md` (the MVP baseline) · `ARCHITECTURE.md` (long term) · `HACKATHON.md` (the contest's rules) · `CLAIMS.md` · `papers/` · `submission/` · `plans/` |
+| `design/` | ADRs 001–018; ADR-008 is proposed and deferred: devnet only for now; ADR-012 (when REGROUND latches: option C) and ADR-013 to ADR-018 (the signer, the signed policy, the anchor's cadence, Token-2022, ElizaOS, opaque programs) were accepted by the human on 2026-10-05 |
 | `plugins/` `workflows/` `tools/` | the office: seats, SOPs, deterministic gates |
 | `kb/` | the knowledge vault (ADR-007): `INDEX.md` (front page), `LOG.md`, `DOCUMENTS.md` (the paper register), `REGISTRY.md` (upstream pins), `sources/`, `wiki/`, `milestones/`, `templates/`, `intake/`, and `private/` (gitignored) |
 | `evals/` | receipts: every gate shown failing, then passing |

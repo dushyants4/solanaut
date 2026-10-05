@@ -1,6 +1,6 @@
 # ADR-014 · The operator signs the policy, and a policy changes only through a restart
 
-**Status:** **proposed** on 2026-10-01, for the human to accept at milestone 2c.1. It answers POL-5 in
+**Status:** **accepted** by the human on 2026-10-05, with the Alpha's scope (milestone 2c.1); proposed on 2026-10-01. It answers POL-5 in
 [docs/SPEC.md](../docs/SPEC.md) §13.2, and is written before milestone 3.2's code.
 
 ## Context
@@ -37,7 +37,7 @@
 | 1 | the policy's hash only | 64 hex digits, so in effect signs blind |
 | 2 | the hash and a short summary the signer derives from the policy | the destinations, the caps and the programs, as well as the hash that binds them |
 
-## Decision (proposed)
+## Decision (accepted 2026-10-05)
 
 **A with 2.**
 

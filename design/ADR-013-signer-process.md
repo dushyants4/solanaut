@@ -1,6 +1,6 @@
 # ADR-013 · The signer process: its user, its socket, and what it trusts
 
-**Status:** **proposed** on 2026-10-01, for the human to accept at milestone 2c.1. It answers SIG-10 in
+**Status:** **accepted** by the human on 2026-10-05, with the Alpha's scope (milestone 2c.1); proposed on 2026-10-01. It answers SIG-10 in
 [docs/SPEC.md](../docs/SPEC.md) §13.1, and is written before milestone 3.1's code.
 
 ## Context
@@ -37,7 +37,7 @@
 | 2 | a Unix socket in a directory only the signer's user and the agent's group can enter | the agent's group; the kernel enforces it |
 | 3 | gRPC | as 1 or 2, with a code generator and more lines than the 500 budgeted |
 
-## Decision (proposed)
+## Decision (accepted 2026-10-05)
 
 **C with 2: its own OS user, and a Unix socket guarded by directory permissions.**
 
