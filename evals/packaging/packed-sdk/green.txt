@@ -1,0 +1,16 @@
+
+> test:package
+> node --test evals/packaging/*.test.ts
+
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (276.385869ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (1.427898ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (997.949925ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (198.768572ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5067.310826

@@ -1,0 +1,39 @@
+
+> test:package
+> node --test evals/packaging/*.test.ts
+
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (88.032091ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (0.547575ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (393.462628ms)
+✖ PKG-3: installed replay and table-pin commands execute with their documented usage exits (5.051026ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1413.977175
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:74:1
+✖ PKG-3: installed replay and table-pin commands execute with their documented usage exits (5.051026ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /usage:/i. Input:
+  
+  "/tmp/solanaut-consumer-pn2rWx/consumer/node_modules/.bin/solanaut-replay: line 1: unexpected EOF while looking for matching `''\n"
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:78:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: "/tmp/solanaut-consumer-pn2rWx/consumer/node_modules/.bin/solanaut-replay: line 1: unexpected EOF while looking for matching `''\n",
+    expected: /usage:/i,
+    operator: 'match',
+    diff: 'simple'
+  }

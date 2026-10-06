@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "rewriteRelativeImportExtensions": true,
+    "rootDir": ".",
+    "target": "ES2023"
+  },
+  "include": ["src/**/*.ts", "bin/replay.ts", "bin/pin-table.ts"]
+}

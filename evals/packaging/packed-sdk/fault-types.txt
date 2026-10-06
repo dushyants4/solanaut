@@ -1,0 +1,63 @@
+
+> test:package
+> node --test evals/packaging/*.test.ts
+
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (89.08968ms)
+✖ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (5.17313ms)
+✖ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (401.718052ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (94.968993ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 2
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1546.062948
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:45:1
+✖ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (5.17313ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(files.includes("dist/src/index.d.ts"))
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:48:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at evals/packaging/packed-sdk.test.ts:58:1
+✖ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (401.718052ms)
+  AssertionError [ERR_ASSERTION]: consumer.ts(2,65): error TS7016: Could not find a declaration file for module '@solanaut/sdk'. '/tmp/solanaut-consumer-2XjyXD/consumer/node_modules/@solanaut/sdk/dist/src/index.js' implicitly has an 'any' type.
+    Try `npm i --save-dev @types/solanaut__sdk` if it exists or add a new declaration (.d.ts) file containing `declare module '@solanaut/sdk';`
+  consumer.ts(7,5): error TS2578: Unused '@ts-expect-error' directive.
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:71:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

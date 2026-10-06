@@ -18,6 +18,8 @@
     "validator": "PATH=\"$HOME/.local/share/solana/install/active_release/bin:$PATH\" solana-test-validator --ledger .sandbox/ledger --reset --quiet",
     "pin-table": "node packages/sdk/bin/pin-table.ts",
     "replay": "node packages/sdk/bin/replay.ts",
+    "release:prepare": "node packages/sdk/bin/prepare-release.ts",
+    "test:package": "node --test evals/packaging/*.test.ts",
     "cockpit": "node apps/cockpit/src/server.ts"
   },
   "devDependencies": {

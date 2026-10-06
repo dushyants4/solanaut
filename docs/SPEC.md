@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.2** · 2026-10-05 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.3** · 2026-10-05 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -760,6 +760,20 @@ These IDs name obligations of the already accepted option C, not new latch rules
 | LAT-5 | replay reports the accepted Beta-to-C difference at `latch` | sealed V0-style fixture |
 | LAT-6 | archived scripted streams reproduce option C and current records replay | the original stream definitions and expected table |
 
+### 13.13 Release package acceptance tests
+
+These IDs trace the human-approved release-only build. They do not mark milestone 5.3 achieved.
+Development exports remain native TypeScript; a separate generated manifest exports JavaScript.
+
+| ID | Requirement | Verified by |
+|---|---|---|
+| PKG-1 | packed SDK installs outside the monorepo without loader flags or workspace symlinks; only compiled runtime, declarations and declared runtime dependencies are included | installed payment/drain verdicts, Keel byte verification and tarball checks |
+| PKG-2 | installed declarations resolve and reject incorrect caller types | standalone strict consumer typecheck |
+| PKG-3 | installed replay and table-pin commands execute as ordinary Node commands | executable usage/error exits |
+
+The candidate remains private at the existing source version. Node 22.18.0 is its runtime
+floor; the approved matrix also includes Node 24 and 26. Full readiness thresholds remain unchanged.
+
 ## Changes
 
 | Version | Date | What changed |
@@ -770,3 +784,4 @@ These IDs name obligations of the already accepted option C, not new latch rules
 | Draft 4 | 2026-10-01 | For milestone 2c.1: §13, the Alpha as requirements with IDs (SIG, POL, TOK, OPQ, PHX, ELZ, ANC, DSH, CI, RT), each traced to its source and the test that will verify it; six ADRs owed before Leg 3 builds. |
 | Draft 4.1 | 2026-10-05 | The human approved §13 and accepted ADR-012 (option C) and ADR-013 to ADR-018. Nothing else changed. |
 | Draft 4.2 | 2026-10-05 | ADR-012 C implemented offline; LAT requirement IDs and preserved historical replay differences. Devnet rerun and the remaining RT-3 questions are still open. |
+| Draft 4.3 | 2026-10-05 | PKG acceptance IDs for the approved release-only build; private compiled SDK candidate and installed consumer checks. |

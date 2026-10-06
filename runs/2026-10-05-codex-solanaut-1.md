@@ -24,6 +24,9 @@ prepare the original repository for eventual human-approved public release.
 
 ## Changed
 
+- Release-only SDK compiler and private staging script; native source exports retained.
+- Installed package tests, packaging guide and receipt; CI runtime matrix and package checks.
+
 - `docs/plans/2026-10-05_solanaut-1.md`: the human-approved mission and dependency order.
 - This record: baseline, findings and outstanding dependencies for the continuing session.
 - `packages/sdk/src/guard.ts`: accepted predecessor-based latch decision, derived from the record.
@@ -33,6 +36,16 @@ prepare the original repository for eventual human-approved public release.
 - ADR-019/020: concrete proposed contracts, not implementation or accepted architecture.
 
 ## Found
+
+- `2030ef7` passed local close gates and GitHub CI run `37397016363`.
+  The baseline CI run `37369485468` failed to acquire a hosted runner for the office job;
+  its guard tests and typecheck passed. H6 no longer blocks reading CI.
+- All four package tests failed against the source tarball. The release compiler initially
+  rejected `findLast` at ES2022; the candidate targets ES2023 on the approved Node runtimes.
+- The first installed consumer under `.sandbox` masked a missing dependency through ancestor
+  resolution. Moved it outside the repository, then repeated baseline and all four faults.
+  Four package tests now pass; all four damaged candidates fail, restored before final checks.
+  See `evals/packaging/packed-sdk.md` for retained outputs and commands.
 
 - The live boundary hooks are active for both tested tool paths.
 - The interrupted tasks produced no implementation or evidence; their inspection is not a passed gate.
@@ -48,6 +61,11 @@ prepare the original repository for eventual human-approved public release.
   cell. Moved the same measurement date into evidence; the gate itself was not changed.
 
 ## Open
+
+- Packaging verification: `npm test` passes 185 tests; `npm run typecheck` exits 0;
+  `npm run test:package` passes four tests. Pre-commit session close passes nine gates and
+  correctly fails the uncommitted-tree gate. Its redirected invocation was refused by the
+  boundary heuristic; reran the documented unredirected command, without editing any gate.
 
 - ADR-012 is verified offline; its funded devnet rerun is outstanding.
 - Detailed signer crash recovery, snapshots, evaluation-version compatibility, RPC trust,

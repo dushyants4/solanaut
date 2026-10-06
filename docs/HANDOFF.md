@@ -168,7 +168,7 @@ Codex appends; the human answers in place. Open at the transfer:
 | H3 | 2026-10-05 | item 6 | **`solana-verify`,** for 3.7's verified build, is not installed. Approve installing a pinned release. |
 | H4 | 2026-10-05 | items 2, 9 | **OS users,** for the signer (ADR-013) and Phantom's MCP server (PHX-5), are created with `sudo` by the human, when Codex has the same-user modes working. |
 | H5 | 2026-10-05 | Codex | **The machine-wide Gubernaut skills.** Six skills in `~/.agents/skills` load into every Codex session, this one included. `AGENTS.md` forbids them here; only the human can scope them to Gubernaut's own repository. |
-| H6 | 2026-10-05 | every item | **`gh` hangs** on every command, including `gh auth status`, while `git push` works over the stored credential. Its token probably sits in a locked keyring. Unlock it, or run `gh auth login`, so Codex can read CI. |
+| H6 | 2026-10-05 | every item | **Resolved on resume:** `gh run list/view` now work. Commit `2030ef7` CI passed, run `37397016363`. Historical baseline run `37369485468` failed because its office job was not acquired by a hosted runner; guard tests/typecheck passed. The transfer's green-CI statement was inaccurate for that run. No credential workaround used. |
 | H7 | 2026-10-05 | Solanaut 1.0 foundations | **Accept or revise the concrete proposals:** `design/ADR-019-stable-signing-and-history.md` and `design/ADR-020-opaque-and-operator-boundaries.md`. They address accepted-ADR gaps; dependent implementation waits. |
 | H8 | 2026-10-05 | qualification | **External resources:** recruit outside developers, choose/fund the specialist audit and live bounty, and provide reliable devnet RPC for its soak. No contact or purchase made by Codex; all thresholds retained. |
 
@@ -195,6 +195,8 @@ The live probes and baseline are complete. ADR-012 C is built and tested offline
 |---|---|---|---|---|
 | | | | | |
 | 2026-10-05 | 0: probes and baseline | commit containing this row; `git log -- runs/2026-10-05-codex-solanaut-1.md` | continuing run record | Correct live refusals; baseline tests/typecheck green; initial close gate finds uncommitted mission work. |
+| 2026-10-05 | ADR-012 C, offline portion | `2030ef7` | `evals/sdk/latch-c.md`; CI `37397016363` passed | Funded devnet rerun still owed. |
+| 2026-10-05 | release packaging foundation | commit containing `evals/packaging/packed-sdk.md` | packed consumer receipt | Private SDK candidate only; full product packaging and readiness remain open. |
 
 ## 8. Handing back to Claude
 

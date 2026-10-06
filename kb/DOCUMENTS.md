@@ -18,12 +18,13 @@ substantive change; *last reviewed* moves at every review.
 | [docs/READINESS.md](../docs/READINESS.md) | 2.0 | current | operator, with the evaluator | the human, every seat, auditors | 2026-10-05 | 3.10 |
 | [docs/RISKS.md](../docs/RISKS.md) | 1.1 | current | architect, with the evaluator | the human, every seat | 2026-10-05 | every Leg 3 milestone |
 | [docs/OVERVIEW.md](../docs/OVERVIEW.md) | Draft 4 | draft | integrator | engineers new to the repo, judges | 2026-10-05 | 3.10 |
-| [docs/SPEC.md](../docs/SPEC.md) | Draft 4.2 | current (§13 approved; LAT IDs trace accepted ADR-012) | architect | the builder, evaluator and integrator seats | 2026-10-05 | 3.10 |
+| [docs/SPEC.md](../docs/SPEC.md) | Draft 4.3 | current (§13 approved; LAT and PKG IDs trace accepted scope) | architect | the builder, evaluator and integrator seats | 2026-10-05 | 3.10 |
+| [docs/PACKAGING.md](../docs/PACKAGING.md) | Draft 1 | draft | integrator | developers and release reviewers | 2026-10-05 | 5.3 |
 | [docs/HANDOFF.md](../docs/HANDOFF.md) | Draft 1 | current | Claude; Codex keeps §5 to §7 | Codex, the human, Claude on return | 2026-10-05 | the return to Claude |
 | [AGENTS.md](../AGENTS.md) | 1 | current | harness (Claude or the human; not Codex) | Codex | 2026-10-05 | the return to Claude |
 | [docs/ARCHITECTURE.md](../docs/ARCHITECTURE.md) | 4 | current | architect | everyone | 2026-10-01 | 2c.1 |
 | [docs/HACKATHON.md](../docs/HACKATHON.md) | 3 | current | archivist | the human, every seat | 2026-09-30 | S.1 |
-| [docs/CLAIMS.md](../docs/CLAIMS.md) | 3.3 | current (T3) | archivist, sourced | every public sentence | 2026-10-05 | every milestone |
+| [docs/CLAIMS.md](../docs/CLAIMS.md) | 3.4 | current (T3) | archivist, sourced | every public sentence | 2026-10-05 | every milestone |
 | [docs/papers/LITEPAPER.md](../docs/papers/LITEPAPER.md) | Draft 3 | draft | architect | judges, developers | 2026-10-01 | 2c.1 |
 | [docs/papers/THREAT-MODEL.md](../docs/papers/THREAT-MODEL.md) | Draft 3 | draft | architect, evaluator | reviewers, auditors, judges | 2026-10-03 | 3.10 |
 | [docs/papers/MARKET.md](../docs/papers/MARKET.md) | Draft 2 | draft | archivist | the human, judges | 2026-09-30 | S.1 |
@@ -42,6 +43,7 @@ substantive change; *last reviewed* moves at every review.
 | Date | Documents | What changed | Record |
 |---|---|---|---|
 | 2026-10-05 | SPEC, RISKS, OVERVIEW, HANDOFF, CLAIMS | Solanaut 1.0 mission recorded; accepted ADR-012 C implemented offline; S13 and receipt added; historical replay differences preserved; ADR-019/020 proposals pending | `runs/2026-10-05-codex-solanaut-1.md` |
+| 2026-10-05 | SPEC, PACKAGING, CLAIMS, HANDOFF | Private compiled SDK candidate and package evidence; CI reading recovered and baseline runner failure recorded | `runs/2026-10-05-codex-solanaut-1.md` |
 
 Earlier entries:
 
