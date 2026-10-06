@@ -1,0 +1,17 @@
+✔ OWN-1: SDK refuses stale ownership instead of removing the lock (42.016024ms)
+✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (11.162932ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (365.092595ms)
+✔ OWN-3: established protected records are not recreated if missing (12.324532ms)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (24.192906ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (6.982783ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (6.033263ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (5.05936ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (4.904891ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 579.507126

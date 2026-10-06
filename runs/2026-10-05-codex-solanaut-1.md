@@ -117,6 +117,21 @@ prepare the original repository for eventual human-approved public release.
 
 ## Provenance
 
+Ownership/storage step starts from `4a60f0a`: implemented accepted ADR-019 with a parent-held
+flock descriptor, stable kernel mutex, stale manual refusal, missing-history refusal and complete
+synced writes. OWN battery initially three failures and one pass; storage tests initially passed
+after helper implementation (test-first gap retained). Focused battery nine passes; six maintained
+faults caught; full product suite 212 passes; typecheck clean. Commands and raw evidence:
+`evals/sdk/ownership.md`. Source mutation batteries run sequentially.
+
+Changed assertion: durable test's automatic stale takeover expectation now additionally requires
+manual refusal before explicit kernel recovery, under accepted ADR-019. Workload child and demo
+select kernel ownership; original restart hash comparison and crash assertions remain. No live
+demo run this step. No OS user, key, network filesystem or power-loss qualification claim.
+Read-only shell redirect naming the protected law was refused by the heuristic; used the
+documented read without a redirect. A documentation patch failed matching a partial version
+line, and a receipt/index patch failed matching the index heading; corrected exact patches.
+
 Starting revision: `e925f1d`. Pins and thresholds: `TOOLCHAIN.md`, `docs/READINESS.md`.
 Baseline commands: `npm test`, `npm run typecheck`,
 `uv run --script tools/session_close.py --slug codex-solanaut-1`.

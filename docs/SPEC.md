@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.4** · 2026-10-05 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.5** · 2026-10-05 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -380,9 +380,13 @@ Built at milestone 2a.7 (`evals/sdk/keel.md`).
     and Keel's postures. It does not recompute each decision, so a record rewritten and re-sealed whole restores as
     written: threat T12's residual. `replay` recomputes every decision and finds such a rewrite. The Alpha closes it
     at start, once policies are in the record (ADR-014) and its head is anchored (ADR-015).
-  - **The lock.** `<record>.lock` names the holding process and host. A live holder makes a second guard refuse; a
-    dead holder's lock is taken over. The takeover is not atomic, so run one guard per record. A lock file that names
-    no process is refused too, with a message saying how to clear it.
+  - **The lock, revised under accepted ADR-019.** Manual SDK mode refuses every existing marker,
+    including a dead owner. Linux kernel mode holds an exclusive `flock` for the writer's lifetime,
+    retains the mutex inode on close and recovers only after acquiring that lock. Inode replacement
+    closes the writer. Deployment requires an operator-owned local filesystem; see `STORAGE.md`.
+    Established protected records use `create: false`; missing history never becomes an empty record.
+  - **Complete writes.** Short writes advance until the whole line is written; zero progress or sync
+    failure closes the writer. Newly created record and ownership names have their directory synced.
   - **A write that fails shuts the guard.** It denies everything, unrecorded, until it is restarted, so nothing is
     signed on a decision the record does not hold.
   - **The latch is a recorded fact.** The decision that trips it carries `latch: true`, so restoring under another
@@ -784,6 +788,11 @@ snapshot and RPC IDs are allocated with their implementation steps. Existing SIG
 |---|---|---|
 | VER-1 | signed authorization versions cannot roll back; equal version requires identical canonical content and signed text; a change preserves pending admission state | `signed-policy.test.ts` restarts and cap/latch/receipt cases |
 | VER-2 | recorded format and evaluation profile are separately identified; unsupported profiles/formats refuse restore/replay; the profile binds rule, decoder, sensor and Keel identity | resealed format/profile fixtures and sensor substitution |
+| OWN-1 | manual SDK mode refuses stale ownership without removing its marker | stale dead-PID fixture and unchanged marker bytes |
+| OWN-2 | Linux kernel ownership survives helper exit, excludes concurrent writers, releases on process death and retains its mutex inode | same-process exclusion and competing processes after SIGKILL |
+| OWN-3 | established protected history must exist; initial creation is explicit | missing history rejection and explicit bootstrap fixture |
+| STO-1 | a short write cannot acknowledge an incomplete record | forced short writes, complete JSON line and matching decision hash |
+| STO-2 | write, permission, progress or sync failure denies and closes the writer | ENOSPC, EACCES, zero progress and fsync injection under SIG-8 |
 
 Implemented foundation: `authorization` opts into signed SDK history. Legacy unsigned SDK
 mode remains advisory; an established signed history requires an external pin on reopening.
@@ -802,3 +811,4 @@ where needed, and UTC issued timestamps include milliseconds. Policies remain re
 | Draft 4.2 | 2026-10-05 | ADR-012 C implemented offline; LAT requirement IDs and preserved historical replay differences. Devnet rerun and the remaining RT-3 questions are still open. |
 | Draft 4.3 | 2026-10-05 | PKG acceptance IDs for the approved release-only build; private compiled SDK candidate and installed consumer checks. |
 | Draft 4.4 | 2026-10-05 | ADR-019/020 accepted; signed policy and version/profile foundation, with policy-aware restore/replay and external trust. Full isolated signer qualification remains owed. |
+| Draft 4.5 | 2026-10-05 | OWN/STO foundation: Linux kernel recovery, stale SDK refusal and complete synced writes. Remaining SIG-8 qualification unchanged. |

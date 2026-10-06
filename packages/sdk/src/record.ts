@@ -6,13 +6,14 @@
 // with no newline is a write a crash cut short; it was never acknowledged, so it is cut off. Any
 // other damage refuses to open: a guard that cannot trust its record does not run.
 //
-// One writer per record: a lock file beside it names the process that holds it. A second guard
-// refuses to open while that process lives; a lock whose process is gone is taken over. The
-// takeover is not atomic: two processes restarting at the same instant could both take a stale
-// lock. Run one guard per record.
+// One writer per record. Manual SDK ownership refuses any existing marker, including stale
+// ones. Linux kernel ownership recovers through flock on an inherited open-file description,
+// held until this store closes or the process dies. Its mutex inode is never unlinked.
 
-import { closeSync, existsSync, fsyncSync, ftruncateSync, openSync, readFileSync, unlinkSync, writeSync } from "node:fs";
+import { closeSync, constants, fstatSync, fsyncSync, ftruncateSync, openSync, readFileSync, statSync, unlinkSync, writeSync } from "node:fs";
+import { spawnSync } from "node:child_process";
 import { hostname } from "node:os";
+import { dirname } from "node:path";
 import { canonicalJSON } from "./canonical.ts";
 import { hashOf, type Entry } from "./log.ts";
 
@@ -39,37 +40,71 @@ function alive(pid: number): boolean {
   }
 }
 
-function lock(path: string): string {
-  const lockPath = `${path}.lock`;
-  for (let attempt = 0; attempt < 2; attempt++) {
-    try {
-      const fd = openSync(lockPath, "wx");
-      writeSync(fd, JSON.stringify({ pid: process.pid, host: hostname(), at: Date.now() }));
-      fsyncSync(fd);
-      closeSync(fd);
-      return lockPath;
-    } catch (e) {
-      if ((e as NodeJS.ErrnoException).code !== "EEXIST") throw e;
-    }
-    let holder: { pid?: unknown; host?: unknown } = {};
-    try {
-      holder = JSON.parse(readFileSync(lockPath, "utf8"));
-    } catch {
-      // An unreadable lock is still a lock: refuse below.
-    }
-    if (typeof holder.pid !== "number" || typeof holder.host !== "string") {
-      throw new Error(`the record ${path} has a lock file, ${lockPath}, that names no process: if no guard is running on this record, delete the lock file and start again`);
-    }
-    if (holder.host !== hostname() || alive(holder.pid)) {
-      throw new Error(`the record ${path} is locked by process ${holder.pid} on ${holder.host}: one guard writes a record at a time`);
-    }
-    unlinkSync(lockPath);
+export interface FileStoreOptions {
+  /** Kernel recovery requires Linux and /usr/bin/flock on a supported local filesystem. */
+  ownership?: "manual" | "kernel";
+  /** False for an established isolated identity: never create missing history. */
+  create?: boolean;
+}
+
+function writeAll(fd: number, bytes: Buffer): void {
+  for (let offset = 0; offset < bytes.length;) {
+    const written = writeSync(fd, bytes, offset, bytes.length - offset);
+    if (!Number.isInteger(written) || written <= 0 || written > bytes.length - offset) throw new Error("record write made no valid progress");
+    offset += written;
   }
-  throw new Error(`the record ${path} is locked, and the stale lock could not be taken over`);
+}
+
+function syncDirectory(path: string): void {
+  const fd = openSync(dirname(path), "r");
+  try { fsyncSync(fd); } finally { closeSync(fd); }
+}
+
+function sameFile(fd: number, path: string): void {
+  const held = fstatSync(fd, { bigint: true });
+  const named = statSync(path, { bigint: true });
+  if (held.dev !== named.dev || held.ino !== named.ino) throw new Error("the record or ownership inode was replaced");
+}
+
+function lock(path: string, mode: "manual" | "kernel"): { held(): void; release(): void } {
+  const lockPath = `${path}.lock`;
+  if (mode === "kernel" && process.platform !== "linux") throw new Error("kernel record ownership requires Linux");
+  let fd: number;
+  try { fd = openSync(lockPath, mode === "kernel" ? "a+" : "wx", 0o600); }
+  catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "EEXIST") throw new Error(`the record ${path} is locked; manual SDK mode refuses stale ownership too; recover under kernel ownership or stop all writers before operator repair`);
+    throw error;
+  }
+  try {
+    if (process.platform === "linux") {
+      // fd 3 inherits this exact open-file description, so the lock survives the helper's exit.
+      const result = spawnSync("/usr/bin/flock", ["--exclusive", "--nonblock", "3"], { stdio: ["ignore", "ignore", "pipe", fd] });
+      if (result.status !== 0) throw new Error(`the record ${path} is locked or flock failed: ${result.error?.message ?? result.stderr?.toString() ?? result.status}`);
+    }
+    sameFile(fd, lockPath);
+    if (mode === "kernel") {
+      const text = readFileSync(fd, "utf8");
+      if (text) {
+        const holder = JSON.parse(text) as { mode?: string; pid?: number; host?: string };
+        if (holder.mode !== "kernel" && (typeof holder.pid !== "number" || holder.host !== hostname() || alive(holder.pid))) throw new Error(`the record ${path} is locked by a live or foreign manual owner`);
+      }
+    }
+    ftruncateSync(fd, 0);
+    writeAll(fd, Buffer.from(JSON.stringify({ mode, pid: process.pid, host: hostname(), at: Date.now() })));
+    fsyncSync(fd); syncDirectory(lockPath);
+  } catch (error) { closeSync(fd); throw error; }
+  return {
+    held: () => sameFile(fd, lockPath),
+    release() {
+      try {
+        if (mode === "manual") { sameFile(fd, lockPath); unlinkSync(lockPath); }
+      } finally { closeSync(fd); }
+    },
+  };
 }
 
 function readRecord(path: string, fd: number): Entry[] {
-  const text = existsSync(path) ? readFileSync(path, "utf8") : "";
+  const text = readFileSync(fd, "utf8");
   const end = text.lastIndexOf("\n") + 1;
   if (end < text.length) {
     // A torn last line: cut it, so the next entry starts on a clean line.
@@ -94,36 +129,39 @@ function readRecord(path: string, fd: number): Entry[] {
 }
 
 /** Open (or create) a record file, taking its lock. */
-export function fileStore(path: string): EntryStore {
-  const lockPath = lock(path);
+export function fileStore(path: string, options: FileStoreOptions = {}): EntryStore {
+  const mode = options.ownership ?? "manual";
+  if (mode !== "manual" && mode !== "kernel") throw new Error("unsupported record ownership mode");
+  const owner = lock(path, mode);
   let fd: number;
   let entries: Entry[];
   try {
-    fd = openSync(path, "a+");
+    fd = openSync(path, constants.O_RDWR | constants.O_APPEND | constants.O_NOFOLLOW | (options.create === false ? 0 : constants.O_CREAT), 0o600);
+    sameFile(fd, path);
     entries = readRecord(path, fd);
+    if (options.create !== false) syncDirectory(path);
   } catch (e) {
-    unlinkSync(lockPath);
+    if (fd! !== undefined) closeSync(fd!);
+    owner.release();
     throw e;
   }
   let open = true;
+  let failed = false;
   return {
     entries,
     append(entry) {
-      if (!open) throw new Error("the record is closed");
-      writeSync(fd, `${canonicalJSON(entry)}\n`);
-      fsyncSync(fd);
+      if (!open || failed) throw new Error("the record is closed or failed");
+      try {
+        owner.held(); sameFile(fd, path);
+        writeAll(fd, Buffer.from(`${canonicalJSON(entry)}\n`));
+        fsyncSync(fd);
+      } catch (error) { failed = true; throw error; }
       entries.push(entry);
     },
     close() {
       if (!open) return;
       open = false;
-      closeSync(fd);
-      try {
-        const holder = JSON.parse(readFileSync(lockPath, "utf8"));
-        if (holder.pid === process.pid) unlinkSync(lockPath);
-      } catch {
-        // Already gone.
-      }
+      try { closeSync(fd); } finally { owner.release(); }
     },
   };
 }

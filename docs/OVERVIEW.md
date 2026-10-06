@@ -1,6 +1,6 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 5** · 2026-10-05 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 6** · 2026-10-05 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
@@ -115,6 +115,11 @@ checks and verifies the same way for a kit partial signer. Both throw
 one JSON entry per line, synced before the guard answers, locked to one guard. On start the guard applies every entry
 again, Keel included, and continues where it stopped; `replay(entries, policy)` recomputes every decision from its
 bytes. Without a `log`, the record lives in memory.
+
+Manual SDK ownership refuses stale markers. Explicit Linux kernel ownership holds a `flock`
+through the writer's lifetime and keeps its mutex inode for safe competing restarts.
+Established identities can refuse missing history with `create: false`; `docs/STORAGE.md`
+describes the filesystem boundary. Short writes complete before sync; a failure closes the writer.
 
 **Defects:** every one found in review, D1 to D12, is closed (`docs/SPEC.md` §10). The open questions are in §12.
 

@@ -5,11 +5,12 @@
 //   node packages/sdk/test/support/workload-child.ts <record-path>
 
 import { createGuard } from "../../src/guard.ts";
+import { fileStore } from "../../src/record.ts";
 import { runFrom, WORKLOAD_POLICY } from "./workload.ts";
 
 const path = process.argv[2];
 if (!path) throw new Error("usage: workload-child.ts <record-path>");
-const g = await createGuard({ policy: WORKLOAD_POLICY, log: path });
+const g = await createGuard({ policy: WORKLOAD_POLICY, log: fileStore(path, { ownership: "kernel" }) });
 runFrom(g, (i) => process.stdout.write(`ack ${i}\n`));
 g.close();
 process.stdout.write("done\n");

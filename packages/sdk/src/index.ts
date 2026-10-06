@@ -1,5 +1,5 @@
 export { createGuard, replay, VERIFIED_KEEL_DIGEST, VERIFIED_KEEL_MODULE, verifyKeelSource, type Decision, type Entry, type EntryStore, type Guard, type GuardOptions, type GuardStatus, type Outcome, type ProposalV1, type ReplayResult, type RuleV1, type Sensor, type SensorView } from "./guard.ts";
-export { fileStore, memoryStore } from "./record.ts";
+export { fileStore, memoryStore, type FileStoreOptions } from "./record.ts";
 export { preparePolicyText, verifyPolicyAuthorization, PolicyAuthorizationError, type PolicyAuthorization, type PolicyTrust } from "./signed-policy.ts";
 export { EVALUATION_PROFILE } from "./profile.ts";
 export { createPolicy, contextOf, PolicyError, policyHash, type Policy, type PolicyInput, type PolicyV1 } from "./policy.ts";

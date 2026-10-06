@@ -29,7 +29,7 @@ import { mkdirSync, readFileSync, rmSync, writeFileSync, writeSync } from "node:
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { Connection, Keypair, LAMPORTS_PER_SOL, PublicKey, SystemProgram, Transaction, TransactionInstruction } from "@solana/web3.js";
-import { createGuard, guardedWallet, jsonRpc, PROGRAMS, replay, SolanautDenied, type BaseWalletLike, type Entry, type Guard, type PolicyInput, type RpcLike } from "@solanaut/sdk";
+import { createGuard, fileStore, guardedWallet, jsonRpc, PROGRAMS, replay, SolanautDenied, type BaseWalletLike, type Entry, type Guard, type PolicyInput, type RpcLike } from "@solanaut/sdk";
 
 const arg = (name: string) => {
   const i = process.argv.indexOf(`--${name}`);
@@ -178,7 +178,7 @@ async function replayed(g: Guard, policy: PolicyInput) {
 
 async function untilTheCrash() {
   const policy = JSON.parse(readFileSync(policyFile, "utf8")) as PolicyInput;
-  const g = await createGuard({ policy, log: record });
+  const g = await createGuard({ policy, log: fileStore(record, { ownership: "kernel" }) });
   const w = guardedWallet(walletOf(agent), g, { rpc });
   const a = agent.publicKey;
 
@@ -252,7 +252,7 @@ async function main() {
   if (signal !== "SIGKILL" || !sent) throw new Error(`the first process ended with ${signal ?? code}, not killed after a send`);
 
   say(`\n  7 crash    a new process: the guard restores itself from ${record}`);
-  const g = await createGuard({ policy, log: record });
+  const g = await createGuard({ policy, log: fileStore(record, { ownership: "kernel" }) });
   const entries = g.entries();
   const pending = entries.filter((e): e is Extract<Entry, { kind: "decision" }> => e.kind === "decision" && e.allow).at(-1)!;
   say(`  7 crash    restored ${entries.length} entries; ${await replayed(g, policy)}`);

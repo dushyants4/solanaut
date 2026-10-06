@@ -14,6 +14,7 @@ Installed 2026-09-27 on `omarchy` (Omarchy Linux, x86_64).
 | uv | 0.12.x | system | runs the Python tools in `tools/` (stdlib only) |
 | Chrome | system | `/usr/bin/google-chrome-stable` | `tools/colosseum_entry.mjs` drives it over CDP |
 | Obsidian | 1.13.7 (optional) | pacman | reads the repository as a knowledge vault (`design/ADR-007-knowledge-vault.md`). Nothing needs it to build or test, so the doctor does not check it |
+| flock | `/usr/bin/flock`, util-linux 2.42.3 on this host | already installed; no installation performed | ADR-019 kernel-held writer ownership, using its inherited-descriptor interface. Ubuntu runner qualification tests its distribution version; no network filesystem support claimed |
 
 ## PATH
 

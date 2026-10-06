@@ -16,9 +16,10 @@ substantive change; *last reviewed* moves at every review.
 | [docs/PRODUCT.md](../docs/PRODUCT.md) | 1.0 | current | architect | every seat, judges | 2026-09-30 | 2c.1 |
 | [docs/ROADMAP.md](../docs/ROADMAP.md) | Draft 3 | review | archivist, with the architect | the human, every seat, judges | 2026-10-05 | every leg |
 | [docs/READINESS.md](../docs/READINESS.md) | 2.0 | current | operator, with the evaluator | the human, every seat, auditors | 2026-10-05 | 3.10 |
-| [docs/RISKS.md](../docs/RISKS.md) | 1.2 | current | architect, with the evaluator | the human, every seat | 2026-10-05 | every Leg 3 milestone |
-| [docs/OVERVIEW.md](../docs/OVERVIEW.md) | Draft 5 | draft | integrator | engineers new to the repo, judges | 2026-10-05 | 3.10 |
-| [docs/SPEC.md](../docs/SPEC.md) | Draft 4.4 | current (§13 approved; foundation IDs trace accepted scope) | architect | the builder, evaluator and integrator seats | 2026-10-05 | 3.10 |
+| [docs/RISKS.md](../docs/RISKS.md) | 1.3 | current | architect, with the evaluator | the human, every seat | 2026-10-05 | every Leg 3 milestone |
+| [docs/OVERVIEW.md](../docs/OVERVIEW.md) | Draft 6 | draft | integrator | engineers new to the repo, judges | 2026-10-05 | 3.10 |
+| [docs/SPEC.md](../docs/SPEC.md) | Draft 4.5 | current (§13 approved; foundation IDs trace accepted scope) | architect | the builder, evaluator and integrator seats | 2026-10-05 | 3.10 |
+| [docs/STORAGE.md](../docs/STORAGE.md) | Draft 1 | draft | integrator | SDK users and Linux operators | 2026-10-05 | 3.1 |
 | [docs/POLICIES.md](../docs/POLICIES.md) | Draft 1 | draft | integrator | SDK users and operator-tool developers | 2026-10-05 | 3.2 |
 | [docs/PACKAGING.md](../docs/PACKAGING.md) | Draft 1 | draft | integrator | developers and release reviewers | 2026-10-05 | 5.3 |
 | [docs/HANDOFF.md](../docs/HANDOFF.md) | Draft 1 | current | Claude; Codex keeps §5 to §7 | Codex, the human, Claude on return | 2026-10-05 | the return to Claude |
@@ -49,6 +50,7 @@ substantive change; *last reviewed* moves at every review.
 | 2026-10-05 | CLAIMS, HANDOFF | S14 records passing runtime matrix; maintained latch CI fault subset added | `runs/2026-10-05-codex-solanaut-1.md` |
 | 2026-10-05 | HANDOFF, PROGRESS; ADR-019/020 status | The human accepted the proposals after review, allowing dependent signing work | `runs/2026-10-05-codex-solanaut-1.md` |
 | 2026-10-05 | SPEC, OVERVIEW, RISKS, POLICIES, CLAIMS, HANDOFF, PROGRESS | Signed policy/version/profile foundation; S15, CLI and policy-aware history evidence | `runs/2026-10-05-codex-solanaut-1.md` |
+| 2026-10-05 | SPEC, OVERVIEW, RISKS, STORAGE, CLAIMS, HANDOFF, PROGRESS; TOOLCHAIN | Exclusive Linux ownership and storage fault evidence; S16; explicit flock dependency | `runs/2026-10-05-codex-solanaut-1.md` |
 
 Earlier entries:
 

@@ -57,6 +57,8 @@ their signing, recovery and operator paths are next. The isolated signer is not 
 Signed SDK policy history is built and tested offline (`evals/sdk/signed-policy.md`);
 its milestone still needs the signer's enforced path and the operator's Phantom evidence.
 The Alpha and stable-release gates are not achieved by this initial work.
+Exclusive Linux ownership and complete-write failure handling are built and tested locally
+(`evals/sdk/ownership.md`); the full signer recovery programme remains owed.
 
 1. **Defects** (`docs/SPEC.md` §10):
    - D1 to D12 are closed: D1, D2, D5, D6, D7, D9, D10 and D12 at 2a.5, D11 at 2a.6, D3, D4 and D8 at 2a.7.

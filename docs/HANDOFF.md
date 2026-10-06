@@ -200,6 +200,7 @@ The live probes and baseline are complete. ADR-012 C is built and tested offline
 | 2026-10-05 | package CI fault checks | commit containing `evals/packaging/ci-faults.md` | maintained fault receipt | Same damaged candidates checked on every push; full 3.9 programme still owed. |
 | 2026-10-05 | maintained latch CI faults | commit containing `evals/ci/latch-faults.md` | latch fault receipt; prior matrix run `37397843820` passed | CI-1 partial; remaining injections and CI-2 gates are open. |
 | 2026-10-05 | signed policy/version foundation | commit containing `evals/sdk/signed-policy.md` | POL/VER receipt | Existing SDK mode retained; isolated enforcement still owed. ADR-019/020 accepted. |
+| 2026-10-05 | exclusive ownership/storage foundation | commit containing `evals/sdk/ownership.md` | OWN/STO receipt | Stale SDK takeover removed; Linux kernel mode tested across processes. Full SIG-8 and isolated enforcement remain owed. |
 
 ## 8. Handing back to Claude
 

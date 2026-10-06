@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.2** · 2026-10-05 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.3** · 2026-10-05 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 The threat model ([docs/papers/THREAT-MODEL.md](papers/THREAT-MODEL.md)) lists what an attacker can do to a running
@@ -42,7 +42,7 @@ evidence.
 | ID | Risk | L | I | Mitigation | Indicator | Owner | Status |
 |---|---|---|---|---|---|---|---|
 | RK12 | Independent evaluation is hard to get: outside agent CLIs are refused when run unattended, and the account's usage limit stopped a multi-agent run | high | medium | runs the human starts; this session's subagents, given only the spec and audited for black-box reads; R.2's external audit | an owed evaluator run | evaluator, the human | mitigated for the Beta: three evaluators, 317 cases, six defects closed (`evals/independent/`); the Alpha's red team (RT-2) needs it again |
-| RK13 | Decisions wait on one person: ADRs, sign-offs and every T4 step | high | medium | batch milestone decisions; independent work continues while one is open | open decision older than a milestone | the human, archivist | Beta and ADR-012 accepted; ADR-019/020 pending |
+| RK13 | Decisions wait on one person: ADRs, sign-offs and every T4 step | high | medium | batch milestone decisions; independent work continues while one is open | open decision older than a milestone | the human, archivist | Beta and ADR-012/019/020 accepted; later sign-offs remain |
 | RK14 | The Alpha's thresholds are ambitious, and Leg 3 busts on any miss: 95% coverage, 80% mutation, a million fuzz inputs, 1,000 mainnet transactions, a 72-hour soak, three outside developers | high | medium | all thresholds confirmed on 2026-10-05; preserve them and record misses without lowering them | — | evaluator, the human | confirmed; qualification owed |
 | RK15 | The contest's deadline (2026-10-12) pressures claims past the evidence | medium | high | every public sentence traces to `docs/CLAIMS.md`; `tools/claims_lint.py` gates each measured row; the human submits only achieved milestones | a sentence in a draft with no row | archivist, the human | mitigated |
 | RK16 | The public devnet RPC rate-limits and its faucet refuses, stalling devnet milestones | high | low | reads back off, sends never retry; the drills resume on existing accounts; the human funds the operator; 4.3 requires two RPC providers | HTTP 429s in a run record | operator | mitigated for the Beta |
@@ -61,6 +61,8 @@ Solanaut 1.0 inspection also found the documented stale-lock race, missing signe
 evidence and the execution-relative gap in opaque balance floors. ADR-019/020 are accepted.
 Signed policy/version/profile checks now have offline evidence (`evals/sdk/signed-policy.md`);
 isolated enforcement and the remaining recovery mitigations are not built. Opaque denial remains.
+The stale-lock race now has a tested Linux kernel ownership path (`evals/sdk/ownership.md`);
+manual SDK mode refuses stale markers. Operator-owned local storage remains an assumption.
 
 | Version | Date | What changed |
 |---|---|---|
