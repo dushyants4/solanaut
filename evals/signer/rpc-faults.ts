@@ -21,7 +21,7 @@ for (const [name, from, to] of faults) {
   try {
     writeFileSync(path, original.replace(from, to));
     const result = battery(); const output = result.stdout + result.stderr;
-    assert.equal(result.status, 1, output); assert.match(output, /tests 11/); assert.match(output, /AssertionError/);
+    assert.equal(result.status, 1, output); assert.match(output, /tests 17/); assert.match(output, /AssertionError/);
     console.log(`caught RPC fault: ${name}`);
   } finally { writeFileSync(path, original); }
 }

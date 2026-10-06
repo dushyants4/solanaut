@@ -1,0 +1,46 @@
+✔ RPC-1: pins devnet identity and validates observed blockhash/lifetime with confirmed context (44.458179ms)
+✔ RPC-1: cross-cluster substitution denies; blockhash mismatch or invalidity denies (8.524625ms)
+✔ RPC-2: malformed and non-integral heights or context cannot become authority (6.57537ms)
+✔ RPC-2: response ID/version, missing result, and oversized body refuse (3.631356ms)
+✔ RPC-3: one-provider outage permits conservative reads; total outage reports degraded (14.578736ms)
+✔ RPC-3: stale or conflicting observations cannot authorize a new proposal (2.721571ms)
+✔ RPC-4: chain outcome requires agreeing committed evidence; missing/stale/conflicting stays unresolved (7.320395ms)
+✔ RPC-4: failed outcome needs matching committed failure from both providers (1.608333ms)
+✔ RPC-2/SIG-9: rate-limited reads back off, but send has exactly one attempt with node retries disabled (2.671897ms)
+✔ RPC-2: hung reads end at their deadline and expired calls make no network request (31.476676ms)
+✔ RPC-2: a standalone process keeps its owned request deadline alive (231.683418ms)
+✔ RPC-1/2: unsafe endpoint sets and invalid deadlines cannot configure a provider (0.893491ms)
+✔ RPC-2: missing bodies and rate limits beyond the request deadline deny reads (0.951595ms)
+✔ RPC-1/2: malformed blockhashes and an expired lifetime deny observation (3.520676ms)
+✔ RPC-3: provider slot rollback cannot replace previously observed context (1.883355ms)
+✔ RPC-4: malformed signature status arrays and future or invalid committed outcomes stay unresolved (6.086948ms)
+✔ RPC-2: a response delivered after the host deadline cannot become authoritative (0.48273ms)
+✔ SIG-2: only propose/report/status dispatch, with one bounded response and request identity (20.78643ms)
+✔ SIG-10: socket permissions restrict its group and parent must be protected (2.76087ms)
+✔ SIG-2/3: malformed JSON, unknown fields, bad IDs/deadlines and multiple frames never dispatch (7.248296ms)
+✔ SIG-2: oversized or invalid UTF-8 frames refuse before dispatch (3.508307ms)
+✔ SIG-3: idle and unfinished requests end within the configured bounded read timeout (65.279429ms)
+✔ SIG-1: handler errors return a fixed code without exposing internal exception text (3.006415ms)
+✔ SIG-10: existing non-socket and symlink paths are never removed (1.050897ms)
+✔ SIG-10: a live listener cannot be replaced (1.994665ms)
+✔ SIG-3: trickling bytes cannot extend the absolute connection deadline (43.856185ms)
+✔ SIG-1/2: oversized or unserialisable handler responses become fixed internal errors (10.199913ms)
+✔ SIG-8/10: an abandoned socket is recovered after its process exits (60.312441ms)
+✔ SIG-2/3: clients holding their half open cannot exhaust completed connection slots (38.669111ms)
+✔ SIG-2: a proposal exceeding the core's message bound is an invalid frame before dispatch (10.813502ms)
+✔ SIG-3: invalid read timeout configuration refuses startup (2.430283ms)
+✔ SIG-2: malformed report references are protocol refusals without handler calls (3.251819ms)
+✔ LAT/POL-2: malformed release text and public signature inputs cannot authenticate (4.401047ms)
+✔ LIF-1/4: unsupported canonical values and malformed payload types refuse binding (1.547148ms)
+✔ LIF-4: malformed recorded request/response time and noncanonical content cannot restore (16.511349ms)
+✔ LIF-2: unknown requests, cross-policy signing and unsupported stages cannot journal (5.918413ms)
+✔ SIG-8: corrupted decision hashes refuse restore and deterministically diverge in replay (4.249187ms)
+✔ T2/T15: empty token-program instruction data is denied under both programs (0.404513ms)
+ℹ tests 38
+ℹ suites 0
+ℹ pass 38
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 567.922064

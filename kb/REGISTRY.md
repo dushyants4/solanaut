@@ -15,6 +15,8 @@ full tree.
 | `@types/node` | **26.6.3** | npm | Node 26 types | 2026-09-27 |
 | `fast-check` | **4.10.2** | [official runners](https://fast-check.dev/docs/core-blocks/runners/) / npm | dev only: CI-2 properties and shrinking; MIT. Registry integrity in the lockfile; signed audit evidence in `evals/ci/properties/` | 2026-10-06 |
 | `pure-rand` | **8.4.2** | npm | locked transitive of fast-check, dev only; MIT. Signature audit above covers the installed registry tree | 2026-10-06 |
+| `istanbul-lib-instrument` | **6.0.3** | [official instrumenter](https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-lib-instrument) / npm | dev only: AST statement/branch instrumentation after native type stripping; BSD-3-Clause. Locked registry integrity and signature audit in `evals/ci/coverage/` | 2026-10-06 |
+| `istanbul-lib-coverage` | **3.2.2** | [official coverage API](https://github.com/istanbuljs/istanbuljs/tree/master/packages/istanbul-lib-coverage) / npm | dev only: merge/summarise instrumented counters, including zero-counter unimported sources; BSD-3-Clause | 2026-10-06 |
 
 Toolchain: `TOOLCHAIN.md`. Vendored office: `plugins/VENDORED.md`.
 
@@ -25,6 +27,12 @@ Toolchain: `TOOLCHAIN.md`. Vendored office: `plugins/VENDORED.md`.
 web3.js). They are not needed: the sandbox ran against a local validator without them.
 
 ## Audit
+
+Rechecked after AST coverage dependencies: the advisory totals remain 7 high, 9 moderate,
+3 low and no critical (`evals/ci/coverage/audit.json`). Neither Istanbul package nor Babel
+is named. Signature audit exits zero: 387 registry signatures / 112 attestations verified
+(`evals/ci/coverage/signatures.txt`). All installation scripts disabled; no automatic fixes
+or security clearance. The existing framework/on-chain dependency findings remain open.
 
 Rechecked 2026-10-06 after the property dependency installation: 7 high, 9 moderate,
 3 low and no critical (`evals/ci/properties/audit.json`, `npm audit --json`, exit one).

@@ -138,3 +138,5 @@ partial signing is unchanged; this is not installed signer or live-chain qualifi
    (`evals/sdk/archive.md`); signed snapshots, streamed state replay and backup recovery remain owed.
    The installed read-only archive command checks those pins and returns typed JSON errors
    (`evals/sdk/archive-cli.md`); it does not restore or authenticate guard state.
+   The AST coverage gate inventories SDK/signer files and checks statement, branch and
+   critical-file floors (`evals/ci/coverage.md`); remaining CI-2 quality gates stay open.

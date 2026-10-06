@@ -1,0 +1,592 @@
+
+> test:bite
+> node evals/ci/bite.ts
+
+Running fault campaign: ci/bite-faults.ts
+caught bite aggregation fault: omit-campaign
+caught bite aggregation fault: ignore-failed-exit
+caught bite aggregation fault: ignore-unrestored-source
+caught bite aggregation fault: invent-clean-result
+caught bite aggregation fault: skip-first-campaign
+All bite aggregation faults caught; restored source passes
+Running fault campaign: ci/latch-faults.ts
+caught latch fault: v0
+caught latch fault: only-keel
+caught latch fault: only-previous
+caught latch fault: last-entry
+caught latch fault: no-replay-predecessor
+caught latch fault: no-denial-threshold
+caught latch fault: skip-intervening-decision
+All latch faults caught; restored source passes
+Running fault campaign: ci/property-faults.ts
+caught property fault: budget-floor
+caught property fault: incomplete-count
+caught property fault: skips
+caught property fault: failed-result
+caught property fault: seed-validation
+caught property fault: address-alphabet
+caught property fault: account-writability
+caught property fault: unexpected-error
+All property faults caught; restored source passes
+Running fault campaign: ci/fuzz-faults.ts
+caught fuzz gate fault: lower-budget
+caught fuzz gate fault: ignore-process-failure
+caught fuzz gate fault: accept-duplicate-summary
+caught fuzz gate fault: ignore-total
+caught fuzz gate fault: ignore-outcome-sum
+caught fuzz gate fault: empty-accepted-domain
+caught fuzz product fault: unexpected-decoder-exception
+All fuzz faults caught; restored source passes
+Running fault campaign: ci/cap-faults.ts
+property starting: sol-per-tx; seed=1123425199; requested=10000
+✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (31.907253ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 159.728938
+
+✖ failing tests:
+
+test at packages/sdk/test/caps.property.test.ts:22:1
+✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (31.907253ms)
+  Error: property failed: sol-per-tx
+  Property failed after 3 tests
+  { seed: 1123425199, path: "2:0:0:0:0", endOnFailure: true }
+  Counterexample: [0n,0n,-1n,false]
+  Shrunk 4 time(s)
+  
+  Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/evals/ci/properties.ts:9:28)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/caps.property.test.ts:23:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: per-tx-boundary
+property starting: sol-per-tx; seed=1793788596; requested=10000
+✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (24.414817ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 184.457438
+
+✖ failing tests:
+
+test at packages/sdk/test/caps.property.test.ts:22:1
+✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (24.414817ms)
+  Error: property failed: sol-per-tx
+  Property failed after 6 tests
+  { seed: 1793788596, path: "5:0:0", endOnFailure: true }
+  Counterexample: [0n,0n,1n,true]
+  Shrunk 2 time(s)
+  
+  Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/evals/ci/properties.ts:9:28)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/caps.property.test.ts:23:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: per-tx-disabled
+property starting: sol-window; seed=554165214; requested=10000
+✖ CI-2 SOL window property: pending admissions match independent reservation sum (123.589954ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 258.747014
+
+✖ failing tests:
+
+test at packages/sdk/test/caps.property.test.ts:33:1
+✖ CI-2 SOL window property: pending admissions match independent reservation sum (123.589954ms)
+  Error: property failed: sol-window
+  Property failed after 110 tests
+  { seed: 554165214, path: "109:4:3:0:0", endOnFailure: true }
+  Counterexample: [0n,[0n]]
+  Shrunk 4 time(s)
+  
+  Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/evals/ci/properties.ts:9:28)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/caps.property.test.ts:34:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: window-boundary
+property starting: sol-window; seed=1276396951; requested=10000
+✖ CI-2 SOL window property: pending admissions match independent reservation sum (177.795267ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 307.491555
+
+✖ failing tests:
+
+test at packages/sdk/test/caps.property.test.ts:33:1
+✖ CI-2 SOL window property: pending admissions match independent reservation sum (177.795267ms)
+  Error: property failed: sol-window
+  Property failed after 4 tests
+  { seed: 1276396951, path: "3:1:0:1:1:0:0:1:2:5:0:5:0:0:0:1:1:4:4:0:1:2:3:4:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:4", endOnFailure: true }
+  Counterexample: [143696n,[1n,143696n]]
+  Shrunk 40 time(s)
+  
+  Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/evals/ci/properties.ts:9:28)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/caps.property.test.ts:34:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: ignore-reservation
+property starting: async-false; seed=-1507915277; requested=10000
+property starting: async-count; seed=277447219; requested=10000
+✖ CI-2 asynchronous runner enforces failures and the completed execution floor (4.318294ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 104.931744
+
+✖ failing tests:
+
+test at evals/ci/properties.test.ts:25:1
+✖ CI-2 asynchronous runner enforces failures and the completed execution floor (4.318294ms)
+  Error: property run incomplete or skipped
+      at validateCompletion (file:///home/dashy/Projects/Solanaut/evals/ci/properties.ts:16:68)
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/evals/ci/properties.ts:10:3)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/properties.test.ts:29:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: async-short-run
+All cap property faults caught; restored source passes
+Running fault campaign: ci/coverage-faults.ts
+caught coverage fault: failed-test-process
+caught coverage fault: statement-floor
+caught coverage fault: branch-floor
+caught coverage fault: critical-floor
+caught coverage fault: omit-inventory-check
+caught coverage fault: invalid-counts
+caught coverage fault: wrong-counter-variable
+caught coverage fault: skip-native-stripping
+caught coverage fault: omit-unimported-source
+caught coverage fault: incomplete-statement-map
+caught coverage fault: invalid-branch-shape
+caught coverage fault: accept-counter-fabrication
+caught coverage fault: release-input-coercion
+caught coverage fault: raw-canonical-bytes
+caught coverage fault: cross-policy-signing
+caught coverage fault: noncanonical-recorded-policy
+caught coverage fault: unsupported-signing-stage
+caught coverage fault: busy-slot-bound
+caught coverage fault: expired-provider-lifetime
+All coverage faults caught; restored sources pass
+Running fault campaign: ci/replay-faults.ts
+caught replay gate fault: short-history
+caught replay gate fault: ignore-divergence
+caught replay gate fault: ignore-recomputed-count
+caught replay gate fault: ignore-entry-count
+caught replay gate fault: ignore-head
+caught replay gate fault: ignore-workload-kind
+caught replay product fault: previously-missed-per-tx-cap
+caught replay product fault: changed-record-and-evaluation
+All replay faults caught; restored pinned workload passes
+Running fault campaign: ci/concurrency-faults.ts
+caught SDK concurrency fault: short-budget
+caught SDK concurrency fault: over-admission
+caught SDK concurrency fault: incomplete-evidence
+caught SDK concurrency fault: wrong-reservations
+caught SDK concurrency fault: wrong-rule
+caught SDK concurrency fault: skip-barrier
+caught SDK concurrency product fault: ignored-pending-window
+All SDK concurrency faults caught; restored source passes
+Running fault campaign: ci/kill-faults.ts
+caught kill recovery fault: short-count
+caught kill recovery fault: ignore-completion
+caught kill recovery fault: ignore-replay
+caught kill recovery fault: ignore-signal
+caught kill recovery fault: ignore-acknowledgement
+caught kill recovery fault: send-wrong-signal
+caught kill recovery fault: skip-state-restore
+All kill recovery faults caught; restored source passes
+Running fault campaign: packaging/faults.ts
+caught package fault: export
+caught package fault: types
+caught package fault: dependency
+caught package fault: cli
+All package faults caught; restored candidate passes
+Running fault campaign: sdk/archive-cli-faults.ts
+caught archive CLI fault: duplicate-flag
+caught archive CLI fault: unknown-flag
+caught archive CLI fault: noncanonical-integer
+caught archive CLI fault: drop-head-pin
+caught archive CLI fault: invent-receipt
+caught archive CLI fault: successful-refusal-exit
+caught archive CLI fault: write-source
+All archive CLI faults caught; restored command passes
+Running fault campaign: sdk/archive-faults.ts
+caught archive fault: blocking-fifo-open
+caught archive fault: ignore-version
+caught archive fault: ignore-kind
+caught archive fault: ignore-sequence
+caught archive fault: ignore-predecessor
+caught archive fault: ignore-content-hash
+caught archive fault: complete-line-bound
+caught archive fault: unfinished-line-bound
+caught archive fault: ignore-source-change
+caught archive fault: ignore-path-replacement
+caught archive fault: ignore-head-pin
+caught archive fault: ignore-byte-pin
+caught archive fault: mutable-head-pin
+caught archive fault: reject-fractional-clock
+caught archive fault: unsafe-sequence-overflow
+caught archive fault: leak-descriptor
+All archive faults caught; restored source passes
+Running fault campaign: sdk/control-request-faults.ts
+caught control-request fault: control-payload-reuse
+caught control-request fault: proposal-namespace-reuse
+caught control-request fault: change-answer
+caught control-request fault: record-digest
+caught control-request fault: duplicate-start
+caught control-request fault: unknown-response
+caught control-request fault: duplicate-response
+caught control-request fault: response-bound
+All control-request faults caught; restored source passes
+Running fault campaign: sdk/ownership-faults.ts
+caught ownership/storage fault: ignore-kernel-lock
+caught ownership/storage fault: automatic-stale-takeover
+caught ownership/storage fault: unlink-mutex
+caught ownership/storage fault: create-missing-history
+caught ownership/storage fault: incomplete-short-write
+caught ownership/storage fault: ignore-sync-failure
+All ownership/storage faults caught; restored source passes
+Running fault campaign: sdk/request-faults.ts
+caught request fault: ignore-retry
+caught request fault: ignore-changed-payload
+caught request fault: ignore-recorded-binding
+caught request fault: ignore-duplicate-history
+All request faults caught; restored source passes
+Running fault campaign: sdk/sending-client-faults.ts
+caught sending client fault: ignore-response-id
+caught sending client fault: ignore-canonical-envelope
+caught sending client fault: unbounded-response
+caught sending client fault: hide-execution-ambiguity
+caught sending client fault: invent-before-connect-execution
+caught sending client fault: extend-timeout
+caught sending client fault: allow-oversized-message
+caught sending client fault: late-caller-identity
+caught sending client fault: accept-invalid-signature
+caught sending client fault: automatic-retry
+All sending client faults caught; restored source passes
+Running fault campaign: sdk/signing-faults.ts
+caught signing fault: no-redemption
+caught signing fault: changed-bytes
+caught signing fault: invalid-signature
+caught signing fault: send-before-signed
+caught signing fault: expired-send
+caught signing fault: repeat-send
+caught signing fault: repeat-response
+All signing faults caught; restored source passes
+Running fault campaign: signer/authority-faults.ts
+caught authority fault: mutable-host-configuration
+caught authority fault: caller-decision-attribution
+caught authority fault: caller-report-attribution
+caught authority fault: allow-non-devnet
+caught authority fault: use-changing-wall-clock
+All authority faults caught; restored source passes
+Running fault campaign: signer/core-faults.ts
+caught signer core fault: ignore-deadline
+caught signer core fault: ignore-completed-payload
+caught signer core fault: invent-outcome
+caught signer core fault: late-outcome
+caught signer core fault: send-without-intent
+caught signer core fault: forget-persisted-response
+All signer core faults caught; restored source passes
+Running fault campaign: signer/handler-faults.ts
+caught handler fault: concurrent-payload
+caught handler fault: duplicate-work
+caught handler fault: ignore-cached-answer
+caught handler fault: ignore-new-deadline
+caught handler fault: ignore-late-deadline
+caught handler fault: omit-request-deadline
+caught handler fault: ignore-control-namespace
+caught handler fault: omit-refusal-answer
+caught handler fault: admission-as-refusal
+All handler faults caught; restored source passes
+Running fault campaign: signer/policy-recovery-faults.ts
+caught policy recovery fault: skip-final-executor-check
+caught policy recovery fault: forget-final-history
+caught policy recovery fault: unknown-becomes-final
+caught policy recovery fault: allow-settled-signing
+caught policy recovery fault: allow-old-policy-send
+All policy recovery faults caught; restored source passes
+Running fault campaign: signer/recovery-faults.ts
+caught recovery fault: abort-on-attempt-error
+caught recovery fault: hide-attempt-error
+caught recovery fault: skip-chain-after-refusal
+caught recovery fault: invent-recovery-success
+All recovery faults caught; restored source passes
+Running fault campaign: signer/rpc-faults.ts
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /tests 11/. Input:
+
+'✖ RPC-1: pins devnet identity and validates observed blockhash/lifetime with confirmed context (25.806679ms)\n' +
+  '✖ RPC-1: cross-cluster substitution denies; blockhash mismatch or invalidity denies (2.452029ms)\n' +
+  '✔ RPC-2: malformed and non-integral heights or context cannot become authority (3.924661ms)\n' +
+  '✔ RPC-2: response ID/version, missing result, and oversized body refuse (2.552753ms)\n' +
+  '✔ RPC-3: one-provider outage permits conservative reads; total outage reports degraded (13.245433ms)\n' +
+  '✔ RPC-3: stale or conflicting observations cannot authorize a new proposal (2.455469ms)\n' +
+  '✔ RPC-4: chain outcome requires agreeing committed evidence; missing/stale/conflicting stays unresolved (5.844145ms)\n' +
+  '✔ RPC-4: failed outcome needs matching committed failure from both providers (0.509549ms)\n' +
+  '✔ RPC-2/SIG-9: rate-limited reads back off, but send has exactly one attempt with node retries disabled (2.504055ms)\n' +
+  '✔ RPC-2: hung reads end at their deadline and expired calls make no network request (30.420848ms)\n' +
+  '✔ RPC-2: a standalone process keeps its owned request deadline alive (163.945039ms)\n' +
+  '✔ RPC-1/2: unsafe endpoint sets and invalid deadlines cannot configure a provider (0.921794ms)\n' +
+  '✔ RPC-2: missing bodies and rate limits beyond the request deadline deny reads (0.77051ms)\n' +
+  '✔ RPC-1/2: malformed blockhashes and an expired lifetime deny observation (2.020699ms)\n' +
+  '✔ RPC-3: provider slot rollback cannot replace previously observed context (0.588629ms)\n' +
+  '✔ RPC-4: malformed signature status arrays and future or invalid committed outcomes stay unresolved (2.70687ms)\n' +
+  '✔ RPC-2: a response delivered after the host deadline cannot become authoritative (0.509191ms)\n' +
+  'ℹ tests 17\n' +
+  'ℹ suites 0\n' +
+  'ℹ pass 15\n' +
+  'ℹ fail 2\n' +
+  'ℹ cancelled 0\n' +
+  'ℹ skipped 0\n' +
+  'ℹ todo 0\n' +
+  'ℹ duration_ms 424.106653\n' +
+  '\n' +
+  '✖ failing tests:\n' +
+  '\n' +
+  'test at apps/signer/test/rpc.test.ts:28:1\n' +
+  '✖ RPC-1: pins devnet identity and validates observed blockhash/lifetime with confirmed context (25.806679ms)\n' +
+  '  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n' +
+  '  \n' +
+  '  false !== true\n' +
+  '  \n' +
+  '      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/rpc.test.ts:31:10)\n' +
+  '      at async Test.run (node:internal/test_runner/test:1404:7)\n' +
+  '      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {\n' +
+  '    generatedMessage: true,\n' +
+  "    code: 'ERR_ASSERTION',\n" +
+  '    actual: false,\n' +
+  '    expected: true,\n' +
+  "    operator: 'strictEqual',\n" +
+  "    diff: 'simple'\n" +
+  '  }\n' +
+  '\n' +
+  'test at apps/signer/test/rpc.test.ts:34:1\n' +
+  '✖ RPC-1: cross-cluster substitution denies; blockhash mismatch or invalidity denies (2.452029ms)\n' +
+  '  AssertionError [ERR_ASSERTION]: Missing expected rejection.\n' +
+  '      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/rpc.test.ts:37:5)\n' +
+  '      at async Test.run (node:internal/test_runner/test:1404:7)\n' +
+  '      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {\n' +
+  '    generatedMessage: false,\n' +
+  "    code: 'ERR_ASSERTION',\n" +
+  '    actual: undefined,\n' +
+  '    expected: /network|blockhash|provider/,\n' +
+  "    operator: 'rejects',\n" +
+  "    diff: 'simple'\n" +
+  '  }\n'
+
+    at file:///home/dashy/Projects/Solanaut/evals/signer/rpc-faults.ts:24:52
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '✖ RPC-1: pins devnet identity and validates observed blockhash/lifetime with confirmed context (25.806679ms)\n' +
+    '✖ RPC-1: cross-cluster substitution denies; blockhash mismatch or invalidity denies (2.452029ms)\n' +
+    '✔ RPC-2: malformed and non-integral heights or context cannot become authority (3.924661ms)\n' +
+    '✔ RPC-2: response ID/version, missing result, and oversized body refuse (2.552753ms)\n' +
+    '✔ RPC-3: one-provider outage permits conservative reads; total outage reports degraded (13.245433ms)\n' +
+    '✔ RPC-3: stale or conflicting observations cannot authorize a new proposal (2.455469ms)\n' +
+    '✔ RPC-4: chain outcome requires agreeing committed evidence; missing/stale/conflicting stays unresolved (5.844145ms)\n' +
+    '✔ RPC-4: failed outcome needs matching committed failure from both providers (0.509549ms)\n' +
+    '✔ RPC-2/SIG-9: rate-limited reads back off, but send has exactly one attempt with node retries disabled (2.504055ms)\n' +
+    '✔ RPC-2: hung reads end at their deadline and expired calls make no network request (30.420848ms)\n' +
+    '✔ RPC-2: a standalone process keeps its owned request deadline alive (163.945039ms)\n' +
+    '✔ RPC-1/2: unsafe endpoint sets and invalid deadlines cannot configure a provider (0.921794ms)\n' +
+    '✔ RPC-2: missing bodies and rate limits beyond the request deadline deny reads (0.77051ms)\n' +
+    '✔ RPC-1/2: malformed blockhashes and an expired lifetime deny observation (2.020699ms)\n' +
+    '✔ RPC-3: provider slot rollback cannot replace previously observed context (0.588629ms)\n' +
+    '✔ RPC-4: malformed signature status arrays and future or invalid committed outcomes stay unresolved (2.70687ms)\n' +
+    '✔ RPC-2: a response delivered after the host deadline cannot become authoritative (0.509191ms)\n' +
+    'ℹ tests 17\n' +
+    'ℹ suites 0\n' +
+    'ℹ pass 15\n' +
+    'ℹ fail 2\n' +
+    'ℹ cancelled 0\n' +
+    'ℹ skipped 0\n' +
+    'ℹ todo 0\n' +
+    'ℹ duration_ms 424.106653\n' +
+    '\n' +
+    '✖ failing tests:\n' +
+    '\n' +
+    'test at apps/signer/test/rpc.test.ts:28:1\n' +
+    '✖ RPC-1: pins devnet identity and validates observed blockhash/lifetime with confirmed context (25.806679ms)\n' +
+    '  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n' +
+    '  \n' +
+    '  false !== true\n' +
+    '  \n' +
+    '      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/rpc.test.ts:31:10)\n' +
+    '      at async Test.run (node:internal/test_runner/test:1404:7)\n' +
+    '      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {\n' +
+    '    generatedMessage: true,\n' +
+    "    code: 'ERR_ASSERTION',\n" +
+    '    actual: false,\n' +
+    '    expected: true,\n' +
+    "    operator: 'strictEqual',\n" +
+    "    diff: 'simple'\n" +
+    '  }\n' +
+    '\n' +
+    'test at apps/signer/test/rpc.test.ts:34:1\n' +
+    '✖ RPC-1: cross-cluster substitution denies; blockhash mismatch or invalidity denies (2.452029ms)\n' +
+    '  AssertionError [ERR_ASSERTION]: Missing expected rejection.\n' +
+    '      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/rpc.test.ts:37:5)\n' +
+    '      at async Test.run (node:internal/test_runner/test:1404:7)\n' +
+    '      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {\n' +
+    '    generatedMessage: false,\n' +
+    "    code: 'ERR_ASSERTION',\n" +
+    '    actual: undefined,\n' +
+    '    expected: /network|blockhash|provider/,\n' +
+    "    operator: 'rejects',\n" +
+    "    diff: 'simple'\n" +
+    '  }\n',
+  expected: /tests 11/,
+  operator: 'match',
+  diff: 'simple'
+}
+
+Node.js v26.7.0
+Running fault campaign: signer/service-faults.ts
+caught service fault: accept-unsigned-bootstrap
+caught service fault: ignore-history-mode
+caught service fault: claim-key-isolation
+caught service fault: hide-recovery-error
+caught service fault: release-before-drain
+caught service fault: skip-work-drain
+caught service fault: skip-recovery-tracking
+caught service fault: allow-recovery-after-stop
+All service faults caught; restored source passes
+Running fault campaign: signer/socket-faults.ts
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /tests 13/. Input:
+
+'✔ SIG-2: only propose/report/status dispatch, with one bounded response and request identity (19.458356ms)\n' +
+  '✖ SIG-10: socket permissions restrict its group and parent must be protected (6.441743ms)\n' +
+  '✔ SIG-2/3: malformed JSON, unknown fields, bad IDs/deadlines and multiple frames never dispatch (9.102573ms)\n' +
+  '✔ SIG-2: oversized or invalid UTF-8 frames refuse before dispatch (3.213447ms)\n' +
+  '✔ SIG-3: idle and unfinished requests end within the configured bounded read timeout (61.811423ms)\n' +
+  '✔ SIG-1: handler errors return a fixed code without exposing internal exception text (2.005461ms)\n' +
+  '✔ SIG-10: existing non-socket and symlink paths are never removed (1.535277ms)\n' +
+  '✔ SIG-10: a live listener cannot be replaced (2.497623ms)\n' +
+  '✔ SIG-3: trickling bytes cannot extend the absolute connection deadline (42.239684ms)\n' +
+  '✔ SIG-1/2: oversized or unserialisable handler responses become fixed internal errors (2.599563ms)\n' +
+  '✔ SIG-8/10: an abandoned socket is recovered after its process exits (44.768342ms)\n' +
+  '✔ SIG-2/3: clients holding their half open cannot exhaust completed connection slots (29.570559ms)\n' +
+  "✔ SIG-2: a proposal exceeding the core's message bound is an invalid frame before dispatch (2.015774ms)\n" +
+  '✔ SIG-3: invalid read timeout configuration refuses startup (1.07734ms)\n' +
+  '✔ SIG-2: malformed report references are protocol refusals without handler calls (2.872029ms)\n' +
+  '✔ SIG-2/3: unfinished clients saturate the bounded slots and the next client receives busy (19.721142ms)\n' +
+  'ℹ tests 16\n' +
+  'ℹ suites 0\n' +
+  'ℹ pass 15\n' +
+  'ℹ fail 1\n' +
+  'ℹ cancelled 0\n' +
+  'ℹ skipped 0\n' +
+  'ℹ todo 0\n' +
+  'ℹ duration_ms 438.026228\n' +
+  '\n' +
+  '✖ failing tests:\n' +
+  '\n' +
+  'test at apps/signer/test/socket.test.ts:35:1\n' +
+  '✖ SIG-10: socket permissions restrict its group and parent must be protected (6.441743ms)\n' +
+  '  AssertionError [ERR_ASSERTION]: Missing expected rejection.\n' +
+  '      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n' +
+  '      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/socket.test.ts:41:9)\n' +
+  '      at async Test.run (node:internal/test_runner/test:1404:7)\n' +
+  '      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {\n' +
+  '    generatedMessage: false,\n' +
+  "    code: 'ERR_ASSERTION',\n" +
+  '    actual: undefined,\n' +
+  '    expected: /directory|permission/,\n' +
+  "    operator: 'rejects',\n" +
+  "    diff: 'simple'\n" +
+  '  }\n'
+
+    at file:///home/dashy/Projects/Solanaut/evals/signer/socket-faults.ts:25:52
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '✔ SIG-2: only propose/report/status dispatch, with one bounded response and request identity (19.458356ms)\n' +
+    '✖ SIG-10: socket permissions restrict its group and parent must be protected (6.441743ms)\n' +
+    '✔ SIG-2/3: malformed JSON, unknown fields, bad IDs/deadlines and multiple frames never dispatch (9.102573ms)\n' +
+    '✔ SIG-2: oversized or invalid UTF-8 frames refuse before dispatch (3.213447ms)\n' +
+    '✔ SIG-3: idle and unfinished requests end within the configured bounded read timeout (61.811423ms)\n' +
+    '✔ SIG-1: handler errors return a fixed code without exposing internal exception text (2.005461ms)\n' +
+    '✔ SIG-10: existing non-socket and symlink paths are never removed (1.535277ms)\n' +
+    '✔ SIG-10: a live listener cannot be replaced (2.497623ms)\n' +
+    '✔ SIG-3: trickling bytes cannot extend the absolute connection deadline (42.239684ms)\n' +
+    '✔ SIG-1/2: oversized or unserialisable handler responses become fixed internal errors (2.599563ms)\n' +
+    '✔ SIG-8/10: an abandoned socket is recovered after its process exits (44.768342ms)\n' +
+    '✔ SIG-2/3: clients holding their half open cannot exhaust completed connection slots (29.570559ms)\n' +
+    "✔ SIG-2: a proposal exceeding the core's message bound is an invalid frame before dispatch (2.015774ms)\n" +
+    '✔ SIG-3: invalid read timeout configuration refuses startup (1.07734ms)\n' +
+    '✔ SIG-2: malformed report references are protocol refusals without handler calls (2.872029ms)\n' +
+    '✔ SIG-2/3: unfinished clients saturate the bounded slots and the next client receives busy (19.721142ms)\n' +
+    'ℹ tests 16\n' +
+    'ℹ suites 0\n' +
+    'ℹ pass 15\n' +
+    'ℹ fail 1\n' +
+    'ℹ cancelled 0\n' +
+    'ℹ skipped 0\n' +
+    'ℹ todo 0\n' +
+    'ℹ duration_ms 438.026228\n' +
+    '\n' +
+    '✖ failing tests:\n' +
+    '\n' +
+    'test at apps/signer/test/socket.test.ts:35:1\n' +
+    '✖ SIG-10: socket permissions restrict its group and parent must be protected (6.441743ms)\n' +
+    '  AssertionError [ERR_ASSERTION]: Missing expected rejection.\n' +
+    '      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n' +
+    '      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/socket.test.ts:41:9)\n' +
+    '      at async Test.run (node:internal/test_runner/test:1404:7)\n' +
+    '      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {\n' +
+    '    generatedMessage: false,\n' +
+    "    code: 'ERR_ASSERTION',\n" +
+    '    actual: undefined,\n' +
+    '    expected: /directory|permission/,\n' +
+    "    operator: 'rejects',\n" +
+    "    diff: 'simple'\n" +
+    '  }\n',
+  expected: /tests 13/,
+  operator: 'match',
+  diff: 'simple'
+}
+
+Node.js v26.7.0
+{"ok":false,"failed":["signer/rpc-faults.ts","signer/socket-faults.ts"],"skipped":[]}

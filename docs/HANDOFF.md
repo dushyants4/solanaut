@@ -233,6 +233,7 @@ The live probes and baseline are complete. ADR-012 C is built and tested offline
 | 2026-10-06 | verified persisted-prefix process kills, partial CI-2 | commit containing `evals/ci/kills.md` | signal/recovery/fault receipt | SDK kernel-owned history qualification; other write/sign/send/power-loss boundaries remain owed. |
 | 2026-10-06 | bounded archive verification, SNP-1 foundation | commit containing `evals/sdk/archive.md` | structure/source/pin/fault and installed-consumer receipt | Initial mutation miss and FIFO hang corrected; authenticated snapshots and state replay remain owed. |
 | 2026-10-06 | read-only archive command, SNP-2 | commit containing `evals/sdk/archive-cli.md` | command/fault/installed-binary receipt | Prior archive step `f1b6010`: ten close gates and CI `37491296517` green. Numeric fixture miss corrected; state recovery remains owed. |
+| 2026-10-06 | AST statement/branch coverage, partial CI-2 | commit containing `evals/ci/coverage.md` | calibrated inventory/counters, initial deficit, remediation and faults | Command step `22235e7`: ten close gates and CI `37493990236` green. Coverage floors unchanged; remaining quality/security gates and H9 still pending. |
 
 ## 8. Handing back to Claude
 

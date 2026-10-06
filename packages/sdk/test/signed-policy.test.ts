@@ -11,7 +11,7 @@ import { canonicalJSON } from "../src/canonical.ts";
 import { createGuard, replay } from "../src/guard.ts";
 import { inspectRecord } from "../src/inspect.ts";
 import { seal, type Entry } from "../src/log.ts";
-import { preparePolicyText, verifyPolicyAuthorization, type PolicyAuthorization } from "../src/signed-policy.ts";
+import { preparePolicyText, verifyPolicyAuthorization, verifyPolicyEntry, type PolicyAuthorization } from "../src/signed-policy.ts";
 import { sensorV1 } from "../src/sensor.ts";
 import { WORKLOAD_POLICY } from "./support/workload.ts";
 import { craftLegacy, key } from "./support/craft.ts";
@@ -50,6 +50,17 @@ test("POL-2: even a correctly signed dishonest summary is rejected", () => {
   a.text = a.text.replace("opaque: deny", "opaque: allow");
   a.signature = sign(null, Buffer.from(a.text), operator.privateKey).toString("base64");
   assert.throws(() => verifyPolicyAuthorization(policy, a), /text|summary/);
+});
+test("POL-2: missing authorization and non-text signature cannot authenticate",()=> {
+  assert.throws(()=>verifyPolicyAuthorization(policy,null as never),/required/);
+  assert.throws(()=>verifyPolicyAuthorization(policy,{...authorization(),signature:new Uint8Array(64)} as never),/missing/);
+});
+test("VER-2: equivalent but noncanonical recorded policy is not accepted as signed history",async()=> {
+  const g=await createGuard({policy,authorization:authorization()});
+  try {
+    const entry=g.entries().find(e=>e.kind==="policy"); assert.ok(entry && entry.kind==="policy");
+    assert.throws(()=>verifyPolicyEntry({...entry,policy:JSON.stringify(JSON.parse(entry.policy),null,2)},trust),/canonical/);
+  } finally {g.close();}
 });
 test("POL-3: the principal cannot become the pinned operator", async () => {
   const p = { ...policy, principal: [operatorKey] };

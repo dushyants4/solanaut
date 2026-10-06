@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.22** · 2026-10-06 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.23** · 2026-10-06 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 The threat model ([docs/papers/THREAT-MODEL.md](papers/THREAT-MODEL.md)) lists what an attacker can do to a running
@@ -11,6 +11,12 @@ Archive verification now rejects observed source changes and checks optional ext
 (`evals/sdk/archive.md`). A self-consistent forged chain remains possible without independent
 authentication. This foundation does not close signed-snapshot, bounded-state replay, backup
 recovery or hostile-filesystem risks; operator-owned immutable local archives are required.
+
+AST statement/branch coverage now measures complete SDK/signer inventories with calibrated
+counters (`evals/ci/coverage.md`). Its initial deficit was remediated with failure-path tests;
+no product rule or threshold changed. This does not establish mutation score, independent
+security review or the remaining reliability/performance gates. Existing dependency advisories
+remain despite verified signatures on the new development-only instrumentation packages.
 
 **Scales.**
 - **Likelihood:** low, unlikely before the Alpha closes; medium, plausible; high, already seen, or expected.

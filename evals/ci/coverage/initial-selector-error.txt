@@ -1,0 +1,35 @@
+caught coverage fault: failed-test-process
+caught coverage fault: statement-floor
+caught coverage fault: branch-floor
+caught coverage fault: critical-floor
+caught coverage fault: omit-inventory-check
+caught coverage fault: invalid-counts
+caught coverage fault: wrong-counter-variable
+caught coverage fault: skip-native-stripping
+caught coverage fault: omit-unimported-source
+caught coverage fault: incomplete-statement-map
+caught coverage fault: invalid-branch-shape
+caught coverage fault: accept-counter-fabrication
+caught coverage fault: release-input-coercion
+caught coverage fault: raw-canonical-bytes
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: missing or ambiguous site: cross-policy-signing
+
+3 !== 2
+
+    at file:///home/dashy/Projects/Solanaut/evals/ci/coverage-faults.ts:27:52
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 3,
+  expected: 2,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

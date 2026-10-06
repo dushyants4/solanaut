@@ -7,6 +7,12 @@ all security, validation and human-owned release gates.
 
 ## Did
 
+- Command step `22235e7` privately pushed; ten close gates and CI `37493990236` green.
+  Continued into CI-2 AST coverage with fixed thresholds, complete SDK/signer inventory,
+  native type stripping and explicit test instrumentation. Four gate, two calibration,
+  one real-hook and three merger stub failures retained. Exact development dependencies
+  installed without scripts; registry signatures pass. Initial complete measurement fails.
+
 - Archive step `f1b6010` privately pushed; ten close gates and CI `37491296517` green.
   Added read-only operator command under SNP-2, with canonical arguments, JSON receipts/errors,
   separate usage/refusal exits and compiled installed executable. Eight command cases and
@@ -114,6 +120,10 @@ all security, validation and human-owned release gates.
 
 ## Changed
 
+- Coverage step adds test-only AST instrumentation/collector, complete source/counter
+  inventory and exact floor validation; a pinned CI job and maintained gate/product faults.
+  Adds security-boundary tests without changing production source or signer budget.
+
 - Archive command adds a native TypeScript bin and tests, compiled release inclusion and
   installed executable checks; documents strict arguments and actionable typed failures.
 
@@ -129,6 +139,28 @@ all security, validation and human-owned release gates.
   this history and must pass compatibility checks before rollback.
 
 ## Found
+
+- First full coverage-step bite rejects RPC/socket campaigns because expanded batteries no
+  longer match their old completion counts. Product faults already fail as required. Updated
+  exact expected counts upward to seventeen/sixteen, preserving all mutations and deadlines;
+  failed aggregate retained and full run repeated after restoration.
+
+- Coverage mutation harness first expects the wrong completed-test count; retained its
+  rejection. Coercion fault then survives because canonical comparison masks a benign object;
+  added a throwing coercion input. The signing-policy selector occurs at two stages; narrowed
+  to the exact signed-stage statement. Final campaign catches all nineteen faults.
+
+- Initial AST coverage misses the accepted SDK/signer statement floors, signer aggregate
+  branches, latch and socket critical branches. Raw initial summary/output retained in
+  `evals/ci/coverage/`; thresholds unchanged. Added malformed signature/payload/journal,
+  corrupted restore, RPC configuration/response/context/deadline and socket resource cases.
+- A combined read-only diagnostic plus stdout redirection triggered the boundary heuristic.
+  Removed the write operation and ran the read-only diagnostic as permitted by the law;
+  no key file or protected content read, and no protected write attempted.
+- The initial socket-saturation fixture waits for EOF and treats a reset after a complete
+  busy frame as failure. Replaced that fixture read with the actual sending client, requiring
+  its typed remote/busy result and no execution uncertainty. Client count and server rules
+  unchanged. Failed measurement retained; this is a fixture correction, not an ignored gate.
 
 - CLI numeric fault initially survived because continuation validation masked its fixtures.
   Added a valid line-limit numeric domain to isolate spelling; seven final faults now fail.
@@ -258,6 +290,14 @@ all security, validation and human-owned release gates.
 - Existing protected-file owed edit O1 remains in HANDOFF §6; no protected file changed.
 
 ## Provenance
+
+Coverage step final commands: `npm run test:coverage` passes 407 instrumented tests and all
+fixed floors; `npm test` 407 passes, typecheck zero, six installed-package checks pass.
+`npm run test:bite`: 25 campaigns / 189 caught faults, all sources restored. Receipt
+`evals/ci/coverage.md`, exact counters/source hashes in its final summary. No production
+source changed; signer budget/ADR-021 status unchanged. Pre-push close nine gates.
+The Stryker command-runner package lookup returns 404; it is a core configuration option,
+as the official configuration documents. No Stryker package installed in this step.
 
 Archive command: `npm test` 379 passes; typecheck zero; eight focused cases/seven faults,
 six installed checks/four package faults. Full bite: 24 campaigns/170 caught faults,

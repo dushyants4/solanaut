@@ -1,0 +1,30 @@
+✖ CI-2: explicit hook records real SDK execution with statement and branch maps (73.457669ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 187.37914
+
+✖ failing tests:
+
+test at evals/ci/coverage-hook.test.ts:7:1
+✖ CI-2: explicit hook records real SDK execution with statement and branch maps (73.457669ms)
+  AssertionError [ERR_ASSERTION]: hook must persist execution evidence
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/coverage-hook.test.ts:12:50)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

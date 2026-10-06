@@ -1,0 +1,95 @@
+caught coverage fault: failed-test-process
+caught coverage fault: statement-floor
+caught coverage fault: branch-floor
+caught coverage fault: critical-floor
+caught coverage fault: omit-inventory-check
+caught coverage fault: invalid-counts
+caught coverage fault: wrong-counter-variable
+caught coverage fault: skip-native-stripping
+caught coverage fault: omit-unimported-source
+caught coverage fault: incomplete-statement-map
+caught coverage fault: invalid-branch-shape
+caught coverage fault: accept-counter-fabrication
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: ✔ RPC-1: pins devnet identity and validates observed blockhash/lifetime with confirmed context (50.769243ms)
+✔ RPC-1: cross-cluster substitution denies; blockhash mismatch or invalidity denies (6.781931ms)
+✔ RPC-2: malformed and non-integral heights or context cannot become authority (9.081858ms)
+✔ RPC-2: response ID/version, missing result, and oversized body refuse (4.193278ms)
+✔ RPC-3: one-provider outage permits conservative reads; total outage reports degraded (13.241053ms)
+✔ RPC-3: stale or conflicting observations cannot authorize a new proposal (2.540441ms)
+✔ RPC-4: chain outcome requires agreeing committed evidence; missing/stale/conflicting stays unresolved (7.414812ms)
+✔ RPC-4: failed outcome needs matching committed failure from both providers (1.243957ms)
+✔ RPC-2/SIG-9: rate-limited reads back off, but send has exactly one attempt with node retries disabled (2.718774ms)
+✔ RPC-2: hung reads end at their deadline and expired calls make no network request (30.906401ms)
+✔ RPC-2: a standalone process keeps its owned request deadline alive (199.772525ms)
+✔ RPC-1/2: unsafe endpoint sets and invalid deadlines cannot configure a provider (0.767737ms)
+✔ RPC-2: missing bodies and rate limits beyond the request deadline deny reads (0.571906ms)
+✔ RPC-1/2: malformed blockhashes and an expired lifetime deny observation (1.935932ms)
+✔ RPC-3: provider slot rollback cannot replace previously observed context (0.546147ms)
+✔ RPC-4: malformed signature status arrays and future or invalid committed outcomes stay unresolved (3.892413ms)
+✔ RPC-2: a response delivered after the host deadline cannot become authoritative (0.374621ms)
+✔ SIG-2: only propose/report/status dispatch, with one bounded response and request identity (18.612985ms)
+✔ SIG-10: socket permissions restrict its group and parent must be protected (1.960496ms)
+✔ SIG-2/3: malformed JSON, unknown fields, bad IDs/deadlines and multiple frames never dispatch (5.702856ms)
+✔ SIG-2: oversized or invalid UTF-8 frames refuse before dispatch (4.964266ms)
+✔ SIG-3: idle and unfinished requests end within the configured bounded read timeout (63.251536ms)
+✔ SIG-1: handler errors return a fixed code without exposing internal exception text (4.363345ms)
+✔ SIG-10: existing non-socket and symlink paths are never removed (1.437191ms)
+✔ SIG-10: a live listener cannot be replaced (2.156042ms)
+✔ SIG-3: trickling bytes cannot extend the absolute connection deadline (42.998798ms)
+✔ SIG-1/2: oversized or unserialisable handler responses become fixed internal errors (2.948544ms)
+✔ SIG-8/10: an abandoned socket is recovered after its process exits (53.737696ms)
+✔ SIG-2/3: clients holding their half open cannot exhaust completed connection slots (31.857575ms)
+✔ SIG-2: a proposal exceeding the core's message bound is an invalid frame before dispatch (1.990262ms)
+✔ SIG-3: invalid read timeout configuration refuses startup (0.968739ms)
+✔ SIG-2: malformed report references are protocol refusals without handler calls (3.103748ms)
+✔ SIG-2/3: unfinished clients saturate the bounded slots and the next client receives busy (21.128175ms)
+✔ CI-2: explicit hook records real SDK execution with statement and branch maps (409.502637ms)
+(node:645781) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ CI-2: AST calibration counts separate statements on one line and both branch arms (73.541565ms)
+✔ CI-2: native type stripping preserves runtime behaviour and leaves unused code uncovered (11.307325ms)
+(node:645787) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ CI-2: merging preserves executed counts and includes unimported source with zero counters (78.517195ms)
+✔ CI-2: missing, foreign and incompatible counter evidence is refused (8.311706ms)
+✔ CI-2: fabricated negative, fractional, unsafe and malformed branch counters fail (9.875504ms)
+✔ CI-2: failed or missing test-process completion cannot qualify coverage (1.863284ms)
+✔ CI-2: exact statement and branch floors pass without rounding (1.090092ms)
+✔ CI-2: a critical branch deficit fails even when aggregate totals pass (0.411263ms)
+✔ CI-2: missing, extra and duplicate files cannot disappear from coverage (0.387342ms)
+✔ CI-2: malformed and empty execution counts fail closed (0.576521ms)
+✔ LAT/POL-2: malformed release text and public signature inputs cannot authenticate (4.983031ms)
+✔ LIF-1/4: unsupported canonical values and malformed payload types refuse binding (1.960173ms)
+✔ LIF-4: malformed recorded request/response time and noncanonical content cannot restore (12.23271ms)
+✔ LIF-2: unknown requests, cross-policy signing and unsupported stages cannot journal (6.324318ms)
+✔ SIG-8: corrupted decision hashes refuse restore and deterministically diverge in replay (4.423576ms)
+✔ T2/T15: empty token-program instruction data is denied under both programs (0.389205ms)
+ℹ tests 50
+ℹ suites 0
+ℹ pass 50
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 581.036794
+
+
+0 !== 1
+
+    at file:///home/dashy/Projects/Solanaut/evals/ci/coverage-faults.ts:30:12
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

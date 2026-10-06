@@ -1,0 +1,26 @@
+// Frozen CI-2 AST measurement. No exclusions or rounded threshold comparisons.
+import { spawnSync } from "node:child_process";
+import { createHash } from "node:crypto";
+import { mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import { join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import { instrumentSource } from "./coverage-instrument.ts";
+import { summarizeCoverage } from "./coverage-merge.ts";
+import { requireCoverage, requireTestProcess } from "./coverage.ts";
+const root=fileURLToPath(new URL("../../",import.meta.url));
+const inventory=()=>["packages/sdk/src","apps/signer/src"].flatMap(directory=>(readdirSync(join(root,directory),{recursive:true}) as string[]).filter(path=>path.endsWith(".ts")).map(path=>directory+"/"+path)).sort();
+const paths=inventory();
+const sources=paths.map(path=>({path,text:readFileSync(join(root,path),"utf8")}));
+const baselines=sources.map(source=>instrumentSource(source.text,source.path).baseline);
+const hashes=Object.fromEntries(sources.map(source=>[source.path,createHash("sha256").update(source.text).digest("hex")]));
+const scratch=resolve(root,".sandbox/solanaut-1/coverage/current"), reports=join(scratch,"reports");
+rmSync(scratch,{recursive:true,force:true}); mkdirSync(reports,{recursive:true});
+const result=spawnSync(process.execPath,["--import",fileURLToPath(new URL("./coverage-hook.ts",import.meta.url)),"--test","packages/sdk/test/*.test.ts","apps/*/test/*.test.ts","evals/ci/*.test.ts"],{cwd:root,stdio:"inherit",timeout:300_000,env:{...process.env,SOLANAUT_COVERAGE_DIR:reports}});
+requireTestProcess(result.status);
+if(JSON.stringify(inventory())!==JSON.stringify(paths) || sources.some(source=>readFileSync(join(root,source.path),"utf8")!==source.text)) throw new Error("coverage sources changed during measurement");
+const files=summarizeCoverage(baselines,readdirSync(reports).filter(path=>path.endsWith(".json")).map(path=>JSON.parse(readFileSync(join(reports,path),"utf8"))));
+const summary={definition:1,node:process.version,hashes,files};
+writeFileSync(join(scratch,"summary.json"),JSON.stringify(summary,null,2)+"\n");
+for(const file of files) console.log(`coverage ${file.path}: statements ${file.statements.covered}/${file.statements.total}; branches ${file.branches.covered}/${file.branches.total}`);
+requireCoverage(files,paths);
+console.log("AST coverage floors pass");

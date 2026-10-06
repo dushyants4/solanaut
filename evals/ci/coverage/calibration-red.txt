@@ -1,0 +1,46 @@
+✖ CI-2: AST calibration counts separate statements on one line and both branch arms (2.527932ms)
+✖ CI-2: native type stripping preserves runtime behaviour and leaves unused code uncovered (1.178635ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 87.007944
+
+✖ failing tests:
+
+test at evals/ci/coverage-instrument.test.ts:5:1
+✖ CI-2: AST calibration counts separate statements on one line and both branch arms (2.527932ms)
+  AssertionError [ERR_ASSERTION]: execution must emit counters
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/coverage-instrument.test.ts:9:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at evals/ci/coverage-instrument.test.ts:16:1
+✖ CI-2: native type stripping preserves runtime behaviour and leaves unused code uncovered (1.178635ms)
+  evalmachine.<anonymous>:1
+  function f(x: boolean): number {if(x) return 1; return 2;} const unused = (): number => 3; f(false);
+              ^
+  
+  SyntaxError: Unexpected token ':'
+      at new Script (node:vm:118:7)
+      at createScript (node:vm:270:10)
+      at runInNewContext (node:vm:311:10)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/coverage-instrument.test.ts:18:71)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)

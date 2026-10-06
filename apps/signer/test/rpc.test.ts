@@ -100,3 +100,41 @@ test("RPC-2: a standalone process keeps its owned request deadline alive", () =>
   assert.equal(child.status, 0, child.stderr);
   assert.match(child.stdout, /bounded deadline completed/);
 });
+test("RPC-1/2: unsafe endpoint sets and invalid deadlines cannot configure a provider", () => {
+  for (const endpoints of [[urls[0]!],[...urls,urls[0]!],[urls[0]!,urls[0]!],["http://rpc-a.invalid",urls[1]!],["https://operator@rpc-a.invalid",urls[1]!],["ftp://rpc-a.invalid",urls[1]!]]) assert.throws(()=>createTrustedRpc(endpoints),/distinct|HTTPS|loopback/);
+  for(const timeoutMs of [NaN,Infinity,0,-1,30_001]) assert.throws(()=>createTrustedRpc(urls,{timeoutMs}),/timeout/);
+  for(const backoffMs of [NaN,Infinity,-1]) assert.throws(()=>createTrustedRpc(urls,{backoffMs}),/backoff/);
+  assert.ok(createTrustedRpc(["http://127.0.0.1:8899","http://[::1]:8899"]));
+});
+test("RPC-2: missing bodies and rate limits beyond the request deadline deny reads", async () => {
+  const missing=fixture(undefined,()=>new Response(null)); await assert.rejects(missing.rpc.height(deadline()),/body|provider/);
+  const rpc=createTrustedRpc(urls,{backoffMs:5000,fetch:async()=>new Response("limited",{status:429})});
+  await assert.rejects(rpc.height(deadline()),/backoff|provider/);
+});
+test("RPC-1/2: malformed blockhashes and an expired lifetime deny observation", async () => {
+  for(const value of [null,7,encodeBase58(Uint8Array.of(1))]) {
+    const f=fixture((c,result)=>c.method==="getLatestBlockhash"?{context:{slot:100},value:{blockhash:value,lastValidBlockHeight:100}}:result);
+    await assert.rejects(f.rpc.observe(message,deadline()),/base58|provider/);
+  }
+  const expired=fixture((c,result)=>c.method==="getBlockHeight"?101:result);
+  await assert.rejects(expired.rpc.observe(message,deadline()),/expired|provider/);
+});
+test("RPC-3: provider slot rollback cannot replace previously observed context", async () => {
+  let rollback=false; const f=fixture((c,result)=>rollback && c.method==="getSlot"?99:result);
+  assert.equal(await f.rpc.height(deadline()),10n); rollback=true;
+  await assert.rejects(f.rpc.height(deadline()),/stale|provider/);
+});
+test("RPC-4: malformed signature status arrays and future or invalid committed outcomes stay unresolved", async () => {
+  for(const value of [{},[],[null,null],[{slot:101,err:null,confirmationStatus:"confirmed"}],[{slot:90,confirmationStatus:"confirmed"}],[{slot:90,err:"invalid",confirmationStatus:"confirmed"}],[{slot:90,err:null,confirmationStatus:"unverified"}]]) {
+    const f=fixture((c,result)=>c.method==="getSignatureStatuses"?{context:{slot:100},value}:result);
+    assert.equal(await f.rpc.outcome(signature,deadline()),null);
+  }
+  const down=fixture(undefined,()=>new Response("outage",{status:500})); assert.equal(await down.rpc.outcome(signature,deadline()),null);
+});
+test("RPC-2: a response delivered after the host deadline cannot become authoritative", async () => {
+  let now=1000; const rpc=createTrustedRpc(urls,{now:()=>now,fetch:async(_url,init)=> {
+    const request=JSON.parse(String(init?.body)); now=2001;
+    return Response.json({jsonrpc:"2.0",id:request.id,result:DEVNET_GENESIS});
+  }});
+  await assert.rejects(rpc.height(2000),/deadline|provider/);
+});

@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.29** · 2026-10-06 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.30** · 2026-10-06 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -730,6 +730,14 @@ and accepted: ADR-013 to ADR-018 (§13.11).
 | CI-1 | The fault injections that showed each gate failing re-run on every push (the `bite` job) | `evals/README.md` | a planted fault fails CI |
 | CI-2 | The coverage, mutation, property, fuzz, differential and performance gates in `docs/READINESS.md`, as confirmed at 2c.1, run in CI, each seen failing first | READINESS | each gate's receipt |
 
+Coverage preparation uses in-memory AST instrumentation after Node's native type stripping,
+not emitted development builds or line counts labelled as statements. Inventory every SDK
+and signer source file, including unimported files. Require unrounded SDK and signer totals
+at the existing statement/branch floors, and the existing per-file branch floor for the
+designated SDK files plus signed-policy/request/signing/client and every signer source file.
+Calibration must distinguish multiple statements on one line and unexecuted branch arms.
+Test instrumentation is explicit and is not used by the installed-package checks.
+
 CI-1 maintained campaign runner now checks its complete executable inventory, runs sequentially
 and checks source restoration before another mutation. Failed campaigns are retained; unrestored
 source stops the remainder with explicit skipped work. The pinned CI job uses the same command
@@ -931,3 +939,4 @@ where needed, and UTC issued timestamps include milliseconds. Policies remain re
 | Draft 4.27 | 2026-10-06 | CI-2 verified persisted-prefix SIGKILL recovery and pinned Linux job; other crash boundaries remain owed. |
 | Draft 4.28 | 2026-10-06 | SNP-1 bounded structural archive verification, immutable option pins and installed SDK exports; authenticated snapshots and streamed state replay remain owed. |
 | Draft 4.29 | 2026-10-06 | SNP-2 installed read-only archive command, strict arguments and typed JSON receipts/errors; full recovery gates unchanged. |
+| Draft 4.30 | 2026-10-06 | CI-2 complete AST coverage inventory, native test instrumentation, count/report validation and fixed SDK/signer/critical-file floors; missing failure paths covered without product-rule changes. |

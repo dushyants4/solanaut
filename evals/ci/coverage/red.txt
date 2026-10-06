@@ -1,0 +1,84 @@
+✖ CI-2: exact statement and branch floors pass without rounding (1.42398ms)
+✖ CI-2: a critical branch deficit fails even when aggregate totals pass (0.168359ms)
+✖ CI-2: missing, extra and duplicate files cannot disappear from coverage (0.184679ms)
+✖ CI-2: malformed and empty execution counts fail closed (0.201824ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 93.898742
+
+✖ failing tests:
+
+test at evals/ci/coverage.test.ts:10:1
+✖ CI-2: exact statement and branch floors pass without rounding (1.42398ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/coverage.test.ts:14:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /coverage/i,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/ci/coverage.test.ts:17:1
+✖ CI-2: a critical branch deficit fails even when aggregate totals pass (0.168359ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/coverage.test.ts:19:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /guard.ts/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/ci/coverage.test.ts:23:1
+✖ CI-2: missing, extra and duplicate files cannot disappear from coverage (0.184679ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/coverage.test.ts:24:132)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /inventory/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/ci/coverage.test.ts:27:1
+✖ CI-2: malformed and empty execution counts fail closed (0.201824ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/coverage.test.ts:30:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /counts/,
+    operator: 'throws',
+    diff: 'simple'
+  }

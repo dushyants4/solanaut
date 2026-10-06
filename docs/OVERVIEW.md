@@ -1,10 +1,15 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 21** · 2026-10-06 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 22** · 2026-10-06 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
+
+`npm run test:coverage` runs explicit, in-memory AST instrumentation over SDK and signer
+source, checks complete counter maps and enforces the unchanged quality floors. Unimported
+files count as uncovered; development and installed consumers use their existing paths.
+Its initial failure, remediation and calibration evidence are in `evals/ci/coverage.md`.
 
 The SDK also exports bounded `verifyArchive` with typed `ArchiveError` codes, continuation
 identity and optional external head/byte pins. This verifies structure, not authenticated

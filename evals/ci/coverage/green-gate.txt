@@ -1,0 +1,22 @@
+✔ CI-2: explicit hook records real SDK execution with statement and branch maps (275.816873ms)
+(node:611315) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ CI-2: AST calibration counts separate statements on one line and both branch arms (70.739743ms)
+✔ CI-2: native type stripping preserves runtime behaviour and leaves unused code uncovered (6.103923ms)
+(node:611321) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ CI-2: merging preserves executed counts and includes unimported source with zero counters (61.985926ms)
+✔ CI-2: missing, foreign and incompatible counter evidence is refused (6.371701ms)
+✔ CI-2: fabricated negative, fractional, unsafe and malformed branch counters fail (4.324857ms)
+✔ CI-2: exact statement and branch floors pass without rounding (1.504904ms)
+✔ CI-2: a critical branch deficit fails even when aggregate totals pass (0.260414ms)
+✔ CI-2: missing, extra and duplicate files cannot disappear from coverage (0.244795ms)
+✔ CI-2: malformed and empty execution counts fail closed (0.282949ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 368.334568

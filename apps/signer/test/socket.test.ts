@@ -7,6 +7,7 @@ import { tmpdir } from "node:os";
 import { test } from "node:test";
 import { spawn } from "node:child_process";
 import { startSocket } from "../src/socket.ts";
+import { createSendingClient, SignerClientError } from "@solanaut/sdk";
 const request = (method = "status") => ({ method, clientId: "agent", id: "request", deadline: Date.now() + 1000, ...(method === "propose" ? { message: "AA==" } : {}), ...(method === "report" ? { decision: "a".repeat(64) } : {}) });
 const location = () => { const dir = mkdtempSync(join(tmpdir(), "solanaut-socket-")); chmodSync(dir, 0o750); return { dir, path: join(dir, "signer.sock") }; };
 function exchange(path: string, bytes: string | Buffer | null) {
@@ -139,4 +140,30 @@ test("SIG-2: a proposal exceeding the core's message bound is an invalid frame b
   const { path } = location(); let calls = 0; const service = await startSocket(path, async () => { calls++; return {}; });
   try { const r = await exchange(path, JSON.stringify({ ...request("propose"), message: "x".repeat(8193) }) + "\n"); assert.equal(r.ok, false); assert.equal(r.error.code, "protocol"); assert.equal(calls, 0); }
   finally { await service.close(); }
+});
+test("SIG-3: invalid read timeout configuration refuses startup", async () => {
+  const {path}=location();
+  for(const timeoutMs of [NaN,Infinity,0,-1,30_001]) await assert.rejects(startSocket(path,async()=>({}),{timeoutMs}),/timeout/);
+});
+test("SIG-2: malformed report references are protocol refusals without handler calls", async () => {
+  const {path}=location(); let calls=0; const service=await startSocket(path,async()=>{calls++;return {};});
+  try {
+    for(const decision of [null,7,"short","A".repeat(64)]) {
+      const result=await exchange(path,JSON.stringify({...request("report"),decision})+"\n");
+      assert.equal(result.error.code,"protocol");
+    }
+    assert.equal(calls,0);
+  } finally {await service.close();}
+});
+test("SIG-2/3: unfinished clients saturate the bounded slots and the next client receives busy", async () => {
+  const {path}=location(), held:ReturnType<typeof connect>[]=[];
+  const service=await startSocket(path,async()=>({ready:true}));
+  try {
+    await Promise.all(Array.from({length:64},()=>new Promise<void>((resolve,reject)=> {
+      const socket=connect(path); held.push(socket); socket.once("connect",resolve); socket.once("error",reject);
+    })));
+    await new Promise<void>(resolve=>setImmediate(resolve));
+    const client=createSendingClient({socket:path,clientId:"agent"});
+    await assert.rejects(client.status({id:"overflow"}),error=>error instanceof SignerClientError && error.code==="remote" && error.remoteCode==="busy" && !error.mayHaveExecuted);
+  } finally {for(const socket of held) socket.destroy(); await service.close();}
 });
