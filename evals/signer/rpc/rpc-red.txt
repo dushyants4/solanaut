@@ -1,0 +1,203 @@
+✖ RPC-1: pins devnet identity and validates observed blockhash/lifetime with confirmed context (1.345385ms)
+✖ RPC-1: cross-cluster substitution denies; blockhash mismatch or invalidity denies (1.282831ms)
+✖ RPC-2: malformed and non-integral heights or context cannot become authority (0.398067ms)
+✖ RPC-2: response ID/version, missing result, and oversized body refuse (0.334073ms)
+✖ RPC-3: one-provider outage permits conservative reads; total outage reports degraded (0.250653ms)
+✖ RPC-3: stale or conflicting observations cannot authorize a new proposal (0.297539ms)
+✖ RPC-4: chain outcome requires agreeing committed evidence; missing/stale/conflicting stays unresolved (0.210854ms)
+✖ RPC-4: failed outcome needs matching committed failure from both providers (0.19591ms)
+✖ RPC-2/SIG-9: rate-limited reads back off, but send has exactly one attempt with node retries disabled (0.270442ms)
+✖ RPC-2: hung reads end at their deadline and expired calls make no network request (0.448069ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 0
+ℹ fail 10
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 250.628919
+
+✖ failing tests:
+
+test at apps/signer/test/rpc.test.ts:27:1
+✖ RPC-1: pins devnet identity and validates observed blockhash/lifetime with confirmed context (1.345385ms)
+  Error: RPC boundary unimplemented
+      at Object.fail (file:///home/dashy/Projects/Solanaut/apps/signer/src/rpc.ts:5:52)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/rpc.test.ts:28:53)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at apps/signer/test/rpc.test.ts:33:1
+✖ RPC-1: cross-cluster substitution denies; blockhash mismatch or invalidity denies (1.282831ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /network|blockhash|provider/. Input:
+  
+  'Error: RPC boundary unimplemented'
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/rpc.test.ts:36:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: RPC boundary unimplemented
+        at Object.fail (file:///home/dashy/Projects/Solanaut/apps/signer/src/rpc.ts:5:52)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/rpc.test.ts:36:32)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12)
+        at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3),
+    expected: /network|blockhash|provider/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at apps/signer/test/rpc.test.ts:39:1
+✖ RPC-2: malformed and non-integral heights or context cannot become authority (0.398067ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /shape|height|context|provider/. Input:
+  
+  'Error: RPC boundary unimplemented'
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/rpc.test.ts:42:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: RPC boundary unimplemented
+        at Object.fail (file:///home/dashy/Projects/Solanaut/apps/signer/src/rpc.ts:5:52)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/rpc.test.ts:42:32)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /shape|height|context|provider/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at apps/signer/test/rpc.test.ts:45:1
+✖ RPC-2: response ID/version, missing result, and oversized body refuse (0.334073ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /response|provider/. Input:
+  
+  'Error: RPC boundary unimplemented'
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/rpc.test.ts:48:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: RPC boundary unimplemented
+        at Object.fail (file:///home/dashy/Projects/Solanaut/apps/signer/src/rpc.ts:5:52)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/rpc.test.ts:48:32)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /response|provider/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at apps/signer/test/rpc.test.ts:51:1
+✖ RPC-3: one-provider outage permits conservative reads; total outage reports degraded (0.250653ms)
+  Error: RPC boundary unimplemented
+      at Object.fail (file:///home/dashy/Projects/Solanaut/apps/signer/src/rpc.ts:5:52)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/rpc.test.ts:53:33)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at apps/signer/test/rpc.test.ts:58:1
+✖ RPC-3: stale or conflicting observations cannot authorize a new proposal (0.297539ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /conflict/. Input:
+  
+  'Error: RPC boundary unimplemented'
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/rpc.test.ts:60:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: RPC boundary unimplemented
+        at Object.fail (file:///home/dashy/Projects/Solanaut/apps/signer/src/rpc.ts:5:52)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/rpc.test.ts:60:30)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /conflict/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at apps/signer/test/rpc.test.ts:64:1
+✖ RPC-4: chain outcome requires agreeing committed evidence; missing/stale/conflicting stays unresolved (0.210854ms)
+  Error: RPC boundary unimplemented
+      at Object.fail (file:///home/dashy/Projects/Solanaut/apps/signer/src/rpc.ts:5:52)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/rpc.test.ts:65:36)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at apps/signer/test/rpc.test.ts:71:1
+✖ RPC-4: failed outcome needs matching committed failure from both providers (0.19591ms)
+  Error: RPC boundary unimplemented
+      at Object.fail (file:///home/dashy/Projects/Solanaut/apps/signer/src/rpc.ts:5:52)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/rpc.test.ts:73:28)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at apps/signer/test/rpc.test.ts:75:1
+✖ RPC-2/SIG-9: rate-limited reads back off, but send has exactly one attempt with node retries disabled (0.270442ms)
+  Error: RPC boundary unimplemented
+      at Object.fail (file:///home/dashy/Projects/Solanaut/apps/signer/src/rpc.ts:5:52)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/rpc.test.ts:77:28)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at apps/signer/test/rpc.test.ts:85:1
+✖ RPC-2: hung reads end at their deadline and expired calls make no network request (0.448069ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /deadline|provider/. Input:
+  
+  'Error: RPC boundary unimplemented'
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/rpc.test.ts:90:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: RPC boundary unimplemented
+        at Object.fail (file:///home/dashy/Projects/Solanaut/apps/signer/src/rpc.ts:5:52)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/rpc.test.ts:90:28)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /deadline|provider/,
+    operator: 'rejects',
+    diff: 'simple'
+  }

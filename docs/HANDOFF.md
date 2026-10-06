@@ -204,6 +204,7 @@ The live probes and baseline are complete. ADR-012 C is built and tested offline
 | 2026-10-05 | request admission identity foundation | commit containing `evals/sdk/request-identity.md` | LIF-1 receipt | Atomic identity/reservation and retry lookup built; signed-byte/send lifecycle next. Ownership CI `37400891997` passed. |
 | 2026-10-05 | signing evidence journal foundation | commit containing `evals/sdk/signing-history.md` | LIF-2 receipt | SDK records checked lifecycle facts; executor/RPC next. Request CI `37401222564` passed. |
 | 2026-10-05 | conservative executor foundation | commit containing `evals/signer/core.md` | LIF-3 receipt | Fake-RPC lifecycle boundaries tested; actual RPC/transport/isolation next. Signing CI `37401878957` passed. |
+| 2026-10-05 | trusted devnet RPC boundary | commit containing `evals/signer/rpc.md` | RPC receipt | Fake-provider validation/failover tested; operational wiring, live outage and lookup reads still owed. |
 
 ## 8. Handing back to Claude
 

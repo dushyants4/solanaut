@@ -8,6 +8,15 @@ prepare the original repository for eventual human-approved public release.
 
 ## Did
 
+- Executor committed and pushed as `54ba32f`. RPC-1–4 begins from that revision; ten tests fail
+  against a stub then pass, seven valid faults caught after an integer-validator fault escaped the
+  original fixture. Added coherent fractional contexts and ID substitution with otherwise valid
+  shapes. Initial miss preserved in `evals/signer/rpc.md`. Full product suite 251 passes; typecheck
+  clean. Single public devnet genesis read matched the pin; no real transaction send. Official RPC
+  documentation checked and linked in the receipt. Current-only blockhash lifetime is a conservative
+  implementation choice within ADR-019; older valid hashes refuse, and missing history never proves
+  expiration. No live outage or process isolation qualification inferred.
+
 - Signing journal pushed as `948d6a5`; local close passes all checks and CI `37401878957` passed.
 - LIF-3 executor: initial six tests fail against stub; complete twelve-case battery passes with
   fake RPC. Five valid mutations caught; two invalid/classification fault runs rejected and

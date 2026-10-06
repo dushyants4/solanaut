@@ -1,0 +1,8 @@
+caught RPC fault: ignore-network
+caught RPC fault: fractional-height
+caught RPC fault: ignore-context
+caught RPC fault: one-provider-outcome
+caught RPC fault: retry-send
+caught RPC fault: ignore-blockhash
+caught RPC fault: ignore-envelope-id
+All RPC faults caught; restored source passes

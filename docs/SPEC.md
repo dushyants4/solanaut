@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.8** · 2026-10-05 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.9** · 2026-10-05 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -796,6 +796,15 @@ snapshot and RPC IDs are allocated with their implementation steps. Existing SIG
 | LIF-1 | request identity is namespaced by guard/client/ID and bound to canonical message/group payload in the admission entry; a same-payload retry returns that entry without evaluation, and changed payload or duplicate recorded identity is refused | request-identity battery, restore and replay |
 | LIF-2 | signed wire/signature, send-started intent and response are synced in the admission chain; signed evidence requires durable redemption and admitted bytes, send intent requires valid lifetime, and stages cannot repeat | signing-history battery, forged wire/signature and out-of-order replay |
 | LIF-3 | executor signs only after durable redemption and sends only after durable send intent; recovery never re-signs an unresolved redemption or resends send-started bytes; deadlines and payload identity remain enforced | fake-RPC core battery across persistence boundaries and reconstructed restarts |
+| RPC-1 | providers pin devnet identity and obtain message blockhash validity and bounded lifetime at confirmed commitment | genesis/hash/validity substitution fixtures |
+| RPC-2 | requests have bounded deadlines; response envelopes, integer/base58 shapes, context and size are validated; reads back off and sends never retry | malformed/hung/late response, rate limit and send-count tests |
+| RPC-3 | two providers expose health; reads fail over conservatively, total loss denies, stale or conflicting observations cannot relax lifetime | outage, lifetime conflict and context fixtures |
+| RPC-4 | final outcomes require agreeing committed provider evidence; missing, stale, processed, conflicting or incomplete history remains unresolved | two-provider status fixtures |
+
+Initial RPC lifetime strategy refuses an older valid hash rather than accepting caller expiry:
+the message must match the provider's currently returned blockhash. Absence after expiry is not
+proof of non-landing, so it never releases an unresolved reservation. Live usability and outage
+qualification remain owed; `docs/RPC.md` states the availability costs and provider trust residual.
 
 LIF-1 foundation: optional `check(proposal, { clientId, id })` derives the payload digest itself.
 IDs are ASCII letters/digits or `._:-`, length 1–128. Authoritative time/heights and deadlines
@@ -823,3 +832,4 @@ where needed, and UTC issued timestamps include milliseconds. Policies remain re
 | Draft 4.6 | 2026-10-05 | LIF-1 atomic admission identity and replay validation foundation. Full signer lifecycle still owed. |
 | Draft 4.7 | 2026-10-05 | LIF-2 checked signing/send-intent/response journal foundation; executor and authoritative RPC still owed. |
 | Draft 4.8 | 2026-10-05 | LIF-3 conservative executor tested with fake RPC; transport, authoritative RPC and kill qualification still owed. |
+| Draft 4.9 | 2026-10-05 | RPC-1–4 boundary tested with fake providers; conservative lifetime and unresolved-outcome costs stated. |

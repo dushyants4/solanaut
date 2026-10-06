@@ -1,0 +1,40 @@
+caught RPC fault: ignore-network
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: ✔ RPC-1: pins devnet identity and validates observed blockhash/lifetime with confirmed context (47.92663ms)
+✔ RPC-1: cross-cluster substitution denies; blockhash mismatch or invalidity denies (4.486435ms)
+✔ RPC-2: malformed and non-integral heights or context cannot become authority (3.183478ms)
+✔ RPC-2: response ID/version, missing result, and oversized body refuse (5.880561ms)
+✔ RPC-3: one-provider outage permits conservative reads; total outage reports degraded (14.487498ms)
+✔ RPC-3: stale or conflicting observations cannot authorize a new proposal (3.208045ms)
+✔ RPC-4: chain outcome requires agreeing committed evidence; missing/stale/conflicting stays unresolved (7.260241ms)
+✔ RPC-4: failed outcome needs matching committed failure from both providers (0.870924ms)
+✔ RPC-2/SIG-9: rate-limited reads back off, but send has exactly one attempt with node retries disabled (2.677055ms)
+✔ RPC-2: hung reads end at their deadline and expired calls make no network request (32.425904ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 388.348934
+
+
+0 !== 1
+
+    at file:///home/dashy/Projects/Solanaut/evals/signer/rpc-faults.ts:23:12
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

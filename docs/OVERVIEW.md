@@ -1,6 +1,6 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 9** · 2026-10-05 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 10** · 2026-10-05 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
@@ -126,6 +126,8 @@ Checked signing facts share that chain: signed bytes/signature, send intent and 
 They are journal evidence; the trusted SDK method does not perform a network send.
 `apps/signer/src/core.ts` executes that lifecycle through supplied signing/RPC functions.
 Its offline tests use fake RPCs; the operational Unix service and provider implementation are next.
+`apps/signer/src/rpc.ts` supplies validated devnet reads, health, a single send and conservative
+two-provider outcome evidence. Its operational wiring and live drills are next (`docs/RPC.md`).
 
 **Defects:** every one found in review, D1 to D12, is closed (`docs/SPEC.md` §10). The open questions are in §12.
 

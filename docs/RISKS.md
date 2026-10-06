@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.4** · 2026-10-05 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.5** · 2026-10-05 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 The threat model ([docs/papers/THREAT-MODEL.md](papers/THREAT-MODEL.md)) lists what an attacker can do to a running
@@ -65,6 +65,9 @@ The stale-lock race now has a tested Linux kernel ownership path (`evals/sdk/own
 manual SDK mode refuses stale markers. Operator-owned local storage remains an assumption.
 Checked signing history and the conservative executor have offline evidence (`evals/signer/core.md`).
 Actual RPC trust, source records, process isolation and kill qualification remain open under RK3/RK7.
+RPC validation and conservative failover have fake-provider evidence (`evals/signer/rpc.md`).
+Only current blockhash lifetimes are accepted; unseen expired attempts retain reservations. The
+availability costs need live integration evidence, and RK16's reliable-provider request remains open.
 
 | Version | Date | What changed |
 |---|---|---|
