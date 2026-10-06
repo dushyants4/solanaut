@@ -11,7 +11,7 @@ import { Governor, wasmDigest, type Posture, type Telemetry } from "@gubernaut/c
 import { effectsOf, type ClassifyContext, type EffectsV1 } from "./classify.ts";
 import { canonicalJSON, sha256hex } from "./canonical.ts";
 import { parseReleaseText, releaseText, verifyEd25519 } from "./latch.ts";
-import { hashOf, OUTCOMES, seal, type Amounts, type Decision, type DecisionEntry, type Entry, type Outcome, type PolicyEntry, type RedeemEntry, type ReleaseEntry, type ReportEntry, type RuleV1 } from "./log.ts";
+import { hashOf, OUTCOMES, seal, type Amounts, type Decision, type DecisionEntry, type Entry, type Outcome, type PolicyEntry, type RedeemEntry, type ReleaseEntry, type ReportEntry, type RuleV1, type SigningEntry } from "./log.ts";
 import { EVALUATION_PROFILE, VERIFIED_KEEL_DIGEST, VERIFIED_KEEL_MODULE } from "./profile.ts";
 import { PolicyAuthorizationError, verifyPolicyAuthorization, verifyPolicyEntry, type PolicyAuthorization, type PolicyTrust } from "./signed-policy.ts";
 import { DecodeError } from "./message.ts";
@@ -19,6 +19,7 @@ import { contextOf, createPolicy, type Policy } from "./policy.ts";
 import { fileStore, memoryStore, type EntryStore } from "./record.ts";
 import { sensorV1, type Sensor } from "./sensor.ts";
 import { bindRequest, requestKey, type RequestIdentity } from "./request.ts";
+import { verifySigning, type SigningEvent } from "./signing.ts";
 import { apply, couldStillLand, currentIntent, initialState, nowFor, retentionWindow, unresolved, windowTotals, type GuardState } from "./state.ts";
 
 export type { Decision, Entry, Outcome, RuleV1 } from "./log.ts";
@@ -98,6 +99,8 @@ export interface GuardStatus {
 export interface Guard {
   /** Decide. Never throws. */
   check(p: ProposalV1, request?: RequestIdentity): Decision;
+  /** Trusted SDK journal API; it signs and sends nothing. Not a signer socket method. */
+  recordSigning(event: SigningEvent): SigningEntry;
   /** Record how an allowed decision went on chain. Throws for anything but an allowed decision of this guard. */
   report(decisionHash: string, outcome: Outcome): void;
   /** Release the latch with the operator's signature over `releaseText`. */
@@ -460,6 +463,12 @@ export async function createGuard(opts: GuardOptions): Promise<Guard> {
 
   return {
     check,
+    recordSigning(event) {
+      const copy = Object.freeze({ ...event }) as SigningEvent;
+      const history = state.signing.get(copy.decision);
+      verifySigning(copy, history, history?.redeemed === true, policyHash);
+      return commit<SigningEntry>({ kind: "signing", at: state.maxAt ?? 0, event: copy });
+    },
     report,
     release,
     releaseText: currentReleaseText,

@@ -1,0 +1,220 @@
+✖ LIF-2: signature evidence requires durable redemption; valid lifecycle replays (13.620287ms)
+✖ LIF-2: wrong-bytes cannot be persisted as signed evidence (2.904095ms)
+✖ LIF-2: wrong-signature cannot be persisted as signed evidence (1.747504ms)
+✖ LIF-2: wrong-wire cannot be persisted as signed evidence (1.279511ms)
+✖ LIF-2: noncanonical-base64 cannot be persisted as signed evidence (1.570459ms)
+✖ LIF-2: send-started requires signed bytes and valid lifetime; every stage is single-use (1.629335ms)
+✖ LIF-2: denied response persists; sent response without send intent is refused (1.787994ms)
+✖ LIF-2: signing and send-started evidence survive durable restart (6.021952ms)
+✖ LIF-2: resealed out-of-order and forged signing history refuse restore/replay (2.296992ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 0
+ℹ fail 9
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 212.764638
+
+✖ failing tests:
+
+test at packages/sdk/test/signing-history.test.ts:27:1
+✖ LIF-2: signature evidence requires durable redemption; valid lifecycle replays (13.620287ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /redeem/. Input:
+  
+  'TypeError: g.recordSigning is not a function'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:30:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: TypeError: g.recordSigning is not a function
+        at record (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:20:105)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:30:25
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:30:12)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3),
+    expected: /redeem/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/signing-history.test.ts:39:94
+✖ LIF-2: wrong-bytes cannot be persisted as signed evidence (2.904095ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /sign|wire|bytes|base64/. Input:
+  
+  'TypeError: g.recordSigning is not a function'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:48:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: TypeError: g.recordSigning is not a function
+        at record (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:20:105)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:48:25
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:48:12)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /sign|wire|bytes|base64/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/signing-history.test.ts:39:94
+✖ LIF-2: wrong-signature cannot be persisted as signed evidence (1.747504ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /sign|wire|bytes|base64/. Input:
+  
+  'TypeError: g.recordSigning is not a function'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:48:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: TypeError: g.recordSigning is not a function
+        at record (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:20:105)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:48:25
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:48:12)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /sign|wire|bytes|base64/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/signing-history.test.ts:39:94
+✖ LIF-2: wrong-wire cannot be persisted as signed evidence (1.279511ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /sign|wire|bytes|base64/. Input:
+  
+  'TypeError: g.recordSigning is not a function'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:48:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: TypeError: g.recordSigning is not a function
+        at record (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:20:105)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:48:25
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:48:12)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /sign|wire|bytes|base64/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/signing-history.test.ts:39:94
+✖ LIF-2: noncanonical-base64 cannot be persisted as signed evidence (1.570459ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /sign|wire|bytes|base64/. Input:
+  
+  'TypeError: g.recordSigning is not a function'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:48:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: TypeError: g.recordSigning is not a function
+        at record (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:20:105)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:48:25
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:48:12)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /sign|wire|bytes|base64/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/signing-history.test.ts:52:1
+✖ LIF-2: send-started requires signed bytes and valid lifetime; every stage is single-use (1.629335ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /signed/. Input:
+  
+  'TypeError: g.recordSigning is not a function'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:55:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: TypeError: g.recordSigning is not a function
+        at record (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:20:105)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:55:25
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:55:12)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /signed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/signing-history.test.ts:66:1
+✖ LIF-2: denied response persists; sent response without send intent is refused (1.787994ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /send/. Input:
+  
+  'TypeError: g.recordSigning is not a function'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:69:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: TypeError: g.recordSigning is not a function
+        at record (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:20:105)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:69:25
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:69:12)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /send/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/signing-history.test.ts:76:1
+✖ LIF-2: signing and send-started evidence survive durable restart (6.021952ms)
+  TypeError: g.recordSigning is not a function
+      at record (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:20:105)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:79:35)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/signing-history.test.ts:89:1
+✖ LIF-2: resealed out-of-order and forged signing history refuse restore/replay (2.296992ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /sign|redeem|send/. Input:
+  
+  'Error: unsupported record entry kind'
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:95:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: unsupported record entry kind
+        at apply (file:///home/dashy/Projects/Solanaut/packages/sdk/src/state.ts:225:13)
+        at reapply (file:///home/dashy/Projects/Solanaut/packages/sdk/src/guard.ts:315:3)
+        at createGuard (file:///home/dashy/Projects/Solanaut/packages/sdk/src/guard.ts:334:7)
+        at async waitForActual (node:assert:615:5)
+        at async strict.rejects (node:assert:738:25)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:95:5)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /sign|redeem|send/,
+    operator: 'rejects',
+    diff: 'simple'
+  }

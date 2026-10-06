@@ -1,6 +1,6 @@
 # SDK request identity foundation
 
-> **Draft 1** · 2026-10-05 · owner: integrator · for: SDK consumers and signer developers.
+> **Draft 2** · 2026-10-05 · owner: integrator · for: SDK consumers and signer developers.
 > Evidence: `evals/sdk/request-identity.md`, claim S17. Register: `kb/DOCUMENTS.md`.
 
 The optional second argument identifies an admission:
@@ -26,3 +26,10 @@ storage and send recovery are not implemented by this foundation. No method here
 
 Restore and replay validate bindings and refuse duplicate history. Request history currently
 remains in memory; the release's disk index and bounded-memory qualification remain owed.
+
+The trusted SDK API `guard.recordSigning(event)` records `signed`, `send-started` and `response`
+facts in the same chain. It neither signs nor broadcasts. Signed wire evidence requires a redeemed
+request admission and verifies its sole signature over the exact message. Send intent requires
+the current policy and an unexpired bounded lifetime. Responses are immutable and bind the
+recorded signature. Validation also runs on restore/replay (`evals/sdk/signing-history.md`, S18).
+The isolated executor, transport deadlines and chain reconciliation are still owed.

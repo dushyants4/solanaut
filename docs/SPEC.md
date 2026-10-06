@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.6** · 2026-10-05 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.7** · 2026-10-05 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -794,6 +794,7 @@ snapshot and RPC IDs are allocated with their implementation steps. Existing SIG
 | STO-1 | a short write cannot acknowledge an incomplete record | forced short writes, complete JSON line and matching decision hash |
 | STO-2 | write, permission, progress or sync failure denies and closes the writer | ENOSPC, EACCES, zero progress and fsync injection under SIG-8 |
 | LIF-1 | request identity is namespaced by guard/client/ID and bound to canonical message/group payload in the admission entry; a same-payload retry returns that entry without evaluation, and changed payload or duplicate recorded identity is refused | request-identity battery, restore and replay |
+| LIF-2 | signed wire/signature, send-started intent and response are synced in the admission chain; signed evidence requires durable redemption and admitted bytes, send intent requires valid lifetime, and stages cannot repeat | signing-history battery, forged wire/signature and out-of-order replay |
 
 LIF-1 foundation: optional `check(proposal, { clientId, id })` derives the payload digest itself.
 IDs are ASCII letters/digits or `._:-`, length 1–128. Authoritative time/heights and deadlines
@@ -819,3 +820,4 @@ where needed, and UTC issued timestamps include milliseconds. Policies remain re
 | Draft 4.4 | 2026-10-05 | ADR-019/020 accepted; signed policy and version/profile foundation, with policy-aware restore/replay and external trust. Full isolated signer qualification remains owed. |
 | Draft 4.5 | 2026-10-05 | OWN/STO foundation: Linux kernel recovery, stale SDK refusal and complete synced writes. Remaining SIG-8 qualification unchanged. |
 | Draft 4.6 | 2026-10-05 | LIF-1 atomic admission identity and replay validation foundation. Full signer lifecycle still owed. |
+| Draft 4.7 | 2026-10-05 | LIF-2 checked signing/send-intent/response journal foundation; executor and authoritative RPC still owed. |

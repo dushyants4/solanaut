@@ -14,6 +14,7 @@ import type { DecisionEntry, Entry, Outcome } from "./log.ts";
 import { RECENT, SENSOR_V1 } from "./sensor.ts";
 import { parseReleaseText, verifyEd25519 } from "./latch.ts";
 import { requestKey, verifyRequest } from "./request.ts";
+import { verifySigning, type SigningHistory } from "./signing.ts";
 
 type Status = "pending" | Outcome;
 
@@ -41,6 +42,7 @@ export interface Reservation {
 }
 
 export interface GuardState {
+  signing: Map<string, SigningHistory>;
   /** Full request history until the accepted disk index replaces in-memory retention. */
   requests: Map<string, DecisionEntry>;
   /** During full restore/replay, retain entries needed by any recorded or incoming window. */
@@ -61,6 +63,7 @@ export interface GuardState {
 
 export function initialState(): GuardState {
   return {
+    signing: new Map(),
     requests: new Map(),
     retentionMs: 0,
     seq: 0,
@@ -153,6 +156,7 @@ export function apply(s: GuardState, e: Entry, policy: Policy): void {
     case "policy":
       return; // The guard verifies and selects it; this entry changes no admission state.
     case "decision": {
+      if (e.request) s.signing.set(e.hash, { decision: e });
       if (e.request) s.requests.set(requestKey(e.request), e);
       if (e.intentKey !== null && e.shape !== null) {
         s.sensor.recent.push({ intentKey: e.intentKey, shape: e.shape, fees: BigInt(e.amounts?.fees ?? "0"), landed: false });
@@ -218,8 +222,17 @@ export function apply(s: GuardState, e: Entry, policy: Policy): void {
       s.sensor = { recent: [], failureStreak: 0, unknownStreak: 0, lastAt: s.sensor.lastAt, times: [] };
       return;
     }
+    case "signing": {
+      const h = s.signing.get(e.event.decision);
+      verifySigning(e.event, h, h?.redeemed === true, createPolicy(policy).hash);
+      if (e.event.stage === "signed") h!.signed = e.event;
+      if (e.event.stage === "send-started") h!.started = e.event;
+      if (e.event.stage === "response") h!.response = e.event;
+      return;
+    }
     case "redeem":
       s.redeemed.add(e.decision);
+      if (s.signing.has(e.decision)) s.signing.get(e.decision)!.redeemed = true;
       return;
     default:
       throw new Error("unsupported record entry kind");

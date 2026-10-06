@@ -1,6 +1,6 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 7** · 2026-10-05 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 8** · 2026-10-05 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
@@ -122,6 +122,8 @@ Established identities can refuse missing history with `create: false`; `docs/ST
 describes the filesystem boundary. Short writes complete before sync; a failure closes the writer.
 An optional request identity is committed with its decision; duplicate lookup returns that entry
 without another evaluation. `docs/REQUESTS.md` describes this foundation and its lifecycle limits.
+Checked signing facts share that chain: signed bytes/signature, send intent and immutable response.
+They are journal evidence; the trusted SDK method does not perform a network send.
 
 **Defects:** every one found in review, D1 to D12, is closed (`docs/SPEC.md` §10). The open questions are in §12.
 

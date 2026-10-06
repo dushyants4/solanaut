@@ -1,0 +1,17 @@
+✔ LIF-2: signature evidence requires durable redemption; valid lifecycle replays (18.243308ms)
+✔ LIF-2: wrong-bytes cannot be persisted as signed evidence (1.777554ms)
+✔ LIF-2: wrong-signature cannot be persisted as signed evidence (1.927618ms)
+✔ LIF-2: wrong-wire cannot be persisted as signed evidence (1.194307ms)
+✔ LIF-2: noncanonical-base64 cannot be persisted as signed evidence (1.130146ms)
+✔ LIF-2: send-started requires signed bytes and valid lifetime; every stage is single-use (3.580303ms)
+✔ LIF-2: denied response persists; sent response without send intent is refused (2.731397ms)
+✔ LIF-2: signing and send-started evidence survive durable restart (16.085811ms)
+✔ LIF-2: resealed out-of-order and forged signing history refuse restore/replay (4.561247ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 236.800871

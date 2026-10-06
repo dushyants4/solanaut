@@ -8,6 +8,16 @@ prepare the original repository for eventual human-approved public release.
 
 ## Did
 
+- User asked to continue without stopping. Both live probes again refused correctly; baseline
+  from `425dcc8`: 220 product tests pass, typecheck clean. CI `37401222564` passed.
+- LIF-2 signing journal: nine tests fail against missing API, nine pass after implementation;
+  seven maintained faults caught. Record facts share the admission chain and verify wire/signature,
+  redemption, lifetime, ordering and response identity. Details: `evals/sdk/signing-history.md`.
+  This helper is counted with the signer rather than hidden by its SDK location. Process budget
+  remains at most 500 lines before executor/transport implementation. No gate or threshold changed.
+  Fixture spread ordering was corrected before implementation; fixtures were strengthened to
+  separate admitted-byte binding from cryptographic validity. No old assertion weakened.
+
 - Ownership/storage committed and pushed as `033cd87`; post-push close passes all checks;
   CI `37400891997` passes Node 22.18.0, 24 and 26.7.0 and the office job.
 - LIF-1 starts from that revision. Optional SDK request identities are committed atomically with

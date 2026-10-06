@@ -120,7 +120,12 @@ export interface PolicyEntry extends EntryBase {
   profile: typeof import("./profile.ts").EVALUATION_PROFILE;
 }
 
-export type Entry = DecisionEntry | ReportEntry | ReleaseEntry | RedeemEntry | PolicyEntry;
+export interface SigningEntry extends EntryBase {
+  kind: "signing";
+  event: import("./signing.ts").SigningEvent;
+}
+
+export type Entry = DecisionEntry | ReportEntry | ReleaseEntry | RedeemEntry | PolicyEntry | SigningEntry;
 export type Decision = DecisionEntry;
 
 /** Hash an entry's body and freeze the result. */

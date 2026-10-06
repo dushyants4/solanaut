@@ -61,6 +61,7 @@ Exclusive Linux ownership and complete-write failure handling are built and test
 (`evals/sdk/ownership.md`); the full signer recovery programme remains owed.
 Admission identity and payload binding are tested offline (`evals/sdk/request-identity.md`);
 durable signed-byte, send-started and response recovery are next.
+The checked signing journal is built (`evals/sdk/signing-history.md`); its executor is next.
 
 1. **Defects** (`docs/SPEC.md` §10):
    - D1 to D12 are closed: D1, D2, D5, D6, D7, D9, D10 and D12 at 2a.5, D11 at 2a.6, D3, D4 and D8 at 2a.7.
