@@ -4,7 +4,7 @@ import { spawnSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 const faults = [
   ["ignore-retry", "guard.ts", "if (recorded) {", "if (false && recorded) {"],
-  ["ignore-changed-payload", "guard.ts", "if (recorded.request!.digest !== binding.digest)", "if (false)"],
+  ["ignore-changed-payload", "guard.ts", "recorded.request!.digest !== binding.digest", "false"],
   ["ignore-recorded-binding", "state.ts", "verifyRequest(e, policy.latch.guardId);", "void e;"],
   ["ignore-duplicate-history", "state.ts", "if (s.requests.has(requestKey(e.request)))", "if (false)"],
 ] as const;

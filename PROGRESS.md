@@ -119,5 +119,6 @@ partial signing is unchanged; this is not installed signer or live-chain qualifi
      ADR-013 to ADR-018, the risk register, the thresholds); ADR-012's option C accepted. Leg 3 is handed to Codex.
 4. **Upstream findings.** U-1 to U-4 are written up for the human (`kb/REGISTRY.md`). U-2 and U-3 are reproduced at
    milestone 2a.7.
-5. **CI fault programme remains partial.** Maintained package and latch faults run on every push;
+5. **CI fault programme remains partial.** The `bite` job now runs every maintained executable
+   campaign sequentially with inventory and restoration checks (`evals/ci/bite.md`);
    the full milestone 3.9 gate and measurement programme remains owed (`evals/README.md`).

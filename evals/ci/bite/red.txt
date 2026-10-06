@@ -1,0 +1,63 @@
+✖ CI-1: exact inventory accepts every maintained campaign and rejects omission/addition/duplication (0.972637ms)
+✖ CI-1: all campaigns run sequentially; failure/null exit fails aggregation without hiding other findings (0.118258ms)
+✖ CI-1: changed source stops further mutation, reports skipped work and fails the gate (0.091695ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 0
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 85.758609
+
+✖ failing tests:
+
+test at evals/ci/bite.test.ts:5:1
+✖ CI-1: exact inventory accepts every maintained campaign and rejects omission/addition/duplication (0.972637ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "not implemented"
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/bite.test.ts:6:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: not implemented
+        at validateInventory (file:///home/dashy/Projects/Solanaut/evals/ci/bite.ts:2:76)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/bite.test.ts:6:29
+        at getActual (node:assert:580:5)
+        at strict.doesNotThrow (node:assert:748:32)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/bite.test.ts:6:10)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.start (node:internal/test_runner/test:1257:17)
+        at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at evals/ci/bite.test.ts:9:1
+✖ CI-1: all campaigns run sequentially; failure/null exit fails aggregation without hiding other findings (0.118258ms)
+  Error: not implemented
+      at executeCampaigns (file:///home/dashy/Projects/Solanaut/evals/ci/bite.ts:3:163)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/bite.test.ts:11:18)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at evals/ci/bite.test.ts:16:1
+✖ CI-1: changed source stops further mutation, reports skipped work and fails the gate (0.091695ms)
+  Error: not implemented
+      at executeCampaigns (file:///home/dashy/Projects/Solanaut/evals/ci/bite.ts:3:163)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/bite.test.ts:18:18)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)

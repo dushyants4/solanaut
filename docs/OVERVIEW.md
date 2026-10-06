@@ -1,6 +1,6 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 18** · 2026-10-06 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 19** · 2026-10-06 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
@@ -188,6 +188,8 @@ installed/isolated operation and the existing implementation budget gate remain 
 Consumers can use the distinct SDK socket sending client (`docs/CLIENT.md`) instead of
 partial signing. Its compiled candidate exports and declarations have installed evidence;
 the product service is still not qualified for installation.
+CI now has a sequential maintained fault job with inventory and source-restoration checks
+(`evals/ci/bite.md`). Historical campaigns and CI-2 qualification remain owed.
 
 | Version | Date | What changed |
 |---|---|---|

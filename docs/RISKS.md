@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.14** · 2026-10-06 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.15** · 2026-10-06 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 The threat model ([docs/papers/THREAT-MODEL.md](papers/THREAT-MODEL.md)) lists what an attacker can do to a running
@@ -92,6 +92,9 @@ The factory still injects signing/RPC, so key isolation and provider trust are n
 Socket consumers now have explicit ambiguity errors and no automatic transport retry
 (`evals/sdk/sending-client.md`). Callers can still create a fresh payment identity after
 uncertainty; the integration guide warns against it, and intent/cap rules remain the bound.
+Fault aggregation now detects missing/stale campaigns and unrestored source. Its first full
+run finds an old selector mismatch (`evals/ci/bite.md`). CI-1 remains partial for historical
+manual findings; this does not establish coverage, a mutation score or independent security.
 
 | Version | Date | What changed |
 |---|---|---|

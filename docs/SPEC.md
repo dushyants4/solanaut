@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.20** · 2026-10-06 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.21** · 2026-10-06 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -730,6 +730,12 @@ and accepted: ADR-013 to ADR-018 (§13.11).
 | CI-1 | The fault injections that showed each gate failing re-run on every push (the `bite` job) | `evals/README.md` | a planted fault fails CI |
 | CI-2 | The coverage, mutation, property, fuzz, differential and performance gates in `docs/READINESS.md`, as confirmed at 2c.1, run in CI, each seen failing first | READINESS | each gate's receipt |
 
+CI-1 maintained campaign runner now checks its complete executable inventory, runs sequentially
+and checks source restoration before another mutation. Failed campaigns are retained; unrestored
+source stops the remainder with explicit skipped work. The pinned CI job uses the same command
+(`evals/ci/bite.md`). Historical manual findings still require maintained regressions; CI-1/2
+and the milestone remain partial. No threshold or protected harness gate changed.
+
 ### 13.10 Tested hard (milestone 3.10)
 
 | ID | Requirement | From | Verified by |
@@ -879,3 +885,4 @@ where needed, and UTC issued timestamps include milliseconds. Policies remain re
 | Draft 4.18 | 2026-10-06 | LIF-7 closes settled signing/send-intent loophole; signed-policy recovery preserves reservations across pending stages. |
 | Draft 4.19 | 2026-10-06 | Same-user host composition requires protected established history and signed policy; shutdown drains host and socket work. SIG-11 is unachieved under recorded count; ADR-021 awaits human decision. |
 | Draft 4.20 | 2026-10-06 | CLT-1–4 sending client and typed ambiguity errors; installed exports tested; existing partial signer unchanged. |
+| Draft 4.21 | 2026-10-06 | CI-1 sequential maintained fault job, inventory and source-restoration checks; stale request selector corrected; historical/CI-2 gates remain owed. |

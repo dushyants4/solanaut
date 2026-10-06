@@ -7,6 +7,16 @@ all security, validation and human-owned release gates.
 
 ## Did
 
+- Sending client `f9c0cec` privately pushed; ten close gates and CI `37460725029` green.
+  Continued into CI-1 maintained fault aggregation. Three tests fail first, then pass;
+  five planted aggregator faults caught. First full run rejects a stale request selector;
+  final sixteen-campaign run catches 105 faults and restores source. Receipt `evals/ci/bite.md`.
+- Added pinned CI bite job without removing existing injections or weakening gates. Root
+  test command now includes aggregation tests; full suite 329 passes, typecheck clean.
+  No dependency added. H9 remains pending; no silent budget acceptance.
+- Read official fast-check runner/configuration documentation and npm metadata in preparation
+  for CI-2 properties. No package installed yet; returned pin 4.10.2 and its registry integrity.
+
 - Same-user partial composition privately pushed as `f27337d`; ten close gates and CI
   `37459521513` green. H9 remains pending; no budget or dependent expansion authorised.
 - Continued into independent consumer integration. Eight client cases fail against a stub;
@@ -65,6 +75,11 @@ all security, validation and human-owned release gates.
   this history and must pass compatibility checks before rollback.
 
 ## Found
+
+- New full aggregation finds an old identity fault site missing since shared control history.
+  Changed only its selector to the same digest comparison; failure output retained. Runner
+  reports failed campaign rather than manufacturing a catch, and proceeds only after source
+  restoration. Historical manual campaigns and all CI-2 targets remain unqualified.
 
 - Client initially used non-erasable constructor properties; native Node and typecheck refuse.
   Socket data typing needed explicit byte conversion. Both corrected, raw native failure kept.

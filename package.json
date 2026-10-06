@@ -12,7 +12,7 @@
   },
   "scripts": {
     "doctor": "uv run --script tools/doctor.py",
-    "test": "node --test packages/sdk/test/*.test.ts apps/*/test/*.test.ts",
+    "test": "node --test packages/sdk/test/*.test.ts apps/*/test/*.test.ts evals/ci/*.test.ts",
     "typecheck": "tsc -p tsconfig.json",
     "sandbox": "node apps/sandbox/src/main.ts",
     "validator": "PATH=\"$HOME/.local/share/solana/install/active_release/bin:$PATH\" solana-test-validator --ledger .sandbox/ledger --reset --quiet",
@@ -22,6 +22,7 @@
     "test:package": "node --test evals/packaging/*.test.ts",
     "test:package:faults": "node evals/packaging/faults.ts",
     "test:latch:faults": "node evals/ci/latch-faults.ts",
+    "test:bite": "node evals/ci/bite.ts",
     "cockpit": "node apps/cockpit/src/server.ts"
   },
   "devDependencies": {
