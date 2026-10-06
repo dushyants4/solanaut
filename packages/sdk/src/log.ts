@@ -126,7 +126,18 @@ export interface SigningEntry extends EntryBase {
   event: import("./signing.ts").SigningEvent;
 }
 
-export type Entry = DecisionEntry | ReportEntry | ReleaseEntry | RedeemEntry | PolicyEntry | SigningEntry;
+export interface ControlRequestEntry extends EntryBase {
+  kind: "request";
+  request: import("./request.ts").RequestBinding;
+  method: import("./control-request.ts").ControlMethod;
+  payload: string;
+}
+export interface ControlResponseEntry extends EntryBase {
+  kind: "response";
+  request: string;
+  result: string;
+}
+export type Entry = DecisionEntry | ReportEntry | ReleaseEntry | RedeemEntry | PolicyEntry | SigningEntry | ControlRequestEntry | ControlResponseEntry;
 export type Decision = DecisionEntry;
 
 /** Hash an entry's body and freeze the result. */

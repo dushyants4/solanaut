@@ -16,12 +16,12 @@ substantive change; *last reviewed* moves at every review.
 | [docs/PRODUCT.md](../docs/PRODUCT.md) | 1.0 | current | architect | every seat, judges | 2026-09-30 | 2c.1 |
 | [docs/ROADMAP.md](../docs/ROADMAP.md) | Draft 3 | review | archivist, with the architect | the human, every seat, judges | 2026-10-05 | every leg |
 | [docs/READINESS.md](../docs/READINESS.md) | 2.0 | current | operator, with the evaluator | the human, every seat, auditors | 2026-10-05 | 3.10 |
-| [docs/RISKS.md](../docs/RISKS.md) | 1.7 | current | architect, with the evaluator | the human, every seat | 2026-10-05 | every Leg 3 milestone |
-| [docs/OVERVIEW.md](../docs/OVERVIEW.md) | Draft 12 | draft | integrator | engineers new to the repo, judges | 2026-10-05 | 3.10 |
-| [docs/SPEC.md](../docs/SPEC.md) | Draft 4.12 | current (§13 approved; foundation IDs trace accepted scope) | architect | the builder, evaluator and integrator seats | 2026-10-05 | 3.10 |
+| [docs/RISKS.md](../docs/RISKS.md) | 1.8 | current | architect, with the evaluator | the human, every seat | 2026-10-05 | every Leg 3 milestone |
+| [docs/OVERVIEW.md](../docs/OVERVIEW.md) | Draft 13 | draft | integrator | engineers new to the repo, judges | 2026-10-05 | 3.10 |
+| [docs/SPEC.md](../docs/SPEC.md) | Draft 4.13 | current (§13 approved; foundation IDs trace accepted scope) | architect | the builder, evaluator and integrator seats | 2026-10-05 | 3.10 |
 | [docs/SIGNER.md](../docs/SIGNER.md) | Draft 2 | draft | integrator | operators and signer developers | 2026-10-05 | 3.1 |
 | [docs/RPC.md](../docs/RPC.md) | Draft 2 | draft | integrator | operators and signer developers | 2026-10-05 | 3.1 |
-| [docs/REQUESTS.md](../docs/REQUESTS.md) | Draft 2 | draft | integrator | SDK consumers and signer developers | 2026-10-05 | 3.1 |
+| [docs/REQUESTS.md](../docs/REQUESTS.md) | Draft 3 | draft | integrator | SDK consumers and signer developers | 2026-10-05 | 3.1 |
 | [docs/STORAGE.md](../docs/STORAGE.md) | Draft 1 | draft | integrator | SDK users and Linux operators | 2026-10-05 | 3.1 |
 | [docs/POLICIES.md](../docs/POLICIES.md) | Draft 1 | draft | integrator | SDK users and operator-tool developers | 2026-10-05 | 3.2 |
 | [docs/PACKAGING.md](../docs/PACKAGING.md) | Draft 1 | draft | integrator | developers and release reviewers | 2026-10-05 | 5.3 |
@@ -29,7 +29,7 @@ substantive change; *last reviewed* moves at every review.
 | [AGENTS.md](../AGENTS.md) | 1 | current | harness (Claude or the human; not Codex) | Codex | 2026-10-05 | the return to Claude |
 | [docs/ARCHITECTURE.md](../docs/ARCHITECTURE.md) | 4 | current | architect | everyone | 2026-10-01 | 2c.1 |
 | [docs/HACKATHON.md](../docs/HACKATHON.md) | 3 | current | archivist | the human, every seat | 2026-09-30 | S.1 |
-| [docs/CLAIMS.md](../docs/CLAIMS.md) | 3.12 | current (T3) | archivist, sourced | every public sentence | 2026-10-05 | every milestone |
+| [docs/CLAIMS.md](../docs/CLAIMS.md) | 3.13 | current (T3) | archivist, sourced | every public sentence | 2026-10-05 | every milestone |
 | [docs/papers/LITEPAPER.md](../docs/papers/LITEPAPER.md) | Draft 3 | draft | architect | judges, developers | 2026-10-01 | 2c.1 |
 | [docs/papers/THREAT-MODEL.md](../docs/papers/THREAT-MODEL.md) | Draft 3 | draft | architect, evaluator | reviewers, auditors, judges | 2026-10-03 | 3.10 |
 | [docs/papers/MARKET.md](../docs/papers/MARKET.md) | Draft 2 | draft | archivist | the human, judges | 2026-09-30 | S.1 |
@@ -61,6 +61,7 @@ substantive change; *last reviewed* moves at every review.
 | 2026-10-05 | SPEC, OVERVIEW, RISKS, SIGNER, CLAIMS, HANDOFF, PROGRESS | Host attribution, anchored monotonic clock and their qualification limits; S21 | `runs/2026-10-05-codex-solanaut-1.md` |
 | 2026-10-05 | SPEC, RPC, CLAIMS, HANDOFF | Owned RPC deadline correction, Node 22 failure and standalone regression; S22 | `runs/2026-10-05-codex-solanaut-1.md` |
 | 2026-10-05 | SPEC, SIGNER, OVERVIEW, RISKS, CLAIMS, HANDOFF, PROGRESS | Bounded Unix transport foundation; S23; corrected RPC runtime matrix passes | `runs/2026-10-05-codex-solanaut-1.md` |
+| 2026-10-05 | SPEC, REQUESTS, OVERVIEW, RISKS, CLAIMS, HANDOFF, PROGRESS | Durable control journal foundation; S24; socket runtime matrix passes | `runs/2026-10-05-codex-solanaut-1.md` |
 
 Earlier entries:
 

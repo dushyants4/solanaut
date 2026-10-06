@@ -1,0 +1,9 @@
+caught control-request fault: control-payload-reuse
+caught control-request fault: proposal-namespace-reuse
+caught control-request fault: change-answer
+caught control-request fault: record-digest
+caught control-request fault: duplicate-start
+caught control-request fault: unknown-response
+caught control-request fault: duplicate-response
+caught control-request fault: response-bound
+All control-request faults caught; restored source passes

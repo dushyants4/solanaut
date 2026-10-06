@@ -3,6 +3,7 @@ export { fileStore, memoryStore, type FileStoreOptions } from "./record.ts";
 export { preparePolicyText, verifyPolicyAuthorization, PolicyAuthorizationError, type PolicyAuthorization, type PolicyTrust } from "./signed-policy.ts";
 export { EVALUATION_PROFILE } from "./profile.ts";
 export type { RequestIdentity, RequestBinding } from "./request.ts";
+export type { ControlMethod } from "./control-request.ts";
 export type { SigningEvent, SigningHistory } from "./signing.ts";
 export type { RuntimeAuthority } from "./authority.ts";
 export { createPolicy, contextOf, PolicyError, policyHash, type Policy, type PolicyInput, type PolicyV1 } from "./policy.ts";

@@ -1,0 +1,17 @@
+✔ LIF-4: start and first answer are immutable, copied and reused without new entries (10.89438ms)
+✔ LIF-4: changed method/payload and invalid identity or payload refuse before recording (1.579709ms)
+✔ LIF-4: proposal and control methods share one request namespace in both orders (32.446649ms)
+✔ LIF-4: pending and completed control requests restore and replay without admissions (2.744997ms)
+✔ LIF-4: unknown, oversized and invalid responses refuse, and write failure closes the guard (1.888754ms)
+✔ LIF-4: resealed digest control evidence refuses restore/replay (1.887051ms)
+✔ LIF-4: resealed duplicate control evidence refuses restore/replay (1.714194ms)
+✔ LIF-4: resealed response-before-start control evidence refuses restore/replay (1.06136ms)
+✔ LIF-4: resealed changed-response control evidence refuses restore/replay (1.203761ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 315.481838

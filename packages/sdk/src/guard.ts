@@ -21,6 +21,8 @@ import { sensorV1, type Sensor } from "./sensor.ts";
 import { bindRequest, requestKey, type RequestIdentity } from "./request.ts";
 import { verifySigning, type SigningEvent } from "./signing.ts";
 import { copyAuthority, type RuntimeAuthority } from "./authority.ts";
+import { controlBinding, controlPayload, controlResult, type ControlMethod } from "./control-request.ts";
+import type { ControlRequestEntry, ControlResponseEntry } from "./log.ts";
 import { apply, couldStillLand, currentIntent, initialState, nowFor, retentionWindow, unresolved, windowTotals, type GuardState } from "./state.ts";
 
 export type { Decision, Entry, Outcome, RuleV1 } from "./log.ts";
@@ -100,6 +102,10 @@ export interface GuardStatus {
 }
 
 export interface Guard {
+  /** Trusted host bookkeeping for status/report; neither API signs or sends. */
+  beginRequest(identity: RequestIdentity, method: ControlMethod, payload: unknown, at: number): ControlRequestEntry;
+  finishRequest(startHash: string, result: unknown): ControlResponseEntry;
+  requestResult(startHash: string): unknown;
   /** Decide. Never throws. */
   check(p: ProposalV1, request?: RequestIdentity): Decision;
   /** Trusted SDK journal API; it signs and sends nothing. Not a signer socket method. */
@@ -392,7 +398,7 @@ export async function createGuard(opts: GuardOptions): Promise<Guard> {
       if (binding) {
         const recorded = state.requests.get(requestKey(binding));
         if (recorded) {
-          if (recorded.request!.digest !== binding.digest) return unrecorded("request identity was reused with a different payload");
+          if (recorded.kind !== "decision" || recorded.request!.digest !== binding.digest) return unrecorded("request identity was reused with a different payload");
           return recorded;
         }
       }
@@ -469,6 +475,23 @@ export async function createGuard(opts: GuardOptions): Promise<Guard> {
   };
 
   return {
+    beginRequest(identity, method, input, at) {
+      if (!Number.isFinite(at) || at < 0) throw new Error("invalid request time");
+      const payload = controlPayload(method, input); const request = controlBinding(policy.latch.guardId, identity, method, payload);
+      const old = state.requests.get(requestKey(request));
+      if (old) {
+        if (old.kind !== "request" || old.request.digest !== request.digest) throw new Error("request identity reused with different payload");
+        return old;
+      }
+      return commit<ControlRequestEntry>({ kind: "request", at: nowFor(state, at), request, method, payload });
+    },
+    finishRequest(startHash, input) {
+      if (![...state.requests.values()].some((r) => r.kind === "request" && r.hash === startHash)) throw new Error("unknown control request");
+      const result = controlResult(input); const old = state.responses.get(startHash);
+      if (old) { if (old.result !== result) throw new Error("request response cannot change"); return old; }
+      return commit<ControlResponseEntry>({ kind: "response", at: state.maxAt ?? 0, request: startHash, result });
+    },
+    requestResult(startHash) { const response = state.responses.get(startHash); return response ? JSON.parse(response.result) : undefined; },
     check,
     recordSigning(event) {
       const copy = Object.freeze({ ...event }) as SigningEvent;

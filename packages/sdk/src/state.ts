@@ -10,7 +10,8 @@
 //   sensor         what the sensors remember of the proposal stream
 
 import { createPolicy, type Policy } from "./policy.ts";
-import type { DecisionEntry, Entry, Outcome } from "./log.ts";
+import type { ControlRequestEntry, ControlResponseEntry, DecisionEntry, Entry, Outcome } from "./log.ts";
+import { verifyControlStart, verifyControlResponse } from "./control-request.ts";
 import { RECENT, SENSOR_V1 } from "./sensor.ts";
 import { parseReleaseText, verifyEd25519 } from "./latch.ts";
 import { requestKey, verifyRequest } from "./request.ts";
@@ -45,7 +46,8 @@ export interface Reservation {
 export interface GuardState {
   signing: Map<string, SigningHistory>;
   /** Full request history until the accepted disk index replaces in-memory retention. */
-  requests: Map<string, DecisionEntry>;
+  requests: Map<string, DecisionEntry | ControlRequestEntry>;
+  responses: Map<string, ControlResponseEntry>;
   /** During full restore/replay, retain entries needed by any recorded or incoming window. */
   retentionMs: number;
   seq: number;
@@ -66,6 +68,7 @@ export function initialState(): GuardState {
   return {
     signing: new Map(),
     requests: new Map(),
+    responses: new Map(),
     retentionMs: 0,
     seq: 0,
     head: "",
@@ -150,6 +153,8 @@ export function apply(s: GuardState, e: Entry, policy: Policy): void {
     verifyRequest(e, policy.latch.guardId);
     if (s.requests.has(requestKey(e.request))) throw new Error("duplicate recorded request identity");
   }
+  if (e.kind === "request") verifyControlStart(e, policy.latch.guardId, s.requests);
+  if (e.kind === "response") verifyControlResponse(e, s.requests, s.responses);
   if (e.seq !== s.seq || e.prev !== s.head) {
     throw new Error(`the record breaks at seq ${e.seq}: expected seq ${s.seq} after ${s.head || "the start"}`);
   }
@@ -158,6 +163,8 @@ export function apply(s: GuardState, e: Entry, policy: Policy): void {
   s.maxAt = Math.max(s.maxAt ?? e.at, e.at);
 
   switch (e.kind) {
+    case "request": s.requests.set(requestKey(e.request), e); return;
+    case "response": s.responses.set(e.request, e); return;
     case "policy":
       return; // The guard verifies and selects it; this entry changes no admission state.
     case "decision": {

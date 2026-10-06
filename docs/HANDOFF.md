@@ -208,6 +208,7 @@ The live probes and baseline are complete. ADR-012 C is built and tested offline
 | 2026-10-05 | signer attribution/clock foundation | commit containing `evals/signer/authority.md` | SIG-4/10 receipt | Recorded host flags and anchored clock; service wiring and actual OS-user isolation remain owed. |
 | 2026-10-05 | owned RPC deadline correction | commit containing `evals/signer/rpc-deadline.md` | corrective receipt | Node 22 cancellation preserved; standalone regression fails first, then passes without changing targets. |
 | 2026-10-05 | bounded Unix transport foundation | commit containing `evals/signer/socket.md` | socket receipt | Operational wiring still owed; corrected RPC CI `37403526901` passes all three runtimes. |
+| 2026-10-05 | durable control request foundation | commit containing `evals/sdk/control-request.md` | LIF-4 receipt | SDK journal built; handler and pre-admission errors next. Socket CI `37404207616` passed. |
 
 ## 8. Handing back to Claude
 

@@ -8,6 +8,14 @@ prepare the original repository for eventual human-approved public release.
 
 ## Did
 
+- Socket `7b55b37` pushed, post-push close 10/10 and CI `37404207616` passes all runtimes.
+- LIF-4 control journal starts there: nine initial missing-API failures, nine passes, eight valid
+  faults caught. Full suite 277 passes, typecheck clean and four installed SDK checks pass.
+  Record control method/payload before work and immutable answer separately; no SDK API broadcasts.
+  Response maximum 12,288 bytes reserves transport envelope space, a reversible codec decision.
+  Partial app/extracted-helper count 390 lines against the unchanged 500-line budget. Receipt:
+  `evals/sdk/control-request.md`. Handler wiring and pre-admission proposal refusal history next.
+
 - Corrected RPC revision `f810612` passes CI `37403526901` on Node 22.18.0, 24 and 26.7.0.
 - Unix transport foundation starts there. Six stub failures and two additional deadline/response
   failures retained; eleven socket tests pass, seven valid faults caught. Full suite 268 passes,

@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.12** · 2026-10-05 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.13** · 2026-10-05 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -818,6 +818,12 @@ symlinks and ordinary files refused. Abandoned-socket recovery requires the call
 record kernel ownership first. Transport is not yet operationally wired. Evidence:
 `evals/signer/socket.md`; accepted final signer budget and isolation requirements remain.
 
+LIF-4: status/report starts bind method and exact canonical payload before work; immutable
+bounded responses share the record and request namespace with admissions. Restore/replay
+validate bindings and ordering. SDK host APIs perform bookkeeping only. Response body maximum
+12,288 bytes leaves transport-envelope space. Deadline/concurrency wiring and pre-admission
+proposal refusal journalling remain owed (`evals/sdk/control-request.md`).
+
 LIF-1 foundation: optional `check(proposal, { clientId, id })` derives the payload digest itself.
 IDs are ASCII letters/digits or `._:-`, length 1–128. Authoritative time/heights and deadlines
 are excluded. Existing SDK calls are unchanged. Full request history remains in memory until
@@ -848,3 +854,4 @@ where needed, and UTC issued timestamps include milliseconds. Policies remain re
 | Draft 4.10 | 2026-10-05 | Host attribution and monotonic clock foundation for SIG-4/10; operational wiring still owed. |
 | Draft 4.11 | 2026-10-05 | RPC-2 owns its referenced deadline timer across fetch/body processing after a Node 22 cancellation and standalone reproduction. No target changed. |
 | Draft 4.12 | 2026-10-05 | Bounded Unix transport and socket recovery foundation; operational wiring and identity persistence across all methods still owed. |
+| Draft 4.13 | 2026-10-05 | LIF-4 control request/response journal; pending and immutable answer recovery, shared namespace and older-reader compatibility costs. |

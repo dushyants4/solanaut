@@ -70,6 +70,8 @@ Host attribution and the anchored monotonic clock are tested (`evals/signer/auth
 the operational service and dedicated-user evidence remain owed.
 The bounded Unix transport passes local socket tests (`evals/signer/socket.md`);
 service wiring, all-method durable identities and dedicated-user deployment remain owed.
+Status/report journal starts and immutable answers are tested (`evals/sdk/control-request.md`);
+handler deadlines/concurrency and durable pre-admission proposal refusals remain owed.
 
 1. **Defects** (`docs/SPEC.md` §10):
    - D1 to D12 are closed: D1, D2, D5, D6, D7, D9, D10 and D12 at 2a.5, D11 at 2a.6, D3, D4 and D8 at 2a.7.

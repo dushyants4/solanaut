@@ -1,6 +1,6 @@
 # SDK request identity foundation
 
-> **Draft 2** · 2026-10-05 · owner: integrator · for: SDK consumers and signer developers.
+> **Draft 3** · 2026-10-05 · owner: integrator · for: SDK consumers and signer developers.
 > Evidence: `evals/sdk/request-identity.md`, claim S17. Register: `kb/DOCUMENTS.md`.
 
 The optional second argument identifies an admission:
@@ -33,3 +33,19 @@ request admission and verifies its sole signature over the exact message. Send i
 the current policy and an unexpired bounded lifetime. Responses are immutable and bind the
 recorded signature. Validation also runs on restore/replay (`evals/sdk/signing-history.md`, S18).
 The isolated executor, transport deadlines and chain reconciliation are still owed.
+
+The trusted SDK also journals non-admission requests (S24):
+
+```ts
+const start = guard.beginRequest({ clientId: "agent-a", id: "status-a" }, "status", {}, hostTime);
+const old = guard.requestResult(start.hash);
+if (old === undefined) guard.finishRequest(start.hash, safeStatusProjection);
+```
+
+`report` payloads are exactly `{ decision: "<decision hash>" }`. A differing method or payload
+under a proposal or control ID is refused. A completed answer cannot change; results are copied
+and bounded, and callers must use a new ID for a fresh status. The start is durable before work,
+and the response is durable before answering. These APIs are host bookkeeping, not socket
+methods, and neither API signs or broadcasts. Deadlines and concurrent execution still need
+operational wiring. The response projection must contain no key material. Older binaries that
+do not understand these record entries cannot roll back over this history.

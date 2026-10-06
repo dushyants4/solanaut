@@ -1,0 +1,98 @@
+✖ LIF-4: start and first answer are immutable, copied and reused without new entries (13.914618ms)
+✖ LIF-4: changed method/payload and invalid identity or payload refuse before recording (2.548906ms)
+✖ LIF-4: proposal and control methods share one request namespace in both orders (67.736106ms)
+✖ LIF-4: pending and completed control requests restore and replay without admissions (1.338983ms)
+✖ LIF-4: unknown, oversized and invalid responses refuse, and write failure closes the guard (1.328627ms)
+✖ LIF-4: resealed digest control evidence refuses restore/replay (1.301377ms)
+✖ LIF-4: resealed duplicate control evidence refuses restore/replay (1.076435ms)
+✖ LIF-4: resealed response-before-start control evidence refuses restore/replay (1.055088ms)
+✖ LIF-4: resealed changed-response control evidence refuses restore/replay (1.162126ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 0
+ℹ fail 9
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 478.078883
+
+✖ failing tests:
+
+test at packages/sdk/test/control-request.test.ts:16:1
+✖ LIF-4: start and first answer are immutable, copied and reused without new entries (13.914618ms)
+  TypeError: g.beginRequest is not a function
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/control-request.test.ts:19:21)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at packages/sdk/test/control-request.test.ts:31:1
+✖ LIF-4: changed method/payload and invalid identity or payload refuse before recording (2.548906ms)
+  TypeError: g.beginRequest is not a function
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/control-request.test.ts:34:7)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/control-request.test.ts:43:1
+✖ LIF-4: proposal and control methods share one request namespace in both orders (67.736106ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /identity|payload/. Input:
+  
+  'TypeError: g.beginRequest is not a function'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/control-request.test.ts:47:84)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: TypeError: g.beginRequest is not a function
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/control-request.test.ts:47:99
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/control-request.test.ts:47:84)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /identity|payload/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/control-request.test.ts:53:1
+✖ LIF-4: pending and completed control requests restore and replay without admissions (1.338983ms)
+  TypeError: g.beginRequest is not a function
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/control-request.test.ts:55:21)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/control-request.test.ts:64:1
+✖ LIF-4: unknown, oversized and invalid responses refuse, and write failure closes the guard (1.328627ms)
+  TypeError: g.beginRequest is not a function
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/control-request.test.ts:68:21)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/control-request.test.ts:77:91
+✖ LIF-4: resealed digest control evidence refuses restore/replay (1.301377ms)
+  TypeError: g.beginRequest is not a function
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/control-request.test.ts:79:19)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/control-request.test.ts:77:91
+✖ LIF-4: resealed duplicate control evidence refuses restore/replay (1.076435ms)
+  TypeError: g.beginRequest is not a function
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/control-request.test.ts:79:19)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/control-request.test.ts:77:91
+✖ LIF-4: resealed response-before-start control evidence refuses restore/replay (1.055088ms)
+  TypeError: g.beginRequest is not a function
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/control-request.test.ts:79:19)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/control-request.test.ts:77:91
+✖ LIF-4: resealed changed-response control evidence refuses restore/replay (1.162126ms)
+  TypeError: g.beginRequest is not a function
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/control-request.test.ts:79:19)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
