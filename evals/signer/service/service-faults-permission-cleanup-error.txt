@@ -1,0 +1,34 @@
+caught service fault: accept-unsigned-bootstrap
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /tests 7/. Input:
+
+'✔ SIG-1/2/10: same-user startup wires signed guard, clock, socket and durable retry (36.60452ms)\n' +
+  '✔ POL-2/SIG-8: startup requires valid authorization and existing history, leaving ownership reusable on refusal (7.266806ms)\n' +
+  '✖ SIG-8: protected history permissions and symlink paths are checked before serving (9.881521ms)\n' +
+  '✔ SIG-8: ownership is acquired before serving and released after a socket-start failure (16.453758ms)\n' +
+  '✔ SIG-8/LIF-6: startup exposes incomplete recovery rather than discarding pending history (18.999454ms)\n' +
+  '✔ SIG-8: close drains dispatched send before releasing ownership and is idempotent (15.735066ms)\n' +
+  '✔ SIG-8: close also drains host recovery and refuses recovery after stop (12.558679ms)\n'
+
+    at file:///home/dashy/Projects/Solanaut/evals/signer/service-faults.ts:23:52
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '✔ SIG-1/2/10: same-user startup wires signed guard, clock, socket and durable retry (36.60452ms)\n' +
+    '✔ POL-2/SIG-8: startup requires valid authorization and existing history, leaving ownership reusable on refusal (7.266806ms)\n' +
+    '✖ SIG-8: protected history permissions and symlink paths are checked before serving (9.881521ms)\n' +
+    '✔ SIG-8: ownership is acquired before serving and released after a socket-start failure (16.453758ms)\n' +
+    '✔ SIG-8/LIF-6: startup exposes incomplete recovery rather than discarding pending history (18.999454ms)\n' +
+    '✔ SIG-8: close drains dispatched send before releasing ownership and is idempotent (15.735066ms)\n' +
+    '✔ SIG-8: close also drains host recovery and refuses recovery after stop (12.558679ms)\n',
+  expected: /tests 7/,
+  operator: 'match',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

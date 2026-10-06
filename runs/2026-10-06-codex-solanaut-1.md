@@ -7,6 +7,15 @@ all security, validation and human-owned release gates.
 
 ## Did
 
+- Signed-policy correction `f6c8641` privately pushed; close ten of ten and CI `37458229657`
+  green across all runtimes/office. Continued into same-user host composition without ending.
+- Five startup tests fail first, then pass; added drain tests expose untracked host recovery.
+  Both socket and host work now drain before lock release. Seven final service cases pass;
+  eight final faults caught. Full suite 314 passes, typecheck clean, package checks four pass.
+- Same-user factory still injects signing/RPC; key/configuration loading and executable/isolated
+  modes remain owed. ADR-021 proposed and H9 asked asynchronously; dependent expansion waits,
+  independent client/validation work continues. No acceptance inferred from silence/tool receipt.
+
 - Continued without ending after a queue step, as requested. Signed-policy upgrade battery
   passes existing pending-stage restrictions; four new settled-signing cases fail first,
   then pass after executor/journal/state correction. Five new and seven existing maintained
@@ -48,6 +57,20 @@ all security, validation and human-owned release gates.
   this history and must pass compatibility checks before rollback.
 
 ## Found
+
+- Size initially 506 lines including the historically counted SDK helpers. Simplified redundant
+  event type checks, duplicate allowed check and equivalent guard-open cleanup; final count 501,
+  split 401 app and 100 SDK helper lines. SIG-11 remains unachieved. No compression or threshold
+  exception is claimed; ADR-021 proposes a human decision before remaining signer expansion.
+- Initial authorization mutation survives because SDK independently verifies it. Stronger
+  unsigned-bootstrap mutation exposes missing cleanup on unexpected startup; permission fault
+  exposes the same fixture issue. Added shared unexpected-service cleanup without altering
+  refusal assertions. Bounded child runs stop; no service left running. Selector ambiguity
+  fixed by including recover context. All initial outputs retained in the service receipt.
+- A transient, unnecessary comment in HANDOFF §8 was removed immediately before commit;
+  only permitted §5/§7 edits remain in the diff. Referenced generic architect-seat knowledge
+  files are absent locally; no other workspace searched. Architecture proposal is based on
+  this repository's accepted ADRs and measured inventory.
 
 - A final report did not prevent new signing/send intent in the journal; signed unsent
   executor recovery could consequently send a final reported attempt. Closed test-first

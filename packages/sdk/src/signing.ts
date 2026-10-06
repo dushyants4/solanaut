@@ -25,7 +25,6 @@ export function verifySigning(event: SigningEvent, history: SigningHistory | und
   if (response) throw new Error("request already has a durable response");
   if (history.settled && event.stage !== "response") throw new Error("the decision was already reported final");
   if (event.stage === "signed") {
-    if (!d.allow) throw new Error("signing requires an allowed decision");
     if (!redeemed) throw new Error("signing requires a durably redeemed receipt");
     if (signed) throw new Error("signed bytes already recorded");
     if (d.policyHash !== policyHash) throw new Error("signing under another policy is refused");

@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.18** · 2026-10-06 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.19** · 2026-10-06 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -873,3 +873,4 @@ where needed, and UTC issued timestamps include milliseconds. Policies remain re
 | Draft 4.16 | 2026-10-06 | LIF-5 pre-admission refusal history and interrupted-answer recovery; transport/core message bounds aligned. |
 | Draft 4.17 | 2026-10-06 | LIF-6 isolates recovery attempt failures and reports incomplete work without skipping signed-byte chain follow-up. Completion describes a pass, not a landed outcome. |
 | Draft 4.18 | 2026-10-06 | LIF-7 closes settled signing/send-intent loophole; signed-policy recovery preserves reservations across pending stages. |
+| Draft 4.19 | 2026-10-06 | Same-user host composition requires protected established history and signed policy; shutdown drains host and socket work. SIG-11 is unachieved under recorded count; ADR-021 awaits human decision. |

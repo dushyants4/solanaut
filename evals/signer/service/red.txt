@@ -1,0 +1,94 @@
+✖ SIG-1/2/10: same-user startup wires signed guard, clock, socket and durable retry (10.944725ms)
+✖ POL-2/SIG-8: startup requires valid authorization and existing history, leaving ownership reusable on refusal (1.363161ms)
+✖ SIG-8: protected history permissions and symlink paths are checked before serving (4.45856ms)
+✖ SIG-8: ownership is acquired before serving and released after a socket-start failure (5.929755ms)
+✖ SIG-8/LIF-6: startup exposes incomplete recovery rather than discarding pending history (10.891403ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 0
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 171.973386
+
+✖ failing tests:
+
+test at apps/signer/test/service.test.ts:42:1
+✖ SIG-1/2/10: same-user startup wires signed guard, clock, socket and durable retry (10.944725ms)
+  Error: not implemented
+      at startSigner (file:///home/dashy/Projects/Solanaut/apps/signer/src/service.ts:4:154)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/service.test.ts:43:52)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at apps/signer/test/service.test.ts:61:1
+✖ POL-2/SIG-8: startup requires valid authorization and existing history, leaving ownership reusable on refusal (1.363161ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /history|exist|ENOENT/. Input:
+  
+  'Error: not implemented'
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/service.test.ts:62:41)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: not implemented
+        at startSigner (file:///home/dashy/Projects/Solanaut/apps/signer/src/service.ts:4:154)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/service.test.ts:62:62)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /history|exist|ENOENT/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at apps/signer/test/service.test.ts:68:1
+✖ SIG-8: protected history permissions and symlink paths are checked before serving (4.45856ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /protect|permission|mode/. Input:
+  
+  'Error: not implemented'
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/service.test.ts:70:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: not implemented
+        at startSigner (file:///home/dashy/Projects/Solanaut/apps/signer/src/service.ts:4:154)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/service.test.ts:70:24)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /protect|permission|mode/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at apps/signer/test/service.test.ts:76:1
+✖ SIG-8: ownership is acquired before serving and released after a socket-start failure (5.929755ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /lock|owner/. Input:
+  
+  'Error: not implemented'
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/service.test.ts:78:9)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: not implemented
+        at startSigner (file:///home/dashy/Projects/Solanaut/apps/signer/src/service.ts:4:154)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/service.test.ts:78:30)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /lock|owner/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at apps/signer/test/service.test.ts:82:1
+✖ SIG-8/LIF-6: startup exposes incomplete recovery rather than discarding pending history (10.891403ms)
+  Error: not implemented
+      at startSigner (file:///home/dashy/Projects/Solanaut/apps/signer/src/service.ts:4:154)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/service.test.ts:86:25)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)

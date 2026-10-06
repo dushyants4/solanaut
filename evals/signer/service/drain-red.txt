@@ -1,0 +1,31 @@
+✔ SIG-1/2/10: same-user startup wires signed guard, clock, socket and durable retry (41.514997ms)
+✔ POL-2/SIG-8: startup requires valid authorization and existing history, leaving ownership reusable on refusal (7.831676ms)
+✔ SIG-8: protected history permissions and symlink paths are checked before serving (5.864315ms)
+✔ SIG-8: ownership is acquired before serving and released after a socket-start failure (15.866462ms)
+✔ SIG-8/LIF-6: startup exposes incomplete recovery rather than discarding pending history (17.478406ms)
+✔ SIG-8: close drains dispatched send before releasing ownership and is idempotent (15.062228ms)
+✖ SIG-8: close also drains host recovery and refuses recovery after stop (11.642756ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 247.665099
+
+✖ failing tests:
+
+test at apps/signer/test/service.test.ts:108:1
+✖ SIG-8: close also drains host recovery and refuses recovery after stop (11.642756ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/service.test.ts:117:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /lock|owner/,
+    operator: 'throws',
+    diff: 'simple'
+  }

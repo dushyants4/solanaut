@@ -1,0 +1,15 @@
+✔ SIG-1/2/10: same-user startup wires signed guard, clock, socket and durable retry (35.338805ms)
+✔ POL-2/SIG-8: startup requires valid authorization and existing history, leaving ownership reusable on refusal (7.557346ms)
+✔ SIG-8: protected history permissions and symlink paths are checked before serving (4.696716ms)
+✔ SIG-8: ownership is acquired before serving and released after a socket-start failure (16.541271ms)
+✔ SIG-8/LIF-6: startup exposes incomplete recovery rather than discarding pending history (16.716184ms)
+✔ SIG-8: close drains dispatched send before releasing ownership and is idempotent (15.162841ms)
+✔ SIG-8: close also drains host recovery and refuses recovery after stop (11.497326ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 237.09294

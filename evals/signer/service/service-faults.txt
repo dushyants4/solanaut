@@ -1,0 +1,9 @@
+caught service fault: accept-unsigned-bootstrap
+caught service fault: ignore-history-mode
+caught service fault: claim-key-isolation
+caught service fault: hide-recovery-error
+caught service fault: release-before-drain
+caught service fault: skip-work-drain
+caught service fault: skip-recovery-tracking
+caught service fault: allow-recovery-after-stop
+All service faults caught; restored source passes

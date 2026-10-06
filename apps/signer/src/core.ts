@@ -17,12 +17,10 @@ export function createSignerCore(options: CoreOptions) {
   const { guard, rpc, now } = options;
   const pending = new Map<string, { digest: string; promise: Promise<Response> }>();
   const evidence = (decision: string) => {
-    const events = guard.entries().filter((e) => e.kind === "signing" && e.event.decision === decision);
-    const signed = events.find((e) => e.kind === "signing" && e.event.stage === "signed");
-    const response = events.find((e) => e.kind === "signing" && e.event.stage === "response");
-    return { signed: signed?.kind === "signing" && signed.event.stage === "signed" ? signed.event : undefined,
-      response: response?.kind === "signing" && response.event.stage === "response" ? response.event : undefined,
-      started: events.some((e) => e.kind === "signing" && e.event.stage === "send-started"),
+    const events = guard.entries().flatMap((e) => e.kind === "signing" && e.event.decision === decision ? [e.event] : []);
+    return { signed: events.find((e) => e.stage === "signed"),
+      response: events.find((e) => e.stage === "response"),
+      started: events.some((e) => e.stage === "send-started"),
       redeemed: guard.entries().some((e) => e.kind === "redeem" && e.decision === decision) };
   };
   const answer = (d: Decision, status: Response["status"], signature?: string): Response => {

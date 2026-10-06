@@ -1,6 +1,6 @@
 # Signer development and trust boundary
 
-> **Draft 7** · 2026-10-06 · owner: integrator · for: operators and signer developers.
+> **Draft 8** · 2026-10-06 · owner: integrator · for: operators and signer developers.
 > Register: `kb/DOCUMENTS.md`. The operational service is still being implemented.
 
 The executor and devnet RPC boundary live under `apps/signer/src/`. Their current evidence uses
@@ -62,3 +62,13 @@ S29): old-policy admission/signed records cannot send after an upgrade, and unre
 reservations remain counted. Final chain reports prevent subsequent signing or send intent,
 including on replay. An interrupted signed response completes as uncertain without sending;
 read its separate final report for settlement. Unknown reports leave the lifecycle unresolved.
+
+`startSigner()` now composes those pieces for explicitly trusted same-user hosts (S30).
+It requires valid signed authorization and existing protected history, takes kernel ownership,
+restores with the anchored clock and recovers before listening. Close drains socket and host
+recovery work before releasing ownership. Host-provided signing/RPC must respect deadlines.
+Its status exposes policy/guard/recovery state and explicitly says key isolation is false.
+Key loading, provider-health projection, background follow-up, an executable and dedicated-user
+mode remain owed; this is not an installable isolated service. Evidence: `evals/signer/service.md`.
+The recorded count is over the existing SIG-11 ceiling; ADR-021 is proposed and awaits the
+human. No release or budget gate is marked achieved.

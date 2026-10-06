@@ -62,6 +62,8 @@ second definition change, re-measured on fresh seeds, and S7 restated with both 
 
 | S29 | Signed-policy recovery refuses old-policy sends while preserving unresolved reservations; final reports forbid subsequent signing/send intent live and on replay | **measured (builder-authored signed-policy/fake-RPC evidence)** | `evals/signer/policy-recovery.md`, 2026-10-06, Node 26.7.0: seventeen focused cases pass, five new and seven existing journal faults caught. Regenerate: `node --test apps/signer/test/policy-recovery.test.ts packages/sdk/test/signing-history.test.ts`; `node evals/signer/policy-recovery-faults.ts`; `node evals/sdk/signing-faults.ts`. Partial helper count 462, command in receipt. Operational service and full qualification remain owed |
 
+| S30 | Same-user host composition restores protected signed history before serving and drains dispatched/host recovery work before releasing ownership | **measured (builder-authored local socket/storage evidence)** | `evals/signer/service.md`, 2026-10-06, Node 26.7.0: seven service cases and eight final faults pass; initial mutation miss and harness errors retained. Regenerate: `node --test apps/signer/test/service.test.ts`; `node evals/signer/service-faults.ts`. Recorded count 501, command in receipt: SIG-11 is unachieved, ADR-021 only proposed. Host-supplied signing/RPC; protected key loading, isolated/executable deployment and full qualification remain owed |
+
 **Not yet claimable, and why:**
 - **Any detection rate or block rate, and any false-stop rate beyond S7's synthetic streams.** Nothing else has been
   measured. Milestone 2b.1 runs the Beta batteries and 3.10 the adversarial one; until then no percentage exists.

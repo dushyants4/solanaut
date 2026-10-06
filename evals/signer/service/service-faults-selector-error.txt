@@ -1,0 +1,28 @@
+caught service fault: accept-unsigned-bootstrap
+caught service fault: ignore-history-mode
+caught service fault: claim-key-isolation
+caught service fault: hide-recovery-error
+caught service fault: release-before-drain
+caught service fault: skip-work-drain
+caught service fault: skip-recovery-tracking
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: ambiguous fault site: allow-recovery-after-stop
+
+2155 !== 2589
+
+    at file:///home/dashy/Projects/Solanaut/evals/signer/service-faults.ts:20:10
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 2155,
+  expected: 2589,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

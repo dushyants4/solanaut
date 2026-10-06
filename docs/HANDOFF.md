@@ -172,6 +172,8 @@ Codex appends; the human answers in place. Open at the transfer:
 | H7 | 2026-10-05 | Solanaut 1.0 foundations | **Accepted:** the human said “Go aheaaad, Continue the plan” after the explicit acceptance request for ADR-019 and ADR-020. Their dependent implementation may proceed. No readiness threshold or T4 permission changed. |
 | H8 | 2026-10-05 | qualification | **External resources:** recruit outside developers, choose/fund the specialist audit and live bounty, and provide reliable devnet RPC for its soak. No contact or purchase made by Codex; all thresholds retained. |
 
+| H9 | 2026-10-06 | signer completion / SIG-11 | **Decision requested:** accept or reject `design/ADR-021-signer-implementation-budget.md`. The partial signer is 501 lines under the recorded conservative count (401 app + 100 signer-specific SDK helper lines), before key loading and remaining operational work. Proposal: 1,000 physical lines across the same scope, with all other gates unchanged. Until acceptance the 500-line gate is not achieved and dependent expansion waits; independent work continues. |
+
 ## 6. Owed edits, to files Codex may not change
 
 Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.codex/`, `.claude/`,
@@ -214,7 +216,8 @@ The live probes and baseline are complete. ADR-012 C is built and tested offline
 | 2026-10-06 | proposal-refusal foundation | `a40375a` | LIF-5 receipt; CI `37453503555` passed | Pre-admission errors now durable; operational signer remains owed. Post-push close passed. |
 | 2026-10-06 | recovery pass isolation | `8b92594` | LIF-6 receipt; CI `37457271361` passed | Failed attempts no longer abort later reconciliation; operational service and policy-change qualification remain owed. Post-push close passed. |
 
-| 2026-10-06 | signed-policy recovery/settled signing | commit containing `evals/signer/policy-recovery.md` | POL-4/LIF-7 receipt | Pending-stage policy changes preserve reservations; final reports prevent signing/send intent. Operational service remains owed. |
+| 2026-10-06 | signed-policy recovery/settled signing | `f6c8641` | POL-4/LIF-7 receipt; CI `37458229657` passed | Pending-stage policy changes preserve reservations; final reports prevent signing/send intent. Post-push close passed; operational service remains owed. |
+| 2026-10-06 | same-user host composition, partial | commit containing `evals/signer/service.md` | SIG/POL receipt | Startup/drain cases pass; count 501 does not pass SIG-11. ADR-021/H9 pending; independent client/validation work continues. |
 
 ## 8. Handing back to Claude
 
