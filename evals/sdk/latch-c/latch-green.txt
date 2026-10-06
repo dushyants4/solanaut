@@ -1,0 +1,33 @@
+✔ LAT-1 / RT-3: a single REGROUND denial by an earlier rule does not latch (33.438788ms)
+✔ LAT-2 / RT-3: two consecutive REGROUND denials latch, across report and restart (8.288082ms)
+✔ LAT-2 / RT-3: a decision without REGROUND breaks the consecutive pair (4.551529ms)
+✔ LAT-3 / RT-3: Keel's own loop denial latches immediately (1.786659ms)
+✔ LAT-4 / RT-3: the policy's consecutive-denial threshold still latches without REGROUND (4.636362ms)
+✔ LAT-5 / RT-3: replay names the accepted one-time divergence of a V0 latch (3.429692ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: identical failing retries, 400 ms (21.582513ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: identical failing retries, 5 s (12.819028ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: rising fees, failing, 400 ms (15.292614ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: two shapes alternating, failing, 400 ms (10.984311ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5: one early re-sign, then 10 normal payments (11.558091ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: cockpit demo: unknown outcome, re-sent once (12.96699ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: the kit's double signing: six payments signed twice (10.097915ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: drain storm: the same drain (8.893601ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: drain storm: new address and amount (10.096426ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 10% of the cap (14.120832ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 20% of the cap (13.953876ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 30% of the cap (10.542984ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 40% of the cap (8.017953ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 60% of the cap (10.866877ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 80% of the cap (8.393731ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: cockpit demo at its proportions (7.475273ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: benign: expected rate (402.675275ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: benign: bursts (307.162287ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1248.228727
+

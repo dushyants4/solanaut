@@ -1,0 +1,86 @@
+✔ LAT-1 / RT-3: a single REGROUND denial by an earlier rule does not latch (27.032163ms)
+✖ LAT-2 / RT-3: two consecutive REGROUND denials latch, across report and restart (8.451806ms)
+✔ LAT-2 / RT-3: a decision without REGROUND breaks the consecutive pair (4.80865ms)
+✔ LAT-3 / RT-3: Keel's own loop denial latches immediately (0.992049ms)
+✔ LAT-4 / RT-3: the policy's consecutive-denial threshold still latches without REGROUND (1.111266ms)
+✔ LAT-5 / RT-3: replay names the accepted one-time divergence of a V0 latch (1.836953ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: identical failing retries, 400 ms (14.150041ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: identical failing retries, 5 s (8.037661ms)
+✖ LAT-6 / RT-3: option C reproduces the archived stream: rising fees, failing, 400 ms (8.809959ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: two shapes alternating, failing, 400 ms (8.099092ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5: one early re-sign, then 10 normal payments (9.22147ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: cockpit demo: unknown outcome, re-sent once (8.113841ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: the kit's double signing: six payments signed twice (7.167502ms)
+✖ LAT-6 / RT-3: option C reproduces the archived stream: drain storm: the same drain (7.780946ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: drain storm: new address and amount (6.975107ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 10% of the cap (10.173051ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 20% of the cap (7.814498ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 30% of the cap (7.580902ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 40% of the cap (8.461848ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 60% of the cap (7.032513ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 80% of the cap (7.267152ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: cockpit demo at its proportions (7.001653ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: benign: expected rate (269.163993ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: benign: bursts (239.635895ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 21
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 928.366142
+
+✖ failing tests:
+
+test at packages/sdk/test/latch-c.test.ts:40:1
+✖ LAT-2 / RT-3: two consecutive REGROUND denials latch, across report and restart (8.451806ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/latch-c.test.ts:58:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/latch-c.test.ts:120:3
+✖ LAT-6 / RT-3: option C reproduces the archived stream: rising fees, failing, 400 ms (8.809959ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/latch-c.test.ts:125:14)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/latch-c.test.ts:120:3
+✖ LAT-6 / RT-3: option C reproduces the archived stream: drain storm: the same drain (7.780946ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/latch-c.test.ts:125:14)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+

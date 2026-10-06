@@ -49,6 +49,12 @@ Coarser than `runs/`. The archivist keeps it current; every phase that ends gets
 
 ## Open
 
+**Solanaut 1.0 mission:** `docs/plans/2026-10-05_solanaut-1.md`, approved in this session.
+ADR-012 C is implemented and verified offline (`evals/sdk/latch-c.md`); its complete queue item
+still owes a funded devnet rerun. Historical records' accepted replay differences are enumerated.
+ADR-019/020 are proposed clarifications awaiting the human; the isolated signer is not built.
+The Alpha and stable-release gates are not achieved by this initial work.
+
 1. **Defects** (`docs/SPEC.md` §10):
    - D1 to D12 are closed: D1, D2, D5, D6, D7, D9, D10 and D12 at 2a.5, D11 at 2a.6, D3, D4 and D8 at 2a.7.
    - D13, found and closed before devnet: a send of unknown fate was reported `failed`.
@@ -65,8 +71,8 @@ Coarser than `runs/`. The archivist keeps it current; every phase that ends gets
    - **Measured:** four trip rules, offline (`evals/sdk/latch-variants.md`). None admits a forbidden proposal. Today's
      rule stops the 10 good payments after the re-sign.
    - **ADR-012, accepted by the human on 2026-10-05 (option C):** a REGROUND denial latches when Keel is the reason,
-     or when the denial before it was also at REGROUND. Not built yet; until it is, the guard keeps today's rule. It is
-     the first item in `docs/HANDOFF.md`'s queue.
+     or when the denial before it was also at REGROUND. Built and verified offline in `evals/sdk/latch-c.md`;
+     the funded devnet rerun is still owed. The remaining loop questions stay open.
 3. **The human's**, as decided on 2026-09-30:
    - `docs/PRODUCT.md` is signed off, and `"plansDirectory": "./docs/plans"` is in `.claude/settings.json`, done by
      the agent at the human's direction;

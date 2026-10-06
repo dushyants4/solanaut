@@ -1,0 +1,54 @@
+✔ LAT-1 / RT-3: a single REGROUND denial by an earlier rule does not latch (27.327014ms)
+✖ LAT-2 / RT-3: two consecutive REGROUND denials latch, across report and restart (6.18128ms)
+✔ LAT-2 / RT-3: a decision without REGROUND breaks the consecutive pair (2.411112ms)
+✔ LAT-3 / RT-3: Keel's own loop denial latches immediately (2.857844ms)
+✔ LAT-4 / RT-3: the policy's consecutive-denial threshold still latches without REGROUND (2.213942ms)
+✔ LAT-5 / RT-3: replay names the accepted one-time divergence of a V0 latch (4.649573ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: identical failing retries, 400 ms (18.705105ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: identical failing retries, 5 s (9.486019ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: rising fees, failing, 400 ms (11.438056ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: two shapes alternating, failing, 400 ms (9.592625ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5: one early re-sign, then 10 normal payments (7.294269ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: cockpit demo: unknown outcome, re-sent once (7.730889ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: the kit's double signing: six payments signed twice (7.372482ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: drain storm: the same drain (7.005677ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: drain storm: new address and amount (7.73451ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 10% of the cap (8.038375ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 20% of the cap (9.494691ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 30% of the cap (7.538586ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 40% of the cap (7.864073ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 60% of the cap (7.859375ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 80% of the cap (6.911256ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: cockpit demo at its proportions (7.101295ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: benign: expected rate (266.442097ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: benign: bursts (227.090911ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 23
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 958.255469
+
+✖ failing tests:
+
+test at packages/sdk/test/latch-c.test.ts:40:1
+✖ LAT-2 / RT-3: two consecutive REGROUND denials latch, across report and restart (6.18128ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - true
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/latch-c.test.ts:56:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+

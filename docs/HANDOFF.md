@@ -55,6 +55,14 @@
 
 ## 4. The work queue, in order
 
+**Solanaut 1.0 mission, approved in this session on 2026-10-05:**
+`docs/plans/2026-10-05_solanaut-1.md` extends this queue through individual Linux/devnet deployment
+and all existing R.1–R.5 gates. The original repository is the eventual public repository.
+A release-only JavaScript/declaration build is authorised; native TypeScript development remains.
+Allocate snapshots, exclusive recovery, compatibility and lifecycle work before qualification.
+Independent packaging and gate preparation can progress while architecture proposals await
+acceptance. Mainnet and every T4 action remain separately human-owned.
+
 Take the first item whose dependencies are achieved. Item 0 comes first, every session. The order puts first what
 the demo and every later milestone lean on. The ADRs give the design, and `docs/SPEC.md` §13 the requirement IDs that
 the tests are named by.
@@ -87,6 +95,8 @@ the tests are named by.
     and move on.
 
 **2. 3.1 · The signer process.** SIG-1 to SIG-11; ADR-013. This is the foundation of the rest of Leg 3.
+- **Clarification pending:** ADR-019 proposes durable request lifecycle, exclusive ownership,
+  snapshots, evaluator versions and RPC trust. Do not build its affected paths on a proposal.
 - **The same-user mode is what you build and test.** Running it as its own OS user needs a user created with `sudo`,
   which is the human's (§5).
 - **SIG-11 is a budget:** state the line count before writing, and measure it after.
@@ -159,6 +169,8 @@ Codex appends; the human answers in place. Open at the transfer:
 | H4 | 2026-10-05 | items 2, 9 | **OS users,** for the signer (ADR-013) and Phantom's MCP server (PHX-5), are created with `sudo` by the human, when Codex has the same-user modes working. |
 | H5 | 2026-10-05 | Codex | **The machine-wide Gubernaut skills.** Six skills in `~/.agents/skills` load into every Codex session, this one included. `AGENTS.md` forbids them here; only the human can scope them to Gubernaut's own repository. |
 | H6 | 2026-10-05 | every item | **`gh` hangs** on every command, including `gh auth status`, while `git push` works over the stored credential. Its token probably sits in a locked keyring. Unlock it, or run `gh auth login`, so Codex can read CI. |
+| H7 | 2026-10-05 | Solanaut 1.0 foundations | **Accept or revise the concrete proposals:** `design/ADR-019-stable-signing-and-history.md` and `design/ADR-020-opaque-and-operator-boundaries.md`. They address accepted-ADR gaps; dependent implementation waits. |
+| H8 | 2026-10-05 | qualification | **External resources:** recruit outside developers, choose/fund the specialist audit and live bounty, and provide reliable devnet RPC for its soak. No contact or purchase made by Codex; all thresholds retained. |
 
 ## 6. Owed edits, to files Codex may not change
 
@@ -169,14 +181,20 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 | # | File | Exact edit | Why | Applied |
 |---|---|---|---|---|
 | | | | | |
+| O1 | AGENTS.md, build convention | Replace `TypeScript run natively by Node 26, with no build step; ESM;` with `TypeScript run natively by Node 26 for development; a release-only build emits JavaScript and declarations for npm consumers; ESM;` | Explicitly approved by the human in the Solanaut 1.0 mission. | no |
 
 ## 7. Codex's log
 
 One row per completed queue step, newest last.
 
+The live probes and baseline are complete. ADR-012 C is built and tested offline in
+`evals/sdk/latch-c.md`; the complete queue item still owes the funded devnet rerun. Commit provenance:
+`git log -- evals/sdk/latch-c.md`. The continuing run is `runs/2026-10-05-codex-solanaut-1.md`.
+
 | Date | Item | Commit | Evidence | Note |
 |---|---|---|---|---|
 | | | | | |
+| 2026-10-05 | 0: probes and baseline | commit containing this row; `git log -- runs/2026-10-05-codex-solanaut-1.md` | continuing run record | Correct live refusals; baseline tests/typecheck green; initial close gate finds uncommitted mission work. |
 
 ## 8. Handing back to Claude
 

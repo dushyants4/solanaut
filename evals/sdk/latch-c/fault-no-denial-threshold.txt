@@ -1,0 +1,77 @@
+✔ LAT-1 / RT-3: a single REGROUND denial by an earlier rule does not latch (27.1273ms)
+✔ LAT-2 / RT-3: two consecutive REGROUND denials latch, across report and restart (6.063317ms)
+✔ LAT-2 / RT-3: a decision without REGROUND breaks the consecutive pair (3.474871ms)
+✔ LAT-3 / RT-3: Keel's own loop denial latches immediately (1.167577ms)
+✖ LAT-4 / RT-3: the policy's consecutive-denial threshold still latches without REGROUND (4.334874ms)
+✔ LAT-5 / RT-3: replay names the accepted one-time divergence of a V0 latch (2.849819ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: identical failing retries, 400 ms (15.864133ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: identical failing retries, 5 s (10.852961ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: rising fees, failing, 400 ms (11.72472ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: two shapes alternating, failing, 400 ms (10.403175ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5: one early re-sign, then 10 normal payments (8.813748ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: cockpit demo: unknown outcome, re-sent once (7.50604ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: the kit's double signing: six payments signed twice (9.118529ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: drain storm: the same drain (6.795737ms)
+✖ LAT-6 / RT-3: option C reproduces the archived stream: drain storm: new address and amount (6.925603ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 10% of the cap (8.563167ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 20% of the cap (9.274344ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 30% of the cap (8.381499ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 40% of the cap (7.781012ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 60% of the cap (8.264167ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 80% of the cap (8.07653ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: cockpit demo at its proportions (7.263119ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: benign: expected rate (290.027275ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: benign: bursts (271.109133ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 22
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 986.894834
+
+✖ failing tests:
+
+test at packages/sdk/test/latch-c.test.ts:91:1
+✖ LAT-4 / RT-3: the policy's consecutive-denial threshold still latches without REGROUND (4.334874ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - true
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/latch-c.test.ts:98:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/latch-c.test.ts:120:3
+✖ LAT-6 / RT-3: option C reproduces the archived stream: drain storm: new address and amount (6.925603ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      allowed: 0,
+  +   latchTurn: null,
+  -   latchTurn: 5,
+      legitStopped: null
+    }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/latch-c.test.ts:123:14)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { latchTurn: null, allowed: 0, legitStopped: null },
+    expected: { latchTurn: 5, allowed: 0, legitStopped: null },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+

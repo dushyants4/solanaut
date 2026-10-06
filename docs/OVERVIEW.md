@@ -1,10 +1,16 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 3** · 2026-10-01 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 4** · 2026-10-05 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
+
+The first Solanaut 1.0 change implements ADR-012 C in the existing guard: one REGROUND denial
+from an earlier rule is tolerated; Keel's own denial or a consecutive REGROUND denial latches.
+The predecessor comes from the record and is reconstructed in replay. Offline evidence and the
+accepted historical replay breaks are in `evals/sdk/latch-c.md`; the funded devnet rerun is owed.
+The isolated signer and later Alpha paths remain specified, not built.
 
 A product and an office around it. The product is a transaction guard for Solana AI agents: about 1,950 lines of
 TypeScript, and about 1,850 lines of tests. The office is the machinery that keeps the work honest: seven agent

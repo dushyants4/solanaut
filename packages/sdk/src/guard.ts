@@ -162,12 +162,14 @@ const KEEL = { version: KEEL_VERSION, digest: wasmDigest, verified: "bytes" as c
 /**
  * One decision, by rules 1 to 19 in order, against the state as it stands. It ticks Keel for
  * every parsed proposal and changes nothing else: committing the result is the caller's. A denial
- * that completes the policy's run of denials, or meets REGROUND, trips the latch, and says so.
+ * that completes the policy's run of denials trips the latch. At REGROUND, Keel's own denial
+ * or a second consecutive REGROUND denial trips it (ADR-012 C).
  */
-function evaluate(env: Env, p: ProposalV1): DecisionBody {
+function evaluate(env: Env, p: ProposalV1, previous: DecisionEntry | undefined): DecisionBody {
   const body = evaluateRules(env, p);
   const { state, policy } = env;
-  const trips = !body.allow && !state.latched && (state.consecutiveDenials + 1 >= policy.latch.afterDenials || body.posture === "REGROUND");
+  const regroundTrips = body.posture === "REGROUND" && (body.rule === "loop-reground" || (previous?.allow === false && previous.posture === "REGROUND"));
+  const trips = !body.allow && !state.latched && (state.consecutiveDenials + 1 >= policy.latch.afterDenials || regroundTrips);
   return trips ? { ...body, latch: true } : body;
 }
 
@@ -341,7 +343,8 @@ export async function createGuard(opts: GuardOptions): Promise<Guard> {
   const check = (p: ProposalV1): Decision => {
     if (shut) return unrecorded(shut);
     try {
-      return commit<DecisionEntry>(evaluate(env, p));
+      const previous = store.entries.findLast((e): e is DecisionEntry => e.kind === "decision");
+      return commit<DecisionEntry>(evaluate(env, p, previous));
     } catch (err) {
       // Nothing may be signed on a decision that is not in the record.
       return unrecorded(shut ?? `the guard could not decide, so it denies: ${(err as Error)?.message ?? String(err)}`);
@@ -449,11 +452,14 @@ export async function replay(entries: readonly Entry[], policyInput: unknown, se
   const { policy, hash } = createPolicy(policyInput);
   const env: Env = { policy, policyHash: hash, ctx: contextOf(policy), sensor, gov: await Governor.create(), state: initialState() };
   let decisions = 0;
+  let previous: DecisionEntry | undefined;
   for (const e of entries) {
     const diverge = (field: string, recorded: unknown, recomputed: unknown): ReplayResult => ({ ok: false, decisions, divergence: { seq: e.seq, field, recorded, recomputed } });
     if (hashOf(e) !== e.hash) return diverge("hash", e.hash, hashOf(e));
     if (e.kind === "decision") {
       decisions++;
+      const prior = previous;
+      previous = e;
       if (e.input === "invalid") {
         // The proposal itself was ill-formed; the record keeps no more of it than that.
         if (e.allow || e.rule !== "malformed-proposal") return diverge("rule", e.rule, "malformed-proposal");
@@ -465,7 +471,7 @@ export async function replay(entries: readonly Entry[], policyInput: unknown, se
           ...(e.lastValidBlockHeight === null ? {} : { lastValidBlockHeight: BigInt(e.lastValidBlockHeight) }),
           ...(e.group === null ? {} : { intent: e.group }),
         };
-        const again = evaluate(env, p);
+        const again = evaluate(env, p, prior);
         for (const field of COMPARED) {
           if (canonicalJSON(e[field] ?? null) !== canonicalJSON(again[field] ?? null)) return diverge(field, e[field], again[field]);
         }
@@ -486,4 +492,3 @@ export async function replay(entries: readonly Entry[], policyInput: unknown, se
   }
   return { ok: true, decisions, divergence: null };
 }
-

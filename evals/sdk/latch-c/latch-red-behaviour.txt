@@ -1,0 +1,329 @@
+✖ LAT-1 / RT-3: a single REGROUND denial by an earlier rule does not latch (28.181975ms)
+✖ LAT-2 / RT-3: two consecutive REGROUND denials latch, across report and restart (3.417463ms)
+✖ LAT-2 / RT-3: a decision without REGROUND breaks the consecutive pair (2.319549ms)
+✔ LAT-3 / RT-3: Keel's own loop denial latches immediately (1.531587ms)
+✔ LAT-4 / RT-3: the policy's consecutive-denial threshold still latches without REGROUND (3.016151ms)
+✖ LAT-5 / RT-3: replay names the accepted one-time divergence of a V0 latch (2.848802ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: identical failing retries, 400 ms (19.202361ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: identical failing retries, 5 s (11.678242ms)
+✖ LAT-6 / RT-3: option C reproduces the archived stream: rising fees, failing, 400 ms (9.881534ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: two shapes alternating, failing, 400 ms (11.804508ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5: one early re-sign, then 10 normal payments (9.608379ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: cockpit demo: unknown outcome, re-sent once (8.961258ms)
+✖ LAT-6 / RT-3: option C reproduces the archived stream: the kit's double signing: six payments signed twice (5.595322ms)
+✖ LAT-6 / RT-3: option C reproduces the archived stream: drain storm: the same drain (6.771999ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: drain storm: new address and amount (8.147041ms)
+✖ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 10% of the cap (7.085223ms)
+✖ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 20% of the cap (5.77877ms)
+✖ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 30% of the cap (6.35277ms)
+✖ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 40% of the cap (5.633304ms)
+✖ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 60% of the cap (6.590612ms)
+✖ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 80% of the cap (5.176889ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: cockpit demo at its proportions (8.934802ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: benign: expected rate (313.394983ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: benign: bursts (264.396501ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 11
+ℹ fail 13
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1058.362941
+
+✖ failing tests:
+
+test at packages/sdk/test/latch-c.test.ts:29:1
+✖ LAT-1 / RT-3: a single REGROUND denial by an earlier rule does not latch (28.181975ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + true
+  - undefined
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/latch-c.test.ts:35:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: undefined,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/latch-c.test.ts:40:1
+✖ LAT-2 / RT-3: two consecutive REGROUND denials latch, across report and restart (3.417463ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/latch-c.test.ts:49:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/latch-c.test.ts:62:1
+✖ LAT-2 / RT-3: a decision without REGROUND breaks the consecutive pair (2.319549ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'latched'
+  - 'destination-not-allowed'
+  
+      at regroundDenial (file:///home/dashy/Projects/Solanaut/packages/sdk/test/latch-c.test.ts:25:10)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/latch-c.test.ts:71:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'latched',
+    expected: 'destination-not-allowed',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/latch-c.test.ts:102:1
+✖ LAT-5 / RT-3: replay names the accepted one-time divergence of a V0 latch (2.848802ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/latch-c.test.ts:113:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/latch-c.test.ts:120:3
+✖ LAT-6 / RT-3: option C reproduces the archived stream: rising fees, failing, 400 ms (9.881534ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      allowed: 3,
+  +   latchTurn: 4,
+  -   latchTurn: 5,
+      legitStopped: null
+    }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/latch-c.test.ts:123:14)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { latchTurn: 4, allowed: 3, legitStopped: null },
+    expected: { latchTurn: 5, allowed: 3, legitStopped: null },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/latch-c.test.ts:120:3
+✖ LAT-6 / RT-3: option C reproduces the archived stream: the kit's double signing: six payments signed twice (5.595322ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   allowed: 3,
+  +   latchTurn: 6,
+  +   legitStopped: 3
+  -   allowed: 4,
+  -   latchTurn: 9,
+  -   legitStopped: 2
+    }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/latch-c.test.ts:123:14)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { latchTurn: 6, allowed: 3, legitStopped: 3 },
+    expected: { latchTurn: 9, allowed: 4, legitStopped: 2 },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/latch-c.test.ts:120:3
+✖ LAT-6 / RT-3: option C reproduces the archived stream: drain storm: the same drain (6.771999ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      allowed: 0,
+  +   latchTurn: 3,
+  -   latchTurn: 4,
+      legitStopped: null
+    }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/latch-c.test.ts:123:14)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { latchTurn: 3, allowed: 0, legitStopped: null },
+    expected: { latchTurn: 4, allowed: 0, legitStopped: null },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/latch-c.test.ts:120:3
+✖ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 10% of the cap (7.085223ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   allowed: 3,
+  +   latchTurn: 4,
+  +   legitStopped: 10
+  -   allowed: 13,
+  -   latchTurn: null,
+  -   legitStopped: 0
+    }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/latch-c.test.ts:123:14)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { latchTurn: 4, allowed: 3, legitStopped: 10 },
+    expected: { latchTurn: null, allowed: 13, legitStopped: 0 },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/latch-c.test.ts:120:3
+✖ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 20% of the cap (5.77877ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   allowed: 3,
+  +   latchTurn: 4,
+  +   legitStopped: 10
+  -   allowed: 13,
+  -   latchTurn: null,
+  -   legitStopped: 0
+    }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/latch-c.test.ts:123:14)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { latchTurn: 4, allowed: 3, legitStopped: 10 },
+    expected: { latchTurn: null, allowed: 13, legitStopped: 0 },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/latch-c.test.ts:120:3
+✖ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 30% of the cap (6.35277ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   allowed: 3,
+  +   latchTurn: 4,
+  +   legitStopped: 10
+  -   allowed: 13,
+  -   latchTurn: null,
+  -   legitStopped: 0
+    }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/latch-c.test.ts:123:14)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { latchTurn: 4, allowed: 3, legitStopped: 10 },
+    expected: { latchTurn: null, allowed: 13, legitStopped: 0 },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/latch-c.test.ts:120:3
+✖ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 40% of the cap (5.633304ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   allowed: 3,
+  +   latchTurn: 4,
+  +   legitStopped: 10
+  -   allowed: 13,
+  -   latchTurn: null,
+  -   legitStopped: 0
+    }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/latch-c.test.ts:123:14)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { latchTurn: 4, allowed: 3, legitStopped: 10 },
+    expected: { latchTurn: null, allowed: 13, legitStopped: 0 },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/latch-c.test.ts:120:3
+✖ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 60% of the cap (6.590612ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   allowed: 3,
+  +   latchTurn: 4,
+  +   legitStopped: 10
+  -   allowed: 13,
+  -   latchTurn: null,
+  -   legitStopped: 0
+    }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/latch-c.test.ts:123:14)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { latchTurn: 4, allowed: 3, legitStopped: 10 },
+    expected: { latchTurn: null, allowed: 13, legitStopped: 0 },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/latch-c.test.ts:120:3
+✖ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 80% of the cap (5.176889ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   allowed: 3,
+  +   latchTurn: 4,
+  +   legitStopped: 10
+  -   allowed: 13,
+  -   latchTurn: null,
+  -   legitStopped: 0
+    }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/latch-c.test.ts:123:14)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { latchTurn: 4, allowed: 3, legitStopped: 10 },
+    expected: { latchTurn: null, allowed: 13, legitStopped: 0 },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+

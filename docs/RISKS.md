@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.0** · 2026-10-05 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.1** · 2026-10-05 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 The threat model ([docs/papers/THREAT-MODEL.md](papers/THREAT-MODEL.md)) lists what an attacker can do to a running
@@ -20,7 +20,7 @@ evidence.
 | ID | Risk | L | I | Mitigation | Indicator | Owner | Status |
 |---|---|---|---|---|---|---|---|
 | RK1 | A loop that changes its shape and amount each turn is not stopped by Keel | high | medium | bounded by the fee window and the INHIBIT clamp; the Alpha's red team measures it; a rule on runs of failed outcomes is the candidate fix (`docs/SPEC.md` §12) | the loop battery's alternating case | architect, evaluator | open: not stopped in 12 turns (`evals/sdk/keel.md`) |
-| RK2 | The latch stops a well-behaved agent: one early re-sign latches the guard until the operator signs | high | medium | ADR-012 proposes a narrower trip rule, measured to admit nothing the policy forbids | the demo's scene 5 on devnet | the human | open: decision owed (ADR-012) |
+| RK2 | The latch stops a well-behaved agent after one early re-sign | high | medium | accepted ADR-012 C built and tested offline (`evals/sdk/latch-c.md`); replay differences retained | scene 5 on devnet | builder, evaluator | mitigated offline; funded devnet rerun owed |
 | RK3 | In SDK mode the caller supplies time, heights and outcomes, so a lying caller widens what is admitted (T20, T21) | medium | high | the signer process fetches them itself (milestone 3.1); until then the limit is stated in SPEC §2.1 and every claim is scoped to SDK mode | — | architect, builder | open until 3.1 |
 | RK4 | Agent frameworks sign twice or report landed payments as failed, so integrations hit refusals or retry real payments | high | medium | D14 closed; `guardedWallet` follows up what it signed; integrators pass whole transactions; findings sent upstream (M12, M13) | refusals as `intent-in-flight` in the adapters battery | integrator | mitigated for Solana Agent Kit 2.0.10; ElizaOS unknown until 3.6 |
 | RK5 | A listed Token-2022 mint changes a mutable setting after the operator checked it (T15) | low | high | only listed mints; the extension set pinned and re-read at admission (3.3) | — | builder | open until 3.3 |
@@ -42,8 +42,8 @@ evidence.
 | ID | Risk | L | I | Mitigation | Indicator | Owner | Status |
 |---|---|---|---|---|---|---|---|
 | RK12 | Independent evaluation is hard to get: outside agent CLIs are refused when run unattended, and the account's usage limit stopped a multi-agent run | high | medium | runs the human starts; this session's subagents, given only the spec and audited for black-box reads; R.2's external audit | an owed evaluator run | evaluator, the human | mitigated for the Beta: three evaluators, 317 cases, six defects closed (`evals/independent/`); the Alpha's red team (RT-2) needs it again |
-| RK13 | Decisions wait on one person: ADRs, sign-offs and every T4 step | high | medium | decisions batched into milestone reviews; reversible work continues while one is open | an open decision older than a milestone | the human, archivist | open: ADR-012, the Beta sign-off |
-| RK14 | The Alpha's thresholds are ambitious, and Leg 3 busts on any miss: 95% coverage, 80% mutation, a million fuzz inputs, 1,000 mainnet transactions, a 72-hour soak, three outside developers | high | medium | 2c.1 confirms or trims each threshold before Leg 3 starts, with the human, so none is dropped silently later | — | evaluator, the human | open: for 2c.1 |
+| RK13 | Decisions wait on one person: ADRs, sign-offs and every T4 step | high | medium | batch milestone decisions; independent work continues while one is open | open decision older than a milestone | the human, archivist | Beta and ADR-012 accepted; ADR-019/020 pending |
+| RK14 | The Alpha's thresholds are ambitious, and Leg 3 busts on any miss: 95% coverage, 80% mutation, a million fuzz inputs, 1,000 mainnet transactions, a 72-hour soak, three outside developers | high | medium | all thresholds confirmed on 2026-10-05; preserve them and record misses without lowering them | — | evaluator, the human | confirmed; qualification owed |
 | RK15 | The contest's deadline (2026-10-12) pressures claims past the evidence | medium | high | every public sentence traces to `docs/CLAIMS.md`; `tools/claims_lint.py` gates each measured row; the human submits only achieved milestones | a sentence in a draft with no row | archivist, the human | mitigated |
 | RK16 | The public devnet RPC rate-limits and its faucet refuses, stalling devnet milestones | high | low | reads back off, sends never retry; the drills resume on existing accounts; the human funds the operator; 4.3 requires two RPC providers | HTTP 429s in a run record | operator | mitigated for the Beta |
 | RK17 | Reusing the Gubernaut workspace's tooling would breach the isolation the project exists under | medium | medium | the boundary guard; CLAUDE.md's isolation rule; any change to it is the human's, recorded as an ADR | a request to use APEX tooling | harness | mitigated |
@@ -56,6 +56,10 @@ evidence.
 | RK19 | The live Phantom test goes wrong: a misclick, or a compromised operator wallet (T18, T30) | low | high | devnet first, as the human chose; a fresh account; the runbook passes twice before (4.2); real funds only under ADR-008, by the human | — | the human | open until Leg 4 |
 
 ## Changes
+
+Solanaut 1.0 inspection also found the documented stale-lock race, missing signer lifecycle
+evidence and the execution-relative gap in opaque balance floors. ADR-019/020 are proposals,
+not built mitigations. Affected implementation waits for acceptance; opaque denial remains.
 
 | Version | Date | What changed |
 |---|---|---|

@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.1** · 2026-10-05 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.2** · 2026-10-05 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -344,8 +344,10 @@ Built at milestone 2a.7 (`evals/sdk/keel.md`).
     read before the status, it reports `expired`.
   - A `landed` intent is done; the same effects again make a new intent.
   - Report outcomes with `guard.report(decisionHash, "landed" | "failed" | "expired" | "unknown")`.
-- **The latch.** It trips after `latch.afterDenials` consecutive denials, or on any REGROUND. While latched, every
-  proposal is denied as `latched`.
+- **The latch.** It trips after `latch.afterDenials` consecutive denials. A REGROUND denial trips it when Keel
+  is the reason (`loop-reground`), or the previous decision in the record was also a REGROUND denial
+  (ADR-012 option C). Reports do not replace that predecessor; any intervening non-REGROUND decision breaks
+  the pair. While latched, every proposal is denied as `latched`.
   - Release is `guard.release(signature)`, verified with ed25519 against `latch.releaseKey` over this UTF-8 text,
     which Phantom's `signMessage` can sign:
 
@@ -597,8 +599,9 @@ regenerates them.
     forbids.
   - After two landed payments, today's rule latches on scene 5's single re-sign, at every share of the cap tried, and
     stops the next 10 good payments.
-  - [ADR-012](../design/ADR-012-latch-on-reground.md), **accepted by the human on 2026-10-05 (option C), not built
-    yet:** a REGROUND denial latches when Keel is the reason, or when the denial before it was also at REGROUND.
+  - [ADR-012](../design/ADR-012-latch-on-reground.md), **accepted by the human on 2026-10-05 (option C), now built
+    and tested offline** (`evals/sdk/latch-c.md`): a REGROUND denial latches when Keel is the reason, or when the
+    denial before it was also at REGROUND. The funded devnet rerun remains owed; S12 describes the historical run.
     Identical retries still latch at turn 3.
 - **Benign payments with varied priority fees read as fee escalation.** **Answered 2026-10-03, and built.** The
   independent evaluator's varied-fee streams stopped 15 of 3,000 benign payments, because sensor v1 scored the same
@@ -744,6 +747,19 @@ and accepted: ADR-013 to ADR-018 (§13.11).
 | [ADR-017](../design/ADR-017-elizaos-integration.md), accepted | the ElizaOS integration point (ELZ-2) | 3.6 |
 | [ADR-015](../design/ADR-015-log-anchor-cadence.md), accepted | the anchor's cadence and payer (ANC-5) | 3.7 |
 
+### 13.12 ADR-012 acceptance tests (RT-3)
+
+These IDs name obligations of the already accepted option C, not new latch rules.
+
+| ID | Requirement | Verified by |
+|---|---|---|
+| LAT-1 | one REGROUND denial from a rule before Keel does not latch by REGROUND alone | `latch-c.test.ts` |
+| LAT-2 | consecutive REGROUND denials latch; the previous decision is restored from the record, across non-decision entries; a non-REGROUND decision breaks the pair | restart, report and malformed-decision cases |
+| LAT-3 | Keel's `loop-reground` denial immediately latches | hostile telemetry with an otherwise permitted payment |
+| LAT-4 | `afterDenials` remains sufficient without REGROUND | quiet telemetry and denied destinations |
+| LAT-5 | replay reports the accepted Beta-to-C difference at `latch` | sealed V0-style fixture |
+| LAT-6 | archived scripted streams reproduce option C and current records replay | the original stream definitions and expected table |
+
 ## Changes
 
 | Version | Date | What changed |
@@ -753,3 +769,4 @@ and accepted: ADR-013 to ADR-018 (§13.11).
 | Draft 3 | 2026-10-01 | Built through milestone 2a.5 (`runs/2026-10-01-beta-build.md`): the effects model as implemented (`otherSigners`, outflow sources, denial rules, the intent key's definition); the record's four entry kinds; the decisions made while building, in §4 and §7; kit's default version answered; D1, D2, D5, D6, D7, D9, D10 and D12 closed; then 2a.6: the durable record, restore, the lock, replay, the latch as a recorded fact, and D11 closed; then 2a.7: Keel's bytes and telemetry checked, sensor v1 as built and measured, D3, D4 and D8 closed, an open question on runs of failures; then 2a.8: the adapters as built; then 2a.10: an open question on latching after a denied retry; then 2b.3: integrating with Solana Agent Kit; then devnet (2a.9, 2a.10, 2b.1, 2b.3): D13 found and closed, D14 found and closed (§7, §11's double-send battery), the open question on latching seen on devnet. |
 | Draft 4 | 2026-10-01 | For milestone 2c.1: §13, the Alpha as requirements with IDs (SIG, POL, TOK, OPQ, PHX, ELZ, ANC, DSH, CI, RT), each traced to its source and the test that will verify it; six ADRs owed before Leg 3 builds. |
 | Draft 4.1 | 2026-10-05 | The human approved §13 and accepted ADR-012 (option C) and ADR-013 to ADR-018. Nothing else changed. |
+| Draft 4.2 | 2026-10-05 | ADR-012 C implemented offline; LAT requirement IDs and preserved historical replay differences. Devnet rerun and the remaining RT-3 questions are still open. |
