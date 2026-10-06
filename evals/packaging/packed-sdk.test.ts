@@ -1,5 +1,5 @@
 // PKG-1 to PKG-3: exercise an actual npm tarball, not the workspace symlink.
-// The cache is populated by npm ci; these tests install offline and run no install scripts.
+// Cache metadata with npm cache add @gubernaut/core@1.0.1; install offline without scripts.
 
 import { strict as assert } from "node:assert";
 import { execFileSync, spawnSync } from "node:child_process";

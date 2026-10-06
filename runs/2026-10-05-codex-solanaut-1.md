@@ -37,6 +37,10 @@ prepare the original repository for eventual human-approved public release.
 
 ## Found
 
+- Matrix CI `37397657426` failed offline package setup on all runtimes with `ENOTCACHED`
+  for Keel metadata. Product tests, typecheck and compilation passed. Added explicit pinned
+  metadata caching, preserving offline consumer installation, and verified with a fresh cache.
+
 - `2030ef7` passed local close gates and GitHub CI run `37397016363`.
   The baseline CI run `37369485468` failed to acquire a hosted runner for the office job;
   its guard tests and typecheck passed. H6 no longer blocks reading CI.
@@ -61,6 +65,10 @@ prepare the original repository for eventual human-approved public release.
   cell. Moved the same measurement date into evidence; the gate itself was not changed.
 
 ## Open
+
+- `31abf16` is pushed; its post-push session-close gate passes all ten checks.
+  Package fault injections now have a maintained sequential CI runner, restoring original bytes
+  even on failure. The complete milestone 3.9 fault and measurement programme remains outstanding.
 
 - Packaging verification: `npm test` passes 185 tests; `npm run typecheck` exits 0;
   `npm run test:package` passes four tests. Pre-commit session close passes nine gates and

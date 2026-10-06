@@ -20,6 +20,7 @@
     "replay": "node packages/sdk/bin/replay.ts",
     "release:prepare": "node packages/sdk/bin/prepare-release.ts",
     "test:package": "node --test evals/packaging/*.test.ts",
+    "test:package:faults": "node evals/packaging/faults.ts",
     "cockpit": "node apps/cockpit/src/server.ts"
   },
   "devDependencies": {

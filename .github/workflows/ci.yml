@@ -43,9 +43,15 @@ jobs:
       - name: prepare private SDK candidate
         if: ${{ !cancelled() }}
         run: npm run release:prepare
+      - name: cache pinned runtime metadata for offline consumer
+        if: ${{ !cancelled() }}
+        run: npm cache add @gubernaut/core@1.0.1
       - name: installed package checks
         if: ${{ !cancelled() }}
         run: npm run test:package
+      - name: installed package fault injections
+        if: ${{ !cancelled() }}
+        run: npm run test:package:faults
 
   office:
     name: knowledge vault and write boundary

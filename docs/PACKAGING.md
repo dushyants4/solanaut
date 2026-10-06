@@ -8,7 +8,9 @@ From the repository root, using the pinned development toolchain:
 ```bash
 npm ci
 npm run release:prepare
+npm cache add @gubernaut/core@1.0.1
 npm run test:package
+npm run test:package:faults
 ```
 
 The candidate is staged in `.sandbox/releases/sdk`. The preparation command replaces only
@@ -35,8 +37,10 @@ RPC URL. Replay exits successfully only when the supplied history reproduces und
 Both commands return usage errors when required arguments are absent.
 
 The package battery installs offline into a temporary directory outside the repository,
-without installation scripts or development dependencies. `npm ci` must first populate the
-npm cache. See `evals/packaging/packed-sdk.md` and claim S14 for the measured scope.
+without installation scripts or development dependencies. The explicit cache command supplies
+both pinned runtime tarball and package metadata; `npm ci` alone does not guarantee metadata
+for an offline consumer on a clean machine. See `evals/packaging/packed-sdk.md` and claim S14
+for the measured scope.
 
 This candidate covers the current trusted SDK mode. The isolated signer, MCP firewall,
 operator lifecycle, licence, notices, provenance, audit and publication gates remain outstanding.
