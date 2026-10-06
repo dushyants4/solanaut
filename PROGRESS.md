@@ -124,3 +124,5 @@ partial signing is unchanged; this is not installed signer or live-chain qualifi
    the full milestone 3.9 gate and measurement programme remains owed (`evals/README.md`).
    Frozen decoder/address properties now enforce their completed execution floor on each
    CI runtime (`evals/ci/properties.md`). Other CI-2 gates remain owed; not Alpha qualification.
+   The existing decoder mutation workload completes the million-input local target;
+   its separate CI job enforces the budget and outcome evidence (`evals/ci/fuzz.md`).

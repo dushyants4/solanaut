@@ -1,0 +1,16 @@
+
+> test:fuzz
+> node evals/ci/fuzz.ts
+
+fuzz starting: seed=-1722707241; requested=1000000
+  fuzz: 1000000 inputs, 189174 accepted and matched kit, 810826 refused with a named rule
+✔ fuzz: 1000000 mutated messages either decode exactly as kit does, or are refused with a DecodeError (53930.298356ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 54171.869395
+fuzz completed: seed=-1722707241; inputs=1000000; accepted=189174; refused=810826

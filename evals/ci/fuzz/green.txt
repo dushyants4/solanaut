@@ -1,0 +1,20 @@
+fuzz starting: seed=-928514721; requested=1000000
+fuzz starting: seed=468239833; requested=1000000
+fuzz starting: seed=1614127992; requested=1000000
+fuzz starting: seed=835146201; requested=1000000
+fuzz starting: seed=-1664385246; requested=1000000
+fuzz starting: seed=1591925748; requested=1000000
+fuzz starting: seed=229602448; requested=1000000
+fuzz starting: seed=1634827808; requested=1000000
+fuzz completed: seed=1634827808; inputs=1000000; accepted=100; refused=999900
+✔ CI-2 fuzz gate refuses reduced/invalid budgets before starting work (0.712154ms)
+✔ CI-2 fuzz gate rejects failed processes and missing, duplicated or incomplete evidence (0.978538ms)
+✔ CI-2 fuzz gate passes the full budget and a seed and accepts complete evidence (0.227204ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 92.779154

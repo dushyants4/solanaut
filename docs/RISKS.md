@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.16** · 2026-10-06 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.17** · 2026-10-06 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 The threat model ([docs/papers/THREAT-MODEL.md](papers/THREAT-MODEL.md)) lists what an attacker can do to a running
@@ -99,6 +99,9 @@ Frozen synthetic properties enforce completed executions and compare to the exte
 (`evals/ci/properties.md`). They do not establish real-transaction coverage or policy security.
 The dependency audit still reports existing high advisories in the framework/on-chain tree;
 authenticity checks do not resolve them. No release exception is claimed.
+The decoder's frozen mutation workload now reaches its million-input local target with
+enforced process/totals evidence (`evals/ci/fuzz.md`). It remains synthetic and does not
+qualify policy caps, signing lifecycle or real transaction decoding.
 
 | Version | Date | What changed |
 |---|---|---|

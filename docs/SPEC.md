@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.22** · 2026-10-06 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.23** · 2026-10-06 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -743,6 +743,12 @@ Reduced budgets, incomplete results and unexpected decoder exceptions fail. Main
 faults exercise both the gate and product readers. This does not satisfy the separate
 million-input fuzz, real-transaction differential, policy/firewall or remaining quality gates.
 
+The separate synthetic decoder fuzz job (`evals/ci/fuzz.md`) requires a successful process,
+the million-input floor and complete accepted/refused totals. It preserves the existing
+mutation generator, prints its seed before execution and rejects missing or duplicate evidence.
+Gate/product faults are maintained in bite. This does not establish real-transaction decoding,
+policy/firewall fuzzing or independent security qualification.
+
 ### 13.10 Tested hard (milestone 3.10)
 
 | ID | Requirement | From | Verified by |
@@ -894,3 +900,4 @@ where needed, and UTC issued timestamps include milliseconds. Policies remain re
 | Draft 4.20 | 2026-10-06 | CLT-1–4 sending client and typed ambiguity errors; installed exports tested; existing partial signer unchanged. |
 | Draft 4.21 | 2026-10-06 | CI-1 sequential maintained fault job, inventory and source-restoration checks; stale request selector corrected; historical/CI-2 gates remain owed. |
 | Draft 4.22 | 2026-10-06 | CI-2 frozen synthetic property domains, enforced completion floor and maintained gate/product faults; other qualification remains owed. |
+| Draft 4.23 | 2026-10-06 | CI-2 million-input synthetic decoder wrapper with enforced process/completion evidence; separate pinned job and maintained faults. |

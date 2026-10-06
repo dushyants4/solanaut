@@ -1,0 +1,8 @@
+caught fuzz gate fault: lower-budget
+caught fuzz gate fault: ignore-process-failure
+caught fuzz gate fault: accept-duplicate-summary
+caught fuzz gate fault: ignore-total
+caught fuzz gate fault: ignore-outcome-sum
+caught fuzz gate fault: empty-accepted-domain
+caught fuzz product fault: unexpected-decoder-exception
+All fuzz faults caught; restored source passes

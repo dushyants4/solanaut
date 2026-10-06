@@ -7,6 +7,11 @@ all security, validation and human-owned release gates.
 
 ## Did
 
+- Property step `b41c8c7` privately pushed; ten close checks green. Continued directly into
+  frozen million-input decoder workload. Three wrapper tests fail first, then pass; local
+  million-input run passes at seed -1722707241, with 189,174 kit matches and 810,826 refusals.
+  Separate pinned CI job and maintained faults prepared. Receipt `evals/ci/fuzz.md`.
+
 - Resumed after deliberate interruption; property fault campaign finished with eight faults
   caught and restored source, no process left running. Frozen five synthetic properties each
   complete 10,000 executions. Three stub gate tests fail first; eight focused tests pass.
@@ -84,6 +89,15 @@ all security, validation and human-owned release gates.
   this history and must pass compatibility checks before rollback.
 
 ## Found
+
+- Fuzz pre-push close rejects the environment-prefixed command in S34 (claims parser
+  requires npm/node/uv first). Corrected the claim's command spelling and documented the
+  seed separately; protected lint unchanged. Raw captured output retains whitespace.
+
+- Fuzz step: three wrapper stub failures preserved; seven gate/product faults caught,
+  all sources restored. Full suite 340 passes and typecheck clean; updated aggregation
+  inventory/five faults pass. Prior property commit CI `37480188076` green on all jobs.
+  Document patch-anchor failure made no partial edits; no gate or generator weakened.
 
 - Initial property mutation runner used unsupported Node `--test-bail`; no qualifying
   result, source restored. Removed flag without weakening assertions. Patch-anchor failures

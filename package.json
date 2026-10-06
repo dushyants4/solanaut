@@ -23,6 +23,7 @@
     "test:package:faults": "node evals/packaging/faults.ts",
     "test:latch:faults": "node evals/ci/latch-faults.ts",
     "test:bite": "node evals/ci/bite.ts",
+    "test:fuzz": "node evals/ci/fuzz.ts",
     "cockpit": "node apps/cockpit/src/server.ts"
   },
   "devDependencies": {

@@ -70,6 +70,8 @@ second definition change, re-measured on fresh seeds, and S7 restated with both 
 
 | S33 | Synthetic decoder/address properties enforce completed run counts and external-codec agreement | **measured (builder-authored local property evidence)** | `evals/ci/properties.md`, 2026-10-06, Node 26.7.0: five workload properties, 10,000 executions each without skips; eight focused tests and eight planted faults pass. Regenerate: `node --test evals/ci/properties.test.ts packages/sdk/test/properties.test.ts`; `node evals/ci/property-faults.ts`. No real-transaction, million-input fuzz, policy or independent-security claim; other CI-2 gates remain owed |
 
+| S34 | The frozen synthetic decoder mutation workload completes a million inputs without a crash or differential mismatch | **measured (builder-authored local fuzz evidence)** | `evals/ci/fuzz.md`, 2026-10-06, Node 26.7.0: 1,000,000 inputs, 189,174 accepted and matched kit, 810,826 named refusals, seed -1722707241. Regenerate: `npm run test:fuzz` with `SOLANAUT_FUZZ_SEED=-1722707241` in the environment. No real-transaction, policy/signing/firewall or independent-security claim. Other CI-2/release gates remain owed |
+
 **Not yet claimable, and why:**
 - **Any detection rate or block rate, and any false-stop rate beyond S7's synthetic streams.** Nothing else has been
   measured. Milestone 2b.1 runs the Beta batteries and 3.10 the adversarial one; until then no percentage exists.
