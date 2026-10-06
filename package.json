@@ -25,6 +25,7 @@
     "test:bite": "node evals/ci/bite.ts",
     "test:fuzz": "node evals/ci/fuzz.ts",
     "test:replay": "node evals/ci/replay.ts",
+    "test:kills": "node evals/ci/kills.ts",
     "cockpit": "node apps/cockpit/src/server.ts"
   },
   "devDependencies": {

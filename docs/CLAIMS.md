@@ -78,6 +78,8 @@ second definition change, re-measured on fresh seeds, and S7 restated with both 
 
 | S37 | A defined queued SDK workload admits exactly its pending-window allowance and records every caller | **measured (builder-authored local SDK evidence)** | `evals/ci/concurrency.md`, 2026-10-06, Node 26.7.0: 1,000 asynchronous callers behind one barrier; seven admissions, 993 over-window-cap denials, 1,000 records/distinct destinations/identities, 7,000,000 reserved lamports. Four tests/seven final faults pass after a fixture mutation miss. Regenerate: `node --test evals/ci/concurrency.test.ts`; `node evals/ci/concurrency-faults.ts`. Quiet, unsigned, in-memory, synchronous SDK admission; no parallel-thread, multi-process, disk, socket or signing qualification |
 
+| S38 | The defined persisted-prefix SDK battery verifies process death and identical recovered histories | **measured (builder-authored local Linux recovery evidence)** | `evals/ci/kills.md`, 2026-10-06, Node 26.7.0: 100 verified SIGKILL exits, 100 identical completed histories and 100 successful replays; seed 202610061, 160-step workload, prefixes 1–159. Seven faults caught. Regenerate: `npm run test:kills`; `node evals/ci/kill-faults.ts`. Kernel ownership, synthetic SDK data only; no unacknowledged-write, signing/send, power-loss or isolated-user qualification |
+
 **Not yet claimable, and why:**
 - **Any detection rate or block rate, and any false-stop rate beyond S7's synthetic streams.** Nothing else has been
   measured. Milestone 2b.1 runs the Beta batteries and 3.10 the adversarial one; until then no percentage exists.

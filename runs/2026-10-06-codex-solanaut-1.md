@@ -7,6 +7,12 @@ all security, validation and human-owned release gates.
 
 ## Did
 
+- Queued-admission step `3c36cb6` privately pushed; ten close gates and CI `37485168194`
+  green. Continued into verified SIGKILL recovery: two stub failures, three gate tests pass;
+  added actual kernel-owner death/reopen regression. One hundred trials verify signals,
+  complete identical histories and replay. Seven faults caught and all children reaped.
+  Dedicated pinned Linux job added. Receipt `evals/ci/kills.md`; no product change.
+
 - Replay step `b758463` privately pushed; post-push close ten gates. Continued into
   queued SDK callers with a frozen profile: two gate stub failures, then four tests pass.
   Initial optional-rule type error corrected; missing bindings cannot count as identities.
@@ -107,6 +113,14 @@ all security, validation and human-owned release gates.
   this history and must pass compatibility checks before rollback.
 
 ## Found
+
+- Kill step final: 355 tests pass, typecheck clean; twenty-two bite campaigns catch
+  147 faults and restore source. One hundred-trial command finishes and all children are
+  reaped. Pre-push close follows; no stable-release or complete isolated recovery claim.
+
+- Kill evidence is bounded to acknowledged persisted prefixes. It does not establish
+  unacknowledged-write, signing/send, power-loss or isolated-user recovery. No active child
+  remains after each command completes; trial data is synthetic and stays in scratch.
 
 - Queued-admission final: 351 tests pass, typecheck clean; twenty-one bite campaigns catch
   140 faults and restore source. Replay CI `37483948590` passes every job. Reconciled stale

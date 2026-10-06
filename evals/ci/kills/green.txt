@@ -1,0 +1,11 @@
+✔ CI-2 kill gate requires actual SIGKILL and the exact persisted acknowledgement (0.692848ms)
+✔ CI-2 kill gate rejects short and incomplete recovery/replay counts (0.167717ms)
+✔ CI-2 kill gate accepts the full verified battery (0.084611ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 243.474221

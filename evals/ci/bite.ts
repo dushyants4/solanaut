@@ -3,7 +3,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-export const CAMPAIGNS = ["ci/bite-faults.ts", "ci/latch-faults.ts", "ci/property-faults.ts", "ci/fuzz-faults.ts", "ci/cap-faults.ts", "ci/replay-faults.ts", "ci/concurrency-faults.ts", "packaging/faults.ts", "sdk/control-request-faults.ts", "sdk/ownership-faults.ts", "sdk/request-faults.ts", "sdk/sending-client-faults.ts", "sdk/signing-faults.ts", "signer/authority-faults.ts", "signer/core-faults.ts", "signer/handler-faults.ts", "signer/policy-recovery-faults.ts", "signer/recovery-faults.ts", "signer/rpc-faults.ts", "signer/service-faults.ts", "signer/socket-faults.ts"] as const;
+export const CAMPAIGNS = ["ci/bite-faults.ts", "ci/latch-faults.ts", "ci/property-faults.ts", "ci/fuzz-faults.ts", "ci/cap-faults.ts", "ci/replay-faults.ts", "ci/concurrency-faults.ts", "ci/kill-faults.ts", "packaging/faults.ts", "sdk/control-request-faults.ts", "sdk/ownership-faults.ts", "sdk/request-faults.ts", "sdk/sending-client-faults.ts", "sdk/signing-faults.ts", "signer/authority-faults.ts", "signer/core-faults.ts", "signer/handler-faults.ts", "signer/policy-recovery-faults.ts", "signer/recovery-faults.ts", "signer/rpc-faults.ts", "signer/service-faults.ts", "signer/socket-faults.ts"] as const;
 export function validateInventory(paths: readonly string[]): void {
   if (JSON.stringify([...paths].sort()) !== JSON.stringify([...CAMPAIGNS].sort())) throw new Error("fault campaign inventory differs from the maintained list");
 }

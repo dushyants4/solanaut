@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.20** · 2026-10-06 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.21** · 2026-10-06 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 The threat model ([docs/papers/THREAT-MODEL.md](papers/THREAT-MODEL.md)) lists what an attacker can do to a running
@@ -111,6 +111,9 @@ demonstrate bounded coverage; focused regression added without changing the pinn
 Queued SDK callers now exercise the pending-window bound and complete identity evidence
 (`evals/ci/concurrency.md`). Their single-guard in-memory profile does not establish separate
 writer races, socket capacity or isolated-signer durability; those drills remain required.
+Verified owner-death trials now check kernel ownership release and recovered SDK state
+after acknowledged prefixes (`evals/ci/kills.md`). Actual signals are checked; sending a
+kill is not enough. Unacknowledged-write, signing/send and power-loss evidence remains owed.
 
 | Version | Date | What changed |
 |---|---|---|

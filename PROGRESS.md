@@ -132,3 +132,5 @@ partial signing is unchanged; this is not installed signer or live-chain qualifi
    (`evals/ci/replay.md`); disk/kill/snapshot qualification remains owed.
    Queued asynchronous SDK admissions pass their pending-window/evidence checks
    (`evals/ci/concurrency.md`); parallel-writer and isolated-signer concurrency remains owed.
+   Verified persisted-prefix SDK owner-death recovery passes the local target
+   (`evals/ci/kills.md`); unacknowledged-write, signing/send and power-loss evidence remains owed.

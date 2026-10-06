@@ -1,0 +1,8 @@
+caught kill recovery fault: short-count
+caught kill recovery fault: ignore-completion
+caught kill recovery fault: ignore-replay
+caught kill recovery fault: ignore-signal
+caught kill recovery fault: ignore-acknowledgement
+caught kill recovery fault: send-wrong-signal
+caught kill recovery fault: skip-state-restore
+All kill recovery faults caught; restored source passes
