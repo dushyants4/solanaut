@@ -78,6 +78,9 @@ startup, pending-policy/lifetime recovery, all kill boundaries and installed dep
 Recovery now continues past individual attempt failures and reports incomplete work while
 following signed bytes (`evals/signer/recovery.md`). Operational startup and policy-change
 qualification remain owed; this does not achieve the signer milestone.
+Signed-policy recovery now preserves pending reservations and refuses old-policy sends;
+final outcomes forbid new signing/send intent (`evals/signer/policy-recovery.md`).
+Operational startup and policy-upgrade drills remain owed.
 
 1. **Defects** (`docs/SPEC.md` §10):
    - D1 to D12 are closed: D1, D2, D5, D6, D7, D9, D10 and D12 at 2a.5, D11 at 2a.6, D3, D4 and D8 at 2a.7.

@@ -24,6 +24,22 @@ async function admitted(log?: string) {
   assert.equal(d.allow, true);
   return { g, d, signed: { stage: "signed", decision: d.hash, ...signed } };
 }
+for (const outcome of ["landed", "failed", "expired"] as const) test(`LIF-7: final ${outcome} evidence forbids new signing/send intent live and on replay`, async () => {
+  for (const alreadySigned of [false, true]) {
+    const { g, d, signed } = await admitted();
+    try {
+      assert.equal(g.redeem(message, d.hash, 10n).ok, true);
+      if (alreadySigned) record(g, signed);
+      g.report(d.hash, outcome);
+      const event = alreadySigned ? { stage: "send-started", decision: d.hash, blockHeight: "11" } : signed;
+      const before = g.entries().length;
+      assert.throws(() => record(g, event), /final|reported|settled/);
+      assert.equal(g.entries().length, before);
+      const forged = seal({ kind: "signing", v: 1, seq: before, prev: g.entries().at(-1)!.hash, at: 1000, event } as never);
+      assert.equal((await replay([...g.entries(), forged], policy)).ok, false);
+    } finally { g.close(); }
+  }
+});
 test("LIF-2: signature evidence requires durable redemption; valid lifecycle replays", async () => {
   const { g, d, signed } = await admitted();
   try {
@@ -34,6 +50,16 @@ test("LIF-2: signature evidence requires durable redemption; valid lifecycle rep
     record(g, { stage: "response", decision: d.hash, status: "sent", signature: signed.signature });
     assert.equal((await replay(g.entries(), policy)).ok, true);
     assert.equal(g.entries().length, 5);
+  } finally { g.close(); }
+});
+test("LIF-7: unknown evidence preserves the admitted signing/send lifecycle", async () => {
+  const { g, d, signed } = await admitted();
+  try {
+    g.report(d.hash, "unknown");
+    assert.equal(g.redeem(message, d.hash, 10n).ok, true);
+    assert.doesNotThrow(() => record(g, signed));
+    assert.doesNotThrow(() => record(g, { stage: "send-started", decision: d.hash, blockHeight: "11" }));
+    assert.equal((await replay(g.entries(), policy)).ok, true);
   } finally { g.close(); }
 });
 for (const fault of ["wrong-bytes", "wrong-signature", "wrong-wire", "noncanonical-base64"]) test(`LIF-2: ${fault} cannot be persisted as signed evidence`, async () => {

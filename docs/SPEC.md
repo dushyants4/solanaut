@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.17** · 2026-10-06 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.18** · 2026-10-06 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -797,6 +797,7 @@ snapshot and RPC IDs are allocated with their implementation steps. Existing SIG
 | LIF-2 | signed wire/signature, send-started intent and response are synced in the admission chain; signed evidence requires durable redemption and admitted bytes, send intent requires valid lifetime, and stages cannot repeat | signing-history battery, forged wire/signature and out-of-order replay |
 | LIF-3 | executor signs only after durable redemption and sends only after durable send intent; recovery never re-signs an unresolved redemption or resends send-started bytes; deadlines and payload identity remain enforced | fake-RPC core battery across persistence boundaries and reconstructed restarts |
 | LIF-6 | each recovery pass reports incomplete attempt work without aborting later attempts, and still follows signed bytes from chain evidence after a pre-send refusal; no error releases reservations or reopens a failed writer | expired admission/signed bytes, provider recovery and response-storage failure fixtures |
+| LIF-7 | final outcome evidence permanently forbids new signing/send intent for a request, live and on replay; unknown evidence does not settle; interrupted replies may still complete conservatively | settled signed/unsigned histories, resealed invalid stages, signed-policy recovery and executor no-send regression |
 | RPC-1 | providers pin devnet identity and obtain message blockhash validity and bounded lifetime at confirmed commitment | genesis/hash/validity substitution fixtures |
 | RPC-2 | requests have bounded deadlines; response envelopes, integer/base58 shapes, context and size are validated; reads back off and sends never retry | malformed/hung/late response, rate limit and send-count tests |
 | RPC-3 | two providers expose health; reads fail over conservatively, total loss denies, stale or conflicting observations cannot relax lifetime | outage, lifetime conflict and context fixtures |
@@ -871,3 +872,4 @@ where needed, and UTC issued timestamps include milliseconds. Policies remain re
 | Draft 4.15 | 2026-10-05 | Method handler deadline/coalescing wiring and bounded report reads; operational service still owed. |
 | Draft 4.16 | 2026-10-06 | LIF-5 pre-admission refusal history and interrupted-answer recovery; transport/core message bounds aligned. |
 | Draft 4.17 | 2026-10-06 | LIF-6 isolates recovery attempt failures and reports incomplete work without skipping signed-byte chain follow-up. Completion describes a pass, not a landed outcome. |
+| Draft 4.18 | 2026-10-06 | LIF-7 closes settled signing/send-intent loophole; signed-policy recovery preserves reservations across pending stages. |

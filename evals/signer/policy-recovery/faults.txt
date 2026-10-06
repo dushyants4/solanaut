@@ -1,0 +1,6 @@
+caught policy recovery fault: skip-final-executor-check
+caught policy recovery fault: forget-final-history
+caught policy recovery fault: unknown-becomes-final
+caught policy recovery fault: allow-settled-signing
+caught policy recovery fault: allow-old-policy-send
+All policy recovery faults caught; restored source passes

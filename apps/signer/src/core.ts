@@ -61,6 +61,7 @@ export function createSignerCore(options: CoreOptions) {
       old = evidence(d.hash);
     }
     const signed = old.signed!;
+    if (guard.entries().some((e) => e.kind === "report" && e.decision === d!.hash && e.outcome !== "unknown")) return answer(d, "uncertain", signed.signature);
     const height = await rpc.height(request.deadline); deadline(request.deadline);
     guard.recordSigning({ stage: "send-started", decision: d.hash, blockHeight: height.toString() });
     let returned: string;

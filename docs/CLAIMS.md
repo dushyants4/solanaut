@@ -60,6 +60,8 @@ second definition change, re-measured on fresh seeds, and S7 restated with both 
 
 | S28 | A failed recovery attempt does not prevent later chain reconciliation; incomplete recovery work is reported without authorising resends or releasing reservations | **measured (builder-authored fake-RPC/reconstructed-history evidence)** | `evals/signer/recovery.md`, 2026-10-06, Node 26.7.0: seventeen core tests pass; four recovery and six existing core faults caught. Regenerate: `node --test apps/signer/test/core.test.ts`; `node evals/signer/recovery-faults.ts`; `node evals/signer/core-faults.ts`. Current partial signer/helper count 459; command and scope in receipt. Operational startup, policy-change and full kill qualification remain owed |
 
+| S29 | Signed-policy recovery refuses old-policy sends while preserving unresolved reservations; final reports forbid subsequent signing/send intent live and on replay | **measured (builder-authored signed-policy/fake-RPC evidence)** | `evals/signer/policy-recovery.md`, 2026-10-06, Node 26.7.0: seventeen focused cases pass, five new and seven existing journal faults caught. Regenerate: `node --test apps/signer/test/policy-recovery.test.ts packages/sdk/test/signing-history.test.ts`; `node evals/signer/policy-recovery-faults.ts`; `node evals/sdk/signing-faults.ts`. Partial helper count 462, command in receipt. Operational service and full qualification remain owed |
+
 **Not yet claimable, and why:**
 - **Any detection rate or block rate, and any false-stop rate beyond S7's synthetic streams.** Nothing else has been
   measured. Milestone 2b.1 runs the Beta batteries and 3.10 the adversarial one; until then no percentage exists.

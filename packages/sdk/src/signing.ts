@@ -14,6 +14,7 @@ export interface SigningHistory {
   started?: Extract<SigningEvent, { stage: "send-started" }>;
   response?: Extract<SigningEvent, { stage: "response" }>;
   redeemed?: true;
+  settled?: true;
 }
 
 /** Validate before append and again during replay, without changing state. */
@@ -22,6 +23,7 @@ export function verifySigning(event: SigningEvent, history: SigningHistory | und
   const { decision: d, signed, started, response } = history;
   if (event.stage === "signed" && !d.allow) throw new Error("signing requires an allowed decision");
   if (response) throw new Error("request already has a durable response");
+  if (history.settled && event.stage !== "response") throw new Error("the decision was already reported final");
   if (event.stage === "signed") {
     if (!d.allow) throw new Error("signing requires an allowed decision");
     if (!redeemed) throw new Error("signing requires a durably redeemed receipt");

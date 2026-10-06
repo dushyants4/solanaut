@@ -1,0 +1,8 @@
+caught signing fault: no-redemption
+caught signing fault: changed-bytes
+caught signing fault: invalid-signature
+caught signing fault: send-before-signed
+caught signing fault: expired-send
+caught signing fault: repeat-send
+caught signing fault: repeat-response
+All signing faults caught; restored source passes

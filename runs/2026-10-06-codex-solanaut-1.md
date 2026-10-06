@@ -7,6 +7,13 @@ all security, validation and human-owned release gates.
 
 ## Did
 
+- Continued without ending after a queue step, as requested. Signed-policy upgrade battery
+  passes existing pending-stage restrictions; four new settled-signing cases fail first,
+  then pass after executor/journal/state correction. Five new and seven existing maintained
+  signing faults caught; receipt `evals/signer/policy-recovery.md`. Record-sync CI `37457518225`
+  is green. Read-only lookup used a guessed fault-runner filename; found the actual tracked
+  path. No external project search or read occurred.
+
 - Recovery implementation privately pushed as `8b92594`; post-push close passes all ten
   checks with a clean tree. CI `37457271361` passes Node 22.18.0, 24, 26.7.0 and office.
   Bounded CI watch timed out while jobs were still running; subsequent direct view confirmed
@@ -41,6 +48,10 @@ all security, validation and human-owned release gates.
   this history and must pass compatibility checks before rollback.
 
 ## Found
+
+- A final report did not prevent new signing/send intent in the journal; signed unsent
+  executor recovery could consequently send a final reported attempt. Closed test-first
+  in both executor and replay validation. Unknown reports remain non-final.
 
 - Recovery aborted at an expired admission, provider outage, expired signed bytes or failed
   response persistence. Corrected without loosening signing, lifetime or reservation rules.

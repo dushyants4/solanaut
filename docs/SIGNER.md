@@ -1,6 +1,6 @@
 # Signer development and trust boundary
 
-> **Draft 6** · 2026-10-06 · owner: integrator · for: operators and signer developers.
+> **Draft 7** · 2026-10-06 · owner: integrator · for: operators and signer developers.
 > Register: `kb/DOCUMENTS.md`. The operational service is still being implemented.
 
 The executor and devnet RPC boundary live under `apps/signer/src/`. Their current evidence uses
@@ -57,3 +57,8 @@ details and must produce degraded host status. Completion describes the pass, no
 or reservation resolution. Hosts must separately check unresolved attempts and storage
 readiness: a failed writer stays closed. Background retry/backoff and operational startup
 remain owed; evidence is `evals/signer/recovery.md`.
+Signed-policy recovery now has pending-stage evidence (`evals/signer/policy-recovery.md`,
+S29): old-policy admission/signed records cannot send after an upgrade, and unresolved
+reservations remain counted. Final chain reports prevent subsequent signing or send intent,
+including on replay. An interrupted signed response completes as uncertain without sending;
+read its separate final report for settlement. Unknown reports leave the lifecycle unresolved.

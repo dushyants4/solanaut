@@ -203,6 +203,7 @@ export function apply(s: GuardState, e: Entry, policy: Policy): void {
       return;
     }
     case "report": {
+      if (e.outcome !== "unknown" && s.signing.has(e.decision)) s.signing.get(e.decision)!.settled = true;
       const r = s.reservations.get(e.decision);
       const attempt = r && s.intents.get(r.intentKey)?.attempts.find((a) => a.decision === e.decision);
       if (!r || !attempt) throw new Error(`report for ${e.decision}, which holds no reservation`);

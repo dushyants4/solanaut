@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.11** · 2026-10-06 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.12** · 2026-10-06 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 The threat model ([docs/papers/THREAT-MODEL.md](papers/THREAT-MODEL.md)) lists what an attacker can do to a running
@@ -83,6 +83,9 @@ not journalled. Refusal history does not release an admitted attempt's unresolve
 Recovery no longer aborts later attempts when one operation fails (`evals/signer/recovery.md`).
 Incomplete pass results must be displayed as degraded; they do not imply restored storage
 health or resolution. Policy-change recovery and operational supervision remain open.
+Signed-policy upgrade recovery is now checked across admission, signed and send-started
+boundaries (`evals/signer/policy-recovery.md`). A settled signing/send-intent loophole is
+closed with live/replay regressions. Operational policy upgrades and supervision remain owed.
 
 | Version | Date | What changed |
 |---|---|---|

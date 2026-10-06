@@ -1,0 +1,25 @@
+✔ POL-4/LIF-6: admitted history survives a signed policy upgrade without old-policy sends (28.984073ms)
+✔ POL-4/LIF-6: signed history survives a signed policy upgrade without old-policy sends (8.830586ms)
+✔ POL-4/LIF-6: started history survives a signed policy upgrade without old-policy sends (8.381919ms)
+✔ LIF-7/SIG-7: final chain evidence prevents sending restored signed unsent bytes (2.311174ms)
+✔ LIF-7: final landed evidence forbids new signing/send intent live and on replay (17.132027ms)
+✔ LIF-7: final failed evidence forbids new signing/send intent live and on replay (4.128536ms)
+✔ LIF-7: final expired evidence forbids new signing/send intent live and on replay (3.817323ms)
+✔ LIF-2: signature evidence requires durable redemption; valid lifecycle replays (2.213147ms)
+✔ LIF-7: unknown evidence preserves the admitted signing/send lifecycle (2.173991ms)
+✔ LIF-2: wrong-bytes cannot be persisted as signed evidence (0.626157ms)
+✔ LIF-2: wrong-signature cannot be persisted as signed evidence (0.661976ms)
+✔ LIF-2: wrong-wire cannot be persisted as signed evidence (0.489074ms)
+✔ LIF-2: noncanonical-base64 cannot be persisted as signed evidence (0.433772ms)
+✔ LIF-2: send-started requires signed bytes and valid lifetime; every stage is single-use (1.873313ms)
+✔ LIF-2: denied response persists; sent response without send intent is refused (2.703103ms)
+✔ LIF-2: signing and send-started evidence survive durable restart (11.669202ms)
+✔ LIF-2: resealed out-of-order and forged signing history refuse restore/replay (2.985626ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 219.179172

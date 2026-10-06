@@ -23,7 +23,7 @@ for (const [name, from, to] of faults) {
     writeFileSync(path, original.replace(from, to));
     const result = battery(); const output = result.stdout + result.stderr;
     assert.equal(result.status, 1, output);
-    assert.match(output, /tests 9/); assert.match(output, /AssertionError/);
+    assert.match(output, /tests 13/); assert.match(output, /AssertionError/);
     console.log(`caught signing fault: ${name}`);
   } finally { writeFileSync(path, original); }
 }

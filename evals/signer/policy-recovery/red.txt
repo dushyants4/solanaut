@@ -1,0 +1,85 @@
+✔ POL-4/LIF-6: admitted history survives a signed policy upgrade without old-policy sends (27.589455ms)
+✔ POL-4/LIF-6: signed history survives a signed policy upgrade without old-policy sends (8.968935ms)
+✔ POL-4/LIF-6: started history survives a signed policy upgrade without old-policy sends (7.535888ms)
+✖ LIF-7/SIG-7: final chain evidence prevents sending restored signed unsent bytes (2.521247ms)
+✖ LIF-7: final landed evidence forbids new signing/send intent live and on replay (12.394275ms)
+✖ LIF-7: final failed evidence forbids new signing/send intent live and on replay (2.185629ms)
+✖ LIF-7: final expired evidence forbids new signing/send intent live and on replay (1.651031ms)
+✔ LIF-2: signature evidence requires durable redemption; valid lifecycle replays (4.782575ms)
+✔ LIF-2: wrong-bytes cannot be persisted as signed evidence (1.323901ms)
+✔ LIF-2: wrong-signature cannot be persisted as signed evidence (1.000011ms)
+✔ LIF-2: wrong-wire cannot be persisted as signed evidence (0.779676ms)
+✔ LIF-2: noncanonical-base64 cannot be persisted as signed evidence (0.786445ms)
+✔ LIF-2: send-started requires signed bytes and valid lifetime; every stage is single-use (3.119273ms)
+✔ LIF-2: denied response persists; sent response without send intent is refused (1.711317ms)
+✔ LIF-2: signing and send-started evidence survive durable restart (10.650148ms)
+✔ LIF-2: resealed out-of-order and forged signing history refuse restore/replay (3.175241ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 12
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 210.702887
+
+✖ failing tests:
+
+test at apps/signer/test/policy-recovery.test.ts:47:1
+✖ LIF-7/SIG-7: final chain evidence prevents sending restored signed unsent bytes (2.521247ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/policy-recovery.test.ts:59:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/signing-history.test.ts:27:65
+✖ LIF-7: final landed evidence forbids new signing/send intent live and on replay (12.394275ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:36:14)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /final|reported|settled/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/signing-history.test.ts:27:65
+✖ LIF-7: final failed evidence forbids new signing/send intent live and on replay (2.185629ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:36:14)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /final|reported|settled/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/signing-history.test.ts:27:65
+✖ LIF-7: final expired evidence forbids new signing/send intent live and on replay (1.651031ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signing-history.test.ts:36:14)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /final|reported|settled/,
+    operator: 'throws',
+    diff: 'simple'
+  }

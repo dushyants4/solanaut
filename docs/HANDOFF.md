@@ -214,6 +214,8 @@ The live probes and baseline are complete. ADR-012 C is built and tested offline
 | 2026-10-06 | proposal-refusal foundation | `a40375a` | LIF-5 receipt; CI `37453503555` passed | Pre-admission errors now durable; operational signer remains owed. Post-push close passed. |
 | 2026-10-06 | recovery pass isolation | `8b92594` | LIF-6 receipt; CI `37457271361` passed | Failed attempts no longer abort later reconciliation; operational service and policy-change qualification remain owed. Post-push close passed. |
 
+| 2026-10-06 | signed-policy recovery/settled signing | commit containing `evals/signer/policy-recovery.md` | POL-4/LIF-7 receipt | Pending-stage policy changes preserve reservations; final reports prevent signing/send intent. Operational service remains owed. |
+
 ## 8. Handing back to Claude
 
 When the human asks for Claude, or when every item left needs the human or Claude, Codex checks each of these:
