@@ -25,7 +25,7 @@ substantive change; *last reviewed* moves at every review.
 | [docs/STORAGE.md](../docs/STORAGE.md) | Draft 1 | draft | integrator | SDK users and Linux operators | 2026-10-05 | 3.1 |
 | [docs/POLICIES.md](../docs/POLICIES.md) | Draft 1 | draft | integrator | SDK users and operator-tool developers | 2026-10-05 | 3.2 |
 | [docs/PACKAGING.md](../docs/PACKAGING.md) | Draft 1 | draft | integrator | developers and release reviewers | 2026-10-05 | 5.3 |
-| [docs/HANDOFF.md](../docs/HANDOFF.md) | Draft 1 | current | Claude; Codex keeps §5 to §7 | Codex, the human, Claude on return | 2026-10-05 | the return to Claude |
+| [docs/HANDOFF.md](../docs/HANDOFF.md) | Draft 1 | current | Claude; Codex keeps §5 to §7 | Codex, the human, Claude on return | 2026-10-06 | the return to Claude |
 | [AGENTS.md](../AGENTS.md) | 1 | current | harness (Claude or the human; not Codex) | Codex | 2026-10-05 | the return to Claude |
 | [docs/ARCHITECTURE.md](../docs/ARCHITECTURE.md) | 4 | current | architect | everyone | 2026-10-01 | 2c.1 |
 | [docs/HACKATHON.md](../docs/HACKATHON.md) | 3 | current | archivist | the human, every seat | 2026-09-30 | S.1 |

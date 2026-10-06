@@ -7,6 +7,10 @@ all security, validation and human-owned release gates.
 
 ## Did
 
+- Refusal implementation committed and privately pushed as `a40375a`. Post-push close passes
+  all ten checks; CI `37453503555` passes Node 22.18.0, 24 and 26.7.0 plus the office job.
+  Working tree clean at verification. No validator, soak or fault-mutated source remains running.
+
 - Continued from `b7d24a5`, privately pushed; CI `37405479424` passes all approved runtimes.
 - Read the project law, handoff and progress. Fetch completed; working tree contains only the
   next proposal-refusal tests. Both live boundary probes refused correctly; no probe created.
@@ -25,6 +29,10 @@ all security, validation and human-owned release gates.
   this history and must pass compatibility checks before rollback.
 
 ## Found
+
+- The final record-sync shell batch was refused by the boundary heuristic because it combined
+  the close-tool path with staging. No protected write occurred; split the documented close
+  invocation from ordinary staging as the project law instructs. Gates remain unchanged.
 
 - Proposal failures before admission leave no durable request answer. An interrupted refusal
   also needs conservative recovery without calling the proposal executor again.
