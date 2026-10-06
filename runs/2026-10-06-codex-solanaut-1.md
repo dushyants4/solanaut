@@ -291,6 +291,22 @@ all security, validation and human-owned release gates.
 
 ## Provenance
 
+While Stryker runs only in its staged copy, drafted `docs/SDK.md` as the current candidate
+export/error reference and linked it from PACKAGING (Draft 5). Checked behaviours against
+the source interfaces and existing receipts; no new product code or tests. Ordinary full
+tests/typecheck remain the preparation revision's evidence; no competing performance run.
+An initial combined documentation patch had a mismatched PACKAGING anchor and applied nothing.
+A stray blank line in HANDOFF's read-only section was immediately restored; final change is
+only its permitted log section. SDK candidate documentation passes knowledge/claims lint;
+prior preparation commit `9775c83` CI `37500413572` passes every job.
+
+Preparation committed/pushed as `9775c83`; post-push close ten gates. CI `37500413572`
+queued at last read. First background launch (PID 752653) exited with no output; no measured
+result. Managed qualification session 66528 runs driver PID 753395 / Stryker PID 753410,
+log `.sandbox/solanaut-1/mutation/qualification-managed-9775c83.txt`, staged run `run-nfEogh`.
+Initial instrumented test run succeeds. Stop remaining children before ending the session.
+Input definition and scope were committed before measurement; no score claimed yet.
+
 Mutation preparation: core 10.0.0 installed exactly with scripts disabled; signature audit
 529 signatures/207 attestations, advisories now 3 low/11 moderate/7 high/no critical. New
 moderate findings through typed-rest-client/qs remain open. Eight report/staging cases,

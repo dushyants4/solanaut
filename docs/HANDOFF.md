@@ -241,6 +241,8 @@ The live probes and baseline are complete. ADR-012 C is built and tested offline
 
 | 2026-10-06 | Stryker preparation, partial CI-2 | commit containing `evals/ci/mutation.md` | report/staging receipt; prior coverage CI `37498544709` green | Frozen full-file scope, staged-source proof and maintained faults; actual tool score remains owed. |
 
+| 2026-10-06 | SDK candidate reference, partial 5.3 | commit containing `docs/SDK.md` | source interface/behaviour review; document/claims lint | Current exports, trust boundaries and errors documented; stable contracts and usability qualification remain owed. |
+
 ## 8. Handing back to Claude
 
 When the human asks for Claude, or when every item left needs the human or Claude, Codex checks each of these:

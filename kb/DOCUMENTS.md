@@ -2,6 +2,8 @@
 
 Mutation preparation updates SPEC (Draft 4.31), RISKS (1.24), CLAIMS (3.31), HANDOFF,
 PROGRESS, REGISTRY and the receipt index on 2026-10-06; S42 and `evals/ci/mutation.md`.
+SDK reference adds SDK (Draft 1), links PACKAGING (Draft 5), and updates HANDOFF on
+2026-10-06; source contract review in the continuing run. No new measurement claim.
 
 Property-gate step updates SPEC, RISKS, CLAIMS, HANDOFF and PROGRESS on 2026-10-06;
 S33 and evidence in `evals/ci/properties.md`, continuing session run record.
@@ -38,11 +40,12 @@ substantive change; *last reviewed* moves at every review.
 | [docs/SPEC.md](../docs/SPEC.md) | Draft 4.31 | current (§13 approved; foundation IDs trace accepted scope) | architect | the builder, evaluator and integrator seats | 2026-10-06 | 3.1, 3.10 |
 | [docs/SIGNER.md](../docs/SIGNER.md) | Draft 9 | draft | integrator | operators and signer developers | 2026-10-06 | 3.1 |
 | [docs/CLIENT.md](../docs/CLIENT.md) | Draft 1 | draft | integrator | Node SDK consumers | 2026-10-06 | 5.3 |
+| [docs/SDK.md](../docs/SDK.md) | Draft 1 | draft | integrator | developers integrating the candidate | 2026-10-06 | 5.3 |
 | [docs/RPC.md](../docs/RPC.md) | Draft 2 | draft | integrator | operators and signer developers | 2026-10-05 | 3.1 |
 | [docs/REQUESTS.md](../docs/REQUESTS.md) | Draft 6 | draft | integrator | SDK consumers and signer developers | 2026-10-06 | 3.1 |
 | [docs/STORAGE.md](../docs/STORAGE.md) | Draft 3 | draft | integrator | SDK users and Linux operators | 2026-10-06 | 3.1 |
 | [docs/POLICIES.md](../docs/POLICIES.md) | Draft 1 | draft | integrator | SDK users and operator-tool developers | 2026-10-05 | 3.2 |
-| [docs/PACKAGING.md](../docs/PACKAGING.md) | Draft 4 | draft | integrator | developers and release reviewers | 2026-10-06 | 5.3 |
+| [docs/PACKAGING.md](../docs/PACKAGING.md) | Draft 5 | draft | integrator | developers and release reviewers | 2026-10-06 | 5.3 |
 | [docs/HANDOFF.md](../docs/HANDOFF.md) | Draft 1 | current | Claude; Codex keeps §5 to §7 | Codex, the human, Claude on return | 2026-10-06 | the return to Claude |
 | [AGENTS.md](../AGENTS.md) | 1 | current | harness (Claude or the human; not Codex) | Codex | 2026-10-05 | the return to Claude |
 | [docs/ARCHITECTURE.md](../docs/ARCHITECTURE.md) | 4 | current | architect | everyone | 2026-10-01 | 2c.1 |
