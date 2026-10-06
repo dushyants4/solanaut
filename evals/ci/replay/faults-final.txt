@@ -1,0 +1,9 @@
+caught replay gate fault: short-history
+caught replay gate fault: ignore-divergence
+caught replay gate fault: ignore-recomputed-count
+caught replay gate fault: ignore-entry-count
+caught replay gate fault: ignore-head
+caught replay gate fault: ignore-workload-kind
+caught replay product fault: previously-missed-per-tx-cap
+caught replay product fault: changed-record-and-evaluation
+All replay faults caught; restored pinned workload passes

@@ -1,0 +1,11 @@
+file:///home/dashy/Projects/Solanaut/packages/sdk/src/guard.ts:417
+    if (!d) throw new Error(`no allowed decision of this guard has hash ${decisionHash}; a denial has nothing to report`);
+                  ^
+
+Error: no allowed decision of this guard has hash f7f76654876581f7328d6780745df576215e92cff4eadc310908dc51c2a96768; a denial has nothing to report
+    at Object.report (file:///home/dashy/Projects/Solanaut/packages/sdk/src/guard.ts:417:19)
+    at step (file:///home/dashy/Projects/Solanaut/packages/sdk/test/support/workload.ts:75:9)
+    at Module.measureReplay (file:///home/dashy/Projects/Solanaut/evals/ci/replay.ts:15:7)
+    at async file:///home/dashy/Projects/Solanaut/[eval1]:1:81
+
+Node.js v26.7.0

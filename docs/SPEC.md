@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.24** · 2026-10-06 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.25** · 2026-10-06 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -754,6 +754,13 @@ boundaries and pending-window reservations against independent arithmetic. The s
 completed-run floor now applies to asynchronous properties. Quiet telemetry isolates the
 policy; token/fee cap properties, real storage/signing and Keel qualification remain owed.
 
+The mixed-history replay gate (`evals/ci/replay.md`) requires 10,000 decisions, complete
+recomputation and a pinned record head across the approved runtime matrix. Its initial
+extended driver failed on old receipt selection; revision 2 bounds only the workload's
+selection view and retains the entire production history. A per-tx mutation miss receives
+a focused regression. This in-memory SDK profile does not qualify isolated signing,
+power-loss durability, random kills or snapshot/restart performance.
+
 ### 13.10 Tested hard (milestone 3.10)
 
 | ID | Requirement | From | Verified by |
@@ -907,3 +914,4 @@ where needed, and UTC issued timestamps include milliseconds. Policies remain re
 | Draft 4.22 | 2026-10-06 | CI-2 frozen synthetic property domains, enforced completion floor and maintained gate/product faults; other qualification remains owed. |
 | Draft 4.23 | 2026-10-06 | CI-2 million-input synthetic decoder wrapper with enforced process/completion evidence; separate pinned job and maintained faults. |
 | Draft 4.24 | 2026-10-06 | CI-2 asynchronous property floor and SOL per-tx/pending-window arithmetic oracles; other cap/security qualification remains owed. |
+| Draft 4.25 | 2026-10-06 | CI-2 pinned mixed-history replay matrix; driver failure and mutation miss retained, focused regression added. |

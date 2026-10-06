@@ -7,6 +7,13 @@ all security, validation and human-owned release gates.
 
 ## Did
 
+- Cap step `f631671` privately pushed; ten close gates and CI `37482318589` green.
+  Continued into pinned mixed replay. Two stub failures preserved; initial extended driver
+  fails on old receipt selection. Definition 2 frozen with recent workload view and fresh
+  offset10001; 10,000 decisions / 13,651 entries replay, digest pinned. First cap mutation
+  survives; added focused regression without changing the generator/digest. Eight final
+  faults caught, including correlated recording/replay change. Runtime matrix job added.
+
 - Fuzz step `59b2e1c` privately pushed; ten close gates and CI `37480963029` green.
   Continued into SOL caps: froze domains, asynchronous runner stub fails, then six
   focused tests pass (two properties at 10,000 each). Existing cap implementation needs
@@ -94,6 +101,16 @@ all security, validation and human-owned release gates.
   this history and must pass compatibility checks before rollback.
 
 ## Found
+
+- Replay final validation: 347 tests pass, typecheck clean; twenty bite campaigns catch
+  133 faults and restore source. Pin passes again. No active validator, soak or service.
+  Historical/CI-2 remaining gates and all human-owned release gates remain required.
+
+- Replay initial driver failure and initial mutation miss remain in `evals/ci/replay/`.
+  Old workload extended beyond its bounded battery selected unretained reporting state.
+  Revised selection view leaves actual retained history intact. Pin does not cover per-tx
+  cap by itself; focused regression now catches that fault. No product or threshold fix.
+  A transient duplicate CI job-name field from a patch was removed before validation.
 
 - SOL property final validation: 343 tests pass, typecheck clean; nineteen bite campaigns
   catch 125 faults and restore source. No cap defect found in these frozen profiles.

@@ -74,6 +74,8 @@ second definition change, re-measured on fresh seeds, and S7 restated with both 
 
 | S35 | Synthetic SOL cap properties agree with independent bigint per-tx and pending-window arithmetic | **measured (builder-authored local policy evidence)** | `evals/ci/caps.md`, 2026-10-06, Node 26.7.0: two properties at 10,000 executions each without skips; six focused tests and five faults pass. Regenerate: `node --test evals/ci/properties.test.ts packages/sdk/test/caps.property.test.ts`; `node evals/ci/cap-faults.ts`. In-memory unsigned SDK/quiet telemetry only, no token/fee cap, Keel, signing, disk or independent-security qualification |
 
+| S36 | The defined mixed SDK history recomputes ten thousand decisions without divergence and is checked against a pinned digest | **measured (builder-authored local replay evidence)** | `evals/ci/replay.md`, 2026-10-06, Node 26.7.0: 10,000 decisions / 13,651 entries, digest in receipt; eight final faults caught after driver failure and cap mutation miss. Regenerate: `npm run test:replay`; `node evals/ci/replay-faults.ts`. Complete production history, bounded test selection view; no disk, random-kill, signing/socket or performance qualification. CI matrix evidence recorded after push |
+
 **Not yet claimable, and why:**
 - **Any detection rate or block rate, and any false-stop rate beyond S7's synthetic streams.** Nothing else has been
   measured. Milestone 2b.1 runs the Beta batteries and 3.10 the adversarial one; until then no percentage exists.

@@ -128,3 +128,5 @@ partial signing is unchanged; this is not installed signer or live-chain qualifi
    its separate CI job enforces the budget and outcome evidence (`evals/ci/fuzz.md`).
    SOL per-tx/pending-window properties pass independent arithmetic oracles under a quiet,
    in-memory SDK profile (`evals/ci/caps.md`); broader cap/security qualification remains owed.
+   Mixed-history replay now pins its digest with a separate runtime-matrix job
+   (`evals/ci/replay.md`); disk/kill/snapshot qualification remains owed.

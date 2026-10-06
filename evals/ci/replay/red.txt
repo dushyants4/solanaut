@@ -1,0 +1,47 @@
+✖ CI-2 replay gate rejects short histories and unsuccessful/incomplete recomputation (0.962747ms)
+✖ CI-2 replay gate rejects changed/missing digests and missing workload kinds (0.161462ms)
+✔ CI-2 replay gate accepts a complete mixed history matching the pinned digest (0.130722ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 1
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 83.476179
+
+✖ failing tests:
+
+test at evals/ci/replay.test.ts:6:1
+✖ CI-2 replay gate rejects short histories and unsuccessful/incomplete recomputation (0.962747ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/replay.test.ts:7:178)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/ci/replay.test.ts:9:1
+✖ CI-2 replay gate rejects changed/missing digests and missing workload kinds (0.161462ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/replay.test.ts:10:128)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }

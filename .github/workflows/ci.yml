@@ -90,6 +90,26 @@ jobs:
       - name: enforce completed fuzz workload
         run: npm run test:fuzz
 
+  replay:
+    name: pinned mixed-history replay
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22.18.0, 24, 26.7.0]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      - name: recompute ten thousand decisions and compare pinned digest
+        run: npm run test:replay
+
   office:
     name: knowledge vault and write boundary
     runs-on: ubuntu-24.04

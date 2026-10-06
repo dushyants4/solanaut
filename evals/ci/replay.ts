@@ -1,0 +1,29 @@
+import { createGuard, replay } from "../../packages/sdk/src/guard.ts";
+import { step, WORKLOAD_POLICY } from "../../packages/sdk/test/support/workload.ts";
+import { resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+export const EXPECTED_HEAD = "cb4674cdc5851f2c1d6645df4c1d36f30eb7cf616b95010b27dbe6487c65254c";
+export interface ReplayEvidence { ok: boolean; decisions: number; replayed: number; entries: number; head: string; kinds: string[] }
+export function validateReplay(evidence: ReplayEvidence, expected: string): void {
+  if (!Number.isSafeInteger(evidence.decisions) || evidence.decisions < 10_000) throw new Error("replay history below required floor");
+  if (!evidence.ok || evidence.replayed !== evidence.decisions || !Number.isSafeInteger(evidence.entries) || evidence.entries < evidence.decisions) throw new Error("replay incomplete or divergent");
+  if (!/^[a-f0-9]{64}$/.test(expected) || evidence.head !== expected) throw new Error("replay baseline digest differs");
+  if (["decision", "report", "redeem", "release"].some((kind) => !evidence.kinds.includes(kind))) throw new Error("mixed replay workload incomplete");
+}
+export async function measureReplay(): Promise<ReplayEvidence> {
+  const guard = await createGuard({ policy: WORKLOAD_POLICY }); let decisions = 0;
+  const view = { ...guard, entries: () => guard.entries().slice(-10) };
+  try {
+    for (let index = 0; decisions < 10_000; index++) {
+      if (index >= 30_000) throw new Error("replay workload did not reach required decision count");
+      step(view, index + 10001);
+      if (guard.status().seq !== index + 1) throw new Error("replay workload step did not append exactly one entry");
+      if (guard.entries().at(-1)!.kind === "decision") decisions++;
+    }
+    const entries = guard.entries(); const result = await replay(entries, WORKLOAD_POLICY);
+    return { ok: result.ok, decisions, replayed: result.decisions, entries: entries.length, head: entries.at(-1)!.hash, kinds: [...new Set(entries.map((entry) => entry.kind))].sort() };
+  } finally { guard.close(); }
+}
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  const result = await measureReplay(); console.log(JSON.stringify(result)); validateReplay(result, EXPECTED_HEAD);
+}
