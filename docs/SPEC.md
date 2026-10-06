@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.14** · 2026-10-05 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.15** · 2026-10-05 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -823,8 +823,12 @@ cannot retain completed slots (`evals/signer/socket-slots.md`).
 LIF-4: status/report starts bind method and exact canonical payload before work; immutable
 bounded responses share the record and request namespace with admissions. Restore/replay
 validate bindings and ordering. SDK host APIs perform bookkeeping only. Response body maximum
-12,288 bytes leaves transport-envelope space. Deadline/concurrency wiring and pre-admission
+12,288 bytes leaves transport-envelope space. Operational service wiring and pre-admission
 proposal refusal journalling remain owed (`evals/sdk/control-request.md`).
+The method handler now coalesces active identities, preserves completed control replies across
+deadlines and records fixed expired/unavailable denials. Report hints carry their request deadline
+through the chain read and refuse late outcome recording (`evals/signer/handler.md`). Operational
+service wiring and pre-admission proposal refusal journalling remain owed.
 
 LIF-1 foundation: optional `check(proposal, { clientId, id })` derives the payload digest itself.
 IDs are ASCII letters/digits or `._:-`, length 1–128. Authoritative time/heights and deadlines
@@ -858,3 +862,4 @@ where needed, and UTC issued timestamps include milliseconds. Policies remain re
 | Draft 4.12 | 2026-10-05 | Bounded Unix transport and socket recovery foundation; operational wiring and identity persistence across all methods still owed. |
 | Draft 4.13 | 2026-10-05 | LIF-4 control request/response journal; pending and immutable answer recovery, shared namespace and older-reader compatibility costs. |
 | Draft 4.14 | 2026-10-05 | Close completed and busy connections after writing; held-open slot regression and shutdown failure preserved. |
+| Draft 4.15 | 2026-10-05 | Method handler deadline/coalescing wiring and bounded report reads; operational service still owed. |

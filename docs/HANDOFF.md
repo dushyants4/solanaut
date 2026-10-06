@@ -210,6 +210,7 @@ The live probes and baseline are complete. ADR-012 C is built and tested offline
 | 2026-10-05 | bounded Unix transport foundation | commit containing `evals/signer/socket.md` | socket receipt | Operational wiring still owed; corrected RPC CI `37403526901` passes all three runtimes. |
 | 2026-10-05 | durable control request foundation | commit containing `evals/sdk/control-request.md` | LIF-4 receipt | SDK journal built; handler and pre-admission errors next. Socket CI `37404207616` passed. |
 | 2026-10-05 | completed socket slot correction | commit containing `evals/signer/socket-slots.md` | socket correction receipt | Half-open regression and shutdown failure preserved. Control CI `37404614332` passed. |
+| 2026-10-05 | method handler foundation | commit containing `evals/signer/handler.md` | handler/core receipt | Deadline/coalescing wiring tested; service and pre-admission refusals owed. Socket correction CI `37404939530` passed. |
 
 ## 8. Handing back to Claude
 

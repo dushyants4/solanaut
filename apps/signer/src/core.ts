@@ -83,13 +83,14 @@ export function createSignerCore(options: CoreOptions) {
     pending.set(key, { digest: binding.digest, promise });
     try { return await promise; } finally { pending.delete(key); }
   }
-  async function report(decision: string): Promise<void> {
+  async function report(decision: string, requestDeadline = now() + 30_000): Promise<void> {
     const d = guard.entries().find((e): e is Decision => e.kind === "decision" && e.hash === decision && e.allow);
     if (!d) throw new Error("unknown allowed decision");
     if (guard.entries().some((e) => e.kind === "report" && e.decision === decision && e.outcome !== "unknown")) return;
     const signed = evidence(decision).signed;
     if (!signed) return;
-    const outcome = await rpc.outcome(signed.signature, now() + 30_000);
+    deadline(requestDeadline);
+    const outcome = await rpc.outcome(signed.signature, requestDeadline); deadline(requestDeadline);
     if (outcome && outcome !== "unknown" && !guard.entries().some((e) => e.kind === "report" && e.decision === decision && e.outcome !== "unknown")) guard.report(decision, outcome);
   }
   async function recover(): Promise<void> {

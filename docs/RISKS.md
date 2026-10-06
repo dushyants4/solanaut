@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.8** · 2026-10-05 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.9** · 2026-10-05 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 The threat model ([docs/papers/THREAT-MODEL.md](papers/THREAT-MODEL.md)) lists what an attacker can do to a running
@@ -74,7 +74,8 @@ The Unix transport has local permission, framing, deadline and abandoned-process
 (`evals/signer/socket.md`). Its recovery must be wired after exclusive record ownership;
 transport tests do not establish multi-process service startup or dedicated-user access.
 Status/report request journalling has SDK evidence (`evals/sdk/control-request.md`), but handler
-wiring and pre-admission proposal errors remain open. Older readers refuse the new entry kinds;
+service wiring and pre-admission proposal errors remain open. Method deadlines/coalescing have
+fake-host evidence (`evals/signer/handler.md`). Older readers refuse the new entry kinds;
 compatible rollback must be checked against actual history, not just policy versions.
 
 | Version | Date | What changed |

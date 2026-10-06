@@ -1,6 +1,6 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 13** · 2026-10-05 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 14** · 2026-10-05 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
@@ -17,7 +17,8 @@ and later Alpha paths remain specified, not built. Signer executor, RPC, host cl
 bounded Unix transport helpers have builder evidence (`docs/SIGNER.md`); they are not yet
 an operational service or a qualified isolated deployment.
 SDK control starts and responses now share the admission chain (`docs/REQUESTS.md`), preserving
-status/report payloads and immutable answers. Their operational handler remains in progress.
+status/report payloads and immutable answers. The method handler connects their journal,
+deadline and coalescing paths; the operational service remains in progress.
 
 A product and an office around it. The product is a transaction guard for Solana AI agents.
 The office is the machinery that keeps the work honest: seven agent

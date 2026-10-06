@@ -1,6 +1,6 @@
 # SDK request identity foundation
 
-> **Draft 3** · 2026-10-05 · owner: integrator · for: SDK consumers and signer developers.
+> **Draft 4** · 2026-10-05 · owner: integrator · for: SDK consumers and signer developers.
 > Evidence: `evals/sdk/request-identity.md`, claim S17. Register: `kb/DOCUMENTS.md`.
 
 The optional second argument identifies an admission:
@@ -47,5 +47,6 @@ under a proposal or control ID is refused. A completed answer cannot change; res
 and bounded, and callers must use a new ID for a fresh status. The start is durable before work,
 and the response is durable before answering. These APIs are host bookkeeping, not socket
 methods, and neither API signs or broadcasts. Deadlines and concurrent execution still need
-operational wiring. The response projection must contain no key material. Older binaries that
+operational service wiring; the method handler now has deadline/coalescing evidence in
+`evals/signer/handler.md`. The response projection must contain no key material. Older binaries that
 do not understand these record entries cannot roll back over this history.

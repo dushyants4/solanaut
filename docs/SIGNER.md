@@ -1,6 +1,6 @@
 # Signer development and trust boundary
 
-> **Draft 3** · 2026-10-05 · owner: integrator · for: operators and signer developers.
+> **Draft 4** · 2026-10-05 · owner: integrator · for: operators and signer developers.
 > Register: `kb/DOCUMENTS.md`. The operational service is still being implemented.
 
 The executor and devnet RPC boundary live under `apps/signer/src/`. Their current evidence uses
@@ -39,3 +39,11 @@ record's exclusive kernel ownership may a service recover an owned abandoned soc
 a live listener or non-socket path is refused. The transport helper does not acquire that
 ownership itself. Closing a timed-out connection does not rewind signing work already
 dispatched: retry/recovery uses the journal and never automatically resends uncertain bytes.
+
+`handler.ts` now connects control requests to the journal and host actions (S26). It coalesces
+identical active requests, refuses cross-method identity reuse, and returns completed answers
+before checking retry deadlines. New expired requests and unavailable control work have fixed,
+durable denial replies. Report hints use the request deadline through the chain read and outcome
+recording; callers never supply an outcome. The operational service must supply a safe status
+projection and its anchored clock. Pre-admission proposal errors still need journalling; the
+handler does not establish full idempotency until that gap is closed.

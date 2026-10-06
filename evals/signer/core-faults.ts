@@ -6,7 +6,8 @@ const path = "apps/signer/src/core.ts"; const original = readFileSync(path, "utf
 const faults = [
   ["ignore-deadline", "if (!Number.isFinite(value) || value <= now() || value > now() + 30_000)", "if (false)"],
   ["ignore-completed-payload", "if (old && old.request!.digest !== binding.digest)", "if (false)"],
-  ["invent-outcome", 'const outcome = await rpc.outcome(signed.signature, now() + 30_000);', 'const outcome = (await rpc.outcome(signed.signature, now() + 30_000)) ?? "landed";'],
+  ["invent-outcome", 'const outcome = await rpc.outcome(signed.signature, requestDeadline);', 'const outcome = (await rpc.outcome(signed.signature, requestDeadline)) ?? "landed";'],
+  ["late-outcome", 'const outcome = await rpc.outcome(signed.signature, requestDeadline); deadline(requestDeadline);', 'const outcome = await rpc.outcome(signed.signature, requestDeadline);'],
   ["send-without-intent", 'guard.recordSigning({ stage: "send-started", decision: d.hash, blockHeight: height.toString() });', 'void height;'],
   ["forget-persisted-response", "if (old.response) return old.response;", "if (false) return old.response!;"],
 ] as const;
@@ -18,7 +19,7 @@ for (const [name, from, to] of faults) {
   try {
     writeFileSync(path, original.replace(from, to));
     const result = battery(); const output = result.stdout + result.stderr;
-    assert.equal(result.status, 1, output); assert.match(output, /tests 12/); assert.match(output, /AssertionError/);
+    assert.equal(result.status, 1, output); assert.match(output, /tests 13/); assert.match(output, /AssertionError/);
     console.log(`caught signer core fault: ${name}`);
   } finally { writeFileSync(path, original); }
 }

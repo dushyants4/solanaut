@@ -1,0 +1,153 @@
+caught handler fault: concurrent-payload
+caught handler fault: duplicate-work
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /AssertionError/. Input:
+
+'✖ LIF-4: status starts before reading, and completed retries preserve the first snapshot after deadline (19.237704ms)\n' +
+  '✔ LIF-4: concurrent retries coalesce and differing methods refuse before actions (6.87514ms)\n' +
+  '✖ SIG-4/LIF-4: report replies reflect recorded host evidence and a retry never repeats the hint (7.259869ms)\n' +
+  '✔ SIG-3: a late status read cannot become a successful new answer (1.860609ms)\n' +
+  "✔ LIF-4: a control request cannot steal a concurrent proposal's identity (2.76503ms)\n" +
+  '✖ SIG-3/LIF-4: expired or overlong new control requests persist a denial and perform no work (1.943158ms)\n' +
+  '✖ LIF-4/SIG-3: report hints use the request deadline and failures persist fixed answers (1.738702ms)\n' +
+  '✖ LIF-4: pending control request resumes on restart; stored response then prevents re-execution (2.524684ms)\n' +
+  '✔ LIF-4: control/proposal identity reuse refuses before calling the proposal executor (3.934176ms)\n' +
+  '✔ SIG-2/LIF-4: unknown methods never dispatch, and response write failure throws and closes admission (2.442014ms)\n' +
+  'ℹ tests 10\n' +
+  'ℹ suites 0\n' +
+  'ℹ pass 5\n' +
+  'ℹ fail 5\n' +
+  'ℹ cancelled 0\n' +
+  'ℹ skipped 0\n' +
+  'ℹ todo 0\n' +
+  'ℹ duration_ms 328.192715\n' +
+  '\n' +
+  '✖ failing tests:\n' +
+  '\n' +
+  'test at apps/signer/test/handler.test.ts:10:1\n' +
+  '✖ LIF-4: status starts before reading, and completed retries preserve the first snapshot after deadline (19.237704ms)\n' +
+  '  Error: request response cannot change\n' +
+  '      at Object.finishRequest (file:///home/dashy/Projects/Solanaut/packages/sdk/src/guard.ts:491:51)\n' +
+  '      at run (file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:38:13)\n' +
+  '      at async file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:41:18\n' +
+  '      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/handler.test.ts:15:22)\n' +
+  '      at async Test.run (node:internal/test_runner/test:1404:7)\n' +
+  '      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)\n' +
+  '\n' +
+  'test at apps/signer/test/handler.test.ts:29:1\n' +
+  '✖ SIG-4/LIF-4: report replies reflect recorded host evidence and a retry never repeats the hint (7.259869ms)\n' +
+  '  Error: request response cannot change\n' +
+  '      at Object.finishRequest (file:///home/dashy/Projects/Solanaut/packages/sdk/src/guard.ts:491:51)\n' +
+  '      at run (file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:38:13)\n' +
+  '      at async file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:41:18\n' +
+  '      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/handler.test.ts:36:102)\n' +
+  '      at async Test.run (node:internal/test_runner/test:1404:7)\n' +
+  '      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)\n' +
+  '\n' +
+  'test at apps/signer/test/handler.test.ts:53:1\n' +
+  '✖ SIG-3/LIF-4: expired or overlong new control requests persist a denial and perform no work (1.943158ms)\n' +
+  '  Error: request response cannot change\n' +
+  '      at Object.finishRequest (file:///home/dashy/Projects/Solanaut/packages/sdk/src/guard.ts:491:51)\n' +
+  '      at run (file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:38:13)\n' +
+  '\n' +
+  'test at apps/signer/test/handler.test.ts:65:1\n' +
+  '✖ LIF-4/SIG-3: report hints use the request deadline and failures persist fixed answers (1.738702ms)\n' +
+  '  Error: request response cannot change\n' +
+  '      at Object.finishRequest (file:///home/dashy/Projects/Solanaut/packages/sdk/src/guard.ts:491:51)\n' +
+  '      at run (file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:38:13)\n' +
+  '      at async file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:41:18\n' +
+  '      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/handler.test.ts:71:22)\n' +
+  '      at async Test.run (node:internal/test_runner/test:1404:7)\n' +
+  '      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)\n' +
+  '\n' +
+  'test at apps/signer/test/handler.test.ts:75:1\n' +
+  '✖ LIF-4: pending control request resumes on restart; stored response then prevents re-execution (2.524684ms)\n' +
+  '  Error: request response cannot change\n' +
+  '      at Object.finishRequest (file:///home/dashy/Projects/Solanaut/packages/sdk/src/guard.ts:491:51)\n' +
+  '      at run (file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:38:13)\n' +
+  '      at async file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:41:18\n' +
+  '      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/handler.test.ts:81:28)\n' +
+  '      at async Test.run (node:internal/test_runner/test:1404:7)\n' +
+  '      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)\n'
+
+    at file:///home/dashy/Projects/Solanaut/evals/signer/handler-faults.ts:22:81
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '✖ LIF-4: status starts before reading, and completed retries preserve the first snapshot after deadline (19.237704ms)\n' +
+    '✔ LIF-4: concurrent retries coalesce and differing methods refuse before actions (6.87514ms)\n' +
+    '✖ SIG-4/LIF-4: report replies reflect recorded host evidence and a retry never repeats the hint (7.259869ms)\n' +
+    '✔ SIG-3: a late status read cannot become a successful new answer (1.860609ms)\n' +
+    "✔ LIF-4: a control request cannot steal a concurrent proposal's identity (2.76503ms)\n" +
+    '✖ SIG-3/LIF-4: expired or overlong new control requests persist a denial and perform no work (1.943158ms)\n' +
+    '✖ LIF-4/SIG-3: report hints use the request deadline and failures persist fixed answers (1.738702ms)\n' +
+    '✖ LIF-4: pending control request resumes on restart; stored response then prevents re-execution (2.524684ms)\n' +
+    '✔ LIF-4: control/proposal identity reuse refuses before calling the proposal executor (3.934176ms)\n' +
+    '✔ SIG-2/LIF-4: unknown methods never dispatch, and response write failure throws and closes admission (2.442014ms)\n' +
+    'ℹ tests 10\n' +
+    'ℹ suites 0\n' +
+    'ℹ pass 5\n' +
+    'ℹ fail 5\n' +
+    'ℹ cancelled 0\n' +
+    'ℹ skipped 0\n' +
+    'ℹ todo 0\n' +
+    'ℹ duration_ms 328.192715\n' +
+    '\n' +
+    '✖ failing tests:\n' +
+    '\n' +
+    'test at apps/signer/test/handler.test.ts:10:1\n' +
+    '✖ LIF-4: status starts before reading, and completed retries preserve the first snapshot after deadline (19.237704ms)\n' +
+    '  Error: request response cannot change\n' +
+    '      at Object.finishRequest (file:///home/dashy/Projects/Solanaut/packages/sdk/src/guard.ts:491:51)\n' +
+    '      at run (file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:38:13)\n' +
+    '      at async file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:41:18\n' +
+    '      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/handler.test.ts:15:22)\n' +
+    '      at async Test.run (node:internal/test_runner/test:1404:7)\n' +
+    '      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)\n' +
+    '\n' +
+    'test at apps/signer/test/handler.test.ts:29:1\n' +
+    '✖ SIG-4/LIF-4: report replies reflect recorded host evidence and a retry never repeats the hint (7.259869ms)\n' +
+    '  Error: request response cannot change\n' +
+    '      at Object.finishRequest (file:///home/dashy/Projects/Solanaut/packages/sdk/src/guard.ts:491:51)\n' +
+    '      at run (file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:38:13)\n' +
+    '      at async file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:41:18\n' +
+    '      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/handler.test.ts:36:102)\n' +
+    '      at async Test.run (node:internal/test_runner/test:1404:7)\n' +
+    '      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)\n' +
+    '\n' +
+    'test at apps/signer/test/handler.test.ts:53:1\n' +
+    '✖ SIG-3/LIF-4: expired or overlong new control requests persist a denial and perform no work (1.943158ms)\n' +
+    '  Error: request response cannot change\n' +
+    '      at Object.finishRequest (file:///home/dashy/Projects/Solanaut/packages/sdk/src/guard.ts:491:51)\n' +
+    '      at run (file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:38:13)\n' +
+    '\n' +
+    'test at apps/signer/test/handler.test.ts:65:1\n' +
+    '✖ LIF-4/SIG-3: report hints use the request deadline and failures persist fixed answers (1.738702ms)\n' +
+    '  Error: request response cannot change\n' +
+    '      at Object.finishRequest (file:///home/dashy/Projects/Solanaut/packages/sdk/src/guard.ts:491:51)\n' +
+    '      at run (file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:38:13)\n' +
+    '      at async file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:41:18\n' +
+    '      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/handler.test.ts:71:22)\n' +
+    '      at async Test.run (node:internal/test_runner/test:1404:7)\n' +
+    '      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)\n' +
+    '\n' +
+    'test at apps/signer/test/handler.test.ts:75:1\n' +
+    '✖ LIF-4: pending control request resumes on restart; stored response then prevents re-execution (2.524684ms)\n' +
+    '  Error: request response cannot change\n' +
+    '      at Object.finishRequest (file:///home/dashy/Projects/Solanaut/packages/sdk/src/guard.ts:491:51)\n' +
+    '      at run (file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:38:13)\n' +
+    '      at async file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:41:18\n' +
+    '      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/handler.test.ts:81:28)\n' +
+    '      at async Test.run (node:internal/test_runner/test:1404:7)\n' +
+    '      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)\n',
+  expected: /AssertionError/,
+  operator: 'match',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

@@ -8,6 +8,12 @@ prepare the original repository for eventual human-approved public release.
 
 ## Did
 
+- Socket correction `4af8e80` pushed; local close 10/10 and CI `37404939530` passes all runtimes.
+- LIF-4 handler starts there. Seven stub cases and a report-deadline regression fail initially;
+  final focused battery ten handler and thirteen core passes. Seven handler and six core faults
+  caught. Full suite 289 passes, typecheck clean; partial app/helper count 434. Receipt:
+  `evals/signer/handler.md`. Operational service and pre-admission refusal journalling remain owed.
+
 - LIF-4 `7c42a41` pushed; CI `37404614332` passes all runtimes. A follow-up socket review found
   completed connections could retain slots if clients held their half open. New regression
   exposes busy refusal at slot 64 and shutdown hang. Corrected normal and busy connection cleanup;
@@ -120,6 +126,12 @@ prepare the original repository for eventual human-approved public release.
 - ADR-019/020: concrete proposed contracts, not implementation or accepted architecture.
 
 ## Found
+
+- Handler's first cached-answer fault produced unexpected rejection rather than explicit assertion;
+  added `doesNotReject` without removing answer comparisons. Forwarded deadline is observed outside
+  the deliberately throwing host callback so its assertion cannot be caught by the product. Method
+  union fixed TypeScript closure narrowing. A receipt/docs patch failed an unnecessary context match
+  and changed nothing; corrected. No gate, deadline or accepted budget changed.
 
 - Half-open socket regression's first run hung during shutdown and was stopped explicitly;
   bounded repeat retains both assertion and cancellation. Trickle fixture then saw EPIPE racing

@@ -1,0 +1,132 @@
+✖ SIG-3/4: caller report deadline bounds the chain read and refuses a late outcome (28.59198ms)
+✔ LIF-3/SIG-3: same concurrent and completed request signs/sends only once; expired retry returns response (7.197529ms)
+✔ LIF-3/SIG-3: deadlines and changed payloads refuse before signing (3.767499ms)
+✔ LIF-3: restart after admission can redeem/sign; restart after redemption cannot sign again (5.585656ms)
+✔ LIF-3: signed but unsent restart sends once; send-started restart never resends (7.748287ms)
+✔ LIF-3/SIG-7: caller hint cannot report outcome; only chain evidence changes reservation (3.002112ms)
+✔ LIF-3: unknown or changed IDs fail closed; malformed base64 is not decoded leniently (1.036258ms)
+✔ LIF-3: send timeout and contradictory signature retain uncertain response; retry never sends (12.478599ms)
+✔ LIF-3: lost persisted response after successful send is recovered without another send (9.411886ms)
+✔ LIF-3: failed redeem persistence never crosses its next side-effect boundary (2.234992ms)
+✔ LIF-3: failed signed persistence never crosses its next side-effect boundary (2.28597ms)
+✔ LIF-3: failed send-started persistence never crosses its next side-effect boundary (2.425151ms)
+✔ LIF-3: deadline reached while signing persists bytes but never starts a send (4.972072ms)
+ℹ Error: Test "SIG-3/4: caller report deadline bounds the chain read and refuses a late outcome" at apps/signer/test/core.test.ts:15:1 generated asynchronous activity after the test ended. This activity created the error "Error: the guard was closed" and would have caused the test to fail, but instead triggered an unhandledRejection event.
+✖ LIF-4: status starts before reading, and completed retries preserve the first snapshot after deadline (9.479541ms)
+✖ LIF-4: concurrent retries coalesce and differing methods refuse before actions (3.079798ms)
+✖ SIG-3/LIF-4: expired or overlong new control requests persist a denial and perform no work (0.959754ms)
+✖ LIF-4/SIG-3: report hints use the request deadline and failures persist fixed answers (0.872887ms)
+✖ LIF-4: pending control request resumes on restart; stored response then prevents re-execution (2.63024ms)
+✖ LIF-4: control/proposal identity reuse refuses before calling the proposal executor (1.208963ms)
+✖ SIG-2/LIF-4: unknown methods never dispatch, and response write failure throws and closes admission (1.869331ms)
+ℹ Error: Test "LIF-4: concurrent retries coalesce and differing methods refuse before actions" at apps/signer/test/handler.test.ts:17:1 generated asynchronous activity after the test ended. This activity created the error "Error: unimplemented request handler" and would have caused the test to fail, but instead triggered an unhandledRejection event.
+ℹ Error: Test "LIF-4: concurrent retries coalesce and differing methods refuse before actions" at apps/signer/test/handler.test.ts:17:1 generated asynchronous activity after the test ended. This activity created the error "Error: unimplemented request handler" and would have caused the test to fail, but instead triggered an unhandledRejection event.
+ℹ tests 20
+ℹ suites 0
+ℹ pass 12
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 415.80307
+
+✖ failing tests:
+
+test at apps/signer/test/core.test.ts:15:1
+✖ SIG-3/4: caller report deadline bounds the chain read and refuses a late outcome (28.59198ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  31000 !== 1500
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/core.test.ts:22:73)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 31000,
+    expected: 1500,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at apps/signer/test/handler.test.ts:9:1
+✖ LIF-4: status starts before reading, and completed retries preserve the first snapshot after deadline (9.479541ms)
+  Error: unimplemented request handler
+      at file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:4:81
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/handler.test.ts:13:25)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at apps/signer/test/handler.test.ts:17:1
+✖ LIF-4: concurrent retries coalesce and differing methods refuse before actions (3.079798ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /identity|payload/. Input:
+  
+  'Error: unimplemented request handler'
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/handler.test.ts:23:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: unimplemented request handler
+        at file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:4:81
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/handler.test.ts:23:26)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /identity|payload/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at apps/signer/test/handler.test.ts:27:1
+✖ SIG-3/LIF-4: expired or overlong new control requests persist a denial and perform no work (0.959754ms)
+  Error: unimplemented request handler
+      at file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:4:81
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/handler.test.ts:33:30)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at apps/signer/test/handler.test.ts:39:1
+✖ LIF-4/SIG-3: report hints use the request deadline and failures persist fixed answers (0.872887ms)
+  Error: unimplemented request handler
+      at file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:4:81
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/handler.test.ts:44:28)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at apps/signer/test/handler.test.ts:49:1
+✖ LIF-4: pending control request resumes on restart; stored response then prevents re-execution (2.63024ms)
+  Error: unimplemented request handler
+      at file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:4:81
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/handler.test.ts:55:34)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at apps/signer/test/handler.test.ts:60:1
+✖ LIF-4: control/proposal identity reuse refuses before calling the proposal executor (1.208963ms)
+  Error: unimplemented request handler
+      at file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:4:81
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/handler.test.ts:64:15)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at apps/signer/test/handler.test.ts:67:1
+✖ SIG-2/LIF-4: unknown methods never dispatch, and response write failure throws and closes admission (1.869331ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /method/. Input:
+  
+  'Error: unimplemented request handler'
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/handler.test.ts:72:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: unimplemented request handler
+        at file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:4:81
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/handler.test.ts:72:26)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /method/,
+    operator: 'rejects',
+    diff: 'simple'
+  }

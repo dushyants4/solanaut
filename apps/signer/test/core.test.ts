@@ -12,6 +12,18 @@ const publicBytes = Buffer.from(agent.publicKey.export({ format: "jwk" }).x!, "b
 const policy = { ...WORKLOAD_POLICY, principal: [encodeBase58(publicBytes)] };
 const message = craftLegacy({ header: [1, 0, 1], keys: [[...publicBytes], key(2), key(0)], instructions: [{ program: 2, accounts: [0, 1], data: [2, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0] }] });
 const request: Proposal = { clientId: "agent", id: "payment", deadline: 2000, message: Buffer.from(message).toString("base64") };
+test("SIG-3/4: caller report deadline bounds the chain read and refuses a late outcome", async () => {
+  let observed = 0; let finish!: () => void;
+  const waiting = new Promise<void>((resolve) => { finish = resolve; });
+  const f = await fixture([], (o) => { o.rpc.outcome = async (_signature, deadline) => { observed = deadline; await waiting; return "landed"; }; });
+  try {
+    const sent = await f.core.propose(request);
+    const report = (f.core.report as (decision: string, deadline: number) => Promise<void>)(sent.decision, 1500);
+    await new Promise<void>((resolve) => setImmediate(resolve)); assert.equal(observed, 1500);
+    f.clock(1600); finish(); await assert.rejects(report, /deadline/);
+    assert.equal(f.g.entries().filter((e) => e.kind === "report").length, 0);
+  } finally { finish(); f.g.close(); }
+});
 async function fixture(entries: Entry[] = [], change?: (options: CoreOptions) => void, appendFault?: (entry: Entry) => void) {
   let clock = 1000; let signed = 0; let sends = 0; let observations = 0; let outcome: "landed" | "failed" | "expired" | "unknown" | null = null;
   const g = await createGuard({ policy, log: { entries, append(e) { appendFault?.(e); entries.push(e); }, close() {} } });
