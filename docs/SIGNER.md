@@ -1,6 +1,6 @@
 # Signer development and trust boundary
 
-> **Draft 5** · 2026-10-06 · owner: integrator · for: operators and signer developers.
+> **Draft 6** · 2026-10-06 · owner: integrator · for: operators and signer developers.
 > Register: `kb/DOCUMENTS.md`. The operational service is still being implemented.
 
 The executor and devnet RPC boundary live under `apps/signer/src/`. Their current evidence uses
@@ -49,3 +49,11 @@ projection and its anchored clock. Pre-admission proposal errors now have durabl
 payloads and answers (S27). Interrupted refusal starts complete conservatively without invoking
 the executor again. Errors after admission remain governed by signing history. This has local
 evidence; the operational lifecycle and full kill/outage programmes remain required.
+
+`core.recover()` returns `{ decision, complete }` for each recorded admission request.
+An attempt failure does not abort later requests, and signed bytes still receive chain
+follow-up after a failed pre-send operation (S28). Incomplete results expose no exception
+details and must produce degraded host status. Completion describes the pass, not landing
+or reservation resolution. Hosts must separately check unresolved attempts and storage
+readiness: a failed writer stays closed. Background retry/backoff and operational startup
+remain owed; evidence is `evals/signer/recovery.md`.

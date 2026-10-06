@@ -75,6 +75,9 @@ Handler deadlines/coalescing are now tested (`evals/signer/handler.md`); safe op
 projection and service lifecycle remain owed. Pre-admission refusal history and interrupted
 answer recovery now have local executor evidence (`evals/signer/refusal.md`). Actual service
 startup, pending-policy/lifetime recovery, all kill boundaries and installed deployment are next.
+Recovery now continues past individual attempt failures and reports incomplete work while
+following signed bytes (`evals/signer/recovery.md`). Operational startup and policy-change
+qualification remain owed; this does not achieve the signer milestone.
 
 1. **Defects** (`docs/SPEC.md` §10):
    - D1 to D12 are closed: D1, D2, D5, D6, D7, D9, D10 and D12 at 2a.5, D11 at 2a.6, D3, D4 and D8 at 2a.7.

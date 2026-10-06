@@ -1,0 +1,5 @@
+caught recovery fault: abort-on-attempt-error
+caught recovery fault: hide-attempt-error
+caught recovery fault: skip-chain-after-refusal
+caught recovery fault: invent-recovery-success
+All recovery faults caught; restored source passes

@@ -93,11 +93,17 @@ export function createSignerCore(options: CoreOptions) {
     const outcome = await rpc.outcome(signed.signature, requestDeadline); deadline(requestDeadline);
     if (outcome && outcome !== "unknown" && !guard.entries().some((e) => e.kind === "report" && e.decision === decision && e.outcome !== "unknown")) guard.report(decision, outcome);
   }
-  async function recover(): Promise<void> {
+  async function recover(): Promise<{ decision: string; complete: boolean }[]> {
+    const results: { decision: string; complete: boolean }[] = [];
     for (const e of guard.entries()) if (e.kind === "decision" && e.request) {
-      await propose({ clientId: e.request.clientId, id: e.request.id, message: e.message, ...(e.group === null ? {} : { group: e.group }), deadline: now() + 30_000 });
-      if (e.allow) await report(e.hash);
+      let complete = true;
+      try { await propose({ clientId: e.request.clientId, id: e.request.id, message: e.message, ...(e.group === null ? {} : { group: e.group }), deadline: now() + 30_000 }); }
+      catch { complete = false; }
+      // Failed pre-send work must not prevent chain reconciliation of signed bytes.
+      try { if (e.allow) await report(e.hash); } catch { complete = false; }
+      results.push({ decision: e.hash, complete });
     }
+    return results;
   }
   return { propose, recover, report };
 }

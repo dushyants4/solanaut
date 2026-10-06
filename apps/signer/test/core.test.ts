@@ -12,6 +12,58 @@ const publicBytes = Buffer.from(agent.publicKey.export({ format: "jwk" }).x!, "b
 const policy = { ...WORKLOAD_POLICY, principal: [encodeBase58(publicBytes)] };
 const message = craftLegacy({ header: [1, 0, 1], keys: [[...publicBytes], key(2), key(0)], instructions: [{ program: 2, accounts: [0, 1], data: [2, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0] }] });
 const request: Proposal = { clientId: "agent", id: "payment", deadline: 2000, message: Buffer.from(message).toString("base64") };
+test("LIF-6/SIG-7: recovery continues after an expired admission and reconciles a later sent attempt", async () => {
+  const f = await fixture();
+  const stranded = f.g.check({ message, at: 1000, blockHeight: 10n, lastValidBlockHeight: 100n }, { ...request, id: "stranded" });
+  const distinct = Buffer.from(message); distinct[distinct.length - 8] = 2;
+  const sent = await f.core.propose({ ...request, message: distinct.toString("base64") });
+  assert.equal(sent.status, "sent"); assert.equal(stranded.allow, true); f.g.close();
+  const next = await fixture([...f.entries], (o) => { o.rpc.height = async () => 101n; });
+  try {
+    next.outcome("landed");
+    const results = await next.core.recover();
+    assert.deepEqual(results, [{ decision: stranded.hash, complete: false }, { decision: sent.decision, complete: true }]);
+    assert.equal(next.entries.some((e) => e.kind === "report" && e.decision === sent.decision && e.outcome === "landed"), true);
+    assert.equal(next.entries.some((e) => e.kind === "report" && e.decision === stranded.hash), false);
+    assert.deepEqual(next.counts(), { signed: 0, sends: 0, observations: 0 });
+  } finally { next.g.close(); }
+});
+test("LIF-6: recovery exposes provider loss and a later pass completes only safe pre-send work", async () => {
+  const f = await fixture();
+  const d = f.g.check({ message, at: 1000, blockHeight: 10n, lastValidBlockHeight: 100n }, request); f.g.close();
+  let unavailable = true;
+  const next = await fixture([...f.entries], (o) => { o.rpc.height = async () => { if (unavailable) throw new Error("private endpoint detail"); return 11n; }; });
+  try {
+    assert.deepEqual(await next.core.recover(), [{ decision: d.hash, complete: false }]);
+    assert.equal(next.entries.some((e) => e.kind === "redeem" || e.kind === "report"), false);
+    unavailable = false;
+    assert.deepEqual(await next.core.recover(), [{ decision: d.hash, complete: true }]);
+    assert.equal(next.counts().signed, 1); assert.equal(next.counts().sends, 1);
+    await next.core.recover(); assert.equal(next.counts().sends, 1);
+  } finally { next.g.close(); }
+});
+test("LIF-6/SIG-7: expired signed unsent recovery still reads chain evidence without sending", async () => {
+  const f = await fixture(); const d = f.g.check({ message, at: 1000, blockHeight: 10n, lastValidBlockHeight: 100n }, request);
+  f.g.redeem(message, d.hash, 10n); const signature = sign(null, message, agent.privateKey);
+  f.g.recordSigning({ stage: "signed", decision: d.hash, wire: Buffer.concat([Buffer.from([1]), signature, message]).toString("base64"), signature: encodeBase58(signature) });
+  f.g.close(); const next = await fixture([...f.entries], (o) => { o.rpc.height = async () => 101n; });
+  try {
+    next.outcome("landed");
+    assert.deepEqual(await next.core.recover(), [{ decision: d.hash, complete: false }]);
+    assert.equal(next.entries.some((e) => e.kind === "report" && e.decision === d.hash && e.outcome === "landed"), true);
+    assert.equal(next.counts().sends, 0); assert.equal(next.counts().signed, 0);
+  } finally { next.g.close(); }
+});
+test("LIF-6/SIG-8: recovery reports failed response persistence and never resends on its next pass", async () => {
+  const f = await fixture([], undefined, (e) => { if (e.kind === "signing" && e.event.stage === "response") throw new Error("ENOSPC"); });
+  const d = f.g.check({ message, at: 1000, blockHeight: 10n, lastValidBlockHeight: 100n }, request);
+  try {
+    assert.deepEqual(await f.core.recover(), [{ decision: d.hash, complete: false }]);
+    assert.deepEqual(await f.core.recover(), [{ decision: d.hash, complete: false }]);
+    assert.equal(f.counts().signed, 1); assert.equal(f.counts().sends, 1);
+    assert.equal(f.g.check({ message, at: 1100 }).rule, "fail-closed");
+  } finally { f.g.close(); }
+});
 test("SIG-3/4: caller report deadline bounds the chain read and refuses a late outcome", async () => {
   let observed = 0; let finish!: () => void;
   const waiting = new Promise<void>((resolve) => { finish = resolve; });

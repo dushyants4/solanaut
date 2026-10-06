@@ -1,0 +1,73 @@
+✖ LIF-6/SIG-7: recovery continues after an expired admission and reconciles a later sent attempt (11.804034ms)
+✖ LIF-6: recovery exposes provider loss and a later pass completes only safe pre-send work (2.21603ms)
+✖ LIF-6/SIG-7: expired signed unsent recovery still reads chain evidence without sending (3.341045ms)
+✖ LIF-6/SIG-8: recovery reports failed response persistence and never resends on its next pass (1.759703ms)
+✔ SIG-3/4: caller report deadline bounds the chain read and refuses a late outcome (7.453617ms)
+✔ LIF-3/SIG-3: same concurrent and completed request signs/sends only once; expired retry returns response (3.496278ms)
+✔ LIF-3/SIG-3: deadlines and changed payloads refuse before signing (1.901318ms)
+✔ LIF-3: restart after admission can redeem/sign; restart after redemption cannot sign again (2.75942ms)
+✔ LIF-3: signed but unsent restart sends once; send-started restart never resends (3.584279ms)
+✔ LIF-3/SIG-7: caller hint cannot report outcome; only chain evidence changes reservation (2.097389ms)
+✔ LIF-3: unknown or changed IDs fail closed; malformed base64 is not decoded leniently (0.415904ms)
+✔ LIF-3: send timeout and contradictory signature retain uncertain response; retry never sends (2.352348ms)
+✔ LIF-3: lost persisted response after successful send is recovered without another send (2.182325ms)
+✔ LIF-3: failed redeem persistence never crosses its next side-effect boundary (0.585216ms)
+✔ LIF-3: failed signed persistence never crosses its next side-effect boundary (1.174862ms)
+✔ LIF-3: failed send-started persistence never crosses its next side-effect boundary (1.561361ms)
+✔ LIF-3: deadline reached while signing persists bytes but never starts a send (1.317516ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 13
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 191.601344
+
+✖ failing tests:
+
+test at apps/signer/test/core.test.ts:15:1
+✖ LIF-6/SIG-7: recovery continues after an expired admission and reconciles a later sent attempt (11.804034ms)
+  Error: receipt refused: block height 101 is past the receipt's last valid height 100
+      at execute (file:///home/dashy/Projects/Solanaut/apps/signer/src/core.ts:55:30)
+      at async propose (file:///home/dashy/Projects/Solanaut/apps/signer/src/core.ts:84:18)
+      at async Object.recover (file:///home/dashy/Projects/Solanaut/apps/signer/src/core.ts:98:7)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/core.test.ts:22:21)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at apps/signer/test/core.test.ts:29:1
+✖ LIF-6: recovery exposes provider loss and a later pass completes only safe pre-send work (2.21603ms)
+  Error: private endpoint detail
+      at o.rpc.height (file:///home/dashy/Projects/Solanaut/apps/signer/test/core.test.ts:33:107)
+      at execute (file:///home/dashy/Projects/Solanaut/apps/signer/src/core.ts:53:32)
+      at propose (file:///home/dashy/Projects/Solanaut/apps/signer/src/core.ts:82:21)
+      at Object.recover (file:///home/dashy/Projects/Solanaut/apps/signer/src/core.ts:98:13)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/core.test.ts:35:38)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at apps/signer/test/core.test.ts:43:1
+✖ LIF-6/SIG-7: expired signed unsent recovery still reads chain evidence without sending (3.341045ms)
+  Error: send receipt expired or has no bounded lifetime
+      at verifySigning (file:///home/dashy/Projects/Solanaut/packages/sdk/src/signing.ts:44:97)
+      at Object.recordSigning (file:///home/dashy/Projects/Solanaut/packages/sdk/src/guard.ts:499:7)
+      at execute (file:///home/dashy/Projects/Solanaut/apps/signer/src/core.ts:65:11)
+      at async propose (file:///home/dashy/Projects/Solanaut/apps/signer/src/core.ts:84:18)
+      at async Object.recover (file:///home/dashy/Projects/Solanaut/apps/signer/src/core.ts:98:7)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/core.test.ts:50:22)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at apps/signer/test/core.test.ts:55:1
+✖ LIF-6/SIG-8: recovery reports failed response persistence and never resends on its next pass (1.759703ms)
+  Error: the record could not be written (ENOSPC), so this guard decides nothing more until it is restarted
+      at commit (file:///home/dashy/Projects/Solanaut/packages/sdk/src/guard.ts:376:13)
+      at Object.recordSigning (file:///home/dashy/Projects/Solanaut/packages/sdk/src/guard.ts:500:14)
+      at answer (file:///home/dashy/Projects/Solanaut/apps/signer/src/core.ts:30:11)
+      at execute (file:///home/dashy/Projects/Solanaut/apps/signer/src/core.ts:69:12)
+      at async propose (file:///home/dashy/Projects/Solanaut/apps/signer/src/core.ts:84:18)
+      at async Object.recover (file:///home/dashy/Projects/Solanaut/apps/signer/src/core.ts:98:7)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/core.test.ts:59:22)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)

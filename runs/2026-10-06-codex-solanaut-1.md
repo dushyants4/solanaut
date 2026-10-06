@@ -7,6 +7,13 @@ all security, validation and human-owned release gates.
 
 ## Did
 
+- Continued from clean, fetched `d64a943`; both live fence probes refused correctly.
+  Baseline: 295 tests pass and typecheck clean. Read-only law batch with redirected output
+  was refused by the boundary heuristic; removed the redirect, no protected write attempted.
+- Added LIF-6 recovery regressions, observed four failures, then isolated each attempt's
+  errors while retaining chain follow-up. Four maintained recovery faults and six existing
+  core faults are caught; source restored. Receipt: `evals/signer/recovery.md`.
+
 - Refusal implementation committed and privately pushed as `a40375a`. Post-push close passes
   all ten checks; CI `37453503555` passes Node 22.18.0, 24 and 26.7.0 plus the office job.
   Working tree clean at verification. No validator, soak or fault-mutated source remains running.
@@ -29,6 +36,17 @@ all security, validation and human-owned release gates.
   this history and must pass compatibility checks before rollback.
 
 ## Found
+
+- Recovery aborted at an expired admission, provider outage, expired signed bytes or failed
+  response persistence. Corrected without loosening signing, lifetime or reservation rules.
+- The initial mixed-attempt fixture reused an in-flight intent, so its supposed sent payment
+  was denied. Corrected the amount and added explicit sent/admission assertions; unchanged
+  original outcome assertion now passes. First post-fix scratch output was overwritten;
+  initial red and final green are retained. Two document patch attempts had invalid anchors;
+  neither changed any file, then corrected patches applied.
+- Baseline close: nine of ten gates, uncommitted changes pending. Final close follows push.
+- Reversible choice inside ADR-019: recovery returns per-decision completion, no error details;
+  completion describes the operations in this pass, not chain settlement or storage readiness.
 
 - The final record-sync shell batch was refused by the boundary heuristic because it combined
   the close-tool path with staging. No protected write occurred; split the documented close
@@ -59,3 +77,8 @@ Builder-authored evidence; no key-file read, real chain send, OS-user creation o
 Final commands/retained outputs: `evals/signer/refusal.md`. Full suite 295 passes, typecheck
 clean and four installed package checks pass. Partial signer/helper total 453 lines against
 the unchanged 500-line final budget; host service and full qualification remain owed.
+Recovery step final validation: 299 tests pass, typecheck clean, four installed-package
+checks pass. Outputs in `evals/signer/recovery/`. Current partial helper count 459 lines;
+final operational service remains owed. Staged pattern scan hits only Solana token test
+names in retained output, no credentials. Documentation patch-anchor failures applied no
+partial edits. Full diff read; pre-push close has only the expected uncommitted-tree failure.
