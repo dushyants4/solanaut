@@ -1,6 +1,7 @@
 # ADR-019 · Stable signing, history and recovery contracts
 
-**Status: proposed, not accepted.** 2026-10-05. Required by the approved Solanaut 1.0 mission
+**Status: accepted by the human on 2026-10-05.** Proposed on 2026-10-05; accepted by
+“Go aheaaad, Continue the plan” following the explicit ADR acceptance request. Required by the approved Solanaut 1.0 mission
 before building the affected parts of ADR-013, ADR-014 and ADR-010. Devnet only.
 
 ## Context

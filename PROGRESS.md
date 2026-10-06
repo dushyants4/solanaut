@@ -52,7 +52,8 @@ Coarser than `runs/`. The archivist keeps it current; every phase that ends gets
 **Solanaut 1.0 mission:** `docs/plans/2026-10-05_solanaut-1.md`, approved in this session.
 ADR-012 C is implemented and verified offline (`evals/sdk/latch-c.md`); its complete queue item
 still owes a funded devnet rerun. Historical records' accepted replay differences are enumerated.
-ADR-019/020 are proposed clarifications awaiting the human; the isolated signer is not built.
+ADR-019/020 are accepted clarifications following the human's instruction to go ahead;
+their signing, recovery and operator paths are next. The isolated signer is not built.
 The Alpha and stable-release gates are not achieved by this initial work.
 
 1. **Defects** (`docs/SPEC.md` §10):

@@ -8,6 +8,13 @@ prepare the original repository for eventual human-approved public release.
 
 ## Did
 
+- The human instructed “Go aheaaad, Continue the plan” after the explicit ADR-019/020
+  acceptance request. Recorded acceptance; no release gate or T4 grant changed.
+- Repeated both live probes on this continuation; both correctly refused. Baseline at
+  `5b4d3d6`: product tests and typecheck pass. Trusted signing work starts from this revision.
+  Signer-process line budget before implementation: at most 500 lines across all its helper files,
+  excluding the existing SDK, as required by SIG-11 and ADR-019.
+
 - `f16938c` passed CI run `37397843820` on Node 22.18.0, 24 and 26.7.0, including
   installed-package and package fault checks. Post-push local close gates passed.
 - Automated the seven already demonstrated ADR-012 faults as a maintained CI-1 subset.

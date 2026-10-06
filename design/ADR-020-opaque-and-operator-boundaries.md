@@ -1,6 +1,7 @@
 # ADR-020 · Opaque execution, anchors and operator exceptions
 
-**Status: proposed, not accepted.** 2026-10-05. Clarifies incomplete promises in ADR-018,
+**Status: accepted by the human on 2026-10-05.** Proposed on 2026-10-05; accepted by
+“Go aheaaad, Continue the plan” following the explicit ADR acceptance request. Clarifies incomplete promises in ADR-018,
 ADR-015 and PHX-1 before their affected implementation. All execution here is devnet or a local fork.
 
 ## Context
