@@ -100,6 +100,14 @@ prepare the original repository for eventual human-approved public release.
 
 ## Found
 
+- RPC commit `c9a84e0` CI `37402929454` failed on Node 22.18.0 with one cancelled hung-read test;
+  other runtimes passed. A standalone child reproduced premature event-loop exit on Node 26.
+  Replaced the unreferenced abort-helper timer with an owned referenced timer and finally cleanup.
+  No deadline or assertion widened. Attribution commit `aecdf8e` was already made before the
+  failed CI log was examined; it did not correct this inherited issue. Receipt and initial
+  failure: `evals/signer/rpc-deadline.md`. Local full suite now 257 passes, typecheck clean;
+  corrected matrix still must pass before a green-CI claim. Eight valid RPC faults caught.
+
 - Signing stubs fail all initial cases, but block negative fixture setup too; actual disabled
   security checks establish their negative failure evidence. The unsupported-format case fails
   before its validator. The final signed policy battery passes 18 cases.

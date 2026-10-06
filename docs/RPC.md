@@ -1,6 +1,6 @@
 # Signer RPC boundary
 
-> **Draft 1** · 2026-10-05 · owner: integrator · for: operators and signer developers.
+> **Draft 2** · 2026-10-05 · owner: integrator · for: operators and signer developers.
 > Evidence: `evals/signer/rpc.md`, claim S20. Register: `kb/DOCUMENTS.md`.
 
 Configure distinct operator-controlled providers outside the agent's write permissions. Remote
@@ -18,6 +18,8 @@ The initial implementation only accepts the provider's currently returned blockh
 obtain that hash's bounded lifetime itself. Older valid hashes are denied. Differing lifetime evidence
 also denies. Test this availability limit during live integration; do not replace it with caller-supplied
 expiry. The first reference installation and live two-provider drills remain qualification work.
+RPC operations own a referenced timer until fetch and body processing end, then clear it. A
+standalone regression covers premature event-loop exit (`evals/signer/rpc-deadline.md`, S22).
 
 The module is tested offline through fake HTTP providers. The service must wire it to the anchored
 monotonic clock and protected configuration. It does not yet implement lookup-table reads or a proof

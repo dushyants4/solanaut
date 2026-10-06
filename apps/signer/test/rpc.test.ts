@@ -1,6 +1,7 @@
 // RPC-1–4: protocol-shaped fake providers; no real send.
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
+import { spawnSync } from "node:child_process";
 import { decodeMessage, encodeBase58 } from "@solanaut/sdk";
 import { createTrustedRpc, DEVNET_GENESIS } from "../src/rpc.ts";
 import { craftLegacy, key } from "../../../packages/sdk/test/support/craft.ts";
@@ -93,4 +94,9 @@ test("RPC-2: hung reads end at their deadline and expired calls make no network 
   } });
   await assert.rejects(rpc.height(Date.now() - 1), /deadline|provider/); assert.equal(calls, 0);
   await assert.rejects(rpc.height(Date.now() + 80), /deadline|provider/); assert.ok(calls > 0);
+});
+test("RPC-2: a standalone process keeps its owned request deadline alive", () => {
+  const child = spawnSync(process.execPath, ["apps/signer/test/support/rpc-deadline-child.ts"], { encoding: "utf8", timeout: 2000 });
+  assert.equal(child.status, 0, child.stderr);
+  assert.match(child.stdout, /bounded deadline completed/);
 });

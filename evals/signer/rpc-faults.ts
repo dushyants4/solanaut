@@ -11,6 +11,7 @@ const faults = [
   ["retry-send", "if (!send && attempt < 2 &&", "if (attempt < 2 &&"],
   ["ignore-blockhash", "if (blockhash !== hash)", "if (false)"],
   ["ignore-envelope-id", "body.id !== requestId", "false"],
+  ["unreferenced-deadline", 'const timer = setTimeout(() => controller.abort(), Math.max(1, Math.ceil(remaining)));', 'const timer = setTimeout(() => controller.abort(), Math.max(1, Math.ceil(remaining))).unref();'],
 ] as const;
 const battery = () => spawnSync(process.execPath, ["--test", "apps/signer/test/rpc.test.ts"], { encoding: "utf8", timeout: 30_000 });
 const baseline = battery(); assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
@@ -20,7 +21,7 @@ for (const [name, from, to] of faults) {
   try {
     writeFileSync(path, original.replace(from, to));
     const result = battery(); const output = result.stdout + result.stderr;
-    assert.equal(result.status, 1, output); assert.match(output, /tests 10/); assert.match(output, /AssertionError/);
+    assert.equal(result.status, 1, output); assert.match(output, /tests 11/); assert.match(output, /AssertionError/);
     console.log(`caught RPC fault: ${name}`);
   } finally { writeFileSync(path, original); }
 }

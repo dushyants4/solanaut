@@ -1,0 +1,19 @@
+✔ RPC-1: pins devnet identity and validates observed blockhash/lifetime with confirmed context (36.7454ms)
+✔ RPC-1: cross-cluster substitution denies; blockhash mismatch or invalidity denies (2.920537ms)
+✔ RPC-2: malformed and non-integral heights or context cannot become authority (4.101124ms)
+✔ RPC-2: response ID/version, missing result, and oversized body refuse (2.78476ms)
+✔ RPC-3: one-provider outage permits conservative reads; total outage reports degraded (11.984021ms)
+✔ RPC-3: stale or conflicting observations cannot authorize a new proposal (1.868937ms)
+✔ RPC-4: chain outcome requires agreeing committed evidence; missing/stale/conflicting stays unresolved (7.110065ms)
+✔ RPC-4: failed outcome needs matching committed failure from both providers (0.721251ms)
+✔ RPC-2/SIG-9: rate-limited reads back off, but send has exactly one attempt with node retries disabled (1.638761ms)
+✔ RPC-2: hung reads end at their deadline and expired calls make no network request (30.941111ms)
+✔ RPC-2: a standalone process keeps its owned request deadline alive (178.014489ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 510.947558

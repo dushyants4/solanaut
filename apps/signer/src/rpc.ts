@@ -28,31 +28,35 @@ export function createTrustedRpc(urls: readonly string[], options: RpcOptions = 
       const remaining = Math.min(timeoutMs, deadline - now());
       if (!(remaining > 0)) throw new Error("RPC deadline expired");
       const requestId = ++id;
-      const res = await fetcher(p.url, { method: "POST", headers: { "content-type": "application/json" },
-        body: JSON.stringify({ jsonrpc: "2.0", id: requestId, method, params }), signal: AbortSignal.timeout(Math.max(1, Math.ceil(remaining))), redirect: "error" });
-      if (!res.ok) {
-        await res.body?.cancel();
-        if (!send && attempt < 2 && [429, 503].includes(res.status)) {
-          const delay = backoffMs * 2 ** attempt;
-          if (now() + delay >= deadline) throw new Error("RPC deadline prevents backoff");
-          await new Promise((resolve) => setTimeout(resolve, delay)); continue;
-        }
-        throw new Error(`RPC HTTP ${res.status}`);
-      }
-      const reader = res.body?.getReader(); if (!reader) throw new Error("missing RPC response body");
-      const chunks: Uint8Array[] = []; let length = 0;
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), Math.max(1, Math.ceil(remaining)));
       try {
-        for (;;) {
-          const chunk = await reader.read(); if (chunk.done) break;
-          length += chunk.value.length;
-          if (length > 262_144) { await reader.cancel(); throw new Error("RPC response too large"); }
-          chunks.push(chunk.value);
+        const res = await fetcher(p.url, { method: "POST", headers: { "content-type": "application/json" },
+          body: JSON.stringify({ jsonrpc: "2.0", id: requestId, method, params }), signal: controller.signal, redirect: "error" });
+        if (!res.ok) {
+          await res.body?.cancel();
+          if (!send && attempt < 2 && [429, 503].includes(res.status)) {
+            const delay = backoffMs * 2 ** attempt;
+            if (now() + delay >= deadline) throw new Error("RPC deadline prevents backoff");
+            await new Promise((resolve) => setTimeout(resolve, delay)); continue;
+          }
+          throw new Error(`RPC HTTP ${res.status}`);
         }
-      } finally { reader.releaseLock(); }
-      const body = JSON.parse(Buffer.concat(chunks).toString("utf8"));
-      if (now() >= deadline) throw new Error("RPC response arrived after deadline");
-      if (!body || body.jsonrpc !== "2.0" || body.id !== requestId || !("result" in body) || "error" in body) throw new Error("invalid or refused RPC response envelope");
-      return body.result;
+        const reader = res.body?.getReader(); if (!reader) throw new Error("missing RPC response body");
+        const chunks: Uint8Array[] = []; let length = 0;
+        try {
+          for (;;) {
+            const chunk = await reader.read(); if (chunk.done) break;
+            length += chunk.value.length;
+            if (length > 262_144) { await reader.cancel(); throw new Error("RPC response too large"); }
+            chunks.push(chunk.value);
+          }
+        } finally { reader.releaseLock(); }
+        const body = JSON.parse(Buffer.concat(chunks).toString("utf8"));
+        if (now() >= deadline) throw new Error("RPC response arrived after deadline");
+        if (!body || body.jsonrpc !== "2.0" || body.id !== requestId || !("result" in body) || "error" in body) throw new Error("invalid or refused RPC response envelope");
+        return body.result;
+      } finally { clearTimeout(timer); }
     }
   }
   const config = () => ({ commitment: "confirmed", minContextSlot: floor });

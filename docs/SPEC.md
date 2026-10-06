@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.10** · 2026-10-05 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.11** · 2026-10-05 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -839,3 +839,4 @@ where needed, and UTC issued timestamps include milliseconds. Policies remain re
 | Draft 4.8 | 2026-10-05 | LIF-3 conservative executor tested with fake RPC; transport, authoritative RPC and kill qualification still owed. |
 | Draft 4.9 | 2026-10-05 | RPC-1–4 boundary tested with fake providers; conservative lifetime and unresolved-outcome costs stated. |
 | Draft 4.10 | 2026-10-05 | Host attribution and monotonic clock foundation for SIG-4/10; operational wiring still owed. |
+| Draft 4.11 | 2026-10-05 | RPC-2 owns its referenced deadline timer across fetch/body processing after a Node 22 cancellation and standalone reproduction. No target changed. |

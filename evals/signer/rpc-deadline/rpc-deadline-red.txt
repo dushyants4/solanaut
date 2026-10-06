@@ -1,0 +1,48 @@
+✔ RPC-1: pins devnet identity and validates observed blockhash/lifetime with confirmed context (30.325952ms)
+✔ RPC-1: cross-cluster substitution denies; blockhash mismatch or invalidity denies (2.858127ms)
+✔ RPC-2: malformed and non-integral heights or context cannot become authority (4.353475ms)
+✔ RPC-2: response ID/version, missing result, and oversized body refuse (2.532597ms)
+✔ RPC-3: one-provider outage permits conservative reads; total outage reports degraded (11.616455ms)
+✔ RPC-3: stale or conflicting observations cannot authorize a new proposal (1.830968ms)
+✔ RPC-4: chain outcome requires agreeing committed evidence; missing/stale/conflicting stays unresolved (6.315855ms)
+✔ RPC-4: failed outcome needs matching committed failure from both providers (1.000638ms)
+✔ RPC-2/SIG-9: rate-limited reads back off, but send has exactly one attempt with node retries disabled (2.481938ms)
+✔ RPC-2: hung reads end at their deadline and expired calls make no network request (31.741051ms)
+✖ RPC-2: a standalone process keeps its owned request deadline alive (151.867402ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 10
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 482.782598
+
+✖ failing tests:
+
+test at apps/signer/test/rpc.test.ts:98:1
+✖ RPC-2: a standalone process keeps its owned request deadline alive (151.867402ms)
+  AssertionError [ERR_ASSERTION]: Warning: Detected unsettled top-level await at file:///home/dashy/Projects/Solanaut/apps/signer/test/support/rpc-deadline-child.ts:6
+  try { await rpc.height(Date.now() + 100); process.exitCode = 1; }
+        ^
+  
+  
+  
+  
+  
+  13 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/rpc.test.ts:100:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 13,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
