@@ -130,3 +130,5 @@ partial signing is unchanged; this is not installed signer or live-chain qualifi
    in-memory SDK profile (`evals/ci/caps.md`); broader cap/security qualification remains owed.
    Mixed-history replay now pins its digest with a separate runtime-matrix job
    (`evals/ci/replay.md`); disk/kill/snapshot qualification remains owed.
+   Queued asynchronous SDK admissions pass their pending-window/evidence checks
+   (`evals/ci/concurrency.md`); parallel-writer and isolated-signer concurrency remains owed.

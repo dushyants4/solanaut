@@ -1,0 +1,318 @@
+
+> test:bite
+> node evals/ci/bite.ts
+
+Running fault campaign: ci/bite-faults.ts
+caught bite aggregation fault: omit-campaign
+caught bite aggregation fault: ignore-failed-exit
+caught bite aggregation fault: ignore-unrestored-source
+caught bite aggregation fault: invent-clean-result
+caught bite aggregation fault: skip-first-campaign
+All bite aggregation faults caught; restored source passes
+Running fault campaign: ci/latch-faults.ts
+caught latch fault: v0
+caught latch fault: only-keel
+caught latch fault: only-previous
+caught latch fault: last-entry
+caught latch fault: no-replay-predecessor
+caught latch fault: no-denial-threshold
+caught latch fault: skip-intervening-decision
+All latch faults caught; restored source passes
+Running fault campaign: ci/property-faults.ts
+caught property fault: budget-floor
+caught property fault: incomplete-count
+caught property fault: skips
+caught property fault: failed-result
+caught property fault: seed-validation
+caught property fault: address-alphabet
+caught property fault: account-writability
+caught property fault: unexpected-error
+All property faults caught; restored source passes
+Running fault campaign: ci/fuzz-faults.ts
+caught fuzz gate fault: lower-budget
+caught fuzz gate fault: ignore-process-failure
+caught fuzz gate fault: accept-duplicate-summary
+caught fuzz gate fault: ignore-total
+caught fuzz gate fault: ignore-outcome-sum
+caught fuzz gate fault: empty-accepted-domain
+caught fuzz product fault: unexpected-decoder-exception
+All fuzz faults caught; restored source passes
+Running fault campaign: ci/cap-faults.ts
+property starting: sol-per-tx; seed=1359285210; requested=10000
+✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (32.506741ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 174.064056
+
+✖ failing tests:
+
+test at packages/sdk/test/caps.property.test.ts:22:1
+✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (32.506741ms)
+  Error: property failed: sol-per-tx
+  Property failed after 1 tests
+  { seed: 1359285210, path: "0:0:0:0:0", endOnFailure: true }
+  Counterexample: [0n,0n,-1n,false]
+  Shrunk 4 time(s)
+  
+  Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/evals/ci/properties.ts:9:28)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/caps.property.test.ts:23:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: per-tx-boundary
+property starting: sol-per-tx; seed=-1598275618; requested=10000
+✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (63.568846ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 213.313963
+
+✖ failing tests:
+
+test at packages/sdk/test/caps.property.test.ts:22:1
+✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (63.568846ms)
+  Error: property failed: sol-per-tx
+  Property failed after 11 tests
+  { seed: -1598275618, path: "10:0:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:1", endOnFailure: true }
+  Counterexample: [0n,1n,-1n,false]
+  Shrunk 66 time(s)
+  
+  Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/evals/ci/properties.ts:9:28)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/caps.property.test.ts:23:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: per-tx-disabled
+property starting: sol-window; seed=958250268; requested=10000
+✖ CI-2 SOL window property: pending admissions match independent reservation sum (110.777208ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 291.763422
+
+✖ failing tests:
+
+test at packages/sdk/test/caps.property.test.ts:33:1
+✖ CI-2 SOL window property: pending admissions match independent reservation sum (110.777208ms)
+  Error: property failed: sol-window
+  Property failed after 55 tests
+  { seed: 958250268, path: "54:2:2:3:0:1:1:3:3:0:0", endOnFailure: true }
+  Counterexample: [0n,[0n]]
+  Shrunk 10 time(s)
+  
+  Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/evals/ci/properties.ts:9:28)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/caps.property.test.ts:34:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: window-boundary
+property starting: sol-window; seed=1630203820; requested=10000
+✖ CI-2 SOL window property: pending admissions match independent reservation sum (139.199788ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 291.601068
+
+✖ failing tests:
+
+test at packages/sdk/test/caps.property.test.ts:33:1
+✖ CI-2 SOL window property: pending admissions match independent reservation sum (139.199788ms)
+  Error: property failed: sol-window
+  Property failed after 15 tests
+  { seed: 1630203820, path: "14:1:1:0:0:1:0:0:0:0:1:0:0:1:0:0:0:1:2:3:2:4:24", endOnFailure: true }
+  Counterexample: [895446n,[1n,895446n,0n]]
+  Shrunk 22 time(s)
+  
+  Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/evals/ci/properties.ts:9:28)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/caps.property.test.ts:34:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: ignore-reservation
+property starting: async-false; seed=620486505; requested=10000
+property starting: async-count; seed=-1362608838; requested=10000
+✖ CI-2 asynchronous runner enforces failures and the completed execution floor (5.811186ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 125.474898
+
+✖ failing tests:
+
+test at evals/ci/properties.test.ts:25:1
+✖ CI-2 asynchronous runner enforces failures and the completed execution floor (5.811186ms)
+  Error: property run incomplete or skipped
+      at validateCompletion (file:///home/dashy/Projects/Solanaut/evals/ci/properties.ts:16:68)
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/evals/ci/properties.ts:10:3)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/properties.test.ts:29:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: async-short-run
+All cap property faults caught; restored source passes
+Running fault campaign: ci/replay-faults.ts
+caught replay gate fault: short-history
+caught replay gate fault: ignore-divergence
+caught replay gate fault: ignore-recomputed-count
+caught replay gate fault: ignore-entry-count
+caught replay gate fault: ignore-head
+caught replay gate fault: ignore-workload-kind
+caught replay product fault: previously-missed-per-tx-cap
+caught replay product fault: changed-record-and-evaluation
+All replay faults caught; restored pinned workload passes
+Running fault campaign: ci/concurrency-faults.ts
+caught SDK concurrency fault: short-budget
+caught SDK concurrency fault: over-admission
+caught SDK concurrency fault: incomplete-evidence
+caught SDK concurrency fault: wrong-reservations
+caught SDK concurrency fault: wrong-rule
+caught SDK concurrency fault: skip-barrier
+caught SDK concurrency product fault: ignored-pending-window
+All SDK concurrency faults caught; restored source passes
+Running fault campaign: packaging/faults.ts
+caught package fault: export
+caught package fault: types
+caught package fault: dependency
+caught package fault: cli
+All package faults caught; restored candidate passes
+Running fault campaign: sdk/control-request-faults.ts
+caught control-request fault: control-payload-reuse
+caught control-request fault: proposal-namespace-reuse
+caught control-request fault: change-answer
+caught control-request fault: record-digest
+caught control-request fault: duplicate-start
+caught control-request fault: unknown-response
+caught control-request fault: duplicate-response
+caught control-request fault: response-bound
+All control-request faults caught; restored source passes
+Running fault campaign: sdk/ownership-faults.ts
+caught ownership/storage fault: ignore-kernel-lock
+caught ownership/storage fault: automatic-stale-takeover
+caught ownership/storage fault: unlink-mutex
+caught ownership/storage fault: create-missing-history
+caught ownership/storage fault: incomplete-short-write
+caught ownership/storage fault: ignore-sync-failure
+All ownership/storage faults caught; restored source passes
+Running fault campaign: sdk/request-faults.ts
+caught request fault: ignore-retry
+caught request fault: ignore-changed-payload
+caught request fault: ignore-recorded-binding
+caught request fault: ignore-duplicate-history
+All request faults caught; restored source passes
+Running fault campaign: sdk/sending-client-faults.ts
+caught sending client fault: ignore-response-id
+caught sending client fault: ignore-canonical-envelope
+caught sending client fault: unbounded-response
+caught sending client fault: hide-execution-ambiguity
+caught sending client fault: invent-before-connect-execution
+caught sending client fault: extend-timeout
+caught sending client fault: allow-oversized-message
+caught sending client fault: late-caller-identity
+caught sending client fault: accept-invalid-signature
+caught sending client fault: automatic-retry
+All sending client faults caught; restored source passes
+Running fault campaign: sdk/signing-faults.ts
+caught signing fault: no-redemption
+caught signing fault: changed-bytes
+caught signing fault: invalid-signature
+caught signing fault: send-before-signed
+caught signing fault: expired-send
+caught signing fault: repeat-send
+caught signing fault: repeat-response
+All signing faults caught; restored source passes
+Running fault campaign: signer/authority-faults.ts
+caught authority fault: mutable-host-configuration
+caught authority fault: caller-decision-attribution
+caught authority fault: caller-report-attribution
+caught authority fault: allow-non-devnet
+caught authority fault: use-changing-wall-clock
+All authority faults caught; restored source passes
+Running fault campaign: signer/core-faults.ts
+caught signer core fault: ignore-deadline
+caught signer core fault: ignore-completed-payload
+caught signer core fault: invent-outcome
+caught signer core fault: late-outcome
+caught signer core fault: send-without-intent
+caught signer core fault: forget-persisted-response
+All signer core faults caught; restored source passes
+Running fault campaign: signer/handler-faults.ts
+caught handler fault: concurrent-payload
+caught handler fault: duplicate-work
+caught handler fault: ignore-cached-answer
+caught handler fault: ignore-new-deadline
+caught handler fault: ignore-late-deadline
+caught handler fault: omit-request-deadline
+caught handler fault: ignore-control-namespace
+caught handler fault: omit-refusal-answer
+caught handler fault: admission-as-refusal
+All handler faults caught; restored source passes
+Running fault campaign: signer/policy-recovery-faults.ts
+caught policy recovery fault: skip-final-executor-check
+caught policy recovery fault: forget-final-history
+caught policy recovery fault: unknown-becomes-final
+caught policy recovery fault: allow-settled-signing
+caught policy recovery fault: allow-old-policy-send
+All policy recovery faults caught; restored source passes
+Running fault campaign: signer/recovery-faults.ts
+caught recovery fault: abort-on-attempt-error
+caught recovery fault: hide-attempt-error
+caught recovery fault: skip-chain-after-refusal
+caught recovery fault: invent-recovery-success
+All recovery faults caught; restored source passes
+Running fault campaign: signer/rpc-faults.ts
+caught RPC fault: ignore-network
+caught RPC fault: fractional-height
+caught RPC fault: ignore-context
+caught RPC fault: one-provider-outcome
+caught RPC fault: retry-send
+caught RPC fault: ignore-blockhash
+caught RPC fault: ignore-envelope-id
+caught RPC fault: unreferenced-deadline
+All RPC faults caught; restored source passes
+Running fault campaign: signer/service-faults.ts
+caught service fault: accept-unsigned-bootstrap
+caught service fault: ignore-history-mode
+caught service fault: claim-key-isolation
+caught service fault: hide-recovery-error
+caught service fault: release-before-drain
+caught service fault: skip-work-drain
+caught service fault: skip-recovery-tracking
+caught service fault: allow-recovery-after-stop
+All service faults caught; restored source passes
+Running fault campaign: signer/socket-faults.ts
+caught socket fault: public-parent
+caught socket fault: unknown-method
+caught socket fault: empty-identity
+caught socket fault: unbounded-frame
+caught socket fault: unbounded-response
+caught socket fault: activity-deadline
+caught socket fault: replace-live-listener
+caught socket fault: hold-completed-slot
+caught socket fault: oversized-proposal
+All socket faults caught; restored source passes
+{"ok":true,"failed":[],"skipped":[]}

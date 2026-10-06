@@ -50,6 +50,7 @@ seen failing might not be checking anything.
 | Million-input decoder fuzz, CI-2 partial | three stub failures; process/count/product faults exercised | 1,000,000 synthetic inputs; 189,174 match kit / 810,826 named refusals | `ci/fuzz.md` |
 | SOL cap properties, CI-2 partial | asynchronous runner stub fails; planted boundary/reservation faults fail | two properties at 10,000 executions each; five faults caught | `ci/caps.md` |
 | Mixed replay, CI-2 partial | two stub failures, old-receipt driver failure and per-tx mutation miss retained | 10,000 decisions / 13,651 entries; eight final faults caught | `ci/replay.md` |
+| Queued SDK admissions, CI-2 partial | two stub failures and short-budget fixture miss retained | 1,000 callers; seven admissions / 993 cap denials; seven faults caught | `ci/concurrency.md` |
 | the on-chain bound, rehearsed: `apps/onchain/src/squads.ts` on a local validator with Squads v4 cloned from devnet | the program itself refused the past-the-limit and unlisted-destination attempts on chain, and the post-revoke one | the rehearsal, and of the resume | `onchain/squads-local.md` |
 | the on-chain bound, on devnet (2a.9) | Squads v4's devnet program refused the stolen key past the limit, to an unlisted address, and after the revoke | **achieved**: every step signed on devnet; the revoke landed 3 slots after its send | `onchain/squads-devnet.md` |
 | the cockpit: `inspect.test.ts`, `apps/cockpit/test/cockpit.test.ts` | 3 of 3 and 6 of 6 against stubs; 4 planted bugs, each caught; then, for devnet, the changed tests failing first and 3 more planted bugs caught | 4/4 and 6/6; **achieved on devnet** (2a.10): a screenshot | `cockpit/v0.md` |
@@ -59,5 +60,7 @@ seen failing might not be checking anything.
 | the demo's scenes end to end: `apps/onchain/src/scenes.ts` on devnet, with the local fallback (2b.1's end-to-end battery; 2b.3) | each scene's refusal is named by its rule in the guard's record; the crash is a real SIGKILL | 5 payments landed, 8 refusals before signing, 2 latches released by the operator, replay 0 divergences | `e2e/scenes-devnet.md` |
 | the Beta gate | (each battery's own receipt) | 11 of 11 §11 batteries: nine from a clean clone, on-chain and end to end on devnet; the independent evaluator run is owed | `verify/beta-gate.md` |
 
-CI runs the gates on every push since milestone 2a.1 (`ci/safety-net.md`). Still owed: a job that re-runs the fault
-injections on every push (the Office's `bite` job), with the thresholds in `docs/READINESS.md`, at milestone 3.9. The Beta batteries are specified in `docs/SPEC.md` §11.
+CI runs the baseline gates on every push since milestone 2a.1 (`ci/safety-net.md`). The
+maintained `bite` job now runs executable fault campaigns; historical manual regressions
+and remaining CI-2 thresholds are still owed. Property, fuzz, replay and queued-admission
+receipts above state their bounded profiles. The Beta batteries are in `docs/SPEC.md` §11.

@@ -1,0 +1,8 @@
+caught SDK concurrency fault: short-budget
+caught SDK concurrency fault: over-admission
+caught SDK concurrency fault: incomplete-evidence
+caught SDK concurrency fault: wrong-reservations
+caught SDK concurrency fault: wrong-rule
+caught SDK concurrency fault: skip-barrier
+caught SDK concurrency product fault: ignored-pending-window
+All SDK concurrency faults caught; restored source passes

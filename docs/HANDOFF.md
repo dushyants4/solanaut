@@ -223,7 +223,8 @@ The live probes and baseline are complete. ADR-012 C is built and tested offline
 | 2026-10-06 | synthetic property gate, partial CI-2 | `b41c8c7` | floor/oracle/fault receipt; CI `37480188076` green | Frozen properties added while H9 remains pending. Signer count breakdown corrected to 402 app/99 helpers; total 501 unchanged. Post-push close passes. |
 | 2026-10-06 | million-input decoder fuzz, partial CI-2 | `59b2e1c` | completion/fault receipt; CI `37480963029` green | Existing generator qualified at the required floor; separate pinned CI job passes. Post-push close passes. Other CI-2/release work remains owed, H9 pending. |
 | 2026-10-06 | SOL cap properties, partial CI-2 | `f631671` | arithmetic/floor/fault receipt; CI `37482318589` green | Per-tx and pending-window synthetic profiles added; no product fix needed. Post-push close passes. Broader cap/security work remains owed. |
-| 2026-10-06 | mixed replay, partial CI-2 | commit containing `evals/ci/replay.md` | digest/matrix/fault receipt | Driver failure and cap mutation miss retained; focused regression added, production unchanged. Disk/kill/snapshot/signing qualification remains owed. |
+| 2026-10-06 | mixed replay, partial CI-2 | `b758463` | digest/matrix/fault receipt; CI `37483948590` green | Driver failure and cap mutation miss retained; focused regression added, production unchanged. Post-push close passes. Disk/kill/snapshot/signing qualification remains owed. |
+| 2026-10-06 | queued SDK admissions, partial CI-2 | commit containing `evals/ci/concurrency.md` | barrier/evidence/fault receipt | Quiet in-memory SDK bound checked; broader writer/socket/signing concurrency still owed. |
 
 ## 8. Handing back to Claude
 

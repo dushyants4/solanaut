@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.19** · 2026-10-06 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.20** · 2026-10-06 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 The threat model ([docs/papers/THREAT-MODEL.md](papers/THREAT-MODEL.md)) lists what an attacker can do to a running
@@ -108,6 +108,9 @@ those rules; token/fee caps, real storage, signer and sensor/Keel qualification 
 A mixed replay workload now pins its record digest to detect correlated record/replay
 changes (`evals/ci/replay.md`). Its initial old-receipt failure and cap mutation miss
 demonstrate bounded coverage; focused regression added without changing the pinned history.
+Queued SDK callers now exercise the pending-window bound and complete identity evidence
+(`evals/ci/concurrency.md`). Their single-guard in-memory profile does not establish separate
+writer races, socket capacity or isolated-signer durability; those drills remain required.
 
 | Version | Date | What changed |
 |---|---|---|

@@ -76,6 +76,8 @@ second definition change, re-measured on fresh seeds, and S7 restated with both 
 
 | S36 | The defined mixed SDK history recomputes ten thousand decisions without divergence and is checked against a pinned digest | **measured (builder-authored local replay evidence)** | `evals/ci/replay.md`, 2026-10-06, Node 26.7.0: 10,000 decisions / 13,651 entries, digest in receipt; eight final faults caught after driver failure and cap mutation miss. Regenerate: `npm run test:replay`; `node evals/ci/replay-faults.ts`. Complete production history, bounded test selection view; no disk, random-kill, signing/socket or performance qualification. CI matrix evidence recorded after push |
 
+| S37 | A defined queued SDK workload admits exactly its pending-window allowance and records every caller | **measured (builder-authored local SDK evidence)** | `evals/ci/concurrency.md`, 2026-10-06, Node 26.7.0: 1,000 asynchronous callers behind one barrier; seven admissions, 993 over-window-cap denials, 1,000 records/distinct destinations/identities, 7,000,000 reserved lamports. Four tests/seven final faults pass after a fixture mutation miss. Regenerate: `node --test evals/ci/concurrency.test.ts`; `node evals/ci/concurrency-faults.ts`. Quiet, unsigned, in-memory, synchronous SDK admission; no parallel-thread, multi-process, disk, socket or signing qualification |
+
 **Not yet claimable, and why:**
 - **Any detection rate or block rate, and any false-stop rate beyond S7's synthetic streams.** Nothing else has been
   measured. Milestone 2b.1 runs the Beta batteries and 3.10 the adversarial one; until then no percentage exists.

@@ -7,6 +7,12 @@ all security, validation and human-owned release gates.
 
 ## Did
 
+- Replay step `b758463` privately pushed; post-push close ten gates. Continued into
+  queued SDK callers with a frozen profile: two gate stub failures, then four tests pass.
+  Initial optional-rule type error corrected; missing bindings cannot count as identities.
+  Initial short-budget mutation misses because fixture evidence was inconsistent; fixture
+  strengthened to isolate the floor, then seven final faults caught and restored source.
+
 - Cap step `f631671` privately pushed; ten close gates and CI `37482318589` green.
   Continued into pinned mixed replay. Two stub failures preserved; initial extended driver
   fails on old receipt selection. Definition 2 frozen with recent workload view and fresh
@@ -101,6 +107,14 @@ all security, validation and human-owned release gates.
   this history and must pass compatibility checks before rollback.
 
 ## Found
+
+- Queued-admission final: 351 tests pass, typecheck clean; twenty-one bite campaigns catch
+  140 faults and restore source. Replay CI `37483948590` passes every job. Reconciled stale
+  evals index footer that still described the maintained fault job as entirely owed.
+
+- Queued SDK profile's type error and initial gate mutation miss are preserved in its receipt.
+  Evidence is from synchronous admissions reached by asynchronous callers; no multi-process
+  or isolated-signer concurrency claim. No product fix or threshold change was required.
 
 - Replay final validation: 347 tests pass, typecheck clean; twenty bite campaigns catch
   133 faults and restore source. Pin passes again. No active validator, soak or service.
