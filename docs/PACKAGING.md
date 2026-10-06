@@ -1,6 +1,6 @@
 # PACKAGING.md — private SDK candidate
 
-> **Draft 5** · 2026-10-06 · owner: integrator · for: developers and release reviewers.
+> **Draft 6** · 2026-10-06 · owner: integrator · for: developers and release reviewers.
 > This is release preparation, not a stable release. Register: `kb/DOCUMENTS.md`.
 
 The current export and error reference is [SDK](SDK.md); it separates trusted in-process
@@ -9,6 +9,9 @@ The candidate now includes `createSendingClient` and its typed errors (`docs/CLI
 It also includes `verifyArchive` and typed structural-verification errors (`docs/STORAGE.md`).
 The compiled `solanaut-verify-archive` executable checks pinned archives without a loader;
 installed tests exercise success, wrong-pin refusal and usage (`evals/sdk/archive-cli.md`).
+It also accepts a paired `--anchor-seq`/`--anchor-head` external pin, and the SDK declarations
+include `expectedAnchor` and its bound receipt (`evals/sdk/archive-anchor.md`). This does not
+authenticate the source of that pin or qualify deployed anchoring or restored guard state.
 Installed consumer checks exercise its JavaScript and declarations without loader flags;
 this does not qualify an installed signer service.
 

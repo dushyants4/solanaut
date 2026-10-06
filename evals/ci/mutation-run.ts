@@ -1,4 +1,4 @@
-// CI-2 definition 1: full-file default Stryker mutations, without score exclusions.
+// CI-2 definition 2: the same full-file mutations/tests, in one test process per worker.
 import { spawn } from "node:child_process";
 import { createHash } from "node:crypto";
 import { mkdirSync, mkdtempSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -14,11 +14,11 @@ const hashes=Object.fromEntries(Object.entries(sources).map(([path,text])=>[path
 const inputs=["package.json","stryker.config.json",...(readdirSync(join(destination,"packages"),{recursive:true}) as string[]).filter(path=>path.endsWith(".ts") || path.endsWith("package.json")).map(path=>"packages/"+path)].sort();
 const inputHashes=Object.fromEntries(inputs.map(path=>[path,createHash("sha256").update(readFileSync(join(destination,path))).digest("hex")]));
 const lockHash=createHash("sha256").update(readFileSync(join(root,"package-lock.json"))).digest("hex");
-writeFileSync(join(destination,"manifest.json"),JSON.stringify({definition:1,node:process.version,hashes,inputHashes,lockHash,tests:MUTATION_TESTS,started:new Date().toISOString()},null,2)+"\n");
+writeFileSync(join(destination,"manifest.json"),JSON.stringify({definition:2,node:process.version,hashes,inputHashes,lockHash,tests:MUTATION_TESTS,environment:{FUZZ_RUNS:"5000",FUZZ_SEED:"23067"},started:new Date().toISOString()},null,2)+"\n");
 console.log("Mutation run directory: "+destination);
-const env:NodeJS.ProcessEnv={...process.env,FUZZ_RUNS:"5000",FUZZ_SEED:"23063"}; delete env.NODE_TEST_CONTEXT;
+const env:NodeJS.ProcessEnv={...process.env,FUZZ_RUNS:"5000",FUZZ_SEED:"23067"}; delete env.NODE_TEST_CONTEXT;
 const baseline=process.argv[2]==="--baseline";
-const child=spawn(process.execPath,baseline?["--test",...MUTATION_TESTS]:[join(root,"node_modules/@stryker-mutator/core/bin/stryker.js"),"run","stryker.config.json"],{cwd:destination,stdio:"inherit",env,detached:true});
+const child=spawn(process.execPath,baseline?["--test","--test-isolation=none",...MUTATION_TESTS]:[join(root,"node_modules/@stryker-mutator/core/bin/stryker.js"),"run","stryker.config.json"],{cwd:destination,stdio:"inherit",env,detached:true});
 let hardStop:NodeJS.Timeout|undefined;
 const stop=()=> {
   try {process.kill(-child.pid!,"SIGTERM");} catch { /* Already stopped. */ }
@@ -35,6 +35,6 @@ if(baseline) {
 } else {
   const report=JSON.parse(readFileSync(join(destination,"reports/mutation.json"),"utf8"));
   const summary=requireMutationReport(report,sources,status);
-  writeFileSync(join(destination,"summary.json"),JSON.stringify({definition:1,...summary,hashes,completed:new Date().toISOString()},null,2)+"\n");
+  writeFileSync(join(destination,"summary.json"),JSON.stringify({definition:2,...summary,hashes,completed:new Date().toISOString()},null,2)+"\n");
   console.log(JSON.stringify(summary));
 }

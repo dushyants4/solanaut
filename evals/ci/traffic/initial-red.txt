@@ -1,0 +1,211 @@
+✖ RT-1: complete frozen benign populations pass (3.924239ms)
+✖ RT-1: Wilson upper bound is unrounded and includes sampling uncertainty (0.363225ms)
+✖ RT-1: failed, interrupted and unsupported traffic measurements fail (1.290119ms)
+✖ RT-1: missing, repeated and substituted profiles cannot shrink the workload (0.606688ms)
+✖ RT-1: short or incomplete profiles cannot silently exclude proposals (0.777248ms)
+✖ RT-1: all false stops count and a failed confidence target fails (0.549678ms)
+✖ RT-1: denial classifications must reconcile to every stop (0.754696ms)
+✔ RT-1: invalid confidence populations fail rather than produce NaN (0.578837ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 1
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 511.216502
+
+✖ failing tests:
+
+test at evals/ci/traffic.test.ts:6:1
+✖ RT-1: complete frozen benign populations pass (3.924239ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "traffic gate not implemented"
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/traffic.test.ts:6:65)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: traffic gate not implemented
+        at requireTraffic (file:///home/dashy/Projects/Solanaut/evals/ci/traffic.ts:5:89)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/traffic.test.ts:6:82
+        at getActual (node:assert:580:5)
+        at strict.doesNotThrow (node:assert:748:32)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/traffic.test.ts:6:65)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.start (node:internal/test_runner/test:1257:17)
+        at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at evals/ci/traffic.test.ts:7:1
+✖ RT-1: Wilson upper bound is unrounded and includes sampling uncertainty (0.363225ms)
+  Error: traffic confidence not implemented
+      at upper95 (file:///home/dashy/Projects/Solanaut/evals/ci/traffic.ts:4:70)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/traffic.test.ts:8:22)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at evals/ci/traffic.test.ts:12:1
+✖ RT-1: failed, interrupted and unsupported traffic measurements fail (1.290119ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /process/. Input:
+  
+  'Error: traffic gate not implemented'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/traffic.test.ts:13:40)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: traffic gate not implemented
+        at requireTraffic (file:///home/dashy/Projects/Solanaut/evals/ci/traffic.ts:5:89)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/traffic.test.ts:13:51
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/traffic.test.ts:13:40)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /process/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/ci/traffic.test.ts:16:1
+✖ RT-1: missing, repeated and substituted profiles cannot shrink the workload (0.606688ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /profile/. Input:
+  
+  'Error: traffic gate not implemented'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/traffic.test.ts:17:56)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: traffic gate not implemented
+        at requireTraffic (file:///home/dashy/Projects/Solanaut/evals/ci/traffic.ts:5:89)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/traffic.test.ts:17:67
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/traffic.test.ts:17:56)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /profile/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/ci/traffic.test.ts:21:1
+✖ RT-1: short or incomplete profiles cannot silently exclude proposals (0.777248ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /population/. Input:
+  
+  'Error: traffic gate not implemented'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/traffic.test.ts:22:110)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: traffic gate not implemented
+        at requireTraffic (file:///home/dashy/Projects/Solanaut/evals/ci/traffic.ts:5:89)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/traffic.test.ts:22:121
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/traffic.test.ts:22:110)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /population/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/ci/traffic.test.ts:24:1
+✖ RT-1: all false stops count and a failed confidence target fails (0.549678ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /false-stop/. Input:
+  
+  'Error: traffic gate not implemented'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/traffic.test.ts:26:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: traffic gate not implemented
+        at requireTraffic (file:///home/dashy/Projects/Solanaut/evals/ci/traffic.ts:5:89)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/traffic.test.ts:26:21
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/traffic.test.ts:26:10)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /false-stop/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/ci/traffic.test.ts:29:1
+✖ RT-1: denial classifications must reconcile to every stop (0.754696ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /rules/. Input:
+  
+  'Error: traffic gate not implemented'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/traffic.test.ts:30:55)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: traffic gate not implemented
+        at requireTraffic (file:///home/dashy/Projects/Solanaut/evals/ci/traffic.ts:5:89)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/traffic.test.ts:30:66
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/traffic.test.ts:30:55)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /rules/,
+    operator: 'throws',
+    diff: 'simple'
+  }

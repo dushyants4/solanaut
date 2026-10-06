@@ -1,0 +1,19 @@
+✔ RT-1: frozen traffic definitions produce complete deterministic populations (139.195235ms)
+✔ RT-1: frozen spacing, burst cadence and recurring effects are retained (25.575241ms)
+✔ RT-1: priority prices remain bounded and profile substitutions fail (30.647684ms)
+✔ RT-1: complete frozen benign populations pass (3.594778ms)
+✔ RT-1: Wilson upper bound is unrounded and includes sampling uncertainty (0.610573ms)
+✔ RT-1: failed, interrupted and unsupported traffic measurements fail (1.197206ms)
+✔ RT-1: missing, repeated and substituted profiles cannot shrink the workload (0.61792ms)
+✔ RT-1: short or incomplete profiles cannot silently exclude proposals (0.508682ms)
+✔ RT-1: all false stops count and a failed confidence target fails (0.878265ms)
+✔ RT-1: denial classifications must reconcile to every stop (0.803764ms)
+✔ RT-1: invalid confidence populations fail rather than produce NaN (0.49648ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 988.601506

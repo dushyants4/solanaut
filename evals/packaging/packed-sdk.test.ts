@@ -75,9 +75,12 @@ test("PKG-2: consumer declarations resolve and reject invalid sensor telemetry",
     // @ts-expect-error message bytes cannot be replaced by caller telemetry
     client.propose({id:'payment',message:'base64'});
     void status; void uncertain;
-    const archiveOptions: ArchiveOptions = {maxLineBytes:1024};
+    const archiveOptions: ArchiveOptions = {maxLineBytes:1024,expectedAnchor:{seq:0,head:'a'.repeat(64)}};
     const receipt: ArchiveReceipt = await verifyArchive('history.jsonl',archiveOptions);
-    const code: ArchiveErrorCode = 'head';
+    const code: ArchiveErrorCode = 'anchor';
+    const anchorSequence: number | undefined = receipt.anchor?.seq;
+    // @ts-expect-error anchor sequence is a safe integer number, not a decimal string
+    verifyArchive('history.jsonl',{expectedAnchor:{seq:'0',head:'a'.repeat(64)}});
     // @ts-expect-error line limits are numeric
     verifyArchive('history.jsonl',{maxLineBytes:'1024'});
     // @ts-expect-error unknown pins cannot silently disable verification
@@ -112,6 +115,28 @@ test("SNP-1/PKG-1: installed archive verification checks real history and reject
   assert.equal(JSON.parse(command.stdout).entries,1);
   const refused=spawnSync(join(consumer,"node_modules/.bin/solanaut-verify-archive"),["history.jsonl","--head","0".repeat(64)],{cwd:consumer,encoding:"utf8"});
   assert.equal(refused.status,1); assert.equal(JSON.parse(refused.stderr).error.code,"head");
+});
+
+test("ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor",()=> {
+  const script=`
+    import {createGuard,verifyArchive,ArchiveError} from '@solanaut/sdk';
+    import {writeFileSync} from 'node:fs';
+    const guard=await createGuard({policy:JSON.parse(process.argv[1]),sensor:()=>({intensity:0,valence:0,repetition:0})});
+    guard.check({message:new Uint8Array(Buffer.from(process.argv[2],'base64')),at:1000});
+    const head=guard.entries()[0].hash;
+    writeFileSync('anchor-history.jsonl',guard.entries().map(entry=>JSON.stringify(entry)+'\\n').join('')); guard.close();
+    const receipt=await verifyArchive('anchor-history.jsonl',{expectedAnchor:{seq:0,head}});
+    let refusal;
+    try {await verifyArchive('anchor-history.jsonl',{expectedAnchor:{seq:0,head:'0'.repeat(64)}});}
+    catch(error) {refusal={typed:error instanceof ArchiveError,code:error.code};}
+    console.log(JSON.stringify({head,anchor:receipt.anchor,refusal}));`;
+  const result=spawnSync(process.execPath,["--input-type=module","-e",script,inputPolicy,Buffer.from(transfer(2)).toString("base64")],{cwd:consumer,encoding:"utf8"});
+  assert.equal(result.status,0,result.stderr); const evidence=JSON.parse(result.stdout);
+  assert.deepEqual(evidence.anchor,{seq:0,head:evidence.head}); assert.deepEqual(evidence.refusal,{typed:true,code:"anchor"});
+  const command=spawnSync(join(consumer,"node_modules/.bin/solanaut-verify-archive"),["anchor-history.jsonl","--anchor-seq","0","--anchor-head",evidence.head],{cwd:consumer,encoding:"utf8"});
+  assert.equal(command.status,0,command.stderr); assert.deepEqual(JSON.parse(command.stdout).anchor,evidence.anchor);
+  const refused=spawnSync(join(consumer,"node_modules/.bin/solanaut-verify-archive"),["anchor-history.jsonl","--anchor-seq","1","--anchor-head",evidence.head],{cwd:consumer,encoding:"utf8"});
+  assert.equal(refused.status,1,refused.stderr); assert.equal(JSON.parse(refused.stderr).error.code,"anchor");
 });
 
 test("PKG-3: installed replay and table-pin commands execute with their documented usage exits", () => {

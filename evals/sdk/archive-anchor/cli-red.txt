@@ -1,0 +1,32 @@
+✖ ANC-3/SNP-2: explicit anchor flags return its bound receipt or typed refusal (1246.56257ms)
+✔ ANC-3/SNP-2: incomplete, duplicate and malformed anchor pairs are usage errors (6818.631612ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10125.923549
+
+✖ failing tests:
+
+test at packages/sdk/test/archive-cli.test.ts:15:1
+✖ ANC-3/SNP-2: explicit anchor flags return its bound receipt or typed refusal (1246.56257ms)
+  AssertionError [ERR_ASSERTION]: usage: solanaut-verify-archive <archive.jsonl> [--head <hash>] [--sha256 <digest>] [--first-seq <integer>] [--previous-head <hash>] [--max-line-bytes <integer>]
+  
+  
+  2 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive-cli.test.ts:17:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,26 @@
+✔ ANC-3: an externally pinned middle, first and last anchor verify with a valid tail (245.560725ms)
+✔ ANC-3: a fully resealed rewrite before the anchor is refused (74.644613ms)
+✔ ANC-3: matching a head at another sequence cannot substitute for the anchor (37.409542ms)
+✔ ANC-3: an absent anchor in empty or truncated history is refused (41.305885ms)
+✔ ANC-3: continuation segments must actually contain the pinned anchor (70.75475ms)
+✔ ANC-3: malformed or unsupported anchor options refuse before opening a source (14.329623ms)
+✔ ANC-3: caller mutation cannot change the captured anchor or receipt (43.029751ms)
+✔ ANC-3: a valid rewrite after the anchor is outside its integrity coverage (23.138958ms)
+✔ ANC-3/SNP-2: explicit anchor flags return its bound receipt or typed refusal (3146.75676ms)
+✔ ANC-3/SNP-2: incomplete, duplicate and malformed anchor pairs are usage errors (5072.884319ms)
+✔ SNP-2: command returns a pinned JSON receipt and leaves source unchanged (1793.474029ms)
+✔ SNP-2: incorrect pins return typed JSON archive refusal, never success (3136.963301ms)
+✔ SNP-2: explicit continuation identity verifies a segment (3321.846279ms)
+✔ SNP-2: line byte limit includes the exact boundary (2113.95561ms)
+✔ SNP-2: missing, unknown, duplicate and extra arguments are usage errors (15450.390289ms)
+✔ SNP-2: help is explicit success and extra help arguments are refused (2998.593244ms)
+✔ SNP-2: numeric spelling is canonical even when the value would otherwise pass (2411.144453ms)
+✔ SNP-2: missing and symlink sources fail with redacted typed errors (1860.499752ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 43545.955946

@@ -1,0 +1,16 @@
+✔ RT-1: complete frozen benign populations pass (5.615431ms)
+✔ RT-1: Wilson upper bound is unrounded and includes sampling uncertainty (2.045849ms)
+✔ RT-1: failed, interrupted and unsupported traffic measurements fail (1.155417ms)
+✔ RT-1: missing, repeated and substituted profiles cannot shrink the workload (0.65675ms)
+✔ RT-1: short or incomplete profiles cannot silently exclude proposals (0.474635ms)
+✔ RT-1: all false stops count and a failed confidence target fails (2.903725ms)
+✔ RT-1: denial classifications must reconcile to every stop (2.332373ms)
+✔ RT-1: invalid confidence populations fail rather than produce NaN (0.466132ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1004.832275

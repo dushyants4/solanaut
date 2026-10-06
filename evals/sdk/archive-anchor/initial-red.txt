@@ -1,0 +1,143 @@
+✖ ANC-3: an externally pinned middle, first and last anchor verify with a valid tail (5.780092ms)
+✖ ANC-3: a fully resealed rewrite before the anchor is refused (132.221553ms)
+✖ ANC-3: matching a head at another sequence cannot substitute for the anchor (17.485659ms)
+✖ ANC-3: an absent anchor in empty or truncated history is refused (4.830844ms)
+✖ ANC-3: continuation segments must actually contain the pinned anchor (4.529734ms)
+✔ ANC-3: malformed or unsupported anchor options refuse before opening a source (8.585184ms)
+✖ ANC-3: caller mutation cannot change the captured anchor or receipt (16.366667ms)
+✖ ANC-3: a valid rewrite after the anchor is outside its integrity coverage (21.017521ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 1
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1586.170539
+
+✖ failing tests:
+
+test at packages/sdk/test/archive-anchor.test.ts:18:1
+✖ ANC-3: an externally pinned middle, first and last anchor verify with a valid tail (5.780092ms)
+  Error [ArchiveError]: archive options are invalid
+      at verifyArchive (file:///home/dashy/Projects/Solanaut/packages/sdk/src/archive.ts:24:213)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive-anchor.test.ts:21:25)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    code: 'input'
+  }
+
+test at packages/sdk/test/archive-anchor.test.ts:26:1
+✖ ANC-3: a fully resealed rewrite before the anchor is refused (132.221553ms)
+  AssertionError [ERR_ASSERTION]: The validation function is expected to return "true". Received false
+  
+  Caught error:
+  
+  ArchiveError: archive options are invalid
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive-anchor.test.ts:30:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: ArchiveError: archive options are invalid
+        at verifyArchive (file:///home/dashy/Projects/Solanaut/packages/sdk/src/archive.ts:24:213)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive-anchor.test.ts:30:17)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/archive-anchor.test.ts:32:1
+✖ ANC-3: matching a head at another sequence cannot substitute for the anchor (17.485659ms)
+  AssertionError [ERR_ASSERTION]: The validation function is expected to return "true". Received false
+  
+  Caught error:
+  
+  ArchiveError: archive options are invalid
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive-anchor.test.ts:34:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: ArchiveError: archive options are invalid
+        at verifyArchive (file:///home/dashy/Projects/Solanaut/packages/sdk/src/archive.ts:24:213)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive-anchor.test.ts:34:17)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/archive-anchor.test.ts:37:1
+✖ ANC-3: an absent anchor in empty or truncated history is refused (4.830844ms)
+  AssertionError [ERR_ASSERTION]: The validation function is expected to return "true". Received false
+  
+  Caught error:
+  
+  ArchiveError: archive options are invalid
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive-anchor.test.ts:39:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: ArchiveError: archive options are invalid
+        at verifyArchive (file:///home/dashy/Projects/Solanaut/packages/sdk/src/archive.ts:24:213)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive-anchor.test.ts:39:17)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/archive-anchor.test.ts:42:1
+✖ ANC-3: continuation segments must actually contain the pinned anchor (4.529734ms)
+  Error [ArchiveError]: archive options are invalid
+      at verifyArchive (file:///home/dashy/Projects/Solanaut/packages/sdk/src/archive.ts:24:213)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive-anchor.test.ts:44:23)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'input'
+  }
+
+test at packages/sdk/test/archive-anchor.test.ts:50:1
+✖ ANC-3: caller mutation cannot change the captured anchor or receipt (16.366667ms)
+  Error [ArchiveError]: archive options are invalid
+      at verifyArchive (file:///home/dashy/Projects/Solanaut/packages/sdk/src/archive.ts:24:213)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive-anchor.test.ts:52:17)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'input'
+  }
+
+test at packages/sdk/test/archive-anchor.test.ts:56:1
+✖ ANC-3: a valid rewrite after the anchor is outside its integrity coverage (21.017521ms)
+  Error [ArchiveError]: archive options are invalid
+      at verifyArchive (file:///home/dashy/Projects/Solanaut/packages/sdk/src/archive.ts:24:213)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive-anchor.test.ts:59:23)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'input'
+  }

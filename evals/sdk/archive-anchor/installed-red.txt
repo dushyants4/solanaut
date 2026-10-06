@@ -1,0 +1,73 @@
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (1183.925013ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (5.044921ms)
+✖ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (6289.867521ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (1810.487155ms)
+✖ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (260.719869ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (1057.553171ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (934.764576ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 5
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 24091.406297
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:58:1
+✖ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (6289.867521ms)
+  AssertionError [ERR_ASSERTION]: consumer.ts(20,63): error TS2353: Object literal may only specify known properties, and 'expectedAnchor' does not exist in type 'ArchiveOptions'.
+  consumer.ts(22,11): error TS2322: Type '"anchor"' is not assignable to type 'ArchiveErrorCode'.
+  consumer.ts(23,56): error TS2339: Property 'anchor' does not exist on type 'ArchiveReceipt'.
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:92:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/packaging/packed-sdk.test.ts:120:1
+✖ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (260.719869ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-SPGm7q/consumer/node_modules/@solanaut/sdk/dist/src/archive.js:41
+          throw new ArchiveError("input", "archive options are invalid");
+                ^
+  
+  ArchiveError: archive options are invalid
+      at verifyArchive (file:///tmp/solanaut-consumer-SPGm7q/consumer/node_modules/@solanaut/sdk/dist/src/archive.js:41:15)
+      at file:///tmp/solanaut-consumer-SPGm7q/consumer/[eval1]:8:25 {
+    code: 'input'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:134:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

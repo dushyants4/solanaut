@@ -1,0 +1,5 @@
+caught anchor command fault: paired-flags
+caught anchor command fault: sequence-value
+caught anchor command fault: head-value
+caught anchor command fault: drop-anchor
+All anchor command faults caught; restored command passes

@@ -1,6 +1,6 @@
 # SDK reference — private candidate
 
-> **Draft 1** · 2026-10-06 · owner: integrator · for: developers integrating the candidate.
+> **Draft 2** · 2026-10-06 · owner: integrator · for: developers integrating the candidate.
 > Register: `kb/DOCUMENTS.md`. This describes current exports, not a stable-release promise.
 
 Import runtime functions and types from `@solanaut/sdk`. The compiled candidate and installed
@@ -32,6 +32,10 @@ and isolation qualification remain incomplete. See [CLIENT](CLIENT.md) and [SIGN
 `GuardOptions`, `Guard`, `GuardStatus`, `ProposalV1`, `Decision`, `RuleV1`, `Outcome`, `Entry`,
 `EntryStore`, `ReplayResult`, `FileStoreOptions` and `Inspection` describe these interfaces.
 `ArchiveOptions`, `ArchiveReceipt` and `ArchiveErrorCode` describe structural verification.
+`expectedAnchor: { seq, head }` checks that an externally trusted anchor is present at its
+exact sequence; the receipt returns that captured pin. `ArchiveError.code === "anchor"`
+means disagreement or missing anchored history. Follow [STORAGE](STORAGE.md); this API does
+not obtain or authenticate on-chain metadata and does not cover a rewrite after the anchor.
 Policy denials are ordinary decisions: check `allow`, then the named `rule` and `reason`.
 Storage failure can return `fail-closed` without a durable decision; do not use that answer
 as an admitted receipt. Preserve failed history rather than editing it to make restore pass.

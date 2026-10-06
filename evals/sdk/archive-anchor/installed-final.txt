@@ -1,0 +1,19 @@
+
+> test:package
+> node --test evals/packaging/*.test.ts
+
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (1959.104033ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (0.918733ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (5128.019988ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (1971.763822ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (1679.969032ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (1423.770937ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (604.347435ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 20840.877027

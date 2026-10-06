@@ -16,7 +16,8 @@ test("CI-2: mutation staging copies only the frozen inputs and tests execute its
     const config=JSON.parse(readFileSync(join(destination,"stryker.config.json"),"utf8"));
     assert.deepEqual(config.mutate,MUTATION_PATHS); assert.equal(config.thresholds.break,80);
     assert.equal(config.inPlace,false); assert.equal(config.ignoreStatic,false); assert.equal(config.coverageAnalysis,"off");
-    assert.equal(config.commandRunner.command,"node --test "+MUTATION_TESTS.join(" "));
+    assert.equal(config.commandRunner.command,"node --test --test-isolation=none "+MUTATION_TESTS.join(" "));
+    assert.deepEqual(config.reporters,["clear-text","progress-append-only","json"]);
     assert.equal(config.mutator,undefined); assert.equal(config.incremental,undefined);
     const env={...process.env}; delete env.NODE_TEST_CONTEXT;
     const run=()=>spawnSync(process.execPath,["--test","packages/sdk/test/policy.test.ts"],{cwd:destination,encoding:"utf8",timeout:15_000,env});

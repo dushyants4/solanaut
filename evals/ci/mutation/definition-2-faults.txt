@@ -1,0 +1,13 @@
+caught mutation gate fault: process-completion
+caught mutation gate fault: score-floor
+caught mutation gate fault: source-inventory
+caught mutation gate fault: source-content
+caught mutation gate fault: mutant-identity
+caught mutation gate fault: status-completion
+caught mutation gate fault: valid-population
+caught mutation gate fault: location-boundary
+caught mutation gate fault: staging-threshold
+caught mutation gate fault: staging-scope
+caught mutation gate fault: working-tree-mutation
+caught mutation gate fault: staging-execution
+All mutation report/staging faults caught; restored sources pass

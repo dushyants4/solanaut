@@ -1,0 +1,46 @@
+caught traffic fault: process
+caught traffic fault: definition
+caught traffic fault: profiles
+caught traffic fault: seeds
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: ✔ RT-1: actual guard reconciles every frozen benign proposal (5905.971066ms)
+✔ RT-3: every loop preserves refusal, posture and failed-outcome evidence (80.268336ms)
+✔ RT-1: frozen traffic definitions produce complete deterministic populations (556.020428ms)
+✔ RT-1: frozen spacing, burst cadence and recurring effects are retained (255.658707ms)
+✔ RT-1: priority prices remain bounded and profile substitutions fail (451.457416ms)
+✔ RT-1: complete frozen benign populations pass (40.84887ms)
+✔ RT-1: Wilson upper bound is unrounded and includes sampling uncertainty (0.682156ms)
+✔ RT-1: failed, interrupted and unsupported traffic measurements fail (12.976978ms)
+✔ RT-1: missing, repeated and substituted profiles cannot shrink the workload (12.52468ms)
+✔ RT-1: short or incomplete profiles cannot silently exclude proposals (0.590407ms)
+✔ RT-1: all false stops count and a failed confidence target fails (8.489623ms)
+✔ RT-1: denial classifications must reconcile to every stop (0.844863ms)
+✔ RT-1: invalid confidence populations fail rather than produce NaN (10.859075ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10061.495086
+
+
+0 !== 1
+
+    at file:///home/dashy/Projects/Solanaut/evals/ci/traffic-faults.ts:28:83
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

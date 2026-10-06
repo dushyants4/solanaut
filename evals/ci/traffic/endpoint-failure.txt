@@ -1,0 +1,41 @@
+✔ RT-1: complete frozen benign populations pass (22.36573ms)
+✖ RT-1: Wilson upper bound is unrounded and includes sampling uncertainty (16.138757ms)
+✔ RT-1: failed, interrupted and unsupported traffic measurements fail (1.002378ms)
+✔ RT-1: missing, repeated and substituted profiles cannot shrink the workload (9.57624ms)
+✔ RT-1: short or incomplete profiles cannot silently exclude proposals (0.481273ms)
+✔ RT-1: all false stops count and a failed confidence target fails (10.50168ms)
+✔ RT-1: denial classifications must reconcile to every stop (0.596578ms)
+✔ RT-1: invalid confidence populations fail rather than produce NaN (12.529678ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1695.109862
+
+✖ failing tests:
+
+test at evals/ci/traffic.test.ts:7:1
+✖ RT-1: Wilson upper bound is unrounded and includes sampling uncertainty (16.138757ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 0.9999999999999998
+  - 1
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/traffic.test.ts:9:39)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0.9999999999999998,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,10 +1,11 @@
 // Structural archive verification only; this command never restores or writes guard state.
 import { verifyArchive, ArchiveError, type ArchiveOptions } from "../src/archive.ts";
-const usage = "usage: solanaut-verify-archive <archive.jsonl> [--head <hash>] [--sha256 <digest>] [--first-seq <integer>] [--previous-head <hash>] [--max-line-bytes <integer>]";
+const usage = "usage: solanaut-verify-archive <archive.jsonl> [--head <hash>] [--sha256 <digest>] [--first-seq <integer>] [--previous-head <hash>] [--max-line-bytes <integer>] [--anchor-seq <integer> --anchor-head <hash>]";
 function argumentsOf(args: string[]): { path: string; options: ArchiveOptions } {
   const [path, ...flags] = args;
   if (!path || path.startsWith("--") || flags.length % 2 !== 0) throw new Error("usage");
   const options: ArchiveOptions = {}, seen = new Set<string>();
+  let anchorSeq:number|undefined, anchorHead:string|undefined;
   for (let index = 0; index < flags.length; index += 2) {
     const flag = flags[index]!, value = flags[index + 1]!;
     if (seen.has(flag)) throw new Error("usage");
@@ -13,15 +14,19 @@ function argumentsOf(args: string[]): { path: string; options: ArchiveOptions } 
       case "--head": options.expectedHead = value; break;
       case "--sha256": options.expectedDigest = value; break;
       case "--previous-head": options.previousHead = value; break;
-      case "--first-seq": case "--max-line-bytes": {
+      case "--anchor-head": anchorHead=value; break;
+      case "--first-seq": case "--max-line-bytes": case "--anchor-seq": {
         if (!/^(0|[1-9][0-9]*)$/.test(value) || !Number.isSafeInteger(Number(value))) throw new Error("usage");
         if (flag === "--first-seq") options.firstSeq = Number(value);
-        else options.maxLineBytes = Number(value);
+        else if(flag==="--max-line-bytes") options.maxLineBytes = Number(value);
+        else anchorSeq=Number(value);
         break;
       }
       default: throw new Error("usage");
     }
   }
+  if(seen.has("--anchor-seq")!==seen.has("--anchor-head")) throw new Error("usage");
+  if(anchorSeq!==undefined) options.expectedAnchor={seq:anchorSeq,head:anchorHead!};
   return { path, options };
 }
 const args = process.argv.slice(2);

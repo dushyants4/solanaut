@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.32** · 2026-10-06 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.34** · 2026-10-06 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -714,6 +714,14 @@ and accepted: ADR-013 to ADR-018 (§13.11).
 | ANC-4 | A verified build and a `security.txt` | §9 | the verification result |
 | ANC-5 | The head is anchored at most once a minute while entries are new, and at once after a latch, a release or a policy entry, by a dedicated anchor key outside the principal | T12 | [ADR-015](../design/ADR-015-log-anchor-cadence.md), accepted |
 
+ANC-3's structural component is implemented in `verifyArchive` and its read-only CLI:
+an externally supplied exact sequence/head must occur in the verified archive, including
+continuation segments. Pins are captured before asynchronous reads. A fully resealed
+pre-anchor rewrite refuses; post-anchor rewrites remain outside its coverage. The caller
+must authenticate pin provenance; this does not provide state replay or chain identity
+verification (`evals/sdk/archive-anchor.md`). ADR-022 proposes enrolment/rotation contracts
+and awaits acceptance; ANC-1 above remains unchanged, and the programme is not implemented.
+
 ### 13.8 Dashboard v1 (milestone 3.8)
 
 | ID | Requirement | From | Verified by |
@@ -799,6 +807,12 @@ Token-2022 extensions, CPI, live signing and independent security remain outside
 | RT-1 | Every Leg 3 threshold in `docs/READINESS.md`, as confirmed at 2c.1, is met | READINESS | receipts |
 | RT-2 | The red team: at least 40 cases in at least 10 classes, by an evaluator who did not build the code, given only the spec; each denied by its named rule or bounded on-chain | READINESS, RK12 | the red team's report |
 | RT-3 | The open questions in §12 are decided, each with a measured stream: when REGROUND latches (ADR-012), runs of failed outcomes, and loops that alternate shapes | §12 | the loop battery |
+
+Frozen synthetic traffic/loop measurement is in `evals/ci/traffic-definition.md` and
+`evals/ci/traffic.md`: complete refusal counting, fixed seed/profile inventory, confidence
+bound, reconciled outcomes and explicit first-refusal horizon. Alternating and distinct
+failed-outcome streams remain unrefused within that horizon. No sensor coefficient or rule
+changes, no independent evidence, and no automatic RT-3 or full RT-1 closure.
 | RT-4 | Threat model v3 is reviewed, and no critical or high finding is open | `docs/ROADMAP.md` 3.10 | the Alpha milestone review |
 
 ### 13.11 Decisions before Leg 3 builds: all accepted on 2026-10-05
@@ -955,3 +969,5 @@ where needed, and UTC issued timestamps include milliseconds. Policies remain re
 | Draft 4.30 | 2026-10-06 | CI-2 complete AST coverage inventory, native test instrumentation, count/report validation and fixed SDK/signer/critical-file floors; missing failure paths covered without product-rule changes. |
 | Draft 4.31 | 2026-10-06 | CI-2 frozen Stryker preparation, staged-source isolation and strict report gate; actual mutation-score qualification remains owed. |
 | Draft 4.32 | 2026-10-06 | CI-2 performance-report preparation and pinned real-transaction differential analysis, with fresh-block evidence and maintained refusal checks; actual performance and wider qualification remain owed. |
+| Draft 4.33 | 2026-10-06 | Frozen synthetic benign/loop definitions, complete counts and maintained faults; changing-intent failed streams remain a measured limitation, with decisions and wider qualification owed. |
+| Draft 4.34 | 2026-10-06 | ANC-3 structural exact-sequence/head verification and installed command; pin authentication/replay/programme remain owed. Mutation definition 2 keeps the complete scope/tests/floor and uses a fresh seed with one test process per worker. |

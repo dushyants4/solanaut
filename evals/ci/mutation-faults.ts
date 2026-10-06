@@ -13,6 +13,7 @@ const faults=[
   ["staging-threshold","mutation-stage.ts","break:80","break:79"],
   ["staging-scope","mutation-stage.ts",'"base58.ts","classify.ts"','"classify.ts"'],
   ["working-tree-mutation","mutation-stage.ts","inPlace:false","inPlace:true"],
+  ["staging-execution","mutation-stage.ts","--test-isolation=none ",""],
 ] as const;
 const paths=["evals/ci/mutation.test.ts","evals/ci/mutation-stage.test.ts"];
 const run=()=>spawnSync(process.execPath,["--test",...paths],{encoding:"utf8",timeout:30_000});

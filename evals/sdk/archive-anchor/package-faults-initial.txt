@@ -1,0 +1,200 @@
+
+> test:package:faults
+> node evals/packaging/faults.ts
+
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: a harness setup failure is not a caught product fault
+    at file:///home/dashy/Projects/Solanaut/evals/packaging/faults.ts:44:12
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: "✖ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (411.717344ms)\n" +
+    '✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (31.360363ms)\n' +
+    '✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (5517.284839ms)\n' +
+    '✖ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (177.76248ms)\n' +
+    '✖ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (157.216644ms)\n' +
+    '✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (2230.453372ms)\n' +
+    '✖ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (467.21267ms)\n' +
+    'ℹ tests 7\n' +
+    'ℹ suites 0\n' +
+    'ℹ pass 3\n' +
+    'ℹ fail 4\n' +
+    'ℹ cancelled 0\n' +
+    'ℹ skipped 0\n' +
+    'ℹ todo 0\n' +
+    'ℹ duration_ms 21563.224857\n' +
+    '\n' +
+    '✖ failing tests:\n' +
+    '\n' +
+    'test at evals/packaging/packed-sdk.test.ts:31:1\n' +
+    "✖ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (411.717344ms)\n" +
+    '  AssertionError [ERR_ASSERTION]: node:internal/modules/esm/resolve:272\n' +
+    '      throw new ERR_MODULE_NOT_FOUND(\n' +
+    '            ^\n' +
+    '  \n' +
+    "  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/tmp/solanaut-consumer-1Yvk5d/consumer/node_modules/@solanaut/sdk/src/index.ts' imported from /tmp/solanaut-consumer-1Yvk5d/consumer/[eval1]\n" +
+    '      at finalizeResolution (node:internal/modules/esm/resolve:272:11)\n' +
+    '      at moduleResolve (node:internal/modules/esm/resolve:879:10)\n' +
+    '      at defaultResolve (node:internal/modules/esm/resolve:1006:11)\n' +
+    '      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)\n' +
+    '      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)\n' +
+    '      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)\n' +
+    '      at #resolve (node:internal/modules/esm/loader:690:17)\n' +
+    '      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)\n' +
+    '      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33)\n' +
+    '      at ModuleJob.link (node:internal/modules/esm/module_job:389:17) {\n' +
+    "    code: 'ERR_MODULE_NOT_FOUND',\n" +
+    "    url: 'file:///tmp/solanaut-consumer-1Yvk5d/consumer/node_modules/@solanaut/sdk/src/index.ts'\n" +
+    '  }\n' +
+    '  \n' +
+    '  Node.js v26.7.0\n' +
+    '  \n' +
+    '  \n' +
+    '  1 !== 0\n' +
+    '  \n' +
+    '      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:41:10)\n' +
+    '      at Test.runInAsyncScope (node:async_hooks:226:14)\n' +
+    '      at Test.run (node:internal/test_runner/test:1397:25)\n' +
+    '      at Test.start (node:internal/test_runner/test:1257:17)\n' +
+    '      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {\n' +
+    '    generatedMessage: false,\n' +
+    "    code: 'ERR_ASSERTION',\n" +
+    '    actual: 1,\n' +
+    '    expected: 0,\n' +
+    "    operator: 'strictEqual',\n" +
+    "    diff: 'simple'\n" +
+    '  }\n' +
+    '\n' +
+    'test at evals/packaging/packed-sdk.test.ts:94:1\n' +
+    '✖ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (177.76248ms)\n' +
+    '  AssertionError [ERR_ASSERTION]: node:internal/modules/esm/resolve:272\n' +
+    '      throw new ERR_MODULE_NOT_FOUND(\n' +
+    '            ^\n' +
+    '  \n' +
+    "  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/tmp/solanaut-consumer-1Yvk5d/consumer/node_modules/@solanaut/sdk/src/index.ts' imported from /tmp/solanaut-consumer-1Yvk5d/consumer/[eval1]\n" +
+    '      at finalizeResolution (node:internal/modules/esm/resolve:272:11)\n' +
+    '      at moduleResolve (node:internal/modules/esm/resolve:879:10)\n' +
+    '      at defaultResolve (node:internal/modules/esm/resolve:1006:11)\n' +
+    '      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)\n' +
+    '      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)\n' +
+    '      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)\n' +
+    '      at #resolve (node:internal/modules/esm/loader:690:17)\n' +
+    '      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)\n' +
+    '      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33)\n' +
+    '      at ModuleJob.link (node:internal/modules/esm/module_job:389:17) {\n' +
+    "    code: 'ERR_MODULE_NOT_FOUND',\n" +
+    "    url: 'file:///tmp/solanaut-consumer-1Yvk5d/consumer/node_modules/@solanaut/sdk/src/index.ts'\n" +
+    '  }\n' +
+    '  \n' +
+    '  Node.js v26.7.0\n' +
+    '  \n' +
+    '  \n' +
+    '  1 !== 0\n' +
+    '  \n' +
+    '      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:111:10)\n' +
+    '      at Test.runInAsyncScope (node:async_hooks:226:14)\n' +
+    '      at Test.run (node:internal/test_runner/test:1397:25)\n' +
+    '      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)\n' +
+    '      at Test.postRun (node:internal/test_runner/test:1537:19)\n' +
+    '      at Test.run (node:internal/test_runner/test:1462:12)\n' +
+    '      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {\n' +
+    '    generatedMessage: false,\n' +
+    "    code: 'ERR_ASSERTION',\n" +
+    '    actual: 1,\n' +
+    '    expected: 0,\n' +
+    "    operator: 'strictEqual',\n" +
+    "    diff: 'simple'\n" +
+    '  }\n' +
+    '\n' +
+    'test at evals/packaging/packed-sdk.test.ts:120:1\n' +
+    '✖ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (157.216644ms)\n' +
+    '  AssertionError [ERR_ASSERTION]: node:internal/modules/esm/resolve:272\n' +
+    '      throw new ERR_MODULE_NOT_FOUND(\n' +
+    '            ^\n' +
+    '  \n' +
+    "  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/tmp/solanaut-consumer-1Yvk5d/consumer/node_modules/@solanaut/sdk/src/index.ts' imported from /tmp/solanaut-consumer-1Yvk5d/consumer/[eval1]\n" +
+    '      at finalizeResolution (node:internal/modules/esm/resolve:272:11)\n' +
+    '      at moduleResolve (node:internal/modules/esm/resolve:879:10)\n' +
+    '      at defaultResolve (node:internal/modules/esm/resolve:1006:11)\n' +
+    '      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)\n' +
+    '      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)\n' +
+    '      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)\n' +
+    '      at #resolve (node:internal/modules/esm/loader:690:17)\n' +
+    '      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)\n' +
+    '      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33)\n' +
+    '      at ModuleJob.link (node:internal/modules/esm/module_job:389:17) {\n' +
+    "    code: 'ERR_MODULE_NOT_FOUND',\n" +
+    "    url: 'file:///tmp/solanaut-consumer-1Yvk5d/consumer/node_modules/@solanaut/sdk/src/index.ts'\n" +
+    '  }\n' +
+    '  \n' +
+    '  Node.js v26.7.0\n' +
+    '  \n' +
+    '  \n' +
+    '  1 !== 0\n' +
+    '  \n' +
+    '      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:134:10)\n' +
+    '      at Test.runInAsyncScope (node:async_hooks:226:14)\n' +
+    '      at Test.run (node:internal/test_runner/test:1397:25)\n' +
+    '      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)\n' +
+    '      at Test.postRun (node:internal/test_runner/test:1537:19)\n' +
+    '      at Test.run (node:internal/test_runner/test:1462:12)\n' +
+    '      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {\n' +
+    '    generatedMessage: false,\n' +
+    "    code: 'ERR_ASSERTION',\n" +
+    '    actual: 1,\n' +
+    '    expected: 0,\n' +
+    "    operator: 'strictEqual',\n" +
+    "    diff: 'simple'\n" +
+    '  }\n' +
+    '\n' +
+    'test at evals/packaging/packed-sdk.test.ts:149:1\n' +
+    '✖ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (467.21267ms)\n' +
+    '  AssertionError [ERR_ASSERTION]: node:internal/modules/esm/resolve:272\n' +
+    '      throw new ERR_MODULE_NOT_FOUND(\n' +
+    '            ^\n' +
+    '  \n' +
+    "  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/tmp/solanaut-consumer-1Yvk5d/consumer/node_modules/@solanaut/sdk/src/index.ts' imported from /tmp/solanaut-consumer-1Yvk5d/consumer/[eval1]\n" +
+    '      at finalizeResolution (node:internal/modules/esm/resolve:272:11)\n' +
+    '      at moduleResolve (node:internal/modules/esm/resolve:879:10)\n' +
+    '      at defaultResolve (node:internal/modules/esm/resolve:1006:11)\n' +
+    '      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)\n' +
+    '      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)\n' +
+    '      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)\n' +
+    '      at #resolve (node:internal/modules/esm/loader:690:17)\n' +
+    '      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)\n' +
+    '      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33)\n' +
+    '      at ModuleJob.link (node:internal/modules/esm/module_job:389:17) {\n' +
+    "    code: 'ERR_MODULE_NOT_FOUND',\n" +
+    "    url: 'file:///tmp/solanaut-consumer-1Yvk5d/consumer/node_modules/@solanaut/sdk/src/index.ts'\n" +
+    '  }\n' +
+    '  \n' +
+    '  Node.js v26.7.0\n' +
+    '  \n' +
+    '  \n' +
+    '  1 !== 0\n' +
+    '  \n' +
+    '      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:159:10)\n' +
+    '      at Test.runInAsyncScope (node:async_hooks:226:14)\n' +
+    '      at Test.run (node:internal/test_runner/test:1397:25)\n' +
+    '      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)\n' +
+    '      at Test.postRun (node:internal/test_runner/test:1537:19)\n' +
+    '      at Test.run (node:internal/test_runner/test:1462:12)\n' +
+    '      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {\n' +
+    '    generatedMessage: false,\n' +
+    "    code: 'ERR_ASSERTION',\n" +
+    '    actual: 1,\n' +
+    '    expected: 0,\n' +
+    "    operator: 'strictEqual',\n" +
+    "    diff: 'simple'\n" +
+    '  }\n',
+  expected: /tests 6/,
+  operator: 'match',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

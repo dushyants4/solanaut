@@ -14,9 +14,9 @@ export function stageMutation(root:string,destination:string):Record<string,stri
   }
   symlinkSync(join(root,"node_modules"),join(destination,"node_modules"),"dir");
   writeFileSync(join(destination,"stryker.config.json"),JSON.stringify({
-    mutate:MUTATION_PATHS,testRunner:"command",commandRunner:{command:"node --test "+MUTATION_TESTS.join(" ")},
+    mutate:MUTATION_PATHS,testRunner:"command",commandRunner:{command:"node --test --test-isolation=none "+MUTATION_TESTS.join(" ")},
     coverageAnalysis:"off",concurrency:4,timeoutMS:10_000,timeoutFactor:1.5,
-    reporters:["clear-text","json"],jsonReporter:{fileName:"reports/mutation.json"},
+    reporters:["clear-text","progress-append-only","json"],jsonReporter:{fileName:"reports/mutation.json"},
     thresholds:{high:80,low:80,break:80},ignoreStatic:false,inPlace:false,
     tempDirName:".stryker-tmp",cleanTempDir:false,allowConsoleColors:false,
   },null,2)+"\n");

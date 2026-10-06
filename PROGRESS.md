@@ -145,3 +145,9 @@ partial signing is unchanged; this is not installed signer or live-chain qualifi
    Performance report checks are prepared (`evals/ci/performance.md`); actual measurements
    remain owed. Public ledger differential checks now retain a regression corpus and a fresh
    qualification block (`evals/ci/differential.md`); hosted CI is checked after private sync.
+   Frozen synthetic benign traffic passes its local target (`evals/ci/traffic.md`);
+   alternating and distinct failed-outcome streams remain unrefused within the horizon.
+   RT-3 decisions, root close and full Alpha qualification remain owed.
+   Externally pinned archive sequence/head checks and installed CLI pass local component
+   tests (`evals/sdk/archive-anchor.md`); authenticated replay and on-chain anchoring remain
+   owed. ADR-022's enrolment/rotation contract awaits H10 acceptance.

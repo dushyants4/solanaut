@@ -10,7 +10,7 @@ inferred from them. A fresh full run remains owed.
 
 ## Frozen definition
 
-Definition 1 selects complete SDK source files: `base58.ts`, `classify.ts`, `guard.ts`,
+Definition 2 retains definition 1's complete SDK source files: `base58.ts`, `classify.ts`, `guard.ts`,
 `message.ts`, `pda.ts`, `policy.ts`, `state.ts` and `tables.ts`: byte/account resolution,
 instruction effects, policy validation, admission and reservations. No line ranges, ignored
 mutants, excluded mutators, static-mutant suppression or incremental results. The existing
@@ -20,6 +20,21 @@ mutation-score threshold in `docs/READINESS.md` remains unchanged.
 replay/restart, ownership, storage and signed-policy/signing-history tests. The decoder
 mini-fuzz uses fixed inputs; properties and million-input fuzz remain separate gates.
 Signer/firewall and opaque-program mutation qualification remain owed.
+
+The second definition-1 run at `13bb075` was deliberately stopped under resource pressure
+before any completed report or score. Its output and manifest are retained as
+`mutation/resource-pressure-13bb075.txt` and `mutation/resource-pressure-manifest.json`.
+No worker survives. Many child test processes competed with operator validation; the
+original FIFO startup deadline failed again. Definition 2 executes the same eighteen files
+and 235 cases with `--test-isolation=none`, retaining four workers, full source scope,
+default mutators and the unchanged score floor. A fresh mini-fuzz seed, 23067, replaces
+23063, and append-only progress reporting exposes run progress. No mutation score was
+observed before this operational change.
+
+The new execution assertion fails against the old configuration (`definition-2-red.txt`).
+All 235 staged cases pass together (`definition-2-baseline.txt`), and twelve maintained
+report/staging faults are caught, including removal of the execution mode
+(`definition-2-faults.txt`). Definition 2's actual score remains owed.
 
 The built-in command runner executes native TypeScript tests without test-level coverage
 optimisation. Concurrency/deadlines are fixed before measurement. Staging copies only SDK

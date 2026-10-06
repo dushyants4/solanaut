@@ -1,6 +1,6 @@
 # Persistent record ownership
 
-> **Draft 3** · 2026-10-06 · owner: integrator · for: SDK users and Linux operators.
+> **Draft 4** · 2026-10-06 · owner: integrator · for: SDK users and Linux operators.
 > Register: `kb/DOCUMENTS.md`. Foundation evidence: `evals/sdk/ownership.md` (claim S16).
 
 An ordinary `createGuard({ policy, log: path })` uses manual SDK ownership. It refuses an
@@ -56,10 +56,21 @@ Verification detects observed changes during its read and does not freeze the so
 Evidence and precise limitations: `evals/sdk/archive.md` (S39). Full snapshot and backup
 recovery qualification remains owed.
 
+An independently trusted anchor may also be supplied as
+`expectedAnchor: { seq: anchoredSequence, head: anchoredHead }`. The archive must contain
+that exact sequence and head; a missing anchor or a resealed rewrite before it refuses.
+On success the receipt includes the captured `anchor`. A continuation starting after that
+anchor cannot prove it and is refused. This verifies an external pin; it does not fetch or
+authenticate RPC, program, network, guard identity or authority. Obtain those bindings through
+the operator's trusted configuration and verified chain evidence. A rewrite after the latest
+successful anchor remains outside its coverage. No fixed wall-clock exposure is promised.
+
 The installed candidate also supplies a read-only operator command:
 
 ```bash
 solanaut-verify-archive history.jsonl --head "$recorded_head" --sha256 "$recorded_sha256"
+
+solanaut-verify-archive history.jsonl --anchor-seq "$anchored_sequence" --anchor-head "$anchored_head"
 ```
 
 From the source checkout, use `npm run verify-archive --` with the same arguments. Run
@@ -74,6 +85,10 @@ See SNP-2 evidence and the exact exit contract in `evals/sdk/archive-cli.md` (S4
 | `framing`, `record`, `chain` | Retain the failed copy and original evidence. Check the complete copy, continuation identity and compatible record format; do not edit history to make it verify. |
 | `changed-source` | Stop writers and create a fresh immutable copy before verification. |
 | `head`, `digest` | Check the independently retained pins against the intended archive. A mismatch is evidence to investigate, not a reason to replace the pins with the observed result. |
+| `anchor` | Retain the mismatch or missing history. Check the independently trusted anchor, configured guard/program/network/authority and complete archive; refuse recovery while they disagree. Never replace the pin with the observed head to clear the failure. |
 
 Successful verification still needs authenticated policy replay and a tested recovery drill
 before a backup can be declared recoverable. The command neither admits proposals nor signs.
+The two anchor flags must be supplied together. Structural evidence and installed-consumer
+limits are in `evals/sdk/archive-anchor.md`; the deployed program and enforced signer restore
+still require their own qualification. ADR-022 is a proposed program contract, not implemented.

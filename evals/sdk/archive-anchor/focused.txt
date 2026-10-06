@@ -1,0 +1,16 @@
+✔ ANC-3: an externally pinned middle, first and last anchor verify with a valid tail (119.056857ms)
+✔ ANC-3: a fully resealed rewrite before the anchor is refused (43.172647ms)
+✔ ANC-3: matching a head at another sequence cannot substitute for the anchor (20.248464ms)
+✔ ANC-3: an absent anchor in empty or truncated history is refused (25.602492ms)
+✔ ANC-3: continuation segments must actually contain the pinned anchor (28.458393ms)
+✔ ANC-3: malformed or unsupported anchor options refuse before opening a source (2.195009ms)
+✔ ANC-3: caller mutation cannot change the captured anchor or receipt (5.273515ms)
+✔ ANC-3: a valid rewrite after the anchor is outside its integrity coverage (4.513161ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1969.924784

@@ -1,0 +1,10 @@
+✔ RT-1: actual guard reconciles every frozen benign proposal (854.824967ms)
+✔ RT-3: every loop preserves refusal, posture and failed-outcome evidence (42.929368ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1550.209144

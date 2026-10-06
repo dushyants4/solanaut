@@ -174,6 +174,8 @@ Codex appends; the human answers in place. Open at the transfer:
 
 | H9 | 2026-10-06 | signer completion / SIG-11 | **Decision requested:** accept or reject `design/ADR-021-signer-implementation-budget.md`. The partial signer is 501 lines under the recorded conservative count (402 app + 99 signer-specific SDK helper lines), before key loading and remaining operational work. Proposal: 1,000 physical lines across the same scope, with all other gates unchanged. Until acceptance the 500-line gate is not achieved and dependent expansion waits; independent work continues. |
 
+| H10 | 2026-10-06 | anchor program / ANC-1 | **Decision requested:** accept or reject `design/ADR-022-anchor-enrolment-and-rotation.md`. Accepted ADR-020 requires operator enrolment/rotation, but ANC-1 still specifies only `anchor(head, seq)` without its ceremony account contract. Proposal: explicit enrol/anchor/rotate instructions with a stable operator namespace and preserved history. This changes the accepted instruction surface; no dependent program implementation until acceptance. Generic externally pinned archive verification is independent and can proceed. |
+
 ## 6. Owed edits, to files Codex may not change
 
 Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.codex/`, `.claude/`,
@@ -196,6 +198,20 @@ differential gate (`evals/ci/differential.md`) pass focused and maintained fault
 Full bite catches 228 faults across 28 campaigns; private sync and hosted CI follow.
 The interrupted Stryker run has no completed report; frozen inputs and output are retained.
 No measured timing target, signer budget acceptance or stable-release gate follows from this.
+
+Differential/performance step `13bb075`: private push, ten close gates and hosted CI
+`37517288645` all pass. New traffic definition and local gate/runner/fault evidence are
+in `evals/ci/traffic.md`; full root close/sync remains pending. Changing-intent failed
+streams continue admitting within the frozen horizon; no sensor change or RT-3 closure.
+
+Anchor-pin component and traffic continuation: 457 root tests and unchanged coverage floors
+pass sequentially; typecheck zero. New installed/API/CLI pin checks and faults are retained
+in `evals/sdk/archive-anchor.md`. First root run catches missing campaign inventory entries;
+both are included. Mutation definition 2 keeps its full scope/population/floor with a fresh
+seed and one test process per worker; 235 staged cases and twelve faults pass. Both incomplete
+mutation runs remain without a score. H9/H10 remain unanswered; no dependent expansion.
+All 31 maintained campaigns catch 260 faults, none failed or skipped and sources restored;
+typecheck remains clean. Final diff and close precede private sync; hosted CI follows it.
 
 One row per completed queue step, newest last.
 

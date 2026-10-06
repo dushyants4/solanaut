@@ -5,7 +5,39 @@
 Resume the approved Solanaut 1.0 implementation. Continue through unblocked work, retaining
 all security, validation and human-owned release gates.
 
+## Continuation evidence
+
+Continuation validation: deliberately stopped the resource-heavy second Stryker run at
+13bb075, driver 60246 / worker group 60264, before a completed report. No survivors or score.
+Retained `evals/ci/mutation/resource-pressure-13bb075.txt` and its manifest, including the
+missing-report error on termination. Definition 2 keeps the eight full files, eighteen
+test files, 235 cases, four workers, default mutators and unchanged floor. It executes each
+worker's tests in one process with a fresh mini-fuzz seed 23067. The changed assertion fails
+first, all 235 staged tests pass, and twelve faults are caught. No score observed before
+choosing this operational change.
+
+ANC-3 structural API/CLI component: eighteen focused cases, nine API/four command faults,
+seven installed checks pass; typecheck zero. Original FIFO readiness fails again under
+Stryker load; retain output, leave deadline unchanged. The package fault harness's old
+six-case count rejects a caught export fault; update its strict count to seven. First full
+root run rejects the two newly added campaign files missing from the maintained inventory;
+add both rather than excluding them. A combined documentation patch has an unmatched run
+anchor and applies nothing; corrected the exact anchors. ADR-022 remains proposed/H10,
+with no dependent programme implemented. Final sequential validation follows.
+
 ## Did
+
+After private commit/push `13bb075`, close passes all ten gates. Hosted run `37517288645`
+starts; differential already passes, remaining jobs are checked later. Fresh full mutation
+qualification starts from that clean revision: managed session 29740, driver PID 60246,
+Stryker PID/process group 60264, directory `.sandbox/solanaut-1/mutation/run-v2ukgu`,
+log `qualification-13bb075.txt`. Frozen scope remains unchanged; no score yet.
+Next independent work freezes synthetic traffic/loop definition before measurement in
+`evals/ci/traffic-definition.md`, with fresh seeds, complete refusal counting and unchanged
+sensor coefficients. Seven traffic gate cases fail against stubs; the invalid-input case
+already passes because the stub throws. Initial arithmetic reveals a floating-point endpoint
+below one for all-refused traffic, retained as `traffic/endpoint-failure.txt`; exact endpoint
+handling preserves the analytic bound without changing any target.
 
 - Command step `22235e7` privately pushed; ten close gates and CI `37493990236` green.
   Continued into CI-2 AST coverage with fixed thresholds, complete SDK/signer inventory,
@@ -139,6 +171,32 @@ all security, validation and human-owned release gates.
   this history and must pass compatibility checks before rollback.
 
 ## Found
+
+`npm run test:bite` passes all 31 campaigns, catches 260 planted faults, skips none and
+restores source fingerprints (`evals/sdk/archive-anchor/bite.txt`). Typecheck after
+restoration is clean. Original archive/command regressions and installed package faults
+are included; no readiness assertion changed. Architecture acceptance questions H9/H10
+are queued asynchronously so independent work can continue without assuming acceptance.
+
+Final sequential root suite passes 457 tests; typecheck zero. AST coverage passes all
+unchanged SDK/signer/critical-file floors over the same count; archive 87/90 statements,
+104/106 branches. Raw summary retained in `evals/sdk/archive-anchor/coverage-summary.json`.
+No startup deadline changed. Full maintained fault campaign runs next, with both anchor
+campaigns added. A guessed ADR-020 filename does not exist; inventory resolves the actual
+`design/ADR-020-opaque-and-operator-boundaries.md`, read without changes.
+
+Anchor program design gap: ADR-020 requires operator enrolment/rotation, whereas ANC-1's
+single-instruction/account contract does not specify them. ADR-022 is proposed, with the
+exact owed requirement change and evidence plan; H10 requests human acceptance. No program
+implementation depends on it. Generic pinned archive verification is independent. The
+architect seat's referenced `kb/PATTERNS.md`/`kb/GAPS.md` do not exist in this repository;
+no search outside Solanaut. Primary PDA/account-constraint sources are linked in the proposal.
+
+Traffic population fault initially survives because the negative fixture also trips the
+completion check. Retained `traffic/initial-fault-miss.txt`; the short population now also
+reduces completed count so only the population floor can refuse it. Workload definition,
+seeds, sensor and threshold are unchanged. Hosted CI `37517288645` completes successfully
+for `13bb075`, including differential, runtime matrix, coverage and maintained faults.
 
 The resumed instrumented coverage run failed SNP-1's FIFO child-process startup deadline
 while running alongside the full suite. Its failure is retained as
@@ -306,6 +364,15 @@ retain that output and repeat the suite after source restoration for final evide
 - Existing protected-file owed edit O1 remains in HANDOFF §6; no protected file changed.
 
 ## Provenance
+
+Traffic step local evidence: frozen definition 1, fresh seeds 2606101–2606105, 500 proposals
+per profile; zero refusals, unrounded Wilson upper 0.0015342823603537858. Loop first refusals:
+identical turn 3 (`loop-reground`), escalating turn 4 (`intent-attempts-exhausted`), alternating
+and distinct failed outcomes unrefused within 60 proposals each. Thirteen focused cases and
+eighteen maintained faults pass; typecheck clean. Receipt `evals/ci/traffic.md`, S45.
+Full root tests/bite/close, private sync and hosted CI remain pending while isolated Stryker
+qualifies the frozen prior source revision. No threshold/rule/coefficient or production source
+changes. Documentation patch-anchor mismatches applied nothing and were corrected.
 
 Resumed differential/performance step: final restored `npm test` passes 434 cases;
 `npm run typecheck` is clean. Full bite passes 28 campaigns with 228 caught faults and

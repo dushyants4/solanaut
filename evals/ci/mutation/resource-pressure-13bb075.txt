@@ -1,0 +1,25 @@
+
+> test:mutation
+> node evals/ci/mutation-run.ts
+
+Mutation run directory: /home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-v2ukgu
+15:13:16 (60264) INFO ProjectReader Found 8 of 59 file(s) to be mutated.
+15:13:17 (60264) INFO Instrumenter Instrumented 8 source file(s) with 2838 mutant(s)
+15:13:17 (60264) INFO ConcurrencyTokenProvider Creating 4 test runner process(es).
+15:13:17 (60264) INFO DryRunExecutor Starting initial test run (command test runner with "off" coverage analysis). This may take a while.
+15:13:30 (60264) INFO DryRunExecutor Initial test run succeeded. Ran 1 tests in 12 seconds (net 12910 ms, overhead 1 ms).
+node:fs:539
+    return binding.readFileUtf8(path, stringToFlags(options.flag));
+                   ^
+
+Error: ENOENT: no such file or directory, open '/home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-v2ukgu/reports/mutation.json'
+    at readFileSync (node:fs:539:20)
+    at file:///home/dashy/Projects/Solanaut/evals/ci/mutation-run.ts:36:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-v2ukgu/reports/mutation.json'
+}
+
+Node.js v26.7.0

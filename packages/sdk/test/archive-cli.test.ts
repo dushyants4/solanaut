@@ -12,6 +12,18 @@ const entry = seal({ v: 1, kind: "report", seq: 0, prev: "", at: 0.5, decision: 
 const bytes = JSON.stringify(entry) + "\n", path = join(directory, "history.jsonl");
 writeFileSync(path, bytes);
 const invoke = (...args: string[]) => spawnSync(process.execPath, ["packages/sdk/bin/verify-archive.ts", ...args], { encoding: "utf8", timeout: 3000 });
+test("ANC-3/SNP-2: explicit anchor flags return its bound receipt or typed refusal",()=> {
+  const passed=invoke(path,"--anchor-seq","0","--anchor-head",entry.hash);
+  assert.equal(passed.status,0,passed.stderr); assert.deepEqual(JSON.parse(passed.stdout).anchor,{seq:0,head:entry.hash});
+  for(const [seq,head] of [["1",entry.hash],["0","0".repeat(64)]]) {
+    const refused=invoke(path,"--anchor-seq",seq!,"--anchor-head",head!);
+    assert.equal(refused.status,1,refused.stderr); assert.equal(JSON.parse(refused.stderr).error.code,"anchor"); assert.equal(refused.stdout,"");
+  }
+  assert.equal(readFileSync(path,"utf8"),bytes);
+});
+test("ANC-3/SNP-2: incomplete, duplicate and malformed anchor pairs are usage errors",()=> {
+  for(const flags of [["--anchor-seq","0"],["--anchor-head",entry.hash],["--anchor-seq","00","--anchor-head",entry.hash],["--anchor-seq","-1","--anchor-head",entry.hash],["--anchor-seq","0","--anchor-head","wrong"],["--anchor-seq","0","--anchor-head",entry.hash,"--anchor-seq","0"]]) assert.equal(invoke(path,...flags).status,2);
+});
 test("SNP-2: command returns a pinned JSON receipt and leaves source unchanged", () => {
   const digest = createHash("sha256").update(bytes).digest("hex");
   const result = invoke(path, "--head", entry.hash, "--sha256", digest);

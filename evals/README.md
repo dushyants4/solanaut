@@ -6,6 +6,7 @@ seen failing might not be checking anything.
 | Gate | Shown failing | Then passing | Receipt |
 |---|---|---|---|
 | CI-2 performance-report preparation | eight stub failures; synced regression fixture miss retained | eight focused cases/sixteen faults; timing targets unmeasured; root integration passes | `ci/performance.md` |
+| RT-1/RT-3 synthetic traffic | gate/workload/runner stub failures; endpoint error and population-fixture miss retained | thirteen focused cases/eighteen faults; frozen benign target passes; changing-intent failed streams unrefused within horizon; root close pending | `ci/traffic.md` |
 | CI-2 real-transaction differential | six report/three comparator stub failures; trailing-data probe errors and version-fixture miss retained | eleven focused cases/twelve faults; fresh block comparison and root integration pass | `ci/differential.md` |
 | CI-2 mutation preparation | six stub failures; nested-runner error and scope-removal miss retained | eight report/staging cases; eleven final faults; staged baseline passes; score still owed | `ci/mutation.md` |
 | `tools/boundary_guard.py --selftest` | 14 territorial cases with a draft policy holding only the secrets rule; then the quoted-redirect case with the full policy. For Codex (2026-10-05): 18 cases (its patches, shell reads, the law it may not edit), all failing first; then `2>&1` counted as a write, found by using it | 34/34; then 59/59, and 11 Codex-shaped payloads through the hook's exact command | `harness/boundary_guard.md` |
@@ -66,6 +67,10 @@ seen failing might not be checking anything.
 | the same agent on devnet (2b.3) | the unguarded baseline pays the attacker, and the kit reports both landed payments as failed | the same verdicts as locally | `agentkit/sak-devnet.md` |
 | the demo's scenes end to end: `apps/onchain/src/scenes.ts` on devnet, with the local fallback (2b.1's end-to-end battery; 2b.3) | each scene's refusal is named by its rule in the guard's record; the crash is a real SIGKILL | 5 payments landed, 8 refusals before signing, 2 latches released by the operator, replay 0 divergences | `e2e/scenes-devnet.md` |
 | the Beta gate | (each battery's own receipt) | 11 of 11 §11 batteries: nine from a clean clone, on-chain and end to end on devnet; the independent evaluator run is owed | `verify/beta-gate.md` |
+
+ANC-3 structural component: `sdk/archive-anchor.md` retains first failures, the load-sensitive
+FIFO failure, nine API/four command faults and seven installed checks. Authenticated replay,
+on-chain authority and full anchor milestone remain owed.
 
 CI runs the baseline gates on every push since milestone 2a.1 (`ci/safety-net.md`). The
 maintained `bite` job now runs executable fault campaigns; historical manual regressions

@@ -1,6 +1,6 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 22** · 2026-10-06 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 23** · 2026-10-06 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
@@ -16,6 +16,10 @@ identity and optional external head/byte pins. This verifies structure, not auth
 snapshot state or policy replay; `docs/STORAGE.md` and `evals/sdk/archive.md` give the limits.
 The compiled candidate supplies `solanaut-verify-archive` for the same read-only checks;
 installed usage, JSON receipt and wrong-pin refusal are tested (`evals/sdk/archive-cli.md`).
+External anchor sequence/head pins are checked within the archive and exposed by the
+read-only command (`evals/sdk/archive-anchor.md`). Source authenticity and the deployed
+program/enforced restore path remain owed; post-anchor history remains outside that pin's
+coverage. ADR-022 proposes enrolment/rotation; no dependent program implementation exists.
 
 The first Solanaut 1.0 change implements ADR-012 C in the existing guard: one REGROUND denial
 from an earlier rule is tolerated; Keel's own denial or a consecutive REGROUND denial latches.

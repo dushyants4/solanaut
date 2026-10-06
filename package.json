@@ -30,6 +30,7 @@
     "test:coverage": "node evals/ci/coverage-run.ts",
     "test:mutation": "node evals/ci/mutation-run.ts",
     "test:differential": "node evals/ci/differential-run.ts",
+    "test:traffic": "node evals/ci/traffic-run.ts",
     "cockpit": "node apps/cockpit/src/server.ts"
   },
   "devDependencies": {

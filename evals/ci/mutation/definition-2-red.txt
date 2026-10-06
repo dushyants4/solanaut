@@ -1,0 +1,32 @@
+✖ CI-2: mutation staging copies only the frozen inputs and tests execute its changed source (23.19851ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 112.778321
+
+✖ failing tests:
+
+test at evals/ci/mutation-stage.test.ts:7:1
+✖ CI-2: mutation staging copies only the frozen inputs and tests execute its changed source (23.19851ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'node --test packages/sdk/test/adapters.test.ts packages/sdk/test/admission.test.ts packages/sdk/test/boundary-validation.test.ts packages/sdk/test/classify.test.ts packages/sdk/test/decode.test.ts packages/sdk/test/drain.battery.test.ts packages/sdk/test/durable.test.ts packages/sdk/test/inspect.test.ts packages/sdk/test/keel.test.ts packages/sdk/test/latch-c.test.ts packages/sdk/test/ownership.test.ts packages/sdk/test/pin-table.test.ts packages/sdk/test/policy.test.ts packages/sdk/test/request-identity.test.ts packages/sdk/test/sensor.battery.test.ts packages/sdk/test/signed-policy.test.ts packages/sdk/test/signing-history.test.ts packages/sdk/test/storage-failures.test.ts'
+  - 'node --test --test-isolation=none packages/sdk/test/adapters.test.ts packages/sdk/test/admission.test.ts packages/sdk/test/boundary-validation.test.ts packages/sdk/test/classify.test.ts packages/sdk/test/decode.test.ts packages/sdk/test/drain.battery.test.ts packages/sdk/test/durable.test.ts packages/sdk/test/inspect.test.ts packages/sdk/test/keel.test.ts packages/sdk/test/latch-c.test.ts packages/sdk/test/ownership.test.ts packages/sdk/test/pin-table.test.ts packages/sdk/test/policy.test.ts packages/sdk/test/request-identity.test.ts packages/sdk/test/sensor.battery.test.ts packages/sdk/test/signed-policy.test.ts packages/sdk/test/signing-history.test.ts packages/sdk/test/storage-failures.test.ts'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation-stage.test.ts:19:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'node --test packages/sdk/test/adapters.test.ts packages/sdk/test/admission.test.ts packages/sdk/test/boundary-validation.test.ts packages/sdk/test/classify.test.ts packages/sdk/test/decode.test.ts packages/sdk/test/drain.battery.test.ts packages/sdk/test/durable.test.ts packages/sdk/test/inspect.test.ts packages/sdk/test/keel.test.ts packages/sdk/test/latch-c.test.ts packages/sdk/test/ownership.test.ts packages/sdk/test/pin-table.test.ts packages/sdk/test/policy.test.ts packages/sdk/test/request-identity.test.ts packages/sdk/test/sensor.battery.test.ts packages/sdk/test/signed-policy.test.ts packages/sdk/test/signing-history.test.ts packages/sdk/test/storage-failures.test.ts',
+    expected: 'node --test --test-isolation=none packages/sdk/test/adapters.test.ts packages/sdk/test/admission.test.ts packages/sdk/test/boundary-validation.test.ts packages/sdk/test/classify.test.ts packages/sdk/test/decode.test.ts packages/sdk/test/drain.battery.test.ts packages/sdk/test/durable.test.ts packages/sdk/test/inspect.test.ts packages/sdk/test/keel.test.ts packages/sdk/test/latch-c.test.ts packages/sdk/test/ownership.test.ts packages/sdk/test/pin-table.test.ts packages/sdk/test/policy.test.ts packages/sdk/test/request-identity.test.ts packages/sdk/test/sensor.battery.test.ts packages/sdk/test/signed-policy.test.ts packages/sdk/test/signing-history.test.ts packages/sdk/test/storage-failures.test.ts',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
