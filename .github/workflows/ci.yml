@@ -52,6 +52,9 @@ jobs:
       - name: installed package fault injections
         if: ${{ !cancelled() }}
         run: npm run test:package:faults
+      - name: latch fault injections
+        if: ${{ !cancelled() }}
+        run: npm run test:latch:faults
 
   office:
     name: knowledge vault and write boundary

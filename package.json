@@ -21,6 +21,7 @@
     "release:prepare": "node packages/sdk/bin/prepare-release.ts",
     "test:package": "node --test evals/packaging/*.test.ts",
     "test:package:faults": "node evals/packaging/faults.ts",
+    "test:latch:faults": "node evals/ci/latch-faults.ts",
     "cockpit": "node apps/cockpit/src/server.ts"
   },
   "devDependencies": {

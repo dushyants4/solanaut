@@ -45,6 +45,7 @@ substantive change; *last reviewed* moves at every review.
 | 2026-10-05 | SPEC, RISKS, OVERVIEW, HANDOFF, CLAIMS | Solanaut 1.0 mission recorded; accepted ADR-012 C implemented offline; S13 and receipt added; historical replay differences preserved; ADR-019/020 proposals pending | `runs/2026-10-05-codex-solanaut-1.md` |
 | 2026-10-05 | SPEC, PACKAGING, CLAIMS, HANDOFF | Private compiled SDK candidate and package evidence; CI reading recovered and baseline runner failure recorded | `runs/2026-10-05-codex-solanaut-1.md` |
 | 2026-10-05 | PACKAGING, HANDOFF | Maintained package fault runner added to sequential CI checks | `runs/2026-10-05-codex-solanaut-1.md` |
+| 2026-10-05 | CLAIMS, HANDOFF | S14 records passing runtime matrix; maintained latch CI fault subset added | `runs/2026-10-05-codex-solanaut-1.md` |
 
 Earlier entries:
 

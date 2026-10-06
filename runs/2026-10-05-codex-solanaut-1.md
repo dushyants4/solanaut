@@ -8,6 +8,11 @@ prepare the original repository for eventual human-approved public release.
 
 ## Did
 
+- `f16938c` passed CI run `37397843820` on Node 22.18.0, 24 and 26.7.0, including
+  installed-package and package fault checks. Post-push local close gates passed.
+- Automated the seven already demonstrated ADR-012 faults as a maintained CI-1 subset.
+  The baseline and restored source pass; each mutation fails assertions with the full battery run.
+
 - Read the root law, handoff, progress, accepted requirements and readiness documents.
 - Fetched the private remote; the starting revision is `e925f1d`, with a clean working tree.
 - Both live probes were refused by the boundary guard: the patch and shell attempt to create
