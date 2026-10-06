@@ -28,9 +28,11 @@
     "test:replay": "node evals/ci/replay.ts",
     "test:kills": "node evals/ci/kills.ts",
     "test:coverage": "node evals/ci/coverage-run.ts",
+    "test:mutation": "node evals/ci/mutation-run.ts",
     "cockpit": "node apps/cockpit/src/server.ts"
   },
   "devDependencies": {
+    "@stryker-mutator/core": "10.0.0",
     "@types/node": "26.6.3",
     "fast-check": "4.10.2",
     "istanbul-lib-coverage": "3.2.2",

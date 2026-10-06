@@ -291,6 +291,17 @@ all security, validation and human-owned release gates.
 
 ## Provenance
 
+Mutation preparation: core 10.0.0 installed exactly with scripts disabled; signature audit
+529 signatures/207 attestations, advisories now 3 low/11 moderate/7 high/no critical. New
+moderate findings through typed-rest-client/qs remain open. Eight report/staging cases,
+eleven final faults and 235 staged tests pass. Initial scope-removal miss, inherited nested
+test context error and environment type error retained in `evals/ci/mutation/`; fixed without
+lowering thresholds. Full suite 415 passes; typecheck zero. Full bite passes all campaigns,
+with all sources restored. Coherent private preparation commit precedes the long Stryker run;
+actual mutation-score qualification remains owed at this preparation revision.
+The first combined receipt/spec patch had an unmatched anchor and applied nothing.
+Prior coverage commit `657e338`: CI `37498544709` succeeds across all jobs.
+
 Coverage step final commands: `npm run test:coverage` passes 407 instrumented tests and all
 fixed floors; `npm test` 407 passes, typecheck zero, six installed-package checks pass.
 `npm run test:bite`: 25 campaigns / 189 caught faults, all sources restored. Receipt

@@ -1,0 +1,163 @@
+✖ CI-2: mutation score uses exact valid populations and the fixed floor (0.716431ms)
+✖ CI-2: failed or interrupted Stryker runs cannot qualify (0.642735ms)
+✖ CI-2: missing, foreign and changed mutation sources fail closed (0.198514ms)
+✖ CI-2: ignored, pending and malformed mutant results are rejected (0.186243ms)
+✖ CI-2: no mutants or all-invalid mutants cannot report a perfect score (0.161149ms)
+✖ CI-2: Stryker timeout and invalid semantics remain explicit (0.098272ms)
+✔ CI-2: malformed report roots and schema versions are refused (0.208264ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 1
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 91.421506
+
+✖ failing tests:
+
+test at evals/ci/mutation.test.ts:8:1
+✖ CI-2: mutation score uses exact valid populations and the fixed floor (0.716431ms)
+  Error: mutation report gate not implemented
+      at requireMutationReport (file:///home/dashy/Projects/Solanaut/evals/ci/mutation.ts:2:9)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation.test.ts:9:20)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at evals/ci/mutation.test.ts:12:1
+✖ CI-2: failed or interrupted Stryker runs cannot qualify (0.642735ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /process/. Input:
+  
+  'Error: mutation report gate not implemented'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation.test.ts:13:42)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: mutation report gate not implemented
+        at requireMutationReport (file:///home/dashy/Projects/Solanaut/evals/ci/mutation.ts:2:9)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/mutation.test.ts:13:53
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation.test.ts:13:42)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /process/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/ci/mutation.test.ts:15:1
+✖ CI-2: missing, foreign and changed mutation sources fail closed (0.198514ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /inventory/. Input:
+  
+  'Error: mutation report gate not implemented'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation.test.ts:17:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: mutation report gate not implemented
+        at requireMutationReport (file:///home/dashy/Projects/Solanaut/evals/ci/mutation.ts:2:9)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/mutation.test.ts:17:21
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation.test.ts:17:10)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /inventory/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/ci/mutation.test.ts:22:1
+✖ CI-2: ignored, pending and malformed mutant results are rejected (0.186243ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /status/. Input:
+  
+  'Error: mutation report gate not implemented'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation.test.ts:25:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: mutation report gate not implemented
+        at requireMutationReport (file:///home/dashy/Projects/Solanaut/evals/ci/mutation.ts:2:9)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/mutation.test.ts:25:23
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation.test.ts:25:12)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /status/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/ci/mutation.test.ts:32:1
+✖ CI-2: no mutants or all-invalid mutants cannot report a perfect score (0.161149ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /population/. Input:
+  
+  'Error: mutation report gate not implemented'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation.test.ts:33:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: mutation report gate not implemented
+        at requireMutationReport (file:///home/dashy/Projects/Solanaut/evals/ci/mutation.ts:2:9)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/mutation.test.ts:33:21
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation.test.ts:33:10)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /population/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/ci/mutation.test.ts:37:1
+✖ CI-2: Stryker timeout and invalid semantics remain explicit (0.098272ms)
+  Error: mutation report gate not implemented
+      at requireMutationReport (file:///home/dashy/Projects/Solanaut/evals/ci/mutation.ts:2:9)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation.test.ts:41:20)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)

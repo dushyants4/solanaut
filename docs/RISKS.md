@@ -1,11 +1,16 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.23** · 2026-10-06 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.24** · 2026-10-06 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 The threat model ([docs/papers/THREAT-MODEL.md](papers/THREAT-MODEL.md)) lists what an attacker can do to a running
 guard: threats T1 to T30. This register is wider. It lists what could stop Solanaut being delivered as specified, or
 make it claim more than it shows. A threat appears here only when it is also a risk to delivery, and then by its ID.
+
+Stryker preparation verifies staged-source isolation and report refusal paths
+(`evals/ci/mutation.md`); the actual score is still owed. Its dependency addition introduces
+moderate advisory findings through `typed-rest-client`/`qs`, retained in the audit evidence.
+Signature authenticity does not resolve them or establish security qualification.
 
 Archive verification now rejects observed source changes and checks optional external pins
 (`evals/sdk/archive.md`). A self-consistent forged chain remains possible without independent

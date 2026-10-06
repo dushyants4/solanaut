@@ -1,0 +1,29 @@
+import { strict as assert } from "node:assert";
+import { test } from "node:test";
+import { spawnSync } from "node:child_process";
+import { mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { resolve, join } from "node:path";
+import { MUTATION_PATHS, MUTATION_TESTS, stageMutation } from "./mutation-stage.ts";
+test("CI-2: mutation staging copies only the frozen inputs and tests execute its changed source",()=> {
+  mkdirSync(".sandbox/solanaut-1/mutation",{recursive:true});
+  const root=resolve("."), destination=mkdtempSync(resolve(".sandbox/solanaut-1/mutation/stage-test-"));
+  const path="packages/sdk/src/policy.ts", original=readFileSync(path,"utf8");
+  try {
+    const sources=stageMutation(root,destination);
+    assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables"].map(name=>"packages/sdk/src/"+name+".ts"));
+    assert.deepEqual(Object.keys(sources),MUTATION_PATHS);
+    assert.deepEqual(readdirSync(destination).sort(),["node_modules","package.json","packages","stryker.config.json"]);
+    const config=JSON.parse(readFileSync(join(destination,"stryker.config.json"),"utf8"));
+    assert.deepEqual(config.mutate,MUTATION_PATHS); assert.equal(config.thresholds.break,80);
+    assert.equal(config.inPlace,false); assert.equal(config.ignoreStatic,false); assert.equal(config.coverageAnalysis,"off");
+    assert.equal(config.commandRunner.command,"node --test "+MUTATION_TESTS.join(" "));
+    assert.equal(config.mutator,undefined); assert.equal(config.incremental,undefined);
+    const env={...process.env}; delete env.NODE_TEST_CONTEXT;
+    const run=()=>spawnSync(process.execPath,["--test","packages/sdk/test/policy.test.ts"],{cwd:destination,encoding:"utf8",timeout:15_000,env});
+    const baseline=run(); assert.equal(baseline.status,0,baseline.stdout+baseline.stderr);
+    assert.equal(original.split("if (problems.length)").length,2);
+    writeFileSync(join(destination,path),original.replace("if (problems.length)","if (false)"));
+    const changed=run(); assert.equal(changed.status,1,changed.stdout+changed.stderr);
+    assert.match(changed.stdout,/fail [1-9]/); assert.equal(readFileSync(path,"utf8"),original);
+  } finally {rmSync(destination,{recursive:true,force:true});}
+});

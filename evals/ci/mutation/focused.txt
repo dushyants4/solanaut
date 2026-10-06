@@ -1,0 +1,39 @@
+✖ CI-2: mutation staging copies only the frozen inputs and tests execute its changed source (83.5184ms)
+✔ CI-2: mutation score uses exact valid populations and the fixed floor (3.154644ms)
+✔ CI-2: failed or interrupted Stryker runs cannot qualify (0.194955ms)
+✔ CI-2: missing, foreign and changed mutation sources fail closed (0.184275ms)
+✔ CI-2: ignored, pending and malformed mutant results are rejected (0.27548ms)
+✔ CI-2: no mutants or all-invalid mutants cannot report a perfect score (0.193911ms)
+✔ CI-2: Stryker timeout and invalid semantics remain explicit (0.154604ms)
+✔ CI-2: malformed report roots and schema versions are refused (0.175725ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 172.221564
+
+✖ failing tests:
+
+test at evals/ci/mutation-stage.test.ts:7:1
+✖ CI-2: mutation staging copies only the frozen inputs and tests execute its changed source (83.5184ms)
+  AssertionError [ERR_ASSERTION]: (node:723336) Warning: node:test run() is being called recursively within a test file. skipping running files.
+  (Use `node --trace-warnings ...` to show where the warning was created)
+  
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation-stage.test.ts:24:33)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

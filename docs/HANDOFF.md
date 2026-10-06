@@ -187,6 +187,10 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+Mutation preparation freezes decoder/policy scope and proves staged-source isolation
+(`evals/ci/mutation.md`). Actual Stryker score remains owed; ADR-021/H9 still awaits acceptance.
+Coverage commit `657e338` CI `37498544709` passes all jobs.
+
 One row per completed queue step, newest last.
 
 Archive foundation: SNP-1 structural framing/chain/pins implemented in the SDK, with
@@ -234,6 +238,8 @@ The live probes and baseline are complete. ADR-012 C is built and tested offline
 | 2026-10-06 | bounded archive verification, SNP-1 foundation | commit containing `evals/sdk/archive.md` | structure/source/pin/fault and installed-consumer receipt | Initial mutation miss and FIFO hang corrected; authenticated snapshots and state replay remain owed. |
 | 2026-10-06 | read-only archive command, SNP-2 | commit containing `evals/sdk/archive-cli.md` | command/fault/installed-binary receipt | Prior archive step `f1b6010`: ten close gates and CI `37491296517` green. Numeric fixture miss corrected; state recovery remains owed. |
 | 2026-10-06 | AST statement/branch coverage, partial CI-2 | commit containing `evals/ci/coverage.md` | calibrated inventory/counters, initial deficit, remediation and faults | Command step `22235e7`: ten close gates and CI `37493990236` green. Coverage floors unchanged; remaining quality/security gates and H9 still pending. |
+
+| 2026-10-06 | Stryker preparation, partial CI-2 | commit containing `evals/ci/mutation.md` | report/staging receipt; prior coverage CI `37498544709` green | Frozen full-file scope, staged-source proof and maintained faults; actual tool score remains owed. |
 
 ## 8. Handing back to Claude
 

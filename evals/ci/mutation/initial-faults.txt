@@ -1,0 +1,60 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: ✖ CI-2: mutation staging copies only the frozen inputs and tests execute its changed source (84.220497ms)
+✔ CI-2: mutation score uses exact valid populations and the fixed floor (5.030884ms)
+✔ CI-2: failed or interrupted Stryker runs cannot qualify (0.27837ms)
+✔ CI-2: missing, foreign and changed mutation sources fail closed (0.357706ms)
+✔ CI-2: ignored, pending and malformed mutant results are rejected (0.882983ms)
+✔ CI-2: no mutants or all-invalid mutants cannot report a perfect score (0.473876ms)
+✔ CI-2: Stryker timeout and invalid semantics remain explicit (0.291239ms)
+✔ CI-2: malformed report roots and schema versions are refused (0.294608ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 183.692216
+
+✖ failing tests:
+
+test at evals/ci/mutation-stage.test.ts:7:1
+✖ CI-2: mutation staging copies only the frozen inputs and tests execute its changed source (84.220497ms)
+  AssertionError [ERR_ASSERTION]: (node:723396) Warning: node:test run() is being called recursively within a test file. skipping running files.
+  (Use `node --trace-warnings ...` to show where the warning was created)
+  
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation-stage.test.ts:24:33)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+
+1 !== 0
+
+    at file:///home/dashy/Projects/Solanaut/evals/ci/mutation-faults.ts:19:30
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 1,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

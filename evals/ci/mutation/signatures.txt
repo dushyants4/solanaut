@@ -1,0 +1,7 @@
+audited 529 packages in 9s
+
+529 packages have verified registry signatures
+
+207 packages have verified attestations
+(use --json --include-attestations to view attestation details)
+

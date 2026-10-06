@@ -1,0 +1,46 @@
+caught mutation gate fault: process-completion
+caught mutation gate fault: score-floor
+caught mutation gate fault: source-inventory
+caught mutation gate fault: source-content
+caught mutation gate fault: mutant-identity
+caught mutation gate fault: status-completion
+caught mutation gate fault: valid-population
+caught mutation gate fault: location-boundary
+caught mutation gate fault: staging-threshold
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: ✔ CI-2: mutation staging copies only the frozen inputs and tests execute its changed source (419.82865ms)
+✔ CI-2: mutation score uses exact valid populations and the fixed floor (4.891242ms)
+✔ CI-2: failed or interrupted Stryker runs cannot qualify (0.266002ms)
+✔ CI-2: missing, foreign and changed mutation sources fail closed (0.274251ms)
+✔ CI-2: ignored, pending and malformed mutant results are rejected (0.442877ms)
+✔ CI-2: no mutants or all-invalid mutants cannot report a perfect score (0.271374ms)
+✔ CI-2: Stryker timeout and invalid semantics remain explicit (0.215767ms)
+✔ CI-2: malformed report roots and schema versions are refused (0.228703ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 523.730599
+
+
+0 !== 1
+
+    at file:///home/dashy/Projects/Solanaut/evals/ci/mutation-faults.ts:25:12
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

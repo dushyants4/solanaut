@@ -1,0 +1,5 @@
+
+> typecheck
+> tsc -p tsconfig.json
+
+evals/ci/mutation-run.ts(16,75): error TS2339: Property 'NODE_TEST_CONTEXT' does not exist on type '{ FUZZ_RUNS: string; FUZZ_SEED: string; }'.

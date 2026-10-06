@@ -1,0 +1,16 @@
+✔ CI-2: mutation staging copies only the frozen inputs and tests execute its changed source (492.406233ms)
+✔ CI-2: mutation score uses exact valid populations and the fixed floor (3.81112ms)
+✔ CI-2: failed or interrupted Stryker runs cannot qualify (0.199122ms)
+✔ CI-2: missing, foreign and changed mutation sources fail closed (0.232851ms)
+✔ CI-2: ignored, pending and malformed mutant results are rejected (0.370967ms)
+✔ CI-2: no mutants or all-invalid mutants cannot report a perfect score (0.197386ms)
+✔ CI-2: Stryker timeout and invalid semantics remain explicit (0.283881ms)
+✔ CI-2: malformed report roots and schema versions are refused (0.18062ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 576.407613

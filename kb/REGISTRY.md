@@ -20,6 +20,14 @@ full tree.
 
 Toolchain: `TOOLCHAIN.md`. Vendored office: `plugins/VENDORED.md`.
 
+`@stryker-mutator/core` is pinned exactly at 10.0.0 for CI-2, dev only, Apache-2.0.
+Its command runner is built in. Official configuration:
+https://stryker-mutator.io/docs/stryker-js/configuration/ . Install scripts disabled;
+locked integrity/signature evidence in `evals/ci/mutation/`. The signature audit verifies
+529 registry signatures/207 attestations. Advisories now total 3 low/11 moderate/7 high/no
+critical, including new moderate findings through `typed-rest-client` → `qs` 6.15.1.
+These are open findings; no automatic fixes or security clearance.
+
 ## Install scripts
 
 `npm install` reports three optional native modules whose install scripts npm 11 did not run
@@ -76,7 +84,6 @@ milestone that needs it adds it, and not before.
 |---|---|---|---|
 | `@solana-program/token-2022` | 0.19.0 | not added at 2a.3: it pulls in a zk SDK, and the Token client's layouts cover the instructions the Beta decodes | 3.3 |
 | `litesvm` | 1.5.0 | in-process integration tests | 3.9 |
-| `@stryker-mutator/core` | 10.0.0 | mutation testing | 3.9 |
 | `mitata` | 1.0.34 | benchmarks | 3.9 |
 | `@phantom/mcp-server` | 1.2.8 | the MCP firewall's upstream | 3.5 |
 

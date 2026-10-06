@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.30** · 2026-10-06 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.31** · 2026-10-06 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -779,6 +779,11 @@ reopens exclusive kernel ownership and compares completed histories/replay with 
 It runs 100 independent SDK trials after acknowledged persistence. This does not exercise
 unacknowledged write, signing/send or power-loss boundaries, nor isolated-user lifecycle.
 
+The mutation programme freezes full decoder/policy file scope and selected tests before
+measurement (`evals/ci/mutation.md`). Its staged-source isolation and strict report checks
+are maintained fault campaigns. The required Stryker score remains unmeasured at preparation;
+no signer/firewall mutation qualification follows from these report checks.
+
 ### 13.10 Tested hard (milestone 3.10)
 
 | ID | Requirement | From | Verified by |
@@ -940,3 +945,4 @@ where needed, and UTC issued timestamps include milliseconds. Policies remain re
 | Draft 4.28 | 2026-10-06 | SNP-1 bounded structural archive verification, immutable option pins and installed SDK exports; authenticated snapshots and streamed state replay remain owed. |
 | Draft 4.29 | 2026-10-06 | SNP-2 installed read-only archive command, strict arguments and typed JSON receipts/errors; full recovery gates unchanged. |
 | Draft 4.30 | 2026-10-06 | CI-2 complete AST coverage inventory, native test instrumentation, count/report validation and fixed SDK/signer/critical-file floors; missing failure paths covered without product-rule changes. |
+| Draft 4.31 | 2026-10-06 | CI-2 frozen Stryker preparation, staged-source isolation and strict report gate; actual mutation-score qualification remains owed. |

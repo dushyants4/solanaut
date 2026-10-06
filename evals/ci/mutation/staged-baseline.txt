@@ -1,0 +1,301 @@
+Mutation run directory: /home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-xB2VcT
+✔ guardedWallet exposes exactly BaseWallet's members, frozen, and never the wallet it wraps (15.960722ms)
+✔ guardedWallet refuses a wallet whose key is outside the policy's principal, or no RPC to send through (4.182093ms)
+✔ signTransaction: an allowed payment is signed by the wrapped wallet; a drain throws SolanautDenied before the wallet is asked (45.27455ms)
+✔ the adapters give the same verdicts as the SDK, for legacy and v0 transactions (60.042773ms)
+✔ a re-sign of the same payment while the first could still land throws intent-in-flight (6.406987ms)
+✔ a wallet that changes the message before signing it is caught: its signatures are stripped, and the call throws (12.263931ms)
+✔ a wallet whose signature does not verify over the admitted bytes is caught (4.676301ms)
+✔ a wallet that signs a whole batch in place but returns it short: every caller object is stripped, and what was signed is held, not released (6.584995ms)
+✔ wallet-changed-message carries no decision, on guardedWallet (guardedSigner: its own test) (6.460104ms)
+✔ signAllTransactions is all or nothing: one denial signs none, and the admitted ones are released (27.123699ms)
+✔ signAndSendTransaction: checks, signs, sends exactly the admitted bytes itself, and reports the outcome (30.547904ms)
+✔ a send the RPC refuses is reported failed, and rethrown (24.873952ms)
+✔ a send whose fate is unknown is reported unknown, not failed: the signed bytes may still land, so a re-sign is refused (18.344557ms)
+✔ D14, sign-only: before the next proposal, guardedWallet reads the outcome of what it signed and reports it (21.966351ms)
+✔ D14, sign-only: a payment seen but not yet confirmed is not reported, and without a status reader the guard holds the intent (8.143987ms)
+✔ signMessage is denied: a raw signature over chosen bytes can be a transaction signature (0.834022ms)
+✔ guardedSigner: checks every transaction first, all or nothing, reads expiry from the lifetime, and verifies the signatures it returns (39.94382ms)
+✔ jsonRpc: sends base64 bytes, reads the height, and turns signature statuses into outcomes (3045.683394ms)
+✔ rule 0: an invalid policy means no guard (11.069851ms)
+✔ rule 1: bytes that do not parse, and ill-typed fields, deny as malformed-proposal (D5: never a throw) (35.811713ms)
+✔ rule 2: a version other than legacy, 0 or 1 denies as unsupported-version (3.760951ms)
+✔ rule 3: a lookup table the policy does not pin denies as lookup-table-unpinned (28.975076ms)
+✔ rule 5: a durable nonce, even paying an allowed destination, denies as durable-nonce-denied (10.36397ms)
+✔ rule 6: a required signer outside the principal denies as other-signer (2.222226ms)
+✔ rule 7: a program off the allowlist denies as program-not-allowed (6.363559ms)
+✔ rule 8: an allowlisted program the guard does not decode denies while opaque is deny, and passes when allow (4.185188ms)
+✔ rule 9: Approve, an unknown System instruction and a v1 ComputeBudget decoy deny as instruction-denied (D6, D10) (21.114956ms)
+✔ rule 10: SOL or tokens to an address the policy does not allow deny as destination-not-allowed (46.820124ms)
+✔ rule 11: an unlisted mint denies as mint-not-allowed; a plain Transfer from an unknown account as token-mint-unknown (37.447532ms)
+✔ rule 12: SOL or a mint over its per-transaction cap denies as over-per-tx-cap, summed over the message (9.267155ms)
+✔ rule 13: a priority fee over the cap denies as over-fee-cap, in legacy and in v1 (12.545674ms)
+✔ rules 14 and 15, the double-send battery: in flight until reported failed or expired; attempts are counted (36.728985ms)
+✔ D14: an attempt nobody reported may have landed, so past its expiry it still holds its intent, until reported or until the window passes (20.284315ms)
+✔ intents: a landed intent is done, and the same payment again is a new intent (4.998526ms)
+✔ intents: without block heights, only a report ends an attempt (10.904879ms)
+✔ reports: only for allowed decisions this guard made (7.640624ms)
+✔ rule 16: the window counts what was allowed; a failed report releases it, an unknown one keeps it; it slides (16.825193ms)
+✔ rule 16: each mint and the fees have their own window (20.898552ms)
+✔ rule 16, the boundaries: a payment exactly one window later is outside it, one millisecond earlier is inside (8.127057ms)
+  retry loop stopped at turn 3: DEFAULT -> DEFAULT -> REGROUND (loop-reground)
+✔ rule 16: a mint's window is its own (29.857865ms)
+✔ the concurrency battery: 50 proposals in one tick admit exactly what fits the window (62.453627ms)
+✔ rule 17: an identical failing retry loop is stopped by Keel as loop-reground, and the turn is measured (4.780363ms)
+✔ rule 18: under INHIBIT, an amount over the per-transaction cap times Keel's clamp (0.30) denies as inhibit-cap (3.000214ms)
+✔ varied, successful payments at a realistic pace are not stopped (28.121349ms)
+✔ every parsed proposal reaches Keel, allowed or denied; a malformed one does not (6.080428ms)
+✔ rule 19: anything that throws denies as fail-closed, and check never throws (6.777808ms)
+✔ rule order: a proposal that breaks several rules is denied by the first (47.108397ms)
+✔ the latch battery: it trips after the set run of denials; only a fresh, exact operator release frees it (16.650807ms)
+✔ receipts (D7): an allowed decision binds the message hash, expiry and policy; redeemed once, for those bytes only (4.971659ms)
+✔ decisions are a hash chain, and each carries its bytes, so the record replays on its own (2.978086ms)
+✔ D1: guard.policy is frozen, and changing it is refused (1.465841ms)
+✔ a controller that is not the verified binary is refused at creation (0.465329ms)
+✔ S36: a receipt reported expired, failed or landed no longer redeems (8.25377ms)
+✔ S80: a release's expiry is judged on the latest recorded time, so a clock that steps back cannot revive an expired release (2.398424ms)
+✔ S82: an attempt a trusted height shows can still land stays in the window past windowMs; reported expired, it leaves (4.217352ms)
+✔ LAT/POL-2: malformed release text and public signature inputs cannot authenticate (4.508689ms)
+✔ LIF-1/4: unsupported canonical values and malformed payload types refuse binding (2.700201ms)
+✔ LIF-4: malformed recorded request/response time and noncanonical content cannot restore (18.193608ms)
+✔ LIF-2: unknown requests, cross-policy signing and unsupported stages cannot journal (7.184254ms)
+✔ SIG-8: corrupted decision hashes refuse restore and deterministically diverge in replay (4.176729ms)
+✔ T2/T15: empty token-program instruction data is denied under both programs (0.404608ms)
+✔ the curve check and program-derived addresses agree with web3.js on random inputs (430.579677ms)
+✔ associated token accounts are derived as the token client derives them, for Token and Token-2022 (142.7063ms)
+✔ System Transfer is value-moving: the destination and lamports are counted, in every version (36.199967ms)
+✔ System TransferWithSeed, CreateAccount and CreateAccountWithSeed move lamports, and are counted (10.555115ms)
+✔ System CreateAccountAllowPrefund: funded lamports are counted; unfunded moves nothing; a principal account is never assigned away (5.341052ms)
+✔ System Assign and Allocate are denied: they hand an account to another program (2.154824ms)
+✔ durable nonces: AdvanceNonceAccount first marks the message, and every nonce instruction is denied (4.564776ms)
+✔ System: an unknown instruction, or data that does not fit its layout, is denied (2.411727ms)
+✔ Token Transfer from the principal's associated account infers the mint; to an allowed owner's account, names the owner (18.756733ms)
+✔ Token Transfer from any other account leaves the mint unknown, and a non-associated destination has no owner (2.545615ms)
+✔ TransferChecked names its mint and decimals, under Token and under Token-2022 (15.820674ms)
+✔ Token: Approve, CloseAccount and the other authority-granting instructions are denied; Revoke and SyncNative are benign (5.410099ms)
+✔ Token: every discriminator has the class the spec gives it, under both token programs (32.085035ms)
+✔ Token: a transfer whose authority does not sign (a multisig authority) is denied (10.147239ms)
+✔ ComputeBudget: the instruction names match the compute-budget client for every discriminator (11.954891ms)
+✔ System: the instruction names match the system client for every discriminator (1.055433ms)
+✔ fees, legacy and v0: price × limit, rounded up; the default limit when none is set; no price, no fee (6.2423ms)
+✔ fees: two of the same ComputeBudget instruction, or the deprecated RequestUnits, are denied (1.393889ms)
+✔ fees, v1: the priority fee is the config's lamport total, and any ComputeBudget instruction is a denied decoy (6.676483ms)
+✔ fees: 5,000 lamports per signature, and SOL to a tip account counts as a tip, not a payment (1.46916ms)
+✔ other signers: every required signer outside the principal is reported, for rule 6 (4.612166ms)
+✔ Memo is benign; a program the guard does not decode is listed as opaque (1.205906ms)
+✔ the message hash is the SHA-256 of the message bytes (0.638985ms)
+✔ the intent key ignores the blockhash, the fees, memos and the version, and follows what moves (5.766034ms)
+✔ v0: a destination loaded from a pinned table is classified like a static one (2.738095ms)
+✔ base58 of the system program id decodes to 32 zero bytes (sanity for the constants) (0.196832ms)
+  fuzz: 5000 inputs, 885 accepted and matched kit, 4115 refused with a named rule
+✔ base58 agrees with kit's address codec on 500 random keys and on known program ids (106.236531ms)
+✔ base58 refuses characters outside the alphabet; isAddress accepts only canonical 32-byte keys (1.369674ms)
+✔ golden set: 300 kit-built messages, 100 per version, decode exactly as kit decodes them (583.461002ms)
+✔ golden set: every instruction's accounts resolve as kit resolves them, v0 tables pinned (415.449668ms)
+✔ golden set: v1 config values are read from the mask, in mask order (100.704715ms)
+✔ legacy and v0 messages built by web3.js decode as web3.js reads them (104.506127ms)
+✔ versions other than legacy, 0 and 1 are unsupported (12.117487ms)
+✔ every truncation of a valid message is malformed, in every version (196.362015ms)
+✔ bytes after the end of a message are malformed (3.526248ms)
+✔ a non-canonical compact length is malformed (1.660814ms)
+✔ inconsistent headers are malformed (0.923983ms)
+✔ an instruction may not name the fee payer as its program, or an index past the accounts (0.96217ms)
+✔ an address listed twice is malformed (0.61369ms)
+✔ v1: an unknown config bit, a half-set priority-fee pair, a short config, or over 64 accounts are malformed (2.379677ms)
+✔ a message too large to land is malformed: 1,232 bytes for legacy and v0 with signatures, 4,096 for v1 (2.367059ms)
+✔ v0: an unpinned table, or an index past its pin, is lookup-table-unpinned (1.28401ms)
+✔ v0: writable entries of all tables come before read-only entries of any table (1.065164ms)
+✔ v0: a program loaded from a table, a table that loads nothing, or an address both static and looked up is malformed (0.862487ms)
+✔ legacy and v1 messages resolve from their static accounts alone (1.828935ms)
+✔ transactions: wire bytes split into the exact message and its signatures, in every version (55.949437ms)
+✔ transactions: a wrong signature count, a short or long tail, or a v0 message first is malformed (6.271974ms)
+✔ lookup table accounts decode as web3.js decodes them; a bad type or length is refused (3.677324ms)
+✔ a table pin is the table's address and its entries, and a deactivated table is refused (0.885376ms)
+✔ fuzz: 5000 mutated messages either decode exactly as kit does, or are refused with a DecodeError (721.382648ms)
+  drain battery, 40 of 40 denied:
+    T1   destination-not-allowed  SOL to a new recipient
+    T1   destination-not-allowed  SOL to a new recipient, as v0
+    T1   destination-not-allowed  SOL to a new recipient, as v1
+    T1   destination-not-allowed  an allowed payment with a second, hidden transfer to the attacker
+    T1   destination-not-allowed  a tip-shaped transfer to an address the policy does not name as a tip account
+    T1   destination-not-allowed  TransferWithSeed out of a seed-derived account, to the attacker
+    T27  destination-not-allowed  CreateAccountWithSeed funding an account at the attacker's address
+    T26  other-signer             CreateAccount funding a counterparty's fresh key, which must sign
+    T26  other-signer             CreateAccountAllowPrefund funding an account the counterparty holds
+    T2   instruction-denied       Token Approve: the attacker as delegate
+    T2   instruction-denied       Token ApproveChecked
+    T2   instruction-denied       Token SetAuthority: the account's owner changed to the attacker
+    T2   instruction-denied       Token CloseAccount: the rent to the attacker
+    T2   instruction-denied       Token-2022 Approve
+    T2   instruction-denied       Token Burn: value destroyed
+    T2   instruction-denied       System Assign: the agent's account handed to a program
+    T2   instruction-denied       System Allocate on the agent's account
+    T22  instruction-denied       p-token Batch, which could carry a transfer the guard would not see
+    T22  instruction-denied       a System instruction the guard does not know
+    T15  instruction-denied       Token-2022 TransferCheckedWithFee, an extension instruction
+    T5   over-per-tx-cap          an oversized send of a listed mint
+    T1   destination-not-allowed  a listed token to the attacker's associated account
+    T1   destination-not-allowed  a listed token to an account that is no one's associated account
+    T5   mint-not-allowed         an unlisted mint
+    T5   token-mint-unknown       a plain Transfer out of an account the guard cannot tie to a mint
+    T15  mint-not-allowed         a Token-2022 mint moved by the Token program
+    T3   program-not-allowed      a program off the allowlist
+    T3   opaque-program           an allowlisted swap program the guard cannot read
+    T19  durable-nonce-denied     a durable-nonce transfer, valid forever
+    T19  durable-nonce-denied     WithdrawNonceAccount to the attacker
+    T19  durable-nonce-denied     AuthorizeNonceAccount: the nonce handed to the attacker
+    T14  lookup-table-unpinned    a destination loaded from a table the policy does not pin
+    T14  lookup-table-unpinned    a destination at an index past the pinned prefix
+    T14  destination-not-allowed  a pinned table's entry that is the attacker's address
+    T23  over-fee-cap             a compute-unit price with no limit, so the default limit sets the fee
+    T23  over-fee-cap             a v1 config's priority fee over the cap
+    T23  instruction-denied       a v1 message with a ComputeBudget decoy beside a large config fee
+    T26  other-signer             a counterparty's co-signed instruction alongside the agent's payment
+    T22  unsupported-version      an unknown message version
+    T8   malformed-proposal       a valid message with bytes hidden after its end
+✔ the drain battery: 40 shapes, each denied before signing by its named rule (270.430366ms)
+✔ the drain battery's control: the same policy allows a plain payment to the treasury (7.828429ms)
+  workload: 160 entries: allow 67, redeem 16, deny:destination-not-allowed 16, report 16, deny:malformed-proposal 7, deny:intent-in-flight 15, release 13, deny:inhibit-cap 2, deny:over-window-cap 6, deny:latched 1, deny:unsupported-version 1
+✔ the reference workload exercises what a restart must restore (174.02197ms)
+✔ the record is synced to disk entry by entry, and a guard reopened on it has every entry (63.234671ms)
+✔ D11: a reopened guard decides as the uninterrupted one would: windows, intents, the latch and Keel survive (150.158772ms)
+  restart battery: 20 kills; the record has 160 entries
+✔ the restart battery: SIGKILLed at 20 random points and restarted each time, the record ends identical to an uninterrupted run (4432.077318ms)
+✔ a torn final line, the mark of a crash mid-write, is dropped: it was never acknowledged (24.17737ms)
+✔ a record that is broken before its last line refuses to start: fail closed (33.626824ms)
+✔ one writer: a second guard refuses; stale SDK ownership requires kernel recovery (193.124769ms)
+✔ replay recomputes every decision from its bytes and names the first divergence (24.061218ms)
+✔ a record that cannot be written denies, and the guard stays shut (1.193277ms)
+✔ npm run replay: exit 0 for a record that replays, 1 with the divergence under a narrower policy, 2 for no policy (405.967881ms)
+✔ the latch is a fact of the record: restored under a policy with a higher threshold, the guard stays latched (6.285401ms)
+✔ S83: a release in the record is verified on restore and in replay: a forged one refuses to start, and replay names it (2.212481ms)
+✔ S81: a lock file that names no process refuses to start, and says so plainly (0.360077ms)
+✔ inspectRecord agrees with the live guard: latch, window totals, intents in flight, counts (77.735942ms)
+✔ inspectRecord shows a latch, the run of denials, and what is still in flight (92.384701ms)
+✔ inspectRecord marks each decision that latched the guard, and lists the operator's releases (100.10646ms)
+✔ inspectRecord refuses a record that does not chain, as a restore would (3.728228ms)
+✔ D4: the loaded controller module and its embedded wasm hash to the pinned values (2.865945ms)
+✔ D4: a controller with one byte changed, in the wasm or in the JavaScript around it, is refused (0.881126ms)
+  U-2: tick() on telemetry accepts() refuses: null → DEFAULT; "0.5" → DEFAULT; true → DEFAULT; [0.7] → DEFAULT
+  U-3: Governor.create({ equilibrium: NaN, arousal: 5 }) → created; the next tick gives INHIBIT with equilibrium 0.30000000000000004
+✔ D4: a guard's decisions say the controller was verified by its bytes (18.643875ms)
+✔ U-2, reproduced: Keel's tick() takes telemetry that accepts() refuses, coercing it (1.553463ms)
+✔ D3: telemetry that is not three finite numbers in range never reaches Keel; the proposal denies, and Keel's state does not move (13.052623ms)
+✔ U-3, reproduced or refuted: Governor.create() with a non-finite or out-of-range state (0.423603ms)
+✔ sensor v1, intensity: the rate term is zero at or below the expected rate, and full at five times it (0.825015ms)
+✔ sensor v1, valence: denials, failures, expiries and unknown outcomes lower it; a landing resets it (0.355293ms)
+✔ sensor v1, repetition: the same payment 1; the same payment at higher fees 0.8; the same shape 0.5; else 0 (0.773046ms)
+✔ sensor v1 is the default, and its coefficients are stated (0.332436ms)
+✔ sensor v1, repetition: a payment repeated after it landed is a new payment, not a retry (0.212978ms)
+✔ sensor v1, repetition: the same shape at higher fees is escalation only against a payment that did not land (0.173005ms)
+✔ through the guard: the same payment again after it landed reads as the same shape; before it lands, as a retry (3.205295ms)
+✔ LAT-1 / RT-3: a single REGROUND denial by an earlier rule does not latch (58.063129ms)
+✔ LAT-2 / RT-3: two consecutive REGROUND denials latch, across report and restart (85.653564ms)
+✔ LAT-2 / RT-3: a decision without REGROUND breaks the consecutive pair (10.208712ms)
+✔ LAT-3 / RT-3: Keel's own loop denial latches immediately (2.79816ms)
+✔ LAT-4 / RT-3: the policy's consecutive-denial threshold still latches without REGROUND (9.198569ms)
+✔ LAT-5 / RT-3: replay names the accepted one-time divergence of a V0 latch (13.237032ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: identical failing retries, 400 ms (92.43159ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: identical failing retries, 5 s (55.751517ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: rising fees, failing, 400 ms (40.693987ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: two shapes alternating, failing, 400 ms (29.539483ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5: one early re-sign, then 10 normal payments (18.382842ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: cockpit demo: unknown outcome, re-sent once (21.694444ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: the kit's double signing: six payments signed twice (14.709346ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: drain storm: the same drain (11.523114ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: drain storm: new address and amount (12.284887ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 10% of the cap (13.127928ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 20% of the cap (16.469722ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 30% of the cap (30.974635ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 40% of the cap (23.172257ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 60% of the cap (23.983965ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 80% of the cap (16.198629ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: cockpit demo at its proportions (21.020997ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: benign: expected rate (632.686053ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: benign: bursts (437.867234ms)
+✔ OWN-1: SDK refuses stale ownership instead of removing the lock (49.733213ms)
+✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (15.178965ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (783.353352ms)
+✔ OWN-3: established protected records are not recreated if missing (22.468751ms)
+✔ pin-table prints the table's address and entries, read at finalized commitment (427.769707ms)
+✔ pin-table refuses: no --url, an account another program owns, no account, a deactivated table (872.851472ms)
+✔ a valid policy loads, with amounts as bigint and a 64-hex hash (8.960162ms)
+✔ the hash depends on content only: key order and amount spelling do not change it; any value does (4.910563ms)
+✔ the hash is SHA-256 of canonical JSON: sorted keys, no whitespace, amounts as decimal strings (1.733671ms)
+✔ D1: the policy is a frozen copy; neither the caller's object nor the returned one can widen it (2.823007ms)
+✔ D2: a cap that is not a whole, non-negative amount is refused, never read as no cap (12.543437ms)
+✔ D9: amounts past 2^53 are exact (5.867319ms)
+✔ rule 0: addresses must be canonical base58 keys, and the principal must hold one (7.988965ms)
+✔ rule 0: the latch's release key is never a principal key, so the agent cannot release its own latch (9.824347ms)
+✔ rule 0: one entry per mint and per table, a known token program, and a known cluster (7.7159ms)
+✔ rule 0: counts and durations are positive whole numbers; the guard id fits on one line (11.198842ms)
+✔ rule 0: v1 never signs messages or co-signs, and refuses any field it does not know (1.759227ms)
+✔ every problem is reported at once, so an operator fixes them in one pass (0.813708ms)
+✔ the classifier's context comes from the policy (7.131611ms)
+✔ LIF-1: duplicate admission returns the original entry without another reservation or controller tick (22.019638ms)
+✔ LIF-1: duplicate denied request returns the same denial without accumulating latch denials (24.053472ms)
+✔ LIF-1: changed bytes or grouping under the same identity are refused (4.297164ms)
+✔ LIF-1: client identities are separate namespaces and invalid identities fail closed (3.487769ms)
+✔ LIF-1: identity and original decision survive durable restart (36.832726ms)
+✔ LIF-1: resealed digest request evidence refuses restore and replay (10.066731ms)
+✔ LIF-1: resealed guard request evidence refuses restore and replay (6.251894ms)
+✔ LIF-1: resealed duplicate request evidence refuses restore and replay (9.425027ms)
+  benign: Poisson, 6 a minute (the policy's expected rate) · sensor v0: 497 of 600 stopped, 82.83% (95% CI 79.61% to 85.64%) {"loop-reground":1,"latched":496}
+  benign: Poisson, 6 a minute (the policy's expected rate) · sensor v1: 0 of 600 stopped, 0.00% (95% CI 0.00% to 0.64%) {}
+  benign: bursts of 5 payouts, 0.2 to 0.6 s apart, every 5 minutes · sensor v0: 130 of 600 stopped, 21.67% (95% CI 18.56% to 25.14%) {"loop-reground":1,"latched":129}
+  benign: bursts of 5 payouts, 0.2 to 0.6 s apart, every 5 minutes · sensor v1: 0 of 600 stopped, 0.00% (95% CI 0.00% to 0.64%) {}
+  benign, varied fees · sensor v0: 11 of 3000 stopped, 0.37% · sensor v1: 0 of 3000, 0.00% (95% CI 0.00% to 0.13%) {}
+  loop: identical retries, 400 ms apart · v0: turn 3, loop-reground (DEFAULT > DEFAULT > REGROUND) · v1: turn 3, loop-reground (DEFAULT > DEFAULT > REGROUND)
+  loop: identical retries, 5 s apart · v0: turn 3, loop-reground (DEFAULT > DEFAULT > REGROUND) · v1: turn 3, loop-reground (DEFAULT > DEFAULT > REGROUND)
+  loop: rising fees, 400 ms apart · v0: turn 3, loop-reground (DEFAULT > DEFAULT > REGROUND) · v1: turn 4, intent-attempts-exhausted (DEFAULT > DEFAULT > DEFAULT > REGROUND)
+  loop: two shapes alternating, 400 ms apart · v0: not stopped in 12 turns · v1: not stopped in 12 turns
+✔ the benign battery: 600 payments at the expected rate, and 600 in bursts; v0 against v1, measured (1203.346245ms)
+✔ the benign battery with varied priority fees: 5 × 600 payments at the expected rate, on fresh seeds, the operator releasing each latch; v0 against v1, measured (2049.491647ms)
+✔ the loop battery: identical retries, rising fees, two alternating shapes; the stop turn measured for v0 and v1 (13.126559ms)
+✔ POL-1: canonical readable summary and valid operator signature load (10.764271ms)
+✔ POL-2: missing signature refuses to start (2.701376ms)
+✔ POL-2: wrong operator refuses to start (2.560551ms)
+✔ POL-2: other guard refuses to start (1.910012ms)
+✔ POL-2: other cluster refuses to start (2.40409ms)
+✔ POL-2: different hash refuses to start (2.523433ms)
+✔ POL-2: noncanonical base64 refuses to start (1.383917ms)
+✔ POL-2: even a correctly signed dishonest summary is rejected (0.882515ms)
+✔ POL-2: missing authorization and non-text signature cannot authenticate (0.79987ms)
+✔ VER-2: equivalent but noncanonical recorded policy is not accepted as signed history (26.539163ms)
+✔ POL-3: the principal cannot become the pinned operator (1.688288ms)
+✔ POL-1: invalid versions and issued timestamps have no signing text (3.258372ms)
+✔ POL-1: summaries show SOL caps and count trailing destinations (2.573761ms)
+✔ POL-4/POL-5/VER-1: history verifies signed versions and replay preserves pending receipts and the latch (121.203411ms)
+✔ VER-1: equal version restarts are idempotent; changed signed content needs a higher version (58.998698ms)
+✔ VER-2/POL-4: resealed unsupported profiles and forged historical policy refuse replay and restore (12.912349ms)
+✔ VER-2: a caller cannot substitute another sensor under the signed profile (1.609521ms)
+✔ POL-4: a policy restart retains live reservations against the new cap (26.384653ms)
+✔ POL-4: the operator replay command uses signed history and an external public trust file (345.031215ms)
+✔ POL-4: extending the window reconstructs spending pruned under the old window (16.46807ms)
+✔ LIF-7: final landed evidence forbids new signing/send intent live and on replay (27.2489ms)
+✔ LIF-7: final failed evidence forbids new signing/send intent live and on replay (7.287069ms)
+✔ LIF-7: final expired evidence forbids new signing/send intent live and on replay (8.614225ms)
+✔ LIF-2: signature evidence requires durable redemption; valid lifecycle replays (6.540555ms)
+✔ LIF-7: unknown evidence preserves the admitted signing/send lifecycle (6.383014ms)
+✔ LIF-2: wrong-bytes cannot be persisted as signed evidence (2.013672ms)
+✔ LIF-2: wrong-signature cannot be persisted as signed evidence (2.040737ms)
+✔ LIF-2: wrong-wire cannot be persisted as signed evidence (1.771432ms)
+✔ LIF-2: noncanonical-base64 cannot be persisted as signed evidence (1.67058ms)
+✔ LIF-2: send-started requires signed bytes and valid lifetime; every stage is single-use (4.93181ms)
+✔ LIF-2: denied response persists; sent response without send intent is refused (2.952989ms)
+✔ LIF-2: signing and send-started evidence survive durable restart (25.369382ms)
+✔ LIF-2: resealed out-of-order and forged signing history refuse restore/replay (6.895209ms)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (22.042281ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (10.435502ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (10.531827ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (6.73496ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (5.604019ms)
+ℹ tests 235
+ℹ suites 0
+ℹ pass 235
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6141.613634
+Staged mutation baseline passes; no mutation score measured

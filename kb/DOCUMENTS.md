@@ -1,5 +1,8 @@
 # DOCUMENTS.md — the document register
 
+Mutation preparation updates SPEC (Draft 4.31), RISKS (1.24), CLAIMS (3.31), HANDOFF,
+PROGRESS, REGISTRY and the receipt index on 2026-10-06; S42 and `evals/ci/mutation.md`.
+
 Property-gate step updates SPEC, RISKS, CLAIMS, HANDOFF and PROGRESS on 2026-10-06;
 S33 and evidence in `evals/ci/properties.md`, continuing session run record.
 The fuzz step updates those records and RISKS; S34/evidence in `evals/ci/fuzz.md`.
@@ -30,9 +33,9 @@ substantive change; *last reviewed* moves at every review.
 | [docs/PRODUCT.md](../docs/PRODUCT.md) | 1.0 | current | architect | every seat, judges | 2026-09-30 | 2c.1 |
 | [docs/ROADMAP.md](../docs/ROADMAP.md) | Draft 3 | review | archivist, with the architect | the human, every seat, judges | 2026-10-05 | every leg |
 | [docs/READINESS.md](../docs/READINESS.md) | 2.0 | current | operator, with the evaluator | the human, every seat, auditors | 2026-10-05 | 3.10 |
-| [docs/RISKS.md](../docs/RISKS.md) | 1.23 | current | architect, with the evaluator | the human, every seat | 2026-10-06 | every Leg 3 milestone |
+| [docs/RISKS.md](../docs/RISKS.md) | 1.24 | current | architect, with the evaluator | the human, every seat | 2026-10-06 | every Leg 3 milestone |
 | [docs/OVERVIEW.md](../docs/OVERVIEW.md) | Draft 22 | draft | integrator | engineers new to the repo, judges | 2026-10-06 | 3.10 |
-| [docs/SPEC.md](../docs/SPEC.md) | Draft 4.30 | current (§13 approved; foundation IDs trace accepted scope) | architect | the builder, evaluator and integrator seats | 2026-10-06 | 3.1, 3.10 |
+| [docs/SPEC.md](../docs/SPEC.md) | Draft 4.31 | current (§13 approved; foundation IDs trace accepted scope) | architect | the builder, evaluator and integrator seats | 2026-10-06 | 3.1, 3.10 |
 | [docs/SIGNER.md](../docs/SIGNER.md) | Draft 9 | draft | integrator | operators and signer developers | 2026-10-06 | 3.1 |
 | [docs/CLIENT.md](../docs/CLIENT.md) | Draft 1 | draft | integrator | Node SDK consumers | 2026-10-06 | 5.3 |
 | [docs/RPC.md](../docs/RPC.md) | Draft 2 | draft | integrator | operators and signer developers | 2026-10-05 | 3.1 |
@@ -44,7 +47,7 @@ substantive change; *last reviewed* moves at every review.
 | [AGENTS.md](../AGENTS.md) | 1 | current | harness (Claude or the human; not Codex) | Codex | 2026-10-05 | the return to Claude |
 | [docs/ARCHITECTURE.md](../docs/ARCHITECTURE.md) | 4 | current | architect | everyone | 2026-10-01 | 2c.1 |
 | [docs/HACKATHON.md](../docs/HACKATHON.md) | 3 | current | archivist | the human, every seat | 2026-09-30 | S.1 |
-| [docs/CLAIMS.md](../docs/CLAIMS.md) | 3.30 | current (T3) | archivist, sourced | every public sentence | 2026-10-06 | every milestone |
+| [docs/CLAIMS.md](../docs/CLAIMS.md) | 3.31 | current (T3) | archivist, sourced | every public sentence | 2026-10-06 | every milestone |
 | [docs/papers/LITEPAPER.md](../docs/papers/LITEPAPER.md) | Draft 3 | draft | architect | judges, developers | 2026-10-01 | 2c.1 |
 | [docs/papers/THREAT-MODEL.md](../docs/papers/THREAT-MODEL.md) | Draft 3 | draft | architect, evaluator | reviewers, auditors, judges | 2026-10-03 | 3.10 |
 | [docs/papers/MARKET.md](../docs/papers/MARKET.md) | Draft 2 | draft | archivist | the human, judges | 2026-09-30 | S.1 |
