@@ -1,0 +1,38 @@
+caught archive CLI fault: duplicate-flag
+caught archive CLI fault: unknown-flag
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: ✔ SNP-2: command returns a pinned JSON receipt and leaves source unchanged (69.96187ms)
+✔ SNP-2: incorrect pins return typed JSON archive refusal, never success (138.911414ms)
+✔ SNP-2: explicit continuation identity verifies a segment (136.601206ms)
+✔ SNP-2: line byte limit includes the exact boundary (137.509144ms)
+✔ SNP-2: missing, unknown, duplicate and extra arguments are usage errors (830.591819ms)
+✔ SNP-2: help is explicit success and extra help arguments are refused (133.148074ms)
+✔ SNP-2: missing and symlink sources fail with redacted typed errors (135.805692ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1668.325817
+
+
+0 !== 1
+
+    at file:///home/dashy/Projects/Solanaut/evals/sdk/archive-cli-faults.ts:21:12
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

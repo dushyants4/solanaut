@@ -1,0 +1,8 @@
+caught archive CLI fault: duplicate-flag
+caught archive CLI fault: unknown-flag
+caught archive CLI fault: noncanonical-integer
+caught archive CLI fault: drop-head-pin
+caught archive CLI fault: invent-receipt
+caught archive CLI fault: successful-refusal-exit
+caught archive CLI fault: write-source
+All archive CLI faults caught; restored command passes

@@ -136,3 +136,5 @@ partial signing is unchanged; this is not installed signer or live-chain qualifi
    (`evals/ci/kills.md`); unacknowledged-write, signing/send and power-loss evidence remains owed.
    Bounded archive framing/chain/pin verification is installed and tested
    (`evals/sdk/archive.md`); signed snapshots, streamed state replay and backup recovery remain owed.
+   The installed read-only archive command checks those pins and returns typed JSON errors
+   (`evals/sdk/archive-cli.md`); it does not restore or authenticate guard state.

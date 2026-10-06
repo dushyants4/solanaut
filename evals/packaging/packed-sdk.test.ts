@@ -107,10 +107,15 @@ test("SNP-1/PKG-1: installed archive verification checks real history and reject
   const result=spawnSync(process.execPath,["--input-type=module","-e",script,inputPolicy,Buffer.from(transfer(2)).toString("base64")],{cwd:consumer,encoding:"utf8"});
   assert.equal(result.status,0,result.stderr);
   assert.deepEqual(JSON.parse(result.stdout),{entries:1,head:true,failure:{typed:true,code:"head"}});
+  const command=spawnSync(join(consumer,"node_modules/.bin/solanaut-verify-archive"),["history.jsonl"],{cwd:consumer,encoding:"utf8"});
+  assert.equal(command.status,0,command.error?.message ?? command.stderr);
+  assert.equal(JSON.parse(command.stdout).entries,1);
+  const refused=spawnSync(join(consumer,"node_modules/.bin/solanaut-verify-archive"),["history.jsonl","--head","0".repeat(64)],{cwd:consumer,encoding:"utf8"});
+  assert.equal(refused.status,1); assert.equal(JSON.parse(refused.stderr).error.code,"head");
 });
 
 test("PKG-3: installed replay and table-pin commands execute with their documented usage exits", () => {
-  for (const bin of ["solanaut-replay", "solanaut-pin-table"]) {
+  for (const bin of ["solanaut-replay", "solanaut-pin-table", "solanaut-verify-archive"]) {
     const result = spawnSync(join(consumer, "node_modules/.bin", bin), [], { cwd: consumer, encoding: "utf8" });
     assert.equal(result.status, 2, `${bin}: ${result.error?.message ?? result.stderr}`);
     assert.match(result.stdout + result.stderr, /usage:/i);

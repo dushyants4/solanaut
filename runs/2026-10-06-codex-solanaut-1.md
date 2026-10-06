@@ -7,6 +7,11 @@ all security, validation and human-owned release gates.
 
 ## Did
 
+- Archive step `f1b6010` privately pushed; ten close gates and CI `37491296517` green.
+  Added read-only operator command under SNP-2, with canonical arguments, JSON receipts/errors,
+  separate usage/refusal exits and compiled installed executable. Eight command cases and
+  seven final faults pass; installed consumers exercise the binary. Receipt `evals/sdk/archive-cli.md`.
+
 - Kill step `91589b3` privately pushed; ten close gates and CI `37486837521` green.
   Continued into SNP-1 bounded archive verification inside accepted ADR-019. Added strict
   framing/chain/pins/source checks and typed installed exports. Sixteen final faults caught;
@@ -109,6 +114,9 @@ all security, validation and human-owned release gates.
 
 ## Changed
 
+- Archive command adds a native TypeScript bin and tests, compiled release inclusion and
+  installed executable checks; documents strict arguments and actionable typed failures.
+
 - Archive step adds SDK reader/tests, maintained fault campaign and installed exports;
   updates STORAGE, SPEC, OVERVIEW, RISKS, claims/register, progress, handoff and receipt index.
 
@@ -121,6 +129,10 @@ all security, validation and human-owned release gates.
   this history and must pass compatibility checks before rollback.
 
 ## Found
+
+- CLI numeric fault initially survived because continuation validation masked its fixtures.
+  Added a valid line-limit numeric domain to isolate spelling; seven final faults now fail.
+  Installed checks fail first on absent executable, then pass after release-build wiring.
 
 - Archive reader initially rejected fractional monotonic timestamps; corrected without
   weakening safe-integer sequences. Null options and mock typing failed; corrected. A test
@@ -246,6 +258,12 @@ all security, validation and human-owned release gates.
 - Existing protected-file owed edit O1 remains in HANDOFF §6; no protected file changed.
 
 ## Provenance
+
+Archive command: `npm test` 379 passes; typecheck zero; eight focused cases/seven faults,
+six installed checks/four package faults. Full bite: 24 campaigns/170 caught faults,
+all sources restored. Receipt `evals/sdk/archive-cli.md`; pre-push close nine gates.
+Two documentation patches had unmatched anchors and applied nothing; corrected single
+anchors afterwards. Staged secret-pattern review and final private close follow.
 
 Archive step: final sequential `npm test` 371 passes, typecheck zero, six installed-package
 checks/four package faults pass. Full `npm run test:bite` passes 23 campaigns/163 faults,

@@ -1,0 +1,16 @@
+✔ SNP-2: command returns a pinned JSON receipt and leaves source unchanged (150.429172ms)
+✔ SNP-2: incorrect pins return typed JSON archive refusal, never success (862.16639ms)
+✔ SNP-2: explicit continuation identity verifies a segment (543.073757ms)
+✔ SNP-2: line byte limit includes the exact boundary (451.858881ms)
+✔ SNP-2: missing, unknown, duplicate and extra arguments are usage errors (2349.677968ms)
+✔ SNP-2: help is explicit success and extra help arguments are refused (465.629864ms)
+✔ SNP-2: numeric spelling is canonical even when the value would otherwise pass (977.255159ms)
+✔ SNP-2: missing and symlink sources fail with redacted typed errors (379.821384ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6337.230768

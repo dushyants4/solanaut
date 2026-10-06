@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.28** · 2026-10-06 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.29** · 2026-10-06 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -835,6 +835,7 @@ snapshot and RPC IDs are allocated with their implementation steps. Existing SIG
 | STO-1 | a short write cannot acknowledge an incomplete record | forced short writes, complete JSON line and matching decision hash |
 | STO-2 | write, permission, progress or sync failure denies and closes the writer | ENOSPC, EACCES, zero progress and fsync injection under SIG-8 |
 | SNP-1 | immutable archive verification uses bounded line buffering, validates record framing/hash chain/continuation identity and optional external head/digest pins; malformed, changing or non-regular sources fail with typed errors | streamed archive positive/negative/boundary and source-change/resource fixtures; this is structural integrity, not signed snapshot/state or policy authentication |
+| SNP-2 | an installed read-only archive command accepts explicit head/digest/continuation/line-limit options, rejects unknown/duplicate/malformed arguments and prints JSON receipts or typed errors; exits distinguish success, archive refusal and usage | command positive/negative/boundary cases, unchanged source bytes and actual installed npm executable |
 | LIF-1 | request identity is namespaced by guard/client/ID and bound to canonical message/group payload in the admission entry; a same-payload retry returns that entry without evaluation, and changed payload or duplicate recorded identity is refused | request-identity battery, restore and replay |
 | LIF-2 | signed wire/signature, send-started intent and response are synced in the admission chain; signed evidence requires durable redemption and admitted bytes, send intent requires valid lifetime, and stages cannot repeat | signing-history battery, forged wire/signature and out-of-order replay |
 | LIF-3 | executor signs only after durable redemption and sends only after durable send intent; recovery never re-signs an unresolved redemption or resends send-started bytes; deadlines and payload identity remain enforced | fake-RPC core battery across persistence boundaries and reconstructed restarts |
@@ -929,3 +930,4 @@ where needed, and UTC issued timestamps include milliseconds. Policies remain re
 | Draft 4.26 | 2026-10-06 | CI-2 queued SDK admission workload, evidence counts and maintained faults; broader concurrency qualification remains owed. |
 | Draft 4.27 | 2026-10-06 | CI-2 verified persisted-prefix SIGKILL recovery and pinned Linux job; other crash boundaries remain owed. |
 | Draft 4.28 | 2026-10-06 | SNP-1 bounded structural archive verification, immutable option pins and installed SDK exports; authenticated snapshots and streamed state replay remain owed. |
+| Draft 4.29 | 2026-10-06 | SNP-2 installed read-only archive command, strict arguments and typed JSON receipts/errors; full recovery gates unchanged. |

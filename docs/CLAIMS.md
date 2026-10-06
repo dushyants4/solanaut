@@ -82,6 +82,8 @@ second definition change, re-measured on fresh seeds, and S7 restated with both 
 
 | S39 | The SDK verifies archive framing, hash-chain continuity and optional external pins with bounded line buffering | **measured (builder-authored local Linux SDK evidence)** | `evals/sdk/archive.md`, 2026-10-06, Node 26.7.0: sixteen archive cases and sixteen final faults pass after a source-size mutation miss and blocking FIFO regression; six installed-package cases/four package faults pass. Regenerate: `node --test packages/sdk/test/archive.test.ts`; `node evals/sdk/archive-faults.ts`; `npm run release:prepare`; `npm run test:package`. Structural integrity only; not policy replay, authenticated snapshots, measured restart memory or backup recovery |
 
+| S40 | The installed SDK candidate supplies a read-only archive verification command with JSON receipts and typed refusal errors | **measured (builder-authored local Linux package evidence)** | `evals/sdk/archive-cli.md`, 2026-10-06, Node 26.7.0: eight command cases and seven final faults pass after a numeric-validation mutation miss; six installed-package cases and four package faults pass. Regenerate: `node --test packages/sdk/test/archive-cli.test.ts`; `node evals/sdk/archive-cli-faults.ts`; `npm run release:prepare`; `npm run test:package`. Structural verification only; no policy replay, signing, network request or recovery qualification |
+
 **Not yet claimable, and why:**
 - **Any detection rate or block rate, and any false-stop rate beyond S7's synthetic streams.** Nothing else has been
   measured. Milestone 2b.1 runs the Beta batteries and 3.10 the adversarial one; until then no percentage exists.

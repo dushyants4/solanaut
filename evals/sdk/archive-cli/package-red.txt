@@ -1,0 +1,62 @@
+
+> test:package
+> node --test evals/packaging/*.test.ts
+
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (77.758722ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (0.320121ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (255.852995ms)
+✖ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (57.05648ms)
+✖ PKG-3: installed replay and table-pin commands execute with their documented usage exits (65.995176ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (44.647165ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 4
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1173.761554
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:91:1
+✖ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (57.05648ms)
+  AssertionError [ERR_ASSERTION]: spawnSync /tmp/solanaut-consumer-s7se8q/consumer/node_modules/.bin/solanaut-verify-archive ENOENT
+  
+  null !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:111:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/packaging/packed-sdk.test.ts:117:1
+✖ PKG-3: installed replay and table-pin commands execute with their documented usage exits (65.995176ms)
+  AssertionError [ERR_ASSERTION]: solanaut-verify-archive: spawnSync /tmp/solanaut-consumer-s7se8q/consumer/node_modules/.bin/solanaut-verify-archive ENOENT
+  
+  null !== 2
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:120:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

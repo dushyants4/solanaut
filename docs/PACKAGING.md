@@ -1,10 +1,12 @@
 # PACKAGING.md — private SDK candidate
 
-> **Draft 3** · 2026-10-06 · owner: integrator · for: developers and release reviewers.
+> **Draft 4** · 2026-10-06 · owner: integrator · for: developers and release reviewers.
 > This is release preparation, not a stable release. Register: `kb/DOCUMENTS.md`.
 
 The candidate now includes `createSendingClient` and its typed errors (`docs/CLIENT.md`).
 It also includes `verifyArchive` and typed structural-verification errors (`docs/STORAGE.md`).
+The compiled `solanaut-verify-archive` executable checks pinned archives without a loader;
+installed tests exercise success, wrong-pin refusal and usage (`evals/sdk/archive-cli.md`).
 Installed consumer checks exercise its JavaScript and declarations without loader flags;
 this does not qualify an installed signer service.
 

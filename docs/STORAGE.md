@@ -1,6 +1,6 @@
 # Persistent record ownership
 
-> **Draft 2** · 2026-10-06 · owner: integrator · for: SDK users and Linux operators.
+> **Draft 3** · 2026-10-06 · owner: integrator · for: SDK users and Linux operators.
 > Register: `kb/DOCUMENTS.md`. Foundation evidence: `evals/sdk/ownership.md` (claim S16).
 
 An ordinary `createGuard({ policy, log: path })` uses manual SDK ownership. It refuses an
@@ -55,3 +55,25 @@ in an operator-owned local Linux directory; stop writers before copying and veri
 Verification detects observed changes during its read and does not freeze the source afterwards.
 Evidence and precise limitations: `evals/sdk/archive.md` (S39). Full snapshot and backup
 recovery qualification remains owed.
+
+The installed candidate also supplies a read-only operator command:
+
+```bash
+solanaut-verify-archive history.jsonl --head "$recorded_head" --sha256 "$recorded_sha256"
+```
+
+From the source checkout, use `npm run verify-archive --` with the same arguments. Run
+`solanaut-verify-archive --help` for optional continuation and line-limit flags. The command
+prints a JSON receipt on success, or a JSON `error` with `code` and `message` on archive
+refusal. Incorrect arguments print usage; automation can distinguish these exit statuses.
+See SNP-2 evidence and the exact exit contract in `evals/sdk/archive-cli.md` (S40).
+
+| Error code | Operator action |
+|---|---|
+| `source` | Check the file exists, permissions allow reads and it is a single-link regular file on supported local Linux storage. |
+| `framing`, `record`, `chain` | Retain the failed copy and original evidence. Check the complete copy, continuation identity and compatible record format; do not edit history to make it verify. |
+| `changed-source` | Stop writers and create a fresh immutable copy before verification. |
+| `head`, `digest` | Check the independently retained pins against the intended archive. A mismatch is evidence to investigate, not a reason to replace the pins with the observed result. |
+
+Successful verification still needs authenticated policy replay and a tested recovery drill
+before a backup can be declared recoverable. The command neither admits proposals nor signs.
