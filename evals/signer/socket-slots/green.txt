@@ -1,0 +1,20 @@
+✔ SIG-2: only propose/report/status dispatch, with one bounded response and request identity (23.684076ms)
+✔ SIG-10: socket permissions restrict its group and parent must be protected (3.452222ms)
+✔ SIG-2/3: malformed JSON, unknown fields, bad IDs/deadlines and multiple frames never dispatch (6.156686ms)
+✔ SIG-2: oversized or invalid UTF-8 frames refuse before dispatch (2.184732ms)
+✔ SIG-3: idle and unfinished requests end within the configured bounded read timeout (62.780883ms)
+✔ SIG-1: handler errors return a fixed code without exposing internal exception text (1.566772ms)
+✔ SIG-10: existing non-socket and symlink paths are never removed (0.746277ms)
+✔ SIG-10: a live listener cannot be replaced (1.291775ms)
+✔ SIG-3: trickling bytes cannot extend the absolute connection deadline (42.073808ms)
+✔ SIG-1/2: oversized or unserialisable handler responses become fixed internal errors (3.059545ms)
+✔ SIG-8/10: an abandoned socket is recovered after its process exits (38.237849ms)
+✔ SIG-2/3: clients holding their half open cannot exhaust completed connection slots (28.665302ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 381.652055

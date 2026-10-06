@@ -24,14 +24,14 @@ export async function startSocket(path: string, handler: (request: Record<string
   const sockets = new Set<Socket>();
   const server = createServer((s) => {
     s.on("error", () => s.destroy());
-    if (sockets.size >= 64) { s.end('{"ok":false,"error":{"code":"busy"}}\n'); return; }
+    if (sockets.size >= 64) { s.end('{"ok":false,"error":{"code":"busy"}}\n', () => s.destroy()); return; }
     sockets.add(s);
     let buffer = Buffer.alloc(0); let dispatched = false; let done = false;
     const finish = (body: unknown) => {
       if (done) return; let wire: string;
       try { wire = JSON.stringify(body); if (Buffer.byteLength(wire) > 16_383) throw new Error("response too large"); }
       catch { wire = '{"ok":false,"error":{"code":"internal"}}'; }
-      done = true; clearTimeout(timer); s.end(wire + "\n");
+      done = true; clearTimeout(timer); s.end(wire + "\n", () => s.destroy());
     };
     const fail = (code: string) => finish({ ok: false, error: { code } });
     const timer = setTimeout(() => fail("timeout"), timeoutMs);

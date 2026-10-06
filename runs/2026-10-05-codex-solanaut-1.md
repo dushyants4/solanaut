@@ -8,6 +8,12 @@ prepare the original repository for eventual human-approved public release.
 
 ## Did
 
+- LIF-4 `7c42a41` pushed; CI `37404614332` passes all runtimes. A follow-up socket review found
+  completed connections could retain slots if clients held their half open. New regression
+  exposes busy refusal at slot 64 and shutdown hang. Corrected normal and busy connection cleanup;
+  twelve socket cases pass, eight faults caught, full suite 278 passes and typecheck clean.
+  Receipt: `evals/signer/socket-slots.md`. Operational handler remains next.
+
 - Socket `7b55b37` pushed, post-push close 10/10 and CI `37404207616` passes all runtimes.
 - LIF-4 control journal starts there: nine initial missing-API failures, nine passes, eight valid
   faults caught. Full suite 277 passes, typecheck clean and four installed SDK checks pass.
@@ -114,6 +120,12 @@ prepare the original repository for eventual human-approved public release.
 - ADR-019/020: concrete proposed contracts, not implementation or accepted architecture.
 
 ## Found
+
+- Half-open socket regression's first run hung during shutdown and was stopped explicitly;
+  bounded repeat retains both assertion and cancellation. Trickle fixture then saw EPIPE racing
+  the actual timeout response; now parses received response on close and still requires the same
+  timeout code/count. An escaped-newline selector did not match the new fault site; corrected
+  to a raw string. All failures preserved; no deadline or connection cap widened.
 
 - Socket's first mutation run could not classify a permission fault because a failing assertion
   left a server open. Added cleanup for unexpectedly successful negative fixtures, retained the

@@ -1,0 +1,9 @@
+caught socket fault: public-parent
+caught socket fault: unknown-method
+caught socket fault: empty-identity
+caught socket fault: unbounded-frame
+caught socket fault: unbounded-response
+caught socket fault: activity-deadline
+caught socket fault: replace-live-listener
+caught socket fault: hold-completed-slot
+All socket faults caught; restored source passes

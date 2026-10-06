@@ -1,0 +1,40 @@
+✔ SIG-2: only propose/report/status dispatch, with one bounded response and request identity (30.050262ms)
+✔ SIG-10: socket permissions restrict its group and parent must be protected (3.273186ms)
+✔ SIG-2/3: malformed JSON, unknown fields, bad IDs/deadlines and multiple frames never dispatch (8.407138ms)
+✔ SIG-2: oversized or invalid UTF-8 frames refuse before dispatch (2.948451ms)
+✔ SIG-3: idle and unfinished requests end within the configured bounded read timeout (63.03313ms)
+✔ SIG-1: handler errors return a fixed code without exposing internal exception text (1.393029ms)
+✔ SIG-10: existing non-socket and symlink paths are never removed (0.752103ms)
+✔ SIG-10: a live listener cannot be replaced (1.358331ms)
+✖ SIG-3: trickling bytes cannot extend the absolute connection deadline (43.680024ms)
+✔ SIG-1/2: oversized or unserialisable handler responses become fixed internal errors (5.247024ms)
+✔ SIG-8/10: an abandoned socket is recovered after its process exits (38.952633ms)
+✔ SIG-2/3: clients holding their half open cannot exhaust completed connection slots (25.035682ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 11
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 405.286122
+
+✖ failing tests:
+
+test at apps/signer/test/socket.test.ts:88:1
+✖ SIG-3: trickling bytes cannot extend the absolute connection deadline (43.680024ms)
+  Error: write EPIPE
+      at afterWriteDispatched (node:internal/stream_base_commons:159:15)
+      at writeGeneric (node:internal/stream_base_commons:150:3)
+      at Socket._writeGeneric (node:net:1258:11)
+      at Socket._write (node:net:1270:8)
+      at writeOrBuffer (node:internal/streams/writable:574:12)
+      at _write (node:internal/streams/writable:503:10)
+      at Writable.write (node:internal/streams/writable:512:10)
+      at Timeout._onTimeout (file:///home/dashy/Projects/Solanaut/apps/signer/test/socket.test.ts:93:66)
+      at listOnTimeout (node:internal/timers:685:17)
+      at process.processTimers (node:internal/timers:618:7) {
+    errno: -32,
+    code: 'EPIPE',
+    syscall: 'write'
+  }

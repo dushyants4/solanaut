@@ -11,6 +11,7 @@ const faults = [
   ["unbounded-response", "Buffer.byteLength(wire) > 16_383", "false"],
   ["activity-deadline", 'const timer = setTimeout(() => fail("timeout"), timeoutMs);', 'const timer = setTimeout(() => fail("timeout"), timeoutMs); s.on("data", () => timer.refresh());'],
   ["replace-live-listener", 'probe.once("connect", () => { probe.destroy(); reject(new Error("socket has a live listener")); });', 'probe.once("connect", () => { probe.destroy(); resolve(); });'],
+  ["hold-completed-slot", String.raw`s.end(wire + "\n", () => s.destroy());`, String.raw`s.end(wire + "\n");`],
 ] as const;
 const battery = () => spawnSync(process.execPath, ["--test", "apps/signer/test/socket.test.ts"], { encoding: "utf8", timeout: 30_000 });
 const baseline = battery(); assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
@@ -20,7 +21,7 @@ for (const [name, from, to] of faults) {
   try {
     writeFileSync(path, original.replace(from, to));
     const result = battery(); const output = result.stdout + result.stderr;
-    assert.equal(result.status, 1, output); assert.match(output, /tests 11/); assert.match(output, /AssertionError/);
+    assert.equal(result.status, 1, output); assert.match(output, /tests 12/); assert.match(output, /AssertionError/);
     console.log(`caught socket fault: ${name}`);
   } finally { writeFileSync(path, original); }
 }

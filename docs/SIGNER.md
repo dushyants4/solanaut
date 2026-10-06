@@ -1,6 +1,6 @@
 # Signer development and trust boundary
 
-> **Draft 2** · 2026-10-05 · owner: integrator · for: operators and signer developers.
+> **Draft 3** · 2026-10-05 · owner: integrator · for: operators and signer developers.
 > Register: `kb/DOCUMENTS.md`. The operational service is still being implemented.
 
 The executor and devnet RPC boundary live under `apps/signer/src/`. Their current evidence uses
@@ -32,7 +32,9 @@ Connections have an absolute deadline, not an activity timeout, and responses ar
 The core must still validate request deadlines and persist valid identities and responses.
 
 The parent must be owned by the service user, mode 0750 and free of symlink ancestors;
-the socket is 0660. At most 64 active connections are accepted. Only after holding the
+the socket is 0660. At most 64 active connections are accepted. Normal and busy connections
+are destroyed after their response write callback, so clients cannot retain completed slots
+by holding their half open (S25). Only after holding the
 record's exclusive kernel ownership may a service recover an owned abandoned socket;
 a live listener or non-socket path is refused. The transport helper does not acquire that
 ownership itself. Closing a timed-out connection does not rewind signing work already

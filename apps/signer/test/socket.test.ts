@@ -89,11 +89,10 @@ test("SIG-3: trickling bytes cannot extend the absolute connection deadline", as
   const { path } = location(); const service = await startSocket(path, async () => ({}), { timeoutMs: 40 });
   try {
     const result = await new Promise<any>((resolve, reject) => {
-      const socket = connect(path); let body = ""; let count = 0;
+      const socket = connect(path); let body = ""; let count = 0; let error: Error | undefined;
       const timer = setInterval(() => { if (++count < 15) socket.write(" "); else clearInterval(timer); }, 10);
-      socket.on("error", reject); socket.on("data", (b) => { body += b.toString(); });
-      socket.on("close", () => clearInterval(timer));
-      socket.on("end", () => { try { resolve({ body: JSON.parse(body), count }); } catch (error) { reject(error); } });
+      socket.on("error", (e) => { error = e; }); socket.on("data", (b) => { body += b.toString(); clearInterval(timer); });
+      socket.on("close", () => { clearInterval(timer); try { resolve({ body: JSON.parse(body), count }); } catch (e) { reject(error ?? e); } });
     });
     assert.equal(result.body.error.code, "timeout"); assert.ok(result.count < 15, "trickle extended deadline");
   } finally { await service.close(); }
@@ -116,4 +115,23 @@ test("SIG-8/10: an abandoned socket is recovered after its process exits", async
     try { const r = await exchange(path, JSON.stringify(request()) + "\n"); assert.equal(r.result.recovered, true); }
     finally { await service.close(); }
   } finally { child.kill("SIGKILL"); }
+});
+test("SIG-2/3: clients holding their half open cannot exhaust completed connection slots", async () => {
+  const { path } = location(); const held: ReturnType<typeof connect>[] = [];
+  const service = await startSocket(path, async () => ({ ready: true }));
+  try {
+    for (let i = 0; i < 65; i++) {
+      const r = await new Promise<any>((resolve, reject) => {
+        const s = connect({ path, allowHalfOpen: true }); held.push(s); let body = "";
+        const timer = setTimeout(() => { s.destroy(); reject(new Error("half-open fixture read timeout")); }, 2000);
+        s.on("error", reject); s.on("data", (b) => {
+          body += b.toString(); if (!body.endsWith("\n")) return;
+          clearTimeout(timer); try { resolve(JSON.parse(body)); } catch (error) { reject(error); }
+        });
+        s.on("connect", () => s.write(JSON.stringify(request()) + "\n"));
+      });
+      try { assert.equal(r.ok, true, `completed connections occupied slot ${i}`); }
+      catch (error) { console.error(error); throw error; }
+    }
+  } finally { for (const s of held) s.destroy(); await service.close(); }
 });
