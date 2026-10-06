@@ -1,0 +1,99 @@
+caught signer core fault: ignore-deadline
+caught signer core fault: ignore-completed-payload
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /AssertionError/. Input:
+
+'✔ LIF-3/SIG-3: same concurrent and completed request signs/sends only once; expired retry returns response (20.42634ms)\n' +
+  '✔ LIF-3/SIG-3: deadlines and changed payloads refuse before signing (4.746948ms)\n' +
+  '✔ LIF-3: restart after admission can redeem/sign; restart after redemption cannot sign again (7.277428ms)\n' +
+  '✖ LIF-3: signed but unsent restart sends once; send-started restart never resends (5.786872ms)\n' +
+  '✖ LIF-3/SIG-7: caller hint cannot report outcome; only chain evidence changes reservation (3.200894ms)\n' +
+  '✔ LIF-3: unknown or changed IDs fail closed; malformed base64 is not decoded leniently (1.122476ms)\n' +
+  '✔ LIF-3: send timeout and contradictory signature retain uncertain response; retry never sends (7.285458ms)\n' +
+  '✔ LIF-3: lost persisted response after successful send is recovered without another send (4.556147ms)\n' +
+  '✔ LIF-3: failed redeem persistence never crosses its next side-effect boundary (1.407255ms)\n' +
+  '✔ LIF-3: failed signed persistence never crosses its next side-effect boundary (1.762109ms)\n' +
+  '✔ LIF-3: failed send-started persistence never crosses its next side-effect boundary (2.937844ms)\n' +
+  '✔ LIF-3: deadline reached while signing persists bytes but never starts a send (2.993583ms)\n' +
+  'ℹ tests 12\n' +
+  'ℹ suites 0\n' +
+  'ℹ pass 10\n' +
+  'ℹ fail 2\n' +
+  'ℹ cancelled 0\n' +
+  'ℹ skipped 0\n' +
+  'ℹ todo 0\n' +
+  'ℹ duration_ms 270.903413\n' +
+  '\n' +
+  '✖ failing tests:\n' +
+  '\n' +
+  'test at apps/signer/test/core.test.ts:58:1\n' +
+  '✖ LIF-3: signed but unsent restart sends once; send-started restart never resends (5.786872ms)\n' +
+  '  TypeError: Assignment to constant variable.\n' +
+  '      at report (file:///home/dashy/Projects/Solanaut/apps/signer/src/core.ts:93:18)\n' +
+  '      at async Object.recover (file:///home/dashy/Projects/Solanaut/apps/signer/src/core.ts:98:20)\n' +
+  '      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/core.test.ts:67:7)\n' +
+  '      at async Test.run (node:internal/test_runner/test:1404:7)\n' +
+  '      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)\n' +
+  '\n' +
+  'test at apps/signer/test/core.test.ts:74:1\n' +
+  '✖ LIF-3/SIG-7: caller hint cannot report outcome; only chain evidence changes reservation (3.200894ms)\n' +
+  '  TypeError: Assignment to constant variable.\n' +
+  '      at Object.report (file:///home/dashy/Projects/Solanaut/apps/signer/src/core.ts:93:18)\n' +
+  '      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/core.test.ts:78:5)\n' +
+  '      at async Test.run (node:internal/test_runner/test:1404:7)\n' +
+  '      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)\n'
+
+    at file:///home/dashy/Projects/Solanaut/evals/signer/core-faults.ts:21:86
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '✔ LIF-3/SIG-3: same concurrent and completed request signs/sends only once; expired retry returns response (20.42634ms)\n' +
+    '✔ LIF-3/SIG-3: deadlines and changed payloads refuse before signing (4.746948ms)\n' +
+    '✔ LIF-3: restart after admission can redeem/sign; restart after redemption cannot sign again (7.277428ms)\n' +
+    '✖ LIF-3: signed but unsent restart sends once; send-started restart never resends (5.786872ms)\n' +
+    '✖ LIF-3/SIG-7: caller hint cannot report outcome; only chain evidence changes reservation (3.200894ms)\n' +
+    '✔ LIF-3: unknown or changed IDs fail closed; malformed base64 is not decoded leniently (1.122476ms)\n' +
+    '✔ LIF-3: send timeout and contradictory signature retain uncertain response; retry never sends (7.285458ms)\n' +
+    '✔ LIF-3: lost persisted response after successful send is recovered without another send (4.556147ms)\n' +
+    '✔ LIF-3: failed redeem persistence never crosses its next side-effect boundary (1.407255ms)\n' +
+    '✔ LIF-3: failed signed persistence never crosses its next side-effect boundary (1.762109ms)\n' +
+    '✔ LIF-3: failed send-started persistence never crosses its next side-effect boundary (2.937844ms)\n' +
+    '✔ LIF-3: deadline reached while signing persists bytes but never starts a send (2.993583ms)\n' +
+    'ℹ tests 12\n' +
+    'ℹ suites 0\n' +
+    'ℹ pass 10\n' +
+    'ℹ fail 2\n' +
+    'ℹ cancelled 0\n' +
+    'ℹ skipped 0\n' +
+    'ℹ todo 0\n' +
+    'ℹ duration_ms 270.903413\n' +
+    '\n' +
+    '✖ failing tests:\n' +
+    '\n' +
+    'test at apps/signer/test/core.test.ts:58:1\n' +
+    '✖ LIF-3: signed but unsent restart sends once; send-started restart never resends (5.786872ms)\n' +
+    '  TypeError: Assignment to constant variable.\n' +
+    '      at report (file:///home/dashy/Projects/Solanaut/apps/signer/src/core.ts:93:18)\n' +
+    '      at async Object.recover (file:///home/dashy/Projects/Solanaut/apps/signer/src/core.ts:98:20)\n' +
+    '      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/core.test.ts:67:7)\n' +
+    '      at async Test.run (node:internal/test_runner/test:1404:7)\n' +
+    '      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)\n' +
+    '\n' +
+    'test at apps/signer/test/core.test.ts:74:1\n' +
+    '✖ LIF-3/SIG-7: caller hint cannot report outcome; only chain evidence changes reservation (3.200894ms)\n' +
+    '  TypeError: Assignment to constant variable.\n' +
+    '      at Object.report (file:///home/dashy/Projects/Solanaut/apps/signer/src/core.ts:93:18)\n' +
+    '      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/core.test.ts:78:5)\n' +
+    '      at async Test.run (node:internal/test_runner/test:1404:7)\n' +
+    '      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)\n',
+  expected: /AssertionError/,
+  operator: 'match',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

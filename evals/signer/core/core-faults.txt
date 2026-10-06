@@ -1,0 +1,6 @@
+caught signer core fault: ignore-deadline
+caught signer core fault: ignore-completed-payload
+caught signer core fault: invent-outcome
+caught signer core fault: send-without-intent
+caught signer core fault: forget-persisted-response
+All signer core faults caught; restored source passes

@@ -1,0 +1,20 @@
+✔ LIF-3/SIG-3: same concurrent and completed request signs/sends only once; expired retry returns response (23.871973ms)
+✔ LIF-3/SIG-3: deadlines and changed payloads refuse before signing (5.347953ms)
+✔ LIF-3: restart after admission can redeem/sign; restart after redemption cannot sign again (5.711734ms)
+✔ LIF-3: signed but unsent restart sends once; send-started restart never resends (9.180773ms)
+✔ LIF-3/SIG-7: caller hint cannot report outcome; only chain evidence changes reservation (3.332657ms)
+✔ LIF-3: unknown or changed IDs fail closed; malformed base64 is not decoded leniently (1.586887ms)
+✔ LIF-3: send timeout and contradictory signature retain uncertain response; retry never sends (8.84435ms)
+✔ LIF-3: lost persisted response after successful send is recovered without another send (5.557976ms)
+✔ LIF-3: failed redeem persistence never crosses its next side-effect boundary (2.199847ms)
+✔ LIF-3: failed signed persistence never crosses its next side-effect boundary (1.750711ms)
+✔ LIF-3: failed send-started persistence never crosses its next side-effect boundary (5.097826ms)
+✔ LIF-3: deadline reached while signing persists bytes but never starts a send (5.776733ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 391.297854

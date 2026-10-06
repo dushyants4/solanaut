@@ -1,0 +1,118 @@
+✖ LIF-3/SIG-3: same concurrent and completed request signs/sends only once; expired retry returns response (17.825192ms)
+✖ LIF-3/SIG-3: deadlines and changed payloads refuse before signing (4.551585ms)
+✖ LIF-3: restart after admission can redeem/sign; restart after redemption cannot sign again (11.364118ms)
+✖ LIF-3: signed but unsent restart sends once; send-started restart never resends (11.392447ms)
+✖ LIF-3/SIG-7: caller hint cannot report outcome; only chain evidence changes reservation (1.500273ms)
+✖ LIF-3: unknown or changed IDs fail closed; malformed base64 is not decoded leniently (1.20638ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 0
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 320.974793
+
+✖ failing tests:
+
+test at apps/signer/test/core.test.ts:25:1
+✖ LIF-3/SIG-3: same concurrent and completed request signs/sends only once; expired retry returns response (17.825192ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'unimplemented'
+  - 'sent'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/core.test.ts:29:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'unimplemented',
+    expected: 'sent',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at apps/signer/test/core.test.ts:35:1
+✖ LIF-3/SIG-3: deadlines and changed payloads refuse before signing (4.551585ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/core.test.ts:38:56)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /deadline/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at apps/signer/test/core.test.ts:44:1
+✖ LIF-3: restart after admission can redeem/sign; restart after redemption cannot sign again (11.364118ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'unimplemented'
+  - 'sent'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/core.test.ts:52:14)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'unimplemented',
+    expected: 'sent',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at apps/signer/test/core.test.ts:58:1
+✖ LIF-3: signed but unsent restart sends once; send-started restart never resends (11.392447ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'unimplemented'
+  - 'sent'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/core.test.ts:69:14)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'unimplemented',
+    expected: 'sent',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at apps/signer/test/core.test.ts:74:1
+✖ LIF-3/SIG-7: caller hint cannot report outcome; only chain evidence changes reservation (1.500273ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/core.test.ts:81:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at apps/signer/test/core.test.ts:86:1
+✖ LIF-3: unknown or changed IDs fail closed; malformed base64 is not decoded leniently (1.20638ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/core.test.ts:89:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /identity/,
+    operator: 'rejects',
+    diff: 'simple'
+  }

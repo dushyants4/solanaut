@@ -8,6 +8,14 @@ prepare the original repository for eventual human-approved public release.
 
 ## Did
 
+- Signing journal pushed as `948d6a5`; local close passes all checks and CI `37401878957` passed.
+- LIF-3 executor: initial six tests fail against stub; complete twelve-case battery passes with
+  fake RPC. Five valid mutations caught; two invalid/classification fault runs rejected and
+  preserved. Receipt: `evals/signer/core.md`. Full product suite 241 passes; typecheck clean.
+  New source accounting includes SDK signing helper: 156 lines, below the unchanged process
+  budget before transport/provider implementation, not final SIG-11 qualification. No actual
+  chain send, key-file read or OS-user action. Restart fixtures reconstruct durable prefixes.
+
 - User asked to continue without stopping. Both live probes again refused correctly; baseline
   from `425dcc8`: 220 product tests pass, typecheck clean. CI `37401222564` passed.
 - LIF-2 signing journal: nine tests fail against missing API, nine pass after implementation;
