@@ -7,6 +7,14 @@ all security, validation and human-owned release gates.
 
 ## Did
 
+- Same-user partial composition privately pushed as `f27337d`; ten close gates and CI
+  `37459521513` green. H9 remains pending; no budget or dependent expansion authorised.
+- Continued into independent consumer integration. Eight client cases fail against a stub;
+  corrected native TS syntax/data typing, then captured request ID after a further mutation
+  regression fails. Eleven client/eight service cases pass; ten client faults, eight service
+  faults and four installed-package faults caught. Full suite 326 and five installed checks
+  pass; typecheck clean. Receipt `evals/sdk/sending-client.md`; package remains private.
+
 - Signed-policy correction `f6c8641` privately pushed; close ten of ten and CI `37458229657`
   green across all runtimes/office. Continued into same-user host composition without ending.
 - Five startup tests fail first, then pass; added drain tests expose untracked host recovery.
@@ -57,6 +65,16 @@ all security, validation and human-owned release gates.
   this history and must pass compatibility checks before rollback.
 
 ## Found
+
+- Client initially used non-erasable constructor properties; native Node and typecheck refuse.
+  Socket data typing needed explicit byte conversion. Both corrected, raw native failure kept.
+- Response-ID validation initially reread mutable caller input. Captured identity before
+  connecting; original assertion retained. Stale candidate lacked new exports/declarations;
+  outside consumer checks fail first then pass after release-only compilation.
+- Client results distinguish immutable admission responses from pre-admission refusals;
+  uncertainty is conservative and never a reason for automatic retry/new payment identity.
+  Constructor/typed-result/API choices are reversible inside ADR-019. No partial-signing
+  method is changed. Packet bounds follow the existing transport contract.
 
 - Size initially 506 lines including the historically counted SDK helpers. Simplified redundant
   event type checks, duplicate allowed check and equivalent guard-open cleanup; final count 501,

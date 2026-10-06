@@ -64,6 +64,8 @@ second definition change, re-measured on fresh seeds, and S7 restated with both 
 
 | S30 | Same-user host composition restores protected signed history before serving and drains dispatched/host recovery work before releasing ownership | **measured (builder-authored local socket/storage evidence)** | `evals/signer/service.md`, 2026-10-06, Node 26.7.0: seven service cases and eight final faults pass; initial mutation miss and harness errors retained. Regenerate: `node --test apps/signer/test/service.test.ts`; `node evals/signer/service-faults.ts`. Recorded count 501, command in receipt: SIG-11 is unachieved, ADR-021 only proposed. Host-supplied signing/RPC; protected key loading, isolated/executable deployment and full qualification remain owed |
 
+| S31 | The distinct socket sending client captures request payloads, validates bounded replies and never automatically retries uncertain requests | **measured (builder-authored local client/service and installed SDK evidence)** | `evals/sdk/sending-client.md`, 2026-10-06, Node 26.7.0: nineteen client/service cases, ten client faults and five installed checks pass; stale candidate and caller-ID failures retained. Regenerate: `node --test packages/sdk/test/sending-client.test.ts apps/signer/test/service.test.ts`; `node evals/sdk/sending-client-faults.ts`; `npm run release:prepare`; `npm run test:package`. Fake sends only; no deployment, chain or exactly-once claim |
+
 **Not yet claimable, and why:**
 - **Any detection rate or block rate, and any false-stop rate beyond S7's synthetic streams.** Nothing else has been
   measured. Milestone 2b.1 runs the Beta batteries and 3.10 the adversarial one; until then no percentage exists.

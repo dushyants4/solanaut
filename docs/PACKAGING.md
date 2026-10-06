@@ -1,7 +1,11 @@
 # PACKAGING.md — private SDK candidate
 
-> **Draft 1** · 2026-10-05 · owner: integrator · for: developers and release reviewers.
+> **Draft 2** · 2026-10-06 · owner: integrator · for: developers and release reviewers.
 > This is release preparation, not a stable release. Register: `kb/DOCUMENTS.md`.
+
+The candidate now includes `createSendingClient` and its typed errors (`docs/CLIENT.md`).
+Installed consumer checks exercise its JavaScript and declarations without loader flags;
+this does not qualify an installed signer service.
 
 From the repository root, using the pinned development toolchain:
 
@@ -42,5 +46,5 @@ both pinned runtime tarball and package metadata; `npm ci` alone does not guaran
 for an offline consumer on a clean machine. See `evals/packaging/packed-sdk.md` and claim S14
 for the measured scope.
 
-This candidate covers the current trusted SDK mode. The isolated signer, MCP firewall,
+This candidate covers the current trusted SDK mode and the socket-client contract. The isolated signer, MCP firewall,
 operator lifecycle, licence, notices, provenance, audit and publication gates remain outstanding.

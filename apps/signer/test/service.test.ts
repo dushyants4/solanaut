@@ -6,7 +6,7 @@ import { connect } from "node:net";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
-import { createGuard, encodeBase58, fileStore, preparePolicyText, replay, type Entry } from "@solanaut/sdk";
+import { createGuard, createSendingClient, encodeBase58, fileStore, preparePolicyText, replay, type Entry } from "@solanaut/sdk";
 import { startSigner, type ServiceOptions } from "../src/service.ts";
 import { WORKLOAD_POLICY } from "../../../packages/sdk/test/support/workload.ts";
 import { craftLegacy, key } from "../../../packages/sdk/test/support/craft.ts";
@@ -121,4 +121,15 @@ test("SIG-8: close also drains host recovery and refuses recovery after stop", a
     release(); await recovery; await stopping;
     await assert.rejects(service.recover(), /stopping|closed/);
   } finally { release(); await service.close(); }
+});
+test("CLT-1/SIG-2: SDK sending client consumes actual service replies and durable proposal retries", async () => {
+  const f = await fixture(); const service = await startSigner(f.options);
+  try {
+    const client = createSendingClient({ socket: f.options.socket, clientId: "agent", timeoutMs: 1000 });
+    const result = await client.propose({ id: "payment", message }); assert.equal(result.status, "sent");
+    assert.deepEqual(await client.propose({ id: "payment", message, deadline: 0 }), result);
+    assert.ok("decision" in result);
+    if ("decision" in result) assert.deepEqual(await client.report({ id: "hint", decision: result.decision }), { decision: result.decision, outcome: "unresolved" });
+    assert.equal((await client.status({ id: "status" })).mode, "same-user"); assert.equal(f.sends(), 1);
+  } finally { await service.close(); }
 });

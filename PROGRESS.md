@@ -85,6 +85,9 @@ Same-user host composition is tested locally (`evals/signer/service.md`); signin
 are still host-provided. SIG-11 is unachieved under the recorded count; ADR-021 awaits
 the human. Key loading, executable and isolated deployment remain unbuilt. Independent
 client and validation work continues; no milestone or threshold is silently changed.
+The distinct SDK sending client and installed private candidate now have local protocol,
+actual-service/fake-RPC and declaration evidence (`evals/sdk/sending-client.md`). Existing
+partial signing is unchanged; this is not installed signer or live-chain qualification.
 
 1. **Defects** (`docs/SPEC.md` §10):
    - D1 to D12 are closed: D1, D2, D5, D6, D7, D9, D10 and D12 at 2a.5, D11 at 2a.6, D3, D4 and D8 at 2a.7.

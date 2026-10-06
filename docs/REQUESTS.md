@@ -1,7 +1,11 @@
 # SDK request identity foundation
 
-> **Draft 5** · 2026-10-06 · owner: integrator · for: SDK consumers and signer developers.
+> **Draft 6** · 2026-10-06 · owner: integrator · for: SDK consumers and signer developers.
 > Evidence: `evals/sdk/request-identity.md`, claim S17. Register: `kb/DOCUMENTS.md`.
+
+The separate socket sending client now carries this identity contract across the Unix
+boundary; see `docs/CLIENT.md` and S31. It does not automatically retry after transport
+failure. Completed answer lookup preserves the same ID and payload across deadlines.
 
 The optional second argument identifies an admission:
 

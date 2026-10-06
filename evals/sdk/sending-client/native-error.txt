@@ -1,0 +1,40 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+file:///home/dashy/Projects/Solanaut/packages/sdk/src/adapters/sending-client.ts:10
+export class SignerClientError extends Error {
+  constructor(readonly code: SignerClientCode, message: string, readonly mayHaveExecuted = false, readonly remoteCode?: string) { super(message); this.name = "SignerClientError"; }
+                       ^^^^^^^^^^^^^^^^^^^^^^
+}
+
+SyntaxError [ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX]: TypeScript parameter property is not supported in strip-only mode
+    at parseTypeScript (node:internal/modules/typescript:57:40)
+    at processTypeScriptCode (node:internal/modules/typescript:129:37)
+    at stripTypeScriptModuleTypes (node:internal/modules/typescript:172:22)
+    at ModuleLoader.<anonymous> (node:internal/modules/esm/translators:681:29)
+    at #translate (node:internal/modules/esm/loader:441:20)
+    at afterLoad (node:internal/modules/esm/loader:509:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:514:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:567:36)
+    at afterResolve (node:internal/modules/esm/loader:614:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:620:12) {
+  code: 'ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX'
+}
+
+Node.js v26.7.0
+✖ packages/sdk/test/sending-client.test.ts (81.677329ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 87.744888
+
+✖ failing tests:
+
+test at packages/sdk/test/sending-client.test.ts:1:1
+✖ packages/sdk/test/sending-client.test.ts (81.677329ms)
+  'test failed'

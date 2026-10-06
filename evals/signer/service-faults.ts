@@ -20,7 +20,7 @@ for (const [name, from, to] of faults) {
   assert.equal(original.indexOf(from), original.lastIndexOf(from), `ambiguous fault site: ${name}`);
   try {
     writeFileSync(path, original.replace(from, to)); const result = battery(); const output = result.stdout + result.stderr;
-    assert.equal(result.status, 1, output); assert.match(output, /tests 7/); assert.match(output, /AssertionError/);
+    assert.equal(result.status, 1, output); assert.match(output, /tests 8/); assert.match(output, /AssertionError/);
     console.log(`caught service fault: ${name}`);
   } finally { writeFileSync(path, original); }
 }

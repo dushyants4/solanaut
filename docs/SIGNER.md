@@ -1,6 +1,6 @@
 # Signer development and trust boundary
 
-> **Draft 8** · 2026-10-06 · owner: integrator · for: operators and signer developers.
+> **Draft 9** · 2026-10-06 · owner: integrator · for: operators and signer developers.
 > Register: `kb/DOCUMENTS.md`. The operational service is still being implemented.
 
 The executor and devnet RPC boundary live under `apps/signer/src/`. Their current evidence uses
@@ -72,3 +72,6 @@ Key loading, provider-health projection, background follow-up, an executable and
 mode remain owed; this is not an installable isolated service. Evidence: `evals/signer/service.md`.
 The recorded count is over the existing SIG-11 ceiling; ADR-021 is proposed and awaits the
 human. No release or budget gate is marked achieved.
+The SDK's distinct sending client consumes this socket protocol (`docs/CLIENT.md`, S31).
+The client/service integration is tested with fake RPC; the client has no signing key or
+partial-signing methods. The existing signing adapters retain their SDK semantics.

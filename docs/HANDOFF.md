@@ -217,7 +217,8 @@ The live probes and baseline are complete. ADR-012 C is built and tested offline
 | 2026-10-06 | recovery pass isolation | `8b92594` | LIF-6 receipt; CI `37457271361` passed | Failed attempts no longer abort later reconciliation; operational service and policy-change qualification remain owed. Post-push close passed. |
 
 | 2026-10-06 | signed-policy recovery/settled signing | `f6c8641` | POL-4/LIF-7 receipt; CI `37458229657` passed | Pending-stage policy changes preserve reservations; final reports prevent signing/send intent. Post-push close passed; operational service remains owed. |
-| 2026-10-06 | same-user host composition, partial | commit containing `evals/signer/service.md` | SIG/POL receipt | Startup/drain cases pass; count 501 does not pass SIG-11. ADR-021/H9 pending; independent client/validation work continues. |
+| 2026-10-06 | same-user host composition, partial | `f27337d` | SIG/POL receipt; CI `37459521513` passed | Startup/drain cases pass; count 501 does not pass SIG-11. ADR-021/H9 pending; post-push close passes. Independent client/validation work continues. |
+| 2026-10-06 | distinct socket sending client | commit containing `evals/sdk/sending-client.md` | CLT-1–4/installed consumer receipt | Consumer integration progresses while H9 is pending. No signing method broadcasts; explicit propose sends. |
 
 ## 8. Handing back to Claude
 

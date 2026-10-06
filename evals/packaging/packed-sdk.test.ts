@@ -57,7 +57,7 @@ test("PKG-1: the packed runtime has no executable TypeScript, test fixtures or d
 
 test("PKG-2: consumer declarations resolve and reject invalid sensor telemetry", () => {
   writeFileSync(join(consumer, "consumer.ts"), `
-    import {createGuard, type GuardOptions, type Decision} from '@solanaut/sdk';
+    import {createGuard, createSendingClient, SignerClientError, type GuardOptions, type Decision, type SendingResult} from '@solanaut/sdk';
     const options: GuardOptions = {policy: {}, sensor: () => ({intensity:0,valence:0,repetition:0})};
     const g = await createGuard(options);
     const decision: Decision = g.check({message: new Uint8Array(), at: 0});
@@ -65,6 +65,16 @@ test("PKG-2: consumer declarations resolve and reject invalid sensor telemetry",
     // @ts-expect-error telemetry must contain bounded numbers, not text
     const bad: GuardOptions = {policy: {}, sensor: () => ({intensity:0,valence:0,repetition:'text'})};
     void verdict; void bad;
+    const client = createSendingClient({socket:'/run/solanaut/signer.sock',clientId:'agent'});
+    const result = await client.propose({id:'payment',message:new Uint8Array()});
+    const status: string = result.status;
+    const transport = new SignerClientError('connection','offline');
+    const uncertain: boolean = transport.mayHaveExecuted;
+    // @ts-expect-error sending clients cannot partially sign
+    client.signTransactions([]);
+    // @ts-expect-error message bytes cannot be replaced by caller telemetry
+    client.propose({id:'payment',message:'base64'});
+    void status; void uncertain;
   `);
   writeFileSync(join(consumer, "tsconfig.json"), JSON.stringify({ compilerOptions: { noEmit: true, strict: true, module: "NodeNext", moduleResolution: "NodeNext", target: "ES2022", types: [], lib: ["ES2022", "DOM"] }, files: ["consumer.ts"] }));
   const result = spawnSync(join(root, "node_modules/.bin/tsc"), ["-p", "tsconfig.json"], { cwd: consumer, encoding: "utf8" });
@@ -77,4 +87,17 @@ test("PKG-3: installed replay and table-pin commands execute with their document
     assert.equal(result.status, 2, `${bin}: ${result.error?.message ?? result.stderr}`);
     assert.match(result.stdout + result.stderr, /usage:/i);
   }
+});
+test("CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader", () => {
+  const script = `
+    import {createSendingClient,SignerClientError} from '@solanaut/sdk';
+    const client=createSendingClient({socket:process.argv[1],clientId:'agent',timeoutMs:100});
+    let failure;
+    try { await client.propose({id:'payment',message:new Uint8Array([1])}); }
+    catch(e) { failure={typed:e instanceof SignerClientError,code:e.code,uncertain:e.mayHaveExecuted}; }
+    console.log(JSON.stringify({methods:Object.keys(client).sort(),failure}));
+  `;
+  const result = spawnSync(process.execPath, ["--input-type=module", "-e", script, join(consumer, "missing.sock")], { cwd: consumer, encoding: "utf8" });
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(JSON.parse(result.stdout), { methods: ["propose", "report", "status"], failure: { typed: true, code: "connection", uncertain: false } });
 });
