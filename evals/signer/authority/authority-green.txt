@@ -1,0 +1,13 @@
+✔ SIG-4: clock anchors wall time once and advances only with monotonic time (2.756923ms)
+✔ SIG-4/10: host attribution and clock anchor appear in decisions and reports (15.824312ms)
+✔ SIG-4/10: host attribution is copied before asynchronous initialization (1.308751ms)
+✔ SIG-4/10: invalid host modes or clock anchors and non-devnet authority refuse startup (2.192358ms)
+✔ SIG-4/10: ordinary trusted SDK mode still records caller attribution (1.123584ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 287.287118

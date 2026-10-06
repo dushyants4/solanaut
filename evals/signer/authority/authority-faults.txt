@@ -1,0 +1,6 @@
+caught authority fault: mutable-host-configuration
+caught authority fault: caller-decision-attribution
+caught authority fault: caller-report-attribution
+caught authority fault: allow-non-devnet
+caught authority fault: use-changing-wall-clock
+All authority faults caught; restored source passes

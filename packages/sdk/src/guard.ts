@@ -20,6 +20,7 @@ import { fileStore, memoryStore, type EntryStore } from "./record.ts";
 import { sensorV1, type Sensor } from "./sensor.ts";
 import { bindRequest, requestKey, type RequestIdentity } from "./request.ts";
 import { verifySigning, type SigningEvent } from "./signing.ts";
+import { copyAuthority, type RuntimeAuthority } from "./authority.ts";
 import { apply, couldStillLand, currentIntent, initialState, nowFor, retentionWindow, unresolved, windowTotals, type GuardState } from "./state.ts";
 
 export type { Decision, Entry, Outcome, RuleV1 } from "./log.ts";
@@ -73,6 +74,8 @@ export interface ProposalV1 {
 }
 
 export interface GuardOptions {
+  /** Trusted signer-host attribution; SDK callers can bypass it, so this is not an isolation proof. */
+  authority?: RuntimeAuthority;
   /** Policy v1. Validated here (rule 0): an invalid policy throws a PolicyError and no guard exists. */
   policy: unknown;
   /** Signature and external operator/identity pin. SDK mode remains advisory; signer mode requires it. */
@@ -154,6 +157,7 @@ function totals(e: EffectsV1) {
 
 /** Everything a decision needs that is not the proposal. */
 interface Env {
+  authority?: RuntimeAuthority;
   policy: Policy;
   policyHash: string;
   ctx: ClassifyContext;
@@ -189,7 +193,8 @@ function evaluateRules(env: Env, p: ProposalV1): DecisionBody {
   const base = {
     kind: "decision" as const,
     at,
-    source: "caller" as const,
+    source: env.authority ? "signer" as const : "caller" as const,
+    ...(env.authority ? { deployment: env.authority } : {}),
     message: p?.message instanceof Uint8Array ? Buffer.from(p.message).toString("base64") : "",
     blockHeight: typeof p?.blockHeight === "bigint" ? p.blockHeight.toString() : null,
     lastValidBlockHeight: typeof p?.lastValidBlockHeight === "bigint" ? p.lastValidBlockHeight.toString() : null,
@@ -322,10 +327,12 @@ function reapply(env: Env, e: Entry): void {
 export async function createGuard(opts: GuardOptions): Promise<Guard> {
   verifyLoadedKeel(opts.expectedDigest ?? VERIFIED_KEEL_DIGEST);
   const { policy, hash: policyHash } = createPolicy(opts.policy);
+  const authority = opts.authority && copyAuthority(opts.authority);
+  if (authority && policy.latch.cluster !== "devnet") throw new Error("signer authority requires a devnet policy");
   const authorization = opts.authorization && Object.freeze({ ...opts.authorization });
   if (authorization) verifyPolicyAuthorization(policy, authorization);
   if (authorization && opts.sensor && opts.sensor !== sensorV1) throw new Error("signed policy evaluation profile requires sensor v1");
-  const env: Env = { policy, policyHash, ctx: contextOf(policy), sensor: opts.sensor ?? sensorV1, gov: await Governor.create(), state: initialState(), trust: authorization };
+  const env: Env = { policy, policyHash, ctx: contextOf(policy), sensor: opts.sensor ?? sensorV1, gov: await Governor.create(), state: initialState(), trust: authorization, authority };
   const { state, gov } = env;
   const store = opts.log === undefined ? memoryStore() : typeof opts.log === "string" ? fileStore(opts.log) : opts.log;
 
@@ -407,7 +414,7 @@ export async function createGuard(opts: GuardOptions): Promise<Guard> {
     if (attempt && attempt.status !== "pending" && attempt.status !== "unknown") {
       throw new Error(`decision ${decisionHash} was already reported ${attempt.status}, which is final`);
     }
-    commit<ReportEntry>({ kind: "report", at: state.maxAt ?? d.at, decision: decisionHash, outcome, source: "caller" });
+    commit<ReportEntry>({ kind: "report", at: state.maxAt ?? d.at, decision: decisionHash, outcome, source: authority ? "signer" : "caller" });
   };
 
   const currentReleaseText = (expires: string) => {

@@ -58,6 +58,7 @@ export interface DecisionEntry extends EntryBase {
   request?: import("./request.ts").RequestBinding;
   /** Where time, heights and outcomes came from (docs/SPEC.md §2.1). */
   source: "caller" | "signer";
+  deployment?: import("./authority.ts").RuntimeAuthority;
   /** The proposal's message bytes, base64, so the record replays on its own; "" if they were not bytes. */
   message: string;
   blockHeight: string | null;

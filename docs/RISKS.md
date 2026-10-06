@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.5** · 2026-10-05 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.6** · 2026-10-05 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 The threat model ([docs/papers/THREAT-MODEL.md](papers/THREAT-MODEL.md)) lists what an attacker can do to a running
@@ -68,6 +68,8 @@ Actual RPC trust, source records, process isolation and kill qualification remai
 RPC validation and conservative failover have fake-provider evidence (`evals/signer/rpc.md`).
 Only current blockhash lifetimes are accepted; unseen expired attempts retain reservations. The
 availability costs need live integration evidence, and RK16's reliable-provider request remains open.
+Host attribution and monotonic-clock helpers are tested (`evals/signer/authority.md`), but flags
+do not prove dedicated-user isolation. RK3 remains open until the operational signer is qualified.
 
 | Version | Date | What changed |
 |---|---|---|

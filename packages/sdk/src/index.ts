@@ -4,6 +4,7 @@ export { preparePolicyText, verifyPolicyAuthorization, PolicyAuthorizationError,
 export { EVALUATION_PROFILE } from "./profile.ts";
 export type { RequestIdentity, RequestBinding } from "./request.ts";
 export type { SigningEvent, SigningHistory } from "./signing.ts";
+export type { RuntimeAuthority } from "./authority.ts";
 export { createPolicy, contextOf, PolicyError, policyHash, type Policy, type PolicyInput, type PolicyV1 } from "./policy.ts";
 export { effectsOf, classify, classifyInstruction, PROGRAMS, type ClassifyContext, type EffectsV1 } from "./classify.ts";
 export { decodeMessage, decodeTransaction, resolveMessage, DecodeError, type DecodedMessage, type PinnedTable, type ResolvedMessage } from "./message.ts";

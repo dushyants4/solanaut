@@ -15,6 +15,7 @@ import { RECENT, SENSOR_V1 } from "./sensor.ts";
 import { parseReleaseText, verifyEd25519 } from "./latch.ts";
 import { requestKey, verifyRequest } from "./request.ts";
 import { verifySigning, type SigningHistory } from "./signing.ts";
+import { copyAuthority } from "./authority.ts";
 
 type Status = "pending" | Outcome;
 
@@ -141,6 +142,10 @@ export function windowTotals(s: GuardState, policy: Policy, now: number, blockHe
 /** Apply one entry. Deterministic: the same entries, in the same order, give the same state. */
 export function apply(s: GuardState, e: Entry, policy: Policy): void {
   if (e.v !== 1) throw new Error("unsupported record format version");
+  if (e.kind === "decision") {
+    if (e.source === "signer") { if (!e.deployment) throw new Error("signer authority is missing"); copyAuthority(e.deployment); }
+    else if (e.deployment) throw new Error("caller decision cannot claim signer authority");
+  }
   if (e.kind === "decision" && e.request) {
     verifyRequest(e, policy.latch.guardId);
     if (s.requests.has(requestKey(e.request))) throw new Error("duplicate recorded request identity");

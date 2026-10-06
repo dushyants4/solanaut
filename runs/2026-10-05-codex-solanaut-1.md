@@ -8,6 +8,12 @@ prepare the original repository for eventual human-approved public release.
 
 ## Did
 
+- RPC boundary committed and pushed as `c9a84e0`. SIG-4/10 attribution/clock foundation begins
+  there: five cases, four initially fail and compatibility passes, then five pass; five mutations
+  caught. Full product suite 256 passes, typecheck and packed SDK checks green. Receipt:
+  `evals/signer/authority.md`. Source/mode/anchor are host attribution, not OS isolation evidence;
+  actual service wiring and H4 remain owed. Helpers stay in signer budget accounting.
+
 - Executor committed and pushed as `54ba32f`. RPC-1–4 begins from that revision; ten tests fail
   against a stub then pass, seven valid faults caught after an integer-validator fault escaped the
   original fixture. Added coherent fractional contexts and ID substitution with otherwise valid

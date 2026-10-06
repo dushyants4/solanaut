@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.9** · 2026-10-05 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.10** · 2026-10-05 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -806,6 +806,11 @@ the message must match the provider's currently returned blockhash. Absence afte
 proof of non-landing, so it never releases an unresolved reservation. Live usability and outage
 qualification remain owed; `docs/RPC.md` states the availability costs and provider trust residual.
 
+SIG-4/10 attribution foundation: signer-host `authority` is validated and copied before await;
+decisions carry source/mode/clock anchor and reports carry source. The monotonic clock anchors wall
+time once. Authority requires devnet. These flags are not an OS-isolation proof; operational wiring,
+permissions and the human-created user remain requirements. Ordinary SDK attribution is unchanged.
+
 LIF-1 foundation: optional `check(proposal, { clientId, id })` derives the payload digest itself.
 IDs are ASCII letters/digits or `._:-`, length 1–128. Authoritative time/heights and deadlines
 are excluded. Existing SDK calls are unchanged. Full request history remains in memory until
@@ -833,3 +838,4 @@ where needed, and UTC issued timestamps include milliseconds. Policies remain re
 | Draft 4.7 | 2026-10-05 | LIF-2 checked signing/send-intent/response journal foundation; executor and authoritative RPC still owed. |
 | Draft 4.8 | 2026-10-05 | LIF-3 conservative executor tested with fake RPC; transport, authoritative RPC and kill qualification still owed. |
 | Draft 4.9 | 2026-10-05 | RPC-1–4 boundary tested with fake providers; conservative lifetime and unresolved-outcome costs stated. |
+| Draft 4.10 | 2026-10-05 | Host attribution and monotonic clock foundation for SIG-4/10; operational wiring still owed. |

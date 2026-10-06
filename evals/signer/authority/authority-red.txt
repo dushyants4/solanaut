@@ -1,0 +1,96 @@
+✖ SIG-4: clock anchors wall time once and advances only with monotonic time (4.39171ms)
+✖ SIG-4/10: host attribution and clock anchor appear in decisions and reports (14.126984ms)
+✖ SIG-4/10: host attribution is copied before asynchronous initialization (3.666505ms)
+✖ SIG-4/10: invalid host modes or clock anchors and non-devnet authority refuse startup (1.386184ms)
+✔ SIG-4/10: ordinary trusted SDK mode still records caller attribution (1.379464ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 1
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 333.386961
+
+✖ failing tests:
+
+test at apps/signer/test/clock.test.ts:4:1
+✖ SIG-4: clock anchors wall time once and advances only with monotonic time (4.39171ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   monotonicNs: '0',
+  +   wall: 0
+  -   monotonicNs: '5000',
+  -   wall: 1000
+    }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/clock.test.ts:7:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { wall: 0, monotonicNs: '0' },
+    expected: { wall: 1000, monotonicNs: '5000' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/authority.test.ts:12:1
+✖ SIG-4/10: host attribution and clock anchor appear in decisions and reports (14.126984ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'caller' !== 'signer'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/authority.test.ts:16:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'caller',
+    expected: 'signer',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/authority.test.ts:22:1
+✖ SIG-4/10: host attribution is copied before asynchronous initialization (3.666505ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + undefined
+  - {
+  -   clock: {
+  -     monotonicNs: '1234',
+  -     wall: 1000
+  -   },
+  -   mode: 'same-user'
+  - }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/authority.test.ts:26:58)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { mode: 'same-user', clock: { wall: 1000, monotonicNs: '1234' } },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/authority.test.ts:29:1
+✖ SIG-4/10: invalid host modes or clock anchors and non-devnet authority refuse startup (1.386184ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/authority.test.ts:30:168)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /authority|mode|clock/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
