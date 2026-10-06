@@ -13,6 +13,7 @@ import { createPolicy, type Policy } from "./policy.ts";
 import type { DecisionEntry, Entry, Outcome } from "./log.ts";
 import { RECENT, SENSOR_V1 } from "./sensor.ts";
 import { parseReleaseText, verifyEd25519 } from "./latch.ts";
+import { requestKey, verifyRequest } from "./request.ts";
 
 type Status = "pending" | Outcome;
 
@@ -40,6 +41,8 @@ export interface Reservation {
 }
 
 export interface GuardState {
+  /** Full request history until the accepted disk index replaces in-memory retention. */
+  requests: Map<string, DecisionEntry>;
   /** During full restore/replay, retain entries needed by any recorded or incoming window. */
   retentionMs: number;
   seq: number;
@@ -58,6 +61,7 @@ export interface GuardState {
 
 export function initialState(): GuardState {
   return {
+    requests: new Map(),
     retentionMs: 0,
     seq: 0,
     head: "",
@@ -134,6 +138,10 @@ export function windowTotals(s: GuardState, policy: Policy, now: number, blockHe
 /** Apply one entry. Deterministic: the same entries, in the same order, give the same state. */
 export function apply(s: GuardState, e: Entry, policy: Policy): void {
   if (e.v !== 1) throw new Error("unsupported record format version");
+  if (e.kind === "decision" && e.request) {
+    verifyRequest(e, policy.latch.guardId);
+    if (s.requests.has(requestKey(e.request))) throw new Error("duplicate recorded request identity");
+  }
   if (e.seq !== s.seq || e.prev !== s.head) {
     throw new Error(`the record breaks at seq ${e.seq}: expected seq ${s.seq} after ${s.head || "the start"}`);
   }
@@ -145,6 +153,7 @@ export function apply(s: GuardState, e: Entry, policy: Policy): void {
     case "policy":
       return; // The guard verifies and selects it; this entry changes no admission state.
     case "decision": {
+      if (e.request) s.requests.set(requestKey(e.request), e);
       if (e.intentKey !== null && e.shape !== null) {
         s.sensor.recent.push({ intentKey: e.intentKey, shape: e.shape, fees: BigInt(e.amounts?.fees ?? "0"), landed: false });
         if (s.sensor.recent.length > RECENT) s.sensor.recent.shift();

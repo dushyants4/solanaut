@@ -2,6 +2,7 @@ export { createGuard, replay, VERIFIED_KEEL_DIGEST, VERIFIED_KEEL_MODULE, verify
 export { fileStore, memoryStore, type FileStoreOptions } from "./record.ts";
 export { preparePolicyText, verifyPolicyAuthorization, PolicyAuthorizationError, type PolicyAuthorization, type PolicyTrust } from "./signed-policy.ts";
 export { EVALUATION_PROFILE } from "./profile.ts";
+export type { RequestIdentity, RequestBinding } from "./request.ts";
 export { createPolicy, contextOf, PolicyError, policyHash, type Policy, type PolicyInput, type PolicyV1 } from "./policy.ts";
 export { effectsOf, classify, classifyInstruction, PROGRAMS, type ClassifyContext, type EffectsV1 } from "./classify.ts";
 export { decodeMessage, decodeTransaction, resolveMessage, DecodeError, type DecodedMessage, type PinnedTable, type ResolvedMessage } from "./message.ts";

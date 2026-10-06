@@ -18,6 +18,7 @@ import { DecodeError } from "./message.ts";
 import { contextOf, createPolicy, type Policy } from "./policy.ts";
 import { fileStore, memoryStore, type EntryStore } from "./record.ts";
 import { sensorV1, type Sensor } from "./sensor.ts";
+import { bindRequest, requestKey, type RequestIdentity } from "./request.ts";
 import { apply, couldStillLand, currentIntent, initialState, nowFor, retentionWindow, unresolved, windowTotals, type GuardState } from "./state.ts";
 
 export type { Decision, Entry, Outcome, RuleV1 } from "./log.ts";
@@ -96,7 +97,7 @@ export interface GuardStatus {
 
 export interface Guard {
   /** Decide. Never throws. */
-  check(p: ProposalV1): Decision;
+  check(p: ProposalV1, request?: RequestIdentity): Decision;
   /** Record how an allowed decision went on chain. Throws for anything but an allowed decision of this guard. */
   report(decisionHash: string, outcome: Outcome): void;
   /** Release the latch with the operator's signature over `releaseText`. */
@@ -374,11 +375,20 @@ export async function createGuard(opts: GuardOptions): Promise<Guard> {
     } catch (error) { store.close(); throw error; }
   }
 
-  const check = (p: ProposalV1): Decision => {
+  const check = (p: ProposalV1, request?: RequestIdentity): Decision => {
     if (shut) return unrecorded(shut);
     try {
+      const binding = request === undefined ? undefined : bindRequest(policy.latch.guardId, request, p?.message, p?.intent);
+      if (binding) {
+        const recorded = state.requests.get(requestKey(binding));
+        if (recorded) {
+          if (recorded.request!.digest !== binding.digest) return unrecorded("request identity was reused with a different payload");
+          return recorded;
+        }
+      }
       const previous = store.entries.findLast((e): e is DecisionEntry => e.kind === "decision");
-      return commit<DecisionEntry>(evaluate(env, p, previous));
+      const body = evaluate(env, p, previous);
+      return commit<DecisionEntry>(binding ? { ...body, request: binding } : body);
     } catch (err) {
       // Nothing may be signed on a decision that is not in the record.
       return unrecorded(shut ?? `the guard could not decide, so it denies: ${(err as Error)?.message ?? String(err)}`);

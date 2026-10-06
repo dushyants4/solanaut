@@ -8,6 +8,15 @@ prepare the original repository for eventual human-approved public release.
 
 ## Did
 
+- Ownership/storage committed and pushed as `033cd87`; post-push close passes all checks;
+  CI `37400891997` passes Node 22.18.0, 24 and 26.7.0 and the office job.
+- LIF-1 starts from that revision. Optional SDK request identities are committed atomically with
+  admission, and verified on restore/replay. Initial eight tests fail; eight pass after implementation;
+  four maintained faults caught. Full suite 220 passes, typecheck clean; receipt and commands:
+  `evals/sdk/request-identity.md`. No existing assertion weakened. IDs use bounded ASCII; payload
+  is exact bytes/group, excluding observed time/heights/deadlines. Full request index is in memory
+  pending disk-index work. Signer lifecycle and its deadline enforcement remain unbuilt.
+
 - Signed-policy foundation final verification: `npm test` passes 203 tests, typecheck exits 0,
   the rebuilt packed candidate passes its battery. The pre-commit close gate passes every
   check except the expected uncommitted-tree gate; staging the new files also passes the secret scan.

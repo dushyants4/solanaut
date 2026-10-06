@@ -1,0 +1,5 @@
+caught request fault: ignore-retry
+caught request fault: ignore-changed-payload
+caught request fault: ignore-recorded-binding
+caught request fault: ignore-duplicate-history
+All request faults caught; restored source passes

@@ -1,0 +1,16 @@
+✔ LIF-1: duplicate admission returns the original entry without another reservation or controller tick (19.186342ms)
+✔ LIF-1: duplicate denied request returns the same denial without accumulating latch denials (22.494785ms)
+✔ LIF-1: changed bytes or grouping under the same identity are refused (3.101455ms)
+✔ LIF-1: client identities are separate namespaces and invalid identities fail closed (3.042481ms)
+✔ LIF-1: identity and original decision survive durable restart (18.072128ms)
+✔ LIF-1: resealed digest request evidence refuses restore and replay (3.630133ms)
+✔ LIF-1: resealed guard request evidence refuses restore and replay (2.395713ms)
+✔ LIF-1: resealed duplicate request evidence refuses restore and replay (2.618107ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 363.765202

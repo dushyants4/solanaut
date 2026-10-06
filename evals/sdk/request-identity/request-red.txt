@@ -1,0 +1,195 @@
+✖ LIF-1: duplicate admission returns the original entry without another reservation or controller tick (42.569777ms)
+✖ LIF-1: duplicate denied request returns the same denial without accumulating latch denials (59.781343ms)
+✖ LIF-1: changed bytes or grouping under the same identity are refused (8.980484ms)
+✖ LIF-1: client identities are separate namespaces and invalid identities fail closed (4.728937ms)
+✖ LIF-1: identity and original decision survive durable restart (43.170575ms)
+✖ LIF-1: resealed digest request evidence refuses restore and replay (4.020229ms)
+✖ LIF-1: resealed guard request evidence refuses restore and replay (2.400558ms)
+✖ LIF-1: resealed duplicate request evidence refuses restore and replay (2.04514ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 0
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 973.857729
+
+✖ failing tests:
+
+test at packages/sdk/test/request-identity.test.ts:18:1
+✖ LIF-1: duplicate admission returns the original entry without another reservation or controller tick (42.569777ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(d.request)
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-identity.test.ts:22:41)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-identity.test.ts:30:1
+✖ LIF-1: duplicate denied request returns the same denial without accumulating latch denials (59.781343ms)
+  AssertionError [ERR_ASSERTION]: Expected "actual" to be reference-equal to "expected":
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      allow: false,
+      amounts: {
+        fees: '5000',
+        sol: '1',
+        tokens: []
+      },
+  +   at: 2000,
+  -   at: 1000,
+      blockHeight: null,
+      group: null,
+  +   hash: '45d19209769b6e7c9dcdf1ff4ba99e1a55ab4b3afd56db95aecfdc9e545a6a51',
+  -   hash: '29fbc5bee3f8845ed9a715814d1a210424f1b68f1d3dd9ece99f6b59a253205f',
+      intentKey: '7ca60f5d68178f88c39b7c278d32132cbae3d4343aee45b8483cb28471a62faf',
+      keel: {
+        digest: '834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8',
+        verified: 'bytes',
+        version: '1.0.1'
+  ...
+      posture: 'DEFAULT',
+  +   prev: '29fbc5bee3f8845ed9a715814d1a210424f1b68f1d3dd9ece99f6b59a253205f',
+  -   prev: '',
+      reason: '1 lamports to CktRuQ2mttgRGkXJtyksdKHjUdc2C4TgDzyB98oEzy8, which is not an allowed destination',
+      rule: 'destination-not-allowed',
+  +   seq: 1,
+  -   seq: 0,
+      shape: 'c49efb151f6f515176f9614579dc6484d27f90d922ca74ae4ffdde2ee1b89efa',
+      source: 'caller',
+      telemetry: {
+        intensity: 1e-9,
+  +     repetition: 1,
+  +     valence: -0.09999999999999998
+  -     repetition: 0,
+  -     valence: 0.2
+      },
+      temperatureMax: 1,
+      v: 1
+    }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-identity.test.ts:35:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { v: 1, seq: 1, prev: '29fbc5bee3f8845ed9a715814d1a210424f1b68f1d3dd9ece99f6b59a253205f', kind: 'decision', at: 2000, source: 'caller', message: 'AQABAwEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJAQICAAEMAgAAAAEAAAAAAAAA', blockHeight: null, lastValidBlockHeight: null, group: null, policyHash: '52be8a86a178558e482cae84c03cb3ee2fccdac36de055620fe17e9bbb241925', keel: { version: '1.0.1', digest: '834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8', verified: 'bytes' }, intentKey: '7ca60f5d68178f88c39b7c278d32132cbae3d4343aee45b8483cb28471a62faf', messageHash: '1028b85df10645d6d63523183b69022495f4b92564801c8aee4fb62c1e75822b', shape: 'c49efb151f6f515176f9614579dc6484d27f90d922ca74ae4ffdde2ee1b89efa', amounts: { sol: '1', tokens: [], fees: '5000' }, posture: 'DEFAULT', telemetry: { intensity: 1e-9, valence: -0.09999999999999998, repetition: 1 }, temperatureMax: 1, allow: false, rule: 'destination-not-allowed', reason: '1 lamports to CktRuQ2mttgRGkXJtyksdKHjUdc2C4TgDzyB98oEzy8, which is not an allowed destination', hash: '45d19209769b6e7c9dcdf1ff4ba99e1a55ab4b3afd56db95aecfdc9e545a6a51' },
+    expected: { v: 1, seq: 0, prev: '', kind: 'decision', at: 1000, source: 'caller', message: 'AQABAwEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJAQICAAEMAgAAAAEAAAAAAAAA', blockHeight: null, lastValidBlockHeight: null, group: null, policyHash: '52be8a86a178558e482cae84c03cb3ee2fccdac36de055620fe17e9bbb241925', keel: { version: '1.0.1', digest: '834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8', verified: 'bytes' }, intentKey: '7ca60f5d68178f88c39b7c278d32132cbae3d4343aee45b8483cb28471a62faf', messageHash: '1028b85df10645d6d63523183b69022495f4b92564801c8aee4fb62c1e75822b', shape: 'c49efb151f6f515176f9614579dc6484d27f90d922ca74ae4ffdde2ee1b89efa', amounts: { sol: '1', tokens: [], fees: '5000' }, posture: 'DEFAULT', telemetry: { intensity: 1e-9, valence: 0.2, repetition: 0 }, temperatureMax: 1, allow: false, rule: 'destination-not-allowed', reason: '1 lamports to CktRuQ2mttgRGkXJtyksdKHjUdc2C4TgDzyB98oEzy8, which is not an allowed destination', hash: '29fbc5bee3f8845ed9a715814d1a210424f1b68f1d3dd9ece99f6b59a253205f' },
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-identity.test.ts:39:1
+✖ LIF-1: changed bytes or grouping under the same identity are refused (8.980484ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-identity.test.ts:45:14)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-identity.test.ts:50:1
+✖ LIF-1: client identities are separate namespaces and invalid identities fail closed (4.728937ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-identity.test.ts:55:93)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-identity.test.ts:59:1
+✖ LIF-1: identity and original decision survive durable restart (43.170575ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '8894b2b974492f2d34b769bcd269be32bd5257f7ecf7f114efb1cf8592428f3c'
+  - 'b57f6a142d9fb41a13a35c175916f5efde5874007d484d246f1f5878937e359d'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-identity.test.ts:65:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '8894b2b974492f2d34b769bcd269be32bd5257f7ecf7f114efb1cf8592428f3c',
+    expected: 'b57f6a142d9fb41a13a35c175916f5efde5874007d484d246f1f5878937e359d',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-identity.test.ts:70:55
+✖ LIF-1: resealed digest request evidence refuses restore and replay (4.020229ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(d.request)
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-identity.test.ts:73:10)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-identity.test.ts:70:55
+✖ LIF-1: resealed guard request evidence refuses restore and replay (2.400558ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(d.request)
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-identity.test.ts:73:10)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-identity.test.ts:70:55
+✖ LIF-1: resealed duplicate request evidence refuses restore and replay (2.04514ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(d.request)
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-identity.test.ts:73:10)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

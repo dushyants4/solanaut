@@ -54,6 +54,8 @@ export interface Amounts {
 
 export interface DecisionEntry extends EntryBase {
   kind: "decision";
+  /** Optional SDK request identity, committed atomically with this decision. */
+  request?: import("./request.ts").RequestBinding;
   /** Where time, heights and outcomes came from (docs/SPEC.md §2.1). */
   source: "caller" | "signer";
   /** The proposal's message bytes, base64, so the record replays on its own; "" if they were not bytes. */

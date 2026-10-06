@@ -1,6 +1,6 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 6** · 2026-10-05 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 7** · 2026-10-05 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
@@ -120,6 +120,8 @@ Manual SDK ownership refuses stale markers. Explicit Linux kernel ownership hold
 through the writer's lifetime and keeps its mutex inode for safe competing restarts.
 Established identities can refuse missing history with `create: false`; `docs/STORAGE.md`
 describes the filesystem boundary. Short writes complete before sync; a failure closes the writer.
+An optional request identity is committed with its decision; duplicate lookup returns that entry
+without another evaluation. `docs/REQUESTS.md` describes this foundation and its lifecycle limits.
 
 **Defects:** every one found in review, D1 to D12, is closed (`docs/SPEC.md` §10). The open questions are in §12.
 
@@ -127,7 +129,7 @@ describes the filesystem boundary. Short writes complete before sync; a failure 
 
 | Workflow | Command | What it does |
 |---|---|---|
-| Test | `npm test` | the SDK's batteries and the cockpit's: 152 tests |
+| Test | `npm test` | the SDK and cockpit batteries; current run evidence is in `evals/` |
 | The dashboard | `npm run cockpit -- --record <r> --policy <p> [--rpc <url> --squads <f>]` | the guard's record and the Squads limit, on 127.0.0.1 |
 | The on-chain drill | `node apps/onchain/src/squads.ts --url <rpc> …` | a Squads v4 limit naming the agent's key, a stolen-key drill, the revoke timed |
 | The demo's scenes | `node apps/onchain/src/scenes.ts --url <rpc> …` | the scenes end to end through `guardedWallet`, with a record for the cockpit |

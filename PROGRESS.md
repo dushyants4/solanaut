@@ -59,6 +59,8 @@ its milestone still needs the signer's enforced path and the operator's Phantom 
 The Alpha and stable-release gates are not achieved by this initial work.
 Exclusive Linux ownership and complete-write failure handling are built and tested locally
 (`evals/sdk/ownership.md`); the full signer recovery programme remains owed.
+Admission identity and payload binding are tested offline (`evals/sdk/request-identity.md`);
+durable signed-byte, send-started and response recovery are next.
 
 1. **Defects** (`docs/SPEC.md` §10):
    - D1 to D12 are closed: D1, D2, D5, D6, D7, D9, D10 and D12 at 2a.5, D11 at 2a.6, D3, D4 and D8 at 2a.7.
@@ -90,5 +92,5 @@ Exclusive Linux ownership and complete-write failure handling are built and test
      ADR-013 to ADR-018, the risk register, the thresholds); ADR-012's option C accepted. Leg 3 is handed to Codex.
 4. **Upstream findings.** U-1 to U-4 are written up for the human (`kb/REGISTRY.md`). U-2 and U-3 are reproduced at
    milestone 2a.7.
-5. **CI runs the gates, not yet the fault injections.** The `bite` job that re-runs them on every push is owed at
-   milestone 3.9 (`evals/README.md`).
+5. **CI fault programme remains partial.** Maintained package and latch faults run on every push;
+   the full milestone 3.9 gate and measurement programme remains owed (`evals/README.md`).
