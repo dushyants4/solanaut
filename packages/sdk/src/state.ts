@@ -9,7 +9,7 @@
 //   latch          tripped by a run of denials or by REGROUND; released only by the operator
 //   sensor         what the sensors remember of the proposal stream
 
-import type { Policy } from "./policy.ts";
+import { createPolicy, type Policy } from "./policy.ts";
 import type { DecisionEntry, Entry, Outcome } from "./log.ts";
 import { RECENT, SENSOR_V1 } from "./sensor.ts";
 import { parseReleaseText, verifyEd25519 } from "./latch.ts";
@@ -40,6 +40,8 @@ export interface Reservation {
 }
 
 export interface GuardState {
+  /** During full restore/replay, retain entries needed by any recorded or incoming window. */
+  retentionMs: number;
   seq: number;
   head: string;
   /** The latest time any entry carried. Windows are measured from here, so a clock that steps back cannot shrink them. */
@@ -56,6 +58,7 @@ export interface GuardState {
 
 export function initialState(): GuardState {
   return {
+    retentionMs: 0,
     seq: 0,
     head: "",
     maxAt: null,
@@ -70,6 +73,12 @@ export function initialState(): GuardState {
 }
 
 const big = (s: string | null) => (s === null ? null : BigInt(s));
+
+export function retentionWindow(entries: readonly Entry[], current: number): number {
+  let window = current;
+  for (const e of entries) if (e.kind === "policy") window = Math.max(window, createPolicy(JSON.parse(e.policy)).policy.windowMs);
+  return window;
+}
 
 /** The effective time of a proposal at `at`: never earlier than anything already recorded. */
 export const nowFor = (s: GuardState, at: number) => Math.max(at, s.maxAt ?? at);
@@ -124,6 +133,7 @@ export function windowTotals(s: GuardState, policy: Policy, now: number, blockHe
 
 /** Apply one entry. Deterministic: the same entries, in the same order, give the same state. */
 export function apply(s: GuardState, e: Entry, policy: Policy): void {
+  if (e.v !== 1) throw new Error("unsupported record format version");
   if (e.seq !== s.seq || e.prev !== s.head) {
     throw new Error(`the record breaks at seq ${e.seq}: expected seq ${s.seq} after ${s.head || "the start"}`);
   }
@@ -132,6 +142,8 @@ export function apply(s: GuardState, e: Entry, policy: Policy): void {
   s.maxAt = Math.max(s.maxAt ?? e.at, e.at);
 
   switch (e.kind) {
+    case "policy":
+      return; // The guard verifies and selects it; this entry changes no admission state.
     case "decision": {
       if (e.intentKey !== null && e.shape !== null) {
         s.sensor.recent.push({ intentKey: e.intentKey, shape: e.shape, fees: BigInt(e.amounts?.fees ?? "0"), landed: false });
@@ -200,6 +212,8 @@ export function apply(s: GuardState, e: Entry, policy: Policy): void {
     case "redeem":
       s.redeemed.add(e.decision);
       return;
+    default:
+      throw new Error("unsupported record entry kind");
   }
 }
 
@@ -231,7 +245,7 @@ function releaseProblem(s: GuardState, e: Extract<Entry, { kind: "release" }>, p
  * prunes exactly as the live guard did.
  */
 function prune(s: GuardState, policy: Policy): void {
-  const horizon = (s.maxAt ?? 0) - policy.windowMs;
+  const horizon = (s.maxAt ?? 0) - Math.max(policy.windowMs, s.retentionMs);
   for (const [hash, r] of s.reservations) {
     if (r.at > horizon) continue;
     const intent = s.intents.get(r.intentKey);

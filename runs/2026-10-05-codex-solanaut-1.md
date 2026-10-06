@@ -8,6 +8,10 @@ prepare the original repository for eventual human-approved public release.
 
 ## Did
 
+- Signed-policy foundation final verification: `npm test` passes 203 tests, typecheck exits 0,
+  the rebuilt packed candidate passes its battery. The pre-commit close gate passes every
+  check except the expected uncommitted-tree gate; staging the new files also passes the secret scan.
+
 - The human instructed “Go aheaaad, Continue the plan” after the explicit ADR-019/020
   acceptance request. Recorded acceptance; no release gate or T4 grant changed.
 - Repeated both live probes on this continuation; both correctly refused. Baseline at
@@ -36,6 +40,11 @@ prepare the original repository for eventual human-approved public release.
 
 ## Changed
 
+- Signed policy preparation/verification, canonical summaries, external trust pins, policy entries
+  and supported evaluation profiles. Restore/replay/inspection select recorded policies.
+- Public replay CLI accepts signed history with an external public trust file; old invocation remains.
+- POL/VER battery and receipt; source SDK mode remains advisory, isolated enforcement is next.
+
 - Release-only SDK compiler and private staging script; native source exports retained.
 - Installed package tests, packaging guide and receipt; CI runtime matrix and package checks.
 
@@ -48,6 +57,16 @@ prepare the original repository for eventual human-approved public release.
 - ADR-019/020: concrete proposed contracts, not implementation or accepted architecture.
 
 ## Found
+
+- Signing stubs fail all initial cases, but block negative fixture setup too; actual disabled
+  security checks establish their negative failure evidence. The unsupported-format case fails
+  before its validator. The final signed policy battery passes 18 cases.
+- Nine policy faults caught. The first profile fault was missed: the fixture included its old
+  hash when resealing, so it failed before profile validation. Corrected the fixture and observed
+  the intended failure; retained both outputs. Two array/Uint8Array type errors also corrected.
+- Extending a window forgot spending pruned under the old window. The new regression fails first;
+  restore/replay/inspection retain the required history while rebuilding, then live pruning uses
+  the active policy. Genuinely signed historical policy rollback is also caught separately.
 
 - Matrix CI `37397657426` failed offline package setup on all runtimes with `ENOTCACHED`
   for Keel metadata. Product tests, typecheck and compilation passed. Added explicit pinned
@@ -88,9 +107,8 @@ prepare the original repository for eventual human-approved public release.
   boundary heuristic; reran the documented unredirected command, without editing any gate.
 
 - ADR-012 is verified offline; its funded devnet rerun is outstanding.
-- Detailed signer crash recovery, snapshots, evaluation-version compatibility, RPC trust,
-  opaque-program bounds, anchor exposure and operator exceptions need proposed contracts
-  before their affected implementation. Do not build on unaccepted proposals.
+- ADR-019/020 are now accepted. Detailed signer recovery, snapshots, profile compatibility,
+  RPC trust, opaque fallback, anchors and operator exceptions can proceed under those contracts.
 - Existing human dependencies remain: funding, tool approvals, separate OS users, Phantom,
   outside developers, Claude's RT-2, specialist audit, bounty, licence and each public action.
 - Owed edit O1 (also HANDOFF §6): replace the AGENTS build convention with native TypeScript

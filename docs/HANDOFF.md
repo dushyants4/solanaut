@@ -95,8 +95,8 @@ the tests are named by.
     and move on.
 
 **2. 3.1 · The signer process.** SIG-1 to SIG-11; ADR-013. This is the foundation of the rest of Leg 3.
-- **Clarification pending:** ADR-019 proposes durable request lifecycle, exclusive ownership,
-  snapshots, evaluator versions and RPC trust. Do not build its affected paths on a proposal.
+- **Clarification accepted:** ADR-019 governs durable request lifecycle, exclusive ownership,
+  snapshots, evaluator versions and RPC trust. The human accepted it after review.
 - **The same-user mode is what you build and test.** Running it as its own OS user needs a user created with `sudo`,
   which is the human's (§5).
 - **SIG-11 is a budget:** state the line count before writing, and measure it after.
@@ -199,6 +199,7 @@ The live probes and baseline are complete. ADR-012 C is built and tested offline
 | 2026-10-05 | release packaging foundation | commit containing `evals/packaging/packed-sdk.md` | packed consumer receipt | Private SDK candidate only; full product packaging and readiness remain open. |
 | 2026-10-05 | package CI fault checks | commit containing `evals/packaging/ci-faults.md` | maintained fault receipt | Same damaged candidates checked on every push; full 3.9 programme still owed. |
 | 2026-10-05 | maintained latch CI faults | commit containing `evals/ci/latch-faults.md` | latch fault receipt; prior matrix run `37397843820` passed | CI-1 partial; remaining injections and CI-2 gates are open. |
+| 2026-10-05 | signed policy/version foundation | commit containing `evals/sdk/signed-policy.md` | POL/VER receipt | Existing SDK mode retained; isolated enforcement still owed. ADR-019/020 accepted. |
 
 ## 8. Handing back to Claude
 

@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.3** · 2026-10-05 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.4** · 2026-10-05 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -774,6 +774,22 @@ Development exports remain native TypeScript; a separate generated manifest expo
 The candidate remains private at the existing source version. Node 22.18.0 is its runtime
 floor; the approved matrix also includes Node 24 and 26. Full readiness thresholds remain unchanged.
 
+### 13.14 Accepted stable history contracts
+
+ADR-019 and ADR-020 were accepted by the human after their explicit review request.
+These IDs allocate their initial policy/version obligations; other lifecycle, ownership,
+snapshot and RPC IDs are allocated with their implementation steps. Existing SIG/POL gates stand.
+
+| ID | Requirement | Verified by |
+|---|---|---|
+| VER-1 | signed authorization versions cannot roll back; equal version requires identical canonical content and signed text; a change preserves pending admission state | `signed-policy.test.ts` restarts and cap/latch/receipt cases |
+| VER-2 | recorded format and evaluation profile are separately identified; unsupported profiles/formats refuse restore/replay; the profile binds rule, decoder, sensor and Keel identity | resealed format/profile fixtures and sensor substitution |
+
+Implemented foundation: `authorization` opts into signed SDK history. Legacy unsigned SDK
+mode remains advisory; an established signed history requires an external pin on reopening.
+The isolated signer must require authorization. Canonical summary uses exact rational minutes
+where needed, and UTC issued timestamps include milliseconds. Policies remain restart-only.
+
 ## Changes
 
 | Version | Date | What changed |
@@ -785,3 +801,4 @@ floor; the approved matrix also includes Node 24 and 26. Full readiness threshol
 | Draft 4.1 | 2026-10-05 | The human approved §13 and accepted ADR-012 (option C) and ADR-013 to ADR-018. Nothing else changed. |
 | Draft 4.2 | 2026-10-05 | ADR-012 C implemented offline; LAT requirement IDs and preserved historical replay differences. Devnet rerun and the remaining RT-3 questions are still open. |
 | Draft 4.3 | 2026-10-05 | PKG acceptance IDs for the approved release-only build; private compiled SDK candidate and installed consumer checks. |
+| Draft 4.4 | 2026-10-05 | ADR-019/020 accepted; signed policy and version/profile foundation, with policy-aware restore/replay and external trust. Full isolated signer qualification remains owed. |

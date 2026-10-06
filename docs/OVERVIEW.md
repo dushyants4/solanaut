@@ -1,6 +1,6 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 4** · 2026-10-05 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 5** · 2026-10-05 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
@@ -10,10 +10,13 @@ The first Solanaut 1.0 change implements ADR-012 C in the existing guard: one RE
 from an earlier rule is tolerated; Keel's own denial or a consecutive REGROUND denial latches.
 The predecessor comes from the record and is reconstructed in replay. Offline evidence and the
 accepted historical replay breaks are in `evals/sdk/latch-c.md`; the funded devnet rerun is owed.
-The isolated signer and later Alpha paths remain specified, not built.
+The SDK also has signed-policy preparation/verification and policy-aware history, restore,
+replay and inspection (`docs/POLICIES.md`). Its profile binds the current evaluator and controller.
+The release-only build stages a private compiled SDK (`docs/PACKAGING.md`). The isolated signer
+and later Alpha paths remain specified, not built.
 
-A product and an office around it. The product is a transaction guard for Solana AI agents: about 1,950 lines of
-TypeScript, and about 1,850 lines of tests. The office is the machinery that keeps the work honest: seven agent
+A product and an office around it. The product is a transaction guard for Solana AI agents.
+The office is the machinery that keeps the work honest: seven agent
 seats, gates, standard procedures, records, and a knowledge vault.
 
 ```
@@ -24,6 +27,7 @@ Solanaut/                        (an Obsidian vault; open this folder, and the f
 │   ├─ src/classify.ts           a decoded message → its effects: outflows, denied instructions, fees, the intent key
 │   ├─ src/pda.ts                program-derived and associated token addresses, offline
 │   ├─ src/policy.ts             policy v1: validated (rule 0), frozen, hashed
+│   ├─ src/signed-policy.ts, profile.ts   operator authorization and supported evaluator identity
 │   ├─ src/guard.ts              createGuard(): rules 0 to 19 in order; receipts, reports, the latch
 │   ├─ src/state.ts              the guard's state, changed only by applying an entry of the record
 │   ├─ src/log.ts                the record's entries, hash-chained
@@ -56,12 +60,12 @@ Solanaut/                        (an Obsidian vault; open this folder, and the f
 
 | What | Version | Why |
 |---|---|---|
-| Node.js | 26.7.0 (mise) | runs TypeScript directly (type stripping), so there is no build step |
+| Node.js | 26.7.0 (mise) | native TypeScript development; release-only JavaScript/declaration build |
 | `@gubernaut/core` (Keel) | 1.0.1 | the loop controller: three numbers in, a posture out. **The SDK's only runtime dependency** |
 | `@solana/kit` | 8.4.0 | dev only: the reference the decoder is checked against |
 | `@solana-program/system`, `token`, `compute-budget` | 0.15.0, 0.17.0, 0.19.0 | dev only: the reference the classifier is checked against |
 | `@solana/web3.js` | 1.99.0 | dev only in the SDK; the sandbox uses it, and so do the agent frameworks the adapters will wrap |
-| `typescript` | 7.0.2 | type-checking only (`tsc --noEmit`) |
+| `typescript` | 7.0.2 | typecheck and release-only compilation |
 | `puppeteer-core` | 25.12.0 | `tools/colosseum_entry.mjs` only |
 | Agave (Solana CLI) | 3.1.10, and 4.3.0 for v1 | `solana-test-validator` for the sandbox; 4.3.0 by absolute path for v1 transactions |
 | Anchor | 1.2.0 | installed and proven; `solanaut_anchor` (milestone 3.7) will use it |

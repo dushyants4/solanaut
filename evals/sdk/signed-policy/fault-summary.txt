@@ -1,0 +1,44 @@
+✔ POL-1: canonical readable summary and valid operator signature load (7.029906ms)
+✔ POL-2: missing signature refuses to start (3.275537ms)
+✔ POL-2: wrong operator refuses to start (1.099922ms)
+✔ POL-2: other guard refuses to start (1.183304ms)
+✔ POL-2: other cluster refuses to start (1.472766ms)
+✔ POL-2: different hash refuses to start (1.63075ms)
+✔ POL-2: noncanonical base64 refuses to start (1.628499ms)
+✖ POL-2: even a correctly signed dishonest summary is rejected (2.097577ms)
+✔ POL-3: the principal cannot become the pinned operator (0.881833ms)
+✔ POL-1: invalid versions and issued timestamps have no signing text (1.246258ms)
+✔ POL-1: summaries show SOL caps and count trailing destinations (0.509509ms)
+✔ POL-4/POL-5/VER-1: history verifies signed versions and replay preserves pending receipts and the latch (39.30408ms)
+✔ VER-1: equal version restarts are idempotent; changed signed content needs a higher version (6.839459ms)
+✔ VER-2/POL-4: resealed unsupported profiles and forged historical policy refuse replay and restore (6.239067ms)
+✔ VER-2: a caller cannot substitute another sensor under the signed profile (1.353847ms)
+✔ POL-4: a policy restart retains live reservations against the new cap (9.112924ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 15
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 271.208789
+
+✖ failing tests:
+
+test at packages/sdk/test/signed-policy.test.ts:46:1
+✖ POL-2: even a correctly signed dishonest summary is rejected (2.097577ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:50:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /text|summary/,
+    operator: 'throws',
+    diff: 'simple'
+  }

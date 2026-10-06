@@ -11,21 +11,23 @@ import { Governor, wasmDigest, type Posture, type Telemetry } from "@gubernaut/c
 import { effectsOf, type ClassifyContext, type EffectsV1 } from "./classify.ts";
 import { canonicalJSON, sha256hex } from "./canonical.ts";
 import { parseReleaseText, releaseText, verifyEd25519 } from "./latch.ts";
-import { hashOf, OUTCOMES, seal, type Amounts, type Decision, type DecisionEntry, type Entry, type Outcome, type RedeemEntry, type ReleaseEntry, type ReportEntry, type RuleV1 } from "./log.ts";
+import { hashOf, OUTCOMES, seal, type Amounts, type Decision, type DecisionEntry, type Entry, type Outcome, type PolicyEntry, type RedeemEntry, type ReleaseEntry, type ReportEntry, type RuleV1 } from "./log.ts";
+import { EVALUATION_PROFILE, VERIFIED_KEEL_DIGEST, VERIFIED_KEEL_MODULE } from "./profile.ts";
+import { PolicyAuthorizationError, verifyPolicyAuthorization, verifyPolicyEntry, type PolicyAuthorization, type PolicyTrust } from "./signed-policy.ts";
 import { DecodeError } from "./message.ts";
 import { contextOf, createPolicy, type Policy } from "./policy.ts";
 import { fileStore, memoryStore, type EntryStore } from "./record.ts";
 import { sensorV1, type Sensor } from "./sensor.ts";
-import { apply, couldStillLand, currentIntent, initialState, nowFor, unresolved, windowTotals, type GuardState } from "./state.ts";
+import { apply, couldStillLand, currentIntent, initialState, nowFor, retentionWindow, unresolved, windowTotals, type GuardState } from "./state.ts";
 
 export type { Decision, Entry, Outcome, RuleV1 } from "./log.ts";
 export type { EntryStore } from "./record.ts";
 export type { Sensor, SensorView } from "./sensor.ts";
 
 /** The controller Solanaut was built and tested against: @gubernaut/core 1.0.1's embedded wasm, by SHA-256. */
-export const VERIFIED_KEEL_DIGEST = "834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8";
+export { VERIFIED_KEEL_DIGEST } from "./profile.ts";
 /** The module that runs it, `dist/index.js` of @gubernaut/core 1.0.1, by SHA-256: the JavaScript around the wasm counts too. */
-export const VERIFIED_KEEL_MODULE = "8f642684bf1dccbdaed1e35e0092e11d0cfc309c0491b1c79f6472616b9c7190";
+export { VERIFIED_KEEL_MODULE } from "./profile.ts";
 const KEEL_VERSION = "1.0.1";
 
 /**
@@ -71,6 +73,8 @@ export interface ProposalV1 {
 export interface GuardOptions {
   /** Policy v1. Validated here (rule 0): an invalid policy throws a PolicyError and no guard exists. */
   policy: unknown;
+  /** Signature and external operator/identity pin. SDK mode remains advisory; signer mode requires it. */
+  authorization?: PolicyAuthorization;
   /** Replace the telemetry source. Tests use it to drive Keel, and to prove the guard fails closed. */
   sensor?: Sensor;
   /** The Keel digest to require. Defaults to the verified one. */
@@ -152,6 +156,8 @@ interface Env {
   sensor: Sensor;
   gov: Governor;
   state: GuardState;
+  trust?: PolicyTrust;
+  policyEntry?: PolicyEntry;
 }
 
 type DecisionBody = Omit<DecisionEntry, "v" | "seq" | "prev" | "hash">;
@@ -294,6 +300,13 @@ function evaluateRules(env: Env, p: ProposalV1): DecisionBody {
 
 /** Apply a recorded entry to the state and to Keel, as restore and replay both must. */
 function reapply(env: Env, e: Entry): void {
+  if (e.kind === "decision" && env.policyEntry && e.policyHash !== env.policyHash) throw new Error("recorded decision names another signed policy");
+  if (e.kind === "policy") {
+    env.policy = verifyPolicyEntry(e, env.trust, env.policyEntry);
+    env.policyHash = createPolicy(env.policy).hash;
+    env.ctx = contextOf(env.policy);
+    env.policyEntry = e;
+  }
   if (e.kind === "decision" && e.posture !== null && e.telemetry !== null) {
     const k = env.gov.tick(e.telemetry);
     if (k.posture !== e.posture) throw new Error(`the record does not replay: at seq ${e.seq} Keel gives ${k.posture}, and the record says ${e.posture}`);
@@ -305,16 +318,29 @@ function reapply(env: Env, e: Entry): void {
 export async function createGuard(opts: GuardOptions): Promise<Guard> {
   verifyLoadedKeel(opts.expectedDigest ?? VERIFIED_KEEL_DIGEST);
   const { policy, hash: policyHash } = createPolicy(opts.policy);
-  const env: Env = { policy, policyHash, ctx: contextOf(policy), sensor: opts.sensor ?? sensorV1, gov: await Governor.create(), state: initialState() };
+  const authorization = opts.authorization && Object.freeze({ ...opts.authorization });
+  if (authorization) verifyPolicyAuthorization(policy, authorization);
+  if (authorization && opts.sensor && opts.sensor !== sensorV1) throw new Error("signed policy evaluation profile requires sensor v1");
+  const env: Env = { policy, policyHash, ctx: contextOf(policy), sensor: opts.sensor ?? sensorV1, gov: await Governor.create(), state: initialState(), trust: authorization };
   const { state, gov } = env;
   const store = opts.log === undefined ? memoryStore() : typeof opts.log === "string" ? fileStore(opts.log) : opts.log;
 
   // Restore: apply every recorded entry again, Keel included. A record that does not replay does not run.
   try {
+    state.retentionMs = retentionWindow(store.entries, policy.windowMs);
     for (const e of store.entries) {
       if (hashOf(e) !== e.hash) throw new Error(`the record is damaged: the hash of seq ${e.seq} does not match its entry`);
       reapply(env, e);
     }
+    if (authorization && env.policyEntry) {
+      const old = env.policyEntry;
+      const a = authorization;
+      if (a.version < old.version || (a.version === old.version && (canonicalJSON(policy) !== old.policy || a.text !== old.text))) throw new PolicyAuthorizationError("policy version rollback or changed content at equal version");
+    }
+    env.policy = policy;
+    env.policyHash = policyHash;
+    env.ctx = contextOf(policy);
+    state.retentionMs = 0; // Live pruning uses the active policy; a later restart rebuilds from history.
   } catch (err) {
     store.close();
     throw err;
@@ -339,6 +365,14 @@ export async function createGuard(opts: GuardOptions): Promise<Guard> {
 
   const unrecorded = (reason: string): Decision =>
     Object.freeze({ kind: "decision", v: 1, seq: -1, prev: state.head, hash: "", at: state.maxAt ?? 0, source: "caller", message: "", blockHeight: null, lastValidBlockHeight: null, intentKey: null, group: null, messageHash: null, shape: null, amounts: null, allow: false, rule: "fail-closed", reason, posture: null, telemetry: null, temperatureMax: null, policyHash, keel: KEEL }) as Decision;
+
+  if (authorization && (!env.policyEntry || env.policyEntry.version !== authorization.version)) {
+    const a = authorization;
+    try {
+      commit<PolicyEntry>({ kind: "policy", at: state.maxAt ?? 0, policy: canonicalJSON(policy), version: a.version,
+        issued: a.issued, text: a.text, signature: a.signature, profile: EVALUATION_PROFILE });
+    } catch (error) { store.close(); throw error; }
+  }
 
   const check = (p: ProposalV1): Decision => {
     if (shut) return unrecorded(shut);
@@ -447,15 +481,19 @@ const COMPARED = ["allow", "rule", "intentKey", "messageHash", "amounts", "postu
  * differs. Under the policy it was written with, a sound record replays exactly; under another
  * policy, replay says where that policy would have decided differently.
  */
-export async function replay(entries: readonly Entry[], policyInput: unknown, sensor: Sensor = sensorV1): Promise<ReplayResult> {
+export async function replay(entries: readonly Entry[], policyInput: unknown, sensor: Sensor = sensorV1, trust?: PolicyTrust): Promise<ReplayResult> {
   verifyLoadedKeel(VERIFIED_KEEL_DIGEST);
-  const { policy, hash } = createPolicy(policyInput);
-  const env: Env = { policy, policyHash: hash, ctx: contextOf(policy), sensor, gov: await Governor.create(), state: initialState() };
+  const firstPolicy = entries.find((e): e is PolicyEntry => e.kind === "policy");
+  const { policy, hash } = createPolicy(policyInput ?? (firstPolicy ? JSON.parse(firstPolicy.policy) : undefined));
+  if (firstPolicy && sensor !== sensorV1) throw new Error("signed policy evaluation profile requires sensor v1");
+  const env: Env = { policy, policyHash: hash, ctx: contextOf(policy), sensor, gov: await Governor.create(), state: initialState(), trust };
+  env.state.retentionMs = retentionWindow(entries, policy.windowMs);
   let decisions = 0;
   let previous: DecisionEntry | undefined;
   for (const e of entries) {
     const diverge = (field: string, recorded: unknown, recomputed: unknown): ReplayResult => ({ ok: false, decisions, divergence: { seq: e.seq, field, recorded, recomputed } });
     if (hashOf(e) !== e.hash) return diverge("hash", e.hash, hashOf(e));
+    if (e.kind === "decision" && env.policyEntry && e.policyHash !== env.policyHash) return diverge("policyHash", e.policyHash, env.policyHash);
     if (e.kind === "decision") {
       decisions++;
       const prior = previous;
@@ -477,7 +515,7 @@ export async function replay(entries: readonly Entry[], policyInput: unknown, se
         }
         // Keel has ticked in evaluate; apply the entry without ticking it twice.
         try {
-          apply(env.state, e, policy);
+          apply(env.state, e, env.policy);
         } catch (err) {
           return diverge("chain", e.prev, (err as Error).message);
         }

@@ -108,7 +108,17 @@ export interface RedeemEntry extends EntryBase {
   blockHeight: string | null;
 }
 
-export type Entry = DecisionEntry | ReportEntry | ReleaseEntry | RedeemEntry;
+export interface PolicyEntry extends EntryBase {
+  kind: "policy";
+  policy: string;
+  version: number;
+  issued: string;
+  text: string;
+  signature: string;
+  profile: typeof import("./profile.ts").EVALUATION_PROFILE;
+}
+
+export type Entry = DecisionEntry | ReportEntry | ReleaseEntry | RedeemEntry | PolicyEntry;
 export type Decision = DecisionEntry;
 
 /** Hash an entry's body and freeze the result. */

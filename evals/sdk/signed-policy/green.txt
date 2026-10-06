@@ -1,0 +1,26 @@
+✔ POL-1: canonical readable summary and valid operator signature load (7.183772ms)
+✔ POL-2: missing signature refuses to start (2.156627ms)
+✔ POL-2: wrong operator refuses to start (1.330866ms)
+✔ POL-2: other guard refuses to start (1.152877ms)
+✔ POL-2: other cluster refuses to start (0.953868ms)
+✔ POL-2: different hash refuses to start (1.225992ms)
+✔ POL-2: noncanonical base64 refuses to start (1.446405ms)
+✔ POL-2: even a correctly signed dishonest summary is rejected (0.994855ms)
+✔ POL-3: the principal cannot become the pinned operator (0.930424ms)
+✔ POL-1: invalid versions and issued timestamps have no signing text (1.273581ms)
+✔ POL-1: summaries show SOL caps and count trailing destinations (0.430146ms)
+✔ POL-4/POL-5/VER-1: history verifies signed versions and replay preserves pending receipts and the latch (44.557422ms)
+✔ VER-1: equal version restarts are idempotent; changed signed content needs a higher version (13.127027ms)
+✔ VER-2/POL-4: resealed unsupported profiles and forged historical policy refuse replay and restore (10.785653ms)
+✔ VER-2: a caller cannot substitute another sensor under the signed profile (0.909277ms)
+✔ POL-4: a policy restart retains live reservations against the new cap (6.094588ms)
+✔ POL-4: the operator replay command uses signed history and an external public trust file (311.632626ms)
+✔ POL-4: extending the window reconstructs spending pruned under the old window (7.965303ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 598.545969

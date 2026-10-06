@@ -1,0 +1,54 @@
+✔ POL-1: canonical readable summary and valid operator signature load (18.386092ms)
+✔ POL-2: missing signature refuses to start (3.597223ms)
+✔ POL-2: wrong operator refuses to start (1.958658ms)
+✔ POL-2: other guard refuses to start (2.529339ms)
+✔ POL-2: other cluster refuses to start (2.130069ms)
+✔ POL-2: different hash refuses to start (3.278326ms)
+✔ POL-2: noncanonical base64 refuses to start (3.313878ms)
+✔ POL-2: even a correctly signed dishonest summary is rejected (1.772261ms)
+✔ POL-3: the principal cannot become the pinned operator (1.65747ms)
+✔ POL-1: invalid versions and issued timestamps have no signing text (2.972892ms)
+✔ POL-1: summaries show SOL caps and count trailing destinations (1.096761ms)
+✖ POL-4/POL-5/VER-1: history verifies signed versions and replay preserves pending receipts and the latch (64.681515ms)
+✖ VER-1: equal version restarts are idempotent; changed signed content needs a higher version (10.782418ms)
+✔ VER-2/POL-4: resealed unsupported profiles and forged historical policy refuse replay and restore (11.853205ms)
+✔ VER-2: a caller cannot substitute another sensor under the signed profile (2.041358ms)
+✔ POL-4: a policy restart retains live reservations against the new cap (14.195023ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 14
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 399.601464
+
+✖ failing tests:
+
+test at packages/sdk/test/signed-policy.test.ts:66:1
+✖ POL-4/POL-5/VER-1: history verifies signed versions and replay preserves pending receipts and the latch (64.681515ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:83:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /version|rollback/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/signed-policy.test.ts:86:1
+✖ VER-1: equal version restarts are idempotent; changed signed content needs a higher version (10.782418ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:94:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /version|content/,
+    operator: 'rejects',
+    diff: 'simple'
+  }

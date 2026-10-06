@@ -3,8 +3,9 @@
 // JSON: amounts and heights are decimal strings. Reading a record changes nothing.
 
 import { createPolicy } from "./policy.ts";
-import { hashOf, type DecisionEntry, type Entry } from "./log.ts";
-import { apply, couldStillLand, initialState, windowTotals } from "./state.ts";
+import { hashOf, type DecisionEntry, type Entry, type PolicyEntry } from "./log.ts";
+import { verifyPolicyEntry, type PolicyTrust } from "./signed-policy.ts";
+import { apply, couldStillLand, initialState, retentionWindow, windowTotals } from "./state.ts";
 
 export interface Inspection {
   guardId: string;
@@ -45,14 +46,21 @@ export interface Inspection {
   counts: { allow: number; deny: Record<string, number> };
 }
 
-export function inspectRecord(entries: readonly Entry[], policyInput: unknown): Inspection {
-  const { policy, hash } = createPolicy(policyInput);
+export function inspectRecord(entries: readonly Entry[], policyInput: unknown, trust?: PolicyTrust): Inspection {
+  let { policy, hash } = createPolicy(policyInput);
+  let previous: PolicyEntry | undefined;
   const state = initialState();
+  state.retentionMs = retentionWindow(entries, policy.windowMs);
   const decisions: DecisionEntry[] = [];
   const releases: { seq: number; at: number; latchSeq: number }[] = [];
   const counts = { allow: 0, deny: {} as Record<string, number> };
   for (const e of entries) {
     if (hashOf(e) !== e.hash) throw new Error(`the record is damaged: the hash of seq ${e.seq} does not match its entry`);
+    if (e.kind === "policy") {
+      policy = verifyPolicyEntry(e, trust, previous);
+      hash = createPolicy(policy).hash;
+      previous = e;
+    }
     apply(state, e, policy);
     if (e.kind === "decision") {
       decisions.push(e);

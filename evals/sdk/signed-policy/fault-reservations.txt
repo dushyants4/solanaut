@@ -1,0 +1,45 @@
+✔ POL-1: canonical readable summary and valid operator signature load (7.429831ms)
+✔ POL-2: missing signature refuses to start (2.932282ms)
+✔ POL-2: wrong operator refuses to start (1.232249ms)
+✔ POL-2: other guard refuses to start (1.34894ms)
+✔ POL-2: other cluster refuses to start (1.40623ms)
+✔ POL-2: different hash refuses to start (1.586877ms)
+✔ POL-2: noncanonical base64 refuses to start (1.755847ms)
+✔ POL-2: even a correctly signed dishonest summary is rejected (1.300909ms)
+✔ POL-3: the principal cannot become the pinned operator (1.167183ms)
+✔ POL-1: invalid versions and issued timestamps have no signing text (1.738085ms)
+✔ POL-1: summaries show SOL caps and count trailing destinations (1.691673ms)
+✔ POL-4/POL-5/VER-1: history verifies signed versions and replay preserves pending receipts and the latch (51.678764ms)
+✔ VER-1: equal version restarts are idempotent; changed signed content needs a higher version (5.714303ms)
+✔ VER-2/POL-4: resealed unsupported profiles and forged historical policy refuse replay and restore (8.66369ms)
+✔ VER-2: a caller cannot substitute another sensor under the signed profile (1.657112ms)
+✖ POL-4: a policy restart retains live reservations against the new cap (5.430175ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 15
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 296.2039
+
+✖ failing tests:
+
+test at packages/sdk/test/signed-policy.test.ts:117:1
+✖ POL-4: a policy restart retains live reservations against the new cap (5.430175ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'over-window-cap'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:127:10)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'over-window-cap',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

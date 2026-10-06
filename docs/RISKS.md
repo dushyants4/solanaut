@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.1** · 2026-10-05 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.2** · 2026-10-05 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 The threat model ([docs/papers/THREAT-MODEL.md](papers/THREAT-MODEL.md)) lists what an attacker can do to a running
@@ -58,8 +58,9 @@ evidence.
 ## Changes
 
 Solanaut 1.0 inspection also found the documented stale-lock race, missing signer lifecycle
-evidence and the execution-relative gap in opaque balance floors. ADR-019/020 are proposals,
-not built mitigations. Affected implementation waits for acceptance; opaque denial remains.
+evidence and the execution-relative gap in opaque balance floors. ADR-019/020 are accepted.
+Signed policy/version/profile checks now have offline evidence (`evals/sdk/signed-policy.md`);
+isolated enforcement and the remaining recovery mitigations are not built. Opaque denial remains.
 
 | Version | Date | What changed |
 |---|---|---|

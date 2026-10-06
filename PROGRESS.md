@@ -54,6 +54,8 @@ ADR-012 C is implemented and verified offline (`evals/sdk/latch-c.md`); its comp
 still owes a funded devnet rerun. Historical records' accepted replay differences are enumerated.
 ADR-019/020 are accepted clarifications following the human's instruction to go ahead;
 their signing, recovery and operator paths are next. The isolated signer is not built.
+Signed SDK policy history is built and tested offline (`evals/sdk/signed-policy.md`);
+its milestone still needs the signer's enforced path and the operator's Phantom evidence.
 The Alpha and stable-release gates are not achieved by this initial work.
 
 1. **Defects** (`docs/SPEC.md` §10):

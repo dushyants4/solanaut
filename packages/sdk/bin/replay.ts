@@ -10,24 +10,30 @@
 import { readFileSync } from "node:fs";
 import { replay } from "../src/guard.ts";
 import type { Entry } from "../src/log.ts";
+import type { PolicyTrust } from "../src/signed-policy.ts";
 
-const [recordPath, policyPath] = process.argv.slice(2);
-if (!recordPath || !policyPath) {
-  console.error("usage: npm run replay -- <record.jsonl> <policy.json>");
+const [recordPath, policyPath, trustPath, ...extra] = process.argv.slice(2);
+if (!recordPath || !policyPath || extra.length > 0) {
+  console.error("usage: npm run replay -- <record.jsonl> <policy.json|-> [public-trust.json]");
   process.exit(2);
 }
 
 let entries: Entry[];
 let policy: unknown;
+let trust: PolicyTrust | undefined;
 try {
   entries = readFileSync(recordPath, "utf8").split("\n").filter(Boolean).map((line) => JSON.parse(line) as Entry);
-  policy = JSON.parse(readFileSync(policyPath, "utf8"));
+  policy = policyPath === "-" ? undefined : JSON.parse(readFileSync(policyPath, "utf8"));
+  trust = trustPath ? JSON.parse(readFileSync(trustPath, "utf8")) as PolicyTrust : undefined;
 } catch (e) {
   console.error(`replay: ${(e as Error).message}`);
   process.exit(2);
 }
 
-const res = await replay(entries, policy);
+const res = await replay(entries, policy, undefined, trust).catch((error: Error) => {
+  console.error(`replay: ${error.message}`);
+  process.exit(2);
+});
 if (res.ok) {
   console.log(`replays: ${entries.length} entries, ${res.decisions} decisions recomputed, no divergence`);
   process.exit(0);

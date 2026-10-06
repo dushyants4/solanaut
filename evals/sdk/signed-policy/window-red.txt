@@ -1,0 +1,47 @@
+✔ POL-1: canonical readable summary and valid operator signature load (6.991122ms)
+✔ POL-2: missing signature refuses to start (2.194251ms)
+✔ POL-2: wrong operator refuses to start (1.250176ms)
+✔ POL-2: other guard refuses to start (1.478841ms)
+✔ POL-2: other cluster refuses to start (1.147168ms)
+✔ POL-2: different hash refuses to start (1.059943ms)
+✔ POL-2: noncanonical base64 refuses to start (1.556704ms)
+✔ POL-2: even a correctly signed dishonest summary is rejected (0.907835ms)
+✔ POL-3: the principal cannot become the pinned operator (0.723663ms)
+✔ POL-1: invalid versions and issued timestamps have no signing text (1.020071ms)
+✔ POL-1: summaries show SOL caps and count trailing destinations (0.389331ms)
+✔ POL-4/POL-5/VER-1: history verifies signed versions and replay preserves pending receipts and the latch (39.115941ms)
+✔ VER-1: equal version restarts are idempotent; changed signed content needs a higher version (4.751201ms)
+✔ VER-2/POL-4: resealed unsupported profiles and forged historical policy refuse replay and restore (8.234043ms)
+✔ VER-2: a caller cannot substitute another sensor under the signed profile (1.110384ms)
+✔ POL-4: a policy restart retains live reservations against the new cap (6.717153ms)
+✔ POL-4: the operator replay command uses signed history and an external public trust file (286.788989ms)
+✖ POL-4: extending the window reconstructs spending pruned under the old window (6.010718ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 17
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 559.273676
+
+✖ failing tests:
+
+test at packages/sdk/test/signed-policy.test.ts:150:1
+✖ POL-4: extending the window reconstructs spending pruned under the old window (6.010718ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'over-window-cap'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:162:10)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'over-window-cap',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

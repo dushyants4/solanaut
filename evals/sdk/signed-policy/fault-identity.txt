@@ -1,0 +1,54 @@
+✔ POL-1: canonical readable summary and valid operator signature load (11.04175ms)
+✔ POL-2: missing signature refuses to start (3.301258ms)
+✔ POL-2: wrong operator refuses to start (1.800711ms)
+✖ POL-2: other guard refuses to start (13.794488ms)
+✖ POL-2: other cluster refuses to start (3.787749ms)
+✔ POL-2: different hash refuses to start (2.046927ms)
+✔ POL-2: noncanonical base64 refuses to start (1.789075ms)
+✔ POL-2: even a correctly signed dishonest summary is rejected (1.360779ms)
+✔ POL-3: the principal cannot become the pinned operator (1.163617ms)
+✔ POL-1: invalid versions and issued timestamps have no signing text (1.426214ms)
+✔ POL-1: summaries show SOL caps and count trailing destinations (0.640565ms)
+✔ POL-4/POL-5/VER-1: history verifies signed versions and replay preserves pending receipts and the latch (54.302626ms)
+✔ VER-1: equal version restarts are idempotent; changed signed content needs a higher version (7.161737ms)
+✔ VER-2/POL-4: resealed unsupported profiles and forged historical policy refuse replay and restore (6.609247ms)
+✔ VER-2: a caller cannot substitute another sensor under the signed profile (1.213511ms)
+✔ POL-4: a policy restart retains live reservations against the new cap (9.776461ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 14
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 361.296364
+
+✖ failing tests:
+
+test at packages/sdk/test/signed-policy.test.ts:43:13
+✖ POL-2: other guard refuses to start (13.794488ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:44:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /policy|signature|operator|guard|cluster/i,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/signed-policy.test.ts:43:13
+✖ POL-2: other cluster refuses to start (3.787749ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:44:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /policy|signature|operator|guard|cluster/i,
+    operator: 'rejects',
+    diff: 'simple'
+  }

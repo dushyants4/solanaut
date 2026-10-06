@@ -1,0 +1,43 @@
+✔ POL-1: canonical readable summary and valid operator signature load (7.438222ms)
+✔ POL-2: missing signature refuses to start (2.802843ms)
+✔ POL-2: wrong operator refuses to start (1.162533ms)
+✔ POL-2: other guard refuses to start (1.247155ms)
+✔ POL-2: other cluster refuses to start (1.020662ms)
+✔ POL-2: different hash refuses to start (1.390639ms)
+✔ POL-2: noncanonical base64 refuses to start (1.770697ms)
+✔ POL-2: even a correctly signed dishonest summary is rejected (0.858615ms)
+✔ POL-3: the principal cannot become the pinned operator (0.81854ms)
+✔ POL-1: invalid versions and issued timestamps have no signing text (1.204869ms)
+✔ POL-1: summaries show SOL caps and count trailing destinations (0.619445ms)
+✔ POL-4/POL-5/VER-1: history verifies signed versions and replay preserves pending receipts and the latch (46.800629ms)
+✔ VER-1: equal version restarts are idempotent; changed signed content needs a higher version (5.45845ms)
+✖ VER-2/POL-4: resealed unsupported profiles and forged historical policy refuse replay and restore (6.327678ms)
+✔ VER-2: a caller cannot substitute another sensor under the signed profile (1.621803ms)
+✔ POL-4: a policy restart retains live reservations against the new cap (9.458342ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 15
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 289.845872
+
+✖ failing tests:
+
+test at packages/sdk/test/signed-policy.test.ts:96:1
+✖ VER-2/POL-4: resealed unsupported profiles and forged historical policy refuse replay and restore (6.327678ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:110:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,45 @@
+✔ POL-1: canonical readable summary and valid operator signature load (6.973513ms)
+✔ POL-2: missing signature refuses to start (2.237771ms)
+✔ POL-2: wrong operator refuses to start (1.541721ms)
+✔ POL-2: other guard refuses to start (1.181096ms)
+✔ POL-2: other cluster refuses to start (1.032871ms)
+✔ POL-2: different hash refuses to start (1.325543ms)
+✔ POL-2: noncanonical base64 refuses to start (1.816415ms)
+✔ POL-2: even a correctly signed dishonest summary is rejected (0.872857ms)
+✔ POL-3: the principal cannot become the pinned operator (0.756455ms)
+✔ POL-1: invalid versions and issued timestamps have no signing text (1.074086ms)
+✔ POL-1: summaries show SOL caps and count trailing destinations (0.372773ms)
+✔ POL-4/POL-5/VER-1: history verifies signed versions and replay preserves pending receipts and the latch (41.119769ms)
+✖ VER-1: equal version restarts are idempotent; changed signed content needs a higher version (9.959424ms)
+✔ VER-2/POL-4: resealed unsupported profiles and forged historical policy refuse replay and restore (9.747265ms)
+✔ VER-2: a caller cannot substitute another sensor under the signed profile (0.964445ms)
+✔ POL-4: a policy restart retains live reservations against the new cap (5.322298ms)
+✔ POL-4: the operator replay command uses signed history and an external public trust file (281.379094ms)
+✔ POL-4: extending the window reconstructs spending pruned under the old window (8.701662ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 17
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 597.546503
+
+✖ failing tests:
+
+test at packages/sdk/test/signed-policy.test.ts:90:1
+✖ VER-1: equal version restarts are idempotent; changed signed content needs a higher version (9.959424ms)
+  AssertionError [ERR_ASSERTION]: a genuinely signed old policy cannot reappear after a newer version
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:104:10)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,221 @@
+✖ POL-1: canonical readable summary and valid operator signature load (1.33607ms)
+✖ POL-2: missing signature refuses to start (0.273477ms)
+✖ POL-2: wrong operator refuses to start (0.125504ms)
+✖ POL-2: other guard refuses to start (0.122185ms)
+✖ POL-2: other cluster refuses to start (0.123284ms)
+✖ POL-2: different hash refuses to start (0.11714ms)
+✖ POL-2: noncanonical base64 refuses to start (0.156494ms)
+✖ POL-2: even a correctly signed dishonest summary is rejected (0.1411ms)
+✖ POL-3: the principal cannot become the pinned operator (0.319526ms)
+✖ POL-1: invalid versions and issued timestamps have no signing text (1.26365ms)
+✖ POL-1: summaries include every cap and destination count without hiding trailing destinations (0.401778ms)
+✖ POL-4/POL-5/VER-1: history verifies signed versions and replay preserves pending receipts and the latch (0.447252ms)
+✖ VER-1: equal version restarts are idempotent; changed signed content needs a higher version (0.239213ms)
+✖ VER-2/POL-4: resealed unsupported profiles and forged historical policy refuse replay and restore (0.241235ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 0
+ℹ fail 14
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 183.134532
+
+✖ failing tests:
+
+test at packages/sdk/test/signed-policy.test.ts:28:1
+✖ POL-1: canonical readable summary and valid operator signature load (1.33607ms)
+  Error: signed policy not implemented
+      at preparePolicyText (file:///home/dashy/Projects/Solanaut/packages/sdk/src/signed-policy.ts:4:104)
+      at authorization (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:23:16)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:29:16)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at packages/sdk/test/signed-policy.test.ts:42:13
+✖ POL-2: missing signature refuses to start (0.273477ms)
+  Error: signed policy not implemented
+      at preparePolicyText (file:///home/dashy/Projects/Solanaut/packages/sdk/src/signed-policy.ts:4:104)
+      at authorization (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:23:16)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:43:66)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at packages/sdk/test/signed-policy.test.ts:42:13
+✖ POL-2: wrong operator refuses to start (0.125504ms)
+  Error: signed policy not implemented
+      at preparePolicyText (file:///home/dashy/Projects/Solanaut/packages/sdk/src/signed-policy.ts:4:104)
+      at authorization (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:23:16)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:43:66)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/signed-policy.test.ts:42:13
+✖ POL-2: other guard refuses to start (0.122185ms)
+  Error: signed policy not implemented
+      at preparePolicyText (file:///home/dashy/Projects/Solanaut/packages/sdk/src/signed-policy.ts:4:104)
+      at authorization (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:23:16)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:43:66)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/signed-policy.test.ts:42:13
+✖ POL-2: other cluster refuses to start (0.123284ms)
+  Error: signed policy not implemented
+      at preparePolicyText (file:///home/dashy/Projects/Solanaut/packages/sdk/src/signed-policy.ts:4:104)
+      at authorization (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:23:16)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:43:66)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/signed-policy.test.ts:42:13
+✖ POL-2: different hash refuses to start (0.11714ms)
+  Error: signed policy not implemented
+      at preparePolicyText (file:///home/dashy/Projects/Solanaut/packages/sdk/src/signed-policy.ts:4:104)
+      at authorization (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:23:16)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:43:66)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/signed-policy.test.ts:42:13
+✖ POL-2: noncanonical base64 refuses to start (0.156494ms)
+  Error: signed policy not implemented
+      at preparePolicyText (file:///home/dashy/Projects/Solanaut/packages/sdk/src/signed-policy.ts:4:104)
+      at authorization (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:23:16)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:43:66)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/signed-policy.test.ts:45:1
+✖ POL-2: even a correctly signed dishonest summary is rejected (0.1411ms)
+  Error: signed policy not implemented
+      at preparePolicyText (file:///home/dashy/Projects/Solanaut/packages/sdk/src/signed-policy.ts:4:104)
+      at authorization (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:23:16)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:46:13)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/signed-policy.test.ts:51:1
+✖ POL-3: the principal cannot become the pinned operator (0.319526ms)
+  Error: signed policy not implemented
+      at preparePolicyText (file:///home/dashy/Projects/Solanaut/packages/sdk/src/signed-policy.ts:4:104)
+      at authorization (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:23:16)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:53:64)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/signed-policy.test.ts:55:1
+✖ POL-1: invalid versions and issued timestamps have no signing text (1.26365ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /version/. Input:
+  
+  'Error: signed policy not implemented'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:56:69)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: signed policy not implemented
+        at preparePolicyText (file:///home/dashy/Projects/Solanaut/packages/sdk/src/signed-policy.ts:4:104)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:56:82
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:56:69)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /version/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/signed-policy.test.ts:59:1
+✖ POL-1: summaries include every cap and destination count without hiding trailing destinations (0.401778ms)
+  Error: signed policy not implemented
+      at preparePolicyText (file:///home/dashy/Projects/Solanaut/packages/sdk/src/signed-policy.ts:4:104)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:61:16)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/signed-policy.test.ts:65:1
+✖ POL-4/POL-5/VER-1: history verifies signed versions and replay preserves pending receipts and the latch (0.447252ms)
+  Error: signed policy not implemented
+      at preparePolicyText (file:///home/dashy/Projects/Solanaut/packages/sdk/src/signed-policy.ts:4:104)
+      at authorization (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:23:16)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:67:56)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/signed-policy.test.ts:85:1
+✖ VER-1: equal version restarts are idempotent; changed signed content needs a higher version (0.239213ms)
+  Error: signed policy not implemented
+      at preparePolicyText (file:///home/dashy/Projects/Solanaut/packages/sdk/src/signed-policy.ts:4:104)
+      at authorization (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:23:16)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:87:60)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/signed-policy.test.ts:95:1
+✖ VER-2/POL-4: resealed unsupported profiles and forged historical policy refuse replay and restore (0.241235ms)
+  Error: signed policy not implemented
+      at preparePolicyText (file:///home/dashy/Projects/Solanaut/packages/sdk/src/signed-policy.ts:4:104)
+      at authorization (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:23:16)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:96:56)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
