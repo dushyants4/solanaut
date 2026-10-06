@@ -3,10 +3,13 @@ import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import { createGuard, memoryStore, type Guard } from "@solanaut/sdk";
 import { createRequestHandler } from "../src/handler.ts";
+import type { Proposal } from "../src/core.ts";
+import { createSignerCore } from "../src/core.ts";
 import { WORKLOAD_POLICY } from "../../../packages/sdk/test/support/workload.ts";
 import { craftLegacy, key } from "../../../packages/sdk/test/support/craft.ts";
+import type { ControlMethod } from "../../../packages/sdk/src/control-request.ts";
 const request = (method = "status", id = "status-a") => ({ method, clientId: "agent", id, deadline: 2000, ...(method === "propose" ? { message: "AA==" } : {}), ...(method === "report" ? { decision: "a".repeat(64) } : {}) });
-const core = () => ({ propose: async () => ({ stage: "response" as const, decision: "a".repeat(64), status: "denied" as const }), report: async (_decision: string, _deadline?: number) => {} });
+const core = () => ({ propose: async (_proposal: Proposal) => ({ stage: "response" as const, decision: "a".repeat(64), status: "denied" as const }), report: async (_decision: string, _deadline?: number) => {} });
 test("LIF-4: status starts before reading, and completed retries preserve the first snapshot after deadline", async () => {
   const g = await createGuard({ policy: WORKLOAD_POLICY }); let calls = 0;
   const handle = createRequestHandler({ guard: g, core: core(), now: () => 1000, status() { calls++; assert.equal(g.entries().at(-1)?.kind, "request"); return { mode: "same-user", ready: true }; } });
@@ -100,5 +103,61 @@ test("SIG-2/LIF-4: unknown methods never dispatch, and response write failure th
     await assert.rejects(handle(request("release")), /method/); assert.equal(g.entries().length, 0);
     await assert.rejects(handle(request()), /record|ENOSPC/); assert.equal(g.entries().length, 1);
     assert.equal(g.check({ message: new Uint8Array(), at: 1000 }).seq, -1);
+  } finally { g.close(); }
+});
+test("LIF-5: pre-admission proposal failure persists a fixed refusal and binds the exact payload", async () => {
+  const g = await createGuard({ policy: WORKLOAD_POLICY }); const host = core(); let calls = 0;
+  host.propose = async () => { calls++; throw new Error("private-provider-detail"); };
+  const handle = createRequestHandler({ guard: g, core: host, now: () => 1000, status: () => ({}) });
+  try {
+    assert.deepEqual(await handle(request("propose")), { status: "denied", code: "unavailable" });
+    assert.deepEqual(await handle({ ...request("propose"), deadline: 0 }), { status: "denied", code: "unavailable" });
+    await assert.rejects(handle({ ...request("propose"), message: "AQ==" }), /identity|payload/);
+    await assert.rejects(handle({ ...request("propose"), group: "changed" }), /identity|payload/);
+    assert.equal(calls, 1); assert.equal(g.entries().length, 2);
+    assert.equal(g.entries().filter((e) => e.kind === "decision").length, 0);
+    assert.equal(JSON.stringify(g.entries()).includes("private-provider-detail"), false);
+  } finally { g.close(); }
+});
+test("LIF-5: a refusal start interrupted before its response completes conservatively without new proposal work", async () => {
+  const store = memoryStore(); const g = await createGuard({ policy: WORKLOAD_POLICY, log: store });
+  g.beginRequest(request("propose"), "propose" as ControlMethod, { message: "AA==", group: null }, 1000); g.close();
+  let calls = 0; const host = core(); host.propose = async () => { calls++; throw new Error("must not run"); };
+  for (const deadline of [2000, 0]) {
+    const next = await createGuard({ policy: WORKLOAD_POLICY, log: store });
+    const handle = createRequestHandler({ guard: next, core: host, now: () => 1000, status: () => ({}) });
+    try { assert.deepEqual(await handle({ ...request("propose"), deadline }), { status: "denied", code: "unavailable" }); }
+    finally { next.close(); }
+  }
+  assert.equal(calls, 0); assert.equal(store.entries.length, 2);
+});
+test("LIF-5: an error after a recorded admission cannot become a non-admission refusal", async () => {
+  const g = await createGuard({ policy: WORKLOAD_POLICY }); const host = core();
+  host.propose = async (r) => { g.check({ message: Buffer.from(r.message, "base64"), at: 1000 }, r); throw new Error("after-admission"); };
+  const handle = createRequestHandler({ guard: g, core: host, now: () => 1000, status: () => ({}) });
+  try { await assert.rejects(handle(request("propose")), /after-admission/); assert.equal(g.entries().length, 1); assert.equal(g.entries()[0]?.kind, "decision"); }
+  finally { g.close(); }
+});
+test("LIF-5/SIG-3: a proposal expiring before admission keeps its refusal when retried with a fresh deadline", async () => {
+  const g = await createGuard({ policy: WORKLOAD_POLICY }); const host = core(); let clock = 1000; let calls = 0;
+  host.propose = async () => { calls++; clock = 2000; throw new Error("deadline"); };
+  const handle = createRequestHandler({ guard: g, core: host, now: () => clock, status: () => ({}) });
+  try { assert.deepEqual(await handle(request("propose")), { status: "denied", code: "deadline" }); assert.deepEqual(await handle({ ...request("propose"), deadline: 3000 }), { status: "denied", code: "deadline" }); assert.equal(calls, 1); }
+  finally { g.close(); }
+});
+test("LIF-5: the real executor's malformed-message and RPC failures reach durable refusal history", async () => {
+  const g = await createGuard({ policy: WORKLOAD_POLICY }); let reads = 0; let signs = 0;
+  const host = createSignerCore({ guard: g, now: () => 1000, sign: async () => { signs++; throw new Error("must not sign"); }, rpc: {
+    observe: async () => { reads++; throw new Error("provider unavailable"); }, height: async () => 1n, send: async () => "", outcome: async () => null,
+  } });
+  const handle = createRequestHandler({ guard: g, core: host, now: () => 1000, status: () => ({}) });
+  try {
+    for (const [id, message] of [["malformed", "!!!"], ["rpc", "AA=="]]) {
+      const r = { ...request("propose", id), message };
+      assert.deepEqual(await handle(r), { status: "denied", code: "unavailable" });
+      assert.deepEqual(await handle({ ...r, deadline: 0 }), { status: "denied", code: "unavailable" });
+    }
+    assert.equal(signs, 0); assert.equal(reads, 1); assert.equal(g.entries().length, 4);
+    assert.equal(g.entries().filter((e) => e.kind === "decision").length, 0);
   } finally { g.close(); }
 });

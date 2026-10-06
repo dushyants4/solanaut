@@ -59,21 +59,22 @@ its milestone still needs the signer's enforced path and the operator's Phantom 
 The Alpha and stable-release gates are not achieved by this initial work.
 Exclusive Linux ownership and complete-write failure handling are built and tested locally
 (`evals/sdk/ownership.md`); the full signer recovery programme remains owed.
-Admission identity and payload binding are tested offline (`evals/sdk/request-identity.md`);
-durable signed-byte, send-started and response recovery are next.
-The checked signing journal is built (`evals/sdk/signing-history.md`); its executor is next.
-The conservative executor is tested with fake RPC (`evals/signer/core.md`); operational signer
-transport, authoritative providers and actual kill qualification remain owed.
+Admission identity, signed bytes, send-started and immutable response journals are built
+(`evals/sdk/request-identity.md`, `evals/sdk/signing-history.md`). The conservative executor
+has fake-RPC recovery evidence (`evals/signer/core.md`); operational service and kill qualification
+remain owed.
 The devnet RPC boundary passes fake-provider validation and failover tests (`evals/signer/rpc.md`);
 operational wiring and live-provider qualification remain owed.
 Host attribution and the anchored monotonic clock are tested (`evals/signer/authority.md`);
 the operational service and dedicated-user evidence remain owed.
 The bounded Unix transport passes local socket tests (`evals/signer/socket.md`);
-service wiring, all-method durable identities and dedicated-user deployment remain owed.
+service wiring and dedicated-user deployment remain owed.
 Status/report journal starts and immutable answers are tested (`evals/sdk/control-request.md`);
-handler deadlines/concurrency and durable pre-admission proposal refusals remain owed.
+operational enforcement and bounded retention remain owed.
 Handler deadlines/coalescing are now tested (`evals/signer/handler.md`); safe operational status
-projection, service lifecycle and pre-admission proposal refusal history remain owed.
+projection and service lifecycle remain owed. Pre-admission refusal history and interrupted
+answer recovery now have local executor evidence (`evals/signer/refusal.md`). Actual service
+startup, pending-policy/lifetime recovery, all kill boundaries and installed deployment are next.
 
 1. **Defects** (`docs/SPEC.md` §10):
    - D1 to D12 are closed: D1, D2, D5, D6, D7, D9, D10 and D12 at 2a.5, D11 at 2a.6, D3, D4 and D8 at 2a.7.

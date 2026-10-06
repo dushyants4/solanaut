@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.15** · 2026-10-05 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.16** · 2026-10-06 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -829,6 +829,11 @@ The method handler now coalesces active identities, preserves completed control 
 deadlines and records fixed expired/unavailable denials. Report hints carry their request deadline
 through the chain read and refuse late outcome recording (`evals/signer/handler.md`). Operational
 service wiring and pre-admission proposal refusal journalling remain owed.
+LIF-5 closes the latter foundation gap: non-admission proposal errors persist the exact bounded
+message/group payload and fixed refusal answer. Interrupted starts complete conservatively;
+errors after admission remain owned by signing history. Proposal strings above 8192 characters
+are invalid protocol frames before dispatch. Refusal shape/limits/codes are reversible codec
+choices inside ADR-019, not new socket methods. Evidence: `evals/signer/refusal.md`.
 
 LIF-1 foundation: optional `check(proposal, { clientId, id })` derives the payload digest itself.
 IDs are ASCII letters/digits or `._:-`, length 1–128. Authoritative time/heights and deadlines
@@ -863,3 +868,4 @@ where needed, and UTC issued timestamps include milliseconds. Policies remain re
 | Draft 4.13 | 2026-10-05 | LIF-4 control request/response journal; pending and immutable answer recovery, shared namespace and older-reader compatibility costs. |
 | Draft 4.14 | 2026-10-05 | Close completed and busy connections after writing; held-open slot regression and shutdown failure preserved. |
 | Draft 4.15 | 2026-10-05 | Method handler deadline/coalescing wiring and bounded report reads; operational service still owed. |
+| Draft 4.16 | 2026-10-06 | LIF-5 pre-admission refusal history and interrupted-answer recovery; transport/core message bounds aligned. |

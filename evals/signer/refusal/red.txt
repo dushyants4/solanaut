@@ -1,0 +1,84 @@
+✔ LIF-4: status starts before reading, and completed retries preserve the first snapshot after deadline (20.513858ms)
+✔ LIF-4: concurrent retries coalesce and differing methods refuse before actions (4.661933ms)
+✔ SIG-4/LIF-4: report replies reflect recorded host evidence and a retry never repeats the hint (8.247233ms)
+✔ SIG-3: a late status read cannot become a successful new answer (4.343089ms)
+✔ LIF-4: a control request cannot steal a concurrent proposal's identity (2.115975ms)
+✔ SIG-3/LIF-4: expired or overlong new control requests persist a denial and perform no work (3.255507ms)
+✔ LIF-4/SIG-3: report hints use the request deadline and failures persist fixed answers (1.819873ms)
+✔ LIF-4: pending control request resumes on restart; stored response then prevents re-execution (3.05898ms)
+✔ LIF-4: control/proposal identity reuse refuses before calling the proposal executor (2.040039ms)
+✔ SIG-2/LIF-4: unknown methods never dispatch, and response write failure throws and closes admission (3.506542ms)
+✖ LIF-5: pre-admission proposal failure persists a fixed refusal and binds the exact payload (3.718255ms)
+✖ LIF-5: a refusal start interrupted before its response completes conservatively without new proposal work (2.605537ms)
+✔ LIF-5: an error after a recorded admission cannot become a non-admission refusal (4.61921ms)
+✖ LIF-5/SIG-3: a proposal expiring before admission keeps its refusal when retried with a fresh deadline (2.178836ms)
+✔ SIG-2: only propose/report/status dispatch, with one bounded response and request identity (18.698822ms)
+✔ SIG-10: socket permissions restrict its group and parent must be protected (2.135082ms)
+✔ SIG-2/3: malformed JSON, unknown fields, bad IDs/deadlines and multiple frames never dispatch (6.275702ms)
+✔ SIG-2: oversized or invalid UTF-8 frames refuse before dispatch (3.132317ms)
+✔ SIG-3: idle and unfinished requests end within the configured bounded read timeout (66.842446ms)
+✔ SIG-1: handler errors return a fixed code without exposing internal exception text (2.582186ms)
+✔ SIG-10: existing non-socket and symlink paths are never removed (1.415538ms)
+✔ SIG-10: a live listener cannot be replaced (3.50318ms)
+✔ SIG-3: trickling bytes cannot extend the absolute connection deadline (44.061621ms)
+✔ SIG-1/2: oversized or unserialisable handler responses become fixed internal errors (18.662375ms)
+✔ SIG-8/10: an abandoned socket is recovered after its process exits (60.760613ms)
+✔ SIG-2/3: clients holding their half open cannot exhaust completed connection slots (26.313995ms)
+✖ SIG-2: a proposal exceeding the core's message bound is an invalid frame before dispatch (2.140677ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 23
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 381.929089
+
+✖ failing tests:
+
+test at apps/signer/test/handler.test.ts:106:1
+✖ LIF-5: pre-admission proposal failure persists a fixed refusal and binds the exact payload (3.718255ms)
+  Error: private-provider-detail
+      at host.propose (file:///home/dashy/Projects/Solanaut/apps/signer/test/handler.test.ts:108:47)
+      at run (file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:22:21)
+      at async file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:41:18
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/handler.test.ts:111:22)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at apps/signer/test/handler.test.ts:120:1
+✖ LIF-5: a refusal start interrupted before its response completes conservatively without new proposal work (2.605537ms)
+  Error: invalid control request payload
+      at controlPayload (file:///home/dashy/Projects/Solanaut/packages/sdk/src/control-request.ts:8:231)
+      at Object.beginRequest (file:///home/dashy/Projects/Solanaut/packages/sdk/src/guard.ts:480:23)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/handler.test.ts:122:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at apps/signer/test/handler.test.ts:139:1
+✖ LIF-5/SIG-3: a proposal expiring before admission keeps its refusal when retried with a fresh deadline (2.178836ms)
+  Error: deadline
+      at host.propose (file:///home/dashy/Projects/Solanaut/apps/signer/test/handler.test.ts:141:61)
+      at run (file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:22:21)
+      at async file:///home/dashy/Projects/Solanaut/apps/signer/src/handler.ts:41:18
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/handler.test.ts:143:26)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at apps/signer/test/socket.test.ts:138:1
+✖ SIG-2: a proposal exceeding the core's message bound is an invalid frame before dispatch (2.140677ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/socket.test.ts:140:125)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

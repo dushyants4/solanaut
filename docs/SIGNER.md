@@ -1,6 +1,6 @@
 # Signer development and trust boundary
 
-> **Draft 4** · 2026-10-05 · owner: integrator · for: operators and signer developers.
+> **Draft 5** · 2026-10-06 · owner: integrator · for: operators and signer developers.
 > Register: `kb/DOCUMENTS.md`. The operational service is still being implemented.
 
 The executor and devnet RPC boundary live under `apps/signer/src/`. Their current evidence uses
@@ -45,5 +45,7 @@ identical active requests, refuses cross-method identity reuse, and returns comp
 before checking retry deadlines. New expired requests and unavailable control work have fixed,
 durable denial replies. Report hints use the request deadline through the chain read and outcome
 recording; callers never supply an outcome. The operational service must supply a safe status
-projection and its anchored clock. Pre-admission proposal errors still need journalling; the
-handler does not establish full idempotency until that gap is closed.
+projection and its anchored clock. Pre-admission proposal errors now have durable refusal
+payloads and answers (S27). Interrupted refusal starts complete conservatively without invoking
+the executor again. Errors after admission remain governed by signing history. This has local
+evidence; the operational lifecycle and full kill/outage programmes remain required.

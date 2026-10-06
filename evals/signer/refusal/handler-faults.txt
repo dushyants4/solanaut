@@ -1,0 +1,10 @@
+caught handler fault: concurrent-payload
+caught handler fault: duplicate-work
+caught handler fault: ignore-cached-answer
+caught handler fault: ignore-new-deadline
+caught handler fault: ignore-late-deadline
+caught handler fault: omit-request-deadline
+caught handler fault: ignore-control-namespace
+caught handler fault: omit-refusal-answer
+caught handler fault: admission-as-refusal
+All handler faults caught; restored source passes

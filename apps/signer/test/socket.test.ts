@@ -52,9 +52,9 @@ test("SIG-2/3: malformed JSON, unknown fields, bad IDs/deadlines and multiple fr
 });
 test("SIG-2: oversized or invalid UTF-8 frames refuse before dispatch", async () => {
   const { path } = location(); let calls = 0;
-  const service = await startSocket(path, async () => { calls++; return {}; });
+  const service = await startSocket(path, async () => { calls++; return {}; }, { timeoutMs: 100 });
   try {
-    for (const bytes of [Buffer.from(JSON.stringify({ ...request("propose"), message: "x".repeat(16_384) }) + "\n"), Buffer.from([0xff, 0x0a])]) {
+    for (const bytes of [Buffer.alloc(16_385, 65), Buffer.from(JSON.stringify({ ...request("propose"), message: "x".repeat(16_384) }) + "\n"), Buffer.from([0xff, 0x0a])]) {
       const r = await exchange(path, bytes); assert.equal(r.ok, false); assert.equal(r.error.code, "protocol");
     }
     assert.equal(calls, 0);
@@ -134,4 +134,9 @@ test("SIG-2/3: clients holding their half open cannot exhaust completed connecti
       catch (error) { console.error(error); throw error; }
     }
   } finally { for (const s of held) s.destroy(); await service.close(); }
+});
+test("SIG-2: a proposal exceeding the core's message bound is an invalid frame before dispatch", async () => {
+  const { path } = location(); let calls = 0; const service = await startSocket(path, async () => { calls++; return {}; });
+  try { const r = await exchange(path, JSON.stringify({ ...request("propose"), message: "x".repeat(8193) }) + "\n"); assert.equal(r.ok, false); assert.equal(r.error.code, "protocol"); assert.equal(calls, 0); }
+  finally { await service.close(); }
 });

@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.9** · 2026-10-05 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.10** · 2026-10-06 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 The threat model ([docs/papers/THREAT-MODEL.md](papers/THREAT-MODEL.md)) lists what an attacker can do to a running
@@ -77,6 +77,9 @@ Status/report request journalling has SDK evidence (`evals/sdk/control-request.m
 service wiring and pre-admission proposal errors remain open. Method deadlines/coalescing have
 fake-host evidence (`evals/signer/handler.md`). Older readers refuse the new entry kinds;
 compatible rollback must be checked against actual history, not just policy versions.
+Pre-admission refusal history now has local executor/journal evidence (`evals/signer/refusal.md`);
+operational supervision and full kill qualification remain open. Invalid protocol frames are
+not journalled. Refusal history does not release an admitted attempt's unresolved reservation.
 
 | Version | Date | What changed |
 |---|---|---|

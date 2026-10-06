@@ -1,6 +1,6 @@
 # SDK request identity foundation
 
-> **Draft 4** · 2026-10-05 · owner: integrator · for: SDK consumers and signer developers.
+> **Draft 5** · 2026-10-06 · owner: integrator · for: SDK consumers and signer developers.
 > Evidence: `evals/sdk/request-identity.md`, claim S17. Register: `kb/DOCUMENTS.md`.
 
 The optional second argument identifies an admission:
@@ -50,3 +50,10 @@ methods, and neither API signs or broadcasts. Deadlines and concurrent execution
 operational service wiring; the method handler now has deadline/coalescing evidence in
 `evals/signer/handler.md`. The response projection must contain no key material. Older binaries that
 do not understand these record entries cannot roll back over this history.
+
+The host journal can also store a pre-admission propose refusal with exactly
+`{ message: "<submitted string>", group: null }` (or a bounded grouping string). It records no
+decision or reservation. The handler uses this only when no admission exists. A completed
+refusal is immutable; an interrupted refusal start completes without doing proposal work again.
+Malformed protocol frames, including oversized messages, are refused before dispatch and have
+no recorded identity. This host bookkeeping API must never replace a decision's signing history.

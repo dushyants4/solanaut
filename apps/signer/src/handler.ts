@@ -3,6 +3,7 @@ import type { createSignerCore } from "./core.ts";
 import { bindRequest, requestKey } from "../../../packages/sdk/src/request.ts";
 import { canonicalJSON } from "../../../packages/sdk/src/canonical.ts";
 import type { Proposal } from "./core.ts";
+import { controlPayload } from "../../../packages/sdk/src/control-request.ts";
 export function createRequestHandler(options: { guard: Guard; core: Pick<ReturnType<typeof createSignerCore>, "propose" | "report">; now(): number; status(): unknown }) {
   const { guard, core, now, status } = options;
   const pending = new Map<string, { payload: string; promise: Promise<unknown> }>();
@@ -18,8 +19,21 @@ export function createRequestHandler(options: { guard: Guard; core: Pick<ReturnT
     const validDeadline = () => { const at = now(); return typeof r.deadline === "number" && Number.isFinite(r.deadline) && r.deadline > at && r.deadline <= at + 30_000; };
     async function run(): Promise<unknown> {
       if (method === "propose") {
-        if (guard.entries().some((e) => e.kind === "request" && requestKey(e.request) === key)) throw new Error("request identity reused with different payload");
-        return core.propose(r as unknown as Proposal);
+        const input = { message: r.message, group: r.group ?? null };
+        const prior = guard.entries().find((e) => e.kind === "request" && requestKey(e.request) === key);
+        if (prior?.kind === "request") {
+          if (prior.method !== "propose" || prior.payload !== controlPayload("propose", input)) throw new Error("request identity reused with different payload");
+          if (guard.requestResult(prior.hash) === undefined) guard.finishRequest(prior.hash, { status: "denied", code: "unavailable" });
+          return guard.requestResult(prior.hash);
+        }
+        try { return await core.propose(r as unknown as Proposal); }
+        catch (error) {
+          // An admitted attempt belongs to the signing journal, never a refusal tombstone.
+          if (guard.entries().some((e) => e.kind === "decision" && e.request && requestKey(e.request) === key)) throw error;
+          const start = guard.beginRequest(identity, "propose", input, now());
+          guard.finishRequest(start.hash, { status: "denied", code: validDeadline() ? "unavailable" : "deadline" });
+          return guard.requestResult(start.hash);
+        }
       }
       const start = guard.beginRequest(identity, method, method === "status" ? {} : { decision: r.decision }, now());
       const old = guard.requestResult(start.hash); if (old !== undefined) return old;

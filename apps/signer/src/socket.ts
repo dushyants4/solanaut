@@ -51,7 +51,7 @@ export async function startSocket(path: string, handler: (request: Record<string
         if (!["propose", "report", "status"].includes(String(r.method))) { fail("method"); return; }
         const fields = ["method", "clientId", "id", "deadline", ...(r.method === "propose" ? ["message", "group"] : r.method === "report" ? ["decision"] : [])];
         if (Object.keys(r).some((k) => !fields.includes(k)) || ![r.clientId, r.id].every((v) => typeof v === "string" && /^[A-Za-z0-9._:-]{1,128}$/.test(v)) || typeof r.deadline !== "number" || !Number.isFinite(r.deadline)) throw new Error("invalid request identity/deadline");
-        if (r.method === "propose" && (typeof r.message !== "string" || (r.group !== undefined && (typeof r.group !== "string" || r.group.length > 256)))) throw new Error("invalid proposal payload");
+        if (r.method === "propose" && (typeof r.message !== "string" || r.message.length > 8192 || (r.group !== undefined && (typeof r.group !== "string" || r.group.length > 256)))) throw new Error("invalid proposal payload");
         if (r.method === "report" && (typeof r.decision !== "string" || !/^[0-9a-f]{64}$/.test(r.decision))) throw new Error("invalid report payload");
       } catch { fail("protocol"); return; }
       Promise.resolve().then(() => handler(r)).then((result) => finish({ ok: true, id: r.id, result }), () => fail("internal"));

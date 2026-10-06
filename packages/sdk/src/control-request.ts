@@ -2,10 +2,15 @@
 import { canonicalJSON, sha256hex } from "./canonical.ts";
 import { bindRequest, requestKey, type RequestIdentity } from "./request.ts";
 import type { ControlRequestEntry, ControlResponseEntry, DecisionEntry } from "./log.ts";
-export type ControlMethod = "status" | "report";
+export type ControlMethod = "status" | "report" | "propose";
 export function controlPayload(method: ControlMethod, input: unknown): string {
   const payload = canonicalJSON(input); const p = JSON.parse(payload);
-  if (!p || Array.isArray(p) || typeof p !== "object" || (method === "status" ? payload !== "{}" : method !== "report" || Object.keys(p).length !== 1 || typeof p.decision !== "string" || !/^[0-9a-f]{64}$/.test(p.decision))) throw new Error("invalid control request payload");
+  if (!p || Array.isArray(p) || typeof p !== "object") throw new Error("invalid control request payload");
+  const valid = method === "status" ? payload === "{}" : method === "report" ?
+    Object.keys(p).length === 1 && typeof p.decision === "string" && /^[0-9a-f]{64}$/.test(p.decision) : method === "propose" &&
+    Object.keys(p).length === 2 && typeof p.message === "string" && p.message.length <= 8192 &&
+    (p.group === null || (typeof p.group === "string" && p.group.length <= 256));
+  if (!valid) throw new Error("invalid control request payload");
   return payload;
 }
 export function controlBinding(guardId: string, identity: RequestIdentity, method: ControlMethod, payload: string) {
