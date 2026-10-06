@@ -7,6 +7,11 @@ all security, validation and human-owned release gates.
 
 ## Did
 
+- Recovery implementation privately pushed as `8b92594`; post-push close passes all ten
+  checks with a clean tree. CI `37457271361` passes Node 22.18.0, 24, 26.7.0 and office.
+  Bounded CI watch timed out while jobs were still running; subsequent direct view confirmed
+  success. No validator, soak or mutated source remains running.
+
 - Continued from clean, fetched `d64a943`; both live fence probes refused correctly.
   Baseline: 295 tests pass and typecheck clean. Read-only law batch with redirected output
   was refused by the boundary heuristic; removed the redirect, no protected write attempted.
