@@ -3,6 +3,11 @@
 2026-10-06 · evaluator/operator · builder-authored local Linux evidence, Node 26.7.0.
 This receipt qualifies the report/staging checks, not the required mutation score.
 
+The first full qualification was interrupted with the session. No worker survives and no
+completed report exists. Initial-run output and its frozen manifest are retained as
+`mutation/interrupted-9775c83.txt` and `mutation/interrupted-manifest.json`; no score can be
+inferred from them. A fresh full run remains owed.
+
 ## Frozen definition
 
 Definition 1 selects complete SDK source files: `base58.ts`, `classify.ts`, `guard.ts`,

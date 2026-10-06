@@ -1,0 +1,16 @@
+{
+  "definition": 1,
+  "captured": "2026-10-06T17:30:09.500Z",
+  "endpoint": "https://api.mainnet-beta.solana.com",
+  "slot": 453965982,
+  "commitment": "finalized",
+  "encoding": "base64",
+  "maxSupportedTransactionVersion": 1,
+  "blockhash": "JXbcNk5eCoWHh3VKxzfqecaeDUS1U2jfCcmLc2eYWh1",
+  "previousBlockhash": "9tokpmBmFmDJp9LaLJ3TB6Ca3XfbeZwX3wsZLaym7Gnr",
+  "blockTime": 1791306995,
+  "blockHeight": 432003751,
+  "responseDigest": "de397abea109e7e40ae018492edc50996952c86451245e448e26f88c07732dc7",
+  "digest": "d6e9779741c6e4fe7915e178ecc89a003e88759f664dbb2a596dba0773c51541",
+  "transactions": 1078
+}

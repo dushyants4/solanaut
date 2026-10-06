@@ -1,0 +1,11 @@
+✔ CI-2: real wire, signatures and accounts compare in all supported formats (157.73673ms)
+✔ CI-2: mismatched bytes, roles, quantities and names cannot evade comparison (10.72591ms)
+✔ CI-2: client prefix decoding requires a named guard refusal for trailing data (9.002807ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2280.766062

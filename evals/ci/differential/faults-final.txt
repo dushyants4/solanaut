@@ -1,0 +1,13 @@
+caught differential fault: process
+caught differential fault: population
+caught differential fault: digest
+caught differential fault: versions
+caught differential fault: programs
+caught differential fault: completion
+caught differential fault: mismatch
+caught differential fault: oracle-comparison
+caught differential fault: strict-refusal
+caught differential fault: corpus-pin
+caught differential fault: corpus-framing
+caught differential fault: duplicate-transaction
+All differential faults caught; restored sources pass

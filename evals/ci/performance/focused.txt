@@ -1,0 +1,16 @@
+✔ CI-2: performance boundaries pass and nearest-rank p99 keeps inputs intact (49.086989ms)
+✔ CI-2: failed or absent measurement-process completion rejects timing (3.911882ms)
+✔ CI-2: pre-persistence and synced latency floors cannot be rounded down (16.197949ms)
+✔ CI-2: throughput and replay counts and elapsed time both govern the gate (13.415078ms)
+✔ CI-2: complete restored snapshot and Keel evidence is required for restart (20.218428ms)
+✔ CI-2: every measured dashboard delay must meet freshness (3.683453ms)
+✔ CI-2: p99 regression compares externally supplied compatible baseline (12.742173ms)
+✔ CI-2: malformed, zero and undersized measurements cannot qualify (9.589447ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 910.778266

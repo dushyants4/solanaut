@@ -1,0 +1,40 @@
+// Frozen CI-2 corpus; no RPC calls or transaction sends in the maintained gate.
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import { checkTransaction, type CorpusRow } from "./differential-check.ts";
+import { requireDifferential, type DifferentialEvidence } from "./differential.ts";
+export const REGRESSION_DIGEST="d6e9779741c6e4fe7915e178ecc89a003e88759f664dbb2a596dba0773c51541";
+export const CORPUS_DIGEST="9fb8fb620976ed7a715afad371e82c544b78192c5e3c9401593da64a4d9a7419";
+export function readCorpus(bytes:Buffer,expected:string):CorpusRow[] {
+  if(createHash("sha256").update(bytes).digest("hex")!==expected) throw new Error("corpus digest differs");
+  const text=bytes.toString("utf8"); if(!text.endsWith("\n")) throw new Error("corpus framing incomplete");
+  const rows:CorpusRow[]=text.slice(0,-1).split("\n").map(line=>JSON.parse(line));
+  const wires=new Set<string>();
+  for(const [index,row] of rows.entries()) {
+    if(row.index!==index || !["legacy",0,1].includes(row.version) || typeof row.wire!=="string" || wires.has(row.wire) || !Array.isArray(row.loaded?.writable) || !Array.isArray(row.loaded?.readonly) || [...row.loaded.writable,...row.loaded.readonly].some(value=>typeof value!=="string")) throw new Error("invalid or duplicate corpus transaction");
+    wires.add(row.wire);
+  }
+  return rows;
+}
+export function measureDifferential():DifferentialEvidence {
+  const bytes=readFileSync(new URL("./differential/mainnet-453972158.jsonl",import.meta.url));
+  const rows=readCorpus(bytes,CORPUS_DIGEST);
+  const result:DifferentialEvidence={digest:CORPUS_DIGEST,transactions:rows.length,signatures:0,versions:{legacy:0,"0":0,"1":0},programs:{system:0,token:0,computeBudget:0},completed:0,mismatches:0,strictRefusals:0};
+  for(const row of rows) {
+    result.versions[String(row.version)]!++;
+    try {
+      const checked=checkTransaction(row); result.signatures+=checked.signatures;
+      for(const key of Object.keys(result.programs)) result.programs[key]!+=checked.programs[key]!;
+      if(checked.strictRefusal) result.strictRefusals++;
+    } catch(error) {result.mismatches++; console.error(JSON.stringify({index:row.index,version:row.version,error:error instanceof Error?error.name:"unknown"}));}
+    result.completed++;
+  }
+  return result;
+}
+if(process.argv[1] && resolve(process.argv[1])===fileURLToPath(import.meta.url)) {
+  if(process.argv.length!==2) throw new Error("usage: differential-run.ts");
+  const evidence=measureDifferential(); console.log(JSON.stringify(evidence)); requireDifferential(evidence,CORPUS_DIGEST,0);
+  console.log("Pinned real-transaction differential gate passes");
+}

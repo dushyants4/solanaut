@@ -1,0 +1,197 @@
+✖ CI-2: pinned complete real-transaction differential populations pass (12.002554ms)
+✖ CI-2: unsuccessful or interrupted differential processes fail (4.712715ms)
+✖ CI-2: corpus substitutions and invalid pins cannot qualify (0.579317ms)
+✖ CI-2: missing transactions, formats and supported program evidence fail (5.280243ms)
+✖ CI-2: incomplete execution, signature evidence and any mismatch fail (0.597218ms)
+✖ CI-2: fabricated, duplicate aggregate and invalid strict-refusal counts fail (3.69972ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 0
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 966.672108
+
+✖ failing tests:
+
+test at evals/ci/differential.test.ts:6:1
+✖ CI-2: pinned complete real-transaction differential populations pass (12.002554ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "differential gate not implemented"
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/differential.test.ts:6:88)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: differential gate not implemented
+        at requireDifferential (file:///home/dashy/Projects/Solanaut/evals/ci/differential.ts:2:115)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/differential.test.ts:6:105
+        at getActual (node:assert:580:5)
+        at strict.doesNotThrow (node:assert:748:32)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/differential.test.ts:6:88)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.start (node:internal/test_runner/test:1257:17)
+        at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at evals/ci/differential.test.ts:7:1
+✖ CI-2: unsuccessful or interrupted differential processes fail (4.712715ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /process/. Input:
+  
+  'Error: differential gate not implemented'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/differential.test.ts:7:113)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: differential gate not implemented
+        at requireDifferential (file:///home/dashy/Projects/Solanaut/evals/ci/differential.ts:2:115)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/differential.test.ts:7:124
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/differential.test.ts:7:113)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /process/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/ci/differential.test.ts:8:1
+✖ CI-2: corpus substitutions and invalid pins cannot qualify (0.579317ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /digest/. Input:
+  
+  'Error: differential gate not implemented'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/differential.test.ts:9:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: differential gate not implemented
+        at requireDifferential (file:///home/dashy/Projects/Solanaut/evals/ci/differential.ts:2:115)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/differential.test.ts:9:21
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/differential.test.ts:9:10)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /digest/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/ci/differential.test.ts:12:1
+✖ CI-2: missing transactions, formats and supported program evidence fail (5.280243ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /population/. Input:
+  
+  'Error: differential gate not implemented'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/differential.test.ts:13:54)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: differential gate not implemented
+        at requireDifferential (file:///home/dashy/Projects/Solanaut/evals/ci/differential.ts:2:115)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/differential.test.ts:13:65
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/differential.test.ts:13:54)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /population/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/ci/differential.test.ts:17:1
+✖ CI-2: incomplete execution, signature evidence and any mismatch fail (0.597218ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /incomplete/. Input:
+  
+  'Error: differential gate not implemented'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/differential.test.ts:18:45)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: differential gate not implemented
+        at requireDifferential (file:///home/dashy/Projects/Solanaut/evals/ci/differential.ts:2:115)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/differential.test.ts:18:56
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/differential.test.ts:18:45)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /incomplete/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/ci/differential.test.ts:22:1
+✖ CI-2: fabricated, duplicate aggregate and invalid strict-refusal counts fail (3.69972ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /version/. Input:
+  
+  'Error: differential gate not implemented'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/differential.test.ts:23:51)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: differential gate not implemented
+        at requireDifferential (file:///home/dashy/Projects/Solanaut/evals/ci/differential.ts:2:115)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/differential.test.ts:23:62
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/differential.test.ts:23:51)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /version/,
+    operator: 'throws',
+    diff: 'simple'
+  }

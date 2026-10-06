@@ -172,7 +172,7 @@ Codex appends; the human answers in place. Open at the transfer:
 | H7 | 2026-10-05 | Solanaut 1.0 foundations | **Accepted:** the human said “Go aheaaad, Continue the plan” after the explicit acceptance request for ADR-019 and ADR-020. Their dependent implementation may proceed. No readiness threshold or T4 permission changed. |
 | H8 | 2026-10-05 | qualification | **External resources:** recruit outside developers, choose/fund the specialist audit and live bounty, and provide reliable devnet RPC for its soak. No contact or purchase made by Codex; all thresholds retained. |
 
-| H9 | 2026-10-06 | signer completion / SIG-11 | **Decision requested:** accept or reject `design/ADR-021-signer-implementation-budget.md`. The partial signer is 501 lines under the recorded conservative count (401 app + 100 signer-specific SDK helper lines), before key loading and remaining operational work. Proposal: 1,000 physical lines across the same scope, with all other gates unchanged. Until acceptance the 500-line gate is not achieved and dependent expansion waits; independent work continues. |
+| H9 | 2026-10-06 | signer completion / SIG-11 | **Decision requested:** accept or reject `design/ADR-021-signer-implementation-budget.md`. The partial signer is 501 lines under the recorded conservative count (402 app + 99 signer-specific SDK helper lines), before key loading and remaining operational work. Proposal: 1,000 physical lines across the same scope, with all other gates unchanged. Until acceptance the 500-line gate is not achieved and dependent expansion waits; independent work continues. |
 
 ## 6. Owed edits, to files Codex may not change
 
@@ -190,6 +190,12 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 Mutation preparation freezes decoder/policy scope and proves staged-source isolation
 (`evals/ci/mutation.md`). Actual Stryker score remains owed; ADR-021/H9 still awaits acceptance.
 Coverage commit `657e338` CI `37498544709` passes all jobs.
+
+Performance-report preparation (`evals/ci/performance.md`) and the fresh public-ledger
+differential gate (`evals/ci/differential.md`) pass focused and maintained fault checks.
+Full bite catches 228 faults across 28 campaigns; private sync and hosted CI follow.
+The interrupted Stryker run has no completed report; frozen inputs and output are retained.
+No measured timing target, signer budget acceptance or stable-release gate follows from this.
 
 One row per completed queue step, newest last.
 
@@ -242,6 +248,8 @@ The live probes and baseline are complete. ADR-012 C is built and tested offline
 | 2026-10-06 | Stryker preparation, partial CI-2 | commit containing `evals/ci/mutation.md` | report/staging receipt; prior coverage CI `37498544709` green | Frozen full-file scope, staged-source proof and maintained faults; actual tool score remains owed. |
 
 | 2026-10-06 | SDK candidate reference, partial 5.3 | commit containing `docs/SDK.md` | source interface/behaviour review; document/claims lint | Current exports, trust boundaries and errors documented; stable contracts and usability qualification remain owed. |
+
+| 2026-10-06 | CI-2 differential and performance-report preparation | commit containing `evals/ci/differential.md` | pinned offline corpus, report tests, fault campaigns, root tests/typecheck | Differential reference checks pass; performance targets unmeasured. Interrupted mutation and coverage load failure retained; complete qualification remains owed. |
 
 ## 8. Handing back to Claude
 

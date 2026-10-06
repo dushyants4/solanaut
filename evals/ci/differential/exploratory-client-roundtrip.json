@@ -1,0 +1,69 @@
+{
+  "counts": {
+    "TransferSol": 227,
+    "SetComputeUnitLimit": 193,
+    "SetComputeUnitPrice": 144,
+    "SyncNative": 41,
+    "Transfer": 58,
+    "CloseAccount": 74,
+    "AdvanceNonceAccount": 29,
+    "SetLoadedAccountsDataSizeLimit": 53,
+    "TransferChecked": 9,
+    "WithdrawNonceAccount": 6,
+    "RequestHeapFrame": 1,
+    "CreateAccountWithSeed": 1,
+    "InitializeAccount": 1
+  },
+  "unsupported": 1434,
+  "failures": 9,
+  "first": [
+    {
+      "index": 761,
+      "name": "SetComputeUnitLimit",
+      "type": "AssertionError",
+      "message": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n    2,\n    64,\n    66,\n    15,\n    0,\n-   0,\n-   0,\n-   0,\n-   0\n  ]\n"
+    },
+    {
+      "index": 762,
+      "name": "SetComputeUnitLimit",
+      "type": "AssertionError",
+      "message": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n    2,\n    64,\n    66,\n    15,\n    0,\n-   0,\n-   0,\n-   0,\n-   0\n  ]\n"
+    },
+    {
+      "index": 793,
+      "name": "SetComputeUnitLimit",
+      "type": "AssertionError",
+      "message": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n    2,\n    192,\n    39,\n    9,\n    0,\n-   121,\n-   237,\n-   69,\n-   14\n  ]\n"
+    },
+    {
+      "index": 908,
+      "name": "SetComputeUnitLimit",
+      "type": "AssertionError",
+      "message": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n    2,\n    0,\n    113,\n    2,\n    0,\n-   222,\n-   47,\n-   0,\n-   0,\n-   1\n  ]\n"
+    },
+    {
+      "index": 1005,
+      "name": "SetComputeUnitLimit",
+      "type": "AssertionError",
+      "message": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n    2,\n    64,\n    66,\n    15,\n    0,\n-   0,\n-   0,\n-   0,\n-   0\n  ]\n"
+    },
+    {
+      "index": 1007,
+      "name": "SetComputeUnitLimit",
+      "type": "AssertionError",
+      "message": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n    2,\n    64,\n    66,\n    15,\n    0,\n-   0,\n-   0,\n-   0,\n-   0\n  ]\n"
+    },
+    {
+      "index": 1011,
+      "name": "SetComputeUnitLimit",
+      "type": "AssertionError",
+      "message": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n    2,\n    64,\n    66,\n    15,\n    0,\n-   0,\n-   0,\n-   0,\n-   0\n  ]\n"
+    },
+    {
+      "index": 1013,
+      "name": "SetComputeUnitLimit",
+      "type": "AssertionError",
+      "message": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n    2,\n    64,\n    66,\n    15,\n    0,\n-   0,\n-   0,\n-   0,\n-   0\n  ]\n"
+    }
+  ]
+}

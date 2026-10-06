@@ -1,0 +1,14 @@
+✔ CI-2: pinned complete real-transaction differential populations pass (23.083063ms)
+✔ CI-2: unsuccessful or interrupted differential processes fail (1.206594ms)
+✔ CI-2: corpus substitutions and invalid pins cannot qualify (0.692957ms)
+✔ CI-2: missing transactions, formats and supported program evidence fail (8.333074ms)
+✔ CI-2: incomplete execution, signature evidence and any mismatch fail (0.646565ms)
+✔ CI-2: fabricated, duplicate aggregate and invalid strict-refusal counts fail (0.946461ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1458.481507

@@ -1,0 +1,5 @@
+
+> typecheck
+> tsc -p tsconfig.json
+
+evals/ci/differential.test.ts(28,21): error TS18048: 'bad.versions.legacy' is possibly 'undefined'.

@@ -1,0 +1,259 @@
+✖ CI-2: performance boundaries pass and nearest-rank p99 keeps inputs intact (24.370685ms)
+✖ CI-2: failed or absent measurement-process completion rejects timing (16.037038ms)
+✖ CI-2: pre-persistence and synced latency floors cannot be rounded down (7.873373ms)
+✖ CI-2: throughput and replay counts and elapsed time both govern the gate (0.953717ms)
+✖ CI-2: complete restored snapshot and Keel evidence is required for restart (1.127654ms)
+✖ CI-2: every measured dashboard delay must meet freshness (4.949778ms)
+✖ CI-2: p99 regression compares externally supplied compatible baseline (4.953776ms)
+✖ CI-2: malformed, zero and undersized measurements cannot qualify (0.730151ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 0
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 917.370217
+
+✖ failing tests:
+
+test at evals/ci/performance.test.ts:6:1
+✖ CI-2: performance boundaries pass and nearest-rank p99 keeps inputs intact (24.370685ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "performance gate not implemented"
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/performance.test.ts:7:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: performance gate not implemented
+        at requirePerformance (file:///home/dashy/Projects/Solanaut/evals/ci/performance.ts:9:117)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/performance.test.ts:7:27
+        at getActual (node:assert:580:5)
+        at strict.doesNotThrow (node:assert:748:32)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/performance.test.ts:7:10)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.start (node:internal/test_runner/test:1257:17)
+        at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at evals/ci/performance.test.ts:11:1
+✖ CI-2: failed or absent measurement-process completion rejects timing (16.037038ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /process/. Input:
+  
+  'Error: performance gate not implemented'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/performance.test.ts:12:40)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: performance gate not implemented
+        at requirePerformance (file:///home/dashy/Projects/Solanaut/evals/ci/performance.ts:9:117)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/performance.test.ts:12:51
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/performance.test.ts:12:40)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /process/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/ci/performance.test.ts:14:1
+✖ CI-2: pre-persistence and synced latency floors cannot be rounded down (7.873373ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /latency/. Input:
+  
+  'Error: performance gate not implemented'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/performance.test.ts:15:125)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: performance gate not implemented
+        at requirePerformance (file:///home/dashy/Projects/Solanaut/evals/ci/performance.ts:9:117)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/performance.test.ts:15:136
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/performance.test.ts:15:125)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /latency/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/ci/performance.test.ts:17:1
+✖ CI-2: throughput and replay counts and elapsed time both govern the gate (0.953717ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /rate/. Input:
+  
+  'Error: performance gate not implemented'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/performance.test.ts:18:104)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: performance gate not implemented
+        at requirePerformance (file:///home/dashy/Projects/Solanaut/evals/ci/performance.ts:9:117)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/performance.test.ts:18:115
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/performance.test.ts:18:104)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /rate/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/ci/performance.test.ts:21:1
+✖ CI-2: complete restored snapshot and Keel evidence is required for restart (1.127654ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /restart/. Input:
+  
+  'Error: performance gate not implemented'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/performance.test.ts:22:128)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: performance gate not implemented
+        at requirePerformance (file:///home/dashy/Projects/Solanaut/evals/ci/performance.ts:9:117)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/performance.test.ts:22:139
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/performance.test.ts:22:128)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /restart/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/ci/performance.test.ts:26:1
+✖ CI-2: every measured dashboard delay must meet freshness (4.949778ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /freshness/. Input:
+  
+  'Error: performance gate not implemented'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/performance.test.ts:27:65)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: performance gate not implemented
+        at requirePerformance (file:///home/dashy/Projects/Solanaut/evals/ci/performance.ts:9:117)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/performance.test.ts:27:76
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/performance.test.ts:27:65)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /freshness/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/ci/performance.test.ts:29:1
+✖ CI-2: p99 regression compares externally supplied compatible baseline (4.953776ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "performance gate not implemented"
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/performance.test.ts:31:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: performance gate not implemented
+        at requirePerformance (file:///home/dashy/Projects/Solanaut/evals/ci/performance.ts:9:117)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/performance.test.ts:31:27
+        at getActual (node:assert:580:5)
+        at strict.doesNotThrow (node:assert:748:32)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/performance.test.ts:31:10)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at evals/ci/performance.test.ts:36:1
+✖ CI-2: malformed, zero and undersized measurements cannot qualify (0.730151ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /samples/. Input:
+  
+  'Error: timing quantile not implemented'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/performance.test.ts:37:54)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: timing quantile not implemented
+        at p99 (file:///home/dashy/Projects/Solanaut/evals/ci/performance.ts:8:63)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/performance.test.ts:37:65
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/performance.test.ts:37:54)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /samples/,
+    operator: 'throws',
+    diff: 'simple'
+  }

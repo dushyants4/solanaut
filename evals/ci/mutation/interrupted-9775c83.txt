@@ -1,0 +1,6 @@
+Mutation run directory: /home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-nfEogh
+13:02:51 (753410) INFO ProjectReader Found 8 of 59 file(s) to be mutated.
+13:02:51 (753410) INFO Instrumenter Instrumented 8 source file(s) with 2838 mutant(s)
+13:02:51 (753410) INFO ConcurrencyTokenProvider Creating 4 test runner process(es).
+13:02:52 (753410) INFO DryRunExecutor Starting initial test run (command test runner with "off" coverage analysis). This may take a while.
+13:03:03 (753410) INFO DryRunExecutor Initial test run succeeded. Ran 1 tests in 11 seconds (net 11557 ms, overhead 0 ms).

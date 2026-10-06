@@ -1,0 +1,63 @@
+import { strict as assert } from "node:assert";
+import { getTransactionDecoder } from "@solana/kit";
+import * as system from "@solana-program/system";
+import * as token from "@solana-program/token";
+import * as compute from "@solana-program/compute-budget";
+import { decodeMessage, decodeTransaction, resolveMessage } from "../../packages/sdk/src/message.ts";
+import { classify, classifyInstruction, PROGRAMS } from "../../packages/sdk/src/classify.ts";
+import { kitDecode, kitResolve } from "../../packages/sdk/test/support/kit.ts";
+export interface CorpusRow { index:number; version:"legacy"|0|1; wire:string; loaded:{writable:string[];readonly:string[]} }
+export function same(actual:unknown,reference:unknown):void {assert.deepEqual(actual,reference);}
+function reference(program:string,data:Uint8Array) {
+  let client:object, name:string, key:string;
+  if(program===PROGRAMS.system) {client=system; name=system.SystemInstruction[system.identifySystemInstruction(data)]!; key="system";}
+  else if(program===PROGRAMS.token) {client=token; name=token.TokenInstruction[token.identifyTokenInstruction(data)]!; key="token";}
+  else if(program===PROGRAMS.computeBudget) {client=compute; name=compute.ComputeBudgetInstruction[compute.identifyComputeBudgetInstruction(data)]!; key="computeBudget";}
+  else return null;
+  type Decoder={decode(data:Uint8Array):Record<string,unknown>};
+  type Encoder={encode(fields:Record<string,unknown>):Uint8Array};
+  const exports=client as Record<string,unknown>;
+  const decoder=(exports["get"+name+"InstructionDataDecoder"] as ()=>Decoder)();
+  const encoder=(exports["get"+name+"InstructionDataEncoder"] as ()=>Encoder)();
+  const fields=decoder.decode(data);
+  return {key,name,fields,canonical:new Uint8Array(encoder.encode(fields))};
+}
+export function checkTransaction(row:CorpusRow):{signatures:number;programs:Record<string,number>;strictRefusal:boolean} {
+  const wire=Buffer.from(row.wire,"base64"); assert.equal(wire.toString("base64"),row.wire);
+  const split=decodeTransaction(wire), independent=getTransactionDecoder().decode(wire);
+  same([...split.message],[...independent.messageBytes]);
+  same(split.signatures.map(bytes=>[...bytes]),Object.values(independent.signatures).map(bytes=>bytes?[...bytes]:null));
+  const message=decodeMessage(split.message); same(message.version,row.version);
+  same({...message,instructions:message.instructions.map(ix=>({...ix,data:[...ix.data]}))},kitDecode(split.message));
+  // Execution-time loaded bindings, not a claim to a currently pinned full table account.
+  const tables=message.lookups.map(lookup=>({address:lookup.table,entries:[] as string[]})); let w=0,r=0;
+  for(const [index,lookup] of message.lookups.entries()) {
+    for(const position of lookup.writableIndexes) tables[index]!.entries[position]=row.loaded.writable[w++]!;
+    for(const position of lookup.readonlyIndexes) tables[index]!.entries[position]=row.loaded.readonly[r++]!;
+  }
+  same(w,row.loaded.writable.length); same(r,row.loaded.readonly.length);
+  const resolved=resolveMessage(message,tables);
+  same(resolved.instructions.map(ix=>({program:ix.program,accounts:ix.accounts.map(account=>({address:account.address,signer:account.signer,writable:account.writable})),data:[...ix.data]})),kitResolve(split.message,tables));
+  const programs:Record<string,number>={system:0,token:0,computeBudget:0}; let strictRefusal=false;
+  for(const ix of resolved.instructions) {
+    const ref=reference(ix.program,ix.data); if(!ref) continue;
+    const alias:Record<string,string>={TransferSol:"Transfer",TransferSolWithSeed:"TransferWithSeed"};
+    same(classifyInstruction(ix.program,ix.data).name,alias[ref.name]??ref.name);
+    same([...ix.data.slice(0,ref.canonical.length)],[...ref.canonical]);
+    const effects=classify({...resolved,instructions:[ix]},{principal:resolved.accounts.map(account=>account.address),destinations:[],tokens:[],tipAccounts:[],lookupTables:tables},"corpus-probe");
+    if(ref.canonical.length!==ix.data.length) {
+      assert.ok(effects.denied.some(denial=>denial.index===0 && denial.rule==="instruction-denied")); strictRefusal=true;
+    } else if(effects.denied.length===0) {
+      if(ref.name==="TransferSol" || ref.name==="CreateAccountWithSeed") {same(effects.sol[0]!.lamports,ref.fields.amount); same(effects.sol[0]!.from,ix.accounts[0]!.address); same(effects.sol[0]!.to,ix.accounts[1]!.address);}
+      if(ref.name==="Transfer" || ref.name==="TransferChecked") {
+        const checked=ref.name==="TransferChecked", out=effects.tokens[0]!;
+        same(out.amount,ref.fields.amount); same(out.fromAccount,ix.accounts[0]!.address); same(out.toAccount,ix.accounts[checked?2:1]!.address); same(out.authority,ix.accounts[checked?3:2]!.address);
+        if(checked) {same(out.decimals,ref.fields.decimals); same(out.mint,ix.accounts[1]!.address);}
+      }
+      if(ref.name==="SetComputeUnitLimit") same(effects.computeUnitLimit,Math.min(ref.fields.units as number,1_400_000));
+      if(ref.name==="SetComputeUnitPrice") {same(effects.computeUnitLimit,3_000); same(effects.priorityFee,((ref.fields.microLamports as bigint)*3_000n+999_999n)/1_000_000n);}
+    }
+    programs[ref.key]!++;
+  }
+  return {signatures:split.signatures.length,programs,strictRefusal};
+}

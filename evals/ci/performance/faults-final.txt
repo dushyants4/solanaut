@@ -1,0 +1,16 @@
+caught timing fault: missing-process
+caught timing fault: wrong-quantile
+caught timing fault: pre-latency
+caught timing fault: synced-latency
+caught timing fault: decision-rate
+caught timing fault: replay-rate
+caught timing fault: restart-population
+caught timing fault: snapshot-trust
+caught timing fault: keel-replay
+caught timing fault: restart-duration
+caught timing fault: freshness
+caught timing fault: pre-regression
+caught timing fault: synced-regression
+caught timing fault: compatible-reference
+caught timing fault: zero-sample
+All timing faults caught; restored source passes

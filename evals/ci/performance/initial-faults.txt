@@ -1,0 +1,49 @@
+caught timing fault: missing-process
+caught timing fault: wrong-quantile
+caught timing fault: pre-latency
+caught timing fault: synced-latency
+caught timing fault: decision-rate
+caught timing fault: replay-rate
+caught timing fault: restart-population
+caught timing fault: snapshot-trust
+caught timing fault: keel-replay
+caught timing fault: restart-duration
+caught timing fault: freshness
+caught timing fault: pre-regression
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: ✔ CI-2: performance boundaries pass and nearest-rank p99 keeps inputs intact (45.643324ms)
+✔ CI-2: failed or absent measurement-process completion rejects timing (3.326333ms)
+✔ CI-2: pre-persistence and synced latency floors cannot be rounded down (35.522527ms)
+✔ CI-2: throughput and replay counts and elapsed time both govern the gate (41.216476ms)
+✔ CI-2: complete restored snapshot and Keel evidence is required for restart (27.79412ms)
+✔ CI-2: every measured dashboard delay must meet freshness (4.229349ms)
+✔ CI-2: p99 regression compares externally supplied compatible baseline (11.528197ms)
+✔ CI-2: malformed, zero and undersized measurements cannot qualify (7.180786ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2016.447247
+
+
+0 !== 1
+
+    at file:///home/dashy/Projects/Solanaut/evals/ci/performance-faults.ts:28:12
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

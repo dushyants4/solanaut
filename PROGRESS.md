@@ -142,3 +142,6 @@ partial signing is unchanged; this is not installed signer or live-chain qualifi
    critical-file floors (`evals/ci/coverage.md`); remaining CI-2 quality gates stay open.
    Stryker preparation freezes decoder/policy scope and proves staged-source isolation;
    report/floor faults are maintained (`evals/ci/mutation.md`). Actual score remains owed.
+   Performance report checks are prepared (`evals/ci/performance.md`); actual measurements
+   remain owed. Public ledger differential checks now retain a regression corpus and a fresh
+   qualification block (`evals/ci/differential.md`); hosted CI is checked after private sync.

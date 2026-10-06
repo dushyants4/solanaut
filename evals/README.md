@@ -5,6 +5,8 @@ seen failing might not be checking anything.
 
 | Gate | Shown failing | Then passing | Receipt |
 |---|---|---|---|
+| CI-2 performance-report preparation | eight stub failures; synced regression fixture miss retained | eight focused cases/sixteen faults; timing targets unmeasured; root integration passes | `ci/performance.md` |
+| CI-2 real-transaction differential | six report/three comparator stub failures; trailing-data probe errors and version-fixture miss retained | eleven focused cases/twelve faults; fresh block comparison and root integration pass | `ci/differential.md` |
 | CI-2 mutation preparation | six stub failures; nested-runner error and scope-removal miss retained | eight report/staging cases; eleven final faults; staged baseline passes; score still owed | `ci/mutation.md` |
 | `tools/boundary_guard.py --selftest` | 14 territorial cases with a draft policy holding only the secrets rule; then the quoted-redirect case with the full policy. For Codex (2026-10-05): 18 cases (its patches, shell reads, the law it may not edit), all failing first; then `2>&1` counted as a write, found by using it | 34/34; then 59/59, and 11 Codex-shaped payloads through the hook's exact command | `harness/boundary_guard.md` |
 | `npm test` (the guard's first evals, `guard.test.ts`, retired at 2a.5; `sdk/admission.md` maps each one) | 8 of 9 against a stub that allowed everything | 9/9 | `runs/2026-09-27-setup.md` |

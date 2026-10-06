@@ -1,0 +1,43 @@
+caught differential fault: process
+caught differential fault: population
+caught differential fault: digest
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: ✔ CI-2: real wire, signatures and accounts compare in all supported formats (422.133491ms)
+✔ CI-2: mismatched bytes, roles, quantities and names cannot evade comparison (55.127636ms)
+✔ CI-2: client prefix decoding requires a named guard refusal for trailing data (60.190118ms)
+✔ CI-2: the frozen corpus has distinct transactions and refuses any changed byte (177.81374ms)
+✔ CI-2: matching bytes do not excuse missing framing or duplicate identities (4.040024ms)
+✔ CI-2: pinned complete real-transaction differential populations pass (27.311302ms)
+✔ CI-2: unsuccessful or interrupted differential processes fail (9.926697ms)
+✔ CI-2: corpus substitutions and invalid pins cannot qualify (0.599214ms)
+✔ CI-2: missing transactions, formats and supported program evidence fail (9.001799ms)
+✔ CI-2: incomplete execution, signature evidence and any mismatch fail (7.591918ms)
+✔ CI-2: fabricated, duplicate aggregate and invalid strict-refusal counts fail (9.776085ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3543.611802
+
+
+0 !== 1
+
+    at file:///home/dashy/Projects/Solanaut/evals/ci/differential-faults.ts:23:80
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

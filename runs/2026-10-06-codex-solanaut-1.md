@@ -140,6 +140,22 @@ all security, validation and human-owned release gates.
 
 ## Found
 
+The resumed instrumented coverage run failed SNP-1's FIFO child-process startup deadline
+while running alongside the full suite. Its failure is retained as
+`evals/ci/differential/coverage-load-failure.txt`; no assertion or deadline is changed.
+The isolated FIFO diagnostic and a coverage run without the concurrent full suite follow.
+This scheduling sensitivity remains a finding even if the separate run passes.
+The isolated FIFO diagnostic passes, and the subsequent coverage run without the concurrent
+full suite passes all unchanged AST floors. Both pass and failure output remain in the
+differential receipt directory. No product fix, test weakening or scheduling retry in CI.
+
+Resume after the user interruption: the managed Stryker run has no surviving worker and
+no completed report. Its initial-run log and frozen manifest are retained in
+`evals/ci/mutation/interrupted-9775c83.txt` and `interrupted-manifest.json`.
+This is incomplete qualification, with no mutation score. Root validation restarts before
+a new isolated run. The first resumed root suite passed but overlapped the start of bite;
+retain that output and repeat the suite after source restoration for final evidence.
+
 - First full coverage-step bite rejects RPC/socket campaigns because expanded batteries no
   longer match their old completion counts. Product faults already fail as required. Updated
   exact expected counts upward to seventeen/sixteen, preserving all mutations and deadlines;
@@ -290,6 +306,48 @@ all security, validation and human-owned release gates.
 - Existing protected-file owed edit O1 remains in HANDOFF §6; no protected file changed.
 
 ## Provenance
+
+Resumed differential/performance step: final restored `npm test` passes 434 cases;
+`npm run typecheck` is clean. Full bite passes 28 campaigns with 228 caught faults and
+sources restored; offline differential again completes the pinned fresh corpus without
+mismatch. Pre-push close passes nine gates, with the uncommitted-tree finding outstanding.
+No production source, threshold or ADR status changes. HANDOFF H9's app/helper split is
+corrected to the already recorded ADR-021 scope, with the total and open decision unchanged.
+
+Next work pending close: performance report checks (`evals/ci/performance.md`). Eight stub
+failures, eight focused cases and sixteen final report faults; synced-regression miss retained
+and corrected with an independent boundary fixture. No actual latency/rate/restart/freshness
+measurements. Full test/typecheck/bite registration and coherent private commit still owed.
+
+Read-only differential reconnaissance: public mainnet getSlot returns HTTP 200, finalized
+slot 453966082. getBlock at 453965982 (finalized, base64, max version 1) returns 1078 wires:
+775 legacy/147 v0/156 v1. Scratch `differential/block-453965982.json`; first message comparison
+and independent kit wire/signature/account-resolution probes match every transaction.
+This is not the complete gate: corpus pin/provenance, test-first completion checks, client
+instruction fields and maintained fault programme remain owed. No send method used; no key
+file read. RPC shape reference: https://solana.com/docs/rpc/http/getblock .
+SDK-reference commit `4c7c2d9`: pushed, CI `37501532626` all green.
+Differential exploration retained in scratch: nine reference encoder round-trip differences
+are ComputeBudget trailing data. The reference decoders accept a prefix; existing classifier
+returns a named denial. New checks explicitly require that denial, and compare decoded amounts,
+decimals, addresses, compute units/fees as well as wire/signatures and account roles. Current
+regression corpus pin `d6e9779741c6e4fe7915e178ecc89a003e88759f664dbb2a596dba0773c51541`;
+1078 wires / 1150 signatures, 263 System / 183 Token / 400 ComputeBudget references, nine
+strict-refusal transactions, zero mismatches in the exploratory measurement. This is the
+regression corpus; a fresh-block qualification follows the frozen analysis, not this exploratory
+result. Six report-stub failures and three comparison-stub failures retained; eleven focused
+cases, twelve final faults after a missing-version fixture miss. The corrected missing-version
+fixture preserves total count, so the aggregate sum cannot mask the absent format. Fresh corpus,
+full test/typecheck/bite/CI integration, receipt and coherent private commit remain owed.
+Fresh qualification corpus, selected after the analysis froze: finalized slot 453972158,
+tip minus 100, all 1578 transactions retained. Digest
+`9fb8fb620976ed7a715afad371e82c544b78192c5e3c9401593da64a4d9a7419`.
+1599 signatures; 863 legacy/258 v0/457 v1; 482 System/147 Token/1055 ComputeBudget references;
+zero mismatches, 66 conservative extra-data refusals. Fresh run and repeated twelve-fault
+campaign pass. Corrected typecheck zero. S43/S44 recorded as local evidence with close/CI
+pending; no actual timing measurement or mainnet signing. Public corpus bytes require the
+planned history/publication review. No root fault campaign or competing timing run launched
+while the long staged Stryker campaign runs; its process/log remain as recorded above.
 
 While Stryker runs only in its staged copy, drafted `docs/SDK.md` as the current candidate
 export/error reference and linked it from PACKAGING (Draft 5). Checked behaviours against
