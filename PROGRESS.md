@@ -126,3 +126,5 @@ partial signing is unchanged; this is not installed signer or live-chain qualifi
    CI runtime (`evals/ci/properties.md`). Other CI-2 gates remain owed; not Alpha qualification.
    The existing decoder mutation workload completes the million-input local target;
    its separate CI job enforces the budget and outcome evidence (`evals/ci/fuzz.md`).
+   SOL per-tx/pending-window properties pass independent arithmetic oracles under a quiet,
+   in-memory SDK profile (`evals/ci/caps.md`); broader cap/security qualification remains owed.

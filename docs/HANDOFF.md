@@ -221,7 +221,8 @@ The live probes and baseline are complete. ADR-012 C is built and tested offline
 | 2026-10-06 | distinct socket sending client | `f9c0cec` | CLT-1–4/installed consumer receipt; CI `37460725029` passed | Consumer integration progresses while H9 is pending. Post-push close passed. No signing method broadcasts; explicit propose sends. |
 | 2026-10-06 | maintained bite job, partial CI-1 | commit containing `evals/ci/bite.md` | inventory/restoration receipt | First full run rejects stale request selector; repaired without weakening. Historical faults and CI-2 remain owed. |
 | 2026-10-06 | synthetic property gate, partial CI-2 | `b41c8c7` | floor/oracle/fault receipt; CI `37480188076` green | Frozen properties added while H9 remains pending. Signer count breakdown corrected to 402 app/99 helpers; total 501 unchanged. Post-push close passes. |
-| 2026-10-06 | million-input decoder fuzz, partial CI-2 | commit containing `evals/ci/fuzz.md` | completion/fault receipt | Existing generator qualified locally at the required floor; separate pinned CI job. Other CI-2/release work remains owed, H9 pending. |
+| 2026-10-06 | million-input decoder fuzz, partial CI-2 | `59b2e1c` | completion/fault receipt; CI `37480963029` green | Existing generator qualified at the required floor; separate pinned CI job passes. Post-push close passes. Other CI-2/release work remains owed, H9 pending. |
+| 2026-10-06 | SOL cap properties, partial CI-2 | commit containing `evals/ci/caps.md` | arithmetic/floor/fault receipt | Per-tx and pending-window synthetic profiles added; no product fix needed. Broader cap/security work remains owed. |
 
 ## 8. Handing back to Claude
 

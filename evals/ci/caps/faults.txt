@@ -1,0 +1,6 @@
+caught cap property fault: per-tx-boundary
+caught cap property fault: per-tx-disabled
+caught cap property fault: window-boundary
+caught cap property fault: ignore-reservation
+caught cap property fault: async-short-run
+All cap property faults caught; restored source passes

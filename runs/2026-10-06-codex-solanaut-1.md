@@ -7,6 +7,11 @@ all security, validation and human-owned release gates.
 
 ## Did
 
+- Fuzz step `59b2e1c` privately pushed; ten close gates and CI `37480963029` green.
+  Continued into SOL caps: froze domains, asynchronous runner stub fails, then six
+  focused tests pass (two properties at 10,000 each). Existing cap implementation needs
+  no fix; five planted faults fail the new oracles. Detailed shrunk cases retained.
+
 - Property step `b41c8c7` privately pushed; ten close checks green. Continued directly into
   frozen million-input decoder workload. Three wrapper tests fail first, then pass; local
   million-input run passes at seed -1722707241, with 189,174 kit matches and 810,826 refusals.
@@ -89,6 +94,11 @@ all security, validation and human-owned release gates.
   this history and must pass compatibility checks before rollback.
 
 ## Found
+
+- SOL property final validation: 343 tests pass, typecheck clean; nineteen bite campaigns
+  catch 125 faults and restore source. No cap defect found in these frozen profiles.
+  Read-only coverage-tool investigation: c8 12.0.0 registry metadata/docs read; no install
+  or coverage claim. Statement accounting must be resolved before choosing the next tool.
 
 - Fuzz pre-push close rejects the environment-prefixed command in S34 (claims parser
   requires npm/node/uv first). Corrected the claim's command spelling and documented the

@@ -1,0 +1,137 @@
+property starting: sol-per-tx; seed=1866845411; requested=10000
+✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (26.027383ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 146.344917
+
+✖ failing tests:
+
+test at packages/sdk/test/caps.property.test.ts:22:1
+✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (26.027383ms)
+  Error: property failed: sol-per-tx
+  Property failed after 2 tests
+  { seed: 1866845411, path: "1:0:0:0:0", endOnFailure: true }
+  Counterexample: [0n,0n,-1n,false]
+  Shrunk 4 time(s)
+  
+  Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/evals/ci/properties.ts:9:28)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/caps.property.test.ts:23:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: per-tx-boundary
+property starting: sol-per-tx; seed=-321986240; requested=10000
+✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (17.849089ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 136.521629
+
+✖ failing tests:
+
+test at packages/sdk/test/caps.property.test.ts:22:1
+✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (17.849089ms)
+  Error: property failed: sol-per-tx
+  Property failed after 2 tests
+  { seed: -321986240, path: "1:0:0", endOnFailure: true }
+  Counterexample: [0n,0n,1n,true]
+  Shrunk 2 time(s)
+  
+  Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/evals/ci/properties.ts:9:28)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/caps.property.test.ts:23:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: per-tx-disabled
+property starting: sol-window; seed=1241998380; requested=10000
+✖ CI-2 SOL window property: pending admissions match independent reservation sum (212.140227ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 342.867158
+
+✖ failing tests:
+
+test at packages/sdk/test/caps.property.test.ts:33:1
+✖ CI-2 SOL window property: pending admissions match independent reservation sum (212.140227ms)
+  Error: property failed: sol-window
+  Property failed after 256 tests
+  { seed: 1241998380, path: "255:2", endOnFailure: true }
+  Counterexample: [3n,[3n]]
+  Shrunk 1 time(s)
+  
+  Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/evals/ci/properties.ts:9:28)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/caps.property.test.ts:34:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: window-boundary
+property starting: sol-window; seed=-1806852374; requested=10000
+✖ CI-2 SOL window property: pending admissions match independent reservation sum (172.772523ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 289.299884
+
+✖ failing tests:
+
+test at packages/sdk/test/caps.property.test.ts:33:1
+✖ CI-2 SOL window property: pending admissions match independent reservation sum (172.772523ms)
+  Error: property failed: sol-window
+  Property failed after 20 tests
+  { seed: -1806852374, path: "19:1:0:0:2:0:6:1:0:0:0:0:0:0:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:3:5:4:23", endOnFailure: true }
+  Counterexample: [284458n,[1n,284458n,0n]]
+  Shrunk 35 time(s)
+  
+  Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/evals/ci/properties.ts:9:28)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/caps.property.test.ts:34:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: ignore-reservation
+property starting: async-false; seed=333872527; requested=10000
+property starting: async-count; seed=1872835587; requested=10000
+✖ CI-2 asynchronous runner enforces failures and the completed execution floor (5.701008ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 111.189105
+
+✖ failing tests:
+
+test at evals/ci/properties.test.ts:25:1
+✖ CI-2 asynchronous runner enforces failures and the completed execution floor (5.701008ms)
+  Error: property run incomplete or skipped
+      at validateCompletion (file:///home/dashy/Projects/Solanaut/evals/ci/properties.ts:16:68)
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/evals/ci/properties.ts:10:3)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/properties.test.ts:29:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: async-short-run
+All cap property faults caught; restored source passes

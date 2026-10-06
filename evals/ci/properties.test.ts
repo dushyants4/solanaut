@@ -1,7 +1,7 @@
 import { strict as assert } from "node:assert";
 import { test } from "node:test";
 import * as fc from "fast-check";
-import { checkProperty, propertySeed, validateCompletion } from "./properties.ts";
+import { checkAsyncProperty, checkProperty, propertySeed, validateCompletion } from "./properties.ts";
 
 test("CI-2 property gate refuses reduced budgets, incomplete runs, skips and failures", () => {
   const clean = { failed: false, numRuns: 10_000, numSkips: 0 };
@@ -20,5 +20,12 @@ test("CI-2 runner throws on a failing property and completes the required succes
   assert.throws(() => checkProperty("always-false", fc.property(fc.boolean(), () => false)), /property failed/);
   let executions = 0;
   checkProperty("successful-count", fc.property(fc.boolean(), () => { executions++; return true; }));
+  assert.equal(executions, 10_000);
+});
+test("CI-2 asynchronous runner enforces failures and the completed execution floor", async () => {
+  await assert.rejects(checkAsyncProperty("under-budget", fc.asyncProperty(fc.boolean(), async () => true), 1));
+  await assert.rejects(checkAsyncProperty("async-false", fc.asyncProperty(fc.boolean(), async () => false)), /property failed/);
+  let executions = 0;
+  await checkAsyncProperty("async-count", fc.asyncProperty(fc.boolean(), async () => { executions++; return true; }));
   assert.equal(executions, 10_000);
 });

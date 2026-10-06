@@ -1,0 +1,24 @@
+property starting: always-false; seed=-394325204; requested=10000
+property starting: successful-count; seed=-241375893; requested=10000
+property completed: successful-count; seed=-241375893; runs=10000; skips=0
+property starting: async-false; seed=2055332044; requested=10000
+property starting: async-count; seed=-416357150; requested=10000
+property completed: async-count; seed=-416357150; runs=10000; skips=0
+✔ CI-2 property gate refuses reduced budgets, incomplete runs, skips and failures (1.278731ms)
+✔ CI-2 property seeds are canonical signed 32-bit integers (0.484653ms)
+✔ CI-2 runner throws on a failing property and completes the required successful runs (19.001282ms)
+✔ CI-2 asynchronous runner enforces failures and the completed execution floor (127.001701ms)
+property starting: sol-per-tx; seed=459630127; requested=10000
+property completed: sol-per-tx; seed=459630127; runs=10000; skips=0
+property starting: sol-window; seed=-656416627; requested=10000
+property completed: sol-window; seed=-656416627; runs=10000; skips=0
+✔ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (3019.757397ms)
+✔ CI-2 SOL window property: pending admissions match independent reservation sum (5142.861945ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8323.966742
