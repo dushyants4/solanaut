@@ -68,6 +68,8 @@ The devnet RPC boundary passes fake-provider validation and failover tests (`eva
 operational wiring and live-provider qualification remain owed.
 Host attribution and the anchored monotonic clock are tested (`evals/signer/authority.md`);
 the operational service and dedicated-user evidence remain owed.
+The bounded Unix transport passes local socket tests (`evals/signer/socket.md`);
+service wiring, all-method durable identities and dedicated-user deployment remain owed.
 
 1. **Defects** (`docs/SPEC.md` §10):
    - D1 to D12 are closed: D1, D2, D5, D6, D7, D9, D10 and D12 at 2a.5, D11 at 2a.6, D3, D4 and D8 at 2a.7.

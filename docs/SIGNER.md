@@ -1,6 +1,6 @@
 # Signer development and trust boundary
 
-> **Draft 1** · 2026-10-05 · owner: integrator · for: operators and signer developers.
+> **Draft 2** · 2026-10-05 · owner: integrator · for: operators and signer developers.
 > Register: `kb/DOCUMENTS.md`. The operational service is still being implemented.
 
 The executor and devnet RPC boundary live under `apps/signer/src/`. Their current evidence uses
@@ -22,4 +22,18 @@ OS-user creation and isolation drill remain required.
 The service will require persistent kernel ownership, established history and externally pinned
 signed policy authorization. Its socket methods remain only `propose`, `report` and `status`.
 SDK journal methods are trusted host APIs and are not exposed as socket methods. Installation,
-socket framing, protected configuration and installed-package qualification remain in progress.
+protected configuration and installed-package qualification remain in progress.
+
+`socket.ts` now supplies a Linux transport boundary, tested with real local sockets (S23,
+`evals/signer/socket.md`). Requests are exactly one canonical `JSON.stringify` object and a
+newline, at most 16,384 bytes. Duplicate keys, additional fields, invalid UTF-8 and multiple
+frames are refused. IDs use the request identity alphabet; each method has its own field set.
+Connections have an absolute deadline, not an activity timeout, and responses are bounded.
+The core must still validate request deadlines and persist valid identities and responses.
+
+The parent must be owned by the service user, mode 0750 and free of symlink ancestors;
+the socket is 0660. At most 64 active connections are accepted. Only after holding the
+record's exclusive kernel ownership may a service recover an owned abandoned socket;
+a live listener or non-socket path is refused. The transport helper does not acquire that
+ownership itself. Closing a timed-out connection does not rewind signing work already
+dispatched: retry/recovery uses the journal and never automatically resends uncertain bytes.

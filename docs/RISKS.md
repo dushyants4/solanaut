@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.6** · 2026-10-05 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.7** · 2026-10-05 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 The threat model ([docs/papers/THREAT-MODEL.md](papers/THREAT-MODEL.md)) lists what an attacker can do to a running
@@ -70,6 +70,9 @@ Only current blockhash lifetimes are accepted; unseen expired attempts retain re
 availability costs need live integration evidence, and RK16's reliable-provider request remains open.
 Host attribution and monotonic-clock helpers are tested (`evals/signer/authority.md`), but flags
 do not prove dedicated-user isolation. RK3 remains open until the operational signer is qualified.
+The Unix transport has local permission, framing, deadline and abandoned-process evidence
+(`evals/signer/socket.md`). Its recovery must be wired after exclusive record ownership;
+transport tests do not establish multi-process service startup or dedicated-user access.
 
 | Version | Date | What changed |
 |---|---|---|

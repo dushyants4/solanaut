@@ -1,0 +1,43 @@
+✔ SIG-2: only propose/report/status dispatch, with one bounded response and request identity (32.515125ms)
+✔ SIG-10: socket permissions restrict its group and parent must be protected (5.19116ms)
+✔ SIG-2/3: malformed JSON, unknown fields, bad IDs/deadlines and multiple frames never dispatch (14.309661ms)
+✔ SIG-2: oversized or invalid UTF-8 frames refuse before dispatch (7.119089ms)
+✔ SIG-3: idle and unfinished requests end within the configured bounded read timeout (66.412629ms)
+✔ SIG-1: handler errors return a fixed code without exposing internal exception text (2.585864ms)
+✔ SIG-10: existing non-socket and symlink paths are never removed (1.363054ms)
+✔ SIG-10: a live listener cannot be replaced (2.110151ms)
+✖ SIG-3: trickling bytes cannot extend the absolute connection deadline (186.261084ms)
+✖ SIG-1/2: oversized or unserialisable handler responses become fixed internal errors (2.982884ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 8
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 499.204342
+
+✖ failing tests:
+
+test at apps/signer/test/socket.test.ts:84:1
+✖ SIG-3: trickling bytes cannot extend the absolute connection deadline (186.261084ms)
+  AssertionError [ERR_ASSERTION]: trickle extended deadline
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/socket.test.ts:94:61)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at apps/signer/test/socket.test.ts:97:1
+✖ SIG-1/2: oversized or unserialisable handler responses become fixed internal errors (2.982884ms)
+  TypeError: Cannot read properties of undefined (reading 'code')
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/signer/test/socket.test.ts:100:98)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)

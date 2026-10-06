@@ -8,6 +8,13 @@ prepare the original repository for eventual human-approved public release.
 
 ## Did
 
+- Corrected RPC revision `f810612` passes CI `37403526901` on Node 22.18.0, 24 and 26.7.0.
+- Unix transport foundation starts there. Six stub failures and two additional deadline/response
+  failures retained; eleven socket tests pass, seven valid faults caught. Full suite 268 passes,
+  typecheck clean. Partial signer/helper budget 362 lines. Receipt: `evals/signer/socket.md`.
+  Canonical JSON and field sets are reversible codec choices inside accepted ADR-013/019.
+  Service wiring, durable identity across all methods, protected key loading and H4 remain owed.
+
 - RPC boundary committed and pushed as `c9a84e0`. SIG-4/10 attribution/clock foundation begins
   there: five cases, four initially fail and compatibility passes, then five pass; five mutations
   caught. Full product suite 256 passes, typecheck and packed SDK checks green. Receipt:
@@ -99,6 +106,13 @@ prepare the original repository for eventual human-approved public release.
 - ADR-019/020: concrete proposed contracts, not implementation or accepted architecture.
 
 ## Found
+
+- Socket's first mutation run could not classify a permission fault because a failing assertion
+  left a server open. Added cleanup for unexpectedly successful negative fixtures, retained the
+  unsuccessful output and reran all faults successfully. Activity timeout also initially allowed
+  slow-input extension; absolute owned timer corrects it. Initial chunk typecheck failed; normalised
+  its string/Buffer union. Documentation patch failed its partial version-line match and applied
+  no changes; corrected exact patch. No gate or deadline target changed.
 
 - RPC commit `c9a84e0` CI `37402929454` failed on Node 22.18.0 with one cancelled hung-read test;
   other runtimes passed. A standalone child reproduced premature event-loop exit on Node 26.

@@ -1,6 +1,6 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 11** · 2026-10-05 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 12** · 2026-10-05 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
@@ -13,7 +13,9 @@ accepted historical replay breaks are in `evals/sdk/latch-c.md`; the funded devn
 The SDK also has signed-policy preparation/verification and policy-aware history, restore,
 replay and inspection (`docs/POLICIES.md`). Its profile binds the current evaluator and controller.
 The release-only build stages a private compiled SDK (`docs/PACKAGING.md`). The isolated signer
-and later Alpha paths remain specified, not built.
+and later Alpha paths remain specified, not built. Signer executor, RPC, host clock and
+bounded Unix transport helpers have builder evidence (`docs/SIGNER.md`); they are not yet
+an operational service or a qualified isolated deployment.
 
 A product and an office around it. The product is a transaction guard for Solana AI agents.
 The office is the machinery that keeps the work honest: seven agent
