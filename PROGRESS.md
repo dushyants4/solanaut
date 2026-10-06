@@ -122,3 +122,5 @@ partial signing is unchanged; this is not installed signer or live-chain qualifi
 5. **CI fault programme remains partial.** The `bite` job now runs every maintained executable
    campaign sequentially with inventory and restoration checks (`evals/ci/bite.md`);
    the full milestone 3.9 gate and measurement programme remains owed (`evals/README.md`).
+   Frozen decoder/address properties now enforce their completed execution floor on each
+   CI runtime (`evals/ci/properties.md`). Other CI-2 gates remain owed; not Alpha qualification.

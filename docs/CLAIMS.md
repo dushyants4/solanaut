@@ -68,6 +68,8 @@ second definition change, re-measured on fresh seeds, and S7 restated with both 
 
 | S32 | The maintained fault runner rejects incomplete inventory, failed campaigns and unrestored source | **measured (builder-authored local CI-gate evidence)** | `evals/ci/bite.md`, 2026-10-06, Node 26.7.0: sixteen campaigns / 105 caught faults; three aggregator tests and five planted aggregator faults pass. First full run rejected a stale selector. Regenerate: `npm run test:bite`; `node --test evals/ci/bite.test.ts`; `node evals/ci/bite-faults.ts`. Historical manual campaigns and CI-2/full qualification remain owed; not a mutation score or independent security result |
 
+| S33 | Synthetic decoder/address properties enforce completed run counts and external-codec agreement | **measured (builder-authored local property evidence)** | `evals/ci/properties.md`, 2026-10-06, Node 26.7.0: five workload properties, 10,000 executions each without skips; eight focused tests and eight planted faults pass. Regenerate: `node --test evals/ci/properties.test.ts packages/sdk/test/properties.test.ts`; `node evals/ci/property-faults.ts`. No real-transaction, million-input fuzz, policy or independent-security claim; other CI-2 gates remain owed |
+
 **Not yet claimable, and why:**
 - **Any detection rate or block rate, and any false-stop rate beyond S7's synthetic streams.** Nothing else has been
   measured. Milestone 2b.1 runs the Beta batteries and 3.10 the adversarial one; until then no percentage exists.

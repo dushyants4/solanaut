@@ -1,0 +1,9 @@
+caught property fault: budget-floor
+caught property fault: incomplete-count
+caught property fault: skips
+caught property fault: failed-result
+caught property fault: seed-validation
+caught property fault: address-alphabet
+caught property fault: account-writability
+caught property fault: unexpected-error
+All property faults caught; restored source passes

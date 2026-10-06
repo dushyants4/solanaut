@@ -13,6 +13,8 @@ full tree.
 | `@solana/kit` | **8.4.0** | npm | **dev only**: the reference the byte decoder is checked against (the golden set, and the fuzz harness's differential). `packages/sdk/src` never imports it | 2026-09-30 |
 | `typescript` | **7.0.2** | npm | typecheck only; Node runs the sources directly | 2026-09-27 |
 | `@types/node` | **26.6.3** | npm | Node 26 types | 2026-09-27 |
+| `fast-check` | **4.10.2** | [official runners](https://fast-check.dev/docs/core-blocks/runners/) / npm | dev only: CI-2 properties and shrinking; MIT. Registry integrity in the lockfile; signed audit evidence in `evals/ci/properties/` | 2026-10-06 |
+| `pure-rand` | **8.4.2** | npm | locked transitive of fast-check, dev only; MIT. Signature audit above covers the installed registry tree | 2026-10-06 |
 
 Toolchain: `TOOLCHAIN.md`. Vendored office: `plugins/VENDORED.md`.
 
@@ -23,6 +25,12 @@ Toolchain: `TOOLCHAIN.md`. Vendored office: `plugins/VENDORED.md`.
 web3.js). They are not needed: the sandbox ran against a local validator without them.
 
 ## Audit
+
+Rechecked 2026-10-06 after the property dependency installation: 7 high, 9 moderate,
+3 low and no critical (`evals/ci/properties/audit.json`, `npm audit --json`, exit one).
+Neither fast-check nor pure-rand is named. No automatic fix or security clearance claimed.
+`npm audit signatures` exits zero: 348 signatures and 89 attestations verified; retained
+output in `evals/ci/properties/signatures.txt`. Authenticity does not resolve advisories.
 
 `npm audit` on 2026-09-30: 4 moderate advisories, 0 high, 0 critical, all reached through `@solana/web3.js` 1.99.0
 (`jayson`, which brings `uuid` and `stream-json`). The suggested fix downgrades web3.js to 0.0.3, a breaking change, so
@@ -59,7 +67,6 @@ milestone that needs it adds it, and not before.
 | Package | Version seen | For | Milestone |
 |---|---|---|---|
 | `@solana-program/token-2022` | 0.19.0 | not added at 2a.3: it pulls in a zk SDK, and the Token client's layouts cover the instructions the Beta decodes | 3.3 |
-| `fast-check` | 4.10.2 | property tests with shrinking; at 2a.2 a seeded harness with no dependency was enough | 3.9, if needed |
 | `litesvm` | 1.5.0 | in-process integration tests | 3.9 |
 | `@stryker-mutator/core` | 10.0.0 | mutation testing | 3.9 |
 | `mitata` | 1.0.34 | benchmarks | 3.9 |

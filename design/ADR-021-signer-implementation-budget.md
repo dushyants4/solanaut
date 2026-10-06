@@ -11,7 +11,7 @@ into the SDK cannot manufacture compliance. The current partial composition is 5
 
 `wc -l apps/signer/src/*.ts packages/sdk/src/signing.ts packages/sdk/src/authority.ts packages/sdk/src/control-request.ts`
 
-Of these, 401 are under the signer app and 100 are the counted SDK helpers. This is a
+Of these, 402 are under the signer app and 99 are the counted SDK helpers. This is a
 development measurement, not a completed SIG-11 gate. Startup now enforces signed policies,
 durable ownership, protected history and shutdown draining, using injected host signing/RPC.
 Protected key/configuration loading, an executable, background follow-up, isolated-mode

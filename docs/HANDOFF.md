@@ -220,6 +220,7 @@ The live probes and baseline are complete. ADR-012 C is built and tested offline
 | 2026-10-06 | same-user host composition, partial | `f27337d` | SIG/POL receipt; CI `37459521513` passed | Startup/drain cases pass; count 501 does not pass SIG-11. ADR-021/H9 pending; post-push close passes. Independent client/validation work continues. |
 | 2026-10-06 | distinct socket sending client | `f9c0cec` | CLT-1–4/installed consumer receipt; CI `37460725029` passed | Consumer integration progresses while H9 is pending. Post-push close passed. No signing method broadcasts; explicit propose sends. |
 | 2026-10-06 | maintained bite job, partial CI-1 | commit containing `evals/ci/bite.md` | inventory/restoration receipt | First full run rejects stale request selector; repaired without weakening. Historical faults and CI-2 remain owed. |
+| 2026-10-06 | synthetic property gate, partial CI-2 | commit containing `evals/ci/properties.md` | floor/oracle/fault receipt | Bite commit `dc1d6b1` CI `37461704632` green. Frozen properties added while H9 remains pending. Signer count breakdown corrected to 402 app/99 helpers; total 501 unchanged. |
 
 ## 8. Handing back to Claude
 

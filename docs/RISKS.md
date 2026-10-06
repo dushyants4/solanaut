@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.15** · 2026-10-06 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.16** · 2026-10-06 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 The threat model ([docs/papers/THREAT-MODEL.md](papers/THREAT-MODEL.md)) lists what an attacker can do to a running
@@ -95,6 +95,10 @@ uncertainty; the integration guide warns against it, and intent/cap rules remain
 Fault aggregation now detects missing/stale campaigns and unrestored source. Its first full
 run finds an old selector mismatch (`evals/ci/bite.md`). CI-1 remains partial for historical
 manual findings; this does not establish coverage, a mutation score or independent security.
+Frozen synthetic properties enforce completed executions and compare to the external codec
+(`evals/ci/properties.md`). They do not establish real-transaction coverage or policy security.
+The dependency audit still reports existing high advisories in the framework/on-chain tree;
+authenticity checks do not resolve them. No release exception is claimed.
 
 | Version | Date | What changed |
 |---|---|---|

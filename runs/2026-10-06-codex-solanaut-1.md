@@ -7,6 +7,15 @@ all security, validation and human-owned release gates.
 
 ## Did
 
+- Resumed after deliberate interruption; property fault campaign finished with eight faults
+  caught and restored source, no process left running. Frozen five synthetic properties each
+  complete 10,000 executions. Three stub gate tests fail first; eight focused tests pass.
+  New dependency fast-check 4.10.2 locked with pure-rand 8.4.2, installed ignore-scripts.
+  Receipt `evals/ci/properties.md` retains advisory/signature audit results and runner failure.
+- Prior bite commit `dc1d6b1` CI `37461704632` green. Corrected arithmetic breakdown to
+  402 signer app/99 helpers, unchanged total 501. H9 remains unaccepted; no expansion.
+  Property tests run through the existing matrix; faults added to sequential bite inventory.
+
 - Sending client `f9c0cec` privately pushed; ten close gates and CI `37460725029` green.
   Continued into CI-1 maintained fault aggregation. Three tests fail first, then pass;
   five planted aggregator faults caught. First full run rejects a stale request selector;
@@ -75,6 +84,13 @@ all security, validation and human-owned release gates.
   this history and must pass compatibility checks before rollback.
 
 ## Found
+
+- Initial property mutation runner used unsupported Node `--test-bail`; no qualifying
+  result, source restored. Removed flag without weakening assertions. Patch-anchor failures
+  applied no partial edits. Signer budget breakdown arithmetic corrected, total unchanged.
+- Property step pre-push close passes nine gates; the uncommitted-tree gate fails. Full
+  suite 337 passes, typecheck clean; seventeen bite campaigns catch 113 faults and restore.
+  Advisory audit exits one with existing high findings; authenticity audit exits zero.
 
 - New full aggregation finds an old identity fault site missing since shared control history.
   Changed only its selector to the same digest comparison; failure output retained. Runner

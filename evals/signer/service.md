@@ -33,7 +33,8 @@ existing six core and seven signing faults still pass. `npm test`: 314 pass
 
 ## Unachieved gate and limits
 
-Conservative count: **501 lines** (401 signer app, 100 signer-specific SDK helpers):
+Conservative count: **501 lines** (402 signer app, 99 signer-specific SDK helpers;
+breakdown corrected by the property-gate inventory, total unchanged):
 `wc -l apps/signer/src/*.ts packages/sdk/src/signing.ts packages/sdk/src/authority.ts packages/sdk/src/control-request.ts`.
 Initial composition reached 506 before redundant-code simplification. SIG-11 is **not
 achieved** under this recorded count. ADR-021 is proposed; no budget is changed or claim made

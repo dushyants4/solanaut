@@ -1,0 +1,29 @@
+property starting: always-false; seed=888321240; requested=10000
+property starting: successful-count; seed=-1884015743; requested=10000
+property completed: successful-count; seed=-1884015743; runs=10000; skips=0
+✔ CI-2 property gate refuses reduced budgets, incomplete runs, skips and failures (1.146338ms)
+✔ CI-2 property seeds are canonical signed 32-bit integers (0.375698ms)
+✔ CI-2 runner throws on a failing property and completes the required successful runs (19.598567ms)
+property starting: address; seed=-595239317; requested=10000
+property completed: address; seed=-595239317; runs=10000; skips=0
+property starting: decoder-legacy; seed=-886500624; requested=10000
+property completed: decoder-legacy; seed=-886500624; runs=10000; skips=0
+property starting: decoder-0; seed=-1113445996; requested=10000
+property completed: decoder-0; seed=-1113445996; runs=10000; skips=0
+property starting: decoder-1; seed=1328243163; requested=10000
+property completed: decoder-1; seed=1328243163; runs=10000; skips=0
+property starting: arbitrary-bytes; seed=-1675821840; requested=10000
+property completed: arbitrary-bytes; seed=-1675821840; runs=10000; skips=0
+✔ CI-2 address property: canonical 32-byte base58 agrees with kit (244.364291ms)
+✔ CI-2 decoder property: legacy bytes and resolved instructions agree with kit (5402.960136ms)
+✔ CI-2 decoder property: 0 bytes and resolved instructions agree with kit (6241.959787ms)
+✔ CI-2 decoder property: 1 bytes and resolved instructions agree with kit (6475.369672ms)
+✔ CI-2 malformed property: arbitrary bytes match kit or have a named decoder refusal (92.876174ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 18650.024332
