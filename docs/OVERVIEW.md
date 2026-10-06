@@ -1,10 +1,14 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 19** · 2026-10-06 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 20** · 2026-10-06 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
+
+The SDK also exports bounded `verifyArchive` with typed `ArchiveError` codes, continuation
+identity and optional external head/byte pins. This verifies structure, not authenticated
+snapshot state or policy replay; `docs/STORAGE.md` and `evals/sdk/archive.md` give the limits.
 
 The first Solanaut 1.0 change implements ADR-012 C in the existing guard: one REGROUND denial
 from an earlier rule is tolerated; Keel's own denial or a consecutive REGROUND denial latches.

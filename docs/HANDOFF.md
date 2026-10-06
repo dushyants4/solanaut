@@ -189,6 +189,11 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 One row per completed queue step, newest last.
 
+Archive foundation: SNP-1 structural framing/chain/pins implemented in the SDK, with
+builder-authored faults and installed-consumer evidence (`evals/sdk/archive.md`, commit
+containing that receipt). Signed snapshots and streamed state replay remain owed. Prior
+verified-kill step `91589b3`: close ten gates, CI `37486837521` all green.
+
 The live probes and baseline are complete. ADR-012 C is built and tested offline in
 `evals/sdk/latch-c.md`; the complete queue item still owes the funded devnet rerun. Commit provenance:
 `git log -- evals/sdk/latch-c.md`. The continuing run is `runs/2026-10-05-codex-solanaut-1.md`.
@@ -226,6 +231,7 @@ The live probes and baseline are complete. ADR-012 C is built and tested offline
 | 2026-10-06 | mixed replay, partial CI-2 | `b758463` | digest/matrix/fault receipt; CI `37483948590` green | Driver failure and cap mutation miss retained; focused regression added, production unchanged. Post-push close passes. Disk/kill/snapshot/signing qualification remains owed. |
 | 2026-10-06 | queued SDK admissions, partial CI-2 | `3c36cb6` | barrier/evidence/fault receipt; CI `37485168194` green | Post-push close passes; quiet in-memory SDK bound checked. Broader writer/socket/signing concurrency still owed. |
 | 2026-10-06 | verified persisted-prefix process kills, partial CI-2 | commit containing `evals/ci/kills.md` | signal/recovery/fault receipt | SDK kernel-owned history qualification; other write/sign/send/power-loss boundaries remain owed. |
+| 2026-10-06 | bounded archive verification, SNP-1 foundation | commit containing `evals/sdk/archive.md` | structure/source/pin/fault and installed-consumer receipt | Initial mutation miss and FIFO hang corrected; authenticated snapshots and state replay remain owed. |
 
 ## 8. Handing back to Claude
 

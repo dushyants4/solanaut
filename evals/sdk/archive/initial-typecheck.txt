@@ -1,0 +1,5 @@
+
+> typecheck
+> tsc -p tsconfig.json
+
+packages/sdk/test/archive.test.ts(64,42): error TS7006: Parameter 'options' implicitly has an 'any' type.

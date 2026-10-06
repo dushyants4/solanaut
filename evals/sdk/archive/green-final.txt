@@ -1,0 +1,22 @@
+✔ SNP-1: full and continuation archives match head, digest, sequence and byte count (14.321308ms)
+✔ SNP-1: empty archive is structural empty history, not proof of an established guard (1.161713ms)
+✔ SNP-1: line bound accepts the exact UTF-8 length and refuses one byte less (0.939517ms)
+✔ SNP-1: invalid options reject before source reads (0.429979ms)
+✔ SNP-1: missing, symlink and directory sources refuse (1.086539ms)
+✔ SNP-1: incomplete/blank and invalid UTF-8 frames refuse (1.371272ms)
+✔ SNP-1: malformed JSON and unsupported record envelopes refuse (2.763606ms)
+✔ SNP-1: altered hash, sequence and predecessor refuse (1.108176ms)
+✔ SNP-1: external head and raw digest pins refuse rewritten or truncated archives (0.840242ms)
+✔ SNP-1: competing source changes refuse and descriptors close on success and failure (1.614527ms)
+✔ SNP-1: fractional signer timestamps remain supported and unsafe sequence overflow refuses (0.823542ms)
+✔ SNP-1: hardlinks and pathname replacement during verification refuse (0.934347ms)
+✔ SNP-1: malformed/unknown options refuse and pins are captured before asynchronous reads (0.766095ms)
+✔ SNP-1: multibyte frames cross chunks and oversized unfinished lines stop after one read (2.496263ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 184.345738

@@ -1,0 +1,469 @@
+
+> test
+> node --test packages/sdk/test/*.test.ts apps/*/test/*.test.ts evals/ci/*.test.ts
+
+✔ the cockpit binds to 127.0.0.1 only, and refuses a request for any other host name (52.87366ms)
+✔ /api/state is the record, inspected fresh on every request (78.660588ms)
+✔ the cockpit writes nothing: every method but GET is refused, and unknown paths are not found (24.685784ms)
+✔ the page is served with a strict content security policy, its script from its own origin (19.332935ms)
+✔ /api/chain reads the Squads limit remaining, names the program's error on a refusal, and every transaction read opts in to v1 (247.526989ms)
+✔ without a chain configured, /api/chain says so instead of guessing (24.731235ms)
+✔ SIG-4: clock anchors wall time once and advances only with monotonic time (2.11478ms)
+✔ LIF-6/SIG-7: recovery continues after an expired admission and reconciles a later sent attempt (36.808928ms)
+✔ LIF-6: recovery exposes provider loss and a later pass completes only safe pre-send work (8.195428ms)
+✔ LIF-6/SIG-7: expired signed unsent recovery still reads chain evidence without sending (7.164361ms)
+✔ LIF-6/SIG-8: recovery reports failed response persistence and never resends on its next pass (3.996749ms)
+✔ SIG-3/4: caller report deadline bounds the chain read and refuses a late outcome (15.794327ms)
+✔ LIF-3/SIG-3: same concurrent and completed request signs/sends only once; expired retry returns response (6.383273ms)
+✔ LIF-3/SIG-3: deadlines and changed payloads refuse before signing (4.501603ms)
+✔ LIF-3: restart after admission can redeem/sign; restart after redemption cannot sign again (7.319049ms)
+✔ LIF-3: signed but unsent restart sends once; send-started restart never resends (8.488461ms)
+✔ LIF-3/SIG-7: caller hint cannot report outcome; only chain evidence changes reservation (3.330515ms)
+✔ LIF-3: unknown or changed IDs fail closed; malformed base64 is not decoded leniently (0.608113ms)
+✔ LIF-3: send timeout and contradictory signature retain uncertain response; retry never sends (8.354781ms)
+✔ LIF-3: lost persisted response after successful send is recovered without another send (7.892045ms)
+✔ LIF-3: failed redeem persistence never crosses its next side-effect boundary (1.271152ms)
+✔ LIF-3: failed signed persistence never crosses its next side-effect boundary (3.533956ms)
+✔ LIF-3: failed send-started persistence never crosses its next side-effect boundary (2.78183ms)
+✔ LIF-3: deadline reached while signing persists bytes but never starts a send (2.542828ms)
+✔ LIF-4: status starts before reading, and completed retries preserve the first snapshot after deadline (20.280512ms)
+✔ LIF-4: concurrent retries coalesce and differing methods refuse before actions (5.682523ms)
+✔ SIG-4/LIF-4: report replies reflect recorded host evidence and a retry never repeats the hint (8.001328ms)
+✔ SIG-3: a late status read cannot become a successful new answer (3.815177ms)
+✔ LIF-4: a control request cannot steal a concurrent proposal's identity (4.163485ms)
+✔ SIG-3/LIF-4: expired or overlong new control requests persist a denial and perform no work (2.09807ms)
+✔ LIF-4/SIG-3: report hints use the request deadline and failures persist fixed answers (1.432228ms)
+✔ LIF-4: pending control request resumes on restart; stored response then prevents re-execution (2.504213ms)
+✔ LIF-4: control/proposal identity reuse refuses before calling the proposal executor (1.240712ms)
+✔ SIG-2/LIF-4: unknown methods never dispatch, and response write failure throws and closes admission (1.448791ms)
+✔ LIF-5: pre-admission proposal failure persists a fixed refusal and binds the exact payload (2.097491ms)
+✔ LIF-5: a refusal start interrupted before its response completes conservatively without new proposal work (1.506401ms)
+✔ LIF-5: an error after a recorded admission cannot become a non-admission refusal (1.172285ms)
+✔ LIF-5/SIG-3: a proposal expiring before admission keeps its refusal when retried with a fresh deadline (0.900322ms)
+✔ LIF-5: the real executor's malformed-message and RPC failures reach durable refusal history (1.895089ms)
+✔ POL-4/LIF-6: admitted history survives a signed policy upgrade without old-policy sends (65.755573ms)
+✔ POL-4/LIF-6: signed history survives a signed policy upgrade without old-policy sends (18.337335ms)
+✔ POL-4/LIF-6: started history survives a signed policy upgrade without old-policy sends (21.256482ms)
+✔ LIF-7/SIG-7: final chain evidence prevents sending restored signed unsent bytes (3.84864ms)
+✔ RPC-1: pins devnet identity and validates observed blockhash/lifetime with confirmed context (62.375217ms)
+✔ RPC-1: cross-cluster substitution denies; blockhash mismatch or invalidity denies (9.041877ms)
+✔ RPC-2: malformed and non-integral heights or context cannot become authority (8.957511ms)
+✔ RPC-2: response ID/version, missing result, and oversized body refuse (4.05913ms)
+✔ RPC-3: one-provider outage permits conservative reads; total outage reports degraded (16.684831ms)
+✔ RPC-3: stale or conflicting observations cannot authorize a new proposal (2.999391ms)
+✔ RPC-4: chain outcome requires agreeing committed evidence; missing/stale/conflicting stays unresolved (9.162368ms)
+✔ RPC-4: failed outcome needs matching committed failure from both providers (1.459193ms)
+✔ RPC-2/SIG-9: rate-limited reads back off, but send has exactly one attempt with node retries disabled (2.506878ms)
+✔ RPC-2: hung reads end at their deadline and expired calls make no network request (31.82885ms)
+✔ RPC-2: a standalone process keeps its owned request deadline alive (245.871947ms)
+✔ SIG-1/2/10: same-user startup wires signed guard, clock, socket and durable retry (106.568718ms)
+✔ POL-2/SIG-8: startup requires valid authorization and existing history, leaving ownership reusable on refusal (19.72022ms)
+✔ SIG-8: protected history permissions and symlink paths are checked before serving (25.264128ms)
+✔ SIG-8: ownership is acquired before serving and released after a socket-start failure (31.371058ms)
+✔ SIG-8/LIF-6: startup exposes incomplete recovery rather than discarding pending history (33.797071ms)
+✔ SIG-8: close drains dispatched send before releasing ownership and is idempotent (48.217166ms)
+✔ SIG-8: close also drains host recovery and refuses recovery after stop (52.499478ms)
+✔ CLT-1/SIG-2: SDK sending client consumes actual service replies and durable proposal retries (33.595273ms)
+✔ SIG-2: only propose/report/status dispatch, with one bounded response and request identity (17.014771ms)
+✔ SIG-10: socket permissions restrict its group and parent must be protected (3.005527ms)
+✔ SIG-2/3: malformed JSON, unknown fields, bad IDs/deadlines and multiple frames never dispatch (7.600906ms)
+✔ SIG-2: oversized or invalid UTF-8 frames refuse before dispatch (4.248718ms)
+✔ SIG-3: idle and unfinished requests end within the configured bounded read timeout (65.344745ms)
+✔ SIG-1: handler errors return a fixed code without exposing internal exception text (4.190599ms)
+✔ SIG-10: existing non-socket and symlink paths are never removed (1.853671ms)
+✔ SIG-10: a live listener cannot be replaced (3.594428ms)
+✔ SIG-3: trickling bytes cannot extend the absolute connection deadline (42.206386ms)
+✔ SIG-1/2: oversized or unserialisable handler responses become fixed internal errors (6.514492ms)
+✔ SIG-8/10: an abandoned socket is recovered after its process exits (85.397119ms)
+✔ SIG-2/3: clients holding their half open cannot exhaust completed connection slots (44.77182ms)
+✔ SIG-2: a proposal exceeding the core's message bound is an invalid frame before dispatch (5.52441ms)
+✔ CI-1: exact inventory accepts every maintained campaign and rejects omission/addition/duplication (9.829066ms)
+✔ CI-1: all campaigns run sequentially; failure/null exit fails aggregation without hiding other findings (1.68931ms)
+✔ CI-1: changed source stops further mutation, reports skipped work and fails the gate (0.325697ms)
+✔ CI-2 SDK concurrency gate rejects reduced budget and incorrect admission/outcome totals (1.691137ms)
+✔ CI-2 SDK concurrency gate rejects missing evidence, deduplicated work and wrong refusal rules (0.497743ms)
+✔ CI-2 SDK concurrency gate accepts complete bounded admission evidence (0.185156ms)
+{"proposed":1000,"admitted":7,"denied":993,"recorded":1000,"destinations":1000,"identities":1000,"reserved":"7000000","deniedRules":["over-window-cap"]}
+✔ CI-2 SDK concurrency: a thousand queued callers admit exactly the pending-window bound (626.936254ms)
+fuzz starting: seed=1259705616; requested=1000000
+fuzz starting: seed=576683877; requested=1000000
+fuzz starting: seed=-1600461975; requested=1000000
+fuzz starting: seed=-962661270; requested=1000000
+fuzz starting: seed=1094925999; requested=1000000
+fuzz starting: seed=-969772892; requested=1000000
+fuzz starting: seed=-713711517; requested=1000000
+fuzz starting: seed=1941561051; requested=1000000
+fuzz completed: seed=1941561051; inputs=1000000; accepted=100; refused=999900
+✔ CI-2 fuzz gate refuses reduced/invalid budgets before starting work (1.256248ms)
+✔ CI-2 fuzz gate rejects failed processes and missing, duplicated or incomplete evidence (2.682975ms)
+✔ CI-2 fuzz gate passes the full budget and a seed and accepts complete evidence (0.594523ms)
+✔ CI-2 kill gate requires actual SIGKILL and the exact persisted acknowledgement (3.341583ms)
+✔ CI-2 kill gate rejects short and incomplete recovery/replay counts (0.482355ms)
+✔ CI-2 kill gate accepts the full verified battery (0.207115ms)
+✔ CI-2 kernel recovery: a verified killed owner releases the mutex and restores its persisted state (465.164595ms)
+property starting: always-false; seed=-1906229922; requested=10000
+property starting: successful-count; seed=677594380; requested=10000
+property completed: successful-count; seed=677594380; runs=10000; skips=0
+property starting: async-false; seed=1274668842; requested=10000
+property starting: async-count; seed=1288278035; requested=10000
+property completed: async-count; seed=1288278035; runs=10000; skips=0
+✔ CI-2 property gate refuses reduced budgets, incomplete runs, skips and failures (4.169178ms)
+✔ CI-2 property seeds are canonical signed 32-bit integers (0.827185ms)
+✔ CI-2 runner throws on a failing property and completes the required successful runs (52.287579ms)
+✔ CI-2 asynchronous runner enforces failures and the completed execution floor (333.486418ms)
+✔ CI-2 replay gate rejects short histories and unsuccessful/incomplete recomputation (2.165463ms)
+✔ CI-2 replay gate rejects changed/missing digests and missing workload kinds (0.568593ms)
+✔ CI-2 replay gate accepts a complete mixed history matching the pinned digest (0.223102ms)
+✔ CI-2 replay campaign: per-tx cap regression covers the mixed workload's missing boundary (54.552835ms)
+✔ guardedWallet exposes exactly BaseWallet's members, frozen, and never the wallet it wraps (53.08868ms)
+✔ guardedWallet refuses a wallet whose key is outside the policy's principal, or no RPC to send through (9.015501ms)
+✔ signTransaction: an allowed payment is signed by the wrapped wallet; a drain throws SolanautDenied before the wallet is asked (88.415548ms)
+✔ the adapters give the same verdicts as the SDK, for legacy and v0 transactions (57.944979ms)
+✔ a re-sign of the same payment while the first could still land throws intent-in-flight (8.014305ms)
+✔ a wallet that changes the message before signing it is caught: its signatures are stripped, and the call throws (5.421094ms)
+✔ a wallet whose signature does not verify over the admitted bytes is caught (6.31917ms)
+✔ a wallet that signs a whole batch in place but returns it short: every caller object is stripped, and what was signed is held, not released (6.836091ms)
+✔ wallet-changed-message carries no decision, on guardedWallet (guardedSigner: its own test) (4.746903ms)
+✔ signAllTransactions is all or nothing: one denial signs none, and the admitted ones are released (23.769274ms)
+✔ signAndSendTransaction: checks, signs, sends exactly the admitted bytes itself, and reports the outcome (21.254807ms)
+✔ a send the RPC refuses is reported failed, and rethrown (7.58766ms)
+✔ a send whose fate is unknown is reported unknown, not failed: the signed bytes may still land, so a re-sign is refused (15.061697ms)
+✔ D14, sign-only: before the next proposal, guardedWallet reads the outcome of what it signed and reports it (25.08511ms)
+✔ D14, sign-only: a payment seen but not yet confirmed is not reported, and without a status reader the guard holds the intent (7.743849ms)
+✔ signMessage is denied: a raw signature over chosen bytes can be a transaction signature (0.920169ms)
+✔ guardedSigner: checks every transaction first, all or nothing, reads expiry from the lifetime, and verifies the signatures it returns (45.961429ms)
+✔ jsonRpc: sends base64 bytes, reads the height, and turns signature statuses into outcomes (3056.638248ms)
+✔ rule 0: an invalid policy means no guard (9.95315ms)
+✔ rule 1: bytes that do not parse, and ill-typed fields, deny as malformed-proposal (D5: never a throw) (54.108846ms)
+✔ rule 2: a version other than legacy, 0 or 1 denies as unsupported-version (2.662445ms)
+✔ rule 3: a lookup table the policy does not pin denies as lookup-table-unpinned (19.195656ms)
+✔ rule 5: a durable nonce, even paying an allowed destination, denies as durable-nonce-denied (9.784178ms)
+✔ rule 6: a required signer outside the principal denies as other-signer (2.493056ms)
+✔ rule 7: a program off the allowlist denies as program-not-allowed (6.540039ms)
+✔ rule 8: an allowlisted program the guard does not decode denies while opaque is deny, and passes when allow (7.789297ms)
+✔ rule 9: Approve, an unknown System instruction and a v1 ComputeBudget decoy deny as instruction-denied (D6, D10) (24.5024ms)
+✔ rule 10: SOL or tokens to an address the policy does not allow deny as destination-not-allowed (52.420549ms)
+✔ rule 11: an unlisted mint denies as mint-not-allowed; a plain Transfer from an unknown account as token-mint-unknown (30.813865ms)
+✔ rule 12: SOL or a mint over its per-transaction cap denies as over-per-tx-cap, summed over the message (16.56634ms)
+✔ rule 13: a priority fee over the cap denies as over-fee-cap, in legacy and in v1 (5.482295ms)
+✔ rules 14 and 15, the double-send battery: in flight until reported failed or expired; attempts are counted (18.079224ms)
+✔ D14: an attempt nobody reported may have landed, so past its expiry it still holds its intent, until reported or until the window passes (14.983211ms)
+✔ intents: a landed intent is done, and the same payment again is a new intent (3.67267ms)
+✔ intents: without block heights, only a report ends an attempt (5.310324ms)
+✔ reports: only for allowed decisions this guard made (3.113203ms)
+✔ rule 16: the window counts what was allowed; a failed report releases it, an unknown one keeps it; it slides (10.140328ms)
+✔ rule 16: each mint and the fees have their own window (13.638907ms)
+✔ rule 16, the boundaries: a payment exactly one window later is outside it, one millisecond earlier is inside (9.121349ms)
+  retry loop stopped at turn 3: DEFAULT -> DEFAULT -> REGROUND (loop-reground)
+✔ rule 16: a mint's window is its own (38.296045ms)
+✔ the concurrency battery: 50 proposals in one tick admit exactly what fits the window (83.067202ms)
+✔ rule 17: an identical failing retry loop is stopped by Keel as loop-reground, and the turn is measured (10.132411ms)
+✔ rule 18: under INHIBIT, an amount over the per-transaction cap times Keel's clamp (0.30) denies as inhibit-cap (5.69412ms)
+✔ varied, successful payments at a realistic pace are not stopped (28.8053ms)
+✔ every parsed proposal reaches Keel, allowed or denied; a malformed one does not (3.251173ms)
+✔ rule 19: anything that throws denies as fail-closed, and check never throws (3.032456ms)
+✔ rule order: a proposal that breaks several rules is denied by the first (60.823503ms)
+✔ the latch battery: it trips after the set run of denials; only a fresh, exact operator release frees it (44.417301ms)
+✔ receipts (D7): an allowed decision binds the message hash, expiry and policy; redeemed once, for those bytes only (11.403736ms)
+✔ decisions are a hash chain, and each carries its bytes, so the record replays on its own (8.507912ms)
+✔ D1: guard.policy is frozen, and changing it is refused (5.260289ms)
+✔ a controller that is not the verified binary is refused at creation (0.528825ms)
+✔ S36: a receipt reported expired, failed or landed no longer redeems (6.276361ms)
+✔ S80: a release's expiry is judged on the latest recorded time, so a clock that steps back cannot revive an expired release (2.660919ms)
+✔ S82: an attempt a trusted height shows can still land stays in the window past windowMs; reported expired, it leaves (4.771268ms)
+✔ SNP-1: a FIFO without a writer is refused without blocking on open (219.317071ms)
+✔ SNP-1: full and continuation archives match head, digest, sequence and byte count (58.048505ms)
+✔ SNP-1: empty archive is structural empty history, not proof of an established guard (6.340845ms)
+✔ SNP-1: line bound accepts the exact UTF-8 length and refuses one byte less (6.367357ms)
+✔ SNP-1: invalid options reject before source reads (4.129633ms)
+✔ SNP-1: missing, symlink and directory sources refuse (7.52696ms)
+✔ SNP-1: incomplete/blank and invalid UTF-8 frames refuse (6.779813ms)
+✔ SNP-1: malformed JSON and unsupported record envelopes refuse (9.495881ms)
+✔ SNP-1: altered hash, sequence and predecessor refuse (16.692997ms)
+✔ SNP-1: external head and raw digest pins refuse rewritten or truncated archives (5.810075ms)
+✔ SNP-1: competing source changes refuse and descriptors close on success and failure (5.878301ms)
+✔ SNP-1: fractional signer timestamps remain supported and unsafe sequence overflow refuses (2.358501ms)
+✔ SNP-1: hardlinks and pathname replacement during verification refuse (3.355962ms)
+✔ SNP-1: malformed/unknown options refuse and pins are captured before asynchronous reads (2.766886ms)
+✔ SNP-1: multibyte frames cross chunks and oversized unfinished lines stop after one read (10.112544ms)
+✔ SNP-1: changed length refuses even when source timestamps do not reveal it (2.546037ms)
+✔ SIG-4/10: host attribution and clock anchor appear in decisions and reports (29.631491ms)
+✔ SIG-4/10: host attribution is copied before asynchronous initialization (1.914815ms)
+✔ SIG-4/10: invalid host modes or clock anchors and non-devnet authority refuse startup (3.79654ms)
+✔ SIG-4/10: ordinary trusted SDK mode still records caller attribution (1.472171ms)
+property starting: sol-per-tx; seed=-1841785738; requested=10000
+property completed: sol-per-tx; seed=-1841785738; runs=10000; skips=0
+property starting: sol-window; seed=1874438315; requested=10000
+property completed: sol-window; seed=1874438315; runs=10000; skips=0
+✔ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (7137.703396ms)
+✔ CI-2 SOL window property: pending admissions match independent reservation sum (8224.298538ms)
+✔ the curve check and program-derived addresses agree with web3.js on random inputs (365.524236ms)
+✔ associated token accounts are derived as the token client derives them, for Token and Token-2022 (135.886813ms)
+✔ System Transfer is value-moving: the destination and lamports are counted, in every version (25.612351ms)
+✔ System TransferWithSeed, CreateAccount and CreateAccountWithSeed move lamports, and are counted (5.40484ms)
+✔ System CreateAccountAllowPrefund: funded lamports are counted; unfunded moves nothing; a principal account is never assigned away (4.257004ms)
+✔ System Assign and Allocate are denied: they hand an account to another program (1.701915ms)
+✔ durable nonces: AdvanceNonceAccount first marks the message, and every nonce instruction is denied (3.598085ms)
+✔ System: an unknown instruction, or data that does not fit its layout, is denied (1.224189ms)
+✔ Token Transfer from the principal's associated account infers the mint; to an allowed owner's account, names the owner (9.658038ms)
+✔ Token Transfer from any other account leaves the mint unknown, and a non-associated destination has no owner (2.710202ms)
+✔ TransferChecked names its mint and decimals, under Token and under Token-2022 (20.155475ms)
+✔ Token: Approve, CloseAccount and the other authority-granting instructions are denied; Revoke and SyncNative are benign (4.761077ms)
+✔ Token: every discriminator has the class the spec gives it, under both token programs (39.438607ms)
+✔ Token: a transfer whose authority does not sign (a multisig authority) is denied (11.261358ms)
+✔ ComputeBudget: the instruction names match the compute-budget client for every discriminator (11.061872ms)
+✔ System: the instruction names match the system client for every discriminator (1.224006ms)
+✔ fees, legacy and v0: price × limit, rounded up; the default limit when none is set; no price, no fee (6.497505ms)
+✔ fees: two of the same ComputeBudget instruction, or the deprecated RequestUnits, are denied (1.508386ms)
+✔ fees, v1: the priority fee is the config's lamport total, and any ComputeBudget instruction is a denied decoy (2.49704ms)
+✔ fees: 5,000 lamports per signature, and SOL to a tip account counts as a tip, not a payment (1.006203ms)
+✔ other signers: every required signer outside the principal is reported, for rule 6 (4.857328ms)
+✔ Memo is benign; a program the guard does not decode is listed as opaque (1.159637ms)
+✔ the message hash is the SHA-256 of the message bytes (0.75726ms)
+✔ the intent key ignores the blockhash, the fees, memos and the version, and follows what moves (6.409304ms)
+✔ v0: a destination loaded from a pinned table is classified like a static one (2.67992ms)
+✔ base58 of the system program id decodes to 32 zero bytes (sanity for the constants) (0.18353ms)
+✔ LIF-4: start and first answer are immutable, copied and reused without new entries (19.780055ms)
+✔ LIF-4: changed method/payload and invalid identity or payload refuse before recording (4.019885ms)
+✔ LIF-4: proposal and control methods share one request namespace in both orders (29.357036ms)
+✔ LIF-4: pending and completed control requests restore and replay without admissions (6.168335ms)
+✔ LIF-4: unknown, oversized and invalid responses refuse, and write failure closes the guard (2.008206ms)
+✔ LIF-4: resealed digest control evidence refuses restore/replay (4.781194ms)
+✔ LIF-4: resealed duplicate control evidence refuses restore/replay (3.546745ms)
+✔ LIF-4: resealed response-before-start control evidence refuses restore/replay (2.587494ms)
+✔ LIF-4: resealed changed-response control evidence refuses restore/replay (3.596353ms)
+  fuzz: 5000 inputs, 885 accepted and matched kit, 4115 refused with a named rule
+✔ base58 agrees with kit's address codec on 500 random keys and on known program ids (96.218446ms)
+✔ base58 refuses characters outside the alphabet; isAddress accepts only canonical 32-byte keys (1.428401ms)
+✔ golden set: 300 kit-built messages, 100 per version, decode exactly as kit decodes them (488.366435ms)
+✔ golden set: every instruction's accounts resolve as kit resolves them, v0 tables pinned (494.149691ms)
+✔ golden set: v1 config values are read from the mask, in mask order (129.105978ms)
+✔ legacy and v0 messages built by web3.js decode as web3.js reads them (100.48945ms)
+✔ versions other than legacy, 0 and 1 are unsupported (11.400406ms)
+✔ every truncation of a valid message is malformed, in every version (175.350551ms)
+✔ bytes after the end of a message are malformed (3.06271ms)
+✔ a non-canonical compact length is malformed (0.854615ms)
+✔ inconsistent headers are malformed (0.720242ms)
+✔ an instruction may not name the fee payer as its program, or an index past the accounts (0.705445ms)
+✔ an address listed twice is malformed (0.429361ms)
+✔ v1: an unknown config bit, a half-set priority-fee pair, a short config, or over 64 accounts are malformed (1.768197ms)
+✔ a message too large to land is malformed: 1,232 bytes for legacy and v0 with signatures, 4,096 for v1 (1.663898ms)
+✔ v0: an unpinned table, or an index past its pin, is lookup-table-unpinned (1.231697ms)
+✔ v0: writable entries of all tables come before read-only entries of any table (0.62089ms)
+✔ v0: a program loaded from a table, a table that loads nothing, or an address both static and looked up is malformed (0.863715ms)
+✔ legacy and v1 messages resolve from their static accounts alone (2.024053ms)
+✔ transactions: wire bytes split into the exact message and its signatures, in every version (64.08061ms)
+✔ transactions: a wrong signature count, a short or long tail, or a v0 message first is malformed (5.454949ms)
+✔ lookup table accounts decode as web3.js decodes them; a bad type or length is refused (3.500339ms)
+✔ a table pin is the table's address and its entries, and a deactivated table is refused (0.81642ms)
+✔ fuzz: 5000 mutated messages either decode exactly as kit does, or are refused with a DecodeError (657.589604ms)
+  drain battery, 40 of 40 denied:
+    T1   destination-not-allowed  SOL to a new recipient
+    T1   destination-not-allowed  SOL to a new recipient, as v0
+    T1   destination-not-allowed  SOL to a new recipient, as v1
+    T1   destination-not-allowed  an allowed payment with a second, hidden transfer to the attacker
+    T1   destination-not-allowed  a tip-shaped transfer to an address the policy does not name as a tip account
+    T1   destination-not-allowed  TransferWithSeed out of a seed-derived account, to the attacker
+    T27  destination-not-allowed  CreateAccountWithSeed funding an account at the attacker's address
+    T26  other-signer             CreateAccount funding a counterparty's fresh key, which must sign
+    T26  other-signer             CreateAccountAllowPrefund funding an account the counterparty holds
+    T2   instruction-denied       Token Approve: the attacker as delegate
+    T2   instruction-denied       Token ApproveChecked
+    T2   instruction-denied       Token SetAuthority: the account's owner changed to the attacker
+    T2   instruction-denied       Token CloseAccount: the rent to the attacker
+    T2   instruction-denied       Token-2022 Approve
+    T2   instruction-denied       Token Burn: value destroyed
+    T2   instruction-denied       System Assign: the agent's account handed to a program
+    T2   instruction-denied       System Allocate on the agent's account
+    T22  instruction-denied       p-token Batch, which could carry a transfer the guard would not see
+    T22  instruction-denied       a System instruction the guard does not know
+    T15  instruction-denied       Token-2022 TransferCheckedWithFee, an extension instruction
+    T5   over-per-tx-cap          an oversized send of a listed mint
+    T1   destination-not-allowed  a listed token to the attacker's associated account
+    T1   destination-not-allowed  a listed token to an account that is no one's associated account
+    T5   mint-not-allowed         an unlisted mint
+    T5   token-mint-unknown       a plain Transfer out of an account the guard cannot tie to a mint
+    T15  mint-not-allowed         a Token-2022 mint moved by the Token program
+    T3   program-not-allowed      a program off the allowlist
+    T3   opaque-program           an allowlisted swap program the guard cannot read
+    T19  durable-nonce-denied     a durable-nonce transfer, valid forever
+    T19  durable-nonce-denied     WithdrawNonceAccount to the attacker
+    T19  durable-nonce-denied     AuthorizeNonceAccount: the nonce handed to the attacker
+    T14  lookup-table-unpinned    a destination loaded from a table the policy does not pin
+    T14  lookup-table-unpinned    a destination at an index past the pinned prefix
+    T14  destination-not-allowed  a pinned table's entry that is the attacker's address
+    T23  over-fee-cap             a compute-unit price with no limit, so the default limit sets the fee
+    T23  over-fee-cap             a v1 config's priority fee over the cap
+    T23  instruction-denied       a v1 message with a ComputeBudget decoy beside a large config fee
+    T26  other-signer             a counterparty's co-signed instruction alongside the agent's payment
+    T22  unsupported-version      an unknown message version
+    T8   malformed-proposal       a valid message with bytes hidden after its end
+✔ the drain battery: 40 shapes, each denied before signing by its named rule (223.437047ms)
+✔ the drain battery's control: the same policy allows a plain payment to the treasury (4.325768ms)
+  workload: 160 entries: allow 67, redeem 16, deny:destination-not-allowed 16, report 16, deny:malformed-proposal 7, deny:intent-in-flight 15, release 13, deny:inhibit-cap 2, deny:over-window-cap 6, deny:latched 1, deny:unsupported-version 1
+✔ the reference workload exercises what a restart must restore (131.703977ms)
+✔ the record is synced to disk entry by entry, and a guard reopened on it has every entry (59.064488ms)
+✔ D11: a reopened guard decides as the uninterrupted one would: windows, intents, the latch and Keel survive (123.673486ms)
+  restart battery: 20 kills; the record has 160 entries
+✔ the restart battery: SIGKILLed at 20 random points and restarted each time, the record ends identical to an uninterrupted run (5087.57194ms)
+✔ a torn final line, the mark of a crash mid-write, is dropped: it was never acknowledged (15.728827ms)
+✔ a record that is broken before its last line refuses to start: fail closed (44.268264ms)
+✔ one writer: a second guard refuses; stale SDK ownership requires kernel recovery (286.514157ms)
+✔ replay recomputes every decision from its bytes and names the first divergence (55.041157ms)
+✔ a record that cannot be written denies, and the guard stays shut (1.903258ms)
+✔ npm run replay: exit 0 for a record that replays, 1 with the divergence under a narrower policy, 2 for no policy (798.140091ms)
+✔ the latch is a fact of the record: restored under a policy with a higher threshold, the guard stays latched (18.281511ms)
+✔ S83: a release in the record is verified on restore and in replay: a forged one refuses to start, and replay names it (7.319393ms)
+✔ S81: a lock file that names no process refuses to start, and says so plainly (0.981715ms)
+✔ inspectRecord agrees with the live guard: latch, window totals, intents in flight, counts (78.483806ms)
+✔ inspectRecord shows a latch, the run of denials, and what is still in flight (66.616033ms)
+✔ inspectRecord marks each decision that latched the guard, and lists the operator's releases (68.861024ms)
+✔ inspectRecord refuses a record that does not chain, as a restore would (4.250927ms)
+✔ D4: the loaded controller module and its embedded wasm hash to the pinned values (3.055928ms)
+✔ D4: a controller with one byte changed, in the wasm or in the JavaScript around it, is refused (0.86536ms)
+  U-2: tick() on telemetry accepts() refuses: null → DEFAULT; "0.5" → DEFAULT; true → DEFAULT; [0.7] → DEFAULT
+  U-3: Governor.create({ equilibrium: NaN, arousal: 5 }) → created; the next tick gives INHIBIT with equilibrium 0.30000000000000004
+✔ D4: a guard's decisions say the controller was verified by its bytes (17.010591ms)
+✔ U-2, reproduced: Keel's tick() takes telemetry that accepts() refuses, coercing it (1.361521ms)
+✔ D3: telemetry that is not three finite numbers in range never reaches Keel; the proposal denies, and Keel's state does not move (10.94621ms)
+✔ U-3, reproduced or refuted: Governor.create() with a non-finite or out-of-range state (0.617861ms)
+✔ sensor v1, intensity: the rate term is zero at or below the expected rate, and full at five times it (0.622639ms)
+✔ sensor v1, valence: denials, failures, expiries and unknown outcomes lower it; a landing resets it (0.273788ms)
+✔ sensor v1, repetition: the same payment 1; the same payment at higher fees 0.8; the same shape 0.5; else 0 (0.358901ms)
+✔ sensor v1 is the default, and its coefficients are stated (0.315916ms)
+✔ sensor v1, repetition: a payment repeated after it landed is a new payment, not a retry (0.505285ms)
+✔ sensor v1, repetition: the same shape at higher fees is escalation only against a payment that did not land (0.191754ms)
+✔ through the guard: the same payment again after it landed reads as the same shape; before it lands, as a retry (2.568041ms)
+✔ LAT-1 / RT-3: a single REGROUND denial by an earlier rule does not latch (35.137286ms)
+✔ LAT-2 / RT-3: two consecutive REGROUND denials latch, across report and restart (40.36691ms)
+✔ LAT-2 / RT-3: a decision without REGROUND breaks the consecutive pair (4.482522ms)
+✔ LAT-3 / RT-3: Keel's own loop denial latches immediately (1.837645ms)
+✔ LAT-4 / RT-3: the policy's consecutive-denial threshold still latches without REGROUND (2.358791ms)
+✔ LAT-5 / RT-3: replay names the accepted one-time divergence of a V0 latch (3.548658ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: identical failing retries, 400 ms (39.114211ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: identical failing retries, 5 s (21.426799ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: rising fees, failing, 400 ms (57.599944ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: two shapes alternating, failing, 400 ms (63.411574ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5: one early re-sign, then 10 normal payments (71.175701ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: cockpit demo: unknown outcome, re-sent once (70.544768ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: the kit's double signing: six payments signed twice (52.312714ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: drain storm: the same drain (27.200679ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: drain storm: new address and amount (10.508481ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 10% of the cap (16.49199ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 20% of the cap (33.837263ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 30% of the cap (15.815595ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 40% of the cap (11.716868ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 60% of the cap (14.607899ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 80% of the cap (9.825071ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: cockpit demo at its proportions (11.652494ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: benign: expected rate (476.584277ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: benign: bursts (389.175805ms)
+✔ OWN-1: SDK refuses stale ownership instead of removing the lock (60.661807ms)
+✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (13.173438ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (626.651566ms)
+✔ OWN-3: established protected records are not recreated if missing (11.896633ms)
+✔ pin-table prints the table's address and entries, read at finalized commitment (451.711828ms)
+✔ pin-table refuses: no --url, an account another program owns, no account, a deactivated table (677.606912ms)
+✔ a valid policy loads, with amounts as bigint and a 64-hex hash (9.13817ms)
+✔ the hash depends on content only: key order and amount spelling do not change it; any value does (5.092687ms)
+✔ the hash is SHA-256 of canonical JSON: sorted keys, no whitespace, amounts as decimal strings (1.451535ms)
+✔ D1: the policy is a frozen copy; neither the caller's object nor the returned one can widen it (2.828544ms)
+✔ D2: a cap that is not a whole, non-negative amount is refused, never read as no cap (8.07225ms)
+✔ D9: amounts past 2^53 are exact (0.735917ms)
+✔ rule 0: addresses must be canonical base58 keys, and the principal must hold one (1.867535ms)
+✔ rule 0: the latch's release key is never a principal key, so the agent cannot release its own latch (0.424027ms)
+✔ rule 0: one entry per mint and per table, a known token program, and a known cluster (1.069886ms)
+✔ rule 0: counts and durations are positive whole numbers; the guard id fits on one line (2.476724ms)
+✔ rule 0: v1 never signs messages or co-signs, and refuses any field it does not know (1.362956ms)
+✔ every problem is reported at once, so an operator fixes them in one pass (0.419924ms)
+✔ the classifier's context comes from the policy (0.787057ms)
+property starting: address; seed=1276307826; requested=10000
+property completed: address; seed=1276307826; runs=10000; skips=0
+property starting: decoder-legacy; seed=-1471048009; requested=10000
+property completed: decoder-legacy; seed=-1471048009; runs=10000; skips=0
+property starting: decoder-0; seed=-75006995; requested=10000
+property completed: decoder-0; seed=-75006995; runs=10000; skips=0
+property starting: decoder-1; seed=1176895387; requested=10000
+property completed: decoder-1; seed=1176895387; runs=10000; skips=0
+property starting: arbitrary-bytes; seed=-724356572; requested=10000
+property completed: arbitrary-bytes; seed=-724356572; runs=10000; skips=0
+✔ CI-2 address property: canonical 32-byte base58 agrees with kit (404.943734ms)
+✔ CI-2 decoder property: legacy bytes and resolved instructions agree with kit (9779.47106ms)
+✔ CI-2 decoder property: 0 bytes and resolved instructions agree with kit (7275.043556ms)
+✔ CI-2 decoder property: 1 bytes and resolved instructions agree with kit (6820.41001ms)
+✔ CI-2 malformed property: arbitrary bytes match kit or have a named decoder refusal (92.794707ms)
+✔ LIF-1: duplicate admission returns the original entry without another reservation or controller tick (19.997863ms)
+✔ LIF-1: duplicate denied request returns the same denial without accumulating latch denials (24.906052ms)
+✔ LIF-1: changed bytes or grouping under the same identity are refused (2.703397ms)
+✔ LIF-1: client identities are separate namespaces and invalid identities fail closed (2.470881ms)
+✔ LIF-1: identity and original decision survive durable restart (25.469764ms)
+✔ LIF-1: resealed digest request evidence refuses restore and replay (4.054449ms)
+✔ LIF-1: resealed guard request evidence refuses restore and replay (4.309303ms)
+✔ LIF-1: resealed duplicate request evidence refuses restore and replay (3.887124ms)
+✔ CLT-1: distinct sending client exposes only three methods and preserves explicit identities/payloads (17.31653ms)
+✔ CLT-2: lost proposal reply is explicitly uncertain and never automatically retried (3.886988ms)
+✔ CLT-3: malformed, oversized, duplicate, mismatched and extra response frames refuse (6.425599ms)
+✔ CLT-3: sending/report result shapes are validated before consumers receive them (5.730689ms)
+✔ CLT-4: absolute timeout is not extended by response activity (31.182475ms)
+✔ CLT-1/3: invalid configuration and payloads refuse before connecting (2.038395ms)
+✔ CLT-1: caller byte mutations cannot change the serialized proposal (3.964862ms)
+✔ CLT-2/3: remote refusals use fixed typed codes without exposing peer messages (4.656914ms)
+✔ CLT-1/3: durable denied, uncertain and pre-admission refusal answers remain distinct (26.066189ms)
+✔ CLT-1: request identity is captured before caller mutation (2.807825ms)
+✔ CLT-2: a connection failure before transmission cannot claim proposal execution (2.049007ms)
+  benign: Poisson, 6 a minute (the policy's expected rate) · sensor v0: 497 of 600 stopped, 82.83% (95% CI 79.61% to 85.64%) {"loop-reground":1,"latched":496}
+  benign: Poisson, 6 a minute (the policy's expected rate) · sensor v1: 0 of 600 stopped, 0.00% (95% CI 0.00% to 0.64%) {}
+  benign: bursts of 5 payouts, 0.2 to 0.6 s apart, every 5 minutes · sensor v0: 130 of 600 stopped, 21.67% (95% CI 18.56% to 25.14%) {"loop-reground":1,"latched":129}
+  benign: bursts of 5 payouts, 0.2 to 0.6 s apart, every 5 minutes · sensor v1: 0 of 600 stopped, 0.00% (95% CI 0.00% to 0.64%) {}
+  benign, varied fees · sensor v0: 11 of 3000 stopped, 0.37% · sensor v1: 0 of 3000, 0.00% (95% CI 0.00% to 0.13%) {}
+  loop: identical retries, 400 ms apart · v0: turn 3, loop-reground (DEFAULT > DEFAULT > REGROUND) · v1: turn 3, loop-reground (DEFAULT > DEFAULT > REGROUND)
+  loop: identical retries, 5 s apart · v0: turn 3, loop-reground (DEFAULT > DEFAULT > REGROUND) · v1: turn 3, loop-reground (DEFAULT > DEFAULT > REGROUND)
+  loop: rising fees, 400 ms apart · v0: turn 3, loop-reground (DEFAULT > DEFAULT > REGROUND) · v1: turn 4, intent-attempts-exhausted (DEFAULT > DEFAULT > DEFAULT > REGROUND)
+  loop: two shapes alternating, 400 ms apart · v0: not stopped in 12 turns · v1: not stopped in 12 turns
+✔ the benign battery: 600 payments at the expected rate, and 600 in bursts; v0 against v1, measured (1174.817422ms)
+✔ the benign battery with varied priority fees: 5 × 600 payments at the expected rate, on fresh seeds, the operator releasing each latch; v0 against v1, measured (3375.851793ms)
+✔ the loop battery: identical retries, rising fees, two alternating shapes; the stop turn measured for v0 and v1 (26.372225ms)
+✔ POL-1: canonical readable summary and valid operator signature load (7.224394ms)
+✔ POL-2: missing signature refuses to start (3.395833ms)
+✔ POL-2: wrong operator refuses to start (1.507518ms)
+✔ POL-2: other guard refuses to start (1.336232ms)
+✔ POL-2: other cluster refuses to start (0.935057ms)
+✔ POL-2: different hash refuses to start (4.95089ms)
+✔ POL-2: noncanonical base64 refuses to start (1.246103ms)
+✔ POL-2: even a correctly signed dishonest summary is rejected (1.042976ms)
+✔ POL-3: the principal cannot become the pinned operator (0.960128ms)
+✔ POL-1: invalid versions and issued timestamps have no signing text (1.721097ms)
+✔ POL-1: summaries show SOL caps and count trailing destinations (0.671805ms)
+✔ POL-4/POL-5/VER-1: history verifies signed versions and replay preserves pending receipts and the latch (95.9609ms)
+✔ VER-1: equal version restarts are idempotent; changed signed content needs a higher version (45.55337ms)
+✔ VER-2/POL-4: resealed unsupported profiles and forged historical policy refuse replay and restore (20.691996ms)
+✔ VER-2: a caller cannot substitute another sensor under the signed profile (2.695058ms)
+✔ POL-4: a policy restart retains live reservations against the new cap (31.148713ms)
+✔ POL-4: the operator replay command uses signed history and an external public trust file (469.253901ms)
+✔ POL-4: extending the window reconstructs spending pruned under the old window (26.122299ms)
+✔ LIF-7: final landed evidence forbids new signing/send intent live and on replay (40.654326ms)
+✔ LIF-7: final failed evidence forbids new signing/send intent live and on replay (8.940508ms)
+✔ LIF-7: final expired evidence forbids new signing/send intent live and on replay (9.758304ms)
+✔ LIF-2: signature evidence requires durable redemption; valid lifecycle replays (4.558086ms)
+✔ LIF-7: unknown evidence preserves the admitted signing/send lifecycle (6.240286ms)
+✔ LIF-2: wrong-bytes cannot be persisted as signed evidence (2.864102ms)
+✔ LIF-2: wrong-signature cannot be persisted as signed evidence (1.633491ms)
+✔ LIF-2: wrong-wire cannot be persisted as signed evidence (1.816223ms)
+✔ LIF-2: noncanonical-base64 cannot be persisted as signed evidence (1.02966ms)
+✔ LIF-2: send-started requires signed bytes and valid lifetime; every stage is single-use (6.415424ms)
+✔ LIF-2: denied response persists; sent response without send intent is refused (3.674568ms)
+✔ LIF-2: signing and send-started evidence survive durable restart (18.770567ms)
+✔ LIF-2: resealed out-of-order and forged signing history refuse restore/replay (4.28144ms)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (39.995214ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (7.976441ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (15.788532ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (7.85466ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (9.545658ms)
+ℹ tests 371
+ℹ suites 0
+ℹ pass 371
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 28392.833048

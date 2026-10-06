@@ -1,6 +1,6 @@
 # Persistent record ownership
 
-> **Draft 1** · 2026-10-05 · owner: integrator · for: SDK users and Linux operators.
+> **Draft 2** · 2026-10-06 · owner: integrator · for: SDK users and Linux operators.
 > Register: `kb/DOCUMENTS.md`. Foundation evidence: `evals/sdk/ownership.md` (claim S16).
 
 An ordinary `createGuard({ policy, log: path })` uses manual SDK ownership. It refuses an
@@ -33,3 +33,25 @@ The store completes short writes and syncs before acknowledgement. A write or sy
 closes the writer; restart may retain an unacknowledged complete entry conservatively. This
 does not prove power-loss durability. Back up history and ownership configuration together;
 verified backup, rollback, snapshots and the full recovery programme remain release work.
+
+For a stopped, immutable archive, the SDK exports `verifyArchive(path, options)`:
+
+```ts
+const receipt = await verifyArchive(archivePath, {
+  expectedHead: independentlyRecordedHead,
+  expectedDigest: independentlyRecordedSha256,
+});
+```
+
+Both pins are optional; retain them independently when verifying a backup. The receipt
+contains entry count, sequence range, final head, SHA-256 of exact bytes and byte count.
+Continuation archives require `firstSeq` and `previousHead`. `maxLineBytes` limits each
+UTF-8 record excluding its final newline. Invalid options, framing, envelope, chain, observed
+source changes and pin mismatches throw `ArchiveError` with a typed `code`.
+
+This checks structure and pinned bytes, not policy decisions, signed checkpoints or restored
+state. An empty archive does not establish an existing guard. Use a single-link regular file
+in an operator-owned local Linux directory; stop writers before copying and verifying it.
+Verification detects observed changes during its read and does not freeze the source afterwards.
+Evidence and precise limitations: `evals/sdk/archive.md` (S39). Full snapshot and backup
+recovery qualification remains owed.

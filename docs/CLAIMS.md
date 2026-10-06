@@ -80,6 +80,8 @@ second definition change, re-measured on fresh seeds, and S7 restated with both 
 
 | S38 | The defined persisted-prefix SDK battery verifies process death and identical recovered histories | **measured (builder-authored local Linux recovery evidence)** | `evals/ci/kills.md`, 2026-10-06, Node 26.7.0: 100 verified SIGKILL exits, 100 identical completed histories and 100 successful replays; seed 202610061, 160-step workload, prefixes 1–159. Seven faults caught. Regenerate: `npm run test:kills`; `node evals/ci/kill-faults.ts`. Kernel ownership, synthetic SDK data only; no unacknowledged-write, signing/send, power-loss or isolated-user qualification |
 
+| S39 | The SDK verifies archive framing, hash-chain continuity and optional external pins with bounded line buffering | **measured (builder-authored local Linux SDK evidence)** | `evals/sdk/archive.md`, 2026-10-06, Node 26.7.0: sixteen archive cases and sixteen final faults pass after a source-size mutation miss and blocking FIFO regression; six installed-package cases/four package faults pass. Regenerate: `node --test packages/sdk/test/archive.test.ts`; `node evals/sdk/archive-faults.ts`; `npm run release:prepare`; `npm run test:package`. Structural integrity only; not policy replay, authenticated snapshots, measured restart memory or backup recovery |
+
 **Not yet claimable, and why:**
 - **Any detection rate or block rate, and any false-stop rate beyond S7's synthetic streams.** Nothing else has been
   measured. Milestone 2b.1 runs the Beta batteries and 3.10 the adversarial one; until then no percentage exists.

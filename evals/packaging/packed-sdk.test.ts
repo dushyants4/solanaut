@@ -57,7 +57,7 @@ test("PKG-1: the packed runtime has no executable TypeScript, test fixtures or d
 
 test("PKG-2: consumer declarations resolve and reject invalid sensor telemetry", () => {
   writeFileSync(join(consumer, "consumer.ts"), `
-    import {createGuard, createSendingClient, SignerClientError, type GuardOptions, type Decision, type SendingResult} from '@solanaut/sdk';
+    import {createGuard, createSendingClient, SignerClientError, verifyArchive, type ArchiveOptions, type ArchiveReceipt, type ArchiveErrorCode, type GuardOptions, type Decision, type SendingResult} from '@solanaut/sdk';
     const options: GuardOptions = {policy: {}, sensor: () => ({intensity:0,valence:0,repetition:0})};
     const g = await createGuard(options);
     const decision: Decision = g.check({message: new Uint8Array(), at: 0});
@@ -75,10 +75,38 @@ test("PKG-2: consumer declarations resolve and reject invalid sensor telemetry",
     // @ts-expect-error message bytes cannot be replaced by caller telemetry
     client.propose({id:'payment',message:'base64'});
     void status; void uncertain;
+    const archiveOptions: ArchiveOptions = {maxLineBytes:1024};
+    const receipt: ArchiveReceipt = await verifyArchive('history.jsonl',archiveOptions);
+    const code: ArchiveErrorCode = 'head';
+    // @ts-expect-error line limits are numeric
+    verifyArchive('history.jsonl',{maxLineBytes:'1024'});
+    // @ts-expect-error unknown pins cannot silently disable verification
+    verifyArchive('history.jsonl',{expectedHed:'wrong'});
+    void receipt; void code;
   `);
   writeFileSync(join(consumer, "tsconfig.json"), JSON.stringify({ compilerOptions: { noEmit: true, strict: true, module: "NodeNext", moduleResolution: "NodeNext", target: "ES2022", types: [], lib: ["ES2022", "DOM"] }, files: ["consumer.ts"] }));
   const result = spawnSync(join(root, "node_modules/.bin/tsc"), ["-p", "tsconfig.json"], { cwd: consumer, encoding: "utf8" });
   assert.equal(result.status, 0, result.stdout + result.stderr);
+});
+test("SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin", () => {
+  const script = `
+    import {createGuard,verifyArchive,ArchiveError} from '@solanaut/sdk';
+    import {writeFileSync} from 'node:fs';
+    const g=await createGuard({policy:JSON.parse(process.argv[1]),sensor:()=>({intensity:0,valence:0,repetition:0})});
+    g.check({message:new Uint8Array(Buffer.from(process.argv[2],'base64')),at:1000});
+    const entries=g.entries();
+    writeFileSync('history.jsonl',entries.map(e=>JSON.stringify(e)).join('\\n')+'\\n');
+    const head=entries.at(-1).hash;
+    const receipt=await verifyArchive('history.jsonl',{expectedHead:head});
+    let failure;
+    try { await verifyArchive('history.jsonl',{expectedHead:'0'.repeat(64)}); }
+    catch(e) { failure={typed:e instanceof ArchiveError,code:e.code}; }
+    console.log(JSON.stringify({entries:receipt.entries,head:receipt.head===head,failure}));
+    g.close();
+  `;
+  const result=spawnSync(process.execPath,["--input-type=module","-e",script,inputPolicy,Buffer.from(transfer(2)).toString("base64")],{cwd:consumer,encoding:"utf8"});
+  assert.equal(result.status,0,result.stderr);
+  assert.deepEqual(JSON.parse(result.stdout),{entries:1,head:true,failure:{typed:true,code:"head"}});
 });
 
 test("PKG-3: installed replay and table-pin commands execute with their documented usage exits", () => {

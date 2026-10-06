@@ -1,0 +1,199 @@
+✖ SNP-1: full and continuation archives match head, digest, sequence and byte count (6.345906ms)
+✖ SNP-1: empty archive is structural empty history, not proof of an established guard (0.26676ms)
+✖ SNP-1: line bound accepts the exact UTF-8 length and refuses one byte less (0.36132ms)
+✖ SNP-1: invalid options reject before source reads (1.186637ms)
+✔ SNP-1: missing, symlink and directory sources refuse (0.544152ms)
+✖ SNP-1: incomplete/blank and invalid UTF-8 frames refuse (0.385379ms)
+✖ SNP-1: malformed JSON and unsupported record envelopes refuse (0.348336ms)
+✖ SNP-1: altered hash, sequence and predecessor refuse (0.270981ms)
+✖ SNP-1: external head and raw digest pins refuse rewritten or truncated archives (0.33602ms)
+✖ SNP-1: competing source changes refuse and descriptors close on success and failure (0.502767ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 1
+ℹ fail 9
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 135.916198
+
+✖ failing tests:
+
+test at packages/sdk/test/archive.test.ts:17:1
+✖ SNP-1: full and continuation archives match head, digest, sequence and byte count (6.345906ms)
+  Error [ArchiveError]: archive verifier not implemented
+      at verifyArchive (file:///home/dashy/Projects/Solanaut/packages/sdk/src/archive.ts:5:114)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive.test.ts:20:26)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    code: 'source'
+  }
+
+test at packages/sdk/test/archive.test.ts:25:1
+✖ SNP-1: empty archive is structural empty history, not proof of an established guard (0.26676ms)
+  Error [ArchiveError]: archive verifier not implemented
+      at verifyArchive (file:///home/dashy/Projects/Solanaut/packages/sdk/src/archive.ts:5:114)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive.test.ts:26:73)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    code: 'source'
+  }
+
+test at packages/sdk/test/archive.test.ts:30:1
+✖ SNP-1: line bound accepts the exact UTF-8 length and refuses one byte less (0.36132ms)
+  Error [ArchiveError]: archive verifier not implemented
+      at verifyArchive (file:///home/dashy/Projects/Solanaut/packages/sdk/src/archive.ts:5:114)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive.test.ts:32:23)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'source'
+  }
+
+test at packages/sdk/test/archive.test.ts:35:1
+✖ SNP-1: invalid options reject before source reads (1.186637ms)
+  AssertionError [ERR_ASSERTION]: The validation function is expected to return "true". Received false
+  
+  Caught error:
+  
+  ArchiveError: archive verifier not implemented
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive.test.ts:36:219)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: ArchiveError: archive verifier not implemented
+        at verifyArchive (file:///home/dashy/Projects/Solanaut/packages/sdk/src/archive.ts:5:114)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive.test.ts:36:233)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/archive.test.ts:42:1
+✖ SNP-1: incomplete/blank and invalid UTF-8 frames refuse (0.385379ms)
+  AssertionError [ERR_ASSERTION]: The validation function is expected to return "true". Received false
+  
+  Caught error:
+  
+  ArchiveError: archive verifier not implemented
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive.test.ts:44:119)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: ArchiveError: archive verifier not implemented
+        at verifyArchive (file:///home/dashy/Projects/Solanaut/packages/sdk/src/archive.ts:5:114)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive.test.ts:44:133)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/archive.test.ts:46:1
+✖ SNP-1: malformed JSON and unsupported record envelopes refuse (0.348336ms)
+  AssertionError [ERR_ASSERTION]: The validation function is expected to return "true". Received false
+  
+  Caught error:
+  
+  ArchiveError: archive verifier not implemented
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive.test.ts:48:195)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: ArchiveError: archive verifier not implemented
+        at verifyArchive (file:///home/dashy/Projects/Solanaut/packages/sdk/src/archive.ts:5:114)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive.test.ts:48:209)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/archive.test.ts:50:1
+✖ SNP-1: altered hash, sequence and predecessor refuse (0.270981ms)
+  AssertionError [ERR_ASSERTION]: The validation function is expected to return "true". Received false
+  
+  Caught error:
+  
+  ArchiveError: archive verifier not implemented
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive.test.ts:52:194)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: ArchiveError: archive verifier not implemented
+        at verifyArchive (file:///home/dashy/Projects/Solanaut/packages/sdk/src/archive.ts:5:114)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive.test.ts:52:208)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/archive.test.ts:54:1
+✖ SNP-1: external head and raw digest pins refuse rewritten or truncated archives (0.33602ms)
+  AssertionError [ERR_ASSERTION]: The validation function is expected to return "true". Received false
+  
+  Caught error:
+  
+  ArchiveError: archive verifier not implemented
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive.test.ts:56:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: ArchiveError: archive verifier not implemented
+        at verifyArchive (file:///home/dashy/Projects/Solanaut/packages/sdk/src/archive.ts:5:114)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive.test.ts:56:17)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/archive.test.ts:59:1
+✖ SNP-1: competing source changes refuse and descriptors close on success and failure (0.502767ms)
+  Error [ArchiveError]: archive verifier not implemented
+      at verifyArchive (file:///home/dashy/Projects/Solanaut/packages/sdk/src/archive.ts:5:114)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive.test.ts:67:9)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'source'
+  }

@@ -1,0 +1,48 @@
+✔ SNP-1: full and continuation archives match head, digest, sequence and byte count (14.133844ms)
+✔ SNP-1: empty archive is structural empty history, not proof of an established guard (1.213637ms)
+✔ SNP-1: line bound accepts the exact UTF-8 length and refuses one byte less (0.975705ms)
+✔ SNP-1: invalid options reject before source reads (0.396392ms)
+✔ SNP-1: missing, symlink and directory sources refuse (0.884486ms)
+✔ SNP-1: incomplete/blank and invalid UTF-8 frames refuse (0.848822ms)
+✔ SNP-1: malformed JSON and unsupported record envelopes refuse (1.714608ms)
+✔ SNP-1: altered hash, sequence and predecessor refuse (2.766038ms)
+✔ SNP-1: external head and raw digest pins refuse rewritten or truncated archives (1.51125ms)
+✔ SNP-1: competing source changes refuse and descriptors close on success and failure (2.37155ms)
+✔ SNP-1: fractional signer timestamps remain supported and unsafe sequence overflow refuses (0.801508ms)
+✔ SNP-1: hardlinks and pathname replacement during verification refuse (0.831686ms)
+✖ SNP-1: malformed/unknown options refuse and pins are captured before asynchronous reads (0.740616ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 12
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 166.778007
+
+✖ failing tests:
+
+test at packages/sdk/test/archive.test.ts:91:1
+✖ SNP-1: malformed/unknown options refuse and pins are captured before asynchronous reads (0.740616ms)
+  AssertionError [ERR_ASSERTION]: The validation function is expected to return "true". Received false
+  
+  Caught error:
+  
+  TypeError: Cannot read properties of null (reading 'firstSeq')
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive.test.ts:93:74)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: TypeError: Cannot read properties of null (reading 'firstSeq')
+        at verifyArchive (file:///home/dashy/Projects/Solanaut/packages/sdk/src/archive.ts:24:28)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive.test.ts:93:88)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    operator: 'rejects',
+    diff: 'simple'
+  }

@@ -1,0 +1,50 @@
+caught archive fault: ignore-version
+caught archive fault: ignore-kind
+caught archive fault: ignore-sequence
+caught archive fault: ignore-predecessor
+caught archive fault: ignore-content-hash
+caught archive fault: complete-line-bound
+caught archive fault: unfinished-line-bound
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: ✔ SNP-1: full and continuation archives match head, digest, sequence and byte count (14.344515ms)
+✔ SNP-1: empty archive is structural empty history, not proof of an established guard (0.927518ms)
+✔ SNP-1: line bound accepts the exact UTF-8 length and refuses one byte less (0.933034ms)
+✔ SNP-1: invalid options reject before source reads (0.435709ms)
+✔ SNP-1: missing, symlink and directory sources refuse (0.997604ms)
+✔ SNP-1: incomplete/blank and invalid UTF-8 frames refuse (1.79593ms)
+✔ SNP-1: malformed JSON and unsupported record envelopes refuse (2.746306ms)
+✔ SNP-1: altered hash, sequence and predecessor refuse (0.968842ms)
+✔ SNP-1: external head and raw digest pins refuse rewritten or truncated archives (0.757269ms)
+✔ SNP-1: competing source changes refuse and descriptors close on success and failure (1.564428ms)
+✔ SNP-1: fractional signer timestamps remain supported and unsafe sequence overflow refuses (0.774823ms)
+✔ SNP-1: hardlinks and pathname replacement during verification refuse (0.882522ms)
+✔ SNP-1: malformed/unknown options refuse and pins are captured before asynchronous reads (0.671665ms)
+✔ SNP-1: multibyte frames cross chunks and oversized unfinished lines stop after one read (2.096008ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 124.241898
+
+
+0 !== 1
+
+    at file:///home/dashy/Projects/Solanaut/evals/sdk/archive-faults.ts:28:12
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

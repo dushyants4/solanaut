@@ -1,0 +1,22 @@
+✖ SNP-1: fractional signer timestamps remain supported and unsafe sequence overflow refuses (3.775433ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 130.732513
+
+✖ failing tests:
+
+test at packages/sdk/test/archive.test.ts:71:1
+✖ SNP-1: fractional signer timestamps remain supported and unsafe sequence overflow refuses (3.775433ms)
+  Error [ArchiveError]: archive record envelope is unsupported or malformed
+      at record (file:///home/dashy/Projects/Solanaut/packages/sdk/src/archive.ts:17:72)
+      at verifyArchive (file:///home/dashy/Projects/Solanaut/packages/sdk/src/archive.ts:45:18)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive.test.ts:74:17)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    code: 'record'
+  }

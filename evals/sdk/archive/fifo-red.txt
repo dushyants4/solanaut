@@ -1,0 +1,45 @@
+✖ SNP-1: a FIFO without a writer is refused without blocking on open (1008.941414ms)
+✔ SNP-1: full and continuation archives match head, digest, sequence and byte count (12.712031ms)
+✔ SNP-1: empty archive is structural empty history, not proof of an established guard (1.048781ms)
+✔ SNP-1: line bound accepts the exact UTF-8 length and refuses one byte less (0.92912ms)
+✔ SNP-1: invalid options reject before source reads (0.430773ms)
+✔ SNP-1: missing, symlink and directory sources refuse (0.727354ms)
+✔ SNP-1: incomplete/blank and invalid UTF-8 frames refuse (0.829306ms)
+✔ SNP-1: malformed JSON and unsupported record envelopes refuse (2.241686ms)
+✔ SNP-1: altered hash, sequence and predecessor refuse (2.468284ms)
+✔ SNP-1: external head and raw digest pins refuse rewritten or truncated archives (0.779946ms)
+✔ SNP-1: competing source changes refuse and descriptors close on success and failure (1.378489ms)
+✔ SNP-1: fractional signer timestamps remain supported and unsafe sequence overflow refuses (0.651256ms)
+✔ SNP-1: hardlinks and pathname replacement during verification refuse (0.846268ms)
+✔ SNP-1: malformed/unknown options refuse and pins are captured before asynchronous reads (1.138268ms)
+✔ SNP-1: multibyte frames cross chunks and oversized unfinished lines stop after one read (2.776639ms)
+✔ SNP-1: changed length refuses even when source timestamps do not reveal it (0.682874ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 15
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1124.838819
+
+✖ failing tests:
+
+test at packages/sdk/test/archive.test.ts:20:1
+✖ SNP-1: a FIFO without a writer is refused without blocking on open (1008.941414ms)
+  AssertionError [ERR_ASSERTION]: spawnSync /home/dashy/.local/share/mise/installs/node/26.7.0/bin/node ETIMEDOUT
+  
+  null !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive.test.ts:27:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

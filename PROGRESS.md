@@ -134,3 +134,5 @@ partial signing is unchanged; this is not installed signer or live-chain qualifi
    (`evals/ci/concurrency.md`); parallel-writer and isolated-signer concurrency remains owed.
    Verified persisted-prefix SDK owner-death recovery passes the local target
    (`evals/ci/kills.md`); unacknowledged-write, signing/send and power-loss evidence remains owed.
+   Bounded archive framing/chain/pin verification is installed and tested
+   (`evals/sdk/archive.md`); signed snapshots, streamed state replay and backup recovery remain owed.

@@ -7,6 +7,11 @@ all security, validation and human-owned release gates.
 
 ## Did
 
+- Kill step `91589b3` privately pushed; ten close gates and CI `37486837521` green.
+  Continued into SNP-1 bounded archive verification inside accepted ADR-019. Added strict
+  framing/chain/pins/source checks and typed installed exports. Sixteen final faults caught;
+  six installed consumers/four package faults pass. Receipt `evals/sdk/archive.md`.
+
 - Queued-admission step `3c36cb6` privately pushed; ten close gates and CI `37485168194`
   green. Continued into verified SIGKILL recovery: two stub failures, three gate tests pass;
   added actual kernel-owner death/reopen regression. One hundred trials verify signals,
@@ -104,6 +109,9 @@ all security, validation and human-owned release gates.
 
 ## Changed
 
+- Archive step adds SDK reader/tests, maintained fault campaign and installed exports;
+  updates STORAGE, SPEC, OVERVIEW, RISKS, claims/register, progress, handoff and receipt index.
+
 - Handler and SDK journal store pre-admission refusal payloads/answers; interrupted refusal
   starts complete without new proposal work. Errors after admission stay with signing history.
 - Transport aligns its message bound with the core. Tests/maintained faults, receipt/index,
@@ -113,6 +121,18 @@ all security, validation and human-owned release gates.
   this history and must pass compatibility checks before rollback.
 
 ## Found
+
+- Archive reader initially rejected fractional monotonic timestamps; corrected without
+  weakening safe-integer sequences. Null options and mock typing failed; corrected. A test
+  reseal retained its old hash; fixed fixture. Initial source-size mutation survived because
+  timestamps masked it; isolated size-only mutation now fails. All outputs retained.
+- One multi-file documentation patch had a mismatched STORAGE anchor and applied nothing;
+  retried with the exact line. No protected edit or threshold exception.
+- FIFO source regression reproduces blocking open; nonblocking descriptor acquisition now
+  reaches regular-file refusal. Its timeout child is reaped and the mutation is maintained.
+- The final fault aggregator started while the root test process was finishing. That root
+  output is retained separately; rerun root tests only after mutation restoration to remove
+  any uncertainty from process overlap.
 
 - Kill step final: 355 tests pass, typecheck clean; twenty-two bite campaigns catch
   147 faults and restore source. One hundred-trial command finishes and all children are
@@ -226,6 +246,11 @@ all security, validation and human-owned release gates.
 - Existing protected-file owed edit O1 remains in HANDOFF §6; no protected file changed.
 
 ## Provenance
+
+Archive step: final sequential `npm test` 371 passes, typecheck zero, six installed-package
+checks/four package faults pass. Full `npm run test:bite` passes 23 campaigns/163 faults,
+all sources restored. Receipt `evals/sdk/archive.md`; pre-push close nine gates, only
+uncommitted-tree gate pending. Raw stdout whitespace retained without alteration.
 
 Starting HEAD `b7d24a5`; Node 26.7.0, Keel 1.0.1 and sensor v1. Commands:
 `node --test apps/signer/test/handler.test.ts apps/signer/test/socket.test.ts`,

@@ -1,0 +1,79 @@
+
+> test:package
+> node --test evals/packaging/*.test.ts
+
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (61.133614ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (0.322351ms)
+✖ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (254.18474ms)
+✖ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (49.692804ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (64.112656ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (37.642179ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 4
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1081.095589
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:58:1
+✖ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (254.18474ms)
+  AssertionError [ERR_ASSERTION]: consumer.ts(2,66): error TS2305: Module '"@solanaut/sdk"' has no exported member 'verifyArchive'.
+  consumer.ts(2,86): error TS2305: Module '"@solanaut/sdk"' has no exported member 'ArchiveOptions'.
+  consumer.ts(2,107): error TS2305: Module '"@solanaut/sdk"' has no exported member 'ArchiveReceipt'.
+  consumer.ts(2,128): error TS2305: Module '"@solanaut/sdk"' has no exported member 'ArchiveErrorCode'.
+  consumer.ts(23,5): error TS2578: Unused '@ts-expect-error' directive.
+  consumer.ts(25,5): error TS2578: Unused '@ts-expect-error' directive.
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:89:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/packaging/packed-sdk.test.ts:91:1
+✖ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (49.692804ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-mrXEHP/consumer/[eval1]:2
+      import {createGuard,verifyArchive,ArchiveError} from '@solanaut/sdk';
+                                        ^^^^^^^^^^^^
+  SyntaxError: The requested module '@solanaut/sdk' does not provide an export named 'ArchiveError'
+      at #asyncInstantiate (node:internal/modules/esm/module_job:463:21)
+      at async ModuleJob.run (node:internal/modules/esm/module_job:561:5)
+      at async node:internal/modules/esm/loader:226:26
+      at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:223:20)
+      at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:108:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
