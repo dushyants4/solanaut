@@ -189,6 +189,11 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+Recovery f8d22f9 privately pushed; all ten close gates pass. DEP-1 now has a scoped
+published qs patch, clean lockfile installation and three installed cases/four faults
+(`evals/ci/dependency.md`). Resolver failures are retained. Remaining high findings,
+fresh full mutation qualification and independent/human gates remain owed.
+
 Mutation execution recovery passes six cases/fourteen faults and the real staged
 baseline (`evals/ci/mutation-recovery.md`). Original orphan retired with unknown actual
 status and incomplete population; no score claimed. Environment commit ddc8bb0 passes

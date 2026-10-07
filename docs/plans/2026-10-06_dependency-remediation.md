@@ -34,6 +34,12 @@ as the exact published pinned package; a finding there goes to the human rather 
 
 ## Exit evidence
 
+DEP-1 now remediates the evaluation-tool qs route through a scoped exact published
+resolution, clean lockfile installation and installed-client regressions
+(`evals/ci/dependency.md`). Original failed resolver attempts remain retained.
+The fresh audit still exits one; other findings and full mutation qualification
+remain required. No upstream compatibility endorsement is inferred from local tests.
+
 Keep the old audit and all failed update attempts beside fresh results. Record candidate
 revision, lockfile digest, package versions and actual deployment graph. Produce package
 SBOMs only from the corrected frozen candidate. A claimed unreachable path needs a reviewed

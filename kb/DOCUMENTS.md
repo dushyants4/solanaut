@@ -221,3 +221,6 @@ on 2026-10-06; S28 and receipt in `runs/2026-10-06-codex-solanaut-1.md`.
 2026-10-07 mutation recovery registers SPEC Draft 4.44, RISKS 1.35, CLAIMS S55,
 receipt/index, PROGRESS and HANDOFF continuation. Original interruption/retirement
 is retained; complete mutation qualification remains owed.
+
+2026-10-07 DEP-1 registers SPEC Draft 4.45, RISKS 1.36, CLAIMS S56, TOOLCHAIN,
+dependency remediation plan, receipt/index, PROGRESS and HANDOFF continuation.

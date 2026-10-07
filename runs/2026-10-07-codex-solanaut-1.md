@@ -261,6 +261,19 @@ pending. No threshold, accepted ADR or protected harness file changes.
 
 ## Open
 
+DEP-1 final local integration passes 545 cases, nine packed-consumer checks and
+typecheck; pre-sync close passes nine gates and refuses uncommitted state. Hosted
+recovery f8d22f9 has a Node 22 matrix failure; logs unavailable until run completion.
+Record as a finding, investigate before claiming hosted qualification. No gate weakened.
+
+Recovery f8d22f9 privately pushed; all ten close gates pass, hosted validation underway.
+DEP-1 old graph fails all three installed regressions. Scoped override alone does not
+update the nested copy; install/update failures are retained. Dedupe changes unrelated
+packages, rejected; restore original graph except nested qs. Clean npm ci without
+scripts succeeds; installed cases/four deliberate faults pass with exact restoration.
+Fresh audit still exits one; framework high findings stay open. Registry signatures
+verify; this is not full dependency or release clearance. Final integration follows.
+
 Mutation recovery definition 4 now passes six cases/fourteen real faults, including
 actual staged baseline 235 cases and repeated inspection. Ordinary integration passes
 542 cases, typecheck exits zero. Raw failures and source manifest are retained under

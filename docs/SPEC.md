@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.44** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.45** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -1062,3 +1062,8 @@ These are requirements, not current support claims or permission for human-owned
 | Draft 4.41 | 2026-10-07 | CI-2 externally bound completion-record checks and operator-tool restoration; actual detached producer and qualification remain owed. |
 | Draft 4.42 | 2026-10-07 | CI-2 actual detached supervisor and ordered result publication; environment, supervisor-death containment and mutation integration remain owed. |
 | Draft 4.43 | 2026-10-07 | CI-2 explicit evaluation environment and actual supervisor-interruption evidence; killed-worker recovery and mutation integration remain owed. |
+
+DEP-1 requires the Stryker query route to resolve the reviewed exact qs version;
+malicious constructor and nullable comma arrays cannot crash serialization, and
+ordinary REST query options remain compatible. Installed bytes and manifest pins are
+checked by `evals/ci/dependency.test.ts`; full dependency clearance remains owed.

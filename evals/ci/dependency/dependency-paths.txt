@@ -1,0 +1,18 @@
+solanaut@ /home/dashy/Projects/Solanaut
+├─┬ @solanaut/agentkit@0.0.0 -> ./apps/agentkit
+│ └─┬ solana-agent-kit@2.0.10
+│   ├─┬ @langchain/core@0.3.80
+│   │ └── langsmith@0.3.87
+│   ├─┬ @solana/spl-token@0.4.15
+│   │ └─┬ @solana/buffer-layout-utils@0.3.0
+│   │   └── bigint-buffer@1.1.5
+│   └─┬ ai@4.3.19
+│     └── jsondiffpatch@0.6.0
+├─┬ @solanaut/cockpit@0.0.0 -> ./apps/cockpit
+│ └─┬ @sqds/multisig@2.1.4
+│   └─┬ @solana/spl-token@0.3.11
+│     └─┬ @solana/buffer-layout-utils@0.2.0
+│       └── bigint-buffer@1.1.5 deduped
+└─┬ @stryker-mutator/core@10.0.0
+  └── typed-rest-client@2.3.1
+

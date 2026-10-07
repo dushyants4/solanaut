@@ -169,3 +169,7 @@ partial signing is unchanged; this is not installed signer or live-chain qualifi
 CI-2 mutation execution now has recoverable actual supervision, frozen bindings and
 staged-baseline evidence (`evals/ci/mutation-recovery.md`). The interrupted original
 campaign is retired, unqualified. Full mutation score and release gates remain owed.
+
+DEP-1 remediates the evaluation-tool qs route with installed regressions and
+restored faults (`evals/ci/dependency.md`). Other high dependency findings remain
+open; R.1 and full mutation qualification are not achieved.

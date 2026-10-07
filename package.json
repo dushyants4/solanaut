@@ -34,6 +34,11 @@
     "test:traffic": "node evals/ci/traffic-run.ts",
     "cockpit": "node apps/cockpit/src/server.ts"
   },
+  "overrides": {
+    "typed-rest-client@2.3.1": {
+      "qs": "6.16.0"
+    }
+  },
   "devDependencies": {
     "@stryker-mutator/core": "10.0.0",
     "@types/node": "26.6.3",

@@ -1,0 +1,5 @@
+caught dependency fault: scoped-pin
+caught dependency fault: installed-version
+caught dependency fault: constructor-guard
+caught dependency fault: comma-null-guard
+All dependency faults caught; installed bytes restored and tests pass

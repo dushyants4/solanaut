@@ -1,0 +1,14 @@
+solanaut@ /home/dashy/Projects/Solanaut
+├─┬ @solanaut/agentkit@0.0.0 -> ./apps/agentkit
+│ └─┬ solana-agent-kit@2.0.10
+│   └─┬ @openai/agents@0.0.7
+│     └─┬ @openai/agents-core@0.0.7
+│       └─┬ @modelcontextprotocol/sdk@1.31.0
+│         └─┬ express@5.2.1
+│           ├─┬ body-parser@2.3.0
+│           │ └── qs@6.16.0 deduped
+│           └── qs@6.16.0 deduped
+└─┬ @stryker-mutator/core@10.0.0
+  └─┬ typed-rest-client@2.3.1 overridden
+    └── qs@6.16.0 overridden
+

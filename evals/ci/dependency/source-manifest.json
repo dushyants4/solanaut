@@ -1,0 +1,7 @@
+{
+  "package.json": "c0f7e964689bdf73c7e0fc9e0ffb3c77689289997df7d317c4187c36801de633",
+  "package-lock.json": "7e461a8dc3c217c556f4720019bfa0fd23790b2c8f5fc05f9fd0e369bfe0c652",
+  "evals/ci/dependency.test.ts": "f69aaaae87e090e810af26b6799c319d60a3d3e7f4480ba6efb936424c21ca84",
+  "evals/ci/dependency-faults.ts": "3491cfd1fd7273a022f3b8db75e63f62baa2fc3ecf68c11ffb58927acc12b7ad",
+  "evals/ci/bite.ts": "b8b463e3a5a6764086b41c87de599d5ba58aa4b97c4aaea057438105e85dc725"
+}

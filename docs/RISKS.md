@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.35** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.36** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 The threat model ([docs/papers/THREAT-MODEL.md](papers/THREAT-MODEL.md)) lists what an attacker can do to a running
@@ -199,3 +199,7 @@ failure remains retained; corrected hosted validation and the complete CI-2 prog
 Mutation execution now checks actual supervised completion and frozen inputs. The
 interrupted original campaign is retired without an inferred exit status or score;
 fresh complete qualification remains owed (`evals/ci/mutation-recovery.md`).
+
+The evaluation-tool qs route is remediated by a scoped exact published override
+(`evals/ci/dependency.md`). High framework/native-buffer findings remain open;
+local compatibility evidence does not imply upstream endorsement or release clearance.

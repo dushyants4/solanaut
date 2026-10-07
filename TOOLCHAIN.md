@@ -32,6 +32,11 @@ Scripts never rely on the interactive PATH: npm scripts and `tools/` set it them
 
 ## Anchor workspaces pin their toolchain
 
+Evaluation dependency resolution: Stryker 10.0.0 retains typed-rest-client 2.3.1,
+with a scoped qs 6.16.0 override in the root manifest/lockfile. Installed query
+regressions and restoration evidence are in `evals/ci/dependency.md`. This does not
+clear the remaining dependency advisories or qualify a full mutation score.
+
 `anchor init` writes an empty `[toolchain]` table. Solanaut's workspace fills it, so no command
 can switch the Solana release silently:
 
