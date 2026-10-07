@@ -5,6 +5,7 @@ seen failing might not be checking anything.
 
 | Gate | Shown failing | Then passing | Receipt |
 |---|---|---|---|
+| POL-2 signature decoding / CI-2 expanded mutation staging | source/installed regressions, scope/inventory refusals and shared fixture failure retained | source and installed cases/faults restored; expanded baseline passes; complete mutation score owed | `sdk/policy-signature.md` |
 | PKG-1 compiled checkpoint payloads | absent module in earlier candidate; compiled faults and hosted baseline failure retained | ten installed cases/eighteen compiled faults; recovery diagnostics preserve existing gate; hosted qualification remains owed | `packaging/checkpoint-payloads.md` |
 | SNP-3/5 signed admission-state preparation | five stub failures; masked seed-cap trial; campaign and critical-file refusals | six cases/sixteen source faults and restoration; full restore remains owed | `sdk/checkpoint-state.md` |
 | SNP-3/5 validated Keel prefix component | original stub failures; missing endpoint case and masked clone fault; campaign/critical-coverage refusals | nine cases/seventeen source faults and restoration; serial ordinary/type checks pass; full restore owed | `sdk/checkpoint-prefix.md` |

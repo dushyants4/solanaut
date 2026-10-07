@@ -8,6 +8,25 @@ work. This dated continuation retains the earlier session's full record at
 
 ## Did
 
+Policy pre-sync close passes nine gates and correctly refuses the uncommitted
+tree. Staged source diff and secret scan reviewed; private commit/push follows.
+
+Policy final serial ordinary and AST suites each pass all 582 cases; unchanged
+AST floors pass and typecheck exits zero. Source/compiled trials restore exactly.
+Raw logs and input/coverage manifests are retained. Close/private sync follows.
+
+afe482a hosted run 37649065148 completes successfully in every job. Full logs and
+exact revision metadata are retained beside compiled-payload evidence. This
+qualifies that revision's hosted checks, not the present uncommitted candidate;
+the earlier timing failure's root cause remains unproven.
+
+POL-2 source regressions fail first on early decoding and repeated signature reads.
+Capture and size validation preserve existing canonical and cryptographic checks.
+Installed old artefacts fail the same size check; regenerated candidate passes.
+Mutation definition 8 declares fresh seed 23417 before measurement, retaining
+previous sources/tests/floors/deadlines and adding prefix/state/signed-policy scope.
+Final integration and corrected full mutation qualification follow.
+
 Compiled-payload pre-sync close passes nine gates; the uncommitted-tree refusal is
 retained until private commit. Staged diff and secret scan are clean. Hosted
 diagnostic qualification follows sync, with the previous failure still open.
@@ -289,6 +308,16 @@ record satisfies the close workflow's current-day record requirement. Earlier ca
 implementation, documentation and receipt changes remain in the continuing session record.
 
 ## Found
+
+Policy close first refuses S65 because its regenerating commands were only linked
+through the receipt. The row now names explicit commands; no lint rule changed.
+
+The expanded shared-process staged baseline fails with the workload SOL cap set
+to zero. Checkpoint-state setup shallow-copied WORKLOAD_POLICY; its intentional
+caller mutation changed the shared nested sol object. Setup now deep-copies the
+fixture, with an explicit unchanged-workload assertion. Sequential expanded
+baseline passes afterwards. Raw failure is retained; no product policy defect or
+runtime deadline exception is inferred.
 
 Final root and focused checks were mistakenly launched together; both staged
 baseline waits fail under that shared load. Root reports 564/565 passes and focused

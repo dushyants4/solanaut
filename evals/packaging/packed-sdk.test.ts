@@ -215,7 +215,7 @@ test("SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuse
 test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace",()=>{
   // Inspect internal compiled artefacts; these helpers are not stable root exports.
   const script=`
-    import {createGuard,preparePolicyText,encodeBase58,EVALUATION_PROFILE} from '@solanaut/sdk';
+    import {createGuard,preparePolicyText,verifyPolicyAuthorization,PolicyAuthorizationError,encodeBase58,EVALUATION_PROFILE} from '@solanaut/sdk';
     import {generateKeyPairSync,sign,createHash} from 'node:crypto';
     const {prepareCheckpointPrefix,CheckpointPrefixError}=await import(new URL('./checkpoint-prefix.js',import.meta.resolve('@solanaut/sdk')));
     const {prepareCheckpointState,CheckpointStateError}=await import(new URL('./checkpoint-state.js',import.meta.resolve('@solanaut/sdk')));
@@ -224,6 +224,16 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
     const policy=JSON.parse(process.argv[1]);policy.principal=[address(agent)];policy.latch.releaseKey=address(operator);
     const trust={operatorKey:address(operator),guardId:policy.latch.guardId,cluster:policy.latch.cluster},issued='2026-10-07T00:00:00.000Z';
     const text=preparePolicyText(policy,1,issued),authorization={...trust,version:1,issued,text,signature:sign(null,Buffer.from(text),operator.privateKey).toString('base64')};
+    const originalFrom=Buffer.from;
+    try{
+      Buffer.from=function(value,encoding,...args){if(encoding==='base64' && typeof value==='string' && value.length!==88)throw new Error('unbounded signature decoded');return Reflect.apply(originalFrom,Buffer,[value,encoding,...args]);};
+      for(const length of [0,1,87,89,1000000]){
+        let refused=false;try{verifyPolicyAuthorization(policy,{...authorization,signature:'A'.repeat(length)});}catch(error){refused=error instanceof PolicyAuthorizationError;}
+        if(!refused)throw new Error('invalid signature length did not refuse before decoding');
+      }
+    }finally{Buffer.from=originalFrom;}
+    let reads=0;verifyPolicyAuthorization(policy,{...authorization,get signature(){reads++;return reads===1?authorization.signature:'A'.repeat(1000000);}});
+    if(reads!==1)throw new Error('signature bytes were reread');
     const g=await createGuard({policy,authorization});
     const message=Buffer.from(process.argv[2],'base64');Buffer.from(agent.publicKey.export({format:'jwk'}).x,'base64url').copy(message,4);
     const d=g.check({message:new Uint8Array(message),at:1000,blockHeight:10n,lastValidBlockHeight:100n},{clientId:'client',id:'payment'});

@@ -189,6 +189,16 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+afe482a hosted run 37649065148 passes every job; full logs and exact revision
+metadata retained with compiled-payload receipt. Earlier timing failure remains
+preserved and its cause unproven. All local close gates passed after private sync.
+
+POL-2 rejects invalid signature size before decoding and captures signature text
+once; source/installed faults pass with restoration. Mutation definition 8 adds
+prefix/state/signed-policy targets before measurement with a fresh seed, retaining
+all existing limits and floors. Expanded baseline exposed a shared checkpoint test
+policy, now locally owned; first failure retained. Final integration/sync follows.
+
 b9c06eb is privately pushed; all local close gates pass. Hosted run 37629630875
 passes twelve jobs but fails the coverage job's existing staged-baseline wait.
 Exact failure/metadata is retained. Installed prefix/state artefacts pass ten cases

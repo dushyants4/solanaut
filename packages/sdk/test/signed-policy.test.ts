@@ -11,7 +11,7 @@ import { canonicalJSON } from "../src/canonical.ts";
 import { createGuard, replay } from "../src/guard.ts";
 import { inspectRecord } from "../src/inspect.ts";
 import { seal, type Entry } from "../src/log.ts";
-import { preparePolicyText, verifyPolicyAuthorization, verifyPolicyEntry, type PolicyAuthorization } from "../src/signed-policy.ts";
+import { preparePolicyText, verifyPolicyAuthorization, verifyPolicyEntry, PolicyAuthorizationError, type PolicyAuthorization } from "../src/signed-policy.ts";
 import { sensorV1 } from "../src/sensor.ts";
 import { WORKLOAD_POLICY } from "./support/workload.ts";
 import { craftLegacy, key } from "./support/craft.ts";
@@ -54,6 +54,21 @@ test("POL-2: even a correctly signed dishonest summary is rejected", () => {
 test("POL-2: missing authorization and non-text signature cannot authenticate",()=> {
   assert.throws(()=>verifyPolicyAuthorization(policy,null as never),/required/);
   assert.throws(()=>verifyPolicyAuthorization(policy,{...authorization(),signature:new Uint8Array(64)} as never),/missing/);
+});
+test("POL-2: invalid encoded signature lengths refuse before base64 allocation",()=>{
+  const original=Buffer.from;
+  Buffer.from=function(value:unknown,...options:unknown[]){
+    if(typeof value==="string" && options[0]==="base64" && value.length!==88)throw new Error("invalid policy signature reached decoder");
+    return Reflect.apply(original,Buffer,[value,...options]);
+  } as typeof Buffer.from;
+  try{
+    for(const length of [0,1,87,89,1_000_000])assert.throws(()=>verifyPolicyAuthorization(policy,{...authorization(),signature:"A".repeat(length)}),error=>error instanceof PolicyAuthorizationError && error.code==="policy-authorization");
+  }finally{Buffer.from=original;}
+});
+test("POL-2: signature bytes are captured once before size and crypto verification",()=>{
+  const a=authorization(),valid=a.signature;let reads=0;
+  Object.defineProperty(a,"signature",{get(){reads++;return reads===1?valid:"A".repeat(1_000_000);}});
+  assert.equal(verifyPolicyAuthorization(policy,a).latch.releaseKey,operatorKey);assert.equal(reads,1);
 });
 test("VER-2: equivalent but noncanonical recorded policy is not accepted as signed history",async()=> {
   const g=await createGuard({policy,authorization:authorization()});

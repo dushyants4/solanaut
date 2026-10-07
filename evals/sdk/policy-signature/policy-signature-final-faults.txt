@@ -1,0 +1,4 @@
+caught policy signature fault: encoded-size
+caught policy signature fault: captured-decoder
+caught policy signature fault: captured-canonical
+All policy signature faults caught; restored source passes

@@ -1,5 +1,11 @@
 # PKG-1 / SNP-3/5 — compiled checkpoint payload components
 
+Corrected revision afe482a hosted run 37649065148 completes successfully in every
+job, including the runtime matrix, AST floors and maintained fault aggregate.
+Exact revision metadata and full logs are retained at
+`checkpoint-payloads/hosted-afe482a/`. The earlier failure remains preserved;
+a passing rerun does not establish its timing failure's cause.
+
 2026-10-07 · builder-authored local Linux/Node 26.7.0 evidence · base b9c06eb
 plus candidate. No public root exports added. Internal compiled modules are
 inspected from an installed tarball outside the repository, without loader flags,

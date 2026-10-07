@@ -16,6 +16,7 @@ const baseline = battery();
 assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
 const faults = [
   { name: "prefix-module", path: "dist/src/checkpoint-prefix.js", caught: "compiled checkpoint payloads", damage: () => undefined },
+  { name: "policy-signature-size", path: "dist/src/signed-policy.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("if (signature.length !== 88)", "if (false)") },
   { name: "prefix-digest", path: "dist/src/checkpoint-prefix.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("sha256hex(text)", 'sha256hex("wrong")') },
   { name: "prefix-replay", path: "dist/src/checkpoint-prefix.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("if (!result.ok)", "if (false)") },
   { name: "state-digest", path: "dist/src/checkpoint-state.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("sha256hex(text)", 'sha256hex("wrong")') },

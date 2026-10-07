@@ -1,0 +1,1174 @@
+✔ CI-2: supervised completion qualifies only the bound complete synthetic mutation fixture (158.760043ms)
+✔ CI-2: an extra staged input cannot silently enter the frozen population (1.919295ms)
+✔ CI-2: every copied source, test, package, configuration and lock input remains bound (4.819936ms)
+✔ CI-2: missing, symlinked and mismatched staged inputs cannot be frozen (3.165487ms)
+✔ CI-2: pending and failed actual child execution cannot qualify a present fixture report (292.757732ms)
+✖ CI-2: an asynchronously started real staged baseline finishes without relaunching (12383.704067ms)
+✔ CI-2: mutation staging copies only the frozen inputs and tests execute its changed source (541.108776ms)
+✔ POL-1: canonical readable summary and valid operator signature load (5.91872ms)
+✔ POL-2: missing signature refuses to start (1.92685ms)
+✔ POL-2: wrong operator refuses to start (0.923811ms)
+✔ POL-2: other guard refuses to start (0.986869ms)
+✔ POL-2: other cluster refuses to start (0.655243ms)
+✔ POL-2: different hash refuses to start (1.246639ms)
+✔ POL-2: noncanonical base64 refuses to start (0.635056ms)
+✔ POL-2: even a correctly signed dishonest summary is rejected (0.598569ms)
+✔ POL-2: missing authorization and non-text signature cannot authenticate (0.522666ms)
+✔ POL-2: invalid encoded signature lengths refuse before base64 allocation (1.912139ms)
+✔ POL-2: signature bytes are captured once before size and crypto verification (1.39194ms)
+✔ VER-2: equivalent but noncanonical recorded policy is not accepted as signed history (12.021445ms)
+✔ POL-3: the principal cannot become the pinned operator (0.636671ms)
+✔ POL-1: invalid versions and issued timestamps have no signing text (0.615277ms)
+✔ POL-1: summaries show SOL caps and count trailing destinations (0.379099ms)
+✔ POL-4/POL-5/VER-1: history verifies signed versions and replay preserves pending receipts and the latch (46.169966ms)
+✔ VER-1: equal version restarts are idempotent; changed signed content needs a higher version (36.653396ms)
+✔ VER-2/POL-4: resealed unsupported profiles and forged historical policy refuse replay and restore (12.765384ms)
+✔ VER-2: a caller cannot substitute another sensor under the signed profile (1.27565ms)
+✔ POL-4: a policy restart retains live reservations against the new cap (17.391664ms)
+✔ POL-4: the operator replay command uses signed history and an external public trust file (242.368309ms)
+✔ POL-4: extending the window reconstructs spending pruned under the old window (17.920088ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 28
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12997.24914
+
+✖ failing tests:
+
+test at evals/ci/mutation-recovery.test.ts:61:1
+✖ CI-2: an asynchronously started real staged baseline finishes without relaunching (12383.704067ms)
+  AssertionError [ERR_ASSERTION]: ✔ guardedWallet exposes exactly BaseWallet's members, frozen, and never the wallet it wraps (53.534545ms)
+  ✔ guardedWallet refuses a wallet whose key is outside the policy's principal, or no RPC to send through (1.467834ms)
+  ✔ signTransaction: an allowed payment is signed by the wrapped wallet; a drain throws SolanautDenied before the wallet is asked (12.615482ms)
+  ✔ the adapters give the same verdicts as the SDK, for legacy and v0 transactions (23.670619ms)
+  ✔ a re-sign of the same payment while the first could still land throws intent-in-flight (2.268089ms)
+  ✔ a wallet that changes the message before signing it is caught: its signatures are stripped, and the call throws (1.955194ms)
+  ✔ a wallet whose signature does not verify over the admitted bytes is caught (1.564786ms)
+  ✔ a wallet that signs a whole batch in place but returns it short: every caller object is stripped, and what was signed is held, not released (2.918448ms)
+  ✔ wallet-changed-message carries no decision, on guardedWallet (guardedSigner: its own test) (2.238312ms)
+  ✔ signAllTransactions is all or nothing: one denial signs none, and the admitted ones are released (7.080396ms)
+  ✔ signAndSendTransaction: checks, signs, sends exactly the admitted bytes itself, and reports the outcome (5.42761ms)
+  ✔ a send the RPC refuses is reported failed, and rethrown (4.558914ms)
+  ✔ a send whose fate is unknown is reported unknown, not failed: the signed bytes may still land, so a re-sign is refused (3.724671ms)
+  ✔ D14, sign-only: before the next proposal, guardedWallet reads the outcome of what it signed and reports it (3.976229ms)
+  ✔ D14, sign-only: a payment seen but not yet confirmed is not reported, and without a status reader the guard holds the intent (3.832702ms)
+  ✔ signMessage is denied: a raw signature over chosen bytes can be a transaction signature (0.376987ms)
+  ✔ guardedSigner: checks every transaction first, all or nothing, reads expiry from the lifetime, and verifies the signatures it returns (11.985114ms)
+  ✔ jsonRpc: sends base64 bytes, reads the height, and turns signature statuses into outcomes (2846.822157ms)
+  ✔ rule 0: an invalid policy means no guard (0.863349ms)
+  ✔ rule 1: bytes that do not parse, and ill-typed fields, deny as malformed-proposal (D5: never a throw) (1.759905ms)
+  ✔ rule 2: a version other than legacy, 0 or 1 denies as unsupported-version (0.590071ms)
+  ✔ rule 3: a lookup table the policy does not pin denies as lookup-table-unpinned (0.940613ms)
+  ✔ rule 5: a durable nonce, even paying an allowed destination, denies as durable-nonce-denied (1.904741ms)
+  ✔ rule 6: a required signer outside the principal denies as other-signer (0.900101ms)
+  ✔ rule 7: a program off the allowlist denies as program-not-allowed (0.863275ms)
+  ✔ rule 8: an allowlisted program the guard does not decode denies while opaque is deny, and passes when allow (1.32549ms)
+  ✔ rule 9: Approve, an unknown System instruction and a v1 ComputeBudget decoy deny as instruction-denied (D6, D10) (9.421429ms)
+  ✔ rule 10: SOL or tokens to an address the policy does not allow deny as destination-not-allowed (16.44425ms)
+  ✔ rule 11: an unlisted mint denies as mint-not-allowed; a plain Transfer from an unknown account as token-mint-unknown (6.123662ms)
+  ✔ rule 12: SOL or a mint over its per-transaction cap denies as over-per-tx-cap, summed over the message (3.402373ms)
+  ✔ rule 13: a priority fee over the cap denies as over-fee-cap, in legacy and in v1 (1.649428ms)
+  ✔ rules 14 and 15, the double-send battery: in flight until reported failed or expired; attempts are counted (4.41518ms)
+  ✔ D14: an attempt nobody reported may have landed, so past its expiry it still holds its intent, until reported or until the window passes (2.749155ms)
+  ✔ intents: a landed intent is done, and the same payment again is a new intent (0.997106ms)
+  ✔ intents: without block heights, only a report ends an attempt (1.240808ms)
+  ✔ reports: only for allowed decisions this guard made (1.056983ms)
+  ✔ rule 16: the window counts what was allowed; a failed report releases it, an unknown one keeps it; it slides (2.942381ms)
+  ✔ rule 16: each mint and the fees have their own window (3.585015ms)
+  ✔ rule 16, the boundaries: a payment exactly one window later is outside it, one millisecond earlier is inside (1.355028ms)
+  ✔ rule 16: a mint's window is its own (7.442832ms)
+  ✔ the concurrency battery: 50 proposals in one tick admit exactly what fits the window (17.931888ms)
+    retry loop stopped at turn 3: DEFAULT -> DEFAULT -> REGROUND (loop-reground)
+  ✔ rule 17: an identical failing retry loop is stopped by Keel as loop-reground, and the turn is measured (1.348656ms)
+  ✔ rule 18: under INHIBIT, an amount over the per-transaction cap times Keel's clamp (0.30) denies as inhibit-cap (1.334198ms)
+  ✔ varied, successful payments at a realistic pace are not stopped (5.89113ms)
+  ✔ every parsed proposal reaches Keel, allowed or denied; a malformed one does not (1.062096ms)
+  ✔ rule 19: anything that throws denies as fail-closed, and check never throws (1.08169ms)
+  ✔ rule order: a proposal that breaks several rules is denied by the first (7.514181ms)
+  ✔ the latch battery: it trips after the set run of denials; only a fresh, exact operator release frees it (5.844044ms)
+  ✔ receipts (D7): an allowed decision binds the message hash, expiry and policy; redeemed once, for those bytes only (2.182986ms)
+  ✔ decisions are a hash chain, and each carries its bytes, so the record replays on its own (1.092496ms)
+  ✔ D1: guard.policy is frozen, and changing it is refused (0.679065ms)
+  ✔ a controller that is not the verified binary is refused at creation (0.767476ms)
+  ✔ S36: a receipt reported expired, failed or landed no longer redeems (1.471459ms)
+  ✔ S80: a release's expiry is judged on the latest recorded time, so a clock that steps back cannot revive an expired release (0.899142ms)
+  ✔ S82: an attempt a trusted height shows can still land stays in the window past windowMs; reported expired, it leaves (1.049465ms)
+  ✔ LAT/POL-2: malformed release text and public signature inputs cannot authenticate (0.588103ms)
+  ✔ LIF-1/4: unsupported canonical values and malformed payload types refuse binding (0.701453ms)
+  ✔ LIF-4: malformed recorded request/response time and noncanonical content cannot restore (0.879119ms)
+  ✔ LIF-2: unknown requests, cross-policy signing and unsupported stages cannot journal (1.411628ms)
+  ✔ SIG-8: corrupted decision hashes refuse restore and deterministically diverge in replay (1.15351ms)
+  ✔ T2/T15: empty token-program instruction data is denied under both programs (0.109548ms)
+  ✔ SNP-3: archive catalogue bytes and digest have an independent canonical oracle (0.475918ms)
+  ✔ SNP-3: receipt field insertion order cannot change catalogue bytes (0.236358ms)
+  ✔ SNP-3: caller array methods cannot substitute unvalidated receipts (0.206316ms)
+  ✔ SNP-3: only genesis may have an empty archive catalogue (0.225161ms)
+  ✔ SNP-3: malformed checkpoint context never binds an archive catalogue (0.335954ms)
+  ✔ SNP-3: malformed receipt fields and unsupported data refuse (1.895511ms)
+  ✔ SNP-3: gaps, omitted segments, duplicate segments and reordered segments refuse (0.417623ms)
+  ✔ SNP-3: catalogue endpoint must match both next sequence and preceding head (0.976523ms)
+  ✔ SNP-3: observed anchor metadata is retained and bounded by its segment (0.743295ms)
+  ✔ SNP-3: caller receipts cannot mutate the captured endpoint (0.185389ms)
+  ✔ SNP-3: throwing accessors, cycles and unsupported JSON produce typed refusal (0.239555ms)
+  ✔ SNP-3: prepared catalogue does not retain caller-owned mutable values (0.104712ms)
+  ✔ SNP-3: safe integer endpoints do not overflow catalogue arithmetic (0.111619ms)
+  ✔ SNP-3: actual verified immutable segments prepare a complete catalogue (2.584852ms)
+  ✔ SNP-3: SDK exports archive catalogue preparation and typed refusal (2.946996ms)
+  ✔ SNP-3/5: genesis has canonical empty events and a payload digest (0.591211ms)
+  ✔ SNP-3/5: mixed history retains every tick and reset, with source sequence/hash (13.20023ms)
+  ✔ SNP-3/5: stale, missing, reordered and tampered history cannot produce a prefix (10.224197ms)
+  ✔ SNP-3/5: resealed dishonest telemetry still requires full decision replay (1.338029ms)
+  ✔ SNP-3/5: malformed inputs cannot inject controller events (1.381341ms)
+  ✔ SNP-3/5: wrong policy and caller serialization methods cannot bypass validation (6.384802ms)
+  ✔ SNP-3/5: async replay uses a captured history and endpoint (17.154215ms)
+  ✔ SNP-3/5: fresh Keel reproduces prefix postures across reset boundaries (9.790293ms)
+  ✔ SNP-3/5: signed policy changes require externally pinned policy trust (5.673693ms)
+  ✔ SNP-3/5: signed initial state carries policy, endpoint and every state field (3.409091ms)
+  ✔ SNP-3/5: unresolved send, reservation, redemption and latch remain in the payload (11.101795ms)
+  ✔ SNP-3/5: release resets sensor/latch without erasing pending admission or predecessor (5.691809ms)
+  ✔ SNP-3/5: signed policy changes retain current version and maximum history window (6.676505ms)
+  ✔ SNP-3/5: missing trust, unsupported history and asynchronous caller changes cannot alter state (6.027455ms)
+  ✔ SNP-3/5: pending control identities and completed answers remain distinct (2.466591ms)
+  ✔ SNP-3: canonical checkpoint and prefix domains bind every descriptor field (1.833513ms)
+  ✔ SNP-3: pinned signatures and independently computed digests return immutable metadata (1.252524ms)
+  ✔ SNP-3: a foreign checkpoint signature is denied under the external pin (0.918605ms)
+  ✔ SNP-3: checkpoint authority cannot share a principal or anchor role (0.645443ms)
+  ✔ SNP-3: foreign guard, cluster or checkpoint pin is denied (0.776276ms)
+  ✔ SNP-3: a trusted signature cannot authorise a false checkpoint authority descriptor (0.602339ms)
+  ✔ SNP-3: independently observed payload digest mismatches deny even valid signatures (0.821884ms)
+  ✔ SNP-3: altered policy, sequence, head or payload bindings cannot reuse signatures (2.495681ms)
+  ✔ SNP-3: snapshot and prefix signatures are not interchangeable (1.752862ms)
+  ✔ SNP-3: missing, malformed and noncanonical signatures deny (4.539416ms)
+  ✔ SNP-3: unsupported formats/profiles and malformed descriptor values deny (1.535675ms)
+  ✔ SNP-3: genesis and safe sequence/version boundaries are explicit (2.424633ms)
+  ✔ SNP-3: malformed trust and observed digest records cannot authorise bindings (0.876994ms)
+  ✔ SNP-3: caller metadata cannot mutate captured external pins or observed digests (1.69651ms)
+  ✔ SNP-3: malformed JSON and throwing accessors produce typed refusal (13.733257ms)
+  ✔ SNP-3: returned metadata does not retain mutable caller references (1.566823ms)
+  ✔ SNP-3: candidate SDK entry exports the binding API and typed refusal (0.229916ms)
+  ✔ SNP-3: excessive public keys refuse before unbounded base58 decoding (70.280839ms)
+  ✔ SNP-3: invalid signature lengths refuse before base64 decoding (82.776294ms)
+  ✔ the curve check and program-derived addresses agree with web3.js on random inputs (133.928248ms)
+  ✔ associated token accounts are derived as the token client derives them, for Token and Token-2022 (42.894796ms)
+  ✔ System Transfer is value-moving: the destination and lamports are counted, in every version (1.437863ms)
+  ✔ System TransferWithSeed, CreateAccount and CreateAccountWithSeed move lamports, and are counted (1.3229ms)
+  ✔ System CreateAccountAllowPrefund: funded lamports are counted; unfunded moves nothing; a principal account is never assigned away (1.311002ms)
+  ✔ System Assign and Allocate are denied: they hand an account to another program (0.452001ms)
+  ✔ durable nonces: AdvanceNonceAccount first marks the message, and every nonce instruction is denied (1.137893ms)
+  ✔ System: an unknown instruction, or data that does not fit its layout, is denied (0.366261ms)
+  ✔ Token Transfer from the principal's associated account infers the mint; to an allowed owner's account, names the owner (1.667067ms)
+  ✔ Token Transfer from any other account leaves the mint unknown, and a non-associated destination has no owner (0.593713ms)
+  ✔ TransferChecked names its mint and decimals, under Token and under Token-2022 (4.250751ms)
+  ✔ Token: Approve, CloseAccount and the other authority-granting instructions are denied; Revoke and SyncNative are benign (1.648647ms)
+  ✔ Token: every discriminator has the class the spec gives it, under both token programs (15.110964ms)
+  ✔ Token: a transfer whose authority does not sign (a multisig authority) is denied (2.088278ms)
+  ✔ ComputeBudget: the instruction names match the compute-budget client for every discriminator (5.667599ms)
+  ✔ System: the instruction names match the system client for every discriminator (0.619044ms)
+  ✔ fees, legacy and v0: price × limit, rounded up; the default limit when none is set; no price, no fee (2.282976ms)
+  ✔ fees: two of the same ComputeBudget instruction, or the deprecated RequestUnits, are denied (0.642572ms)
+  ✔ fees, v1: the priority fee is the config's lamport total, and any ComputeBudget instruction is a denied decoy (0.970228ms)
+  ✔ fees: 5,000 lamports per signature, and SOL to a tip account counts as a tip, not a payment (0.40238ms)
+  ✔ other signers: every required signer outside the principal is reported, for rule 6 (0.874785ms)
+  ✔ Memo is benign; a program the guard does not decode is listed as opaque (0.366909ms)
+  ✔ the message hash is the SHA-256 of the message bytes (0.423455ms)
+  ✔ the intent key ignores the blockhash, the fees, memos and the version, and follows what moves (1.67417ms)
+  ✔ v0: a destination loaded from a pinned table is classified like a static one (0.650079ms)
+  ✔ base58 of the system program id decodes to 32 zero bytes (sanity for the constants) (0.070659ms)
+  ✔ base58 agrees with kit's address codec on 500 random keys and on known program ids (21.142625ms)
+  ✔ base58 refuses characters outside the alphabet; isAddress accepts only canonical 32-byte keys (0.387727ms)
+  ✔ golden set: 300 kit-built messages, 100 per version, decode exactly as kit decodes them (170.358898ms)
+  ✔ golden set: every instruction's accounts resolve as kit resolves them, v0 tables pinned (156.694495ms)
+  ✔ golden set: v1 config values are read from the mask, in mask order (36.630105ms)
+  ✔ legacy and v0 messages built by web3.js decode as web3.js reads them (3.31851ms)
+  ✔ versions other than legacy, 0 and 1 are unsupported (2.650911ms)
+  ✔ every truncation of a valid message is malformed, in every version (86.422298ms)
+  ✔ bytes after the end of a message are malformed (1.311931ms)
+  ✔ a non-canonical compact length is malformed (0.259617ms)
+  ✔ inconsistent headers are malformed (0.241692ms)
+  ✔ an instruction may not name the fee payer as its program, or an index past the accounts (0.329495ms)
+  ✔ an address listed twice is malformed (0.221592ms)
+  ✔ v1: an unknown config bit, a half-set priority-fee pair, a short config, or over 64 accounts are malformed (0.78138ms)
+  ✔ a message too large to land is malformed: 1,232 bytes for legacy and v0 with signatures, 4,096 for v1 (0.742555ms)
+  ✔ v0: an unpinned table, or an index past its pin, is lookup-table-unpinned (0.528655ms)
+  ✔ v0: writable entries of all tables come before read-only entries of any table (0.256917ms)
+  ✔ v0: a program loaded from a table, a table that loads nothing, or an address both static and looked up is malformed (0.37333ms)
+  ✔ legacy and v1 messages resolve from their static accounts alone (1.423077ms)
+  ✔ transactions: wire bytes split into the exact message and its signatures, in every version (27.738269ms)
+  ✔ transactions: a wrong signature count, a short or long tail, or a v0 message first is malformed (2.184548ms)
+  ✔ lookup table accounts decode as web3.js decodes them; a bad type or length is refused (1.331976ms)
+  ✔ a table pin is the table's address and its entries, and a deactivated table is refused (0.360991ms)
+    fuzz: 5000 inputs, 912 accepted and matched kit, 4088 refused with a named rule
+  ✔ fuzz: 5000 mutated messages either decode exactly as kit does, or are refused with a DecodeError (307.668332ms)
+    drain battery, 40 of 40 denied:
+      T1   destination-not-allowed  SOL to a new recipient
+      T1   destination-not-allowed  SOL to a new recipient, as v0
+      T1   destination-not-allowed  SOL to a new recipient, as v1
+      T1   destination-not-allowed  an allowed payment with a second, hidden transfer to the attacker
+      T1   destination-not-allowed  a tip-shaped transfer to an address the policy does not name as a tip account
+      T1   destination-not-allowed  TransferWithSeed out of a seed-derived account, to the attacker
+      T27  destination-not-allowed  CreateAccountWithSeed funding an account at the attacker's address
+      T26  other-signer             CreateAccount funding a counterparty's fresh key, which must sign
+      T26  other-signer             CreateAccountAllowPrefund funding an account the counterparty holds
+      T2   instruction-denied       Token Approve: the attacker as delegate
+      T2   instruction-denied       Token ApproveChecked
+      T2   instruction-denied       Token SetAuthority: the account's owner changed to the attacker
+      T2   instruction-denied       Token CloseAccount: the rent to the attacker
+      T2   instruction-denied       Token-2022 Approve
+      T2   instruction-denied       Token Burn: value destroyed
+      T2   instruction-denied       System Assign: the agent's account handed to a program
+      T2   instruction-denied       System Allocate on the agent's account
+      T22  instruction-denied       p-token Batch, which could carry a transfer the guard would not see
+      T22  instruction-denied       a System instruction the guard does not know
+      T15  instruction-denied       Token-2022 TransferCheckedWithFee, an extension instruction
+      T5   over-per-tx-cap          an oversized send of a listed mint
+      T1   destination-not-allowed  a listed token to the attacker's associated account
+      T1   destination-not-allowed  a listed token to an account that is no one's associated account
+      T5   mint-not-allowed         an unlisted mint
+      T5   token-mint-unknown       a plain Transfer out of an account the guard cannot tie to a mint
+      T15  mint-not-allowed         a Token-2022 mint moved by the Token program
+      T3   program-not-allowed      a program off the allowlist
+      T3   opaque-program           an allowlisted swap program the guard cannot read
+      T19  durable-nonce-denied     a durable-nonce transfer, valid forever
+      T19  durable-nonce-denied     WithdrawNonceAccount to the attacker
+      T19  durable-nonce-denied     AuthorizeNonceAccount: the nonce handed to the attacker
+      T14  lookup-table-unpinned    a destination loaded from a table the policy does not pin
+      T14  lookup-table-unpinned    a destination at an index past the pinned prefix
+      T14  destination-not-allowed  a pinned table's entry that is the attacker's address
+      T23  over-fee-cap             a compute-unit price with no limit, so the default limit sets the fee
+      T23  over-fee-cap             a v1 config's priority fee over the cap
+      T23  instruction-denied       a v1 message with a ComputeBudget decoy beside a large config fee
+      T26  other-signer             a counterparty's co-signed instruction alongside the agent's payment
+      T22  unsupported-version      an unknown message version
+      T8   malformed-proposal       a valid message with bytes hidden after its end
+  ✔ the drain battery: 40 shapes, each denied before signing by its named rule (33.917132ms)
+  ✔ the drain battery's control: the same policy allows a plain payment to the treasury (1.830311ms)
+    workload: 160 entries: allow 67, redeem 16, deny:destination-not-allowed 16, report 16, deny:malformed-proposal 7, deny:intent-in-flight 15, release 13, deny:inhibit-cap 2, deny:over-window-cap 6, deny:latched 1, deny:unsupported-version 1
+  ✔ the reference workload exercises what a restart must restore (0.417049ms)
+  ✔ the record is synced to disk entry by entry, and a guard reopened on it has every entry (20.714088ms)
+  ✖ D11: a reopened guard decides as the uninterrupted one would: windows, intents, the latch and Keel survive (71.23953ms)
+    restart battery: 20 kills; the record has 160 entries
+  ✖ the restart battery: SIGKILLed at 20 random points and restarted each time, the record ends identical to an uninterrupted run (2595.832521ms)
+  ✔ a torn final line, the mark of a crash mid-write, is dropped: it was never acknowledged (13.206495ms)
+  ✔ a record that is broken before its last line refuses to start: fail closed (22.626405ms)
+  ✔ one writer: a second guard refuses; stale SDK ownership requires kernel recovery (140.499939ms)
+  ✖ replay recomputes every decision from its bytes and names the first divergence (1.02096ms)
+  ✔ a record that cannot be written denies, and the guard stays shut (0.890131ms)
+  ✔ npm run replay: exit 0 for a record that replays, 1 with the divergence under a narrower policy, 2 for no policy (397.494526ms)
+  ✔ the latch is a fact of the record: restored under a policy with a higher threshold, the guard stays latched (8.339219ms)
+  ✔ S83: a release in the record is verified on restore and in replay: a forged one refuses to start, and replay names it (6.455271ms)
+  ✔ S81: a lock file that names no process refuses to start, and says so plainly (0.443327ms)
+  ✔ inspectRecord agrees with the live guard: latch, window totals, intents in flight, counts (18.224237ms)
+  ✖ inspectRecord shows a latch, the run of denials, and what is still in flight (46.321042ms)
+  ✔ inspectRecord marks each decision that latched the guard, and lists the operator's releases (48.599473ms)
+  ✔ inspectRecord refuses a record that does not chain, as a restore would (1.795107ms)
+  ✔ D4: the loaded controller module and its embedded wasm hash to the pinned values (0.204256ms)
+  ✔ D4: a controller with one byte changed, in the wasm or in the JavaScript around it, is refused (0.252578ms)
+  ✔ D4: a guard's decisions say the controller was verified by its bytes (0.534152ms)
+    U-2: tick() on telemetry accepts() refuses: null → DEFAULT; "0.5" → DEFAULT; true → DEFAULT; [0.7] → DEFAULT
+  ✔ U-2, reproduced: Keel's tick() takes telemetry that accepts() refuses, coercing it (0.272126ms)
+  ✔ D3: telemetry that is not three finite numbers in range never reaches Keel; the proposal denies, and Keel's state does not move (1.737844ms)
+    U-3: Governor.create({ equilibrium: NaN, arousal: 5 }) → created; the next tick gives INHIBIT with equilibrium 0.30000000000000004
+  ✔ U-3, reproduced or refuted: Governor.create() with a non-finite or out-of-range state (0.17943ms)
+  ✔ sensor v1, intensity: the rate term is zero at or below the expected rate, and full at five times it (0.237615ms)
+  ✔ sensor v1, valence: denials, failures, expiries and unknown outcomes lower it; a landing resets it (0.100374ms)
+  ✔ sensor v1, repetition: the same payment 1; the same payment at higher fees 0.8; the same shape 0.5; else 0 (0.139157ms)
+  ✔ sensor v1 is the default, and its coefficients are stated (0.066402ms)
+  ✔ sensor v1, repetition: a payment repeated after it landed is a new payment, not a retry (0.093935ms)
+  ✔ sensor v1, repetition: the same shape at higher fees is escalation only against a payment that did not land (0.118675ms)
+  ✖ through the guard: the same payment again after it landed reads as the same shape; before it lands, as a retry (0.786085ms)
+  ✔ LAT-1 / RT-3: a single REGROUND denial by an earlier rule does not latch (0.805922ms)
+  ✖ LAT-2 / RT-3: two consecutive REGROUND denials latch, across report and restart (5.134622ms)
+  ✔ LAT-2 / RT-3: a decision without REGROUND breaks the consecutive pair (1.323361ms)
+  ✖ LAT-3 / RT-3: Keel's own loop denial latches immediately (0.943797ms)
+  ✔ LAT-4 / RT-3: the policy's consecutive-denial threshold still latches without REGROUND (0.772716ms)
+  ✔ LAT-5 / RT-3: replay names the accepted one-time divergence of a V0 latch (0.933779ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: identical failing retries, 400 ms (5.215329ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: identical failing retries, 5 s (3.43522ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: rising fees, failing, 400 ms (6.542889ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: two shapes alternating, failing, 400 ms (3.637288ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5: one early re-sign, then 10 normal payments (3.602879ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: cockpit demo: unknown outcome, re-sent once (5.234301ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: the kit's double signing: six payments signed twice (4.609926ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: drain storm: the same drain (3.975043ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: drain storm: new address and amount (3.815303ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 10% of the cap (6.418243ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 20% of the cap (4.39932ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 30% of the cap (4.140788ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 40% of the cap (4.024161ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 60% of the cap (6.605549ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 80% of the cap (4.058192ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: cockpit demo at its proportions (3.999288ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: benign: expected rate (222.094339ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: benign: bursts (231.243421ms)
+  ✔ SNP-5/D21: genuine malformed proposal history retains its null controller fields (1.533526ms)
+  ✔ SNP-5/D21: resealed malformed inputs cannot inject controller events into replay or restore (1.867679ms)
+  ✔ SNP-5/D21: real parsed controller events remain replayable and restorable (0.864393ms)
+  ✔ OWN-1: SDK refuses stale ownership instead of removing the lock (24.827218ms)
+  ✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (11.49337ms)
+  ✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (264.121914ms)
+  ✔ OWN-3: established protected records are not recreated if missing (10.539041ms)
+  ✔ pin-table prints the table's address and entries, read at finalized commitment (110.734863ms)
+  ✔ pin-table refuses: no --url, an account another program owns, no account, a deactivated table (369.905464ms)
+  ✔ a valid policy loads, with amounts as bigint and a 64-hex hash (0.423958ms)
+  ✔ the hash depends on content only: key order and amount spelling do not change it; any value does (0.993121ms)
+  ✔ the hash is SHA-256 of canonical JSON: sorted keys, no whitespace, amounts as decimal strings (0.175243ms)
+  ✔ D1: the policy is a frozen copy; neither the caller's object nor the returned one can widen it (0.506494ms)
+  ✔ D2: a cap that is not a whole, non-negative amount is refused, never read as no cap (1.744686ms)
+  ✔ D9: amounts past 2^53 are exact (0.267672ms)
+  ✔ rule 0: addresses must be canonical base58 keys, and the principal must hold one (1.016501ms)
+  ✔ rule 0: the latch's release key is never a principal key, so the agent cannot release its own latch (0.157438ms)
+  ✔ rule 0: one entry per mint and per table, a known token program, and a known cluster (0.521653ms)
+  ✔ rule 0: counts and durations are positive whole numbers; the guard id fits on one line (0.99906ms)
+  ✔ rule 0: v1 never signs messages or co-signs, and refuses any field it does not know (0.52161ms)
+  ✔ every problem is reported at once, so an operator fixes them in one pass (0.146391ms)
+  ✔ the classifier's context comes from the policy (0.204763ms)
+  ✖ LIF-1: duplicate admission returns the original entry without another reservation or controller tick (0.91173ms)
+  ✔ LIF-1: duplicate denied request returns the same denial without accumulating latch denials (0.536996ms)
+  ✔ LIF-1: changed bytes or grouping under the same identity are refused (0.655767ms)
+  ✔ LIF-1: client identities are separate namespaces and invalid identities fail closed (0.597973ms)
+  ✔ LIF-1: identity and original decision survive durable restart (5.969213ms)
+  ✔ LIF-1: resealed digest request evidence refuses restore and replay (1.536893ms)
+  ✔ LIF-1: resealed guard request evidence refuses restore and replay (1.306317ms)
+  ✔ LIF-1: resealed duplicate request evidence refuses restore and replay (1.142963ms)
+    benign: Poisson, 6 a minute (the policy's expected rate) · sensor v0: 497 of 600 stopped, 82.83% (95% CI 79.61% to 85.64%) {"loop-reground":1,"latched":496}
+    benign: Poisson, 6 a minute (the policy's expected rate) · sensor v1: 0 of 600 stopped, 0.00% (95% CI 0.00% to 0.64%) {}
+    benign: bursts of 5 payouts, 0.2 to 0.6 s apart, every 5 minutes · sensor v0: 130 of 600 stopped, 21.67% (95% CI 18.56% to 25.14%) {"loop-reground":1,"latched":129}
+    benign: bursts of 5 payouts, 0.2 to 0.6 s apart, every 5 minutes · sensor v1: 0 of 600 stopped, 0.00% (95% CI 0.00% to 0.64%) {}
+  ✔ the benign battery: 600 payments at the expected rate, and 600 in bursts; v0 against v1, measured (624.314594ms)
+    benign, varied fees · sensor v0: 11 of 3000 stopped, 0.37% · sensor v1: 0 of 3000, 0.00% (95% CI 0.00% to 0.13%) {}
+  ✔ the benign battery with varied priority fees: 5 × 600 payments at the expected rate, on fresh seeds, the operator releasing each latch; v0 against v1, measured (1641.10405ms)
+    loop: identical retries, 400 ms apart · v0: turn 3, loop-reground (DEFAULT > DEFAULT > REGROUND) · v1: turn 3, loop-reground (DEFAULT > DEFAULT > REGROUND)
+    loop: identical retries, 5 s apart · v0: turn 3, loop-reground (DEFAULT > DEFAULT > REGROUND) · v1: turn 3, loop-reground (DEFAULT > DEFAULT > REGROUND)
+    loop: rising fees, 400 ms apart · v0: turn 3, loop-reground (DEFAULT > DEFAULT > REGROUND) · v1: turn 4, intent-attempts-exhausted (DEFAULT > DEFAULT > DEFAULT > REGROUND)
+    loop: two shapes alternating, 400 ms apart · v0: not stopped in 12 turns · v1: not stopped in 12 turns
+  ✔ the loop battery: identical retries, rising fees, two alternating shapes; the stop turn measured for v0 and v1 (10.052249ms)
+  ✖ POL-1: canonical readable summary and valid operator signature load (0.597339ms)
+  ✔ POL-2: missing signature refuses to start (0.622682ms)
+  ✔ POL-2: wrong operator refuses to start (0.475466ms)
+  ✔ POL-2: other guard refuses to start (0.417238ms)
+  ✔ POL-2: other cluster refuses to start (0.452014ms)
+  ✔ POL-2: different hash refuses to start (0.498427ms)
+  ✔ POL-2: noncanonical base64 refuses to start (0.454076ms)
+  ✔ POL-2: even a correctly signed dishonest summary is rejected (0.399705ms)
+  ✔ POL-2: missing authorization and non-text signature cannot authenticate (0.344431ms)
+  ✔ POL-2: invalid encoded signature lengths refuse before base64 allocation (1.157342ms)
+  ✔ POL-2: signature bytes are captured once before size and crypto verification (0.51957ms)
+  ✔ VER-2: equivalent but noncanonical recorded policy is not accepted as signed history (1.082826ms)
+  ✔ POL-3: the principal cannot become the pinned operator (0.350203ms)
+  ✔ POL-1: invalid versions and issued timestamps have no signing text (0.440403ms)
+  ✔ POL-1: summaries show SOL caps and count trailing destinations (0.2216ms)
+  ✖ POL-4/POL-5/VER-1: history verifies signed versions and replay preserves pending receipts and the latch (4.35918ms)
+  ✔ VER-1: equal version restarts are idempotent; changed signed content needs a higher version (18.285889ms)
+  ✔ VER-2/POL-4: resealed unsupported profiles and forged historical policy refuse replay and restore (5.775144ms)
+  ✔ VER-2: a caller cannot substitute another sensor under the signed profile (0.70403ms)
+  ✔ POL-4: a policy restart retains live reservations against the new cap (8.586894ms)
+  ✔ POL-4: the operator replay command uses signed history and an external public trust file (200.851547ms)
+  ✔ POL-4: extending the window reconstructs spending pruned under the old window (10.789566ms)
+  ✖ LIF-7: final landed evidence forbids new signing/send intent live and on replay (0.630404ms)
+  ✖ LIF-7: final failed evidence forbids new signing/send intent live and on replay (0.41449ms)
+  ✖ LIF-7: final expired evidence forbids new signing/send intent live and on replay (0.399828ms)
+  ✖ LIF-2: signature evidence requires durable redemption; valid lifecycle replays (0.482954ms)
+  ✖ LIF-7: unknown evidence preserves the admitted signing/send lifecycle (0.412736ms)
+  ✖ LIF-2: wrong-bytes cannot be persisted as signed evidence (0.460009ms)
+  ✖ LIF-2: wrong-signature cannot be persisted as signed evidence (0.354585ms)
+  ✖ LIF-2: wrong-wire cannot be persisted as signed evidence (0.34889ms)
+  ✖ LIF-2: noncanonical-base64 cannot be persisted as signed evidence (0.38359ms)
+  ✖ LIF-2: send-started requires signed bytes and valid lifetime; every stage is single-use (0.463865ms)
+  ✖ LIF-2: denied response persists; sent response without send intent is refused (0.40757ms)
+  ✖ LIF-2: signing and send-started evidence survive durable restart (3.518496ms)
+  ✖ LIF-2: resealed out-of-order and forged signing history refuse restore/replay (0.594814ms)
+  ✖ STO-1/SIG-8: short writes complete before an admission is acknowledged (4.689644ms)
+  ✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (3.671956ms)
+  ✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (3.045466ms)
+  ✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (3.313515ms)
+  ✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (3.256169ms)
+  ℹ tests 289
+  ℹ suites 0
+  ℹ pass 265
+  ℹ fail 24
+  ℹ cancelled 0
+  ℹ skipped 0
+  ℹ todo 0
+  ℹ duration_ms 12145.43364
+  
+  ✖ failing tests:
+  
+  test at packages/sdk/test/durable.test.ts:65:1
+  ✖ D11: a reopened guard decides as the uninterrupted one would: windows, intents, the latch and Keel survive (71.23953ms)
+    AssertionError [ERR_ASSERTION]: the same record, entry for entry
+    + actual - expected
+    
+      [
+    +   '09071e0c56f5c7580582b428cd7b568efcf62d97b92ff54ad96f5c6297479ce6',
+    +   'efc4824951dbc67c0d9f6db7ed0dd15029396f7e41427a4364e89f837bba8b8d',
+    +   'fe80512d3fbf4b7e7f543e2e996e49d2cd18528e1324574e2008689a56998e9e',
+    +   'e24b351f448fd72a3c2e93c4e04a5030d603ead035bbdfbd193aa7bc09184b90',
+    +   'd108337c031db7ebc656559bcd60c30b065f78bc28f81aa5bb415fc5e9841dc1',
+    +   '4b97c9637d89d045681c10b55abd01f2992a7295acd62e36be1479b38af759d5',
+    +   '51097062ccd9ff5b1bdeade78738c0930d7c43d0e8e60825593df385f3103f2c',
+    +   '7e06e892460f86fac70d5287e5ec6de103eab4893027da4345215f4706883e58',
+    +   '66d02928d3ae4e843d5b321df50c9d45218775316385cf43bc9b0b3945b2fbf9',
+    +   '7fc80782a7556827c48f207267eb9da1647c1041a5ee3a70f773eb3277656ab2',
+    +   '2978425754e35faade54fc4b21e6283a99f1317ffbbe56a87ac9544c5d898152',
+    +   '4b768e8519faaac685376a0efb09e64654c53341c539b06605a438338df9b8af',
+    +   '3e632db7f3c66ad3a81c8f53d039de249d3fee59da1943f4d29afdfec897fe28',
+    +   '95acf2529cc2b8f2deb577d0851776fa1b6900be6ceb44a4821ac9e45b15bd10',
+    +   'ddecf010a848b92f9659cd15e4d9731cd3effb6b6c17612a03e615c8ef0efd9a',
+    +   '80e14af39f7af5ac6c57ce3c5cafac7061d23656f8b3ce250e2768da52b1dc07',
+    +   '23cdac2f9760a115c447a95d698f0366d445ae922868fa0864bf12ca8c538c44',
+    +   '65c68fea0e795957c1923e1d5e73ad18aa585822d0ebbd65c086a86685948618',
+    +   '3b2f702cce4f17ea661ec91ac6bf3521211c55bcd97b10eb2cb4ea6a641a0e79',
+    +   'decca1b248ca1efed97f886046b451feff0d87b17ca3014564e26c04c12b1681',
+    +   'a681c836f7b4f2274f6e4d17b77a6df8201ddee9922f1869387d92a733843150',
+    +   '97d742da0feab8aff37818c4d0a3342b7ee2948dcc96588d7af354aabf433048',
+    +   '8595da9e0b3de04150683c767655e39866f5e2eb0352bf13bb9f73a04124ee7d',
+    +   '38d936d8a3696f6b7811c30ccd64a6b012cab42b0f9abd67982d28d9eea0c50c',
+    +   '40c948c4712a63d1bd0e2065efafeba06347c97fd25be5c543eaedd6e1db5c1c',
+    +   '4646fca6c4f80daf8faf101aa3882898dc2b65246d4d57da59a5e225d946b791',
+    +   'd04ff02b431b4d92aae7e000fe7e2e863598c93de2773c55f065abe9bcbff302',
+    +   '9a80f78109d558ae8215eb2d1e176e22f20bfbaddf8c886d4e239076e1766e37',
+    +   '6d1ff25cba140bb5821171670a836e143e563774e305a550ab876c86fd827460',
+    +   '0e659bb0ee0ba18ebf0bc3145fcb837fa5d89621c8a6465c9a90d1031521c6f1',
+    +   '708245107dc3ed8c15dbc0ca1f94471696513ee4a0edd9c4f200be615e8b6ac7',
+    +   'e29e4410a4f63a1b0f78989a97cd6b133ab6f77228ef47cc13b528708143c2bd',
+    +   'd79705cc5d36d2c1c291fda1b4c8c640f1948edcd8ed522c83cf76a703402edd',
+    +   'edabc33a723a4152a635257bf06d82b72735d2d1b53c731aafe60320a4a0cc9a',
+    +   'e4f373b3c33bc805a0ce0544e62d15ccd5340f66b776dcfdac8170952c4a5ab6',
+    +   'c16a29a970bd00fc321c0dedde8141f007ea58fe56daab0ab6127ec4624fd99d',
+    +   '518d0ce0f04e57110a0df1cbf0c81d7cb431d0a0a29097c21a67fc903f9c3617',
+    +   '7b536ae5f0ae949090b53b81427d8bd40caae4d4a43f24c7f0ebe62329b1655d',
+    +   '87bb157951d9fc432cf22edcb53b262cb856fe5ba6a5037be8a693b5c9f22f21',
+    +   '40cac435b27b273cb1b0d80c8720880feb2e8deeb674d7070c0db9cb2fb05d6a',
+    +   'f8e774a979e6f13f9c1b0bfa6896bbef0cb4e7b889ffb3da0195bdb3183326a5',
+    +   'ffec12d2f11e44ea945db81ceba95a6e694067d432b68117cb909dde20c5d5ba',
+    +   '933eb96d560b878f192dea7e68ce29ffa636f956076311f9d1824bc8c6bca4bf',
+    +   '26f2f0b86981d73392ff5eb9c375adfc0fed21dd9612474006ee6339a8a90ac1',
+    +   '19dc36c2303b1ed0dd1d0cc217ae7e25ebd8bee5887c4353b7349aebf8b71489',
+    +   'a25b539974d09c43bc6172652458fe9fd7f8c919d23420a9b54c189e93c4c0d1',
+    +   'ce7126a1659654f6f83e5948fc8b1bd29f02b8f51ba57d5554cd48453d7dacb1',
+    +   '3b728ddab00040585b23af3f6ca60415ab52e1f224c0ba8c202e1e2f031fb950',
+    +   '332767c9384fbf9e429d77ad76c3244ac25076b5f9922ff2fc02d851ba20df5d',
+    +   'b68a3bafeda26f35154f2721e47ad4abe8e8fa9ea0ea04e40cfe7dca0ba6bf06',
+    +   '127145e72586696e6ff047e93b38b2f83e7e700ea69ebdaefeefc3456e65e5c7',
+    +   '1821aca057a160773ef7c8d0480408aa523f84548659b7c7e684f61afbd7d58d',
+    +   '2b0abe5b310affcaf7f2f9d14cb231d67e872ccd21beaecfe95efb82cacbc38d',
+    +   '046a5cfcd84b1c24cb23719132c57f427bd23749759e734da33f44b18b7e28c4',
+    +   'c6d24c558177ee6172aec7710d324847096e6ce38b4c435bf2c33884e8974e2e',
+    +   'aa674a2eee435f1dfe5a1d2ef1e4b8c035a26bdda8730fd54a55566d9ff80f00',
+    +   'e331d4f5c77869388389d15ee7e0fc368b6f63fb8e5401c55c6916dc1e4984e7',
+    +   '056d10697693e038d380a54b1dde5dced5a7c7e14aa87c72db12d65da19c8da5',
+    +   '393275d35802a746b67b8fd4d21299aaf542cc7f93e1dbcb837147fc21a3b91d',
+    +   '09dda7dd0cd11563b872a0a0283d9dae518c9898e0fd096e1a2232523a3cd82f',
+    +   'f5b31ace58c2b9b8761ca0dcd6cf65e503c27e17c3a5362acc043b8b893938ec',
+    +   '6359319d4be459e9a6c35100db62818ad125d9c4dfccbea047e429766cf8ef10',
+    +   '9964300229d3f015b58ac33a2dd3c5095282a5c85fca9435f9f5e3953f763636',
+    +   'e65fbea1733eb249afb71df53a0ecf7a21c6628697a359e794a3ab604f4b44b8',
+    +   '68f4be19bf3251a119509551f20874f920e84b19722421c0dff6d04394a47cd5',
+    +   'a5c7ada28f53c0c654f24acab72a14c3c38c733660935e97833ce3d86ee5ec2f',
+    +   '9cce30cc8b21e63eb5de475fa944904069e0c6041698a26ff2510354f3d881ac',
+    +   '44bb8c22299ba062b1cff88b4a8b413e392d4ec6eb345b21f0a6d468daf05844',
+    +   '4219ae6b5e689911c96773979794fe0dc91ad961da52b36b01dbd8cf472c431c',
+    +   '0f989cf68a479259d25927d114ec3774a1da800292667dfb5331c6ef300ee1d8',
+    +   'b63f32b6855c0cca5f37d33957f0125da1ce1e2e82fd8d2e66ebc8384d5449c7',
+    +   '07d0fe3f16ef886d30863424a9f838685f57bdeee36ba8a33f851d231824aa48',
+    +   'c7bd7f10418d4a3a5950a4693a4607902b86df48b6c3ee013fa687a7e29c2fc7',
+    +   '5fe6715ccf53428d4558eff6cdd3c97423612cc7c2e692a64f2294c82e01e837',
+    +   'bea6b89a2ba2667e7ee8b2e2ab12c8af61462b59d61edd5bdeb16585b3c87b95',
+    +   '0b8f73f9e3965f38ed04e7a76862a37730bb456b50a99bf9654492b78c1476d3',
+    +   '3e3fbd7efd40530ef5cdb8cc8049bbf0722165be658838b57818976b827f83ac',
+    +   'bf5f37b67611d0cf615ed98166985cd3235a7701125f6db1df6fe6fcde4ff316',
+    +   'a02f8a417264510c8ac2215300527648306751217227b5a98ac17781126506b3',
+    +   '1e5bba980dd818f20f2a4f3fa3bd6a802567dae7bdb9397dbb28a2529d0b5f5b',
+    +   'cdcf9740e35468294ac4a93bb5002fa3d874f9708f04696ab45a338e04234a3e',
+    +   '93aa8ca3d1b2e143fd570681d2ed752820ddc1219244b8d9f51e96f561b72d14',
+    +   '5c09466f62b8e353a4139b10a315a0834f97c5aee4af478314c337f42cb982ed',
+    +   'ed5157d73befae36799a5ef22399c331aef12b6dccfc107bcc157ca2aa249468',
+    +   '7aaa312b4b23c0149ef4ac8d29cff02d682dbdfbd5480572f4b0e47b9a023279',
+    +   '8a65bdcbec5b1806474cb541817de7ac49a08a652ce0faf5c45d9f85515a208e',
+    +   'a954e5f4f23ba6236329115751b867866962b8e3f2bf5061180f387aafed6179',
+    +   'd8bd6d7dc1e012f0bc32741cc1c42790919b2b2e32441c2582f3c84f0e419757',
+    +   'a9f4dfc19745496d13217ba0d38dcf2087a669c18f074025ed98a903c5f876ee',
+    +   'e23d38b40b1b0822c626ff90e054ec980ae6822219b7f75254f1c019f3baa8c4',
+    +   '156a0fb35c22d92a2a11df402595cd8d8634da5aad669629713d1169d66aa9c1',
+    +   '3e189dbab0eb5a1f8459f44cfe6f39cd64dcb27e13f664b8badd9457e4fce04e',
+    +   '1400fbe595991057163fc35b7f81811dfc861e98c5190425a86e98736d3abcb1',
+    +   'c12183a437b87735204045553faa13842d4f40a0cdff72ed8666f6b86ffe1a6b',
+    +   '09827c5246a92ba2e51cd7808f48c36905f92a7aaec2703542cc2ed5f10c0f38',
+    +   '2d12409f5c85ec6084149530f7f710c1ba96f0e515387f4ae75d308e02dfc464',
+    +   'e05e0969255d97407b180bac7d899bd34d99a47c100387c34a045f098694c03a',
+    +   '92d1f120ba49883077b09420582f7c6c9eb307139462a3fe95da4299bd1f5a68',
+    +   '7ed5bc47de6b55ea86b3a1a5b41e285957b915eb4ea7b904fc93e1d3105a8bc1',
+    +   '3690afd67c33d7f02efafcc523739a618c6ed74526b196a649d6debf61404b1b',
+    +   'f7c3904c6c0b1f678e3839ec0045c70bd467a826a28608f9d2007f6eed867880',
+    +   'b504669f2b1339ae1bfaabd3a9297a24d8fe05e6574fce31bad6226ddca122c3',
+    +   '72c976fd233c946a8afd6d4679f8fc77a951162d9182d10459d188eabb432d87',
+    +   'ac0085cf974d77c4be780fd166b05c93a6a71f35b401faf20927eff765c477bc',
+    +   'f53af82cbf1a3a233edf960184787ce8299d2a193372c0d04525c008a199edee',
+    +   '9818a04d63c5ccc19a668e763d9177d2486e0fdefdc80f9031e2984c743bbf79',
+    +   '92166f9a585228816384a713ad15a50b5808c2f5a6dd62f971f59f759817ebca',
+    +   '054eaeb1bed2ccad2b23c2964858ecc148046c934575b904f6e3ad0b3fcea57c',
+    +   '4e8e1ed5c93bfb69a8ccf366095ccc0a8bf425a22809bcdb22005fe1f5870b9c',
+    +   'eb88e6ebdbe0a86193e0bb46f2155baafd0be533044d5d4ffe0f9acd84a22c05',
+    +   '207c719e986e9a20613939f13346a2d34080258385bb357175a92e6155c8d629',
+    +   'c4d603a475d6178e4fc6fa13d0e6c6ec9132b525e45c8a9968496f4d8a4244bc',
+    +   '7452878bc888ecb6dd83391a09e40d37c5df42a78acc386871e74192fcca3aac',
+    +   '17b3bf614976aedc3a2b3ea123b35a5cb1bc32d21671ef940f9d2b9700b4a9d1',
+    +   'f3d6e6546966bc8f8604d9df05f19a6fd6f84715a50bd9128950e31d244aac0c',
+    +   'bbf48a2f44f7428729d828a938aedc34ed46c4b79412906be5ef876a9192202d',
+    +   '9678af79a388c28a27de21ec9c1b6cdf2a7d5fdc8eba03d4ade7b69ae11c39a3',
+    +   '9f052ad5ca95e50d38370e0d3ac0dd4cae03c8fbd41ae6ea678528e254cf3064',
+    +   '5d8099c14605fa8011c29f175b7afde82c56007b0b37fb3fdc99d28bde58bcb1',
+    +   '5f4812ffd5c3828977891254f67010f5f32d67ca86368569f5601fa2085d2bb9',
+    +   '6515d184323b59726b1144e40e96cc821df2df5114c5873514617955e9d80262',
+    +   '61e991acf440d7195afec57ed6a80b90283c8790dd1490c7db0758b05235fd5b',
+    +   '1276cee7c2f8e2ff5f7736fddb9b1626e6a663ec28ceda3e63350dfda695db23',
+    +   'c596c8bb1946e4056e54d2c218b2f69c3197703c148828df805f1353c702aa64',
+    +   '94ba1371ab8c5d320c1d63846503ef154037bcec11e84f7d8a87a7ebebdb7788',
+    +   'cde8be1c79525d3258f76b5ba9447243a1a859250bab11d592200a9fd150ad58',
+    +   '038c01a9b245db391aed93d82fd73a651fc9ca97d639aa702c9845168d780605',
+    +   '7bd39bf379ebe5d748797009c68eb0fac0f6de69412aa300ecfe6f2b05ed271e',
+    +   '0993ed8eee63aa334223bc559a63fa3260d834fd6033f54adbd74367a88fb059',
+    +   'd22475372e2effb0fd7c06ac19ddb60f3a9a702238dd84460c6cdca7284ebb9f',
+    +   '1d815d12089578b4a22d3e7d487858225ee9e6367c10fc692ac267a85532722e',
+    +   '22577d950e47def5bb61cbfed17a4910c56197bf8f8f9795b8a6a1e9a44d5057',
+    +   '4a67112426f5cffa8cce10d375d53f42bead8fa49b78de4561c968778a1ae575',
+    +   '14e0012291550eecaed92a219ebf05f64b38edaca841d1a7abfbda536e85e469',
+    +   'a44a3ec98e013e499485d55762e9ab6d181d2eeaaad64db51176b96bfe6c9cdb',
+    +   '358dd33a5f638ab9f8c51d24bb4629aa5ffd53bcde30c9aff9d7d91d21e6bbe9',
+    +   'd4e0ef4d0df9132e0faf045f6d74425d3c8294bacfb1d9273682a433690b1296',
+    +   '961ef67134d204d0e5410ffe5a9dd70643e0c7c5acd1ab33e0e53fa309c8ca45',
+    +   '90983ccf3e11e665f15705f8343ee283721c8f7abbb1ecf71adbc83da00f69cd',
+    +   '08cf0f244a8885d97ab8683bc544cf7a09aa5fefbbe63e79afa2a7c75cea539c',
+    +   '35e18f2d669f193f9903da97064cd8bbe7d0a3e2cb5b14fe4aff031d26a38c48',
+    +   '5e47f6e495085270b003424183d0af0f4ef056bc20eee4c47d74eec37129e917',
+    +   '0e8c43cd4622f6f28e7bf31bae2a82bcefda2f239182a3e2e6110185598fbf42',
+    +   '445858de729a42054f6d30e84518ec86bfdcc5529a71674a7047e62db48a520d',
+    +   'fd62164ff97640fe4bb0dbc24a8242e29cecdb8cc07e5de88ec1a5a3c12e3f0e',
+    +   '97978bf5475371c849a6c2d97e53fb2ef1ab1a7463ae284f375892248e794e62',
+    +   '05d815ceceb19339b0997db56ec5dfa189a1dfa320dfce45a19fc760d072fcca',
+    +   'ae85c9e859223656cb98b09ed0585d7368f3cea75e2c59afe193d4a96173d5c0',
+    +   '9f3776c224cf80f7a78a01856f11d4a0145b5d7cca79ff0e0d639f3c225dfd62',
+    +   'c4320e169252e743df63343c0c8d062bd1fc0c92d5026f45fca3624f4546af44',
+    +   'b37b24549b14368720e440241a9a8e34670ad170bf66c372e286e518fc2383ba',
+    +   '4321594cfa443e10647d02408e8cbf4eb40a8ac7bddd804691992aa6ef6df88a',
+    +   'e248ba6406e5416ce1a16ed8bec908c860fc14b83726cfc035cff6f3f979786e',
+    +   '1f064bee3640480c07004d6905adff62a9fc218ae48e8539472406c2d019df62',
+    +   'd66424f71a40b61355167c610b6f1d82188a822c4ab10f2be5bf34e8af30f189',
+    +   'ad8a9af84802f4855a8cadabf068d030689957920dc3f7d83b3f5d6e8ff12b5f',
+    +   '8fd579e2077beda0c8502fa3619d1f660730033911a28107f4605eb6524f9e1b',
+    +   '04065890e6174947d3e463d5c930c9c0093363752c51668a8aa6e5085fe0a1eb',
+    +   'fc4f3c5e82cb77fde5fcfdedf47fb5b12c14148e50f17a4aa64c792005a02158',
+    +   '1df08c272a53d3ca7c4598d4d8dd9fb05199aadd4f22d165cd88cb92919c2d47'
+    -   '131878b78059fdc4888f94e855268d48c52429bc2f9333f895aa819aa8db5357',
+    -   '11491e9704096fd5ee1580a83fd4ba13e41bc876bf9ec5d9545238d411a1a382',
+    -   'c9c24381b0a439f1f25fc6cbe06af9144ae05417801e47136cc333a25f9fafcb',
+    -   '5b23016904c1c2c96417720de40127707b05f5e9600172bfa489a6805b7009b6',
+    -   'eedb6af49fbb1896aed3c86ef5043493d5cb95bd3caa127c3ef29f87cb5a688e',
+    -   '5abdb9fcd6c2a86aff08ea69d5dfebca0db2aa8c4d7e93a6036905361ef5e9ac',
+    -   'a2b58f5d8f151fd3cdafaa86cc99b5916640d0288a1712b3c8135b575f6a7f6b',
+    -   '8717264d4eb452dbd130a4365db1e4a7aa0902315cf4d216fba8d90be68a1e49',
+    -   '518d40419fed2a833478d782fdc489fb00104393ca5e60978be22acfbad968e3',
+    -   'daabb3552f4f31839025314e115a7cf5b083adba928682121e030d88a9573e06',
+    -   '8a06c6a91ce1906482922c01977be87b342533d52117f4f21ab2912b7fedaf42',
+    -   '8717b2dfb5bf87b129567f6068e37ebcd182d8c811aa5c693c49608b60bba2bc',
+    -   'c2d1dc7230b367cdb4bcc30408ce620894c72d85b3279bb28ce595668f859483',
+    -   'a65040ac34e35be499b14fc14310632d71662705058af9e2ad950820ff95b5bd',
+    -   '70bddb8d778e103f0c00c9aa5adcbaa0a76bc503c943a49b13cb3d137d69e395',
+    -   '8f7b7e873f2c9ea1dd5a0b1cd58be40d481a2032b5aaf702ff405e841a7a3800',
+    -   'b543c8b5fad58b4d83e2704c248371d88e9d56673d0522dfa856bc265e36eab1',
+    -   '138e7a5d6b387961476d0e942e69178df401d9fe4e3014afb0bd5440cc76ee32',
+    -   '3717f0f4bc1fc431406b466b1216d9d6e1066f5d868967cf7f9dcfc926ecd69f',
+    -   '876741590da87ffefcb94bf956457d7adb034184c44503db53b326ccfc896d48',
+    -   '9e3914b0897ac73b198bb89b18d3bc8d753209aa88c236e6240af6a931244d01',
+    -   '39061f48ba4abb9eeb457444d0aa132701326265294e89fd0a835ba0f6933e3a',
+    -   '3f9870958c8b1a1882fa719fd723c626003d4eaac8c9baa43ec1f1c3558000d5',
+    -   '58f0419f7df7df42dffb4e36cbb38d4c86b62190ec52f89ca0178c9945ac6724',
+    -   '8a39e7ae85cecc85722acdca4b17b6903ff256e7ac2a597f5ca2e3f28cf71a12',
+    -   'ad1eeaeab1bad90069d7ae90de3fb51c5f20b5995a8deab6f1a0b2fc9f3620d3',
+    -   '72024862f3884679266d4253f10e3920fdd052b730fdda8cc1c9644eaba573f8',
+    -   '2d12352da3846c783794623bd8ce17243e18c5cfe3db60293e6e5940e9f05eae',
+    -   '7a297c4e1ae48a225cb839f2d37f5a831faf9cb0bcb3c36288d662f5a10da31d',
+    -   'e993ba3dd59cf82d93b0c78964c2894ea22752329012647e71b590e11b547eb2',
+    -   '31f790aa2a4eb515c683c7704e1de907ae6732ca237eae786be2108fae172959',
+    -   'fed0daae06516c768c55e6dc822383c612e5fbad16ccf7fd88cd35f0d22ab3a2',
+    -   'f45c717db770392da93e217ab3af7a142093ccfb419136943cf6f83f6b0fb654',
+    -   'f01bf6ee41336a0dafe91fca319032aec17c6a0fd88eea4fa649fb434d757556',
+    -   '69010d7edc33634c75981bc4eefaa59e9374cd04482207f732732e61bffa535a',
+    -   'e3adcfe58d86bb4a973f7e218323a1ac42a2b45fcf852c39ed1b8b244e55baef',
+    -   '8382bcd1671d133d3d92ff76b88e236c2e6cf2ace0d92ab84e330ba5d58f1caf',
+    -   '94b5073a30f8557a83c87cf88c5502a30d5b7929df061d95cdd129934c68ae4e',
+    -   'f54a62604f466566c79ebeb8a3585c609995fb360964b7262b091bfa88aa72d2',
+    -   '4522c8de59ac720ab4fa056d52ae4b8fab29e2d40459d880827f47f770391afe',
+    -   'b6aaf4c970d4d982191398930c6ae2b400cb1bfa4cfd054705397f24169ac4db',
+    -   'c47e301a318ccb5d19db701385b0c5928d40704ac66a64f4c2b85b9f69b5b2f2',
+    -   'e26f82c9e69e13f787c2422ef95ed412dd5daa67bdcbc4efc01a1607f805904c',
+    -   '98f637f4f7d4cc761b7b485d08467e67fd76e3562d1cfdb62b088662d276fff5',
+    -   'fccc5a7080ca82426c6ee6015f27ec250ef5feb94c930e1ea47b90a39fd942d3',
+    -   '385718ed64801690cabc7cf3fe192803a1ffb209576cb9cc3fcc61fe401c525c',
+    -   'ce9b6ff6d080f70f54ff56f84193d80dea21aad9e7d11454629f62f5d3295153',
+    -   'acf795a4b27bf4aeb6ab086df9d53e1ef0c4d37b7577c3ee285c77ec1a09dd8a',
+    -   'b7f315ca05efa888fc33f6ae05540743db965184c1925f76c2aa56122d8ad8e6',
+    -   '7b348bce1ea496670fa8ad12729c9c4a3636d92fb47c1f9ca502ce4f08f1c89d',
+    -   'c65553bfa6f8fa034c7c94499fe2ed58a9662440002f1f8b99ccd255ff2862f5',
+    -   '2c7bc4e17c7a36ed2403b8e0816825f78a7e8420b498b035df89b6e406417fc3',
+    -   'a07eaf585084553e7911b728d9572f706d5309d49b693823fd370c1d15614cf3',
+    -   '33d2f1912fbce37df01ae297eb8b13524d35affa4997fc87b5fc765fb797b83c',
+    -   '995c09e8e9638cbb5893d7196a5dd0332808e5fb4e6fa7a68cf08e8a9e896e26',
+    -   'c37a66e36b70601d2112cca521cff981d211bc80cadb3fda372f465ba7b9ccfa',
+    -   '07ba2a0e3b6c09df8bb223d0a4d1e5234af561659be56209851186de951e7774',
+    -   'd943642add0d83566f06a5bc60a69982e1f0a271231186d8bad23dad62cdf5e5',
+    -   'a7c89f21cc0ba81b2fc01e1aba5385f04ee7384b6059b6c2e584881ac864119d',
+    -   '3979ea03dc341ac441ae094e7f09714ff9de45a297a9a5f2fe3a89323674809a',
+    -   'd59eef32fcb872388f34658e52f2f278e3ed5c13bb46dacdeb2eeb72658f8638',
+    -   '7eb307490c42b1f754dcc78adbfb6044b7b8a6c9f0698b240ad6c063471773b8',
+    -   '259c611c367f4d200e014e49123e0687888b004d2f46634f959eaef5615fc94e',
+    -   '42e13092fc6d849090c9585a24ad752a5d454f42ac7ec2288029128514ad3669',
+    -   '49ac1fcdc47f65d733f9341660091f41981f0a8359a7c253a45b56aeb138016e',
+    -   'b8413043a12594e85604e590ec67077df8fa360035137ea9a8a55d07b942694b',
+    -   '7ab8ea28cc713788c80e71321e9c38ef21f0c4756f32137631f608a4e9bbd5d3',
+    -   '63c2728b734774e421c7a07d334c7cbca0d97152e058c3dd0d7b9a99ea36a6a4',
+    -   '5f1fdbfa9f8c6307d447c838d4c90da4bff76e891444d5a836f0bafe1ade5b5a',
+    -   '7981266be435cf4a0676c6c58cda89b0802f24f3c1ce35eb91582d6fefcc9fde',
+    -   '48044021b73378099ff8ed302e8a70e36ac50d8f9c9b2e743732e075c7eca92a',
+    -   '8f6056e68ec698b21742de585a7bbb7302519b3fca3531dbde1606cf81448290',
+    -   'b16b6d5d028d45ce9a3e7b7b5c234ced8b18b81cf1b6d3c17482c655e02f733e',
+    -   '2f1be74870bc1ca831a963f0efdb779ed613e596690324c2b3d0a494e0c406d8',
+    -   '15e3195eb451dfcc5301e1f816a9723207c16b87cb34c2dda2970f46e1bac6c2',
+    -   'b21b10fc7b4de06fb2d1aa5c560fac6effbfb11f96c663c405bb692193d84c53',
+    -   '962efb4d63b89876f3b43564eeb5eaf7c6365fc9d27aa6612b76cf5bbcfdbc58',
+    -   '8f0d0dbd7a2e6655f598c6b433f5a01e0550eefbdecaa6a640a787aa1a3af0c3',
+    -   '68e79aacbff170d551cc1c6cf502b000476d088fe48cbe38cb02c0370dd5e1b4',
+    -   '616712d124cf32ab5a6b2fb2f29470b32cb8094e63415db3727f1a27d5060846',
+    -   'a21ce39dd2c9f550e58b8b5e0887e819917dfa322ba8aea3f0608bb91602a205',
+    -   'ba2a9fc914e6ed78ca9996e2afa3be4f99d1c47c1baea143d8407f9e8e9cce41',
+    -   'cdd6e1bb8505ab54347d75cbec5cd9927d830fc098557241632640841d22575c',
+    -   'cac3003aed13e301b1860688e1721ba6c44fa3de8303c8981db75d4d9ff9229b',
+    -   '480d60b9da8119b0b6c34dd13a898afcef5d5ce8b7d423877baf549a0cd53089',
+    -   'b8b9c0ecf9d00398a5260862980e4626d2ed4d4db4dce76fa0bddd33a368f4cd',
+    -   '0583959c92489b681ada5417abc47ff9829c7f4e1e86ab852bfed45b5eaf5fec',
+    -   '919d60d64b55e88d80ecc29399c229196755963c2f0f09ae2e506e42495a9c91',
+    -   'ec15d42fbf843eaf6d6ac005f768dbe870b32218563056235c1d3adfec81b833',
+    -   '43373c7fb89ffd1cc1a89b8322ac51410ca015eb9b5668cafd97c78299e53584',
+    -   '29bcc16d47c2eb759c41ed04237307e64ba25c886af3011fc1d7132494d4467f',
+    -   'f4074b1e65c7fad040c38d76e1f3de3214a6fa7e61dd6788239ab70b7f5ba12f',
+    -   '4ad0ce38b1755e6fa71eb38baa9ccb0f6b8f189cc9db72fae2e47bed90cc59ad',
+    -   '0ba75949c61ffec7f3cefce79960f9f17190bd63f104eaf52414ed0e73654b00',
+    -   'ed250328b14d2911363a6c7c98100003f71f8f12541cda438fba6d5d372cc997',
+    -   'e14a25ddb694afc831b3aec2c02951842ff06cd7a9eeeb7b989f3f06d5cc1e53',
+    -   '9abe19a77423c283907c3ed28468bbbdf1a85e300b1686a50960309bce651c1c',
+    -   '2ea7162f4a2b24a9aaa2b5c41b48f548bba096420b17502c408c76a6025a7524',
+    -   'bb3ff665ce4701624bc6886e92e32154087db2e5b927a2040904b3e9064f0419',
+    -   '4721c3d5964b99262bf51ea5310a8aabcc90bcc12546d945b4d10eb6c751ba70',
+    -   '7b8df24e9c3649aae26d7f3adeae3afbe13f829a25db1f470dcbdf7964d748af',
+    -   '4a2e252269b52210d4ecbbccae05dc75c5cd6d67d699cafa6b3dec8bab9a339f',
+    -   'fd713a62c5195bad2b2a969336cacd7f6b2c7bd04ade4b78c20b063ac2b67a85',
+    -   'afe3a5fb56a94ade48e731a0ed549cda431e2a06d2918d686d4dfa2c8c9a8fcd',
+    -   'd7ea4a894b1b20bdfe9d1ed6bb3b5757ae086f21dc428c33ed26064f47a81ec8',
+    -   '818abdb1943b92c560b680b3816e9b83be7ee0ae45ce05ebf91ea4fbe3abb618',
+    -   'de1b8992fc4cf5b1182348d9595d9c15f3028dc3784e9188871311f7c583ebad',
+    -   '4b8deaa9a0054f05df1c127cf5f738a3d2732578d53c245a7be666e05562524d',
+    -   '4b2d0427880da99c54bbcb70df52bf54f0e7af3cf4a764482548519844ec7a2b',
+    -   'a69625aef6cadafb34193722f361e958f2517fb6d60734be6ba5dcb8b5fbc018',
+    -   '144353c050df8ab92f1ae070a6762e0c118c9179b429e3079955065b6ee6b23c',
+    -   '0854eb1b5c9bb123edf592287202d102d3c05de955471107337f5411a9ac7f84',
+    -   '6f1b4035d599baa7785f73ae8e78a8b1e40cf05a98990b48f2a85c37ddba9c2a',
+    -   'f52462826bb279f55ddc4b425ba9786036ac3b68b5bc965a299d1601ad136499',
+    -   '9c63faf1484b34133f6d807205ae921284d4385d70da512cf45bb66a27ccc872',
+    -   '09c355f765810398f0993aa5c4eb9d46ee3eb4e45676401833dce9e04fdc34d6',
+    -   '24dc9230f27174dbd2d947d4b83640805f20a125b5c7ab042b54448a3ffc7059',
+    -   '16e66b222dc01a6942a8c84f8c99aded26d90272b91e5ac5545e1361833f4a41',
+    -   '84db6f8f6e9eb64fb7d603bd4b86043f6ea6baca8842251c8057bfb1eb32c244',
+    -   '2bd87dc35921de7fa07746976b5d32909fd1c4d9399883221a2f88618113b3b9',
+    -   '07519e50ab1657f6f7f04a34e369995fc005fd8180eaf59dfa2750f77aae977b',
+    -   '4228355f49bf4d58e087a0349c6e0b00e3f5c4879bebb8a1ac0b820aadac9289',
+    -   '2bbd828847281c429151efd558879839404667f2798f28770a86c88f931696d6',
+    -   'f7f76654876581f7328d6780745df576215e92cff4eadc310908dc51c2a96768',
+    -   '4af303005ca8789e5f279a7ad9eb167a906c181fd42f4aaa7e93467749f903ce',
+    -   '442f57cfe80621248474072ac32f67724342eaaa33a9310d0617b85b54aa7a9e',
+    -   '968b0c4aaaaa042e57e11a97148e26d1ec9945941edd96bba9047607ac214e5f',
+    -   '9b2b0546b009d05f2751e353f068b8e8582c97e82398eef61f0a86e32b53e38b',
+    -   '48eb0d2e3163c10ef9e09d05010f7aad085f66a38d0717bcfc67c4089a88e067',
+    -   '937fe7eda3ed42c23763aaeeb8ed231befcacf00fedbe828c5fa09f624602968',
+    -   '16b17ca753bbcdcc81a2e98dd505d89f0efcb3da4ac4c15695b0c5872f8a5fd7',
+    -   '527ac75cd97703a3e947c135d27f7482ec1624c14040e40a53d1a68b82ef51dd',
+    -   '5487802fe8a3c53c162c09a1418c53c4fff5936ce533085b781b19acae66b62b',
+    -   '1ddd23d32fb3a5e0d17cfe18f39103252e7c1f8f41d9dbe8b69cfb59e4574e92',
+    -   'c40ef03d486c703f466a3298f59ed150deaf06206fd77567002443a8d4385f48',
+    -   'e1e1c523b7bf70390ad5a25b4d719d3f07fe804a0520bb7ace3d7e2a151487ab',
+    -   '6e7c0b38788098c6d8b036162749d39110524b5c15785ba3d9c605a2abd51c3e',
+    -   'c785512d7566ef039f93f8a9801e5fa5048064de8cdd2ce3bf092d3d7f54beec',
+    -   'deb6438a0b1a5805205afac71158407721ee734139ed28473d33f54162595260',
+    -   'dca41ff64fbdb9bd08c01317c94fe96e762d83da0efb9584ff2976c681ac1a16',
+    -   '7fc8135d13b7aa6d9cf619d21d9ac52f7c3705dcf1b5d4b3477ec63baf992381',
+    -   '7815ed7f269a8260e17d66ac5ec7458279be693b8ab7c5fe80a67611af841f08',
+    -   '2a1774d1641b44bf6c1b086585c86de8e351a181e6e706c02d60f30fd5ac7f86',
+    -   '566b12ba7173794a2cfc51bda36f3a0bcc3b3b416e9837c571933542457f50a8',
+    -   '118d900bde4ace3d50b8de5481599b0cadc793c3352d546a0293c19085eeb298',
+    -   'd99e3603b62f91511cb72f99a6378382ee16cec040826e035b561f9e97f4e6dd',
+    -   'ac0ea578ad4fc58e34fb623f45487675763d601725851127aea9ac5c95175cc0',
+    -   'a74a2f1e4542300e50b890ab36f5c9bf4c62a54e760a23aec899254b82737bcd',
+    -   '2282e446091c8cd8c0af38424d6fc5c2025d5a84cb9ca06c88c4de1b47ec21df',
+    -   '512bcb4e848908a73bc1d5e746c3783bdcdc4c89252a00bd55206dce2c84dab0',
+    -   'ac0131ce9b2d21d45f80794d4d7fd789babd2fb8a803e93eb6c11b8b90fe54e8',
+    -   '8bc7b5e4240b98904f35a686ae241cfe2f65499493971ac995d8095d9d91e271',
+    -   '92740b0704d5f7ff56324cf0262d0e122a65a671c74408d2e80f21fbc253d459',
+    -   '381cc8459bb8367edb69ddc0a37a27ab8f8b16725f16a7cc1973bee2e657793e',
+    -   'acd0bcc1d71f5f05f3ce06451ecd7a94cdb1a6822ecf59df501d8816ec63fe5b',
+    -   'e3186c8aa290fa2a56c3cc528940b0b5df98e79f917759e64fe4a547f5c820b1',
+    -   'e4bced02aa253df86bcce3aef7f8a3eb3a80bb5b017f0712a79b62412d9ce1e8',
+    -   'abd6b5f6f40faecac3d86088bd361d23568dba9b41291cb0ac6cb4bdfcfa38be',
+    -   '520a9492d07318bb4df325c30136aa9d3d4ac2491734af518d8760cc64d9503c',
+    -   '00ff07536cc782893c4e5cdfb0fa875fb80603d7ebed5e54c6fdc29202db0f63'
+      ]
+    
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/durable.test.ts:73:10)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+      generatedMessage: false,
+      code: 'ERR_ASSERTION',
+      actual: [Array],
+      expected: [Array],
+      operator: 'deepStrictEqual',
+      diff: 'simple'
+    }
+  
+  test at packages/sdk/test/durable.test.ts:76:1
+  ✖ the restart battery: SIGKILLed at 20 random points and restarted each time, the record ends identical to an uninterrupted run (2595.832521ms)
+    AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+    +   false,
+    +   1
+    -   true,
+    -   115
+      ]
+    
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/durable.test.ts:103:10)
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+      generatedMessage: true,
+      code: 'ERR_ASSERTION',
+      actual: [Array],
+      expected: [Array],
+      operator: 'deepStrictEqual',
+      diff: 'simple'
+    }
+  
+  test at packages/sdk/test/durable.test.ts:153:1
+  ✖ replay recomputes every decision from its bytes and names the first divergence (1.02096ms)
+    AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+    + actual - expected
+    
+    + {
+    +   field: 'allow',
+    +   recomputed: false,
+    +   recorded: true,
+    +   seq: 0
+    + }
+    - null
+    
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/durable.test.ts:155:10)
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+      generatedMessage: true,
+      code: 'ERR_ASSERTION',
+      actual: [Object],
+      expected: null,
+      operator: 'deepStrictEqual',
+      diff: 'simple'
+    }
+  
+  test at packages/sdk/test/inspect.test.ts:35:1
+  ✖ inspectRecord shows a latch, the run of denials, and what is still in flight (46.321042ms)
+    AssertionError [ERR_ASSERTION]: some attempts were never reported
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/inspect.test.ts:47:10)
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+      generatedMessage: false,
+      code: 'ERR_ASSERTION',
+      actual: false,
+      expected: true,
+      operator: '==',
+      diff: 'simple'
+    }
+  
+  test at packages/sdk/test/keel.test.ts:146:1
+  ✖ through the guard: the same payment again after it landed reads as the same shape; before it lands, as a retry (0.786085ms)
+    Error: no allowed decision of this guard has hash 2b1df3b1a70775c6160ccd480d1f577b45251bacad08760e97873ed4b6006b9d; a denial has nothing to report
+        at Object.report (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/src/guard.ts:420:19)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/keel.test.ts:149:5)
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+  
+  test at packages/sdk/test/latch-c.test.ts:40:1
+  ✖ LAT-2 / RT-3: two consecutive REGROUND denials latch, across report and restart (5.134622ms)
+    AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+    
+    false !== true
+    
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/latch-c.test.ts:46:12)
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+      generatedMessage: true,
+      code: 'ERR_ASSERTION',
+      actual: false,
+      expected: true,
+      operator: 'strictEqual',
+      diff: 'simple'
+    }
+  
+  test at packages/sdk/test/latch-c.test.ts:79:1
+  ✖ LAT-3 / RT-3: Keel's own loop denial latches immediately (0.943797ms)
+    AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+    
+    false !== true
+    
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/latch-c.test.ts:83:12)
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+      generatedMessage: true,
+      code: 'ERR_ASSERTION',
+      actual: false,
+      expected: true,
+      operator: 'strictEqual',
+      diff: 'simple'
+    }
+  
+  test at packages/sdk/test/request-identity.test.ts:18:1
+  ✖ LIF-1: duplicate admission returns the original entry without another reservation or controller tick (0.91173ms)
+    AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+    
+    false !== true
+    
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/request-identity.test.ts:22:12)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+      generatedMessage: true,
+      code: 'ERR_ASSERTION',
+      actual: false,
+      expected: true,
+      operator: 'strictEqual',
+      diff: 'simple'
+    }
+  
+  test at packages/sdk/test/signed-policy.test.ts:31:1
+  ✖ POL-1: canonical readable summary and valid operator signature load (0.597339ms)
+    AssertionError [ERR_ASSERTION]: The input did not match the regular expression /SOL: 1000000000 per transaction, 3000000000 per 1\/3 minutes/. Input:
+    
+    'solanaut policy\n' +
+      'guard: workload\n' +
+      'cluster: localnet\n' +
+      'version: 1\n' +
+      'policy: 100017bdc0b4bf9c0083ff6450e7e2c8eb9f0070d74c2bc66dead454fd8f3a9a\n' +
+      'issued: 2026-10-05T00:00:00.000Z\n' +
+      'destinations: 1, 8qbHbw2BbbTHBW1sbeqakYXVKRQM8Ne7pLK7m6CVfeR\n' +
+      'SOL: 0 per transaction, 3000000000 per 1/3 minutes\n' +
+      'tokens: 0\n' +
+      'programs: 1; opaque: deny'
+    
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signed-policy.test.ts:34:10)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+      generatedMessage: true,
+      code: 'ERR_ASSERTION',
+      actual: 'solanaut policy\nguard: workload\ncluster: localnet\nversion: 1\npolicy: 100017bdc0b4bf9c0083ff6450e7e2c8eb9f0070d74c2bc66dead454fd8f3a9a\nissued: 2026-10-05T00:00:00.000Z\ndestinations: 1, 8qbHbw2BbbTHBW1sbeqakYXVKRQM8Ne7pLK7m6CVfeR\nSOL: 0 per transaction, 3000000000 per 1/3 minutes\ntokens: 0\nprograms: 1; opaque: deny',
+      expected: /SOL: 1000000000 per transaction, 3000000000 per 1\/3 minutes/,
+      operator: 'match',
+      diff: 'simple'
+    }
+  
+  test at packages/sdk/test/signed-policy.test.ts:94:1
+  ✖ POL-4/POL-5/VER-1: history verifies signed versions and replay preserves pending receipts and the latch (4.35918ms)
+    AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+    
+    false !== true
+    
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signed-policy.test.ts:98:10)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+      generatedMessage: true,
+      code: 'ERR_ASSERTION',
+      actual: false,
+      expected: true,
+      operator: 'strictEqual',
+      diff: 'simple'
+    }
+  
+  test at packages/sdk/test/signing-history.test.ts:27:65
+  ✖ LIF-7: final landed evidence forbids new signing/send intent live and on replay (0.630404ms)
+    AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+    
+    false !== true
+    
+        at admitted (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signing-history.test.ts:24:10)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signing-history.test.ts:29:30)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+      generatedMessage: true,
+      code: 'ERR_ASSERTION',
+      actual: false,
+      expected: true,
+      operator: 'strictEqual',
+      diff: 'simple'
+    }
+  
+  test at packages/sdk/test/signing-history.test.ts:27:65
+  ✖ LIF-7: final failed evidence forbids new signing/send intent live and on replay (0.41449ms)
+    AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+    
+    false !== true
+    
+        at admitted (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signing-history.test.ts:24:10)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signing-history.test.ts:29:30)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+      generatedMessage: true,
+      code: 'ERR_ASSERTION',
+      actual: false,
+      expected: true,
+      operator: 'strictEqual',
+      diff: 'simple'
+    }
+  
+  test at packages/sdk/test/signing-history.test.ts:27:65
+  ✖ LIF-7: final expired evidence forbids new signing/send intent live and on replay (0.399828ms)
+    AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+    
+    false !== true
+    
+        at admitted (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signing-history.test.ts:24:10)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signing-history.test.ts:29:30)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+      generatedMessage: true,
+      code: 'ERR_ASSERTION',
+      actual: false,
+      expected: true,
+      operator: 'strictEqual',
+      diff: 'simple'
+    }
+  
+  test at packages/sdk/test/signing-history.test.ts:43:1
+  ✖ LIF-2: signature evidence requires durable redemption; valid lifecycle replays (0.482954ms)
+    AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+    
+    false !== true
+    
+        at admitted (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signing-history.test.ts:24:10)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signing-history.test.ts:44:28)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+      generatedMessage: true,
+      code: 'ERR_ASSERTION',
+      actual: false,
+      expected: true,
+      operator: 'strictEqual',
+      diff: 'simple'
+    }
+  
+  test at packages/sdk/test/signing-history.test.ts:55:1
+  ✖ LIF-7: unknown evidence preserves the admitted signing/send lifecycle (0.412736ms)
+    AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+    
+    false !== true
+    
+        at admitted (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signing-history.test.ts:24:10)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signing-history.test.ts:56:28)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+      generatedMessage: true,
+      code: 'ERR_ASSERTION',
+      actual: false,
+      expected: true,
+      operator: 'strictEqual',
+      diff: 'simple'
+    }
+  
+  test at packages/sdk/test/signing-history.test.ts:65:94
+  ✖ LIF-2: wrong-bytes cannot be persisted as signed evidence (0.460009ms)
+    AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+    
+    false !== true
+    
+        at admitted (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signing-history.test.ts:24:10)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signing-history.test.ts:66:28)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+      generatedMessage: true,
+      code: 'ERR_ASSERTION',
+      actual: false,
+      expected: true,
+      operator: 'strictEqual',
+      diff: 'simple'
+    }
+  
+  test at packages/sdk/test/signing-history.test.ts:65:94
+  ✖ LIF-2: wrong-signature cannot be persisted as signed evidence (0.354585ms)
+    AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+    
+    false !== true
+    
+        at admitted (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signing-history.test.ts:24:10)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signing-history.test.ts:66:28)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+      generatedMessage: true,
+      code: 'ERR_ASSERTION',
+      actual: false,
+      expected: true,
+      operator: 'strictEqual',
+      diff: 'simple'
+    }
+  
+  test at packages/sdk/test/signing-history.test.ts:65:94
+  ✖ LIF-2: wrong-wire cannot be persisted as signed evidence (0.34889ms)
+    AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+    
+    false !== true
+    
+        at admitted (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signing-history.test.ts:24:10)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signing-history.test.ts:66:28)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+      generatedMessage: true,
+      code: 'ERR_ASSERTION',
+      actual: false,
+      expected: true,
+      operator: 'strictEqual',
+      diff: 'simple'
+    }
+  
+  test at packages/sdk/test/signing-history.test.ts:65:94
+  ✖ LIF-2: noncanonical-base64 cannot be persisted as signed evidence (0.38359ms)
+    AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+    
+    false !== true
+    
+        at admitted (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signing-history.test.ts:24:10)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signing-history.test.ts:66:28)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+      generatedMessage: true,
+      code: 'ERR_ASSERTION',
+      actual: false,
+      expected: true,
+      operator: 'strictEqual',
+      diff: 'simple'
+    }
+  
+  test at packages/sdk/test/signing-history.test.ts:78:1
+  ✖ LIF-2: send-started requires signed bytes and valid lifetime; every stage is single-use (0.463865ms)
+    AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+    
+    false !== true
+    
+        at admitted (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signing-history.test.ts:24:10)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signing-history.test.ts:79:28)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+      generatedMessage: true,
+      code: 'ERR_ASSERTION',
+      actual: false,
+      expected: true,
+      operator: 'strictEqual',
+      diff: 'simple'
+    }
+  
+  test at packages/sdk/test/signing-history.test.ts:92:1
+  ✖ LIF-2: denied response persists; sent response without send intent is refused (0.40757ms)
+    AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+    
+    false !== true
+    
+        at admitted (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signing-history.test.ts:24:10)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signing-history.test.ts:93:28)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+      generatedMessage: true,
+      code: 'ERR_ASSERTION',
+      actual: false,
+      expected: true,
+      operator: 'strictEqual',
+      diff: 'simple'
+    }
+  
+  test at packages/sdk/test/signing-history.test.ts:102:1
+  ✖ LIF-2: signing and send-started evidence survive durable restart (3.518496ms)
+    AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+    
+    false !== true
+    
+        at admitted (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signing-history.test.ts:24:10)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signing-history.test.ts:104:28)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+      generatedMessage: true,
+      code: 'ERR_ASSERTION',
+      actual: false,
+      expected: true,
+      operator: 'strictEqual',
+      diff: 'simple'
+    }
+  
+  test at packages/sdk/test/signing-history.test.ts:115:1
+  ✖ LIF-2: resealed out-of-order and forged signing history refuse restore/replay (0.594814ms)
+    AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+    
+    false !== true
+    
+        at admitted (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signing-history.test.ts:24:10)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/signing-history.test.ts:116:28)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+      generatedMessage: true,
+      code: 'ERR_ASSERTION',
+      actual: false,
+      expected: true,
+      operator: 'strictEqual',
+      diff: 'simple'
+    }
+  
+  test at packages/sdk/test/storage-failures.test.ts:15:1
+  ✖ STO-1/SIG-8: short writes complete before an admission is acknowledged (4.689644ms)
+    AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+    
+    false !== true
+    
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-aNTrma/packages/sdk/test/storage-failures.test.ts:26:12)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+      generatedMessage: true,
+      code: 'ERR_ASSERTION',
+      actual: false,
+      expected: true,
+      operator: 'strictEqual',
+      diff: 'simple'
+    }
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation-recovery.test.ts:73:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

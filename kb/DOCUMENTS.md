@@ -1,5 +1,10 @@
 # DOCUMENTS.md — the document register
 
+2026-10-07 policy-signature validation registers SPEC Draft 4.53, RISKS 1.44,
+SDK Draft 7, receipt/index, PROGRESS, HANDOFF and continuing run. Expanded mutation
+definition preserves existing limits; shared fixture failure is retained. CLAIMS
+S65 records scoped measurements; final integrated evidence follows before sync.
+
 2026-10-07 compiled payload qualification registers SPEC Draft 4.52, RISKS 1.43,
 SDK Draft 6, PACKAGING Draft 9, CLAIMS S64, receipt/index, PROGRESS, HANDOFF and
 continuing run. b9c06eb's hosted baseline failure is retained alongside installed

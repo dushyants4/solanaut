@@ -1,0 +1,33 @@
+✔ CI-1: exact inventory accepts every maintained campaign and rejects omission/addition/duplication (21.194284ms)
+✔ CI-1: all campaigns run sequentially; failure/null exit fails aggregation without hiding other findings (2.020389ms)
+✔ CI-1: changed source stops further mutation, reports skipped work and fails the gate (0.331171ms)
+✔ POL-1: canonical readable summary and valid operator signature load (7.567858ms)
+✔ POL-2: missing signature refuses to start (2.496936ms)
+✔ POL-2: wrong operator refuses to start (1.218516ms)
+✔ POL-2: other guard refuses to start (1.257162ms)
+✔ POL-2: other cluster refuses to start (1.152454ms)
+✔ POL-2: different hash refuses to start (2.334682ms)
+✔ POL-2: noncanonical base64 refuses to start (1.49131ms)
+✔ POL-2: even a correctly signed dishonest summary is rejected (1.188126ms)
+✔ POL-2: missing authorization and non-text signature cannot authenticate (1.139609ms)
+✔ POL-2: invalid encoded signature lengths refuse before base64 allocation (2.975276ms)
+✔ POL-2: signature bytes are captured once before size and crypto verification (1.702057ms)
+✔ VER-2: equivalent but noncanonical recorded policy is not accepted as signed history (11.917669ms)
+✔ POL-3: the principal cannot become the pinned operator (0.815658ms)
+✔ POL-1: invalid versions and issued timestamps have no signing text (0.749366ms)
+✔ POL-1: summaries show SOL caps and count trailing destinations (0.302721ms)
+✔ POL-4/POL-5/VER-1: history verifies signed versions and replay preserves pending receipts and the latch (51.970731ms)
+✔ VER-1: equal version restarts are idempotent; changed signed content needs a higher version (27.772381ms)
+✔ VER-2/POL-4: resealed unsupported profiles and forged historical policy refuse replay and restore (9.68945ms)
+✔ VER-2: a caller cannot substitute another sensor under the signed profile (0.941467ms)
+✔ POL-4: a policy restart retains live reservations against the new cap (18.082537ms)
+✔ POL-4: the operator replay command uses signed history and an external public trust file (315.024416ms)
+✔ POL-4: extending the window reconstructs spending pruned under the old window (19.550702ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 714.945037

@@ -16,7 +16,7 @@ const endpoint=(entries:readonly Entry[])=>({seq:entries.length,head:entries.at(
 async function setup(){
   const operator=generateKeyPairSync("ed25519"),agent=generateKeyPairSync("ed25519");
   const address=(pair:typeof operator)=>encodeBase58(Buffer.from(pair.publicKey.export({format:"jwk"}).x!,"base64url"));
-  const policy={...WORKLOAD_POLICY,principal:[address(agent)],latch:{...WORKLOAD_POLICY.latch,releaseKey:address(operator)}};
+  const policy={...structuredClone(WORKLOAD_POLICY),principal:[address(agent)],latch:{...WORKLOAD_POLICY.latch,releaseKey:address(operator)}};
   const trust={operatorKey:address(operator),guardId:policy.latch.guardId,cluster:policy.latch.cluster},issued="2026-10-07T00:00:00.000Z";
   const authorization=(p:unknown,version:number)=>{const text=preparePolicyText(p,version,issued);return {...trust,version,issued,text,signature:sign(null,Buffer.from(text),operator.privateKey).toString("base64")};};
   const store=memoryStore(),guard=await createGuard({policy,authorization:authorization(policy,1),log:store});
@@ -82,6 +82,7 @@ test("SNP-3/5: missing trust, unsupported history and asynchronous caller change
     await refused(prepareCheckpointState([x.store.entries[0]!,changed],undefined,endpoint([x.store.entries[0]!,changed]),x.trust));
     const entries=[...x.store.entries],context=endpoint(entries),trust={...x.trust},expected=await prepareCheckpointState(entries,x.policy,context,trust);
     const pending=prepareCheckpointState(entries,x.policy,context,trust);entries.length=0;context.seq=0;context.head="";trust.guardId="foreign";x.policy.sol.maxPerTx=0n;x.policy.windowMs=80_000;assert.deepEqual(await pending,expected);
+    assert.equal(WORKLOAD_POLICY.sol.maxPerTx,1_000_000_000n);
   }finally{x.guard.close();}
 });
 test("SNP-3/5: pending control identities and completed answers remain distinct",async()=>{

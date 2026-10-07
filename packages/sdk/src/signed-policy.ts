@@ -33,9 +33,11 @@ export function verifyPolicyAuthorization(input: unknown, a: PolicyAuthorization
   if (policy.latch.guardId !== a.guardId || policy.latch.cluster !== a.cluster) throw new PolicyAuthorizationError("signed policy names another guard or cluster");
   if (policy.latch.releaseKey !== a.operatorKey || policy.principal.includes(a.operatorKey)) throw new PolicyAuthorizationError("policy operator differs from the externally pinned key or is a principal");
   if (a.text !== preparePolicyText(policy, a.version, a.issued)) throw new PolicyAuthorizationError("signed policy text, hash or summary differs from canonical policy");
-  if (typeof a.signature !== "string") throw new PolicyAuthorizationError("policy signature is missing");
-  const bytes = Buffer.from(a.signature, "base64");
-  if (bytes.toString("base64") !== a.signature || !verifyEd25519(a.operatorKey, Buffer.from(a.text), bytes)) throw new PolicyAuthorizationError("policy signature does not verify");
+  const signature = a.signature;
+  if (typeof signature !== "string") throw new PolicyAuthorizationError("policy signature is missing");
+  if (signature.length !== 88) throw new PolicyAuthorizationError("policy signature has invalid encoded size");
+  const bytes = Buffer.from(signature, "base64");
+  if (bytes.toString("base64") !== signature || !verifyEd25519(a.operatorKey, Buffer.from(a.text), bytes)) throw new PolicyAuthorizationError("policy signature does not verify");
   return policy;
 }
 export function verifyPolicyEntry(e: PolicyEntry, trust: PolicyTrust | undefined, previous?: PolicyEntry): Policy {

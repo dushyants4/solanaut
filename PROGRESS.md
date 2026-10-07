@@ -19,6 +19,10 @@ Coarser than `runs/`. The archivist keeps it current; every phase that ends gets
 
 ## Measured so far
 
+POL-2 signature decoding and expanded CI-2 baseline preparation have builder
+evidence at `evals/sdk/policy-signature.md`. Complete mutation qualification,
+checkpoint publication/recovery and stable release remain open.
+
 - Retry loop, sensor v0, retries 400 ms apart: stopped at **turn 3** (sandbox and test).
 - Drain to an unlisted destination: denied before signing (sandbox, offline and on a local validator).
 - Guard: 9/9 tests; boundary guard 34/34, and 59/59 since Codex's harness (2026-10-05,

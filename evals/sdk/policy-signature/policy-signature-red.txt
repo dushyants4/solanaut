@@ -1,0 +1,77 @@
+✔ POL-1: canonical readable summary and valid operator signature load (4.025694ms)
+✔ POL-2: missing signature refuses to start (1.728523ms)
+✔ POL-2: wrong operator refuses to start (0.837346ms)
+✔ POL-2: other guard refuses to start (0.99057ms)
+✔ POL-2: other cluster refuses to start (1.043793ms)
+✔ POL-2: different hash refuses to start (1.496022ms)
+✔ POL-2: noncanonical base64 refuses to start (0.653729ms)
+✔ POL-2: even a correctly signed dishonest summary is rejected (0.548995ms)
+✔ POL-2: missing authorization and non-text signature cannot authenticate (0.469511ms)
+✖ POL-2: invalid encoded signature lengths refuse before base64 allocation (0.937655ms)
+✖ POL-2: signature bytes are captured once before size and crypto verification (1.69055ms)
+✔ VER-2: equivalent but noncanonical recorded policy is not accepted as signed history (10.105202ms)
+✔ POL-3: the principal cannot become the pinned operator (0.671838ms)
+✔ POL-1: invalid versions and issued timestamps have no signing text (0.900475ms)
+✔ POL-1: summaries show SOL caps and count trailing destinations (0.496483ms)
+✔ POL-4/POL-5/VER-1: history verifies signed versions and replay preserves pending receipts and the latch (44.168721ms)
+✔ VER-1: equal version restarts are idempotent; changed signed content needs a higher version (21.007435ms)
+✔ VER-2/POL-4: resealed unsupported profiles and forged historical policy refuse replay and restore (5.933384ms)
+✔ VER-2: a caller cannot substitute another sensor under the signed profile (0.667923ms)
+✔ POL-4: a policy restart retains live reservations against the new cap (9.110285ms)
+✔ POL-4: the operator replay command uses signed history and an external public trust file (205.648152ms)
+✔ POL-4: extending the window reconstructs spending pruned under the old window (11.192449ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 20
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 458.265433
+
+✖ failing tests:
+
+test at packages/sdk/test/signed-policy.test.ts:58:1
+✖ POL-2: invalid encoded signature lengths refuse before base64 allocation (0.937655ms)
+  AssertionError [ERR_ASSERTION]: The validation function is expected to return "true". Received false
+  
+  Caught error:
+  
+  Error: invalid policy signature reached decoder
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:65:54)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: invalid policy signature reached decoder
+        at Buffer.from (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:61:84)
+        at verifyPolicyAuthorization (file:///home/dashy/Projects/Solanaut/packages/sdk/src/signed-policy.ts:37:24)
+        at Buffer.from (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:65:65)
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:65:54)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19),
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/signed-policy.test.ts:68:1
+✖ POL-2: signature bytes are captured once before size and crypto verification (1.69055ms)
+  Error [PolicyAuthorizationError]: policy signature does not verify
+      at verifyPolicyAuthorization (file:///home/dashy/Projects/Solanaut/packages/sdk/src/signed-policy.ts:38:116)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/signed-policy.test.ts:71:16)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'policy-authorization'
+  }

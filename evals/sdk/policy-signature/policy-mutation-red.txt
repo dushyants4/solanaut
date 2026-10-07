@@ -1,0 +1,69 @@
+✔ CI-2: supervised completion qualifies only the bound complete synthetic mutation fixture (119.225392ms)
+✔ CI-2: an extra staged input cannot silently enter the frozen population (1.930779ms)
+✔ CI-2: every copied source, test, package, configuration and lock input remains bound (6.201433ms)
+✔ CI-2: missing, symlinked and mismatched staged inputs cannot be frozen (3.061958ms)
+✔ CI-2: pending and failed actual child execution cannot qualify a present fixture report (270.52094ms)
+✖ CI-2: an asynchronously started real staged baseline finishes without relaunching (113.325983ms)
+✖ CI-2: mutation staging copies only the frozen inputs and tests execute its changed source (20.602185ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 5
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 705.918413
+
+✖ failing tests:
+
+test at evals/ci/mutation-recovery.test.ts:61:1
+✖ CI-2: an asynchronously started real staged baseline finishes without relaunching (113.325983ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  7 !== 8
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation-recovery.test.ts:67:89)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 7,
+    expected: 8,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/ci/mutation-stage.test.ts:8:1
+✖ CI-2: mutation staging copies only the frozen inputs and tests execute its changed source (20.602185ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      'packages/sdk/src/base58.ts',
+      'packages/sdk/src/classify.ts',
+      'packages/sdk/src/guard.ts',
+      'packages/sdk/src/message.ts',
+  ...
+      'packages/sdk/src/checkpoint-archives.ts',
+  -   'packages/sdk/src/checkpoint-prefix.ts',
+  -   'packages/sdk/src/checkpoint-state.ts',
+  -   'packages/sdk/src/signed-policy.ts'
+    ]
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation-stage.test.ts:15:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'packages/sdk/src/base58.ts', 'packages/sdk/src/classify.ts', 'packages/sdk/src/guard.ts', 'packages/sdk/src/message.ts', 'packages/sdk/src/pda.ts', 'packages/sdk/src/policy.ts', 'packages/sdk/src/state.ts', 'packages/sdk/src/tables.ts', 'packages/sdk/src/checkpoint.ts', 'packages/sdk/src/checkpoint-archives.ts' ],
+    expected: [ 'packages/sdk/src/base58.ts', 'packages/sdk/src/classify.ts', 'packages/sdk/src/guard.ts', 'packages/sdk/src/message.ts', 'packages/sdk/src/pda.ts', 'packages/sdk/src/policy.ts', 'packages/sdk/src/state.ts', 'packages/sdk/src/tables.ts', 'packages/sdk/src/checkpoint.ts', 'packages/sdk/src/checkpoint-archives.ts', 'packages/sdk/src/checkpoint-prefix.ts', 'packages/sdk/src/checkpoint-state.ts', 'packages/sdk/src/signed-policy.ts' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
