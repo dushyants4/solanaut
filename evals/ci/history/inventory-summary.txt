@@ -1,0 +1,15 @@
+file:///home/dashy/Projects/Solanaut/evals/ci/history.ts:20
+    if (result.status !== 0 || result.error) throw new Error(`history git read failed: ${args[0]}`);
+                                                   ^
+
+Error: history git read failed: rev-parse
+    at file:///home/dashy/Projects/Solanaut/evals/ci/history.ts:20:52
+    at file:///home/dashy/Projects/Solanaut/evals/ci/history.ts:35:38
+    at Array.map (<anonymous>)
+    at inventoryHistory (file:///home/dashy/Projects/Solanaut/evals/ci/history.ts:35:24)
+    at file:///home/dashy/Projects/Solanaut/evals/ci/history-run.ts:8:19
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v26.7.0

@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.36** · 2026-10-06 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.37** · 2026-10-06 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -942,6 +942,12 @@ mode remains advisory; an established signed history requires an external pin on
 The isolated signer must require authorization. Canonical summary uses exact rational minutes
 where needed, and UTC issued timestamps include milliseconds. Policies remain restart-only.
 
+### 13.15 Publication-review preparation
+
+| ID | Requirement | Verified by |
+|---|---|---|
+| PUB-1 | a read-only inventory captures HEAD and every local ref, all reachable commits and historical file blobs/paths/modes/sizes, including deleted content, symlinks and gitlinks; shallow/incomplete/changing history refuses; inventory is explicitly not confidentiality, secret, source-rights or publication clearance | independent Git fixture oracles, divergent/tagged/deleted histories, unusual paths, missing objects, shallow history and changed-ref cases; retained manifest identifies the exact inspected revision and scope |
+
 ## Changes
 
 | Version | Date | What changed |
@@ -986,3 +992,4 @@ where needed, and UTC issued timestamps include milliseconds. Policies remain re
 | Draft 4.34 | 2026-10-06 | ANC-3 structural exact-sequence/head verification and installed command; pin authentication/replay/programme remain owed. Mutation definition 2 keeps the complete scope/tests/floor and uses a fresh seed with one test process per worker. |
 | Draft 4.35 | 2026-10-06 | POL-1/5 public signing-request preparation command, strict inputs, bounded/redacted source reads and installed evidence; signing/history installation remain owed. |
 | Draft 4.36 | 2026-10-06 | SNP-3–8 allocate accepted ADR-019 checkpoint, replay, retention and maintenance obligations; implementation/qualification remain owed. No architecture or threshold change. |
+| Draft 4.37 | 2026-10-06 | PUB-1 allocates a read-only history inventory for the approved original-repository publication review; inventory is not secrets, confidentiality, rights or publication clearance. |

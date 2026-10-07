@@ -1,0 +1,41 @@
+✔ PUB-1: inventory retains deleted and changed blobs rather than only HEAD (302.334075ms)
+✔ PUB-1: divergent branches and annotated tags are inventoried (287.143415ms)
+✔ PUB-1: tabs, newlines and Unicode paths survive NUL tree framing (141.997473ms)
+✔ PUB-1: executable, symlink and gitlink modes remain explicit without following links (121.794046ms)
+✔ PUB-1: shallow and incomplete object histories refuse instead of silently shrinking (75.167146ms)
+✔ PUB-1: detached HEAD and stable repeated inventory have explicit scope and digest (141.634851ms)
+✔ PUB-1: changing refs or HEAD during enumeration refuse (94.10182ms)
+✔ PUB-1: non-commit refs cannot be ignored as irrelevant history (60.627535ms)
+✖ PUB-1: ref targets missing from returned commit closure refuse (147.903182ms)
+✔ PUB-1: shared blobs retain each historical path and file mode (200.90759ms)
+✔ PUB-1: malformed tree framing and object metadata refuse (356.742356ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 10
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2192.209339
+
+✖ failing tests:
+
+test at evals/ci/history.test.ts:83:1
+✖ PUB-1: ref targets missing from returned commit closure refuse (147.903182ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:86:10
+      at fixture (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:18:5)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:83:78)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /closure/,
+    operator: 'throws',
+    diff: 'simple'
+  }

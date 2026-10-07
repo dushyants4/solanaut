@@ -1,0 +1,19 @@
+✔ PUB-1: inventory retains deleted and changed blobs rather than only HEAD (359.627229ms)
+✔ PUB-1: divergent branches and annotated tags are inventoried (267.299993ms)
+✔ PUB-1: tabs, newlines and Unicode paths survive NUL tree framing (212.982928ms)
+✔ PUB-1: executable, symlink and gitlink modes remain explicit without following links (108.895924ms)
+✔ PUB-1: shallow and incomplete object histories refuse instead of silently shrinking (75.314556ms)
+✔ PUB-1: detached HEAD and stable repeated inventory have explicit scope and digest (174.232488ms)
+✔ PUB-1: changing refs or HEAD during enumeration refuse (81.1168ms)
+✔ PUB-1: non-commit refs cannot be ignored as irrelevant history (64.60116ms)
+✔ PUB-1: ref targets missing from returned commit closure refuse (97.553009ms)
+✔ PUB-1: shared blobs retain each historical path and file mode (110.258082ms)
+✔ PUB-1: malformed tree framing and object metadata refuse (285.396664ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2127.199858

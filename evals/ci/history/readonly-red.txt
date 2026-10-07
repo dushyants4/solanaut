@@ -1,0 +1,67 @@
+✔ PUB-1: inventory retains deleted and changed blobs rather than only HEAD (200.372649ms)
+✔ PUB-1: divergent branches and annotated tags are inventoried (152.335401ms)
+✔ PUB-1: tabs, newlines and Unicode paths survive NUL tree framing (100.273929ms)
+✔ PUB-1: executable, symlink and gitlink modes remain explicit without following links (118.465768ms)
+✔ PUB-1: shallow and incomplete object histories refuse instead of silently shrinking (67.767949ms)
+✔ PUB-1: detached HEAD and stable repeated inventory have explicit scope and digest (162.01422ms)
+✔ PUB-1: changing refs or HEAD during enumeration refuse (81.624925ms)
+✔ PUB-1: non-commit refs cannot be ignored as irrelevant history (60.225475ms)
+✔ PUB-1: ref targets missing from returned commit closure refuse (109.782641ms)
+✔ PUB-1: shared blobs retain each historical path and file mode (124.089395ms)
+✔ PUB-1: malformed tree framing and object metadata refuse (277.01142ms)
+✔ PUB-1: SHA-256 Git repositories retain full object identities (84.204442ms)
+✖ PUB-1: local grafts cannot hide original commit ancestry (94.587499ms)
+✖ PUB-1: partial-clone inventory refuses missing blobs without lazy fetch or object writes (116.852761ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 12
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2038.316862
+
+✖ failing tests:
+
+test at evals/ci/history.test.ts:113:1
+✖ PUB-1: local grafts cannot hide original commit ancestry (94.587499ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 2
+  
+      at file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:117:10
+      at fixture (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:18:5)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:113:72)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/ci/history.test.ts:120:1
+✖ PUB-1: partial-clone inventory refuses missing blobs without lazy fetch or object writes (116.852761ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:124:10
+      at fixture (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:18:5)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:120:104)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /object|git read/,
+    operator: 'throws',
+    diff: 'simple'
+  }

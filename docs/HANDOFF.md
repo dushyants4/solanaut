@@ -189,6 +189,13 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+PUB-1 inventory component: fifteen cases/thirteen faults and typecheck pass; frozen original-
+origin mirror manifest retained in `evals/ci/history.md`. It is metadata preparation only,
+not publication clearance. Integrated uncommitted candidate root tests and coverage pass;
+its isolated full fault run has an incomplete restored property check retained as a failure.
+Original mutation driver disappeared on interruption; child remains supervised at its original
+deadline, without an inferred completion status or score. Private sync/CI follows.
+
 Qualification preparation a4dba77 is privately pushed and passes ten close gates. CI
 37553883381 starts. Fresh definition-3 mutation run uses session 47592, driver 1007197 /
 worker group 1007247, stage `run-Z74iGI`; log and full paths are in the continuing run.

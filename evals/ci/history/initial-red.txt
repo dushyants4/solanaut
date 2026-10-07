@@ -1,0 +1,185 @@
+✖ PUB-1: inventory retains deleted and changed blobs rather than only HEAD (362.670951ms)
+✖ PUB-1: divergent branches and annotated tags are inventoried (150.597304ms)
+✖ PUB-1: tabs, newlines and Unicode paths survive NUL tree framing (74.217338ms)
+✖ PUB-1: executable, symlink and gitlink modes remain explicit without following links (150.996439ms)
+✖ PUB-1: shallow and incomplete object histories refuse instead of silently shrinking (81.496599ms)
+✖ PUB-1: detached HEAD and stable repeated inventory have explicit scope and digest (154.146527ms)
+✖ PUB-1: changing refs or HEAD during enumeration refuse (93.908307ms)
+✖ PUB-1: non-commit refs cannot be ignored as irrelevant history (77.615541ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 0
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1589.784245
+
+✖ failing tests:
+
+test at evals/ci/history.test.ts:22:1
+✖ PUB-1: inventory retains deleted and changed blobs rather than only HEAD (362.670951ms)
+  Error: history inventory not implemented
+      at inventoryHistory (file:///home/dashy/Projects/Solanaut/evals/ci/history.ts:12:9)
+      at file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:26:18
+      at fixture (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:18:5)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:22:88)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at evals/ci/history.test.ts:34:1
+✖ PUB-1: divergent branches and annotated tags are inventoried (150.597304ms)
+  Error: history inventory not implemented
+      at inventoryHistory (file:///home/dashy/Projects/Solanaut/evals/ci/history.ts:12:9)
+      at file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:38:18
+      at fixture (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:18:5)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:34:76)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at evals/ci/history.test.ts:43:1
+✖ PUB-1: tabs, newlines and Unicode paths survive NUL tree framing (74.217338ms)
+  Error: history inventory not implemented
+      at inventoryHistory (file:///home/dashy/Projects/Solanaut/evals/ci/history.ts:12:9)
+      at file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:45:20
+      at fixture (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:18:5)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:43:80)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at evals/ci/history.test.ts:47:1
+✖ PUB-1: executable, symlink and gitlink modes remain explicit without following links (150.996439ms)
+  Error: history inventory not implemented
+      at inventoryHistory (file:///home/dashy/Projects/Solanaut/evals/ci/history.ts:12:9)
+      at file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:51:18
+      at fixture (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:18:5)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:47:100)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at evals/ci/history.test.ts:56:1
+✖ PUB-1: shallow and incomplete object histories refuse instead of silently shrinking (81.496599ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /shallow/. Input:
+  
+  'Error: history inventory not implemented'
+  
+      at file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:58:10
+      at fixture (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:18:5)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:56:99)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: history inventory not implemented
+        at inventoryHistory (file:///home/dashy/Projects/Solanaut/evals/ci/history.ts:12:9)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:58:23
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:58:10
+        at fixture (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:18:5)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:56:99)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18),
+    expected: /shallow/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/ci/history.test.ts:62:1
+✖ PUB-1: detached HEAD and stable repeated inventory have explicit scope and digest (154.146527ms)
+  Error: history inventory not implemented
+      at inventoryHistory (file:///home/dashy/Projects/Solanaut/evals/ci/history.ts:12:9)
+      at file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:64:15
+      at fixture (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:18:5)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:62:97)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at evals/ci/history.test.ts:68:1
+✖ PUB-1: changing refs or HEAD during enumeration refuse (93.908307ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /changed/. Input:
+  
+  'Error: history inventory not implemented'
+  
+      at file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:75:10
+      at fixture (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:18:5)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:68:70)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: history inventory not implemented
+        at inventoryHistory (file:///home/dashy/Projects/Solanaut/evals/ci/history.ts:12:9)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:75:23
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:75:10
+        at fixture (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:18:5)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:68:70)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18),
+    expected: /changed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/ci/history.test.ts:77:1
+✖ PUB-1: non-commit refs cannot be ignored as irrelevant history (77.615541ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /commit|ref|git read/. Input:
+  
+  'Error: history inventory not implemented'
+  
+      at file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:79:10
+      at fixture (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:18:5)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:77:78)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: history inventory not implemented
+        at inventoryHistory (file:///home/dashy/Projects/Solanaut/evals/ci/history.ts:12:9)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:79:23
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:79:10
+        at fixture (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:18:5)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:77:78)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18),
+    expected: /commit|ref|git read/,
+    operator: 'throws',
+    diff: 'simple'
+  }
