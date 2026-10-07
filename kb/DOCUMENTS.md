@@ -1,5 +1,14 @@
 # DOCUMENTS.md — the document register
 
+2026-10-07 prefix rebuilding registers SPEC Draft 4.57, RISKS 1.48, OVERVIEW
+Draft 31, SDK Draft 11, PACKAGING Draft 13, component receipt/index, HANDOFF,
+PROGRESS and continuing run. Full-history validation remains a component, not
+complete authenticated or bounded guard restore. CLAIMS S70 records scoped local
+source/installed/recovery and ordinary/AST measurements with exact inputs and
+unchanged floors. Publication hosted failures remain open.
+Publication receipt and HANDOFF H11 retain completed hosted 0c61fa3 failures:
+unchanged baseline wait in runtime/AST jobs, with maintained faults passing.
+
 2026-10-07 owned publication registers SPEC Draft 4.56, RISKS 1.47, OVERVIEW
 Draft 30, SDK Draft 10, PACKAGING Draft 12, component receipt/index, PROGRESS,
 HANDOFF and continuing run. Envelope receipt retains exact hosted 6162efb

@@ -15,6 +15,8 @@ function battery() {
 const baseline = battery();
 assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
 const faults = [
+  { name: "rebuild-prefix-comparison", path: "dist/src/checkpoint-prefix.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("if (prefixInput !== expected.text)", "if (false)") },
+  { name: "rebuild-prefix-events", path: "dist/src/checkpoint-prefix.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("events: prefix.events.length", "events: 0") },
   { name: "publication-module", path: "dist/src/checkpoint-publication.js", caught: "compiled checkpoint payloads", damage: () => undefined },
   { name: "publication-digest", path: "dist/src/checkpoint-publication.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("digest: sha256hex(input)", 'digest: "0".repeat(64)') },
   { name: "publication-ownership", path: "dist/src/record.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("publishers.get(store)", 'publishers.get(store) ?? (async () => ({seq:0,head:"",digest:"",bytes:0}))') },

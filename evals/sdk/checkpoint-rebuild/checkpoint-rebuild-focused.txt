@@ -1,0 +1,21 @@
+✔ SNP-3/5: genesis has canonical empty events and a payload digest (8.004654ms)
+✔ SNP-5: a rebuilt controller agrees with full-history ticks and resets on its next decision (43.050568ms)
+✔ SNP-5: reordered, missing, altered or injected controller events cannot rebuild (42.613367ms)
+✔ SNP-5: rebuild uses captured history, endpoint and prefix through asynchronous validation (16.233799ms)
+✔ SNP-5: a fresh controller that diverges from recorded postures refuses rebuild (15.639455ms)
+✔ SNP-3/5: mixed history retains every tick and reset, with source sequence/hash (14.161896ms)
+✔ SNP-3/5: stale, missing, reordered and tampered history cannot produce a prefix (10.596182ms)
+✔ SNP-3/5: resealed dishonest telemetry still requires full decision replay (0.911995ms)
+✔ SNP-3/5: malformed inputs cannot inject controller events (1.385265ms)
+✔ SNP-3/5: wrong policy and caller serialization methods cannot bypass validation (5.897274ms)
+✔ SNP-3/5: async replay uses a captured history and endpoint (15.077567ms)
+✔ SNP-3/5: fresh Keel reproduces prefix postures across reset boundaries (9.488155ms)
+✔ SNP-3/5: signed policy changes require externally pinned policy trust (9.283959ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 423.759273

@@ -5,11 +5,28 @@ import { EVALUATION_PROFILE } from "./profile.ts";
 import { sensorV1 } from "./sensor.ts";
 import type { Entry } from "./log.ts";
 import type { PolicyTrust } from "./signed-policy.ts";
+import {Governor} from "@gubernaut/core";
 export class CheckpointPrefixError extends Error {
   readonly code="checkpoint-prefix";
   constructor(message:string){super(message);this.name="CheckpointPrefixError";}
 }
 export interface PreparedCheckpointPrefix {readonly text:string;readonly digest:string}
+/** Internal component: full history validates the prefix before rebuilding a fresh controller. */
+export async function rebuildCheckpointPrefix(input:unknown,policyInput:unknown,context:{seq:number;head:string},prefixInput:unknown,trust?:PolicyTrust):Promise<Readonly<{controller:Governor;events:number;seq:number;head:string}>>{
+  try{
+    const endpoint=structuredClone(context),pins=structuredClone(trust),captured=structuredClone(input),policy=structuredClone(policyInput);
+    if(typeof prefixInput!=="string")throw new CheckpointPrefixError("checkpoint prefix must be canonical text");
+    const expected=await prepareCheckpointPrefix(captured,policy,endpoint,pins);
+    if(prefixInput!==expected.text)throw new CheckpointPrefixError("checkpoint prefix differs from validated full history");
+    // Parse the derived bytes only; no controller state from caller input is loaded.
+    const prefix=JSON.parse(expected.text),controller=await Governor.create();
+    for(const event of prefix.events){
+      if(event.kind==="reset")controller.reset();
+      else if(controller.tick(event.telemetry).posture!==event.posture)throw new CheckpointPrefixError("checkpoint controller replay diverges");
+    }
+    return Object.freeze({controller,events:prefix.events.length,...endpoint});
+  }catch(error){if(error instanceof CheckpointPrefixError)throw error;throw new CheckpointPrefixError("checkpoint controller cannot be rebuilt");}
+}
 export async function prepareCheckpointPrefix(input:unknown,policyInput:unknown,context:{seq:number;head:string},trust?:PolicyTrust):Promise<Readonly<PreparedCheckpointPrefix>> {
   try{
     // Capture pins and all inputs before asynchronous controller creation permits caller mutation.

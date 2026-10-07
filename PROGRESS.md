@@ -1,5 +1,12 @@
 # PROGRESS.md
 
+Validated-prefix rebuilding has local focused/fault, installed and ordinary/AST
+component evidence with unchanged floors (`evals/sdk/checkpoint-rebuild.md`). Published controller
+ticks/resets are replayed into fresh Keel, without loading controller-state numbers.
+Full signed checkpoint/anchor verification and guard restore remain required.
+Completed hosted publication logs confirm unchanged-baseline-wait failures in
+runtime/AST jobs; the maintained fault job passes. H11 remains pending.
+
 Owned checkpoint publication has local replay/ownership, storage-failure,
 process-death, installed and ordinary/AST evidence with unchanged floors
 (`evals/sdk/checkpoint-publication.md`). Cadence, authenticated restore, bounded retention and complete

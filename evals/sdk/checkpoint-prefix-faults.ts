@@ -5,6 +5,11 @@ const path="packages/sdk/src/checkpoint-prefix.ts",source=readFileSync(path,"utf
 const execute=()=>spawnSync(process.execPath,["--test","packages/sdk/test/checkpoint-prefix.test.ts"],{encoding:"utf8",timeout:15_000});
 const baseline=execute();assert.equal(baseline.status,0,baseline.stdout+baseline.stderr);
 const faults=[
+  ["rebuild-prefix-comparison","prefixInput!==expected.text","false"],
+  ["rebuild-reset",'if(event.kind==="reset")controller.reset();','if(event.kind==="reset")void 0;'],
+  ["rebuild-posture",'controller.tick(event.telemetry).posture!==event.posture','(controller.tick(event.telemetry),false)'],
+  ["rebuild-events","events:prefix.events.length","events:0"],
+  ["rebuild-immutable","Object.freeze({controller,events:prefix.events.length,...endpoint})","({controller,events:prefix.events.length,...endpoint})"],
   ["endpoint-fields",'Object.keys(endpoint).sort().join(",")!=="head,seq"',"false"],
   ["captured-endpoint","const endpoint=structuredClone(context)","const endpoint=context"],
   ["captured-history","const entries=JSON.parse(canonicalJSON(captured)) as Entry[]","const entries=input as Entry[]"],
@@ -27,7 +32,7 @@ for(const [name,before,after] of faults){
   assert.ok(source.includes(before),"missing prefix fault: "+name);
   let damaged=source.replaceAll(before,after);
   if(name==="policy-trust")damaged='import { WORKLOAD_POLICY } from "../test/support/workload.ts";\n'+damaged;
-  try{writeFileSync(path,damaged);const result=execute();assert.equal(result.status,1,name+result.stdout+result.stderr);assert.equal(result.signal,null);assert.equal(result.error,undefined);assert.match(result.stdout,/tests 9\b/);console.log("caught checkpoint prefix fault: "+name);}
+  try{writeFileSync(path,damaged);const result=execute();assert.equal(result.status,1,name+result.stdout+result.stderr);assert.equal(result.signal,null);assert.equal(result.error,undefined);assert.match(result.stdout,/tests 13\b/);console.log("caught checkpoint prefix fault: "+name);}
   finally{writeFileSync(path,source);}
 }
 const restored=execute();assert.equal(restored.status,0,restored.stdout+restored.stderr);

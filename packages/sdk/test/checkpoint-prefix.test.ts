@@ -7,6 +7,7 @@ import { encodeBase58 } from "../src/base58.ts";
 import { memoryStore } from "../src/record.ts";
 import { preparePolicyText } from "../src/signed-policy.ts";
 import { prepareCheckpointPrefix } from "../src/checkpoint-prefix.ts";
+import * as prefixModule from "../src/checkpoint-prefix.ts";
 import { createGuard } from "../src/guard.ts";
 import { canonicalJSON, sha256hex } from "../src/canonical.ts";
 import { EVALUATION_PROFILE } from "../src/profile.ts";
@@ -18,10 +19,41 @@ async function history():Promise<Entry[]> {
 }
 const endpoint=(entries:readonly Entry[])=>({seq:entries.length,head:entries.at(-1)?.hash??""});
 const refused=(work:Promise<unknown>)=>assert.rejects(work,{name:"CheckpointPrefixError",code:"checkpoint-prefix"});
+const rebuild=(entries:unknown,policy:unknown,context:unknown,text:unknown,trust?:unknown):Promise<{controller:Governor;events:number;seq:number;head:string}>=>Promise.resolve().then(()=>Reflect.apply(Reflect.get(prefixModule,"rebuildCheckpointPrefix"),undefined,[entries,policy,context,text,trust]));
 test("SNP-3/5: genesis has canonical empty events and a payload digest",async()=>{
   const got=await prepareCheckpointPrefix([],WORKLOAD_POLICY,{seq:0,head:""});
   assert.equal(got.text,canonicalJSON({format:1,kind:"solanaut-checkpoint-keel-prefix",profile:EVALUATION_PROFILE,seq:0,head:"",events:[]})+"\n");
   assert.equal(got.digest,sha256hex(got.text));assert.ok(Object.isFrozen(got));
+  const rebuilt=await rebuild([],WORKLOAD_POLICY,{seq:0,head:""},got.text),reference=await Governor.create();
+  assert.deepEqual({events:rebuilt.events,seq:rebuilt.seq,head:rebuilt.head},{events:0,seq:0,head:""});
+  const telemetry={intensity:.1,valence:0,repetition:0};assert.deepEqual(rebuilt.controller.tick(telemetry),reference.tick(telemetry));
+});
+test("SNP-5: a rebuilt controller agrees with full-history ticks and resets on its next decision",async()=>{
+  const entries=await history(),context=endpoint(entries),prefix=await prepareCheckpointPrefix(entries,WORKLOAD_POLICY,context),reference=await Governor.create();
+  for(const entry of entries){if(entry.kind==="release")reference.reset();else if(entry.kind==="decision" && entry.telemetry!==null && entry.posture!==null)reference.tick(entry.telemetry);}
+  const rebuilt=await rebuild(entries,WORKLOAD_POLICY,context,prefix.text);
+  assert.deepEqual({events:rebuilt.events,seq:rebuilt.seq,head:rebuilt.head},{events:JSON.parse(prefix.text).events.length,...context});assert.ok(Object.isFrozen(rebuilt));
+  for(const telemetry of [{intensity:1,valence:-1,repetition:1},{intensity:0,valence:0,repetition:0},{intensity:.4,valence:.2,repetition:.3}])assert.deepEqual(rebuilt.controller.tick(telemetry),reference.tick(telemetry));
+});
+test("SNP-5: reordered, missing, altered or injected controller events cannot rebuild",async()=>{
+  const entries=await history(),context=endpoint(entries),prefix=await prepareCheckpointPrefix(entries,WORKLOAD_POLICY,context),body=JSON.parse(prefix.text);
+  for(const changed of [{...body,events:body.events.slice(1)},{...body,events:[...body.events].reverse()},{...body,temperatureMax:0},{...body,events:[...body.events,{kind:"reset",seq:context.seq,hash:context.head}]}])await refused(rebuild(entries,WORKLOAD_POLICY,context,canonicalJSON(changed)+"\n"));
+  for(const text of [null,prefix.text+" ","invalid"])await refused(rebuild(entries,WORKLOAD_POLICY,context,text));
+});
+test("SNP-5: rebuild uses captured history, endpoint and prefix through asynchronous validation",async()=>{
+  const entries=await history(),context=endpoint(entries),prefix=await prepareCheckpointPrefix(entries,WORKLOAD_POLICY,context),work=rebuild(entries,WORKLOAD_POLICY,context,prefix.text);
+  // The wrapper dispatches on a microtask; mutate only after the implementation has captured input.
+  await Promise.resolve();entries.splice(0);context.seq=0;context.head="";
+  const got=await work;assert.notEqual(got.seq,0);assert.equal(got.head,JSON.parse(prefix.text).head);
+});
+test("SNP-5: a fresh controller that diverges from recorded postures refuses rebuild",async()=>{
+  const entries=await history(),context=endpoint(entries),prefix=await prepareCheckpointPrefix(entries,WORKLOAD_POLICY,context),original=Governor.create;let calls=0;
+  try{
+    Governor.create=async()=>{const controller=await Reflect.apply(original,Governor,[]);calls++;
+      if(calls===2){const tick=controller.tick.bind(controller);controller.tick=telemetry=>{const result=tick(telemetry);return {...result,posture:result.posture==="DEFAULT"?"REGROUND":"DEFAULT"};};}
+      return controller;};
+    await refused(rebuild(entries,WORKLOAD_POLICY,context,prefix.text));assert.equal(calls,2);
+  }finally{Governor.create=original;}
 });
 test("SNP-3/5: mixed history retains every tick and reset, with source sequence/hash",async()=>{
   const entries=await history(),got=await prepareCheckpointPrefix(entries,WORKLOAD_POLICY,endpoint(entries));
@@ -70,6 +102,9 @@ test("SNP-3/5: signed policy changes require externally pinned policy trust",asy
   const store=memoryStore(),g=await createGuard({policy,authorization:auth(policy,1),log:store});step(g,0);g.close();
   const next={...policy,sol:{...policy.sol,maxPerTx:2_000_000_000n}},restored=await createGuard({policy:next,authorization:auth(next,2),log:store});step(restored,1);restored.close();
   const got=await prepareCheckpointPrefix(store.entries,undefined,endpoint(store.entries),trust);assert.equal(JSON.parse(got.text).events.length,2);
+  const rebuilt=await rebuild(store.entries,undefined,endpoint(store.entries),got.text,trust);assert.equal(rebuilt.events,2);
+  await refused(rebuild(store.entries,undefined,endpoint(store.entries),got.text));
+  await refused(rebuild(store.entries,undefined,endpoint(store.entries),got.text,{...trust,guardId:"foreign"}));
   await refused(prepareCheckpointPrefix(store.entries,undefined,endpoint(store.entries)));
   await refused(prepareCheckpointPrefix(store.entries,undefined,endpoint(store.entries),{...trust,guardId:"foreign"}));
 });

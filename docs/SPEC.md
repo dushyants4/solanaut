@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.56** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.57** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -1162,3 +1162,12 @@ rename and directory sync. Files are `<record>.checkpoint` and
 `<record>.checkpoint.previous`; corrupt current evidence refuses replacement.
 Storage failure fails the writer. No root export, signer method, cadence, restore
 or bounded-memory contract is added. Component evidence: `evals/sdk/checkpoint-publication.md`.
+
+SNP-5 internal prefix rebuilding validates the entire captured history under the
+external policy trust pin, requires exact canonical prefix bytes, then creates a
+fresh published Keel controller and consumes only derived tick/reset events.
+Every tick posture is checked. The returned runtime controller is mutable for
+continued evaluation; its event/endpoint receipt is immutable. No controller-state
+numbers are deserialised. This is a component inside ADR-019; envelope/anchor
+verification, admission-state loading and prefix-plus-tail guard restore remain
+required. Evidence: `evals/sdk/checkpoint-rebuild.md`.

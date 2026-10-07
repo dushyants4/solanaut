@@ -220,7 +220,7 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
     import {mkdtempSync,writeFileSync,readFileSync,rmSync} from 'node:fs';
     import {tmpdir} from 'node:os';
     import {join} from 'node:path';
-    const {prepareCheckpointPrefix,CheckpointPrefixError}=await import(new URL('./checkpoint-prefix.js',import.meta.resolve('@solanaut/sdk')));
+    const {prepareCheckpointPrefix,rebuildCheckpointPrefix,CheckpointPrefixError}=await import(new URL('./checkpoint-prefix.js',import.meta.resolve('@solanaut/sdk')));
     const {prepareCheckpointState,CheckpointStateError}=await import(new URL('./checkpoint-state.js',import.meta.resolve('@solanaut/sdk')));
     const {prepareCheckpointBundle}=await import(new URL('./checkpoint-bundle.js',import.meta.resolve('@solanaut/sdk')));
     const {prepareCheckpointEnvelope,verifyCheckpointEnvelope,CheckpointEnvelopeError}=await import(new URL('./checkpoint-envelope.js',import.meta.resolve('@solanaut/sdk')));
@@ -253,6 +253,13 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
     const entries=g.entries(),context={seq:entries.length,head:entries.at(-1).hash};g.close();
     const prefix=await prepareCheckpointPrefix(entries,undefined,context,trust),state=await prepareCheckpointState(entries,undefined,context,trust);
     const hash=text=>createHash('sha256').update(text).digest('hex'),p=JSON.parse(prefix.text),s=JSON.parse(state.text);
+    const rebuilt=await rebuildCheckpointPrefix(entries,undefined,context,prefix.text,trust);
+    if(rebuilt.events!==p.events.length || rebuilt.seq!==context.seq || rebuilt.head!==context.head || !Object.isFrozen(rebuilt))throw new Error('installed prefix rebuild lost endpoint/events');
+    const {Governor}=await import('@gubernaut/core'),reference=await Governor.create();
+    for(const entry of entries){if(entry.kind==='release')reference.reset();else if(entry.kind==='decision'&&entry.telemetry!==null&&entry.posture!==null)reference.tick(entry.telemetry);}
+    for(const telemetry of [{intensity:1,valence:-1,repetition:1},{intensity:0,valence:0,repetition:0}])if(JSON.stringify(rebuilt.controller.tick(telemetry))!==JSON.stringify(reference.tick(telemetry)))throw new Error('installed next controller decision differs');
+    let prefixRefused=false;try{await rebuildCheckpointPrefix(entries,undefined,context,prefix.text+' ',trust);}catch(error){prefixRefused=error instanceof CheckpointPrefixError;}
+    if(!prefixRefused)throw new Error('installed altered prefix accepted');
     const checkpoint=generateKeyPairSync('ed25519'),anchor=generateKeyPairSync('ed25519');
     const checkpointTrust={checkpointKey:address(checkpoint),anchorKey:address(anchor),principalKeys:policy.principal,guardId:trust.guardId,cluster:trust.cluster};
     const receipts=[{bytes:10000,entries:context.seq,firstSeq:0,nextSeq:context.seq,head:context.head,sha256:hash('fixture archive metadata')}];

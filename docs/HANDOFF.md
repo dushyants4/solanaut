@@ -169,6 +169,11 @@ Keep every selected test, seed policy, mutation floor, actual completion check,
 supervisor limit and product/readiness target unchanged. This is a proposal,
 not an applied exception. Human acceptance is required before this wait changes.
 
+Hosted 0c61fa3 run 37662281431 confirms the same unchanged-wait failure in all
+three runtime jobs and the AST job. Maintained faults pass. Exact logs and revision
+metadata: `evals/sdk/checkpoint-publication/hosted-0c61fa3/`. The proposal remains
+pending; neither the increased population nor successful local timing is approval.
+
 Codex appends; the human answers in place. Open at the transfer:
 
 | # | Asked | For | Request |
@@ -198,6 +203,23 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 | O1 | AGENTS.md, build convention | Replace `TypeScript run natively by Node 26, with no build step; ESM;` with `TypeScript run natively by Node 26 for development; a release-only build emits JavaScript and declarations for npm consumers; ESM;` | Explicitly approved by the human in the Solanaut 1.0 mission. | no |
 
 ## 7. Codex's log
+
+0c61fa3 hosted 37662281431 completes with four failures, all the unchanged real
+baseline wait (runtime matrix and AST); other jobs, including maintained faults,
+pass. Full logs/revision metadata retained with publication receipt. H11 remains
+pending. Prefix rebuild local ordinary/AST/type/fault evidence is ready for sync;
+no hosted qualification or complete recovery claim.
+
+Validated prefix rebuild ordinary/AST integration and unchanged floors pass;
+source/installed/recovery evidence is retained at `evals/sdk/checkpoint-rebuild.md`,
+CLAIMS S70. Typecheck passes. Final close/private sync follows. Publication hosted
+failures remain open; no complete authenticated recovery or release clearance.
+
+0c61fa3 publication is privately pushed with all local close gates passing.
+Hosted 37662281431 reports runtime/AST failures and remains in progress; exact
+completed logs are owed. Prefix rebuilding has focused and source-fault evidence,
+with full ordinary/AST integration following. It replays ticks/resets into fresh
+Keel, but does not complete authenticated guard restore or bounded retention.
 
 Owned publication passes ordinary/AST integration and unchanged coverage floors;
 source/installed/storage/crash evidence is retained at

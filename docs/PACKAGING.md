@@ -1,6 +1,6 @@
 # PACKAGING.md — private SDK candidate
 
-> **Draft 12** · 2026-10-07 · owner: integrator · for: developers and release reviewers.
+> **Draft 13** · 2026-10-07 · owner: integrator · for: developers and release reviewers.
 > This is release preparation, not a stable release. Register: `kb/DOCUMENTS.md`.
 
 Compiled internal prefix/state components have installed-tarball evidence
@@ -79,3 +79,9 @@ files and kernel file ownership, verifies replacement/predecessor bytes and reje
 a copied store's ownership claim. Internal module inspection creates no stable root
 API promise. See `../evals/sdk/checkpoint-publication.md`; a supported installed
 signer service and operational recovery remain owed.
+
+The compiled internal prefix rebuilder is exercised in the external tarball
+consumer battery. Its next decisions are compared with a fresh full-stream Keel
+controller, and altered prefix bytes refuse. This does not export an installed
+recovery service or qualify its startup/memory targets; see
+`../evals/sdk/checkpoint-rebuild.md`.

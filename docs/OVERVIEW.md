@@ -1,6 +1,6 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 30** · 2026-10-07 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 31** · 2026-10-07 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
@@ -246,3 +246,9 @@ ownership and unchanged record boundaries are required through publication. Sync
 atomic replacement retains the previous authenticated envelope; storage failure
 fails the writer (`evals/sdk/checkpoint-publication.md`). Cadence, authenticated
 restore/fallback and bounded retention remain separate unfinished paths.
+
+The internal prefix rebuilder derives expected events through full history replay,
+requires exact supplied bytes and feeds a fresh Keel controller ticks and resets.
+Its next decisions are compared with full-stream controller replay in component
+tests (`evals/sdk/checkpoint-rebuild.md`). Full authenticated guard restore and
+bounded replay remain unfinished; no stored controller numbers are loaded.

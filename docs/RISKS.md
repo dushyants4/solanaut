@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.47** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.48** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 Bundle preparation captures a common history/endpoint and external authority pins.
@@ -261,3 +261,11 @@ still trusts the signer host and local filesystem. Cadence, restore/fallback,
 bounded retention, operator drills and power-loss evidence remain open. Process
 SIGKILL is not power-loss qualification. Hosted oldest-runtime baseline timing
 continues to fail; H11 remains pending and the wait remains unchanged.
+
+Internal prefix rebuilding now requires full-history-derived canonical events and
+replays them into fresh Keel (`evals/sdk/checkpoint-rebuild.md`). It cannot replace
+checkpoint signature, archive and external anchor verification. It retains full
+history and does not establish restart or bounded-memory targets. Hosted 0c61fa3
+runtime/AST jobs fail the unchanged real baseline wait, confirmed by completed
+exact logs; maintained faults pass. Local component passes do not clear those
+failures. H11 remains pending. No wait or floor is changed.

@@ -40,6 +40,13 @@ SIGTERM handler prevented timely containment with shared isolation; that attempt
 was explicitly killed and restored. The final campaign uses SIGKILL at its existing
 child deadline and gives that trial no test-completion credit.
 
+Hosted 0c61fa3 run 37662281431 completes with four failing jobs: Node 22.18.0,
+24, 26.7.0 and AST. Each failure is the actual staged baseline remaining incomplete
+at its unchanged harness wait. The other nine jobs, including maintained faults,
+pass. Full logs and exact revision/job metadata are retained in
+`checkpoint-publication/hosted-0c61fa3/`. H11 remains pending. Local passes do not
+qualify the hosted failure.
+
 Commands: `node --test packages/sdk/test/checkpoint-publication.test.ts`;
 `node evals/sdk/checkpoint-publication-faults.ts`; `npm run release:prepare`;
 `node --test evals/packaging/packed-sdk.test.ts`; `node evals/packaging/faults.ts`;

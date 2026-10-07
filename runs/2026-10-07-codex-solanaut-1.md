@@ -8,6 +8,20 @@ work. This dated continuation retains the earlier session's full record at
 
 ## Did
 
+Prefix rebuild ordinary/serial AST integration passes 615 cases, native typecheck
+exits zero and all unchanged coverage floors pass. Prefix measures 46/47 statements
+and 42/43 branches; exact inputs retained. CLAIMS S70 records scoped local evidence.
+Publication hosted run is still in progress with runtime/AST failures reported;
+completed exact logs remain owed. Preparing close/private sync, without qualifying
+the hosted failure or full SNP-5/6.
+
+0c61fa3 owned publication is privately pushed; all ten local close gates pass.
+Hosted run 37662281431 is in progress; no hosted clearance inferred. Continued
+with internal validated-prefix rebuilding: full replay establishes expected
+bytes, then fresh Keel consumes ticks/resets and checks recorded postures. Initial
+missing-function cases and planted omissions are retained. Root API/signing surface
+unchanged; full snapshot recovery remains owed.
+
 Publication ordinary/serial AST integration passes 611 cases, typecheck exits
 zero and unchanged floors pass: publication 81/88 statements, 51/59 branches;
 record 140/145 statements, 75/81 branches. Exact AST source hashes retained.
@@ -366,6 +380,22 @@ record satisfies the close workflow's current-day record requirement. Earlier ca
 implementation, documentation and receipt changes remain in the continuing session record.
 
 ## Found
+
+Prefix pre-sync close passes nine gates and refuses the uncommitted candidate.
+Publication 0c61fa3 hosted 37662281431 completes with four failures, all actual
+staged baselines incomplete at the unchanged harness wait (runtime matrix and
+AST). Nine other jobs pass, including maintained faults. Exact full logs/revision
+metadata retained at `evals/sdk/checkpoint-publication/hosted-0c61fa3/`. H11 remains
+pending; no inferred permission, wait relaxation or hosted clearance.
+
+Prefix rebuilding begins with missing-function failures and installed older-artefact
+refusal. An enlarged-definition assertion fails before mutation qualification;
+the fresh definition now captures the expanded test population. Source fault
+campaign passes twenty-two faults and restores, including canonical-prefix,
+reset, posture, event-count and immutable-return omissions. Installed ten cases
+and thirty-two compiled faults, plus fifteen recovery/driver faults, pass with
+restoration. Actual baseline contains 321 cases; no score inferred. The full
+ordinary/AST check is underway. Existing waits and floors remain unchanged.
 
 Publication pre-sync close passes nine gates and refuses the uncommitted candidate.
 This is retained as the expected clean-tree refusal, not release clearance.

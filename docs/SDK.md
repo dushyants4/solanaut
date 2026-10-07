@@ -1,6 +1,6 @@
 # SDK reference — private candidate
 
-> **Draft 10** · 2026-10-07 · owner: integrator · for: developers integrating the candidate.
+> **Draft 11** · 2026-10-07 · owner: integrator · for: developers integrating the candidate.
 > Register: `kb/DOCUMENTS.md`. This describes current exports, not a stable-release promise.
 
 Envelope, bundle, prefix and admission-state preparation remain internal. Installed compiled tests
@@ -146,3 +146,9 @@ and policy trust pins, actual retained archive paths and an explicit byte ceilin
 It preserves authenticated predecessors and refuses stale or replay-inconsistent
 state. Complete supported maintenance/recovery remains release work. See
 `../evals/sdk/checkpoint-publication.md` for component evidence and limitations.
+
+Internal prefix rebuilding returns a fresh runtime controller only after full
+history validates the exact supplied tick/reset prefix. It is not a stable root
+export or a complete restore API. Signed history still requires external policy
+trust pins; a recovery caller also needs authenticated envelope/archive/anchor
+validation. `../evals/sdk/checkpoint-rebuild.md` records the component boundary.

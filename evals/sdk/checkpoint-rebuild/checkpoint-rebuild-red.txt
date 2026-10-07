@@ -1,0 +1,63 @@
+✔ SNP-3/5: genesis has canonical empty events and a payload digest (6.200741ms)
+✖ SNP-5: a rebuilt controller agrees with full-history ticks and resets on its next decision (35.443923ms)
+✖ SNP-5: reordered, missing, altered or injected controller events cannot rebuild (13.22481ms)
+✖ SNP-5: rebuild uses captured history, endpoint and prefix through asynchronous validation (10.670805ms)
+✔ SNP-3/5: mixed history retains every tick and reset, with source sequence/hash (12.715538ms)
+✔ SNP-3/5: stale, missing, reordered and tampered history cannot produce a prefix (10.258022ms)
+✔ SNP-3/5: resealed dishonest telemetry still requires full decision replay (0.936447ms)
+✔ SNP-3/5: malformed inputs cannot inject controller events (1.180769ms)
+✔ SNP-3/5: wrong policy and caller serialization methods cannot bypass validation (5.972905ms)
+✔ SNP-3/5: async replay uses a captured history and endpoint (16.107262ms)
+✔ SNP-3/5: fresh Keel reproduces prefix postures across reset boundaries (11.936267ms)
+✔ SNP-3/5: signed policy changes require externally pinned policy trust (8.38662ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 9
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 269.743628
+
+✖ failing tests:
+
+test at packages/sdk/test/checkpoint-prefix.test.ts:28:1
+✖ SNP-5: a rebuilt controller agrees with full-history ticks and resets on its next decision (35.443923ms)
+  TypeError: Function.prototype.apply was called on undefined, which is undefined and not a function
+      at file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-prefix.test.ts:22:196
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-prefix.test.ts:31:17)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/checkpoint-prefix.test.ts:35:1
+✖ SNP-5: reordered, missing, altered or injected controller events cannot rebuild (13.22481ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   name: 'TypeError'
+  -   code: 'checkpoint-prefix',
+  -   name: 'CheckpointPrefixError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-prefix.test.ts:37:218)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: TypeError: Function.prototype.apply was called on undefined, which is undefined and not a function
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-prefix.test.ts:22:196
+        at async waitForActual (node:assert:615:5)
+        at async strict.rejects (node:assert:738:25)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-prefix.test.ts:37:218)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: { name: 'CheckpointPrefixError', code: 'checkpoint-prefix' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint-prefix.test.ts:40:1
+✖ SNP-5: rebuild uses captured history, endpoint and prefix through asynchronous validation (10.670805ms)
+  TypeError: Function.prototype.apply was called on undefined, which is undefined and not a function
+      at file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-prefix.test.ts:22:196
