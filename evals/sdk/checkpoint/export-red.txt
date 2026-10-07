@@ -1,0 +1,44 @@
+✔ SNP-3: canonical checkpoint and prefix domains bind every descriptor field (10.074061ms)
+✔ SNP-3: pinned signatures and independently computed digests return immutable metadata (6.635857ms)
+✔ SNP-3: a foreign checkpoint signature is denied under the external pin (3.604886ms)
+✔ SNP-3: checkpoint authority cannot share a principal or anchor role (2.832462ms)
+✔ SNP-3: foreign guard, cluster or checkpoint pin is denied (4.221463ms)
+✔ SNP-3: a trusted signature cannot authorise a false checkpoint authority descriptor (2.444304ms)
+✔ SNP-3: independently observed payload digest mismatches deny even valid signatures (3.838605ms)
+✔ SNP-3: altered policy, sequence, head or payload bindings cannot reuse signatures (15.747366ms)
+✔ SNP-3: snapshot and prefix signatures are not interchangeable (15.929456ms)
+✔ SNP-3: missing, malformed and noncanonical signatures deny (8.944266ms)
+✔ SNP-3: unsupported formats/profiles and malformed descriptor values deny (4.682578ms)
+✔ SNP-3: genesis and safe sequence/version boundaries are explicit (10.351421ms)
+✔ SNP-3: malformed trust and observed digest records cannot authorise bindings (3.883629ms)
+✔ SNP-3: caller metadata cannot mutate captured external pins or observed digests (4.015248ms)
+✔ SNP-3: malformed JSON and throwing accessors produce typed refusal (93.957907ms)
+✔ SNP-3: returned metadata does not retain mutable caller references (3.494627ms)
+✖ SNP-3: candidate SDK entry exports the binding API and typed refusal (148.679719ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 16
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 679.488187
+
+✖ failing tests:
+
+test at packages/sdk/test/checkpoint.test.ts:96:1
+✖ SNP-3: candidate SDK entry exports the binding API and typed refusal (148.679719ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint.test.ts:98:10)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

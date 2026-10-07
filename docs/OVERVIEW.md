@@ -1,10 +1,16 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 23** · 2026-10-06 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 24** · 2026-10-06 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
+
+The new `checkpoint.ts` authenticates canonical checkpoint and prefix bindings
+against external authority pins and independently computed opaque payload digests
+(`evals/sdk/checkpoint.md`). Its source and packed-consumer component pass.
+It is not a state-restoration path.
+Atomic publication, authenticated prefix replay and full checkpoint recovery remain owed.
 
 `npm run test:coverage` runs explicit, in-memory AST instrumentation over SDK and signer
 source, checks complete counter maps and enforces the unchanged quality floors. Unimported

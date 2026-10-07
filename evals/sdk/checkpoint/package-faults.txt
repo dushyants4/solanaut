@@ -1,0 +1,10 @@
+
+> test:package:faults
+> node evals/packaging/faults.ts
+
+caught package fault: checkpoint-export
+caught package fault: export
+caught package fault: types
+caught package fault: dependency
+caught package fault: cli
+All package faults caught; restored candidate passes

@@ -1,0 +1,46 @@
+✔ CI-2: failed or missing test-process completion cannot qualify coverage (2.130646ms)
+✔ CI-2: exact statement and branch floors pass without rounding (2.513309ms)
+✖ CI-2: a critical branch deficit fails even when aggregate totals pass (1.697819ms)
+✔ CI-2: missing, extra and duplicate files cannot disappear from coverage (0.500354ms)
+✔ CI-2: malformed and empty execution counts fail closed (0.635105ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 260.801418
+
+✖ failing tests:
+
+test at evals/ci/coverage.test.ts:21:1
+✖ CI-2: a critical branch deficit fails even when aggregate totals pass (1.697819ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /checkpoint.ts/. Input:
+  
+  'Error: packages/sdk/src/: branch coverage below floor'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/coverage.test.ts:28:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: packages/sdk/src/: branch coverage below floor
+        at requireCoverage (file:///home/dashy/Projects/Solanaut/evals/ci/coverage.ts:25:29)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/coverage.test.ts:28:21
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/coverage.test.ts:28:10)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /checkpoint.ts/,
+    operator: 'throws',
+    diff: 'simple'
+  }

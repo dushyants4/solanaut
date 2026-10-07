@@ -1,0 +1,285 @@
+✖ SNP-3: canonical checkpoint and prefix domains bind every descriptor field (8.980494ms)
+✖ SNP-3: pinned signatures and independently computed digests return immutable metadata (4.24595ms)
+✖ SNP-3: a foreign checkpoint signature is denied under the external pin (2.375723ms)
+✖ SNP-3: checkpoint authority cannot share a principal or anchor role (1.876475ms)
+✖ SNP-3: foreign guard, cluster or checkpoint pin is denied (1.572115ms)
+✖ SNP-3: independently observed payload digest mismatches deny even valid signatures (1.569091ms)
+✖ SNP-3: altered policy, sequence, head or payload bindings cannot reuse signatures (1.559267ms)
+✖ SNP-3: snapshot and prefix signatures are not interchangeable (1.583794ms)
+✖ SNP-3: missing, malformed and noncanonical signatures deny (1.808074ms)
+✖ SNP-3: unsupported formats/profiles and malformed descriptor values deny (2.029996ms)
+✖ SNP-3: genesis and safe sequence/version boundaries are explicit (2.189247ms)
+✖ SNP-3: malformed trust and observed digest records cannot authorise bindings (2.281904ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 0
+ℹ fail 12
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 299.681433
+
+✖ failing tests:
+
+test at packages/sdk/test/checkpoint.test.ts:18:1
+✖ SNP-3: canonical checkpoint and prefix domains bind every descriptor field (8.980494ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + ''
+  - 'solanaut checkpoint\n' +
+  -   '{"archiveDigest":"940ba41738d18c46915409ad12523c760601aea71e3e51c192705231ca897ee6","checkpointKey":"APrt7sHSmMSBfURK8uDCqoADXyRxwZ4AkUwUGuHLEysg","cluster":"localnet","format":1,"guardId":"checkpoint-fixture","head":"9f2e6d33a3717ee826353a404ba4618d1aeeb6879ad7936bce8ed5f46814924d","policyHash":"823412d1eacb67956220e532959f0104603057c88704863ca38e7cd188fda812","policyVersion":2,"prefixDigest":"3f8df2e708bf6e97188ad1de95c950b8f81566fe7167a0ce8858bfd4dd722903","profile":{"decoder":"message-v1","keel":"1.0.1","module":"8f642684bf1dccbdaed1e35e0092e11d0cfc309c0491b1c79f6472616b9c7190","record":1,"rules":"policy-v1-latch-c","sensor":"sensor-v1","wasm":"834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8"},"seq":42,"stateDigest":"f85998783d81fb7a9268418640063e9c50d7ea6e9de1cf3ed61984a16a4c19b6"}'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint.test.ts:20:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: 'solanaut checkpoint\n{"archiveDigest":"940ba41738d18c46915409ad12523c760601aea71e3e51c192705231ca897ee6","checkpointKey":"APrt7sHSmMSBfURK8uDCqoADXyRxwZ4AkUwUGuHLEysg","cluster":"localnet","format":1,"guardId":"checkpoint-fixture","head":"9f2e6d33a3717ee826353a404ba4618d1aeeb6879ad7936bce8ed5f46814924d","policyHash":"823412d1eacb67956220e532959f0104603057c88704863ca38e7cd188fda812","policyVersion":2,"prefixDigest":"3f8df2e708bf6e97188ad1de95c950b8f81566fe7167a0ce8858bfd4dd722903","profile":{"decoder":"message-v1","keel":"1.0.1","module":"8f642684bf1dccbdaed1e35e0092e11d0cfc309c0491b1c79f6472616b9c7190","record":1,"rules":"policy-v1-latch-c","sensor":"sensor-v1","wasm":"834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8"},"seq":42,"stateDigest":"f85998783d81fb7a9268418640063e9c50d7ea6e9de1cf3ed61984a16a4c19b6"}',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint.test.ts:25:1
+✖ SNP-3: pinned signatures and independently computed digests return immutable metadata (4.24595ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + undefined
+  - {
+  -   archiveDigest: '940ba41738d18c46915409ad12523c760601aea71e3e51c192705231ca897ee6',
+  -   checkpointKey: '48MygiY2nEtgy726GgqHViCJBTQAWtqmYQ84UVuLKVb4',
+  -   cluster: 'localnet',
+  -   format: 1,
+  -   guardId: 'checkpoint-fixture',
+  -   head: '9f2e6d33a3717ee826353a404ba4618d1aeeb6879ad7936bce8ed5f46814924d',
+  -   policyHash: '823412d1eacb67956220e532959f0104603057c88704863ca38e7cd188fda812',
+  -   policyVersion: 2,
+  -   prefixDigest: '3f8df2e708bf6e97188ad1de95c950b8f81566fe7167a0ce8858bfd4dd722903',
+  -   profile: {
+  -     decoder: 'message-v1',
+  -     keel: '1.0.1',
+  -     module: '8f642684bf1dccbdaed1e35e0092e11d0cfc309c0491b1c79f6472616b9c7190',
+  -     record: 1,
+  -     rules: 'policy-v1-latch-c',
+  -     sensor: 'sensor-v1',
+  -     wasm: '834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8'
+  -   },
+  -   seq: 42,
+  -   stateDigest: 'f85998783d81fb7a9268418640063e9c50d7ea6e9de1cf3ed61984a16a4c19b6'
+  - }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint.test.ts:27:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { format: 1, checkpointKey: '48MygiY2nEtgy726GgqHViCJBTQAWtqmYQ84UVuLKVb4', guardId: 'checkpoint-fixture', cluster: 'localnet', seq: 42, head: '9f2e6d33a3717ee826353a404ba4618d1aeeb6879ad7936bce8ed5f46814924d', policyVersion: 2, policyHash: '823412d1eacb67956220e532959f0104603057c88704863ca38e7cd188fda812', profile: { record: 1, rules: 'policy-v1-latch-c', decoder: 'message-v1', sensor: 'sensor-v1', keel: '1.0.1', wasm: '834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8', module: '8f642684bf1dccbdaed1e35e0092e11d0cfc309c0491b1c79f6472616b9c7190' }, archiveDigest: '940ba41738d18c46915409ad12523c760601aea71e3e51c192705231ca897ee6', stateDigest: 'f85998783d81fb7a9268418640063e9c50d7ea6e9de1cf3ed61984a16a4c19b6', prefixDigest: '3f8df2e708bf6e97188ad1de95c950b8f81566fe7167a0ce8858bfd4dd722903' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint.test.ts:29:1
+✖ SNP-3: a foreign checkpoint signature is denied under the external pin (2.375723ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (CheckpointBindingError).
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint.test.ts:30:31)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint.test.ts:32:1
+✖ SNP-3: checkpoint authority cannot share a principal or anchor role (1.876475ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (CheckpointBindingError).
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint.test.ts:34:138)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint.test.ts:36:1
+✖ SNP-3: foreign guard, cluster or checkpoint pin is denied (1.572115ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (CheckpointBindingError).
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint.test.ts:38:164)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint.test.ts:40:1
+✖ SNP-3: independently observed payload digest mismatches deny even valid signatures (1.569091ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (CheckpointBindingError).
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint.test.ts:42:89)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint.test.ts:44:1
+✖ SNP-3: altered policy, sequence, head or payload bindings cannot reuse signatures (1.559267ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (CheckpointBindingError).
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint.test.ts:46:229)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint.test.ts:48:1
+✖ SNP-3: snapshot and prefix signatures are not interchangeable (1.583794ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (CheckpointBindingError).
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint.test.ts:50:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint.test.ts:53:1
+✖ SNP-3: missing, malformed and noncanonical signatures deny (1.808074ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (CheckpointBindingError).
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint.test.ts:55:158)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint.test.ts:57:1
+✖ SNP-3: unsupported formats/profiles and malformed descriptor values deny (2.029996ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (CheckpointBindingError).
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint.test.ts:59:567)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint.test.ts:62:1
+✖ SNP-3: genesis and safe sequence/version boundaries are explicit (2.189247ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + undefined
+  - {
+  -   archiveDigest: '940ba41738d18c46915409ad12523c760601aea71e3e51c192705231ca897ee6',
+  -   checkpointKey: 'FJ5QRJRrQJAd2qMUu1KVk1wuMSHHDDJSQQwf8seXYLPt',
+  -   cluster: 'localnet',
+  -   format: 1,
+  -   guardId: 'checkpoint-fixture',
+  -   head: '',
+  -   policyHash: '823412d1eacb67956220e532959f0104603057c88704863ca38e7cd188fda812',
+  -   policyVersion: 2,
+  -   prefixDigest: '3f8df2e708bf6e97188ad1de95c950b8f81566fe7167a0ce8858bfd4dd722903',
+  -   profile: {
+  -     decoder: 'message-v1',
+  -     keel: '1.0.1',
+  -     module: '8f642684bf1dccbdaed1e35e0092e11d0cfc309c0491b1c79f6472616b9c7190',
+  -     record: 1,
+  -     rules: 'policy-v1-latch-c',
+  -     sensor: 'sensor-v1',
+  -     wasm: '834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8'
+  -   },
+  -   seq: 0,
+  -   stateDigest: 'f85998783d81fb7a9268418640063e9c50d7ea6e9de1cf3ed61984a16a4c19b6'
+  - }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint.test.ts:64:158)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { format: 1, checkpointKey: 'FJ5QRJRrQJAd2qMUu1KVk1wuMSHHDDJSQQwf8seXYLPt', guardId: 'checkpoint-fixture', cluster: 'localnet', seq: 0, head: '', policyVersion: 2, policyHash: '823412d1eacb67956220e532959f0104603057c88704863ca38e7cd188fda812', profile: { record: 1, rules: 'policy-v1-latch-c', decoder: 'message-v1', sensor: 'sensor-v1', keel: '1.0.1', wasm: '834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8', module: '8f642684bf1dccbdaed1e35e0092e11d0cfc309c0491b1c79f6472616b9c7190' }, archiveDigest: '940ba41738d18c46915409ad12523c760601aea71e3e51c192705231ca897ee6', stateDigest: 'f85998783d81fb7a9268418640063e9c50d7ea6e9de1cf3ed61984a16a4c19b6', prefixDigest: '3f8df2e708bf6e97188ad1de95c950b8f81566fe7167a0ce8858bfd4dd722903' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint.test.ts:68:1
+✖ SNP-3: malformed trust and observed digest records cannot authorise bindings (2.281904ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (CheckpointBindingError).
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint.test.ts:70:259)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }

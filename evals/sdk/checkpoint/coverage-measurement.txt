@@ -1,0 +1,720 @@
+
+> test:coverage
+> node evals/ci/coverage-run.ts --serial
+
+(node:518551) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ the cockpit binds to 127.0.0.1 only, and refuses a request for any other host name (87.655889ms)
+✔ /api/state is the record, inspected fresh on every request (83.727098ms)
+✔ the cockpit writes nothing: every method but GET is refused, and unknown paths are not found (16.153279ms)
+✔ the page is served with a strict content security policy, its script from its own origin (12.42462ms)
+✔ /api/chain reads the Squads limit remaining, names the program's error on a refusal, and every transaction read opts in to v1 (192.085821ms)
+✔ without a chain configured, /api/chain says so instead of guessing (18.636561ms)
+(node:518660) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ SIG-4: clock anchors wall time once and advances only with monotonic time (2.582606ms)
+(node:518685) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ LIF-6/SIG-7: recovery continues after an expired admission and reconciles a later sent attempt (78.634765ms)
+✔ LIF-6: recovery exposes provider loss and a later pass completes only safe pre-send work (8.965641ms)
+✔ LIF-6/SIG-7: expired signed unsent recovery still reads chain evidence without sending (6.290103ms)
+✔ LIF-6/SIG-8: recovery reports failed response persistence and never resends on its next pass (5.361786ms)
+✔ SIG-3/4: caller report deadline bounds the chain read and refuses a late outcome (7.802962ms)
+✔ LIF-3/SIG-3: same concurrent and completed request signs/sends only once; expired retry returns response (6.0386ms)
+✔ LIF-3/SIG-3: deadlines and changed payloads refuse before signing (4.595459ms)
+✔ LIF-3: restart after admission can redeem/sign; restart after redemption cannot sign again (9.245547ms)
+✔ LIF-3: signed but unsent restart sends once; send-started restart never resends (12.567105ms)
+✔ LIF-3/SIG-7: caller hint cannot report outcome; only chain evidence changes reservation (4.810806ms)
+✔ LIF-3: unknown or changed IDs fail closed; malformed base64 is not decoded leniently (1.034182ms)
+✔ LIF-3: send timeout and contradictory signature retain uncertain response; retry never sends (8.038995ms)
+✔ LIF-3: lost persisted response after successful send is recovered without another send (6.577328ms)
+✔ LIF-3: failed redeem persistence never crosses its next side-effect boundary (1.933374ms)
+✔ LIF-3: failed signed persistence never crosses its next side-effect boundary (2.561475ms)
+✔ LIF-3: failed send-started persistence never crosses its next side-effect boundary (3.569926ms)
+✔ LIF-3: deadline reached while signing persists bytes but never starts a send (3.698077ms)
+(node:518755) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ LIF-4: status starts before reading, and completed retries preserve the first snapshot after deadline (28.919481ms)
+✔ LIF-4: concurrent retries coalesce and differing methods refuse before actions (29.736133ms)
+✔ SIG-4/LIF-4: report replies reflect recorded host evidence and a retry never repeats the hint (9.377844ms)
+✔ SIG-3: a late status read cannot become a successful new answer (2.321908ms)
+✔ LIF-4: a control request cannot steal a concurrent proposal's identity (1.438125ms)
+✔ SIG-3/LIF-4: expired or overlong new control requests persist a denial and perform no work (2.616605ms)
+✔ LIF-4/SIG-3: report hints use the request deadline and failures persist fixed answers (1.369542ms)
+✔ LIF-4: pending control request resumes on restart; stored response then prevents re-execution (2.775209ms)
+✔ LIF-4: control/proposal identity reuse refuses before calling the proposal executor (1.379595ms)
+✔ SIG-2/LIF-4: unknown methods never dispatch, and response write failure throws and closes admission (2.032006ms)
+✔ LIF-5: pre-admission proposal failure persists a fixed refusal and binds the exact payload (2.068255ms)
+✔ LIF-5: a refusal start interrupted before its response completes conservatively without new proposal work (2.965283ms)
+✔ LIF-5: an error after a recorded admission cannot become a non-admission refusal (1.770485ms)
+✔ LIF-5/SIG-3: a proposal expiring before admission keeps its refusal when retried with a fresh deadline (1.304816ms)
+✔ LIF-5: the real executor's malformed-message and RPC failures reach durable refusal history (2.475604ms)
+(node:518863) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ POL-4/LIF-6: admitted history survives a signed policy upgrade without old-policy sends (128.337807ms)
+✔ POL-4/LIF-6: signed history survives a signed policy upgrade without old-policy sends (22.690111ms)
+✔ POL-4/LIF-6: started history survives a signed policy upgrade without old-policy sends (20.264054ms)
+✔ LIF-7/SIG-7: final chain evidence prevents sending restored signed unsent bytes (6.960197ms)
+(node:518995) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ RPC-1: pins devnet identity and validates observed blockhash/lifetime with confirmed context (49.356095ms)
+✔ RPC-1: cross-cluster substitution denies; blockhash mismatch or invalidity denies (6.232685ms)
+✔ RPC-2: malformed and non-integral heights or context cannot become authority (5.906956ms)
+✔ RPC-2: response ID/version, missing result, and oversized body refuse (4.614121ms)
+✔ RPC-3: one-provider outage permits conservative reads; total outage reports degraded (17.283222ms)
+✔ RPC-3: stale or conflicting observations cannot authorize a new proposal (9.680882ms)
+✔ RPC-4: chain outcome requires agreeing committed evidence; missing/stale/conflicting stays unresolved (42.891418ms)
+✔ RPC-4: failed outcome needs matching committed failure from both providers (1.298781ms)
+✔ RPC-2/SIG-9: rate-limited reads back off, but send has exactly one attempt with node retries disabled (4.141355ms)
+✔ RPC-2: hung reads end at their deadline and expired calls make no network request (34.271369ms)
+✔ RPC-2: a standalone process keeps its owned request deadline alive (272.099463ms)
+✔ RPC-1/2: unsafe endpoint sets and invalid deadlines cannot configure a provider (1.293938ms)
+✔ RPC-2: missing bodies and rate limits beyond the request deadline deny reads (1.220607ms)
+✔ RPC-1/2: malformed blockhashes and an expired lifetime deny observation (4.617833ms)
+✔ RPC-3: provider slot rollback cannot replace previously observed context (2.226655ms)
+✔ RPC-4: malformed signature status arrays and future or invalid committed outcomes stay unresolved (6.456124ms)
+✔ RPC-2: a response delivered after the host deadline cannot become authoritative (0.745723ms)
+(node:519264) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ SIG-1/2/10: same-user startup wires signed guard, clock, socket and durable retry (119.328755ms)
+✔ POL-2/SIG-8: startup requires valid authorization and existing history, leaving ownership reusable on refusal (20.226937ms)
+✔ SIG-8: protected history permissions and symlink paths are checked before serving (11.537747ms)
+✔ SIG-8: ownership is acquired before serving and released after a socket-start failure (41.431806ms)
+✔ SIG-8/LIF-6: startup exposes incomplete recovery rather than discarding pending history (29.498024ms)
+✔ SIG-8: close drains dispatched send before releasing ownership and is idempotent (41.674624ms)
+✔ SIG-8: close also drains host recovery and refuses recovery after stop (36.05229ms)
+✔ CLT-1/SIG-2: SDK sending client consumes actual service replies and durable proposal retries (36.235123ms)
+(node:519385) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ SIG-2: only propose/report/status dispatch, with one bounded response and request identity (17.927726ms)
+✔ SIG-10: socket permissions restrict its group and parent must be protected (2.126254ms)
+✔ SIG-2/3: malformed JSON, unknown fields, bad IDs/deadlines and multiple frames never dispatch (21.680818ms)
+✔ SIG-2: oversized or invalid UTF-8 frames refuse before dispatch (2.664082ms)
+✔ SIG-3: idle and unfinished requests end within the configured bounded read timeout (62.361799ms)
+✔ SIG-1: handler errors return a fixed code without exposing internal exception text (2.092641ms)
+✔ SIG-10: existing non-socket and symlink paths are never removed (1.260005ms)
+✔ SIG-10: a live listener cannot be replaced (2.526285ms)
+✔ SIG-3: trickling bytes cannot extend the absolute connection deadline (42.011052ms)
+✔ SIG-1/2: oversized or unserialisable handler responses become fixed internal errors (2.983934ms)
+✔ SIG-8/10: an abandoned socket is recovered after its process exits (57.599242ms)
+✔ SIG-2/3: clients holding their half open cannot exhaust completed connection slots (40.319583ms)
+✔ SIG-2: a proposal exceeding the core's message bound is an invalid frame before dispatch (3.423347ms)
+✔ SIG-3: invalid read timeout configuration refuses startup (1.001883ms)
+✔ SIG-2: malformed report references are protocol refusals without handler calls (3.186068ms)
+✔ SIG-2/3: unfinished clients saturate the bounded slots and the next client receives busy (20.911817ms)
+✔ CI-1: exact inventory accepts every maintained campaign and rejects omission/addition/duplication (11.304352ms)
+✔ CI-1: all campaigns run sequentially; failure/null exit fails aggregation without hiding other findings (1.885514ms)
+✔ CI-1: changed source stops further mutation, reports skipped work and fails the gate (0.348792ms)
+(node:519453) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ CI-2 SDK concurrency gate rejects reduced budget and incorrect admission/outcome totals (1.32868ms)
+✔ CI-2 SDK concurrency gate rejects missing evidence, deduplicated work and wrong refusal rules (0.320439ms)
+✔ CI-2 SDK concurrency gate accepts complete bounded admission evidence (0.164007ms)
+{"proposed":1000,"admitted":7,"denied":993,"recorded":1000,"destinations":1000,"identities":1000,"reserved":"7000000","deniedRules":["over-window-cap"]}
+✔ CI-2 SDK concurrency: a thousand queued callers admit exactly the pending-window bound (726.470188ms)
+✔ CI-2: explicit hook records real SDK execution with statement and branch maps (509.907312ms)
+(node:519694) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ CI-2: AST calibration counts separate statements on one line and both branch arms (128.124458ms)
+✔ CI-2: native type stripping preserves runtime behaviour and leaves unused code uncovered (11.577053ms)
+(node:519719) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ CI-2: merging preserves executed counts and includes unimported source with zero counters (109.886364ms)
+✔ CI-2: missing, foreign and incompatible counter evidence is refused (7.240735ms)
+✔ CI-2: fabricated negative, fractional, unsafe and malformed branch counters fail (7.251053ms)
+✔ CI-2: default coverage execution preserves Node's test scheduling (1.945764ms)
+✔ CI-2: serial coverage requests one test process without filtering the population (0.289461ms)
+✔ CI-2: unsupported, duplicated and filtering coverage options refuse (0.538386ms)
+✔ CI-2: failed or missing test-process completion cannot qualify coverage (2.614212ms)
+✔ CI-2: exact statement and branch floors pass without rounding (1.363017ms)
+✔ CI-2: a critical branch deficit fails even when aggregate totals pass (0.783308ms)
+✔ CI-2: missing, extra and duplicate files cannot disappear from coverage (0.474087ms)
+✔ CI-2: malformed and empty execution counts fail closed (24.205947ms)
+(node:519875) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ CI-2: real wire, signatures and accounts compare in all supported formats (63.823035ms)
+✔ CI-2: mismatched bytes, roles, quantities and names cannot evade comparison (4.544792ms)
+✔ CI-2: client prefix decoding requires a named guard refusal for trailing data (3.346045ms)
+(node:519994) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ CI-2: the frozen corpus has distinct transactions and refuses any changed byte (48.599331ms)
+✔ CI-2: matching bytes do not excuse missing framing or duplicate identities (0.830331ms)
+✔ CI-2: pinned complete real-transaction differential populations pass (1.981938ms)
+✔ CI-2: unsuccessful or interrupted differential processes fail (2.602002ms)
+✔ CI-2: corpus substitutions and invalid pins cannot qualify (15.699048ms)
+✔ CI-2: missing transactions, formats and supported program evidence fail (0.80655ms)
+✔ CI-2: incomplete execution, signature evidence and any mismatch fail (7.589352ms)
+✔ CI-2: fabricated, duplicate aggregate and invalid strict-refusal counts fail (0.591037ms)
+fuzz starting: seed=376652118; requested=1000000
+fuzz starting: seed=-1112449585; requested=1000000
+fuzz starting: seed=1290166985; requested=1000000
+fuzz starting: seed=-666947034; requested=1000000
+fuzz starting: seed=55947411; requested=1000000
+fuzz starting: seed=45586485; requested=1000000
+fuzz starting: seed=-687965537; requested=1000000
+fuzz starting: seed=376169810; requested=1000000
+fuzz completed: seed=376169810; inputs=1000000; accepted=100; refused=999900
+✔ CI-2 fuzz gate refuses reduced/invalid budgets before starting work (1.845623ms)
+✔ CI-2 fuzz gate rejects failed processes and missing, duplicated or incomplete evidence (2.858481ms)
+✔ CI-2 fuzz gate passes the full budget and a seed and accepts complete evidence (0.67113ms)
+✔ PUB-1: inventory retains deleted and changed blobs rather than only HEAD (141.42085ms)
+✔ PUB-1: divergent branches and annotated tags are inventoried (137.423888ms)
+✔ PUB-1: tabs, newlines and Unicode paths survive NUL tree framing (94.246616ms)
+✔ PUB-1: executable, symlink and gitlink modes remain explicit without following links (86.646931ms)
+✔ PUB-1: shallow and incomplete object histories refuse instead of silently shrinking (75.412343ms)
+✔ PUB-1: detached HEAD and stable repeated inventory have explicit scope and digest (164.443831ms)
+✔ PUB-1: changing refs or HEAD during enumeration refuse (72.89535ms)
+✔ PUB-1: non-commit refs cannot be ignored as irrelevant history (41.786872ms)
+✔ PUB-1: ref targets missing from returned commit closure refuse (82.130214ms)
+✔ PUB-1: shared blobs retain each historical path and file mode (108.414582ms)
+✔ PUB-1: malformed tree framing and object metadata refuse (291.804143ms)
+✔ PUB-1: SHA-256 Git repositories retain full object identities (72.672453ms)
+✔ PUB-1: local grafts cannot hide original commit ancestry (83.681163ms)
+✔ PUB-1: partial-clone inventory refuses missing blobs without lazy fetch or object writes (94.119364ms)
+✔ PUB-1: cached commit graphs cannot authorise missing historical commit objects (86.090786ms)
+(node:520589) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ CI-2 kill gate requires actual SIGKILL and the exact persisted acknowledgement (1.762961ms)
+✔ CI-2 kill gate rejects short and incomplete recovery/replay counts (0.43297ms)
+✔ CI-2 kill gate accepts the full verified battery (0.205024ms)
+✔ CI-2 kernel recovery: a verified killed owner releases the mutex and restores its persisted state (339.541492ms)
+✔ CI-2: mutation staging copies only the frozen inputs and tests execute its changed source (836.901943ms)
+✔ CI-2: mutation score uses exact valid populations and the fixed floor (11.964707ms)
+✔ CI-2: failed or interrupted Stryker runs cannot qualify (0.458098ms)
+✔ CI-2: missing, foreign and changed mutation sources fail closed (0.536703ms)
+✔ CI-2: ignored, pending and malformed mutant results are rejected (0.600113ms)
+✔ CI-2: no mutants or all-invalid mutants cannot report a perfect score (0.430706ms)
+✔ CI-2: Stryker timeout and invalid semantics remain explicit (0.356684ms)
+✔ CI-2: malformed report roots and schema versions are refused (0.431269ms)
+✔ CI-2: performance boundaries pass and nearest-rank p99 keeps inputs intact (17.657602ms)
+✔ CI-2: failed or absent measurement-process completion rejects timing (7.285164ms)
+✔ CI-2: pre-persistence and synced latency floors cannot be rounded down (4.659502ms)
+✔ CI-2: throughput and replay counts and elapsed time both govern the gate (5.019643ms)
+✔ CI-2: complete restored snapshot and Keel evidence is required for restart (8.395337ms)
+✔ CI-2: every measured dashboard delay must meet freshness (2.365953ms)
+✔ CI-2: p99 regression compares externally supplied compatible baseline (10.099929ms)
+✔ CI-2: malformed, zero and undersized measurements cannot qualify (10.015692ms)
+property starting: always-false; seed=1319231518; requested=10000
+property starting: successful-count; seed=-1456853411; requested=10000
+property completed: successful-count; seed=-1456853411; runs=10000; skips=0
+property starting: async-false; seed=1590989543; requested=10000
+property starting: async-count; seed=-490190639; requested=10000
+property completed: async-count; seed=-490190639; runs=10000; skips=0
+✔ CI-2 property gate refuses reduced budgets, incomplete runs, skips and failures (2.776638ms)
+✔ CI-2 property seeds are canonical signed 32-bit integers (0.90176ms)
+✔ CI-2 runner throws on a failing property and completes the required successful runs (31.142981ms)
+✔ CI-2 asynchronous runner enforces failures and the completed execution floor (191.589451ms)
+(node:520790) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ CI-2 replay gate rejects short histories and unsuccessful/incomplete recomputation (1.508958ms)
+✔ CI-2 replay gate rejects changed/missing digests and missing workload kinds (0.414715ms)
+✔ CI-2 replay gate accepts a complete mixed history matching the pinned digest (0.14569ms)
+✔ CI-2 replay campaign: per-tx cap regression covers the mixed workload's missing boundary (35.7114ms)
+(node:520950) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ RT-1: actual guard reconciles every frozen benign proposal (872.094302ms)
+✔ RT-3: every loop preserves refusal, posture and failed-outcome evidence (36.193949ms)
+✔ RT-1: frozen traffic definitions produce complete deterministic populations (49.59794ms)
+✔ RT-1: frozen spacing, burst cadence and recurring effects are retained (13.644604ms)
+✔ RT-1: priority prices remain bounded and profile substitutions fail (16.197316ms)
+✔ RT-1: complete frozen benign populations pass (1.547988ms)
+✔ RT-1: Wilson upper bound is unrounded and includes sampling uncertainty (0.282764ms)
+✔ RT-1: failed, interrupted and unsupported traffic measurements fail (5.11314ms)
+✔ RT-1: missing, repeated and substituted profiles cannot shrink the workload (0.411473ms)
+✔ RT-1: short or incomplete profiles cannot silently exclude proposals (0.353521ms)
+✔ RT-1: all false stops count and a failed confidence target fails (0.533658ms)
+✔ RT-1: denial classifications must reconcile to every stop (0.41482ms)
+✔ RT-1: invalid confidence populations fail rather than produce NaN (0.30601ms)
+(node:521036) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ guardedWallet exposes exactly BaseWallet's members, frozen, and never the wallet it wraps (13.666358ms)
+✔ guardedWallet refuses a wallet whose key is outside the policy's principal, or no RPC to send through (5.410075ms)
+✔ signTransaction: an allowed payment is signed by the wrapped wallet; a drain throws SolanautDenied before the wallet is asked (56.362009ms)
+✔ the adapters give the same verdicts as the SDK, for legacy and v0 transactions (61.145682ms)
+✔ a re-sign of the same payment while the first could still land throws intent-in-flight (5.880012ms)
+✔ a wallet that changes the message before signing it is caught: its signatures are stripped, and the call throws (5.768868ms)
+✔ a wallet whose signature does not verify over the admitted bytes is caught (4.721964ms)
+✔ a wallet that signs a whole batch in place but returns it short: every caller object is stripped, and what was signed is held, not released (7.531669ms)
+✔ wallet-changed-message carries no decision, on guardedWallet (guardedSigner: its own test) (4.605092ms)
+✔ signAllTransactions is all or nothing: one denial signs none, and the admitted ones are released (16.895633ms)
+✔ signAndSendTransaction: checks, signs, sends exactly the admitted bytes itself, and reports the outcome (13.62625ms)
+✔ a send the RPC refuses is reported failed, and rethrown (8.753849ms)
+✔ a send whose fate is unknown is reported unknown, not failed: the signed bytes may still land, so a re-sign is refused (9.153966ms)
+✔ D14, sign-only: before the next proposal, guardedWallet reads the outcome of what it signed and reports it (11.595536ms)
+✔ D14, sign-only: a payment seen but not yet confirmed is not reported, and without a status reader the guard holds the intent (10.02682ms)
+✔ signMessage is denied: a raw signature over chosen bytes can be a transaction signature (1.034375ms)
+✔ guardedSigner: checks every transaction first, all or nothing, reads expiry from the lifetime, and verifies the signatures it returns (34.341351ms)
+✔ jsonRpc: sends base64 bytes, reads the height, and turns signature statuses into outcomes (3039.007763ms)
+(node:521148) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ rule 0: an invalid policy means no guard (10.391698ms)
+✔ rule 1: bytes that do not parse, and ill-typed fields, deny as malformed-proposal (D5: never a throw) (42.750655ms)
+✔ rule 2: a version other than legacy, 0 or 1 denies as unsupported-version (2.295067ms)
+✔ rule 3: a lookup table the policy does not pin denies as lookup-table-unpinned (19.741623ms)
+✔ rule 5: a durable nonce, even paying an allowed destination, denies as durable-nonce-denied (8.171559ms)
+✔ rule 6: a required signer outside the principal denies as other-signer (3.02293ms)
+✔ rule 7: a program off the allowlist denies as program-not-allowed (3.060245ms)
+✔ rule 8: an allowlisted program the guard does not decode denies while opaque is deny, and passes when allow (6.009669ms)
+✔ rule 9: Approve, an unknown System instruction and a v1 ComputeBudget decoy deny as instruction-denied (D6, D10) (14.205493ms)
+✔ rule 10: SOL or tokens to an address the policy does not allow deny as destination-not-allowed (36.84208ms)
+✔ rule 11: an unlisted mint denies as mint-not-allowed; a plain Transfer from an unknown account as token-mint-unknown (14.69011ms)
+✔ rule 12: SOL or a mint over its per-transaction cap denies as over-per-tx-cap, summed over the message (8.948048ms)
+✔ rule 13: a priority fee over the cap denies as over-fee-cap, in legacy and in v1 (4.881318ms)
+✔ rules 14 and 15, the double-send battery: in flight until reported failed or expired; attempts are counted (12.176742ms)
+✔ D14: an attempt nobody reported may have landed, so past its expiry it still holds its intent, until reported or until the window passes (7.525839ms)
+✔ intents: a landed intent is done, and the same payment again is a new intent (3.259732ms)
+✔ intents: without block heights, only a report ends an attempt (3.964758ms)
+✔ reports: only for allowed decisions this guard made (3.091931ms)
+✔ rule 16: the window counts what was allowed; a failed report releases it, an unknown one keeps it; it slides (8.49103ms)
+✔ rule 16: each mint and the fees have their own window (10.756417ms)
+✔ rule 16, the boundaries: a payment exactly one window later is outside it, one millisecond earlier is inside (3.994672ms)
+  retry loop stopped at turn 3: DEFAULT -> DEFAULT -> REGROUND (loop-reground)
+✔ rule 16: a mint's window is its own (17.752883ms)
+✔ the concurrency battery: 50 proposals in one tick admit exactly what fits the window (43.630178ms)
+✔ rule 17: an identical failing retry loop is stopped by Keel as loop-reground, and the turn is measured (4.871086ms)
+✔ rule 18: under INHIBIT, an amount over the per-transaction cap times Keel's clamp (0.30) denies as inhibit-cap (3.104858ms)
+✔ varied, successful payments at a realistic pace are not stopped (17.124271ms)
+✔ every parsed proposal reaches Keel, allowed or denied; a malformed one does not (3.054104ms)
+✔ rule 19: anything that throws denies as fail-closed, and check never throws (3.494652ms)
+✔ rule order: a proposal that breaks several rules is denied by the first (24.250727ms)
+✔ the latch battery: it trips after the set run of denials; only a fresh, exact operator release frees it (16.334208ms)
+✔ receipts (D7): an allowed decision binds the message hash, expiry and policy; redeemed once, for those bytes only (4.450788ms)
+✔ decisions are a hash chain, and each carries its bytes, so the record replays on its own (3.234661ms)
+✔ D1: guard.policy is frozen, and changing it is refused (2.003657ms)
+✔ a controller that is not the verified binary is refused at creation (0.635169ms)
+✔ S36: a receipt reported expired, failed or landed no longer redeems (5.785265ms)
+✔ S80: a release's expiry is judged on the latest recorded time, so a clock that steps back cannot revive an expired release (3.189523ms)
+✔ S82: an attempt a trusted height shows can still land stays in the window past windowMs; reported expired, it leaves (3.742073ms)
+(node:521213) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ ANC-3: an externally pinned middle, first and last anchor verify with a valid tail (14.125339ms)
+✔ ANC-3: a fully resealed rewrite before the anchor is refused (6.717018ms)
+✔ ANC-3: matching a head at another sequence cannot substitute for the anchor (7.034885ms)
+✔ ANC-3: an absent anchor in empty or truncated history is refused (1.736768ms)
+✔ ANC-3: continuation segments must actually contain the pinned anchor (1.472146ms)
+✔ ANC-3: malformed or unsupported anchor options refuse before opening a source (1.081627ms)
+✔ ANC-3: caller mutation cannot change the captured anchor or receipt (2.219862ms)
+✔ ANC-3: a valid rewrite after the anchor is outside its integrity coverage (2.3155ms)
+(node:521224) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ ANC-3/SNP-2: explicit anchor flags return its bound receipt or typed refusal (332.80112ms)
+✔ ANC-3/SNP-2: incomplete, duplicate and malformed anchor pairs are usage errors (663.519989ms)
+✔ SNP-2: command returns a pinned JSON receipt and leaves source unchanged (104.894641ms)
+✔ SNP-2: incorrect pins return typed JSON archive refusal, never success (209.971766ms)
+✔ SNP-2: explicit continuation identity verifies a segment (286.439462ms)
+✔ SNP-2: line byte limit includes the exact boundary (238.135817ms)
+✔ SNP-2: missing, unknown, duplicate and extra arguments are usage errors (1519.240979ms)
+✔ SNP-2: help is explicit success and extra help arguments are refused (210.141358ms)
+✔ SNP-2: numeric spelling is canonical even when the value would otherwise pass (558.69537ms)
+✔ SNP-2: missing and symlink sources fail with redacted typed errors (293.605125ms)
+(node:521615) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ SNP-1: a FIFO without a writer is refused without blocking on open (190.596941ms)
+✔ SNP-1: full and continuation archives match head, digest, sequence and byte count (39.416382ms)
+✔ SNP-1: empty archive is structural empty history, not proof of an established guard (2.201529ms)
+✔ SNP-1: line bound accepts the exact UTF-8 length and refuses one byte less (1.920137ms)
+✔ SNP-1: invalid options reject before source reads (1.154357ms)
+✔ SNP-1: missing, symlink and directory sources refuse (4.903037ms)
+✔ SNP-1: incomplete/blank and invalid UTF-8 frames refuse (24.85058ms)
+✔ SNP-1: malformed JSON and unsupported record envelopes refuse (3.708639ms)
+✔ SNP-1: altered hash, sequence and predecessor refuse (3.547342ms)
+✔ SNP-1: external head and raw digest pins refuse rewritten or truncated archives (2.857443ms)
+✔ SNP-1: competing source changes refuse and descriptors close on success and failure (3.915139ms)
+✔ SNP-1: fractional signer timestamps remain supported and unsafe sequence overflow refuses (2.019726ms)
+✔ SNP-1: hardlinks and pathname replacement during verification refuse (2.082472ms)
+✔ SNP-1: malformed/unknown options refuse and pins are captured before asynchronous reads (2.11599ms)
+✔ SNP-1: multibyte frames cross chunks and oversized unfinished lines stop after one read (3.911864ms)
+✔ SNP-1: changed length refuses even when source timestamps do not reveal it (1.479225ms)
+(node:521657) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ SIG-4/10: host attribution and clock anchor appear in decisions and reports (20.574567ms)
+✔ SIG-4/10: host attribution is copied before asynchronous initialization (3.180102ms)
+✔ SIG-4/10: invalid host modes or clock anchors and non-devnet authority refuse startup (4.579215ms)
+✔ SIG-4/10: ordinary trusted SDK mode still records caller attribution (1.385223ms)
+(node:521727) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ LAT/POL-2: malformed release text and public signature inputs cannot authenticate (5.438484ms)
+✔ LIF-1/4: unsupported canonical values and malformed payload types refuse binding (1.995555ms)
+✔ LIF-4: malformed recorded request/response time and noncanonical content cannot restore (14.82357ms)
+✔ LIF-2: unknown requests, cross-policy signing and unsupported stages cannot journal (10.593777ms)
+✔ SIG-8: corrupted decision hashes refuse restore and deterministically diverge in replay (6.744131ms)
+✔ T2/T15: empty token-program instruction data is denied under both programs (0.592049ms)
+property starting: sol-per-tx; seed=260426474; requested=10000
+(node:521793) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+property completed: sol-per-tx; seed=260426474; runs=10000; skips=0
+property starting: sol-window; seed=-1271693736; requested=10000
+property completed: sol-window; seed=-1271693736; runs=10000; skips=0
+✔ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (7577.960272ms)
+✔ CI-2 SOL window property: pending admissions match independent reservation sum (14588.732096ms)
+(node:523161) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ SNP-3: canonical checkpoint and prefix domains bind every descriptor field (10.740884ms)
+✔ SNP-3: pinned signatures and independently computed digests return immutable metadata (12.510899ms)
+✔ SNP-3: a foreign checkpoint signature is denied under the external pin (7.796069ms)
+✔ SNP-3: checkpoint authority cannot share a principal or anchor role (2.915279ms)
+✔ SNP-3: foreign guard, cluster or checkpoint pin is denied (3.671913ms)
+✔ SNP-3: a trusted signature cannot authorise a false checkpoint authority descriptor (3.763958ms)
+✔ SNP-3: independently observed payload digest mismatches deny even valid signatures (4.032251ms)
+✔ SNP-3: altered policy, sequence, head or payload bindings cannot reuse signatures (6.060491ms)
+✔ SNP-3: snapshot and prefix signatures are not interchangeable (8.202161ms)
+✔ SNP-3: missing, malformed and noncanonical signatures deny (17.831397ms)
+✔ SNP-3: unsupported formats/profiles and malformed descriptor values deny (5.361244ms)
+✔ SNP-3: genesis and safe sequence/version boundaries are explicit (8.84715ms)
+✔ SNP-3: malformed trust and observed digest records cannot authorise bindings (3.256916ms)
+✔ SNP-3: caller metadata cannot mutate captured external pins or observed digests (4.315284ms)
+✔ SNP-3: malformed JSON and throwing accessors produce typed refusal (40.588217ms)
+✔ SNP-3: returned metadata does not retain mutable caller references (2.286124ms)
+✔ SNP-3: candidate SDK entry exports the binding API and typed refusal (767.686919ms)
+(node:523347) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ the curve check and program-derived addresses agree with web3.js on random inputs (239.325111ms)
+✔ associated token accounts are derived as the token client derives them, for Token and Token-2022 (128.502262ms)
+✔ System Transfer is value-moving: the destination and lamports are counted, in every version (33.935174ms)
+✔ System TransferWithSeed, CreateAccount and CreateAccountWithSeed move lamports, and are counted (5.806588ms)
+✔ System CreateAccountAllowPrefund: funded lamports are counted; unfunded moves nothing; a principal account is never assigned away (4.33803ms)
+✔ System Assign and Allocate are denied: they hand an account to another program (2.00315ms)
+✔ durable nonces: AdvanceNonceAccount first marks the message, and every nonce instruction is denied (4.095491ms)
+✔ System: an unknown instruction, or data that does not fit its layout, is denied (1.508897ms)
+✔ Token Transfer from the principal's associated account infers the mint; to an allowed owner's account, names the owner (8.420184ms)
+✔ Token Transfer from any other account leaves the mint unknown, and a non-associated destination has no owner (2.604995ms)
+✔ TransferChecked names its mint and decimals, under Token and under Token-2022 (14.323567ms)
+✔ Token: Approve, CloseAccount and the other authority-granting instructions are denied; Revoke and SyncNative are benign (4.891801ms)
+✔ Token: every discriminator has the class the spec gives it, under both token programs (29.931033ms)
+✔ Token: a transfer whose authority does not sign (a multisig authority) is denied (5.086962ms)
+✔ ComputeBudget: the instruction names match the compute-budget client for every discriminator (12.316785ms)
+✔ System: the instruction names match the system client for every discriminator (1.302966ms)
+✔ fees, legacy and v0: price × limit, rounded up; the default limit when none is set; no price, no fee (8.18091ms)
+✔ fees: two of the same ComputeBudget instruction, or the deprecated RequestUnits, are denied (1.877899ms)
+✔ fees, v1: the priority fee is the config's lamport total, and any ComputeBudget instruction is a denied decoy (3.240007ms)
+✔ fees: 5,000 lamports per signature, and SOL to a tip account counts as a tip, not a payment (1.249278ms)
+✔ other signers: every required signer outside the principal is reported, for rule 6 (3.23698ms)
+✔ Memo is benign; a program the guard does not decode is listed as opaque (1.210443ms)
+✔ the message hash is the SHA-256 of the message bytes (0.878485ms)
+✔ the intent key ignores the blockhash, the fees, memos and the version, and follows what moves (5.826206ms)
+✔ v0: a destination loaded from a pinned table is classified like a static one (2.489218ms)
+✔ base58 of the system program id decodes to 32 zero bytes (sanity for the constants) (0.223176ms)
+(node:523404) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ LIF-4: start and first answer are immutable, copied and reused without new entries (14.319564ms)
+✔ LIF-4: changed method/payload and invalid identity or payload refuse before recording (2.597237ms)
+✔ LIF-4: proposal and control methods share one request namespace in both orders (25.643925ms)
+✔ LIF-4: pending and completed control requests restore and replay without admissions (4.019534ms)
+✔ LIF-4: unknown, oversized and invalid responses refuse, and write failure closes the guard (1.912649ms)
+✔ LIF-4: resealed digest control evidence refuses restore/replay (3.419371ms)
+✔ LIF-4: resealed duplicate control evidence refuses restore/replay (2.567123ms)
+✔ LIF-4: resealed response-before-start control evidence refuses restore/replay (2.215354ms)
+✔ LIF-4: resealed changed-response control evidence refuses restore/replay (2.577233ms)
+  fuzz: 5000 inputs, 885 accepted and matched kit, 4115 refused with a named rule
+(node:523450) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ base58 agrees with kit's address codec on 500 random keys and on known program ids (63.158838ms)
+✔ base58 refuses characters outside the alphabet; isAddress accepts only canonical 32-byte keys (1.090907ms)
+✔ golden set: 300 kit-built messages, 100 per version, decode exactly as kit decodes them (378.690891ms)
+✔ golden set: every instruction's accounts resolve as kit resolves them, v0 tables pinned (403.578865ms)
+✔ golden set: v1 config values are read from the mask, in mask order (83.285413ms)
+✔ legacy and v0 messages built by web3.js decode as web3.js reads them (56.075267ms)
+✔ versions other than legacy, 0 and 1 are unsupported (4.051905ms)
+✔ every truncation of a valid message is malformed, in every version (195.216248ms)
+✔ bytes after the end of a message are malformed (2.068642ms)
+✔ a non-canonical compact length is malformed (1.044996ms)
+✔ inconsistent headers are malformed (0.76404ms)
+✔ an instruction may not name the fee payer as its program, or an index past the accounts (0.78746ms)
+✔ an address listed twice is malformed (0.398957ms)
+✔ v1: an unknown config bit, a half-set priority-fee pair, a short config, or over 64 accounts are malformed (1.750471ms)
+✔ a message too large to land is malformed: 1,232 bytes for legacy and v0 with signatures, 4,096 for v1 (1.365436ms)
+✔ v0: an unpinned table, or an index past its pin, is lookup-table-unpinned (1.149385ms)
+✔ v0: writable entries of all tables come before read-only entries of any table (0.425821ms)
+✔ v0: a program loaded from a table, a table that loads nothing, or an address both static and looked up is malformed (0.782795ms)
+✔ legacy and v1 messages resolve from their static accounts alone (1.470759ms)
+✔ transactions: wire bytes split into the exact message and its signatures, in every version (46.671053ms)
+✔ transactions: a wrong signature count, a short or long tail, or a v0 message first is malformed (3.472779ms)
+✔ lookup table accounts decode as web3.js decodes them; a bad type or length is refused (2.696271ms)
+✔ a table pin is the table's address and its entries, and a deactivated table is refused (0.99898ms)
+✔ fuzz: 5000 mutated messages either decode exactly as kit does, or are refused with a DecodeError (623.042279ms)
+(node:523495) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+  drain battery, 40 of 40 denied:
+    T1   destination-not-allowed  SOL to a new recipient
+    T1   destination-not-allowed  SOL to a new recipient, as v0
+    T1   destination-not-allowed  SOL to a new recipient, as v1
+    T1   destination-not-allowed  an allowed payment with a second, hidden transfer to the attacker
+    T1   destination-not-allowed  a tip-shaped transfer to an address the policy does not name as a tip account
+    T1   destination-not-allowed  TransferWithSeed out of a seed-derived account, to the attacker
+    T27  destination-not-allowed  CreateAccountWithSeed funding an account at the attacker's address
+    T26  other-signer             CreateAccount funding a counterparty's fresh key, which must sign
+    T26  other-signer             CreateAccountAllowPrefund funding an account the counterparty holds
+    T2   instruction-denied       Token Approve: the attacker as delegate
+    T2   instruction-denied       Token ApproveChecked
+    T2   instruction-denied       Token SetAuthority: the account's owner changed to the attacker
+    T2   instruction-denied       Token CloseAccount: the rent to the attacker
+    T2   instruction-denied       Token-2022 Approve
+    T2   instruction-denied       Token Burn: value destroyed
+    T2   instruction-denied       System Assign: the agent's account handed to a program
+    T2   instruction-denied       System Allocate on the agent's account
+    T22  instruction-denied       p-token Batch, which could carry a transfer the guard would not see
+    T22  instruction-denied       a System instruction the guard does not know
+    T15  instruction-denied       Token-2022 TransferCheckedWithFee, an extension instruction
+    T5   over-per-tx-cap          an oversized send of a listed mint
+    T1   destination-not-allowed  a listed token to the attacker's associated account
+    T1   destination-not-allowed  a listed token to an account that is no one's associated account
+    T5   mint-not-allowed         an unlisted mint
+    T5   token-mint-unknown       a plain Transfer out of an account the guard cannot tie to a mint
+    T15  mint-not-allowed         a Token-2022 mint moved by the Token program
+    T3   program-not-allowed      a program off the allowlist
+    T3   opaque-program           an allowlisted swap program the guard cannot read
+    T19  durable-nonce-denied     a durable-nonce transfer, valid forever
+    T19  durable-nonce-denied     WithdrawNonceAccount to the attacker
+    T19  durable-nonce-denied     AuthorizeNonceAccount: the nonce handed to the attacker
+    T14  lookup-table-unpinned    a destination loaded from a table the policy does not pin
+    T14  lookup-table-unpinned    a destination at an index past the pinned prefix
+    T14  destination-not-allowed  a pinned table's entry that is the attacker's address
+    T23  over-fee-cap             a compute-unit price with no limit, so the default limit sets the fee
+    T23  over-fee-cap             a v1 config's priority fee over the cap
+    T23  instruction-denied       a v1 message with a ComputeBudget decoy beside a large config fee
+    T26  other-signer             a counterparty's co-signed instruction alongside the agent's payment
+    T22  unsupported-version      an unknown message version
+    T8   malformed-proposal       a valid message with bytes hidden after its end
+✔ the drain battery: 40 shapes, each denied before signing by its named rule (181.455057ms)
+✔ the drain battery's control: the same policy allows a plain payment to the treasury (3.655808ms)
+(node:523558) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+  workload: 160 entries: allow 67, redeem 16, deny:destination-not-allowed 16, report 16, deny:malformed-proposal 7, deny:intent-in-flight 15, release 13, deny:inhibit-cap 2, deny:over-window-cap 6, deny:latched 1, deny:unsupported-version 1
+✔ the reference workload exercises what a restart must restore (111.447418ms)
+✔ the record is synced to disk entry by entry, and a guard reopened on it has every entry (31.810016ms)
+✔ D11: a reopened guard decides as the uninterrupted one would: windows, intents, the latch and Keel survive (124.252787ms)
+  restart battery: 20 kills; the record has 160 entries
+✔ the restart battery: SIGKILLed at 20 random points and restarted each time, the record ends identical to an uninterrupted run (4403.167053ms)
+✔ a torn final line, the mark of a crash mid-write, is dropped: it was never acknowledged (21.310564ms)
+✔ a record that is broken before its last line refuses to start: fail closed (35.628805ms)
+✔ one writer: a second guard refuses; stale SDK ownership requires kernel recovery (270.341011ms)
+✔ replay recomputes every decision from its bytes and names the first divergence (57.64863ms)
+✔ a record that cannot be written denies, and the guard stays shut (2.273029ms)
+✔ npm run replay: exit 0 for a record that replays, 1 with the divergence under a narrower policy, 2 for no policy (779.156341ms)
+✔ the latch is a fact of the record: restored under a policy with a higher threshold, the guard stays latched (12.099873ms)
+✔ S83: a release in the record is verified on restore and in replay: a forged one refuses to start, and replay names it (4.685972ms)
+✔ S81: a lock file that names no process refuses to start, and says so plainly (0.741993ms)
+(node:524132) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ inspectRecord agrees with the live guard: latch, window totals, intents in flight, counts (87.195368ms)
+✔ inspectRecord shows a latch, the run of denials, and what is still in flight (105.613963ms)
+✔ inspectRecord marks each decision that latched the guard, and lists the operator's releases (79.773955ms)
+✔ inspectRecord refuses a record that does not chain, as a restore would (3.718857ms)
+(node:524171) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ D4: the loaded controller module and its embedded wasm hash to the pinned values (2.574938ms)
+✔ D4: a controller with one byte changed, in the wasm or in the JavaScript around it, is refused (0.77994ms)
+  U-2: tick() on telemetry accepts() refuses: null → DEFAULT; "0.5" → DEFAULT; true → DEFAULT; [0.7] → DEFAULT
+  U-3: Governor.create({ equilibrium: NaN, arousal: 5 }) → created; the next tick gives INHIBIT with equilibrium 0.30000000000000004
+✔ D4: a guard's decisions say the controller was verified by its bytes (16.112483ms)
+✔ U-2, reproduced: Keel's tick() takes telemetry that accepts() refuses, coercing it (0.65116ms)
+✔ D3: telemetry that is not three finite numbers in range never reaches Keel; the proposal denies, and Keel's state does not move (20.482985ms)
+✔ U-3, reproduced or refuted: Governor.create() with a non-finite or out-of-range state (0.387718ms)
+✔ sensor v1, intensity: the rate term is zero at or below the expected rate, and full at five times it (0.444326ms)
+✔ sensor v1, valence: denials, failures, expiries and unknown outcomes lower it; a landing resets it (0.204062ms)
+✔ sensor v1, repetition: the same payment 1; the same payment at higher fees 0.8; the same shape 0.5; else 0 (0.361065ms)
+✔ sensor v1 is the default, and its coefficients are stated (0.227286ms)
+✔ sensor v1, repetition: a payment repeated after it landed is a new payment, not a retry (0.161956ms)
+✔ sensor v1, repetition: the same shape at higher fees is escalation only against a payment that did not land (0.123514ms)
+✔ through the guard: the same payment again after it landed reads as the same shape; before it lands, as a retry (2.679202ms)
+(node:524189) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ LAT-1 / RT-3: a single REGROUND denial by an earlier rule does not latch (63.481273ms)
+✔ LAT-2 / RT-3: two consecutive REGROUND denials latch, across report and restart (23.424242ms)
+✔ LAT-2 / RT-3: a decision without REGROUND breaks the consecutive pair (3.176984ms)
+✔ LAT-3 / RT-3: Keel's own loop denial latches immediately (1.71411ms)
+✔ LAT-4 / RT-3: the policy's consecutive-denial threshold still latches without REGROUND (2.135966ms)
+✔ LAT-5 / RT-3: replay names the accepted one-time divergence of a V0 latch (2.732577ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: identical failing retries, 400 ms (23.35191ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: identical failing retries, 5 s (14.716825ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: rising fees, failing, 400 ms (18.91929ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: two shapes alternating, failing, 400 ms (13.531737ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5: one early re-sign, then 10 normal payments (12.501366ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: cockpit demo: unknown outcome, re-sent once (13.75131ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: the kit's double signing: six payments signed twice (12.535602ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: drain storm: the same drain (10.563469ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: drain storm: new address and amount (9.670412ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 10% of the cap (13.089082ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 20% of the cap (16.27652ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 30% of the cap (16.947903ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 40% of the cap (11.893304ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 60% of the cap (14.245965ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 80% of the cap (11.731082ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: cockpit demo at its proportions (11.951083ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: benign: expected rate (538.845129ms)
+✔ LAT-6 / RT-3: option C reproduces the archived stream: benign: bursts (419.740227ms)
+(node:524267) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ OWN-1: SDK refuses stale ownership instead of removing the lock (45.686147ms)
+✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (18.051792ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (491.096889ms)
+✔ OWN-3: established protected records are not recreated if missing (10.151682ms)
+✔ pin-table prints the table's address and entries, read at finalized commitment (196.435342ms)
+✔ pin-table refuses: no --url, an account another program owns, no account, a deactivated table (562.428813ms)
+(node:524441) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ a valid policy loads, with amounts as bigint and a 64-hex hash (8.593911ms)
+✔ the hash depends on content only: key order and amount spelling do not change it; any value does (5.912465ms)
+✔ the hash is SHA-256 of canonical JSON: sorted keys, no whitespace, amounts as decimal strings (0.844318ms)
+✔ D1: the policy is a frozen copy; neither the caller's object nor the returned one can widen it (2.985151ms)
+✔ D2: a cap that is not a whole, non-negative amount is refused, never read as no cap (6.986736ms)
+✔ D9: amounts past 2^53 are exact (1.110558ms)
+✔ rule 0: addresses must be canonical base58 keys, and the principal must hold one (3.728107ms)
+✔ rule 0: the latch's release key is never a principal key, so the agent cannot release its own latch (0.745196ms)
+✔ rule 0: one entry per mint and per table, a known token program, and a known cluster (2.17783ms)
+✔ rule 0: counts and durations are positive whole numbers; the guard id fits on one line (4.27386ms)
+✔ rule 0: v1 never signs messages or co-signs, and refuses any field it does not know (2.367111ms)
+✔ every problem is reported at once, so an operator fixes them in one pass (0.623557ms)
+✔ the classifier's context comes from the policy (1.0157ms)
+(node:524459) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ POL-1/5: preparation returns the exact canonical signing text and public identity (131.519758ms)
+✔ POL-1/5: preparation is deterministic and never invents a signature (283.890226ms)
+✔ POL-1/5: missing, duplicate, unknown and noncanonical version arguments are usage errors (1588.583767ms)
+✔ POL-1: malformed issued timestamps never become signing requests (564.33271ms)
+✔ POL-1/3: malformed JSON and invalid policies return redacted policy errors (532.960202ms)
+✔ POL-1/5: missing, symlink, directory and oversized sources refuse without leaking paths (1226.972625ms)
+✔ POL-1/5: explicit help succeeds; extra help and unsupported cluster refuse (516.445186ms)
+property starting: address; seed=-832954787; requested=10000
+property completed: address; seed=-832954787; runs=10000; skips=0
+property starting: decoder-legacy; seed=-5192376; requested=10000
+property completed: decoder-legacy; seed=-5192376; runs=10000; skips=0
+property starting: decoder-0; seed=-1751673423; requested=10000
+property completed: decoder-0; seed=-1751673423; runs=10000; skips=0
+property starting: decoder-1; seed=-1087489695; requested=10000
+property completed: decoder-1; seed=-1087489695; runs=10000; skips=0
+property starting: arbitrary-bytes; seed=1937853350; requested=10000
+property completed: arbitrary-bytes; seed=1937853350; runs=10000; skips=0
+(node:524869) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ CI-2 address property: canonical 32-byte base58 agrees with kit (463.893294ms)
+✔ CI-2 decoder property: legacy bytes and resolved instructions agree with kit (13239.296476ms)
+✔ CI-2 decoder property: 0 bytes and resolved instructions agree with kit (17008.186413ms)
+✔ CI-2 decoder property: 1 bytes and resolved instructions agree with kit (14012.091618ms)
+✔ CI-2 malformed property: arbitrary bytes match kit or have a named decoder refusal (296.730496ms)
+(node:527436) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ LIF-1: duplicate admission returns the original entry without another reservation or controller tick (27.976502ms)
+✔ LIF-1: duplicate denied request returns the same denial without accumulating latch denials (31.537699ms)
+✔ LIF-1: changed bytes or grouping under the same identity are refused (35.655188ms)
+✔ LIF-1: client identities are separate namespaces and invalid identities fail closed (4.762716ms)
+✔ LIF-1: identity and original decision survive durable restart (25.393395ms)
+✔ LIF-1: resealed digest request evidence refuses restore and replay (6.102827ms)
+✔ LIF-1: resealed guard request evidence refuses restore and replay (5.228963ms)
+✔ LIF-1: resealed duplicate request evidence refuses restore and replay (8.612855ms)
+(node:527465) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ CLT-1: distinct sending client exposes only three methods and preserves explicit identities/payloads (20.476236ms)
+✔ CLT-2: lost proposal reply is explicitly uncertain and never automatically retried (3.852794ms)
+✔ CLT-3: malformed, oversized, duplicate, mismatched and extra response frames refuse (11.688257ms)
+✔ CLT-3: sending/report result shapes are validated before consumers receive them (6.211152ms)
+✔ CLT-4: absolute timeout is not extended by response activity (30.61283ms)
+✔ CLT-1/3: invalid configuration and payloads refuse before connecting (1.305975ms)
+✔ CLT-1: caller byte mutations cannot change the serialized proposal (1.891885ms)
+✔ CLT-2/3: remote refusals use fixed typed codes without exposing peer messages (1.267682ms)
+✔ CLT-1/3: durable denied, uncertain and pre-admission refusal answers remain distinct (5.19046ms)
+✔ CLT-1: request identity is captured before caller mutation (1.562038ms)
+✔ CLT-2: a connection failure before transmission cannot claim proposal execution (1.292911ms)
+(node:527492) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+  benign: Poisson, 6 a minute (the policy's expected rate) · sensor v0: 497 of 600 stopped, 82.83% (95% CI 79.61% to 85.64%) {"loop-reground":1,"latched":496}
+  benign: Poisson, 6 a minute (the policy's expected rate) · sensor v1: 0 of 600 stopped, 0.00% (95% CI 0.00% to 0.64%) {}
+  benign: bursts of 5 payouts, 0.2 to 0.6 s apart, every 5 minutes · sensor v0: 130 of 600 stopped, 21.67% (95% CI 18.56% to 25.14%) {"loop-reground":1,"latched":129}
+  benign: bursts of 5 payouts, 0.2 to 0.6 s apart, every 5 minutes · sensor v1: 0 of 600 stopped, 0.00% (95% CI 0.00% to 0.64%) {}
+  benign, varied fees · sensor v0: 11 of 3000 stopped, 0.37% · sensor v1: 0 of 3000, 0.00% (95% CI 0.00% to 0.13%) {}
+  loop: identical retries, 400 ms apart · v0: turn 3, loop-reground (DEFAULT > DEFAULT > REGROUND) · v1: turn 3, loop-reground (DEFAULT > DEFAULT > REGROUND)
+  loop: identical retries, 5 s apart · v0: turn 3, loop-reground (DEFAULT > DEFAULT > REGROUND) · v1: turn 3, loop-reground (DEFAULT > DEFAULT > REGROUND)
+  loop: rising fees, 400 ms apart · v0: turn 3, loop-reground (DEFAULT > DEFAULT > REGROUND) · v1: turn 4, intent-attempts-exhausted (DEFAULT > DEFAULT > DEFAULT > REGROUND)
+  loop: two shapes alternating, 400 ms apart · v0: not stopped in 12 turns · v1: not stopped in 12 turns
+✔ the benign battery: 600 payments at the expected rate, and 600 in bursts; v0 against v1, measured (1300.361284ms)
+✔ the benign battery with varied priority fees: 5 × 600 payments at the expected rate, on fresh seeds, the operator releasing each latch; v0 against v1, measured (4102.005552ms)
+✔ the loop battery: identical retries, rising fees, two alternating shapes; the stop turn measured for v0 and v1 (37.215695ms)
+(node:527571) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ POL-1: canonical readable summary and valid operator signature load (9.787ms)
+✔ POL-2: missing signature refuses to start (3.827623ms)
+✔ POL-2: wrong operator refuses to start (1.538242ms)
+✔ POL-2: other guard refuses to start (1.609768ms)
+✔ POL-2: other cluster refuses to start (1.289749ms)
+✔ POL-2: different hash refuses to start (1.837029ms)
+✔ POL-2: noncanonical base64 refuses to start (1.623065ms)
+✔ POL-2: even a correctly signed dishonest summary is rejected (1.108174ms)
+✔ POL-2: missing authorization and non-text signature cannot authenticate (1.24031ms)
+✔ VER-2: equivalent but noncanonical recorded policy is not accepted as signed history (18.281166ms)
+✔ POL-3: the principal cannot become the pinned operator (1.593377ms)
+✔ POL-1: invalid versions and issued timestamps have no signing text (2.581519ms)
+✔ POL-1: summaries show SOL caps and count trailing destinations (0.772779ms)
+✔ POL-4/POL-5/VER-1: history verifies signed versions and replay preserves pending receipts and the latch (139.240633ms)
+✔ VER-1: equal version restarts are idempotent; changed signed content needs a higher version (56.785904ms)
+✔ VER-2/POL-4: resealed unsupported profiles and forged historical policy refuse replay and restore (23.456991ms)
+✔ VER-2: a caller cannot substitute another sensor under the signed profile (2.267694ms)
+✔ POL-4: a policy restart retains live reservations against the new cap (28.37852ms)
+✔ POL-4: the operator replay command uses signed history and an external public trust file (504.128083ms)
+✔ POL-4: extending the window reconstructs spending pruned under the old window (31.629891ms)
+(node:527646) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ LIF-7: final landed evidence forbids new signing/send intent live and on replay (42.06174ms)
+✔ LIF-7: final failed evidence forbids new signing/send intent live and on replay (10.918478ms)
+✔ LIF-7: final expired evidence forbids new signing/send intent live and on replay (26.617959ms)
+✔ LIF-2: signature evidence requires durable redemption; valid lifecycle replays (9.420075ms)
+✔ LIF-7: unknown evidence preserves the admitted signing/send lifecycle (6.62837ms)
+✔ LIF-2: wrong-bytes cannot be persisted as signed evidence (2.278396ms)
+✔ LIF-2: wrong-signature cannot be persisted as signed evidence (2.528097ms)
+✔ LIF-2: wrong-wire cannot be persisted as signed evidence (1.879303ms)
+✔ LIF-2: noncanonical-base64 cannot be persisted as signed evidence (1.506401ms)
+✔ LIF-2: send-started requires signed bytes and valid lifetime; every stage is single-use (4.924655ms)
+✔ LIF-2: denied response persists; sent response without send intent is refused (4.134711ms)
+✔ LIF-2: signing and send-started evidence survive durable restart (41.636802ms)
+✔ LIF-2: resealed out-of-order and forged signing history refuse restore/replay (9.564874ms)
+(node:527723) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (33.742421ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (6.964453ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (9.153208ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (8.542974ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (12.086569ms)
+ℹ tests 499
+ℹ suites 0
+ℹ pass 499
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 161370.117509
+coverage apps/signer/src/clock.ts: statements 4/4; branches 2/2
+coverage apps/signer/src/core.ts: statements 105/111; branches 78/88
+coverage apps/signer/src/handler.ts: statements 60/60; branches 55/55
+coverage apps/signer/src/rpc.ts: statements 153/153; branches 114/114
+coverage apps/signer/src/service.ts: statements 42/46; branches 15/16
+coverage apps/signer/src/socket.ts: statements 102/113; branches 70/79
+coverage packages/sdk/src/adapters/agent-kit.ts: statements 112/126; branches 67/83
+coverage packages/sdk/src/adapters/kit.ts: statements 40/47; branches 20/28
+coverage packages/sdk/src/adapters/rpc.ts: statements 45/47; branches 32/38
+coverage packages/sdk/src/adapters/sending-client.ts: statements 103/109; branches 102/109
+coverage packages/sdk/src/archive.ts: statements 87/90; branches 104/106
+coverage packages/sdk/src/authority.ts: statements 6/6; branches 11/11
+coverage packages/sdk/src/base58.ts: statements 52/52; branches 13/13
+coverage packages/sdk/src/canonical.ts: statements 20/20; branches 21/22
+coverage packages/sdk/src/checkpoint.ts: statements 56/56; branches 70/70
+coverage packages/sdk/src/classify.ts: statements 162/173; branches 149/161
+coverage packages/sdk/src/control-request.ts: statements 24/24; branches 43/43
+coverage packages/sdk/src/errors.ts: statements 5/5; branches 0/0
+coverage packages/sdk/src/guard.ts: statements 368/387; branches 345/376
+coverage packages/sdk/src/index.ts: statements 0/0; branches 0/0
+coverage packages/sdk/src/inspect.ts: statements 33/35; branches 33/38
+coverage packages/sdk/src/latch.ts: statements 17/17; branches 10/11
+coverage packages/sdk/src/log.ts: statements 5/5; branches 0/0
+coverage packages/sdk/src/message.ts: statements 221/224; branches 95/99
+coverage packages/sdk/src/pda.ts: statements 48/53; branches 14/18
+coverage packages/sdk/src/policy.ts: statements 118/121; branches 101/107
+coverage packages/sdk/src/profile.ts: statements 3/3; branches 0/0
+coverage packages/sdk/src/record.ts: statements 94/102; branches 54/63
+coverage packages/sdk/src/request.ts: statements 16/16; branches 22/22
+coverage packages/sdk/src/sensor.ts: statements 42/42; branches 23/26
+coverage packages/sdk/src/signed-policy.ts: statements 42/42; branches 47/50
+coverage packages/sdk/src/signing.ts: statements 54/54; branches 70/70
+coverage packages/sdk/src/state.ts: statements 169/179; branches 155/168
+coverage packages/sdk/src/tables.ts: statements 23/23; branches 12/12
+AST coverage floors pass
+(node:518471) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)

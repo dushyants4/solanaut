@@ -6,6 +6,7 @@ const faults = [
   ["statement-floor", "evals/ci/coverage.ts", "passes(totals.statements,95)", "passes(totals.statements,94)"],
   ["branch-floor", "evals/ci/coverage.ts", "passes(totals.branches,90)", "passes(totals.branches,89)"],
   ["critical-floor", "evals/ci/coverage.ts", "passes(file.branches,85)", "passes(file.branches,84)"],
+  ["checkpoint-critical-inventory", "evals/ci/coverage.ts", '"checkpoint.ts",', ""],
   ["omit-inventory-check", "evals/ci/coverage.ts", 'throw new Error("coverage inventory differs")', "void 0"],
   ["invalid-counts", "evals/ci/coverage.ts", 'throw new Error("invalid coverage counts")', "void 0"],
   ["wrong-counter-variable", "evals/ci/coverage-instrument.ts", 'coverageVariable:"__solanautCoverage"', 'coverageVariable:"__wrongCoverage"'],

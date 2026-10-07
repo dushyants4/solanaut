@@ -7,6 +7,15 @@ record: `runs/2026-10-06-codex-solanaut-1.md`.
 
 ## Did
 
+Final checkpoint/serial candidate passes eighteen checkpoint cases/twenty-two real faults,
+504 ordinary and instrumented cases, unchanged floors, nine installed checks/five compiled
+faults and typecheck. The isolated aggregate exits zero across thirty-five campaigns with
+315 caught-fault lines; all 715 inputs and 65 compiled files restore exactly. Evidence is
+`evals/sdk/checkpoint.md` and `evals/ci/coverage-options.md` (S49/S50). Full state restore,
+signer completion and candidate hosted CI remain owed; H9/H10 are still pending.
+
+CI-only correction 11cd688 passes all thirteen hosted jobs in run 37573902777.
+
 History a94ecf0 privately pushed. CI 37571438128 fails the planted cap trial; other jobs
 pass. Exact old-seed reproduction isolates shrinking until containment. Prepared fault-only
 first-counterexample diagnostics with unchanged ordinary options, full successful floors
@@ -27,6 +36,9 @@ claims, risks, progress, handoff and document register. No historical content or
 changed. Other integrated candidate work remains uncommitted and separately reviewed.
 
 ## Found
+
+Pre-commit close passes nine gates and refuses the uncommitted tree, as expected.
+Earlier isolated aggregate failure and masked checkpoint fault remain in the receipts.
 
 The old diagnostic spawn result has ETIMEDOUT despite exit one. A separate real child
 prints a plausible failure and exits one on containment; the new completion stub wrongly

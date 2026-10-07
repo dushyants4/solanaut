@@ -1,6 +1,6 @@
 # SDK reference — private candidate
 
-> **Draft 3** · 2026-10-06 · owner: integrator · for: developers integrating the candidate.
+> **Draft 4** · 2026-10-06 · owner: integrator · for: developers integrating the candidate.
 > Register: `kb/DOCUMENTS.md`. This describes current exports, not a stable-release promise.
 
 Import runtime functions and types from `@solanaut/sdk`. The compiled candidate and installed
@@ -42,6 +42,19 @@ not obtain or authenticate on-chain metadata and does not cover a rewrite after 
 Policy denials are ordinary decisions: check `allow`, then the named `rule` and `reason`.
 Storage failure can return `fail-closed` without a durable decision; do not use that answer
 as an admitted receipt. Preserve failed history rather than editing it to make restore pass.
+
+## Checkpoint bindings
+
+The source candidate additionally exports `prepareCheckpointText`,
+`prepareCheckpointPrefixText`, `verifyCheckpointBinding` and `CheckpointBindingError`,
+with `CheckpointBinding`, `CheckpointTrust`, `CheckpointSignatures` and `CheckpointDigests`.
+These authenticate externally pinned metadata and independently computed payload digests.
+Both signatures are required; the checkpoint key must differ from principal and anchor keys.
+The binding's `seq` is the next record sequence, with the preceding entry's `head`; genesis
+uses zero and an empty head. An archive anchor's sequence instead identifies its actual entry.
+This does not read payloads, restore state, establish freshness or rebuild Keel. Do not
+resume a guard from this result alone. Packed JavaScript/declaration component checks pass
+(`evals/sdk/checkpoint.md`); the complete snapshot/recovery workflow is not implemented.
 
 ## Wallets and sending
 
@@ -104,6 +117,7 @@ process isolation. Do not use these interfaces to fabricate chain outcomes or se
 | `SolanautDenied` (`rule`, `reason`, optional `decision`) | Treat the adapter refusal as a denied action. Inspect the policy or request; repeatedly signing the same denied bytes is not recovery. `DeniedRule` types these refusals. |
 | `SignerClientError` (`code`, `mayHaveExecuted`, optional `remoteCode`) | Follow [CLIENT](CLIENT.md). Preserve requests whenever execution is uncertain. |
 | `ArchiveError` (`code`) | Follow [STORAGE](STORAGE.md); structural success still needs authenticated replay and a recovery drill. |
+| `CheckpointBindingError` (`code: checkpoint-binding`) | Refuse this checkpoint binding. Check the external pins, both signatures, exact profile and independently computed payload digests; complete restore still needs verified replay. |
 | `RpcRefused` (`refused`, `method`) | The SDK RPC explicitly refused its request. A plain transport error does not establish that a send never reached the chain. |
 
 Startup, record ownership and operational failures can also throw ordinary errors. Keep the

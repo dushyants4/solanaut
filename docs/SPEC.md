@@ -942,6 +942,18 @@ mode remains advisory; an established signed history requires an external pin on
 The isolated signer must require authorization. Canonical summary uses exact rational minutes
 where needed, and UTC issued timestamps include milliseconds. Policies remain restart-only.
 
+SNP-3 reversible authentication codec inside ADR-019: descriptor format 1 binds checkpoint
+public key, guard/cluster, seq/head, policy version/hash, exact evaluation profile and SHA-256
+digests of admission-state bytes, the Keel prefix and ordered archive catalogue. Snapshot and
+prefix signatures use distinct `solanaut checkpoint` / `solanaut checkpoint keel prefix`
+domains over the same canonical descriptor. Trust pins the dedicated key externally and
+forbids principal/anchor reuse. Independently computed digests must match. Sequence zero
+requires the empty genesis head; positive sequences require a full head. `seq` is the next
+record sequence and `head` is the preceding entry hash, unlike an archive pin's anchored
+entry sequence. The checkpoint cadence counts decisions, not all record entries. This authenticates
+opaque bindings, not state semantics, prefix replay, archive availability or freshness.
+No guard restore path may use it alone; SNP-4–8 remain required and unbuilt.
+
 CI-2 reversible diagnostic choice: only planted cap trials select first-counterexample
 reporting without shrinking. Ordinary property runs retain their existing options. Successful
 generation/count floors, domains, assertions and containment deadlines are unchanged.
@@ -999,4 +1011,5 @@ when the child prints a failure and exits one. Reproduction seeds are not fresh 
 | Draft 4.35 | 2026-10-06 | POL-1/5 public signing-request preparation command, strict inputs, bounded/redacted source reads and installed evidence; signing/history installation remain owed. |
 | Draft 4.36 | 2026-10-06 | SNP-3–8 allocate accepted ADR-019 checkpoint, replay, retention and maintenance obligations; implementation/qualification remain owed. No architecture or threshold change. |
 | Draft 4.37 | 2026-10-06 | PUB-1 allocates a read-only history inventory for the approved original-repository publication review; inventory is not secrets, confidentiality, rights or publication clearance. |
+| Draft 4.38 | 2026-10-06 | SNP-3 checkpoint descriptor/signature domains and independently computed payload digest bindings; authentication component only, complete state restore remains owed. |
 | Draft 4.40 | 2026-10-07 | CI-2 planted-cap first-counterexample diagnostics and actual fault-process completion; ordinary shrinking, successful floors, domains and deadlines stay unchanged. |

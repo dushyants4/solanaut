@@ -1,5 +1,12 @@
 # DOCUMENTS.md — the document register
 
+Checkpoint/serial component completion on 2026-10-07 registers SDK Draft 4, PACKAGING
+Draft 8, OVERVIEW Draft 24, SPEC Draft 4.38 detail within 4.40, RISKS 1.30 detail within
+1.31, CLAIMS 3.41/S49–S50, receipts/index, HANDOFF, PROGRESS and the continuation record.
+The full current source, AST coverage, installed-package and isolated fault checks pass.
+Earlier misses and failures remain retained. No complete checkpoint restoration, service,
+independent audit or stable-release claim. Candidate hosted CI follows private sync.
+
 CI-2 fault-trial diagnostic/completion correction registers SPEC (Draft 4.40), RISKS
 (1.31), CLAIMS (3.41/S51), the receipt/index, HANDOFF and current-day continuation on
 2026-10-07. Ordinary shrinking, full successful floors and deadlines remain unchanged;

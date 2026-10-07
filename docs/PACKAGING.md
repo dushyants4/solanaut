@@ -1,6 +1,6 @@
 # PACKAGING.md — private SDK candidate
 
-> **Draft 7** · 2026-10-06 · owner: integrator · for: developers and release reviewers.
+> **Draft 8** · 2026-10-06 · owner: integrator · for: developers and release reviewers.
 > This is release preparation, not a stable release. Register: `kb/DOCUMENTS.md`.
 
 The current export and error reference is [SDK](SDK.md); it separates trusted in-process
@@ -17,6 +17,10 @@ this does not qualify an installed signer service.
 The compiled `solanaut-prepare-policy` command validates a public policy and returns the
 existing canonical text for operator signing ([POLICY](POLICY.md)). It does not sign,
 install a policy or inspect the current version; its installed component is tested separately.
+
+The candidate adds checkpoint/prefix binding authentication ([SDK](SDK.md)). Its regenerated
+JavaScript/declaration component and compiled export-damage checks pass
+(`evals/sdk/checkpoint.md`). This does not supply an installed checkpoint restoration service.
 
 From the repository root, using the pinned development toolchain:
 

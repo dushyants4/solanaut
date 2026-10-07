@@ -189,6 +189,15 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+Final checkpoint/serial candidate passes eighteen checkpoint cases/twenty-two real faults,
+504 ordinary and instrumented cases, unchanged floors, nine installed checks/five compiled
+faults and typecheck. The isolated aggregate exits zero across thirty-five campaigns with
+315 caught-fault lines; all 715 inputs and 65 compiled files restore exactly. Evidence is
+`evals/sdk/checkpoint.md` and `evals/ci/coverage-options.md` (S49/S50). Full state restore,
+signer completion and candidate hosted CI remain owed; H9/H10 are still pending.
+
+CI-only correction 11cd688 passes all thirteen hosted jobs in run 37573902777.
+
 CI 37571438128 fails its cap fault trial; all other jobs pass. Exact old-seed reproduction
 confirms shrinking reaches containment. First-counterexample diagnostics apply only to
 planted cap trials; actual spawn error/signal checks reject misleading timeout exits. Eight

@@ -23,6 +23,10 @@ test("CI-2: a critical branch deficit fails even when aggregate totals pass", ()
   assert.throws(()=>requireCoverage(files,inventory),/guard.ts/);
   files[0]!.branches.covered=100; files[2]!.branches.covered=84;
   assert.throws(()=>requireCoverage(files,inventory),/core.ts/);
+  const checkpoint = {path:"packages/sdk/src/checkpoint.ts",statements:{covered:100,total:100},branches:{covered:84,total:100}};
+  const complete = good(); complete[1]!.branches.covered=100;
+  complete[0]!.branches.covered=100;
+  assert.throws(()=>requireCoverage([...complete,checkpoint],[...inventory,checkpoint.path]),/checkpoint.ts/);
 });
 test("CI-2: missing, extra and duplicate files cannot disappear from coverage", () => {
   for(const files of [good().slice(1),[...good(),good()[0]!],[...good(),{...good()[0]!,path:"packages/sdk/src/extra.ts"}]]) assert.throws(()=>requireCoverage(files,inventory),/inventory/);

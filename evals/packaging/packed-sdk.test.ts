@@ -57,7 +57,7 @@ test("PKG-1: the packed runtime has no executable TypeScript, test fixtures or d
 
 test("PKG-2: consumer declarations resolve and reject invalid sensor telemetry", () => {
   writeFileSync(join(consumer, "consumer.ts"), `
-    import {createGuard, createSendingClient, SignerClientError, verifyArchive, type ArchiveOptions, type ArchiveReceipt, type ArchiveErrorCode, type GuardOptions, type Decision, type SendingResult} from '@solanaut/sdk';
+    import {createGuard, createSendingClient, SignerClientError, verifyArchive, prepareCheckpointText, verifyCheckpointBinding, type CheckpointBinding, type CheckpointTrust, type CheckpointDigests, type ArchiveOptions, type ArchiveReceipt, type ArchiveErrorCode, type GuardOptions, type Decision, type SendingResult} from '@solanaut/sdk';
     const options: GuardOptions = {policy: {}, sensor: () => ({intensity:0,valence:0,repetition:0})};
     const g = await createGuard(options);
     const decision: Decision = g.check({message: new Uint8Array(), at: 0});
@@ -86,6 +86,15 @@ test("PKG-2: consumer declarations resolve and reject invalid sensor telemetry",
     // @ts-expect-error unknown pins cannot silently disable verification
     verifyArchive('history.jsonl',{expectedHed:'wrong'});
     void receipt; void code;
+    const checkpointTrust: CheckpointTrust = {checkpointKey:'key',principalKeys:['principal'],anchorKey:'anchor',guardId:'guard',cluster:'devnet'};
+    const checkpointDigests: CheckpointDigests = {archiveDigest:'digest',stateDigest:'digest',prefixDigest:'digest'};
+    const checkpoint: Readonly<CheckpointBinding> = verifyCheckpointBinding({}, {snapshot:'signature',prefix:'signature'}, checkpointTrust, checkpointDigests);
+    const checkpointSequence: number = checkpoint.seq;
+    // @ts-expect-error checkpoint identity must pin a supported cluster
+    const wrongCheckpointTrust: CheckpointTrust = {...checkpointTrust,cluster:'mainnet-beta'};
+    // @ts-expect-error signature records require both domains
+    verifyCheckpointBinding({}, {snapshot:'signature'}, checkpointTrust, checkpointDigests);
+    void prepareCheckpointText; void checkpointSequence; void wrongCheckpointTrust;
   `);
   writeFileSync(join(consumer, "tsconfig.json"), JSON.stringify({ compilerOptions: { noEmit: true, strict: true, module: "NodeNext", moduleResolution: "NodeNext", target: "ES2022", types: [], lib: ["ES2022", "DOM"] }, files: ["consumer.ts"] }));
   const result = spawnSync(join(root, "node_modules/.bin/tsc"), ["-p", "tsconfig.json"], { cwd: consumer, encoding: "utf8" });
@@ -150,6 +159,26 @@ test("POL-1/5/PKG-1: installed policy command prepares canonical public signing 
   assert.equal(readFileSync(path,"utf8"),inputPolicy);
   const help=spawnSync(join(consumer,"node_modules/.bin/solanaut-prepare-policy"),["--help"],{cwd:consumer,encoding:"utf8"});
   assert.equal(help.status,0,help.stderr); assert.match(help.stdout,/usage:/);
+});
+
+test("SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state", () => {
+  const script = `
+    import {prepareCheckpointText,prepareCheckpointPrefixText,verifyCheckpointBinding,CheckpointBindingError,EVALUATION_PROFILE,encodeBase58} from '@solanaut/sdk';
+    import {generateKeyPairSync,sign,createHash} from 'node:crypto';
+    const pair=()=>{const keys=generateKeyPairSync('ed25519');return {keys,publicKey:encodeBase58(keys.publicKey.export({type:'spki',format:'der'}).subarray(-32))};};
+    const authority=pair(),principal=pair(),anchor=pair();
+    const hash=(text)=>createHash('sha256').update(text).digest('hex');
+    const digests={archiveDigest:hash('archive'),stateDigest:hash('state'),prefixDigest:hash('prefix')};
+    const body={format:1,checkpointKey:authority.publicKey,guardId:'installed-checkpoint',cluster:'localnet',seq:1,head:hash('head'),policyVersion:1,policyHash:hash('policy'),profile:EVALUATION_PROFILE,...digests};
+    const trust={checkpointKey:authority.publicKey,principalKeys:[principal.publicKey],anchorKey:anchor.publicKey,guardId:body.guardId,cluster:body.cluster};
+    const signatures={snapshot:sign(null,Buffer.from(prepareCheckpointText(body)),authority.keys.privateKey).toString('base64'),prefix:sign(null,Buffer.from(prepareCheckpointPrefixText(body)),authority.keys.privateKey).toString('base64')};
+    const verified=verifyCheckpointBinding(body,signatures,trust,digests);let refusal;
+    try {verifyCheckpointBinding(body,signatures,trust,{...digests,stateDigest:hash('altered')});}
+    catch(error){refusal={typed:error instanceof CheckpointBindingError,code:error.code};}
+    console.log(JSON.stringify({seq:verified.seq,immutable:Object.isFrozen(verified),refusal}));`;
+  const result=spawnSync(process.execPath,["--input-type=module","-e",script],{cwd:consumer,encoding:"utf8"});
+  assert.equal(result.status,0,result.stderr);
+  assert.deepEqual(JSON.parse(result.stdout),{seq:1,immutable:true,refusal:{typed:true,code:"checkpoint-binding"}});
 });
 
 test("PKG-3: installed replay and table-pin commands execute with their documented usage exits", () => {

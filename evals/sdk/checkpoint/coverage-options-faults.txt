@@ -1,0 +1,4 @@
+caught coverage execution fault: default-scheduling
+caught coverage execution fault: serial-scheduling
+caught coverage execution fault: option-whitelist
+All coverage execution faults caught; restored source passes

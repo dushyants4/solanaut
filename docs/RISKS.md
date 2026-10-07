@@ -39,6 +39,11 @@ Archive verification now rejects observed source changes and checks optional ext
 authentication. This foundation does not close signed-snapshot, bounded-state replay, backup
 recovery or hostile-filesystem risks; operator-owned immutable local archives are required.
 
+The checkpoint codec authenticates externally pinned metadata and opaque payload digests
+(`evals/sdk/checkpoint.md`). A signature alone does not establish state semantics, freshness
+or tail continuity. It must not become a state-restoration shortcut: authenticated prefix
+replay and comparison with full replay remain required before startup uses checkpoints.
+
 AST statement/branch coverage now measures complete SDK/signer inventories with calibrated
 counters (`evals/ci/coverage.md`). Its initial deficit was remediated with failure-path tests;
 no product rule or threshold changed. This does not establish mutation score, independent
@@ -170,4 +175,5 @@ failure remains retained; corrected hosted validation and the complete CI-2 prog
 | Draft 1.1 | 2026-10-03 | RK20 added, from the independent evaluator's varied-fee battery, then mitigated the same day; RK12's status updated. |
 | 1.0 | 2026-10-05 | Approved by the human with the Alpha's scope (milestone 2c.1). |
 | 1.29 | 2026-10-06 | PUB-1 prepares an exact historical metadata inventory; publication-scope confidentiality, secrets and source-rights review remain open. |
+| 1.30 | 2026-10-06 | SNP-3 binding authentication is a component only; payload semantics, freshness, prefix replay and restore remain open. |
 | 1.31 | 2026-10-07 | CI-2 cap-fault diagnostic/completion correction preserves ordinary shrinking, all successful floors and deadlines; failed hosted evidence remains visible. |

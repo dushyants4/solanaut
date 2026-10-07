@@ -1,0 +1,5 @@
+
+> typecheck
+> tsc -p tsconfig.json
+
+packages/sdk/test/checkpoint.test.ts(87,78): error TS2353: Object literal may only specify known properties, and 'extra' does not exist in type 'CheckpointSignatures'.

@@ -1,0 +1,20 @@
+✔ SNP-3: canonical checkpoint and prefix domains bind every descriptor field (13.021824ms)
+✔ SNP-3: pinned signatures and independently computed digests return immutable metadata (15.250798ms)
+✔ SNP-3: a foreign checkpoint signature is denied under the external pin (6.059303ms)
+✔ SNP-3: checkpoint authority cannot share a principal or anchor role (2.697691ms)
+✔ SNP-3: foreign guard, cluster or checkpoint pin is denied (3.381846ms)
+✔ SNP-3: independently observed payload digest mismatches deny even valid signatures (3.523226ms)
+✔ SNP-3: altered policy, sequence, head or payload bindings cannot reuse signatures (10.06628ms)
+✔ SNP-3: snapshot and prefix signatures are not interchangeable (10.884373ms)
+✔ SNP-3: missing, malformed and noncanonical signatures deny (8.115945ms)
+✔ SNP-3: unsupported formats/profiles and malformed descriptor values deny (5.821588ms)
+✔ SNP-3: genesis and safe sequence/version boundaries are explicit (8.07171ms)
+✔ SNP-3: malformed trust and observed digest records cannot authorise bindings (2.779571ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 371.9477

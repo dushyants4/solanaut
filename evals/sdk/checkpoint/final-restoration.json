@@ -1,0 +1,14 @@
+{
+  "source": "11cd688 plus final checkpoint/coverage candidate",
+  "restored_inputs": 715,
+  "restored_release_files": 65,
+  "exact_release_inventory": true,
+  "campaigns": 35,
+  "caught_fault_lines": 315,
+  "summary": {
+    "ok": true,
+    "failed": [],
+    "skipped": []
+  },
+  "actual_command_exit_status": 0
+}

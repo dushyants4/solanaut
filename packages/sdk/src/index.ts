@@ -3,6 +3,7 @@ export { fileStore, memoryStore, type FileStoreOptions } from "./record.ts";
 export { verifyArchive, ArchiveError, type ArchiveErrorCode, type ArchiveOptions, type ArchiveReceipt } from "./archive.ts";
 export { preparePolicyText, verifyPolicyAuthorization, PolicyAuthorizationError, type PolicyAuthorization, type PolicyTrust } from "./signed-policy.ts";
 export { EVALUATION_PROFILE } from "./profile.ts";
+export { prepareCheckpointText, prepareCheckpointPrefixText, verifyCheckpointBinding, CheckpointBindingError, type CheckpointBinding, type CheckpointTrust, type CheckpointSignatures, type CheckpointDigests } from "./checkpoint.ts";
 export type { RequestIdentity, RequestBinding } from "./request.ts";
 export type { ControlMethod } from "./control-request.ts";
 export type { SigningEvent, SigningHistory } from "./signing.ts";

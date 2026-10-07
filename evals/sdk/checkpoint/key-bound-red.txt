@@ -1,0 +1,30 @@
+✖ SNP-3: excessive public keys refuse before unbounded base58 decoding (3022.54463ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3272.577317
+
+✖ failing tests:
+
+test at packages/sdk/test/checkpoint.test.ts:107:1
+✖ SNP-3: excessive public keys refuse before unbounded base58 decoding (3022.54463ms)
+  AssertionError [ERR_ASSERTION]: {"status":null,"signal":"SIGTERM","error":"spawnSync /home/dashy/.local/share/mise/installs/node/26.7.0/bin/node ETIMEDOUT"}
+  
+  null !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint.test.ts:121:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

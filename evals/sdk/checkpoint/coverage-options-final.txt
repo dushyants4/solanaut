@@ -1,0 +1,19 @@
+✔ CI-1: exact inventory accepts every maintained campaign and rejects omission/addition/duplication (15.70076ms)
+✔ CI-1: all campaigns run sequentially; failure/null exit fails aggregation without hiding other findings (1.881764ms)
+✔ CI-1: changed source stops further mutation, reports skipped work and fails the gate (0.301844ms)
+✔ CI-2: default coverage execution preserves Node's test scheduling (1.514915ms)
+✔ CI-2: serial coverage requests one test process without filtering the population (0.328607ms)
+✔ CI-2: unsupported, duplicated and filtering coverage options refuse (0.585209ms)
+✔ CI-2: failed or missing test-process completion cannot qualify coverage (2.017701ms)
+✔ CI-2: exact statement and branch floors pass without rounding (1.490579ms)
+✔ CI-2: a critical branch deficit fails even when aggregate totals pass (0.582314ms)
+✔ CI-2: missing, extra and duplicate files cannot disappear from coverage (0.412617ms)
+✔ CI-2: malformed and empty execution counts fail closed (0.525092ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 213.544852

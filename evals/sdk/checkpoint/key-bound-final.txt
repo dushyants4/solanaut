@@ -1,0 +1,26 @@
+✔ SNP-3: canonical checkpoint and prefix domains bind every descriptor field (5.775566ms)
+✔ SNP-3: pinned signatures and independently computed digests return immutable metadata (5.192617ms)
+✔ SNP-3: a foreign checkpoint signature is denied under the external pin (2.568703ms)
+✔ SNP-3: checkpoint authority cannot share a principal or anchor role (1.78193ms)
+✔ SNP-3: foreign guard, cluster or checkpoint pin is denied (1.468138ms)
+✔ SNP-3: a trusted signature cannot authorise a false checkpoint authority descriptor (1.110777ms)
+✔ SNP-3: independently observed payload digest mismatches deny even valid signatures (1.558044ms)
+✔ SNP-3: altered policy, sequence, head or payload bindings cannot reuse signatures (4.3018ms)
+✔ SNP-3: snapshot and prefix signatures are not interchangeable (3.962168ms)
+✔ SNP-3: missing, malformed and noncanonical signatures deny (9.014094ms)
+✔ SNP-3: unsupported formats/profiles and malformed descriptor values deny (2.135499ms)
+✔ SNP-3: genesis and safe sequence/version boundaries are explicit (2.74883ms)
+✔ SNP-3: malformed trust and observed digest records cannot authorise bindings (1.626912ms)
+✔ SNP-3: caller metadata cannot mutate captured external pins or observed digests (1.817873ms)
+✔ SNP-3: malformed JSON and throwing accessors produce typed refusal (52.508597ms)
+✔ SNP-3: returned metadata does not retain mutable caller references (4.215539ms)
+✔ SNP-3: candidate SDK entry exports the binding API and typed refusal (58.402457ms)
+✔ SNP-3: excessive public keys refuse before unbounded base58 decoding (107.370911ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 453.483808

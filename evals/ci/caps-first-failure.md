@@ -44,7 +44,9 @@ The complete integrated uncommitted candidate passes all 504 ordinary cases with
 fault-mode variable explicitly unset (`caps/first-failure-root.txt`). Typecheck passes.
 This superset includes the separately pending checkpoint/coverage work; do not present
 the count as a measurement of the history-only or CI-only committed tree. Close, private
-sync and corrected hosted CI are still owed. This is not
+sync and corrected hosted CI were initially owed. CI-only correction 11cd688 is now
+privately pushed and passes all thirteen jobs in run 37573902777. Other candidate work
+still owes its separate close and sync. This is not
 performance, mutation-score, independent security or release qualification.
 
 ## Regenerate
