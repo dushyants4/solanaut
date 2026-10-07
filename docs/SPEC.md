@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.40** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.41** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -960,6 +960,14 @@ generation/count floors, domains, assertions and containment deadlines are uncha
 Unknown trial modes refuse; spawn errors or signals cannot count as a caught fault even
 when the child prints a failure and exits one. Reproduction seeds are not fresh qualification.
 
+CI-2 completion-record foundation: format 1 records exact externally pinned run/input/command
+identity, completed state, distinct supervisor/child process identities, canonical ordered
+timestamps and actual status/signal/error/timeout fields. Only status zero with no signal,
+error or timeout is structurally eligible. Operator TypeScript participates in fault-source
+restoration fingerprints. These checks do not authenticate a producer or establish actual
+child execution; detached supervision, atomic result publication and process-loss tests
+remain required before mutation qualification consumes this record.
+
 ### 13.15 Publication-review preparation
 
 | ID | Requirement | Verified by |
@@ -1031,3 +1039,4 @@ These are requirements, not current support claims or permission for human-owned
 | Draft 4.38 | 2026-10-06 | SNP-3 checkpoint descriptor/signature domains and independently computed payload digest bindings; authentication component only, complete state restore remains owed. |
 | Draft 4.39 | 2026-10-06 | OPR-1–8 allocate the approved individual Linux lifecycle, verification and human dependencies; no support or deployment gate is claimed. |
 | Draft 4.40 | 2026-10-07 | CI-2 planted-cap first-counterexample diagnostics and actual fault-process completion; ordinary shrinking, successful floors, domains and deadlines stay unchanged. |
+| Draft 4.41 | 2026-10-07 | CI-2 externally bound completion-record checks and operator-tool restoration; actual detached producer and qualification remain owed. |

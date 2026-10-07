@@ -189,6 +189,24 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+Final completion foundation recheck passes 513 root cases and typecheck. The corrected
+isolated fixture passes sixteen faults with all input/release hashes restored. Pre-sync
+close passes nine gates, with the uncommitted step still refused; private sync follows.
+
+Completion foundation isolated aggregate exits zero: thirty-six campaigns/331 caught-fault
+lines, all 773 inputs and 65 compiled files restored exactly. The later scratch-parent
+fixture setup has its own cold-directory and focused fault evidence; no production code
+changes. Final source recheck and private sync follow. Actual detached production is next.
+
+Operational-map revision 068e90c passes every hosted job in run 37575900703. Completion
+foundation integration passes 513 source cases; the full isolated aggregate continues.
+Clean-directory fingerprint-fixture failure and its corrected rehearsal are retained.
+
+Checkpoint afa0b21 passes all hosted jobs in run 37575269194. Operational maps 068e90c
+are privately pushed; hosted run 37575900703 starts. CI-2 completion-evidence work begins
+independently: bound result checks and operator-tool restoration fixtures pass focused
+faults after a masked field check is exposed. Actual detached supervisor/wiring remains owed.
+
 Checkpoint/serial step afa0b21 is privately pushed; hosted run 37575269194 starts. Its
 pre-sync close passes nine gates and refuses the remaining uncommitted preparation.
 Linux lifecycle, dependency remediation and durable mutation execution maps are the next

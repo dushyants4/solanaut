@@ -1,0 +1,38 @@
+✖ CI-2: a complete externally bound child result admits only actual exit zero (1.835121ms)
+✔ CI-2: missing, partial and report-only completion evidence refuses (0.92597ms)
+✔ CI-2: completion pins the exact run, input and command identities (0.423669ms)
+✔ CI-2: timeout, signal and launch errors cannot masquerade as exit zero (0.348435ms)
+✔ CI-2: unknown formats and malformed process identities refuse (0.414432ms)
+✖ CI-2: completion timestamps are canonical and ordered (0.296455ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 4
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 163.083575
+
+✖ failing tests:
+
+test at evals/ci/run-completion.test.ts:6:1
+✖ CI-2: a complete externally bound child result admits only actual exit zero (1.835121ms)
+  Error: incomplete supervised run
+      at requireRunCompletion (file:///home/dashy/Projects/Solanaut/tools/run-completion.ts:9:9)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/run-completion.test.ts:7:16)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at evals/ci/run-completion.test.ts:24:1
+✖ CI-2: completion timestamps are canonical and ordered (0.296455ms)
+  Error: incomplete supervised run
+      at requireRunCompletion (file:///home/dashy/Projects/Solanaut/tools/run-completion.ts:9:9)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/run-completion.test.ts:26:16)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)

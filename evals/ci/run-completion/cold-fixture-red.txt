@@ -1,0 +1,26 @@
+✖ CI-1: restoration fingerprints include operator TypeScript tools (1.444164ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 221.073268
+
+✖ failing tests:
+
+test at ../../../evals/ci/bite-source.test.ts:6:1
+✖ CI-1: restoration fingerprints include operator TypeScript tools (1.444164ms)
+  Error: ENOENT: no such file or directory, mkdtemp '.sandbox/solanaut-1/bite-source-XXXXXX'
+      at mkdtempSync (node:fs:3600:18)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/bite-source.test.ts:7:19)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'mkdtemp',
+    path: '.sandbox/solanaut-1/bite-source-XXXXXX'
+  }

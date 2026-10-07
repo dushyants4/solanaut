@@ -1,5 +1,14 @@
 # DOCUMENTS.md — the document register
 
+CI-2 completion-record foundation registers SPEC Draft 4.41, RISKS 1.32, PROGRESS,
+S52/CLAIMS, the new receipt/index,
+operator-tool restoration fingerprint and continuation/HANDOFF records on 2026-10-07.
+Focused cases and planted faults pass after a masked field fixture is corrected; the miss
+remains retained. Actual supervisor production, durable publication and mutation qualification
+are separate requirements. Final source integration, frozen isolated aggregation and the
+separately corrected fixture's focused faults pass; exact restoration is retained. Private
+close follows. Prior misses and the cold-directory failure remain visible.
+
 Checkpoint/serial completion on 2026-10-07 records afa0b21, the receipts/index, S49/S50,
 SDK Draft 4, PACKAGING Draft 8, OVERVIEW Draft 24 and scoped SPEC/RISKS details. Ordinary
 and instrumented source tests, installed artefacts and the isolated aggregate pass with

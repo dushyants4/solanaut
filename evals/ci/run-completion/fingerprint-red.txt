@@ -1,0 +1,29 @@
+✖ CI-1: restoration fingerprints include operator TypeScript tools (45.214502ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 323.003984
+
+✖ failing tests:
+
+test at evals/ci/bite-source.test.ts:6:1
+✖ CI-1: restoration fingerprints include operator TypeScript tools (45.214502ms)
+  AssertionError [ERR_ASSERTION]: Expected "actual" to be strictly unequal to:
+  
+  '95d9220aebe332551d94c1305399f1787a12326150a9353d962359a0f5c7b2dd'
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/bite-source.test.ts:12:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '95d9220aebe332551d94c1305399f1787a12326150a9353d962359a0f5c7b2dd',
+    expected: '95d9220aebe332551d94c1305399f1787a12326150a9353d962359a0f5c7b2dd',
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }

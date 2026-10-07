@@ -1,0 +1,539 @@
+
+> test:bite
+> node evals/ci/bite.ts
+
+Running fault campaign: ci/bite-faults.ts
+caught bite aggregation fault: omit-campaign
+caught bite aggregation fault: ignore-failed-exit
+caught bite aggregation fault: ignore-unrestored-source
+caught bite aggregation fault: invent-clean-result
+caught bite aggregation fault: skip-first-campaign
+All bite aggregation faults caught; restored source passes
+Running fault campaign: ci/latch-faults.ts
+caught latch fault: v0
+caught latch fault: only-keel
+caught latch fault: only-previous
+caught latch fault: last-entry
+caught latch fault: no-replay-predecessor
+caught latch fault: no-denial-threshold
+caught latch fault: skip-intervening-decision
+All latch faults caught; restored source passes
+Running fault campaign: ci/property-faults.ts
+caught property fault: incomplete-process
+caught property fault: ordinary-diagnostics
+caught property fault: first-counterexample
+caught property fault: fault-mode-whitelist
+caught property fault: budget-floor
+caught property fault: incomplete-count
+caught property fault: skips
+caught property fault: failed-result
+caught property fault: seed-validation
+caught property fault: address-alphabet
+caught property fault: account-writability
+caught property fault: unexpected-error
+All property faults caught; restored source passes
+Running fault campaign: ci/fuzz-faults.ts
+caught fuzz gate fault: lower-budget
+caught fuzz gate fault: ignore-process-failure
+caught fuzz gate fault: accept-duplicate-summary
+caught fuzz gate fault: ignore-total
+caught fuzz gate fault: ignore-outcome-sum
+caught fuzz gate fault: empty-accepted-domain
+caught fuzz product fault: unexpected-decoder-exception
+All fuzz faults caught; restored source passes
+Running fault campaign: ci/cap-faults.ts
+property starting: sol-per-tx; seed=1006387173; requested=10000
+✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (58.892112ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 288.147688
+
+✖ failing tests:
+
+test at packages/sdk/test/caps.property.test.ts:22:1
+✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (58.892112ms)
+  Error: property failed: sol-per-tx
+  Property failed after 5 tests
+  { seed: 1006387173, path: "4", endOnFailure: true }
+  Counterexample: [18n,11454004531162563088n,0n,true]
+  Shrunk 0 time(s)
+  
+  Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/fault-candidate-current/evals/ci/properties.ts:19:28)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/fault-candidate-current/packages/sdk/test/caps.property.test.ts:23:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: per-tx-boundary
+property starting: sol-per-tx; seed=-156573332; requested=10000
+✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (25.388218ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 246.098002
+
+✖ failing tests:
+
+test at packages/sdk/test/caps.property.test.ts:22:1
+✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (25.388218ms)
+  Error: property failed: sol-per-tx
+  Property failed after 3 tests
+  { seed: -156573332, path: "2", endOnFailure: true }
+  Counterexample: [17n,11493757178005029304n,0n,false]
+  Shrunk 0 time(s)
+  
+  Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/fault-candidate-current/evals/ci/properties.ts:19:28)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/fault-candidate-current/packages/sdk/test/caps.property.test.ts:23:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: per-tx-disabled
+property starting: sol-window; seed=-1267235683; requested=10000
+✖ CI-2 SOL window property: pending admissions match independent reservation sum (117.98583ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 407.626581
+
+✖ failing tests:
+
+test at packages/sdk/test/caps.property.test.ts:33:1
+✖ CI-2 SOL window property: pending admissions match independent reservation sum (117.98583ms)
+  Error: property failed: sol-window
+  Property failed after 43 tests
+  { seed: -1267235683, path: "42", endOnFailure: true }
+  Counterexample: [7n,[999996n,7n,999994n,16779n,6n,499010n,444609n]]
+  Shrunk 0 time(s)
+  
+  Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/fault-candidate-current/evals/ci/properties.ts:19:28)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/fault-candidate-current/packages/sdk/test/caps.property.test.ts:34:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: window-boundary
+property starting: sol-window; seed=-841420270; requested=10000
+✖ CI-2 SOL window property: pending admissions match independent reservation sum (84.091575ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 340.96314
+
+✖ failing tests:
+
+test at packages/sdk/test/caps.property.test.ts:33:1
+✖ CI-2 SOL window property: pending admissions match independent reservation sum (84.091575ms)
+  Error: property failed: sol-window
+  Property failed after 12 tests
+  { seed: -841420270, path: "11", endOnFailure: true }
+  Counterexample: [4311657n,[53296n,516999n,519479n,796030n,998424n,954962n,523246n]]
+  Shrunk 0 time(s)
+  
+  Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/fault-candidate-current/evals/ci/properties.ts:19:28)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/fault-candidate-current/packages/sdk/test/caps.property.test.ts:34:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: ignore-reservation
+property starting: async-false; seed=862192152; requested=10000
+property starting: async-count; seed=-1723894239; requested=10000
+✖ CI-2 asynchronous runner enforces failures and the completed execution floor (5.998231ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 164.868859
+
+✖ failing tests:
+
+test at evals/ci/properties.test.ts:25:1
+✖ CI-2 asynchronous runner enforces failures and the completed execution floor (5.998231ms)
+  Error: property run incomplete or skipped
+      at validateCompletion (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/fault-candidate-current/evals/ci/properties.ts:26:68)
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/fault-candidate-current/evals/ci/properties.ts:20:3)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/fault-candidate-current/evals/ci/properties.test.ts:29:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: async-short-run
+All cap property faults caught; restored source passes
+Running fault campaign: ci/coverage-faults.ts
+caught coverage fault: failed-test-process
+caught coverage fault: statement-floor
+caught coverage fault: branch-floor
+caught coverage fault: critical-floor
+caught coverage fault: checkpoint-critical-inventory
+caught coverage fault: omit-inventory-check
+caught coverage fault: invalid-counts
+caught coverage fault: wrong-counter-variable
+caught coverage fault: skip-native-stripping
+caught coverage fault: omit-unimported-source
+caught coverage fault: incomplete-statement-map
+caught coverage fault: invalid-branch-shape
+caught coverage fault: accept-counter-fabrication
+caught coverage fault: release-input-coercion
+caught coverage fault: raw-canonical-bytes
+caught coverage fault: cross-policy-signing
+caught coverage fault: noncanonical-recorded-policy
+caught coverage fault: unsupported-signing-stage
+caught coverage fault: busy-slot-bound
+caught coverage fault: expired-provider-lifetime
+All coverage faults caught; restored sources pass
+Running fault campaign: ci/coverage-options-faults.ts
+caught coverage execution fault: default-scheduling
+caught coverage execution fault: serial-scheduling
+caught coverage execution fault: option-whitelist
+All coverage execution faults caught; restored source passes
+Running fault campaign: ci/mutation-faults.ts
+caught mutation gate fault: process-completion
+caught mutation gate fault: score-floor
+caught mutation gate fault: source-inventory
+caught mutation gate fault: source-content
+caught mutation gate fault: mutant-identity
+caught mutation gate fault: status-completion
+caught mutation gate fault: valid-population
+caught mutation gate fault: location-boundary
+caught mutation gate fault: staging-threshold
+caught mutation gate fault: staging-scope
+caught mutation gate fault: working-tree-mutation
+caught mutation gate fault: staging-execution
+caught mutation gate fault: whole-run-resource-limit
+caught mutation gate fault: per-mutant-timeout
+All mutation report/staging faults caught; restored sources pass
+Running fault campaign: ci/run-completion-faults.ts
+caught run-completion fault: strict-fields
+caught run-completion fault: captured-fields
+caught run-completion fault: external-identity
+caught run-completion fault: bound-identity
+caught run-completion fault: capture-external-pins
+caught run-completion fault: format
+caught run-completion fault: completed-state
+caught run-completion fault: process-pid
+caught run-completion fault: distinct-process
+caught run-completion fault: ordered-time
+caught run-completion fault: canonical-time
+caught run-completion fault: actual-exit
+caught run-completion fault: signal
+caught run-completion fault: launch-error
+caught run-completion fault: deadline
+caught run-completion fault: operator-tool-restoration
+All completion faults caught; restored source passes
+Running fault campaign: ci/performance-faults.ts
+caught timing fault: missing-process
+caught timing fault: wrong-quantile
+caught timing fault: pre-latency
+caught timing fault: synced-latency
+caught timing fault: decision-rate
+caught timing fault: replay-rate
+caught timing fault: restart-population
+caught timing fault: snapshot-trust
+caught timing fault: keel-replay
+caught timing fault: restart-duration
+caught timing fault: freshness
+caught timing fault: pre-regression
+caught timing fault: synced-regression
+caught timing fault: compatible-reference
+caught timing fault: zero-sample
+caught timing fault: missing-observations
+All timing faults caught; restored source passes
+Running fault campaign: ci/differential-faults.ts
+caught differential fault: process
+caught differential fault: population
+caught differential fault: digest
+caught differential fault: versions
+caught differential fault: programs
+caught differential fault: completion
+caught differential fault: mismatch
+caught differential fault: oracle-comparison
+caught differential fault: strict-refusal
+caught differential fault: corpus-pin
+caught differential fault: corpus-framing
+caught differential fault: duplicate-transaction
+All differential faults caught; restored sources pass
+Running fault campaign: ci/traffic-faults.ts
+caught traffic fault: process
+caught traffic fault: definition
+caught traffic fault: profiles
+caught traffic fault: seeds
+caught traffic fault: population
+caught traffic fault: completion
+caught traffic fault: denial-counts
+caught traffic fault: rule-counts
+caught traffic fault: confidence
+caught traffic fault: uncertainty
+caught traffic fault: burst-cadence
+caught traffic fault: fee-range
+caught traffic fault: recurring-effects
+caught traffic fault: guard-policy
+caught traffic fault: landed-outcomes
+caught traffic fault: loop-inventory
+caught traffic fault: failed-outcomes
+caught traffic fault: first-refusal
+All traffic faults caught; restored sources pass
+Running fault campaign: ci/replay-faults.ts
+caught replay gate fault: short-history
+caught replay gate fault: ignore-divergence
+caught replay gate fault: ignore-recomputed-count
+caught replay gate fault: ignore-entry-count
+caught replay gate fault: ignore-head
+caught replay gate fault: ignore-workload-kind
+caught replay product fault: previously-missed-per-tx-cap
+caught replay product fault: changed-record-and-evaluation
+All replay faults caught; restored pinned workload passes
+Running fault campaign: ci/concurrency-faults.ts
+caught SDK concurrency fault: short-budget
+caught SDK concurrency fault: over-admission
+caught SDK concurrency fault: incomplete-evidence
+caught SDK concurrency fault: wrong-reservations
+caught SDK concurrency fault: wrong-rule
+caught SDK concurrency fault: skip-barrier
+caught SDK concurrency product fault: ignored-pending-window
+All SDK concurrency faults caught; restored source passes
+Running fault campaign: ci/kill-faults.ts
+caught kill recovery fault: short-count
+caught kill recovery fault: ignore-completion
+caught kill recovery fault: ignore-replay
+caught kill recovery fault: ignore-signal
+caught kill recovery fault: ignore-acknowledgement
+caught kill recovery fault: send-wrong-signal
+caught kill recovery fault: skip-state-restore
+All kill recovery faults caught; restored source passes
+Running fault campaign: ci/history-faults.ts
+caught history inventory fault: lazy-fetch
+caught history inventory fault: graft-ancestry
+caught history inventory fault: whole-history
+caught history inventory fault: detached-head
+caught history inventory fault: shallow-refusal
+caught history inventory fault: ref-closure
+caught history inventory fault: tree-framing
+caught history inventory fault: blob-shape
+caught history inventory fault: changing-scope
+caught history inventory fault: shared-paths
+caught history inventory fault: shared-modes
+caught history inventory fault: gitlinks
+caught history inventory fault: digest
+All history inventory faults caught; restored source passes
+Running fault campaign: packaging/faults.ts
+caught package fault: checkpoint-export
+caught package fault: export
+caught package fault: types
+caught package fault: dependency
+caught package fault: cli
+All package faults caught; restored candidate passes
+Running fault campaign: sdk/checkpoint-faults.ts
+caught checkpoint fault: key-length-bound
+caught checkpoint fault: format
+caught checkpoint fault: profile
+caught checkpoint fault: sequence
+caught checkpoint fault: policy-version
+caught checkpoint fault: head
+caught checkpoint fault: principal-role
+caught checkpoint fault: anchor-role
+caught checkpoint fault: guard-pin
+caught checkpoint fault: network-pin
+caught checkpoint fault: key-pin
+caught checkpoint fault: mutable-guard-pin
+caught checkpoint fault: mutable-state-digest
+caught checkpoint fault: archive-digest
+caught checkpoint fault: state-digest
+caught checkpoint fault: prefix-digest
+caught checkpoint fault: snapshot-signature
+caught checkpoint fault: prefix-signature
+caught checkpoint fault: signature-domain
+caught checkpoint fault: canonical-base64
+caught checkpoint fault: immutable-result
+caught checkpoint fault: candidate-export
+All checkpoint faults caught; restored source passes
+Running fault campaign: sdk/archive-cli-faults.ts
+caught archive CLI fault: duplicate-flag
+caught archive CLI fault: unknown-flag
+caught archive CLI fault: noncanonical-integer
+caught archive CLI fault: drop-head-pin
+caught archive CLI fault: invent-receipt
+caught archive CLI fault: successful-refusal-exit
+caught archive CLI fault: write-source
+All archive CLI faults caught; restored command passes
+Running fault campaign: sdk/archive-faults.ts
+caught archive fault: blocking-fifo-open
+caught archive fault: ignore-version
+caught archive fault: ignore-kind
+caught archive fault: ignore-sequence
+caught archive fault: ignore-predecessor
+caught archive fault: ignore-content-hash
+caught archive fault: complete-line-bound
+caught archive fault: unfinished-line-bound
+caught archive fault: ignore-source-change
+caught archive fault: ignore-path-replacement
+caught archive fault: ignore-head-pin
+caught archive fault: ignore-byte-pin
+caught archive fault: mutable-head-pin
+caught archive fault: reject-fractional-clock
+caught archive fault: unsafe-sequence-overflow
+caught archive fault: leak-descriptor
+All archive faults caught; restored source passes
+Running fault campaign: sdk/archive-anchor-faults.ts
+caught archive anchor fault: head-binding
+caught archive anchor fault: sequence-binding
+caught archive anchor fault: missing-anchor
+caught archive anchor fault: integer-sequence
+caught archive anchor fault: segment-coverage
+caught archive anchor fault: head-shape
+caught archive anchor fault: mutable-sequence
+caught archive anchor fault: mutable-head
+caught archive anchor fault: receipt-binding
+All anchor faults caught; restored source passes
+Running fault campaign: sdk/archive-anchor-cli-faults.ts
+caught anchor command fault: paired-flags
+caught anchor command fault: sequence-value
+caught anchor command fault: head-value
+caught anchor command fault: drop-anchor
+All anchor command faults caught; restored command passes
+Running fault campaign: sdk/prepare-policy-faults.ts
+caught policy command fault: version-binding
+caught policy command fault: text-binding
+caught policy command fault: identity-binding
+caught policy command fault: cluster-restriction
+caught policy command fault: bounded-source
+caught policy command fault: symlink-refusal
+caught policy command fault: policy-error
+caught policy command fault: version-spelling
+caught policy command fault: timestamp-spelling
+All policy command faults caught; restored source passes
+Running fault campaign: sdk/control-request-faults.ts
+caught control-request fault: control-payload-reuse
+caught control-request fault: proposal-namespace-reuse
+caught control-request fault: change-answer
+caught control-request fault: record-digest
+caught control-request fault: duplicate-start
+caught control-request fault: unknown-response
+caught control-request fault: duplicate-response
+caught control-request fault: response-bound
+All control-request faults caught; restored source passes
+Running fault campaign: sdk/ownership-faults.ts
+caught ownership/storage fault: ignore-kernel-lock
+caught ownership/storage fault: automatic-stale-takeover
+caught ownership/storage fault: unlink-mutex
+caught ownership/storage fault: create-missing-history
+caught ownership/storage fault: incomplete-short-write
+caught ownership/storage fault: ignore-sync-failure
+All ownership/storage faults caught; restored source passes
+Running fault campaign: sdk/request-faults.ts
+caught request fault: ignore-retry
+caught request fault: ignore-changed-payload
+caught request fault: ignore-recorded-binding
+caught request fault: ignore-duplicate-history
+All request faults caught; restored source passes
+Running fault campaign: sdk/sending-client-faults.ts
+caught sending client fault: ignore-response-id
+caught sending client fault: ignore-canonical-envelope
+caught sending client fault: unbounded-response
+caught sending client fault: hide-execution-ambiguity
+caught sending client fault: invent-before-connect-execution
+caught sending client fault: extend-timeout
+caught sending client fault: allow-oversized-message
+caught sending client fault: late-caller-identity
+caught sending client fault: accept-invalid-signature
+caught sending client fault: automatic-retry
+All sending client faults caught; restored source passes
+Running fault campaign: sdk/signing-faults.ts
+caught signing fault: no-redemption
+caught signing fault: changed-bytes
+caught signing fault: invalid-signature
+caught signing fault: send-before-signed
+caught signing fault: expired-send
+caught signing fault: repeat-send
+caught signing fault: repeat-response
+All signing faults caught; restored source passes
+Running fault campaign: signer/authority-faults.ts
+caught authority fault: mutable-host-configuration
+caught authority fault: caller-decision-attribution
+caught authority fault: caller-report-attribution
+caught authority fault: allow-non-devnet
+caught authority fault: use-changing-wall-clock
+All authority faults caught; restored source passes
+Running fault campaign: signer/core-faults.ts
+caught signer core fault: ignore-deadline
+caught signer core fault: ignore-completed-payload
+caught signer core fault: invent-outcome
+caught signer core fault: late-outcome
+caught signer core fault: send-without-intent
+caught signer core fault: forget-persisted-response
+All signer core faults caught; restored source passes
+Running fault campaign: signer/handler-faults.ts
+caught handler fault: concurrent-payload
+caught handler fault: duplicate-work
+caught handler fault: ignore-cached-answer
+caught handler fault: ignore-new-deadline
+caught handler fault: ignore-late-deadline
+caught handler fault: omit-request-deadline
+caught handler fault: ignore-control-namespace
+caught handler fault: omit-refusal-answer
+caught handler fault: admission-as-refusal
+All handler faults caught; restored source passes
+Running fault campaign: signer/policy-recovery-faults.ts
+caught policy recovery fault: skip-final-executor-check
+caught policy recovery fault: forget-final-history
+caught policy recovery fault: unknown-becomes-final
+caught policy recovery fault: allow-settled-signing
+caught policy recovery fault: allow-old-policy-send
+All policy recovery faults caught; restored source passes
+Running fault campaign: signer/recovery-faults.ts
+caught recovery fault: abort-on-attempt-error
+caught recovery fault: hide-attempt-error
+caught recovery fault: skip-chain-after-refusal
+caught recovery fault: invent-recovery-success
+All recovery faults caught; restored source passes
+Running fault campaign: signer/rpc-faults.ts
+caught RPC fault: ignore-network
+caught RPC fault: fractional-height
+caught RPC fault: ignore-context
+caught RPC fault: one-provider-outcome
+caught RPC fault: retry-send
+caught RPC fault: ignore-blockhash
+caught RPC fault: ignore-envelope-id
+caught RPC fault: unreferenced-deadline
+All RPC faults caught; restored source passes
+Running fault campaign: signer/service-faults.ts
+caught service fault: accept-unsigned-bootstrap
+caught service fault: ignore-history-mode
+caught service fault: claim-key-isolation
+caught service fault: hide-recovery-error
+caught service fault: release-before-drain
+caught service fault: skip-work-drain
+caught service fault: skip-recovery-tracking
+caught service fault: allow-recovery-after-stop
+All service faults caught; restored source passes
+Running fault campaign: signer/socket-faults.ts
+caught socket fault: public-parent
+caught socket fault: unknown-method
+caught socket fault: empty-identity
+caught socket fault: unbounded-frame
+caught socket fault: unbounded-response
+caught socket fault: activity-deadline
+caught socket fault: replace-live-listener
+caught socket fault: hold-completed-slot
+caught socket fault: oversized-proposal
+All socket faults caught; restored source passes
+{"ok":true,"failed":[],"skipped":[]}

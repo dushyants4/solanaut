@@ -1,0 +1,14 @@
+{
+  "actual_exit_status": 0,
+  "inputs_restored": 773,
+  "release_files_restored": 65,
+  "exact_release_inventory": true,
+  "campaigns": 36,
+  "caught_fault_lines": 331,
+  "summary": {
+    "ok": true,
+    "failed": [],
+    "skipped": []
+  },
+  "limitation": "manifest predates the separately verified scratch-parent fixture setup correction"
+}

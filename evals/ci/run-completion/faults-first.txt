@@ -1,0 +1,38 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: ✔ CI-1: restoration fingerprints include operator TypeScript tools (3.538659ms)
+✔ CI-2: a complete externally bound child result admits only actual exit zero (3.399716ms)
+✔ CI-2: missing, partial and report-only completion evidence refuses (2.097805ms)
+✔ CI-2: completion pins the exact run, input and command identities (0.523006ms)
+✔ CI-2: timeout, signal and launch errors cannot masquerade as exit zero (0.525886ms)
+✔ CI-2: unknown formats and malformed process identities refuse (0.653421ms)
+✔ CI-2: completion timestamps are canonical and ordered (0.461461ms)
+✔ CI-2: caller evidence cannot alter external pins during capture (0.373301ms)
+✔ CI-2: throwing accessors and malformed JSON refuse without leaking their content (0.710374ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 195.179302
+
+
+0 !== 1
+
+    at file:///home/dashy/Projects/Solanaut/evals/ci/run-completion-faults.ts:29:12
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

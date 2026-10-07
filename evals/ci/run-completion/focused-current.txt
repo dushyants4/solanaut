@@ -1,0 +1,20 @@
+✔ CI-1: restoration fingerprints include operator TypeScript tools (7.100228ms)
+✔ CI-1: exact inventory accepts every maintained campaign and rejects omission/addition/duplication (27.055361ms)
+✔ CI-1: all campaigns run sequentially; failure/null exit fails aggregation without hiding other findings (2.182499ms)
+✔ CI-1: changed source stops further mutation, reports skipped work and fails the gate (0.382761ms)
+✔ CI-2: a complete externally bound child result admits only actual exit zero (3.604626ms)
+✔ CI-2: missing, partial and report-only completion evidence refuses (2.381338ms)
+✔ CI-2: completion pins the exact run, input and command identities (0.650913ms)
+✔ CI-2: timeout, signal and launch errors cannot masquerade as exit zero (1.10061ms)
+✔ CI-2: unknown formats and malformed process identities refuse (0.891172ms)
+✔ CI-2: completion timestamps are canonical and ordered (0.580671ms)
+✔ CI-2: caller evidence cannot alter external pins during capture (0.520711ms)
+✔ CI-2: throwing accessors and malformed JSON refuse without leaking their content (0.883179ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 390.637201

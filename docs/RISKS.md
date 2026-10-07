@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.31** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.32** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 The threat model ([docs/papers/THREAT-MODEL.md](papers/THREAT-MODEL.md)) lists what an attacker can do to a running
@@ -43,6 +43,11 @@ The checkpoint codec authenticates externally pinned metadata and opaque payload
 (`evals/sdk/checkpoint.md`). A signature alone does not establish state semantics, freshness
 or tail continuity. It must not become a state-restoration shortcut: authenticated prefix
 replay and comparison with full replay remain required before startup uses checkpoints.
+
+The completion-record checker binds evaluation identity and refuses incomplete/error results
+(`evals/ci/run-completion.md`), but cannot establish that a host-produced result is truthful.
+Actual detached waiting, protected result storage, durable publication and interruption
+evidence remain required. No report file or structurally valid fixture substitutes for them.
 
 AST statement/branch coverage now measures complete SDK/signer inventories with calibrated
 counters (`evals/ci/coverage.md`). Its initial deficit was remediated with failure-path tests;
@@ -177,3 +182,4 @@ failure remains retained; corrected hosted validation and the complete CI-2 prog
 | 1.29 | 2026-10-06 | PUB-1 prepares an exact historical metadata inventory; publication-scope confidentiality, secrets and source-rights review remain open. |
 | 1.30 | 2026-10-06 | SNP-3 binding authentication is a component only; payload semantics, freshness, prefix replay and restore remain open. |
 | 1.31 | 2026-10-07 | CI-2 cap-fault diagnostic/completion correction preserves ordinary shrinking, all successful floors and deadlines; failed hosted evidence remains visible. |
+| 1.32 | 2026-10-07 | CI-2 completion-record checks are a foundation; trusted actual production and durable publication remain open. |

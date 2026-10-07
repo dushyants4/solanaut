@@ -8,6 +8,29 @@ work. This dated continuation retains the earlier session's full record at
 
 ## Did
 
+Final source recheck passes all 513 cases and typecheck. The corrected isolated fixture
+passes sixteen faults and every input/compiled-file hash restores. Pre-sync close passes
+nine gates; private sync follows. Original mutation scope and deadline remain unchanged.
+
+Completion foundation isolated aggregate exits zero across thirty-six campaigns with 331
+caught-fault lines; every one of its 773 inputs and 65 compiled files restores, including
+exact release inventory. Preserve the original manifest. Update only the scratch-parent
+fixture in a separate manifest, then repeat focused fault checks against that copy. Final
+ordinary source recheck runs separately; no SDK mutation source or production code changes.
+
+Operational-map revision 068e90c passes every hosted job in run 37575900703. Completion
+foundation root integration passes all 513 cases and typecheck. The expanded full isolated
+campaign is running from its frozen manifest; a later clean-directory fixture correction
+has separate focused/fault evidence and must remain distinguished from that manifest.
+
+Checkpoint afa0b21 passes every hosted job in run 37575269194. Operational maps 068e90c
+are privately pushed; hosted run 37575900703 starts. Began the CI-2 completion-record
+foundation: exact external run/input/command pins, successful actual status, absence of
+signal/error/timeout, canonical ordered times and distinct process identities. A record
+still needs a trusted actual supervisor producer; this helper cannot authenticate invented
+host evidence. Operator TypeScript enters the fault restoration fingerprint. Full root
+validation follows; original staged mutation inputs and lockfile still match their manifest.
+
 Dry-run diagnostic completes with actual exit zero, no signal or spawn error, but produces
 no JSON population report. Preserve its exact driver/configuration/input identity and raw
 output in `evals/ci/mutation/population-probe/`. All root mutation-source hashes still match.
@@ -88,6 +111,17 @@ record satisfies the close workflow's current-day record requirement. Earlier ca
 implementation, documentation and receipt changes remain in the continuing session record.
 
 ## Found
+
+Clean-directory execution finds that the fingerprint fixture relies on an existing scratch
+parent. Its first rehearsal fails ENOENT; creating the owned parent makes the separate clean
+directory pass. Retain both outputs. This is fixture setup, not changed restoration semantics.
+
+The completion stub refuses valid results, and the initial restoration fingerprint ignores
+operator TypeScript. Both fail their positive/negative fixtures first. Initial planted field
+check removal is masked by a second field check. Separate toJSON fixtures expose input-field
+hiding and post-capture extra fields; malformed external pins now also match the supplied
+body so identity mismatch cannot mask their validation. All final planted faults are caught.
+Inventory rejects the new campaign before registration. Preserve every initial failure.
 
 Retaining the exploratory driver under the typed evaluation tree exposes an inferred-env
 type error for deleting NODE_TEST_CONTEXT. Declare NodeJS.ProcessEnv, matching the existing

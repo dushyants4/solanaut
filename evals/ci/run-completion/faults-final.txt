@@ -1,0 +1,17 @@
+caught run-completion fault: strict-fields
+caught run-completion fault: captured-fields
+caught run-completion fault: external-identity
+caught run-completion fault: bound-identity
+caught run-completion fault: capture-external-pins
+caught run-completion fault: format
+caught run-completion fault: completed-state
+caught run-completion fault: process-pid
+caught run-completion fault: distinct-process
+caught run-completion fault: ordered-time
+caught run-completion fault: canonical-time
+caught run-completion fault: actual-exit
+caught run-completion fault: signal
+caught run-completion fault: launch-error
+caught run-completion fault: deadline
+caught run-completion fault: operator-tool-restoration
+All completion faults caught; restored source passes
