@@ -189,6 +189,14 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+CI 37571438128 fails its cap fault trial; all other jobs pass. Exact old-seed reproduction
+confirms shrinking reaches containment. First-counterexample diagnostics apply only to
+planted cap trials; actual spawn error/signal checks reject misleading timeout exits. Eight
+focused cases, twelve property/five cap faults and restored bytes pass; the integrated
+uncommitted candidate passes 504 root cases and typecheck. Receipt S51 scopes the count
+to that superset. Rules, ordinary shrinking, successful floors and deadlines stay unchanged.
+Corrected private sync and hosted CI follow.
+
 PUB-1 inventory component: fifteen cases/thirteen faults and typecheck pass; frozen original-
 origin mirror manifest retained in `evals/ci/history.md`. It is metadata preparation only,
 not publication clearance. Integrated uncommitted candidate root tests and coverage pass;

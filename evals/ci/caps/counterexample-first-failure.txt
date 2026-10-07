@@ -1,0 +1,27 @@
+{"scope":"CI seed reproduction only; not qualification","status":1,"signal":null}
+property starting: sol-window; seed=1678743925; requested=10000
+✖ CI-2 SOL window property: pending admissions match independent reservation sum (92.629101ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 324.902605
+
+✖ failing tests:
+
+test at packages/sdk/test/caps.property.test.ts:33:1
+✖ CI-2 SOL window property: pending admissions match independent reservation sum (92.629101ms)
+  Error: property failed: sol-window
+  Property failed after 22 tests
+  { seed: 1678743925, path: "21", endOnFailure: true }
+  Counterexample: [827629n,[200758n,733517n,219879n,5n,354595n]]
+  Shrunk 0 time(s)
+  
+  Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/fault-candidate-current/evals/ci/properties.ts:9:28)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/fault-candidate-current/packages/sdk/test/caps.property.test.ts:34:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)

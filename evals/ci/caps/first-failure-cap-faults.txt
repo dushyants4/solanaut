@@ -1,0 +1,137 @@
+property starting: sol-per-tx; seed=-36747264; requested=10000
+✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (46.543026ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 309.343427
+
+✖ failing tests:
+
+test at packages/sdk/test/caps.property.test.ts:22:1
+✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (46.543026ms)
+  Error: property failed: sol-per-tx
+  Property failed after 2 tests
+  { seed: -36747264, path: "1", endOnFailure: true }
+  Counterexample: [647140166757663745n,13916399709085293201n,0n,true]
+  Shrunk 0 time(s)
+  
+  Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/fault-candidate-current/evals/ci/properties.ts:19:28)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/fault-candidate-current/packages/sdk/test/caps.property.test.ts:23:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: per-tx-boundary
+property starting: sol-per-tx; seed=623337734; requested=10000
+✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (28.130863ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 281.950374
+
+✖ failing tests:
+
+test at packages/sdk/test/caps.property.test.ts:22:1
+✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (28.130863ms)
+  Error: property failed: sol-per-tx
+  Property failed after 1 tests
+  { seed: 623337734, path: "0", endOnFailure: true }
+  Counterexample: [18n,7754411300398455008n,1n,false]
+  Shrunk 0 time(s)
+  
+  Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/fault-candidate-current/evals/ci/properties.ts:19:28)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/fault-candidate-current/packages/sdk/test/caps.property.test.ts:23:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: per-tx-disabled
+property starting: sol-window; seed=763684475; requested=10000
+✖ CI-2 SOL window property: pending admissions match independent reservation sum (102.272662ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 682.604571
+
+✖ failing tests:
+
+test at packages/sdk/test/caps.property.test.ts:33:1
+✖ CI-2 SOL window property: pending admissions match independent reservation sum (102.272662ms)
+  Error: property failed: sol-window
+  Property failed after 20 tests
+  { seed: 763684475, path: "19", endOnFailure: true }
+  Counterexample: [2n,[2n,166492n]]
+  Shrunk 0 time(s)
+  
+  Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/fault-candidate-current/evals/ci/properties.ts:19:28)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/fault-candidate-current/packages/sdk/test/caps.property.test.ts:34:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: window-boundary
+property starting: sol-window; seed=-1397796830; requested=10000
+✖ CI-2 SOL window property: pending admissions match independent reservation sum (104.397807ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 392.073078
+
+✖ failing tests:
+
+test at packages/sdk/test/caps.property.test.ts:33:1
+✖ CI-2 SOL window property: pending admissions match independent reservation sum (104.397807ms)
+  Error: property failed: sol-window
+  Property failed after 37 tests
+  { seed: -1397796830, path: "36", endOnFailure: true }
+  Counterexample: [378560n,[168941n,791809n,713961n,328807n,438362n,505699n,640220n,124613n]]
+  Shrunk 0 time(s)
+  
+  Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/fault-candidate-current/evals/ci/properties.ts:19:28)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/fault-candidate-current/packages/sdk/test/caps.property.test.ts:34:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: ignore-reservation
+property starting: async-false; seed=133365290; requested=10000
+property starting: async-count; seed=1501080098; requested=10000
+✖ CI-2 asynchronous runner enforces failures and the completed execution floor (6.878258ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 167.994244
+
+✖ failing tests:
+
+test at evals/ci/properties.test.ts:25:1
+✖ CI-2 asynchronous runner enforces failures and the completed execution floor (6.878258ms)
+  Error: property run incomplete or skipped
+      at validateCompletion (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/fault-candidate-current/evals/ci/properties.ts:26:68)
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/fault-candidate-current/evals/ci/properties.ts:20:3)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/fault-candidate-current/evals/ci/properties.test.ts:29:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: async-short-run
+All cap property faults caught; restored source passes

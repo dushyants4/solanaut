@@ -2,7 +2,12 @@
 import { strict as assert } from "node:assert";
 import { spawnSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
+import { requirePropertyFaultExit } from "./properties.ts";
 const faults = [
+  ["incomplete-process", "evals/ci/properties.ts", 'if (result.status !== 1 || result.signal !== null || result.error !== undefined) throw new Error("fault trial process failed or did not complete");', "return;", "evals/ci/property-trial.test.ts"],
+  ["ordinary-diagnostics", "evals/ci/properties.ts", "if (mode === undefined) return options;", "if (mode === undefined) return {...options,endOnFailure:true};", "evals/ci/property-trial.test.ts"],
+  ["first-counterexample", "evals/ci/properties.ts", "return {...options,endOnFailure:true};", "return {...options,endOnFailure:false};", "evals/ci/property-trial.test.ts"],
+  ["fault-mode-whitelist", "evals/ci/properties.ts", 'if (mode !== "first-failure") throw new Error("invalid fault trial mode");', 'if (false) throw new Error("invalid fault trial mode");', "evals/ci/property-trial.test.ts"],
   ["budget-floor", "evals/ci/properties.ts", "requested < MIN_RUNS", "requested < 0", "evals/ci/properties.test.ts"],
   ["incomplete-count", "evals/ci/properties.ts", "result.numRuns !== requested", "false", "evals/ci/properties.test.ts"],
   ["skips", "evals/ci/properties.ts", "result.numSkips !== 0", "false", "evals/ci/properties.test.ts"],
@@ -19,11 +24,11 @@ for (const [name, path, from, to, tests] of faults) {
   try {
     writeFileSync(path, original.replace(from, to));
     const result = battery(tests); const output = result.stdout + result.stderr;
-    assert.equal(result.status, 1, output); assert.match(output, /AssertionError|property failed/);
+    requirePropertyFaultExit(result); assert.match(output, /AssertionError|property failed/);
     console.log(`caught property fault: ${name}`);
   } finally { writeFileSync(path, original); }
 }
-for (const path of ["evals/ci/properties.test.ts", "packages/sdk/test/properties.test.ts"]) {
+for (const path of ["evals/ci/properties.test.ts", "packages/sdk/test/properties.test.ts", "evals/ci/property-trial.test.ts"]) {
   const restored = battery(path); assert.equal(restored.status, 0, restored.stdout + restored.stderr);
 }
 console.log("All property faults caught; restored source passes");

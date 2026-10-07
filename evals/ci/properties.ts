@@ -1,11 +1,21 @@
 import * as fc from "fast-check";
 import { randomBytes } from "node:crypto";
 export const MIN_RUNS = 10_000;
+export function requirePropertyFaultExit(result: {status:number|null;signal:string|null;error?:unknown}): void {
+  if (result.status !== 1 || result.signal !== null || result.error !== undefined) throw new Error("fault trial process failed or did not complete");
+}
+export function propertyTrialOptions(runs: number, seed: number, mode?: string): {numRuns:number;seed:number;endOnFailure?:boolean} {
+  validateCompletion({failed:false,numRuns:runs,numSkips:0}, runs);
+  const options = {numRuns:runs,seed};
+  if (mode === undefined) return options;
+  if (mode !== "first-failure") throw new Error("invalid fault trial mode");
+  return {...options,endOnFailure:true};
+}
 export async function checkAsyncProperty<T extends [unknown, ...unknown[]]>(id: string, property: fc.IAsyncProperty<T>, runs = MIN_RUNS): Promise<void> {
   validateCompletion({ failed: false, numRuns: runs, numSkips: 0 }, runs);
   const seed = propertySeed(process.env.SOLANAUT_PROPERTY_SEED);
   console.log(`property starting: ${id}; seed=${seed}; requested=${runs}`);
-  const result = await fc.check(property, { numRuns: runs, seed });
+  const result = await fc.check(property, propertyTrialOptions(runs, seed, process.env.SOLANAUT_PROPERTY_TRIAL));
   if (result.failed) throw new Error(`property failed: ${id}\n${fc.defaultReportMessage(result)}`);
   validateCompletion(result, runs);
   console.log(`property completed: ${id}; seed=${seed}; runs=${result.numRuns}; skips=${result.numSkips}`);
@@ -25,7 +35,7 @@ export function checkProperty<T extends [unknown, ...unknown[]]>(id: string, pro
   validateCompletion({ failed: false, numRuns: runs, numSkips: 0 }, runs);
   const seed = propertySeed(process.env.SOLANAUT_PROPERTY_SEED);
   console.log(`property starting: ${id}; seed=${seed}; requested=${runs}`);
-  const result = fc.check(property, { numRuns: runs, seed });
+  const result = fc.check(property, propertyTrialOptions(runs, seed, process.env.SOLANAUT_PROPERTY_TRIAL));
   if (result.failed) throw new Error(`property failed: ${id}\n${fc.defaultReportMessage(result)}`);
   validateCompletion(result, runs);
   console.log(`property completed: ${id}; seed=${seed}; runs=${result.numRuns}; skips=${result.numSkips}`);

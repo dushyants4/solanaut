@@ -5,6 +5,7 @@ seen failing might not be checking anything.
 
 | Gate | Shown failing | Then passing | Receipt |
 |---|---|---|---|
+| CI-2 cap fault-trial diagnostics | hosted shrinking timeout, same-seed isolated reproduction, option stub and misleading real-timeout acceptance retained | eight cases, twelve property/five cap faults, restoration and typecheck; root/close/corrected CI pending | `ci/caps-first-failure.md` |
 | PUB-1 history inventory preparation | stub/ref-closure failures, equivalent planted edit, graft/lazy-fetch gaps and local tree-ref refusal retained | fifteen cases/thirteen real faults, including cached missing-commit refusal; exact origin-mirror manifest; publication review and root close still owed | `ci/history.md` |
 | CI-2 performance-report preparation | eight stub failures; synced regression fixture miss retained | eight focused cases/sixteen faults; timing targets unmeasured; root integration passes | `ci/performance.md` |
 | RT-1/RT-3 synthetic traffic | gate/workload/runner stub failures; endpoint error and population-fixture miss retained | thirteen focused cases/eighteen faults; frozen benign target passes; changing-intent failed streams unrefused within horizon; root close pending | `ci/traffic.md` |

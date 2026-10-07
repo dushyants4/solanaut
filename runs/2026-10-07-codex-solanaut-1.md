@@ -7,6 +7,14 @@ record: `runs/2026-10-06-codex-solanaut-1.md`.
 
 ## Did
 
+History a94ecf0 privately pushed. CI 37571438128 fails the planted cap trial; other jobs
+pass. Exact old-seed reproduction isolates shrinking until containment. Prepared fault-only
+first-counterexample diagnostics with unchanged ordinary options, full successful floors
+and deadlines. Eight focused cases/twelve property/five cap faults, restored candidate
+inputs and typecheck pass. Integrated uncommitted candidate root passes 504 cases with
+fault mode unset; this includes pending checkpoint/coverage work, not the CI-only tree.
+Receipt `evals/ci/caps-first-failure.md` preserves all initial failures and S51 scope.
+
 Read project instructions/queue/thresholds and fetched the private origin. Prepared PUB-1
 read-only history inventory: fifteen cases/thirteen real faults pass, typecheck passes.
 Frozen origin-mirror metadata, exclusions, initial failures and fault misses are retained in
@@ -19,6 +27,12 @@ claims, risks, progress, handoff and document register. No historical content or
 changed. Other integrated candidate work remains uncommitted and separately reviewed.
 
 ## Found
+
+The old diagnostic spawn result has ETIMEDOUT despite exit one. A separate real child
+prints a plausible failure and exits one on containment; the new completion stub wrongly
+accepts it before the actual error/signal guard is added. Both failures are retained.
+No rule/generator/threshold/deadline changes. Detached observer 574792 now retains the
+original mutation deadline after managed observer 520713 is stopped. No score inferred.
 
 The full integrated candidate's isolated fault run has an incomplete restored property
 battery. Raw output remains retained; its aggregate is not a pass. No deadline/floor change.

@@ -1,0 +1,22 @@
+property starting: always-false; seed=-910258010; requested=10000
+property starting: successful-count; seed=-47571489; requested=10000
+property completed: successful-count; seed=-47571489; runs=10000; skips=0
+property starting: async-false; seed=1438879241; requested=10000
+property starting: async-count; seed=-1404527485; requested=10000
+property completed: async-count; seed=-1404527485; runs=10000; skips=0
+✔ CI-2 property gate refuses reduced budgets, incomplete runs, skips and failures (4.777758ms)
+✔ CI-2 property seeds are canonical signed 32-bit integers (1.345252ms)
+✔ CI-2 runner throws on a failing property and completes the required successful runs (71.476323ms)
+✔ CI-2 asynchronous runner enforces failures and the completed execution floor (374.568645ms)
+✔ CI-2: ordinary property options remain unchanged; unknown fault modes and low budgets refuse (3.620232ms)
+✔ CI-2: fault diagnostics preserve the complete successful generated population (168.128102ms)
+✔ CI-2: fault trials report the first actual failure without shrinking or retrying it (5.444781ms)
+✔ CI-2: a misleading failure message and exit code cannot hide a timed-out fault trial (1018.246223ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1502.975066

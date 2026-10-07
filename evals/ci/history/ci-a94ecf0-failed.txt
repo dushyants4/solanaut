@@ -1,0 +1,459 @@
+maintained fault campaigns	sequential fault campaigns with restoration checks	﻿2026-10-07T04:26:48.2843728Z ##[group]Run npm run test:bite
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:26:48.2844181Z ^[[36;1mnpm run test:bite^[[0m
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:26:48.2883881Z shell: /usr/bin/bash -e {0}
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:26:48.2884260Z ##[endgroup]
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:26:48.3860619Z 
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:26:48.3861694Z > test:bite
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:26:48.3862820Z > node evals/ci/bite.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:26:48.3863334Z 
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:26:48.5214141Z Running fault campaign: ci/bite-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:26:49.0714476Z caught bite aggregation fault: omit-campaign
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:26:49.2656009Z caught bite aggregation fault: ignore-failed-exit
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:26:49.4600366Z caught bite aggregation fault: ignore-unrestored-source
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:26:49.6665636Z caught bite aggregation fault: invent-clean-result
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:26:49.8723600Z caught bite aggregation fault: skip-first-campaign
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:26:50.0592115Z All bite aggregation faults caught; restored source passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:26:50.0718004Z Running fault campaign: ci/latch-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:26:52.2380352Z caught latch fault: v0
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:26:53.2593343Z caught latch fault: only-keel
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:26:54.2762087Z caught latch fault: only-previous
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:26:55.2814895Z caught latch fault: last-entry
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:26:56.3029184Z caught latch fault: no-replay-predecessor
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:26:57.3215446Z caught latch fault: no-denial-threshold
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:26:58.3471992Z caught latch fault: skip-intervening-decision
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:26:59.3684918Z All latch faults caught; restored source passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:26:59.3800202Z Running fault campaign: ci/property-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:26:59.7234263Z caught property fault: budget-floor
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:00.1287470Z caught property fault: incomplete-count
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:00.5109071Z caught property fault: skips
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:00.8944884Z caught property fault: failed-result
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:01.2658342Z caught property fault: seed-validation
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:01.7627810Z caught property fault: address-alphabet
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:02.5158941Z caught property fault: account-writability
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:23.5788977Z caught property fault: unexpected-error
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:44.6512945Z All property faults caught; restored source passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:44.6661993Z Running fault campaign: ci/fuzz-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:45.1943119Z caught fuzz gate fault: lower-budget
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:45.3931036Z caught fuzz gate fault: ignore-process-failure
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:45.5924035Z caught fuzz gate fault: accept-duplicate-summary
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:45.7912470Z caught fuzz gate fault: ignore-total
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:45.9933100Z caught fuzz gate fault: ignore-outcome-sum
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:46.1866791Z caught fuzz gate fault: empty-accepted-domain
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:46.7507013Z caught fuzz product fault: unexpected-decoder-exception
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:46.9400300Z All fuzz faults caught; restored source passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:46.9515307Z Running fault campaign: ci/cap-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4132915Z property starting: sol-per-tx; seed=-1797991650; requested=10000
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4134922Z ✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (52.348903ms)
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4143925Z ℹ tests 1
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4160890Z ℹ suites 0
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4161610Z ℹ pass 0
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4162129Z ℹ fail 1
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4162758Z ℹ cancelled 0
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4163353Z ℹ skipped 0
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4172180Z ℹ todo 0
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4173359Z ℹ duration_ms 335.341055
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4173955Z 
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4174286Z ✖ failing tests:
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4174683Z 
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4175223Z test at packages/sdk/test/caps.property.test.ts:22:1
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4176557Z ✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (52.348903ms)
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4177545Z   Error: property failed: sol-per-tx
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4178336Z   Property failed after 10 tests
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4179202Z   { seed: -1797991650, path: "9:0:0", endOnFailure: true }
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4180545Z   Counterexample: [0n,0n,-1n,false]
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4181587Z   Shrunk 2 time(s)
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4182157Z   
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4183358Z   Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4184782Z       at checkAsyncProperty (file:///home/runner/work/solanaut/solanaut/evals/ci/properties.ts:9:28)
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4186389Z       at async TestContext.<anonymous> (file:///home/runner/work/solanaut/solanaut/packages/sdk/test/caps.property.test.ts:23:3)
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4187700Z       at async Test.run (node:internal/test_runner/test:1404:7)
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4188836Z       at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4189527Z 
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.4190084Z caught cap property fault: per-tx-boundary
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7327737Z property starting: sol-per-tx; seed=1682915508; requested=10000
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7329545Z ✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (38.864362ms)
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7330381Z ℹ tests 1
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7330872Z ℹ suites 0
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7331398Z ℹ pass 0
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7331898Z ℹ fail 1
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7332385Z ℹ cancelled 0
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7333291Z ℹ skipped 0
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7334579Z ℹ todo 0
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7335263Z ℹ duration_ms 280.476618
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7335708Z 
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7336076Z ✖ failing tests:
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7336481Z 
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7336925Z test at packages/sdk/test/caps.property.test.ts:22:1
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7337821Z ✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (38.864362ms)
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7338646Z   Error: property failed: sol-per-tx
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7339323Z   Property failed after 2 tests
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7341409Z   { seed: 1682915508, path: "1:0:0", endOnFailure: true }
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7342146Z   Counterexample: [0n,0n,1n,true]
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7344264Z   Shrunk 2 time(s)
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7344806Z   
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7345659Z   Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7347705Z       at checkAsyncProperty (file:///home/runner/work/solanaut/solanaut/evals/ci/properties.ts:9:28)
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7348886Z       at async TestContext.<anonymous> (file:///home/runner/work/solanaut/solanaut/packages/sdk/test/caps.property.test.ts:23:3)
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7350436Z       at async Test.run (node:internal/test_runner/test:1404:7)
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7351574Z       at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7352402Z 
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:47.7354434Z caught cap property fault: per-tx-disabled
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1119522Z property starting: sol-window; seed=-888214114; requested=10000
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1126107Z ✖ CI-2 SOL window property: pending admissions match independent reservation sum (74.285513ms)
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1126852Z ℹ tests 1
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1127154Z ℹ suites 0
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1127474Z ℹ pass 0
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1127885Z ℹ fail 1
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1128166Z ℹ cancelled 0
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1128503Z ℹ skipped 0
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1128799Z ℹ todo 0
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1129200Z ℹ duration_ms 342.793265
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1129406Z 
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1129583Z ✖ failing tests:
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1129786Z 
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1130072Z test at packages/sdk/test/caps.property.test.ts:33:1
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1130800Z ✖ CI-2 SOL window property: pending admissions match independent reservation sum (74.285513ms)
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1131350Z   Error: property failed: sol-window
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1131806Z   Property failed after 6 tests
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1132239Z   { seed: -888214114, path: "5:3:5:5:0:0", endOnFailure: true }
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1143038Z   Counterexample: [0n,[0n]]
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1143651Z   Shrunk 5 time(s)
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1143945Z   
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1144525Z   Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1145500Z       at checkAsyncProperty (file:///home/runner/work/solanaut/solanaut/evals/ci/properties.ts:9:28)
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1146387Z       at async TestContext.<anonymous> (file:///home/runner/work/solanaut/solanaut/packages/sdk/test/caps.property.test.ts:34:3)
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1147085Z       at async Test.run (node:internal/test_runner/test:1404:7)
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1147692Z       at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1148027Z 
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:27:48.1148254Z caught cap property fault: window-boundary
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:18.1549965Z node:internal/modules/run_main:107
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:18.1573572Z     triggerUncaughtException(
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:18.1574631Z     ^
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:18.1593292Z 
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:18.1615579Z AssertionError [ERR_ASSERTION]: The input did not match the regular expression /property failed|property run incomplete/. Input:
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:18.1631519Z 
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:18.1645130Z 'property starting: sol-window; seed=1678743925; requested=10000\n'
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:18.1649630Z 
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:18.1650433Z     at file:///home/runner/work/solanaut/solanaut/evals/ci/cap-faults.ts:17:52
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:18.1651675Z     at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:18.1652731Z     at async node:internal/modules/esm/loader:650:26
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:18.1653883Z     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:18.1654892Z   generatedMessage: true,
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:18.1655484Z   code: 'ERR_ASSERTION',
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:18.1656433Z   actual: 'property starting: sol-window; seed=1678743925; requested=10000\n',
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:18.1657382Z   expected: /property failed|property run incomplete/,
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:18.1658119Z   operator: 'match',
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:18.1658730Z   diff: 'simple'
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:18.1659231Z }
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:18.1659550Z 
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:18.1659832Z Node.js v26.7.0
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:18.1668407Z Running fault campaign: ci/coverage-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:25.2984222Z caught coverage fault: failed-test-process
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:28.8444335Z caught coverage fault: statement-floor
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:32.4179528Z caught coverage fault: branch-floor
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:35.9895263Z caught coverage fault: critical-floor
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:39.5327372Z caught coverage fault: omit-inventory-check
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:43.1563569Z caught coverage fault: invalid-counts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:46.6900410Z caught coverage fault: wrong-counter-variable
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:50.2041196Z caught coverage fault: skip-native-stripping
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:53.7015281Z caught coverage fault: omit-unimported-source
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:28:57.2223385Z caught coverage fault: incomplete-statement-map
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:00.7478496Z caught coverage fault: invalid-branch-shape
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:04.2656618Z caught coverage fault: accept-counter-fabrication
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:07.8301003Z caught coverage fault: release-input-coercion
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:11.3580714Z caught coverage fault: raw-canonical-bytes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:14.9019619Z caught coverage fault: cross-policy-signing
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:18.4389614Z caught coverage fault: noncanonical-recorded-policy
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:21.9610751Z caught coverage fault: unsupported-signing-stage
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:25.4770514Z caught coverage fault: busy-slot-bound
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:29.0125650Z caught coverage fault: expired-provider-lifetime
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:32.5358310Z All coverage faults caught; restored sources pass
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:32.5464851Z Running fault campaign: ci/mutation-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:34.7018078Z caught mutation gate fault: process-completion
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:35.7219935Z caught mutation gate fault: score-floor
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:36.7608976Z caught mutation gate fault: source-inventory
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:37.7690501Z caught mutation gate fault: source-content
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:38.7810142Z caught mutation gate fault: mutant-identity
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:39.8062012Z caught mutation gate fault: status-completion
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:40.8313986Z caught mutation gate fault: valid-population
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:41.8602315Z caught mutation gate fault: location-boundary
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:42.1774318Z caught mutation gate fault: staging-threshold
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:42.5138763Z caught mutation gate fault: staging-scope
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:42.8193775Z caught mutation gate fault: working-tree-mutation
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:43.1335999Z caught mutation gate fault: staging-execution
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:43.4625119Z caught mutation gate fault: whole-run-resource-limit
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:43.7838915Z caught mutation gate fault: per-mutant-timeout
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:44.7992138Z All mutation report/staging faults caught; restored sources pass
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:44.8119776Z Running fault campaign: ci/performance-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:45.3910608Z caught timing fault: missing-process
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:45.6248999Z caught timing fault: wrong-quantile
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:45.8493593Z caught timing fault: pre-latency
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:46.0801849Z caught timing fault: synced-latency
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:46.3013771Z caught timing fault: decision-rate
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:46.5179286Z caught timing fault: replay-rate
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:46.7383967Z caught timing fault: restart-population
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:46.9506276Z caught timing fault: snapshot-trust
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:47.1808546Z caught timing fault: keel-replay
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:47.3995080Z caught timing fault: restart-duration
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:47.6175635Z caught timing fault: freshness
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:47.8401991Z caught timing fault: pre-regression
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:48.0638967Z caught timing fault: synced-regression
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:48.2951281Z caught timing fault: compatible-reference
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:48.5237341Z caught timing fault: zero-sample
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:48.7455686Z caught timing fault: missing-observations
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:48.9695065Z All timing faults caught; restored source passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:48.9801201Z Running fault campaign: ci/differential-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:50.6656840Z caught differential fault: process
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:51.4246355Z caught differential fault: population
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:52.1934004Z caught differential fault: digest
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:52.9581856Z caught differential fault: versions
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:53.7244768Z caught differential fault: programs
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:54.5035637Z caught differential fault: completion
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:55.2605083Z caught differential fault: mismatch
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:56.0183506Z caught differential fault: oracle-comparison
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:56.8007381Z caught differential fault: strict-refusal
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:57.6053596Z caught differential fault: corpus-pin
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:58.3784945Z caught differential fault: corpus-framing
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:59.1484788Z caught differential fault: duplicate-transaction
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:59.9104389Z All differential faults caught; restored sources pass
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:29:59.9234165Z Running fault campaign: ci/traffic-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:02.3728339Z caught traffic fault: process
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:03.5378634Z caught traffic fault: definition
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:04.6859541Z caught traffic fault: profiles
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:05.8447084Z caught traffic fault: seeds
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:06.9960352Z caught traffic fault: population
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:08.1647475Z caught traffic fault: completion
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:09.3271946Z caught traffic fault: denial-counts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:10.4676789Z caught traffic fault: rule-counts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:11.6069780Z caught traffic fault: confidence
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:12.7706362Z caught traffic fault: uncertainty
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:13.9198163Z caught traffic fault: burst-cadence
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:15.0607200Z caught traffic fault: fee-range
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:16.1955575Z caught traffic fault: recurring-effects
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:17.2424054Z caught traffic fault: guard-policy
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:18.1500633Z caught traffic fault: landed-outcomes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:19.2797647Z caught traffic fault: loop-inventory
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:20.4140872Z caught traffic fault: failed-outcomes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:21.5383615Z caught traffic fault: first-refusal
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:22.6811667Z All traffic faults caught; restored sources pass
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:22.6928029Z Running fault campaign: ci/replay-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:23.1228031Z caught replay gate fault: short-history
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:23.4211991Z caught replay gate fault: ignore-divergence
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:23.7274682Z caught replay gate fault: ignore-recomputed-count
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:24.0382966Z caught replay gate fault: ignore-entry-count
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:24.3498824Z caught replay gate fault: ignore-head
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:24.6668299Z caught replay gate fault: ignore-workload-kind
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:24.9701396Z caught replay product fault: previously-missed-per-tx-cap
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:27.7771063Z caught replay product fault: changed-record-and-evaluation
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:30.7259243Z All replay faults caught; restored pinned workload passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:30.7358554Z Running fault campaign: ci/concurrency-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:31.4666872Z caught SDK concurrency fault: short-budget
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:32.0778227Z caught SDK concurrency fault: over-admission
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:32.6909615Z caught SDK concurrency fault: incomplete-evidence
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:33.3079261Z caught SDK concurrency fault: wrong-reservations
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:33.9260647Z caught SDK concurrency fault: wrong-rule
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:34.5341788Z caught SDK concurrency fault: skip-barrier
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:35.1290326Z caught SDK concurrency product fault: ignored-pending-window
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:35.7303986Z All SDK concurrency faults caught; restored source passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:35.7417097Z Running fault campaign: ci/kill-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:36.5113636Z caught kill recovery fault: short-count
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:37.1709413Z caught kill recovery fault: ignore-completion
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:37.8097422Z caught kill recovery fault: ignore-replay
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:38.4568754Z caught kill recovery fault: ignore-signal
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:39.0947431Z caught kill recovery fault: ignore-acknowledgement
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:39.7331714Z caught kill recovery fault: send-wrong-signal
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:40.3553487Z caught kill recovery fault: skip-state-restore
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:41.0064464Z All kill recovery faults caught; restored source passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:41.0164066Z Running fault campaign: ci/history-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:43.4356162Z caught history inventory fault: lazy-fetch
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:44.4920687Z caught history inventory fault: graft-ancestry
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:45.5361928Z caught history inventory fault: whole-history
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:46.5485645Z caught history inventory fault: detached-head
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:47.5848756Z caught history inventory fault: shallow-refusal
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:48.7401964Z caught history inventory fault: ref-closure
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:49.7195655Z caught history inventory fault: tree-framing
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:50.7457227Z caught history inventory fault: blob-shape
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:51.7860038Z caught history inventory fault: changing-scope
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:52.8764664Z caught history inventory fault: shared-paths
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:53.9573687Z caught history inventory fault: shared-modes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:55.0341129Z caught history inventory fault: gitlinks
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:56.1133155Z caught history inventory fault: digest
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:57.1951555Z All history inventory faults caught; restored source passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:30:57.2054062Z Running fault campaign: packaging/faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:00.9428443Z caught package fault: export
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:02.9935584Z caught package fault: types
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:04.4673968Z caught package fault: dependency
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:06.3631061Z caught package fault: cli
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:08.3674803Z All package faults caught; restored candidate passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:08.3778029Z Running fault campaign: sdk/archive-cli-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:16.3459761Z caught archive CLI fault: duplicate-flag
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:19.7461169Z caught archive CLI fault: unknown-flag
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:23.3223537Z caught archive CLI fault: noncanonical-integer
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:27.4414499Z caught archive CLI fault: drop-head-pin
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:30.8445984Z caught archive CLI fault: invent-receipt
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:34.8120779Z caught archive CLI fault: successful-refusal-exit
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:38.5208900Z caught archive CLI fault: write-source
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:42.8066788Z All archive CLI faults caught; restored command passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:42.8170297Z Running fault campaign: sdk/archive-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:44.5850763Z caught archive fault: blocking-fifo-open
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:44.9822946Z caught archive fault: ignore-version
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:45.3727508Z caught archive fault: ignore-kind
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:45.7532800Z caught archive fault: ignore-sequence
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:46.1354943Z caught archive fault: ignore-predecessor
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:46.5249615Z caught archive fault: ignore-content-hash
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:46.9207200Z caught archive fault: complete-line-bound
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:47.2979663Z caught archive fault: unfinished-line-bound
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:47.6935218Z caught archive fault: ignore-source-change
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:48.0927148Z caught archive fault: ignore-path-replacement
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:48.4888790Z caught archive fault: ignore-head-pin
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:48.8847154Z caught archive fault: ignore-byte-pin
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:49.2790377Z caught archive fault: mutable-head-pin
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:49.6682837Z caught archive fault: reject-fractional-clock
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:50.0724205Z caught archive fault: unsafe-sequence-overflow
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:50.4674029Z caught archive fault: leak-descriptor
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:50.8750999Z All archive faults caught; restored source passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:50.8859359Z Running fault campaign: sdk/archive-anchor-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:51.4960519Z caught archive anchor fault: head-binding
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:51.7268484Z caught archive anchor fault: sequence-binding
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:51.9527611Z caught archive anchor fault: missing-anchor
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:52.1908641Z caught archive anchor fault: integer-sequence
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:52.4326964Z caught archive anchor fault: segment-coverage
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:52.6645774Z caught archive anchor fault: head-shape
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:52.9053697Z caught archive anchor fault: mutable-sequence
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:53.1426687Z caught archive anchor fault: mutable-head
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:53.3827638Z caught archive anchor fault: receipt-binding
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:53.6126946Z All anchor faults caught; restored source passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:53.6234260Z Running fault campaign: sdk/archive-anchor-cli-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:55.7204222Z caught anchor command fault: paired-flags
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:56.7044807Z caught anchor command fault: sequence-value
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:57.5859155Z caught anchor command fault: head-value
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:58.4614516Z caught anchor command fault: drop-anchor
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:59.6774240Z All anchor command faults caught; restored command passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:31:59.6866061Z Running fault campaign: sdk/prepare-policy-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:08.3075318Z caught policy command fault: version-binding
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:12.4888612Z caught policy command fault: text-binding
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:16.6384428Z caught policy command fault: identity-binding
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:20.8631399Z caught policy command fault: cluster-restriction
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:24.6349685Z caught policy command fault: bounded-source
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:28.1460440Z caught policy command fault: symlink-refusal
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:32.1763542Z caught policy command fault: policy-error
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:35.8387637Z caught policy command fault: version-spelling
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:39.8384360Z caught policy command fault: timestamp-spelling
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:44.1341812Z All policy command faults caught; restored source passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:44.1438788Z Running fault campaign: sdk/control-request-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:44.9384164Z caught control-request fault: control-payload-reuse
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:45.2769993Z caught control-request fault: proposal-namespace-reuse
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:45.6207060Z caught control-request fault: change-answer
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:45.9547240Z caught control-request fault: record-digest
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:46.2916996Z caught control-request fault: duplicate-start
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:46.6369520Z caught control-request fault: unknown-response
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:46.9880844Z caught control-request fault: duplicate-response
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:47.3249617Z caught control-request fault: response-bound
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:47.6654404Z All control-request faults caught; restored source passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:47.6748780Z Running fault campaign: sdk/ownership-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:50.3603674Z caught ownership/storage fault: ignore-kernel-lock
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:51.6301120Z caught ownership/storage fault: automatic-stale-takeover
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:52.9046343Z caught ownership/storage fault: unlink-mutex
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:54.1778103Z caught ownership/storage fault: create-missing-history
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:55.4592206Z caught ownership/storage fault: incomplete-short-write
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:56.7184005Z caught ownership/storage fault: ignore-sync-failure
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:57.9786625Z All ownership/storage faults caught; restored source passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:57.9884279Z Running fault campaign: sdk/request-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:58.7991175Z caught request fault: ignore-retry
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:59.1490527Z caught request fault: ignore-changed-payload
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:59.5035407Z caught request fault: ignore-recorded-binding
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:32:59.8498515Z caught request fault: ignore-duplicate-history
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:00.2037235Z All request faults caught; restored source passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:00.2140271Z Running fault campaign: sdk/sending-client-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:00.8591180Z caught sending client fault: ignore-response-id
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:01.1227394Z caught sending client fault: ignore-canonical-envelope
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:01.3812009Z caught sending client fault: unbounded-response
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:01.6405748Z caught sending client fault: hide-execution-ambiguity
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:01.9018289Z caught sending client fault: invent-before-connect-execution
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:02.3227977Z caught sending client fault: extend-timeout
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:02.5892078Z caught sending client fault: allow-oversized-message
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:02.8538486Z caught sending client fault: late-caller-identity
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:03.1122131Z caught sending client fault: accept-invalid-signature
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:03.3778104Z caught sending client fault: automatic-retry
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:03.6404998Z All sending client faults caught; restored source passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:03.6485592Z Running fault campaign: sdk/signing-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:04.5096227Z caught signing fault: no-redemption
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:04.8762861Z caught signing fault: changed-bytes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:05.2313997Z caught signing fault: invalid-signature
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:05.5920747Z caught signing fault: send-before-signed
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:05.9606009Z caught signing fault: expired-send
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:06.3289278Z caught signing fault: repeat-send
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:06.6974641Z caught signing fault: repeat-response
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:07.0628828Z All signing faults caught; restored source passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:07.0783984Z Running fault campaign: signer/authority-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:08.0424168Z caught authority fault: mutable-host-configuration
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:08.4610582Z caught authority fault: caller-decision-attribution
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:08.8856418Z caught authority fault: caller-report-attribution
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:09.3045561Z caught authority fault: allow-non-devnet
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:09.7158400Z caught authority fault: use-changing-wall-clock
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:10.1154354Z All authority faults caught; restored source passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:10.1324074Z Running fault campaign: signer/core-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:11.0300901Z caught signer core fault: ignore-deadline
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:11.4124132Z caught signer core fault: ignore-completed-payload
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:11.7955036Z caught signer core fault: invent-outcome
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:12.2043120Z caught signer core fault: late-outcome
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:12.5933975Z caught signer core fault: send-without-intent
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:12.9690090Z caught signer core fault: forget-persisted-response
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:13.3545290Z All signer core faults caught; restored source passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:13.3647511Z Running fault campaign: signer/handler-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:14.1793654Z caught handler fault: concurrent-payload
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:14.5279354Z caught handler fault: duplicate-work
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:14.8753916Z caught handler fault: ignore-cached-answer
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:15.2214947Z caught handler fault: ignore-new-deadline
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:15.5657624Z caught handler fault: ignore-late-deadline
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:15.9206136Z caught handler fault: omit-request-deadline
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:16.2624191Z caught handler fault: ignore-control-namespace
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:16.6081880Z caught handler fault: omit-refusal-answer
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:16.9524103Z caught handler fault: admission-as-refusal
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:17.2963791Z All handler faults caught; restored source passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:17.3074006Z Running fault campaign: signer/policy-recovery-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:18.8236199Z caught policy recovery fault: skip-final-executor-check
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:19.5264701Z caught policy recovery fault: forget-final-history
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:20.2176341Z caught policy recovery fault: unknown-becomes-final
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:20.9034646Z caught policy recovery fault: allow-settled-signing
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:21.5994663Z caught policy recovery fault: allow-old-policy-send
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:22.2944644Z All policy recovery faults caught; restored source passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:22.3052569Z Running fault campaign: signer/recovery-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:23.1821893Z caught recovery fault: abort-on-attempt-error
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:23.5711289Z caught recovery fault: hide-attempt-error
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:23.9596787Z caught recovery fault: skip-chain-after-refusal
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:24.3518970Z caught recovery fault: invent-recovery-success
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:24.7324769Z All recovery faults caught; restored source passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:24.7423851Z Running fault campaign: signer/rpc-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:26.1974383Z caught RPC fault: ignore-network
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:26.8547692Z caught RPC fault: fractional-height
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:27.5201803Z caught RPC fault: ignore-context
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:28.1718334Z caught RPC fault: one-provider-outcome
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:28.8553183Z caught RPC fault: retry-send
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:29.5235375Z caught RPC fault: ignore-blockhash
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:30.1772811Z caught RPC fault: ignore-envelope-id
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:30.8000364Z caught RPC fault: unreferenced-deadline
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:31.4872542Z All RPC faults caught; restored source passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:31.4967307Z Running fault campaign: signer/service-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:32.5536500Z caught service fault: accept-unsigned-bootstrap
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:33.0692225Z caught service fault: ignore-history-mode
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:33.5605244Z caught service fault: claim-key-isolation
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:34.0659971Z caught service fault: hide-recovery-error
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:34.5653766Z caught service fault: release-before-drain
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:35.0791976Z caught service fault: skip-work-drain
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:35.5815387Z caught service fault: skip-recovery-tracking
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:36.1019539Z caught service fault: allow-recovery-after-stop
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:36.6284473Z All service faults caught; restored source passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:36.6383537Z Running fault campaign: signer/socket-faults.ts
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:37.9238874Z caught socket fault: public-parent
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:38.4303706Z caught socket fault: unknown-method
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:38.9304093Z caught socket fault: empty-identity
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:39.5307810Z caught socket fault: unbounded-frame
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:40.0280031Z caught socket fault: unbounded-response
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:40.6756688Z caught socket fault: activity-deadline
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:41.1738405Z caught socket fault: replace-live-listener
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:41.6650882Z caught socket fault: hold-completed-slot
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:42.2041118Z caught socket fault: oversized-proposal
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:42.6804410Z All socket faults caught; restored source passes
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:42.6899966Z {"ok":false,"failed":["ci/cap-faults.ts"],"skipped":[]}
+maintained fault campaigns	sequential fault campaigns with restoration checks	2026-10-07T04:33:42.7010763Z ##[error]Process completed with exit code 1.

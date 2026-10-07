@@ -1,0 +1,2 @@
+{"scope":"CI seed reproduction only; not qualification","status":1,"signal":null,"error":"spawnSync /home/dashy/.local/share/mise/installs/node/26.7.0/bin/node ETIMEDOUT"}
+property starting: sol-window; seed=1678743925; requested=10000

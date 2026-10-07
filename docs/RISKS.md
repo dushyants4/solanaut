@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.29** · 2026-10-06 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.31** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 The threat model ([docs/papers/THREAT-MODEL.md](papers/THREAT-MODEL.md)) lists what an attacker can do to a running
@@ -158,9 +158,16 @@ metadata (`evals/ci/history.md`). It does not assess secrets, confidentiality, s
 or hosted unreachable-object exposure. Final candidate/ref-set review remains required;
 local harness tree refs are refused, not silently omitted or changed.
 
+Planted cap trials now retain the first actual counterexample rather than shrinking a
+deliberately broken rule until containment (`evals/ci/caps-first-failure.md`). Ordinary
+qualification still shrinks and enforces its full execution floor. Incomplete/error/signalled
+child processes refuse credit even if they print a failure and exit one. The initial hosted
+failure remains retained; corrected hosted validation and the complete CI-2 programme are owed.
+
 | Version | Date | What changed |
 |---|---|---|
 | Draft 1 | 2026-10-01 | First register, for milestone 2c.1: 19 risks, from the Beta's run records, `docs/SPEC.md` §12, the threat model and `kb/REGISTRY.md`. |
 | Draft 1.1 | 2026-10-03 | RK20 added, from the independent evaluator's varied-fee battery, then mitigated the same day; RK12's status updated. |
 | 1.0 | 2026-10-05 | Approved by the human with the Alpha's scope (milestone 2c.1). |
 | 1.29 | 2026-10-06 | PUB-1 prepares an exact historical metadata inventory; publication-scope confidentiality, secrets and source-rights review remain open. |
+| 1.31 | 2026-10-07 | CI-2 cap-fault diagnostic/completion correction preserves ordinary shrinking, all successful floors and deadlines; failed hosted evidence remains visible. |
