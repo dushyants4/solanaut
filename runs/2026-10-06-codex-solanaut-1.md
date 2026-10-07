@@ -27,6 +27,21 @@ with no dependent programme implemented. Final sequential validation follows.
 
 ## Did
 
+Definition 3 preparation passes 235 fresh staged cases, 464 root tests and fourteen focused
+faults. Full maintained aggregation passes all 32 campaigns / 271 caught faults, no failed
+or skipped campaign and restored source fingerprints; restored typecheck zero. Outputs
+`evals/ci/mutation/run-limit-*.txt`. Diff read, claims/vault checks pass. No product source
+changed. Threat-model reconciliation remains builder-authored and independently unreviewed.
+Private sync and a fresh full score run follow these checks.
+
+Policy command revision e508246 is privately pushed; post-push close passes ten gates.
+Hosted CI 37550310149 starts. Fresh definition-2 Stryker qualification begins from that
+clean revision: managed session 32060, driver PID 241365, Stryker PID/process group 241373,
+stage `.sandbox/solanaut-1/mutation/run-4nAY5m`, log
+`.sandbox/solanaut-1/mutation/qualification-e508246.txt`. Full eight-file scope instruments
+2,838 mutants. No completed score yet; progress reporting is enabled. No root mutations,
+builds or timing measurements overlap it. Independent documentation review continues.
+
 Qualification revision 00c42e8 hosted CI 37549238301 completes successfully across all
 thirteen jobs, including the new frozen traffic job and full maintained faults. Its close
 passes ten gates. Policy preparation next passes 464 root tests, eight installed checks
@@ -178,6 +193,28 @@ handling preserves the analytic bound without changing any target.
   this history and must pass compatibility checks before rollback.
 
 ## Found
+
+Read attempts using guessed ADR-019/020 filenames fail with ENOENT; locate the actual names
+with `rg --files design` and read them. Socket/handler inspection finds no past-deadline
+transport rejection of completed requests; the suspected mismatch is not confirmed, so no
+source fix is made. Process-group inspection confirms no remaining worker in group 241373.
+Hosted policy-command CI 37550310149 succeeds across all thirteen jobs.
+
+Definition-2 instrumented mutation progress cannot fit the self-chosen two-hour whole-run
+containment window. Stopped driver 241365 / worker group 241373 with TERM; no survivors.
+Retained output/manifest in `evals/ci/mutation/runtime-limit-e508246.txt` and its manifest,
+including the missing-report error, without qualifying a score. Definition 3 extends only
+whole-run resource containment to twelve hours, keeps per-mutant timeouts/workers/scope/
+population/default mutators/score floor, and uses fresh mini-fuzz seed 23071. No production
+source or rule coefficient tuned. New configuration assertion fails first; fourteen faults
+pass with restored sources. Fresh staged baseline and normal close follow.
+
+Threat-model Draft 3 still states a fixed anchor exposure and an unresolved hold ending at
+a window, contrary to accepted ADR-020 and the closed D20 handling. Draft 4 reconciles those
+statements, SDK/same-user bypass, scoped RPC/clock/recovery evidence and remaining snapshot,
+resource, maintenance and supply-chain gates. Builder-authored preparation, not independent
+review. The first whole-file patch uses duplicate operations on one path and applies nothing;
+the corrected single update succeeds. No source or frozen mutation input changes.
 
 Policy-command full aggregation passes all 32 campaigns, 269 caught faults, no failed or
 skipped campaign and restored source fingerprints. Typecheck remains clean afterwards.

@@ -1,5 +1,15 @@
 # DOCUMENTS.md — the document register
 
+Threat-model reconciliation updates `docs/papers/THREAT-MODEL.md` to Draft 4 on 2026-10-06,
+with accepted stable/devnet contracts, scoped local component evidence and outstanding
+independent/audit gates. HANDOFF and the continuing run record track it; no new architecture
+decision or release clearance. Mutation qualification runs independently from frozen inputs.
+
+Mutation definition 3 preparation updates S42/CLAIMS (3.37), the receipt/index, HANDOFF
+and this run record on 2026-10-06. Whole-run containment increases independently of unchanged
+per-mutant deadlines and score floors; the stopped definition-2 output remains retained.
+Configuration faults and fresh staged tests pass; an actual full score remains owed.
+
 Policy preparation updates SPEC (Draft 4.35), RISKS (1.28), SDK (Draft 3), PACKAGING
 (Draft 7), HANDOFF, PROGRESS, CLAIMS (3.36) and the receipt index on 2026-10-06.
 New POLICY (Draft 1) describes the unsigned workflow; `evals/sdk/prepare-policy.md`
@@ -74,9 +84,9 @@ substantive change; *last reviewed* moves at every review.
 | [AGENTS.md](../AGENTS.md) | 1 | current | harness (Claude or the human; not Codex) | Codex | 2026-10-05 | the return to Claude |
 | [docs/ARCHITECTURE.md](../docs/ARCHITECTURE.md) | 4 | current | architect | everyone | 2026-10-01 | 2c.1 |
 | [docs/HACKATHON.md](../docs/HACKATHON.md) | 3 | current | archivist | the human, every seat | 2026-09-30 | S.1 |
-| [docs/CLAIMS.md](../docs/CLAIMS.md) | 3.36 | current (T3) | archivist, sourced | every public sentence | 2026-10-06 | every milestone |
+| [docs/CLAIMS.md](../docs/CLAIMS.md) | 3.37 | current (T3) | archivist, sourced | every public sentence | 2026-10-06 | every milestone |
 | [docs/papers/LITEPAPER.md](../docs/papers/LITEPAPER.md) | Draft 3 | draft | architect | judges, developers | 2026-10-01 | 2c.1 |
-| [docs/papers/THREAT-MODEL.md](../docs/papers/THREAT-MODEL.md) | Draft 3 | draft | architect, evaluator | reviewers, auditors, judges | 2026-10-03 | 3.10 |
+| [docs/papers/THREAT-MODEL.md](../docs/papers/THREAT-MODEL.md) | Draft 4 | working draft, independent review owed | architect | reviewers, auditors | 2026-10-06 | 3.10 |
 | [docs/papers/MARKET.md](../docs/papers/MARKET.md) | Draft 2 | draft | archivist | the human, judges | 2026-09-30 | S.1 |
 | [docs/papers/BUSINESS-PLAN.md](../docs/papers/BUSINESS-PLAN.md) | Draft 2 | review | drafted for the human | the human, judges | 2026-09-30 | S.1 |
 | [docs/submission/PITCH.md](../docs/submission/PITCH.md) | Draft 3 | draft | the human (T4) | judges | 2026-09-30 | S.1 |

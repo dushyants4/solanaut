@@ -221,6 +221,18 @@ human signing, policy installation and H9/H10 decisions remain owed.
 All 32 maintained campaigns pass, 269 faults caught and no failed/skipped campaign;
 sources restore and typecheck stays clean. Prior qualification 00c42e8 hosted CI
 37549238301 succeeds across all thirteen jobs. Policy-command private sync is next.
+Policy command e508246 is privately pushed and passes ten close gates; CI 37550310149 starts.
+Fresh Stryker definition 2 runs from that revision (process details in the continuing run);
+no completed score yet. Independent threat-model reconciliation follows accepted scope.
+Threat model Draft 4 reconciles accepted recovery/operator contracts and current component
+evidence, correcting stale window/anchor/loop wording. It is builder-authored preparation;
+Claude's independent review, RT-2 and the specialist audit remain owed. No new ADR accepted.
+Policy-command CI 37550310149 completes successfully across all thirteen jobs. The
+definition-2 mutation attempt is stopped without a report; no worker survives. Definition 3
+extends whole-run containment only, preserving scope, population, per-mutant deadlines and
+score floor, with a fresh seed. Preparation passes fourteen faults and 235 staged cases;
+the completed mutation score remains owed. Socket inspection confirms completed requests
+are not refused by a past transport deadline; no source defect or change is claimed.
 
 One row per completed queue step, newest last.
 
@@ -271,6 +283,7 @@ The live probes and baseline are complete. ADR-012 C is built and tested offline
 | 2026-10-06 | AST statement/branch coverage, partial CI-2 | commit containing `evals/ci/coverage.md` | calibrated inventory/counters, initial deficit, remediation and faults | Command step `22235e7`: ten close gates and CI `37493990236` green. Coverage floors unchanged; remaining quality/security gates and H9 still pending. |
 
 | 2026-10-06 | Stryker preparation, partial CI-2 | commit containing `evals/ci/mutation.md` | report/staging receipt; prior coverage CI `37498544709` green | Frozen full-file scope, staged-source proof and maintained faults; actual tool score remains owed. |
+| 2026-10-06 | mutation definition 3 and threat-model reconciliation | commit containing the run-limit evidence | 235 staged/464 root cases, fourteen faults; 32 campaigns/271 faults; typecheck clean | Full mutation score and independent threat-model review remain owed. Scope, per-mutant deadlines and release thresholds unchanged. |
 
 | 2026-10-06 | SDK candidate reference, partial 5.3 | commit containing `docs/SDK.md` | source interface/behaviour review; document/claims lint | Current exports, trust boundaries and errors documented; stable contracts and usability qualification remain owed. |
 

@@ -1,0 +1,116 @@
+
+> test:mutation
+> node evals/ci/mutation-run.ts
+
+Mutation run directory: /home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-4nAY5m
+20:07:51 (241373) INFO ProjectReader Found 8 of 60 file(s) to be mutated.
+20:07:51 (241373) INFO Instrumenter Instrumented 8 source file(s) with 2838 mutant(s)
+20:07:51 (241373) INFO ConcurrencyTokenProvider Creating 4 test runner process(es).
+20:07:52 (241373) INFO DryRunExecutor Starting initial test run (command test runner with "off" coverage analysis). This may take a while.
+20:08:24 (241373) INFO DryRunExecutor Initial test run succeeded. Ran 1 tests in 31 seconds (net 31948 ms, overhead 3 ms).
+Mutation testing 0% (elapsed: <1m, remaining: ~3h 56m) 2/2838 tested (0 survived, 0 timed out)
+Mutation testing 0% (elapsed: <1m, remaining: ~2h 14m) 7/2838 tested (0 survived, 0 timed out)
+Mutation testing 0% (elapsed: <1m, remaining: ~2h 37m) 9/2838 tested (0 survived, 0 timed out)
+Mutation testing 0% (elapsed: <1m, remaining: ~2h 51m) 11/2838 tested (0 survived, 0 timed out)
+Mutation testing 0% (elapsed: <1m, remaining: ~3h 16m) 12/2838 tested (0 survived, 0 timed out)
+Mutation testing 0% (elapsed: ~1m, remaining: ~2h 56m) 16/2838 tested (2 survived, 0 timed out)
+Mutation testing 0% (elapsed: ~1m, remaining: ~3h 2m) 18/2838 tested (2 survived, 0 timed out)
+Mutation testing 0% (elapsed: ~1m, remaining: ~3h 28m) 18/2838 tested (2 survived, 0 timed out)
+Mutation testing 0% (elapsed: ~1m, remaining: ~3h 54m) 18/2838 tested (2 survived, 0 timed out)
+Mutation testing 0% (elapsed: ~1m, remaining: ~4h 21m) 18/2838 tested (2 survived, 0 timed out)
+Mutation testing 0% (elapsed: ~1m, remaining: ~4h 32m) 19/2838 tested (2 survived, 1 timed out)
+Mutation testing 0% (elapsed: ~2m, remaining: ~4h 41m) 20/2838 tested (2 survived, 2 timed out)
+Mutation testing 0% (elapsed: ~2m, remaining: ~4h 25m) 23/2838 tested (2 survived, 4 timed out)
+Mutation testing 0% (elapsed: ~2m, remaining: ~4h 12m) 26/2838 tested (2 survived, 4 timed out)
+Mutation testing 0% (elapsed: ~2m, remaining: ~4h 20m) 27/2838 tested (2 survived, 4 timed out)
+Mutation testing 0% (elapsed: ~2m, remaining: ~4h 37m) 27/2838 tested (2 survived, 4 timed out)
+Mutation testing 0% (elapsed: ~2m, remaining: ~4h 44m) 28/2838 tested (2 survived, 5 timed out)
+Mutation testing 0% (elapsed: ~3m, remaining: ~5h 1m) 28/2838 tested (2 survived, 5 timed out)
+Mutation testing 1% (elapsed: ~3m, remaining: ~5h 6m) 29/2838 tested (2 survived, 5 timed out)
+Mutation testing 1% (elapsed: ~3m, remaining: ~4h 52m) 32/2838 tested (2 survived, 7 timed out)
+Mutation testing 1% (elapsed: ~3m, remaining: ~4h 40m) 35/2838 tested (2 survived, 8 timed out)
+Mutation testing 1% (elapsed: ~3m, remaining: ~4h 37m) 37/2838 tested (2 survived, 8 timed out)
+Mutation testing 1% (elapsed: ~3m, remaining: ~4h 50m) 37/2838 tested (2 survived, 8 timed out)
+Mutation testing 1% (elapsed: ~4m, remaining: ~4h 47m) 39/2838 tested (2 survived, 8 timed out)
+Mutation testing 1% (elapsed: ~4m, remaining: ~4h 59m) 39/2838 tested (2 survived, 8 timed out)
+Mutation testing 1% (elapsed: ~4m, remaining: ~4h 55m) 41/2838 tested (2 survived, 8 timed out)
+Mutation testing 1% (elapsed: ~4m, remaining: ~4h 52m) 43/2838 tested (2 survived, 10 timed out)
+Mutation testing 1% (elapsed: ~4m, remaining: ~5h 3m) 43/2838 tested (2 survived, 10 timed out)
+Mutation testing 1% (elapsed: ~4m, remaining: ~4h 59m) 45/2838 tested (2 survived, 10 timed out)
+Mutation testing 1% (elapsed: ~5m, remaining: ~5h 3m) 46/2838 tested (2 survived, 10 timed out)
+Mutation testing 1% (elapsed: ~5m, remaining: ~4h 54m) 49/2838 tested (4 survived, 10 timed out)
+Mutation testing 1% (elapsed: ~5m, remaining: ~4h 40m) 53/2838 tested (4 survived, 10 timed out)
+Mutation testing 1% (elapsed: ~5m, remaining: ~4h 49m) 53/2838 tested (4 survived, 10 timed out)
+Mutation testing 2% (elapsed: ~5m, remaining: ~4h 36m) 57/2838 tested (4 survived, 10 timed out)
+Mutation testing 2% (elapsed: ~5m, remaining: ~4h 39m) 58/2838 tested (4 survived, 10 timed out)
+Mutation testing 2% (elapsed: ~6m, remaining: ~4h 42m) 59/2838 tested (4 survived, 10 timed out)
+Mutation testing 2% (elapsed: ~6m, remaining: ~4h 50m) 59/2838 tested (4 survived, 10 timed out)
+Mutation testing 2% (elapsed: ~6m, remaining: ~4h 58m) 59/2838 tested (4 survived, 10 timed out)
+Mutation testing 2% (elapsed: ~6m, remaining: ~5h 0m) 60/2838 tested (4 survived, 11 timed out)
+Mutation testing 2% (elapsed: ~6m, remaining: ~5h 3m) 61/2838 tested (4 survived, 11 timed out)
+Mutation testing 2% (elapsed: ~6m, remaining: ~5h 5m) 62/2838 tested (4 survived, 12 timed out)
+Mutation testing 2% (elapsed: ~7m, remaining: ~5h 3m) 64/2838 tested (4 survived, 13 timed out)
+Mutation testing 2% (elapsed: ~7m, remaining: ~5h 5m) 65/2838 tested (4 survived, 13 timed out)
+Mutation testing 2% (elapsed: ~7m, remaining: ~5h 3m) 67/2838 tested (4 survived, 13 timed out)
+Mutation testing 2% (elapsed: ~7m, remaining: ~5h 5m) 68/2838 tested (4 survived, 14 timed out)
+Mutation testing 2% (elapsed: ~7m, remaining: ~5h 7m) 69/2838 tested (4 survived, 14 timed out)
+Mutation testing 2% (elapsed: ~7m, remaining: ~5h 9m) 70/2838 tested (4 survived, 14 timed out)
+Mutation testing 2% (elapsed: ~8m, remaining: ~5h 16m) 70/2838 tested (4 survived, 14 timed out)
+Mutation testing 2% (elapsed: ~8m, remaining: ~5h 18m) 71/2838 tested (4 survived, 15 timed out)
+Mutation testing 2% (elapsed: ~8m, remaining: ~5h 20m) 72/2838 tested (4 survived, 16 timed out)
+Mutation testing 2% (elapsed: ~8m, remaining: ~5h 13m) 75/2838 tested (4 survived, 17 timed out)
+Mutation testing 2% (elapsed: ~8m, remaining: ~5h 14m) 76/2838 tested (4 survived, 17 timed out)
+Mutation testing 2% (elapsed: ~8m, remaining: ~5h 16m) 77/2838 tested (4 survived, 17 timed out)
+Mutation testing 2% (elapsed: ~9m, remaining: ~5h 22m) 77/2838 tested (4 survived, 17 timed out)
+Mutation testing 2% (elapsed: ~9m, remaining: ~5h 20m) 79/2838 tested (5 survived, 17 timed out)
+Mutation testing 2% (elapsed: ~9m, remaining: ~5h 25m) 79/2838 tested (5 survived, 17 timed out)
+Mutation testing 2% (elapsed: ~9m, remaining: ~5h 15m) 83/2838 tested (5 survived, 19 timed out)
+Mutation testing 2% (elapsed: ~9m, remaining: ~5h 20m) 83/2838 tested (5 survived, 19 timed out)
+Mutation testing 2% (elapsed: ~9m, remaining: ~5h 26m) 83/2838 tested (5 survived, 19 timed out)
+Mutation testing 2% (elapsed: ~10m, remaining: ~5h 31m) 83/2838 tested (5 survived, 19 timed out)
+Mutation testing 3% (elapsed: ~10m, remaining: ~5h 25m) 86/2838 tested (8 survived, 19 timed out)
+Mutation testing 3% (elapsed: ~10m, remaining: ~5h 26m) 87/2838 tested (9 survived, 19 timed out)
+Mutation testing 3% (elapsed: ~10m, remaining: ~5h 24m) 89/2838 tested (9 survived, 19 timed out)
+Mutation testing 3% (elapsed: ~10m, remaining: ~5h 25m) 90/2838 tested (9 survived, 19 timed out)
+Mutation testing 3% (elapsed: ~10m, remaining: ~5h 23m) 92/2838 tested (10 survived, 19 timed out)
+Mutation testing 3% (elapsed: ~11m, remaining: ~5h 21m) 94/2838 tested (11 survived, 19 timed out)
+Mutation testing 3% (elapsed: ~11m, remaining: ~5h 22m) 95/2838 tested (11 survived, 19 timed out)
+Mutation testing 3% (elapsed: ~11m, remaining: ~5h 23m) 96/2838 tested (11 survived, 19 timed out)
+Mutation testing 3% (elapsed: ~11m, remaining: ~5h 24m) 97/2838 tested (12 survived, 19 timed out)
+Mutation testing 3% (elapsed: ~11m, remaining: ~5h 22m) 99/2838 tested (12 survived, 19 timed out)
+Mutation testing 3% (elapsed: ~11m, remaining: ~5h 23m) 100/2838 tested (12 survived, 19 timed out)
+Mutation testing 3% (elapsed: ~12m, remaining: ~5h 25m) 101/2838 tested (12 survived, 19 timed out)
+Mutation testing 3% (elapsed: ~12m, remaining: ~5h 26m) 102/2838 tested (12 survived, 19 timed out)
+Mutation testing 3% (elapsed: ~12m, remaining: ~5h 24m) 104/2838 tested (12 survived, 19 timed out)
+Mutation testing 3% (elapsed: ~12m, remaining: ~5h 25m) 105/2838 tested (13 survived, 19 timed out)
+Mutation testing 3% (elapsed: ~12m, remaining: ~5h 29m) 105/2838 tested (13 survived, 19 timed out)
+Mutation testing 3% (elapsed: ~12m, remaining: ~5h 30m) 106/2838 tested (13 survived, 19 timed out)
+Mutation testing 3% (elapsed: ~13m, remaining: ~5h 28m) 108/2838 tested (13 survived, 19 timed out)
+Mutation testing 3% (elapsed: ~13m, remaining: ~5h 29m) 109/2838 tested (14 survived, 19 timed out)
+Mutation testing 3% (elapsed: ~13m, remaining: ~5h 33m) 109/2838 tested (14 survived, 19 timed out)
+Mutation testing 3% (elapsed: ~13m, remaining: ~5h 34m) 110/2838 tested (15 survived, 19 timed out)
+Mutation testing 3% (elapsed: ~13m, remaining: ~5h 32m) 112/2838 tested (17 survived, 19 timed out)
+Mutation testing 3% (elapsed: ~13m, remaining: ~5h 33m) 113/2838 tested (17 survived, 19 timed out)
+Mutation testing 3% (elapsed: ~14m, remaining: ~5h 37m) 113/2838 tested (17 survived, 19 timed out)
+Mutation testing 3% (elapsed: ~14m, remaining: ~5h 41m) 113/2838 tested (17 survived, 19 timed out)
+Mutation testing 4% (elapsed: ~14m, remaining: ~5h 36m) 116/2838 tested (17 survived, 19 timed out)
+Mutation testing 4% (elapsed: ~14m, remaining: ~5h 37m) 117/2838 tested (17 survived, 19 timed out)
+Mutation testing 4% (elapsed: ~14m, remaining: ~5h 41m) 117/2838 tested (17 survived, 19 timed out)
+Mutation testing 4% (elapsed: ~14m, remaining: ~5h 44m) 117/2838 tested (17 survived, 19 timed out)
+Mutation testing 4% (elapsed: ~15m, remaining: ~5h 39m) 120/2838 tested (17 survived, 19 timed out)
+Mutation testing 4% (elapsed: ~15m, remaining: ~5h 40m) 121/2838 tested (17 survived, 19 timed out)
+node:fs:539
+    return binding.readFileUtf8(path, stringToFlags(options.flag));
+                   ^
+
+Error: ENOENT: no such file or directory, open '/home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-4nAY5m/reports/mutation.json'
+    at readFileSync (node:fs:539:20)
+    at file:///home/dashy/Projects/Solanaut/evals/ci/mutation-run.ts:36:27
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-4nAY5m/reports/mutation.json'
+}
+
+Node.js v26.7.0

@@ -10,7 +10,7 @@ inferred from them. A fresh full run remains owed.
 
 ## Frozen definition
 
-Definition 2 retains definition 1's complete SDK source files: `base58.ts`, `classify.ts`, `guard.ts`,
+Definition 3 retains definition 1's complete SDK source files: `base58.ts`, `classify.ts`, `guard.ts`,
 `message.ts`, `pda.ts`, `policy.ts`, `state.ts` and `tables.ts`: byte/account resolution,
 instruction effects, policy validation, admission and reservations. No line ranges, ignored
 mutants, excluded mutators, static-mutant suppression or incremental results. The existing
@@ -35,6 +35,22 @@ The new execution assertion fails against the old configuration (`definition-2-r
 All 235 staged cases pass together (`definition-2-baseline.txt`), and twelve maintained
 report/staging faults are caught, including removal of the execution mode
 (`definition-2-faults.txt`). Definition 2's actual score remains owed.
+
+The definition-2 full attempt at `e508246` completes its instrumented dry run but its
+observed progress cannot fit the self-chosen whole-run containment window. It is stopped
+without a completed report; output/manifest remain in `runtime-limit-e508246.txt` and
+`runtime-limit-manifest.json`. No worker survives and no score qualifies. Partial survivor
+and timeout counts are not a completed mutation result, and no production source is tuned.
+
+Definition 3 allows the full generator twelve hours rather than two. This changes resource
+containment, not a release latency target or the per-mutant test deadlines: four workers,
+10,000 ms plus the same 1.5 test-time factor, complete eight-file scope, default mutators,
+eighteen test files and score floor all remain unchanged. Seed 23071 is fresh after the run
+definition change; the mini-fuzz population remains 5,000. The manifest records the whole-run
+limit. Its configuration test fails first (`run-limit-red.txt`); fourteen final report/staging
+faults pass, including the whole-run constant and unchanged per-mutant timeout
+(`run-limit-faults.txt`). This permits completion; it does not waive successful completion,
+source equality, report inventory/status checks or the existing score threshold.
 
 The built-in command runner executes native TypeScript tests without test-level coverage
 optimisation. Concurrency/deadlines are fixed before measurement. Staging copies only SDK
@@ -65,10 +81,13 @@ the explicit Node environment type fixes it (`typecheck-final.txt`). No threshol
 ## Regenerate
 
 - `node --test evals/ci/mutation.test.ts evals/ci/mutation-stage.test.ts`: eight cases.
-- `node evals/ci/mutation-faults.ts`: eleven final caught faults; restored sources pass.
-- `node evals/ci/mutation-run.ts --baseline`: 235 staged tests (`staged-baseline.txt`).
-- `npm test`: 415 tests (`full.txt`); typecheck zero (`typecheck-final.txt`).
-- `npm run test:bite`: all 26 campaigns / 200 caught faults, restored (`bite.txt`).
+- `node evals/ci/mutation-faults.ts`: fourteen final caught faults; restored sources pass
+  (`run-limit-faults.txt`). The original eleven-fault preparation remains retained.
+- `node evals/ci/mutation-run.ts --baseline`: 235 staged tests (`run-limit-baseline.txt`).
+- `npm test`: 464 tests (`run-limit-full.txt`); typecheck zero (`run-limit-typecheck.txt`).
+- `npm run test:bite`: all 32 campaigns / 271 caught faults, no failed/skipped campaign
+  and restored sources (`run-limit-bite.txt`); restored typecheck zero
+  (`run-limit-restored-typecheck.txt`). Original 26/200 preparation remains in `bite.txt`.
 - `npm run test:mutation`: full qualification, not measured at this preparation commit.
   Each run gets a fresh scratch directory, input/config/lock hashes and raw reports. The
   driver bounds runtime and forwards termination to the process group; failures cannot qualify.

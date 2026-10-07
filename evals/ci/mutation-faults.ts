@@ -14,6 +14,8 @@ const faults=[
   ["staging-scope","mutation-stage.ts",'"base58.ts","classify.ts"','"classify.ts"'],
   ["working-tree-mutation","mutation-stage.ts","inPlace:false","inPlace:true"],
   ["staging-execution","mutation-stage.ts","--test-isolation=none ",""],
+  ["whole-run-resource-limit","mutation-stage.ts","MUTATION_RUN_LIMIT_MS=43_200_000","MUTATION_RUN_LIMIT_MS=43_199_999"],
+  ["per-mutant-timeout","mutation-stage.ts","timeoutMS:10_000","timeoutMS:1"],
 ] as const;
 const paths=["evals/ci/mutation.test.ts","evals/ci/mutation-stage.test.ts"];
 const run=()=>spawnSync(process.execPath,["--test",...paths],{encoding:"utf8",timeout:30_000});

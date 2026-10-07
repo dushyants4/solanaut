@@ -1,0 +1,32 @@
+✖ CI-2: mutation staging copies only the frozen inputs and tests execute its changed source (13.636256ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 103.641333
+
+✖ failing tests:
+
+test at evals/ci/mutation-stage.test.ts:8:1
+✖ CI-2: mutation staging copies only the frozen inputs and tests execute its changed source (13.636256ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 43200000
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation-stage.test.ts:14:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 43200000,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
