@@ -1,0 +1,92 @@
+✖ CI-1: exact inventory accepts every maintained campaign and rejects omission/addition/duplication (23.291216ms)
+✔ CI-1: all campaigns run sequentially; failure/null exit fails aggregation without hiding other findings (2.87133ms)
+✔ CI-1: changed source stops further mutation, reports skipped work and fails the gate (0.284568ms)
+✔ CI-2: failed or missing test-process completion cannot qualify coverage (1.681706ms)
+✔ CI-2: exact statement and branch floors pass without rounding (1.467981ms)
+✖ CI-2: a critical branch deficit fails even when aggregate totals pass (1.762737ms)
+✔ CI-2: missing, extra and duplicate files cannot disappear from coverage (0.414478ms)
+✔ CI-2: malformed and empty execution counts fail closed (0.491352ms)
+✖ CI-2: mutation staging copies only the frozen inputs and tests execute its changed source (39.88963ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 6
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 239.463634
+
+✖ failing tests:
+
+test at evals/ci/bite.test.ts:6:1
+✖ CI-1: exact inventory accepts every maintained campaign and rejects omission/addition/duplication (23.291216ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "fault campaign inventory differs from the maintained list"
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/bite.test.ts:8:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: fault campaign inventory differs from the maintained list
+        at validateInventory (file:///home/dashy/Projects/Solanaut/evals/ci/bite.ts:9:90)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/bite.test.ts:8:29
+        at getActual (node:assert:580:5)
+        at strict.doesNotThrow (node:assert:748:32)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/bite.test.ts:8:10)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.start (node:internal/test_runner/test:1257:17)
+        at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at evals/ci/coverage.test.ts:21:1
+✖ CI-2: a critical branch deficit fails even when aggregate totals pass (1.762737ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/coverage.test.ts:30:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/ci/mutation-stage.test.ts:8:1
+✖ CI-2: mutation staging copies only the frozen inputs and tests execute its changed source (39.88963ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      'packages/sdk/src/base58.ts',
+      'packages/sdk/src/classify.ts',
+      'packages/sdk/src/guard.ts',
+      'packages/sdk/src/message.ts',
+  ...
+      'packages/sdk/src/checkpoint-envelope.ts',
+  -   'packages/sdk/src/record.ts',
+  -   'packages/sdk/src/checkpoint-publication.ts'
+    ]
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation-stage.test.ts:15:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'packages/sdk/src/base58.ts', 'packages/sdk/src/classify.ts', 'packages/sdk/src/guard.ts', 'packages/sdk/src/message.ts', 'packages/sdk/src/pda.ts', 'packages/sdk/src/policy.ts', 'packages/sdk/src/state.ts', 'packages/sdk/src/tables.ts', 'packages/sdk/src/checkpoint.ts', 'packages/sdk/src/checkpoint-archives.ts', 'packages/sdk/src/checkpoint-prefix.ts', 'packages/sdk/src/checkpoint-state.ts', 'packages/sdk/src/signed-policy.ts', 'packages/sdk/src/checkpoint-bundle.ts', 'packages/sdk/src/checkpoint-envelope.ts' ],
+    expected: [ 'packages/sdk/src/base58.ts', 'packages/sdk/src/classify.ts', 'packages/sdk/src/guard.ts', 'packages/sdk/src/message.ts', 'packages/sdk/src/pda.ts', 'packages/sdk/src/policy.ts', 'packages/sdk/src/state.ts', 'packages/sdk/src/tables.ts', 'packages/sdk/src/checkpoint.ts', 'packages/sdk/src/checkpoint-archives.ts', 'packages/sdk/src/checkpoint-prefix.ts', 'packages/sdk/src/checkpoint-state.ts', 'packages/sdk/src/signed-policy.ts', 'packages/sdk/src/checkpoint-bundle.ts', 'packages/sdk/src/checkpoint-envelope.ts', 'packages/sdk/src/record.ts', 'packages/sdk/src/checkpoint-publication.ts' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

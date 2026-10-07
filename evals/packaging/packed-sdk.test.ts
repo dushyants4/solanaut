@@ -217,10 +217,15 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
   const script=`
     import {createGuard,preparePolicyText,verifyPolicyAuthorization,PolicyAuthorizationError,verifyCheckpointBinding,encodeBase58,EVALUATION_PROFILE} from '@solanaut/sdk';
     import {generateKeyPairSync,sign,createHash} from 'node:crypto';
+    import {mkdtempSync,writeFileSync,readFileSync,rmSync} from 'node:fs';
+    import {tmpdir} from 'node:os';
+    import {join} from 'node:path';
     const {prepareCheckpointPrefix,CheckpointPrefixError}=await import(new URL('./checkpoint-prefix.js',import.meta.resolve('@solanaut/sdk')));
     const {prepareCheckpointState,CheckpointStateError}=await import(new URL('./checkpoint-state.js',import.meta.resolve('@solanaut/sdk')));
     const {prepareCheckpointBundle}=await import(new URL('./checkpoint-bundle.js',import.meta.resolve('@solanaut/sdk')));
     const {prepareCheckpointEnvelope,verifyCheckpointEnvelope,CheckpointEnvelopeError}=await import(new URL('./checkpoint-envelope.js',import.meta.resolve('@solanaut/sdk')));
+    const {fileStore,publishOwnedCheckpoint}=await import(new URL('./record.js',import.meta.resolve('@solanaut/sdk')));
+    const {verifyArchive}=await import(new URL('./archive.js',import.meta.resolve('@solanaut/sdk')));
     const operator=generateKeyPairSync('ed25519'),agent=generateKeyPairSync('ed25519');
     const address=pair=>encodeBase58(Buffer.from(pair.publicKey.export({format:'jwk'}).x,'base64url'));
     const policy=JSON.parse(process.argv[1]);policy.principal=[address(agent)];policy.latch.releaseKey=address(operator);
@@ -262,6 +267,22 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
       let refused=false;try{verifyCheckpointEnvelope(text,checkpointTrust,limit);}catch(error){refused=error instanceof CheckpointEnvelopeError;}
       if(!refused)throw new Error('envelope tampering or bound accepted');
     }
+    const directory=mkdtempSync(join(tmpdir(),'solanaut-packed-publication-')),recordPath=join(directory,'guard.jsonl'),archivePath=join(directory,'archive.jsonl');
+    const stringify=value=>JSON.stringify(value,(_key,item)=>item && typeof item==='object' && !Array.isArray(item)?Object.fromEntries(Object.keys(item).sort().map(key=>[key,item[key]])):item);
+    const history=entries.map(entry=>stringify(entry)+'\\n').join('');writeFileSync(recordPath,history);writeFileSync(archivePath,history,{mode:0o400});
+    const store=fileStore(recordPath,{ownership:'kernel',create:false});
+    try{
+      const receipt=await verifyArchive(archivePath),actual=await prepareCheckpointBundle(entries,undefined,[receipt],context,trust,checkpointTrust);
+      const signatures={snapshot:sign(null,Buffer.from(actual.snapshotText),checkpoint.privateKey).toString('base64'),prefix:sign(null,Buffer.from(actual.prefixText),checkpoint.privateKey).toString('base64')};
+      const candidate=prepareCheckpointEnvelope({binding:actual.binding,signatures,archives:actual.archives,state:actual.state,prefix:actual.prefix},checkpointTrust,1000000);
+      const options={checkpointTrust,policyTrust:trust,archives:[archivePath],maxBytes:1000000};
+      const result=await publishOwnedCheckpoint(store,candidate.text,options);
+      if(result.digest!==hash(candidate.text) || result.seq!==context.seq || readFileSync(recordPath+'.checkpoint','utf8')!==candidate.text)throw new Error('owned installed checkpoint differs');
+      await publishOwnedCheckpoint(store,candidate.text,options);
+      if(readFileSync(recordPath+'.checkpoint.previous','utf8')!==candidate.text)throw new Error('installed predecessor lost');
+      let refused=false;try{await publishOwnedCheckpoint({...store},candidate.text,options);}catch(error){refused=error.name==='CheckpointPublicationError' && error.code==='checkpoint-publication';}
+      if(!refused)throw new Error('forged installed ownership accepted');
+    }finally{store.close();rmSync(directory,{recursive:true,force:true});}
     if(prefix.digest!==hash(prefix.text) || state.digest!==hash(state.text) || !Object.isFrozen(prefix) || !Object.isFrozen(state))throw new Error('payload digest or immutability differs');
     if(JSON.stringify(s.profile)!==JSON.stringify(p.profile) || Object.keys(EVALUATION_PROFILE).some(k=>s.profile[k]!==EVALUATION_PROFILE[k]))throw new Error('payload profile differs');
     if(s.policy.version!==1 || s.policy.hash!==d.policyHash)throw new Error('payload policy differs');
@@ -278,7 +299,7 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
     console.log(JSON.stringify({events:p.events.length,requests:s.state.requests.length,uncertain:true}));`;
   const result=spawnSync(process.execPath,["--input-type=module","-e",script,inputPolicy,Buffer.from(transfer(2)).toString("base64")],{cwd:consumer,encoding:"utf8"});
   assert.equal(result.status,0,result.stderr);assert.deepEqual(JSON.parse(result.stdout),{events:1,requests:2,uncertain:true});
-  for(const name of ["checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope"])for(const extension of ["js","d.ts"])assert.ok(packed.files.some((file:{path:string})=>file.path==="dist/src/"+name+"."+extension));
+  for(const name of ["checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication"])for(const extension of ["js","d.ts"])assert.ok(packed.files.some((file:{path:string})=>file.path==="dist/src/"+name+"."+extension));
 });
 
 test("PKG-3: installed replay and table-pin commands execute with their documented usage exits", () => {

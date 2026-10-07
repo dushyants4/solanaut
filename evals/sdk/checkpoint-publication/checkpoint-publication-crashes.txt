@@ -1,0 +1,22 @@
+✔ SNP-4: actual owned publication preserves the previous authenticated envelope on replacement (123.035499ms)
+✔ SNP-4: a memory or forged store cannot claim record ownership (20.989826ms)
+✔ SNP-4: closed or replaced actual ownership cannot replace a checkpoint (47.07543ms)
+✔ SNP-4: tampered signatures or payloads preserve the current checkpoint (20.694384ms)
+✔ SNP-4: valid host signatures and a matching head cannot substitute dishonest admission state (21.886999ms)
+✔ SNP-4: stale endpoints and missing retained archives cannot publish over the last checkpoint (14.113395ms)
+✔ SNP-4: competing publications share the actual owner and only one proceeds (11.432686ms)
+✔ SNP-4: losing ownership during asynchronous validation preserves the previous checkpoint (16.222081ms)
+✔ SNP-4: record changes during replay refuse the stale candidate (15.689809ms)
+✔ SNP-4: corrupt cached history and manual ownership cannot publish (11.863086ms)
+✔ SNP-4: corrupt or symlink current checkpoints preserve evidence and refuse writes (25.212685ms)
+✔ SNP-4: short writes finish completely and sync before acknowledging replacement (21.864112ms)
+✔ SNP-4: write, permission, sync and rename failures preserve an authenticated checkpoint and fail the writer (149.574859ms)
+✔ SNP-4: actual process death at publication boundaries preserves complete authenticated files (690.799193ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1345.072067

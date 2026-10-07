@@ -1,0 +1,34 @@
+caught checkpoint publication fault: actual-store
+caught checkpoint publication fault: kernel-owner
+caught checkpoint publication fault: closed-owner
+caught checkpoint publication fault: cached-history
+caught checkpoint publication fault: exclusive-publication
+caught checkpoint publication fault: stale-record
+caught checkpoint publication fault: failed-writer
+caught checkpoint publication fault: derived-state
+caught checkpoint publication fault: receipt-digest
+caught checkpoint publication fault: short-progress
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'SIGKILL'
+- 'SIGTERM'
+      ^
+
+    at file:///home/dashy/Projects/Solanaut/evals/sdk/checkpoint-publication-faults.ts:32:99
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'SIGKILL',
+  expected: 'SIGTERM',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

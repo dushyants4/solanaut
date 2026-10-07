@@ -1,6 +1,6 @@
 # SDK reference — private candidate
 
-> **Draft 9** · 2026-10-07 · owner: integrator · for: developers integrating the candidate.
+> **Draft 10** · 2026-10-07 · owner: integrator · for: developers integrating the candidate.
 > Register: `kb/DOCUMENTS.md`. This describes current exports, not a stable-release promise.
 
 Envelope, bundle, prefix and admission-state preparation remain internal. Installed compiled tests
@@ -138,3 +138,11 @@ process isolation. Do not use these interfaces to fabricate chain outcomes or se
 Startup, record ownership and operational failures can also throw ordinary errors. Keep the
 service stopped until the cause is understood; missing history is not an empty new identity.
 Stable typed operational errors and the complete installed-service workflow remain release work.
+
+Owned checkpoint publication is an internal maintenance component, not a root SDK
+export or signer RPC. Only the actual kernel-owned file store holds its capability;
+memory and copied store objects cannot publish. It requires external checkpoint
+and policy trust pins, actual retained archive paths and an explicit byte ceiling.
+It preserves authenticated predecessors and refuses stale or replay-inconsistent
+state. Complete supported maintenance/recovery remains release work. See
+`../evals/sdk/checkpoint-publication.md` for component evidence and limitations.

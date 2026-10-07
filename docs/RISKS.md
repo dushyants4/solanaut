@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.46** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.47** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 Bundle preparation captures a common history/endpoint and external authority pins.
@@ -253,3 +253,11 @@ replace the required corrected hosted matrix (`evals/ci/mutation-runtime.md`).
 Malformed checkpoint signature decoding now has a fixed encoded-size refusal
 (`evals/sdk/checkpoint-signature.md`). JSON capture, complete snapshot restoration
 and its bounded-memory/startup targets remain separate outstanding requirements.
+
+Owned checkpoint publication compares signed payloads with full replay of owned
+history and verified archive files (`evals/sdk/checkpoint-publication.md`). This
+prevents a matching head alone from admitting different state on that path. It
+still trusts the signer host and local filesystem. Cadence, restore/fallback,
+bounded retention, operator drills and power-loss evidence remain open. Process
+SIGKILL is not power-loss qualification. Hosted oldest-runtime baseline timing
+continues to fail; H11 remains pending and the wait remains unchanged.

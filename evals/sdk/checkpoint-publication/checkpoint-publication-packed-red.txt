@@ -1,0 +1,49 @@
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (76.750987ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (0.292951ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (261.89963ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (119.814267ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (123.01659ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (109.066096ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (55.227694ms)
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (86.39766ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (98.132399ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (43.528078ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 9
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1818.589577
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:215:1
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (86.39766ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-0gRpT1/consumer/[eval1]:63
+        const result=await publishOwnedCheckpoint(store,candidate.text,options);
+                           ^
+  
+  TypeError: publishOwnedCheckpoint is not a function
+      at file:///tmp/solanaut-consumer-0gRpT1/consumer/[eval1]:63:26
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:301:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

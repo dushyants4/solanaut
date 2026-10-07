@@ -1,0 +1,43 @@
+caught checkpoint publication fault: actual-store
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: kernel-owner✔ SNP-4: actual owned publication preserves the previous authenticated envelope on replacement (43.450306ms)
+✔ SNP-4: a memory or forged store cannot claim record ownership (9.236051ms)
+✔ SNP-4: closed or replaced actual ownership cannot replace a checkpoint (24.154232ms)
+✔ SNP-4: tampered signatures or payloads preserve the current checkpoint (12.30381ms)
+✔ SNP-4: valid host signatures and a matching head cannot substitute dishonest admission state (16.42198ms)
+✔ SNP-4: stale endpoints and missing retained archives cannot publish over the last checkpoint (13.014355ms)
+✔ SNP-4: competing publications share the actual owner and only one proceeds (11.772633ms)
+✔ SNP-4: losing ownership during asynchronous validation preserves the previous checkpoint (15.046033ms)
+✔ SNP-4: record changes during replay refuse the stale candidate (14.897677ms)
+✔ SNP-4: corrupt cached history and manual ownership cannot publish (11.460548ms)
+✔ SNP-4: corrupt or symlink current checkpoints preserve evidence and refuse writes (20.868634ms)
+✔ SNP-4: short writes finish completely and sync before acknowledging replacement (15.5475ms)
+✔ SNP-4: write, permission, sync and rename failures preserve an authenticated checkpoint and fail the writer (137.354573ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 472.114097
+
+
+0 !== 1
+
+    at file:///home/dashy/Projects/Solanaut/evals/sdk/checkpoint-publication-faults.ts:29:82
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

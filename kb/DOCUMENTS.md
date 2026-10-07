@@ -1,5 +1,13 @@
 # DOCUMENTS.md — the document register
 
+2026-10-07 owned publication registers SPEC Draft 4.56, RISKS 1.47, OVERVIEW
+Draft 30, SDK Draft 10, PACKAGING Draft 12, component receipt/index, PROGRESS,
+HANDOFF and continuing run. Envelope receipt retains exact hosted 6162efb
+failure. H11 remains pending. Final scoped measurements/claims follow integration.
+CLAIMS S69 records source/installed/expanded-gate and ordinary component evidence;
+Ordinary/AST integration and unchanged floors pass; exact inputs are retained.
+No stable-release or complete snapshot claim.
+
 2026-10-07 envelope authentication registers SPEC Draft 4.55, RISKS 1.46,
 OVERVIEW Draft 29, SDK Draft 9, PACKAGING Draft 11, receipt/index, PROGRESS,
 HANDOFF and continuing run. Internal byte authentication is scoped separately

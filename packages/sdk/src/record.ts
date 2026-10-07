@@ -16,6 +16,7 @@ import { hostname } from "node:os";
 import { dirname } from "node:path";
 import { canonicalJSON } from "./canonical.ts";
 import { hashOf, type Entry } from "./log.ts";
+import {CheckpointPublicationError,validatePublication,replaceCheckpoint,type CheckpointPublicationOptions,type CheckpointPublicationReceipt} from "./checkpoint-publication.ts";
 
 export interface EntryStore {
   /** Every entry kept so far, oldest first. The store, not the guard, adds to it. */
@@ -23,6 +24,14 @@ export interface EntryStore {
   /** Keep one entry, durably, before returning. Throws if it cannot. */
   append(entry: Entry): void;
   close(): void;
+}
+
+const publishers=new WeakMap<EntryStore,(text:unknown,options:CheckpointPublicationOptions)=>Promise<CheckpointPublicationReceipt>>();
+/** Internal maintenance capability: only the actual kernel-owned store can publish. */
+export async function publishOwnedCheckpoint(store:EntryStore,text:unknown,options:CheckpointPublicationOptions):Promise<CheckpointPublicationReceipt>{
+  const publish=publishers.get(store);
+  if(!publish)throw new CheckpointPublicationError("checkpoint publication requires actual file ownership");
+  try{return await publish(text,options);}catch(error){if(error instanceof CheckpointPublicationError)throw error;throw new CheckpointPublicationError("owned checkpoint cannot be published");}
 }
 
 /** A store in memory: the default, and what tests use. Nothing survives the process. */
@@ -147,7 +156,12 @@ export function fileStore(path: string, options: FileStoreOptions = {}): EntrySt
   }
   let open = true;
   let failed = false;
-  return {
+  let publishing = false;
+  const held=()=>{
+    if(mode!=="kernel" || !open || failed)throw new CheckpointPublicationError("checkpoint owner is closed, failed or unsupported");
+    owner.held();sameFile(fd,path);
+  };
+  const store:EntryStore = {
     entries,
     append(entry) {
       if (!open || failed) throw new Error("the record is closed or failed");
@@ -164,4 +178,25 @@ export function fileStore(path: string, options: FileStoreOptions = {}): EntrySt
       try { closeSync(fd); } finally { owner.release(); }
     },
   };
+  publishers.set(store,async(text,options)=>{
+    if(publishing)throw new CheckpointPublicationError("checkpoint publication already in progress");
+    publishing=true;
+    try{
+      held();
+      const before=fstatSync(fd,{bigint:true});
+      const reader=openSync(path,constants.O_RDONLY|constants.O_NOFOLLOW);
+      let history:Entry[];
+      try{sameFile(reader,path);history=readRecord(path,reader);}finally{closeSync(reader);}
+      if(canonicalJSON(history)!==canonicalJSON(entries))throw new CheckpointPublicationError("owned record and cached entries differ");
+      const validated=await validatePublication(text,options,history);
+      const unchanged=()=>{
+        held();const now=fstatSync(fd,{bigint:true});
+        if(now.size!==before.size || now.mtimeNs!==before.mtimeNs || now.ctimeNs!==before.ctimeNs)throw new CheckpointPublicationError("owned record changed during checkpoint validation");
+      };
+      unchanged();
+      try{replaceCheckpoint(path,validated.text,validated.pins,unchanged);}catch(error){failed=true;throw error;}
+      return validated.receipt;
+    }finally{publishing=false;}
+  });
+  return store;
 }

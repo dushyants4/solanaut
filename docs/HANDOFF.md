@@ -199,6 +199,18 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+Owned publication passes ordinary/AST integration and unchanged coverage floors;
+source/installed/storage/crash evidence is retained at
+`evals/sdk/checkpoint-publication.md`, CLAIMS S69. Native typecheck passes.
+Final close/private sync follows. The component does not complete cadence,
+authenticated recovery or bounded retention; no release clearance inferred.
+
+6162efb hosted run 37656562219 fails Node 22's unchanged real baseline wait;
+other jobs pass and exact evidence is retained with the envelope receipt. H11
+is still pending. Owned checkpoint publication now has local storage/crash
+evidence; final fault/integration qualification follows. Cadence, restore,
+bounded retention and signer expansion remain owed.
+
 6d81f8b hosted completion fails two jobs: Node 22 real baseline wait and the
 ordinary omission-fault campaign. Exact failures retained. The omission fixture
 now supplies explicit parallel CLI defaults so the root serial option must override

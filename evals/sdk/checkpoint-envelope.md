@@ -1,5 +1,10 @@
 # SNP-3 — authenticated opaque checkpoint container
 
+Hosted 6162efb run 37656562219 completes with Node 22 failing the unchanged
+actual staged-baseline wait; other jobs pass. Exact revision/job metadata and
+full logs are retained in `checkpoint-envelope/hosted-6162efb/`. Local passes
+do not qualify this hosted failure. H11 remains pending, with no wait change.
+
 2026-10-07 · builder-authored Linux/Node 26.7.0 evidence · base 6d81f8b plus
 candidate. Internal codec; no public root API or signer method added.
 

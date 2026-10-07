@@ -1,5 +1,11 @@
 # PROGRESS.md
 
+Owned checkpoint publication has local replay/ownership, storage-failure,
+process-death, installed and ordinary/AST evidence with unchanged floors
+(`evals/sdk/checkpoint-publication.md`). Cadence, authenticated restore, bounded retention and complete
+SNP-4 remain owed. Hosted 6162efb fails Node 22's unchanged staged-baseline wait;
+H11 remains pending. No Alpha or stable-release qualification is claimed.
+
 Coarser than `runs/`. The archivist keeps it current; every phase that ends gets a milestone review in
 `kb/milestones/`. **Future work is a sequence of milestones, each reached when its gate passes, never a calendar**
 (`docs/ROADMAP.md`). Achieved milestones keep the date they were achieved.

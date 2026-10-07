@@ -1,6 +1,6 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 29** · 2026-10-07 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 30** · 2026-10-07 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
@@ -239,3 +239,10 @@ CI now has a sequential maintained fault job with inventory and source-restorati
 | Draft 1 | 2026-09-27 | First draft. |
 | Draft 2 | 2026-09-30 | The verified review: the new documents and ADRs in the tree; the defects D10 to D12 found in this code; the proposed canary; milestones in place of dates. |
 | Draft 3 | 2026-10-01 | The guard as rebuilt through milestone 2a.5: bytes decoded, instructions classified, policy v1, admission by rules 0 to 19, receipts, intents, the latch, a hash-chained record made durable and restored by replay; Keel verified by its bytes; sensor v1; the adapters; the on-chain drill, rehearsed; the cockpit; CI; the SDK's one runtime dependency. Then devnet: the drill, the scenes and the cockpit run there; D13 and D14 closed in the adapters and the intents. |
+
+Internal owned checkpoint publication now authenticates and compares each candidate
+with replay of the actual record and verified retained archive files. Live kernel
+ownership and unchanged record boundaries are required through publication. Synced
+atomic replacement retains the previous authenticated envelope; storage failure
+fails the writer (`evals/sdk/checkpoint-publication.md`). Cadence, authenticated
+restore/fallback and bounded retention remain separate unfinished paths.

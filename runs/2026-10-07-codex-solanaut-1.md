@@ -8,6 +8,29 @@ work. This dated continuation retains the earlier session's full record at
 
 ## Did
 
+Publication ordinary/serial AST integration passes 611 cases, typecheck exits
+zero and unchanged floors pass: publication 81/88 statements, 51/59 branches;
+record 140/145 statements, 75/81 branches. Exact AST source hashes retained.
+Final fault-run scratch ownership prevents retained temporary files after a
+deadline kill; its repeated focused validation follows. No SDK source changed
+after AST measurement. Private close/sync follows.
+
+Resumed from 6162efb with publication tests uncommitted. Owned publication now
+compares authenticated payloads with actual owned history and retained archives,
+preserves authenticated predecessors and refuses lost/stale/competing ownership.
+Storage failures and observed process-death boundaries have local component
+evidence; full campaign and integrated close follow. No signer expansion or
+checkpoint cadence wiring is implied.
+
+Hosted 6162efb run 37656562219 completes with Node 22 failing the existing real
+staged-baseline wait; the other jobs pass. Full log and exact revision metadata
+are retained in `evals/sdk/checkpoint-envelope/hosted-6162efb/`. H11 remains pending.
+Publication fixtures initially missed real recorded denials, valid manual history
+and valid symlink targets; corrected before final fault evaluation. A zero-progress
+fault hung a SIGTERM-handling runner; its observed PID was killed explicitly and
+source restored. Final direct child containment uses SIGKILL and claims no test
+completion for a timeout. Initial failures remain retained.
+
 Envelope serial AST suite passes all 597 cases and unchanged floors; SDK hashes
 retained. The portable scheduling fixture catches omission against explicit
 parallel CLI defaults and restores. Subsequent full ordinary suite passes 597
@@ -343,6 +366,29 @@ record satisfies the close workflow's current-day record requirement. Earlier ca
 implementation, documentation and receipt changes remain in the continuing session record.
 
 ## Found
+
+Publication pre-sync close passes nine gates and refuses the uncommitted candidate.
+This is retained as the expected clean-tree refusal, not release clearance.
+Final cleanup/inventory proof passes; no owned test process remains running.
+
+Publication initial cases fail for missing functionality. The first candidate's
+null-message request fixture records no denial; corrected bytes now assert actual
+history growth. Fault trials exposed invalid manual history and a corrupt symlink
+target masking ownership checks. Corrected fixtures fail planted omissions.
+Descriptor/payload comparisons defend one another; the compound omission is caught.
+Zero-progress omission required deadline SIGKILL containment: earlier default
+SIGTERM/shared-isolation attempts failed containment and were explicitly stopped.
+Their output and restored-source evidence remain in the component receipt.
+The initial expanded recovery check fails its stale definition assertion; definition
+and expected population now name the enlarged inputs with fresh seed 23731.
+Hosted 6162efb fails Node 22's unchanged actual baseline wait; H11 remains pending.
+
+Final publication component has fourteen cases, sixteen completed source faults
+and one actual deadline-contained fault; ten installed cases/thirty compiled faults,
+twenty-six coverage faults, thirty-four staging/report and fifteen recovery/driver
+faults pass with restoration. Actual baseline 317 and ordinary integration 611
+pass; typecheck exits zero. AST integration and close remain underway. CLAIMS S69
+records this scope; no full snapshot or release gate is inferred.
 
 6d81f8b hosted qualification fails two jobs: Node 22's real baseline remains
 incomplete at the existing wait even with correct serial scheduling; the ordinary

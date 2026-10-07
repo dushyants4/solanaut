@@ -1,0 +1,98 @@
+✖ SNP-4: actual owned publication preserves the previous authenticated envelope on replacement (43.040095ms)
+✖ SNP-4: a memory or forged store cannot claim record ownership (18.393082ms)
+✖ SNP-4: closed or replaced actual ownership cannot replace a checkpoint (12.930353ms)
+✖ SNP-4: tampered signatures or payloads preserve the current checkpoint (14.258256ms)
+✖ SNP-4: valid host signatures and a matching head cannot substitute dishonest admission state (13.875479ms)
+✖ SNP-4: stale endpoints and missing retained archives cannot publish over the last checkpoint (10.800135ms)
+✖ SNP-4: competing publications share the actual owner and only one proceeds (10.970447ms)
+✖ SNP-4: losing ownership during asynchronous validation preserves the previous checkpoint (12.455893ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 0
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 477.542667
+
+✖ failing tests:
+
+test at packages/sdk/test/checkpoint-publication.test.ts:40:1
+✖ SNP-4: actual owned publication preserves the previous authenticated envelope on replacement (43.040095ms)
+  TypeError: Reflect.get(...) is not a function
+      at publish (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-publication.test.ts:38:176)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-publication.test.ts:42:45)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at packages/sdk/test/checkpoint-publication.test.ts:51:1
+✖ SNP-4: a memory or forged store cannot claim record ownership (18.393082ms)
+  AssertionError [ERR_ASSERTION]: The validation function is expected to return "true". Received false
+  
+  Caught error:
+  
+  TypeError: Reflect.get(...) is not a function
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-publication.test.ts:52:112)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: TypeError: Reflect.get(...) is not a function
+        at publish (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-publication.test.ts:38:176)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-publication.test.ts:52:130
+        at async waitForActual (node:assert:615:5)
+        at async strict.rejects (node:assert:738:25)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-publication.test.ts:52:112)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint-publication.test.ts:54:1
+✖ SNP-4: closed or replaced actual ownership cannot replace a checkpoint (12.930353ms)
+  TypeError: Reflect.get(...) is not a function
+      at publish (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-publication.test.ts:38:176)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-publication.test.ts:56:65)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/checkpoint-publication.test.ts:62:1
+✖ SNP-4: tampered signatures or payloads preserve the current checkpoint (14.258256ms)
+  TypeError: Reflect.get(...) is not a function
+      at publish (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-publication.test.ts:38:176)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-publication.test.ts:63:63)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/checkpoint-publication.test.ts:68:1
+✖ SNP-4: valid host signatures and a matching head cannot substitute dishonest admission state (13.875479ms)
+  TypeError: Reflect.get(...) is not a function
+      at publish (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-publication.test.ts:38:176)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-publication.test.ts:69:63)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/checkpoint-publication.test.ts:76:1
+✖ SNP-4: stale endpoints and missing retained archives cannot publish over the last checkpoint (10.800135ms)
+  TypeError: Reflect.get(...) is not a function
+      at publish (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-publication.test.ts:38:176)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-publication.test.ts:77:63)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/checkpoint-publication.test.ts:83:1
+✖ SNP-4: competing publications share the actual owner and only one proceeds (10.970447ms)
+  TypeError: Reflect.get(...) is not a function
+      at publish (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-publication.test.ts:38:176)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-publication.test.ts:84:63)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/checkpoint-publication.test.ts:88:1
+✖ SNP-4: losing ownership during asynchronous validation preserves the previous checkpoint (12.455893ms)
+  TypeError: Reflect.get(...) is not a function
+      at publish (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-publication.test.ts:38:176)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-publication.test.ts:89:63)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)

@@ -1,0 +1,5 @@
+{
+  "packages/sdk/src/record.ts": "9d645b8ab2f254c899ae5850d053f4d39e7e79a93d6758811eb2fc4e896db811",
+  "packages/sdk/src/checkpoint-publication.ts": "c66f1d276549e2922d9374b9cc0bfd9fb005a549bf440152abae54b894399b4b",
+  "packages/sdk/test/checkpoint-publication.test.ts": "91049f4cf94ae630b3709135ca46e51adac7e2facd937aab8aa0f3f883de38cb"
+}
