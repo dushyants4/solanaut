@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.48** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.49** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 Bundle preparation captures a common history/endpoint and external authority pins.
@@ -269,3 +269,11 @@ history and does not establish restart or bounded-memory targets. Hosted 0c61fa3
 runtime/AST jobs fail the unchanged real baseline wait, confirmed by completed
 exact logs; maintained faults pass. Local component passes do not clear those
 failures. H11 remains pending. No wait or floor is changed.
+
+Recovery preparation preserves verified full-history facts when a checkpoint or its
+archives cannot be accepted (`evals/sdk/checkpoint-recovery.md`). It refuses empty
+or invalid history and conflicts with an externally supplied anchor. An anchor
+omitted by operator configuration cannot supply a rollback bound. This component
+still retains full history; exclusive startup, live guard loading, bounded state,
+restart qualification and external anchor availability remain required. H9/H10/H11
+remain pending. Hosted oldest/current runtime and AST wait failures are retained.

@@ -8,6 +8,23 @@ work. This dated continuation retains the earlier session's full record at
 
 ## Did
 
+Recovery preparation ordinary/serial AST integration passes 623 cases, native
+typecheck exits zero and unchanged floors pass: recovery 59/61 statements and
+76/79 branches. Ten installed cases/thirty-six compiled faults, twenty-seven
+coverage, thirty-six staging/report and fifteen recovery/driver faults pass with
+restoration. Actual expanded baseline contains 329 cases; no score inferred.
+Exact sources/raw failures/AST hashes retained. CLAIMS S71 records scoped local
+evidence. Preparing close/private sync; actual ownership/startup and bounded
+recovery remain unfinished.
+
+995c5b0 prefix rebuild is privately pushed with all ten local close gates passing;
+hosted run 37664288112 is in progress. Continued with internal checkpoint recovery
+preparation: verify full signed history and optional external anchor; validate a
+checkpoint against actual retained archives and derived state; rebuild prefix plus
+tail or use verified full replay. No owned-store/startup integration or root export.
+Source faults and sparse-list corrections are recorded; installed and integration
+checks follow. H9/H10/H11 remain pending.
+
 Prefix rebuild ordinary/serial AST integration passes 615 cases, native typecheck
 exits zero and all unchanged coverage floors pass. Prefix measures 46/47 statements
 and 42/43 branches; exact inputs retained. CLAIMS S70 records scoped local evidence.
@@ -380,6 +397,25 @@ record satisfies the close workflow's current-day record requirement. Earlier ca
 implementation, documentation and receipt changes remain in the continuing session record.
 
 ## Found
+
+Recovery pre-sync close passes nine gates and refuses the uncommitted candidate.
+H9/H10 were presented as asynchronous architecture decisions; no answer or
+acceptance inferred from the resume instruction. H11 remains pending too.
+
+995c5b0 hosted 37664288112 completes with four unchanged real-baseline-wait
+failures (runtime matrix and AST) and nine successful jobs, including maintained
+faults. Full logs/revision metadata retained in prefix receipt. H11 stays pending.
+Local recovery preparation/fault passes do not clear this qualification failure.
+
+Recovery's envelope fixture initially includes unsupported signing-text fields;
+corrected field selection then produces missing-function failures. Sparse principal
+configuration is accepted by the first candidate and corrected test-first. Planted
+principal-field and reset omissions initially miss due to alternative rejection
+and trivial prefix state. Corrected fixtures exercise membership plus invalid shape,
+and nontrivial prefix/controller state. Expanding the fixture breaks a hard-coded
+denial-string alteration; parsed-state mutation and inequality now establish it.
+Every failed/missed trial is retained. Eight focused cases/twenty source faults
+pass with restoration; final installed/gate/ordinary/AST measurements follow.
 
 Prefix pre-sync close passes nine gates and refuses the uncommitted candidate.
 Publication 0c61fa3 hosted 37662281431 completes with four failures, all actual

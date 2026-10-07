@@ -1,6 +1,6 @@
 # SDK reference — private candidate
 
-> **Draft 11** · 2026-10-07 · owner: integrator · for: developers integrating the candidate.
+> **Draft 12** · 2026-10-07 · owner: integrator · for: developers integrating the candidate.
 > Register: `kb/DOCUMENTS.md`. This describes current exports, not a stable-release promise.
 
 Envelope, bundle, prefix and admission-state preparation remain internal. Installed compiled tests
@@ -152,3 +152,10 @@ history validates the exact supplied tick/reset prefix. It is not a stable root
 export or a complete restore API. Signed history still requires external policy
 trust pins; a recovery caller also needs authenticated envelope/archive/anchor
 validation. `../evals/sdk/checkpoint-rebuild.md` records the component boundary.
+
+Checkpoint recovery preparation remains internal. Its receipt distinguishes a
+verified checkpoint from verified full replay and names missing/invalid checkpoint
+fallback. It requires full signed history and external policy/checkpoint pins,
+and enforces an optional configured anchor on either path. It returns derived
+admission text and a fresh runtime controller, not a running guard or owned service.
+`../evals/sdk/checkpoint-recovery.md` records the component and remaining obligations.

@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.57** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.58** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -1171,3 +1171,14 @@ continued evaluation; its event/endpoint receipt is immutable. No controller-sta
 numbers are deserialised. This is a component inside ADR-019; envelope/anchor
 verification, admission-state loading and prefix-plus-tail guard restore remain
 required. Evidence: `evals/sdk/checkpoint-rebuild.md`.
+
+SNP-5/6 internal recovery preparation captures full signed history and external
+policy/checkpoint pins. Full replay and optional external anchor agreement are
+mandatory before inspecting a checkpoint. A valid checkpoint must match derived
+prefix/state/archive payloads and verified archive files; fresh Keel consumes its
+prefix and tail. Invalid or missing checkpoints use verified full history, retaining
+unresolved reservations, signing, requests and latch. Missing archives may fall
+back only when the supplied full history independently establishes state. Invalid
+history or configuration, anchor disagreement or controller divergence refuses.
+No owner/startup integration, state deserialisation or bounded-memory contract is
+introduced. Component evidence: `evals/sdk/checkpoint-recovery.md`.

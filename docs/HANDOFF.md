@@ -169,6 +169,10 @@ Keep every selected test, seed policy, mutation floor, actual completion check,
 supervisor limit and product/readiness target unchanged. This is a proposal,
 not an applied exception. Human acceptance is required before this wait changes.
 
+Hosted 995c5b0 run 37664288112 repeats four unchanged-wait failures in the runtime
+matrix and AST; maintained faults pass. Exact evidence:
+`evals/sdk/checkpoint-rebuild/hosted-995c5b0/`. The wait proposal remains pending.
+
 Hosted 0c61fa3 run 37662281431 confirms the same unchanged-wait failure in all
 three runtime jobs and the AST job. Maintained faults pass. Exact logs and revision
 metadata: `evals/sdk/checkpoint-publication/hosted-0c61fa3/`. The proposal remains
@@ -203,6 +207,18 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 | O1 | AGENTS.md, build convention | Replace `TypeScript run natively by Node 26, with no build step; ESM;` with `TypeScript run natively by Node 26 for development; a release-only build emits JavaScript and declarations for npm consumers; ESM;` | Explicitly approved by the human in the Solanaut 1.0 mission. | no |
 
 ## 7. Codex's log
+
+Recovery preparation passes local ordinary/AST/type and unchanged floors, with
+source/installed/gate evidence retained at `evals/sdk/checkpoint-recovery.md`,
+CLAIMS S71. Final close/private sync follows. Full signed replay and optional
+anchor remain mandatory on fallback. Actual owner/startup integration and bounded
+retention remain owed; H9/H10/H11 and release gates remain open.
+
+995c5b0 hosted 37664288112 completes with four unchanged real-baseline-wait
+failures (runtime/AST); other jobs, including maintained faults, pass. Full logs
+and revision metadata retained with prefix receipt. H11 remains pending. Recovery
+preparation now has focused/source fault evidence; installed/integration follow.
+It is not yet wired to actual ownership or live startup, and is not bounded.
 
 0c61fa3 hosted 37662281431 completes with four failures, all the unchanged real
 baseline wait (runtime matrix and AST); other jobs, including maintained faults,

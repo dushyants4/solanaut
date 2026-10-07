@@ -1,6 +1,6 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 31** · 2026-10-07 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 32** · 2026-10-07 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
@@ -252,3 +252,10 @@ requires exact supplied bytes and feeds a fresh Keel controller ticks and resets
 Its next decisions are compared with full-stream controller replay in component
 tests (`evals/sdk/checkpoint-rebuild.md`). Full authenticated guard restore and
 bounded replay remain unfinished; no stored controller numbers are loaded.
+
+Internal recovery preparation now verifies full signed history and optional external
+anchor evidence before accepting a checkpoint or fallback. Verified checkpoint
+prefix/tail events rebuild fresh Keel; current admission facts derive from full
+replay. A missing/corrupt checkpoint cannot bypass history or anchor validation
+(`evals/sdk/checkpoint-recovery.md`). Actual owner/startup integration and bounded
+retention remain unfinished.

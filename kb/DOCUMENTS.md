@@ -1,5 +1,12 @@
 # DOCUMENTS.md — the document register
 
+2026-10-07 recovery preparation registers SPEC Draft 4.58, RISKS 1.49, OVERVIEW
+Draft 32, SDK Draft 12, PACKAGING Draft 14, component receipt/index, PROGRESS,
+HANDOFF and continuing run. Prefix receipt retains exact hosted 995c5b0 failures;
+H11 remains pending. New recovery evidence is a component, not owned startup
+or bounded-memory qualification. CLAIMS S71 records source/installed/expanded-gate,
+ordinary/AST and typecheck evidence with unchanged floors and exact inputs.
+
 2026-10-07 prefix rebuilding registers SPEC Draft 4.57, RISKS 1.48, OVERVIEW
 Draft 31, SDK Draft 11, PACKAGING Draft 13, component receipt/index, HANDOFF,
 PROGRESS and continuing run. Full-history validation remains a component, not

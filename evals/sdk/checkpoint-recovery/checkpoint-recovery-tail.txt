@@ -1,0 +1,16 @@
+✔ SNP-5: checkpoint prefix plus mixed tail equals full-state and next-controller replay (58.633846ms)
+✔ SNP-6: missing or corrupt checkpoints fall back to verified history with unresolved facts (46.911763ms)
+✔ SNP-6: correctly signed dishonest checkpoint state falls back rather than loading it (30.129119ms)
+✔ SNP-6: a valid checkpoint cannot hide invalid, foreign or missing full history (34.157488ms)
+✔ SNP-6: external anchor disagreement or missing anchored history cannot be bypassed by fallback (59.748189ms)
+✔ SNP-6: missing archives allow only verified full history; invalid authority configuration refuses (38.624642ms)
+✔ SNP-5/6: recovery captures caller history and external pins before asynchronous verification (38.213687ms)
+✔ SNP-5: divergent fresh-controller tail refuses recovery after full history validates (29.650885ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 471.971703

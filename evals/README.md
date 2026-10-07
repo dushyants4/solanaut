@@ -5,6 +5,7 @@ seen failing might not be checking anything.
 
 | Gate | Shown failing | Then passing | Receipt |
 |---|---|---|---|
+| SNP-5/6 checkpoint recovery preparation | missing-function, sparse-list defect and missed fixture trials retained | prefix/tail or verified full replay preserves facts; source faults restore; installed/integration follow | `sdk/checkpoint-recovery.md` |
 | SNP-5 validated prefix rebuilding | missing function, older compiled artefact and enlarged definition refuse | fresh controller matches full-stream next decisions; source faults restore; integration follows | `sdk/checkpoint-rebuild.md` |
 | SNP-4 owned checkpoint publication | missing function, fixture blind spots, source/installed and critical/inventory/staging refusals retained | source, installed and storage/crash component evidence; final integration below; full cadence/restore remains owed | `sdk/checkpoint-publication.md` |
 | SNP-3 opaque checkpoint envelope | stub/installed and inventory/critical/staging refusals; malformed fault literal and overlapped check retained | exact bytes, signatures, framing and byte ceiling pass source/compiled faults; semantic restore remains owed | `sdk/checkpoint-envelope.md` |

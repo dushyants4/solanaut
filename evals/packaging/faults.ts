@@ -15,6 +15,10 @@ function battery() {
 const baseline = battery();
 assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
 const faults = [
+  { name: "recovery-module", path: "dist/src/checkpoint-recovery.js", caught: "compiled checkpoint payloads", damage: () => undefined },
+  { name: "recovery-anchor", path: "dist/src/checkpoint-recovery.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("pins.expectedAnchor && entries[pins.expectedAnchor.seq]?.hash !== pins.expectedAnchor.head", "false") },
+  { name: "recovery-mode", path: "dist/src/checkpoint-recovery.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace('mode: checkpointSeq === null ? "full-replay" : "checkpoint"', 'mode: "checkpoint"') },
+  { name: "recovery-validation", path: "dist/src/checkpoint-recovery.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace(/await validatePublication\(checkpointInput, .*?, prefixHistory\);/, "void 0;") },
   { name: "rebuild-prefix-comparison", path: "dist/src/checkpoint-prefix.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("if (prefixInput !== expected.text)", "if (false)") },
   { name: "rebuild-prefix-events", path: "dist/src/checkpoint-prefix.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("events: prefix.events.length", "events: 0") },
   { name: "publication-module", path: "dist/src/checkpoint-publication.js", caught: "compiled checkpoint payloads", damage: () => undefined },

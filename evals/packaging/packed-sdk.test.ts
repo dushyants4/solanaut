@@ -226,6 +226,7 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
     const {prepareCheckpointEnvelope,verifyCheckpointEnvelope,CheckpointEnvelopeError}=await import(new URL('./checkpoint-envelope.js',import.meta.resolve('@solanaut/sdk')));
     const {fileStore,publishOwnedCheckpoint}=await import(new URL('./record.js',import.meta.resolve('@solanaut/sdk')));
     const {verifyArchive}=await import(new URL('./archive.js',import.meta.resolve('@solanaut/sdk')));
+    const {prepareCheckpointRecovery}=await import(new URL('./checkpoint-recovery.js',import.meta.resolve('@solanaut/sdk')));
     const operator=generateKeyPairSync('ed25519'),agent=generateKeyPairSync('ed25519');
     const address=pair=>encodeBase58(Buffer.from(pair.publicKey.export({format:'jwk'}).x,'base64url'));
     const policy=JSON.parse(process.argv[1]);policy.principal=[address(agent)];policy.latch.releaseKey=address(operator);
@@ -283,6 +284,17 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
       const signatures={snapshot:sign(null,Buffer.from(actual.snapshotText),checkpoint.privateKey).toString('base64'),prefix:sign(null,Buffer.from(actual.prefixText),checkpoint.privateKey).toString('base64')};
       const candidate=prepareCheckpointEnvelope({binding:actual.binding,signatures,archives:actual.archives,state:actual.state,prefix:actual.prefix},checkpointTrust,1000000);
       const options={checkpointTrust,policyTrust:trust,archives:[archivePath],maxBytes:1000000};
+      const recovered=await prepareCheckpointRecovery(entries,candidate.text,options);
+      if(recovered.mode!=='checkpoint' || recovered.state!==state.text || recovered.seq!==context.seq || !Object.isFrozen(recovered))throw new Error('installed checkpoint recovery differs');
+      const fallback=await prepareCheckpointRecovery(entries,'corrupt',options);
+      if(fallback.mode!=='full-replay' || fallback.state!==state.text || fallback.checkpointSeq!==null)throw new Error('installed verified fallback differs');
+      const falseState=JSON.parse(actual.state);falseState.state.reservations[0][1].sol='0';const changedState=stringify(falseState)+'\\n',changedBinding={...actual.binding,stateDigest:hash(changedState)};
+      const {prepareCheckpointText,prepareCheckpointPrefixText}=await import(new URL('./checkpoint.js',import.meta.resolve('@solanaut/sdk')));
+      const dishonest=prepareCheckpointEnvelope({binding:changedBinding,archives:actual.archives,state:changedState,prefix:actual.prefix,signatures:{snapshot:sign(null,Buffer.from(prepareCheckpointText(changedBinding)),checkpoint.privateKey).toString('base64'),prefix:sign(null,Buffer.from(prepareCheckpointPrefixText(changedBinding)),checkpoint.privateKey).toString('base64')}},checkpointTrust,1000000);
+      const refusedState=await prepareCheckpointRecovery(entries,dishonest.text,options);
+      if(refusedState.mode!=='full-replay' || refusedState.state!==state.text)throw new Error('installed dishonest signed state accepted');
+      let anchorRefused=false;try{await prepareCheckpointRecovery(entries,'corrupt',{...options,expectedAnchor:{seq:context.seq-1,head:'0'.repeat(64)}});}catch(error){anchorRefused=error.name==='CheckpointRecoveryError' && error.code==='checkpoint-recovery';}
+      if(!anchorRefused)throw new Error('installed anchor disagreement bypassed');
       const result=await publishOwnedCheckpoint(store,candidate.text,options);
       if(result.digest!==hash(candidate.text) || result.seq!==context.seq || readFileSync(recordPath+'.checkpoint','utf8')!==candidate.text)throw new Error('owned installed checkpoint differs');
       await publishOwnedCheckpoint(store,candidate.text,options);
@@ -306,7 +318,7 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
     console.log(JSON.stringify({events:p.events.length,requests:s.state.requests.length,uncertain:true}));`;
   const result=spawnSync(process.execPath,["--input-type=module","-e",script,inputPolicy,Buffer.from(transfer(2)).toString("base64")],{cwd:consumer,encoding:"utf8"});
   assert.equal(result.status,0,result.stderr);assert.deepEqual(JSON.parse(result.stdout),{events:1,requests:2,uncertain:true});
-  for(const name of ["checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication"])for(const extension of ["js","d.ts"])assert.ok(packed.files.some((file:{path:string})=>file.path==="dist/src/"+name+"."+extension));
+  for(const name of ["checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication","checkpoint-recovery"])for(const extension of ["js","d.ts"])assert.ok(packed.files.some((file:{path:string})=>file.path==="dist/src/"+name+"."+extension));
 });
 
 test("PKG-3: installed replay and table-pin commands execute with their documented usage exits", () => {

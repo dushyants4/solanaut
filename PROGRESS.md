@@ -1,5 +1,10 @@
 # PROGRESS.md
 
+Checkpoint recovery preparation has local mixed-history, fallback, external anchor,
+installed and ordinary/AST evidence with unchanged floors (`evals/sdk/checkpoint-recovery.md`).
+It derives current state through signed full replay and rebuilds Keel
+from verified events. Exclusive startup and bounded recovery remain unfinished.
+
 Validated-prefix rebuilding has local focused/fault, installed and ordinary/AST
 component evidence with unchanged floors (`evals/sdk/checkpoint-rebuild.md`). Published controller
 ticks/resets are replayed into fresh Keel, without loading controller-state numbers.

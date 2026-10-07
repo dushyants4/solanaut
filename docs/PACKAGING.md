@@ -1,6 +1,6 @@
 # PACKAGING.md — private SDK candidate
 
-> **Draft 13** · 2026-10-07 · owner: integrator · for: developers and release reviewers.
+> **Draft 14** · 2026-10-07 · owner: integrator · for: developers and release reviewers.
 > This is release preparation, not a stable release. Register: `kb/DOCUMENTS.md`.
 
 Compiled internal prefix/state components have installed-tarball evidence
@@ -85,3 +85,8 @@ consumer battery. Its next decisions are compared with a fresh full-stream Keel
 controller, and altered prefix bytes refuse. This does not export an installed
 recovery service or qualify its startup/memory targets; see
 `../evals/sdk/checkpoint-rebuild.md`.
+
+External tarball tests exercise compiled internal recovery preparation: valid
+checkpoint, verified fallback, correctly signed dishonest state and anchor
+conflict. These are component cases; installed owned startup, backup/upgrade and
+bounded recovery are still unqualified. See `../evals/sdk/checkpoint-recovery.md`.

@@ -1,0 +1,21 @@
+caught checkpoint recovery fault: capture-pins
+caught checkpoint recovery fault: unknown-configuration
+caught checkpoint recovery fault: positive-ceiling
+caught checkpoint recovery fault: safe-ceiling
+caught checkpoint recovery fault: foreign-guard
+caught checkpoint recovery fault: foreign-cluster
+caught checkpoint recovery fault: separate-authority
+caught checkpoint recovery fault: principal-coverage
+caught checkpoint recovery fault: dense-principals
+caught checkpoint recovery fault: archive-fields
+caught checkpoint recovery fault: principal-fields
+caught checkpoint recovery fault: anchor-binding
+caught checkpoint recovery fault: derived-checkpoint-validation
+caught checkpoint recovery fault: tail-reset
+caught checkpoint recovery fault: tail-tick
+caught checkpoint recovery fault: tail-posture
+caught checkpoint recovery fault: fallback-prefix
+caught checkpoint recovery fault: fallback-mode
+caught checkpoint recovery fault: admission-state
+caught checkpoint recovery fault: immutable-receipt
+All checkpoint recovery faults caught; restored source passes

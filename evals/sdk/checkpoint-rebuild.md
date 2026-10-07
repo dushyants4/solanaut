@@ -50,3 +50,8 @@ branches. Exact source and AST input hashes are retained. These remain builder
 measurements; the preceding publication's hosted runtime/AST failures remain open.
 Completed exact logs confirm unchanged-wait failures in the runtime matrix and
 AST; the maintained fault job passes. Publication receipt preserves the failures.
+
+Hosted 995c5b0 run 37664288112 also completes with four unchanged-wait failures
+in Node 22.18.0/24/26.7.0 and AST; nine other jobs pass, including maintained
+faults. Full logs and exact revision/job metadata: `checkpoint-rebuild/hosted-995c5b0/`.
+H11 remains pending; no wait change or hosted clearance is inferred.

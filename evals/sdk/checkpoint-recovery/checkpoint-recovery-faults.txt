@@ -1,0 +1,47 @@
+caught checkpoint recovery fault: capture-pins
+caught checkpoint recovery fault: unknown-configuration
+caught checkpoint recovery fault: positive-ceiling
+caught checkpoint recovery fault: safe-ceiling
+caught checkpoint recovery fault: foreign-guard
+caught checkpoint recovery fault: foreign-cluster
+caught checkpoint recovery fault: separate-authority
+caught checkpoint recovery fault: principal-coverage
+caught checkpoint recovery fault: dense-principals
+caught checkpoint recovery fault: archive-fields
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: principal-fields✔ SNP-5: checkpoint prefix plus mixed tail equals full-state and next-controller replay (57.12851ms)
+✔ SNP-6: missing or corrupt checkpoints fall back to verified history with unresolved facts (42.940056ms)
+✔ SNP-6: correctly signed dishonest checkpoint state falls back rather than loading it (29.021619ms)
+✔ SNP-6: a valid checkpoint cannot hide invalid, foreign or missing full history (14.578685ms)
+✔ SNP-6: external anchor disagreement or missing anchored history cannot be bypassed by fallback (32.391496ms)
+✔ SNP-6: missing archives allow only verified full history; invalid authority configuration refuses (30.548509ms)
+✔ SNP-5/6: recovery captures caller history and external pins before asynchronous verification (21.085867ms)
+✔ SNP-5: divergent fresh-controller tail refuses recovery after full history validates (22.147404ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 369.125733
+
+
+0 !== 1
+
+    at file:///home/dashy/Projects/Solanaut/evals/sdk/checkpoint-recovery-faults.ts:32:61
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0
