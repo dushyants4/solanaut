@@ -1,0 +1,2 @@
+caught ordinary serial fault: omitted leading scheduling option
+Ordinary serial fault caught; restored root command passes

@@ -140,7 +140,7 @@ jobs:
           cache: npm
       - run: npm ci
       - name: complete tests and exact coverage floors
-        run: npm run test:coverage
+        run: npm run test:coverage -- --serial
 
   differential:
     name: pinned real-transaction differential decoding

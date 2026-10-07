@@ -18,7 +18,7 @@ test("CI-2: the root test command actually serialises files instead of appending
     });
     // Retain the previous CI suffix: it must not be relied upon for scheduling.
     const env={...process.env};delete env.NODE_TEST_CONTEXT;
-    const result=spawnSync(process.execPath,[...tokens.slice(1,first),...paths,"--test-concurrency=1"],{encoding:"utf8",timeout:5000,env});
+    const result=spawnSync(process.execPath,["--test-concurrency=2",...tokens.slice(1,first),...paths,"--test-concurrency=1"],{encoding:"utf8",timeout:5000,env});
     assert.equal(result.status,0,result.stdout+result.stderr);assert.match(result.stdout,/tests 2\b/);
     const events=readFileSync(output,"utf8").trim().split("\n").map(line=>JSON.parse(line));
     let active=0;assert.equal(events.length,4);

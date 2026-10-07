@@ -8,6 +8,24 @@ work. This dated continuation retains the earlier session's full record at
 
 ## Did
 
+Envelope serial AST suite passes all 597 cases and unchanged floors; SDK hashes
+retained. The portable scheduling fixture catches omission against explicit
+parallel CLI defaults and restores. Subsequent full ordinary suite passes 597
+cases and typecheck exits zero. H11 remains pending, without a changed wait.
+Review/close/private sync follows; no hosted or stable-release clearance inferred.
+
+Envelope final ordinary suite passes all 597 cases; typecheck exits zero. Focused
+checks pass after coverage-fault restoration. Source/compiled and validation
+faults, initial failures and current artefact hashes are retained. Serial AST
+qualification follows before private close/sync.
+
+6d81f8b is privately pushed; all ten close gates pass. Hosted 37654130653 is
+underway with a failed Node 22 job whose logs are not yet available. Internal
+opaque envelope authentication follows; stub/source/installed regressions fail
+first. Explicit reader byte ceiling and actual payload hashes bind both signatures.
+CI AST now uses its already tested serial option, preserving population/floors.
+Definition 10 declares fresh seed 23623 before measurement. Final integration follows.
+
 Bundle/scheduling final ordinary and AST suites each pass all 589 cases, typecheck
 exits zero and existing coverage floors pass. Current source/package/compiled
 hashes and coverage summary retained. Pre-sync close passes nine gates and
@@ -326,6 +344,22 @@ implementation, documentation and receipt changes remain in the continuing sessi
 
 ## Found
 
+6d81f8b hosted qualification fails two jobs: Node 22's real baseline remains
+incomplete at the existing wait even with correct serial scheduling; the ordinary
+scheduling omission fault is missed on CI. Exact logs/metadata retained. The
+fixture relies on default parallelism, which can already be serial on a small
+runner. An attempted environment control is rejected by Node as unsupported;
+that refusal is retained. The fixture now supplies a leading parallel CLI default,
+with the real root command's leading serial option required to override it. H11
+proposes a separately approved harness-wait change; it is not applied.
+
+Envelope's first fault run catches initial sites then refuses a malformed literal
+for the canonical-framing site. Escaping is corrected; all intended faults rerun
+and restore. Fixture typecheck also catches a widened negative cluster literal,
+now explicit. A focused coverage check was accidentally overlapped with the
+coverage fault campaign and fails; preserve it, then rerun after restoration.
+These are builder/validation failures, not passing evidence.
+
 Confirmed scheduling defect: the old ordinary command appended its concurrency
 option after test paths, so Node ignored it. A direct two-file timestamp probe
 shows overlapping execution; the leading-option probe serialises them. Full
@@ -604,8 +638,14 @@ or complete snapshot/signing-service claim.
 
 ## Provenance
 
-Builder-authored evidence on local Linux, Node 26.7.0, base HEAD 0978aaa plus current
-uncommitted candidate. Commands: `node --test evals/ci/coverage-options.test.ts`,
+Builder-authored evidence on local Linux, Node 26.7.0. This continuation initially
+started from 0978aaa; later component receipts identify their exact base revisions.
+The current envelope candidate starts from 6d81f8b. Commands:
+`node --test packages/sdk/test/checkpoint-envelope.test.ts`,
+`node evals/sdk/checkpoint-envelope-faults.ts`, `npm test`,
+`npm run test:coverage -- --serial`, `npm run release:prepare`,
+`node evals/packaging/faults.ts`. Earlier commands:
+`node --test evals/ci/coverage-options.test.ts`,
 `node evals/ci/coverage-options-faults.ts`, `npm run typecheck`,
 `nice -n 19 npm run test:coverage -- --serial`, isolated candidate `nice -n 19 npm run test:bite`,
 `uv run --script tools/session_close.py --slug codex-solanaut-1`. No principal-key file,

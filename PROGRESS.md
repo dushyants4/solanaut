@@ -19,6 +19,10 @@ Coarser than `runs/`. The archivist keeps it current; every phase that ends gets
 
 ## Measured so far
 
+Opaque checkpoint container authentication has builder evidence at
+`evals/sdk/checkpoint-envelope.md`. It binds bytes and bounds reader parsing;
+semantic restoration and atomic publication remain unfinished.
+
 Checkpoint bundle assembly has builder evidence at `evals/sdk/checkpoint-bundle.md`.
 This prepares consistent signing bytes; publication and authenticated restore
 remain separate, unfinished work.

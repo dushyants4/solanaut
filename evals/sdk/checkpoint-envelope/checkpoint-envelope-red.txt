@@ -1,0 +1,158 @@
+✖ SNP-3: canonical envelope round trip authenticates exact opaque bytes under both domains (3.216859ms)
+✖ SNP-3: altered opaque payload bytes cannot reuse descriptor signatures (0.767964ms)
+✖ SNP-3: envelope refuses wrong pins, missing signatures and swapped signing domains (0.792782ms)
+✖ SNP-3: envelope rejects noncanonical framing, unsupported fields and duplicate keys (0.723827ms)
+✖ SNP-3: envelope size ceiling uses UTF-8 bytes and accepts its exact boundary (1.104637ms)
+✖ SNP-3: oversized envelope refuses before JSON parsing (1.871069ms)
+✖ SNP-3: envelope preparation captures external pins before caller metadata accessors (2.134304ms)
+✖ SNP-3: malformed encoder input and caller exceptions receive redacted typed refusal (1.062769ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 0
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 127.786555
+
+✖ failing tests:
+
+test at packages/sdk/test/checkpoint-envelope.test.ts:22:1
+✖ SNP-3: canonical envelope round trip authenticates exact opaque bytes under both domains (3.216859ms)
+  Error: checkpoint envelope not implemented
+      at Module.prepareCheckpointEnvelope (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-envelope.ts:1:78)
+      at prepare (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-envelope.test.ts:19:68)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-envelope.test.ts:23:25)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at packages/sdk/test/checkpoint-envelope.test.ts:27:1
+✖ SNP-3: altered opaque payload bytes cannot reuse descriptor signatures (0.767964ms)
+  Error: checkpoint envelope not implemented
+      at Module.prepareCheckpointEnvelope (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-envelope.ts:1:78)
+      at prepare (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-envelope.test.ts:19:68)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-envelope.test.ts:28:25)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at packages/sdk/test/checkpoint-envelope.test.ts:31:1
+✖ SNP-3: envelope refuses wrong pins, missing signatures and swapped signing domains (0.792782ms)
+  Error: checkpoint envelope not implemented
+      at Module.prepareCheckpointEnvelope (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-envelope.ts:1:78)
+      at prepare (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-envelope.test.ts:19:68)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-envelope.test.ts:32:25)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/checkpoint-envelope.test.ts:36:1
+✖ SNP-3: envelope rejects noncanonical framing, unsupported fields and duplicate keys (0.723827ms)
+  Error: checkpoint envelope not implemented
+      at Module.prepareCheckpointEnvelope (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-envelope.ts:1:78)
+      at prepare (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-envelope.test.ts:19:68)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-envelope.test.ts:37:25)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/checkpoint-envelope.test.ts:42:1
+✖ SNP-3: envelope size ceiling uses UTF-8 bytes and accepts its exact boundary (1.104637ms)
+  Error: checkpoint envelope not implemented
+      at Module.prepareCheckpointEnvelope (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-envelope.ts:1:78)
+      at prepare (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-envelope.test.ts:19:68)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-envelope.test.ts:43:25)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/checkpoint-envelope.test.ts:47:1
+✖ SNP-3: oversized envelope refuses before JSON parsing (1.871069ms)
+  AssertionError [ERR_ASSERTION]: The validation function is expected to return "true". Received false
+  
+  Caught error:
+  
+  Error: checkpoint envelope not implemented
+      at refused (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-envelope.test.ts:21:42)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-envelope.test.ts:49:78)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: checkpoint envelope not implemented
+        at Module.verifyCheckpointEnvelope (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-envelope.ts:2:77)
+        at verify (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-envelope.test.ts:20:88)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-envelope.test.ts:49:90
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at refused (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-envelope.test.ts:21:42)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-envelope.test.ts:49:78)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18),
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint-envelope.test.ts:52:1
+✖ SNP-3: envelope preparation captures external pins before caller metadata accessors (2.134304ms)
+  Error: checkpoint envelope not implemented
+      at Module.prepareCheckpointEnvelope (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-envelope.ts:1:78)
+      at prepare (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-envelope.test.ts:19:68)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-envelope.test.ts:53:30)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/checkpoint-envelope.test.ts:57:1
+✖ SNP-3: malformed encoder input and caller exceptions receive redacted typed refusal (1.062769ms)
+  AssertionError [ERR_ASSERTION]: The validation function is expected to return "true". Received false
+  
+  Caught error:
+  
+  Error: checkpoint envelope not implemented
+      at refused (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-envelope.test.ts:21:42)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-envelope.test.ts:59:85)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: checkpoint envelope not implemented
+        at Module.prepareCheckpointEnvelope (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-envelope.ts:1:78)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-envelope.test.ts:59:106
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at refused (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-envelope.test.ts:21:42)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-envelope.test.ts:59:85)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19),
+    operator: 'throws',
+    diff: 'simple'
+  }

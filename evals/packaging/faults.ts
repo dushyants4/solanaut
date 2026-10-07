@@ -17,6 +17,10 @@ assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
 const faults = [
   { name: "prefix-module", path: "dist/src/checkpoint-prefix.js", caught: "compiled checkpoint payloads", damage: () => undefined },
   { name: "bundle-module", path: "dist/src/checkpoint-bundle.js", caught: "compiled checkpoint payloads", damage: () => undefined },
+  { name: "envelope-module", path: "dist/src/checkpoint-envelope.js", caught: "compiled checkpoint payloads", damage: () => undefined },
+  { name: "envelope-byte-ceiling", path: "dist/src/checkpoint-envelope.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace('Buffer.byteLength(input, "utf8") > maxBytes', "false") },
+  { name: "envelope-state-binding", path: "dist/src/checkpoint-envelope.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("stateDigest: sha256hex(state)", 'stateDigest: "0".repeat(64)') },
+  { name: "envelope-framing", path: "dist/src/checkpoint-envelope.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace('canonicalJSON(body) + "\\n" !== input', "false") },
   { name: "bundle-digest", path: "dist/src/checkpoint-bundle.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("archiveDigest: archives.digest", 'archiveDigest: "0".repeat(64)') },
   { name: "bundle-payload", path: "dist/src/checkpoint-bundle.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("state: state.text", 'state: "{}"') },
   { name: "bundle-domain", path: "dist/src/checkpoint-bundle.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("prefixText = prepareCheckpointPrefixText(binding)", "prefixText = prepareCheckpointText(binding)") },

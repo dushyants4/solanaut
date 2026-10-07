@@ -1,10 +1,13 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.45** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.46** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 Bundle preparation captures a common history/endpoint and external authority pins.
-This is unsigned assembly, not authenticated recovery or archive-file verification.
+It is unsigned assembly.
+The internal envelope authenticates those bytes and bounds reader parsing under
+an explicit byte ceiling. It does not validate state meaning or archive files;
+encoder allocation is outside that bound. Hosted Node 22 confirmation remains open.
 Atomic publication, protected checkpoint keys, bounded retention and full mutation
 qualification remain open.
 

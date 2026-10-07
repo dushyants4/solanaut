@@ -5,6 +5,7 @@ seen failing might not be checking anything.
 
 | Gate | Shown failing | Then passing | Receipt |
 |---|---|---|---|
+| SNP-3 opaque checkpoint envelope | stub/installed and inventory/critical/staging refusals; malformed fault literal and overlapped check retained | exact bytes, signatures, framing and byte ceiling pass source/compiled faults; semantic restore remains owed | `sdk/checkpoint-envelope.md` |
 | CI-2 ordinary file scheduling | trailing option demonstrably runs files concurrently; real scheduling regression and inventory refuse | leading option and omission fault pass with restoration; exact-revision hosted confirmation follows | `ci/ordinary-serial.md` |
 | SNP-3 captured checkpoint bundle | stub failures, array-shape regression and critical/campaign/staging refusals retained | captured payloads and signing domains verified; publication/recovery remain owed | `sdk/checkpoint-bundle.md` |
 | POL-2 signature decoding / CI-2 expanded mutation staging | source/installed regressions, scope/inventory refusals and shared fixture failure retained | source and installed cases/faults restored; expanded baseline passes; complete mutation score owed | `sdk/policy-signature.md` |

@@ -1,6 +1,6 @@
 # PACKAGING.md — private SDK candidate
 
-> **Draft 10** · 2026-10-07 · owner: integrator · for: developers and release reviewers.
+> **Draft 11** · 2026-10-07 · owner: integrator · for: developers and release reviewers.
 > This is release preparation, not a stable release. Register: `kb/DOCUMENTS.md`.
 
 Compiled internal prefix/state components have installed-tarball evidence
@@ -9,6 +9,8 @@ not a supported recovery workflow.
 
 Bundle assembly is also internal. Its installed check exercises consistent payload
 bytes and both descriptor signing domains; it does not publish or restore a checkpoint.
+The internal envelope's installed check authenticates derived bytes and refuses
+altered state, framing and reader byte bounds. Internal paths are not a stable API.
 
 The current export and error reference is [SDK](SDK.md); it separates trusted in-process
 APIs from the distinct sending client and describes incomplete operational contracts.

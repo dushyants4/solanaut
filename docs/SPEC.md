@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.54** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.55** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -1087,9 +1087,9 @@ catalogue bytes; metadata preparation alone does not verify the referenced files
 anchor authority, policy or admission state. Snapshot context is captured before
 caller-owned receipts. This is a reversible encoding choice within accepted ADR-019.
 
-CI-2 mutation definition 9 retains all previous whole files and selected tests,
-adding bundle preparation and its tests after definition 8 added prefix/state and
-signed-policy scope. Fresh seed 23519 is declared before measurement. Authentication/catalogue and
+CI-2 mutation definition 10 retains all previous whole files and selected tests,
+adding envelope authentication and its tests after definitions 8/9 added prefix/state,
+signed-policy and bundle scope. Fresh seed 23623 is declared before measurement. Authentication/catalogue and
 D21 malformed-history regressions remain included.
 Baseline population verification remains distinct from a full mutation score.
 Existing score floors and all containment limits remain unchanged; a corrected
@@ -1102,6 +1102,7 @@ or changing their deadlines or explicit concurrency batteries. The root ordinary
 command places its scheduling option before file arguments; appending it after
 paths leaves Node's file scheduling uncontrolled. A real overlapping-file regression
 and planted omission protect this command, rather than checking an option string.
+Hosted AST execution uses the existing serial option without filtering any test.
 
 POL-2 captures policy signature text once and requires the canonical encoded size
 before base64 decoding. Existing canonical-byte and cryptographic checks remain.
@@ -1117,6 +1118,16 @@ snapshot/prefix signing domains. Current policy principals must be covered by th
 external principal pins; checkpoint authority cannot be a principal or anchor key.
 It neither signs nor publishes, and catalogue metadata does not verify archive files.
 Independent replay, bounded memory and authenticated consumption remain separate.
+
+SNP-3 internal envelope format 1 uses canonical JSON plus a final newline and kind
+`solanaut-signed-checkpoint`, with descriptor, both signatures and opaque archive/
+state/prefix text. Reading requires an explicit positive safe-integer UTF-8 byte
+ceiling, checked before JSON parsing. Verification computes the three actual text
+digests and checks both signatures under captured external pins; canonical framing
+rejects duplicate or unsupported fields. It authenticates opaque bytes only, not
+their admission-state meaning or referenced archive files. Encoder allocation is
+not covered by the reader's pre-parse ceiling. Consumption still requires semantic
+validation and replay before admissions.
 
 SNP-3/5 prefix preparation uses canonical format 1, kind
 `solanaut-checkpoint-keel-prefix`, profile, next sequence/head and ordered tick/reset

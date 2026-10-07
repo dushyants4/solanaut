@@ -1,10 +1,14 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 28** · 2026-10-07 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 29** · 2026-10-07 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
+
+`checkpoint-envelope.ts` authenticates an internal canonical container with
+opaque payload bytes under both descriptor signing domains. Reader parsing has
+an explicit byte ceiling. This does not load or validate admission state.
 
 `checkpoint-bundle.ts` assembles captured, validated payload components and
 descriptor signing bytes. It remains internal; signatures, archive-file verification,

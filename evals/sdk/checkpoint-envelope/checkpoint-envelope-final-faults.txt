@@ -1,0 +1,17 @@
+caught checkpoint envelope fault: array-shape
+caught checkpoint envelope fault: exact-fields
+caught checkpoint envelope fault: canonical-framing
+caught checkpoint envelope fault: format
+caught checkpoint envelope fault: safe-ceiling
+caught checkpoint envelope fault: preparse-ceiling
+caught checkpoint envelope fault: utf8-ceiling
+caught checkpoint envelope fault: archive-binding
+caught checkpoint envelope fault: state-binding
+caught checkpoint envelope fault: prefix-binding
+caught checkpoint envelope fault: encoder-pins
+caught checkpoint envelope fault: encoder-verification
+caught checkpoint envelope fault: encoded-digest
+caught checkpoint envelope fault: encoded-immutable
+caught checkpoint envelope fault: signatures-immutable
+caught checkpoint envelope fault: decoded-immutable
+All checkpoint envelope faults caught; restored source passes

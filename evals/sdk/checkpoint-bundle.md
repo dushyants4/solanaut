@@ -1,5 +1,12 @@
 # SNP-3 — captured checkpoint signing bundle
 
+Hosted 6d81f8b run 37654130653 fails Node 22's real baseline wait and the
+ordinary scheduling omission-fault campaign; other jobs succeed. Exact logs
+and revision metadata are retained in `checkpoint-bundle/hosted-6d81f8b/`.
+The omission fixture relied on default parallelism and is corrected separately;
+H11 proposes a harness-wait change requiring human acceptance. No hosted
+qualification is inferred from local component passes.
+
 Initial serial ordinary integration fails its unchanged staged-baseline wait.
 The child output reaches the sensor battery but has not completed; preserve
 `checkpoint-bundle/root-incomplete-baseline.txt`. This is a gate failure, not a

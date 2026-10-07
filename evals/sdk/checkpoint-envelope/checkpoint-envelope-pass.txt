@@ -1,0 +1,16 @@
+✔ SNP-3: canonical envelope round trip authenticates exact opaque bytes under both domains (10.709903ms)
+✔ SNP-3: altered opaque payload bytes cannot reuse descriptor signatures (4.89819ms)
+✔ SNP-3: envelope refuses wrong pins, missing signatures and swapped signing domains (4.916851ms)
+✔ SNP-3: envelope rejects noncanonical framing, unsupported fields and duplicate keys (8.732886ms)
+✔ SNP-3: envelope size ceiling uses UTF-8 bytes and accepts its exact boundary (4.577753ms)
+✔ SNP-3: oversized envelope refuses before JSON parsing (2.439441ms)
+✔ SNP-3: envelope preparation captures external pins before caller metadata accessors (5.840198ms)
+✔ SNP-3: malformed encoder input and caller exceptions receive redacted typed refusal (1.754311ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 181.792294

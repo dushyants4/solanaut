@@ -1,5 +1,15 @@
 # CI-2 — ordinary test-file scheduling
 
+Hosted 6d81f8b run 37654130653 exposes a missed omission fault: default scheduling
+can already be serial on a small runner. The fixture now supplies an explicit
+leading parallel default, which the actual root command's leading serial option
+must override. Omission is caught and restoration passes without dependence on
+the machine's default parallelism. An attempted NODE_OPTIONS approach was rejected
+by Node and is retained; the corrected fixture uses CLI options.
+Exact hosted failure/metadata: `../sdk/checkpoint-bundle/hosted-6d81f8b/`.
+Node 22 also still fails the real baseline wait; H11 proposes a separately
+approved wait change, unapplied. This revision is not fully hosted-qualified.
+
 2026-10-07 · builder-authored local Linux/Node 26.7.0 evidence.
 The existing wait, workload and every readiness floor remain unchanged.
 

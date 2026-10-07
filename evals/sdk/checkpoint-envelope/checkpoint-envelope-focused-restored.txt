@@ -1,0 +1,24 @@
+✔ CI-1: exact inventory accepts every maintained campaign and rejects omission/addition/duplication (24.266821ms)
+✔ CI-1: all campaigns run sequentially; failure/null exit fails aggregation without hiding other findings (1.576416ms)
+✔ CI-1: changed source stops further mutation, reports skipped work and fails the gate (0.283288ms)
+✔ CI-2: failed or missing test-process completion cannot qualify coverage (1.114833ms)
+✔ CI-2: exact statement and branch floors pass without rounding (1.058685ms)
+✔ CI-2: a critical branch deficit fails even when aggregate totals pass (0.620158ms)
+✔ CI-2: missing, extra and duplicate files cannot disappear from coverage (0.228437ms)
+✔ CI-2: malformed and empty execution counts fail closed (0.278979ms)
+✔ SNP-3: canonical envelope round trip authenticates exact opaque bytes under both domains (9.236465ms)
+✔ SNP-3: altered opaque payload bytes cannot reuse descriptor signatures (3.596731ms)
+✔ SNP-3: envelope refuses wrong pins, missing signatures and swapped signing domains (4.323646ms)
+✔ SNP-3: envelope rejects noncanonical framing, unsupported fields and duplicate keys (2.901775ms)
+✔ SNP-3: envelope size ceiling uses UTF-8 bytes and accepts its exact boundary (2.362932ms)
+✔ SNP-3: oversized envelope refuses before JSON parsing (1.128525ms)
+✔ SNP-3: envelope preparation captures external pins before caller metadata accessors (2.495771ms)
+✔ SNP-3: malformed encoder input and caller exceptions receive redacted typed refusal (1.051321ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 149.769234

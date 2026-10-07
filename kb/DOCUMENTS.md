@@ -1,5 +1,13 @@
 # DOCUMENTS.md — the document register
 
+2026-10-07 envelope authentication registers SPEC Draft 4.55, RISKS 1.46,
+OVERVIEW Draft 29, SDK Draft 9, PACKAGING Draft 11, receipt/index, PROGRESS,
+HANDOFF and continuing run. Internal byte authentication is scoped separately
+from semantic restore; failures and final integration remain recorded.
+CLAIMS S68 records scoped source/installed/gate/ordinary measurements and commands.
+H11 records an exact proposed wait edit requiring human acceptance. Bundle and
+ordinary receipts retain hosted 6d81f8b failures and the strengthened omission fixture.
+
 2026-10-07 checkpoint bundle registers SPEC Draft 4.54, RISKS 1.45, OVERVIEW Draft 28,
 SDK Draft 8, PACKAGING Draft 10, receipt/index, PROGRESS, HANDOFF and continuing run.
 It remains internal unsigned assembly. Initial refusals and hostile trust-array

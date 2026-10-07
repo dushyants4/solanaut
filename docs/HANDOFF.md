@@ -159,6 +159,16 @@ devnet.
 
 ## 5. Questions and requests for the human
 
+**H11 — expanded real mutation-baseline harness wait.** Hosted 6d81f8b run
+37654130653 still fails Node 22's unchanged baseline wait with serial execution.
+Retained exact logs: `evals/sdk/checkpoint-bundle/hosted-6d81f8b/`. Proposed
+edit in `evals/ci/mutation-recovery.test.ts`: replace
+`const end=Date.now()+20000;` with `const end=Date.now()+60000;`, and update
+the diagnostic to `staged baseline incomplete after configured harness wait`.
+Keep every selected test, seed policy, mutation floor, actual completion check,
+supervisor limit and product/readiness target unchanged. This is a proposal,
+not an applied exception. Human acceptance is required before this wait changes.
+
 Codex appends; the human answers in place. Open at the transfer:
 
 | # | Asked | For | Request |
@@ -188,6 +198,18 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 | O1 | AGENTS.md, build convention | Replace `TypeScript run natively by Node 26, with no build step; ESM;` with `TypeScript run natively by Node 26 for development; a release-only build emits JavaScript and declarations for npm consumers; ESM;` | Explicitly approved by the human in the Solanaut 1.0 mission. | no |
 
 ## 7. Codex's log
+
+6d81f8b hosted completion fails two jobs: Node 22 real baseline wait and the
+ordinary omission-fault campaign. Exact failures retained. The omission fixture
+now supplies explicit parallel CLI defaults so the root serial option must override
+them; local fault/restoration passes. H11 remains a proposed wait change, not applied.
+Envelope ordinary/AST integration passes 597 cases; final portability close follows.
+
+6d81f8b is privately pushed with all local close gates passing. Hosted Node 22
+fails, with exact logs pending overall completion; no hosted clearance inferred.
+Opaque envelope authentication has initial/fault/source/installed evidence.
+Existing CI AST option now explicitly requests serial execution; full population,
+waits and floors retained. Final integration/private sync follows.
 
 Confirmed cause of ordinary parallelism: Node ignores the scheduling flag placed
 after test paths. Two-file probes and an actual scheduling regression reproduce
