@@ -189,6 +189,13 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+Qualification preparation a4dba77 is privately pushed and passes ten close gates. CI
+37553883381 starts. Fresh definition-3 mutation run uses session 47592, driver 1007197 /
+worker group 1007247, stage `run-Z74iGI`; log and full paths are in the continuing run.
+Instrumented dry run passes; no completed score yet. SNP-3–8 now allocate accepted ADR-019
+snapshot/replay/retention/maintenance tests and their dependency map. No snapshot implementation
+or performance gate is achieved by this allocation, and H9/H10 remain pending.
+
 Mutation preparation freezes decoder/policy scope and proves staged-source isolation
 (`evals/ci/mutation.md`). Actual Stryker score remains owed; ADR-021/H9 still awaits acceptance.
 Coverage commit `657e338` CI `37498544709` passes all jobs.
@@ -284,6 +291,7 @@ The live probes and baseline are complete. ADR-012 C is built and tested offline
 
 | 2026-10-06 | Stryker preparation, partial CI-2 | commit containing `evals/ci/mutation.md` | report/staging receipt; prior coverage CI `37498544709` green | Frozen full-file scope, staged-source proof and maintained faults; actual tool score remains owed. |
 | 2026-10-06 | mutation definition 3 and threat-model reconciliation | commit containing the run-limit evidence | 235 staged/464 root cases, fourteen faults; 32 campaigns/271 faults; typecheck clean | Full mutation score and independent threat-model review remain owed. Scope, per-mutant deadlines and release thresholds unchanged. |
+| 2026-10-06 | signed-snapshot acceptance allocation | commit containing `docs/plans/2026-10-06_snapshot-qualification.md` | existing accepted ADR-019 and SNP-3–8 mapping; documentation lint | No implementation or measured performance result; authentication/publication precede derived restore, streaming/index and maintenance qualification. |
 
 | 2026-10-06 | SDK candidate reference, partial 5.3 | commit containing `docs/SDK.md` | source interface/behaviour review; document/claims lint | Current exports, trust boundaries and errors documented; stable contracts and usability qualification remain owed. |
 

@@ -27,6 +27,15 @@ with no dependent programme implemented. Final sequential validation follows.
 
 ## Did
 
+Qualification preparation a4dba77 is privately pushed; post-push close passes ten gates.
+CI 37553883381 starts. Fresh definition-3 Stryker session 47592 runs driver PID 1007197 /
+worker group 1007247, stage `.sandbox/solanaut-1/mutation/run-Z74iGI`, log
+`.sandbox/solanaut-1/mutation/qualification-a4dba77.txt`. Instrumented dry run succeeds;
+no completed score. Stop surviving children before session end. Scope and inputs remain
+frozen at the committed revision; continuing work is documentation only while it runs.
+SNP-3–8 allocate the accepted ADR-019 obligations; their plan supplies owner/dependency/test
+mapping without changing architecture or thresholds. Implementation and qualification remain owed.
+
 Definition 3 preparation passes 235 fresh staged cases, 464 root tests and fourteen focused
 faults. Full maintained aggregation passes all 32 campaigns / 271 caught faults, no failed
 or skipped campaign and restored source fingerprints; restored typecheck zero. Outputs
@@ -193,6 +202,9 @@ handling preserves the analytic bound without changing any target.
   this history and must pass compatibility checks before rollback.
 
 ## Found
+
+The SPEC header patch omits the rest of the line and fails atomically; exact-line replacement
+succeeds. This changes only requirement allocation and documentation, not source under mutation.
 
 Read attempts using guessed ADR-019/020 filenames fail with ENOENT; locate the actual names
 with `rg --files design` and read them. Socket/handler inspection finds no past-deadline

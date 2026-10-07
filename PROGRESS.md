@@ -50,6 +50,8 @@ Coarser than `runs/`. The archivist keeps it current; every phase that ends gets
 ## Open
 
 **Solanaut 1.0 mission:** `docs/plans/2026-10-05_solanaut-1.md`, approved in this session.
+Accepted snapshot/replay/retention/maintenance obligations now have SNP-3–8 acceptance
+mapping in `docs/plans/2026-10-06_snapshot-qualification.md`; implementation remains owed.
 ADR-012 C is implemented and verified offline (`evals/sdk/latch-c.md`); its complete queue item
 still owes a funded devnet rerun. Historical records' accepted replay differences are enumerated.
 ADR-019/020 are accepted clarifications following the human's instruction to go ahead;

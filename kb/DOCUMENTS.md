@@ -1,5 +1,10 @@
 # DOCUMENTS.md — the document register
 
+SPEC Draft 4.36 allocates SNP-3–8 from accepted ADR-019 on 2026-10-06. The snapshot
+implementation sequence in `docs/plans/2026-10-06_snapshot-qualification.md` records owners,
+dependencies and acceptance evidence. HANDOFF, PROGRESS and the continuing run track the allocation;
+no snapshot, performance or release result is claimed.
+
 Threat-model reconciliation updates `docs/papers/THREAT-MODEL.md` to Draft 4 on 2026-10-06,
 with accepted stable/devnet contracts, scoped local component evidence and outstanding
 independent/audit gates. HANDOFF and the continuing run record track it; no new architecture
@@ -70,7 +75,7 @@ substantive change; *last reviewed* moves at every review.
 | [docs/READINESS.md](../docs/READINESS.md) | 2.0 | current | operator, with the evaluator | the human, every seat, auditors | 2026-10-05 | 3.10 |
 | [docs/RISKS.md](../docs/RISKS.md) | 1.28 | current | architect, with the evaluator | the human, every seat | 2026-10-06 | every Leg 3 milestone |
 | [docs/OVERVIEW.md](../docs/OVERVIEW.md) | Draft 23 | draft | integrator | engineers new to the repo, judges | 2026-10-06 | 3.10 |
-| [docs/SPEC.md](../docs/SPEC.md) | Draft 4.35 | current (§13 approved; foundation IDs trace accepted scope) | architect | the builder, evaluator and integrator seats | 2026-10-06 | 3.1, 3.10 |
+| [docs/SPEC.md](../docs/SPEC.md) | Draft 4.36 | current (§13 approved; foundation IDs trace accepted scope) | architect | the builder, evaluator and integrator seats | 2026-10-06 | 3.1, 3.10 |
 | [docs/SIGNER.md](../docs/SIGNER.md) | Draft 9 | draft | integrator | operators and signer developers | 2026-10-06 | 3.1 |
 | [docs/CLIENT.md](../docs/CLIENT.md) | Draft 1 | draft | integrator | Node SDK consumers | 2026-10-06 | 5.3 |
 | [docs/SDK.md](../docs/SDK.md) | Draft 3 | draft | integrator | developers integrating the candidate | 2026-10-06 | 5.3 |
