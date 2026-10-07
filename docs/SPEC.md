@@ -966,6 +966,23 @@ when the child prints a failure and exits one. Reproduction seeds are not fresh 
 |---|---|---|
 | PUB-1 | a read-only inventory captures HEAD and every local ref, all reachable commits and historical file blobs/paths/modes/sizes, including deleted content, symlinks and gitlinks; shallow/incomplete/changing history refuses; inventory is explicitly not confidentiality, secret, source-rights or publication clearance | independent Git fixture oracles, divergent/tagged/deleted histories, unusual paths, missing objects, shallow history and changed-ref cases; retained manifest identifies the exact inspected revision and scope |
 
+### 13.16 Individual deployment and operator lifecycle
+
+Allocated from the approved mission and accepted ADR-019/020; targets remain in READINESS
+and the mission. `docs/plans/2026-10-06_linux-qualification.md` maps owners and dependencies.
+These are requirements, not current support claims or permission for human-owned actions.
+
+| ID | Requirement | Verified by |
+|---|---|---|
+| OPR-1 | reviewed release artefacts install on the reference Linux image without workspace symlinks, undeclared dependencies or undocumented loaders | clean-machine install, actual package graphs/hashes and approved runtime matrix |
+| OPR-2 | configuration validation refuses wrong identity/network/policy/profile, missing established history and unsafe ownership/permissions before admissions; diagnostics are keyless and redacted | positive/negative filesystem, signature/version/cluster and secret-redaction fixtures |
+| OPR-3 | dedicated signer-user and client-group permissions establish actual key isolation; same-user mode is explicit | human-provisioned cross-user key/config/history/socket checks and deployment attribution |
+| OPR-4 | installed service starts only after verified recovery, holds exclusive ownership, drains before stop and restarts conservatively; socket RPC remains propose/report/status | competing starts, crash/drain/restart and uncertain-send drills |
+| OPR-5 | operator policy preparation/signing/installation preserves pending state and monotonic signed versions | installed ceremony and human signatures; wrong-key/cluster/version and policy-reversal fixtures |
+| OPR-6 | backup captures an exact durable boundary, excludes keys/secrets, verifies history/checkpoint/archives and restores before resuming | frozen workload, corruption/missing/foreign-history cases, reservation/latch comparison and existing backup-time target |
+| OPR-7 | upgrade and binary rollback check compatibility and a verified backup before resuming; policy-content rollback requires a higher signed version | compatible/incompatible reader drills with pending sends and latch; restore validation |
+| OPR-8 | two-provider loss/disagreement denies conservatively, revocation meets its existing target and removal drains/revokes access while preserving state by default | outage/degraded-status drills, human devnet revoke, installed removal and explicit data-retention checks |
+
 ## Changes
 
 | Version | Date | What changed |
@@ -1012,4 +1029,5 @@ when the child prints a failure and exits one. Reproduction seeds are not fresh 
 | Draft 4.36 | 2026-10-06 | SNP-3–8 allocate accepted ADR-019 checkpoint, replay, retention and maintenance obligations; implementation/qualification remain owed. No architecture or threshold change. |
 | Draft 4.37 | 2026-10-06 | PUB-1 allocates a read-only history inventory for the approved original-repository publication review; inventory is not secrets, confidentiality, rights or publication clearance. |
 | Draft 4.38 | 2026-10-06 | SNP-3 checkpoint descriptor/signature domains and independently computed payload digest bindings; authentication component only, complete state restore remains owed. |
+| Draft 4.39 | 2026-10-06 | OPR-1–8 allocate the approved individual Linux lifecycle, verification and human dependencies; no support or deployment gate is claimed. |
 | Draft 4.40 | 2026-10-07 | CI-2 planted-cap first-counterexample diagnostics and actual fault-process completion; ordinary shrinking, successful floors, domains and deadlines stay unchanged. |

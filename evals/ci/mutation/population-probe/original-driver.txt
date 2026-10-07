@@ -1,0 +1,17 @@
+import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { spawnSync } from "node:child_process";
+import { join, resolve } from "node:path";
+import { stageMutation } from "../../../evals/ci/mutation-stage.ts";
+const root=process.cwd(), destination=mkdtempSync(resolve(".sandbox/solanaut-1/mutation/population-probe-"));
+const sources=stageMutation(root,destination);
+const path=join(destination,"stryker.config.json"), config=JSON.parse(readFileSync(path,"utf8"));
+config.dryRunOnly=true; writeFileSync(path,JSON.stringify(config,null,2)+"\n");
+writeFileSync(join(destination,"probe-manifest.json"),JSON.stringify({revision:"afa0b21",purpose:"population-artifact probe only, not score qualification",hashes:Object.fromEntries(Object.entries(sources).map(([path,text])=>[path,createHash("sha256").update(text).digest("hex")])),seed:23089},null,2)+"\n");
+console.log("Probe stage: "+destination);
+const env={...process.env,FUZZ_RUNS:"5000",FUZZ_SEED:"23089"}; delete env.NODE_TEST_CONTEXT;
+const result=spawnSync(process.execPath,[resolve("node_modules/@stryker-mutator/core/bin/stryker.js"),"run","stryker.config.json"],{cwd:destination,env,encoding:"utf8",timeout:120_000,maxBuffer:10_000_000});
+console.log(result.stdout); console.error(result.stderr);
+writeFileSync(join(destination,"probe-result.json"),JSON.stringify({status:result.status,signal:result.signal,error:result.error?.message??null},null,2)+"\n");
+console.log(JSON.stringify({status:result.status,signal:result.signal,error:result.error?.message??null}));
+process.exitCode=result.status===0 && result.signal===null && !result.error?0:1;

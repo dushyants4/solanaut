@@ -2,65 +2,147 @@
 
 ## Asked
 
-Resume the approved mission and keep progressing through unblocked work. Earlier session
-record: `runs/2026-10-06-codex-solanaut-1.md`.
+Resume the approved Solanaut 1.0 implementation and keep progressing through unblocked
+work. This dated continuation retains the earlier session's full record at
+`runs/2026-10-06-codex-solanaut-1.md`; it does not start a new qualification definition.
 
 ## Did
 
-Final checkpoint/serial candidate passes eighteen checkpoint cases/twenty-two real faults,
-504 ordinary and instrumented cases, unchanged floors, nine installed checks/five compiled
-faults and typecheck. The isolated aggregate exits zero across thirty-five campaigns with
-315 caught-fault lines; all 715 inputs and 65 compiled files restore exactly. Evidence is
-`evals/sdk/checkpoint.md` and `evals/ci/coverage-options.md` (S49/S50). Full state restore,
-signer completion and candidate hosted CI remain owed; H9/H10 are still pending.
+Dry-run diagnostic completes with actual exit zero, no signal or spawn error, but produces
+no JSON population report. Preserve its exact driver/configuration/input identity and raw
+output in `evals/ci/mutation/population-probe/`. All root mutation-source hashes still match.
+This disproves the proposed artifact assumption; exhaustive partitions remain unqualified.
 
-CI-only correction 11cd688 passes all thirteen hosted jobs in run 37573902777.
+Checkpoint/serial step afa0b21 is privately pushed; hosted run 37575269194 starts.
+Operational acceptance maps remain a separate documentation step. Started a distinct
+dryRunOnly population-artifact probe from this revision, using fresh diagnostic seed 23089
+and the same complete source/test population. It is not mutation-score qualification;
+the original full run and every frozen input remain intact.
 
-History a94ecf0 privately pushed. CI 37571438128 fails the planted cap trial; other jobs
-pass. Exact old-seed reproduction isolates shrinking until containment. Prepared fault-only
-first-counterexample diagnostics with unchanged ordinary options, full successful floors
-and deadlines. Eight focused cases/twelve property/five cap faults, restored candidate
-inputs and typecheck pass. Integrated uncommitted candidate root passes 504 cases with
-fault mode unset; this includes pending checkpoint/coverage work, not the CI-only tree.
-Receipt `evals/ci/caps-first-failure.md` preserves all initial failures and S51 scope.
+Final current isolated aggregate completes with actual exit zero: thirty-five campaigns,
+315 caught-fault lines, no failed/skipped campaign. Verified all 715 copied input hashes
+and all 65 compiled files plus exact inventory against the final manifest. Final coverage
+hashes for all 34 current sources also match. Raw failures from earlier candidate attempts
+remain beside this pass. Checkpoint/serial component commit follows; full restore is owed.
 
-Read project instructions/queue/thresholds and fetched the private origin. Prepared PUB-1
-read-only history inventory: fifteen cases/thirteen real faults pass, typecheck passes.
-Frozen origin-mirror metadata, exclusions, initial failures and fault misses are retained in
-`evals/ci/history.md`. Publication clearance remains owed.
+CI correction 11cd688 passes all thirteen jobs in hosted run 37573902777. Final current
+instrumented candidate passes 504 cases and all existing floors; nine outside-workspace
+package checks and five compiled faults pass after the bounded-key rebuild. The isolated
+full aggregate remains running; no completed result is inferred.
+
+CI-only correction 11cd688 is committed and privately pushed; CI 37573902777 starts.
+Its exact public/private scope preserves the history failure and addresses cap diagnostic
+work without expanding the pending checkpoint commit. Pre-push close passes nine gates,
+with the remaining uncommitted steps explicitly pending. Final clean-tree close follows
+their separate commits. SDK bounded-key candidate is rebuilt; installed validation continues.
+
+CI diagnostic correction passes eight focused cases, twelve maintained property faults,
+five cap faults, restored candidate bytes and typecheck. Full integrated uncommitted root
+passes all 504 cases with the fault-mode variable unset, retained in
+`evals/ci/caps/first-failure-root.txt`. Source isolation protects the live full mutation
+inputs. S51 scopes this evidence; CI-only committed tests have a smaller population.
+
+Prepared CI-2 operational acceptance for durable supervision and complete CI execution in
+`docs/plans/2026-10-07_mutation-execution.md`. Verified the hosted runner limit in primary
+GitHub documentation and whole-file/dry-run configuration against primary Stryker docs
+and the installed pinned schema. Old exportMutantsOnly research does not match the current
+schema. Population artifact production still needs an actual probe. No runner registration,
+billing, workload/configuration change, new mutation run or score claim.
+
+History-only step `a94ecf0` is committed and privately pushed; CI 37571438128 starts.
+Other candidate work remains uncommitted. First full isolated bite attempts all thirty-five
+campaigns and catches 310 faults, but fails the restored property battery; no aggregate pass.
+All 714 copied inputs restore and all 65 compiled candidate files match. Retain the failed
+output and input manifest. Repeat the full aggregate without simultaneous root/coverage work,
+keeping the same sources, fault sites, deadlines and execution floors (session 50447).
+
+Original mutation observer 520713 is stopped and replaced by detached observer 574792,
+using `setsid --fork` and workspace-only logs. This avoids losing containment with another
+managed-tool interruption. It retains the original 2026-10-07T12:48:34.647Z deadline and
+process identity; no actual exit status is inferred. No machine configuration changes.
+
+Full instrumented coverage passes all 499 cases and every existing floor; exact counts,
+hashes and serial execution arguments are retained in the checkpoint measurement/summary
+and S50. Root mutation sources, all staged inputs and the lockfile remain byte-identical
+to the original mutation manifest. Ordinary serial root tests pass all 499 cases
+(`evals/sdk/checkpoint/root-tests-serial-final.txt`); typecheck passes. These are correctness
+results while Stryker shares the host, not performance measurements.
+
+Re-read project instructions, queue, requirements, accepted recovery/operator contracts
+and thresholds; fetched the private origin. Preserved the current uncommitted history
+inventory and checkpoint authentication work. Added strict optional serial coverage
+execution: default unchanged, no test filtering, no changed instrumentation or floors.
+Stub failures, three caught scheduling/whitelist faults and campaign-inventory failure
+are retained under `evals/sdk/checkpoint/`. Typecheck passes.
+
+Started lower-priority serial full coverage (session 43475) and the complete maintained
+fault battery in an isolated candidate copy (session 80251). Its workspace links point
+inside that copy; other dependency links are read-only. Candidate manifest is retained
+in `.sandbox/solanaut-1/fault-candidate-current/candidate-manifest.json`. Outcomes are
+pending. These runs are correctness/coverage checks, not performance qualification.
 
 ## Changed
 
-History inspector/fixtures/fault registration and receipt; PUB-1 requirement allocation,
-claims, risks, progress, handoff and document register. No historical content or visibility
-changed. Other integrated candidate work remains uncommitted and separately reviewed.
+Coverage execution parser, focused tests and maintained fault registration. This dated
+record satisfies the close workflow's current-day record requirement. Earlier candidate
+implementation, documentation and receipt changes remain in the continuing session record.
 
 ## Found
 
-Pre-commit close passes nine gates and refuses the uncommitted tree, as expected.
-Earlier isolated aggregate failure and masked checkpoint fault remain in the receipts.
+Retaining the exploratory driver under the typed evaluation tree exposes an inferred-env
+type error for deleting NODE_TEST_CONTEXT. Declare NodeJS.ProcessEnv, matching the existing
+runner; no executed environment or qualification definition changes.
 
-The old diagnostic spawn result has ETIMEDOUT despite exit one. A separate real child
-prints a plausible failure and exits one on containment; the new completion stub wrongly
-accepts it before the actual error/signal guard is added. Both failures are retained.
-No rule/generator/threshold/deadline changes. Detached observer 574792 now retains the
-original mutation deadline after managed observer 520713 is stopped. No score inferred.
+Redirecting the close command is refused by the boundary guard's protected-path/mutation
+heuristic. Used the documented plain close command; no harness edit or bypass. Pre-sync
+close passes nine gates, with the uncommitted-tree refusal expected. Raw test-output
+whitespace is preserved; source/document/JSON diff whitespace checks pass.
 
-The full integrated candidate's isolated fault run has an incomplete restored property
-battery. Raw output remains retained; its aggregate is not a pass. No deadline/floor change.
-Original mutation driver disappeared on interruption; group 1007247 remains running, adopted
-by systemd. Scratch observer 520713/session 34269 preserves its original deadline; do not
-infer an actual exit code or score. The current-day record gate refuses the older dated
-record alone; this continuation satisfies the requirement without weakening it.
+History-only CI 37571438128 fails its cap fault job; the other jobs pass. Exact seed
+1678743925 reproduces ignore-reservation shrinking until the existing containment deadline
+inside the isolated copy. Its spawn error is ETIMEDOUT despite status one. The controlled
+first-counterexample mode reports the real defect after 22 trials; old seed is diagnostic
+reproduction only. Preserve both outputs and the hosted log. No cap rule/generator/threshold
+or deadline change. New completion test proves that a printed failure plus exit one can
+otherwise conceal a timeout; its stub fails before the strict guard is added.
+
+Checkpoint review finds unbounded public-key decoding. A predeclared excessive-key child
+test times out first, then passes using existing bounded isAddress. Eighteen cases and
+twenty-two real faults pass, including restoration of the old unbounded decoder. An initial
+synthetic quadratic-work fault is retained but replaced by that real decoder fault.
+Root tests and AST coverage pass all 500 cases with unchanged floors; no root mutation
+source is changed. Installed artefacts need regeneration after this source change.
+
+The isolated aggregate catches all eight property faults but its restored property battery
+exits one with output ending during decoder-v1; it does not establish restored completion.
+Concurrent host contention and the unchanged sixty-second containment are plausible causes,
+but the campaign's captured assertion does not retain the spawn error/signal. Do not label
+the specific cause confirmed. Preserve the raw failure and complete other campaigns; this
+aggregate is not a pass, and no deadline or property execution floor is changed.
+
+The original mutation driver/session disappeared during interruption; Stryker group
+1007247 still runs, adopted by systemd. No actual parent/child completion status is
+available. Scratch observer 520713/session 34269 preserves the original twelve-hour
+deadline and records process disappearance without inventing success. A resulting report
+cannot pass the existing completion gate on an inferred exit status.
+
+The first close check passes eight gates but refuses a missing current-day run record
+and the uncommitted tree. The older continuing record alone does not satisfy the date
+check; add this record rather than weakening the gate. Full candidate close and sync remain
+pending. No threshold, accepted ADR or protected harness file changes.
 
 ## Open
 
-Finish aggregate/close/private sync and hosted CI; full publication review, H9/H10,
-independent and human-owned release evidence remain owed. No Alpha/stable claim.
+Checkpoint source, installed artefacts, coverage and isolated aggregate now pass; finish
+candidate hosted CI and the separate operational-map close/sync. H9/H10, independent RT-2, audit, outside
+developers and human-run deployment/Phantom/publication remain required. No stable-release
+or complete snapshot/signing-service claim.
 
 ## Provenance
 
-Builder-authored local Linux, Node 26.7.0/Git 2.55.0, base 0978aaa. Commands:
-`node --test evals/ci/history.test.ts`, `node evals/ci/history-faults.ts`,
-`node evals/ci/history-run.ts --repository .sandbox/solanaut-1/history-origin.git`,
-`npm run typecheck`, `uv run --script tools/session_close.py --slug codex-solanaut-1`.
+Builder-authored evidence on local Linux, Node 26.7.0, base HEAD 0978aaa plus current
+uncommitted candidate. Commands: `node --test evals/ci/coverage-options.test.ts`,
+`node evals/ci/coverage-options-faults.ts`, `npm run typecheck`,
+`nice -n 19 npm run test:coverage -- --serial`, isolated candidate `nice -n 19 npm run test:bite`,
+`uv run --script tools/session_close.py --slug codex-solanaut-1`. No principal-key file,
+network send, public publication or funded transaction used.

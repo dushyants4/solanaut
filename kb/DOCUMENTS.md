@@ -1,20 +1,53 @@
 # DOCUMENTS.md — the document register
 
-Checkpoint/serial component completion on 2026-10-07 registers SDK Draft 4, PACKAGING
-Draft 8, OVERVIEW Draft 24, SPEC Draft 4.38 detail within 4.40, RISKS 1.30 detail within
-1.31, CLAIMS 3.41/S49–S50, receipts/index, HANDOFF, PROGRESS and the continuation record.
-The full current source, AST coverage, installed-package and isolated fault checks pass.
-Earlier misses and failures remain retained. No complete checkpoint restoration, service,
-independent audit or stable-release claim. Candidate hosted CI follows private sync.
+Checkpoint/serial completion on 2026-10-07 records afa0b21, the receipts/index, S49/S50,
+SDK Draft 4, PACKAGING Draft 8, OVERVIEW Draft 24 and scoped SPEC/RISKS details. Ordinary
+and instrumented source tests, installed artefacts and the isolated aggregate pass with
+exact restoration; prior failures remain retained. Hosted candidate validation follows.
+The Linux, dependency and mutation execution maps remain preparation, with their human
+and implementation dependencies explicit. No stable-release or installed-service claim.
+The actual dry-run diagnostic is registered under `evals/ci/mutation/population-probe/`:
+successful execution produces no JSON population report, so exhaustive partitions remain
+unqualified. The mutation execution map and continuation record retain this limitation.
 
-CI-2 fault-trial diagnostic/completion correction registers SPEC (Draft 4.40), RISKS
-(1.31), CLAIMS (3.41/S51), the receipt/index, HANDOFF and current-day continuation on
-2026-10-07. Ordinary shrinking, full successful floors and deadlines remain unchanged;
-failed hosted evidence is retained. Corrected hosted validation remains owed.
+2026-10-07 cap fault-trial diagnosis registers `evals/ci/caps-first-failure.md`, its receipt
+index and continuation record. First-counterexample diagnostics apply only to planted cap
+trials; ordinary shrinking, complete successful execution floors and deadlines stay unchanged.
+Actual process completion checks reject misleading timeout exits. Twelve property/five cap
+faults restore. SPEC (Draft 4.40), RISKS (1.31) and CLAIMS (3.41/S51) record this bounded
+correction; integrated root validation passes and CI-only correction 11cd688 passes all
+thirteen hosted jobs in run 37573902777. Remaining candidate close is separate.
 
-History inventory preparation updates SPEC (Draft 4.37), RISKS (1.29), CLAIMS (3.38),
-the receipt/index, HANDOFF, PROGRESS and the dated continuation on 2026-10-07. The
-inspected private-origin mirror supplies Git metadata only; full publication review remains owed.
+2026-10-07 mutation execution acceptance map registers durable child-result supervision,
+complete CI execution and exhaustive partition proof as future CI-2 work. Primary runner
+and pinned Stryker configuration sources are cited in the map. No runner, workload or gate
+is changed; the existing full score remains unqualified after its driver interruption.
+
+2026-10-07 continuation registers strict serial coverage execution preparation,
+`evals/ci/coverage-options.md`, its receipt-index entry and the current-day continuation
+record. Execution controls preserve the full test population, instrumentation and floors;
+full candidate coverage passes unchanged floors, with exact source hashes retained.
+CLAIMS (3.40/S50), checkpoint receipt and HANDOFF record the result; aggregate faults,
+ordinary tests and close remain pending.
+
+Individual Linux qualification preparation updates SPEC (Draft 4.39), the new lifecycle
+acceptance map, HANDOFF, PROGRESS and the continuing run on 2026-10-06. OPR-1–8 allocate
+approved mission/ADR obligations; support and installed-service evidence remain owed.
+
+Dependency remediation preparation (`docs/plans/2026-10-06_dependency-remediation.md`)
+maps the retained audit to workspace deployment/tool paths on 2026-10-06. It does not
+clear advisories or change the active run's lockfile; the continuing run records the read.
+
+Checkpoint authentication component updates SPEC (Draft 4.38), OVERVIEW (Draft 24), RISKS
+(1.30), CLAIMS (3.39), HANDOFF, PROGRESS, the receipt/index and the continuing run on
+2026-10-06. SNP-3/S49 is metadata authentication only; full restore and qualification remain owed.
+SDK (Draft 4) and PACKAGING (Draft 8) describe the checkpoint exports and their passing
+packed-consumer component. State restoration and full coverage/close remain owed.
+
+History inventory preparation updates SPEC (Draft 4.37), RISKS (1.29), CLAIMS (3.38), the receipt/index,
+HANDOFF, PROGRESS and the continuing run on 2026-10-06; PUB-1/S48 scope only Git metadata
+from the inspected private-origin mirror. Local harness tree refs refuse. No source-rights,
+secret, visibility or release clearance is claimed; root qualification remains pending.
 
 SPEC Draft 4.36 allocates SNP-3–8 from accepted ADR-019 on 2026-10-06. The snapshot
 implementation sequence in `docs/plans/2026-10-06_snapshot-qualification.md` records owners,
@@ -90,17 +123,17 @@ substantive change; *last reviewed* moves at every review.
 | [docs/ROADMAP.md](../docs/ROADMAP.md) | Draft 3 | review | archivist, with the architect | the human, every seat, judges | 2026-10-05 | every leg |
 | [docs/READINESS.md](../docs/READINESS.md) | 2.0 | current | operator, with the evaluator | the human, every seat, auditors | 2026-10-05 | 3.10 |
 | [docs/RISKS.md](../docs/RISKS.md) | 1.31 | current | architect, with the evaluator | the human, every seat | 2026-10-07 | every Leg 3 milestone |
-| [docs/OVERVIEW.md](../docs/OVERVIEW.md) | Draft 23 | draft | integrator | engineers new to the repo, judges | 2026-10-06 | 3.10 |
+| [docs/OVERVIEW.md](../docs/OVERVIEW.md) | Draft 24 | draft | integrator | engineers new to the repo, judges | 2026-10-06 | 3.10 |
 | [docs/SPEC.md](../docs/SPEC.md) | Draft 4.40 | current (§13 approved; foundation IDs trace accepted scope) | architect | the builder, evaluator and integrator seats | 2026-10-07 | 3.1, 3.10 |
 | [docs/SIGNER.md](../docs/SIGNER.md) | Draft 9 | draft | integrator | operators and signer developers | 2026-10-06 | 3.1 |
 | [docs/CLIENT.md](../docs/CLIENT.md) | Draft 1 | draft | integrator | Node SDK consumers | 2026-10-06 | 5.3 |
-| [docs/SDK.md](../docs/SDK.md) | Draft 3 | draft | integrator | developers integrating the candidate | 2026-10-06 | 5.3 |
+| [docs/SDK.md](../docs/SDK.md) | Draft 4 | draft | integrator | developers integrating the candidate | 2026-10-06 | 5.3 |
 | [docs/POLICY.md](../docs/POLICY.md) | Draft 1 | draft | integrator | Linux operators | 2026-10-06 | 3.2 |
 | [docs/RPC.md](../docs/RPC.md) | Draft 2 | draft | integrator | operators and signer developers | 2026-10-05 | 3.1 |
 | [docs/REQUESTS.md](../docs/REQUESTS.md) | Draft 6 | draft | integrator | SDK consumers and signer developers | 2026-10-06 | 3.1 |
 | [docs/STORAGE.md](../docs/STORAGE.md) | Draft 4 | draft | integrator | SDK users and Linux operators | 2026-10-06 | 3.1 |
 | [docs/POLICIES.md](../docs/POLICIES.md) | Draft 1 | draft | integrator | SDK users and operator-tool developers | 2026-10-05 | 3.2 |
-| [docs/PACKAGING.md](../docs/PACKAGING.md) | Draft 7 | draft | integrator | developers and release reviewers | 2026-10-06 | 5.3 |
+| [docs/PACKAGING.md](../docs/PACKAGING.md) | Draft 8 | draft | integrator | developers and release reviewers | 2026-10-06 | 5.3 |
 | [docs/HANDOFF.md](../docs/HANDOFF.md) | Draft 1 | current | Claude; Codex keeps §5 to §7 | Codex, the human, Claude on return | 2026-10-06 | the return to Claude |
 | [AGENTS.md](../AGENTS.md) | 1 | current | harness (Claude or the human; not Codex) | Codex | 2026-10-05 | the return to Claude |
 | [docs/ARCHITECTURE.md](../docs/ARCHITECTURE.md) | 4 | current | architect | everyone | 2026-10-01 | 2c.1 |

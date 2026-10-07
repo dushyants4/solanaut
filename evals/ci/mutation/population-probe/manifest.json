@@ -1,0 +1,15 @@
+{
+  "revision": "afa0b21",
+  "purpose": "population-artifact probe only, not score qualification",
+  "hashes": {
+    "packages/sdk/src/base58.ts": "4382f6e5b180466b312bb73b38a31a9554919f13b8372335bfb48386da0eca95",
+    "packages/sdk/src/classify.ts": "cd8553cca6eb37e2e408d2fb837c2a205854289eb012fd98f23460fec7db2599",
+    "packages/sdk/src/guard.ts": "9b464b08f3edda6efef58f31d3f3ef4227636c66680b6e5321cb431693520994",
+    "packages/sdk/src/message.ts": "25d82ad6f99a49f223d8353e758b0252e11d14918ffeee1acd48965aefbcc208",
+    "packages/sdk/src/pda.ts": "03654547ae3673c6aad0572d4527666b810153ce921c45fe64a320f536a934b5",
+    "packages/sdk/src/policy.ts": "a82e516b0553c6de720780e891234a36feda918bbdc34ac31d930216ed6703fc",
+    "packages/sdk/src/state.ts": "7b49adf4926ed42c4cd5c2722c4f98ed180cdd4e3d400ad871e90bed73b66661",
+    "packages/sdk/src/tables.ts": "d64fb906b395900a9b4c513131a152437fba8b47a4a9413fb6793d623d6925cb"
+  },
+  "seed": 23089
+}

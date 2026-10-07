@@ -1,0 +1,11 @@
+Probe stage: /home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/population-probe-nvMGxl
+01:14:17 (761946) INFO ProjectReader Found 8 of 61 file(s) to be mutated.
+01:14:18 (761946) INFO Instrumenter Instrumented 8 source file(s) with 2838 mutant(s)
+01:14:18 (761946) INFO ConcurrencyTokenProvider Creating 4 test runner process(es).
+01:14:19 (761946) INFO DryRunExecutor Note: running the dry-run only. No mutations will be tested.
+01:14:19 (761946) INFO DryRunExecutor Starting initial test run (command test runner with "off" coverage analysis). This may take a while.
+01:15:04 (761946) INFO DryRunExecutor Initial test run succeeded. Ran 1 tests in 45 seconds (net 45638 ms, overhead 0 ms).
+01:15:04 (761946) INFO MutationTestExecutor The dry-run has been completed successfully. No mutations have been executed.
+
+
+{"status":0,"signal":null,"error":null}

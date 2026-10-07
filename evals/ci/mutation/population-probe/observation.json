@@ -1,0 +1,10 @@
+{
+  "actual_result": {
+    "status": 0,
+    "signal": null,
+    "error": null
+  },
+  "expected_json_report_exists": false,
+  "root_mutation_source_hashes_match": true,
+  "purpose": "diagnostic only; no complete population artifact or mutation score"
+}

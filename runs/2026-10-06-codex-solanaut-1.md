@@ -27,6 +27,84 @@ with no dependent programme implemented. Final sequential validation follows.
 
 ## Did
 
+Current checkpoint build/package component passes nine outside-workspace checks and five
+real compiled faults including checkpoint export removal; restored candidate passes.
+Root correctness ran serially at lower priority without excluded tests; build/package
+work is also lower priority and separate from timing qualification. No root dependency
+change or mutation-input edit. History mirror rerun has the exact original digest;
+fifteen cases/thirteen faults and typecheck pass. Coverage/aggregate close remain pending.
+
+Current-source root suite passes all 496 cases using one test process at a time at lower
+priority (`nice -n 19 npm test -- --test-concurrency=1`), retained in scratch pending the
+coherent receipts. This is ordinary correctness validation, not a timing qualification.
+No production/evaluation rule or staged input changes. Clarified checkpoint next-record
+sequence versus anchored-entry sequence and decision-count cadence in the accepted codec
+documentation; no encoded field or runtime behaviour changes.
+
+Real commit-graph/missing historical commit probe already refuses as required; no defect or
+production fix. Keep this pass honestly rather than manufacturing a first failure. Added
+the regression and updated the fault harness's exact case count to fifteen; expanded
+component/fault outputs are retained separately from prior fourteen-case results.
+
+Active mutation input scope remains the staged a4dba77 revision, including its old SDK
+entry and eighteen selected tests. The eight mutated root files and lockfile still match.
+Current work adds a separate checkpoint module/export and new evaluator files; they are
+not qualified by that staged population. Its eventual score must name the frozen revision
+and scope rather than claim full current-source or release qualification. Current-source
+root, coverage, installed and aggregate fault checks remain queued after completion.
+
+Checkpoint follow-up strengthens non-string signature cases and separates adversarial caller
+mutation of trust from mutation of observed digests. Both capture boundaries now have actual
+planted faults; all twenty-one are caught, source restores and seventeen cases pass. No
+controller rule, frozen mutation input, threshold or signer surface changes.
+
+Allocated OPR-1–8 and the Linux qualification map from the approved mission/ADR-019/020:
+installed artefacts, config refusal, actual isolation, lifecycle, policy ceremony, verified
+backup, compatible upgrade/rollback and outage/revocation/removal. No threshold or accepted
+architecture change, no service implementation/support claim or machine configuration edit.
+The temporary progress watcher was ended before further tool orchestration; the mutation
+driver/worker group itself stays running. Source-input/lock equality is checked separately.
+
+Read-only dependency triage: inspected the retained preparation audit and current lockfile,
+ran npm ls into `.sandbox/solanaut-1/dependency-paths.txt`, and checked primary reviewed
+advisories. Prepared the remediation map for framework, cockpit/on-chain and evaluation-tool
+paths. No installs, dependency changes, exploitability clearance or finding acceptance.
+Automatic major downgrade suggestions are not treated as compatibility evidence. The full
+frozen mutation job's eight source hashes and lockfile remain byte-identical.
+
+SNP-3 integrator follow-up: public candidate entry fails first, then seventeen cases and
+nineteen faults pass including export removal. Prepared installed JavaScript/declaration
+checks and a compiled export fault; build/package qualification waits for the running
+Stryker job. SDK/PACKAGING describe the source candidate and pending installed evidence.
+
+SNP-3 accepted-ADR-019 binding codec: twelve stub failures retained; sixteen final cases and
+eighteen real faults pass after a masked key-pin deletion is exposed with a correctly signed
+false-authority descriptor. Test-fixture excess-property type error retained and corrected;
+typecheck passes. Added strict campaign inventory and critical-coverage registration red
+before correction. Root/coverage/full fault campaign and installed exports remain pending.
+No state restore or signer expansion. Reversible descriptor/domain choices recorded in SPEC
+4.38; S49/receipt scopes the opaque payload and external-pin trust boundary. Documentation
+patch anchors initially fail atomically; corrected exact lines, no partial changes.
+
+PUB-1 final component evidence: twelve cases and eleven real planted faults pass; source
+restores, three campaign-inventory cases and typecheck pass. The first actual local run
+refuses harness tree refs. A fresh private-origin mirror, cloned without depth/hardlinks,
+records revision 0978aaa, five refs, 83 commits, 1,607 historical blobs, 848 distinct paths
+and no gitlinks. Exact manifest/digest and limitations are in `evals/ci/history.md` and S48.
+No source contents, keys, credentials or visibility changes; root/aggregate close remains
+pending while full Stryker qualification runs. Git 2.55.0 already installed; no tool change.
+ElizaOS inspection downloads the published 1.2.6 tarball with scripts disabled, verifies its
+registry integrity and reads metadata/bundle only. Declared Bun engine and unpinned latest
+peers need actual compatibility/pin qualification; MIT notice exists in the tarball despite
+the missing registry licence field. No dependency or runtime is installed into the project.
+
+Snapshot requirement allocation 0978aaa is privately pushed; close passes ten gates and
+hosted CI 37554109849 succeeds. Prior a4dba77 CI is cancelled by the later push after all
+jobs except maintained faults pass; do not describe that cancelled run as fully green.
+Fresh mutation qualification stays at a4dba77 and its frozen SDK inputs/dependencies remain
+unchanged. Independent release-preflight tests now use isolated scratch Git repositories;
+no existing SDK/app source, dependency or staged test is changed or fault-injected.
+
 Qualification preparation a4dba77 is privately pushed; post-push close passes ten gates.
 CI 37553883381 starts. Fresh definition-3 Stryker session 47592 runs driver PID 1007197 /
 worker group 1007247, stage `.sandbox/solanaut-1/mutation/run-Z74iGI`, log
@@ -202,6 +280,45 @@ handling preserves the analytic bound without changing any target.
   this history and must pass compatibility checks before rollback.
 
 ## Found
+
+2026-10-07 resumed interruption: the original full mutation driver 1007197 and managed
+session 47592 are absent; Stryker process group 1007247 remains running, adopted by
+systemd. The unknown parent termination is not a successful completion. Original stage
+`run-Z74iGI` and log remain intact. A replacement observer in scratch (managed session
+34269) preserves the original manifest's twelve-hour deadline, checks process identity
+and records process disappearance without inventing a child exit code. A completed report
+can inform remediation, but cannot pass the existing process-completion gate without
+actual exit-status evidence. Do not start another concurrent mutation campaign.
+
+CI mutation qualification remains missing from the hosted workflow: existing jobs exercise
+report/staging/fault preparation, not the complete score workload. The active full local
+run's runtime estimate exceeds the hosted single-job capacity in GitHub's current limits
+(https://docs.github.com/en/actions/reference/limits). Retain definition 3 unchanged while
+it runs. Future CI execution must preserve the complete frozen population and final 80%
+gate, with exact-source manifests and failure on any missing/cancelled partition. No runner
+registration, billing commitment, workflow/threshold change or partial-score claim is made.
+
+PUB-1 read-only follow-up: real scratch fixtures expose synthetic graft ancestry hiding a
+parent and a partial-clone inventory lazily fetching/writing missing blobs. Both failures
+retained in readonly-red. Per-process graft/lazy-fetch/optional-lock settings correct these
+without configuration changes. Fourteen final cases pass; expanded thirteen-fault campaign
+and typecheck restoration recorded separately. Original mirror manifest remains its named
+revision's evidence. SNP-3 first key-pin fault miss and type error remain in its receipt.
+
+The local inventory refuses tree-valued harness refs before issuing a manifest. Retain that
+failure; the inspected origin mirror has a separately stated server-ref scope, not invented
+publication clearance. A combined RISKS/register patch uses the wrong register status and
+fails atomically; corrected exact anchors. A receipt line has a stray plus, corrected before
+validation. Entire proposed-public contents/rights/secrets and hosted exposure still need review.
+
+PUB-1 history inventory: eight cases fail against the stub. The initial implementation
+passes them, but a new dropped-ref-target case exposes missing commit-closure validation;
+retain closure-red output and add the ref-target check. Twelve final cases pass, including
+SHA-256 Git identities. The first detached-HEAD planted edit is equivalent: Git's documented
+`--all` includes HEAD already, so removing the extra HEAD argument changes nothing. Retain
+that output; replace it with the real branch/tag-only omission fault, without weakening tests.
+Use `--single-worktree` to match the stated current HEAD plus local-ref scope and avoid
+silently including other worktrees' detached heads. Primary source: Git rev-list documentation.
 
 The SPEC header patch omits the rest of the line and fails atomically; exact-line replacement
 succeeds. This changes only requirement allocation and documentation, not source under mutation.

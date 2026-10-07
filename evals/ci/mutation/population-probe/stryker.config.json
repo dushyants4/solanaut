@@ -1,0 +1,39 @@
+{
+  "mutate": [
+    "packages/sdk/src/base58.ts",
+    "packages/sdk/src/classify.ts",
+    "packages/sdk/src/guard.ts",
+    "packages/sdk/src/message.ts",
+    "packages/sdk/src/pda.ts",
+    "packages/sdk/src/policy.ts",
+    "packages/sdk/src/state.ts",
+    "packages/sdk/src/tables.ts"
+  ],
+  "testRunner": "command",
+  "commandRunner": {
+    "command": "node --test --test-isolation=none packages/sdk/test/adapters.test.ts packages/sdk/test/admission.test.ts packages/sdk/test/boundary-validation.test.ts packages/sdk/test/classify.test.ts packages/sdk/test/decode.test.ts packages/sdk/test/drain.battery.test.ts packages/sdk/test/durable.test.ts packages/sdk/test/inspect.test.ts packages/sdk/test/keel.test.ts packages/sdk/test/latch-c.test.ts packages/sdk/test/ownership.test.ts packages/sdk/test/pin-table.test.ts packages/sdk/test/policy.test.ts packages/sdk/test/request-identity.test.ts packages/sdk/test/sensor.battery.test.ts packages/sdk/test/signed-policy.test.ts packages/sdk/test/signing-history.test.ts packages/sdk/test/storage-failures.test.ts"
+  },
+  "coverageAnalysis": "off",
+  "concurrency": 4,
+  "timeoutMS": 10000,
+  "timeoutFactor": 1.5,
+  "reporters": [
+    "clear-text",
+    "progress-append-only",
+    "json"
+  ],
+  "jsonReporter": {
+    "fileName": "reports/mutation.json"
+  },
+  "thresholds": {
+    "high": 80,
+    "low": 80,
+    "break": 80
+  },
+  "ignoreStatic": false,
+  "inPlace": false,
+  "tempDirName": ".stryker-tmp",
+  "cleanTempDir": false,
+  "allowConsoleColors": false,
+  "dryRunOnly": true
+}

@@ -54,6 +54,8 @@ Accepted snapshot/replay/retention/maintenance obligations now have SNP-3–8 ac
 mapping in `docs/plans/2026-10-06_snapshot-qualification.md`; implementation remains owed.
 The SNP-3 authentication codec has component evidence (`evals/sdk/checkpoint.md`), but
 publication, payload validation, prefix replay and checkpoint restoration remain owed.
+Individual Linux installation/lifecycle acceptance is allocated as OPR-1–8; the qualification
+map names dependencies and required drills, with implementation/support evidence still owed.
 Read-only original-origin history inventory is prepared (`evals/ci/history.md`); whole
 publication-scope secrets, confidentiality and rights review still remains owed.
 ADR-012 C is implemented and verified offline (`evals/sdk/latch-c.md`); its complete queue item

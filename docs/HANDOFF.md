@@ -189,29 +189,85 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
-Final checkpoint/serial candidate passes eighteen checkpoint cases/twenty-two real faults,
-504 ordinary and instrumented cases, unchanged floors, nine installed checks/five compiled
-faults and typecheck. The isolated aggregate exits zero across thirty-five campaigns with
-315 caught-fault lines; all 715 inputs and 65 compiled files restore exactly. Evidence is
-`evals/sdk/checkpoint.md` and `evals/ci/coverage-options.md` (S49/S50). Full state restore,
-signer completion and candidate hosted CI remain owed; H9/H10 are still pending.
+Checkpoint/serial step afa0b21 is privately pushed; hosted run 37575269194 starts. Its
+pre-sync close passes nine gates and refuses the remaining uncommitted preparation.
+Linux lifecycle, dependency remediation and durable mutation execution maps are the next
+separate documentation step. No service, audit, publication or stable-release gate is closed.
 
-CI-only correction 11cd688 passes all thirteen hosted jobs in run 37573902777.
+Final checkpoint/serial candidate passes the full isolated aggregate: thirty-five campaigns,
+315 caught-fault lines and actual exit zero. All 715 copied inputs and all 65 compiled files
+restore with exact inventory. Eighteen checkpoint cases/twenty-two real faults, 504 ordinary
+and instrumented cases, unchanged floors, nine installed checks/five compiled faults and
+typecheck pass. No state-restoration or completed signer claim; H9/H10 remain pending.
 
-CI 37571438128 fails its cap fault trial; all other jobs pass. Exact old-seed reproduction
-confirms shrinking reaches containment. First-counterexample diagnostics apply only to
-planted cap trials; actual spawn error/signal checks reject misleading timeout exits. Eight
-focused cases, twelve property/five cap faults and restored bytes pass; the integrated
-uncommitted candidate passes 504 root cases and typecheck. Receipt S51 scopes the count
-to that superset. Rules, ordinary shrinking, successful floors and deadlines stay unchanged.
-Corrected private sync and hosted CI follow.
+CI correction 11cd688 passes all thirteen jobs in hosted run 37573902777. The failed
+history run remains recorded. Current checkpoint/serial coverage candidate passes 504
+instrumented cases and every unchanged floor; final isolated aggregate is still running.
 
-PUB-1 inventory component: fifteen cases/thirteen faults and typecheck pass; frozen original-
-origin mirror manifest retained in `evals/ci/history.md`. It is metadata preparation only,
-not publication clearance. Integrated uncommitted candidate root tests and coverage pass;
-its isolated full fault run has an incomplete restored property check retained as a failure.
-Original mutation driver disappeared on interruption; child remains supervised at its original
-deadline, without an inferred completion status or score. Private sync/CI follows.
+CI-only correction 11cd688 is privately pushed; CI 37573902777 starts. Pre-push close
+passes nine gates, with the pending checkpoint/operational steps still uncommitted.
+Eight focused cases/twelve property/five cap faults and integrated root 504 pass;
+ordinary property definition/deadlines unchanged. Corrected hosted evidence is awaited.
+
+History CI 37571438128 fails the planted-cap campaign; other jobs pass. Exact-seed
+reproduction confirms shrinking stalls until containment. Fault-only first-counterexample
+diagnostics and actual child-error/signal checks now pass eight focused cases, twelve
+property/five cap faults and restoration (`evals/ci/caps-first-failure.md`, S51). Ordinary
+shrinking, complete successful floors, rules/generators and deadlines stay unchanged.
+Full root/close/corrected CI follows. No failure is erased or retried into apparent success.
+
+History-only component a94ecf0 is privately pushed; CI 37571438128 starts. Full candidate
+tests/coverage pass, but the first isolated aggregate fails its restored property battery
+despite all faults caught and bytes restored. Raw failure is retained; repeat without
+overlapping root/coverage work. Detached mutation observer 574792 now retains the original
+deadline across tool interruptions; the original completion status remains unavailable.
+
+2026-10-07 resumed interruption: original mutation driver/session disappeared while group
+1007247 remains running. Actual exit status is unavailable; scratch observer 520713 retains
+the original deadline. No inferred score qualification. Strict serial coverage execution
+passes its stub/fault/inventory programme; all 499 instrumented cases and existing floors
+pass (`evals/ci/coverage-options.md`, S50). Full maintained faults run in a separate candidate
+with local workspace links; root inputs are not mutated. Current-day continuation record
+added after close rejects the older date alone. Final ordinary tests/aggregate/close pending.
+
+Checkpoint candidate ordinary integration passes: 496 serial root cases, typecheck,
+nine outside-workspace installed JavaScript/declaration checks and five compiled faults.
+Restored candidate passes. Full coverage/aggregate close and private sync remain pending;
+no state-restoration or complete signing-service claim. Frozen mutation job still runs.
+Repeated history mirror inventory has the exact original digest; fifteen cases/thirteen
+faults and corrected typecheck pass, with no commit-graph bug found.
+
+Checkpoint caller-mutation follow-up: independently altered trust and observed digests
+are caught by separate planted faults. Seventeen cases/twenty-one faults and corrected
+typecheck pass. No signer wiring is added; full host/helper count is still owed at completion.
+
+OPR-1–8 allocate the approved Linux installation/lifecycle obligations, with owner,
+dependency, positive/refusal/drill evidence and unchanged targets in
+`docs/plans/2026-10-06_linux-qualification.md`. Human accounts/signatures and pending H9/H10
+remain dependencies; no installed-service or reference-platform support is claimed.
+
+SNP-3 candidate export follow-up: source entry test fails first, then seventeen cases and
+nineteen real faults pass, including export removal. Packed JavaScript/declaration checks
+and an export-damage fixture are prepared; installed validation waits for the frozen
+mutation run to finish. No installed service or state restore claim is added.
+
+PUB-1 read-only follow-up catches graft ancestry hiding parents and lazy fetching of
+missing partial-clone blobs. Per-process protections correct both; fourteen cases/thirteen
+real faults pass with source restoration. Original twelve-case/eleven-fault evidence is
+retained. This does not scan content or clear publication; full close remains pending.
+
+SNP-3 binding authentication component: sixteen cases/eighteen real faults and corrected
+typecheck pass, with a masked key-pin fault and test-fixture type error retained. Campaign
+and critical coverage registration fail first, then pass. No installed export, checkpoint
+publication, payload semantic validation or state restore yet; full root/coverage/aggregate
+close remains pending while the frozen mutation run continues. H9/H10 remain pending.
+
+PUB-1 inventory preparation records the original private-origin mirror at 0978aaa: five
+refs, 83 commits, 1,607 historical blobs and 848 paths; no publication clearance. Twelve
+cases/eleven real faults and typecheck pass. Missing ref-closure and an equivalent planted
+edit are retained; local harness tree refs refuse. New campaign registration is proven red
+before correction. Root/aggregate close and private sync remain pending. The full mutation
+run stays active with its frozen SDK sources/dependencies unchanged.
 
 Qualification preparation a4dba77 is privately pushed and passes ten close gates. CI
 37553883381 starts. Fresh definition-3 mutation run uses session 47592, driver 1007197 /
