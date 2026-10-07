@@ -53,6 +53,12 @@ Regenerate: `node --test evals/ci/mutation*.test.ts`,
 `npm test -- --test-concurrency=1`, `npm run typecheck`.
 Raw outputs and exact hashes: `mutation/authentication-scope/`.
 
+Corrected afed152 hosted run 37626020433 succeeds in all thirteen jobs, including
+Node 22/24/26 suites and the maintained fault aggregate. Exact revision/full logs
+are retained under `mutation/authentication-scope/hosted-afed152/`. Inspect with
+`gh run view 37626020433 --json status,conclusion,jobs,headSha`. This confirms the
+correction, not a full mutation score or release clearance.
+
 The superseded 9ac6e7c guard run has actual interruption evidence in
 `mutation/retired-9ac6e7c/`. Freeze the corrected target before another long
 campaign; this receipt claims no full score, complete snapshots, independent

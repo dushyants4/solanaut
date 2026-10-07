@@ -189,6 +189,11 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+Corrected afed152 hosted run 37626020433 passes every job, including Node 22/24/26
+and the fault aggregate. Full logs/revision metadata are retained. Prefix 23f57d5 is
+privately pushed with all close gates passing; its hosted run is underway. Admission
+state preparation now has focused/fault evidence; strict restore/publication remain owed.
+
 40fa2fc hosted run 37620710240 completes with twelve successful jobs and one
 Node 22 failure: the existing staged-baseline wait. Complete failure is retained.
 Definition 6 expands mutation scope without removing prior inputs, after first
@@ -479,6 +484,8 @@ The live probes and baseline are complete. ADR-012 C is built and tested offline
 | 2026-10-07 | CI mutation authentication populations and runtime execution | commit containing `evals/ci/mutation-authentication.md` | initial scope/definition/dilution failures; fifteen focused cases; twenty-two staging/report and fifteen recovery faults; serial ordinary 565 cases and typecheck | Original and added populations retain separate floors. Previous Node 22 hosted failure and overlapping local timing failures remain retained; corrected hosted qualification and full frozen-target score remain owed. |
 
 | 2026-10-07 | SNP-3/5 validated internal Keel prefix | commit containing `evals/sdk/checkpoint-prefix.md` | seven initial failures; nine focused cases/seventeen source faults; critical/inventory refusals; 574 ordinary and instrumented cases/typecheck | Event payload derives from full replay; signed policy trust enforced. Misses and stopped overlap retained. Publication, authenticated consumption, state restore and fresh mutation remain owed. |
+
+| 2026-10-07 | SNP-3/5 signed admission-state component | commit containing `evals/sdk/checkpoint-state.md` | five stub failures; six cases/sixteen faults; campaign/critical refusals; 580 ordinary/instrumented cases and typecheck | Lifecycle, policy and previous decision retained. Seed-cap miss retained, effective window-copy fault caught. Prefix 23f57d5 hosted CI succeeds; publication, restore, streaming and fresh mutation remain owed. |
 
 ## 8. Handing back to Claude
 

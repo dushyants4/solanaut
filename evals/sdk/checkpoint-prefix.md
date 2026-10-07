@@ -1,5 +1,10 @@
 # SNP-3/5 — validated Keel prefix preparation
 
+23f57d5 hosted run 37627659881 succeeds in every job, including the maintained
+fault aggregate and Node 22/24/26. Complete logs/revision metadata are retained in
+`checkpoint-prefix/hosted-complete.*`. Inspect with
+`gh run view 37627659881 --json status,conclusion,jobs,headSha`.
+
 2026-10-07 · builder-authored local Linux evidence · Node 26.7.0 · base afed152
 plus the recorded candidate. Internal component only; full restore and installed
 SDK integration remain owed.

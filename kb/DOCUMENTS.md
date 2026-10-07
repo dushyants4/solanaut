@@ -1,5 +1,10 @@
 # DOCUMENTS.md — the document register
 
+2026-10-07 admission-state preparation registers SPEC Draft 4.51, RISKS 1.42,
+OVERVIEW Draft 27, CLAIMS S63, receipt/index, PROGRESS, HANDOFF and continuing run.
+Mutation-authentication receipt adds complete afed152 hosted evidence, including
+the corrected runtime matrix. Prefix 23f57d5 is privately pushed; hosted proof follows.
+
 2026-10-07 internal Keel prefix registers SPEC Draft 4.50, RISKS 1.41, OVERVIEW
 Draft 26, CLAIMS S62, receipt/index, PROGRESS, HANDOFF and the continuing run.
 Initial failures and masked faults remain retained; full restore is not established.

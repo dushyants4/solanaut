@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.50** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.51** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -1107,3 +1107,12 @@ retain telemetry and posture, never controller state numbers. The separate signe
 descriptor binds the payload digest to guard/cluster, authority, policy and archives.
 This reversible ADR-019 encoding is an internal preparation component; authenticated
 consumption, publication, admission state and restore remain owed.
+
+SNP-3/5 signed-mode state preparation derives canonical format 1, kind
+`solanaut-checkpoint-admission-state`, after full history/Keel replay. It binds the
+current signed policy entry/version/hash, guard/cluster and profile, admission state
+and previous decision. Map/set pairs retain replay order; bigint amounts/heights
+use decimal strings. Request, response and unresolved signing facts remain present
+until the accepted disk index replaces in-memory retention. The previous decision
+survives release/report boundaries. This internal ADR-019 encoding is preparation,
+not a loader or bounded-memory implementation; strict authenticated restore is owed.

@@ -57,6 +57,10 @@ publication, payload validation, prefix replay and checkpoint restoration remain
 Internal Keel prefix preparation validates retained history through full replay
 before deriving ticks/resets (`evals/sdk/checkpoint-prefix.md`). Its consumer and
 authenticated restoration remain owed; this is component progress only.
+Signed-mode state preparation retains policy, previous decision and unresolved
+request/signing facts (`evals/sdk/checkpoint-state.md`); strict restore remains owed.
+Corrected afed152 hosted CI passes every job. Full corrected-target mutation and
+stable-release gates remain outstanding.
 Archive catalogue metadata preparation additionally has focused and installed component
 evidence (`evals/sdk/checkpoint-archives.md`); actual file authentication and full
 snapshot qualification remain owed. Root validation currently retains an existing

@@ -1,0 +1,37 @@
+caught checkpoint state fault: full-replay
+caught checkpoint state fault: history-capture
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: policy-capture✔ SNP-3/5: signed initial state carries policy, endpoint and every state field (12.330755ms)
+✔ SNP-3/5: unresolved send, reservation, redemption and latch remain in the payload (21.815244ms)
+✔ SNP-3/5: release resets sensor/latch without erasing pending admission or predecessor (6.693501ms)
+✔ SNP-3/5: signed policy changes retain current version and maximum history window (6.771395ms)
+✔ SNP-3/5: missing trust, unsupported history and asynchronous caller changes cannot alter state (7.055839ms)
+✔ SNP-3/5: pending control identities and completed answers remain distinct (3.41578ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 173.043108
+
+
+0 !== 1
+
+    at file:///home/dashy/Projects/Solanaut/evals/sdk/checkpoint-state-faults.ts:26:86
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

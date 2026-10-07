@@ -1,0 +1,14 @@
+✔ SNP-3/5: signed initial state carries policy, endpoint and every state field (12.377155ms)
+✔ SNP-3/5: unresolved send, reservation, redemption and latch remain in the payload (24.118825ms)
+✔ SNP-3/5: release resets sensor/latch without erasing pending admission or predecessor (5.691869ms)
+✔ SNP-3/5: signed policy changes retain current version and maximum history window (6.752788ms)
+✔ SNP-3/5: missing trust, unsupported history and asynchronous caller changes cannot alter state (7.240221ms)
+✔ SNP-3/5: pending control identities and completed answers remain distinct (3.300669ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 178.428762

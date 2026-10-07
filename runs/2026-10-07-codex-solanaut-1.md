@@ -8,6 +8,30 @@ work. This dated continuation retains the earlier session's full record at
 
 ## Did
 
+Final state schema/profile assertions and profile-substitution trial pass; the
+campaign catches sixteen faults with exact restoration. Final ordinary suite
+passes all 580 cases and typecheck exits zero. AST evidence has the same SDK source
+hashes before fixture strengthening. Pre-sync close passes nine gates and refuses
+uncommitted state; final diff/secret scan reviewed before private sync.
+
+State isolated AST execution passes all 580 cases and existing floors, including
+state 44/44 statements and 22/22 branches. Source/fault evidence is retained.
+23f57d5 hosted run 37627659881 completes successfully in every job; complete logs
+and exact revision metadata are retained beside the prefix receipt. Private state
+close/sync follows; no complete snapshot or stable-release claim.
+
+23f57d5 prefix is privately pushed and all ten close gates pass. Corrected afed152
+hosted run 37626020433 completes successfully in all thirteen jobs; full logs and
+revision metadata are retained. Prefix hosted run 37627659881 is underway.
+Admission-state preparation first fails five stub cases, then passes six cases and
+fifteen faults with restoration. The seed-cap fault was masked by signed policy
+reapplication; retained, then effective retention-window mutation is caught.
+State payload preserves all state fields, policy history, previous decision and
+unresolved lifecycle facts using the shared admission transitions after full replay.
+Canonical ordered map/set representation is specified inside ADR-019; no loader or
+bounded-memory claim. Ordinary serial integration passes 580 cases; typecheck zero.
+Isolated instrumented integration follows.
+
 Prefix pre-sync close passes nine gates and refuses the uncommitted tree; diff and
 staged secret scan are clean. Commit privately, then wait for afed152's aggregate
 hosted job before pushing so its evidence is not cancelled.

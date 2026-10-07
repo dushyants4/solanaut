@@ -1,0 +1,73 @@
+✖ SNP-3/5: signed initial state carries policy, endpoint and every state field (16.151497ms)
+✖ SNP-3/5: unresolved send, reservation, redemption and latch remain in the payload (30.733215ms)
+✖ SNP-3/5: release resets sensor/latch without erasing pending admission or predecessor (4.084458ms)
+✖ SNP-3/5: signed policy changes retain current version and maximum history window (2.773944ms)
+✖ SNP-3/5: missing trust, unsupported history and asynchronous caller changes cannot alter state (3.234439ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 0
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 297.234134
+
+✖ failing tests:
+
+test at packages/sdk/test/checkpoint-state.test.ts:26:1
+✖ SNP-3/5: signed initial state carries policy, endpoint and every state field (16.151497ms)
+  Error: checkpoint state preparation is not implemented
+      at prepareCheckpointState (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-state.ts:3:9)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-state.test.ts:28:21)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at packages/sdk/test/checkpoint-state.test.ts:37:1
+✖ SNP-3/5: unresolved send, reservation, redemption and latch remain in the payload (30.733215ms)
+  Error: checkpoint state preparation is not implemented
+      at prepareCheckpointState (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-state.ts:3:9)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-state.test.ts:45:31)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/checkpoint-state.test.ts:53:1
+✖ SNP-3/5: release resets sensor/latch without erasing pending admission or predecessor (4.084458ms)
+  Error: checkpoint state preparation is not implemented
+      at prepareCheckpointState (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-state.ts:3:9)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-state.test.ts:59:31)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/checkpoint-state.test.ts:63:1
+✖ SNP-3/5: signed policy changes retain current version and maximum history window (2.773944ms)
+  Error: checkpoint state preparation is not implemented
+      at prepareCheckpointState (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-state.ts:3:9)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-state.test.ts:66:31)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/checkpoint-state.test.ts:70:1
+✖ SNP-3/5: missing trust, unsupported history and asynchronous caller changes cannot alter state (3.234439ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   name: 'Error'
+  -   code: 'checkpoint-state',
+  -   name: 'CheckpointStateError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-state.test.ts:72:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: checkpoint state preparation is not implemented
+        at prepareCheckpointState (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-state.ts:3:9)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-state.test.ts:72:19)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: { name: 'CheckpointStateError', code: 'checkpoint-state' },
+    operator: 'rejects',
+    diff: 'simple'
+  }

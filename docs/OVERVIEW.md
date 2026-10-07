@@ -1,10 +1,14 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 26** · 2026-10-07 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 27** · 2026-10-07 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
+
+`checkpoint-state.ts` prepares signed-mode admission-state bytes from full verified
+history, retaining lifecycle facts, policy and the previous decision. It neither
+loads state nor bounds memory. Publication, restore and request indexing remain owed.
 
 `checkpoint-prefix.ts` prepares an internal canonical Keel event payload only after
 full history replay. Events retain source identity, telemetry/posture and resets;
