@@ -1,0 +1,1021 @@
+AST statement and branch floors	UNKNOWN STEP	﻿2026-10-07T13:34:59.0132530Z Current runner version: '2.337.0'
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.0236538Z ##[group]Runner Image Provisioner
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.0238586Z Hosted Compute Agent
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.0239710Z Version: 20260901.588
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.0240823Z Commit: f88ec8081b781fac6c440065ac7ff9e710ce3d0b
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.0242223Z Build Date: 2026-09-01T19:56:44Z
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.0243389Z Worker ID: {45cfc1b6-73b7-40b5-aaf9-e892aabb375d}
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.0244814Z Azure Region: centralus
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.0246241Z ##[endgroup]
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.0248741Z ##[group]Operating System
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.0249987Z Ubuntu
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.0250969Z 24.04.5
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.0251878Z LTS
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.0252972Z ##[endgroup]
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.0254049Z ##[group]Runner Image
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.0275928Z Image: ubuntu-24.04
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.0277130Z Version: 20260927.320.1
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.0279838Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260927.320/images/ubuntu/Ubuntu2404-Readme.md
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.0282676Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260927.320
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.0284540Z ##[endgroup]
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.0287097Z ##[group]GITHUB_TOKEN Permissions
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.0290918Z Contents: read
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.0292037Z Metadata: read
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.0293639Z ##[endgroup]
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.0317775Z Secret source: Actions
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.0319502Z Cache mode: write
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.0321251Z Prepare workflow directory
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.1477001Z Prepare all required actions
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.1577148Z Getting action download info
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.4281790Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.5571395Z Download action repository 'actions/setup-node@820762786026740c76f36085b0efc47a31fe5020' (SHA:820762786026740c76f36085b0efc47a31fe5020)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.7782378Z Complete job name: AST statement and branch floors
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.8660552Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.8661805Z with:
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.8662301Z   persist-credentials: false
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.8662881Z   repository: dushyants4/solanaut
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.8667671Z   token: ***
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.8668142Z   ssh-strict: true
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.8668612Z   ssh-user: git
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.8669059Z   clean: true
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.8669541Z   sparse-checkout-cone-mode: true
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.8670149Z   fetch-depth: 1
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.8670652Z   fetch-tags: false
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.8671167Z   show-progress: true
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.8671656Z   lfs: false
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.8672103Z   submodules: false
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.8672585Z   set-safe-directory: true
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.8673128Z   allow-unsafe-pr-checkout: false
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:34:59.8673970Z ##[endgroup]
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.0302184Z Syncing repository: dushyants4/solanaut
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.0316758Z ##[group]Getting Git version info
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.0322186Z Working directory is '/home/runner/work/solanaut/solanaut'
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.0328103Z [command]/usr/bin/git version
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.0330080Z git version 2.55.0
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.0336060Z ##[endgroup]
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.0345791Z Temporarily overriding HOME='/home/runner/work/_temp/32b7ec9e-0a64-422f-ab77-fe524d1db2a9' before making global git config changes
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.0350295Z Adding repository directory to the temporary git global config as a safe directory
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.0353026Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/solanaut/solanaut
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.0386950Z Deleting the contents of '/home/runner/work/solanaut/solanaut'
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.0400400Z ##[group]Determining repository object format
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.0403260Z ##[endgroup]
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.0405818Z ##[group]Initializing the repository
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.0422273Z [command]/usr/bin/git init /home/runner/work/solanaut/solanaut
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.1878942Z hint: Using 'master' as the name for the initial branch. This default branch name
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.1947525Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.1951090Z hint: to use in all of your new repositories, which will suppress this warning,
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.1952732Z hint: call:
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.1953653Z hint:
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.1954721Z hint: 	git config --global init.defaultBranch <name>
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.1956467Z hint:
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.1957640Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.1959555Z hint: 'development'. The just-created branch can be renamed via this command:
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.1961182Z hint:
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.1962108Z hint: 	git branch -m <name>
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.1963145Z hint:
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.1964335Z hint: Disable this message with "git config set advice.defaultBranchName false"
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.1966763Z Initialized empty Git repository in /home/runner/work/solanaut/solanaut/.git/
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.1969968Z [command]/usr/bin/git remote add origin https://github.com/dushyants4/solanaut
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.1973560Z ##[endgroup]
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.1975805Z ##[group]Disabling automatic garbage collection
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.1977699Z [command]/usr/bin/git config --local gc.auto 0
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.1980840Z ##[endgroup]
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.1982092Z ##[group]Setting up auth
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.1982972Z Removing SSH command configuration
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.1984315Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.1988396Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.1991845Z Removing HTTP extra header
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.1993593Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.1999456Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.2249366Z Removing includeIf entries pointing to credentials config files
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.2258179Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.2305941Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.2598113Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-313edea3-fb8d-4302-9da4-ca7f6ac87d2c.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.2658407Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/solanaut/solanaut/.git.path /home/runner/work/_temp/git-credentials-313edea3-fb8d-4302-9da4-ca7f6ac87d2c.config
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.2696848Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/solanaut/solanaut/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-313edea3-fb8d-4302-9da4-ca7f6ac87d2c.config
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.2756737Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-313edea3-fb8d-4302-9da4-ca7f6ac87d2c.config
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.2794613Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-313edea3-fb8d-4302-9da4-ca7f6ac87d2c.config
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.2836898Z ##[endgroup]
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.2839153Z ##[group]Fetching the repository
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:00.2846917Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +b9c06eb49856026b9ab2806f0824974af07640db:refs/remotes/origin/main
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.3829475Z From https://github.com/dushyants4/solanaut
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.3831953Z  * [new ref]         b9c06eb49856026b9ab2806f0824974af07640db -> origin/main
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.3842705Z [command]/usr/bin/git branch --list --remote origin/main
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.3880357Z   origin/main
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.3908739Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.3926465Z b9c06eb49856026b9ab2806f0824974af07640db
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.3940722Z ##[endgroup]
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.3943525Z ##[group]Determining the checkout info
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.3946772Z ##[endgroup]
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.3948797Z [command]/usr/bin/git sparse-checkout disable
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.4020960Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.4081226Z ##[group]Checking out the ref
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.4084924Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.5231635Z Switched to a new branch 'main'
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.5244845Z branch 'main' set up to track 'origin/main'.
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.5259548Z ##[endgroup]
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.5322278Z [command]/usr/bin/git log -1 --format=%H
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.5359148Z b9c06eb49856026b9ab2806f0824974af07640db
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.5372127Z ##[group]Removing auth
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.5374951Z Removing SSH command configuration
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.5378888Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.5436673Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.5711783Z Removing HTTP extra header
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.5716616Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.5766601Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.6171992Z Removing includeIf entries pointing to credentials config files
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.6174873Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.6219511Z includeif.gitdir:/home/runner/work/solanaut/solanaut/.git.path
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.6237998Z includeif.gitdir:/home/runner/work/solanaut/solanaut/.git/worktrees/*.path
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.6242184Z includeif.gitdir:/github/workspace/.git.path
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.6258475Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.6262357Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/solanaut/solanaut/.git.path
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.6309202Z /home/runner/work/_temp/git-credentials-313edea3-fb8d-4302-9da4-ca7f6ac87d2c.config
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.6358836Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/solanaut/solanaut/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-313edea3\-fb8d\-4302\-9da4\-ca7f6ac87d2c\.config
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.6436770Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/solanaut/solanaut/.git/worktrees/*.path
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.6473024Z /home/runner/work/_temp/git-credentials-313edea3-fb8d-4302-9da4-ca7f6ac87d2c.config
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.6494143Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/solanaut/solanaut/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-313edea3\-fb8d\-4302\-9da4\-ca7f6ac87d2c\.config
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.6555444Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.6594256Z /github/runner_temp/git-credentials-313edea3-fb8d-4302-9da4-ca7f6ac87d2c.config
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.6617482Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-313edea3\-fb8d\-4302\-9da4\-ca7f6ac87d2c\.config
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.6663941Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.6700251Z /github/runner_temp/git-credentials-313edea3-fb8d-4302-9da4-ca7f6ac87d2c.config
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.6708900Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-313edea3\-fb8d\-4302\-9da4\-ca7f6ac87d2c\.config
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.6759995Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.7026039Z Removing credentials config '/home/runner/work/_temp/git-credentials-313edea3-fb8d-4302-9da4-ca7f6ac87d2c.config'
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.7040367Z ##[endgroup]
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.7414245Z ##[group]Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.7415241Z with:
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.7415678Z   node-version: 26.7.0
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.7416131Z   cache: npm
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.7416598Z   check-latest: false
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.7420710Z   token: ***
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.7421191Z   package-manager-cache: true
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.7421695Z ##[endgroup]
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:01.9166691Z Attempting to download 26.7.0...
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:02.9143710Z Acquiring 26.7.0 - x64 from https://github.com/actions/node-versions/releases/download/26.7.0-31064755789/node-26.7.0-linux-x64.tar.gz
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:03.6850321Z Extracting ...
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:03.7006762Z [command]/usr/bin/tar xz --strip 1 --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/0315153a-261e-4843-bb64-3981200c8f22 -f /home/runner/work/_temp/0570d55c-74bd-4c9f-a21a-d12c0db5c921
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:05.2417479Z Adding to the cache ...
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:08.3762139Z ##[group]Environment details
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:08.6903066Z node: v26.7.0
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:08.6903961Z npm: 11.19.0
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:08.6904780Z yarn: 1.22.22
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:08.6906809Z ##[endgroup]
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:08.6924833Z [command]/opt/hostedtoolcache/node/26.7.0/x64/bin/npm config get cache
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:08.8000818Z /home/runner/.npm
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:08.9587103Z Cache hit for: node-cache-Linux-x64-npm-f23af80e4389d5ba1ac01fca197cee86049d9029205807327a72cd65ac3a9606
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:09.9798605Z Received 51893074 of 51893074 (100.0%), 57.9 MBs/sec
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:09.9799730Z Cache Size: ~49 MB (51893074 B)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:09.9838750Z [command]/usr/bin/tar -xf /home/runner/work/_temp/e476eba5-fd53-4cd8-bf6e-440419c97536/cache.tzst -P -C /home/runner/work/solanaut/solanaut --use-compress-program unzstd
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:10.3558904Z Cache restored successfully
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:10.3607446Z Cache restored from key: node-cache-Linux-x64-npm-f23af80e4389d5ba1ac01fca197cee86049d9029205807327a72cd65ac3a9606
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:10.3825822Z ##[group]Run npm ci
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:10.3826207Z ^[[36;1mnpm ci^[[0m
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:10.4139775Z shell: /usr/bin/bash -e {0}
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:10.4140315Z ##[endgroup]
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:16.1389998Z npm warn deprecated uuid@8.3.2: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:17.4070199Z npm warn deprecated uuid@10.0.0: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:30.9574130Z 
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:30.9576055Z added 533 packages, and audited 539 packages in 20s
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:30.9577620Z 
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:30.9591370Z 104 packages are looking for funding
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:30.9592601Z   run `npm fund` for details
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:31.0286791Z 
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:31.0288652Z 19 vulnerabilities (3 low, 9 moderate, 7 high)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:31.0289744Z 
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:31.0306540Z To address issues that do not require attention, run:
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:31.0326649Z npm warn install-scripts 4 packages have install scripts not yet covered by allowScripts:
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:31.0328312Z   npm audit fix
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:31.0351107Z npm warn install-scripts   bigint-buffer@1.1.5 (install: npm run rebuild || echo "Couldn't build bindings. Non-native version used.")
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:31.0352266Z 
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:31.0353074Z To address all issues (including breaking changes), run:
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:31.0366805Z npm warn install-scripts   bufferutil@4.1.0 (install: node-gyp-build)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:31.0368142Z   npm audit fix --force
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:31.0369071Z 
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:31.0369489Z Run `npm audit` for details.
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:31.0372629Z npm warn install-scripts   utf-8-validate@6.0.6 (install: node-gyp-build)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:31.0374092Z npm warn install-scripts   utf-8-validate@6.0.6 (install: node-gyp-build)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:31.0375440Z npm warn install-scripts
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:31.0376938Z npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:31.1375851Z ##[group]Run npm run test:coverage
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:31.1376416Z ^[[36;1mnpm run test:coverage^[[0m
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:31.1454680Z shell: /usr/bin/bash -e {0}
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:31.1455475Z ##[endgroup]
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:31.2868692Z 
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:31.2869866Z > test:coverage
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:31.2870941Z > node evals/ci/coverage-run.ts
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:31.2871643Z 
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:34.6207647Z (node:2382) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:34.6277072Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:34.7712038Z ✔ the cockpit binds to 127.0.0.1 only, and refuses a request for any other host name (114.883716ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:34.8021568Z ✔ /api/state is the record, inspected fresh on every request (67.683362ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:34.8193419Z ✔ the cockpit writes nothing: every method but GET is refused, and unknown paths are not found (15.967685ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:34.8878950Z ✔ the page is served with a strict content security policy, its script from its own origin (13.549655ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:34.9728164Z ✔ /api/chain reads the Squads limit remaining, names the program's error on a refusal, and every transaction read opts in to v1 (138.729117ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:34.9812082Z ✔ without a chain configured, /api/chain says so instead of guessing (19.174717ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:35.4486607Z (node:2396) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:35.4496295Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:35.4516281Z ✔ SIG-4: clock anchors wall time once and advances only with monotonic time (1.718957ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:36.9140104Z (node:2403) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:36.9149822Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:37.0102772Z ✔ LIF-6/SIG-7: recovery continues after an expired admission and reconciles a later sent attempt (78.455575ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:37.0138085Z ✔ LIF-6: recovery exposes provider loss and a later pass completes only safe pre-send work (7.260824ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:37.0145457Z ✔ LIF-6/SIG-7: expired signed unsent recovery still reads chain evidence without sending (6.734643ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:37.0147891Z ✔ LIF-6/SIG-8: recovery reports failed response persistence and never resends on its next pass (4.983446ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:37.0706741Z ✔ SIG-3/4: caller report deadline bounds the chain read and refuses a late outcome (12.141528ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:37.0722180Z ✔ LIF-3/SIG-3: same concurrent and completed request signs/sends only once; expired retry returns response (6.346999ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:37.0743405Z ✔ LIF-3/SIG-3: deadlines and changed payloads refuse before signing (3.781313ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:37.0745903Z ✔ LIF-3: restart after admission can redeem/sign; restart after redemption cannot sign again (5.925022ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:37.0748065Z ✔ LIF-3: signed but unsent restart sends once; send-started restart never resends (7.819145ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:37.0750895Z ✔ LIF-3/SIG-7: caller hint cannot report outcome; only chain evidence changes reservation (3.635531ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:37.0753124Z ✔ LIF-3: unknown or changed IDs fail closed; malformed base64 is not decoded leniently (0.776749ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:37.0755754Z ✔ LIF-3: send timeout and contradictory signature retain uncertain response; retry never sends (6.47095ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:37.0758364Z ✔ LIF-3: lost persisted response after successful send is recovered without another send (6.421669ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:37.0760476Z ✔ LIF-3: failed redeem persistence never crosses its next side-effect boundary (1.937995ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:37.0762467Z ✔ LIF-3: failed signed persistence never crosses its next side-effect boundary (2.313736ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:37.0765334Z ✔ LIF-3: failed send-started persistence never crosses its next side-effect boundary (3.019252ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:37.0767693Z ✔ LIF-3: deadline reached while signing persists bytes but never starts a send (2.819178ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:38.5903826Z (node:2410) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:38.5908909Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:38.6774496Z ✔ LIF-4: status starts before reading, and completed retries preserve the first snapshot after deadline (23.344074ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:38.6789290Z ✔ LIF-4: concurrent retries coalesce and differing methods refuse before actions (3.509326ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:38.6811925Z ✔ SIG-4/LIF-4: report replies reflect recorded host evidence and a retry never repeats the hint (10.478947ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:38.6813400Z ✔ SIG-3: a late status read cannot become a successful new answer (4.070533ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:38.6814889Z ✔ LIF-4: a control request cannot steal a concurrent proposal's identity (6.388867ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:38.6829264Z ✔ SIG-3/LIF-4: expired or overlong new control requests persist a denial and perform no work (29.005235ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:38.6831561Z ✔ LIF-4/SIG-3: report hints use the request deadline and failures persist fixed answers (2.908485ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:38.6846984Z ✔ LIF-4: pending control request resumes on restart; stored response then prevents re-execution (3.372291ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:38.6878487Z ✔ LIF-4: control/proposal identity reuse refuses before calling the proposal executor (2.109906ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:38.6897227Z ✔ SIG-2/LIF-4: unknown methods never dispatch, and response write failure throws and closes admission (1.567864ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:38.6916786Z ✔ LIF-5: pre-admission proposal failure persists a fixed refusal and binds the exact payload (1.445676ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:38.6921631Z ✔ LIF-5: a refusal start interrupted before its response completes conservatively without new proposal work (2.713021ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:38.6949448Z ✔ LIF-5: an error after a recorded admission cannot become a non-admission refusal (1.389973ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:38.6967003Z ✔ LIF-5/SIG-3: a proposal expiring before admission keeps its refusal when retried with a fresh deadline (0.966864ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:38.6987048Z ✔ LIF-5: the real executor's malformed-message and RPC failures reach durable refusal history (2.094146ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:40.1960068Z (node:2417) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:40.1965432Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:40.3143923Z ✔ POL-4/LIF-6: admitted history survives a signed policy upgrade without old-policy sends (90.18439ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:40.3152140Z ✔ POL-4/LIF-6: signed history survives a signed policy upgrade without old-policy sends (15.323025ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:40.3156383Z ✔ POL-4/LIF-6: started history survives a signed policy upgrade without old-policy sends (17.778478ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:40.3158432Z ✔ LIF-7/SIG-7: final chain evidence prevents sending restored signed unsent bytes (5.649292ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:41.7981126Z (node:2424) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:41.7997399Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:41.8030264Z ✔ RPC-1: pins devnet identity and validates observed blockhash/lifetime with confirmed context (36.858424ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:41.8032472Z ✔ RPC-1: cross-cluster substitution denies; blockhash mismatch or invalidity denies (7.494586ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:41.8047385Z ✔ RPC-2: malformed and non-integral heights or context cannot become authority (5.909378ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:41.8049317Z ✔ RPC-2: response ID/version, missing result, and oversized body refuse (3.874751ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:41.8380182Z ✔ RPC-3: one-provider outage permits conservative reads; total outage reports degraded (31.196055ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:41.8389581Z ✔ RPC-3: stale or conflicting observations cannot authorize a new proposal (4.014213ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:41.8711358Z ✔ RPC-4: chain outcome requires agreeing committed evidence; missing/stale/conflicting stays unresolved (36.40146ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:41.8713976Z ✔ RPC-4: failed outcome needs matching committed failure from both providers (1.268598ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:41.8735344Z ✔ RPC-2/SIG-9: rate-limited reads back off, but send has exactly one attempt with node retries disabled (2.88837ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:42.2067706Z ✔ RPC-2: hung reads end at their deadline and expired calls make no network request (32.217693ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:42.2076465Z ✔ RPC-2: a standalone process keeps its owned request deadline alive (287.505316ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:42.2088588Z ✔ RPC-1/2: unsafe endpoint sets and invalid deadlines cannot configure a provider (1.04499ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:42.2090450Z ✔ RPC-2: missing bodies and rate limits beyond the request deadline deny reads (1.036805ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:42.2092450Z ✔ RPC-1/2: malformed blockhashes and an expired lifetime deny observation (3.627199ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:42.2094295Z ✔ RPC-3: provider slot rollback cannot replace previously observed context (1.483849ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:42.2096626Z ✔ RPC-4: malformed signature status arrays and future or invalid committed outcomes stay unresolved (5.469146ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:42.2101177Z ✔ RPC-2: a response delivered after the host deadline cannot become authoritative (0.678486ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:43.7928201Z (node:2440) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:43.7930253Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:44.0332456Z ✔ SIG-1/2/10: same-user startup wires signed guard, clock, socket and durable retry (136.861548ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:44.0350055Z ✔ POL-2/SIG-8: startup requires valid authorization and existing history, leaving ownership reusable on refusal (24.969446ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:44.0352817Z ✔ SIG-8: protected history permissions and symlink paths are checked before serving (13.210365ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:44.0355588Z ✔ SIG-8: ownership is acquired before serving and released after a socket-start failure (49.420065ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:44.0577856Z ✔ SIG-8/LIF-6: startup exposes incomplete recovery rather than discarding pending history (41.794606ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:44.0987837Z ✔ SIG-8: close drains dispatched send before releasing ownership and is idempotent (38.224203ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:44.1312221Z ✔ SIG-8: close also drains host recovery and refuses recovery after stop (34.010081ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:44.1481118Z ✔ CLT-1/SIG-2: SDK sending client consumes actual service replies and durable proposal retries (34.129179ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:45.6303235Z (node:2470) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:45.6308962Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:45.6558239Z ✔ SIG-2: only propose/report/status dispatch, with one bounded response and request identity (19.434416ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:45.6597583Z ✔ SIG-10: socket permissions restrict its group and parent must be protected (2.172054ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:45.6687445Z ✔ SIG-2/3: malformed JSON, unknown fields, bad IDs/deadlines and multiple frames never dispatch (8.733368ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:45.6706990Z ✔ SIG-2: oversized or invalid UTF-8 frames refuse before dispatch (4.77462ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:45.7279675Z ✔ SIG-3: idle and unfinished requests end within the configured bounded read timeout (63.38138ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:45.7341049Z ✔ SIG-1: handler errors return a fixed code without exposing internal exception text (3.948588ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:45.7343817Z ✔ SIG-10: existing non-socket and symlink paths are never removed (1.107747ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:45.7360553Z ✔ SIG-10: a live listener cannot be replaced (2.877039ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:45.7794167Z ✔ SIG-3: trickling bytes cannot extend the absolute connection deadline (42.879481ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:45.7893891Z ✔ SIG-1/2: oversized or unserialisable handler responses become fixed internal errors (4.278945ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:45.8308046Z ✔ SIG-8/10: an abandoned socket is recovered after its process exits (46.254038ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:45.8571493Z ✔ SIG-2/3: clients holding their half open cannot exhaust completed connection slots (27.447201ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:45.8613221Z ✔ SIG-2: a proposal exceeding the core's message bound is an invalid frame before dispatch (2.024649ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:45.8616196Z ✔ SIG-3: invalid read timeout configuration refuses startup (1.975918ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:45.8659699Z ✔ SIG-2: malformed report references are protocol refusals without handler calls (3.336286ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:45.8751340Z ✔ SIG-2/3: unfinished clients saturate the bounded slots and the next client receives busy (10.17593ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:46.2463330Z ✔ CI-1: restoration fingerprints include operator TypeScript tools (8.334072ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:46.6225735Z ✔ CI-1: exact inventory accepts every maintained campaign and rejects omission/addition/duplication (21.02663ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:46.6228360Z ✔ CI-1: all campaigns run sequentially; failure/null exit fails aggregation without hiding other findings (1.553689ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:46.6230518Z ✔ CI-1: changed source stops further mutation, reports skipped work and fails the gate (0.269703ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:48.0254752Z (node:2499) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:48.0257955Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:48.0327132Z ✔ CI-2 SDK concurrency gate rejects reduced budget and incorrect admission/outcome totals (1.235436ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:48.0457622Z ✔ CI-2 SDK concurrency gate rejects missing evidence, deduplicated work and wrong refusal rules (0.370381ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:48.0507068Z ✔ CI-2 SDK concurrency gate accepts complete bounded admission evidence (0.252191ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:48.4768092Z {"proposed":1000,"admitted":7,"denied":993,"recorded":1000,"destinations":1000,"identities":1000,"reserved":"7000000","deniedRules":["over-window-cap"]}
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:48.4777224Z ✔ CI-2 SDK concurrency: a thousand queued callers admit exactly the pending-window bound (516.61679ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:49.2647841Z ✔ CI-2: explicit hook records real SDK execution with statement and branch maps (446.941633ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:49.7070649Z (node:2521) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:49.7076036Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:49.7088643Z ✔ CI-2: AST calibration counts separate statements on one line and both branch arms (91.366255ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:49.7090669Z ✔ CI-2: native type stripping preserves runtime behaviour and leaves unused code uncovered (10.531083ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:50.1560335Z (node:2528) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:50.1563833Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:50.1579172Z ✔ CI-2: merging preserves executed counts and includes unimported source with zero counters (99.624136ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:50.1592360Z ✔ CI-2: missing, foreign and incompatible counter evidence is refused (8.897053ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:50.1594404Z ✔ CI-2: fabricated negative, fractional, unsafe and malformed branch counters fail (8.350794ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:50.4996000Z ✔ CI-2: default coverage execution preserves Node's test scheduling (1.518424ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:50.5158029Z ✔ CI-2: serial coverage requests one test process without filtering the population (0.263752ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:50.5181675Z ✔ CI-2: unsupported, duplicated and filtering coverage options refuse (0.570465ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:50.8722876Z ✔ CI-2: failed or missing test-process completion cannot qualify coverage (1.375046ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:50.8794362Z ✔ CI-2: exact statement and branch floors pass without rounding (0.981552ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:50.8817467Z ✔ CI-2: a critical branch deficit fails even when aggregate totals pass (6.266504ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:50.8819385Z ✔ CI-2: missing, extra and duplicate files cannot disappear from coverage (0.496988ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:50.8821066Z ✔ CI-2: malformed and empty execution counts fail closed (0.570965ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:51.2581013Z ✔ DEP-1: Stryker query dependency has the exact scoped reviewed resolution (4.797723ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:51.2597806Z ✔ DEP-1: hostile constructor from query parsing cannot crash serialization (3.14528ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:51.2601282Z ✔ DEP-1: nullable comma arrays and ordinary REST query options remain usable (0.636909ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:52.1218584Z (node:2556) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:52.1224925Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:52.1253504Z ✔ CI-2: real wire, signatures and accounts compare in all supported formats (27.893956ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:52.1260248Z ✔ CI-2: mismatched bytes, roles, quantities and names cannot evade comparison (2.345036ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:52.1286481Z ✔ CI-2: client prefix decoding requires a named guard refusal for trailing data (1.943216ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:53.0470824Z (node:2564) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:53.0500347Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:53.0525835Z ✔ CI-2: the frozen corpus has distinct transactions and refuses any changed byte (23.840331ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:53.0527684Z ✔ CI-2: matching bytes do not excuse missing framing or duplicate identities (0.746162ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:53.4207438Z ✔ CI-2: pinned complete real-transaction differential populations pass (1.238601ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:53.4252529Z ✔ CI-2: unsuccessful or interrupted differential processes fail (0.470348ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:53.4266956Z ✔ CI-2: corpus substitutions and invalid pins cannot qualify (0.291434ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:53.4269079Z ✔ CI-2: missing transactions, formats and supported program evidence fail (6.259922ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:53.4271174Z ✔ CI-2: incomplete execution, signature evidence and any mismatch fail (0.490696ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:53.4273193Z ✔ CI-2: fabricated, duplicate aggregate and invalid strict-refusal counts fail (0.446893ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:53.8154823Z fuzz starting: seed=-651632438; requested=1000000
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:53.8161990Z fuzz starting: seed=934639343; requested=1000000
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:53.8187410Z fuzz starting: seed=1702343218; requested=1000000
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:53.8208266Z fuzz starting: seed=-572886554; requested=1000000
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:53.8230875Z fuzz starting: seed=1314293479; requested=1000000
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:53.8253829Z fuzz starting: seed=511792643; requested=1000000
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:53.8255020Z fuzz starting: seed=2125801590; requested=1000000
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:53.8256490Z fuzz starting: seed=-1618535120; requested=1000000
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:53.8258173Z fuzz completed: seed=-1618535120; inputs=1000000; accepted=100; refused=999900
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:53.8260830Z ✔ CI-2 fuzz gate refuses reduced/invalid budgets before starting work (1.271253ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:53.8262921Z ✔ CI-2 fuzz gate rejects failed processes and missing, duplicated or incomplete evidence (2.446235ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:53.8265018Z ✔ CI-2 fuzz gate passes the full budget and a seed and accepts complete evidence (0.523126ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:55.8677527Z ✔ PUB-1: inventory retains deleted and changed blobs rather than only HEAD (144.723478ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:55.8679251Z ✔ PUB-1: divergent branches and annotated tags are inventoried (132.951031ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:55.8680522Z ✔ PUB-1: tabs, newlines and Unicode paths survive NUL tree framing (97.121543ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:55.8681418Z ✔ PUB-1: executable, symlink and gitlink modes remain explicit without following links (108.347506ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:55.8682349Z ✔ PUB-1: shallow and incomplete object histories refuse instead of silently shrinking (75.047914ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:55.8707562Z ✔ PUB-1: detached HEAD and stable repeated inventory have explicit scope and digest (158.794295ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:55.8714052Z ✔ PUB-1: changing refs or HEAD during enumeration refuse (81.97443ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:55.8716154Z ✔ PUB-1: non-commit refs cannot be ignored as irrelevant history (62.795816ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:55.8744994Z ✔ PUB-1: ref targets missing from returned commit closure refuse (90.4565ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:55.8747411Z ✔ PUB-1: shared blobs retain each historical path and file mode (99.091461ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:55.8756380Z ✔ PUB-1: malformed tree framing and object metadata refuse (259.89556ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:55.8758230Z ✔ PUB-1: SHA-256 Git repositories retain full object identities (76.742613ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:55.8759932Z ✔ PUB-1: local grafts cannot hide original commit ancestry (97.761399ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:55.8761942Z ✔ PUB-1: partial-clone inventory refuses missing blobs without lazy fetch or object writes (98.052633ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:55.8764092Z ✔ PUB-1: cached commit graphs cannot authorise missing historical commit objects (86.443631ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:57.2483099Z (node:2954) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:57.2488929Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:57.2546893Z ✔ CI-2 kill gate requires actual SIGKILL and the exact persisted acknowledgement (1.451409ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:57.2549564Z ✔ CI-2 kill gate rejects short and incomplete recovery/replay counts (0.528407ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:57.2566632Z ✔ CI-2 kill gate accepts the full verified battery (0.167553ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:57.6316919Z ✔ CI-2 kernel recovery: a verified killed owner releases the mutex and restores its persisted state (391.117481ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:58.4818270Z ✔ CI-2: supervised completion qualifies only the bound complete synthetic mutation fixture (228.956251ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:58.4852517Z ✔ CI-2: an extra staged input cannot silently enter the frozen population (7.395951ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:58.4866958Z ✔ CI-2: every copied source, test, package, configuration and lock input remains bound (9.314703ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:58.4868741Z ✔ CI-2: missing, symlinked and mismatched staged inputs cannot be frozen (3.610929ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:35:59.0597631Z ✔ CI-2: pending and failed actual child execution cannot qualify a present fixture report (359.104748ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:19.0786246Z ✖ CI-2: an asynchronously started real staged baseline finishes without relaunching (20242.97882ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:20.3911500Z ✔ CI-2: mutation staging copies only the frozen inputs and tests execute its changed source (889.605412ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:20.7537498Z ✔ CI-2: mutation score uses exact valid populations and the fixed floor (14.881148ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:20.7542408Z ✔ CI-2: failed or interrupted Stryker runs cannot qualify (0.367816ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:20.7558688Z ✔ CI-2: missing, foreign and changed mutation sources fail closed (2.557041ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:20.7560456Z ✔ CI-2: ignored, pending and malformed mutant results are rejected (0.758596ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:20.7564781Z ✔ CI-2: no mutants or all-invalid mutants cannot report a perfect score (0.379979ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:20.7566794Z ✔ CI-2: Stryker timeout and invalid semantics remain explicit (1.021536ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:20.7570111Z ✔ CI-2: malformed report roots and schema versions are refused (0.31123ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:20.7577997Z ✔ CI-2: added authentication files cannot dilute the retained mutation floor (1.29189ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:21.1592052Z ✔ CI-2: performance boundaries pass and nearest-rank p99 keeps inputs intact (12.952629ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:21.1596401Z ✔ CI-2: failed or absent measurement-process completion rejects timing (1.082008ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:21.1609246Z ✔ CI-2: pre-persistence and synced latency floors cannot be rounded down (8.391658ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:21.1612777Z ✔ CI-2: throughput and replay counts and elapsed time both govern the gate (13.282056ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:21.1624619Z ✔ CI-2: complete restored snapshot and Keel evidence is required for restart (5.630045ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:21.1626577Z ✔ CI-2: every measured dashboard delay must meet freshness (1.325764ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:21.1628036Z ✔ CI-2: p99 regression compares externally supplied compatible baseline (5.701299ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:21.1629549Z ✔ CI-2: malformed, zero and undersized measurements cannot qualify (7.077627ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:21.5193998Z property starting: always-false; seed=-767179391; requested=10000
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:21.5226751Z property starting: successful-count; seed=-2134246759; requested=10000
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:21.5513112Z property completed: successful-count; seed=-2134246759; runs=10000; skips=0
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:21.5522754Z property starting: async-false; seed=-552418263; requested=10000
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:21.5535860Z property starting: async-count; seed=-760057817; requested=10000
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:21.7027743Z property completed: async-count; seed=-760057817; runs=10000; skips=0
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:21.7052399Z ✔ CI-2 property gate refuses reduced budgets, incomplete runs, skips and failures (2.711809ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:21.7060199Z ✔ CI-2 property seeds are canonical signed 32-bit integers (0.778072ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:21.7062195Z ✔ CI-2 runner throws on a failing property and completes the required successful runs (32.950434ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:21.7064226Z ✔ CI-2 asynchronous runner enforces failures and the completed execution floor (150.162748ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:23.1298691Z ✔ CI-2: ordinary property options remain unchanged; unknown fault modes and low budgets refuse (2.100207ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:23.1312246Z ✔ CI-2: fault diagnostics preserve the complete successful generated population (48.626616ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:23.1332161Z ✔ CI-2: fault trials report the first actual failure without shrinking or retrying it (1.171956ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:23.1336358Z ✔ CI-2: a misleading failure message and exit code cannot hide a timed-out fault trial (1008.898609ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:24.4665752Z (node:3507) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:24.4693932Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:24.4699811Z ✔ CI-2 replay gate rejects short histories and unsuccessful/incomplete recomputation (1.280519ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:24.4716662Z ✔ CI-2 replay gate rejects changed/missing digests and missing workload kinds (0.486868ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:24.4728339Z ✔ CI-2 replay gate accepts a complete mixed history matching the pinned digest (0.149679ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:24.5313140Z ✔ CI-2 replay campaign: per-tx cap regression covers the mixed workload's missing boundary (70.907526ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:24.9305374Z ✔ CI-2: a complete externally bound child result admits only actual exit zero (7.03876ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:24.9310732Z ✔ CI-2: missing, partial and report-only completion evidence refuses (1.22774ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:24.9327991Z ✔ CI-2: completion pins the exact run, input and command identities (3.08886ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:24.9329859Z ✔ CI-2: timeout, signal and launch errors cannot masquerade as exit zero (0.601703ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:24.9336053Z ✔ CI-2: unknown formats and malformed process identities refuse (0.586153ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:24.9343140Z ✔ CI-2: completion timestamps are canonical and ordered (0.430703ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:24.9351023Z ✔ CI-2: caller evidence cannot alter external pins during capture (0.291234ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:24.9358295Z ✔ CI-2: throwing accessors and malformed JSON refuse without leaking their content (0.727076ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:25.5337955Z ✔ CI-2: actual successful child completion is bound and stored privately (209.918872ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:25.7101910Z ✔ CI-2: actual nonzero child exit cannot qualify (177.285762ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:25.8821526Z ✔ CI-2: actual child termination signal remains a signal (175.010079ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:28.0170634Z ✔ CI-2: timeout cannot qualify even when the child handles termination with exit zero (2132.945113ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:28.1789465Z ✔ CI-2: launch failure records failure rather than inventing a child exit (156.212118ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:28.3763920Z ✔ CI-2: an existing run directory cannot be reused or overwritten (200.677723ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:29.5945372Z ✔ CI-2: detached actual waiting survives the launching process being killed (1097.887653ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:29.5963202Z ✔ CI-2: wrong specification identity refuses before executing the child (121.313856ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:29.9287605Z ✔ CI-2: a normal launcher exits without waiting for its supervised child (334.126729ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:30.2801105Z ✔ CI-2: foreign worker result cannot be read through a ticket (204.246549ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:30.2807359Z ✔ CI-2: inconsistent command identity refuses despite a matching specification digest (138.736846ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:30.8554375Z ✔ CI-2: shared result permissions refuse before reading completion (205.650622ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:30.8557135Z ✔ CI-2: completion-file sync failure never publishes accepted success (187.114581ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:30.8568789Z ✔ CI-2: completion-directory sync failure never publishes accepted success (187.485192ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:31.0519411Z ✔ CI-2: incomplete commit evidence cannot publish a valid result (199.89094ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:31.2452620Z ✔ CI-2: altered result bytes cannot retain the existing commit binding (195.1202ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:31.2453789Z ✔ CI-2: malformed operator commands refuse before creating a run (0.887676ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:31.6147107Z ✔ CI-2: a frozen evaluation environment excludes caller injection in supervisor and child (173.339007ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:31.6149331Z ✔ CI-2: evaluation environment rejects loader and undeclared variable overrides (1.561924ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:31.6168613Z ✔ CI-2: child environment uses the specification despite a different worker environment (188.498211ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:31.8162229Z ✔ CI-2: supervisor interruption cannot qualify a child that exits zero on termination (197.312861ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:32.0279221Z ✔ CI-2: killed supervisor leaves no eligible completion and requires external child containment (218.72036ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:32.5405384Z ✔ CI-2: normal child exit with a surviving worker cannot qualify (519.996275ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:33.8140622Z (node:3824) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:33.8158251Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:34.5165531Z ✔ RT-1: actual guard reconciles every frozen benign proposal (668.243089ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:34.5168337Z ✔ RT-3: every loop preserves refusal, posture and failed-outcome evidence (44.663552ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:35.0100419Z ✔ RT-1: frozen traffic definitions produce complete deterministic populations (43.61151ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:35.0108902Z ✔ RT-1: frozen spacing, burst cadence and recurring effects are retained (10.966524ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:35.0113156Z ✔ RT-1: priority prices remain bounded and profile substitutions fail (11.986467ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:35.3550322Z ✔ RT-1: complete frozen benign populations pass (7.085943ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:35.3582767Z ✔ RT-1: Wilson upper bound is unrounded and includes sampling uncertainty (0.36954ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:35.3609163Z ✔ RT-1: failed, interrupted and unsupported traffic measurements fail (0.727227ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:35.3610887Z ✔ RT-1: missing, repeated and substituted profiles cannot shrink the workload (0.331999ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:35.3630156Z ✔ RT-1: short or incomplete profiles cannot silently exclude proposals (0.303817ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:35.3642549Z ✔ RT-1: all false stops count and a failed confidence target fails (0.481619ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:35.3644013Z ✔ RT-1: denial classifications must reconcile to every stop (0.37522ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:35.3646350Z ✔ RT-1: invalid confidence populations fail rather than produce NaN (0.254896ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:36.8622774Z (node:3848) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:36.8638058Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:37.0901820Z ✔ guardedWallet exposes exactly BaseWallet's members, frozen, and never the wallet it wraps (16.750577ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:37.0911091Z ✔ guardedWallet refuses a wallet whose key is outside the policy's principal, or no RPC to send through (5.153456ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:37.0927529Z ✔ signTransaction: an allowed payment is signed by the wrapped wallet; a drain throws SolanautDenied before the wallet is asked (80.920329ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:37.0929636Z ✔ the adapters give the same verdicts as the SDK, for legacy and v0 transactions (55.381936ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:37.0931531Z ✔ a re-sign of the same payment while the first could still land throws intent-in-flight (5.319607ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:37.0933640Z ✔ a wallet that changes the message before signing it is caught: its signatures are stripped, and the call throws (3.671602ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:37.0935801Z ✔ a wallet whose signature does not verify over the admitted bytes is caught (3.309346ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:37.0961142Z ✔ a wallet that signs a whole batch in place but returns it short: every caller object is stripped, and what was signed is held, not released (4.626864ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:37.0977094Z ✔ wallet-changed-message carries no decision, on guardedWallet (guardedSigner: its own test) (3.026057ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:37.0981599Z ✔ signAllTransactions is all or nothing: one denial signs none, and the admitted ones are released (11.852487ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:37.0984138Z ✔ signAndSendTransaction: checks, signs, sends exactly the admitted bytes itself, and reports the outcome (10.840498ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:37.0986159Z ✔ a send the RPC refuses is reported failed, and rethrown (7.007627ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:37.0987796Z ✔ a send whose fate is unknown is reported unknown, not failed: the signed bytes may still land, so a re-sign is refused (6.615585ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:37.0989601Z ✔ D14, sign-only: before the next proposal, guardedWallet reads the outcome of what it signed and reports it (10.505043ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:37.0990862Z ✔ D14, sign-only: a payment seen but not yet confirmed is not reported, and without a status reader the guard holds the intent (6.148544ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:37.0991922Z ✔ signMessage is denied: a raw signature over chosen bytes can be a transaction signature (0.660823ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:37.1317117Z ✔ guardedSigner: checks every transaction first, all or nothing, reads expiry from the lifetime, and verifies the signatures it returns (27.054565ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:40.1423415Z ✔ jsonRpc: sends base64 bytes, reads the height, and turns signature statuses into outcomes (3027.249477ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.4189363Z (node:3862) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.4191308Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.4253666Z ✔ rule 0: an invalid policy means no guard (11.466368ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.4995316Z ✔ rule 1: bytes that do not parse, and ill-typed fields, deny as malformed-proposal (D5: never a throw) (30.315409ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.5006580Z ✔ rule 2: a version other than legacy, 0 or 1 denies as unsupported-version (2.124583ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.5032067Z ✔ rule 3: a lookup table the policy does not pin denies as lookup-table-unpinned (35.01833ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.5035382Z ✔ rule 5: a durable nonce, even paying an allowed destination, denies as durable-nonce-denied (7.894086ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.5036959Z ✔ rule 6: a required signer outside the principal denies as other-signer (1.912327ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.5038253Z ✔ rule 7: a program off the allowlist denies as program-not-allowed (2.036388ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.5046588Z ✔ rule 8: an allowlisted program the guard does not decode denies while opaque is deny, and passes when allow (4.34214ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.5264161Z ✔ rule 9: Approve, an unknown System instruction and a v1 ComputeBudget decoy deny as instruction-denied (D6, D10) (16.520516ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.5410830Z ✔ rule 10: SOL or tokens to an address the policy does not allow deny as destination-not-allowed (26.404744ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.5514539Z ✔ rule 11: an unlisted mint denies as mint-not-allowed; a plain Transfer from an unknown account as token-mint-unknown (9.210841ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.5909937Z ✔ rule 12: SOL or a mint over its per-transaction cap denies as over-per-tx-cap, summed over the message (5.842909ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.5946963Z ✔ rule 13: a priority fee over the cap denies as over-fee-cap, in legacy and in v1 (3.216841ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.5960571Z ✔ rules 14 and 15, the double-send battery: in flight until reported failed or expired; attempts are counted (9.222483ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.5962965Z ✔ D14: an attempt nobody reported may have landed, so past its expiry it still holds its intent, until reported or until the window passes (6.668659ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.5967258Z ✔ intents: a landed intent is done, and the same payment again is a new intent (4.128852ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.5969061Z ✔ intents: without block heights, only a report ends an attempt (3.560782ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.5970540Z ✔ reports: only for allowed decisions this guard made (2.303317ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.5979982Z ✔ rule 16: the window counts what was allowed; a failed report releases it, an unknown one keeps it; it slides (5.471827ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.6030408Z ✔ rule 16: each mint and the fees have their own window (9.816231ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.6034199Z ✔ rule 16, the boundaries: a payment exactly one window later is outside it, one millisecond earlier is inside (2.778012ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.6510686Z   retry loop stopped at turn 3: DEFAULT -> DEFAULT -> REGROUND (loop-reground)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.6731394Z ✔ rule 16: a mint's window is its own (15.854554ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.6732753Z ✔ the concurrency battery: 50 proposals in one tick admit exactly what fits the window (29.927685ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.6734389Z ✔ rule 17: an identical failing retry loop is stopped by Keel as loop-reground, and the turn is measured (3.305065ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.6736510Z ✔ rule 18: under INHIBIT, an amount over the per-transaction cap times Keel's clamp (0.30) denies as inhibit-cap (1.797493ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.6737515Z ✔ varied, successful payments at a realistic pace are not stopped (12.276881ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.6738373Z ✔ every parsed proposal reaches Keel, allowed or denied; a malformed one does not (2.024517ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.6739224Z ✔ rule 19: anything that throws denies as fail-closed, and check never throws (2.171761ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.7184066Z ✔ rule order: a proposal that breaks several rules is denied by the first (19.803109ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.7190952Z ✔ the latch battery: it trips after the set run of denials; only a fresh, exact operator release frees it (10.037944ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.7200403Z ✔ receipts (D7): an allowed decision binds the message hash, expiry and policy; redeemed once, for those bytes only (2.960843ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.7203118Z ✔ decisions are a hash chain, and each carries its bytes, so the record replays on its own (2.011242ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.7205725Z ✔ D1: guard.policy is frozen, and changing it is refused (1.073994ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.7207336Z ✔ a controller that is not the verified binary is refused at creation (0.36479ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.7209185Z ✔ S36: a receipt reported expired, failed or landed no longer redeems (4.452495ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.7212465Z ✔ S80: a release's expiry is judged on the latest recorded time, so a clock that steps back cannot revive an expired release (2.226804ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:41.7215016Z ✔ S82: an attempt a trusted height shows can still land stays in the window past windowMs; reported expired, it leaves (2.039654ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:42.2879558Z (node:3875) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:42.2883753Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:42.3037769Z ✔ ANC-3: an externally pinned middle, first and last anchor verify with a valid tail (17.290835ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:42.3101532Z ✔ ANC-3: a fully resealed rewrite before the anchor is refused (6.875735ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:42.3134470Z ✔ ANC-3: matching a head at another sequence cannot substitute for the anchor (3.687299ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:42.3170641Z ✔ ANC-3: an absent anchor in empty or truncated history is refused (3.256724ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:42.3213942Z ✔ ANC-3: continuation segments must actually contain the pinned anchor (3.153923ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:42.3222739Z ✔ ANC-3: malformed or unsupported anchor options refuse before opening a source (1.053926ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:42.3252839Z ✔ ANC-3: caller mutation cannot change the captured anchor or receipt (3.669553ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:42.3297047Z ✔ ANC-3: a valid rewrite after the anchor is outside its integrity coverage (2.943941ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:47.6137710Z (node:3886) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:47.6161714Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:47.6234844Z ✔ ANC-3/SNP-2: explicit anchor flags return its bound receipt or typed refusal (395.784435ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:47.6290240Z ✔ ANC-3/SNP-2: incomplete, duplicate and malformed anchor pairs are usage errors (751.643161ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:47.6322958Z ✔ SNP-2: command returns a pinned JSON receipt and leaves source unchanged (132.851933ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:47.6328981Z ✔ SNP-2: incorrect pins return typed JSON archive refusal, never success (272.737552ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:47.6334270Z ✔ SNP-2: explicit continuation identity verifies a segment (259.717408ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:47.6335952Z ✔ SNP-2: line byte limit includes the exact boundary (260.169099ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:47.6337531Z ✔ SNP-2: missing, unknown, duplicate and extra arguments are usage errors (1538.622932ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:47.6338994Z ✔ SNP-2: help is explicit success and extra help arguments are refused (279.391812ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:47.6340389Z ✔ SNP-2: numeric spelling is canonical even when the value would otherwise pass (642.513599ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:47.6341767Z ✔ SNP-2: missing and symlink sources fail with redacted typed errors (268.325935ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:48.3837628Z (node:4201) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:48.3852247Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:48.3947541Z ✔ SNP-1: a FIFO without a writer is refused without blocking on open (138.169694ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:48.4159067Z ✔ SNP-1: full and continuation archives match head, digest, sequence and byte count (47.32036ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:48.4186944Z ✔ SNP-1: empty archive is structural empty history, not proof of an established guard (2.914829ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:48.4223699Z ✔ SNP-1: line bound accepts the exact UTF-8 length and refuses one byte less (2.568884ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:48.4230479Z ✔ SNP-1: invalid options reject before source reads (1.283555ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:48.4253476Z ✔ SNP-1: missing, symlink and directory sources refuse (2.563624ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:48.4294504Z ✔ SNP-1: incomplete/blank and invalid UTF-8 frames refuse (3.905798ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:48.4436191Z ✔ SNP-1: malformed JSON and unsupported record envelopes refuse (13.309628ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:48.4470684Z ✔ SNP-1: altered hash, sequence and predecessor refuse (3.899896ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:48.4506001Z ✔ SNP-1: external head and raw digest pins refuse rewritten or truncated archives (2.70633ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:48.4546100Z ✔ SNP-1: competing source changes refuse and descriptors close on success and failure (4.575507ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:48.4571118Z ✔ SNP-1: fractional signer timestamps remain supported and unsafe sequence overflow refuses (2.611263ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:48.4601095Z ✔ SNP-1: hardlinks and pathname replacement during verification refuse (2.608009ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:48.4623997Z ✔ SNP-1: malformed/unknown options refuse and pins are captured before asynchronous reads (2.247845ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:48.4663646Z ✔ SNP-1: multibyte frames cross chunks and oversized unfinished lines stop after one read (4.05722ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:48.4703509Z ✔ SNP-1: changed length refuses even when source timestamps do not reveal it (1.999792ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:49.8277539Z (node:4224) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:49.8287862Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:49.8529716Z ✔ SIG-4/10: host attribution and clock anchor appear in decisions and reports (22.512687ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:49.8534472Z ✔ SIG-4/10: host attribution is copied before asynchronous initialization (3.551437ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:49.8550774Z ✔ SIG-4/10: invalid host modes or clock anchors and non-devnet authority refuse startup (3.956272ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:49.8552994Z ✔ SIG-4/10: ordinary trusted SDK mode still records caller attribution (1.578625ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:51.2350955Z (node:4232) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:51.2367280Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:51.2391775Z ✔ LAT/POL-2: malformed release text and public signature inputs cannot authenticate (3.413861ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:51.2399196Z ✔ LIF-1/4: unsupported canonical values and malformed payload types refuse binding (1.33995ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:51.2602128Z ✔ LIF-4: malformed recorded request/response time and noncanonical content cannot restore (14.29788ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:51.2610084Z ✔ LIF-2: unknown requests, cross-policy signing and unsupported stages cannot journal (8.047036ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:51.2612543Z ✔ SIG-8: corrupted decision hashes refuse restore and deterministically diverge in replay (6.490621ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:51.2614434Z ✔ T2/T15: empty token-program instruction data is denied under both programs (0.489273ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:52.5824565Z property starting: sol-per-tx; seed=-1795092181; requested=10000
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:52.5957480Z (node:4239) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:52.5966638Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:58.2106060Z property completed: sol-per-tx; seed=-1795092181; runs=10000; skips=0
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:36:58.2130119Z property starting: sol-window; seed=848945112; requested=10000
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:07.6813662Z property completed: sol-window; seed=848945112; runs=10000; skips=0
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:07.6834590Z ✔ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (5630.634991ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:07.6867053Z ✔ CI-2 SOL window property: pending admissions match independent reservation sum (9469.467642ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:08.9703544Z (node:4248) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:08.9750720Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:08.9787112Z ✔ SNP-3: archive catalogue bytes and digest have an independent canonical oracle (3.627188ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:08.9792547Z ✔ SNP-3: receipt field insertion order cannot change catalogue bytes (0.77705ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:08.9867627Z ✔ SNP-3: caller array methods cannot substitute unvalidated receipts (0.63821ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:08.9917404Z ✔ SNP-3: only genesis may have an empty archive catalogue (0.826812ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:08.9936952Z ✔ SNP-3: malformed checkpoint context never binds an archive catalogue (0.850226ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:08.9956226Z ✔ SNP-3: malformed receipt fields and unsupported data refuse (3.489691ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:08.9976388Z ✔ SNP-3: gaps, omitted segments, duplicate segments and reordered segments refuse (1.242919ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:08.9996275Z ✔ SNP-3: catalogue endpoint must match both next sequence and preceding head (0.875514ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:08.9997636Z ✔ SNP-3: observed anchor metadata is retained and bounded by its segment (1.472147ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:09.0016811Z ✔ SNP-3: caller receipts cannot mutate the captured endpoint (0.58427ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:09.0023110Z ✔ SNP-3: throwing accessors, cycles and unsupported JSON produce typed refusal (0.621971ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:09.0024693Z ✔ SNP-3: prepared catalogue does not retain caller-owned mutable values (0.248043ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:09.0026642Z ✔ SNP-3: safe integer endpoints do not overflow catalogue arithmetic (0.268892ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:09.1816825Z ✔ SNP-3: actual verified immutable segments prepare a complete catalogue (61.136117ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:09.1818005Z ✔ SNP-3: SDK exports archive catalogue preparation and typed refusal (154.284605ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:10.3919197Z (node:4259) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:10.3930182Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:10.6199245Z ✔ SNP-3/5: genesis has canonical empty events and a payload digest (14.237434ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:10.6207327Z ✔ SNP-3/5: mixed history retains every tick and reset, with source sequence/hash (89.165843ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:10.6227448Z ✔ SNP-3/5: stale, missing, reordered and tampered history cannot produce a prefix (29.236105ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:10.6229540Z ✔ SNP-3/5: resealed dishonest telemetry still requires full decision replay (2.522571ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:10.6231556Z ✔ SNP-3/5: malformed inputs cannot inject controller events (3.220101ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:10.6233450Z ✔ SNP-3/5: wrong policy and caller serialization methods cannot bypass validation (15.84057ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:10.6235349Z ✔ SNP-3/5: async replay uses a captured history and endpoint (35.661891ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:10.6236985Z ✔ SNP-3/5: fresh Keel reproduces prefix postures across reset boundaries (22.636328ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:10.6238590Z ✔ SNP-3/5: signed policy changes require externally pinned policy trust (20.23449ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:11.8917477Z (node:4266) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:11.8950861Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:12.0374924Z ✔ SNP-3/5: signed initial state carries policy, endpoint and every state field (33.604407ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:12.0386759Z ✔ SNP-3/5: unresolved send, reservation, redemption and latch remain in the payload (70.080984ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:12.0390470Z ✔ SNP-3/5: release resets sensor/latch without erasing pending admission or predecessor (13.875039ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:12.0392514Z ✔ SNP-3/5: signed policy changes retain current version and maximum history window (19.023924ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:12.0394447Z ✔ SNP-3/5: missing trust, unsupported history and asynchronous caller changes cannot alter state (14.608966ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:12.0396646Z ✔ SNP-3/5: pending control identities and completed answers remain distinct (6.722478ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:14.0190967Z (node:4274) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:14.0212624Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:14.0262730Z ✔ SNP-3: canonical checkpoint and prefix domains bind every descriptor field (8.795832ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:14.0297618Z ✔ SNP-3: pinned signatures and independently computed digests return immutable metadata (10.663082ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:14.0308357Z ✔ SNP-3: a foreign checkpoint signature is denied under the external pin (3.914135ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:14.0327214Z ✔ SNP-3: checkpoint authority cannot share a principal or anchor role (1.832274ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:14.0346615Z ✔ SNP-3: foreign guard, cluster or checkpoint pin is denied (2.328539ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:14.0369440Z ✔ SNP-3: a trusted signature cannot authorise a false checkpoint authority descriptor (1.865667ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:14.0372357Z ✔ SNP-3: independently observed payload digest mismatches deny even valid signatures (2.931534ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:14.0375418Z ✔ SNP-3: altered policy, sequence, head or payload bindings cannot reuse signatures (5.707036ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:14.0377398Z ✔ SNP-3: snapshot and prefix signatures are not interchangeable (4.288823ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:14.0379131Z ✔ SNP-3: missing, malformed and noncanonical signatures deny (21.575629ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:14.0381160Z ✔ SNP-3: unsupported formats/profiles and malformed descriptor values deny (12.846994ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:14.0383393Z ✔ SNP-3: genesis and safe sequence/version boundaries are explicit (4.310363ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:14.0386057Z ✔ SNP-3: malformed trust and observed digest records cannot authorise bindings (2.011478ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:14.0387883Z ✔ SNP-3: caller metadata cannot mutate captured external pins or observed digests (2.436751ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:14.0389663Z ✔ SNP-3: malformed JSON and throwing accessors produce typed refusal (32.830665ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:14.0391313Z ✔ SNP-3: returned metadata does not retain mutable caller references (2.290568ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:14.0393041Z ✔ SNP-3: candidate SDK entry exports the binding API and typed refusal (870.009957ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:14.0394718Z ✔ SNP-3: excessive public keys refuse before unbounded base58 decoding (132.657014ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:14.0396568Z ✔ SNP-3: invalid signature lengths refuse before base64 decoding (198.912731ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.3267813Z (node:4296) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.3277111Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.3350536Z ✔ the curve check and program-derived addresses agree with web3.js on random inputs (218.298523ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.4446142Z ✔ associated token accounts are derived as the token client derives them, for Token and Token-2022 (83.923832ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.4448032Z ✔ System Transfer is value-moving: the destination and lamports are counted, in every version (21.051931ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.4449303Z ✔ System TransferWithSeed, CreateAccount and CreateAccountWithSeed move lamports, and are counted (4.251983ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.4450765Z ✔ System CreateAccountAllowPrefund: funded lamports are counted; unfunded moves nothing; a principal account is never assigned away (3.431294ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.4452001Z ✔ System Assign and Allocate are denied: they hand an account to another program (1.470143ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.4453121Z ✔ durable nonces: AdvanceNonceAccount first marks the message, and every nonce instruction is denied (2.848455ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.4454199Z ✔ System: an unknown instruction, or data that does not fit its layout, is denied (1.169422ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.4528938Z ✔ Token Transfer from the principal's associated account infers the mint; to an allowed owner's account, names the owner (8.233653ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.4543550Z ✔ Token Transfer from any other account leaves the mint unknown, and a non-associated destination has no owner (1.851204ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.4641460Z ✔ TransferChecked names its mint and decimals, under Token and under Token-2022 (11.526797ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.4884310Z ✔ Token: Approve, CloseAccount and the other authority-granting instructions are denied; Revoke and SyncNative are benign (3.620225ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.4890599Z ✔ Token: every discriminator has the class the spec gives it, under both token programs (20.562968ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.5240856Z ✔ Token: a transfer whose authority does not sign (a multisig authority) is denied (5.223727ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.5265381Z ✔ ComputeBudget: the instruction names match the compute-budget client for every discriminator (8.465306ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.5267349Z ✔ System: the instruction names match the system client for every discriminator (0.824839ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.5289631Z ✔ fees, legacy and v0: price × limit, rounded up; the default limit when none is set; no price, no fee (6.124659ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.5307117Z ✔ fees: two of the same ComputeBudget instruction, or the deprecated RequestUnits, are denied (1.247016ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.5318386Z ✔ fees, v1: the priority fee is the config's lamport total, and any ComputeBudget instruction is a denied decoy (2.308428ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.5323351Z ✔ fees: 5,000 lamports per signature, and SOL to a tip account counts as a tip, not a payment (0.837303ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.5326788Z ✔ other signers: every required signer outside the principal is reported, for rule 6 (2.388837ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.5328789Z ✔ Memo is benign; a program the guard does not decode is listed as opaque (0.825791ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.5330386Z ✔ the message hash is the SHA-256 of the message bytes (0.569002ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.5332251Z ✔ the intent key ignores the blockhash, the fees, memos and the version, and follows what moves (4.253056ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.5334364Z ✔ v0: a destination loaded from a pinned table is classified like a static one (1.769181ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:15.5336609Z ✔ base58 of the system program id decodes to 32 zero bytes (sanity for the constants) (0.12871ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:16.7821632Z (node:4309) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:16.7830218Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:16.8619093Z ✔ LIF-4: start and first answer are immutable, copied and reused without new entries (17.961875ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:16.8634016Z ✔ LIF-4: changed method/payload and invalid identity or payload refuse before recording (3.880841ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:16.8653147Z ✔ LIF-4: proposal and control methods share one request namespace in both orders (44.438308ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:16.8656291Z ✔ LIF-4: pending and completed control requests restore and replay without admissions (4.927293ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:16.8664442Z ✔ LIF-4: unknown, oversized and invalid responses refuse, and write failure closes the guard (2.198181ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:16.8707593Z ✔ LIF-4: resealed digest control evidence refuses restore/replay (2.782862ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:16.8727239Z ✔ LIF-4: resealed duplicate control evidence refuses restore/replay (2.247123ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:16.8729137Z ✔ LIF-4: resealed response-before-start control evidence refuses restore/replay (2.511868ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:16.8730893Z ✔ LIF-4: resealed changed-response control evidence refuses restore/replay (4.656086ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:19.1794386Z   fuzz: 5000 inputs, 885 accepted and matched kit, 4115 refused with a named rule
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:19.1802698Z (node:4316) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:19.1804759Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:19.1862092Z ✔ base58 agrees with kit's address codec on 500 random keys and on known program ids (73.5249ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:19.1881798Z ✔ base58 refuses characters outside the alphabet; isAddress accepts only canonical 32-byte keys (1.108679ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:19.1893904Z ✔ golden set: 300 kit-built messages, 100 per version, decode exactly as kit decodes them (316.76406ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:19.1914540Z ✔ golden set: every instruction's accounts resolve as kit resolves them, v0 tables pinned (238.075153ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:19.1920871Z ✔ golden set: v1 config values are read from the mask, in mask order (51.409568ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:19.1924211Z ✔ legacy and v0 messages built by web3.js decode as web3.js reads them (53.632726ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:19.1942179Z ✔ versions other than legacy, 0 and 1 are unsupported (3.816831ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:19.1966646Z ✔ every truncation of a valid message is malformed, in every version (178.860703ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:19.1972579Z ✔ bytes after the end of a message are malformed (1.868326ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:19.1974142Z ✔ a non-canonical compact length is malformed (0.752574ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:19.1975635Z ✔ inconsistent headers are malformed (1.164934ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:19.1977340Z ✔ an instruction may not name the fee payer as its program, or an index past the accounts (0.756932ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:19.1990135Z ✔ an address listed twice is malformed (0.388926ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:19.1996707Z ✔ v1: an unknown config bit, a half-set priority-fee pair, a short config, or over 64 accounts are malformed (1.562916ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:19.2012489Z ✔ a message too large to land is malformed: 1,232 bytes for legacy and v0 with signatures, 4,096 for v1 (1.444655ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:19.2014747Z ✔ v0: an unpinned table, or an index past its pin, is lookup-table-unpinned (1.070468ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:19.2020804Z ✔ v0: writable entries of all tables come before read-only entries of any table (0.46646ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:19.2024193Z ✔ v0: a program loaded from a table, a table that loads nothing, or an address both static and looked up is malformed (0.821142ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:19.2026435Z ✔ legacy and v1 messages resolve from their static accounts alone (1.354647ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:19.2028284Z ✔ transactions: wire bytes split into the exact message and its signatures, in every version (41.900457ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:19.2030485Z ✔ transactions: a wrong signature count, a short or long tail, or a v0 message first is malformed (3.541037ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:19.2032436Z ✔ lookup table accounts decode as web3.js decodes them; a bad type or length is refused (2.567039ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:19.2034080Z ✔ a table pin is the table's address and its entries, and a deactivated table is refused (0.765338ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:19.2036054Z ✔ fuzz: 5000 mutated messages either decode exactly as kit does, or are refused with a DecodeError (519.603028ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.5467422Z (node:4324) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.5468881Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7213183Z   drain battery, 40 of 40 denied:
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7215781Z     T1   destination-not-allowed  SOL to a new recipient
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7217065Z     T1   destination-not-allowed  SOL to a new recipient, as v0
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7218369Z     T1   destination-not-allowed  SOL to a new recipient, as v1
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7219936Z     T1   destination-not-allowed  an allowed payment with a second, hidden transfer to the attacker
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7223618Z     T1   destination-not-allowed  a tip-shaped transfer to an address the policy does not name as a tip account
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7225896Z     T1   destination-not-allowed  TransferWithSeed out of a seed-derived account, to the attacker
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7227794Z     T27  destination-not-allowed  CreateAccountWithSeed funding an account at the attacker's address
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7229504Z     T26  other-signer             CreateAccount funding a counterparty's fresh key, which must sign
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7230935Z     T26  other-signer             CreateAccountAllowPrefund funding an account the counterparty holds
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7232243Z     T2   instruction-denied       Token Approve: the attacker as delegate
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7233332Z     T2   instruction-denied       Token ApproveChecked
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7234584Z     T2   instruction-denied       Token SetAuthority: the account's owner changed to the attacker
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7236962Z     T2   instruction-denied       Token CloseAccount: the rent to the attacker
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7238104Z     T2   instruction-denied       Token-2022 Approve
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7239178Z     T2   instruction-denied       Token Burn: value destroyed
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7240416Z     T2   instruction-denied       System Assign: the agent's account handed to a program
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7241727Z     T2   instruction-denied       System Allocate on the agent's account
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7243149Z     T22  instruction-denied       p-token Batch, which could carry a transfer the guard would not see
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7247961Z     T22  instruction-denied       a System instruction the guard does not know
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7251744Z     T15  instruction-denied       Token-2022 TransferCheckedWithFee, an extension instruction
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7253601Z     T5   over-per-tx-cap          an oversized send of a listed mint
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7255366Z     T1   destination-not-allowed  a listed token to the attacker's associated account
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7256982Z     T1   destination-not-allowed  a listed token to an account that is no one's associated account
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7258303Z     T5   mint-not-allowed         an unlisted mint
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7259656Z     T5   token-mint-unknown       a plain Transfer out of an account the guard cannot tie to a mint
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7261186Z     T15  mint-not-allowed         a Token-2022 mint moved by the Token program
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7262357Z     T3   program-not-allowed      a program off the allowlist
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7263607Z     T3   opaque-program           an allowlisted swap program the guard cannot read
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7264893Z     T19  durable-nonce-denied     a durable-nonce transfer, valid forever
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7266655Z     T19  durable-nonce-denied     WithdrawNonceAccount to the attacker
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7268093Z     T19  durable-nonce-denied     AuthorizeNonceAccount: the nonce handed to the attacker
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7269605Z     T14  lookup-table-unpinned    a destination loaded from a table the policy does not pin
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7270995Z     T14  lookup-table-unpinned    a destination at an index past the pinned prefix
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7276599Z     T14  destination-not-allowed  a pinned table's entry that is the attacker's address
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7278287Z     T23  over-fee-cap             a compute-unit price with no limit, so the default limit sets the fee
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7279761Z     T23  over-fee-cap             a v1 config's priority fee over the cap
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7281170Z     T23  instruction-denied       a v1 message with a ComputeBudget decoy beside a large config fee
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7282828Z     T26  other-signer             a counterparty's co-signed instruction alongside the agent's payment
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7284275Z     T22  unsupported-version      an unknown message version
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7285922Z     T8   malformed-proposal       a valid message with bytes hidden after its end
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7302102Z ✔ the drain battery: 40 shapes, each denied before signing by its named rule (208.946726ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:20.7306351Z ✔ the drain battery's control: the same policy allows a plain payment to the treasury (5.837932ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:22.1099399Z (node:4336) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:22.1102889Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:22.2393637Z   workload: 160 entries: allow 67, redeem 16, deny:destination-not-allowed 16, report 16, deny:malformed-proposal 7, deny:intent-in-flight 15, release 13, deny:inhibit-cap 2, deny:over-window-cap 6, deny:latched 1, deny:unsupported-version 1
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:22.4707701Z ✔ the reference workload exercises what a restart must restore (131.965526ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:22.4731621Z ✔ the record is synced to disk entry by entry, and a guard reopened on it has every entry (53.57622ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:22.4736211Z ✔ D11: a reopened guard decides as the uninterrupted one would: windows, intents, the latch and Keel survive (168.593568ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:28.7409429Z   restart battery: 20 kills; the record has 160 entries
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:29.9930345Z ✔ the restart battery: SIGKILLed at 20 random points and restarted each time, the record ends identical to an uninterrupted run (6324.502963ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:29.9958658Z ✔ a torn final line, the mark of a crash mid-write, is dropped: it was never acknowledged (20.629661ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:29.9966313Z ✔ a record that is broken before its last line refuses to start: fail closed (41.437361ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:29.9968218Z ✔ one writer: a second guard refuses; stale SDK ownership requires kernel recovery (288.387009ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:29.9970372Z ✔ replay recomputes every decision from its bytes and names the first divergence (42.997352ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:29.9998385Z ✔ a record that cannot be written denies, and the guard stays shut (1.80072ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:30.0000774Z ✔ npm run replay: exit 0 for a record that replays, 1 with the divergence under a narrower policy, 2 for no policy (783.978801ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:30.0003108Z ✔ the latch is a fact of the record: restored under a policy with a higher threshold, the guard stays latched (18.855381ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:30.0006029Z ✔ S83: a release in the record is verified on restore and in replay: a forged one refuses to start, and replay names it (4.507199ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:30.0008249Z ✔ S81: a lock file that names no process refuses to start, and says so plainly (0.765188ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:31.2629855Z (node:4568) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:31.2646654Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:31.4797311Z ✔ inspectRecord agrees with the live guard: latch, window totals, intents in flight, counts (63.39725ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:31.4798893Z ✔ inspectRecord shows a latch, the run of denials, and what is still in flight (87.222172ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:31.4809479Z ✔ inspectRecord marks each decision that latched the guard, and lists the operator's releases (69.231106ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:31.4814063Z ✔ inspectRecord refuses a record that does not chain, as a restore would (3.33932ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:32.8195541Z (node:4575) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:32.8217191Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:32.8248829Z ✔ D4: the loaded controller module and its embedded wasm hash to the pinned values (2.61545ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:32.8257014Z ✔ D4: a controller with one byte changed, in the wasm or in the JavaScript around it, is refused (0.679016ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:32.8327259Z   U-2: tick() on telemetry accepts() refuses: null → DEFAULT; "0.5" → DEFAULT; true → DEFAULT; [0.7] → DEFAULT
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:32.8472909Z   U-3: Governor.create({ equilibrium: NaN, arousal: 5 }) → created; the next tick gives INHIBIT with equilibrium 0.30000000000000004
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:32.8552026Z ✔ D4: a guard's decisions say the controller was verified by its bytes (17.220257ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:32.8566814Z ✔ U-2, reproduced: Keel's tick() takes telemetry that accepts() refuses, coercing it (1.790911ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:32.8575783Z ✔ D3: telemetry that is not three finite numbers in range never reaches Keel; the proposal denies, and Keel's state does not move (13.254942ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:32.8584645Z ✔ U-3, reproduced or refuted: Governor.create() with a non-finite or out-of-range state (0.829808ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:32.8593048Z ✔ sensor v1, intensity: the rate term is zero at or below the expected rate, and full at five times it (0.668978ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:32.8596585Z ✔ sensor v1, valence: denials, failures, expiries and unknown outcomes lower it; a landing resets it (0.403252ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:32.8598783Z ✔ sensor v1, repetition: the same payment 1; the same payment at higher fees 0.8; the same shape 0.5; else 0 (0.593156ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:32.8601168Z ✔ sensor v1 is the default, and its coefficients are stated (0.432747ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:32.8602996Z ✔ sensor v1, repetition: a payment repeated after it landed is a new payment, not a retry (0.277577ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:32.8605589Z ✔ sensor v1, repetition: the same shape at higher fees is escalation only against a payment that did not land (0.157364ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:32.8607994Z ✔ through the guard: the same payment again after it landed reads as the same shape; before it lands, as a retry (3.474763ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:34.3121037Z (node:4582) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:34.3141905Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:35.4156207Z ✔ LAT-1 / RT-3: a single REGROUND denial by an earlier rule does not latch (50.906169ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:35.4162076Z ✔ LAT-2 / RT-3: two consecutive REGROUND denials latch, across report and restart (59.367294ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:35.4166278Z ✔ LAT-2 / RT-3: a decision without REGROUND breaks the consecutive pair (4.401567ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:35.4188813Z ✔ LAT-3 / RT-3: Keel's own loop denial latches immediately (2.856226ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:35.4199668Z ✔ LAT-4 / RT-3: the policy's consecutive-denial threshold still latches without REGROUND (2.502454ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:35.4205410Z ✔ LAT-5 / RT-3: replay names the accepted one-time divergence of a V0 latch (3.227709ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:35.4212235Z ✔ LAT-6 / RT-3: option C reproduces the archived stream: identical failing retries, 400 ms (23.274393ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:35.4252250Z ✔ LAT-6 / RT-3: option C reproduces the archived stream: identical failing retries, 5 s (19.075152ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:35.4254501Z ✔ LAT-6 / RT-3: option C reproduces the archived stream: rising fees, failing, 400 ms (16.145472ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:35.4257017Z ✔ LAT-6 / RT-3: option C reproduces the archived stream: two shapes alternating, failing, 400 ms (13.851314ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:35.4261331Z ✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5: one early re-sign, then 10 normal payments (13.082631ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:35.4274741Z ✔ LAT-6 / RT-3: option C reproduces the archived stream: cockpit demo: unknown outcome, re-sent once (14.52443ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:35.4277483Z ✔ LAT-6 / RT-3: option C reproduces the archived stream: the kit's double signing: six payments signed twice (12.334687ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:35.4280725Z ✔ LAT-6 / RT-3: option C reproduces the archived stream: drain storm: the same drain (10.212621ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:35.4283041Z ✔ LAT-6 / RT-3: option C reproduces the archived stream: drain storm: new address and amount (10.733151ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:35.4285030Z ✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 10% of the cap (11.730791ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:35.4287436Z ✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 20% of the cap (15.561623ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:35.4289495Z ✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 30% of the cap (10.976745ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:35.4291466Z ✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 40% of the cap (11.474143ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:35.4293474Z ✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 60% of the cap (12.965933ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:35.4295725Z ✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 80% of the cap (11.184182ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:35.4297778Z ✔ LAT-6 / RT-3: option C reproduces the archived stream: cockpit demo at its proportions (14.000242ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:35.4299712Z ✔ LAT-6 / RT-3: option C reproduces the archived stream: benign: expected rate (443.5311ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:35.4301419Z ✔ LAT-6 / RT-3: option C reproduces the archived stream: benign: bursts (319.710187ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:36.7283006Z (node:4592) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:36.7296618Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:36.7903051Z ✔ SNP-5/D21: genuine malformed proposal history retains its null controller fields (21.374871ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:36.7914246Z ✔ SNP-5/D21: resealed malformed inputs cannot inject controller events into replay or restore (14.509551ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:36.7916795Z ✔ SNP-5/D21: real parsed controller events remain replayable and restorable (29.700503ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:37.4407346Z (node:4599) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:37.4431949Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:37.4446849Z ✔ OWN-1: SDK refuses stale ownership instead of removing the lock (43.782728ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:37.4462022Z ✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (16.961052ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:38.4237079Z ✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (965.076116ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:38.4270498Z ✔ OWN-3: established protected records are not recreated if missing (21.593309ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:39.0862945Z ✔ pin-table prints the table's address and entries, read at finalized commitment (200.904443ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:39.7847708Z ✔ pin-table refuses: no --url, an account another program owns, no account, a deactivated table (705.861349ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:40.5621565Z (node:4739) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:40.5637183Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:40.5668907Z ✔ a valid policy loads, with amounts as bigint and a 64-hex hash (8.749104ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:40.5707880Z ✔ the hash depends on content only: key order and amount spelling do not change it; any value does (4.64139ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:40.5716677Z ✔ the hash is SHA-256 of canonical JSON: sorted keys, no whitespace, amounts as decimal strings (0.738177ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:40.5718481Z ✔ D1: the policy is a frozen copy; neither the caller's object nor the returned one can widen it (3.011038ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:40.5736574Z ✔ D2: a cap that is not a whole, non-negative amount is refused, never read as no cap (6.89825ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:40.5739693Z ✔ D9: amounts past 2^53 are exact (1.173179ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:40.5741461Z ✔ rule 0: addresses must be canonical base58 keys, and the principal must hold one (3.61255ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:40.5743680Z ✔ rule 0: the latch's release key is never a principal key, so the agent cannot release its own latch (2.786109ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:40.5747602Z ✔ rule 0: one entry per mint and per table, a known token program, and a known cluster (4.380333ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:40.5749709Z ✔ rule 0: counts and durations are positive whole numbers; the guard id fits on one line (4.403356ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:40.5751865Z ✔ rule 0: v1 never signs messages or co-signs, and refuses any field it does not know (2.612955ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:40.5755778Z ✔ every problem is reported at once, so an operator fixes them in one pass (0.534277ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:40.5757319Z ✔ the classifier's context comes from the policy (1.041413ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:46.2087762Z (node:4747) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:46.2106858Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:46.2156175Z ✔ POL-1/5: preparation returns the exact canonical signing text and public identity (171.594989ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:46.2158308Z ✔ POL-1/5: preparation is deterministic and never invents a signature (330.218016ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:46.2199455Z ✔ POL-1/5: missing, duplicate, unknown and noncanonical version arguments are usage errors (1707.32235ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:46.2205980Z ✔ POL-1: malformed issued timestamps never become signing requests (606.688219ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:46.2293499Z ✔ POL-1/3: malformed JSON and invalid policies return redacted policy errors (438.49937ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:46.2303809Z ✔ POL-1/5: missing, symlink, directory and oversized sources refuse without leaking paths (1207.376686ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:46.2347181Z ✔ POL-1/5: explicit help succeeds; extra help and unsupported cluster refuse (454.805489ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:46.9805022Z property starting: address; seed=-651531031; requested=10000
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:47.2969343Z property completed: address; seed=-651531031; runs=10000; skips=0
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:47.2988111Z property starting: decoder-legacy; seed=-1367674793; requested=10000
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:55.1746116Z property completed: decoder-legacy; seed=-1367674793; runs=10000; skips=0
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:37:55.1753075Z property starting: decoder-0; seed=185509923; requested=10000
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:03.9375764Z property completed: decoder-0; seed=185509923; runs=10000; skips=0
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:03.9391850Z property starting: decoder-1; seed=-1427759801; requested=10000
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:12.8072875Z property completed: decoder-1; seed=-1427759801; runs=10000; skips=0
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:12.8098830Z property starting: arbitrary-bytes; seed=1183260621; requested=10000
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:12.9898311Z property completed: arbitrary-bytes; seed=1183260621; runs=10000; skips=0
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:12.9916362Z (node:4979) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:12.9917997Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:12.9940230Z ✔ CI-2 address property: canonical 32-byte base58 agrees with kit (319.584601ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:12.9955944Z ✔ CI-2 decoder property: legacy bytes and resolved instructions agree with kit (7876.237138ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:12.9960466Z ✔ CI-2 decoder property: 0 bytes and resolved instructions agree with kit (8762.869417ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:12.9967218Z ✔ CI-2 decoder property: 1 bytes and resolved instructions agree with kit (8869.475155ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:12.9977304Z ✔ CI-2 malformed property: arbitrary bytes match kit or have a named decoder refusal (182.239881ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:14.2198409Z (node:4993) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:14.2218519Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:14.3218177Z ✔ LIF-1: duplicate admission returns the original entry without another reservation or controller tick (24.090994ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:14.3220927Z ✔ LIF-1: duplicate denied request returns the same denial without accumulating latch denials (25.63341ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:14.3227848Z ✔ LIF-1: changed bytes or grouping under the same identity are refused (17.772679ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:14.3230040Z ✔ LIF-1: client identities are separate namespaces and invalid identities fail closed (5.764845ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:14.3232047Z ✔ LIF-1: identity and original decision survive durable restart (21.735901ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:14.3235686Z ✔ LIF-1: resealed digest request evidence refuses restore and replay (5.079444ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:14.3243472Z ✔ LIF-1: resealed guard request evidence refuses restore and replay (3.452349ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:14.3253109Z ✔ LIF-1: resealed duplicate request evidence refuses restore and replay (3.79631ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:14.9187989Z (node:5002) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:14.9189941Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:14.9327832Z ✔ CLT-1: distinct sending client exposes only three methods and preserves explicit identities/payloads (15.446923ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:14.9362641Z ✔ CLT-2: lost proposal reply is explicitly uncertain and never automatically retried (4.021862ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:14.9497153Z ✔ CLT-3: malformed, oversized, duplicate, mismatched and extra response frames refuse (13.268638ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:14.9558178Z ✔ CLT-3: sending/report result shapes are validated before consumers receive them (6.049584ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:14.9873521Z ✔ CLT-4: absolute timeout is not extended by response activity (30.430268ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:14.9886003Z ✔ CLT-1/3: invalid configuration and payloads refuse before connecting (2.011832ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:14.9911632Z ✔ CLT-1: caller byte mutations cannot change the serialized proposal (2.828456ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:14.9933217Z ✔ CLT-2/3: remote refusals use fixed typed codes without exposing peer messages (1.721331ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:15.0001093Z ✔ CLT-1/3: durable denied, uncertain and pre-admission refusal answers remain distinct (5.707686ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:15.0025551Z ✔ CLT-1: request identity is captured before caller mutation (2.394406ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:15.0041203Z ✔ CLT-2: a connection failure before transmission cannot claim proposal execution (1.780121ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:16.2611795Z (node:5010) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:16.2620667Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:17.3138501Z   benign: Poisson, 6 a minute (the policy's expected rate) · sensor v0: 497 of 600 stopped, 82.83% (95% CI 79.61% to 85.64%) {"loop-reground":1,"latched":496}
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:17.3142755Z   benign: Poisson, 6 a minute (the policy's expected rate) · sensor v1: 0 of 600 stopped, 0.00% (95% CI 0.00% to 0.64%) {}
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:17.3144752Z   benign: bursts of 5 payouts, 0.2 to 0.6 s apart, every 5 minutes · sensor v0: 130 of 600 stopped, 21.67% (95% CI 18.56% to 25.14%) {"loop-reground":1,"latched":129}
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:17.3146857Z   benign: bursts of 5 payouts, 0.2 to 0.6 s apart, every 5 minutes · sensor v1: 0 of 600 stopped, 0.00% (95% CI 0.00% to 0.64%) {}
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:19.9064510Z   benign, varied fees · sensor v0: 11 of 3000 stopped, 0.37% · sensor v1: 0 of 3000, 0.00% (95% CI 0.00% to 0.13%) {}
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:19.9117481Z   loop: identical retries, 400 ms apart · v0: turn 3, loop-reground (DEFAULT > DEFAULT > REGROUND) · v1: turn 3, loop-reground (DEFAULT > DEFAULT > REGROUND)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:19.9168910Z   loop: identical retries, 5 s apart · v0: turn 3, loop-reground (DEFAULT > DEFAULT > REGROUND) · v1: turn 3, loop-reground (DEFAULT > DEFAULT > REGROUND)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:19.9224619Z   loop: rising fees, 400 ms apart · v0: turn 3, loop-reground (DEFAULT > DEFAULT > REGROUND) · v1: turn 4, intent-attempts-exhausted (DEFAULT > DEFAULT > DEFAULT > REGROUND)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:19.9341001Z   loop: two shapes alternating, 400 ms apart · v0: not stopped in 12 turns · v1: not stopped in 12 turns
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:19.9352266Z ✔ the benign battery: 600 payments at the expected rate, and 600 in bursts; v0 against v1, measured (1063.83154ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:19.9364513Z ✔ the benign battery with varied priority fees: 5 × 600 payments at the expected rate, on fresh seeds, the operator releasing each latch; v0 against v1, measured (2592.082028ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:19.9395669Z ✔ the loop battery: identical retries, rising fees, two alternating shapes; the stop turn measured for v0 and v1 (27.53542ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:21.2737998Z (node:5018) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:21.2746472Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:21.2785627Z ✔ POL-1: canonical readable summary and valid operator signature load (10.419304ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:21.2795465Z ✔ POL-2: missing signature refuses to start (3.464482ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:21.2813827Z ✔ POL-2: wrong operator refuses to start (1.442741ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:21.2816768Z ✔ POL-2: other guard refuses to start (1.544952ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:21.2817767Z ✔ POL-2: other cluster refuses to start (1.690974ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:21.2818790Z ✔ POL-2: different hash refuses to start (1.712734ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:21.2819843Z ✔ POL-2: noncanonical base64 refuses to start (2.058509ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:21.2821700Z ✔ POL-2: even a correctly signed dishonest summary is rejected (1.01313ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:21.2927403Z ✔ POL-2: missing authorization and non-text signature cannot authenticate (1.312789ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:22.0727430Z ✔ VER-2: equivalent but noncanonical recorded policy is not accepted as signed history (18.397123ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:22.0728862Z ✔ POL-3: the principal cannot become the pinned operator (1.244401ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:22.0746736Z ✔ POL-1: invalid versions and issued timestamps have no signing text (1.897189ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:22.0766605Z ✔ POL-1: summaries show SOL caps and count trailing destinations (0.592024ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:22.0768511Z ✔ POL-4/POL-5/VER-1: history verifies signed versions and replay preserves pending receipts and the latch (120.446822ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:22.0772019Z ✔ VER-1: equal version restarts are idempotent; changed signed content needs a higher version (42.182965ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:22.0774206Z ✔ VER-2/POL-4: resealed unsupported profiles and forged historical policy refuse replay and restore (15.740011ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:22.0776490Z ✔ VER-2: a caller cannot substitute another sensor under the signed profile (1.638908ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:22.0778250Z ✔ POL-4: a policy restart retains live reservations against the new cap (25.014402ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:22.0780178Z ✔ POL-4: the operator replay command uses signed history and an external public trust file (541.54558ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:22.0781857Z ✔ POL-4: extending the window reconstructs spending pruned under the old window (32.955285ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:23.3898566Z (node:5052) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:23.3925001Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:23.5237622Z ✔ LIF-7: final landed evidence forbids new signing/send intent live and on replay (38.231409ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:23.5247124Z ✔ LIF-7: final failed evidence forbids new signing/send intent live and on replay (8.820036ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:23.5249383Z ✔ LIF-7: final expired evidence forbids new signing/send intent live and on replay (9.972707ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:23.5251636Z ✔ LIF-2: signature evidence requires durable redemption; valid lifecycle replays (7.362837ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:23.5253748Z ✔ LIF-7: unknown evidence preserves the admitted signing/send lifecycle (5.512124ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:23.5263495Z ✔ LIF-2: wrong-bytes cannot be persisted as signed evidence (1.833451ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:23.5270575Z ✔ LIF-2: wrong-signature cannot be persisted as signed evidence (1.560702ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:23.5272062Z ✔ LIF-2: wrong-wire cannot be persisted as signed evidence (1.372361ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:23.5297272Z ✔ LIF-2: noncanonical-base64 cannot be persisted as signed evidence (1.262836ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:23.5299162Z ✔ LIF-2: send-started requires signed bytes and valid lifetime; every stage is single-use (3.31239ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:23.5301171Z ✔ LIF-2: denied response persists; sent response without send intent is refused (2.796348ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:23.5303383Z ✔ LIF-2: signing and send-started evidence survive durable restart (26.99109ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:23.5366878Z ✔ LIF-2: resealed out-of-order and forged signing history refuse restore/replay (28.889824ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:24.9987905Z (node:5061) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:24.9997905Z (Use `node --trace-warnings ...` to show where the warning was created)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.0602418Z ✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (32.332994ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.0616554Z ✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (9.611773ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.0624722Z ✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (11.467969ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.0628791Z ✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (8.09878ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.0644371Z ✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (8.146219ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.0977866Z ℹ tests 580
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.0983448Z ℹ suites 0
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.0984291Z ℹ pass 579
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.0985485Z ℹ fail 1
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.0986305Z ℹ cancelled 0
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.0987208Z ℹ skipped 0
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.0988068Z ℹ todo 0
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.0988974Z ℹ duration_ms 172189.379477
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.0989622Z 
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.0990151Z ✖ failing tests:
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.0990771Z 
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.0991525Z test at evals/ci/mutation-recovery.test.ts:61:1
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.0993497Z ✖ CI-2: an asynchronously started real staged baseline finishes without relaunching (20242.97882ms)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.0995573Z   AssertionError [ERR_ASSERTION]: Expected "actual" to be strictly unequal to: null
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.0997683Z       at TestContext.<anonymous> (file:///home/runner/work/solanaut/solanaut/evals/ci/mutation-recovery.test.ts:71:116)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.0999442Z       at async Test.run (node:internal/test_runner/test:1404:7)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.1000580Z       at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.1001626Z     generatedMessage: true,
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.1002299Z     code: 'ERR_ASSERTION',
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.1002901Z     actual: null,
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.1003439Z     expected: null,
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.1004089Z     operator: 'notStrictEqual',
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.1004703Z     diff: 'simple'
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.1005716Z   }
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.1062752Z file:///home/runner/work/solanaut/solanaut/evals/ci/coverage.ts:3
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.1087048Z export function requireTestProcess(status               )       { if(status!==0) throw new Error("coverage test process failed or did not complete"); }
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.1088256Z                                                                                        ^
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.1088596Z 
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.1088905Z Error: coverage test process failed or did not complete
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.1089744Z     at requireTestProcess (file:///home/runner/work/solanaut/solanaut/evals/ci/coverage.ts:3:88)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.1090647Z     at file:///home/runner/work/solanaut/solanaut/evals/ci/coverage-run.ts:21:1
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.1091381Z     at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.1091978Z     at async node:internal/modules/esm/loader:650:26
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.1092682Z     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.1093153Z 
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.1093278Z Node.js v26.7.0
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.1353081Z ##[error]Process completed with exit code 1.
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.1540123Z Post job cleanup.
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.2636113Z [command]/usr/bin/git version
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.2715890Z git version 2.55.0
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.2817012Z Temporarily overriding HOME='/home/runner/work/_temp/c1b38ed5-83cd-44c6-8b2f-9f1812f2868d' before making global git config changes
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.2835022Z Adding repository directory to the temporary git global config as a safe directory
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.2837728Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/solanaut/solanaut
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.2900978Z Removing SSH command configuration
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.2902207Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.2983791Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.3456171Z Removing HTTP extra header
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.3487077Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.3578178Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.4312485Z Removing includeIf entries pointing to credentials config files
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.4336476Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.4466815Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+AST statement and branch floors	UNKNOWN STEP	2026-10-07T13:38:25.5212240Z Cleaning up orphan processes

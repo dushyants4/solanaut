@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.51** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.52** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -1116,3 +1116,8 @@ use decimal strings. Request, response and unresolved signing facts remain prese
 until the accepted disk index replaces in-memory retention. The previous decision
 survives release/report boundaries. This internal ADR-019 encoding is preparation,
 not a loader or bounded-memory implementation; strict authenticated restore is owed.
+
+PKG-1 qualification inspects compiled internal prefix/state modules from an
+external tarball installation without adding root exports. CI-2 incomplete-baseline
+assertions retain child output and run identity before cleanup; the existing wait,
+selected workload, seeds and qualification floors are unchanged.

@@ -1,7 +1,11 @@
 # PACKAGING.md — private SDK candidate
 
-> **Draft 8** · 2026-10-06 · owner: integrator · for: developers and release reviewers.
+> **Draft 9** · 2026-10-07 · owner: integrator · for: developers and release reviewers.
 > This is release preparation, not a stable release. Register: `kb/DOCUMENTS.md`.
+
+Compiled internal prefix/state components have installed-tarball evidence
+(`evals/packaging/checkpoint-payloads.md`). These files remain internal; this is
+not a supported recovery workflow.
 
 The current export and error reference is [SDK](SDK.md); it separates trusted in-process
 APIs from the distinct sending client and describes incomplete operational contracts.

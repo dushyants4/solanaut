@@ -1,5 +1,10 @@
 # DOCUMENTS.md — the document register
 
+2026-10-07 compiled payload qualification registers SPEC Draft 4.52, RISKS 1.43,
+SDK Draft 6, PACKAGING Draft 9, CLAIMS S64, receipt/index, PROGRESS, HANDOFF and
+continuing run. b9c06eb's hosted baseline failure is retained alongside installed
+passes; diagnostic output preserves its workload/wait. Complete release remains owed.
+
 2026-10-07 admission-state preparation registers SPEC Draft 4.51, RISKS 1.42,
 OVERVIEW Draft 27, CLAIMS S63, receipt/index, PROGRESS, HANDOFF and continuing run.
 Mutation-authentication receipt adds complete afed152 hosted evidence, including

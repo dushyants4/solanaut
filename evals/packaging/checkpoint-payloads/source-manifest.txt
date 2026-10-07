@@ -1,0 +1,3 @@
+1addccc19011c8bf9cff7da8125b98b2feef9aca76a64c03b8e0fe3dc619f423  evals/packaging/packed-sdk.test.ts
+74933c3c2cb68723fb4be04557d813f3afdd932155387f904cb39ae2dc90cd82  evals/packaging/faults.ts
+3532afb84bec533623c0afa32254bf8e76e13580b9c169d07507bf67b324d2b4  evals/ci/mutation-recovery.test.ts

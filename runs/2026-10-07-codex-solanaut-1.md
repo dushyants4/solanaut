@@ -8,6 +8,24 @@ work. This dated continuation retains the earlier session's full record at
 
 ## Did
 
+Compiled-payload pre-sync close passes nine gates; the uncommitted-tree refusal is
+retained until private commit. Staged diff and secret scan are clean. Hosted
+diagnostic qualification follows sync, with the previous failure still open.
+
+Final compiled-payload/diagnostic integration passes all 580 ordinary cases and
+typecheck exits zero after restoration. Candidate JS/declaration/source hashes and
+raw output are retained. Review/private close/sync follows; hosted failure remains
+an unresolved finding rather than an exception or release pass.
+
+b9c06eb is privately pushed with all ten close gates passing. Hosted 37629630875
+has twelve successful jobs and an instrumented baseline-wait failure; exact failure
+and metadata retained, never labelled qualified. Prior installed stage fails on
+missing compiled prefix code. Regeneration passes ten installed cases and eighteen
+compiled faults with restoration. These helpers stay internal. Added baseline
+diagnostics retain child output/run identity before cleanup with unchanged deadline,
+seeds, workload and floors. All fifteen recovery/driver faults pass with restoration.
+Ordinary/type checks after diagnostics follow before close/sync. No cause inferred.
+
 Final state schema/profile assertions and profile-substitution trial pass; the
 campaign catches sixteen faults with exact restoration. Final ordinary suite
 passes all 580 cases and typecheck exits zero. AST evidence has the same SDK source

@@ -61,6 +61,10 @@ Signed-mode state preparation retains policy, previous decision and unresolved
 request/signing facts (`evals/sdk/checkpoint-state.md`); strict restore remains owed.
 Corrected afed152 hosted CI passes every job. Full corrected-target mutation and
 stable-release gates remain outstanding.
+Admission-state b9c06eb hosted validation has an instrumented baseline-wait failure
+despite other passing jobs. Installed compiled payload cases/faults pass
+(`evals/packaging/checkpoint-payloads.md`); fuller child diagnostics preserve the
+existing wait, with cause and corrected hosted qualification still unresolved.
 Archive catalogue metadata preparation additionally has focused and installed component
 evidence (`evals/sdk/checkpoint-archives.md`); actual file authentication and full
 snapshot qualification remain owed. Root validation currently retains an existing

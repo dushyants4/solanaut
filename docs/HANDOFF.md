@@ -189,6 +189,12 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+b9c06eb is privately pushed; all local close gates pass. Hosted run 37629630875
+passes twelve jobs but fails the coverage job's existing staged-baseline wait.
+Exact failure/metadata is retained. Installed prefix/state artefacts pass ten cases
+and eighteen compiled faults; no root API export added. The wait assertion now
+retains actual child progress before cleanup; cause/hosted qualification remain owed.
+
 Corrected afed152 hosted run 37626020433 passes every job, including Node 22/24/26
 and the fault aggregate. Full logs/revision metadata are retained. Prefix 23f57d5 is
 privately pushed with all close gates passing; its hosted run is underway. Admission
@@ -486,6 +492,8 @@ The live probes and baseline are complete. ADR-012 C is built and tested offline
 | 2026-10-07 | SNP-3/5 validated internal Keel prefix | commit containing `evals/sdk/checkpoint-prefix.md` | seven initial failures; nine focused cases/seventeen source faults; critical/inventory refusals; 574 ordinary and instrumented cases/typecheck | Event payload derives from full replay; signed policy trust enforced. Misses and stopped overlap retained. Publication, authenticated consumption, state restore and fresh mutation remain owed. |
 
 | 2026-10-07 | SNP-3/5 signed admission-state component | commit containing `evals/sdk/checkpoint-state.md` | five stub failures; six cases/sixteen faults; campaign/critical refusals; 580 ordinary/instrumented cases and typecheck | Lifecycle, policy and previous decision retained. Seed-cap miss retained, effective window-copy fault caught. Prefix 23f57d5 hosted CI succeeds; publication, restore, streaming and fresh mutation remain owed. |
+
+| 2026-10-07 | PKG-1 compiled checkpoint payload qualification | commit containing `evals/packaging/checkpoint-payloads.md` | missing-module failure; ten installed cases/eighteen compiled faults; fifteen recovery/driver faults; 580 ordinary cases/typecheck | Internal compiled artefacts pass. Hosted b9c06eb baseline failure retained; child-progress diagnostics preserve workload/wait. Full snapshot and corrected hosted qualification remain owed. |
 
 ## 8. Handing back to Claude
 

@@ -1,7 +1,12 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.42** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.43** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
+
+Hosted b9c06eb passes twelve jobs but fails its instrumented staged-baseline wait.
+The unchanged wait remains binding; child progress diagnostics are added before
+cleanup. Cause and corrected hosted qualification remain unresolved. Installed
+compiled payload proofs do not establish full recovery or stable-release readiness.
 
 The frozen 9ac6e7c mutation guard target is superseded by D21's independent semantic
 finding. Its actual supervised interruption and qualification refusal are retained.

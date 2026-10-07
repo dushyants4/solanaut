@@ -212,6 +212,49 @@ test("SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuse
   assert.deepEqual(JSON.parse(result.stdout),{seq:1,immutable:true,refusal:{typed:true,code:"checkpoint-binding"},signatureRefusals:2});
 });
 
+test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace",()=>{
+  // Inspect internal compiled artefacts; these helpers are not stable root exports.
+  const script=`
+    import {createGuard,preparePolicyText,encodeBase58,EVALUATION_PROFILE} from '@solanaut/sdk';
+    import {generateKeyPairSync,sign,createHash} from 'node:crypto';
+    const {prepareCheckpointPrefix,CheckpointPrefixError}=await import(new URL('./checkpoint-prefix.js',import.meta.resolve('@solanaut/sdk')));
+    const {prepareCheckpointState,CheckpointStateError}=await import(new URL('./checkpoint-state.js',import.meta.resolve('@solanaut/sdk')));
+    const operator=generateKeyPairSync('ed25519'),agent=generateKeyPairSync('ed25519');
+    const address=pair=>encodeBase58(Buffer.from(pair.publicKey.export({format:'jwk'}).x,'base64url'));
+    const policy=JSON.parse(process.argv[1]);policy.principal=[address(agent)];policy.latch.releaseKey=address(operator);
+    const trust={operatorKey:address(operator),guardId:policy.latch.guardId,cluster:policy.latch.cluster},issued='2026-10-07T00:00:00.000Z';
+    const text=preparePolicyText(policy,1,issued),authorization={...trust,version:1,issued,text,signature:sign(null,Buffer.from(text),operator.privateKey).toString('base64')};
+    const g=await createGuard({policy,authorization});
+    const message=Buffer.from(process.argv[2],'base64');Buffer.from(agent.publicKey.export({format:'jwk'}).x,'base64url').copy(message,4);
+    const d=g.check({message:new Uint8Array(message),at:1000,blockHeight:10n,lastValidBlockHeight:100n},{clientId:'client',id:'payment'});
+    if(!d.allow || !g.redeem(message,d.hash,10n).ok)throw new Error('fixture admission refused');
+    const sig=sign(null,message,agent.privateKey),signature=encodeBase58(sig);
+    g.recordSigning({stage:'signed',decision:d.hash,wire:Buffer.concat([Buffer.from([1]),sig,message]).toString('base64'),signature});
+    g.recordSigning({stage:'send-started',decision:d.hash,blockHeight:'11'});
+    g.recordSigning({stage:'response',decision:d.hash,status:'uncertain',signature});
+    const request=g.beginRequest({clientId:'client',id:'status'},'status',{},1001);g.finishRequest(request.hash,{ready:true});
+    const entries=g.entries(),context={seq:entries.length,head:entries.at(-1).hash};g.close();
+    const prefix=await prepareCheckpointPrefix(entries,undefined,context,trust),state=await prepareCheckpointState(entries,undefined,context,trust);
+    const hash=text=>createHash('sha256').update(text).digest('hex'),p=JSON.parse(prefix.text),s=JSON.parse(state.text);
+    if(prefix.digest!==hash(prefix.text) || state.digest!==hash(state.text) || !Object.isFrozen(prefix) || !Object.isFrozen(state))throw new Error('payload digest or immutability differs');
+    if(JSON.stringify(s.profile)!==JSON.stringify(p.profile) || Object.keys(EVALUATION_PROFILE).some(k=>s.profile[k]!==EVALUATION_PROFILE[k]))throw new Error('payload profile differs');
+    if(s.policy.version!==1 || s.policy.hash!==d.policyHash)throw new Error('payload policy differs');
+    if(p.events.length!==1 || p.events[0].hash!==d.hash || s.previousDecision.hash!==d.hash || s.state.requests.length!==2 || s.state.responses.length!==1 || s.state.reservations[0][1].sol!=='1' || !s.state.redeemed.includes(d.hash))throw new Error('lifecycle facts lost');
+    const lifecycle=s.state.signing.find(([key])=>key===d.hash)[1];
+    if(lifecycle.started.stage!=='send-started' || lifecycle.response.status!=='uncertain')throw new Error('uncertain send lost');
+    const {hash:unused,...body}=d,forged={...body,telemetry:{intensity:1,valence:-1,repetition:1}};
+    const canonical=JSON.stringify(forged,(_key,value)=>value && typeof value==='object' && !Array.isArray(value)?Object.fromEntries(Object.keys(value).sort().map(k=>[k,value[k]])):value);
+    const changed={...forged,hash:hash(canonical)},bad=[entries[0],changed],end={seq:2,head:changed.hash};
+    for(const [prepare,ErrorType] of [[prepareCheckpointPrefix,CheckpointPrefixError],[prepareCheckpointState,CheckpointStateError]]){
+      let refused=false;try{await prepare(bad,undefined,end,trust);}catch(error){refused=error instanceof ErrorType;}
+      if(!refused)throw new Error('dishonest replay accepted');
+    }
+    console.log(JSON.stringify({events:p.events.length,requests:s.state.requests.length,uncertain:true}));`;
+  const result=spawnSync(process.execPath,["--input-type=module","-e",script,inputPolicy,Buffer.from(transfer(2)).toString("base64")],{cwd:consumer,encoding:"utf8"});
+  assert.equal(result.status,0,result.stderr);assert.deepEqual(JSON.parse(result.stdout),{events:1,requests:2,uncertain:true});
+  for(const name of ["checkpoint-prefix","checkpoint-state"])for(const extension of ["js","d.ts"])assert.ok(packed.files.some((file:{path:string})=>file.path==="dist/src/"+name+"."+extension));
+});
+
 test("PKG-3: installed replay and table-pin commands execute with their documented usage exits", () => {
   for (const bin of ["solanaut-replay", "solanaut-pin-table", "solanaut-verify-archive"]) {
     const result = spawnSync(join(consumer, "node_modules/.bin", bin), [], { cwd: consumer, encoding: "utf8" });

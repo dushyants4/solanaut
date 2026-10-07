@@ -15,6 +15,15 @@ function battery() {
 const baseline = battery();
 assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
 const faults = [
+  { name: "prefix-module", path: "dist/src/checkpoint-prefix.js", caught: "compiled checkpoint payloads", damage: () => undefined },
+  { name: "prefix-digest", path: "dist/src/checkpoint-prefix.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("sha256hex(text)", 'sha256hex("wrong")') },
+  { name: "prefix-replay", path: "dist/src/checkpoint-prefix.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("if (!result.ok)", "if (false)") },
+  { name: "state-digest", path: "dist/src/checkpoint-state.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("sha256hex(text)", 'sha256hex("wrong")') },
+  { name: "state-maps", path: "dist/src/checkpoint-state.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("return [...value].map(([key, item]) => [key, values(item)]);", "return [];") },
+  { name: "state-predecessor", path: "dist/src/checkpoint-state.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("previousDecision = entry;", "previousDecision = null;") },
+  { name: "state-profile", path: "dist/src/checkpoint-state.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("profile: EVALUATION_PROFILE", 'profile: { ...EVALUATION_PROFILE, sensor: "foreign" }') },
+  { name: "state-replay", path: "dist/src/checkpoint-state.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("await prepareCheckpointPrefix(captured, policySeed, endpoint, pins);", "void 0;") },
+  { name: "state-policy", path: "dist/src/checkpoint-state.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("version: previous.version", "version: previous.version + 1") },
   { name: "malformed-replay", path: "dist/src/guard.js", caught: "installed JavaScript", damage: (text: string) => text.replace('if (e.kind === "decision" && e.input === "invalid" && (e.posture !== null || e.telemetry !== null || e.temperatureMax !== null))', "if (false)") },
   { name: "checkpoint-archives-export", path: "dist/src/index.js", caught: "installed checkpoint", damage: (text: string) => text.replace(/^export .*from "\.\/checkpoint-archives\.js";\n/m, "") },
   { name: "checkpoint-archives-digest", path: "dist/src/checkpoint-archives.js", caught: "installed checkpoint", damage: (text: string) => text.replace("sha256hex(text)", 'sha256hex("wrong")') },
@@ -46,7 +55,7 @@ for (const fault of faults) {
     const result = battery();
     const output = result.stdout + result.stderr;
     assert.equal(result.status, 1, output);
-    assert.match(output, /tests 9\b/, "a harness setup failure is not a caught product fault");
+    assert.match(output, /tests 10\b/, "a harness setup failure is not a caught product fault");
     const failures = output.split("\n").filter((line) => /[✖]|not ok/.test(line));
     assert.ok(failures.some((line) => line.includes(fault.caught)), output);
     console.log(`caught package fault: ${fault.name}`);
