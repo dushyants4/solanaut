@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.32** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.33** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 The threat model ([docs/papers/THREAT-MODEL.md](papers/THREAT-MODEL.md)) lists what an attacker can do to a running
@@ -48,6 +48,11 @@ The completion-record checker binds evaluation identity and refuses incomplete/e
 (`evals/ci/run-completion.md`), but cannot establish that a host-produced result is truthful.
 Actual detached waiting, protected result storage, durable publication and interruption
 evidence remain required. No report file or structurally valid fixture substitutes for them.
+
+The detached supervisor now has actual child/process-group-loss and ordered publication
+evidence (`evals/ci/run-supervisor.md`). Supervisor SIGKILL, escaped process groups,
+inherited environment and malicious same-user storage remain residuals. It is not yet
+used for mutation qualification and cannot retroactively qualify the original orphan.
 
 AST statement/branch coverage now measures complete SDK/signer inventories with calibrated
 counters (`evals/ci/coverage.md`). Its initial deficit was remediated with failure-path tests;
@@ -183,3 +188,4 @@ failure remains retained; corrected hosted validation and the complete CI-2 prog
 | 1.30 | 2026-10-06 | SNP-3 binding authentication is a component only; payload semantics, freshness, prefix replay and restore remain open. |
 | 1.31 | 2026-10-07 | CI-2 cap-fault diagnostic/completion correction preserves ordinary shrinking, all successful floors and deadlines; failed hosted evidence remains visible. |
 | 1.32 | 2026-10-07 | CI-2 completion-record checks are a foundation; trusted actual production and durable publication remain open. |
+| 1.33 | 2026-10-07 | CI-2 actual supervision component evidence; full mutation integration and remaining containment risks explicit. |

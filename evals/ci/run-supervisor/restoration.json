@@ -1,0 +1,9 @@
+{
+  "actualExitStatus": 0,
+  "campaigns": 37,
+  "caughtFaultLines": 350,
+  "restoredInputs": 805,
+  "restoredCompiledFiles": 65,
+  "sourceAndCompiledRestoredExactly": true,
+  "rootTypeScriptAndPackageInputsMatch": true
+}

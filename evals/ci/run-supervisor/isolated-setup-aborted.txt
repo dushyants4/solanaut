@@ -1,0 +1,20 @@
+
+> test:bite
+> node evals/ci/bite.ts
+
+Running fault campaign: ci/bite-faults.ts
+caught bite aggregation fault: omit-campaign
+caught bite aggregation fault: ignore-failed-exit
+caught bite aggregation fault: ignore-unrestored-source
+caught bite aggregation fault: invent-clean-result
+caught bite aggregation fault: skip-first-campaign
+All bite aggregation faults caught; restored source passes
+Running fault campaign: ci/latch-faults.ts
+caught latch fault: v0
+caught latch fault: only-keel
+caught latch fault: only-previous
+caught latch fault: last-entry
+caught latch fault: no-replay-predecessor
+caught latch fault: no-denial-threshold
+caught latch fault: skip-intervening-decision
+All latch faults caught; restored source passes

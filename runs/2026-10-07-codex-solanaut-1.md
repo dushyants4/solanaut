@@ -8,6 +8,28 @@ work. This dated continuation retains the earlier session's full record at
 
 ## Did
 
+Actual supervisor frozen aggregate exits zero across thirty-seven campaigns and 350
+caught-fault lines. All 805 inputs and complete 65-file compiled inventory restore exactly;
+root TypeScript and package inputs match. Root integration passes 531 cases, typecheck
+passes, and pre-sync close passes nine gates with only the uncommitted-tree refusal.
+Private sync and hosted validation follow. No full mutation qualification is claimed.
+
+Completion foundation 3a142ea passes hosted run 37577296181. Actual supervisor publication
+tests expose acceptance after a failed directory sync; add a precreated private commit
+marker whose digest becomes visible only after result-file and directory sync succeed.
+Partial marker/result corruption refuses. Exact reader PID/pins also refuse a forged
+worker body even when its marker digest is recomputed. Launcher-group loss and normal
+launcher exit have distinct process scenarios. Actual producer fault injection/wiring and
+full close remain owed; this does not qualify the original interrupted mutation run.
+
+Completion foundation 3a142ea is privately pushed and passes all ten close gates; hosted
+run 37577296181 starts. Began the actual detached supervisor with failing stub process
+tests. Initial process scenarios pass actual child success/nonzero/signal, timeout handling,
+launch failure, exclusive directory and launcher death. A later wrong-worker result test
+exposes missing reader identity checks; add exact ticket pins. Group cleanup uses monotonic
+time and tests a surviving descendant. Final focused proof, fault injection and wiring are
+still in progress; no new mutation qualification is claimed.
+
 Final source recheck passes all 513 cases and typecheck. The corrected isolated fixture
 passes sixteen faults and every input/compiled-file hash restores. Pre-sync close passes
 nine gates; private sync follows. Original mutation scope and deadline remain unchanged.
@@ -111,6 +133,27 @@ record satisfies the close workflow's current-day record requirement. Earlier ca
 implementation, documentation and receipt changes remain in the continuing session record.
 
 ## Found
+
+Actual supervisor passes eighteen focused cases/nineteen real faults, 531 ordinary
+cases and typecheck. Earlier foreign-worker and ordered-publication failures remain
+retained. Aggregate setup is initially run from the candidate directory, so the copy
+assertion fails and the old aggregate starts without fresh inputs. Stop its driver,
+confirm its active campaign has ended, retain the partial output, and prepare from the
+repository root. Correct frozen manifest contains 805 input files and 65 compiled files.
+No failure is counted as qualification. Full integration and close remain pending.
+
+Directory-sync injection leaves a well-formed result visible before durable publication;
+the original reader incorrectly accepts it. Partial commit evidence and altered result
+bytes are also accepted initially. Preserve their failed output. Commit-marker acceptance
+fixes these cases without inventing child success or weakening deadlines. Fixture preload
+flags exist only for fault injection, never as an installation/runtime requirement.
+
+Supervisor stub fails the actual process scenarios. Reader initially accepts a changed
+supervisor PID; the new boundary case fails before exact ticket binding is added. Primary
+Node child-process/process documentation confirms detached groups and close-event semantics;
+the tested runtime stays pinned at Node 26.7.0, with no toolchain change. Signal delivery
+alone is not a termination proof. Fixture child loops have a separate safety exit and owned
+group cleanup so deliberate failures cannot leave unattended fixture processes.
 
 Clean-directory execution finds that the fingerprint fixture relies on an existing scratch
 parent. Its first rehearsal fails ENOENT; creating the owned parent makes the separate clean

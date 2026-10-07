@@ -1,0 +1,91 @@
+✔ CI-2: actual successful child completion is bound and stored privately (258.254193ms)
+✔ CI-2: actual nonzero child exit cannot qualify (221.636692ms)
+✔ CI-2: actual child termination signal remains a signal (199.777963ms)
+✔ CI-2: timeout cannot qualify even when the child handles termination with exit zero (2181.151431ms)
+✔ CI-2: launch failure records failure rather than inventing a child exit (150.675016ms)
+✔ CI-2: an existing run directory cannot be reused or overwritten (198.764949ms)
+✔ CI-2: detached actual waiting survives the launching process being killed (1068.001101ms)
+✔ CI-2: wrong specification identity refuses before executing the child (106.298858ms)
+✔ CI-2: foreign worker result cannot be read through a ticket (148.842372ms)
+✔ CI-2: completion-file sync failure never publishes accepted success (162.679121ms)
+✖ CI-2: completion-directory sync failure never publishes accepted success (164.027663ms)
+✖ CI-2: incomplete commit evidence cannot publish a valid result (168.137803ms)
+✖ CI-2: altered result bytes cannot retain the existing commit binding (170.131196ms)
+✔ CI-2: malformed operator commands refuse before creating a run (1.054398ms)
+✔ CI-2: normal child exit with a surviving worker cannot qualify (493.288497ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 12
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5888.949814
+
+✖ failing tests:
+
+test at evals/ci/run-supervisor.test.ts:107:1
+✖ CI-2: completion-directory sync failure never publishes accepted success (164.027663ms)
+  AssertionError [ERR_ASSERTION]: an unsynced publication cannot be accepted
+  + actual - expected
+  
+  + {
+  +   childPid: 920326,
+  +   commandHash: '0be07c9be5f0a2c1fb35a0ddc05cecd0df9da48ec2b9e290cd9127c26e4500a8',
+  +   completed: '2026-10-07T05:57:16.560Z',
+  +   error: null,
+  +   format: 1,
+  +   inputHash: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+  +   runId: 'publication-fixture',
+  +   signal: null,
+  +   started: '2026-10-07T05:57:16.513Z',
+  +   state: 'complete',
+  +   status: 0,
+  +   supervisorPid: 920318,
+  +   timedOut: false
+  + }
+  - null
+  
+      at syncFailure (file:///home/dashy/Projects/Solanaut/evals/ci/run-supervisor.test.ts:103:12)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/run-supervisor.test.ts:107:85)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: { runId: 'publication-fixture', inputHash: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', commandHash: '0be07c9be5f0a2c1fb35a0ddc05cecd0df9da48ec2b9e290cd9127c26e4500a8', format: 1, state: 'complete', supervisorPid: 920318, childPid: 920326, started: '2026-10-07T05:57:16.513Z', completed: '2026-10-07T05:57:16.560Z', status: 0, signal: null, error: null, timedOut: false },
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/ci/run-supervisor.test.ts:108:1
+✖ CI-2: incomplete commit evidence cannot publish a valid result (168.137803ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/run-supervisor.test.ts:110:190)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/ci/run-supervisor.test.ts:113:1
+✖ CI-2: altered result bytes cannot retain the existing commit binding (170.131196ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/run-supervisor.test.ts:115:239)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }

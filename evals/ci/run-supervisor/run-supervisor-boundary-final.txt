@@ -1,0 +1,18 @@
+✔ CI-2: actual successful child completion is bound and stored privately (221.136485ms)
+✔ CI-2: actual nonzero child exit cannot qualify (193.787315ms)
+✔ CI-2: actual child termination signal remains a signal (211.192545ms)
+✔ CI-2: timeout cannot qualify even when the child handles termination with exit zero (2181.285724ms)
+✔ CI-2: launch failure records failure rather than inventing a child exit (190.713921ms)
+✔ CI-2: an existing run directory cannot be reused or overwritten (192.45973ms)
+✔ CI-2: detached actual waiting survives the launching process being killed (1057.621158ms)
+✔ CI-2: wrong specification identity refuses before executing the child (137.626306ms)
+✔ CI-2: foreign worker result cannot be read through a ticket (221.79176ms)
+✔ CI-2: normal child exit with a surviving worker cannot qualify (539.36362ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5464.185443

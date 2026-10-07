@@ -1,0 +1,34 @@
+✔ CI-2: actual successful child completion is bound and stored privately (222.429736ms)
+✔ CI-2: actual nonzero child exit cannot qualify (152.122837ms)
+✔ CI-2: actual child termination signal remains a signal (127.18683ms)
+✔ CI-2: timeout cannot qualify even when the child handles termination with exit zero (2113.52933ms)
+✔ CI-2: launch failure records failure rather than inventing a child exit (108.909106ms)
+✔ CI-2: an existing run directory cannot be reused or overwritten (147.499883ms)
+✔ CI-2: detached actual waiting survives the launching process being killed (1023.230746ms)
+✔ CI-2: wrong specification identity refuses before executing the child (122.040127ms)
+✖ CI-2: foreign worker result cannot be read through a ticket (162.905535ms)
+✔ CI-2: normal child exit with a surviving worker cannot qualify (513.740183ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 9
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4834.988902
+
+✖ failing tests:
+
+test at evals/ci/run-supervisor.test.ts:81:1
+✖ CI-2: foreign worker result cannot be read through a ticket (162.905535ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/run-supervisor.test.ts:85:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }

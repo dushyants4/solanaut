@@ -154,7 +154,8 @@ partial signing is unchanged; this is not installed signer or live-chain qualifi
    Stryker preparation freezes decoder/policy scope and proves staged-source isolation;
    report/floor faults are maintained (`evals/ci/mutation.md`). Actual score remains owed.
    Bound completion-record checks and operator-tool restoration have local fixture evidence
-   (`evals/ci/run-completion.md`); detached production and durable publication remain owed.
+   (`evals/ci/run-completion.md`). Detached child supervision and ordered publication now
+   have component evidence (`evals/ci/run-supervisor.md`); qualification integration remains owed.
    Performance report checks are prepared (`evals/ci/performance.md`); actual measurements
    remain owed. Public ledger differential checks now retain a regression corpus and a fresh
    qualification block (`evals/ci/differential.md`); hosted CI is checked after private sync.

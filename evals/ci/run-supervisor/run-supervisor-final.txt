@@ -1,0 +1,26 @@
+✔ CI-2: actual successful child completion is bound and stored privately (233.024291ms)
+✔ CI-2: actual nonzero child exit cannot qualify (194.141571ms)
+✔ CI-2: actual child termination signal remains a signal (190.832084ms)
+✔ CI-2: timeout cannot qualify even when the child handles termination with exit zero (2138.236065ms)
+✔ CI-2: launch failure records failure rather than inventing a child exit (170.19561ms)
+✔ CI-2: an existing run directory cannot be reused or overwritten (208.692554ms)
+✔ CI-2: detached actual waiting survives the launching process being killed (1016.994412ms)
+✔ CI-2: wrong specification identity refuses before executing the child (114.747644ms)
+✔ CI-2: a normal launcher exits without waiting for its supervised child (362.113086ms)
+✔ CI-2: foreign worker result cannot be read through a ticket (196.035566ms)
+✔ CI-2: inconsistent command identity refuses despite a matching specification digest (142.476546ms)
+✔ CI-2: shared result permissions refuse before reading completion (159.211031ms)
+✔ CI-2: completion-file sync failure never publishes accepted success (154.686127ms)
+✔ CI-2: completion-directory sync failure never publishes accepted success (156.391147ms)
+✔ CI-2: incomplete commit evidence cannot publish a valid result (149.114135ms)
+✔ CI-2: altered result bytes cannot retain the existing commit binding (169.401071ms)
+✔ CI-2: malformed operator commands refuse before creating a run (1.033577ms)
+✔ CI-2: normal child exit with a surviving worker cannot qualify (494.939228ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6456.840424

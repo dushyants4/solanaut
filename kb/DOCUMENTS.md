@@ -1,5 +1,11 @@
 # DOCUMENTS.md — the document register
 
+2026-10-07 actual supervisor component registers SPEC Draft 4.42, RISKS 1.33,
+PROGRESS, CLAIMS S53, receipt/index, continuation record and HANDOFF log. Actual
+child completion and ordered result publication have builder-authored local evidence;
+full mutation integration, supervisor-death containment and independent qualification
+remain owed. Initial failures and the aborted aggregate setup remain retained.
+
 CI-2 completion-record foundation registers SPEC Draft 4.41, RISKS 1.32, PROGRESS,
 S52/CLAIMS, the new receipt/index,
 operator-tool restoration fingerprint and continuation/HANDOFF records on 2026-10-07.

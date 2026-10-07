@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.41** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.42** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -968,6 +968,14 @@ restoration fingerprints. These checks do not authenticate a producer or establi
 child execution; detached supervision, atomic result publication and process-loss tests
 remain required before mutation qualification consumes this record.
 
+CI-2 operator helper now freezes commands in private fresh Linux directories and detaches
+actual child supervision from the launching process group. Completion records retain the
+observed close status, signal, launch error, interruption and deadline state. File and
+directory sync precede a separately checked commit digest; ticket identity remains external.
+Inherited environment and escaped descendants are outside this component's assurance.
+Supervisor SIGKILL needs external containment and cannot supply inferred success. This
+helper is not yet consumed by mutation qualification (`evals/ci/run-supervisor.md`).
+
 ### 13.15 Publication-review preparation
 
 | ID | Requirement | Verified by |
@@ -1040,3 +1048,4 @@ These are requirements, not current support claims or permission for human-owned
 | Draft 4.39 | 2026-10-06 | OPR-1–8 allocate the approved individual Linux lifecycle, verification and human dependencies; no support or deployment gate is claimed. |
 | Draft 4.40 | 2026-10-07 | CI-2 planted-cap first-counterexample diagnostics and actual fault-process completion; ordinary shrinking, successful floors, domains and deadlines stay unchanged. |
 | Draft 4.41 | 2026-10-07 | CI-2 externally bound completion-record checks and operator-tool restoration; actual detached producer and qualification remain owed. |
+| Draft 4.42 | 2026-10-07 | CI-2 actual detached supervisor and ordered result publication; environment, supervisor-death containment and mutation integration remain owed. |

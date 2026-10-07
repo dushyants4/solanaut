@@ -189,6 +189,17 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+Supervisor isolated aggregate exits zero across thirty-seven campaigns/350 caught-fault
+lines. All 805 frozen inputs/65 compiled files restore exactly, and root TypeScript and
+package inputs match. Pre-sync close passes nine gates, refusing the uncommitted tree;
+private commit/push and hosted checks follow. Full mutation integration remains owed.
+
+Actual evaluation supervisor component passes eighteen local cases/nineteen real faults,
+all 531 ordinary cases and typecheck (`evals/ci/run-supervisor.md`). Foreign-worker and
+uncommitted-publication failures are retained. Isolated aggregate setup initially uses
+the wrong working directory and is stopped; its output remains retained. Correctly frozen
+aggregate, exact restoration and private close follow. Full mutation integration remains owed.
+
 Final completion foundation recheck passes 513 root cases and typecheck. The corrected
 isolated fixture passes sixteen faults with all input/release hashes restored. Pre-sync
 close passes nine gates, with the uncommitted step still refused; private sync follows.

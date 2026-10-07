@@ -1,0 +1,15 @@
+✔ CI-2: actual successful child completion is bound and stored privately (206.785083ms)
+✔ CI-2: actual nonzero child exit cannot qualify (190.758145ms)
+✔ CI-2: actual child termination signal remains a signal (211.203667ms)
+✔ CI-2: timeout cannot qualify even when the child handles termination with exit zero (2144.125562ms)
+✔ CI-2: launch failure records failure rather than inventing a child exit (107.220949ms)
+✔ CI-2: an existing run directory cannot be reused or overwritten (192.64299ms)
+✔ CI-2: detached actual waiting survives the launching process being killed (1064.451976ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4368.690917
