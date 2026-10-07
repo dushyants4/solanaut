@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.37** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.38** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 The threat model ([docs/papers/THREAT-MODEL.md](papers/THREAT-MODEL.md)) lists what an attacker can do to a running
@@ -207,3 +207,7 @@ local compatibility evidence does not imply upstream endorsement or release clea
 The preceding recovery revision fails the oldest-runtime hosted job. Its baseline
 option spelling is corrected with captured-command regressions; local passes do not
 replace the required corrected hosted matrix (`evals/ci/mutation-runtime.md`).
+
+Malformed checkpoint signature decoding now has a fixed encoded-size refusal
+(`evals/sdk/checkpoint-signature.md`). JSON capture, complete snapshot restoration
+and its bounded-memory/startup targets remain separate outstanding requirements.

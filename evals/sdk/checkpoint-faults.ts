@@ -4,6 +4,7 @@ import { spawnSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 const path = "packages/sdk/src/checkpoint.ts", original = readFileSync(path, "utf8");
 const faults = [
+  ["signature-length-bound", ' || value.length !== 88', ""],
   ["key-length-bound", 'import { isAddress } from "./base58.ts";', 'import { decodeBase58, encodeBase58 } from "./base58.ts";\nconst isAddress = (value: string) => { try { const bytes = decodeBase58(value); return bytes.length === 32 && encodeBase58(bytes) === value; } catch { return false; } };'],
   ["format", "b.format !== 1", "false"],
   ["profile", "canonicalJSON(b.profile) !== canonicalJSON(EVALUATION_PROFILE)", "false"],
@@ -32,7 +33,7 @@ for (const [name, from, to] of faults) {
   assert.equal(original.split(from).length, 2, "missing or ambiguous checkpoint fault: " + name);
   try {
     writeFileSync(path, original.replace(from, to)); const changed = run();
-    assert.equal(changed.status, 1, changed.stdout + changed.stderr); assert.match(changed.stdout, /SNP-3/); assert.match(changed.stdout, /tests 18\b/);
+    assert.equal(changed.status, 1, changed.stdout + changed.stderr); assert.match(changed.stdout, /SNP-3/); assert.match(changed.stdout, /tests 19\b/);
     console.log("caught checkpoint fault: " + name);
   } finally { writeFileSync(path, original); }
 }
@@ -40,7 +41,7 @@ const entry = "packages/sdk/src/index.ts", entrySource = readFileSync(entry, "ut
 try {
   const damaged = entrySource.replace(/^export .*from "\.\/checkpoint\.ts";\n/m, ""); assert.notEqual(damaged, entrySource);
   writeFileSync(entry, damaged); const changed = run(); assert.equal(changed.status, 1, changed.stdout + changed.stderr);
-  assert.match(changed.stdout, /candidate SDK entry exports/); assert.match(changed.stdout, /tests 18\b/);
+  assert.match(changed.stdout, /candidate SDK entry exports/); assert.match(changed.stdout, /tests 19\b/);
   console.log("caught checkpoint fault: candidate-export");
 } finally { writeFileSync(entry, entrySource); }
 const restored = run(); assert.equal(restored.status, 0, restored.stdout + restored.stderr);

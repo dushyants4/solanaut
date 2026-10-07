@@ -15,6 +15,7 @@ function battery() {
 const baseline = battery();
 assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
 const faults = [
+  { name: "checkpoint-signature-bound", path: "dist/src/checkpoint.js", caught: "installed checkpoint", damage: (text: string) => text.replace(" || value.length !== 88", "") },
   { name: "checkpoint-export", path: "dist/src/index.js", caught: "installed checkpoint", damage: (text: string) => text.replace(/^export .*from "\.\/checkpoint\.js";\n/m, "") },
   { name: "export", path: "package.json", caught: "installed JavaScript", damage: (text: string) => {
     const value = JSON.parse(text);

@@ -189,6 +189,16 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+SNP-3 signature bound ordinary suite passes all 546 cases with CPU 0/4 affinity;
+typecheck zero. Both local instrumented runs fail the unchanged baseline wait.
+Receipt preserves these failures; corrected hosted coverage remains required.
+Prior runtime revision 9ac6e7c hosted run 37611898486 passes every job.
+
+Checkpoint signature decoder bound passes nineteen focused cases/twenty-three faults
+and nine installed cases/six compiled faults after observed failures
+(`evals/sdk/checkpoint-signature.md`). Concurrent integration timing failures retained;
+sequential final checks and private close follow. Frozen mutation candidate remains intact.
+
 Recovery runtime correction uses the documented cross-matrix isolation option;
 six cases/fifteen faults pass locally (`evals/ci/mutation-runtime.md`). Definition 5
 declares a fresh seed with unchanged scope/floors. Hosted Node 22 failure is retained;

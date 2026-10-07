@@ -45,7 +45,7 @@ function binding(input: unknown): CheckpointBinding {
 export function prepareCheckpointText(input: unknown): string { return "solanaut checkpoint\n" + canonicalJSON(binding(input)); }
 export function prepareCheckpointPrefixText(input: unknown): string { return "solanaut checkpoint keel prefix\n" + canonicalJSON(binding(input)); }
 function signature(key: string, text: string, value: unknown): boolean {
-  if (typeof value !== "string") return false;
+  if (typeof value !== "string" || value.length !== 88) return false;
   const bytes = Buffer.from(value, "base64");
   return bytes.toString("base64") === value && verifyEd25519(key, Buffer.from(text), bytes);
 }

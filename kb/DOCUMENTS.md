@@ -227,3 +227,6 @@ dependency remediation plan, receipt/index, PROGRESS and HANDOFF continuation.
 
 2026-10-07 baseline runtime correction registers SPEC Draft 4.46, RISKS 1.37,
 CLAIMS S57, receipt/index, HANDOFF and continuing record. Hosted failure remains retained.
+
+2026-10-07 checkpoint signature decoder bound registers SPEC Draft 4.47, RISKS 1.38,
+CLAIMS S58, receipt/index and HANDOFF/continuation records. Full snapshots remain owed.

@@ -57,6 +57,10 @@ test("SNP-3: snapshot and prefix signatures are not interchangeable", () => {
 });
 test("SNP-3: missing, malformed and noncanonical signatures deny", () => {
   const f = fixture(); const a = f.authorize();
+  const alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+  const noncanonical=a.snapshot.slice(0,85)+alphabet[alphabet.indexOf(a.snapshot[85]!)+1]+"==";
+  assert.deepEqual(Buffer.from(noncanonical,"base64"),Buffer.from(a.snapshot,"base64"));
+  assert.throws(()=>verifyCheckpointBinding(f.binding,{...a,snapshot:noncanonical},f.trust,f.digests),CheckpointBindingError);
   for (const bad of [undefined, null, 1, {}, [], "", "!", a.snapshot + " ", Buffer.alloc(63).toString("base64")]) for (const field of ["snapshot", "prefix"] as const) assert.throws(() => verifyCheckpointBinding(f.binding, { ...a, [field]: bad } as CheckpointSignatures, f.trust, f.digests), CheckpointBindingError);
 });
 test("SNP-3: unsupported formats/profiles and malformed descriptor values deny", () => {
@@ -120,4 +124,22 @@ test("SNP-3: excessive public keys refuse before unbounded base58 decoding", () 
   const result = spawnSync(process.execPath, ["--input-type=module", "-e", script, JSON.stringify({binding:f.binding,trust:f.trust,digests:f.digests})], { encoding: "utf8", timeout: 3000 });
   assert.equal(result.status, 0, JSON.stringify({status:result.status,signal:result.signal,error:result.error?.message}) + result.stderr);
   assert.deepEqual(JSON.parse(result.stdout), {refused:4});
+});
+test("SNP-3: invalid signature lengths refuse before base64 decoding",()=>{
+  const f=fixture(),a=f.authorize();
+  const script=`
+    import {verifyCheckpointBinding,CheckpointBindingError} from './packages/sdk/src/checkpoint.ts';
+    const f=JSON.parse(process.argv[1]),original=Buffer.from;let refused=0;
+    Buffer.from=function(value,...options){
+      if(typeof value==='string' && options[0]==='base64' && value.length!==88)throw new Error('invalid length reached decoder');
+      return Reflect.apply(original,Buffer,[value,...options]);
+    };
+    for(const size of [0,4,84,87,89,1000000])for(const field of ['snapshot','prefix']){
+      try{verifyCheckpointBinding(f.binding,{...f.a,[field]:'A'.repeat(size)},f.trust,f.digests);}
+      catch(error){if(error instanceof CheckpointBindingError)refused++;else throw error;}
+    }
+    console.log(JSON.stringify({refused}));`;
+  const result=spawnSync(process.execPath,["--input-type=module","-e",script,JSON.stringify({binding:f.binding,trust:f.trust,digests:f.digests,a})],{encoding:"utf8",timeout:3000});
+  assert.equal(result.status,0,JSON.stringify({status:result.status,signal:result.signal,error:result.error?.message})+result.stderr);
+  assert.deepEqual(JSON.parse(result.stdout),{refused:12});
 });

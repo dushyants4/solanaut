@@ -82,6 +82,10 @@ ANC-3 structural component: `sdk/archive-anchor.md` retains first failures, the 
 FIFO failure, nine API/four command faults and seven installed checks. Authenticated replay,
 on-chain authority and full anchor milestone remain owed.
 
+SNP-3 signature decoder bound: `sdk/checkpoint-signature.md` retains source/installed
+first failures and concurrent integration timing failures. Focused and packed faults
+pass; complete snapshots and independent qualification remain owed.
+
 POL-1/5 public preparation component: `sdk/prepare-policy.md` retains seven first failures,
 installed/build/harness errors and the masked symlink fault; nine final faults and eight
 installed checks pass. No signing, policy installation or human Phantom qualification.

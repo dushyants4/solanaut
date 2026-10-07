@@ -1,0 +1,65 @@
+✔ SNP-3: canonical checkpoint and prefix domains bind every descriptor field (11.263402ms)
+✔ SNP-3: pinned signatures and independently computed digests return immutable metadata (10.945386ms)
+✔ SNP-3: a foreign checkpoint signature is denied under the external pin (6.146714ms)
+✔ SNP-3: checkpoint authority cannot share a principal or anchor role (3.885923ms)
+✔ SNP-3: foreign guard, cluster or checkpoint pin is denied (2.533356ms)
+✔ SNP-3: a trusted signature cannot authorise a false checkpoint authority descriptor (2.40099ms)
+✔ SNP-3: independently observed payload digest mismatches deny even valid signatures (3.249204ms)
+✔ SNP-3: altered policy, sequence, head or payload bindings cannot reuse signatures (7.39402ms)
+✔ SNP-3: snapshot and prefix signatures are not interchangeable (5.84625ms)
+✔ SNP-3: missing, malformed and noncanonical signatures deny (16.976655ms)
+✔ SNP-3: unsupported formats/profiles and malformed descriptor values deny (4.184872ms)
+✔ SNP-3: genesis and safe sequence/version boundaries are explicit (4.993676ms)
+✔ SNP-3: malformed trust and observed digest records cannot authorise bindings (2.758388ms)
+✔ SNP-3: caller metadata cannot mutate captured external pins or observed digests (3.553446ms)
+✔ SNP-3: malformed JSON and throwing accessors produce typed refusal (87.240023ms)
+✔ SNP-3: returned metadata does not retain mutable caller references (10.267695ms)
+✔ SNP-3: candidate SDK entry exports the binding API and typed refusal (224.15336ms)
+✔ SNP-3: excessive public keys refuse before unbounded base58 decoding (238.654775ms)
+✖ SNP-3: invalid signature lengths refuse before base64 decoding (149.109333ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1245.963995
+
+✖ failing tests:
+
+test at packages/sdk/test/checkpoint.test.ts:128:1
+✖ SNP-3: invalid signature lengths refuse before base64 decoding (149.109333ms)
+  AssertionError [ERR_ASSERTION]: {"status":1,"signal":null}file:///home/dashy/Projects/Solanaut/[eval1]:5
+        if(typeof value==='string' && options[0]==='base64' && value.length!==88)throw new Error('invalid length reached decoder');
+                                                                                       ^
+  
+  Error: invalid length reached decoder
+      at Buffer.from (file:///home/dashy/Projects/Solanaut/[eval1]:5:86)
+      at signature (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint.ts:49:24)
+      at verifyCheckpointBinding (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint.ts:63:8)
+      at file:///home/dashy/Projects/Solanaut/[eval1]:9:11
+      at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+      at async node:internal/modules/esm/loader:226:26
+      at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:223:20)
+      at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint.test.ts:143:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

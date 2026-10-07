@@ -261,6 +261,43 @@ pending. No threshold, accepted ADR or protected harness file changes.
 
 ## Open
 
+SNP-3 ordinary integration passes all 546 cases at normal priority with explicit CPU
+0/4 affinity and unchanged fixture waits; typecheck exits zero. Sequential instrumented
+coverage still fails the existing baseline wait, so both local coverage attempts are
+unqualified. Preserve failures alongside the pass. Required ordinary/type/close workflow
+permits private sync; corrected hosted coverage remains required, never a documentation
+exception. Frozen full mutation continues independently; no pending score inferred.
+
+Corrected runtime hosted run 37611898486 succeeds in every job. Local snapshot
+recheck at normal priority restores the policy-source timing case but the baseline
+fixture still exceeds its unchanged wait. Concurrent AST coverage also refuses that
+fixture. Preserve both failures. Next local integration explicitly pins only the
+new validation process to CPU 0/4, with no changes to the independently frozen engine,
+its clocks, workload, coefficient or deadlines. Packed candidate passes all six faults
+and restores compiled bytes. No full root/coverage pass is claimed yet.
+
+SNP-3 review adds an invalid-signature-length decoder intercept; old code fails first.
+Exact encoded signature size now refuses before Buffer decoding; canonical pad-bit
+regression keeps the canonicalisation fault visible. Nineteen focused cases and
+twenty-three faults pass with restoration. Old packed SDK fails first; rebuilt
+artefact and installed faults are under evaluation. Concurrent low-priority root
+integration fails existing baseline-wait and policy-source timing checks while
+coverage and frozen mutation are active. Preserve this diagnostic, not a pass;
+sequential normal-priority integration with unchanged limits follows. Host contention
+is plausible, not established by these failures alone. No threshold is widened.
+
+9ac6e7c and dependency fdae9b4 are privately pushed; all ten close gates pass.
+Corrected hosted run 37611898486 is active. Fresh full mutation runs from frozen
+candidate `.sandbox/solanaut-1/mutation-candidate-9ac6e7c`, independently installed
+without lifecycle scripts. Its selected inputs and entire source inventory match the
+committed revision. Supervised stage `run-1g1dBC`, supervisor PID 1385636, actual engine
+PID 1385644; definition 5/fresh seed 23107, unchanged workload/floors/twelve-hour limit.
+Use the candidate's `node evals/ci/mutation-run.ts --finish` with its full staged path
+only after actual completion; never infer success from a report or process disappearance.
+Initial manifest/ticket/source inventory/install/signatures are retained under
+`evals/ci/mutation/supervised-9ac6e7c/`. No complete score claimed. Root product work can
+proceed; never mutate this candidate or its independently installed dependencies.
+
 Hosted recovery 37610469380 finishes: twelve jobs succeed, Node 22 ordinary test job
 fails on non-successful staged baseline completion. Child output was omitted by the
 assertion, now included. The undocumented old option is a confirmed compatibility

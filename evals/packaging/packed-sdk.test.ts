@@ -175,10 +175,18 @@ test("SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuse
     const verified=verifyCheckpointBinding(body,signatures,trust,digests);let refusal;
     try {verifyCheckpointBinding(body,signatures,trust,{...digests,stateDigest:hash('altered')});}
     catch(error){refusal={typed:error instanceof CheckpointBindingError,code:error.code};}
-    console.log(JSON.stringify({seq:verified.seq,immutable:Object.isFrozen(verified),refusal}));`;
+    const original=Buffer.from;let signatureRefusals=0;
+    Buffer.from=function(value,...options){
+      if(typeof value==='string' && options[0]==='base64' && value.length!==88)throw new Error('invalid signature reached installed decoder');
+      return Reflect.apply(original,Buffer,[value,...options]);
+    };
+    for(const field of ['snapshot','prefix'])try{verifyCheckpointBinding(body,{...signatures,[field]:'A'.repeat(1000000)},trust,digests);}
+    catch(error){if(error instanceof CheckpointBindingError)signatureRefusals++;else throw error;}
+    Buffer.from=original;
+    console.log(JSON.stringify({seq:verified.seq,immutable:Object.isFrozen(verified),refusal,signatureRefusals}));`;
   const result=spawnSync(process.execPath,["--input-type=module","-e",script],{cwd:consumer,encoding:"utf8"});
   assert.equal(result.status,0,result.stderr);
-  assert.deepEqual(JSON.parse(result.stdout),{seq:1,immutable:true,refusal:{typed:true,code:"checkpoint-binding"}});
+  assert.deepEqual(JSON.parse(result.stdout),{seq:1,immutable:true,refusal:{typed:true,code:"checkpoint-binding"},signatureRefusals:2});
 });
 
 test("PKG-3: installed replay and table-pin commands execute with their documented usage exits", () => {

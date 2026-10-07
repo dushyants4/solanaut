@@ -1,0 +1,8 @@
+{
+  "packages/sdk/src/checkpoint.ts": "e5a13682b909029c91f12422a7860033f65f1c53ac3fffca8b907901e67df382",
+  "packages/sdk/test/checkpoint.test.ts": "992c939009c220c64edd443ccf9df754a82d9f4fe6a45c6fa9d9b24b7126b66d",
+  "evals/sdk/checkpoint-faults.ts": "9039f43a6c97c038ab93d461a50c7ead08a792755f28c527361132cbb1e52f90",
+  "evals/packaging/packed-sdk.test.ts": "8e97d68f489094887d3ea8209fc5a4fd6ef6222d46c3fde9dcad8e782910ea79",
+  "evals/packaging/faults.ts": "d5dbc8f2e054d77999de12df1b5be743324a6a9e3ddc63cb1f747bc39aa65dbe",
+  "package-lock.json": "7e461a8dc3c217c556f4720019bfa0fd23790b2c8f5fc05f9fd0e369bfe0c652"
+}
