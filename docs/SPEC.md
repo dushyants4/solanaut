@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.47** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.48** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -526,6 +526,7 @@ Each is fixed test-first: the evaluator writes the failing test, and the builder
 | D18 | A receipt redeemed after its decision was reported `expired`, `failed` or `landed` | `guard.ts` (`redeem`) | a final outcome refuses the receipt |
 | D19 | A release's expiry was judged on the caller's `at` | `guard.ts` (`release`) | the latest recorded time |
 | D20 | An attempt that could still land left the window cap after `windowMs` | `state.ts` (`windowTotals`) | count it while a trusted height shows it can still land |
+| D21 | A resealed malformed-proposal entry can inject non-null Keel fields into replay and restore, although live evaluation never ticks Keel for that input | `guard.ts` (`replay`, `reapply`), reproduced on 2026-10-07 | **closed in the builder candidate:** impossible fields refuse; genuine malformed and parsed history retain replay/restore. `evals/sdk/malformed-replay.md`; full snapshot and fresh mutation qualification remain owed |
 
 **Status:** closed at milestone 2a.5 (`evals/sdk/admission.md`), test-first: D1, D2, D5, D6, D7, D9, D10 and D12. D12
 closed early: the guard decodes bytes itself, so `packages/sdk/src` imports no web3.js. D11 closed at milestone 2a.6
@@ -1076,3 +1077,12 @@ SNP-3 checkpoint signatures refuse invalid encoded size before base64 decoding;
 equal-length noncanonical pad bits also refuse. Caller-owned JSON capture has not
 been established as bounded. Complete payload/restore/publication remains owed
 (`evals/sdk/checkpoint-signature.md`).
+
+SNP-3 archive payload preparation uses canonical JSON plus a final newline, with
+`format: 1`, `kind: "solanaut-checkpoint-archives"` and ordered SNP-1 segment receipts.
+Receipts cover genesis through the checkpoint's next sequence without gaps or empty
+segments, and end at its preceding head. Each retains its byte count, file digest,
+sequence span and optional observed anchor. The payload digest binds the actual
+catalogue bytes; metadata preparation alone does not verify the referenced files,
+anchor authority, policy or admission state. Snapshot context is captured before
+caller-owned receipts. This is a reversible encoding choice within accepted ADR-019.

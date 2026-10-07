@@ -30,12 +30,23 @@ const inputPolicy = JSON.stringify(WORKLOAD_POLICY, (_key, value) => typeof valu
 
 test("PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts", () => {
   const script = `
-    import {createGuard} from '@solanaut/sdk';
+    import {createGuard,replay,memoryStore} from '@solanaut/sdk';
+    import {createHash} from 'node:crypto';
     const g = await createGuard({policy: JSON.parse(process.argv[1]), sensor: () => ({intensity:0,valence:0,repetition:0})});
     const pay = g.check({message: new Uint8Array(Buffer.from(process.argv[2], 'base64')), at: 1000});
     const drain = g.check({message: new Uint8Array(Buffer.from(process.argv[3], 'base64')), at: 2000});
     console.log(JSON.stringify({allow: pay.allow, rule: drain.rule, verified: pay.keel.verified}));
     g.close();
+    const original=await createGuard({policy:JSON.parse(process.argv[1])});
+    const {hash,...body}=original.check({message:null,at:0});original.close();
+    const forged={...body,posture:'DEFAULT',telemetry:{intensity:0,valence:0,repetition:0},temperatureMax:0};
+    const canonical=JSON.stringify(forged,(_key,value)=>value && typeof value==='object' && !Array.isArray(value)?Object.fromEntries(Object.keys(value).sort().map(key=>[key,value[key]])):value);
+    const entry={...forged,hash:createHash('sha256').update(canonical).digest('hex')};
+    if((await replay([entry],JSON.parse(process.argv[1]))).ok)throw new Error('malformed controller event replayed');
+    const store=memoryStore();store.entries.push(entry);let refused=false;
+    try{const restored=await createGuard({policy:JSON.parse(process.argv[1]),log:store});restored.close();}
+    catch(error){refused=/malformed.*Keel/.test(error.message);}
+    if(!refused)throw new Error('malformed controller event restored');
   `;
   const result = spawnSync(process.execPath, ["--input-type=module", "-e", script, inputPolicy, Buffer.from(transfer(2)).toString("base64"), Buffer.from(transfer(3)).toString("base64")], { cwd: consumer, encoding: "utf8" });
   assert.equal(result.status, 0, result.stderr);
@@ -95,6 +106,12 @@ test("PKG-2: consumer declarations resolve and reject invalid sensor telemetry",
     // @ts-expect-error signature records require both domains
     verifyCheckpointBinding({}, {snapshot:'signature'}, checkpointTrust, checkpointDigests);
     void prepareCheckpointText; void checkpointSequence; void wrongCheckpointTrust;
+    const catalogue = (await import('@solanaut/sdk')).prepareCheckpointArchives([], {seq:0,head:''});
+    const prepared: import('@solanaut/sdk').PreparedCheckpointArchives = catalogue;
+    const digest: string = prepared.digest;
+    // @ts-expect-error prepared payloads cannot be changed by consumers
+    prepared.text = 'changed';
+    void digest;
   `);
   writeFileSync(join(consumer, "tsconfig.json"), JSON.stringify({ compilerOptions: { noEmit: true, strict: true, module: "NodeNext", moduleResolution: "NodeNext", target: "ES2022", types: [], lib: ["ES2022", "DOM"] }, files: ["consumer.ts"] }));
   const result = spawnSync(join(root, "node_modules/.bin/tsc"), ["-p", "tsconfig.json"], { cwd: consumer, encoding: "utf8" });
@@ -163,7 +180,7 @@ test("POL-1/5/PKG-1: installed policy command prepares canonical public signing 
 
 test("SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state", () => {
   const script = `
-    import {prepareCheckpointText,prepareCheckpointPrefixText,verifyCheckpointBinding,CheckpointBindingError,EVALUATION_PROFILE,encodeBase58} from '@solanaut/sdk';
+    import {prepareCheckpointText,prepareCheckpointPrefixText,verifyCheckpointBinding,CheckpointBindingError,prepareCheckpointArchives,CheckpointArchiveError,EVALUATION_PROFILE,encodeBase58} from '@solanaut/sdk';
     import {generateKeyPairSync,sign,createHash} from 'node:crypto';
     const pair=()=>{const keys=generateKeyPairSync('ed25519');return {keys,publicKey:encodeBase58(keys.publicKey.export({type:'spki',format:'der'}).subarray(-32))};};
     const authority=pair(),principal=pair(),anchor=pair();
@@ -183,6 +200,12 @@ test("SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuse
     for(const field of ['snapshot','prefix'])try{verifyCheckpointBinding(body,{...signatures,[field]:'A'.repeat(1000000)},trust,digests);}
     catch(error){if(error instanceof CheckpointBindingError)signatureRefusals++;else throw error;}
     Buffer.from=original;
+    const catalogue=prepareCheckpointArchives([],{seq:0,head:''});
+    if(catalogue.digest!==hash(catalogue.text))throw new Error('catalogue digest differs');
+    let catalogueRefusal=false;
+    try{prepareCheckpointArchives([],{seq:1,head:hash('missing')});}
+    catch(error){catalogueRefusal=error instanceof CheckpointArchiveError;}
+    if(!catalogueRefusal)throw new Error('invalid catalogue accepted');
     console.log(JSON.stringify({seq:verified.seq,immutable:Object.isFrozen(verified),refusal,signatureRefusals}));`;
   const result=spawnSync(process.execPath,["--input-type=module","-e",script],{cwd:consumer,encoding:"utf8"});
   assert.equal(result.status,0,result.stderr);

@@ -1,0 +1,51 @@
+{
+  "name": "solanaut",
+  "private": true,
+  "type": "module",
+  "description": "A transaction firewall for Solana AI agents. See README.md; the MVP baseline is docs/SPEC.md.",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=22.6"
+  },
+  "scripts": {
+    "doctor": "uv run --script tools/doctor.py",
+    "test": "node --test packages/sdk/test/*.test.ts apps/*/test/*.test.ts evals/ci/*.test.ts",
+    "typecheck": "tsc -p tsconfig.json",
+    "sandbox": "node apps/sandbox/src/main.ts",
+    "validator": "PATH=\"$HOME/.local/share/solana/install/active_release/bin:$PATH\" solana-test-validator --ledger .sandbox/ledger --reset --quiet",
+    "pin-table": "node packages/sdk/bin/pin-table.ts",
+    "replay": "node packages/sdk/bin/replay.ts",
+    "verify-archive": "node packages/sdk/bin/verify-archive.ts",
+    "prepare-policy": "node packages/sdk/bin/prepare-policy.ts",
+    "release:prepare": "node packages/sdk/bin/prepare-release.ts",
+    "test:package": "node --test evals/packaging/*.test.ts",
+    "test:package:faults": "node evals/packaging/faults.ts",
+    "test:latch:faults": "node evals/ci/latch-faults.ts",
+    "test:bite": "node evals/ci/bite.ts",
+    "test:fuzz": "node evals/ci/fuzz.ts",
+    "test:replay": "node evals/ci/replay.ts",
+    "test:kills": "node evals/ci/kills.ts",
+    "test:coverage": "node evals/ci/coverage-run.ts",
+    "test:mutation": "node evals/ci/mutation-run.ts",
+    "test:differential": "node evals/ci/differential-run.ts",
+    "test:traffic": "node evals/ci/traffic-run.ts",
+    "cockpit": "node apps/cockpit/src/server.ts"
+  },
+  "overrides": {
+    "typed-rest-client@2.3.1": {
+      "qs": "6.16.0"
+    }
+  },
+  "devDependencies": {
+    "@stryker-mutator/core": "10.0.0",
+    "@types/node": "26.6.3",
+    "fast-check": "4.10.2",
+    "istanbul-lib-coverage": "3.2.2",
+    "istanbul-lib-instrument": "6.0.3",
+    "puppeteer-core": "25.12.0",
+    "typescript": "7.0.2"
+  }
+}

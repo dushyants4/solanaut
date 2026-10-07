@@ -1,0 +1,36 @@
+✖ SNP-3: caller array methods cannot substitute unvalidated receipts (8.008024ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 440.414442
+
+✖ failing tests:
+
+test at packages/sdk/test/checkpoint-archives.test.ts:24:1
+✖ SNP-3: caller array methods cannot substitute unvalidated receipts (8.008024ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   digest: '0721832fd4f6109902adb442d4fae63ca87148ab5b2878b284b4772ddf06b837',
+  +   text: '{"format":1,"kind":"solanaut-checkpoint-archives","segments":[{"bytes":10,"entries":2,"firstSeq":0,"head":"1111111111111111111111111111111111111111111111111111111111111111","nextSeq":2,"sha256":"2222222222222222222222222222222222222222222222222222222222222222","unexpected":true},{"bytes":12,"entries":2,"firstSeq":2,"head":"3333333333333333333333333333333333333333333333333333333333333333","nextSeq":4,"sha256":"4444444444444444444444444444444444444444444444444444444444444444"}]}\n'
+  -   digest: 'ef75158775ee2829c210ea2905e3b3935287e7a97345f7832f63cbf4cb26b8ca',
+  -   text: '{"format":1,"kind":"solanaut-checkpoint-archives","segments":[{"bytes":10,"entries":2,"firstSeq":0,"head":"1111111111111111111111111111111111111111111111111111111111111111","nextSeq":2,"sha256":"2222222222222222222222222222222222222222222222222222222222222222"},{"bytes":12,"entries":2,"firstSeq":2,"head":"3333333333333333333333333333333333333333333333333333333333333333","nextSeq":4,"sha256":"4444444444444444444444444444444444444444444444444444444444444444"}]}\n'
+    }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:27:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { text: '{"format":1,"kind":"solanaut-checkpoint-archives","segments":[{"bytes":10,"entries":2,"firstSeq":0,"head":"1111111111111111111111111111111111111111111111111111111111111111","nextSeq":2,"sha256":"2222222222222222222222222222222222222222222222222222222222222222","unexpected":true},{"bytes":12,"entries":2,"firstSeq":2,"head":"3333333333333333333333333333333333333333333333333333333333333333","nextSeq":4,"sha256":"4444444444444444444444444444444444444444444444444444444444444444"}]}\n', digest: '0721832fd4f6109902adb442d4fae63ca87148ab5b2878b284b4772ddf06b837' },
+    expected: { text: '{"format":1,"kind":"solanaut-checkpoint-archives","segments":[{"bytes":10,"entries":2,"firstSeq":0,"head":"1111111111111111111111111111111111111111111111111111111111111111","nextSeq":2,"sha256":"2222222222222222222222222222222222222222222222222222222222222222"},{"bytes":12,"entries":2,"firstSeq":2,"head":"3333333333333333333333333333333333333333333333333333333333333333","nextSeq":4,"sha256":"4444444444444444444444444444444444444444444444444444444444444444"}]}\n', digest: 'ef75158775ee2829c210ea2905e3b3935287e7a97345f7832f63cbf4cb26b8ca' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

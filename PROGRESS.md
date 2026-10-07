@@ -54,6 +54,15 @@ Accepted snapshot/replay/retention/maintenance obligations now have SNP-3–8 ac
 mapping in `docs/plans/2026-10-06_snapshot-qualification.md`; implementation remains owed.
 The SNP-3 authentication codec has component evidence (`evals/sdk/checkpoint.md`), but
 publication, payload validation, prefix replay and checkpoint restoration remain owed.
+Archive catalogue metadata preparation additionally has focused and installed component
+evidence (`evals/sdk/checkpoint-archives.md`); actual file authentication and full
+snapshot qualification remain owed. Root validation currently retains an existing
+staged-baseline timeout under active mutation load.
+
+The superseded frozen guard run is retired with actual interruption evidence.
+Quiet-host ordinary integration passes; earlier timing failures remain retained.
+D21's impossible malformed controller observations have candidate refusal proof
+(`evals/sdk/malformed-replay.md`); fresh corrected-target mutation remains required.
 Individual Linux installation/lifecycle acceptance is allocated as OPR-1–8; the qualification
 map names dependencies and required drills, with implementation/support evidence still owed.
 Read-only original-origin history inventory is prepared (`evals/ci/history.md`); whole

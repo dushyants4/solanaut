@@ -1,0 +1,6 @@
+caught malformed replay fault: posture
+caught malformed replay fault: telemetry
+caught malformed replay fault: temperature
+caught malformed replay fault: invalid-input-scope
+caught malformed replay fault: entire-refusal
+All malformed replay faults caught; restored source passes

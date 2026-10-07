@@ -1,0 +1,58 @@
+caught checkpoint catalogue fault: unknown-fields
+caught checkpoint catalogue fault: dense-array
+caught checkpoint catalogue fault: integer-fields
+caught checkpoint catalogue fault: bytes-span
+caught checkpoint catalogue fault: first-sequence
+caught checkpoint catalogue fault: entry-count
+caught checkpoint catalogue fault: segment-head
+caught checkpoint catalogue fault: segment-digest
+caught checkpoint catalogue fault: anchor-integer
+caught checkpoint catalogue fault: anchor-first
+caught checkpoint catalogue fault: anchor-end
+caught checkpoint catalogue fault: anchor-head
+caught checkpoint catalogue fault: endpoint-sequence
+caught checkpoint catalogue fault: endpoint-head
+caught checkpoint catalogue fault: captured-endpoint
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: canonical-order✔ SNP-3: archive catalogue bytes and digest have an independent canonical oracle (3.924284ms)
+✔ SNP-3: receipt field insertion order cannot change catalogue bytes (0.475436ms)
+✔ SNP-3: only genesis may have an empty archive catalogue (0.66893ms)
+✔ SNP-3: malformed checkpoint context never binds an archive catalogue (0.531817ms)
+✔ SNP-3: malformed receipt fields and unsupported data refuse (2.276835ms)
+✔ SNP-3: gaps, omitted segments, duplicate segments and reordered segments refuse (0.792298ms)
+✔ SNP-3: catalogue endpoint must match both next sequence and preceding head (0.596272ms)
+✔ SNP-3: observed anchor metadata is retained and bounded by its segment (1.574063ms)
+✔ SNP-3: caller receipts cannot mutate the captured endpoint (0.438607ms)
+✔ SNP-3: throwing accessors, cycles and unsupported JSON produce typed refusal (0.744932ms)
+✔ SNP-3: prepared catalogue does not retain caller-owned mutable values (0.40443ms)
+✔ SNP-3: safe integer endpoints do not overflow catalogue arithmetic (0.336896ms)
+✔ SNP-3: actual verified immutable segments prepare a complete catalogue (25.263029ms)
+✔ SNP-3: SDK exports archive catalogue preparation and typed refusal (21.481925ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 267.309322
+
+
+0 !== 1
+
+    at file:///home/dashy/Projects/Solanaut/evals/sdk/checkpoint-archives-faults.ts:29:86
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

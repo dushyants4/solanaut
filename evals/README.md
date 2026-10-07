@@ -86,6 +86,14 @@ SNP-3 signature decoder bound: `sdk/checkpoint-signature.md` retains source/inst
 first failures and concurrent integration timing failures. Focused and packed faults
 pass; complete snapshots and independent qualification remain owed.
 
+SNP-3 catalogue preparation: `sdk/checkpoint-archives.md` retains initial failures,
+the masked serializer fault and caller-array-method regression. Canonical receipt
+metadata only; actual file verification and authenticated restore remain separate.
+
+SNP-5/D21: `sdk/malformed-replay.md` reproduces fabricated controller fields in
+malformed history; candidate refusal has focused regression/fault proof.
+Installed and integrated qualification remain explicit in the receipt.
+
 POL-1/5 public preparation component: `sdk/prepare-policy.md` retains seven first failures,
 installed/build/harness errors and the masked symlink fault; nine final faults and eight
 installed checks pass. No signing, policy installation or human Phantom qualification.

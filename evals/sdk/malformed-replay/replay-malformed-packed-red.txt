@@ -1,0 +1,46 @@
+✖ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (114.378411ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (1.962002ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (475.940256ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (203.755287ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (210.477042ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (230.234159ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (118.970884ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (175.792255ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (103.366071ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 8
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3083.647175
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:31:1
+✖ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (114.378411ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-PaIhKt/consumer/[eval1]:14
+      if((await replay([entry],JSON.parse(process.argv[1]))).ok)throw new Error('malformed controller event replayed');
+                                                                      ^
+  
+  Error: malformed controller event replayed
+      at file:///tmp/solanaut-consumer-PaIhKt/consumer/[eval1]:14:69
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:52:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

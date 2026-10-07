@@ -1,0 +1,29 @@
+✔ SNP-5/D21: genuine malformed proposal history retains its null controller fields (29.565544ms)
+✖ SNP-5/D21: resealed malformed inputs cannot inject controller events into replay or restore (5.678301ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 431.116205
+
+✖ failing tests:
+
+test at packages/sdk/test/malformed-replay.test.ts:21:1
+✖ SNP-5/D21: resealed malformed inputs cannot inject controller events into replay or restore (5.678301ms)
+  AssertionError [ERR_ASSERTION]: {"posture":"DEFAULT"}
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/malformed-replay.test.ts:32:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

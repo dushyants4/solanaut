@@ -1,0 +1,33 @@
+✔ CI-2: failed or missing test-process completion cannot qualify coverage (2.101236ms)
+✔ CI-2: exact statement and branch floors pass without rounding (1.34393ms)
+✖ CI-2: a critical branch deficit fails even when aggregate totals pass (1.688668ms)
+✔ CI-2: missing, extra and duplicate files cannot disappear from coverage (0.503058ms)
+✔ CI-2: malformed and empty execution counts fail closed (0.544107ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 181.472453
+
+✖ failing tests:
+
+test at evals/ci/coverage.test.ts:21:1
+✖ CI-2: a critical branch deficit fails even when aggregate totals pass (1.688668ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/coverage.test.ts:30:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /critical floor/,
+    operator: 'throws',
+    diff: 'simple'
+  }

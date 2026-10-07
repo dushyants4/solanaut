@@ -315,6 +315,9 @@ function evaluateRules(env: Env, p: ProposalV1): DecisionBody {
 
 /** Apply a recorded entry to the state and to Keel, as restore and replay both must. */
 function reapply(env: Env, e: Entry): void {
+  if (e.kind === "decision" && e.input === "invalid" && (e.posture !== null || e.telemetry !== null || e.temperatureMax !== null)) {
+    throw new Error("malformed proposal history cannot contain Keel observations");
+  }
   if (e.kind === "decision" && env.policyEntry && e.policyHash !== env.policyHash) throw new Error("recorded decision names another signed policy");
   if (e.kind === "policy") {
     env.policy = verifyPolicyEntry(e, env.trust, env.policyEntry);

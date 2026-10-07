@@ -1,0 +1,14 @@
+✔ CI-1: exact inventory accepts every maintained campaign and rejects omission/addition/duplication (28.174386ms)
+✔ CI-1: all campaigns run sequentially; failure/null exit fails aggregation without hiding other findings (2.231481ms)
+✔ CI-1: changed source stops further mutation, reports skipped work and fails the gate (0.443256ms)
+✔ SNP-5/D21: genuine malformed proposal history retains its null controller fields (20.072382ms)
+✔ SNP-5/D21: resealed malformed inputs cannot inject controller events into replay or restore (9.457362ms)
+✔ SNP-5/D21: real parsed controller events remain replayable and restorable (7.373146ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 391.618214

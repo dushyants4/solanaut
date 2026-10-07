@@ -1,0 +1,10 @@
+{
+  "reason": "superseded by independently reproduced D21 guard semantic correction",
+  "requestedSignal": "SIGTERM",
+  "requestedSupervisorPid": 1385636,
+  "enginePid": 1385644,
+  "candidateRevision": "9ac6e7cc57fbb4c38e2265a3b8967efb7a85fccd",
+  "qualification": false,
+  "score": null,
+  "stagedInputsVerified": 60
+}

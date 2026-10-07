@@ -15,6 +15,9 @@ function battery() {
 const baseline = battery();
 assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
 const faults = [
+  { name: "malformed-replay", path: "dist/src/guard.js", caught: "installed JavaScript", damage: (text: string) => text.replace('if (e.kind === "decision" && e.input === "invalid" && (e.posture !== null || e.telemetry !== null || e.temperatureMax !== null))', "if (false)") },
+  { name: "checkpoint-archives-export", path: "dist/src/index.js", caught: "installed checkpoint", damage: (text: string) => text.replace(/^export .*from "\.\/checkpoint-archives\.js";\n/m, "") },
+  { name: "checkpoint-archives-digest", path: "dist/src/checkpoint-archives.js", caught: "installed checkpoint", damage: (text: string) => text.replace("sha256hex(text)", 'sha256hex("wrong")') },
   { name: "checkpoint-signature-bound", path: "dist/src/checkpoint.js", caught: "installed checkpoint", damage: (text: string) => text.replace(" || value.length !== 88", "") },
   { name: "checkpoint-export", path: "dist/src/index.js", caught: "installed checkpoint", damage: (text: string) => text.replace(/^export .*from "\.\/checkpoint\.js";\n/m, "") },
   { name: "export", path: "package.json", caught: "installed JavaScript", damage: (text: string) => {

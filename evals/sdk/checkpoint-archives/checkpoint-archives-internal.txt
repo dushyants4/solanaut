@@ -1,0 +1,52 @@
+✔ SNP-3: archive catalogue bytes and digest have an independent canonical oracle (7.433428ms)
+✔ SNP-3: receipt field insertion order cannot change catalogue bytes (0.82762ms)
+✔ SNP-3: only genesis may have an empty archive catalogue (1.217159ms)
+✔ SNP-3: malformed checkpoint context never binds an archive catalogue (0.933902ms)
+✔ SNP-3: malformed receipt fields and unsupported data refuse (3.920132ms)
+✔ SNP-3: gaps, omitted segments, duplicate segments and reordered segments refuse (0.872122ms)
+✔ SNP-3: catalogue endpoint must match both next sequence and preceding head (0.714873ms)
+✔ SNP-3: observed anchor metadata is retained and bounded by its segment (4.086003ms)
+✔ SNP-3: caller receipts cannot mutate the captured endpoint (0.706207ms)
+✔ SNP-3: throwing accessors, cycles and unsupported JSON produce typed refusal (0.806231ms)
+✔ SNP-3: prepared catalogue does not retain caller-owned mutable values (0.423385ms)
+✔ SNP-3: safe integer endpoints do not overflow catalogue arithmetic (0.338116ms)
+✖ SNP-3: actual verified immutable segments prepare a complete catalogue (51.552108ms)
+✖ SNP-3: SDK exports archive catalogue preparation and typed refusal (66.443008ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 12
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 466.79872
+
+✖ failing tests:
+
+test at packages/sdk/test/checkpoint-archives.test.ts:70:1
+✖ SNP-3: actual verified immutable segments prepare a complete catalogue (51.552108ms)
+  Error [ArchiveError]: archive contains an empty line
+      at record (file:///home/dashy/Projects/Solanaut/packages/sdk/src/archive.ts:8:32)
+      at verifyArchive (file:///home/dashy/Projects/Solanaut/packages/sdk/src/archive.ts:51:18)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:78:13)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'framing'
+  }
+
+test at packages/sdk/test/checkpoint-archives.test.ts:82:1
+✖ SNP-3: SDK exports archive catalogue preparation and typed refusal (66.443008ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:83:52)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

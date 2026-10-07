@@ -1,0 +1,11 @@
+file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation-candidate-9ac6e7c/tools/run-completion.ts:30
+  if(result.status!==0 || result.signal!==null || result.error!==null || result.timedOut!==false) throw new Error("supervised child did not complete successfully");
+                                                                                                        ^
+
+Error: supervised child did not complete successfully
+    at requireRunCompletion (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation-candidate-9ac6e7c/tools/run-completion.ts:30:105)
+    at completedMutation (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation-candidate-9ac6e7c/evals/ci/mutation-recovery.ts:34:16)
+    at finish (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation-candidate-9ac6e7c/evals/ci/mutation-run.ts:39:17)
+    at file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation-candidate-9ac6e7c/evals/ci/mutation-run.ts:44:44
+
+Node.js v26.7.0

@@ -1,0 +1,366 @@
+
+> test:coverage
+> node evals/ci/coverage-run.ts --serial
+
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+(node:1540573) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ the cockpit binds to 127.0.0.1 only, and refuses a request for any other host name (192.234396ms)
+✔ /api/state is the record, inspected fresh on every request (110.687623ms)
+✔ the cockpit writes nothing: every method but GET is refused, and unknown paths are not found (23.446773ms)
+✔ the page is served with a strict content security policy, its script from its own origin (17.42271ms)
+✔ /api/chain reads the Squads limit remaining, names the program's error on a refusal, and every transaction read opts in to v1 (406.743195ms)
+✔ without a chain configured, /api/chain says so instead of guessing (39.782259ms)
+(node:1540843) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ SIG-4: clock anchors wall time once and advances only with monotonic time (2.767765ms)
+(node:1540888) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ LIF-6/SIG-7: recovery continues after an expired admission and reconciles a later sent attempt (127.297405ms)
+✔ LIF-6: recovery exposes provider loss and a later pass completes only safe pre-send work (12.266909ms)
+✔ LIF-6/SIG-7: expired signed unsent recovery still reads chain evidence without sending (12.569021ms)
+✔ LIF-6/SIG-8: recovery reports failed response persistence and never resends on its next pass (7.031052ms)
+✔ SIG-3/4: caller report deadline bounds the chain read and refuses a late outcome (22.317265ms)
+✔ LIF-3/SIG-3: same concurrent and completed request signs/sends only once; expired retry returns response (14.71178ms)
+✔ LIF-3/SIG-3: deadlines and changed payloads refuse before signing (6.533232ms)
+✔ LIF-3: restart after admission can redeem/sign; restart after redemption cannot sign again (9.006715ms)
+✔ LIF-3: signed but unsent restart sends once; send-started restart never resends (12.992761ms)
+✔ LIF-3/SIG-7: caller hint cannot report outcome; only chain evidence changes reservation (5.82107ms)
+✔ LIF-3: unknown or changed IDs fail closed; malformed base64 is not decoded leniently (1.40402ms)
+✔ LIF-3: send timeout and contradictory signature retain uncertain response; retry never sends (10.10725ms)
+✔ LIF-3: lost persisted response after successful send is recovered without another send (16.119507ms)
+✔ LIF-3: failed redeem persistence never crosses its next side-effect boundary (6.110281ms)
+✔ LIF-3: failed signed persistence never crosses its next side-effect boundary (3.844482ms)
+✔ LIF-3: failed send-started persistence never crosses its next side-effect boundary (4.453406ms)
+✔ LIF-3: deadline reached while signing persists bytes but never starts a send (4.146705ms)
+(node:1540933) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ LIF-4: status starts before reading, and completed retries preserve the first snapshot after deadline (60.518903ms)
+✔ LIF-4: concurrent retries coalesce and differing methods refuse before actions (8.159103ms)
+✔ SIG-4/LIF-4: report replies reflect recorded host evidence and a retry never repeats the hint (12.092524ms)
+✔ SIG-3: a late status read cannot become a successful new answer (2.504098ms)
+✔ LIF-4: a control request cannot steal a concurrent proposal's identity (2.029391ms)
+✔ SIG-3/LIF-4: expired or overlong new control requests persist a denial and perform no work (5.143196ms)
+✔ LIF-4/SIG-3: report hints use the request deadline and failures persist fixed answers (2.146033ms)
+✔ LIF-4: pending control request resumes on restart; stored response then prevents re-execution (4.758105ms)
+✔ LIF-4: control/proposal identity reuse refuses before calling the proposal executor (2.608299ms)
+✔ SIG-2/LIF-4: unknown methods never dispatch, and response write failure throws and closes admission (2.729294ms)
+✔ LIF-5: pre-admission proposal failure persists a fixed refusal and binds the exact payload (2.406195ms)
+✔ LIF-5: a refusal start interrupted before its response completes conservatively without new proposal work (3.716873ms)
+✔ LIF-5: an error after a recorded admission cannot become a non-admission refusal (1.804911ms)
+✔ LIF-5/SIG-3: a proposal expiring before admission keeps its refusal when retried with a fresh deadline (1.674802ms)
+✔ LIF-5: the real executor's malformed-message and RPC failures reach durable refusal history (3.228672ms)
+
+Interrupted while running:
+
+⚠ apps/signer/test/policy-recovery.test.ts (apps/signer/test/policy-recovery.test.ts:1:1)
+✖ apps/signer/test/policy-recovery.test.ts (1151.560277ms)
+✖ apps/signer/test/rpc.test.ts
+✖ apps/signer/test/service.test.ts
+✖ apps/signer/test/socket.test.ts
+✖ evals/ci/bite-source.test.ts
+✖ evals/ci/bite.test.ts
+✖ evals/ci/concurrency.test.ts
+✖ evals/ci/coverage-hook.test.ts
+✖ evals/ci/coverage-instrument.test.ts
+✖ evals/ci/coverage-merge.test.ts
+✖ evals/ci/coverage-options.test.ts
+✖ evals/ci/coverage.test.ts
+✖ evals/ci/dependency.test.ts
+✖ evals/ci/differential-check.test.ts
+✖ evals/ci/differential-run.test.ts
+✖ evals/ci/differential.test.ts
+✖ evals/ci/fuzz.test.ts
+✖ evals/ci/history.test.ts
+✖ evals/ci/kills.test.ts
+✖ evals/ci/mutation-recovery.test.ts
+✖ evals/ci/mutation-stage.test.ts
+✖ evals/ci/mutation.test.ts
+✖ evals/ci/performance.test.ts
+✖ evals/ci/properties.test.ts
+✖ evals/ci/property-trial.test.ts
+✖ evals/ci/replay.test.ts
+✖ evals/ci/run-completion.test.ts
+✖ evals/ci/run-supervisor.test.ts
+✖ evals/ci/traffic-run.test.ts
+✖ evals/ci/traffic-workload.test.ts
+✖ evals/ci/traffic.test.ts
+✖ packages/sdk/test/adapters.test.ts
+✖ packages/sdk/test/admission.test.ts
+✖ packages/sdk/test/archive-anchor.test.ts
+✖ packages/sdk/test/archive-cli.test.ts
+✖ packages/sdk/test/archive.test.ts
+✖ packages/sdk/test/authority.test.ts
+✖ packages/sdk/test/boundary-validation.test.ts
+✖ packages/sdk/test/caps.property.test.ts
+✖ packages/sdk/test/checkpoint-archives.test.ts
+✖ packages/sdk/test/checkpoint.test.ts
+✖ packages/sdk/test/classify.test.ts
+✖ packages/sdk/test/control-request.test.ts
+✖ packages/sdk/test/decode.test.ts
+✖ packages/sdk/test/drain.battery.test.ts
+✖ packages/sdk/test/durable.test.ts
+✖ packages/sdk/test/inspect.test.ts
+✖ packages/sdk/test/keel.test.ts
+✖ packages/sdk/test/latch-c.test.ts
+✖ packages/sdk/test/ownership.test.ts
+✖ packages/sdk/test/pin-table.test.ts
+✖ packages/sdk/test/policy.test.ts
+✖ packages/sdk/test/prepare-policy-cli.test.ts
+✖ packages/sdk/test/properties.test.ts
+✖ packages/sdk/test/request-identity.test.ts
+✖ packages/sdk/test/sending-client.test.ts
+✖ packages/sdk/test/sensor.battery.test.ts
+✖ packages/sdk/test/signed-policy.test.ts
+✖ packages/sdk/test/signing-history.test.ts
+✖ packages/sdk/test/storage-failures.test.ts
+ℹ tests 99
+ℹ suites 0
+ℹ pass 39
+ℹ fail 0
+ℹ cancelled 60
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11191.303475
+
+✖ failing tests:
+
+test at apps/signer/test/policy-recovery.test.ts:1:1
+✖ apps/signer/test/policy-recovery.test.ts (1151.560277ms)
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at apps/signer/test/rpc.test.ts:1:1
+✖ apps/signer/test/rpc.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at apps/signer/test/service.test.ts:1:1
+✖ apps/signer/test/service.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at apps/signer/test/socket.test.ts:1:1
+✖ apps/signer/test/socket.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at evals/ci/bite-source.test.ts:1:1
+✖ evals/ci/bite-source.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at evals/ci/bite.test.ts:1:1
+✖ evals/ci/bite.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at evals/ci/concurrency.test.ts:1:1
+✖ evals/ci/concurrency.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at evals/ci/coverage-hook.test.ts:1:1
+✖ evals/ci/coverage-hook.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at evals/ci/coverage-instrument.test.ts:1:1
+✖ evals/ci/coverage-instrument.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at evals/ci/coverage-merge.test.ts:1:1
+✖ evals/ci/coverage-merge.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at evals/ci/coverage-options.test.ts:1:1
+✖ evals/ci/coverage-options.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at evals/ci/coverage.test.ts:1:1
+✖ evals/ci/coverage.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at evals/ci/dependency.test.ts:1:1
+✖ evals/ci/dependency.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at evals/ci/differential-check.test.ts:1:1
+✖ evals/ci/differential-check.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at evals/ci/differential-run.test.ts:1:1
+✖ evals/ci/differential-run.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at evals/ci/differential.test.ts:1:1
+✖ evals/ci/differential.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at evals/ci/fuzz.test.ts:1:1
+✖ evals/ci/fuzz.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at evals/ci/history.test.ts:1:1
+✖ evals/ci/history.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at evals/ci/kills.test.ts:1:1
+✖ evals/ci/kills.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at evals/ci/mutation-recovery.test.ts:1:1
+✖ evals/ci/mutation-recovery.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at evals/ci/mutation-stage.test.ts:1:1
+✖ evals/ci/mutation-stage.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at evals/ci/mutation.test.ts:1:1
+✖ evals/ci/mutation.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at evals/ci/performance.test.ts:1:1
+✖ evals/ci/performance.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at evals/ci/properties.test.ts:1:1
+✖ evals/ci/properties.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at evals/ci/property-trial.test.ts:1:1
+✖ evals/ci/property-trial.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at evals/ci/replay.test.ts:1:1
+✖ evals/ci/replay.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at evals/ci/run-completion.test.ts:1:1
+✖ evals/ci/run-completion.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at evals/ci/run-supervisor.test.ts:1:1
+✖ evals/ci/run-supervisor.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at evals/ci/traffic-run.test.ts:1:1
+✖ evals/ci/traffic-run.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at evals/ci/traffic-workload.test.ts:1:1
+✖ evals/ci/traffic-workload.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at evals/ci/traffic.test.ts:1:1
+✖ evals/ci/traffic.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/adapters.test.ts:1:1
+✖ packages/sdk/test/adapters.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/admission.test.ts:1:1
+✖ packages/sdk/test/admission.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/archive-anchor.test.ts:1:1
+✖ packages/sdk/test/archive-anchor.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/archive-cli.test.ts:1:1
+✖ packages/sdk/test/archive-cli.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/archive.test.ts:1:1
+✖ packages/sdk/test/archive.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/authority.test.ts:1:1
+✖ packages/sdk/test/authority.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/boundary-validation.test.ts:1:1
+✖ packages/sdk/test/boundary-validation.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/caps.property.test.ts:1:1
+✖ packages/sdk/test/caps.property.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/checkpoint-archives.test.ts:1:1
+✖ packages/sdk/test/checkpoint-archives.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/checkpoint.test.ts:1:1
+✖ packages/sdk/test/checkpoint.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/classify.test.ts:1:1
+✖ packages/sdk/test/classify.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/control-request.test.ts:1:1
+✖ packages/sdk/test/control-request.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/decode.test.ts:1:1
+✖ packages/sdk/test/decode.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/drain.battery.test.ts:1:1
+✖ packages/sdk/test/drain.battery.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/durable.test.ts:1:1
+✖ packages/sdk/test/durable.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/inspect.test.ts:1:1
+✖ packages/sdk/test/inspect.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/keel.test.ts:1:1
+✖ packages/sdk/test/keel.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/latch-c.test.ts:1:1
+✖ packages/sdk/test/latch-c.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/ownership.test.ts:1:1
+✖ packages/sdk/test/ownership.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/pin-table.test.ts:1:1
+✖ packages/sdk/test/pin-table.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/policy.test.ts:1:1
+✖ packages/sdk/test/policy.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/prepare-policy-cli.test.ts:1:1
+✖ packages/sdk/test/prepare-policy-cli.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/properties.test.ts:1:1
+✖ packages/sdk/test/properties.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/request-identity.test.ts:1:1
+✖ packages/sdk/test/request-identity.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/sending-client.test.ts:1:1
+✖ packages/sdk/test/sending-client.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/sensor.battery.test.ts:1:1
+✖ packages/sdk/test/sensor.battery.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/signed-policy.test.ts:1:1
+✖ packages/sdk/test/signed-policy.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/signing-history.test.ts:1:1
+✖ packages/sdk/test/signing-history.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/storage-failures.test.ts:1:1
+✖ packages/sdk/test/storage-failures.test.ts
+  'Promise resolution is still pending but the event loop has already resolved'

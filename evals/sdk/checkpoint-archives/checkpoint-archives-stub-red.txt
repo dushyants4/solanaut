@@ -1,0 +1,308 @@
+✖ SNP-3: archive catalogue bytes and digest have an independent canonical oracle (2.914501ms)
+✖ SNP-3: receipt field insertion order cannot change catalogue bytes (0.40667ms)
+✖ SNP-3: only genesis may have an empty archive catalogue (0.154294ms)
+✖ SNP-3: malformed checkpoint context never binds an archive catalogue (1.360738ms)
+✖ SNP-3: malformed receipt fields and unsupported data refuse (0.491653ms)
+✖ SNP-3: gaps, omitted segments, duplicate segments and reordered segments refuse (0.39064ms)
+✖ SNP-3: catalogue endpoint must match both next sequence and preceding head (0.338454ms)
+✖ SNP-3: observed anchor metadata is retained and bounded by its segment (0.286773ms)
+✖ SNP-3: caller receipts cannot mutate the captured endpoint (0.7761ms)
+✖ SNP-3: throwing accessors, cycles and unsupported JSON produce typed refusal (0.571942ms)
+✖ SNP-3: prepared catalogue does not retain caller-owned mutable values (0.243477ms)
+✖ SNP-3: safe integer endpoints do not overflow catalogue arithmetic (0.230526ms)
+✖ SNP-3: actual verified immutable segments prepare a complete catalogue (36.678254ms)
+✖ SNP-3: SDK exports archive catalogue preparation and typed refusal (20.226481ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 0
+ℹ fail 14
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 359.279433
+
+✖ failing tests:
+
+test at packages/sdk/test/checkpoint-archives.test.ts:15:1
+✖ SNP-3: archive catalogue bytes and digest have an independent canonical oracle (2.914501ms)
+  Error: SNP-3 archive catalogue stub
+      at prepareCheckpointArchives (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-archives.ts:7:9)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:16:23)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at packages/sdk/test/checkpoint-archives.test.ts:20:1
+✖ SNP-3: receipt field insertion order cannot change catalogue bytes (0.40667ms)
+  Error: SNP-3 archive catalogue stub
+      at prepareCheckpointArchives (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-archives.ts:7:9)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:22:20)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at packages/sdk/test/checkpoint-archives.test.ts:24:1
+✖ SNP-3: only genesis may have an empty archive catalogue (0.154294ms)
+  Error: SNP-3 archive catalogue stub
+      at prepareCheckpointArchives (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-archives.ts:7:9)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:25:11)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/checkpoint-archives.test.ts:29:1
+✖ SNP-3: malformed checkpoint context never binds an archive catalogue (1.360738ms)
+  AssertionError [ERR_ASSERTION]: The error is expected to be an instance of "CheckpointArchiveError". Received "Error"
+  
+  Error message:
+  
+  SNP-3 archive catalogue stub
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:31:308)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: SNP-3 archive catalogue stub
+        at prepareCheckpointArchives (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-archives.ts:7:9)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:31:319
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:31:308)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint-archives.test.ts:33:1
+✖ SNP-3: malformed receipt fields and unsupported data refuse (0.491653ms)
+  AssertionError [ERR_ASSERTION]: The error is expected to be an instance of "CheckpointArchiveError". Received "Error"
+  
+  Error message:
+  
+  SNP-3 archive catalogue stub
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:35:58)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: SNP-3 archive catalogue stub
+        at prepareCheckpointArchives (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-archives.ts:7:9)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:35:69
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:35:58)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint-archives.test.ts:39:1
+✖ SNP-3: gaps, omitted segments, duplicate segments and reordered segments refuse (0.39064ms)
+  AssertionError [ERR_ASSERTION]: The error is expected to be an instance of "CheckpointArchiveError". Received "Error"
+  
+  Error message:
+  
+  SNP-3 archive catalogue stub
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:40:194)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: SNP-3 archive catalogue stub
+        at prepareCheckpointArchives (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-archives.ts:7:9)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:40:205
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:40:194)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint-archives.test.ts:42:1
+✖ SNP-3: catalogue endpoint must match both next sequence and preceding head (0.338454ms)
+  AssertionError [ERR_ASSERTION]: The error is expected to be an instance of "CheckpointArchiveError". Received "Error"
+  
+  Error message:
+  
+  SNP-3 archive catalogue stub
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:43:120)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: SNP-3 archive catalogue stub
+        at prepareCheckpointArchives (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-archives.ts:7:9)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:43:131
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:43:120)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint-archives.test.ts:45:1
+✖ SNP-3: observed anchor metadata is retained and bounded by its segment (0.286773ms)
+  Error: SNP-3 archive catalogue stub
+      at prepareCheckpointArchives (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-archives.ts:7:9)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:47:31)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/checkpoint-archives.test.ts:51:1
+✖ SNP-3: caller receipts cannot mutate the captured endpoint (0.7761ms)
+  AssertionError [ERR_ASSERTION]: The error is expected to be an instance of "CheckpointArchiveError". Received "Error"
+  
+  Error message:
+  
+  SNP-3 archive catalogue stub
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:54:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: SNP-3 archive catalogue stub
+        at prepareCheckpointArchives (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-archives.ts:7:9)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:54:21
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:54:10)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint-archives.test.ts:56:1
+✖ SNP-3: throwing accessors, cycles and unsupported JSON produce typed refusal (0.571942ms)
+  AssertionError [ERR_ASSERTION]: The error is expected to be an instance of "CheckpointArchiveError". Received "Error"
+  
+  Error message:
+  
+  SNP-3 archive catalogue stub
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:59:110)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: SNP-3 archive catalogue stub
+        at prepareCheckpointArchives (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-archives.ts:7:9)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:59:121
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:59:110)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint-archives.test.ts:61:1
+✖ SNP-3: prepared catalogue does not retain caller-owned mutable values (0.243477ms)
+  Error: SNP-3 archive catalogue stub
+      at prepareCheckpointArchives (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-archives.ts:7:9)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:62:23)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/checkpoint-archives.test.ts:65:1
+✖ SNP-3: safe integer endpoints do not overflow catalogue arithmetic (0.230526ms)
+  Error: SNP-3 archive catalogue stub
+      at prepareCheckpointArchives (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-archives.ts:7:9)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:67:11)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/checkpoint-archives.test.ts:70:1
+✖ SNP-3: actual verified immutable segments prepare a complete catalogue (36.678254ms)
+  Error [ArchiveError]: archive contains an empty line
+      at record (file:///home/dashy/Projects/Solanaut/packages/sdk/src/archive.ts:8:32)
+      at verifyArchive (file:///home/dashy/Projects/Solanaut/packages/sdk/src/archive.ts:51:18)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:78:13)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'framing'
+  }
+
+test at packages/sdk/test/checkpoint-archives.test.ts:82:1
+✖ SNP-3: SDK exports archive catalogue preparation and typed refusal (20.226481ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-archives.test.ts:83:52)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

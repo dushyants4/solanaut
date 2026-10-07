@@ -1,0 +1,2 @@
+{"original":{"input":"invalid","rule":"malformed-proposal","posture":null},"forgedReplay":{"ok":true,"decisions":1,"divergence":null}}
+forged malformed telemetry accepted on restore

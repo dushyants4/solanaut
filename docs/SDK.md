@@ -1,12 +1,20 @@
 # SDK reference — private candidate
 
-> **Draft 4** · 2026-10-06 · owner: integrator · for: developers integrating the candidate.
+> **Draft 5** · 2026-10-07 · owner: integrator · for: developers integrating the candidate.
 > Register: `kb/DOCUMENTS.md`. This describes current exports, not a stable-release promise.
 
 Import runtime functions and types from `@solanaut/sdk`. The compiled candidate and installed
 commands are described in [PACKAGING](PACKAGING.md); source development uses native TypeScript.
 Generated declarations contain the complete signatures. The source export list is
 [`packages/sdk/src/index.ts`](../packages/sdk/src/index.ts).
+
+`prepareCheckpointArchives(receipts, {seq, head})` returns immutable canonical
+catalogue text and its SHA-256 digest for the checkpoint's archive payload binding.
+Supply ordered receipts from `verifyArchive`, starting at genesis and ending at
+the checkpoint's next sequence and preceding head. Malformed or discontinuous
+metadata throws `CheckpointArchiveError` with code `checkpoint-archives`.
+Verify each referenced file separately; preparation checks metadata only. It does
+not establish anchor authority, restore state or publish a snapshot.
 
 The operator preparation command is described in [POLICY](POLICY.md). It returns unsigned
 public signing text; it does not replace authorisation or installed-service checks.

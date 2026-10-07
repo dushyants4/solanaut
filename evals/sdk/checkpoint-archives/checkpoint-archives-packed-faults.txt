@@ -1,0 +1,9 @@
+caught package fault: checkpoint-archives-export
+caught package fault: checkpoint-archives-digest
+caught package fault: checkpoint-signature-bound
+caught package fault: checkpoint-export
+caught package fault: export
+caught package fault: types
+caught package fault: dependency
+caught package fault: cli
+All package faults caught; restored candidate passes

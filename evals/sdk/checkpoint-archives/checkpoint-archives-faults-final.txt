@@ -1,0 +1,21 @@
+caught checkpoint catalogue fault: unknown-fields
+caught checkpoint catalogue fault: dense-array
+caught checkpoint catalogue fault: caller-array-method
+caught checkpoint catalogue fault: integer-fields
+caught checkpoint catalogue fault: bytes-span
+caught checkpoint catalogue fault: first-sequence
+caught checkpoint catalogue fault: entry-count
+caught checkpoint catalogue fault: segment-head
+caught checkpoint catalogue fault: segment-digest
+caught checkpoint catalogue fault: anchor-integer
+caught checkpoint catalogue fault: anchor-first
+caught checkpoint catalogue fault: anchor-end
+caught checkpoint catalogue fault: anchor-head
+caught checkpoint catalogue fault: endpoint-sequence
+caught checkpoint catalogue fault: endpoint-head
+caught checkpoint catalogue fault: captured-endpoint
+caught checkpoint catalogue fault: canonical-order
+caught checkpoint catalogue fault: digest
+caught checkpoint catalogue fault: immutable-result
+caught checkpoint catalogue fault: SDK export
+All checkpoint catalogue faults caught; restored source passes

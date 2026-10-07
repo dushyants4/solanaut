@@ -189,6 +189,34 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+Final quiet AST execution passes all 564 cases and unchanged floors; catalogue
+48/48 statements and 57/57 branches. Ordinary/type and maintained source/packed
+fault checks pass. D21 is corrected locally; fresh mutation and independent review
+remain owed. Evidence/records are ready for private close.
+
+The independently found D21 fix supersedes the frozen guard target. The supervisor
+is interrupted, committing actual status 143 and error "supervisor interrupted";
+finish refuses qualification. Inputs/output/result retained at
+`evals/ci/mutation/retired-9ac6e7c/`. Quiet ordinary integration passes all 564 cases
+and typecheck passes. Final AST/private sync and fresh corrected-target mutation follow.
+
+Catalogue private sync is held: ordinary integration repeatedly fails the existing
+staged-baseline wait under full mutation load; no deadline is relaxed.
+Prefix review additionally reproduces acceptance of fabricated Keel fields on a
+malformed proposal in replay and restore. Regression/correction remains owed before
+prefix derivation; raw finding is retained beside the catalogue receipt.
+
+D21 candidate refusal passes three focused cases/five source faults and nine
+installed cases/nine compiled faults after observed failures
+(`evals/sdk/malformed-replay.md`). Typecheck passes; root qualification remains held
+by the unchanged staged-baseline wait under active full mutation load.
+
+Archive catalogue component passes fifteen cases/twenty source faults and nine
+installed cases/eight compiled faults, with restoration (`evals/sdk/checkpoint-archives.md`).
+Masked serializer fault and array-method regression retained. Metadata preparation
+only; state/prefix, publication/restore and independent qualification remain owed.
+Prior signature-bound revision 805e8bb hosted run 37614673709 succeeds in every job.
+
 SNP-3 signature bound ordinary suite passes all 546 cases with CPU 0/4 affinity;
 typecheck zero. Both local instrumented runs fail the unchanged baseline wait.
 Receipt preserves these failures; corrected hosted coverage remains required.
@@ -436,6 +464,7 @@ The live probes and baseline are complete. ADR-012 C is built and tested offline
 | 2026-10-06 | SDK candidate reference, partial 5.3 | commit containing `docs/SDK.md` | source interface/behaviour review; document/claims lint | Current exports, trust boundaries and errors documented; stable contracts and usability qualification remain owed. |
 
 | 2026-10-06 | CI-2 differential and performance-report preparation | commit containing `evals/ci/differential.md` | pinned offline corpus, report tests, fault campaigns, root tests/typecheck | Differential reference checks pass; performance targets unmeasured. Interrupted mutation and coverage load failure retained; complete qualification remains owed. |
+| 2026-10-07 | SNP-3/5 checkpoint history foundation | commit containing `evals/sdk/checkpoint-archives.md` and `evals/sdk/malformed-replay.md` | first failures, source/packed fault proof, quiet ordinary/type/AST checks | Catalogue metadata and D21 refusal pass locally. Earlier timing failures and actual superseded-run interruption retained; full snapshots, fresh mutation and independent review remain owed. |
 
 ## 8. Handing back to Claude
 

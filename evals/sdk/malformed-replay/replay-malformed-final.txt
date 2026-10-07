@@ -1,0 +1,10 @@
+✔ SNP-5/D21: genuine malformed proposal history retains its null controller fields (16.597015ms)
+✔ SNP-5/D21: resealed malformed inputs cannot inject controller events into replay or restore (11.30935ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 423.695444

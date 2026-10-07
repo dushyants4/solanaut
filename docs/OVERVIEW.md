@@ -1,6 +1,6 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 24** · 2026-10-06 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 25** · 2026-10-07 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
@@ -11,6 +11,11 @@ against external authority pins and independently computed opaque payload digest
 (`evals/sdk/checkpoint.md`). Its source and packed-consumer component pass.
 It is not a state-restoration path.
 Atomic publication, authenticated prefix replay and full checkpoint recovery remain owed.
+
+`checkpoint-archives.ts` prepares canonical ordered archive receipt metadata and
+its payload digest (`evals/sdk/checkpoint-archives.md`). Its endpoint is externally
+supplied; actual files still require archive verification. It neither restores
+state nor establishes anchor authority.
 
 `npm run test:coverage` runs explicit, in-memory AST instrumentation over SDK and signer
 source, checks complete counter maps and enforces the unchanged quality floors. Unimported

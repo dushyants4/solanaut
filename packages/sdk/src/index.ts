@@ -4,6 +4,7 @@ export { verifyArchive, ArchiveError, type ArchiveErrorCode, type ArchiveOptions
 export { preparePolicyText, verifyPolicyAuthorization, PolicyAuthorizationError, type PolicyAuthorization, type PolicyTrust } from "./signed-policy.ts";
 export { EVALUATION_PROFILE } from "./profile.ts";
 export { prepareCheckpointText, prepareCheckpointPrefixText, verifyCheckpointBinding, CheckpointBindingError, type CheckpointBinding, type CheckpointTrust, type CheckpointSignatures, type CheckpointDigests } from "./checkpoint.ts";
+export { prepareCheckpointArchives, CheckpointArchiveError, type PreparedCheckpointArchives } from "./checkpoint-archives.ts";
 export type { RequestIdentity, RequestBinding } from "./request.ts";
 export type { ControlMethod } from "./control-request.ts";
 export type { SigningEvent, SigningHistory } from "./signing.ts";

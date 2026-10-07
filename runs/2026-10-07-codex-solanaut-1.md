@@ -8,6 +8,48 @@ work. This dated continuation retains the earlier session's full record at
 
 ## Did
 
+Pre-sync close passes nine gates, including staged secret scan; the uncommitted-tree
+gate correctly refuses until private sync. Diff reviewed, source faults restored,
+public surfaces remain private candidates and no protected harness edit is made.
+
+Final quiet AST execution passes all 564 cases and unchanged floors; catalogue
+counters are 48/48 statements and 57/57 branches. Ordinary/type and source/packed
+fault proof pass after restoration. D21 is locally corrected in the builder candidate;
+fresh mutation, full snapshots and independent review remain owed. Private close follows.
+
+Quiet ordinary validation passes all 564 cases and typecheck exits zero. The unchanged
+coverage campaign catches twenty-one faults, including the new catalogue registration
+removal, with source restoration. Final quiet instrumented validation and private close
+follow. Retirement follows a new independently reproduced target correction, not mutation
+survivor tuning; no full score or successful mutation result is claimed.
+
+The D21 correction supersedes frozen guard target revision 9ac6e7c. Retire that
+full run by sending SIGTERM to its supervisor, rather than altering workers or
+claiming its partial results for the changed guard. Actual committed completion
+records status 143, signal null, error "supervisor interrupted", timeout false.
+Its exact candidate finish command refuses qualification. Both original supervisor
+and engine are gone; retain inputs/output/ticket/result before a fresh definition.
+Ordinary validation now runs on the quiet host with unchanged tests/deadlines.
+
+D21's controller-field regression fails first. Candidate replay/restore refuses
+impossible observations on malformed inputs before Keel or admission application.
+Three focused cases and five source faults pass with restoration. Published Eliza
+registry metadata still identifies latest 1.2.6 and next 2.0.0-alpha.6; read-only
+preparation only, no dependency/lockfile change or integration claim.
+
+Continuing SNP-3 archive catalogue preparation passes fifteen focused cases and
+twenty final source faults with restoration. The original final-serializer-only
+fault was masked by earlier canonical copying; retain the miss and test the complete
+serialization path. A caller-owned array map method could substitute receipts;
+its regression fails first and direct indexed copying fixes it.
+The old installed build fails; rebuilt consumer cases and eight compiled faults
+pass with restoration across sixty-seven files. Prior revision 805e8bb hosted run
+37614673709 completes successfully, including coverage. No full snapshot claim.
+
+Ordinary integration remains running. A premature overlapping coverage start was
+stopped immediately through its own process tree, leaving the frozen full mutation
+run untouched. Preserve that interrupted diagnostic; it is not coverage evidence.
+
 Environment candidate ddc8bb0 passes hosted run 37582461765 with all thirteen jobs.
 Mutation recovery tests fail first under stubs and the old CLI. The candidate completes
 a real frozen 235-case staged baseline, then inspects it twice without relaunching.
@@ -160,6 +202,32 @@ implementation, documentation and receipt changes remain in the continuing sessi
 
 ## Found
 
+Sequential AST integration after D21 reports 563/564 passes and refuses coverage
+qualification on the same staged-baseline wait. No overall floor/coverage claim.
+Catalogue critical-file registration fails first, then its removal is caught.
+An extra focused coverage output during fault injection is only a diagnostic;
+the restored campaign provides the valid final proof.
+
+Snapshot-prefix review finds a distinct semantic gap: a malformed proposal entry
+resealed with DEFAULT posture, zero telemetry and non-null temperature is accepted
+by both replay and guard restoration. The genuine live entry has null Keel fields.
+Raw reproducer is retained in `evals/sdk/checkpoint-archives/replay-malformed-diagnostic.txt`.
+This is a local history-semantic finding, not evidence of a live remote bypass.
+Do not derive an authenticated prefix from the current replay result until regression
+and correction establish the impossible-event refusal.
+
+The second CPU 0/4 run and unrestricted sequential run also fail the same
+staged-baseline wait; no catalogue failures appear. CPU topology shows 0 and 4
+are sibling threads of one physical core. A final diagnostic uses CPUs 0/1,
+distinct physical cores, with identical tests/deadline and no mutation-worker
+change. Close currently passes nine gates and refuses the uncommitted tree.
+
+Catalogue root integration reports 560/561 passes: unchanged twenty-second real
+staged-baseline wait fails while the full frozen mutation engine continues.
+The interrupted overlapping coverage attempt is not a pass. Repeat ordinary
+validation sequentially under the same explicit CPU configuration; no deadline
+or test population changes.
+
 Mutation recovery campaign's baseline rehearsal hits its unchanged twenty-second
 fixture wait while the old orphaned mutation workers remain active. Preserve the
 failure, retain the limit, and retire the already-unqualified old attempt after saving
@@ -260,6 +328,24 @@ check; add this record rather than weakening the gate. Full candidate close and 
 pending. No threshold, accepted ADR or protected harness file changes.
 
 ## Open
+
+Catalogue campaign catches fifteen faults then misses final-serializer substitution:
+receipts are already canonicalised, masking that fault. Preserve the miss; replace it
+with a module-wide serializer fault. Additional red case shows caller array `.map`
+can substitute unchecked receipts. Capture length and copy indexed elements into a
+private native array; test and planted reversion follow. No sensor coefficient change.
+
+Archive catalogue tests initially name a nonexistent workload helper, then use the
+wrong guard option (`store` instead of documented `log`). Preserve import, type and
+empty-archive setup failures; correct the fixture without weakening archive validation.
+Stub and missing SDK export failures are separately retained. Catalogue code validates
+captured endpoint, contiguous receipts and anchor spans; focused final checks follow.
+
+805e8bb privately pushed after required ordinary/type/fault checks and all ten close
+gates. Hosted run 37614673709 underway. Next unblocked SNP-3 payload contract prepares
+an ordered canonical archive catalogue from SNP-1 receipts, bound to next sequence/head;
+actual file, anchor and state authentication remain separate. Record the reversible
+encoding in SPEC before tests; no accepted ADR or signer implementation budget changes.
 
 SNP-3 ordinary integration passes all 546 cases at normal priority with explicit CPU
 0/4 affinity and unchanged fixture waits; typecheck exits zero. Sequential instrumented

@@ -1,5 +1,15 @@
 # DOCUMENTS.md — the document register
 
+2026-10-07 snapshot-prefix review adds D21 to SPEC, the malformed-history receipt/index
+and continuing run/HANDOFF; THREAT-MODEL Draft 5 reconciles the asset, component and
+semantic boundaries. Candidate refusal has focused builder evidence; integrated
+qualification and full snapshot prefix remain owed.
+
+2026-10-07 archive catalogue registers SPEC Draft 4.48, RISKS 1.39, SDK Draft 5,
+OVERVIEW Draft 25 and PROGRESS,
+CLAIMS S59, receipt/index and continuing run/HANDOFF. Initial failures and masked
+fault retained; actual referenced-file authentication and complete snapshots remain owed.
+
 2026-10-07 explicit evaluation environment registers SPEC Draft 4.43, RISKS 1.34,
 CLAIMS S54, receipt/index and continuation/HANDOFF records. Default inherited mode
 remains outside that assurance; supervisor death requires separate containment.

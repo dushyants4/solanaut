@@ -1,6 +1,6 @@
 # THREAT-MODEL.md — what Solanaut defends, against whom, and what is left
 
-> **Draft 4** · 2026-10-06 · owner: architect · builder-authored reconciliation for independent review,
+> **Draft 5** · 2026-10-07 · owner: architect · builder-authored reconciliation for independent review,
 > not an Alpha review or specialist audit. For: reviewers and auditors · not public.
 > Design: `docs/SPEC.md`, ADR-004 to ADR-020; stable clarifications ADR-019/020 are accepted.
 > ADR-008 remains deferred; ADR-021/022 remain proposed.
@@ -26,6 +26,7 @@
 | The policy | it decides what may be signed |
 | The operator's wallet: the latch release key and the Squads config authority | they change what the agent may do |
 | The decision log | the evidence of what was allowed, and the guard's state (ADR-010) |
+| The checkpoint key and external authority pins | authenticate snapshot payload bindings under the signer-host trust boundary; distinct from principal and anchor authority |
 | The Keel controller | a swapped controller changes what is called a loop |
 
 ## 3. Adversaries
@@ -92,7 +93,7 @@ real funds require a separate approved programme. Public decoding data is not ma
 |---|---|---|
 | T7, T8, T24 / request reuse | Guard/client/ID bind canonical payload; checked journal and immutable responses [S17, S18, S26, S27] | Real malformed clients, deadline races, interrupted signing/send and installed isolation. Idempotency is not exactly-once execution. |
 | T7, T11, T24 / ambiguous send | Sync signed bytes and send-started; never resend send-started bytes; conservative pending-policy handling [S19, S29] | Kills at every persistence/sign/send/answer boundary, lost responses and live reconciliation/provider drills. |
-| T12, T24 / snapshots | ADR-019 specifies a distinct pinned checkpoint key, identity/profile/archive bindings and replay-derived Keel; structural archive pins [S39, S46] | Signed snapshots/prefixes, atomic publication, authenticated state restore, corrupt/missing history fallback and independent full replay. Never load arbitrary controller numbers. |
+| T12, T24 / snapshots | Distinct pinned checkpoint key and signature/digest codec [S49, S58]; structural archive pins [S39, S46]; pending catalogue metadata component [S59] | Actual file authentication, state/prefix payload semantics, atomic publication, authenticated restore and corrupt/missing history fallback. Metadata receipts alone do not establish file availability or correctness. Never load arbitrary controller numbers. |
 | T11, T18, T24, T30 / maintenance | Stop, verify backup/compatibility, restore/validate, resume; reverting content needs a higher signed version (ADR-019) | Lifecycle CLI, verified backups, compatible rollback, key rotation and revocation drills. Preparation [S47] does not perform the ceremony. |
 | T6, T24, T25 / resource exhaustion | Bounded socket frames/slots and archive reads [S23, S25, S39] | Persistent request index, bounded active state, streamed replay, restart performance and soak. Current history retention is not the accepted bounded-memory product. |
 | T9, T13 / supply chain | Packed private SDK checks [S47], dependency/digest checks [S4, S42] | Retained advisories, entire proposed-public history/rights review, reproducible artefacts, audit and public provenance. Authenticity is not release clearance. |
@@ -102,6 +103,15 @@ locally signed evidence. Dedicated-user isolation addresses agent-process compro
 that host compromise. Independently retained anchor evidence and the on-chain spending limit
 remain separate trust boundaries. Operator compromise can widen or remove those bounds.
 The configured providers remain trusted evidence sources; agreeing responses are not a quorum proof.
+
+Prefix review reproduces impossible controller observations on a resealed malformed
+proposal entry (D21). The candidate checks null Keel fields before replay/restore
+application [S60]; focused and installed builder evidence passes, while the required
+root gate previously failed under mutation load; final quiet ordinary and AST checks
+pass. Fresh mutation qualification remains owed. This is a local history-semantic finding,
+not a demonstrated remote signing bypass. Full snapshot derivation must validate
+record semantics as well as hashes and signatures. The current signature-size bound
+does not establish bounded memory for caller-owned JSON.
 
 ADR-021/022 remain proposed; do not count their budget or enrolment/rotation/PDA changes as
 accepted or deployed. This draft is builder-authored and awaits Claude's independent RT-2,
@@ -134,3 +144,4 @@ the Alpha review and the specialist audit. It establishes no security or release
 | Draft 2 | 2026-09-30 | The verified review: adversaries A8 and A9; T2, T7, T14 and T15 corrected; T19 to T30 added; invariants 7 to 9; the proposed canary in scope. |
 | Draft 3 | 2026-10-03 | The Beta review: each threat's status as built, with its claim row or receipt; the Alpha's mitigations named by ADR (013 to 018); residuals narrowed where the Beta closed them, and T6's shape-changing loop named. |
 | Draft 4 | 2026-10-06 | Builder-authored stable/devnet reconciliation for independent review: scoped component evidence, unresolved-intent/anchor/loop wording and recovery/operator surfaces; no independent-review or release claim. |
+| Draft 5 | 2026-10-07 | Checkpoint-key asset, scoped signature/catalogue components and reproduced D21 history-semantic gap; integrated snapshot and independent qualification remain owed. |
