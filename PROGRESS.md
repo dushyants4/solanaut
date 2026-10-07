@@ -54,6 +54,9 @@ Accepted snapshot/replay/retention/maintenance obligations now have SNP-3–8 ac
 mapping in `docs/plans/2026-10-06_snapshot-qualification.md`; implementation remains owed.
 The SNP-3 authentication codec has component evidence (`evals/sdk/checkpoint.md`), but
 publication, payload validation, prefix replay and checkpoint restoration remain owed.
+Internal Keel prefix preparation validates retained history through full replay
+before deriving ticks/resets (`evals/sdk/checkpoint-prefix.md`). Its consumer and
+authenticated restoration remain owed; this is component progress only.
 Archive catalogue metadata preparation additionally has focused and installed component
 evidence (`evals/sdk/checkpoint-archives.md`); actual file authentication and full
 snapshot qualification remain owed. Root validation currently retains an existing

@@ -478,6 +478,8 @@ The live probes and baseline are complete. ADR-012 C is built and tested offline
 
 | 2026-10-07 | CI mutation authentication populations and runtime execution | commit containing `evals/ci/mutation-authentication.md` | initial scope/definition/dilution failures; fifteen focused cases; twenty-two staging/report and fifteen recovery faults; serial ordinary 565 cases and typecheck | Original and added populations retain separate floors. Previous Node 22 hosted failure and overlapping local timing failures remain retained; corrected hosted qualification and full frozen-target score remain owed. |
 
+| 2026-10-07 | SNP-3/5 validated internal Keel prefix | commit containing `evals/sdk/checkpoint-prefix.md` | seven initial failures; nine focused cases/seventeen source faults; critical/inventory refusals; 574 ordinary and instrumented cases/typecheck | Event payload derives from full replay; signed policy trust enforced. Misses and stopped overlap retained. Publication, authenticated consumption, state restore and fresh mutation remain owed. |
+
 ## 8. Handing back to Claude
 
 When the human asks for Claude, or when every item left needs the human or Claude, Codex checks each of these:

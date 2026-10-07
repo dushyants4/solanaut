@@ -1,0 +1,17 @@
+✔ SNP-3/5: genesis has canonical empty events and a payload digest (12.638949ms)
+✔ SNP-3/5: mixed history retains every tick and reset, with source sequence/hash (64.838908ms)
+✔ SNP-3/5: stale, missing, reordered and tampered history cannot produce a prefix (20.213658ms)
+✔ SNP-3/5: resealed dishonest telemetry still requires full decision replay (1.890035ms)
+✔ SNP-3/5: malformed inputs cannot inject controller events (2.337074ms)
+✔ SNP-3/5: wrong policy and caller serialization methods cannot bypass validation (7.402477ms)
+✔ SNP-3/5: async replay uses a captured history and endpoint (21.038639ms)
+✔ SNP-3/5: fresh Keel reproduces prefix postures across reset boundaries (11.345121ms)
+✔ SNP-3/5: signed policy changes require externally pinned policy trust (7.457417ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 317.32397

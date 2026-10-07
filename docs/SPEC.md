@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.49** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.50** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -1098,3 +1098,12 @@ The retained original and added authentication populations each require the same
 score floor and valid mutants; a strong added group cannot dilute an original
 deficit. CI ordinary suites use serial file execution without excluding tests
 or changing their deadlines or explicit concurrency batteries.
+
+SNP-3/5 prefix preparation uses canonical format 1, kind
+`solanaut-checkpoint-keel-prefix`, profile, next sequence/head and ordered tick/reset
+events with source sequence/hash. Full default-sensor replay validates copied history
+before extraction; signed policy history requires external policy trust. Tick events
+retain telemetry and posture, never controller state numbers. The separate signed
+descriptor binds the payload digest to guard/cluster, authority, policy and archives.
+This reversible ADR-019 encoding is an internal preparation component; authenticated
+consumption, publication, admission state and restore remain owed.

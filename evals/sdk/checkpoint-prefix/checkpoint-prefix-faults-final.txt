@@ -1,0 +1,40 @@
+caught checkpoint prefix fault: endpoint-fields
+caught checkpoint prefix fault: captured-endpoint
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: captured-history✔ SNP-3/5: genesis has canonical empty events and a payload digest (6.699823ms)
+✔ SNP-3/5: mixed history retains every tick and reset, with source sequence/hash (31.893954ms)
+✔ SNP-3/5: stale, missing, reordered and tampered history cannot produce a prefix (11.040904ms)
+✔ SNP-3/5: resealed dishonest telemetry still requires full decision replay (1.030538ms)
+✔ SNP-3/5: malformed inputs cannot inject controller events (1.447573ms)
+✔ SNP-3/5: wrong policy and caller serialization methods cannot bypass validation (6.84459ms)
+✔ SNP-3/5: async replay uses a captured history and endpoint (14.933353ms)
+✔ SNP-3/5: fresh Keel reproduces prefix postures across reset boundaries (9.064156ms)
+✔ SNP-3/5: signed policy changes require externally pinned policy trust (6.245087ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 202.995952
+
+
+0 !== 1
+
+    at file:///home/dashy/Projects/Solanaut/evals/sdk/checkpoint-prefix-faults.ts:30:65
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

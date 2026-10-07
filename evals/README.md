@@ -5,6 +5,7 @@ seen failing might not be checking anything.
 
 | Gate | Shown failing | Then passing | Receipt |
 |---|---|---|---|
+| SNP-3/5 validated Keel prefix component | original stub failures; missing endpoint case and masked clone fault; campaign/critical-coverage refusals | nine cases/seventeen source faults and restoration; serial ordinary/type checks pass; full restore owed | `sdk/checkpoint-prefix.md` |
 | CI-2 completion-record foundation | valid-result stub failure, ignored operator-tool fingerprint and inventory refusal; masked field check retained | twelve focused cases/sixteen real faults and restoration pass; actual supervisor, integrated close and qualification remain owed | `ci/run-completion.md` |
 | CI-2 actual run supervisor | stub, foreign worker and uncommitted publication failures; inventory refusal retained | eighteen focused cases/nineteen faults pass; aggregate/close recorded in receipt, mutation integration remains owed | `ci/run-supervisor.md` |
 | CI-2 recoverable mutation execution | stub, CLI, inventory and fixture timeout failures retained; orphan retired | six cases/fourteen faults and real staged baseline pass; full score owed | `ci/mutation-recovery.md` |

@@ -1,10 +1,15 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 25** · 2026-10-07 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 26** · 2026-10-07 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
+
+`checkpoint-prefix.ts` prepares an internal canonical Keel event payload only after
+full history replay. Events retain source identity, telemetry/posture and resets;
+it neither accepts controller state numbers nor restores a guard. Authentication,
+publication and full snapshot qualification remain separate work.
 
 The new `checkpoint.ts` authenticates canonical checkpoint and prefix bindings
 against external authority pins and independently computed opaque payload digests

@@ -1,0 +1,18 @@
+caught checkpoint prefix fault: endpoint-fields
+caught checkpoint prefix fault: captured-endpoint
+caught checkpoint prefix fault: captured-history
+caught checkpoint prefix fault: endpoint-sequence
+caught checkpoint prefix fault: endpoint-head
+caught checkpoint prefix fault: full-replay
+caught checkpoint prefix fault: policy-trust
+caught checkpoint prefix fault: reset-events
+caught checkpoint prefix fault: tick-events
+caught checkpoint prefix fault: event-sequence
+caught checkpoint prefix fault: event-hash
+caught checkpoint prefix fault: telemetry
+caught checkpoint prefix fault: posture
+caught checkpoint prefix fault: profile
+caught checkpoint prefix fault: domain
+caught checkpoint prefix fault: digest
+caught checkpoint prefix fault: immutable
+All checkpoint prefix faults caught; restored source passes

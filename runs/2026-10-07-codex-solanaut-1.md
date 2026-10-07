@@ -8,6 +8,24 @@ work. This dated continuation retains the earlier session's full record at
 
 ## Did
 
+Prefix pre-sync close passes nine gates and refuses the uncommitted tree; diff and
+staged secret scan are clean. Commit privately, then wait for afed152's aggregate
+hosted job before pushing so its evidence is not cancelled.
+
+Isolated prefix AST validation passes all 574 cases and existing floors, including
+prefix 26/26 statements and 33/33 branches. Interrupted overlap is diagnostic only.
+Source hashes/raw logs are retained; coherent private close/sync follows.
+
+afed152 is privately pushed; all ten close gates pass. Corrected hosted run
+37626020433 has successful Node 22/24/26 suites; aggregate completion still awaited.
+Internal SNP-3/5 prefix preparation first fails seven stub cases, then passes nine
+cases and seventeen source faults. A missing valid-but-wrong endpoint case and
+masked clone-only trial are retained; effective-copy removal is caught. Canonical
+format/source identities are specified inside ADR-019, without controller state
+restoration. Critical-file and campaign registration fail first. Serial ordinary
+integration passes 574 cases and typecheck exits zero. Prematurely overlapping
+coverage was terminated; no worker remains. Isolated coverage follows.
+
 Mutation scope pre-sync close passes nine gates; uncommitted-tree refusal remains
 until the coherent private commit. Staged diff and secret scan pass.
 

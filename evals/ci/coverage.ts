@@ -1,7 +1,7 @@
 export interface CoverageCounts { covered: number; total: number }
 export interface CoverageFile { path: string; statements: CoverageCounts; branches: CoverageCounts }
 export function requireTestProcess(status: number | null): void { if(status!==0) throw new Error("coverage test process failed or did not complete"); }
-const critical = new Set(["guard.ts","state.ts","classify.ts","message.ts","policy.ts","record.ts","latch.ts","signed-policy.ts","request.ts","control-request.ts","signing.ts","checkpoint.ts","checkpoint-archives.ts","adapters/sending-client.ts"]);
+const critical = new Set(["guard.ts","state.ts","classify.ts","message.ts","policy.ts","record.ts","latch.ts","signed-policy.ts","request.ts","control-request.ts","signing.ts","checkpoint.ts","checkpoint-archives.ts","checkpoint-prefix.ts","adapters/sending-client.ts"]);
 function counts(value: CoverageCounts): void {
   if (!value || !Number.isSafeInteger(value.covered) || !Number.isSafeInteger(value.total) || value.covered<0 || value.covered>value.total || value.total>10_000_000) throw new Error("invalid coverage counts");
 }

@@ -1,0 +1,5 @@
+
+> typecheck
+> tsc -p tsconfig.json
+
+packages/sdk/test/checkpoint-prefix.test.ts(41,48): error TS2353: Object literal may only specify known properties, and 'posture' does not exist in type 'Omit<Entry, "hash">'.

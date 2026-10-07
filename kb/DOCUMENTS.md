@@ -1,5 +1,9 @@
 # DOCUMENTS.md — the document register
 
+2026-10-07 internal Keel prefix registers SPEC Draft 4.50, RISKS 1.41, OVERVIEW
+Draft 26, CLAIMS S62, receipt/index, PROGRESS, HANDOFF and the continuing run.
+Initial failures and masked faults remain retained; full restore is not established.
+
 2026-10-07 mutation authentication scope registers SPEC Draft 4.49, RISKS 1.40,
 the execution map, receipt/index and continuing run/HANDOFF. Hosted Node 22 failure
 is retained; serial test-file execution changes no population, assertion or deadline.

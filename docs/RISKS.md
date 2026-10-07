@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.40** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.41** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 The frozen 9ac6e7c mutation guard target is superseded by D21's independent semantic
@@ -12,6 +12,10 @@ remediation require the completed job's log; do not infer matrix success locally
 The completed log confirms the staged-baseline wait; serial file execution is
 prepared for corrected hosted qualification. Separate retained/additional score
 floors prevent population expansion from concealing a weaker earlier result.
+
+The internal prefix preparation component has full replay and fault evidence,
+but does not establish authenticated consumption, atomic publication or full
+snapshot recovery. Its sources/tests must join the next frozen mutation definition.
 
 The threat model ([docs/papers/THREAT-MODEL.md](papers/THREAT-MODEL.md)) lists what an attacker can do to a running
 guard: threats T1 to T30. This register is wider. It lists what could stop Solanaut being delivered as specified, or

@@ -1,0 +1,129 @@
+✖ SNP-3/5: genesis has canonical empty events and a payload digest (1.182665ms)
+✖ SNP-3/5: mixed history retains every tick and reset, with source sequence/hash (57.847735ms)
+✖ SNP-3/5: stale, missing, reordered and tampered history cannot produce a prefix (16.386013ms)
+✖ SNP-3/5: resealed dishonest telemetry still requires full decision replay (1.510795ms)
+✖ SNP-3/5: malformed inputs cannot inject controller events (0.815005ms)
+✖ SNP-3/5: wrong policy and caller serialization methods cannot bypass validation (14.655842ms)
+✖ SNP-3/5: async replay uses a captured history and endpoint (10.27544ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 0
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 258.805252
+
+✖ failing tests:
+
+test at packages/sdk/test/checkpoint-prefix.test.ts:16:1
+✖ SNP-3/5: genesis has canonical empty events and a payload digest (1.182665ms)
+  Error: checkpoint prefix preparation is not implemented
+      at prepareCheckpointPrefix (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-prefix.ts:3:9)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-prefix.test.ts:17:19)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at packages/sdk/test/checkpoint-prefix.test.ts:21:1
+✖ SNP-3/5: mixed history retains every tick and reset, with source sequence/hash (57.847735ms)
+  Error: checkpoint prefix preparation is not implemented
+      at prepareCheckpointPrefix (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-prefix.ts:3:9)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-prefix.test.ts:22:43)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/checkpoint-prefix.test.ts:28:1
+✖ SNP-3/5: stale, missing, reordered and tampered history cannot produce a prefix (16.386013ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   name: 'Error'
+  -   code: 'checkpoint-prefix',
+  -   name: 'CheckpointPrefixError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-prefix.test.ts:30:164)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: checkpoint prefix preparation is not implemented
+        at prepareCheckpointPrefix (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-prefix.ts:3:9)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-prefix.test.ts:30:178)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: { name: 'CheckpointPrefixError', code: 'checkpoint-prefix' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint-prefix.test.ts:33:1
+✖ SNP-3/5: resealed dishonest telemetry still requires full decision replay (1.510795ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   name: 'Error'
+  -   code: 'checkpoint-prefix',
+  -   name: 'CheckpointPrefixError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-prefix.test.ts:36:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: checkpoint prefix preparation is not implemented
+        at prepareCheckpointPrefix (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-prefix.ts:3:9)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-prefix.test.ts:36:17)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: { name: 'CheckpointPrefixError', code: 'checkpoint-prefix' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint-prefix.test.ts:38:1
+✖ SNP-3/5: malformed inputs cannot inject controller events (0.815005ms)
+  Error: checkpoint prefix preparation is not implemented
+      at prepareCheckpointPrefix (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-prefix.ts:3:9)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-prefix.test.ts:40:38)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/checkpoint-prefix.test.ts:44:1
+✖ SNP-3/5: wrong policy and caller serialization methods cannot bypass validation (14.655842ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   name: 'Error'
+  -   code: 'checkpoint-prefix',
+  -   name: 'CheckpointPrefixError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-prefix.test.ts:46:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: checkpoint prefix preparation is not implemented
+        at prepareCheckpointPrefix (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-prefix.ts:3:9)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-prefix.test.ts:46:17)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: { name: 'CheckpointPrefixError', code: 'checkpoint-prefix' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint-prefix.test.ts:50:1
+✖ SNP-3/5: async replay uses a captured history and endpoint (10.27544ms)
+  Error: checkpoint prefix preparation is not implemented
+      at prepareCheckpointPrefix (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-prefix.ts:3:9)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-prefix.test.ts:51:74)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)

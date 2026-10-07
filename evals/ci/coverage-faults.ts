@@ -8,6 +8,7 @@ const faults = [
   ["critical-floor", "evals/ci/coverage.ts", "passes(file.branches,85)", "passes(file.branches,84)"],
   ["checkpoint-critical-inventory", "evals/ci/coverage.ts", '"checkpoint.ts",', ""],
   ["catalogue-critical-inventory", "evals/ci/coverage.ts", '"checkpoint-archives.ts",', ""],
+  ["prefix-critical-inventory", "evals/ci/coverage.ts", '"checkpoint-prefix.ts",', ""],
   ["omit-inventory-check", "evals/ci/coverage.ts", 'throw new Error("coverage inventory differs")', "void 0"],
   ["invalid-counts", "evals/ci/coverage.ts", 'throw new Error("invalid coverage counts")', "void 0"],
   ["wrong-counter-variable", "evals/ci/coverage-instrument.ts", 'coverageVariable:"__solanautCoverage"', 'coverageVariable:"__wrongCoverage"'],
