@@ -1,0 +1,8 @@
+
+> typecheck
+> tsc -p tsconfig.json
+
+packages/sdk/test/checkpoint-bundle.test.ts(36,67): error TS2345: Argument of type '{ checkpointKey: string; principalKeys: string[]; anchorKey: string; guardId: string; cluster: Cluster; }' is not assignable to parameter of type 'CheckpointTrust'.
+  Types of property 'cluster' are incompatible.
+    Type 'Cluster' is not assignable to type '"devnet" | "localnet"'.
+      Type '"mainnet-beta"' is not assignable to type '"devnet" | "localnet"'.

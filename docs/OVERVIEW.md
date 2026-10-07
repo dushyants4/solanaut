@@ -1,10 +1,14 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 27** · 2026-10-07 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 28** · 2026-10-07 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
+
+`checkpoint-bundle.ts` assembles captured, validated payload components and
+descriptor signing bytes. It remains internal; signatures, archive-file verification,
+atomic publication and authenticated recovery are separate responsibilities.
 
 `checkpoint-state.ts` prepares signed-mode admission-state bytes from full verified
 history, retaining lifecycle facts, policy and the previous decision. It neither

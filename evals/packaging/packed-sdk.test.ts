@@ -215,10 +215,11 @@ test("SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuse
 test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace",()=>{
   // Inspect internal compiled artefacts; these helpers are not stable root exports.
   const script=`
-    import {createGuard,preparePolicyText,verifyPolicyAuthorization,PolicyAuthorizationError,encodeBase58,EVALUATION_PROFILE} from '@solanaut/sdk';
+    import {createGuard,preparePolicyText,verifyPolicyAuthorization,PolicyAuthorizationError,verifyCheckpointBinding,encodeBase58,EVALUATION_PROFILE} from '@solanaut/sdk';
     import {generateKeyPairSync,sign,createHash} from 'node:crypto';
     const {prepareCheckpointPrefix,CheckpointPrefixError}=await import(new URL('./checkpoint-prefix.js',import.meta.resolve('@solanaut/sdk')));
     const {prepareCheckpointState,CheckpointStateError}=await import(new URL('./checkpoint-state.js',import.meta.resolve('@solanaut/sdk')));
+    const {prepareCheckpointBundle}=await import(new URL('./checkpoint-bundle.js',import.meta.resolve('@solanaut/sdk')));
     const operator=generateKeyPairSync('ed25519'),agent=generateKeyPairSync('ed25519');
     const address=pair=>encodeBase58(Buffer.from(pair.publicKey.export({format:'jwk'}).x,'base64url'));
     const policy=JSON.parse(process.argv[1]);policy.principal=[address(agent)];policy.latch.releaseKey=address(operator);
@@ -246,6 +247,12 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
     const entries=g.entries(),context={seq:entries.length,head:entries.at(-1).hash};g.close();
     const prefix=await prepareCheckpointPrefix(entries,undefined,context,trust),state=await prepareCheckpointState(entries,undefined,context,trust);
     const hash=text=>createHash('sha256').update(text).digest('hex'),p=JSON.parse(prefix.text),s=JSON.parse(state.text);
+    const checkpoint=generateKeyPairSync('ed25519'),anchor=generateKeyPairSync('ed25519');
+    const checkpointTrust={checkpointKey:address(checkpoint),anchorKey:address(anchor),principalKeys:policy.principal,guardId:trust.guardId,cluster:trust.cluster};
+    const receipts=[{bytes:10000,entries:context.seq,firstSeq:0,nextSeq:context.seq,head:context.head,sha256:hash('fixture archive metadata')}];
+    const bundle=await prepareCheckpointBundle(entries,undefined,receipts,context,trust,checkpointTrust);
+    if(bundle.state!==state.text || bundle.prefix!==prefix.text || !Object.isFrozen(bundle) || !Object.isFrozen(bundle.binding))throw new Error('bundle payload consistency differs');
+    verifyCheckpointBinding(bundle.binding,{snapshot:sign(null,Buffer.from(bundle.snapshotText),checkpoint.privateKey).toString('base64'),prefix:sign(null,Buffer.from(bundle.prefixText),checkpoint.privateKey).toString('base64')},checkpointTrust,{archiveDigest:hash(bundle.archives),stateDigest:hash(bundle.state),prefixDigest:hash(bundle.prefix)});
     if(prefix.digest!==hash(prefix.text) || state.digest!==hash(state.text) || !Object.isFrozen(prefix) || !Object.isFrozen(state))throw new Error('payload digest or immutability differs');
     if(JSON.stringify(s.profile)!==JSON.stringify(p.profile) || Object.keys(EVALUATION_PROFILE).some(k=>s.profile[k]!==EVALUATION_PROFILE[k]))throw new Error('payload profile differs');
     if(s.policy.version!==1 || s.policy.hash!==d.policyHash)throw new Error('payload policy differs');
@@ -262,7 +269,7 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
     console.log(JSON.stringify({events:p.events.length,requests:s.state.requests.length,uncertain:true}));`;
   const result=spawnSync(process.execPath,["--input-type=module","-e",script,inputPolicy,Buffer.from(transfer(2)).toString("base64")],{cwd:consumer,encoding:"utf8"});
   assert.equal(result.status,0,result.stderr);assert.deepEqual(JSON.parse(result.stdout),{events:1,requests:2,uncertain:true});
-  for(const name of ["checkpoint-prefix","checkpoint-state"])for(const extension of ["js","d.ts"])assert.ok(packed.files.some((file:{path:string})=>file.path==="dist/src/"+name+"."+extension));
+  for(const name of ["checkpoint-prefix","checkpoint-state","checkpoint-bundle"])for(const extension of ["js","d.ts"])assert.ok(packed.files.some((file:{path:string})=>file.path==="dist/src/"+name+"."+extension));
 });
 
 test("PKG-3: installed replay and table-pin commands execute with their documented usage exits", () => {

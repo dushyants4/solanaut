@@ -1,0 +1,21 @@
+caught checkpoint bundle fault: endpoint-capture
+caught checkpoint bundle fault: policy-pins-capture
+caught checkpoint bundle fault: checkpoint-pins-capture
+caught checkpoint bundle fault: history-capture
+caught checkpoint bundle fault: catalogue-capture
+caught checkpoint bundle fault: anchor-role
+caught checkpoint bundle fault: trust-shape
+caught checkpoint bundle fault: principal-role
+caught checkpoint bundle fault: current-principals
+caught checkpoint bundle fault: identity
+caught checkpoint bundle fault: version
+caught checkpoint bundle fault: policy-hash
+caught checkpoint bundle fault: sequence
+caught checkpoint bundle fault: head
+caught checkpoint bundle fault: archive-digest
+caught checkpoint bundle fault: state-digest
+caught checkpoint bundle fault: prefix-digest
+caught checkpoint bundle fault: prefix-domain
+caught checkpoint bundle fault: immutable-binding
+caught checkpoint bundle fault: immutable-result
+All checkpoint bundle faults caught; restored source passes

@@ -1,5 +1,17 @@
 # DOCUMENTS.md — the document register
 
+2026-10-07 checkpoint bundle registers SPEC Draft 4.54, RISKS 1.45, OVERVIEW Draft 28,
+SDK Draft 8, PACKAGING Draft 10, receipt/index, PROGRESS, HANDOFF and continuing run.
+It remains internal unsigned assembly. Initial refusals and hostile trust-array
+finding are retained; final scoped claims and integration follow.
+CLAIMS S66/S67 now record component and scheduling evidence with explicit commands.
+
+Ordinary scheduling receipt/index records the confirmed ignored trailing option,
+root command and CI correction, initial overlap failure and caught omission.
+Every existing workload/wait/floor remains; corrected hosted confirmation is owed.
+Final ordinary/AST/type evidence is retained; the original hosted wait failure
+and local repeats remain alongside passes. No stable-release gate is waived.
+
 2026-10-07 policy-signature validation registers SPEC Draft 4.53, RISKS 1.44,
 SDK Draft 7, receipt/index, PROGRESS, HANDOFF and continuing run. Expanded mutation
 definition preserves existing limits; shared fixture failure is retained. CLAIMS

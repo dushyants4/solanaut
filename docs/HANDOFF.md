@@ -189,6 +189,23 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+Confirmed cause of ordinary parallelism: Node ignores the scheduling flag placed
+after test paths. Two-file probes and an actual scheduling regression reproduce
+it; root command/CI now put the option before paths. Planted omission is caught.
+Corrected ordinary suite passes 589 cases and typecheck; no deadline/workload/floor
+changed. AST and corrected hosted confirmation follow before qualification.
+
+2692542 hosted qualification fails: Node 22 actual staged baseline is incomplete
+at the existing wait; twelve other jobs pass. Exact failure/metadata retained.
+Bundle serial ordinary suite also refuses the same local wait. Timing reliability
+remains open; unchanged rerun follows, with failures preserved at equal scope.
+
+2692542 is privately pushed with all local close gates passing; hosted qualification
+is underway. Internal checkpoint bundle assembly has source/installed evidence:
+consistent captured payloads and existing signing domains, distinct authority pins.
+Array-shape regression and initial gate refusals retained. Final close/sync follows;
+atomic publication and authenticated recovery remain the next dependencies.
+
 afe482a hosted run 37649065148 passes every job; full logs and exact revision
 metadata retained with compiled-payload receipt. Earlier timing failure remains
 preserved and its cause unproven. All local close gates passed after private sync.

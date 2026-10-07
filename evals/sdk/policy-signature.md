@@ -1,5 +1,11 @@
 # POL-2 — bounded policy signature decoding
 
+Hosted 2692542 run 37651009713 completes with twelve successful jobs and one
+Node 22 ordinary-suite failure. The staged baseline is still active at the
+unchanged wait deadline; diagnostics retain its progress through the sensor
+battery. Exact revision metadata and failure log are retained at
+`policy-signature/hosted-2692542/`. This revision is not fully hosted-qualified.
+
 2026-10-07 · builder-authored local Linux/Node 26.7.0 evidence · base afe482a
 plus candidate. No new public exports or architecture change.
 

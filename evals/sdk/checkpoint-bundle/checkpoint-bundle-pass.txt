@@ -1,0 +1,14 @@
+✔ SNP-3: bundle binds all derived payload bytes and supplies both signing domains (17.984509ms)
+✔ SNP-3: bundle refuses missing or foreign policy and checkpoint pins (12.567783ms)
+✔ SNP-3: bundle refuses stale history and incomplete archive catalogue (9.269754ms)
+✔ SNP-3: bundle rejects resealed dishonest history and unsigned state (2.933608ms)
+✔ SNP-3: bundle captures caller history, archive metadata, endpoint and pins before awaiting (5.843483ms)
+✔ SNP-3: bundle normalises malformed caller input to typed refusal (2.408975ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 197.230199

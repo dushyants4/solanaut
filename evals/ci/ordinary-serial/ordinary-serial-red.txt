@@ -1,0 +1,27 @@
+✖ CI-2: the root test command actually serialises files instead of appending an ignored option (667.597387ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 822.662157
+
+✖ failing tests:
+
+test at evals/ci/ordinary-serial.test.ts:8:1
+✖ CI-2: the root test command actually serialises files instead of appending an ignored option (667.597387ms)
+  AssertionError [ERR_ASSERTION]: root command ran test files concurrently
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/ordinary-serial.test.ts:25:74)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

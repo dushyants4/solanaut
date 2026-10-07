@@ -19,6 +19,10 @@ Coarser than `runs/`. The archivist keeps it current; every phase that ends gets
 
 ## Measured so far
 
+Checkpoint bundle assembly has builder evidence at `evals/sdk/checkpoint-bundle.md`.
+This prepares consistent signing bytes; publication and authenticated restore
+remain separate, unfinished work.
+
 POL-2 signature decoding and expanded CI-2 baseline preparation have builder
 evidence at `evals/sdk/policy-signature.md`. Complete mutation qualification,
 checkpoint publication/recovery and stable release remain open.

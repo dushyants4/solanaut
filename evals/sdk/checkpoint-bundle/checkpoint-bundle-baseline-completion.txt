@@ -1,0 +1,2 @@
+Mutation run directory: /home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-hbcjrl
+Staged mutation baseline passes; no mutation score measured

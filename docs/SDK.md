@@ -1,9 +1,9 @@
 # SDK reference — private candidate
 
-> **Draft 7** · 2026-10-07 · owner: integrator · for: developers integrating the candidate.
+> **Draft 8** · 2026-10-07 · owner: integrator · for: developers integrating the candidate.
 > Register: `kb/DOCUMENTS.md`. This describes current exports, not a stable-release promise.
 
-Prefix and admission-state preparation remain internal. Installed compiled tests
+Bundle, prefix and admission-state preparation remain internal. Installed compiled tests
 do not make their file paths a public API. Publication and recovery are unfinished.
 
 Policy authorisation captures signature text once and refuses an invalid encoded

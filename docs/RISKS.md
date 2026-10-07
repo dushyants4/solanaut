@@ -1,7 +1,12 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.44** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.45** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
+
+Bundle preparation captures a common history/endpoint and external authority pins.
+This is unsigned assembly, not authenticated recovery or archive-file verification.
+Atomic publication, protected checkpoint keys, bounded retention and full mutation
+qualification remain open.
 
 Policy signature decoding now checks encoded size and captures text once. This is
 local input validation, not evidence of complete remote request containment.
@@ -9,8 +14,10 @@ Expanded mutation staging exposed a shared nested checkpoint test policy; fixtur
 now own their policy. The full corrected mutation score remains unmeasured.
 
 Hosted b9c06eb passes twelve jobs but fails its instrumented staged-baseline wait.
-The unchanged wait remains binding; child progress diagnostics are added before
-cleanup. Cause and corrected hosted qualification remain unresolved. Installed
+2692542 also fails that wait under Node 22. Ordinary tests' trailing scheduling
+option is confirmed ineffective; the root command now places it before paths.
+The unchanged wait remains binding; initial diagnostics and failures are retained.
+Corrected hosted qualification remains required. Installed
 compiled payload proofs do not establish full recovery or stable-release readiness.
 
 The frozen 9ac6e7c mutation guard target is superseded by D21's independent semantic

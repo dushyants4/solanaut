@@ -8,6 +8,23 @@ work. This dated continuation retains the earlier session's full record at
 
 ## Did
 
+Bundle/scheduling final ordinary and AST suites each pass all 589 cases, typecheck
+exits zero and existing coverage floors pass. Current source/package/compiled
+hashes and coverage summary retained. Pre-sync close passes nine gates and
+refuses the uncommitted tree. Review/private commit/push follows.
+
+Corrected `npm test` passes every one of 589 cases, typecheck exits zero. All
+bundle and scheduling source/compiled/gate faults restore exactly. AST
+qualification runs sequentially before private close/sync. No complete mutation
+or publication/recovery claim; old ordinary/hosted failures remain retained.
+
+2692542 is privately pushed; all ten close gates pass. Hosted run 37651009713 is
+underway. Checkpoint bundle preparation follows the accepted ADR-019 payload
+sequence: internal assembly/signing bytes, not publication or restore. All initial
+stub cases fail; source fault trials restore exactly. Critical coverage and campaign
+inventory first refuse before registration. Expanded definition 9/fresh seed 23519
+retains all limits and prior inputs. Final integration/evidence follows.
+
 Policy pre-sync close passes nine gates and correctly refuses the uncommitted
 tree. Staged source diff and secret scan reviewed; private commit/push follows.
 
@@ -308,6 +325,33 @@ record satisfies the close workflow's current-day record requirement. Earlier ca
 implementation, documentation and receipt changes remain in the continuing session record.
 
 ## Found
+
+Confirmed scheduling defect: the old ordinary command appended its concurrency
+option after test paths, so Node ignored it. A direct two-file timestamp probe
+shows overlapping execution; the leading-option probe serialises them. Full
+leading-option integration passes 588 cases. The root command now puts its option
+before paths; hosted CI uses that command. An actual scheduling regression fails
+first and catches deliberate removal, with restoration. No wait, workload, score
+or readiness floor changed. Corrected hosted confirmation is still required.
+
+The second serial ordinary attempt also fails the staged-baseline wait. A separate
+supervised baseline actually completes successfully, with committed result and
+full child output retained; focused recovery also passes. No complete-suite pass
+is inferred from those narrower commands. A full run with the serial option placed
+before file arguments is being compared; its outcome is not yet known.
+
+2692542 hosted run 37651009713 completes with twelve successful jobs and one
+Node 22 ordinary failure: real staged baseline still active at the unchanged wait.
+New diagnostics retain progress through the sensor battery, not a successful
+completion. Bundle serial ordinary integration also fails that wait locally;
+preserve both failures. An unchanged serial rerun follows. This repeated timing
+finding remains open; no workload or deadline weakened to manufacture a pass.
+
+Bundle review adds a hostile array carrying named trust fields. The first
+regression exposes acceptance of this non-object shape; explicit array rejection
+and a planted omission trial follow. Initial fixture typecheck also refuses its
+wide cluster type; fixture now declares the actual localnet pin. Both outputs
+remain retained. No authority, profile or gate semantics relaxed.
 
 Policy close first refuses S65 because its regenerating commands were only linked
 through the receipt. The row now names explicit commands; no lint rule changed.

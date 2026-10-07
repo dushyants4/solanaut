@@ -1,0 +1,14 @@
+start a 1791390981328
+end a 1791390981829
+✔ serial probe a (502.155663ms)
+start b 1791390981899
+end b 1791390982401
+✔ serial probe b (502.788027ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1158.554096

@@ -1,0 +1,22 @@
+✔ CI-1: exact inventory accepts every maintained campaign and rejects omission/addition/duplication (21.814308ms)
+✔ CI-1: all campaigns run sequentially; failure/null exit fails aggregation without hiding other findings (1.716663ms)
+✔ CI-1: changed source stops further mutation, reports skipped work and fails the gate (0.307727ms)
+✔ CI-2: failed or missing test-process completion cannot qualify coverage (1.910399ms)
+✔ CI-2: exact statement and branch floors pass without rounding (1.388828ms)
+✔ CI-2: a critical branch deficit fails even when aggregate totals pass (0.723998ms)
+✔ CI-2: missing, extra and duplicate files cannot disappear from coverage (0.455334ms)
+✔ CI-2: malformed and empty execution counts fail closed (0.473822ms)
+✔ SNP-3: bundle binds all derived payload bytes and supplies both signing domains (24.701161ms)
+✔ SNP-3: bundle refuses missing or foreign policy and checkpoint pins (17.921971ms)
+✔ SNP-3: bundle refuses stale history and incomplete archive catalogue (10.361119ms)
+✔ SNP-3: bundle rejects resealed dishonest history and unsigned state (2.655872ms)
+✔ SNP-3: bundle captures caller history, archive metadata, endpoint and pins before awaiting (6.860808ms)
+✔ SNP-3: bundle normalises malformed caller input to typed refusal (2.577941ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 269.658664

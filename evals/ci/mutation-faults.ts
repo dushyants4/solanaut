@@ -26,6 +26,8 @@ const faults=[
   ["signed-policy-scope","mutation-stage.ts",',"signed-policy.ts"',""],
   ["prefix-tests","mutation-stage.ts",',"checkpoint-prefix"',""],
   ["state-tests","mutation-stage.ts",',"checkpoint-state"',""],
+  ["bundle-scope","mutation-stage.ts",',"checkpoint-bundle.ts"',""],
+  ["bundle-tests","mutation-stage.ts",',"checkpoint-bundle"',""],
   ["staging-execution","mutation-stage.ts","--test-isolation=none ",""],
   ["whole-run-resource-limit","mutation-stage.ts","MUTATION_RUN_LIMIT_MS=43_200_000","MUTATION_RUN_LIMIT_MS=43_199_999"],
   ["per-mutant-timeout","mutation-stage.ts","timeoutMS:10_000","timeoutMS:1"],

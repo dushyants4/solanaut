@@ -1,0 +1,118 @@
+✖ SNP-3: bundle binds all derived payload bytes and supplies both signing domains (17.625859ms)
+✖ SNP-3: bundle refuses missing or foreign policy and checkpoint pins (3.706943ms)
+✖ SNP-3: bundle refuses stale history and incomplete archive catalogue (2.268271ms)
+✖ SNP-3: bundle rejects resealed dishonest history and unsigned state (1.978689ms)
+✖ SNP-3: bundle captures caller history, archive metadata, endpoint and pins before awaiting (1.361837ms)
+✖ SNP-3: bundle normalises malformed caller input to typed refusal (1.316916ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 0
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 248.723714
+
+✖ failing tests:
+
+test at packages/sdk/test/checkpoint-bundle.test.ts:30:1
+✖ SNP-3: bundle binds all derived payload bytes and supplies both signing domains (17.625859ms)
+  Error: checkpoint bundle not implemented
+      at Module.prepareCheckpointBundle (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-bundle.ts:2:91)
+      at prepare (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-bundle.test.ts:28:63)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-bundle.test.ts:31:37)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at packages/sdk/test/checkpoint-bundle.test.ts:41:1
+✖ SNP-3: bundle refuses missing or foreign policy and checkpoint pins (3.706943ms)
+  AssertionError [ERR_ASSERTION]: The validation function is expected to return "true". Received false
+  
+  Caught error:
+  
+  Error: checkpoint bundle not implemented
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-bundle.test.ts:43:123)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: checkpoint bundle not implemented
+        at Module.prepareCheckpointBundle (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-bundle.ts:2:91)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-bundle.test.ts:43:144)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint-bundle.test.ts:46:1
+✖ SNP-3: bundle refuses stale history and incomplete archive catalogue (2.268271ms)
+  AssertionError [ERR_ASSERTION]: The validation function is expected to return "true". Received false
+  
+  Caught error:
+  
+  Error: checkpoint bundle not implemented
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-bundle.test.ts:48:96)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: checkpoint bundle not implemented
+        at Module.prepareCheckpointBundle (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-bundle.ts:2:91)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-bundle.test.ts:48:117)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint-bundle.test.ts:51:1
+✖ SNP-3: bundle rejects resealed dishonest history and unsigned state (1.978689ms)
+  AssertionError [ERR_ASSERTION]: The validation function is expected to return "true". Received false
+  
+  Caught error:
+  
+  Error: checkpoint bundle not implemented
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-bundle.test.ts:55:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: checkpoint bundle not implemented
+        at Module.prepareCheckpointBundle (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-bundle.ts:2:91)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-bundle.test.ts:55:24)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint-bundle.test.ts:58:1
+✖ SNP-3: bundle captures caller history, archive metadata, endpoint and pins before awaiting (1.361837ms)
+  Error: checkpoint bundle not implemented
+      at Module.prepareCheckpointBundle (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-bundle.ts:2:91)
+      at prepare (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-bundle.test.ts:28:63)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-bundle.test.ts:59:42)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/checkpoint-bundle.test.ts:63:1
+✖ SNP-3: bundle normalises malformed caller input to typed refusal (1.316916ms)
+  AssertionError [ERR_ASSERTION]: The validation function is expected to return "true". Received false
+  
+  Caught error:
+  
+  Error: checkpoint bundle not implemented
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-bundle.test.ts:65:57)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: checkpoint bundle not implemented
+        at Module.prepareCheckpointBundle (file:///home/dashy/Projects/Solanaut/packages/sdk/src/checkpoint-bundle.ts:2:91)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-bundle.test.ts:65:78)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    operator: 'rejects',
+    diff: 'simple'
+  }

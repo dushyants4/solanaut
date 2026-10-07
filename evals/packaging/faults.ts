@@ -16,6 +16,10 @@ const baseline = battery();
 assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
 const faults = [
   { name: "prefix-module", path: "dist/src/checkpoint-prefix.js", caught: "compiled checkpoint payloads", damage: () => undefined },
+  { name: "bundle-module", path: "dist/src/checkpoint-bundle.js", caught: "compiled checkpoint payloads", damage: () => undefined },
+  { name: "bundle-digest", path: "dist/src/checkpoint-bundle.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("archiveDigest: archives.digest", 'archiveDigest: "0".repeat(64)') },
+  { name: "bundle-payload", path: "dist/src/checkpoint-bundle.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("state: state.text", 'state: "{}"') },
+  { name: "bundle-domain", path: "dist/src/checkpoint-bundle.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("prefixText = prepareCheckpointPrefixText(binding)", "prefixText = prepareCheckpointText(binding)") },
   { name: "policy-signature-size", path: "dist/src/signed-policy.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("if (signature.length !== 88)", "if (false)") },
   { name: "prefix-digest", path: "dist/src/checkpoint-prefix.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("sha256hex(text)", 'sha256hex("wrong")') },
   { name: "prefix-replay", path: "dist/src/checkpoint-prefix.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("if (!result.ok)", "if (false)") },

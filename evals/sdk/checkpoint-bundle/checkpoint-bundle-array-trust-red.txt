@@ -1,0 +1,29 @@
+✔ SNP-3: bundle binds all derived payload bytes and supplies both signing domains (22.936706ms)
+✔ SNP-3: bundle refuses missing or foreign policy and checkpoint pins (12.88981ms)
+✔ SNP-3: bundle refuses stale history and incomplete archive catalogue (8.902701ms)
+✔ SNP-3: bundle rejects resealed dishonest history and unsigned state (2.477274ms)
+✔ SNP-3: bundle captures caller history, archive metadata, endpoint and pins before awaiting (6.455199ms)
+✖ SNP-3: bundle normalises malformed caller input to typed refusal (5.469368ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 264.859343
+
+✖ failing tests:
+
+test at packages/sdk/test/checkpoint-bundle.test.ts:61:1
+✖ SNP-3: bundle normalises malformed caller input to typed refusal (5.469368ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-bundle.test.ts:63:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }
