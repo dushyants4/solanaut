@@ -261,6 +261,20 @@ pending. No threshold, accepted ADR or protected harness file changes.
 
 ## Open
 
+Hosted recovery 37610469380 finishes: twelve jobs succeed, Node 22 ordinary test job
+fails on non-successful staged baseline completion. Child output was omitted by the
+assertion, now included. The undocumented old option is a confirmed compatibility
+defect; corrected hosted evidence must verify the diagnosis. Raw full failure log retained.
+Pre-sync runtime close passes eight gates, refusing ahead-of-origin and uncommitted
+state. No threshold or matrix is weakened. Private sync follows this review.
+
+Runtime correction first asserts the actual captured baseline option and fails on
+the previous spelling. Documented compatibility alias passes locally; six cases and
+fifteen faults restore exactly. Definition 5 uses fresh seed 23107 with unchanged
+population/floors/deadlines. Old hosted Node 22 failure is retained; final logs and
+corrected hosted confirmation remain owed. Dependency fdae9b4 committed privately,
+push waits for the preceding hosted run to finish rather than cancelling its evidence.
+
 DEP-1 final local integration passes 545 cases, nine packed-consumer checks and
 typecheck; pre-sync close passes nine gates and refuses uncommitted state. Hosted
 recovery f8d22f9 has a Node 22 matrix failure; logs unavailable until run completion.

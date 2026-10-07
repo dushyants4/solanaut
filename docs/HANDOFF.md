@@ -189,6 +189,11 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+Recovery runtime correction uses the documented cross-matrix isolation option;
+six cases/fifteen faults pass locally (`evals/ci/mutation-runtime.md`). Definition 5
+declares a fresh seed with unchanged scope/floors. Hosted Node 22 failure is retained;
+corrected hosted evidence and complete mutation score remain owed.
+
 Recovery f8d22f9 privately pushed; all ten close gates pass. DEP-1 now has a scoped
 published qs patch, clean lockfile installation and three installed cases/four faults
 (`evals/ci/dependency.md`). Resolver failures are retained. Remaining high findings,

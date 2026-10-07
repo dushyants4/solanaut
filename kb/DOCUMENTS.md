@@ -224,3 +224,6 @@ is retained; complete mutation qualification remains owed.
 
 2026-10-07 DEP-1 registers SPEC Draft 4.45, RISKS 1.36, CLAIMS S56, TOOLCHAIN,
 dependency remediation plan, receipt/index, PROGRESS and HANDOFF continuation.
+
+2026-10-07 baseline runtime correction registers SPEC Draft 4.46, RISKS 1.37,
+CLAIMS S57, receipt/index, HANDOFF and continuing record. Hosted failure remains retained.

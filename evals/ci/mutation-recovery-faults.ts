@@ -23,7 +23,8 @@ for(const [name,from,to,pattern] of faults) {
 const restored=battery();assert.equal(restored.status,0,restored.stdout+restored.stderr);console.log("All mutation recovery faults caught; restored source passes");
 const driver="evals/ci/mutation-run.ts",driverSource=readFileSync(driver,"utf8");
 const driverFaults=[
-  ["baseline-population",'["--test","--test-isolation=none",...MUTATION_TESTS]','["--test","--test-isolation=none","packages/sdk/test/policy.test.ts"]'],
+  ["runtime-option",'"--experimental-test-isolation=none"','"--test-isolation=none"'],
+  ["baseline-population",'["--test","--experimental-test-isolation=none",...MUTATION_TESTS]','["--test","--experimental-test-isolation=none","packages/sdk/test/policy.test.ts"]'],
   ["supervisor-source",'hash(readFileSync(join(destination,"supervision",name)))!==manifest.supervisorHashes?.[name]',"false"],
   ["manifest-binding","ticket.identity.inputHash!==hash(bytes)","false"],
   ["command-binding","ticket.identity.commandHash!==hash(JSON.stringify(command(destination,manifest.baseline)))","false"],

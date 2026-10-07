@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.36** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.37** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 The threat model ([docs/papers/THREAT-MODEL.md](papers/THREAT-MODEL.md)) lists what an attacker can do to a running
@@ -203,3 +203,7 @@ fresh complete qualification remains owed (`evals/ci/mutation-recovery.md`).
 The evaluation-tool qs route is remediated by a scoped exact published override
 (`evals/ci/dependency.md`). High framework/native-buffer findings remain open;
 local compatibility evidence does not imply upstream endorsement or release clearance.
+
+The preceding recovery revision fails the oldest-runtime hosted job. Its baseline
+option spelling is corrected with captured-command regressions; local passes do not
+replace the required corrected hosted matrix (`evals/ci/mutation-runtime.md`).

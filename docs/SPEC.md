@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.45** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.46** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -1067,3 +1067,7 @@ DEP-1 requires the Stryker query route to resolve the reviewed exact qs version;
 malicious constructor and nullable comma arrays cannot crash serialization, and
 ordinary REST query options remain compatible. Installed bytes and manifest pins are
 checked by `evals/ci/dependency.test.ts`; full dependency clearance remains owed.
+
+CI-2 definition 5 uses the documented cross-matrix baseline isolation option and
+a fresh declared seed. Execution population, floors and deadlines remain unchanged;
+corrected hosted confirmation and complete mutation qualification remain owed.

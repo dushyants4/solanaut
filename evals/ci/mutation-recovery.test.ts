@@ -64,9 +64,12 @@ test("CI-2: an asynchronously started real staged baseline finishes without rela
     const launch=spawnSync(process.execPath,["evals/ci/mutation-run.ts","--start","--baseline"],{encoding:"utf8",timeout:10000});
     assert.equal(launch.status,0,launch.stdout+launch.stderr);assert.equal(launch.error,undefined);
     stage=launch.stdout.match(/Mutation run directory: (.+)/)?.[1];assert.equal(typeof stage,"string");
-    const manifest=JSON.parse(readFileSync(join(stage!,"manifest.json"),"utf8"));assert.equal(manifest.definition,4);assert.equal(manifest.environment.FUZZ_SEED,"23093");
+    const manifest=JSON.parse(readFileSync(join(stage!,"manifest.json"),"utf8"));assert.equal(manifest.definition,5);assert.equal(manifest.environment.FUZZ_SEED,"23107");
     ticket=JSON.parse(readFileSync(join(stage!,"ticket.json"),"utf8"));
+    const specification=JSON.parse(readFileSync(join(ticket!.directory,"spec.json"),"utf8"));
+    assert.equal(specification.command.args[1],"--experimental-test-isolation=none");
     const end=Date.now()+20000;while(readSupervisedResult(ticket!)===null && Date.now()<end)await sleep(20);assert.notEqual(readSupervisedResult(ticket!),null);
+    assert.equal((readSupervisedResult(ticket!) as {status:number|null}).status,0,readFileSync(join(ticket!.directory,"output.txt"),"utf8"));
     const before=readFileSync(join(ticket!.directory,"result.json"));
     for(let attempt=0;attempt<2;attempt++) {const finish=spawnSync(process.execPath,["evals/ci/mutation-run.ts","--finish",stage!],{encoding:"utf8",timeout:10000});assert.equal(finish.status,0,finish.stdout+finish.stderr);assert.match(finish.stdout,/baseline passes; no mutation score measured/);assert.deepEqual(readFileSync(join(ticket!.directory,"result.json")),before);}
     assert.match(readFileSync(join(ticket!.directory,"output.txt"),"utf8"),/tests 235\b/);
