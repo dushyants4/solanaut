@@ -1,0 +1,49 @@
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (88.711085ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (0.426042ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (375.150731ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (194.228603ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (158.642777ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (148.267817ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (80.213067ms)
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (210.908198ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (116.76084ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (63.181797ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 9
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2395.548003
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:215:1
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (210.908198ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-atFNgo/consumer/[eval1]:89
+        try{let aliasRefused=false;try{await pendingOwned;}catch(error){aliasRefused=error.name==='CheckpointRecoveryError' && error.code==='checkpoint-recovery';}if(!aliasRefused)throw new Error('installed ownership alias accepted');}
+                                                                                                                                                                                          ^
+  
+  Error: installed ownership alias accepted
+      at file:///tmp/solanaut-consumer-atFNgo/consumer/[eval1]:89:185
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:331:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

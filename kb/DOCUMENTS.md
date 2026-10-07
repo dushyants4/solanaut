@@ -1,5 +1,22 @@
 # DOCUMENTS.md — the document register
 
+2026-10-07 owned recovery registers SPEC Draft 4.59, RISKS 1.50, OVERVIEW
+Draft 33, SDK Draft 13, PACKAGING Draft 15, component receipt/index, PROGRESS,
+HANDOFF and continuing run. Actual owner-bound read-only preparation does not
+qualify live startup or bounded memory. Final scoped claim and integrated evidence
+follow; all floors and pending human decisions remain unchanged.
+Recovery receipt and HANDOFF retain completed hosted f05c84d failure: the three
+runtime test jobs fail the unchanged wait; AST and maintained faults pass.
+CLAIMS S72 records corrected source/installed/staging fault evidence. Initial named
+ownership alias failure is retained; lstat correction repeats integration with
+definition 15/fresh seed 24307. Provisional coverage/source manifests stay labelled.
+Corrected ordinary/AST/type and unchanged floors pass: final record coverage is
+199/205 statements and 118/125 branches. Exact AST hashes remain separate from
+the pre-alias summary; final fault repetition and private sync follow.
+Final fresh-seed recovery/driver repetition passes with restoration. CLAIMS S72
+now records corrected ordinary/AST/type, installed and all scoped fault evidence;
+final exact sources and raw results are retained before close/private sync.
+
 2026-10-07 recovery preparation registers SPEC Draft 4.58, RISKS 1.49, OVERVIEW
 Draft 32, SDK Draft 12, PACKAGING Draft 14, component receipt/index, PROGRESS,
 HANDOFF and continuing run. Prefix receipt retains exact hosted 995c5b0 failures;

@@ -217,14 +217,14 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
   const script=`
     import {createGuard,preparePolicyText,verifyPolicyAuthorization,PolicyAuthorizationError,verifyCheckpointBinding,encodeBase58,EVALUATION_PROFILE} from '@solanaut/sdk';
     import {generateKeyPairSync,sign,createHash} from 'node:crypto';
-    import {mkdtempSync,writeFileSync,readFileSync,rmSync} from 'node:fs';
+    import {mkdtempSync,writeFileSync,readFileSync,rmSync,renameSync,symlinkSync,unlinkSync} from 'node:fs';
     import {tmpdir} from 'node:os';
     import {join} from 'node:path';
     const {prepareCheckpointPrefix,rebuildCheckpointPrefix,CheckpointPrefixError}=await import(new URL('./checkpoint-prefix.js',import.meta.resolve('@solanaut/sdk')));
     const {prepareCheckpointState,CheckpointStateError}=await import(new URL('./checkpoint-state.js',import.meta.resolve('@solanaut/sdk')));
     const {prepareCheckpointBundle}=await import(new URL('./checkpoint-bundle.js',import.meta.resolve('@solanaut/sdk')));
     const {prepareCheckpointEnvelope,verifyCheckpointEnvelope,CheckpointEnvelopeError}=await import(new URL('./checkpoint-envelope.js',import.meta.resolve('@solanaut/sdk')));
-    const {fileStore,publishOwnedCheckpoint}=await import(new URL('./record.js',import.meta.resolve('@solanaut/sdk')));
+    const {fileStore,publishOwnedCheckpoint,recoverOwnedCheckpoint}=await import(new URL('./record.js',import.meta.resolve('@solanaut/sdk')));
     const {verifyArchive}=await import(new URL('./archive.js',import.meta.resolve('@solanaut/sdk')));
     const {prepareCheckpointRecovery}=await import(new URL('./checkpoint-recovery.js',import.meta.resolve('@solanaut/sdk')));
     const operator=generateKeyPairSync('ed25519'),agent=generateKeyPairSync('ed25519');
@@ -297,6 +297,17 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
       if(!anchorRefused)throw new Error('installed anchor disagreement bypassed');
       const result=await publishOwnedCheckpoint(store,candidate.text,options);
       if(result.digest!==hash(candidate.text) || result.seq!==context.seq || readFileSync(recordPath+'.checkpoint','utf8')!==candidate.text)throw new Error('owned installed checkpoint differs');
+      const owned=await recoverOwnedCheckpoint(store,options);
+      if(owned.mode!=='checkpoint' || owned.state!==state.text || owned.seq!==context.seq || !Object.isFrozen(owned))throw new Error('installed owned recovery differs');
+      let recoveryRefused=false;try{await recoverOwnedCheckpoint({...store},options);}catch(error){recoveryRefused=error.name==='CheckpointRecoveryError' && error.code==='checkpoint-recovery';}
+      if(!recoveryRefused)throw new Error('installed forged recovery owner accepted');
+      const pendingOwned=recoverOwnedCheckpoint(store,options),lock=recordPath+'.lock';renameSync(lock,lock+'.moved');symlinkSync(lock+'.moved',lock);
+      try{let aliasRefused=false;try{await pendingOwned;}catch(error){aliasRefused=error.name==='CheckpointRecoveryError' && error.code==='checkpoint-recovery';}if(!aliasRefused)throw new Error('installed ownership alias accepted');}
+      finally{unlinkSync(lock);renameSync(lock+'.moved',lock);}
+      writeFileSync(recordPath+'.checkpoint','corrupt');
+      const ownedFallback=await recoverOwnedCheckpoint(store,options);
+      if(ownedFallback.mode!=='full-replay' || ownedFallback.state!==state.text || readFileSync(recordPath+'.checkpoint','utf8')!=='corrupt')throw new Error('installed owned fallback differs');
+      writeFileSync(recordPath+'.checkpoint',candidate.text);
       await publishOwnedCheckpoint(store,candidate.text,options);
       if(readFileSync(recordPath+'.checkpoint.previous','utf8')!==candidate.text)throw new Error('installed predecessor lost');
       let refused=false;try{await publishOwnedCheckpoint({...store},candidate.text,options);}catch(error){refused=error.name==='CheckpointPublicationError' && error.code==='checkpoint-publication';}

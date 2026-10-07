@@ -208,6 +208,31 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+Owned recovery final source/installed/staging/recovery faults restore; corrected
+ordinary/AST/type and unchanged floors pass. Exact hashes, original failures and
+fresh definition-15 baseline evidence are retained with the receipt, CLAIMS S72.
+Final close/private sync follows; then streaming archive reads can progress
+independently of pending H9/H10/H11. Live isolated startup remains unwired.
+
+Owned recovery's final named-path review finds a symlink-to-held-inode gap, now
+corrected test-first with lstat/regular-file checking. Corrected ordinary/serial
+AST suites, typecheck and unchanged floors pass; source/installed faults restore.
+Fresh-seed recovery/driver verification and final close/private sync follow.
+Evidence is `evals/sdk/checkpoint-owned-recovery.md`, CLAIMS S72. No live startup,
+bounded-retention, hosted runtime or stable-release gate is cleared.
+
+f05c84d hosted 37700643535 completes with three runtime test-job failures at the
+unchanged real-baseline wait; the other jobs, including AST and maintained faults,
+pass. Exact logs and revision metadata retained with the recovery receipt. H11
+stays pending. Owned recovery final frozen local integration continues.
+
+f05c84d recovery preparation is privately pushed with all local close gates passing;
+hosted 37700643535 remains in progress. Internal owned recovery follows ADR-019:
+actual kernel store, fresh disk history, bounded current-checkpoint reads, verified
+fallback and final ownership/history recheck. Focused and installed fault evidence
+is retained at `evals/sdk/checkpoint-owned-recovery.md`; integrated checks follow.
+No live startup or bounded-retention completion. H9/H10/H11 remain pending.
+
 Recovery preparation passes local ordinary/AST/type and unchanged floors, with
 source/installed/gate evidence retained at `evals/sdk/checkpoint-recovery.md`,
 CLAIMS S71. Final close/private sync follows. Full signed replay and optional

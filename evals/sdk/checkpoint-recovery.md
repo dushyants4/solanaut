@@ -23,6 +23,13 @@ for continued runtime evaluation.
 
 ## Evidence and findings
 
+Hosted candidate f05c84d run 37700643535 completes with three runtime test-job
+failures, each at the unchanged real-baseline wait. The other jobs, including
+AST coverage and maintained fault campaigns, pass. Exact revision metadata and
+full logs are retained in `checkpoint-recovery/hosted-f05c84d/`. H11 remains
+pending; neither the wait nor release thresholds change. Local passes do not
+qualify those hosted failures.
+
 The initial fixture accidentally supplied signing-text fields to the exact envelope
 codec; corrected selection establishes the missing-function failures. The first
 candidate passes the focused battery, then a sparse principal list demonstrates

@@ -1,0 +1,9 @@
+{
+  "packages/sdk/src/record.ts": "2c68b5ed3ffd110cf97ba319cb9783a2af6edd9b88798271f1c4962c1cb22148",
+  "packages/sdk/test/checkpoint-owned-recovery.test.ts": "fbfa73d6cf7fc91f68b952aa4b475e8ce235ed6617656c2040eff8e4f97f854f",
+  "evals/sdk/checkpoint-owned-recovery-faults.ts": "6206872069c539b71cd14f15cb4945c4f441a1f8b82ab3a82b43ec01635de226",
+  "evals/ci/mutation-run.ts": "e9337ab8dd8746ecfdf255013d267a6aad6dd9070edd0be4afa4c33edd8d5b6e",
+  "evals/ci/mutation-stage.ts": "1162f465188d3c1ecd047527cdf1cf79a9e1efc6894c2878a615d722cc89451c",
+  "evals/ci/mutation-recovery.test.ts": "cad338c5919f33bec0babe61fa8896529d4b880b97a68578f8b4120f022ac46a",
+  "evals/packaging/packed-sdk.test.ts": "a077d443068611d17cfea325ecaa7d521aa270bc0c335113c148eb0fb144041d"
+}

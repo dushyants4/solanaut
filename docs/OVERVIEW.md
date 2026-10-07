@@ -1,6 +1,6 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 32** · 2026-10-07 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 33** · 2026-10-07 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
@@ -259,3 +259,10 @@ prefix/tail events rebuild fresh Keel; current admission facts derive from full
 replay. A missing/corrupt checkpoint cannot bypass history or anchor validation
 (`evals/sdk/checkpoint-recovery.md`). Actual owner/startup integration and bounded
 retention remain unfinished.
+
+Internal owned recovery now obtains history and the current checkpoint through
+the actual kernel-held record store. It bounds checkpoint reads, verifies recovery
+and repeats ownership/history checks after replay. Publication and recovery share
+maintenance exclusion (`evals/sdk/checkpoint-owned-recovery.md`). This returns a
+read-only preparation receipt; live guard startup and bounded retention remain
+unfinished.

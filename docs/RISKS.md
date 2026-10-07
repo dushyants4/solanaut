@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.49** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.50** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 Bundle preparation captures a common history/endpoint and external authority pins.
@@ -277,3 +277,16 @@ omitted by operator configuration cannot supply a rollback bound. This component
 still retains full history; exclusive startup, live guard loading, bounded state,
 restart qualification and external anchor availability remain required. H9/H10/H11
 remain pending. Hosted oldest/current runtime and AST wait failures are retained.
+
+Internal owned recovery now refuses forged, closed, failed or replaced stores and
+record changes during asynchronous replay (`evals/sdk/checkpoint-owned-recovery.md`).
+It prepares state under the live kernel owner and preserves damaged checkpoint
+evidence during verified fallback. It does not prevent an existing trusted SDK
+guard from appending while preparation runs; such a change invalidates the receipt.
+Live protected startup and admission exclusion remain unwired. Full history is
+still resident; restart, bounded-memory and operational qualification remain open.
+The receipt proves the checked boundary at return, not immunity to subsequent
+trusted-host mutation or a compromised signer host. No power-loss claim.
+The shared ownership check now rejects a named path replaced by a symlink to the
+held inode. Its confirmed pre-fix failure and installed regression are retained;
+this correction does not establish protection against a compromised host.

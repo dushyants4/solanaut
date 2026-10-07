@@ -34,6 +34,7 @@ const faults=[
   ["publication-tests","mutation-stage.ts",',"checkpoint-publication"',""],
   ["recovery-scope","mutation-stage.ts",',"checkpoint-recovery.ts"',""],
   ["recovery-tests","mutation-stage.ts",',"checkpoint-recovery"',""],
+  ["owned-recovery-tests","mutation-stage.ts",',"checkpoint-owned-recovery"',""],
   ["envelope-tests","mutation-stage.ts",',"checkpoint-envelope"',""],
   ["staging-execution","mutation-stage.ts","--test-isolation=none ",""],
   ["whole-run-resource-limit","mutation-stage.ts","MUTATION_RUN_LIMIT_MS=43_200_000","MUTATION_RUN_LIMIT_MS=43_199_999"],

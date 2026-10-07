@@ -1,0 +1,17 @@
+caught owned recovery fault: named-path-alias
+caught owned recovery fault: actual-store
+caught owned recovery fault: kernel-owner
+caught owned recovery fault: closed-owner
+caught owned recovery fault: failed-owner
+caught owned recovery fault: maintenance-exclusive
+caught owned recovery fault: captured-options
+caught owned recovery fault: read-ceiling
+caught owned recovery fault: cached-history
+caught owned recovery fault: final-ownership
+caught owned recovery fault: final-record-boundary
+caught owned recovery fault: final-cached-history
+caught owned recovery fault: checkpoint-nofollow
+caught owned recovery fault: checkpoint-invalid-reason
+caught owned recovery fault: checkpoint-reads
+caught owned recovery fault: recovery-result
+All owned recovery faults caught; restored source passes

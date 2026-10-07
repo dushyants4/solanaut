@@ -1,6 +1,6 @@
 # PACKAGING.md — private SDK candidate
 
-> **Draft 14** · 2026-10-07 · owner: integrator · for: developers and release reviewers.
+> **Draft 15** · 2026-10-07 · owner: integrator · for: developers and release reviewers.
 > This is release preparation, not a stable release. Register: `kb/DOCUMENTS.md`.
 
 Compiled internal prefix/state components have installed-tarball evidence
@@ -90,3 +90,10 @@ External tarball tests exercise compiled internal recovery preparation: valid
 checkpoint, verified fallback, correctly signed dishonest state and anchor
 conflict. These are component cases; installed owned startup, backup/upgrade and
 bounded recovery are still unqualified. See `../evals/sdk/checkpoint-recovery.md`.
+
+The external consumer battery also exercises compiled internal owned recovery
+against an actual kernel-held file store. It compares derived unresolved state,
+rejects a copied store capability and preserves corrupt checkpoint bytes during
+verified full replay. This remains an internal component, without a stable root
+API, installed signer startup or operator recovery qualification. Evidence:
+`../evals/sdk/checkpoint-owned-recovery.md`.

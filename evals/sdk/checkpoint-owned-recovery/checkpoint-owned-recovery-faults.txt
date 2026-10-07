@@ -1,0 +1,41 @@
+caught owned recovery fault: actual-store
+caught owned recovery fault: kernel-owner
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: closed-owner✔ SNP-5: owned checkpoint and tail agree with independent preparation without writing history (50.11472ms)
+✔ OWN-2: memory, forged, manual and closed stores cannot recover as kernel owners (16.789528ms)
+✔ OWN-2: replaced record or ownership inode refuses recovery (23.512176ms)
+✔ SNP-6: cached history substitutions and disk corruption refuse instead of accepting a checkpoint (21.672704ms)
+✔ SNP-6: missing, oversized, corrupt and unsupported checkpoint files use verified history (70.56512ms)
+✔ OWN-2: competing recovery and publication share one maintenance boundary (24.430671ms)
+✔ OWN-2: closure, append, cache mutation and inode replacement during replay refuse (82.504438ms)
+✔ SNP-6: short checkpoint reads finish; growth and read errors use verified fallback (46.716267ms)
+✔ SNP-6: captured pins and external anchor remain authoritative on fallback (16.916765ms)
+✔ OWN-2: a failed writer refuses recovery and an established reopened owner validates the record (19.461466ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 462.384171
+
+
+0 !== 1
+
+    at file:///home/dashy/Projects/Solanaut/evals/sdk/checkpoint-owned-recovery-faults.ts:26:82
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

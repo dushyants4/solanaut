@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.58** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.59** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -1182,3 +1182,19 @@ back only when the supplied full history independently establishes state. Invali
 history or configuration, anchor disagreement or controller divergence refuses.
 No owner/startup integration, state deserialisation or bounded-memory contract is
 introduced. Component evidence: `evals/sdk/checkpoint-recovery.md`.
+
+SNP-5/6 and OWN-2 internal owned recovery convention inside ADR-019: only the
+actual kernel-owned file store has the recovery capability. Read full history on
+a fresh no-follow descriptor and compare it with the store's cached entries before
+checkpoint access. Capture external pins, bound reads of the current checkpoint,
+and pass captured disk history through verified recovery preparation. Unsupported,
+missing or damaged checkpoint sources permit only verified full replay; preserve
+the source evidence. Publication and recovery share one maintenance exclusion.
+Before returning, recheck live ownership, record identity, size/time boundary and
+cached history. Named record and lock paths must remain regular files with the
+held inode; a symlink to that same inode does not preserve the named boundary.
+This is a read-only preparation receipt under the existing owner,
+not guard startup, admission blocking, state loading, cadence or bounded retention.
+The previous checkpoint remains publication evidence; recovery uses the current
+checkpoint or complete verified history, without adding another authority path.
+Component evidence: `evals/sdk/checkpoint-owned-recovery.md`.

@@ -1,5 +1,12 @@
 # PROGRESS.md
 
+Internal owned checkpoint recovery has focused and installed fault evidence
+(`evals/sdk/checkpoint-owned-recovery.md`). It reads actual disk history under
+kernel ownership and repeats ownership/history checks before returning. Local
+ordinary/AST/type and unchanged floors pass; live isolated startup and bounded
+recovery remain unfinished. Hosted previous recovery runtime jobs fail the
+unchanged baseline wait, with exact evidence retained; H11 remains pending.
+
 Checkpoint recovery preparation has local mixed-history, fallback, external anchor,
 installed and ordinary/AST evidence with unchanged floors (`evals/sdk/checkpoint-recovery.md`).
 It derives current state through signed full replay and rebuilds Keel

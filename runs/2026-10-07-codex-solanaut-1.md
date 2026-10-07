@@ -8,6 +8,72 @@ work. This dated continuation retains the earlier session's full record at
 
 ## Did
 
+Final fresh definition-15 recovery/driver campaign catches all fifteen faults and
+restores exact sources. Corrected ordinary/AST/type, installed and source/staging
+fault evidence is retained with final hashes and original failures. CLAIMS S72
+records scoped measurements. Preparing close/private sync before the next
+independent streaming archive component; no SDK source changed after final AST.
+
+Corrected final ordinary/serial AST suites pass 633 cases, typecheck exits zero
+and unchanged floors pass: record 199/205 statements and 118/125 branches.
+Final AST source hashes are retained separately from the pre-alias measurement.
+Fresh-seed definition-15 recovery/driver verification is running before the
+receipt/close/private sync. No SDK source changed after corrected AST measurement.
+
+Corrected owned-recovery source passes all sixteen final fault trials, including
+named-path alias and early symlink-read refusal. Final workload is frozen at
+definition 15/fresh seed 24307 before repeated integration. Prior seed 24203 was
+declared before the early-read fixture correction, without qualification. The old
+installed artefact is tested against the new alias case before rebuilding.
+
+Final diff review identifies a symlink-to-held-inode gap in the existing named
+ownership check. A record alias installed after the fresh read can pass the
+following stat even though the named inode has changed. Added record/lock alias
+regressions fail first; lstat plus regular-file checking corrects it. Definition
+15/fresh seed 24203 precedes repeated final qualification; no floor or limit is
+changed. Earlier definition-14 passes remain provisional evidence, not the final
+candidate's qualification. Source, publication, installed and integrated checks
+are repeated against the corrected source.
+
+Owned recovery final ordinary/serial AST suites pass 633 cases; native typecheck
+exits zero and unchanged floors pass: record 199/205 statements, 117/124 branches.
+Ten installed cases/thirty-nine compiled faults, fifteen final source faults and
+thirty-seven staging/report faults restore. Final fresh-seed recovery/driver
+fault repetition follows. Real expanded baseline contains 339 cases. Original
+publication faults pass with precise publication-only sites and their retained
+zero-progress containment. No SDK source changed after AST measurement.
+
+Hosted f05c84d run 37700643535 completes: three runtime test jobs fail at the
+unchanged real-baseline wait; all other jobs, including AST and maintained fault
+campaigns, pass. Full logs/exact metadata are retained with the recovery receipt.
+H11 remains pending. Final frozen owned-recovery ordinary integration is running.
+
+Final owned-recovery fixture also covers a torn record read and invalid read
+progress. These are added after provisional definition-14 baseline/fault trials,
+so final integration uses fresh seed 24103. No coefficient, floor or time limit
+changes. The provisional trials remain retained separately; final source faults
+and full suites use the frozen final fixture. No complete mutation score inferred.
+
+Owned recovery mutation definition 14/fresh seed 24029 is declared before the
+expanded baseline: retained source scope, one added owned-recovery test file.
+Initial campaign inventory and missing mutation-test scope fail, then pass after
+registration. Floors and all time limits stay unchanged. Initial closed-owner
+fault was masked by already closed descriptors; fixture now reopens the owner so
+descriptor reuse cannot grant the closed object a capability. Initial pre-replay
+cache omission was caught only by final validation; added explicit early-refusal
+check before checkpoint access. Both initial fault misses and final fifteen
+caught omissions are retained. Installed old artefact fails first; rebuild follows.
+
+f05c84d recovery preparation is privately pushed; all local close gates pass.
+Hosted run 37700643535 is queued. Continuing with an internal read-only recovery
+capability registered only on the actual file store. Nine owned-record cases fail
+first on the missing capability, then pass after implementation. It reads a fresh
+record descriptor, bounds the checkpoint read and repeats ownership/history
+checks after asynchronous replay. Shared maintenance exclusion covers publication
+and recovery. Unsupported checkpoint sources fall back only to verified complete
+history, preserving their evidence. No live startup, root export, cadence or
+bounded-memory claim. Source/installed fault and integrated checks follow.
+
 Recovery preparation ordinary/serial AST integration passes 623 cases, native
 typecheck exits zero and unchanged floors pass: recovery 59/61 statements and
 76/79 branches. Ten installed cases/thirty-six compiled faults, twenty-seven
@@ -397,6 +463,27 @@ record satisfies the close workflow's current-day record requirement. Earlier ca
 implementation, documentation and receipt changes remain in the continuing session record.
 
 ## Found
+
+Owned recovery pre-sync close passes nine gates, including the staged-file secret
+scan, and refuses the uncommitted candidate. Diff review is clean. Private
+commit/push follows; the final clean-tree/pushed check remains required.
+
+Existing named ownership stat follows a symlink to the held inode, so an alias
+installed during replay can pass. New record/lock alias cases fail before the
+lstat/regular-file correction. Final diff review invalidates the previous
+qualification as evidence for the corrected candidate; repeat it with fresh
+definition 15 and retain both versions' evidence. After lstat correction, the
+checkpoint no-follow omission is masked by the final named-file check; the new
+early-read regression proves no symlink target is read. Original missed trial
+is retained alongside the final catches.
+
+Owned recovery initially misses a closed-owner omission because its descriptors
+are already closed; reopening adds the descriptor-reuse adversarial case. The
+pre-replay cache omission is initially masked by final checking; the early-refusal
+case now proves checkpoint access cannot precede history agreement. Both misses
+and final catches are retained. Hosted f05c84d fails all three runtime test jobs
+at the unchanged real-baseline wait; AST and other jobs pass. Exact evidence is
+retained; H11 stays pending. Local owned-recovery passes do not clear that failure.
 
 Recovery pre-sync close passes nine gates and refuses the uncommitted candidate.
 H9/H10 were presented as asynchronous architecture decisions; no answer or

@@ -1,0 +1,51 @@
+caught owned recovery fault: named-path-alias
+caught owned recovery fault: actual-store
+caught owned recovery fault: kernel-owner
+caught owned recovery fault: closed-owner
+caught owned recovery fault: failed-owner
+caught owned recovery fault: maintenance-exclusive
+caught owned recovery fault: captured-options
+caught owned recovery fault: read-ceiling
+caught owned recovery fault: cached-history
+caught owned recovery fault: final-ownership
+caught owned recovery fault: final-record-boundary
+caught owned recovery fault: final-cached-history
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: checkpoint-nofollow✔ SNP-5: owned checkpoint and tail agree with independent preparation without writing history (51.553693ms)
+✔ OWN-2: memory, forged, manual and closed stores cannot recover as kernel owners (19.123058ms)
+✔ OWN-2: replaced record or ownership inode refuses recovery (25.214442ms)
+✔ SNP-6: cached history substitutions and disk corruption refuse instead of accepting a checkpoint (34.509915ms)
+✔ SNP-6: missing, oversized, corrupt and unsupported checkpoint files use verified history (76.146004ms)
+✔ OWN-2: competing recovery and publication share one maintenance boundary (24.08454ms)
+✔ OWN-2: closure, append, cache mutation and inode replacement during replay refuse (114.604152ms)
+✔ SNP-6: short checkpoint reads finish; growth and read errors use verified fallback (88.303358ms)
+✔ SNP-6: captured pins and external anchor remain authoritative on fallback (21.833915ms)
+✔ OWN-2: a failed writer refuses recovery and an established reopened owner validates the record (19.873301ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 561.539455
+
+
+0 !== 1
+
+    at file:///home/dashy/Projects/Solanaut/evals/sdk/checkpoint-owned-recovery-faults.ts:27:82
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

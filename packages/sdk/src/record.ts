@@ -10,13 +10,14 @@
 // ones. Linux kernel ownership recovers through flock on an inherited open-file description,
 // held until this store closes or the process dies. Its mutex inode is never unlinked.
 
-import { closeSync, constants, fstatSync, fsyncSync, ftruncateSync, openSync, readFileSync, statSync, unlinkSync, writeSync } from "node:fs";
+import { closeSync, constants, fstatSync, fsyncSync, ftruncateSync, lstatSync, openSync, readFileSync, readSync, unlinkSync, writeSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { hostname } from "node:os";
 import { dirname } from "node:path";
 import { canonicalJSON } from "./canonical.ts";
 import { hashOf, type Entry } from "./log.ts";
 import {CheckpointPublicationError,validatePublication,replaceCheckpoint,type CheckpointPublicationOptions,type CheckpointPublicationReceipt} from "./checkpoint-publication.ts";
+import {CheckpointRecoveryError,prepareCheckpointRecovery,type CheckpointRecoveryOptions,type PreparedCheckpointRecovery} from "./checkpoint-recovery.ts";
 
 export interface EntryStore {
   /** Every entry kept so far, oldest first. The store, not the guard, adds to it. */
@@ -27,11 +28,19 @@ export interface EntryStore {
 }
 
 const publishers=new WeakMap<EntryStore,(text:unknown,options:CheckpointPublicationOptions)=>Promise<CheckpointPublicationReceipt>>();
+const recoverers=new WeakMap<EntryStore,(options:CheckpointRecoveryOptions)=>Promise<Readonly<PreparedCheckpointRecovery>>>();
 /** Internal maintenance capability: only the actual kernel-owned store can publish. */
 export async function publishOwnedCheckpoint(store:EntryStore,text:unknown,options:CheckpointPublicationOptions):Promise<CheckpointPublicationReceipt>{
   const publish=publishers.get(store);
   if(!publish)throw new CheckpointPublicationError("checkpoint publication requires actual file ownership");
   try{return await publish(text,options);}catch(error){if(error instanceof CheckpointPublicationError)throw error;throw new CheckpointPublicationError("owned checkpoint cannot be published");}
+}
+
+/** Internal read-only recovery: the actual kernel owner supplies history and checkpoint. */
+export async function recoverOwnedCheckpoint(store:EntryStore,options:CheckpointRecoveryOptions):Promise<Readonly<PreparedCheckpointRecovery>>{
+  const recover=recoverers.get(store);
+  if(!recover)throw new CheckpointRecoveryError("checkpoint recovery requires actual file ownership");
+  try{return await recover(options);}catch(error){if(error instanceof CheckpointRecoveryError)throw error;throw new CheckpointRecoveryError("owned checkpoint cannot be recovered");}
 }
 
 /** A store in memory: the default, and what tests use. Nothing survives the process. */
@@ -71,8 +80,8 @@ function syncDirectory(path: string): void {
 
 function sameFile(fd: number, path: string): void {
   const held = fstatSync(fd, { bigint: true });
-  const named = statSync(path, { bigint: true });
-  if (held.dev !== named.dev || held.ino !== named.ino) throw new Error("the record or ownership inode was replaced");
+  const named = lstatSync(path, { bigint: true });
+  if (!named.isFile() || held.dev !== named.dev || held.ino !== named.ino) throw new Error("the record or ownership inode was replaced");
 }
 
 function lock(path: string, mode: "manual" | "kernel"): { held(): void; release(): void } {
@@ -137,6 +146,26 @@ function readRecord(path: string, fd: number): Entry[] {
   return entries;
 }
 
+function readCheckpoint(path:string,maxBytes:number):string|null|undefined{
+  let fd:number|undefined;
+  try{
+    fd=openSync(path,constants.O_RDONLY|constants.O_NOFOLLOW|constants.O_NONBLOCK);
+    const before=fstatSync(fd,{bigint:true});
+    if(!before.isFile() || before.size>BigInt(maxBytes))return null;
+    const chunks:Buffer[]=[];let size=0;
+    for(;;){
+      const buffer=Buffer.alloc(Math.min(65536,maxBytes-size+1)),count=readSync(fd,buffer,0,buffer.length,null);
+      if(!Number.isSafeInteger(count) || count<0 || count>buffer.length)return null;
+      if(count===0)break;
+      size+=count;if(size>maxBytes)return null;chunks.push(buffer.subarray(0,count));
+    }
+    sameFile(fd,path);const after=fstatSync(fd,{bigint:true});
+    if(after.size!==before.size || after.mtimeNs!==before.mtimeNs || after.ctimeNs!==before.ctimeNs)return null;
+    return Buffer.concat(chunks).toString("utf8");
+  }catch(error){return fd===undefined && (error as NodeJS.ErrnoException).code==="ENOENT"?undefined:null;}
+  finally{if(fd!==undefined)closeSync(fd);}
+}
+
 /** Open (or create) a record file, taking its lock. */
 export function fileStore(path: string, options: FileStoreOptions = {}): EntryStore {
   const mode = options.ownership ?? "manual";
@@ -196,6 +225,23 @@ export function fileStore(path: string, options: FileStoreOptions = {}): EntrySt
       unchanged();
       try{replaceCheckpoint(path,validated.text,validated.pins,unchanged);}catch(error){failed=true;throw error;}
       return validated.receipt;
+    }finally{publishing=false;}
+  });
+  recoverers.set(store,async(options)=>{
+    if(publishing)throw new CheckpointRecoveryError("checkpoint maintenance already in progress");
+    publishing=true;
+    try{
+      const pins=structuredClone(options);
+      if(!pins || !Number.isSafeInteger(pins.maxBytes) || pins.maxBytes<=0)throw new CheckpointRecoveryError("checkpoint read ceiling is invalid");
+      held();const before=fstatSync(fd,{bigint:true});
+      const reader=openSync(path,constants.O_RDONLY|constants.O_NOFOLLOW);
+      let history:Entry[];
+      try{sameFile(reader,path);history=readRecord(path,reader);}finally{closeSync(reader);}
+      if(canonicalJSON(history)!==canonicalJSON(entries))throw new CheckpointRecoveryError("owned record and cached recovery history differ");
+      const text=readCheckpoint(path+".checkpoint",pins.maxBytes),recovered=await prepareCheckpointRecovery(history,text,pins);
+      held();const after=fstatSync(fd,{bigint:true});
+      if(after.size!==before.size || after.mtimeNs!==before.mtimeNs || after.ctimeNs!==before.ctimeNs || canonicalJSON(history)!==canonicalJSON(entries))throw new CheckpointRecoveryError("owned record changed during recovery");
+      return recovered;
     }finally{publishing=false;}
   });
   return store;

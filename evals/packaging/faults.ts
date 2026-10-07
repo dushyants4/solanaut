@@ -15,6 +15,10 @@ function battery() {
 const baseline = battery();
 assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
 const faults = [
+  { name: "owned-recovery-named-path", path: "dist/src/record.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("const named = lstatSync(path, { bigint: true });", "const named = fstatSync(fd, { bigint: true });") },
+  { name: "owned-recovery-export", path: "dist/src/record.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("export async function recoverOwnedCheckpoint", "async function recoverOwnedCheckpoint") },
+  { name: "owned-recovery-capability", path: "dist/src/record.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("recoverers.get(store)", "recoverers.get(store) ?? (async () => ({mode:'checkpoint'}))") },
+  { name: "owned-recovery-result", path: "dist/src/record.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("return recovered;", "return Object.freeze({...recovered,mode:'full-replay'});") },
   { name: "recovery-module", path: "dist/src/checkpoint-recovery.js", caught: "compiled checkpoint payloads", damage: () => undefined },
   { name: "recovery-anchor", path: "dist/src/checkpoint-recovery.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("pins.expectedAnchor && entries[pins.expectedAnchor.seq]?.hash !== pins.expectedAnchor.head", "false") },
   { name: "recovery-mode", path: "dist/src/checkpoint-recovery.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace('mode: checkpointSeq === null ? "full-replay" : "checkpoint"', 'mode: "checkpoint"') },

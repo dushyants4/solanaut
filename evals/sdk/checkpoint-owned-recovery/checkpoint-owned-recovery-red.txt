@@ -1,0 +1,154 @@
+✖ SNP-5: owned checkpoint and tail agree with independent preparation without writing history (37.596797ms)
+✖ OWN-2: memory, forged, manual and closed stores cannot recover as kernel owners (23.550024ms)
+✖ OWN-2: replaced record or ownership inode refuses recovery (13.636135ms)
+✖ SNP-6: cached history substitutions and disk corruption refuse instead of accepting a checkpoint (12.309852ms)
+✖ SNP-6: missing, oversized, corrupt and unsupported checkpoint files use verified history (13.421976ms)
+✖ OWN-2: competing recovery and publication share one maintenance boundary (13.030226ms)
+✖ OWN-2: closure, append, cache mutation and inode replacement during replay refuse (10.929588ms)
+✖ SNP-6: short checkpoint reads finish; growth and read errors use verified fallback (12.132557ms)
+✖ SNP-6: captured pins and external anchor remain authoritative on fallback (13.085575ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 0
+ℹ fail 9
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 305.730381
+
+✖ failing tests:
+
+test at packages/sdk/test/checkpoint-owned-recovery.test.ts:39:1
+✖ SNP-5: owned checkpoint and tail agree with independent preparation without writing history (37.596797ms)
+  TypeError: Function.prototype.apply was called on undefined, which is undefined and not a function
+      at recover (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-owned-recovery.test.ts:37:111)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-owned-recovery.test.ts:40:84)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at packages/sdk/test/checkpoint-owned-recovery.test.ts:45:1
+✖ OWN-2: memory, forged, manual and closed stores cannot recover as kernel owners (23.550024ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   name: 'TypeError'
+  -   code: 'checkpoint-recovery',
+  -   name: 'CheckpointRecoveryError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-owned-recovery.test.ts:47:71)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: TypeError: Function.prototype.apply was called on undefined, which is undefined and not a function
+        at recover (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-owned-recovery.test.ts:37:111)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-owned-recovery.test.ts:47:89
+        at async waitForActual (node:assert:615:5)
+        at async strict.rejects (node:assert:738:25)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-owned-recovery.test.ts:47:71)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: { name: 'CheckpointRecoveryError', code: 'checkpoint-recovery' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint-owned-recovery.test.ts:51:1
+✖ OWN-2: replaced record or ownership inode refuses recovery (13.636135ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   name: 'TypeError'
+  -   code: 'checkpoint-recovery',
+  -   name: 'CheckpointRecoveryError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-owned-recovery.test.ts:52:205)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: TypeError: Function.prototype.apply was called on undefined, which is undefined and not a function
+        at recover (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-owned-recovery.test.ts:37:111)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-owned-recovery.test.ts:52:223
+        at async waitForActual (node:assert:615:5)
+        at async strict.rejects (node:assert:738:25)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-owned-recovery.test.ts:52:205)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: { name: 'CheckpointRecoveryError', code: 'checkpoint-recovery' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint-owned-recovery.test.ts:54:1
+✖ SNP-6: cached history substitutions and disk corruption refuse instead of accepting a checkpoint (12.309852ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   name: 'TypeError'
+  -   code: 'checkpoint-recovery',
+  -   name: 'CheckpointRecoveryError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-owned-recovery.test.ts:55:154)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: TypeError: Function.prototype.apply was called on undefined, which is undefined and not a function
+        at recover (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-owned-recovery.test.ts:37:111)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-owned-recovery.test.ts:55:172
+        at async waitForActual (node:assert:615:5)
+        at async strict.rejects (node:assert:738:25)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-owned-recovery.test.ts:55:154)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: { name: 'CheckpointRecoveryError', code: 'checkpoint-recovery' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint-owned-recovery.test.ts:57:1
+✖ SNP-6: missing, oversized, corrupt and unsupported checkpoint files use verified history (13.421976ms)
+  TypeError: Function.prototype.apply was called on undefined, which is undefined and not a function
+      at recover (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-owned-recovery.test.ts:37:111)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-owned-recovery.test.ts:63:21)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/checkpoint-owned-recovery.test.ts:67:1
+✖ OWN-2: competing recovery and publication share one maintenance boundary (13.030226ms)
+  TypeError: Function.prototype.apply was called on undefined, which is undefined and not a function
+      at recover (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-owned-recovery.test.ts:37:111)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-owned-recovery.test.ts:68:45)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/checkpoint-owned-recovery.test.ts:73:1
+✖ OWN-2: closure, append, cache mutation and inode replacement during replay refuse (10.929588ms)
+  TypeError: Function.prototype.apply was called on undefined, which is undefined and not a function
+      at recover (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-owned-recovery.test.ts:37:111)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-owned-recovery.test.ts:74:109)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/checkpoint-owned-recovery.test.ts:80:1
+✖ SNP-6: short checkpoint reads finish; growth and read errors use verified fallback (12.132557ms)
+  TypeError: Function.prototype.apply was called on undefined, which is undefined and not a function
+      at recover (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-owned-recovery.test.ts:37:111)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-owned-recovery.test.ts:84:23)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/checkpoint-owned-recovery.test.ts:88:1
+✖ SNP-6: captured pins and external anchor remain authoritative on fallback (13.085575ms)
+  TypeError: Function.prototype.apply was called on undefined, which is undefined and not a function
+      at recover (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-owned-recovery.test.ts:37:111)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-owned-recovery.test.ts:89:142)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)

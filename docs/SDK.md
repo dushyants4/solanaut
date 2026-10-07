@@ -1,6 +1,6 @@
 # SDK reference — private candidate
 
-> **Draft 12** · 2026-10-07 · owner: integrator · for: developers integrating the candidate.
+> **Draft 13** · 2026-10-07 · owner: integrator · for: developers integrating the candidate.
 > Register: `kb/DOCUMENTS.md`. This describes current exports, not a stable-release promise.
 
 Envelope, bundle, prefix and admission-state preparation remain internal. Installed compiled tests
@@ -159,3 +159,11 @@ fallback. It requires full signed history and external policy/checkpoint pins,
 and enforces an optional configured anchor on either path. It returns derived
 admission text and a fresh runtime controller, not a running guard or owned service.
 `../evals/sdk/checkpoint-recovery.md` records the component and remaining obligations.
+
+Internal owned recovery reads the locked record and bounded current checkpoint
+directly, then returns the verified preparation receipt only while ownership and
+history remain unchanged. It shares maintenance exclusion with publication and
+preserves invalid checkpoint evidence on verified full-replay fallback. It is not
+a root export or a running-guard factory. The caller still owns the lifecycle;
+live isolated startup and supported operator recovery remain release work. See
+`../evals/sdk/checkpoint-owned-recovery.md`.
