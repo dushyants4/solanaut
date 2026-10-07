@@ -1,0 +1,21 @@
+
+> release:prepare
+> node packages/sdk/bin/prepare-release.ts
+
+node:fs:539
+    return binding.readFileUtf8(path, stringToFlags(options.flag));
+                   ^
+
+Error: ENOENT: no such file or directory, open '/home/dashy/Projects/Solanaut/.sandbox/releases/sdk/dist/bin/prepare-policy.js'
+    at readFileSync (node:fs:539:20)
+    at file:///home/dashy/Projects/Solanaut/packages/sdk/bin/prepare-release.ts:34:49
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/dashy/Projects/Solanaut/.sandbox/releases/sdk/dist/bin/prepare-policy.js'
+}
+
+Node.js v26.7.0

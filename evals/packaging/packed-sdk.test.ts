@@ -139,6 +139,19 @@ test("ANC-3/PKG-1: installed API and command bind an externally trusted archive 
   assert.equal(refused.status,1,refused.stderr); assert.equal(JSON.parse(refused.stderr).error.code,"anchor");
 });
 
+test("POL-1/5/PKG-1: installed policy command prepares canonical public signing text",()=> {
+  const path=join(consumer,"policy.json"); writeFileSync(path,inputPolicy);
+  const issued="2026-10-06T00:00:00.000Z";
+  const expected=spawnSync(process.execPath,["--input-type=module","-e",`import {preparePolicyText} from '@solanaut/sdk'; console.log(JSON.stringify(preparePolicyText(JSON.parse(process.argv[1]),2,process.argv[2])));`,inputPolicy,issued],{cwd:consumer,encoding:"utf8"});
+  assert.equal(expected.status,0,expected.stderr);
+  const result=spawnSync(join(consumer,"node_modules/.bin/solanaut-prepare-policy"),[path,"--version","2","--issued",issued],{cwd:consumer,encoding:"utf8"});
+  assert.equal(result.status,0,result.stderr ?? result.error?.message ?? "policy command did not execute"); const request=JSON.parse(result.stdout);
+  assert.equal(request.text,JSON.parse(expected.stdout)); assert.equal(request.version,2); assert.equal(request.cluster,"localnet"); assert.equal("signature" in request,false);
+  assert.equal(readFileSync(path,"utf8"),inputPolicy);
+  const help=spawnSync(join(consumer,"node_modules/.bin/solanaut-prepare-policy"),["--help"],{cwd:consumer,encoding:"utf8"});
+  assert.equal(help.status,0,help.stderr); assert.match(help.stdout,/usage:/);
+});
+
 test("PKG-3: installed replay and table-pin commands execute with their documented usage exits", () => {
   for (const bin of ["solanaut-replay", "solanaut-pin-table", "solanaut-verify-archive"]) {
     const result = spawnSync(join(consumer, "node_modules/.bin", bin), [], { cwd: consumer, encoding: "utf8" });

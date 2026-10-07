@@ -1,0 +1,37 @@
+
+> test:package
+> node --test evals/packaging/*.test.ts
+
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (70.118931ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (0.322214ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (285.914241ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (147.93661ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (155.085311ms)
+✖ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (54.428967ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (118.716898ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (53.409218ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1533.07845
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:142:1
+✖ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (54.428967ms)
+  TypeError [ERR_INVALID_ARG_TYPE]: The "message" argument must be one of type string or function. Received undefined
+      at innerFail (node:internal/assert/utils:135:11)
+      at strict.strictEqual (node:assert:360:5)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:148:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'ERR_INVALID_ARG_TYPE'
+  }

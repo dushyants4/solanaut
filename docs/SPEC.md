@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.34** · 2026-10-06 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.35** · 2026-10-06 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -664,6 +664,13 @@ and accepted: ADR-013 to ADR-018 (§13.11).
 | POL-4 | The record holds each signed policy, so replay knows which policy made each decision | §7 | replay across a policy change |
 | POL-5 | How a signed policy replaces the running one | §7 | [ADR-014](../design/ADR-014-operator-signed-policy.md), accepted: a restart, a recorded `policy` entry, versions that only rise, and a summary the operator reads in Phantom |
 
+POL-1/5's operator preparation component is installed as `solanaut-prepare-policy`.
+It accepts a public policy, explicit positive version and canonical UTC issuance, validates
+them and returns public identity/hash plus the existing canonical signing text. Its bounded
+regular-file read permits devnet/localnet only, rejects source changes and redacts failures.
+It neither reads keys nor signs, installs or checks current history/version. Human signing
+and the installed replacement ceremony remain owed (`docs/POLICY.md`, `evals/sdk/prepare-policy.md`).
+
 ### 13.3 Token-2022 and token accounts (milestone 3.3)
 
 | ID | Requirement | From | Verified by |
@@ -971,3 +978,4 @@ where needed, and UTC issued timestamps include milliseconds. Policies remain re
 | Draft 4.32 | 2026-10-06 | CI-2 performance-report preparation and pinned real-transaction differential analysis, with fresh-block evidence and maintained refusal checks; actual performance and wider qualification remain owed. |
 | Draft 4.33 | 2026-10-06 | Frozen synthetic benign/loop definitions, complete counts and maintained faults; changing-intent failed streams remain a measured limitation, with decisions and wider qualification owed. |
 | Draft 4.34 | 2026-10-06 | ANC-3 structural exact-sequence/head verification and installed command; pin authentication/replay/programme remain owed. Mutation definition 2 keeps the complete scope/tests/floor and uses a fresh seed with one test process per worker. |
+| Draft 4.35 | 2026-10-06 | POL-1/5 public signing-request preparation command, strict inputs, bounded/redacted source reads and installed evidence; signing/history installation remain owed. |

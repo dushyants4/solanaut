@@ -19,6 +19,7 @@
     "pin-table": "node packages/sdk/bin/pin-table.ts",
     "replay": "node packages/sdk/bin/replay.ts",
     "verify-archive": "node packages/sdk/bin/verify-archive.ts",
+    "prepare-policy": "node packages/sdk/bin/prepare-policy.ts",
     "release:prepare": "node packages/sdk/bin/prepare-release.ts",
     "test:package": "node --test evals/packaging/*.test.ts",
     "test:package:faults": "node evals/packaging/faults.ts",

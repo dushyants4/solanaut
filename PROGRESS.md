@@ -57,6 +57,9 @@ their signing, recovery and operator paths are next. The isolated signer is not 
 Signed SDK policy history is built and tested offline (`evals/sdk/signed-policy.md`);
 its milestone still needs the signer's enforced path and the operator's Phantom evidence.
 The Alpha and stable-release gates are not achieved by this initial work.
+The installed public policy-request command validates and prepares canonical signing text
+(`evals/sdk/prepare-policy.md`). It neither signs nor installs; human wallet signing and the
+operational policy-replacement ceremony remain owed.
 Exclusive Linux ownership and complete-write failure handling are built and tested locally
 (`evals/sdk/ownership.md`); the full signer recovery programme remains owed.
 Admission identity, signed bytes, send-started and immutable response journals are built

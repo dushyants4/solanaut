@@ -1,0 +1,10 @@
+caught policy command fault: version-binding
+caught policy command fault: text-binding
+caught policy command fault: identity-binding
+caught policy command fault: cluster-restriction
+caught policy command fault: bounded-source
+caught policy command fault: symlink-refusal
+caught policy command fault: policy-error
+caught policy command fault: version-spelling
+caught policy command fault: timestamp-spelling
+All policy command faults caught; restored source passes

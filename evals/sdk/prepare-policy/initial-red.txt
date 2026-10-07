@@ -1,0 +1,171 @@
+✖ POL-1/5: preparation returns the exact canonical signing text and public identity (76.702383ms)
+✖ POL-1/5: preparation is deterministic and never invents a signature (136.65468ms)
+✖ POL-1/5: missing, duplicate, unknown and noncanonical version arguments are usage errors (53.837824ms)
+✖ POL-1: malformed issued timestamps never become signing requests (51.187088ms)
+✖ POL-1/3: malformed JSON and invalid policies return redacted policy errors (49.905097ms)
+✖ POL-1/5: missing, symlink, directory and oversized sources refuse without leaking paths (52.825609ms)
+✖ POL-1/5: explicit help succeeds; extra help and unsupported cluster refuse (49.345701ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 0
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 569.97005
+
+✖ failing tests:
+
+test at packages/sdk/test/prepare-policy-cli.test.ts:17:1
+✖ POL-1/5: preparation returns the exact canonical signing text and public identity (76.702383ms)
+  AssertionError [ERR_ASSERTION]: {"error":{"code":"unimplemented"}}
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/prepare-policy-cli.test.ts:18:46)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/prepare-policy-cli.test.ts:22:1
+✖ POL-1/5: preparation is deterministic and never invents a signature (136.65468ms)
+  AssertionError [ERR_ASSERTION]: {"error":{"code":"unimplemented"}}
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/prepare-policy-cli.test.ts:23:74)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/prepare-policy-cli.test.ts:26:1
+✖ POL-1/5: missing, duplicate, unknown and noncanonical version arguments are usage errors (53.837824ms)
+  AssertionError [ERR_ASSERTION]: {"error":{"code":"unimplemented"}}
+  
+  
+  1 !== 2
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/prepare-policy-cli.test.ts:28:42)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/prepare-policy-cli.test.ts:31:1
+✖ POL-1: malformed issued timestamps never become signing requests (51.187088ms)
+  AssertionError [ERR_ASSERTION]: {"error":{"code":"unimplemented"}}
+  
+  
+  1 !== 2
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/prepare-policy-cli.test.ts:32:172)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/prepare-policy-cli.test.ts:34:1
+✖ POL-1/3: malformed JSON and invalid policies return redacted policy errors (49.905097ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'unimplemented'
+  - 'policy'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/prepare-policy-cli.test.ts:37:57)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'unimplemented',
+    expected: 'policy',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/prepare-policy-cli.test.ts:40:1
+✖ POL-1/5: missing, symlink, directory and oversized sources refuse without leaking paths (52.825609ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'unimplemented'
+  - 'source'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/prepare-policy-cli.test.ts:42:174)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'unimplemented',
+    expected: 'source',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/prepare-policy-cli.test.ts:44:1
+✖ POL-1/5: explicit help succeeds; extra help and unsupported cluster refuse (49.345701ms)
+  AssertionError [ERR_ASSERTION]: {"error":{"code":"unimplemented"}}
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/prepare-policy-cli.test.ts:45:39)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

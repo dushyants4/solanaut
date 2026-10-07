@@ -1,0 +1,41 @@
+caught policy command fault: version-binding
+caught policy command fault: text-binding
+caught policy command fault: identity-binding
+caught policy command fault: cluster-restriction
+caught policy command fault: bounded-source
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: ✔ POL-1/5: preparation returns the exact canonical signing text and public identity (87.72497ms)
+✔ POL-1/5: preparation is deterministic and never invents a signature (152.131203ms)
+✔ POL-1/5: missing, duplicate, unknown and noncanonical version arguments are usage errors (833.79984ms)
+✔ POL-1: malformed issued timestamps never become signing requests (290.316336ms)
+✔ POL-1/3: malformed JSON and invalid policies return redacted policy errors (233.890131ms)
+✔ POL-1/5: missing, symlink, directory and oversized sources refuse without leaking paths (534.504915ms)
+✔ POL-1/5: explicit help succeeds; extra help and unsupported cluster refuse (218.139845ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2452.77623
+
+
+0 !== 1
+
+    at file:///home/dashy/Projects/Solanaut/evals/sdk/prepare-policy-faults.ts:20:83
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

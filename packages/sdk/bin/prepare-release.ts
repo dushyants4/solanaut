@@ -25,11 +25,11 @@ const manifest = {
   description: source.description, engines: { node: ">=22.18.0" },
   exports: { ".": { types: "./dist/src/index.d.ts", import: "./dist/src/index.js" } },
   types: "./dist/src/index.d.ts", files: ["dist"],
-  bin: { "solanaut-replay": "./dist/bin/replay.js", "solanaut-pin-table": "./dist/bin/pin-table.js", "solanaut-verify-archive": "./dist/bin/verify-archive.js" },
+  bin: { "solanaut-replay": "./dist/bin/replay.js", "solanaut-pin-table": "./dist/bin/pin-table.js", "solanaut-verify-archive": "./dist/bin/verify-archive.js", "solanaut-prepare-policy": "./dist/bin/prepare-policy.js" },
   dependencies: source.dependencies,
 };
 writeFileSync(join(stage, "package.json"), JSON.stringify(manifest, null, 2) + "\n");
-for (const name of ["replay", "pin-table", "verify-archive"]) {
+for (const name of ["replay", "pin-table", "verify-archive", "prepare-policy"]) {
   const path = join(stage, "dist/bin", name + ".js");
   writeFileSync(path, "#!/usr/bin/env node\n" + readFileSync(path, "utf8"));
   chmodSync(path, 0o755);

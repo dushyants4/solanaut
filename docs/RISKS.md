@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.27** · 2026-10-06 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.28** · 2026-10-06 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 The threat model ([docs/papers/THREAT-MODEL.md](papers/THREAT-MODEL.md)) lists what an attacker can do to a running
@@ -13,6 +13,11 @@ It cannot cover rewritten history after the anchor or replace authenticated stat
 ADR-022's enrolment/rotation design awaits the human; no dependent programme is built.
 The original FIFO startup readiness assertion fails under concurrent mutation-run load;
 retain that failure and validate sequentially without weakening its deadline.
+
+Policy preparation returns unsigned public text (`evals/sdk/prepare-policy.md`), without
+reading current policy history. The operator must review and sign the exact bytes, and the
+service must enforce pinned trust and increasing versions. Neither preparation nor a valid
+signature alone proves a safe policy replacement or the human-run Phantom workflow.
 
 Performance report checks do not establish actual performance. Public ledger differential
 data verifies byte/reference agreement, with explicit conservative trailing-data refusals;

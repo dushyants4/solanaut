@@ -1,12 +1,15 @@
 # SDK reference — private candidate
 
-> **Draft 2** · 2026-10-06 · owner: integrator · for: developers integrating the candidate.
+> **Draft 3** · 2026-10-06 · owner: integrator · for: developers integrating the candidate.
 > Register: `kb/DOCUMENTS.md`. This describes current exports, not a stable-release promise.
 
 Import runtime functions and types from `@solanaut/sdk`. The compiled candidate and installed
 commands are described in [PACKAGING](PACKAGING.md); source development uses native TypeScript.
 Generated declarations contain the complete signatures. The source export list is
 [`packages/sdk/src/index.ts`](../packages/sdk/src/index.ts).
+
+The operator preparation command is described in [POLICY](POLICY.md). It returns unsigned
+public signing text; it does not replace authorisation or installed-service checks.
 
 Choose the integration before connecting a wallet. `createGuard`, `guardedSigner` and
 `guardedWallet` run in the trusted caller's process. That caller can bypass the guard if it

@@ -213,6 +213,15 @@ mutation runs remain without a score. H9/H10 remain unanswered; no dependent exp
 All 31 maintained campaigns catch 260 faults, none failed or skipped and sources restored;
 typecheck remains clean. Final diff and close precede private sync; hosted CI follows it.
 
+POL-1/5 command: canonical public signing requests, bounded/redacted source reads and the
+installed executable pass seven command cases, nine faults and eight packed checks. Root
+suite passes 464 tests; typecheck zero. Initial installed/build errors and masked symlink
+fault are retained (`evals/sdk/prepare-policy.md`). Full maintained campaigns/sync follow;
+human signing, policy installation and H9/H10 decisions remain owed.
+All 32 maintained campaigns pass, 269 faults caught and no failed/skipped campaign;
+sources restore and typecheck stays clean. Prior qualification 00c42e8 hosted CI
+37549238301 succeeds across all thirteen jobs. Policy-command private sync is next.
+
 One row per completed queue step, newest last.
 
 Archive foundation: SNP-1 structural framing/chain/pins implemented in the SDK, with

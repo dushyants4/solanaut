@@ -27,6 +27,13 @@ with no dependent programme implemented. Final sequential validation follows.
 
 ## Did
 
+Qualification revision 00c42e8 hosted CI 37549238301 completes successfully across all
+thirteen jobs, including the new frozen traffic job and full maintained faults. Its close
+passes ten gates. Policy preparation next passes 464 root tests, eight installed checks
+and typecheck after a clean restored build; its full fault aggregation is running.
+No SDK source changes in the policy-command step, so the prior AST source inventory/floors
+remain current; the new command is covered by its own focused cases/faults and runtime matrix.
+
 After private commit/push `13bb075`, close passes all ten gates. Hosted run `37517288645`
 starts; differential already passes, remaining jobs are checked later. Fresh full mutation
 qualification starts from that clean revision: managed session 29740, driver PID 60246,
@@ -171,6 +178,23 @@ handling preserves the analytic bound without changing any target.
   this history and must pass compatibility checks before rollback.
 
 ## Found
+
+Policy-command full aggregation passes all 32 campaigns, 269 caught faults, no failed or
+skipped campaign and restored source fingerprints. Typecheck remains clean afterwards.
+Eight installed checks and 464 root tests already pass. Full diff and pre-sync close next;
+the original command output and all failures remain in `evals/sdk/prepare-policy/`.
+
+Private qualification revision 00c42e8 pushes successfully and passes ten close gates;
+CI 37549238301 has twelve successful jobs while its maintained-fault job is still running.
+Next POL-1/5 public preparation command: seven cases fail against a stub, then pass.
+The first installed case has an undefined assertion-message harness error on its missing
+executable; correct the message and retain the meaningful missing-command failure as well.
+Release preparation initially omits the new bin from the explicit compilation allowlist;
+retain ENOENT and add that bin. A later build is mistakenly run while the command fault
+campaign mutates its source; discard that candidate and rebuild only after source restoration.
+Symlink-removal fault initially survives because its target is simultaneously hardlinked,
+so the separate link-count check masks it. Separate the fixtures without weakening either;
+retain the miss and rerun. No timing or independent-security claim follows.
 
 `npm run test:bite` passes all 31 campaigns, catches 260 planted faults, skips none and
 restores source fingerprints (`evals/sdk/archive-anchor/bite.txt`). Typecheck after

@@ -72,6 +72,10 @@ ANC-3 structural component: `sdk/archive-anchor.md` retains first failures, the 
 FIFO failure, nine API/four command faults and seven installed checks. Authenticated replay,
 on-chain authority and full anchor milestone remain owed.
 
+POL-1/5 public preparation component: `sdk/prepare-policy.md` retains seven first failures,
+installed/build/harness errors and the masked symlink fault; nine final faults and eight
+installed checks pass. No signing, policy installation or human Phantom qualification.
+
 CI runs the baseline gates on every push since milestone 2a.1 (`ci/safety-net.md`). The
 maintained `bite` job now runs executable fault campaigns; historical manual regressions
 and remaining CI-2 thresholds are still owed. Property, fuzz, replay and queued-admission
