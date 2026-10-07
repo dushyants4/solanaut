@@ -1,0 +1,16 @@
+caught mutation recovery fault: input-inventory
+caught mutation recovery fault: regular-inputs
+caught mutation recovery fault: copied-inputs
+caught mutation recovery fault: input-digests
+caught mutation recovery fault: lock-binding
+caught mutation recovery fault: frozen-binding
+caught mutation recovery fault: actual-completion
+caught mutation recovery fault: completion-inputs
+caught mutation recovery fault: report-grade
+All mutation recovery faults caught; restored source passes
+caught mutation driver fault: baseline-population
+caught mutation driver fault: supervisor-source
+caught mutation driver fault: manifest-binding
+caught mutation driver fault: command-binding
+caught mutation driver fault: stage-binding
+All mutation driver faults caught; restored source passes

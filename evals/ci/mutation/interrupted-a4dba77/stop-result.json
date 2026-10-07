@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-07T07:01:55.567199+00:00",
+  "signalIssued": "SIGTERM",
+  "groupObservedEmpty": true,
+  "subsequentSigkill": "ESRCH",
+  "actualOriginalChildExitStatus": null,
+  "qualification": false,
+  "reason": "retired interrupted diagnostic; no complete population or verified successful child completion"
+}

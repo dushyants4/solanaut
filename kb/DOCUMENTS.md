@@ -217,3 +217,7 @@ on 2026-10-06; S28 and receipt in `runs/2026-10-06-codex-solanaut-1.md`.
 | 2026-10-01 | README, ARCHITECTURE, LITEPAPER, CLAIMS; MARKET and PITCH deferred | The Beta review (2b.4): README 4 and ARCHITECTURE 4, the components as built; LITEPAPER Draft 3, the status as built and measured (S6 to S12); CLAIMS, every measured row's regenerating command (2b.2). MARKET's research was not re-checked and PITCH is the human's, so both move to S.1 unreviewed; PITCH can now cite S6 to S12 | `kb/milestones/2026-10-01_2b-beta.md` |
 | 2026-10-05 | ROADMAP, READINESS, RISKS, SPEC, README | The human's decisions: the Beta review signed off (2b.4); the Alpha's scope approved (2c.1). SPEC Draft 4.1, §13 approved and ADR-012 to ADR-018 accepted; READINESS 2.0, the thresholds confirmed; RISKS 1.0; ROADMAP Draft 3, Leg 2 won; README's design row | `runs/2026-10-05-handoff-to-codex.md` |
 | 2026-10-05 | HANDOFF, AGENTS (new); CLAUDE | Leg 3 handed to Codex: AGENTS.md, the same law for Codex; docs/HANDOFF.md, the state, the queue, the lessons and the return; CLAUDE.md names both, and the guard's Codex hook | `runs/2026-10-05-handoff-to-codex.md` |
+
+2026-10-07 mutation recovery registers SPEC Draft 4.44, RISKS 1.35, CLAIMS S55,
+receipt/index, PROGRESS and HANDOFF continuation. Original interruption/retirement
+is retained; complete mutation qualification remains owed.

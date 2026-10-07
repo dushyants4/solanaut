@@ -1,0 +1,8 @@
+{
+  "evals/ci/mutation-run.ts": "623dc22b6e2fb808c1ae764181ae2b084dc167a163a62bc8c41e512006752384",
+  "evals/ci/mutation-recovery.ts": "f9e100cf23a505308a5d7285d7318eb86e547e4aa2ec2885157dabeb2f0b4618",
+  "evals/ci/mutation-recovery.test.ts": "a807b8fcf82accb6fa233de649f1cfa72c0d48c50fa76fa50e533be6ad5a3398",
+  "evals/ci/mutation-recovery-faults.ts": "9f1e030284a92fd638f7dc2c21bd3ac9fe52217f689dd72ba7b838f5402f18d3",
+  "evals/ci/bite.ts": "4849cae97a781d21a977665ccb93f3d98cf1af3d47898efdec2fe5e7b8dde054",
+  "package-lock.json": "d7c6a339cea61cd41fbcd196de6d4b2943942218329524db6aba76328ad8dc18"
+}

@@ -8,6 +8,19 @@ work. This dated continuation retains the earlier session's full record at
 
 ## Did
 
+Environment candidate ddc8bb0 passes hosted run 37582461765 with all thirteen jobs.
+Mutation recovery tests fail first under stubs and the old CLI. The candidate completes
+a real frozen 235-case staged baseline, then inspects it twice without relaunching.
+Definition four preserves eight whole files, eighteen selected tests, engine settings,
+the twelve-hour resource limit and global score floor; fresh seed 23093 is declared
+before execution. Frozen supervisor copies separate child execution from mutable root tools.
+Fault proof and broader close remain pending; no full mutation score is claimed.
+
+Environment component ddc8bb0 is privately pushed; hosted run 37582461765 starts.
+The existing branch concurrency policy cancels preceding run 37581602264 on that push.
+Do not call the preceding supervisor commit hosted-green; retain the cancelled result.
+Wait for the current candidate's hosted completion before another private push.
+
 Explicit environment/interruption component passes the final 536 ordinary root cases
 after fault restoration, all twenty-three focused cases, twenty-three real faults and
 typecheck. Retained overlapping diagnostic is not qualification. Final tool/test/campaign
@@ -147,6 +160,16 @@ implementation, documentation and receipt changes remain in the continuing sessi
 
 ## Found
 
+Mutation recovery campaign's baseline rehearsal hits its unchanged twenty-second
+fixture wait while the old orphaned mutation workers remain active. Preserve the
+failure, retain the limit, and retire the already-unqualified old attempt after saving
+its exact manifest/all staged text inputs and before/after progress. SIGTERM stops
+group 1007247; process-group inventory is empty, and subsequent SIGKILL gets ESRCH.
+Observer 574792 is stopped. Original child exit status is unavailable, never inferred;
+the attempt is not qualification. Evidence is `evals/ci/mutation/interrupted-a4dba77/`.
+The recovery battery runs again without those retired workers; no coefficients,
+population, score floor, whole-run deadline or fixture wait is changed.
+
 The first environment root recheck starts before the expanded tool fault driver has
 finished. Treat it as diagnostic only: transient planted tool source prevents a single
 revision claim even if it passes. Wait for exact fault restoration before the final
@@ -237,6 +260,14 @@ check; add this record rather than weakening the gate. Full candidate close and 
 pending. No threshold, accepted ADR or protected harness file changes.
 
 ## Open
+
+Mutation recovery definition 4 now passes six cases/fourteen real faults, including
+actual staged baseline 235 cases and repeated inspection. Ordinary integration passes
+542 cases, typecheck exits zero. Raw failures and source manifest are retained under
+`evals/ci/mutation/recovery/`; original attempt retired without inferred status or score.
+Pre-sync close passes nine gates and refuses the uncommitted candidate. Full hosted
+aggregation follows sync; full mutation qualification remains owed. No dependency,
+policy coefficient, threshold, accepted ADR or protected harness change.
 
 Checkpoint source, installed artefacts, coverage and isolated aggregate now pass; finish
 candidate hosted CI and the separate operational-map close/sync. H9/H10, independent RT-2, audit, outside

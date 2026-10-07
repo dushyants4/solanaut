@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.34** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.35** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 The threat model ([docs/papers/THREAT-MODEL.md](papers/THREAT-MODEL.md)) lists what an attacker can do to a running
@@ -195,3 +195,7 @@ failure remains retained; corrected hosted validation and the complete CI-2 prog
 | 1.32 | 2026-10-07 | CI-2 completion-record checks are a foundation; trusted actual production and durable publication remain open. |
 | 1.33 | 2026-10-07 | CI-2 actual supervision component evidence; full mutation integration and remaining containment risks explicit. |
 | 1.34 | 2026-10-07 | CI-2 explicit environment binding and interruption refusal; automatic supervisor-death containment remains owed. |
+
+Mutation execution now checks actual supervised completion and frozen inputs. The
+interrupted original campaign is retired without an inferred exit status or score;
+fresh complete qualification remains owed (`evals/ci/mutation-recovery.md`).

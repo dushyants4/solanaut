@@ -1,0 +1,48 @@
+✖ CI-2: supervised completion qualifies only the bound complete synthetic mutation fixture (5.386807ms)
+✖ CI-2: every copied source, test, package, configuration and lock input remains bound (2.537315ms)
+✔ CI-2: missing, symlinked and mismatched staged inputs cannot be frozen (2.854868ms)
+✖ CI-2: pending and failed actual child execution cannot qualify a present fixture report (2.315873ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 1
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 245.128746
+
+✖ failing tests:
+
+test at evals/ci/mutation-recovery.test.ts:17:1
+✖ CI-2: supervised completion qualifies only the bound complete synthetic mutation fixture (5.386807ms)
+  Error: mutation input binding not implemented
+      at freezeMutationInputs (file:///home/dashy/Projects/Solanaut/evals/ci/mutation-recovery.ts:3:88)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation-recovery.test.ts:20:19)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at evals/ci/mutation-recovery.test.ts:26:1
+✖ CI-2: every copied source, test, package, configuration and lock input remains bound (2.537315ms)
+  Error: mutation input binding not implemented
+      at freezeMutationInputs (file:///home/dashy/Projects/Solanaut/evals/ci/mutation-recovery.ts:3:88)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation-recovery.test.ts:29:19)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at evals/ci/mutation-recovery.test.ts:41:1
+✖ CI-2: pending and failed actual child execution cannot qualify a present fixture report (2.315873ms)
+  Error: mutation input binding not implemented
+      at freezeMutationInputs (file:///home/dashy/Projects/Solanaut/evals/ci/mutation-recovery.ts:3:88)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation-recovery.test.ts:44:19)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)

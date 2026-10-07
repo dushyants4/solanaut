@@ -165,3 +165,7 @@ partial signing is unchanged; this is not installed signer or live-chain qualifi
    Externally pinned archive sequence/head checks and installed CLI pass local component
    tests (`evals/sdk/archive-anchor.md`); authenticated replay and on-chain anchoring remain
    owed. ADR-022's enrolment/rotation contract awaits H10 acceptance.
+
+CI-2 mutation execution now has recoverable actual supervision, frozen bindings and
+staged-baseline evidence (`evals/ci/mutation-recovery.md`). The interrupted original
+campaign is retired, unqualified. Full mutation score and release gates remain owed.

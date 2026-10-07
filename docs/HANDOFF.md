@@ -189,6 +189,12 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+Mutation execution recovery passes six cases/fourteen faults and the real staged
+baseline (`evals/ci/mutation-recovery.md`). Original orphan retired with unknown actual
+status and incomplete population; no score claimed. Environment commit ddc8bb0 passes
+all hosted jobs; preceding b6d9194 run was cancelled, not passed. Final close/sync follow.
+
+
 Supervisor b6d9194 is privately pushed and passes all ten close gates; CI 37581602264
 is running. Explicit environment/interruption extension passes twenty-three focused cases
 and twenty-three faults after a masked child-binding miss. Full final integration and

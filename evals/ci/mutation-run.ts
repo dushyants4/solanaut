@@ -1,40 +1,56 @@
-// CI-2 definition 3: full-file mutations/tests; longer whole-run containment, fresh seed.
-import { spawn } from "node:child_process";
+// CI-2 definition 4: unchanged population/floors; frozen environment and recoverable actual supervision.
 import { createHash } from "node:crypto";
-import { mkdirSync, mkdtempSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
-import { join, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
-import { MUTATION_TESTS, MUTATION_RUN_LIMIT_MS, stageMutation } from "./mutation-stage.ts";
-import { requireMutationReport } from "./mutation.ts";
-const root=fileURLToPath(new URL("../../",import.meta.url));
-if(process.argv.length!==2 && !(process.argv.length===3 && process.argv[2]==="--baseline")) throw new Error("usage: mutation-run.ts [--baseline]");
-const scratch=resolve(root,".sandbox/solanaut-1/mutation"); mkdirSync(scratch,{recursive:true});
-const destination=mkdtempSync(join(scratch,"run-")), sources=stageMutation(root,destination);
-const hashes=Object.fromEntries(Object.entries(sources).map(([path,text])=>[path,createHash("sha256").update(text).digest("hex")]));
-const inputs=["package.json","stryker.config.json",...(readdirSync(join(destination,"packages"),{recursive:true}) as string[]).filter(path=>path.endsWith(".ts") || path.endsWith("package.json")).map(path=>"packages/"+path)].sort();
-const inputHashes=Object.fromEntries(inputs.map(path=>[path,createHash("sha256").update(readFileSync(join(destination,path))).digest("hex")]));
-const lockHash=createHash("sha256").update(readFileSync(join(root,"package-lock.json"))).digest("hex");
-writeFileSync(join(destination,"manifest.json"),JSON.stringify({definition:3,node:process.version,runLimitMs:MUTATION_RUN_LIMIT_MS,hashes,inputHashes,lockHash,tests:MUTATION_TESTS,environment:{FUZZ_RUNS:"5000",FUZZ_SEED:"23071"},started:new Date().toISOString()},null,2)+"\n");
-console.log("Mutation run directory: "+destination);
-const env:NodeJS.ProcessEnv={...process.env,FUZZ_RUNS:"5000",FUZZ_SEED:"23071"}; delete env.NODE_TEST_CONTEXT;
-const baseline=process.argv[2]==="--baseline";
-const child=spawn(process.execPath,baseline?["--test","--test-isolation=none",...MUTATION_TESTS]:[join(root,"node_modules/@stryker-mutator/core/bin/stryker.js"),"run","stryker.config.json"],{cwd:destination,stdio:"inherit",env,detached:true});
-let hardStop:NodeJS.Timeout|undefined;
-const stop=()=> {
-  try {process.kill(-child.pid!,"SIGTERM");} catch { /* Already stopped. */ }
-  hardStop??=setTimeout(()=> {try {process.kill(-child.pid!,"SIGKILL");} catch { /* Already stopped. */ }},5_000);
-};
-process.once("SIGTERM",stop); process.once("SIGINT",stop);
-const deadline=setTimeout(stop,MUTATION_RUN_LIMIT_MS);
-const status=await new Promise<number|null>((resolve,reject)=> {child.once("error",reject); child.once("exit",code=>resolve(code));});
-clearTimeout(deadline); clearTimeout(hardStop); process.removeListener("SIGTERM",stop); process.removeListener("SIGINT",stop);
-if(Object.entries(sources).some(([path,text])=>readFileSync(join(root,path),"utf8")!==text)) throw new Error("working mutation source changed during run");
-if(baseline) {
-  if(status!==0) throw new Error("staged mutation baseline failed");
-  console.log("Staged mutation baseline passes; no mutation score measured");
-} else {
-  const report=JSON.parse(readFileSync(join(destination,"reports/mutation.json"),"utf8"));
-  const summary=requireMutationReport(report,sources,status);
-  writeFileSync(join(destination,"summary.json"),JSON.stringify({definition:3,runLimitMs:MUTATION_RUN_LIMIT_MS,...summary,hashes,completed:new Date().toISOString()},null,2)+"\n");
-  console.log(JSON.stringify(summary));
+import { copyFileSync, closeSync, fsyncSync, mkdirSync, mkdtempSync, openSync, readFileSync, writeFileSync } from "node:fs";
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
+import { MUTATION_PATHS, MUTATION_TESTS, MUTATION_RUN_LIMIT_MS, stageMutation } from "./mutation-stage.ts";
+import { freezeMutationInputs, completedMutation } from "./mutation-recovery.ts";
+import { readSupervisedResult, type RunCommand, type RunTicket } from "../../tools/run-supervisor.ts";
+const root=fileURLToPath(new URL("../../",import.meta.url)),hash=(bytes:Uint8Array|string)=>createHash("sha256").update(bytes).digest("hex");
+const environment={PATH:dirname(process.execPath)+":/usr/bin:/bin",LANG:"C.UTF-8",FUZZ_RUNS:"5000",FUZZ_SEED:"23093",NO_COLOR:"1"};
+function command(destination:string,baseline:boolean):RunCommand {
+  return {command:process.execPath,args:baseline?["--test","--test-isolation=none",...MUTATION_TESTS]:[join(root,"node_modules/@stryker-mutator/core/bin/stryker.js"),"run","stryker.config.json"],cwd:destination,timeoutMs:MUTATION_RUN_LIMIT_MS,graceMs:5000,env:environment};
+}
+function save(directory:string,name:string,value:unknown) {
+  const path=join(directory,name),fd=openSync(path,"wx",0o600);
+  try {writeFileSync(fd,JSON.stringify(value,null,2)+"\n");fsyncSync(fd);}finally{closeSync(fd);}
+  const parent=openSync(directory,"r");try{fsyncSync(parent);}finally{closeSync(parent);}
+}
+async function start(baseline:boolean) {
+  const scratch=resolve(root,".sandbox/solanaut-1/mutation");mkdirSync(scratch,{recursive:true});
+  const destination=mkdtempSync(join(scratch,"run-"));stageMutation(root,destination);
+  const supervision=join(destination,"supervision");mkdirSync(supervision,{mode:0o700});
+  for(const name of ["run-supervisor.ts","run-completion.ts"])copyFileSync(join(root,"tools",name),join(supervision,name));
+  const supervisorHashes=Object.fromEntries(["run-supervisor.ts","run-completion.ts"].map(name=>[name,hash(readFileSync(join(supervision,name)))]));
+  const binding=freezeMutationInputs(root,destination),cmd=command(destination,baseline);
+  save(destination,"manifest.json",{definition:4,node:process.version,baseline,runLimitMs:MUTATION_RUN_LIMIT_MS,binding,tests:MUTATION_TESTS,environment,supervisorHashes,started:new Date().toISOString()});
+  const frozen=await import(pathToFileURL(join(supervision,"run-supervisor.ts")).href) as typeof import("../../tools/run-supervisor.ts");
+  const ticket=frozen.launchSupervisedRun(join(destination,"execution"),cmd,hash(readFileSync(join(destination,"manifest.json"))));
+  save(destination,"ticket.json",ticket);console.log("Mutation run directory: "+destination);
+  return {destination,ticket};
+}
+function finish(destination:string) {
+  const bytes=readFileSync(join(destination,"manifest.json")),manifest=JSON.parse(bytes.toString("utf8"));
+  if(manifest.definition!==4 || manifest.node!==process.version || typeof manifest.baseline!=="boolean" || manifest.runLimitMs!==MUTATION_RUN_LIMIT_MS || JSON.stringify(manifest.tests)!==JSON.stringify(MUTATION_TESTS) || JSON.stringify(manifest.environment)!==JSON.stringify(environment))throw new Error("mutation execution definition differs");
+  for(const name of ["run-supervisor.ts","run-completion.ts"])if(hash(readFileSync(join(destination,"supervision",name)))!==manifest.supervisorHashes?.[name])throw new Error("frozen supervisor source changed");
+  const ticket=JSON.parse(readFileSync(join(destination,"ticket.json"),"utf8")) as RunTicket;
+  if(ticket.directory!==join(destination,"execution") || ticket.identity.inputHash!==hash(bytes) || ticket.identity.commandHash!==hash(JSON.stringify(command(destination,manifest.baseline))))throw new Error("mutation ticket binding differs");
+  const sources=Object.fromEntries(MUTATION_PATHS.map(path=>[path,readFileSync(join(destination,path),"utf8")]));
+  const summary=completedMutation(root,destination,manifest.binding,ticket,sources,manifest.baseline);
+  if(manifest.baseline)console.log("Staged mutation baseline passes; no mutation score measured");
+  else console.log(JSON.stringify(summary));
+}
+const args=process.argv.slice(2);
+if(args.length===2 && args[0]==="--finish")finish(resolve(args[1]!));
+else {
+  if(!["","--baseline","--start","--start --baseline"].includes(args.join(" ")))throw new Error("usage: mutation-run.ts [--start] [--baseline] | --finish <run-directory>");
+  const run=await start(args.includes("--baseline"));
+  if(!args.includes("--start")) {
+    const end=process.hrtime.bigint()+BigInt(MUTATION_RUN_LIMIT_MS+10_000)*1_000_000n;
+    while(readSupervisedResult(run.ticket)===null) {
+      if(process.hrtime.bigint()>end)throw new Error("supervised mutation completion missing");
+      await new Promise(resolve=>setTimeout(resolve,1000));
+    }
+    finish(run.destination);
+  } else console.log("Started only; inspect execution/output.txt and use --finish after actual completion.");
 }

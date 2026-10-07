@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.43** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.44** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -982,6 +982,11 @@ and delivered separately to both supervisor and child. Qualification must select
 mode; legacy omission inherits caller environment. TERM marks interruption even if the
 child exits zero. Supervisor KILL produces no eligible completion; external child
 containment remains required (`evals/ci/run-environment.md`). No mutation integration yet.
+
+CI-2 definition 4 now integrates actual supervision into mutation execution. Frozen
+input inventories, lockfile, environment, command and copied supervisor sources bind
+completion; repeated inspection never relaunches. Baseline success is not a mutation
+score. Full population qualification remains owed (`evals/ci/mutation-recovery.md`).
 
 ### 13.15 Publication-review preparation
 
