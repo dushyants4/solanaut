@@ -8,6 +8,19 @@ work. This dated continuation retains the earlier session's full record at
 
 ## Did
 
+Explicit environment/interruption component passes the final 536 ordinary root cases
+after fault restoration, all twenty-three focused cases, twenty-three real faults and
+typecheck. Retained overlapping diagnostic is not qualification. Final tool/test/campaign
+and unchanged lockfile hashes are recorded in `evals/ci/run-environment/source-manifest.json`.
+No original mutation source or dependency changes. Private close/sync and hosted checks follow.
+
+Supervisor component b6d9194 is privately pushed and passes all ten close gates;
+hosted CI 37581602264 is running. Continue with explicit evaluation environment
+binding: valid frozen environment fails first under the old command shape. Loader,
+undeclared and malformed overrides already refuse. Add a bounded secret-free whitelist
+inside the command digest; both supervisor and child must receive the same captured
+environment. Default inherited mode remains explicitly outside this qualification.
+
 Actual supervisor frozen aggregate exits zero across thirty-seven campaigns and 350
 caught-fault lines. All 805 inputs and complete 65-file compiled inventory restore exactly;
 root TypeScript and package inputs match. Root integration passes 531 cases, typecheck
@@ -133,6 +146,21 @@ record satisfies the close workflow's current-day record requirement. Earlier ca
 implementation, documentation and receipt changes remain in the continuing session record.
 
 ## Found
+
+The first environment root recheck starts before the expanded tool fault driver has
+finished. Treat it as diagnostic only: transient planted tool source prevents a single
+revision claim even if it passes. Wait for exact fault restoration before the final
+root recheck. No diagnostic run substitutes for the required final integration.
+That overlapping run fails normal-launcher release and surviving-descendant containment,
+matching the planted unref/hard-stop fault sites. Preserve its complete output separately;
+the clean focused battery passes all twenty-three cases after source restoration.
+
+Environment fault trial misses removal of the child environment binding: the correctly
+frozen worker's inherited environment masks it. Retain the missed fault output and add a
+direct worker fixture with a deliberately different environment and an externally bound
+specification. It isolates the child's environment check. The malformed-input fixture
+also fails typecheck until its deliberately invalid value casts through unknown; retained
+red output precedes the correction. No runtime acceptance rule or gate is weakened.
 
 Actual supervisor passes eighteen focused cases/nineteen real faults, 531 ordinary
 cases and typecheck. Earlier foreign-worker and ordered-publication failures remain

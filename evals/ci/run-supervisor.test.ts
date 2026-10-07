@@ -152,6 +152,69 @@ test("CI-2: malformed operator commands refuse before creating a run",()=>{
   try {for(const change of [{timeoutMs:0},{timeoutMs:2_147_483_648},{graceMs:0},{graceMs:5001},{cwd:"relative"},{command:"relative"},{args:["bad\0argument"]}])assert.throws(()=>launchSupervisedRun(f.directory,command("process.exit(0)",change),"a".repeat(64)));assert.equal(existsSync(f.directory),false);}
   finally {cleanup(f.base);}
 });
+test("CI-2: a frozen evaluation environment excludes caller injection in supervisor and child",async()=>{
+  const f=fixture();let ticket:RunTicket|undefined;
+  const prior=process.env.NODE_OPTIONS,foreign=process.env.SOLANAUT_FOREIGN_FIXTURE;
+  try {
+    const marker=join(f.base,"injected"),preload=join(f.base,"injection.mjs");
+    writeFileSync(preload,`import {writeFileSync} from 'node:fs';writeFileSync(${JSON.stringify(marker)},'executed');`);
+    process.env.NODE_OPTIONS="--import="+pathToFileURL(preload).href;process.env.SOLANAUT_FOREIGN_FIXTURE="fixture";
+    const cmd={...command("console.log(JSON.stringify({seed:process.env.FUZZ_SEED,foreign:process.env.SOLANAUT_FOREIGN_FIXTURE??null,options:process.env.NODE_OPTIONS??null}))"),env:{PATH:process.env.PATH!,LANG:"C.UTF-8",FUZZ_SEED:"23093",FUZZ_RUNS:"5000"}};
+    ticket=launchSupervisedRun(f.directory,cmd,"a".repeat(64));const value=await result(ticket);
+    assert.equal(requireRunCompletion(value,ticket.identity),0);
+    assert.equal(existsSync(marker),false,"supervisor never loads the caller preload");
+    assert.deepEqual(JSON.parse(readFileSync(join(f.directory,"output.txt"),"utf8").trim()),{seed:"23093",foreign:null,options:null});
+    assert.deepEqual(JSON.parse(readFileSync(join(f.directory,"spec.json"),"utf8")).command.env,cmd.env);
+  } finally {
+    if(prior===undefined)delete process.env.NODE_OPTIONS;else process.env.NODE_OPTIONS=prior;
+    if(foreign===undefined)delete process.env.SOLANAUT_FOREIGN_FIXTURE;else process.env.SOLANAUT_FOREIGN_FIXTURE=foreign;
+    cleanup(f.base,ticket);
+  }
+});
+test("CI-2: evaluation environment rejects loader and undeclared variable overrides",()=>{
+  const f=fixture();
+  try {for(const env of [{NODE_OPTIONS:"--import=untrusted"},{LD_PRELOAD:"untrusted"},{FUZZ_SEED:4},{PATH:"bad\0path"},null])assert.throws(()=>launchSupervisedRun(f.directory,{...command("process.exit(0)"),env} as unknown as RunCommand,"a".repeat(64)));assert.equal(existsSync(f.directory),false);}
+  finally {cleanup(f.base);}
+});
+test("CI-2: child environment uses the specification despite a different worker environment",()=>{
+  const f=fixture();
+  try {
+    mkdirSync(f.directory,{mode:0o700});writeFileSync(join(f.directory,"commit.sha256"),"",{mode:0o600});
+    const cmd={...command("console.log(JSON.stringify({seed:process.env.FUZZ_SEED,foreign:process.env.SOLANAUT_FOREIGN_FIXTURE??null}))"),env:{PATH:process.env.PATH!,FUZZ_SEED:"23093",FUZZ_RUNS:"5000"}};
+    const identity={runId:"child-environment",inputHash:"a".repeat(64),commandHash:createHash("sha256").update(JSON.stringify(cmd)).digest("hex")};
+    const text=JSON.stringify({format:1,identity,command:cmd})+"\n";writeFileSync(join(f.directory,"spec.json"),text,{mode:0o600});
+    const worker=spawnSync(process.execPath,[resolve("tools/run-supervisor.ts"),f.directory,createHash("sha256").update(text).digest("hex")],{encoding:"utf8",timeout:5000,env:{...process.env,NODE_OPTIONS:undefined,FUZZ_SEED:"wrong",SOLANAUT_FOREIGN_FIXTURE:"fixture"}});
+    assert.equal(worker.status,0,worker.stderr);assert.equal(worker.error,undefined);
+    assert.deepEqual(JSON.parse(worker.stdout.trim()),{seed:"23093",foreign:null});
+    assert.equal(requireRunCompletion(readSupervisedResult({directory:f.directory,identity,supervisorPid:worker.pid}),identity),0);
+  } finally {cleanup(f.base);}
+});
+test("CI-2: supervisor interruption cannot qualify a child that exits zero on termination",async()=>{
+  const f=fixture();let ticket:RunTicket|undefined;
+  try {
+    const ready=join(f.base,"ready"),code=`import {writeFileSync} from 'node:fs';process.on('SIGTERM',()=>process.exit(0));writeFileSync(${JSON.stringify(ready)},'ready');setInterval(()=>{},20);setTimeout(()=>process.exit(0),7000);`;
+    ticket=launchSupervisedRun(f.directory,command(code,{timeoutMs:10000}),"a".repeat(64));
+    const end=Date.now()+5000;while(!existsSync(ready) && Date.now()<end)await sleep(20);assert.equal(existsSync(ready),true);
+    process.kill(ticket.supervisorPid,"SIGTERM");const value=await result(ticket);
+    assert.equal(value.status,0);assert.equal(value.timedOut,false);assert.equal(value.error,"supervisor interrupted");assert.throws(()=>requireRunCompletion(value,ticket!.identity));
+    assert.throws(()=>process.kill(value.childPid,0));
+  } finally {cleanup(f.base,ticket);}
+});
+test("CI-2: killed supervisor leaves no eligible completion and requires external child containment",async()=>{
+  const f=fixture();let ticket:RunTicket|undefined;let pid:number|undefined;
+  try {
+    const ready=join(f.base,"ready"),code=`import {writeFileSync} from 'node:fs';writeFileSync(${JSON.stringify(ready)},JSON.stringify({pid:process.pid}));setInterval(()=>{},20);setTimeout(()=>process.exit(0),7000);`;
+    ticket=launchSupervisedRun(f.directory,command(code,{timeoutMs:10000}),"a".repeat(64));
+    const end=Date.now()+5000;while(!existsSync(ready) && Date.now()<end)await sleep(20);assert.equal(existsSync(ready),true);
+    pid=JSON.parse(readFileSync(ready,"utf8")).pid;assert.equal(Number.isSafeInteger(pid) && pid!>0,true);
+    process.kill(ticket.supervisorPid,"SIGKILL");
+    let stopped=false;
+    while(Date.now()<end) {try {const stat=readFileSync(`/proc/${ticket.supervisorPid}/stat`,"utf8");if(stat.slice(stat.lastIndexOf(")")+2).startsWith("Z ")){stopped=true;break;}}catch(error){if((error as NodeJS.ErrnoException).code==="ENOENT"){stopped=true;break;}throw error;}await sleep(20);}
+    assert.equal(stopped,true,"actual supervisor death was observed");
+    assert.equal(readSupervisedResult(ticket),null);assert.throws(()=>requireRunCompletion(null,ticket!.identity));
+    process.kill(pid!,0);process.kill(-pid!,"SIGKILL");
+  } finally {if(pid)try {process.kill(-pid,"SIGKILL");}catch{}cleanup(f.base,ticket);}
+});
 test("CI-2: normal child exit with a surviving worker cannot qualify",async()=>{
   const f=fixture();let ticket:RunTicket|undefined;
   try {

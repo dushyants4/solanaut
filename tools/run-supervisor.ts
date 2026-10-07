@@ -4,14 +4,15 @@ import { closeSync, fsyncSync, linkSync, lstatSync, mkdirSync, openSync, readFil
 import { isAbsolute, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { RunCompletion, RunIdentity } from "./run-completion.ts";
-export interface RunCommand { command: string; args: readonly string[]; cwd: string; timeoutMs: number; graceMs: number }
+export interface RunCommand { command: string; args: readonly string[]; cwd: string; timeoutMs: number; graceMs: number; env?: Readonly<Record<string,string>> }
 export interface RunTicket { directory: string; identity: RunIdentity; supervisorPid: number }
 interface RunSpec { format: 1; identity: RunIdentity; command: RunCommand }
 const hash=(text:string)=>createHash("sha256").update(text).digest("hex");
 const digest=(text:unknown)=>typeof text==="string" && /^[0-9a-f]{64}$/.test(text);
 function command(input:unknown):RunCommand {
   const value=JSON.parse(JSON.stringify(input)) as RunCommand;
-  if(!value || Object.keys(value).sort().join(",")!=="args,command,cwd,graceMs,timeoutMs" || typeof value.command!=="string" || !isAbsolute(value.command) || typeof value.cwd!=="string" || !isAbsolute(value.cwd) || !Array.isArray(value.args) || !value.args.every(arg=>typeof arg==="string" && !arg.includes("\0")) || !Number.isSafeInteger(value.timeoutMs) || value.timeoutMs<1 || value.timeoutMs>2_147_483_647 || !Number.isSafeInteger(value.graceMs) || value.graceMs<1 || value.graceMs>5000) throw new Error("invalid supervised command");
+  if(!value || Object.keys(value).filter(key=>key!=="env").sort().join(",")!=="args,command,cwd,graceMs,timeoutMs" || typeof value.command!=="string" || !isAbsolute(value.command) || typeof value.cwd!=="string" || !isAbsolute(value.cwd) || !Array.isArray(value.args) || !value.args.every(arg=>typeof arg==="string" && !arg.includes("\0")) || !Number.isSafeInteger(value.timeoutMs) || value.timeoutMs<1 || value.timeoutMs>2_147_483_647 || !Number.isSafeInteger(value.graceMs) || value.graceMs<1 || value.graceMs>5000) throw new Error("invalid supervised command");
+  if("env" in value && (!value.env || typeof value.env!=="object" || Array.isArray(value.env) || Object.entries(value.env).some(([key,text])=>!["PATH","LANG","LC_ALL","FUZZ_RUNS","FUZZ_SEED","NO_COLOR"].includes(key) || typeof text!=="string" || text.includes("\0")))) throw new Error("invalid evaluation environment");
   return value;
 }
 function syncDirectory(directory:string) {const fd=openSync(directory,"r");try {fsyncSync(fd);} finally {closeSync(fd);}}
@@ -39,7 +40,7 @@ export function launchSupervisedRun(directory:string,input:RunCommand,inputHash:
   syncDirectory(directory);
   const fd=openSync(join(directory,"output.txt"),"wx",0o600);
   try {
-    const worker=spawn(process.execPath,[fileURLToPath(import.meta.url),directory,hash(text)],{detached:true,stdio:["ignore",fd,fd],env:{...process.env,NODE_TEST_CONTEXT:undefined}});
+    const worker=spawn(process.execPath,[fileURLToPath(import.meta.url),directory,hash(text)],{detached:true,stdio:["ignore",fd,fd],env:{...(cmd.env??process.env),NODE_TEST_CONTEXT:undefined}});
     worker.on("error",()=>{});
     if(!worker.pid) throw new Error("supervisor did not start");
     worker.unref();return {directory,identity,supervisorPid:worker.pid};
@@ -68,7 +69,7 @@ async function supervise(directory:string,expectedHash:string) {
   const commit=join(directory,"commit.sha256");privatePath(commit,false);
   if(lstatSync(commit).size!==0)throw new Error("supervised run is already committed");
   const started=new Date().toISOString();let timedOut=false,error:string|null=null,interrupted=false;
-  const child=spawn(cmd.command,[...cmd.args],{cwd:cmd.cwd,detached:true,stdio:["ignore",1,2],env:{...process.env,NODE_TEST_CONTEXT:undefined}});
+  const child=spawn(cmd.command,[...cmd.args],{cwd:cmd.cwd,detached:true,stdio:["ignore",1,2],env:{...(cmd.env??process.env),NODE_TEST_CONTEXT:undefined}});
   const pid=child.pid??0;let hardStop:NodeJS.Timeout|undefined;
   const signalGroup=(signal:NodeJS.Signals)=>{if(pid)try {process.kill(-pid,signal);} catch(failure) {if((failure as NodeJS.ErrnoException).code!=="ESRCH")error="process-group signal failed";}};
   const stop=()=>{signalGroup("SIGTERM");hardStop??=setTimeout(()=>signalGroup("SIGKILL"),cmd.graceMs);};

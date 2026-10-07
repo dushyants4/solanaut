@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.42** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.43** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -976,6 +976,13 @@ Inherited environment and escaped descendants are outside this component's assur
 Supervisor SIGKILL needs external containment and cannot supply inferred success. This
 helper is not yet consumed by mutation qualification (`evals/ci/run-supervisor.md`).
 
+CI-2 explicit evaluation environment permits only PATH, LANG, LC_ALL, FUZZ_RUNS,
+FUZZ_SEED and NO_COLOR with string values and no NUL. It is captured with the command
+and delivered separately to both supervisor and child. Qualification must select this
+mode; legacy omission inherits caller environment. TERM marks interruption even if the
+child exits zero. Supervisor KILL produces no eligible completion; external child
+containment remains required (`evals/ci/run-environment.md`). No mutation integration yet.
+
 ### 13.15 Publication-review preparation
 
 | ID | Requirement | Verified by |
@@ -1049,3 +1056,4 @@ These are requirements, not current support claims or permission for human-owned
 | Draft 4.40 | 2026-10-07 | CI-2 planted-cap first-counterexample diagnostics and actual fault-process completion; ordinary shrinking, successful floors, domains and deadlines stay unchanged. |
 | Draft 4.41 | 2026-10-07 | CI-2 externally bound completion-record checks and operator-tool restoration; actual detached producer and qualification remain owed. |
 | Draft 4.42 | 2026-10-07 | CI-2 actual detached supervisor and ordered result publication; environment, supervisor-death containment and mutation integration remain owed. |
+| Draft 4.43 | 2026-10-07 | CI-2 explicit evaluation environment and actual supervisor-interruption evidence; killed-worker recovery and mutation integration remain owed. |

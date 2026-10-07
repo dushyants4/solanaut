@@ -1,0 +1,10 @@
+
+> typecheck
+> tsc -p tsconfig.json
+
+evals/ci/run-supervisor.test.ts(176,176): error TS2352: Conversion of type '{ command: string; args: readonly string[]; cwd: string; timeoutMs: number; graceMs: number; env: { NODE_OPTIONS: string; LD_PRELOAD?: undefined; FUZZ_SEED?: undefined; PATH?: undefined; } | { NODE_OPTIONS?: undefined; LD_PRELOAD: string; FUZZ_SEED?: undefined; PATH?: undefined; } | { ...; } | { ...; } | null; }' to type 'RunCommand' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Types of property 'env' are incompatible.
+    Type '{ NODE_OPTIONS: string; LD_PRELOAD?: undefined; FUZZ_SEED?: undefined; PATH?: undefined; } | { NODE_OPTIONS?: undefined; LD_PRELOAD: string; FUZZ_SEED?: undefined; PATH?: undefined; } | { NODE_OPTIONS?: undefined; LD_PRELOAD?: undefined; FUZZ_SEED: number; PATH?: undefined; } | { ...; } | null' is not comparable to type 'Readonly<Record<string, string>> | undefined'.
+      Type '{ NODE_OPTIONS?: undefined; LD_PRELOAD?: undefined; FUZZ_SEED?: undefined; PATH: string; }' is not comparable to type 'Readonly<Record<string, string>>'.
+        Property 'NODE_OPTIONS' is incompatible with index signature.
+          Type 'undefined' is not comparable to type 'string'.

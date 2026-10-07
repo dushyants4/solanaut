@@ -1,0 +1,31 @@
+✔ CI-2: actual successful child completion is bound and stored privately (287.521019ms)
+✔ CI-2: actual nonzero child exit cannot qualify (173.018357ms)
+✔ CI-2: actual child termination signal remains a signal (150.507636ms)
+✔ CI-2: timeout cannot qualify even when the child handles termination with exit zero (2120.163371ms)
+✔ CI-2: launch failure records failure rather than inventing a child exit (128.807488ms)
+✔ CI-2: an existing run directory cannot be reused or overwritten (168.300622ms)
+✔ CI-2: detached actual waiting survives the launching process being killed (1052.299027ms)
+✔ CI-2: wrong specification identity refuses before executing the child (104.629868ms)
+✔ CI-2: a normal launcher exits without waiting for its supervised child (326.757739ms)
+✔ CI-2: foreign worker result cannot be read through a ticket (175.755704ms)
+✔ CI-2: inconsistent command identity refuses despite a matching specification digest (104.041932ms)
+✔ CI-2: shared result permissions refuse before reading completion (168.247374ms)
+✔ CI-2: completion-file sync failure never publishes accepted success (179.242946ms)
+✔ CI-2: completion-directory sync failure never publishes accepted success (215.814109ms)
+✔ CI-2: incomplete commit evidence cannot publish a valid result (215.217487ms)
+✔ CI-2: altered result bytes cannot retain the existing commit binding (212.906045ms)
+✔ CI-2: malformed operator commands refuse before creating a run (2.662405ms)
+✔ CI-2: a frozen evaluation environment excludes caller injection in supervisor and child (196.915068ms)
+✔ CI-2: evaluation environment rejects loader and undeclared variable overrides (4.316535ms)
+✔ CI-2: child environment uses the specification despite a different worker environment (224.229755ms)
+✔ CI-2: supervisor interruption cannot qualify a child that exits zero on termination (254.235908ms)
+✔ CI-2: killed supervisor leaves no eligible completion and requires external child containment (192.936995ms)
+✔ CI-2: normal child exit with a surviving worker cannot qualify (507.078668ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7430.469929

@@ -1,0 +1,10 @@
+✔ CI-2: a frozen evaluation environment excludes caller injection in supervisor and child (234.036392ms)
+✔ CI-2: evaluation environment rejects loader and undeclared variable overrides (1.405302ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 584.740581

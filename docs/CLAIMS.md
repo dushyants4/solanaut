@@ -103,6 +103,8 @@ second definition change, re-measured on fresh seeds, and S7 restated with both 
 
 | S53 | The Linux evaluation supervisor retains actual child completion after launcher loss and rejects uncommitted or foreign results | **measured (builder-authored local component evidence)** | `evals/ci/run-supervisor.md`, 2026-10-07, Node 26.7.0: eighteen cases and nineteen real faults pass with restoration; all 531 ordinary root cases and typecheck pass. Regenerate: `node --test evals/ci/run-supervisor.test.ts`; `node evals/ci/run-supervisor-faults.ts`; `env -u SOLANAUT_PROPERTY_TRIAL nice -n 19 npm test -- --test-concurrency=1`; `npm run typecheck`. Trusted same-user helper only; no supervisor-SIGKILL containment, escaped-group guarantee, power-loss durability, full mutation integration or stable-release qualification |
 
+| S54 | Explicit evaluation environments are bound to the command and supervisor interruption cannot establish success | **measured (builder-authored local component evidence)** | `evals/ci/run-environment.md`, 2026-10-07, Node 26.7.0: twenty-three focused cases and twenty-three real faults pass after a masked child-environment fault miss. Regenerate: `node --test evals/ci/run-supervisor.test.ts`; `node evals/ci/run-supervisor-faults.ts`; `npm run typecheck`. Original failure, missed fault, type failure and overlapping root diagnostic retained. Explicit mode only; default environment inheritance, hostile host, escaped groups, automatic supervisor-death containment, full mutation integration and stable release remain unqualified |
+
 **Not yet claimable, and why:**
 
 - **Any detection rate or block rate, and any false-stop rate beyond S7 and S45's defined synthetic streams.** Nothing else has been

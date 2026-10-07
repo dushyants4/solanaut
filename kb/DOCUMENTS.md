@@ -1,5 +1,10 @@
 # DOCUMENTS.md — the document register
 
+2026-10-07 explicit evaluation environment registers SPEC Draft 4.43, RISKS 1.34,
+CLAIMS S54, receipt/index and continuation/HANDOFF records. Default inherited mode
+remains outside that assurance; supervisor death requires separate containment.
+Masked child-environment fault and overlapping diagnostic failures remain retained.
+
 2026-10-07 actual supervisor component registers SPEC Draft 4.42, RISKS 1.33,
 PROGRESS, CLAIMS S53, receipt/index, continuation record and HANDOFF log. Actual
 child completion and ordered result publication have builder-authored local evidence;

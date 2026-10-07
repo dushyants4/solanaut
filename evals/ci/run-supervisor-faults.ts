@@ -3,6 +3,10 @@ import { spawnSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 const path="tools/run-supervisor.ts", original=readFileSync(path,"utf8");
 const faults=[
+  ["worker-environment",'stdio:["ignore",fd,fd],env:{...(cmd.env??process.env),NODE_TEST_CONTEXT:undefined}','stdio:["ignore",fd,fd],env:{...process.env,NODE_TEST_CONTEXT:undefined}',"frozen evaluation environment"],
+  ["child-environment",'stdio:["ignore",1,2],env:{...(cmd.env??process.env),NODE_TEST_CONTEXT:undefined}','stdio:["ignore",1,2],env:{...process.env,NODE_TEST_CONTEXT:undefined}',"child environment uses"],
+  ["environment-whitelist",'!["PATH","LANG","LC_ALL","FUZZ_RUNS","FUZZ_SEED","NO_COLOR"].includes(key)',"false","evaluation environment rejects"],
+  ["interruption-state",'error="supervisor interrupted";',"", "supervisor interruption"],
   ["worker-detachment",'{detached:true,stdio:["ignore",fd,fd]','{detached:false,stdio:["ignore",fd,fd]',"survives the launching"],
   ["launcher-release","worker.unref();return","return","normal launcher exits"],
   ["retained-output",'stdio:["ignore",fd,fd]','stdio:["ignore","ignore","ignore"]',"actual successful child"],

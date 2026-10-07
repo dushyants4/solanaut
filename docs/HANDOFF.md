@@ -189,6 +189,11 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+Supervisor b6d9194 is privately pushed and passes all ten close gates; CI 37581602264
+is running. Explicit environment/interruption extension passes twenty-three focused cases
+and twenty-three faults after a masked child-binding miss. Full final integration and
+private close follow (`evals/ci/run-environment.md`); no mutation qualification yet.
+
 Supervisor isolated aggregate exits zero across thirty-seven campaigns/350 caught-fault
 lines. All 805 frozen inputs/65 compiled files restore exactly, and root TypeScript and
 package inputs match. Pre-sync close passes nine gates, refusing the uncommitted tree;

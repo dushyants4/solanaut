@@ -1,0 +1,23 @@
+✖ CI-2: a frozen evaluation environment excludes caller injection in supervisor and child (4.437944ms)
+✔ CI-2: evaluation environment rejects loader and undeclared variable overrides (3.389715ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 235.602518
+
+✖ failing tests:
+
+test at evals/ci/run-supervisor.test.ts:155:1
+✖ CI-2: a frozen evaluation environment excludes caller injection in supervisor and child (4.437944ms)
+  Error: invalid supervised command
+      at command (file:///home/dashy/Projects/Solanaut/tools/run-supervisor.ts:14:499)
+      at launchSupervisedRun (file:///home/dashy/Projects/Solanaut/tools/run-supervisor.ts:32:13)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/run-supervisor.test.ts:163:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)

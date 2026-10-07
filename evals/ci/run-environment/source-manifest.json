@@ -1,0 +1,10 @@
+{
+  "base": "b6d9194",
+  "node": "26.7.0",
+  "hashes": {
+    "tools/run-supervisor.ts": "9e6ff8596f7a1ed03323b0b61963d4530a864fddcbebca7893731ee410021216",
+    "evals/ci/run-supervisor.test.ts": "adb2169e23676cd88d9b6300615fdf43472e1338e90a9ab2216bb1238eff1eaf",
+    "evals/ci/run-supervisor-faults.ts": "339156f56ad38dcb52274cd049e3736c3815baff33d2b6a6390ec9a5fb305f11",
+    "package-lock.json": "d7c6a339cea61cd41fbcd196de6d4b2943942218329524db6aba76328ad8dc18"
+  }
+}
