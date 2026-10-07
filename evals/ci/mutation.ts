@@ -16,10 +16,13 @@ export function requireMutationReport(report: unknown, sources: Readonly<Record<
   const files=object(root.files), expected=Object.keys(sources).sort();
   if(expected.length===0 || JSON.stringify(Object.keys(files).sort())!==JSON.stringify(expected)) throw new Error("mutation inventory differs");
   let detected=0,undetected=0,invalid=0; const ids=new Set<string>();
+  const retained=new Set(["base58","classify","guard","message","pda","policy","state","tables"].map(name=>"packages/sdk/src/"+name+".ts"));
+  const groups={retained:{detected:0,undetected:0,present:false},additional:{detected:0,undetected:0,present:false}};
   for(const path of expected) {
     const file=object(files[path]), source=sources[path]!;
     if(file.source!==source || file.language!=="typescript") throw new Error("mutation source differs: "+path);
     if(!Array.isArray(file.mutants) || file.mutants.length===0) throw new Error("empty mutation population: "+path);
+    const group=groups[retained.has(path)?"retained":"additional"];group.present=true;
     for(const value of file.mutants) {
       const mutant=object(value);
       if(typeof mutant.id!=="string" || !mutant.id || ids.has(mutant.id)) throw new Error("invalid mutation identity");
@@ -28,8 +31,8 @@ export function requireMutationReport(report: unknown, sources: Readonly<Record<
       const location=object(mutant.location);
       if(offset(location.start,source)>=offset(location.end,source)) throw new Error("invalid mutation location range");
       switch(mutant.status) {
-        case "Killed": case "Timeout": detected++; break;
-        case "Survived": case "NoCoverage": undetected++; break;
+        case "Killed": case "Timeout": detected++; group.detected++; break;
+        case "Survived": case "NoCoverage": undetected++; group.undetected++; break;
         case "CompileError": case "RuntimeError": invalid++; break;
         default: throw new Error("incomplete or excluded mutation status");
       }
@@ -37,5 +40,9 @@ export function requireMutationReport(report: unknown, sources: Readonly<Record<
   }
   if(detected+undetected===0) throw new Error("no valid mutation population");
   if(detected*100<(detected+undetected)*80) throw new Error("mutation score below required 80% floor");
+  for(const [name,group] of Object.entries(groups)){
+    if(group.present && group.detected+group.undetected===0)throw new Error("no valid mutation population: "+name);
+    if(group.detected*100<(group.detected+group.undetected)*80)throw new Error("mutation population below required 80% floor: "+name);
+  }
   return {detected,undetected,invalid,total:ids.size,score:detected*100/(detected+undetected)};
 }

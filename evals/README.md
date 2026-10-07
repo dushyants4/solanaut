@@ -98,6 +98,10 @@ POL-1/5 public preparation component: `sdk/prepare-policy.md` retains seven firs
 installed/build/harness errors and the masked symlink fault; nine final faults and eight
 installed checks pass. No signing, policy installation or human Phantom qualification.
 
+CI-2 authenticated-history mutation preparation is in `ci/mutation-authentication.md`;
+expanded whole-file scope and completion proof retain all earlier targets and floors.
+Its hosted Node 22 failure remains visible; corrected matrix and full score are owed.
+
 CI runs the baseline gates on every push since milestone 2a.1 (`ci/safety-net.md`). The
 maintained `bite` job now runs executable fault campaigns; historical manual regressions
 and remaining CI-2 thresholds are still owed. Property, fuzz, replay and queued-admission

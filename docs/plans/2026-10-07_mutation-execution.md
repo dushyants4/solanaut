@@ -1,9 +1,11 @@
 # Complete mutation qualification — execution and recovery work
 
 2026-10-07 · operational acceptance preparation for CI-2, not a completed mutation gate.
-The existing full-file population, selected tests, pinned engine and global READINESS
-floor remain binding. The interrupted local run supplies no actual completion status;
-neither a progress percentage nor a report file can manufacture successful execution.
+Whole-file selection, retained historical tests, pinned engine and global READINESS
+floor remain binding. The first interrupted local run supplies no actual completion
+status. The supervised 9ac6e7c run is retired after the independently found D21 fix
+supersedes its guard target; its actual interruption result refuses qualification.
+Neither a progress percentage nor a report file can manufacture successful execution.
 
 ## Delivery order and evidence
 
@@ -45,6 +47,13 @@ Never reduce the population or tune policy/sensor coefficients from survivor res
 Performance/soak measurements require their separate declared environment; overlapping
 mutation workers and ordinary validation do not constitute performance evidence.
 
-Current runner/workflow/thresholds are unchanged by this map. The running original stage
-remains intact. This work does not expand signer code, accept ADR-021/022, publish a package
-or satisfy the independent security programme.
+Definition 7 adds whole checkpoint and catalogue files plus their tests and D21's
+malformed-history regression, retaining every earlier source and selected test.
+Fresh seed 23311 is declared before execution. The staging/report/recovery batteries
+retain the existing score and containment limits; baseline execution is not a
+mutation score. Freeze the complete corrected target before the next full campaign
+so a later target edit cannot silently inherit earlier qualification.
+Retained and added populations each meet the unchanged score floor and contain
+valid mutants; report expansion cannot dilute the earlier population's obligation.
+This work does not expand signer code, accept ADR-021/022, publish a package or satisfy
+the independent security programme.

@@ -1,0 +1,39 @@
+✔ CI-2: supervised completion qualifies only the bound complete synthetic mutation fixture (453.931446ms)
+✔ CI-2: an extra staged input cannot silently enter the frozen population (5.7495ms)
+✔ CI-2: every copied source, test, package, configuration and lock input remains bound (9.251115ms)
+✔ CI-2: missing, symlinked and mismatched staged inputs cannot be frozen (4.751831ms)
+✔ CI-2: pending and failed actual child execution cannot qualify a present fixture report (423.47535ms)
+✖ CI-2: an asynchronously started real staged baseline finishes without relaunching (20242.420843ms)
+✔ CI-2: mutation staging copies only the frozen inputs and tests execute its changed source (1145.245622ms)
+✔ CI-2: mutation score uses exact valid populations and the fixed floor (21.930826ms)
+✔ CI-2: failed or interrupted Stryker runs cannot qualify (2.921665ms)
+✔ CI-2: missing, foreign and changed mutation sources fail closed (0.459785ms)
+✔ CI-2: ignored, pending and malformed mutant results are rejected (6.182094ms)
+✔ CI-2: no mutants or all-invalid mutants cannot report a perfect score (0.427557ms)
+✔ CI-2: Stryker timeout and invalid semantics remain explicit (0.292525ms)
+✔ CI-2: malformed report roots and schema versions are refused (4.882022ms)
+✔ CI-2: added authentication files cannot dilute the retained mutation floor (4.330456ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 14
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 21454.046363
+
+✖ failing tests:
+
+test at evals/ci/mutation-recovery.test.ts:61:1
+✖ CI-2: an asynchronously started real staged baseline finishes without relaunching (20242.420843ms)
+  AssertionError [ERR_ASSERTION]: Expected "actual" to be strictly unequal to: null
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation-recovery.test.ts:71:116)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: null,
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }

@@ -20,8 +20,9 @@ test("CI-2: missing, foreign and changed mutation sources fail closed",()=> {
   assert.throws(()=>requireMutationReport(report(),{"different.ts":"text"},0),/inventory/);
 });
 test("CI-2: ignored, pending and malformed mutant results are rejected",()=> {
-  for(const status of ["Ignored","Pending","bogus"]) {
-    const bad=report(); bad.files["packages/sdk/src/policy.ts"].mutants[0]!.status=status;
+  // A surviving position preserves the floor even if a bad status is wrongly counted.
+  for(const index of [9,0])for(const status of ["Ignored","Pending","bogus"]) {
+    const bad=report(); bad.files["packages/sdk/src/policy.ts"].mutants[index]!.status=status;
     assert.throws(()=>requireMutationReport(bad,sources,0),/status/);
   }
   const duplicate=report(); duplicate.files["packages/sdk/src/policy.ts"].mutants[1]!.id="0";
@@ -42,4 +43,16 @@ test("CI-2: Stryker timeout and invalid semantics remain explicit",()=> {
 });
 test("CI-2: malformed report roots and schema versions are refused",()=> {
   for(const bad of [null,{},[],{...report(),schemaVersion:"2"}]) assert.throws(()=>requireMutationReport(bad,sources,0),/report/);
+});
+test("CI-2: added authentication files cannot dilute the retained mutation floor",()=>{
+  const bothSources={...sources,"packages/sdk/src/checkpoint.ts":sources["packages/sdk/src/policy.ts"]};
+  const combined=(oldKilled:number,newKilled:number,invalid=false)=>{
+    const old=report(oldKilled,10-oldKilled),additional=report(newKilled,10-newKilled).files["packages/sdk/src/policy.ts"];
+    additional.mutants=additional.mutants.map(m=>({...m,id:"auth-"+m.id,status:invalid?"RuntimeError":m.status}));
+    return {...old,files:{...old.files,"packages/sdk/src/checkpoint.ts":additional}};
+  };
+  assert.equal(requireMutationReport(combined(8,8),bothSources,0).score,80);
+  assert.throws(()=>requireMutationReport(combined(7,10),bothSources,0),/population.*80/);
+  assert.throws(()=>requireMutationReport(combined(10,7),bothSources,0),/population.*80/);
+  assert.throws(()=>requireMutationReport(combined(8,8,true),bothSources,0),/valid.*population/);
 });

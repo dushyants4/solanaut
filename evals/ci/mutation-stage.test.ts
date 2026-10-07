@@ -12,7 +12,8 @@ test("CI-2: mutation staging copies only the frozen inputs and tests execute its
   try {
     const sources=stageMutation(root,destination);
     assert.equal(Reflect.get(staging,"MUTATION_RUN_LIMIT_MS"),43_200_000);
-    assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables"].map(name=>"packages/sdk/src/"+name+".ts"));
+    assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables","checkpoint","checkpoint-archives"].map(name=>"packages/sdk/src/"+name+".ts"));
+    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay"].map(name=>"packages/sdk/test/"+name+".test.ts"));
     assert.deepEqual(Object.keys(sources),MUTATION_PATHS);
     assert.deepEqual(readdirSync(destination).sort(),["node_modules","package.json","packages","stryker.config.json"]);
     const config=JSON.parse(readFileSync(join(destination,"stryker.config.json"),"utf8"));

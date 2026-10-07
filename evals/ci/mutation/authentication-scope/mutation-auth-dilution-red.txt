@@ -1,0 +1,36 @@
+✔ CI-2: mutation score uses exact valid populations and the fixed floor (3.677426ms)
+✔ CI-2: failed or interrupted Stryker runs cannot qualify (0.242082ms)
+✔ CI-2: missing, foreign and changed mutation sources fail closed (0.194389ms)
+✔ CI-2: ignored, pending and malformed mutant results are rejected (0.305895ms)
+✔ CI-2: no mutants or all-invalid mutants cannot report a perfect score (0.253455ms)
+✔ CI-2: Stryker timeout and invalid semantics remain explicit (0.213243ms)
+✔ CI-2: malformed report roots and schema versions are refused (0.168418ms)
+✖ CI-2: added authentication files cannot dilute the retained mutation floor (0.692737ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 96.788413
+
+✖ failing tests:
+
+test at evals/ci/mutation.test.ts:46:1
+✖ CI-2: added authentication files cannot dilute the retained mutation floor (0.692737ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation.test.ts:54:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /population.*80/,
+    operator: 'throws',
+    diff: 'simple'
+  }

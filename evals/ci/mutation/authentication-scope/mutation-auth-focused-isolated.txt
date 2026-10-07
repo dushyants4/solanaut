@@ -1,0 +1,23 @@
+✔ CI-2: supervised completion qualifies only the bound complete synthetic mutation fixture (162.206976ms)
+✔ CI-2: an extra staged input cannot silently enter the frozen population (1.853539ms)
+✔ CI-2: every copied source, test, package, configuration and lock input remains bound (4.634231ms)
+✔ CI-2: missing, symlinked and mismatched staged inputs cannot be frozen (2.040287ms)
+✔ CI-2: pending and failed actual child execution cannot qualify a present fixture report (271.851702ms)
+✔ CI-2: an asynchronously started real staged baseline finishes without relaunching (11208.033379ms)
+✔ CI-2: mutation staging copies only the frozen inputs and tests execute its changed source (482.314256ms)
+✔ CI-2: mutation score uses exact valid populations and the fixed floor (5.962104ms)
+✔ CI-2: failed or interrupted Stryker runs cannot qualify (0.317781ms)
+✔ CI-2: missing, foreign and changed mutation sources fail closed (0.377109ms)
+✔ CI-2: ignored, pending and malformed mutant results are rejected (0.651386ms)
+✔ CI-2: no mutants or all-invalid mutants cannot report a perfect score (0.786094ms)
+✔ CI-2: Stryker timeout and invalid semantics remain explicit (0.259045ms)
+✔ CI-2: malformed report roots and schema versions are refused (0.273158ms)
+✔ CI-2: added authentication files cannot dilute the retained mutation floor (0.777659ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11826.310827

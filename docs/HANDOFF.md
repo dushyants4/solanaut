@@ -189,6 +189,16 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+40fa2fc hosted run 37620710240 completes with twelve successful jobs and one
+Node 22 failure: the existing staged-baseline wait. Complete failure is retained.
+Definition 6 expands mutation scope without removing prior inputs, after first
+failures; fourteen focused cases, nineteen staging/report and fifteen recovery/driver
+faults pass. Actual baseline contains 272 cases. CI ordinary suites use serial
+file execution with unchanged deadlines/batteries; corrected hosted result is owed.
+Scope review additionally catches dilution by an added strong mutation group.
+Definition 7/fresh seed 23311 preserves original/added floors separately. Masked
+global-only faults are retained; twenty-two final staging/report faults pass.
+
 Final quiet AST execution passes all 564 cases and unchanged floors; catalogue
 48/48 statements and 57/57 branches. Ordinary/type and maintained source/packed
 fault checks pass. D21 is corrected locally; fresh mutation and independent review
@@ -465,6 +475,8 @@ The live probes and baseline are complete. ADR-012 C is built and tested offline
 
 | 2026-10-06 | CI-2 differential and performance-report preparation | commit containing `evals/ci/differential.md` | pinned offline corpus, report tests, fault campaigns, root tests/typecheck | Differential reference checks pass; performance targets unmeasured. Interrupted mutation and coverage load failure retained; complete qualification remains owed. |
 | 2026-10-07 | SNP-3/5 checkpoint history foundation | commit containing `evals/sdk/checkpoint-archives.md` and `evals/sdk/malformed-replay.md` | first failures, source/packed fault proof, quiet ordinary/type/AST checks | Catalogue metadata and D21 refusal pass locally. Earlier timing failures and actual superseded-run interruption retained; full snapshots, fresh mutation and independent review remain owed. |
+
+| 2026-10-07 | CI mutation authentication populations and runtime execution | commit containing `evals/ci/mutation-authentication.md` | initial scope/definition/dilution failures; fifteen focused cases; twenty-two staging/report and fifteen recovery faults; serial ordinary 565 cases and typecheck | Original and added populations retain separate floors. Previous Node 22 hosted failure and overlapping local timing failures remain retained; corrected hosted qualification and full frozen-target score remain owed. |
 
 ## 8. Handing back to Claude
 

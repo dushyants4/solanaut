@@ -1,5 +1,12 @@
 # DOCUMENTS.md — the document register
 
+2026-10-07 mutation authentication scope registers SPEC Draft 4.49, RISKS 1.40,
+the execution map, receipt/index and continuing run/HANDOFF. Hosted Node 22 failure
+is retained; serial test-file execution changes no population, assertion or deadline.
+Fresh complete corrected-target mutation and the corrected runtime matrix remain owed.
+Definition 7 separately preserves original/added score floors after a dilution
+regression; masked global-only faults remain retained and fresh seed 23311 is declared.
+
 2026-10-07 snapshot-prefix review adds D21 to SPEC, the malformed-history receipt/index
 and continuing run/HANDOFF; THREAT-MODEL Draft 5 reconciles the asset, component and
 semantic boundaries. Candidate refusal has focused builder evidence; integrated

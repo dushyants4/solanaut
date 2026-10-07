@@ -1,7 +1,17 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.39** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.40** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
+
+The frozen 9ac6e7c mutation guard target is superseded by D21's independent semantic
+finding. Its actual supervised interruption and qualification refusal are retained.
+Definition 7 adds authentication and malformed-history coverage while preserving
+earlier scope/floors/limits; a passing staged baseline is not a mutation score.
+40fa2fc's hosted Node 22 job fails while Node 24/26 and coverage pass. Cause and
+remediation require the completed job's log; do not infer matrix success locally.
+The completed log confirms the staged-baseline wait; serial file execution is
+prepared for corrected hosted qualification. Separate retained/additional score
+floors prevent population expansion from concealing a weaker earlier result.
 
 The threat model ([docs/papers/THREAT-MODEL.md](papers/THREAT-MODEL.md)) lists what an attacker can do to a running
 guard: threats T1 to T30. This register is wider. It lists what could stop Solanaut being delivered as specified, or

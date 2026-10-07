@@ -2,8 +2,8 @@ import { copyFileSync, lstatSync, mkdirSync, readdirSync, readFileSync, symlinkS
 import { dirname, join } from "node:path";
 // Whole-run resource containment, distinct from per-mutant test timeouts and score floors.
 export const MUTATION_RUN_LIMIT_MS=43_200_000;
-export const MUTATION_PATHS=["base58.ts","classify.ts","guard.ts","message.ts","pda.ts","policy.ts","state.ts","tables.ts"].map(name=>"packages/sdk/src/"+name);
-export const MUTATION_TESTS=["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures"].map(name=>"packages/sdk/test/"+name+".test.ts");
+export const MUTATION_PATHS=["base58.ts","classify.ts","guard.ts","message.ts","pda.ts","policy.ts","state.ts","tables.ts","checkpoint.ts","checkpoint-archives.ts"].map(name=>"packages/sdk/src/"+name);
+export const MUTATION_TESTS=["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay"].map(name=>"packages/sdk/test/"+name+".test.ts");
 function tree(root:string,path:string):string[] {
   return (readdirSync(join(root,path),{recursive:true}) as string[]).filter(name=>name.endsWith(".ts")).map(name=>path+"/"+name);
 }

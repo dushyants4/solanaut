@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.48** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.49** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -1086,3 +1086,15 @@ sequence span and optional observed anchor. The payload digest binds the actual
 catalogue bytes; metadata preparation alone does not verify the referenced files,
 anchor authority, policy or admission state. Snapshot context is captured before
 caller-owned receipts. This is a reversible encoding choice within accepted ADR-019.
+
+CI-2 mutation definition 7 retains all previous whole files and selected tests,
+adding checkpoint authentication/catalogue sources and their tests plus D21's
+malformed-history regression. Fresh seed 23311 is declared before measurement.
+Baseline population verification remains distinct from a full mutation score.
+Existing score floors and all containment limits remain unchanged; a corrected
+target freeze precedes the next long campaign. Retired target evidence cannot
+qualify the corrected guard or stand in for the required hosted runtime matrix.
+The retained original and added authentication populations each require the same
+score floor and valid mutants; a strong added group cannot dilute an original
+deficit. CI ordinary suites use serial file execution without excluding tests
+or changing their deadlines or explicit concurrency batteries.

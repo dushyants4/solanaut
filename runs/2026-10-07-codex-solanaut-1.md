@@ -8,6 +8,34 @@ work. This dated continuation retains the earlier session's full record at
 
 ## Did
 
+Mutation scope pre-sync close passes nine gates; uncommitted-tree refusal remains
+until the coherent private commit. Staged diff and secret scan pass.
+
+Final isolated definition 7 qualification passes fifteen focused cases, twenty-two
+staging/report faults and fifteen recovery/driver faults with exact restoration.
+Serial ordinary integration passes all 565 cases; typecheck exits zero. Earlier
+overlapping-run timing failures and masked initial faults remain retained. Reviewed
+CI execution control preserves files, assertions, deadlines and explicit concurrency
+batteries. Private close/sync and corrected hosted Node 22 evidence follow.
+
+Mutation definition 6 retains the original whole-file targets/tests and adds
+checkpoint authentication/catalogue sources and their tests plus D21's regression.
+Both missing-source and missing-test populations fail first. Definition/seed checks
+fail against the previous driver before declaring fresh seed 23209. Whole-run and
+per-mutant limits, static mutants, four workers and the score floor are unchanged.
+Nineteen staging/report faults and fifteen recovery/driver faults pass with restoration;
+actual baseline population is required to contain 272 cases. This is preparation,
+not a full mutation score. Complete code/target freeze precedes the next long execution.
+
+40fa2fc hosted run 37620710240 passes Node 24/26 and coverage, but Node 22 fails.
+Log retrieval refuses while the maintained aggregate is still running; retain
+that diagnostic and inspect the completed failure before remediation or another push.
+
+40fa2fc is privately pushed; post-sync close passes all ten gates. Hosted qualification
+is running. Next work completes snapshot payload semantics and expands the maintained
+mutation population for checkpoint/catalogue and D21 regressions before fresh execution.
+Do not launch another full run while its guarded target will still change for prefix/restore.
+
 Pre-sync close passes nine gates, including staged secret scan; the uncommitted-tree
 gate correctly refuses until private sync. Diff reviewed, source faults restored,
 public surfaces remain private candidates and no protected harness edit is made.
@@ -201,6 +229,23 @@ record satisfies the close workflow's current-day record requirement. Earlier ca
 implementation, documentation and receipt changes remain in the continuing session record.
 
 ## Found
+
+Final root and focused checks were mistakenly launched together; both staged
+baseline waits fail under that shared load. Root reports 564/565 passes and focused
+14/15. Preserve both outputs, not qualification. Execute focused then ordinary
+checks sequentially with unchanged populations/deadlines. Typecheck passes.
+
+Review of expanded mutation scope finds dilution: a strong added population could
+mask a sub-floor original population. A synthetic 70/100-group fixture passes the
+old global gate and fails its new regression. Retain the original and added group
+floors separately, including refusal of an all-invalid added group. This strengthens
+scope without lowering the existing floor. Advance to definition 7/fresh seed 23311
+before measurement. Source/test population remains ten whole files/twenty-one tests.
+
+New group guards mask global-only score/empty-population faults. Both misses are
+retained; whole-floor/population trials weaken both layers rather than misrepresenting
+an equivalent single-guard change. A surviving-position unsupported-status fixture
+avoids a collateral score-floor refusal. Final fault checks follow with restoration.
 
 Sequential AST integration after D21 reports 563/564 passes and refuses coverage
 qualification on the same staged-baseline wait. No overall floor/coverage claim.

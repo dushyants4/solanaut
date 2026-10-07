@@ -1,0 +1,37 @@
+✔ CI-2: supervised completion qualifies only the bound complete synthetic mutation fixture (132.478009ms)
+✔ CI-2: an extra staged input cannot silently enter the frozen population (1.738575ms)
+✔ CI-2: every copied source, test, package, configuration and lock input remains bound (6.524765ms)
+✔ CI-2: missing, symlinked and mismatched staged inputs cannot be frozen (2.376686ms)
+✔ CI-2: pending and failed actual child execution cannot qualify a present fixture report (270.315386ms)
+✖ CI-2: an asynchronously started real staged baseline finishes without relaunching (101.655821ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 676.552223
+
+✖ failing tests:
+
+test at evals/ci/mutation-recovery.test.ts:61:1
+✖ CI-2: an asynchronously started real staged baseline finishes without relaunching (101.655821ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  5 !== 6
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation-recovery.test.ts:67:89)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 5,
+    expected: 6,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

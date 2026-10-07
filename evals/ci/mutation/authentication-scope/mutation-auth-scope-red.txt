@@ -1,0 +1,41 @@
+✖ CI-2: mutation staging copies only the frozen inputs and tests execute its changed source (8.76992ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 96.912706
+
+✖ failing tests:
+
+test at evals/ci/mutation-stage.test.ts:8:1
+✖ CI-2: mutation staging copies only the frozen inputs and tests execute its changed source (8.76992ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      'packages/sdk/src/base58.ts',
+      'packages/sdk/src/classify.ts',
+      'packages/sdk/src/guard.ts',
+      'packages/sdk/src/message.ts',
+  ...
+      'packages/sdk/src/tables.ts',
+  -   'packages/sdk/src/checkpoint.ts',
+  -   'packages/sdk/src/checkpoint-archives.ts'
+    ]
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation-stage.test.ts:15:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'packages/sdk/src/base58.ts', 'packages/sdk/src/classify.ts', 'packages/sdk/src/guard.ts', 'packages/sdk/src/message.ts', 'packages/sdk/src/pda.ts', 'packages/sdk/src/policy.ts', 'packages/sdk/src/state.ts', 'packages/sdk/src/tables.ts' ],
+    expected: [ 'packages/sdk/src/base58.ts', 'packages/sdk/src/classify.ts', 'packages/sdk/src/guard.ts', 'packages/sdk/src/message.ts', 'packages/sdk/src/pda.ts', 'packages/sdk/src/policy.ts', 'packages/sdk/src/state.ts', 'packages/sdk/src/tables.ts', 'packages/sdk/src/checkpoint.ts', 'packages/sdk/src/checkpoint-archives.ts' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

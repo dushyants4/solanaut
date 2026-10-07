@@ -63,6 +63,10 @@ The superseded frozen guard run is retired with actual interruption evidence.
 Quiet-host ordinary integration passes; earlier timing failures remain retained.
 D21's impossible malformed controller observations have candidate refusal proof
 (`evals/sdk/malformed-replay.md`); fresh corrected-target mutation remains required.
+Mutation preparation retains separate floors for the original and added authentication
+populations (`evals/ci/mutation-authentication.md`). Isolated local integration passes;
+the previous hosted Node 22 baseline-wait failure remains recorded. Serial test-file
+execution preserves its deadline; corrected hosted qualification remains owed.
 Individual Linux installation/lifecycle acceptance is allocated as OPR-1–8; the qualification
 map names dependencies and required drills, with implementation/support evidence still owed.
 Read-only original-origin history inventory is prepared (`evals/ci/history.md`); whole

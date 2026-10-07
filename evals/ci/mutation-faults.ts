@@ -4,6 +4,9 @@ import { readFileSync, writeFileSync } from "node:fs";
 const faults=[
   ["process-completion","mutation.ts","if(status!==0)","if(false)"],
   ["score-floor","mutation.ts","(detected+undetected)*80","(detected+undetected)*79"],
+  ["group-floor","mutation.ts","if(group.detected*100<(group.detected+group.undetected)*80)","if(false)"],
+  ["group-classification","mutation.ts","retained.has(path)","false"],
+  ["group-valid-population","mutation.ts","group.present && group.detected+group.undetected===0","false"],
   ["source-inventory","mutation.ts",'throw new Error("mutation inventory differs")',"void 0"],
   ["source-content","mutation.ts","file.source!==source","false"],
   ["mutant-identity","mutation.ts","ids.has(mutant.id)","false"],
@@ -12,6 +15,11 @@ const faults=[
   ["location-boundary","mutation.ts","line<1","line<0"],
   ["staging-threshold","mutation-stage.ts","break:80","break:79"],
   ["staging-scope","mutation-stage.ts",'"base58.ts","classify.ts"','"classify.ts"'],
+  ["checkpoint-scope","mutation-stage.ts",'"checkpoint.ts","checkpoint-archives.ts"','"checkpoint-archives.ts"'],
+  ["catalogue-scope","mutation-stage.ts",'"checkpoint.ts","checkpoint-archives.ts"','"checkpoint.ts"'],
+  ["checkpoint-tests","mutation-stage.ts",'"checkpoint","checkpoint-archives","malformed-replay"','"checkpoint-archives","malformed-replay"'],
+  ["catalogue-tests","mutation-stage.ts",'"checkpoint","checkpoint-archives","malformed-replay"','"checkpoint","malformed-replay"'],
+  ["malformed-history-tests","mutation-stage.ts",'"checkpoint","checkpoint-archives","malformed-replay"','"checkpoint","checkpoint-archives"'],
   ["working-tree-mutation","mutation-stage.ts","inPlace:false","inPlace:true"],
   ["staging-execution","mutation-stage.ts","--test-isolation=none ",""],
   ["whole-run-resource-limit","mutation-stage.ts","MUTATION_RUN_LIMIT_MS=43_200_000","MUTATION_RUN_LIMIT_MS=43_199_999"],
@@ -24,9 +32,13 @@ for(const [name,file,from,to] of faults) {
   const path="evals/ci/"+file, original=readFileSync(path,"utf8");
   assert.equal(original.split(from).length,2,"missing or ambiguous site: "+name);
   try {
-    writeFileSync(path,original.replace(from,to)); const changed=run();
+    let damaged=original.replace(from,to);
+    // Group floors imply the global floor; weaken both for the whole-floor trial.
+    if(name==="score-floor")damaged=damaged.replace("(group.detected+group.undetected)*80","(group.detected+group.undetected)*79");
+    if(name==="valid-population")damaged=damaged.replace("group.present && group.detected+group.undetected===0","false");
+    writeFileSync(path,damaged); const changed=run();
     assert.equal(changed.status,1,changed.stdout+changed.stderr); assert.match(changed.stdout,/CI-2/);
-    assert.match(changed.stdout,/tests 8\b/); console.log("caught mutation gate fault: "+name);
+    assert.match(changed.stdout,/tests 9\b/); console.log("caught mutation gate fault: "+name);
   } finally {writeFileSync(path,original);}
 }
 const restored=run(); assert.equal(restored.status,0,restored.stdout+restored.stderr);
