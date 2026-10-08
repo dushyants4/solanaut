@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.51** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.52** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 Bundle preparation captures a common history/endpoint and external authority pins.
@@ -299,3 +299,11 @@ failure and added read/corruption/truncated-metadata regressions are retained at
 `evals/ci/history-commit-read.md`. The original repository's proposed public history
 still needs confidentiality, secret, source-rights and notices review. Hosted
 49f753b failures remain separate unchanged baseline waits; H11 stays pending.
+
+Internal archive streaming applies backpressure and closes descriptors on consumer
+cancellation (`evals/sdk/archive-stream.md`). Yielded records are provisional until
+natural completion validates final pins and source identity. A future replay
+consumer must not enable admissions from a partial stream. Structural hash-chain
+integrity cannot authenticate policy or reconstruct live admission state alone.
+This removes an I/O prerequisite; complete streaming replay, disk request indexing,
+bounded retention and the existing restart/memory targets remain unqualified.

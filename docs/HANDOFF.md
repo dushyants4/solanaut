@@ -208,6 +208,18 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+Archive streaming final local ordinary/AST/type, installed and fresh recovery/
+driver checks pass with exact restoration, CLAIMS S74. Initial failures and
+source/AST hashes are retained at `evals/sdk/archive-stream.md`. Close/private sync
+follows; full streamed state replay and bounded memory remain unfinished.
+
+History repair 9a6480f is privately pushed and all local close gates pass. Archive
+candidate restored with final history checks preserved; ordinary/serial AST pass
+642 cases, native typecheck zero and unchanged coverage floors pass. Fresh
+definition-16 recovery/driver faults follow. Hosted 37706079593 runtime jobs pass
+but AST is red; completed logs remain unavailable while the overall run continues.
+No cause, hosted clearance or complete mutation score is inferred.
+
 PUB-1 final focused/fault and corrected ordinary/type checks pass; exact inputs and
 all original failures are retained, CLAIMS S73. Final close/private sync precedes
 restoring the archive-stream candidate. No SDK source change in this independent
@@ -224,6 +236,13 @@ stash and resumes after this separate coherent repair; no SDK change in this ste
 49f753b hosted 37703450078 completes with four failures, each at the unchanged
 real-baseline wait (Node 22/26, AST, maintained faults). Node 24 and other jobs pass.
 Exact logs/revision metadata retained with owned recovery receipt. H11 stays pending.
+
+49f753b owned recovery is privately pushed with all local close gates passing;
+hosted 37703450078 is in progress. Internal archive streaming continues inside
+ADR-019/SNP-1: captured pins, immutable provisional entries, backpressure,
+natural-completion receipt and cancellation cleanup. Source evidence is retained
+at `evals/sdk/archive-stream.md`; installed/integrated checks follow. Full policy
+replay and bounded live state remain owed; H9/H10/H11 stay pending.
 
 Owned recovery final source/installed/staging/recovery faults restore; corrected
 ordinary/AST/type and unchanged floors pass. Exact hashes, original failures and

@@ -12,6 +12,15 @@ original repository for publication or infer independent security evidence.
 Final corrected ordinary suite passes 634 cases and native typecheck exits zero;
 CLAIMS S73 records the results and exact history input hashes before private sync.
 
+2026-10-07 archive streaming registers SPEC Draft 4.61, RISKS 1.52, OVERVIEW
+Draft 34, SDK Draft 14, PACKAGING Draft 16, component receipt/index, PROGRESS,
+HANDOFF and continuing run. Provisional yields are not an admission capability.
+Full authenticated streaming replay and bounded live state remain unfinished;
+scoped installed/integrated measurements follow with every floor/limit retained.
+CLAIMS S74 records final ordinary/AST/type, installed and fresh driver-fault
+evidence. Initial failures and exact hashes remain with the receipt; full
+streamed state replay, hosted qualification and stable release stay open.
+
 2026-10-07 owned recovery registers SPEC Draft 4.59, RISKS 1.50, OVERVIEW
 Draft 33, SDK Draft 13, PACKAGING Draft 15, component receipt/index, PROGRESS,
 HANDOFF and continuing run. Actual owner-bound read-only preparation does not

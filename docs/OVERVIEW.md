@@ -1,6 +1,6 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 33** · 2026-10-07 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 34** · 2026-10-07 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
@@ -266,3 +266,9 @@ and repeats ownership/history checks after replay. Publication and recovery shar
 maintenance exclusion (`evals/sdk/checkpoint-owned-recovery.md`). This returns a
 read-only preparation receipt; live guard startup and bounded retention remain
 unfinished.
+
+The internal archive iterator now supplies immutable entries from bounded reads
+with consumer backpressure. Natural completion verifies final source/pin checks;
+early cancellation supplies no receipt. The public archive verifier fully consumes
+this same core (`evals/sdk/archive-stream.md`). It remains structural verification,
+not authenticated policy replay or bounded live state.

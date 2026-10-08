@@ -1,0 +1,17 @@
+✔ CI-1: exact inventory accepts every maintained campaign and rejects omission/addition/duplication (12.78489ms)
+✔ CI-1: all campaigns run sequentially; failure/null exit fails aggregation without hiding other findings (1.002119ms)
+✔ CI-1: changed source stops further mutation, reports skipped work and fails the gate (0.202949ms)
+✔ CI-2: failed or missing test-process completion cannot qualify coverage (1.640239ms)
+✔ CI-2: exact statement and branch floors pass without rounding (0.964631ms)
+✔ CI-2: a critical branch deficit fails even when aggregate totals pass (0.770557ms)
+✔ CI-2: missing, extra and duplicate files cannot disappear from coverage (0.291323ms)
+✔ CI-2: malformed and empty execution counts fail closed (1.145448ms)
+✔ CI-2: mutation staging copies only the frozen inputs and tests execute its changed source (400.573317ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 554.743738

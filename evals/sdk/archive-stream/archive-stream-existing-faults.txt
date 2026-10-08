@@ -1,0 +1,17 @@
+caught archive fault: blocking-fifo-open
+caught archive fault: ignore-version
+caught archive fault: ignore-kind
+caught archive fault: ignore-sequence
+caught archive fault: ignore-predecessor
+caught archive fault: ignore-content-hash
+caught archive fault: complete-line-bound
+caught archive fault: unfinished-line-bound
+caught archive fault: ignore-source-change
+caught archive fault: ignore-path-replacement
+caught archive fault: ignore-head-pin
+caught archive fault: ignore-byte-pin
+caught archive fault: mutable-head-pin
+caught archive fault: reject-fractional-clock
+caught archive fault: unsafe-sequence-overflow
+caught archive fault: leak-descriptor
+All archive faults caught; restored source passes

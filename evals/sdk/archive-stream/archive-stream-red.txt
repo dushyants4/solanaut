@@ -1,0 +1,112 @@
+✖ SNP-1: natural streamed completion matches the full verifier and deeply freezes entries (5.17069ms)
+✖ SNP-1: streamed empty and continuation boundaries retain sequence and predecessor pins (0.456769ms)
+✖ SNP-1: consumer backpressure suspends reads after the first bounded chunk (13.384667ms)
+✖ SNP-1: cancellation and consumer failure close the source without a completion receipt (0.688961ms)
+✖ SNP-1: damaged later entries and conflicting final pins cannot produce natural completion (0.457295ms)
+✖ SNP-1: appending, truncating or replacing a source after a yield invalidates completion (0.320652ms)
+✖ SNP-1: option pins are captured when the iterator is created, before asynchronous reading (0.285001ms)
+✖ SNP-1: streamed unsupported sources and malformed or oversized frames refuse before yielding (0.287739ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 0
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 175.784049
+
+✖ failing tests:
+
+test at packages/sdk/test/archive-stream.test.ts:19:1
+✖ SNP-1: natural streamed completion matches the full verifier and deeply freezes entries (5.17069ms)
+  TypeError: Function.prototype.apply was called on undefined, which is undefined and not a function
+      at stream (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive-stream.test.ts:16:126)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive-stream.test.ts:20:49)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at packages/sdk/test/archive-stream.test.ts:24:1
+✖ SNP-1: streamed empty and continuation boundaries retain sequence and predecessor pins (0.456769ms)
+  TypeError: Function.prototype.apply was called on undefined, which is undefined and not a function
+      at stream (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive-stream.test.ts:16:126)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive-stream.test.ts:25:75)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at packages/sdk/test/archive-stream.test.ts:30:1
+✖ SNP-1: consumer backpressure suspends reads after the first bounded chunk (13.384667ms)
+  TypeError: Function.prototype.apply was called on undefined, which is undefined and not a function
+      at stream (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive-stream.test.ts:16:126)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive-stream.test.ts:34:20)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/archive-stream.test.ts:38:1
+✖ SNP-1: cancellation and consumer failure close the source without a completion receipt (0.688961ms)
+  TypeError: Function.prototype.apply was called on undefined, which is undefined and not a function
+      at stream (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive-stream.test.ts:16:126)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive-stream.test.ts:41:20)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/archive-stream.test.ts:45:1
+✖ SNP-1: damaged later entries and conflicting final pins cannot produce natural completion (0.457295ms)
+  TypeError: Function.prototype.apply was called on undefined, which is undefined and not a function
+      at stream (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive-stream.test.ts:16:126)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive-stream.test.ts:46:156)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/archive-stream.test.ts:50:1
+✖ SNP-1: appending, truncating or replacing a source after a yield invalidates completion (0.320652ms)
+  TypeError: Function.prototype.apply was called on undefined, which is undefined and not a function
+      at stream (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive-stream.test.ts:16:126)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive-stream.test.ts:51:94)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/archive-stream.test.ts:56:1
+✖ SNP-1: option pins are captured when the iterator is created, before asynchronous reading (0.285001ms)
+  TypeError: Function.prototype.apply was called on undefined, which is undefined and not a function
+      at stream (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive-stream.test.ts:16:126)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive-stream.test.ts:57:126)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/archive-stream.test.ts:61:1
+✖ SNP-1: streamed unsupported sources and malformed or oversized frames refuse before yielding (0.287739ms)
+  TypeError: Function.prototype.apply was called on undefined, which is undefined and not a function
+      at stream (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive-stream.test.ts:16:126)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/archive-stream.test.ts:62:152)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)

@@ -1,0 +1,10 @@
+caught archive anchor fault: head-binding
+caught archive anchor fault: sequence-binding
+caught archive anchor fault: missing-anchor
+caught archive anchor fault: integer-sequence
+caught archive anchor fault: segment-coverage
+caught archive anchor fault: head-shape
+caught archive anchor fault: mutable-sequence
+caught archive anchor fault: mutable-head
+caught archive anchor fault: receipt-binding
+All anchor faults caught; restored source passes

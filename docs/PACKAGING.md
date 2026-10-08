@@ -1,6 +1,6 @@
 # PACKAGING.md — private SDK candidate
 
-> **Draft 15** · 2026-10-07 · owner: integrator · for: developers and release reviewers.
+> **Draft 16** · 2026-10-07 · owner: integrator · for: developers and release reviewers.
 > This is release preparation, not a stable release. Register: `kb/DOCUMENTS.md`.
 
 Compiled internal prefix/state components have installed-tarball evidence
@@ -97,3 +97,9 @@ rejects a copied store capability and preserves corrupt checkpoint bytes during
 verified full replay. This remains an internal component, without a stable root
 API, installed signer startup or operator recovery qualification. Evidence:
 `../evals/sdk/checkpoint-owned-recovery.md`.
+
+The external tarball battery inspects compiled internal archive streaming:
+immutable ordered entries, a naturally completed receipt, cancellation without
+a receipt and conflicting digest refusal. The iterator is not a stable root
+export. Installed full authenticated replay and bounded recovery remain release
+work; component evidence is `../evals/sdk/archive-stream.md`.

@@ -8,6 +8,24 @@ work. This dated continuation retains the earlier session's full record at
 
 ## Did
 
+Fresh definition-16 recovery/driver campaign catches fifteen faults and restores
+exact sources, exercising the 371-case staged baseline. Installed consumer
+recheck passes ten cases. Source/AST inputs remain unchanged, CLAIMS S74 and
+receipt record final component results and limits. Close/private sync follows.
+
+Archive candidate ordinary/serial AST suites pass 642 cases and native typecheck
+exits zero; archive counts are 100/103 statements and 110/113 branches, unchanged
+floors green. Exact inputs and AST summary retained. Fresh definition-16 recovery
+faults follow with the original twenty-second harness wait. Hosted history repair
+37706079593 passes all runtime jobs but AST is red; gh refuses logs while the
+overall run continues. Cause is not inferred before the completed log is available.
+
+History repair 9a6480f privately pushed; all ten local close gates pass. Hosted
+37706079593 starts against that exact revision. Restored the preserved archive
+candidate, resolving overlapping records by retaining both components and the
+final eighteen-fault history checks. SPEC/RISKS advance to 4.61/1.52. Stash remains
+until the archive component is safely committed. Integrated validation follows.
+
 Independent PUB-1 repair final ordinary suite passes 634 cases; native typecheck
 exits zero and eighteen fault trials restore. Exact history hashes/raw failures
 are retained; no SDK source change. CLAIMS S73 records scoped gate evidence. Final
@@ -31,6 +49,24 @@ Hosted 49f753b run 37703450078 completes with four unchanged real-baseline-wait
 failures (Node 22/26, AST, maintained faults); Node 24 and other jobs pass. Exact
 logs/metadata retained with owned-recovery receipt. H11 stays pending. The local
 history failure is a distinct confirmed defect, not attributed to that wait.
+
+Archive streaming source cases and eleven source faults pass with restoration;
+existing archive faults pass after the shared iterator refactor. Independent
+fixture counts/head/raw byte digest accompany comparison with the same-core full
+verifier. Eight source cases cover backpressure, cancellation, final pins, changing
+sources, captured options, immutable yields and malformed sources. Critical
+inventory and mutation source/test scope fail first, then accept registration.
+Definition 16/fresh seed 24413 precedes expanded measurement; nineteen sources and
+thirty-one test files preserve all previous inputs/floors/limits. No mutation score
+is claimed. Installed old artefact is tested before rebuilding.
+
+49f753b owned recovery is privately pushed; all local close gates pass. Hosted
+37703450078 is queued. Continuing with an internal structural archive iterator
+under accepted ADR-019 and SNP-1: bounded reads/backpressure, immutable entries,
+receipt only on natural completion, captured pins and descriptor cleanup on
+cancellation. Yielded entries alone cannot establish complete source integrity or
+enable admissions. No root export or bounded full-state replay claim is planned.
+Initial missing-function cases are recorded before implementation.
 
 Final fresh definition-15 recovery/driver campaign catches all fifteen faults and
 restores exact sources. Corrected ordinary/AST/type, installed and source/staging
@@ -488,6 +524,11 @@ implementation, documentation and receipt changes remain in the continuing sessi
 
 ## Found
 
+Archive pre-sync close passes nine gates and refuses only the uncommitted
+candidate; input hashes and staged diff check pass. Commit is prepared locally;
+push waits for preceding hosted 37706079593 to complete, preserving its evidence
+instead of cancelling the maintained campaigns. No threshold or wait changed.
+
 Later archive-stream ordinary integration fails PUB-1 cached missing-commit
 refusal; a deterministic missing-body regression also fails before implementation.
 Actual commit-body reads and Git object hashes now establish readability before
@@ -495,6 +536,24 @@ metadata inventory. A hash-fault site initially uses a decoded null and fails
 without credit; its corrected unique comparison catches. Empty metadata masks a
 count omission; a valid truncated multi-blob batch catches it. Every initial setup,
 missed fault and corrected result is preserved in `evals/ci/history-commit-read/`.
+
+The new metadata-count omission is initially masked by invalid empty-row checking.
+Added a valid-but-truncated batch over multiple blobs, so the count check must
+reject an otherwise valid partial row set. The original miss is retained and the
+final sixteen-fault campaign follows. This strengthens the fixture, not the gate's
+criteria; no mutation qualification is inferred.
+
+History hash-fault site initially uses a decoded null escape rather than the
+source's literal escape and fails to locate its target. No fault was credited.
+The corrected unique comparison site is tested next; raw failed setup is retained.
+
+Archive-stream ordinary integration fails PUB-1's cached-commit-graph missing
+object case: the inventory accepts a missing historical commit. All archive
+cases pass; raw failure is retained. Added deterministic read-failure regression
+also fails first. The checker now reads each actual commit body and verifies its
+Git object hash instead of treating graph/tree metadata as enough. This maintained
+gate correction is a separate coherent commit before the streaming component.
+No criterion is weakened; focused/fault and corrected integration follow.
 
 Owned recovery pre-sync close passes nine gates, including the staged-file secret
 scan, and refuses the uncommitted candidate. Diff review is clean. Private

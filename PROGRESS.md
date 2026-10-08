@@ -6,6 +6,12 @@ object (`evals/ci/history-commit-read.md`). Actual tree/parent headers also agre
 with metadata. Focused faults and corrected ordinary/type checks pass; final close
 follows. Publication-scope review remains uncompleted.
 
+Internal archive streaming has focused and source-fault evidence
+(`evals/sdk/archive-stream.md`). Natural completion supplies structural integrity;
+partial yields cannot permit admissions. Local ordinary/AST/type and installed
+component checks pass, with fresh driver faults retained in CLAIMS S74. Full
+authenticated streaming replay and bounded state remain unfinished.
+
 Internal owned checkpoint recovery has focused and installed fault evidence
 (`evals/sdk/checkpoint-owned-recovery.md`). It reads actual disk history under
 kernel ownership and repeats ownership/history checks before returning. Local

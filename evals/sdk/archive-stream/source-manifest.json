@@ -1,0 +1,22 @@
+{
+  "base": "9a6480fe2291600b4b8460c38e113c844b010ff8",
+  "node": "v26.7.0",
+  "definition": 16,
+  "seed": 24413,
+  "hashes": {
+    "packages/sdk/src/archive.ts": "5089f5167d77cbe9344182e436eb3f2f1c221fd0264a9a729b8a94cbd073e068",
+    "packages/sdk/test/archive-stream.test.ts": "f1b398e10e6405be389eabbf5aba6a1c14dc4289a76c16dc80b5160bf45b3086",
+    "evals/sdk/archive-stream-faults.ts": "8b11f5f9118b74f222331fb2ba17aa0fca5e6d393902aeb57d4350a19767ab90",
+    "evals/ci/bite.ts": "798fa96803b9b7357eb543e175287e34e5e6d397e96b75e3087f2230d289f7b7",
+    "evals/ci/coverage.ts": "652fec666209c327ca3d82f80cfae2e33d584b3ab4ec75113870f81e5058af9a",
+    "evals/ci/coverage.test.ts": "99530a4ccca6c185c6eb774de4d44db0ac01286a18843f6d0908e048edb16bd4",
+    "evals/ci/coverage-faults.ts": "38f7471daaf27d5c8793df3a132f779a7c370987280f19df068fcfa839195b03",
+    "evals/ci/mutation-stage.ts": "6ef18caf86d5f59708f4a4d72ef2d7f0c645fb2bf1df2ddae8f29f2b3e3a8286",
+    "evals/ci/mutation-stage.test.ts": "881725f896d8243c869a20acef3bcd60fac4e90c789ee8e02caf7f106f3ee55b",
+    "evals/ci/mutation-run.ts": "1f2945d01ca83049931510e6fe203ae4e0f41b02b29ea20adaab67a246eabea0",
+    "evals/ci/mutation-recovery.test.ts": "2bbc96ad0d2bd1cee5d71de0d5f12cdecd27cc0127a394998f60ca5c12642d67",
+    "evals/ci/mutation-faults.ts": "48e09acb3bccdcc6e5a7b3d194dde794871d9045be72b5f4c261c9613399120f",
+    "evals/packaging/packed-sdk.test.ts": "9617b5ff610544d4bfaa6a3aa5d6b95904049028777a98cfed098bbb5dc6932c",
+    "evals/packaging/faults.ts": "68ab65efea1ba9323eed2f323d02d42a9eaa125066a11b13c2953a819ed4f8c8"
+  }
+}

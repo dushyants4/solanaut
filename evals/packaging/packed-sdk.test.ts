@@ -225,7 +225,7 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
     const {prepareCheckpointBundle}=await import(new URL('./checkpoint-bundle.js',import.meta.resolve('@solanaut/sdk')));
     const {prepareCheckpointEnvelope,verifyCheckpointEnvelope,CheckpointEnvelopeError}=await import(new URL('./checkpoint-envelope.js',import.meta.resolve('@solanaut/sdk')));
     const {fileStore,publishOwnedCheckpoint,recoverOwnedCheckpoint}=await import(new URL('./record.js',import.meta.resolve('@solanaut/sdk')));
-    const {verifyArchive}=await import(new URL('./archive.js',import.meta.resolve('@solanaut/sdk')));
+    const {verifyArchive,streamArchive}=await import(new URL('./archive.js',import.meta.resolve('@solanaut/sdk')));
     const {prepareCheckpointRecovery}=await import(new URL('./checkpoint-recovery.js',import.meta.resolve('@solanaut/sdk')));
     const operator=generateKeyPairSync('ed25519'),agent=generateKeyPairSync('ed25519');
     const address=pair=>encodeBase58(Buffer.from(pair.publicKey.export({format:'jwk'}).x,'base64url'));
@@ -280,6 +280,13 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
     const history=entries.map(entry=>stringify(entry)+'\\n').join('');writeFileSync(recordPath,history);writeFileSync(archivePath,history,{mode:0o400});
     const store=fileStore(recordPath,{ownership:'kernel',create:false});
     try{
+      const cursor=streamArchive(archivePath,{expectedHead:context.head});let streamed=0;
+      for(;;){const next=await cursor.next();if(next.done){if(next.value.entries!==streamed || next.value.head!==context.head || !Object.isFrozen(next.value))throw new Error('installed stream receipt differs');break;}
+        if(!Object.isFrozen(next.value) || next.value.seq!==streamed)throw new Error('installed stream entry differs');streamed++;}
+      if(streamed!==context.seq)throw new Error('installed stream count differs');
+      const cancelled=streamArchive(archivePath);await cancelled.next();if((await cancelled.return(undefined)).value!==undefined)throw new Error('installed cancelled stream produced receipt');
+      let digestRefused=false;try{for await(const _entry of streamArchive(archivePath,{expectedDigest:'0'.repeat(64)}))void 0;}catch(error){digestRefused=error.name==='ArchiveError' && error.code==='digest';}
+      if(!digestRefused)throw new Error('installed stream ignored digest');
       const receipt=await verifyArchive(archivePath),actual=await prepareCheckpointBundle(entries,undefined,[receipt],context,trust,checkpointTrust);
       const signatures={snapshot:sign(null,Buffer.from(actual.snapshotText),checkpoint.privateKey).toString('base64'),prefix:sign(null,Buffer.from(actual.prefixText),checkpoint.privateKey).toString('base64')};
       const candidate=prepareCheckpointEnvelope({binding:actual.binding,signatures,archives:actual.archives,state:actual.state,prefix:actual.prefix},checkpointTrust,1000000);

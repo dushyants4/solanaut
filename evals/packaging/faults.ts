@@ -15,6 +15,10 @@ function battery() {
 const baseline = battery();
 assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
 const faults = [
+  { name: "archive-stream-export", path: "dist/src/archive.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("export function streamArchive", "function streamArchive") },
+  { name: "archive-stream-entry", path: "dist/src/archive.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("yield immutable(entry);", "yield entry;") },
+  { name: "archive-stream-digest", path: "dist/src/archive.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("sha256 !== expectedDigest", "false") },
+  { name: "archive-stream-count", path: "dist/src/archive.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("entries: nextSeq - firstSeq", "entries: 0") },
   { name: "owned-recovery-named-path", path: "dist/src/record.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("const named = lstatSync(path, { bigint: true });", "const named = fstatSync(fd, { bigint: true });") },
   { name: "owned-recovery-export", path: "dist/src/record.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("export async function recoverOwnedCheckpoint", "async function recoverOwnedCheckpoint") },
   { name: "owned-recovery-capability", path: "dist/src/record.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("recoverers.get(store)", "recoverers.get(store) ?? (async () => ({mode:'checkpoint'}))") },

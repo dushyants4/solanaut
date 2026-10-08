@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.60** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.61** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -1206,3 +1206,15 @@ answers alone do not establish that the historical commit can be read. Missing,
 unreadable or corrupt bodies refuse; incomplete valid blob-metadata batches also
 refuse. This remains read-only metadata preparation, not confidentiality, source
 rights or publication clearance. Evidence: `evals/ci/history-commit-read.md`.
+
+SNP-1 internal streaming convention inside ADR-019: capture options when the
+iterator is created. Yield deeply immutable entries only after framing, envelope,
+hash, sequence/predecessor and applicable anchor checks. Pause reads while a
+consumer is paused; keep bounded line/chunk buffers. Yielded entries are
+provisional: natural completion alone verifies final source identity/time/size,
+framing and external head/digest/anchor pins and produces an immutable receipt.
+Cancellation or consumer failure closes the descriptor without a completion
+receipt. The existing public verifier consumes that same iterator fully and
+preserves its receipt/error surface. No root iterator export, policy authentication,
+admission authority or complete bounded-state replay contract is added. Component
+evidence: `evals/sdk/archive-stream.md`.

@@ -1,0 +1,12 @@
+caught archive stream fault: entry-hash
+caught archive stream fault: immutable-entry
+caught archive stream fault: immutable-descendants
+caught archive stream fault: immutable-receipt
+caught archive stream fault: close-on-cancellation
+caught archive stream fault: natural-source-check
+caught archive stream fault: head-pin
+caught archive stream fault: digest-pin
+caught archive stream fault: mutable-pin
+caught archive stream fault: stream-entry
+caught archive stream fault: receipt-count
+All archive stream faults caught; restored source passes

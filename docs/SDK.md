@@ -1,6 +1,6 @@
 # SDK reference — private candidate
 
-> **Draft 13** · 2026-10-07 · owner: integrator · for: developers integrating the candidate.
+> **Draft 14** · 2026-10-07 · owner: integrator · for: developers integrating the candidate.
 > Register: `kb/DOCUMENTS.md`. This describes current exports, not a stable-release promise.
 
 Envelope, bundle, prefix and admission-state preparation remain internal. Installed compiled tests
@@ -167,3 +167,10 @@ preserves invalid checkpoint evidence on verified full-replay fallback. It is no
 a root export or a running-guard factory. The caller still owns the lifecycle;
 live isolated startup and supported operator recovery remain release work. See
 `../evals/sdk/checkpoint-owned-recovery.md`.
+
+Archive streaming remains internal. It yields immutable records under consumer
+backpressure, but only natural completion establishes full structural integrity
+and a final receipt. Cancellation closes the source. The existing public
+`verifyArchive` fully consumes that core and retains its documented receipt and
+typed-error surface. Neither a yielded record nor an archive receipt authenticates
+policy/state or permits admission. See `../evals/sdk/archive-stream.md`.
