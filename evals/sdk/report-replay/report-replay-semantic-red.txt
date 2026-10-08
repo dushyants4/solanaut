@@ -1,0 +1,194 @@
+✔ SNP-5/LIF-7/D22: repeated unknown reports followed by each final outcome remain replayable and restorable (18.680259ms)
+✖ SNP-5/6/D22: resealed unsupported report outcome refuses every recovery path (2.181843ms)
+✖ SNP-5/6/D22: resealed unsupported report source refuses every recovery path (0.972597ms)
+✖ SNP-5/6/D22: resealed report timestamp -1 refuses every recovery path (0.946965ms)
+✖ SNP-5/6/D22: resealed report timestamp null refuses every recovery path (0.762249ms)
+✖ SNP-5/6/D22: resealed report timestamp 1000 refuses every recovery path (1.158076ms)
+✔ SNP-5/6/D22: reports naming an absent or denied decision refuse every recovery path (3.077875ms)
+✖ SNP-5/6/LIF-7/D22: resealed reports after final landed refuse every recovery path (1.031947ms)
+✖ SNP-5/6/LIF-7/D22: resealed reports after final failed refuse every recovery path (0.751745ms)
+✖ SNP-5/6/LIF-7/D22: resealed reports after final expired refuse every recovery path (0.800392ms)
+✖ SNP-5/6/LIF-7/D22: invalid reports change no head, clock, signing, reservation or sensor state (0.646666ms)
+✖ SNP-5/6/D22: state boundary rejects non-finite report times before mutation (0.729267ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 2
+ℹ fail 10
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 146.193173
+
+✖ failing tests:
+
+test at packages/sdk/test/report-replay.test.ts:49:3
+✖ SNP-5/6/D22: resealed unsupported report outcome refuses every recovery path (2.181843ms)
+  AssertionError [ERR_ASSERTION]: array replay accepted an impossible report
+  
+  true !== false
+  
+      at refuse (file:///home/dashy/Projects/Solanaut/packages/sdk/test/report-replay.test.ts:26:10)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/report-replay.test.ts:50:35)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/report-replay.test.ts:49:3
+✖ SNP-5/6/D22: resealed unsupported report source refuses every recovery path (0.972597ms)
+  AssertionError [ERR_ASSERTION]: array replay accepted an impossible report
+  
+  true !== false
+  
+      at refuse (file:///home/dashy/Projects/Solanaut/packages/sdk/test/report-replay.test.ts:26:10)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/report-replay.test.ts:50:35)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/report-replay.test.ts:53:3
+✖ SNP-5/6/D22: resealed report timestamp -1 refuses every recovery path (0.946965ms)
+  AssertionError [ERR_ASSERTION]: array replay accepted an impossible report
+  
+  true !== false
+  
+      at refuse (file:///home/dashy/Projects/Solanaut/packages/sdk/test/report-replay.test.ts:26:10)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/report-replay.test.ts:54:35)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/report-replay.test.ts:53:3
+✖ SNP-5/6/D22: resealed report timestamp null refuses every recovery path (0.762249ms)
+  AssertionError [ERR_ASSERTION]: array replay accepted an impossible report
+  
+  true !== false
+  
+      at refuse (file:///home/dashy/Projects/Solanaut/packages/sdk/test/report-replay.test.ts:26:10)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/report-replay.test.ts:54:35)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/report-replay.test.ts:53:3
+✖ SNP-5/6/D22: resealed report timestamp 1000 refuses every recovery path (1.158076ms)
+  AssertionError [ERR_ASSERTION]: array replay accepted an impossible report
+  
+  true !== false
+  
+      at refuse (file:///home/dashy/Projects/Solanaut/packages/sdk/test/report-replay.test.ts:26:10)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/report-replay.test.ts:54:35)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/report-replay.test.ts:65:3
+✖ SNP-5/6/LIF-7/D22: resealed reports after final landed refuse every recovery path (1.031947ms)
+  AssertionError [ERR_ASSERTION]: array replay accepted an impossible report
+  
+  true !== false
+  
+      at refuse (file:///home/dashy/Projects/Solanaut/packages/sdk/test/report-replay.test.ts:26:10)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/report-replay.test.ts:67:35)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/report-replay.test.ts:65:3
+✖ SNP-5/6/LIF-7/D22: resealed reports after final failed refuse every recovery path (0.751745ms)
+  AssertionError [ERR_ASSERTION]: array replay accepted an impossible report
+  
+  true !== false
+  
+      at refuse (file:///home/dashy/Projects/Solanaut/packages/sdk/test/report-replay.test.ts:26:10)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/report-replay.test.ts:67:35)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/report-replay.test.ts:65:3
+✖ SNP-5/6/LIF-7/D22: resealed reports after final expired refuse every recovery path (0.800392ms)
+  AssertionError [ERR_ASSERTION]: array replay accepted an impossible report
+  
+  true !== false
+  
+      at refuse (file:///home/dashy/Projects/Solanaut/packages/sdk/test/report-replay.test.ts:26:10)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/report-replay.test.ts:67:35)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/report-replay.test.ts:69:1
+✖ SNP-5/6/LIF-7/D22: invalid reports change no head, clock, signing, reservation or sensor state (0.646666ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/report-replay.test.ts:74:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /report|outcome|attribution/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/report-replay.test.ts:83:1
+✖ SNP-5/6/D22: state boundary rejects non-finite report times before mutation (0.729267ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/report-replay.test.ts:87:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /report/,
+    operator: 'throws',
+    diff: 'simple'
+  }

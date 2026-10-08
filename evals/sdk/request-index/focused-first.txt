@@ -1,0 +1,18 @@
+✔ SNP-7: manifest binds verified signed endpoint and every empty shard (14.69042ms)
+✔ SNP-7/LIF-1/2/7: denied, pending, sent and final facts keep exact payload and reply bindings (25.798912ms)
+✔ SNP-7: source, endpoint, policy and external trust are captured before asynchronous replay (4.019701ms)
+✔ SNP-7/VER-2: unsigned, malformed, dishonest and foreign history cannot mint an expected root (4.694622ms)
+✔ SNP-7/LIF-1: cross-method duplicate identity and changed payload are rejected during projection (3.558812ms)
+✔ SNP-7: cross-request response target and repeated immutable answers cannot pass signed replay (3.03881ms)
+✔ SNP-7: omission plus recomputed disk checksums cannot prove historical absence (4.607937ms)
+✔ SNP-7: a found request cannot return before later bytes and complete shard digest verify (3.776672ms)
+✔ SNP-7: cache source errors, symlinks, directories, missing and oversized rows refuse (8.540635ms)
+✔ SNP-7: completed replies and roots remain distinct across policy changes and restart (6.452211ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 193.337008

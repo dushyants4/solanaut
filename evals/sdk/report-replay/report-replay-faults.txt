@@ -1,0 +1,53 @@
+caught report replay fault: entire report refusal
+caught report replay fault: outcome enum
+caught report replay fault: source enum
+caught report replay fault: finite time
+caught report replay fault: negative time
+caught report replay fault: permanent finality
+caught report replay fault: reservation validation
+caught report replay fault: validation after mutation
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: unknown releases value✔ SNP-5/LIF-7/D22: repeated unknown reports followed by each final outcome remain replayable and restorable (16.406251ms)
+✔ SNP-5/6/D22: resealed unsupported report outcome refuses every recovery path (3.203873ms)
+✔ SNP-5/6/D22: resealed unsupported report source refuses every recovery path (1.857089ms)
+✔ SNP-5/6/D22: resealed report timestamp -1 refuses every recovery path (1.614698ms)
+✔ SNP-5/6/D22: resealed report timestamp null refuses every recovery path (1.833226ms)
+✔ SNP-5/6/D22: resealed report timestamp 1000 refuses every recovery path (1.43156ms)
+✔ SNP-5/6/D22: reports naming an absent or denied decision refuse every recovery path (2.857975ms)
+✔ SNP-5/6/LIF-7/D22: resealed reports after final landed refuse every recovery path (5.396813ms)
+✔ SNP-5/6/LIF-7/D22: resealed reports after final failed refuse every recovery path (4.725031ms)
+✔ SNP-5/6/LIF-7/D22: resealed reports after final expired refuse every recovery path (4.793351ms)
+✔ SNP-5/6/LIF-7/D22: invalid reports change no head, clock, signing, reservation or sensor state (3.441866ms)
+✔ SNP-5/6/D22: state boundary rejects non-finite report times before mutation (0.752461ms)
+✔ SNP-5/LIF-7/D22: unknown repeats preserve reservation, unsettled signing and unknown count (0.756471ms)
+✔ SNP-5/D22: both attribution enums and finite fractional timestamps remain supported (2.835389ms)
+✔ SNP-5/6/D22: retained request and signing facts cannot resurrect a pruned final reservation (2.401755ms)
+✔ SNP-5/POL-4/LIF-7/D22: late unresolved reports survive signed policy changes and expiry (8.785556ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 180.749697
+
+
+0 !== 1
+
+    at file:///home/dashy/Projects/Solanaut/evals/sdk/report-replay-faults.ts:27:12
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

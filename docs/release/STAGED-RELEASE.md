@@ -1,0 +1,153 @@
+# Staged devnet release — review draft
+
+2026-10-08 · private integrator/archivist preparation · reviewed source revision
+`5b00257b20c8bbfc643d0fc093f6e509dc3a3d38`. No publication approval, supported
+installation claim or change to the approved mission.
+
+Solanaut can prepare a concrete developer preview around its trusted SDK. It
+cannot describe that preview as the stable individual deployment promised by
+[Solanaut 1.0](../plans/2026-10-05_solanaut-1.md). The approved Beta remains the
+achieved milestone; later component receipts do not complete the Alpha or
+[READINESS](../READINESS.md) gates.
+
+## Proposed stages
+
+| Deliverable | Decision at the reviewed revision | Required next evidence or decision |
+|---|---|---|
+| Private product-page draft | Prepare for review | Keep every product sentence within the claim map in [PRODUCT-PAGE](../PRODUCT-PAGE.md); publication is a separate human decision. |
+| Frozen private SDK preview candidate | Prepare; not frozen or cleared | Qualify D22/D23 and the exact candidate, record its artefact identity and finish the scoped consumer instructions. |
+| Public devnet SDK preview | Not cleared | Corrected candidate CI, reviewed distribution contents, source rights/notices and the human's scope, licence, visibility and publication decisions. A preview label does not waive any stable-release gate. |
+| Stable individual deployment | Not cleared | Complete the approved signing core, Alpha paths, Linux lifecycle, independent qualification and every applicable R.1–R.4 exit. |
+
+## Concrete preview scope
+
+The proposed preview is for developers evaluating the trusted in-process SDK on
+devnet with test funds. Include the compiled SDK, its documented guarded-wallet
+and partial-signing paths, replay and read-only archive tools, public policy-text
+preparation and the offline payment/drain/retry examples. The release-only build
+produces JavaScript and declarations; native TypeScript development remains.
+
+Document exact current root exports and typed errors before freezing. Existing
+candidate exports do not imply that every surrounding service is supported.
+The sending client may remain documented as an experimental protocol component;
+it does not provide an installed isolated signer. Internal checkpoint, streaming
+and request-index module paths are not preview API promises.
+
+Keep opaque programs denied. Do not offer an isolated signer installation, MCP
+firewall deployment, dashboard operator workflow, new anchor programme or complete
+backup/upgrade service as preview capabilities. Their accepted requirements remain
+in the 1.0 queue; this scope does not mark them achieved or remove them.
+
+Trusted SDK mode permits code with access to the wallet/key to bypass the guard.
+Caller time, heights and outcomes remain trusted inputs. The policy boundary
+requires configuration outside the agent's reach. Put these conditions before
+wallet connection instructions, not only in a security appendix.
+
+## Freeze and qualification sequence
+
+1. **Qualify D22/D23 before freezing.** At the reviewed base, a resealed valid hash chain accepts an
+   unsupported report outcome/source or a second report after a final outcome
+   through shared `state.apply`, replay and restore. An unsupported outcome can
+   also mark signing history settled. Live reporting already refuses those
+   cases. The correction must validate before changing sequence, head, time,
+   signing or reservation state, while preserving valid repeated unknown reports
+   followed by a final report. The intended receipt is
+   [report receipt](../../evals/sdk/report-replay.md). D23 also permits impossible
+   absent/denied, duplicate, final or expired redemptions. Its correction validates
+   the admitted reservation, single use, finality, canonical lifetime and time
+   before mutation, with chronological policy equality where signed history
+   supplies it. Legitimate unsigned-history reopening and live negative bigint
+   heights retain their existing semantics; neither supplies authoritative chain
+   evidence. See the [redemption receipt](../../evals/sdk/redeem-replay.md).
+   Both fixes have local source/installed regressions and fault evidence in the
+   candidate; integrated and exact-revision hosted qualification remain required.
+   Valid live-format histories retain their contract. No snapshot/record format
+   or release threshold changes through these corrections.
+2. **Choose one corrected revision.** Record the full commit, source and lockfile
+   hashes, toolchain/configuration, selected public contracts and exact build
+   command. Preserve the approved Beta and accepted historical latch replay
+   differences; do not silently select an older tree to conceal a current defect.
+3. **Produce the artefacts from that revision.** Record the tarball digest,
+   generated manifest, declarations, executable entry points, dependency graph,
+   notices and release notes. Keep the candidate private. Separate reviewed
+   public material from internal records through the publication review; never
+   change the human's drop.
+4. **Run the existing candidate gates and inspect their evidence.** Ordinary
+   tests, typecheck, coverage, maintained faults, installed consumer checks and
+   the close workflow must pass as required. Faults must restore the frozen
+   sources. Verify the complete hosted run on the exact corrected revision;
+   individual successful steps do not turn a failed run into a pass. No wait,
+   workload, score floor or readiness threshold changes through this document.
+5. **Finish the preview consumption path.** Give a cold reader the actual
+   reviewed artefact, documented prerequisites, a complete offline example,
+   policy/record locations, error remedies and known trust limits. Retain failures
+   and scoped results. A builder walkthrough remains distinct from the required
+   outside-developer and final usability studies.
+   The concrete private walkthrough is now [PREVIEW](../PREVIEW.md), with the
+   actual generated tarball and companion JavaScript example. Its installed
+   assertion/evidence is [staged-preview](../../evals/release/staged-preview.md).
+   This supplies a reviewable path without claiming outside-user qualification.
+6. **Request the human's distribution decision on the concrete candidate.** Supply
+   the artefact hashes, scope, licence/notices review, history review, claim map
+   and actual CI result. Publication, public visibility and registry changes
+   remain human-controlled. No approval is inferred from preparing this draft.
+
+The current private SDK manifest is version `0.0.0` with `private: true`, as the
+installed-candidate contract requires. **Version proposal, not an applied change:**
+use `0.1.0-devnet.1` for a human-approved devnet SDK preview, consistent with the
+[roadmap's Beta naming](../ROADMAP.md#naming). The human must accept the preview
+scope and version before its release metadata changes. No tag, manifest version,
+registry package or release channel is created by this proposal.
+
+## Evidence and present blockers
+
+The external [tarball battery](../../evals/packaging/packed-sdk.md) installs an
+actual package outside the repository without workspace symlinks or TypeScript
+loaders. It uses cached runtime metadata and the builder's machine; its consumer
+typecheck uses the repository's compiler. This is installed-consumer evidence,
+not clean-machine Linux qualification, operator deployment or human usability.
+The [packaging reference](../PACKAGING.md) states the unfinished contracts.
+
+Hosted [run 37736599067](https://github.com/dushyants4/solanaut/actions/runs/37736599067)
+for the exact reviewed revision fails the ordinary runtime jobs, AST and a
+maintained-fault partition at the unchanged real staged-baseline wait. Installed
+package and typecheck steps pass within the failed runtime jobs. The run remains
+a failure; corrected hosted qualification is required. H11 is still a proposal,
+not permission to alter the wait. Earlier failures remain alongside later results
+in the [evaluation index](../../evals/README.md).
+
+The [history inventory](../../evals/ci/history-commit-read.md) verifies readable
+historical objects and graph agreement. It does not clear confidentiality,
+secrets, source rights or third-party notices. Review the entire proposed public
+history before the human changes visibility. Licence and attribution decisions
+are still owed; no completed licence register is assumed. Dependency findings
+must distinguish shipped runtime dependencies from development tools, with
+explicit disposition before claiming they resolved.
+
+## Next unblocked engineering and release work
+
+- Finish candidate qualification of D22/D23, preserving both malformed-history findings.
+- Qualify the accepted request-index component, then integrate bounded state and
+  actual owned streamed restoration. Preserve exact payload bindings, historical
+  replies, unresolved reservations, used receipts and latch state. Missing or
+  corrupt index evidence must rebuild from verified history or refuse.
+- Finish the scoped SDK consumption instructions, export/error inventory,
+  release notes and dependency/notices review while core integration continues.
+- Prepare the exact public-history review manifest and review checklist without
+  changing visibility or asserting publication clearance.
+- Freeze performance and operational workloads before measurement; run them
+  separately from fault workers. Complete the full mutation programme rather
+  than treating a successful staged baseline as its score.
+
+Signer expansion still depends on H9; account provisioning on H4; the proposed
+anchor ceremony on H10. Claude owns independent RT-2 and Alpha review. The human
+owns outside-developer recruitment, Phantom/funding actions, audit and bounty
+commitments, licence and publication. All remain visible in
+[HANDOFF](../HANDOFF.md#5-questions-and-requests-for-the-human).
+
+The stable product also needs TOK/ELZ/PHX/ANC/DSH qualification, installed Linux
+configuration and lifecycle, backup/recovery/compatible upgrade, accessibility,
+human devnet drills and the independent audit/supply-chain programme. See the
+[release evidence map](../plans/2026-10-07_release-evidence-map.md) and
+[Linux acceptance sequence](../plans/2026-10-06_linux-qualification.md).
+This staged proposal preserves every existing gate and provides no release date.

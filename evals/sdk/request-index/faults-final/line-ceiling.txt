@@ -1,0 +1,41 @@
+✔ SNP-7: manifest binds verified signed endpoint and every empty shard (17.3315ms)
+✔ SNP-7/LIF-1/2/7: denied, pending, sent and final facts keep exact payload and reply bindings (28.387595ms)
+✔ SNP-7: source, endpoint, policy and external trust are captured before asynchronous replay (5.638528ms)
+✔ SNP-7/VER-2: unsigned, malformed, dishonest and foreign history cannot mint an expected root (3.825777ms)
+✔ SNP-7/LIF-1: cross-method duplicate identity and changed payload are rejected during projection (4.493136ms)
+✔ SNP-7: cross-request response target and repeated immutable answers cannot pass signed replay (2.92407ms)
+✔ SNP-7: omission plus recomputed disk checksums cannot prove historical absence (4.636329ms)
+✔ SNP-7: a found request cannot return before later bytes and complete shard digest verify (4.831651ms)
+✔ SNP-7: same-size changed reply bytes cannot replace independently derived evidence (4.720988ms)
+✔ SNP-7: source changes during a lookup refuse even when bytes still equal the root (5.361175ms)
+✔ SNP-7: lookup identity and line ceiling are captured before file awaits (3.550464ms)
+✔ SNP-7: small provenance root works after generated artefacts leave scope; parsed roots refuse (5.147457ms)
+✔ SNP-7: complete shards distinguish exact identities, neighbouring hits and absent keys (6.029383ms)
+✔ SNP-7: altered row schema, route and cross-request reply targets refuse (5.66135ms)
+✔ SNP-7: another existing request's reply cannot answer this identity (6.064785ms)
+✖ SNP-7: cache source errors, symlinks, directories, missing and oversized rows refuse (3.640127ms)
+✔ SNP-7: completed replies and roots remain distinct across policy changes and restart (7.15469ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 16
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 233.253784
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index.test.ts:226:1
+✖ SNP-7: cache source errors, symlinks, directories, missing and oversized rows refuse (3.640127ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (RequestIndexError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:231:7)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { name: 'RequestIndexError', code: 'request-index' },
+    operator: 'rejects',
+    diff: 'simple'
+  }

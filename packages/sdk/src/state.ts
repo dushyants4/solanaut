@@ -10,7 +10,7 @@
 //   sensor         what the sensors remember of the proposal stream
 
 import { createPolicy, type Policy } from "./policy.ts";
-import type { ControlRequestEntry, ControlResponseEntry, DecisionEntry, Entry, Outcome } from "./log.ts";
+import { OUTCOMES, type ControlRequestEntry, type ControlResponseEntry, type DecisionEntry, type Entry, type Outcome, type ReportEntry, type RedeemEntry } from "./log.ts";
 import { verifyControlStart, verifyControlResponse } from "./control-request.ts";
 import { RECENT, SENSOR_V1 } from "./sensor.ts";
 import { parseReleaseText, verifyEd25519 } from "./latch.ts";
@@ -142,8 +142,38 @@ export function windowTotals(s: GuardState, policy: Policy, now: number, blockHe
   return { sol, fees, tokens };
 }
 
+function verifyReport(s: GuardState, e: ReportEntry): void {
+  if (!OUTCOMES.includes(e.outcome)) throw new Error("recorded report outcome is unsupported");
+  if (e.source !== "caller" && e.source !== "signer") throw new Error("recorded report attribution is unsupported");
+  if (!Number.isFinite(e.at) || e.at < 0) throw new Error("recorded report time is invalid");
+  const r = s.reservations.get(e.decision);
+  const attempt = r && s.intents.get(r.intentKey)?.attempts.find((a) => a.decision === e.decision);
+  if (!s.allowed.has(e.decision) || !r || !attempt) throw new Error(`report for ${e.decision}, which holds no reservation`);
+  if (!unresolved(attempt)) throw new Error("recorded report names an attempt with a final outcome");
+}
+
+function verifyRedeem(s: GuardState, e: RedeemEntry, signedPolicyHash?: string): void {
+  if (!Number.isFinite(e.at) || e.at < 0) throw new Error("recorded redemption time is invalid");
+  const d = s.allowed.get(e.decision), r = s.reservations.get(e.decision);
+  const attempt = r && s.intents.get(r.intentKey)?.attempts.find((a) => a.decision === e.decision);
+  if (!d || !r || !attempt) throw new Error("recorded redemption names no allowed reservation");
+  if (s.redeemed.has(e.decision)) throw new Error("recorded receipt was already used");
+  if (!unresolved(attempt)) throw new Error("recorded redemption names a final outcome");
+  // Unsigned SDK records carry no historical policy selection; preserve their restore contract.
+  if (signedPolicyHash !== undefined && d.policyHash !== signedPolicyHash) throw new Error("recorded redemption names another signed policy");
+  let height: bigint | null = null;
+  if (e.blockHeight !== null) {
+    try {
+      if (typeof e.blockHeight !== "string") throw new Error();
+      height = BigInt(e.blockHeight);
+      if (height.toString() !== e.blockHeight) throw new Error();
+    } catch { throw new Error("recorded redemption height is invalid"); }
+  }
+  if (d.expires && (height === null || height > BigInt(d.expires.lastValidBlockHeight))) throw new Error("recorded redemption has missing or expired lifetime evidence");
+}
+
 /** Apply one entry. Deterministic: the same entries, in the same order, give the same state. */
-export function apply(s: GuardState, e: Entry, policy: Policy): void {
+export function apply(s: GuardState, e: Entry, policy: Policy, signedPolicyHash?: string): void {
   if (e.v !== 1) throw new Error("unsupported record format version");
   if (e.kind === "decision") {
     if (e.source === "signer") { if (!e.deployment) throw new Error("signer authority is missing"); copyAuthority(e.deployment); }
@@ -158,6 +188,9 @@ export function apply(s: GuardState, e: Entry, policy: Policy): void {
   if (e.seq !== s.seq || e.prev !== s.head) {
     throw new Error(`the record breaks at seq ${e.seq}: expected seq ${s.seq} after ${s.head || "the start"}`);
   }
+  // Recovery enforces the live report contract before advancing any state (D22).
+  if (e.kind === "report") verifyReport(s, e);
+  if (e.kind === "redeem") verifyRedeem(s, e, signedPolicyHash);
   s.seq += 1;
   s.head = e.hash;
   s.maxAt = Math.max(s.maxAt ?? e.at, e.at);
@@ -204,9 +237,8 @@ export function apply(s: GuardState, e: Entry, policy: Policy): void {
     }
     case "report": {
       if (e.outcome !== "unknown" && s.signing.has(e.decision)) s.signing.get(e.decision)!.settled = true;
-      const r = s.reservations.get(e.decision);
-      const attempt = r && s.intents.get(r.intentKey)?.attempts.find((a) => a.decision === e.decision);
-      if (!r || !attempt) throw new Error(`report for ${e.decision}, which holds no reservation`);
+      const r = s.reservations.get(e.decision)!;
+      const attempt = s.intents.get(r.intentKey)!.attempts.find((a) => a.decision === e.decision)!;
       // An unknown outcome that becomes known stops counting as unknown.
       if (attempt.status === "unknown") s.sensor.unknownStreak = Math.max(0, s.sensor.unknownStreak - 1);
       attempt.status = e.outcome;

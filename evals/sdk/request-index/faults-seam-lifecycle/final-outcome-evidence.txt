@@ -1,0 +1,55 @@
+✔ SNP-7: manifest binds verified signed endpoint and every empty shard (17.371597ms)
+✖ SNP-7/LIF-1/2/7: denied, pending, sent and final facts keep exact payload and reply bindings (25.44436ms)
+✔ SNP-7: source, endpoint, policy and external trust are captured before asynchronous replay (5.140707ms)
+✔ SNP-7/VER-2: unsigned, malformed, dishonest and foreign history cannot mint an expected root (4.921409ms)
+✔ SNP-7/LIF-1: cross-method duplicate identity and changed payload are rejected during projection (5.643077ms)
+✔ SNP-7: cross-request response target and repeated immutable answers cannot pass signed replay (3.82968ms)
+✔ SNP-7/LIF-7: unsupported report outcomes cannot become settled index evidence (1.911055ms)
+✔ SNP-7: unsupported report attribution cannot mint a trusted index root (1.808936ms)
+✔ SNP-7/LIF-7: a final report cannot be followed by another unknown or final report (2.427755ms)
+✔ SNP-7: local report validation remains effective at the controlled replay dependency seam (81.590246ms)
+✔ SNP-7: omission plus recomputed disk checksums cannot prove historical absence (9.110177ms)
+✔ SNP-7: a found request cannot return before later bytes and complete shard digest verify (4.372169ms)
+✔ SNP-7: same-size changed reply bytes cannot replace independently derived evidence (4.19697ms)
+✔ SNP-7: source changes during a lookup refuse even when bytes still equal the root (5.125643ms)
+✔ SNP-7: lookup identity and line ceiling are captured before file awaits (4.065624ms)
+✔ SNP-7: a late source mutation after descriptor stat cannot evade named metadata checks (4.809048ms)
+✔ SNP-7: small provenance root works after generated artefacts leave scope; parsed roots refuse (3.430884ms)
+✔ SNP-7: complete shards distinguish exact identities, neighbouring hits and absent keys (6.215404ms)
+✔ SNP-7: altered row schema, route and cross-request reply targets refuse (4.944363ms)
+✔ SNP-7: another existing request's reply cannot answer this identity (3.220045ms)
+✔ SNP-7: cache source errors, symlinks, directories, missing and oversized rows refuse (6.687899ms)
+✔ SNP-7: runtime loader options must be an object with a valid explicit line ceiling (2.627711ms)
+✔ SNP-7: hardlinked shards and symlinked generation directories refuse (4.293889ms)
+✔ SNP-7: replacing the generation directory after file checks cannot return evidence (4.361774ms)
+✔ SNP-7: deterministic permission/read errors refuse and close every acquired descriptor (5.240523ms)
+✔ SNP-7: completed replies and roots remain distinct across policy changes and restart (6.704856ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 25
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 353.777509
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index.test.ts:58:1
+✖ SNP-7/LIF-1/2/7: denied, pending, sent and final facts keep exact payload and reply bindings (25.44436ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'landed'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:71:209)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'landed',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

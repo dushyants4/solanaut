@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.63** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.64** · 2026-10-08 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -527,6 +527,8 @@ Each is fixed test-first: the evaluator writes the failing test, and the builder
 | D19 | A release's expiry was judged on the caller's `at` | `guard.ts` (`release`) | the latest recorded time |
 | D20 | An attempt that could still land left the window cap after `windowMs` | `state.ts` (`windowTotals`) | count it while a trusted height shows it can still land |
 | D21 | A resealed malformed-proposal entry can inject non-null Keel fields into replay and restore, although live evaluation never ticks Keel for that input | `guard.ts` (`replay`, `reapply`), reproduced on 2026-10-07 | **closed in the builder candidate:** impossible fields refuse; genuine malformed and parsed history retain replay/restore. `evals/sdk/malformed-replay.md`; full snapshot and fresh mutation qualification remain owed |
+| D22 | Resealed unsupported report outcome/attribution/time or reports after a final outcome are accepted on recovery; invalid reports may advance state or settle signing | `state.ts`, reproduced on 2026-10-08 | **closed in the builder candidate:** validate before every state change; preserve unknown reconciliation, signed-policy changes and late unresolved reports. `evals/sdk/report-replay.md`; broader qualification remains owed |
+| D23 | Resealed absent/denied, duplicate, final, expired or malformed receipt redemption bypasses live checks on recovery | `state.ts`, reproduced on 2026-10-08 | **closed in the builder candidate:** validate before every state change and enforce chronological policy where signed history supplies it. Preserve unsigned-history compatibility and live canonical negative bigint heights. `evals/sdk/redeem-replay.md`; broader qualification remains owed |
 
 **Status:** closed at milestone 2a.5 (`evals/sdk/admission.md`), test-first: D1, D2, D5, D6, D7, D9, D10 and D12. D12
 closed early: the guard decodes bytes itself, so `packages/sdk/src` imports no web3.js. D11 closed at milestone 2a.6
@@ -1240,3 +1242,30 @@ remain re-exported from their original modules; no new root export, record forma
 or admission path. The unchanged baseline wait remains a separate open finding.
 
 | Draft 4.63 | 2026-10-07 | Defer checkpoint evaluation imports until owned maintenance; preserve captured pins, error identity and all validation. Component evidence only. |
+
+SNP-5/6 and LIF-2/7 recovery enforce report and redemption transitions before
+changing the record head, clock, reservations, signing facts or sensors. Report
+outcome/attribution enums and finite nonnegative time must be valid; only an
+unresolved admitted attempt can receive another report. Repeated unknown reports
+hold reservations and do not inflate the unknown streak. Redemption requires
+an allowed reservation, unresolved attempt, unused receipt, canonical bigint
+height where supplied and inclusive admitted expiry. Chronological signed policy
+selection is supplied explicitly to shared application. Unsigned SDK history does
+not record that selection, so reopening legitimate redeemed history under another
+advisory policy retains its existing behaviour. No new state field, record format,
+timestamp ordering or source-to-decision restriction is introduced. These fixes
+reject impossible histories, without claiming authentication from a resealed chain.
+
+SNP-7 internal index convention inside ADR-019: full signed replay and external
+policy pins independently derive a small provenance root for an exact completed
+prefix. Fixed hexadecimal shards include empty buckets and bind every historical
+request namespace, payload start, immutable reply and signing/outcome evidence.
+Read-only lookup captures identity/options, verifies the exact manifest and entire
+selected shard under bounded line buffers, and checks regular single-link files,
+source identity/change, directory identity and full digest before hit or absence.
+Copied roots refuse. A restart derives a new root from retained verified history.
+Preparation still captures full arrays. This is neither current-tail completeness
+nor live admission authority, actual-owned publication or bounded retained state.
+Component evidence: `evals/sdk/request-index.md`.
+
+| Draft 4.64 | 2026-10-08 | D22/D23 recovery transition validation and accepted internal request-index convention; staged SDK/page preparation preserves all release gates. |

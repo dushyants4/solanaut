@@ -1,0 +1,22 @@
+caught request index fault: signed-replay
+caught request index fault: decision-divergence
+caught request index fault: empty-shard-coverage
+caught request index fault: control-namespace
+caught request index fault: send-started-evidence
+caught request index fault: final-outcome-evidence
+caught request index fault: operator-binding
+caught request index fault: endpoint-capture
+caught request index fault: trust-capture
+caught request index fault: omitted-historical-controls
+caught request index fault: root-provenance
+caught request index fault: small-root-retention
+caught request index fault: deep-immutability
+caught request index fault: independent-shard-digest
+caught request index fault: read-error-absence
+caught request index fault: source-change
+caught request index fault: late-named-source-change
+caught request index fault: line-ceiling
+caught request index fault: exact-identity
+caught request index fault: response-binding
+caught request index fault: latest-outcome
+All request index faults caught; source restored and focused baseline passes

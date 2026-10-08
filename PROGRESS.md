@@ -5,9 +5,19 @@ including the approved Beta; CLAIMS S78 and `evals/release/progress.md` freeze t
 scope. This is not release readiness, effort or a completion date. Components
 inside open milestones receive no fractional credit.
 
+Private staged SDK scope and product-page copy are prepared in
+`docs/release/STAGED-RELEASE.md` and `docs/PRODUCT-PAGE.md`. They provide no public
+availability, stable Linux deployment or publication clearance. D22/D23 report
+and receipt replay corrections pass focused and installed faults (CLAIMS S79/S80).
+The internal request index passes local ordinary/type/AST and installed component
+checks (CLAIMS S81); actual owned publication, live-tail integration and bounded state remain
+unfinished. Every existing Alpha/human/audit/release gate remains required.
+The actual private tarball and synthetic installed JavaScript walkthrough are
+reviewable through `docs/PREVIEW.md` (CLAIMS S82), with no public availability claim.
+
 CI fault partitions preserve every maintained campaign and per-job restoration
 (CLAIMS S77). Corrected ordinary/AST/type checks pass; hosted qualification follows.
-Exact a4d1c25 hosted baseline-wait failures remain retained.
+Exact a4d1c25 and 5b00257 hosted baseline-wait failures remain retained.
 
 Record-only loading has source and installed fault evidence
 (`evals/sdk/record-loading.md`). Owned checkpoint maintenance retains full

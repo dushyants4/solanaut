@@ -1,0 +1,10 @@
+
+> typecheck
+> tsc -p tsconfig.json
+
+packages/sdk/test/redeem-replay.test.ts(28,5): error TS4104: The type 'readonly Entry[]' is 'readonly' and cannot be assigned to the mutable type 'Entry[]'.
+packages/sdk/test/redeem-replay.test.ts(59,21): error TS4104: The type 'readonly Entry[]' is 'readonly' and cannot be assigned to the mutable type 'Entry[]'.
+packages/sdk/test/redeem-replay.test.ts(68,19): error TS4104: The type 'readonly Entry[]' is 'readonly' and cannot be assigned to the mutable type 'Entry[]'.
+packages/sdk/test/report-replay.test.ts(24,5): error TS4104: The type 'readonly Entry[]' is 'readonly' and cannot be assigned to the mutable type 'Entry[]'.
+packages/sdk/test/report-replay.test.ts(49,69): error TS4104: The type 'readonly Entry[]' is 'readonly' and cannot be assigned to the mutable type 'Entry[]'.
+packages/sdk/test/report-replay.test.ts(68,78): error TS4104: The type 'readonly Entry[]' is 'readonly' and cannot be assigned to the mutable type 'Entry[]'.

@@ -5,6 +5,10 @@ seen failing might not be checking anything.
 
 | Gate | Shown failing | Then passing | Receipt |
 |---|---|---|---|
+| Private SDK preview consumer | actual installed case fails for absent companion example | complete synthetic installed JavaScript walkthrough; page/scope drafts and artefact identity retained; no publication clearance | `release/staged-preview.md` |
+| SNP-5/6, LIF-7 report transitions / D22 | accepted impossible report histories, fixture/type failure and masked unknown-release trial retained | pre-mutation validation and valid unknown/late reconciliation; source/installed fault evidence | `sdk/report-replay.md` |
+| SNP-5/6, LIF-2/7 redemption / D23 | absent/denied, duplicate, final, expired and prior signed-policy histories fail refusals | pre-mutation validation and signed context preserve unsigned/negative-height compatibility; source/installed faults | `sdk/redeem-replay.md` |
+| SNP-7 internal request index | missing component/module, source races, invalid-report and malformed-option findings retained | independently derived completed-prefix lookup; integrated/installed qualification in parent receipt | `sdk/request-index.md`; `sdk/request-index-integration.md` |
 | PUB-1 actual commit reads | cached-graph acceptance, body-read and metadata failures retained; fault setup/missed batch case preserved | sixteen cases/eighteen faults restore; full corrected close follows; no publication review clearance | `ci/history-commit-read.md` |
 | SNP-5/6 checkpoint recovery preparation | missing-function, sparse-list defect and missed fixture trials retained | prefix/tail or verified full replay preserves facts; source faults restore; installed/integration follow | `sdk/checkpoint-recovery.md` |
 | SNP-5/6, OWN-2 owned recovery | missing capability, descriptor-reuse and early-refusal fault trials retained | actual owner reads/rechecks history; verified fallback preserves evidence; integration follows | `sdk/checkpoint-owned-recovery.md` |

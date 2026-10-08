@@ -1,0 +1,64 @@
+✖ SNP-7: manifest binds verified signed endpoint and every empty shard (17.589882ms)
+✔ SNP-7/LIF-1/2/7: denied, pending, sent and final facts keep exact payload and reply bindings (28.290444ms)
+✔ SNP-7: source, endpoint, policy and external trust are captured before asynchronous replay (3.525146ms)
+✔ SNP-7/VER-2: unsigned, malformed, dishonest and foreign history cannot mint an expected root (4.079235ms)
+✔ SNP-7/LIF-1: cross-method duplicate identity and changed payload are rejected during projection (3.503735ms)
+✔ SNP-7: cross-request response target and repeated immutable answers cannot pass signed replay (2.592608ms)
+✔ SNP-7/LIF-7: unsupported report outcomes cannot become settled index evidence (1.440175ms)
+✔ SNP-7: unsupported report attribution cannot mint a trusted index root (1.568596ms)
+✔ SNP-7/LIF-7: a final report cannot be followed by another unknown or final report (1.675323ms)
+✔ SNP-7: local report validation remains effective at the controlled replay dependency seam (76.046915ms)
+✔ SNP-7: omission plus recomputed disk checksums cannot prove historical absence (5.604157ms)
+✔ SNP-7: a found request cannot return before later bytes and complete shard digest verify (2.895079ms)
+✔ SNP-7: same-size changed reply bytes cannot replace independently derived evidence (3.272621ms)
+✔ SNP-7: source changes during a lookup refuse even when bytes still equal the root (4.019785ms)
+✔ SNP-7: lookup identity and line ceiling are captured before file awaits (2.923024ms)
+✔ SNP-7: a late source mutation after descriptor stat cannot evade named metadata checks (3.029969ms)
+✖ SNP-7: small provenance root works after generated artefacts leave scope; parsed roots refuse (3.963633ms)
+✔ SNP-7: complete shards distinguish exact identities, neighbouring hits and absent keys (5.498855ms)
+✔ SNP-7: altered row schema, route and cross-request reply targets refuse (5.125654ms)
+✔ SNP-7: another existing request's reply cannot answer this identity (4.496495ms)
+✔ SNP-7: cache source errors, symlinks, directories, missing and oversized rows refuse (7.577693ms)
+✔ SNP-7: runtime loader options must be an object with a valid explicit line ceiling (3.953815ms)
+✔ SNP-7: hardlinked shards and symlinked generation directories refuse (5.179754ms)
+✔ SNP-7: replacing the generation directory after file checks cannot return evidence (5.156833ms)
+✔ SNP-7: deterministic permission/read errors refuse and close every acquired descriptor (4.145506ms)
+✔ SNP-7: completed replies and roots remain distinct across policy changes and restart (6.484034ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 24
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 334.370941
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index.test.ts:41:1
+✖ SNP-7: manifest binds verified signed endpoint and every empty shard (17.589882ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (RequestIndexError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:54:7)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { name: 'RequestIndexError', code: 'request-index' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index.test.ts:225:1
+✖ SNP-7: small provenance root works after generated artefacts leave scope; parsed roots refuse (3.963633ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (RequestIndexError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:231:42)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { name: 'RequestIndexError', code: 'request-index' },
+    operator: 'rejects',
+    diff: 'simple'
+  }

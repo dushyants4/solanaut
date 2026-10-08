@@ -1,0 +1,20 @@
+caught redemption replay fault: entire redemption refusal
+caught redemption replay fault: finite redemption time
+caught redemption replay fault: negative redemption time
+caught redemption replay fault: allowed reservation
+caught redemption replay fault: single-use receipt
+caught redemption replay fault: permanent receipt finality
+caught redemption replay fault: signed chronological policy
+caught redemption replay fault: unsigned historical compatibility
+caught redemption replay fault: canonical receipt height
+caught redemption replay fault: inclusive expiry
+caught redemption replay fault: expiry verification
+caught redemption replay fault: mandatory expiry height
+caught redemption replay fault: live negative bigint compatibility
+caught redemption replay fault: unbounded receipt null height
+caught redemption replay fault: validation before state mutation
+caught redemption replay fault: used receipt state
+caught redemption replay fault: signing redemption state
+caught redemption replay fault: restore and replay policy context
+caught redemption replay fault: inspection policy context
+All redemption replay faults caught; exact source restoration passes

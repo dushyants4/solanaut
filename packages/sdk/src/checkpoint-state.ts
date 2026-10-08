@@ -30,7 +30,7 @@ export async function prepareCheckpointState(input:unknown,policyInput:unknown,c
     const state=initialState();state.retentionMs=retentionWindow(entries,policy.windowMs);
     for(const entry of entries){
       if(entry.kind==="policy"){policy=verifyPolicyEntry(entry,pins,previous);hash=createPolicy(policy).hash;previous=entry;}
-      apply(state,entry,policy);
+      apply(state,entry,policy,previous?hash:undefined);
       if(entry.kind==="decision")previousDecision=entry;
     }
     const text=canonicalJSON({format:1,kind:"solanaut-checkpoint-admission-state",profile:EVALUATION_PROFILE,

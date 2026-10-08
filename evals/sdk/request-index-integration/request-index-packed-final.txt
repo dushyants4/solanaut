@@ -1,0 +1,19 @@
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (64.945411ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (0.290627ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (244.441367ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (107.931321ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (123.786848ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (110.377106ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (51.847469ms)
+✔ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (267.432896ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (39.870697ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (93.938008ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (42.40373ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1771.417034

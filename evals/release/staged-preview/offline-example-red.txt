@@ -1,0 +1,37 @@
+✖ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (117.017519ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (0.739991ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (394.354284ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (170.66412ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (157.989186ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (166.267479ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (74.998406ms)
+✔ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (390.888871ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (55.882683ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (121.491394ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (65.187447ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 10
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2575.551682
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:31:1
+✖ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (117.017519ms)
+  Error: ENOENT: no such file or directory, open '/home/dashy/Projects/Solanaut/examples/offline-preview.mjs'
+      at Object.openSync (node:fs:697:18)
+      at readFileSync (node:fs:543:35)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:54:76)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/home/dashy/Projects/Solanaut/examples/offline-preview.mjs'
+  }

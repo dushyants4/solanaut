@@ -1,0 +1,24 @@
+✔ SNP-5/LIF-7/D22: repeated unknown reports followed by each final outcome remain replayable and restorable (16.41369ms)
+✔ SNP-5/6/D22: resealed unsupported report outcome refuses every recovery path (2.293599ms)
+✔ SNP-5/6/D22: resealed unsupported report source refuses every recovery path (2.009863ms)
+✔ SNP-5/6/D22: resealed report timestamp -1 refuses every recovery path (1.908528ms)
+✔ SNP-5/6/D22: resealed report timestamp null refuses every recovery path (1.858845ms)
+✔ SNP-5/6/D22: resealed report timestamp 1000 refuses every recovery path (1.516519ms)
+✔ SNP-5/6/D22: reports naming an absent or denied decision refuse every recovery path (3.220483ms)
+✔ SNP-5/6/LIF-7/D22: resealed reports after final landed refuse every recovery path (6.986815ms)
+✔ SNP-5/6/LIF-7/D22: resealed reports after final failed refuse every recovery path (5.614352ms)
+✔ SNP-5/6/LIF-7/D22: resealed reports after final expired refuse every recovery path (5.744345ms)
+✔ SNP-5/6/LIF-7/D22: invalid reports change no head, clock, signing, reservation or sensor state (5.68177ms)
+✔ SNP-5/6/D22: state boundary rejects non-finite report times before mutation (1.387424ms)
+✔ SNP-5/LIF-7/D22: unknown repeats preserve reservation, unsettled signing and unknown count (1.008423ms)
+✔ SNP-5/D22: both attribution enums and finite fractional timestamps remain supported (4.135895ms)
+✔ SNP-5/6/D22: retained request and signing facts cannot resurrect a pruned final reservation (3.86647ms)
+✔ SNP-5/POL-4/LIF-7/D22: late unresolved reports survive signed policy changes and expiry (16.790805ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 216.430447

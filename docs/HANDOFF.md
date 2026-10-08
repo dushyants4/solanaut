@@ -159,6 +159,16 @@ devnet.
 
 ## 5. Questions and requests for the human
 
+**H12 — proposed devnet SDK preview scope/version.** A concrete private tarball,
+installed offline walkthrough and claim-traced page draft are now reviewable in
+`docs/PREVIEW.md`, `docs/PRODUCT-PAGE.md` and `docs/release/STAGED-RELEASE.md`.
+Proposed public preview version: `0.1.0-devnet.1`, not applied. Human acceptance
+of that scope/version is needed before release metadata changes; licence,
+visibility, registry/page publication remain human decisions at the moment.
+Current private metadata stays `0.0.0`/private. This preview does not satisfy or
+relax stable 1.0 gates; source/history/notices review and exact hosted qualification
+remain owed. Continue independent core/release work while these decisions wait.
+
 **H11 — expanded real mutation-baseline harness wait.** Hosted 6d81f8b run
 37654130653 still fails Node 22's unchanged baseline wait with serial execution.
 Retained exact logs: `evals/sdk/checkpoint-bundle/hosted-6d81f8b/`. Proposed
@@ -208,14 +218,23 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+| 2026-10-08 | D22/D23 recovery validation, SNP-7 internal index and private staged preview | commit containing `evals/sdk/request-index-integration.md` and `evals/release/staged-preview.md` | first failures/misses, source and compiled faults, 718 ordinary/AST cases, typecheck, unchanged floors and isolated driver qualification | CLAIMS S79–S82. Actual private tarball/example/page scope prepared; no public release. Formal progress remains S78's 41%; full bounded recovery, H9/H10/H11/H12 and human/Claude/audit gates stay open. |
+
+Hosted 5b00257 run 37736599067 completes failed at the unchanged staged-baseline
+wait in ordinary runtimes, AST and fault partition one. Successful installed/type
+steps do not clear that run. Exact full log/revision metadata are retained in
+`evals/sdk/request-index-integration/hosted-5b00257/`. Corrected candidate private
+sync/hosted result follows the local close workflow; no wait extension is applied.
+
 | 2026-10-08 | CI-1 fixed complete fault partitions and release accounting | commit containing `evals/ci/bite-partitions.md` | first failures/misses, source/workflow faults, internal peer review and corrected ordinary/AST/type checks | All 54 campaigns remain required; limits unchanged. CLAIMS S77/S78 record gate scope and 41% formal milestone completion, including Beta. Hosted timing/Alpha/release gates remain open. |
 
 a4d1c25 record loading privately pushed; local close passes every gate. Hosted
 37711212005 is pending. Current release evidence map links component receipts to
 all mission phase exits and names remaining owners/dependencies; PROGRESS's stale
 pre-publication/pre-recovery wording is reconciled without deleting receipts.
-Next accepted work is disk request lookup, bounded state and owned streaming
-restoration. H9/H10/H11 and human/Claude/audit gates stay open.
+Disk request lookup now has an internal completed-prefix component receipt.
+Next accepted integration is owned publication/tail tracking, bounded state and
+owned streaming restoration. H9/H10/H11 and human/Claude/audit gates stay open.
 
 | 2026-10-07 | OWN-2/SNP-4/5 record loading | commit containing `evals/sdk/record-loading.md` | first failures; source/installed/staging/isolated driver faults; 655 ordinary/AST cases and typecheck | Captured pins, constructor identity and full maintenance validation preserved; CLAIMS S76. No hosted timing fix or complete release claim. |
 

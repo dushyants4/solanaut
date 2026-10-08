@@ -1,0 +1,45 @@
+✔ SNP-7: manifest binds verified signed endpoint and every empty shard (16.966887ms)
+✔ SNP-7/LIF-1/2/7: denied, pending, sent and final facts keep exact payload and reply bindings (26.77596ms)
+✔ SNP-7: source, endpoint, policy and external trust are captured before asynchronous replay (5.294899ms)
+✔ SNP-7/VER-2: unsigned, malformed, dishonest and foreign history cannot mint an expected root (3.844754ms)
+✔ SNP-7/LIF-1: cross-method duplicate identity and changed payload are rejected during projection (3.602387ms)
+✔ SNP-7: cross-request response target and repeated immutable answers cannot pass signed replay (2.780503ms)
+✔ SNP-7/LIF-7: unsupported report outcomes cannot become settled index evidence (1.443995ms)
+✔ SNP-7: unsupported report attribution cannot mint a trusted index root (1.90704ms)
+✔ SNP-7/LIF-7: a final report cannot be followed by another unknown or final report (2.008273ms)
+✔ SNP-7: omission plus recomputed disk checksums cannot prove historical absence (4.733379ms)
+✔ SNP-7: a found request cannot return before later bytes and complete shard digest verify (3.774067ms)
+✔ SNP-7: same-size changed reply bytes cannot replace independently derived evidence (3.41031ms)
+✖ SNP-7: source changes during a lookup refuse even when bytes still equal the root (4.987896ms)
+✔ SNP-7: lookup identity and line ceiling are captured before file awaits (4.245507ms)
+✔ SNP-7: a late source mutation after descriptor stat cannot evade named metadata checks (3.836043ms)
+✔ SNP-7: small provenance root works after generated artefacts leave scope; parsed roots refuse (4.284248ms)
+✔ SNP-7: complete shards distinguish exact identities, neighbouring hits and absent keys (5.488669ms)
+✔ SNP-7: altered row schema, route and cross-request reply targets refuse (5.308651ms)
+✔ SNP-7: another existing request's reply cannot answer this identity (3.577959ms)
+✔ SNP-7: cache source errors, symlinks, directories, missing and oversized rows refuse (8.877418ms)
+✔ SNP-7: completed replies and roots remain distinct across policy changes and restart (5.783983ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 20
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 253.449162
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index.test.ts:174:1
+✖ SNP-7: source changes during a lookup refuse even when bytes still equal the root (4.987896ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (RequestIndexError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:184:9)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { name: 'RequestIndexError', code: 'request-index' },
+    operator: 'rejects',
+    diff: 'simple'
+  }

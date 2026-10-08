@@ -1,0 +1,6 @@
+
+> typecheck
+> tsc -p tsconfig.json
+
+packages/sdk/test/request-index.test.ts(86,56): error TS2740: Type 'number[]' is missing the following properties from type 'Uint8Array<ArrayBufferLike>': BYTES_PER_ELEMENT, buffer, byteLength, byteOffset, and 7 more.
+packages/sdk/test/request-index.test.ts(98,33): error TS2353: Object literal may only specify known properties, and 'request' does not exist in type 'Omit<Entry, "hash">'.

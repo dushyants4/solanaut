@@ -1,0 +1,82 @@
+✔ SNP-7: manifest binds verified signed endpoint and every empty shard (16.080913ms)
+✔ SNP-7/LIF-1/2/7: denied, pending, sent and final facts keep exact payload and reply bindings (30.090549ms)
+✔ SNP-7: source, endpoint, policy and external trust are captured before asynchronous replay (4.665662ms)
+✔ SNP-7/VER-2: unsigned, malformed, dishonest and foreign history cannot mint an expected root (3.792067ms)
+✔ SNP-7/LIF-1: cross-method duplicate identity and changed payload are rejected during projection (3.60964ms)
+✔ SNP-7: cross-request response target and repeated immutable answers cannot pass signed replay (2.770815ms)
+✔ SNP-7/LIF-7: unsupported report outcomes cannot become settled index evidence (1.549649ms)
+✔ SNP-7: unsupported report attribution cannot mint a trusted index root (1.79764ms)
+✖ SNP-7/LIF-7: a final report cannot be followed by another unknown or final report (3.500201ms)
+✖ SNP-7: local report validation remains effective at the controlled replay dependency seam (76.903827ms)
+✔ SNP-7: omission plus recomputed disk checksums cannot prove historical absence (6.398724ms)
+✔ SNP-7: a found request cannot return before later bytes and complete shard digest verify (3.302991ms)
+✔ SNP-7: same-size changed reply bytes cannot replace independently derived evidence (3.299687ms)
+✔ SNP-7: source changes during a lookup refuse even when bytes still equal the root (4.08885ms)
+✔ SNP-7: lookup identity and line ceiling are captured before file awaits (4.090425ms)
+✔ SNP-7: a late source mutation after descriptor stat cannot evade named metadata checks (3.17906ms)
+✔ SNP-7: small provenance root works after generated artefacts leave scope; parsed roots refuse (3.655951ms)
+✔ SNP-7: complete shards distinguish exact identities, neighbouring hits and absent keys (4.204609ms)
+✔ SNP-7: altered row schema, route and cross-request reply targets refuse (5.575969ms)
+✔ SNP-7: another existing request's reply cannot answer this identity (3.202707ms)
+✔ SNP-7: cache source errors, symlinks, directories, missing and oversized rows refuse (6.311096ms)
+✔ SNP-7: runtime loader options must be an object with a valid explicit line ceiling (2.545683ms)
+✔ SNP-7: hardlinked shards and symlinked generation directories refuse (5.395988ms)
+✔ SNP-7: replacing the generation directory after file checks cannot return evidence (3.050134ms)
+✔ SNP-7: deterministic permission/read errors refuse and close every acquired descriptor (3.35323ms)
+✔ SNP-7: completed replies and roots remain distinct across policy changes and restart (5.585197ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 24
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 327.966779
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index.test.ts:133:1
+✖ SNP-7/LIF-7: a final report cannot be followed by another unknown or final report (3.500201ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (RequestIndexError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:138:48)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { name: 'RequestIndexError', code: 'request-index' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index.test.ts:142:1
+✖ SNP-7: local report validation remains effective at the controlled replay dependency seam (76.903827ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/run_main:107
+      triggerUncaughtException(
+      ^
+  
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (RequestIndexError).
+      at async file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/[eval1]:6:42 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { name: 'RequestIndexError', code: 'request-index' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:157:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

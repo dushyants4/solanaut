@@ -1,0 +1,13 @@
+caught report replay fault: entire report refusal
+caught report replay fault: outcome enum
+caught report replay fault: source enum
+caught report replay fault: finite time
+caught report replay fault: negative time
+caught report replay fault: permanent finality
+caught report replay fault: reservation validation
+caught report replay fault: validation after mutation
+caught report replay fault: unknown releases value
+caught report replay fault: repeat unknown inflates sensor
+caught report replay fault: expired retains fees
+caught report replay fault: final signing not settled
+All report replay faults caught; restored source passes

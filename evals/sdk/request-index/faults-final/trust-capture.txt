@@ -1,0 +1,37 @@
+✔ SNP-7: manifest binds verified signed endpoint and every empty shard (21.915425ms)
+✔ SNP-7/LIF-1/2/7: denied, pending, sent and final facts keep exact payload and reply bindings (34.732316ms)
+✖ SNP-7: source, endpoint, policy and external trust are captured before asynchronous replay (3.039857ms)
+✔ SNP-7/VER-2: unsigned, malformed, dishonest and foreign history cannot mint an expected root (3.575381ms)
+✔ SNP-7/LIF-1: cross-method duplicate identity and changed payload are rejected during projection (3.174ms)
+✔ SNP-7: cross-request response target and repeated immutable answers cannot pass signed replay (2.597806ms)
+✔ SNP-7: omission plus recomputed disk checksums cannot prove historical absence (4.722267ms)
+✔ SNP-7: a found request cannot return before later bytes and complete shard digest verify (3.303737ms)
+✔ SNP-7: same-size changed reply bytes cannot replace independently derived evidence (4.359779ms)
+✔ SNP-7: source changes during a lookup refuse even when bytes still equal the root (3.679524ms)
+✔ SNP-7: lookup identity and line ceiling are captured before file awaits (2.890013ms)
+✔ SNP-7: small provenance root works after generated artefacts leave scope; parsed roots refuse (3.289421ms)
+✔ SNP-7: complete shards distinguish exact identities, neighbouring hits and absent keys (5.411055ms)
+✔ SNP-7: altered row schema, route and cross-request reply targets refuse (4.388236ms)
+✔ SNP-7: another existing request's reply cannot answer this identity (4.2446ms)
+✔ SNP-7: cache source errors, symlinks, directories, missing and oversized rows refuse (7.902521ms)
+✔ SNP-7: completed replies and roots remain distinct across policy changes and restart (5.883989ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 16
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 230.044461
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index.test.ts:79:1
+✖ SNP-7: source, endpoint, policy and external trust are captured before asynchronous replay (3.039857ms)
+  Error [RequestIndexError]: request index history does not reproduce its decisions
+      at prepareRequestIndex (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/src/request-index.ts:82:25)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:85:15)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'request-index'
+  }

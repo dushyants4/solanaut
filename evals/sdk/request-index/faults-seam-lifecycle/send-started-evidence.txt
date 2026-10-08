@@ -1,0 +1,67 @@
+✔ SNP-7: manifest binds verified signed endpoint and every empty shard (17.070422ms)
+✖ SNP-7/LIF-1/2/7: denied, pending, sent and final facts keep exact payload and reply bindings (26.087316ms)
+✔ SNP-7: source, endpoint, policy and external trust are captured before asynchronous replay (5.423067ms)
+✔ SNP-7/VER-2: unsigned, malformed, dishonest and foreign history cannot mint an expected root (7.053949ms)
+✔ SNP-7/LIF-1: cross-method duplicate identity and changed payload are rejected during projection (5.207384ms)
+✔ SNP-7: cross-request response target and repeated immutable answers cannot pass signed replay (4.098456ms)
+✔ SNP-7/LIF-7: unsupported report outcomes cannot become settled index evidence (2.083255ms)
+✔ SNP-7: unsupported report attribution cannot mint a trusted index root (2.441902ms)
+✔ SNP-7/LIF-7: a final report cannot be followed by another unknown or final report (2.724483ms)
+✔ SNP-7: local report validation remains effective at the controlled replay dependency seam (75.797953ms)
+✔ SNP-7: omission plus recomputed disk checksums cannot prove historical absence (8.162309ms)
+✔ SNP-7: a found request cannot return before later bytes and complete shard digest verify (3.246769ms)
+✔ SNP-7: same-size changed reply bytes cannot replace independently derived evidence (3.567358ms)
+✔ SNP-7: source changes during a lookup refuse even when bytes still equal the root (3.270184ms)
+✔ SNP-7: lookup identity and line ceiling are captured before file awaits (3.719068ms)
+✔ SNP-7: a late source mutation after descriptor stat cannot evade named metadata checks (3.556116ms)
+✔ SNP-7: small provenance root works after generated artefacts leave scope; parsed roots refuse (2.936965ms)
+✔ SNP-7: complete shards distinguish exact identities, neighbouring hits and absent keys (4.292052ms)
+✔ SNP-7: altered row schema, route and cross-request reply targets refuse (4.625208ms)
+✔ SNP-7: another existing request's reply cannot answer this identity (3.2506ms)
+✔ SNP-7: cache source errors, symlinks, directories, missing and oversized rows refuse (6.953438ms)
+✔ SNP-7: runtime loader options must be an object with a valid explicit line ceiling (2.564611ms)
+✔ SNP-7: hardlinked shards and symlinked generation directories refuse (4.675414ms)
+✔ SNP-7: replacing the generation directory after file checks cannot return evidence (4.24554ms)
+✔ SNP-7: deterministic permission/read errors refuse and close every acquired descriptor (4.430313ms)
+✔ SNP-7: completed replies and roots remain distinct across policy changes and restart (5.916404ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 25
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 332.435998
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index.test.ts:58:1
+✖ SNP-7/LIF-1/2/7: denied, pending, sent and final facts keep exact payload and reply bindings (26.087316ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + null
+  - {
+  -   at: 1000,
+  -   event: {
+  -     blockHeight: '11',
+  -     decision: '75bf7ce0180301d9f10370c18c7cd6e3a5b919223ecdf00c3d04777bbc89885b',
+  -     stage: 'send-started'
+  -   },
+  -   hash: '4d058da4e9355eb59a0334d782c90569228107e814f29224ab642c0e27dbe759',
+  -   kind: 'signing',
+  -   prev: '62f38cafcea8461c679662d6aabf9dac7a74f048b51e2b28e0df3327f3193a15',
+  -   seq: 4,
+  -   v: 1
+  - }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:71:50)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: { v: 1, seq: 4, prev: '62f38cafcea8461c679662d6aabf9dac7a74f048b51e2b28e0df3327f3193a15', kind: 'signing', at: 1000, event: { stage: 'send-started', decision: '75bf7ce0180301d9f10370c18c7cd6e3a5b919223ecdf00c3d04777bbc89885b', blockHeight: '11' }, hash: '4d058da4e9355eb59a0334d782c90569228107e814f29224ab642c0e27dbe759' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

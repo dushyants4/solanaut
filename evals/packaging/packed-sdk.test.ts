@@ -51,6 +51,10 @@ test("PKG-1: installed JavaScript verifies Keel and gives the source's payment/d
   const result = spawnSync(process.execPath, ["--input-type=module", "-e", script, inputPolicy, Buffer.from(transfer(2)).toString("base64"), Buffer.from(transfer(3)).toString("base64")], { cwd: consumer, encoding: "utf8" });
   assert.equal(result.status, 0, result.stderr);
   assert.deepEqual(JSON.parse(result.stdout), { allow: true, rule: "destination-not-allowed", verified: "bytes" });
+  const preview=join(consumer,"offline-preview.mjs");writeFileSync(preview,readFileSync(new URL("../../examples/offline-preview.mjs",import.meta.url)));
+  const shown=spawnSync(process.execPath,[preview],{cwd:consumer,encoding:"utf8"});
+  assert.equal(shown.status,0,shown.stderr);
+  assert.deepEqual(JSON.parse(shown.stdout),{payment:"allowed",unlistedDestination:"destination-not-allowed",reusedReceipt:false,replay:"matched",sent:false});
 });
 
 test("PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies", () => {
@@ -217,7 +221,7 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
   const script=`
     import {createGuard,preparePolicyText,verifyPolicyAuthorization,PolicyAuthorizationError,verifyCheckpointBinding,encodeBase58,EVALUATION_PROFILE} from '@solanaut/sdk';
     import {generateKeyPairSync,sign,createHash} from 'node:crypto';
-    import {mkdtempSync,writeFileSync,readFileSync,rmSync,renameSync,symlinkSync,unlinkSync} from 'node:fs';
+    import {mkdtempSync,mkdirSync,writeFileSync,readFileSync,rmSync,renameSync,symlinkSync,unlinkSync} from 'node:fs';
     import {tmpdir} from 'node:os';
     import {join} from 'node:path';
     const {prepareCheckpointPrefix,rebuildCheckpointPrefix,CheckpointPrefixError}=await import(new URL('./checkpoint-prefix.js',import.meta.resolve('@solanaut/sdk')));
@@ -226,8 +230,10 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
     const {prepareCheckpointEnvelope,verifyCheckpointEnvelope,CheckpointEnvelopeError}=await import(new URL('./checkpoint-envelope.js',import.meta.resolve('@solanaut/sdk')));
     const {fileStore,publishOwnedCheckpoint,recoverOwnedCheckpoint}=await import(new URL('./record.js',import.meta.resolve('@solanaut/sdk')));
     const {verifyArchive,streamArchive}=await import(new URL('./archive.js',import.meta.resolve('@solanaut/sdk')));
-    const {replayStream}=await import(new URL('./guard.js',import.meta.resolve('@solanaut/sdk')));
+    const {replay,replayStream}=await import(new URL('./guard.js',import.meta.resolve('@solanaut/sdk')));
+    const {seal}=await import(new URL('./log.js',import.meta.resolve('@solanaut/sdk')));
     const {prepareCheckpointRecovery}=await import(new URL('./checkpoint-recovery.js',import.meta.resolve('@solanaut/sdk')));
+    const {prepareRequestIndex,lookupRequestIndex,RequestIndexError}=await import(new URL('./request-index.js',import.meta.resolve('@solanaut/sdk')));
     const operator=generateKeyPairSync('ed25519'),agent=generateKeyPairSync('ed25519');
     const address=pair=>encodeBase58(Buffer.from(pair.publicKey.export({format:'jwk'}).x,'base64url'));
     const policy=JSON.parse(process.argv[1]);policy.principal=[address(agent)];policy.latch.releaseKey=address(operator);
@@ -253,6 +259,22 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
     g.recordSigning({stage:'response',decision:d.hash,status:'uncertain',signature});
     const request=g.beginRequest({clientId:'client',id:'status'},'status',{},1001);g.finishRequest(request.hash,{ready:true});
     const entries=g.entries(),context={seq:entries.length,head:entries.at(-1).hash};g.close();
+    function reportAfter(prefix,changes={}){return seal({v:1,kind:'report',seq:prefix.length,prev:prefix.at(-1).hash,at:1001,decision:d.hash,outcome:'unknown',source:'caller',...changes});}
+    const invalidReports=[...['outcome','source'].map(field=>[...entries,reportAfter(entries,{[field]:'unsupported'})]),...[null,-1,'1001'].map(at=>[...entries,reportAfter(entries,{at})])];
+    for(const outcome of ['landed','failed','expired']){const final=[...entries,reportAfter(entries,{outcome})];for(const next of ['unknown','landed','failed','expired'])invalidReports.push([...final,reportAfter(final,{outcome:next})]);}
+    for(const bad of invalidReports){
+      if((await replay(bad,undefined,undefined,trust)).ok || (await replayStream(async function*(){yield* bad;},undefined,undefined,trust)).ok)throw new Error('installed impossible report replay accepted');
+      let restoredRefused=false;try{const restored=await createGuard({policy,authorization,log:{entries:bad,append(){},close(){}}});restored.close();}catch(error){restoredRefused=/report|outcome|attribution/.test(error.message);}
+      if(!restoredRefused)throw new Error('installed impossible report restore accepted');
+    }
+    function redeemAfter(prefix,changes={}){return seal({v:1,kind:'redeem',seq:prefix.length,prev:prefix.at(-1).hash,at:1001,decision:d.hash,blockHeight:'10',...changes});}
+    const admitted=entries.slice(0,2),invalidRedeems=[[...entries,redeemAfter(entries)],...[null,'101','010','x'].map(blockHeight=>[...admitted,redeemAfter(admitted,{blockHeight})]),...[null,-1,'1001'].map(at=>[...admitted,redeemAfter(admitted,{at})]),[...admitted,redeemAfter(admitted,{decision:'0'.repeat(64)})]];
+    for(const outcome of ['landed','failed','expired']){const final=[...admitted,reportAfter(admitted,{outcome})];invalidRedeems.push([...final,redeemAfter(final)]);}
+    for(const bad of invalidRedeems){
+      if((await replay(bad,undefined,undefined,trust)).ok || (await replayStream(async function*(){yield* bad;},undefined,undefined,trust)).ok)throw new Error('installed impossible redemption replay accepted');
+      let restoredRefused=false;try{const restored=await createGuard({policy,authorization,log:{entries:bad,append(){},close(){}}});restored.close();}catch(error){restoredRefused=/redeem|redemption|receipt/.test(error.message);}
+      if(!restoredRefused)throw new Error('installed impossible redemption restore accepted');
+    }
     const prefix=await prepareCheckpointPrefix(entries,undefined,context,trust),state=await prepareCheckpointState(entries,undefined,context,trust);
     const hash=text=>createHash('sha256').update(text).digest('hex'),p=JSON.parse(prefix.text),s=JSON.parse(state.text);
     const rebuilt=await rebuildCheckpointPrefix(entries,undefined,context,prefix.text,trust);
@@ -281,6 +303,20 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
     const history=entries.map(entry=>stringify(entry)+'\\n').join('');writeFileSync(recordPath,history);writeFileSync(archivePath,history,{mode:0o400});
     const store=fileStore(recordPath,{ownership:'kernel',create:false});
     try{
+      const index=await prepareRequestIndex(entries,undefined,context,trust),indexPath=join(directory,'request-index');mkdirSync(indexPath);
+      const manifest=JSON.parse(index.text);
+      if(index.digest!==hash(index.text) || index.root.digest!==index.digest || manifest.seq!==context.seq || manifest.head!==context.head || manifest.guardId!==trust.guardId || manifest.cluster!==trust.cluster || index.shards.map(shard=>shard.bucket).join('')!=='0123456789abcdef')throw new Error('installed index root or complete shard coverage differs');
+      writeFileSync(join(indexPath,'manifest.json'),index.text);for(const shard of index.shards)writeFileSync(join(indexPath,shard.bucket+'.jsonl'),shard.text);
+      const payment=await lookupRequestIndex(indexPath,index.root,{clientId:'client',id:'payment'}),status=await lookupRequestIndex(indexPath,index.root,{clientId:'client',id:'status'});
+      if(payment?.start.hash!==d.hash || payment.signed?.event.signature!==signature || payment.started?.event.stage!=='send-started' || payment.response?.event.status!=='uncertain' || !Object.isFrozen(payment) || !Object.isFrozen(payment.signed.event))throw new Error('installed indexed uncertain send differs');
+      if(status?.start.hash!==request.hash || status.response?.result!=='{"ready":true}' || !Object.isFrozen(status.response) || await lookupRequestIndex(indexPath,index.root,{clientId:'client',id:'absent'})!==null)throw new Error('installed indexed reply or absence differs');
+      let forgedRootRefused=false;try{await lookupRequestIndex(indexPath,structuredClone(index.root),{clientId:'client',id:'absent'});}catch(error){forgedRootRefused=error instanceof RequestIndexError && error.code==='request-index';}if(!forgedRootRefused)throw new Error('installed cache minted root authority');
+      const replyShard=index.shards.find(shard=>shard.text.includes(request.hash)),replyPath=join(indexPath,replyShard.bucket+'.jsonl'),changedReply=replyShard.text.replace(/"result":"[^\\n]*?ready[^\\n]*?true/g,value=>value.replace('true','null'));
+      if(changedReply===replyShard.text || Buffer.byteLength(changedReply)!==Buffer.byteLength(replyShard.text))throw new Error('installed altered reply fixture differs');
+      try{writeFileSync(replyPath,changedReply);let refused=false;try{await lookupRequestIndex(indexPath,index.root,{clientId:'client',id:'status'});}catch(error){refused=error instanceof RequestIndexError && error.code==='request-index';}if(!refused)throw new Error('installed indexed reply alteration accepted');}finally{writeFileSync(replyPath,replyShard.text);}
+      const paymentShard=index.shards.find(shard=>shard.text.includes(d.hash)),paymentPath=join(indexPath,paymentShard.bucket+'.jsonl'),omitted=paymentShard.text.split('\\n').filter(line=>!line.includes(d.hash)).filter(Boolean).map(line=>line+'\\n').join('');
+      const falseManifest=structuredClone(manifest),metadata=falseManifest.shards.find(shard=>shard.bucket===paymentShard.bucket);metadata.bytes=Buffer.byteLength(omitted);metadata.rows--;metadata.sha256=hash(omitted);
+      try{writeFileSync(paymentPath,omitted);writeFileSync(join(indexPath,'manifest.json'),stringify(falseManifest)+'\\n');let refused=false;try{await lookupRequestIndex(indexPath,index.root,{clientId:'client',id:'payment'});}catch(error){refused=error instanceof RequestIndexError && error.code==='request-index';}if(!refused)throw new Error('installed omission plus local rechecksum accepted');}finally{writeFileSync(paymentPath,paymentShard.text);writeFileSync(join(indexPath,'manifest.json'),index.text);}
       const cursor=streamArchive(archivePath,{expectedHead:context.head});let streamed=0;
       for(;;){const next=await cursor.next();if(next.done){if(next.value.entries!==streamed || next.value.head!==context.head || !Object.isFrozen(next.value))throw new Error('installed stream receipt differs');break;}
         if(!Object.isFrozen(next.value) || next.value.seq!==streamed)throw new Error('installed stream entry differs');streamed++;}
@@ -340,14 +376,14 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
     const {hash:unused,...body}=d,forged={...body,telemetry:{intensity:1,valence:-1,repetition:1}};
     const canonical=JSON.stringify(forged,(_key,value)=>value && typeof value==='object' && !Array.isArray(value)?Object.fromEntries(Object.keys(value).sort().map(k=>[k,value[k]])):value);
     const changed={...forged,hash:hash(canonical)},bad=[entries[0],changed],end={seq:2,head:changed.hash};
-    for(const [prepare,ErrorType] of [[prepareCheckpointPrefix,CheckpointPrefixError],[prepareCheckpointState,CheckpointStateError]]){
+    for(const [prepare,ErrorType] of [[prepareCheckpointPrefix,CheckpointPrefixError],[prepareCheckpointState,CheckpointStateError],[prepareRequestIndex,RequestIndexError]]){
       let refused=false;try{await prepare(bad,undefined,end,trust);}catch(error){refused=error instanceof ErrorType;}
       if(!refused)throw new Error('dishonest replay accepted');
     }
     console.log(JSON.stringify({events:p.events.length,requests:s.state.requests.length,uncertain:true}));`;
   const result=spawnSync(process.execPath,["--input-type=module","-e",script,inputPolicy,Buffer.from(transfer(2)).toString("base64")],{cwd:consumer,encoding:"utf8"});
   assert.equal(result.status,0,result.stderr);assert.deepEqual(JSON.parse(result.stdout),{events:1,requests:2,uncertain:true});
-  for(const name of ["checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication","checkpoint-recovery","checkpoint-errors"])for(const extension of ["js","d.ts"])assert.ok(packed.files.some((file:{path:string})=>file.path==="dist/src/"+name+"."+extension));
+  for(const name of ["checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication","checkpoint-recovery","checkpoint-errors","request-index"])for(const extension of ["js","d.ts"])assert.ok(packed.files.some((file:{path:string})=>file.path==="dist/src/"+name+"."+extension));
 });
 
 test("PKG-1/OWN-2: installed record-only operations avoid evaluation imports",()=>{

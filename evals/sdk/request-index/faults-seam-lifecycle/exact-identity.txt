@@ -1,0 +1,74 @@
+✔ SNP-7: manifest binds verified signed endpoint and every empty shard (18.136138ms)
+✔ SNP-7/LIF-1/2/7: denied, pending, sent and final facts keep exact payload and reply bindings (30.265604ms)
+✔ SNP-7: source, endpoint, policy and external trust are captured before asynchronous replay (3.872934ms)
+✔ SNP-7/VER-2: unsigned, malformed, dishonest and foreign history cannot mint an expected root (3.379312ms)
+✔ SNP-7/LIF-1: cross-method duplicate identity and changed payload are rejected during projection (4.080535ms)
+✔ SNP-7: cross-request response target and repeated immutable answers cannot pass signed replay (2.671756ms)
+✔ SNP-7/LIF-7: unsupported report outcomes cannot become settled index evidence (1.308509ms)
+✔ SNP-7: unsupported report attribution cannot mint a trusted index root (1.379756ms)
+✔ SNP-7/LIF-7: a final report cannot be followed by another unknown or final report (1.589307ms)
+✔ SNP-7: local report validation remains effective at the controlled replay dependency seam (81.314455ms)
+✔ SNP-7: omission plus recomputed disk checksums cannot prove historical absence (5.264241ms)
+✔ SNP-7: a found request cannot return before later bytes and complete shard digest verify (3.608136ms)
+✔ SNP-7: same-size changed reply bytes cannot replace independently derived evidence (5.149581ms)
+✔ SNP-7: source changes during a lookup refuse even when bytes still equal the root (3.48003ms)
+✔ SNP-7: lookup identity and line ceiling are captured before file awaits (3.4859ms)
+✔ SNP-7: a late source mutation after descriptor stat cannot evade named metadata checks (4.454573ms)
+✔ SNP-7: small provenance root works after generated artefacts leave scope; parsed roots refuse (3.270043ms)
+✖ SNP-7: complete shards distinguish exact identities, neighbouring hits and absent keys (6.493326ms)
+✔ SNP-7: altered row schema, route and cross-request reply targets refuse (6.897186ms)
+✔ SNP-7: another existing request's reply cannot answer this identity (4.049397ms)
+✔ SNP-7: cache source errors, symlinks, directories, missing and oversized rows refuse (6.979743ms)
+✔ SNP-7: runtime loader options must be an object with a valid explicit line ceiling (2.918572ms)
+✔ SNP-7: hardlinked shards and symlinked generation directories refuse (4.400834ms)
+✔ SNP-7: replacing the generation directory after file checks cannot return evidence (3.276006ms)
+✔ SNP-7: deterministic permission/read errors refuse and close every acquired descriptor (3.632165ms)
+✔ SNP-7: completed replies and roots remain distinct across policy changes and restart (6.294632ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 25
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 345.509843
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index.test.ts:235:1
+✖ SNP-7: complete shards distinguish exact identities, neighbouring hits and absent keys (6.493326ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   at: 1001,
+  +   hash: '42aaf9c5f16dc1f0c6cc07aa8529cb8cf3cc559a85797dc8270b7773a8709235',
+  -   at: 1000,
+  -   hash: '8bf80fd78b7cff7a7b1678f63c1c7688a376140cf2b01371d42444acb6ee587d',
+      kind: 'request',
+      method: 'status',
+      payload: '{}',
+  +   prev: '8bf80fd78b7cff7a7b1678f63c1c7688a376140cf2b01371d42444acb6ee587d',
+  -   prev: '42ed7417a0919b9844300e5b6879bdc5c7178647fa4394b97c45ca2e07df7547',
+      request: {
+        clientId: 'client',
+        digest: '2c5d2454f3d116f455989b333be5ecba8e3848be4e82f4cf993eb803dc2a1d99',
+        guardId: 'workload',
+  +     id: 'neighbour-11'
+  -     id: 'neighbour-0'
+      },
+  +   seq: 2,
+  -   seq: 1,
+      v: 1
+    }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:247:14)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { at: 1001, hash: '42aaf9c5f16dc1f0c6cc07aa8529cb8cf3cc559a85797dc8270b7773a8709235', kind: 'request', method: 'status', payload: '{}', prev: '8bf80fd78b7cff7a7b1678f63c1c7688a376140cf2b01371d42444acb6ee587d', request: { clientId: 'client', digest: '2c5d2454f3d116f455989b333be5ecba8e3848be4e82f4cf993eb803dc2a1d99', guardId: 'workload', id: 'neighbour-11' }, seq: 2, v: 1 },
+    expected: { v: 1, seq: 1, prev: '42ed7417a0919b9844300e5b6879bdc5c7178647fa4394b97c45ca2e07df7547', kind: 'request', at: 1000, request: { guardId: 'workload', clientId: 'client', id: 'neighbour-0', digest: '2c5d2454f3d116f455989b333be5ecba8e3848be4e82f4cf993eb803dc2a1d99' }, method: 'status', payload: '{}', hash: '8bf80fd78b7cff7a7b1678f63c1c7688a376140cf2b01371d42444acb6ee587d' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

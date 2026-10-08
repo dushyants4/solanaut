@@ -1,0 +1,26 @@
+✔ SNP-7: manifest binds verified signed endpoint and every empty shard (17.326334ms)
+✔ SNP-7/LIF-1/2/7: denied, pending, sent and final facts keep exact payload and reply bindings (27.707321ms)
+✔ SNP-7: source, endpoint, policy and external trust are captured before asynchronous replay (4.466147ms)
+✔ SNP-7/VER-2: unsigned, malformed, dishonest and foreign history cannot mint an expected root (4.20545ms)
+✔ SNP-7/LIF-1: cross-method duplicate identity and changed payload are rejected during projection (3.783029ms)
+✔ SNP-7: cross-request response target and repeated immutable answers cannot pass signed replay (3.20179ms)
+✔ SNP-7: omission plus recomputed disk checksums cannot prove historical absence (5.462179ms)
+✔ SNP-7: a found request cannot return before later bytes and complete shard digest verify (3.854174ms)
+✔ SNP-7: same-size changed reply bytes cannot replace independently derived evidence (3.743959ms)
+✔ SNP-7: source changes during a lookup refuse even when bytes still equal the root (4.85465ms)
+✔ SNP-7: lookup identity and line ceiling are captured before file awaits (3.751816ms)
+✔ SNP-7: a late source mutation after descriptor stat cannot evade named metadata checks (3.425785ms)
+✔ SNP-7: small provenance root works after generated artefacts leave scope; parsed roots refuse (3.722833ms)
+✔ SNP-7: complete shards distinguish exact identities, neighbouring hits and absent keys (6.35357ms)
+✔ SNP-7: altered row schema, route and cross-request reply targets refuse (4.751113ms)
+✔ SNP-7: another existing request's reply cannot answer this identity (4.691438ms)
+✔ SNP-7: cache source errors, symlinks, directories, missing and oversized rows refuse (8.31888ms)
+✔ SNP-7: completed replies and roots remain distinct across policy changes and restart (6.61354ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 237.602285

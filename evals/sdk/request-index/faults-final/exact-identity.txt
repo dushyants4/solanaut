@@ -1,0 +1,65 @@
+✔ SNP-7: manifest binds verified signed endpoint and every empty shard (16.869558ms)
+✔ SNP-7/LIF-1/2/7: denied, pending, sent and final facts keep exact payload and reply bindings (28.212398ms)
+✔ SNP-7: source, endpoint, policy and external trust are captured before asynchronous replay (6.547995ms)
+✔ SNP-7/VER-2: unsigned, malformed, dishonest and foreign history cannot mint an expected root (3.920281ms)
+✔ SNP-7/LIF-1: cross-method duplicate identity and changed payload are rejected during projection (3.694678ms)
+✔ SNP-7: cross-request response target and repeated immutable answers cannot pass signed replay (2.796189ms)
+✔ SNP-7: omission plus recomputed disk checksums cannot prove historical absence (5.386505ms)
+✔ SNP-7: a found request cannot return before later bytes and complete shard digest verify (4.970001ms)
+✔ SNP-7: same-size changed reply bytes cannot replace independently derived evidence (3.672696ms)
+✔ SNP-7: source changes during a lookup refuse even when bytes still equal the root (5.895098ms)
+✔ SNP-7: lookup identity and line ceiling are captured before file awaits (3.877894ms)
+✔ SNP-7: small provenance root works after generated artefacts leave scope; parsed roots refuse (4.658903ms)
+✖ SNP-7: complete shards distinguish exact identities, neighbouring hits and absent keys (6.1065ms)
+✔ SNP-7: altered row schema, route and cross-request reply targets refuse (7.465382ms)
+✔ SNP-7: another existing request's reply cannot answer this identity (4.760456ms)
+✔ SNP-7: cache source errors, symlinks, directories, missing and oversized rows refuse (10.35465ms)
+✔ SNP-7: completed replies and roots remain distinct across policy changes and restart (8.657983ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 16
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 242.373251
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index.test.ts:182:1
+✖ SNP-7: complete shards distinguish exact identities, neighbouring hits and absent keys (6.1065ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   at: 1001,
+  +   hash: 'e0439d2d321547fc1e7a28a999b18d3d899a8e3cf51fc6b98baadb363f7c6d7d',
+  -   at: 1000,
+  -   hash: 'e18c44cc2916c6e0f4635ba1bfce2f48be43e2192a6a530dd5a94fb455710acd',
+      kind: 'request',
+      method: 'status',
+      payload: '{}',
+  +   prev: 'e18c44cc2916c6e0f4635ba1bfce2f48be43e2192a6a530dd5a94fb455710acd',
+  -   prev: '88429217e62de6ac54ba954a2b3b7b6fae84b914a317807be8b5835d63dddb86',
+      request: {
+        clientId: 'client',
+        digest: '2c5d2454f3d116f455989b333be5ecba8e3848be4e82f4cf993eb803dc2a1d99',
+        guardId: 'workload',
+  +     id: 'neighbour-11'
+  -     id: 'neighbour-0'
+      },
+  +   seq: 2,
+  -   seq: 1,
+      v: 1
+    }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:194:14)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { at: 1001, hash: 'e0439d2d321547fc1e7a28a999b18d3d899a8e3cf51fc6b98baadb363f7c6d7d', kind: 'request', method: 'status', payload: '{}', prev: 'e18c44cc2916c6e0f4635ba1bfce2f48be43e2192a6a530dd5a94fb455710acd', request: { clientId: 'client', digest: '2c5d2454f3d116f455989b333be5ecba8e3848be4e82f4cf993eb803dc2a1d99', guardId: 'workload', id: 'neighbour-11' }, seq: 2, v: 1 },
+    expected: { v: 1, seq: 1, prev: '88429217e62de6ac54ba954a2b3b7b6fae84b914a317807be8b5835d63dddb86', kind: 'request', at: 1000, request: { guardId: 'workload', clientId: 'client', id: 'neighbour-0', digest: '2c5d2454f3d116f455989b333be5ecba8e3848be4e82f4cf993eb803dc2a1d99' }, method: 'status', payload: '{}', hash: 'e18c44cc2916c6e0f4635ba1bfce2f48be43e2192a6a530dd5a94fb455710acd' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

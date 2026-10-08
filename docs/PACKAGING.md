@@ -1,7 +1,14 @@
 # PACKAGING.md — private SDK candidate
 
-> **Draft 18** · 2026-10-07 · owner: integrator · for: developers and release reviewers.
+> **Draft 19** · 2026-10-08 · owner: integrator · for: developers and release reviewers.
 > This is release preparation, not a stable release. Register: `kb/DOCUMENTS.md`.
+
+The private installed consumer exercises the compiled internal request index,
+exact historical replies, forged roots, altered bytes and omission/rechecksum
+attacks. It also checks D22/D23 impossible report/redemption replay and restore.
+Internal module paths remain outside stable exports. Candidate version/private
+metadata stays unchanged. Staged release scope and human publication decisions
+are recorded in `release/STAGED-RELEASE.md`.
 
 The private installed consumer checks record-only append/reopen and typed
 capability refusal while evaluation imports are blocked. Actual installed

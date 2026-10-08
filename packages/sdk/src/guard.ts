@@ -329,7 +329,7 @@ function reapply(env: Env, e: Entry): void {
     const k = env.gov.tick(e.telemetry);
     if (k.posture !== e.posture) throw new Error(`the record does not replay: at seq ${e.seq} Keel gives ${k.posture}, and the record says ${e.posture}`);
   }
-  apply(env.state, e, env.policy);
+  apply(env.state, e, env.policy, env.policyEntry ? env.policyHash : undefined);
   if (e.kind === "release") env.gov.reset();
 }
 
@@ -378,7 +378,7 @@ export async function createGuard(opts: GuardOptions): Promise<Guard> {
       shut = `the record could not be written (${(err as Error)?.message ?? String(err)}), so this guard decides nothing more until it is restarted`;
       throw new Error(shut);
     }
-    apply(state, entry, policy);
+    apply(state, entry, policy, env.policyEntry ? policyHash : undefined);
     if (entry.kind === "release") gov.reset();
     return entry;
   }
@@ -621,7 +621,7 @@ function replayChecker(env: Env) {
         }
         // Keel has ticked in evaluate; apply the entry without ticking it twice.
         try {
-          apply(env.state, e, env.policy);
+          apply(env.state, e, env.policy, env.policyEntry ? env.policyHash : undefined);
         } catch (err) {
           return diverge("chain", e.prev, (err as Error).message);
         }

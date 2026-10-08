@@ -1,0 +1,19 @@
+
+session_close.py — gates
+======================================================================
+  [PASS]  manifests match the seat table
+  [PASS]  harness audits clean
+  [PASS]  boundary guard passes its fault matrix
+  [PASS]  the knowledge vault lints clean
+  [PASS]  every measured claim can be regenerated
+  [PASS]  no secrets in 1682 tracked files
+  [PASS]  run record exists for 2026-10-08
+  [PASS]  remote configured
+  [PASS]  HEAD is pushed to origin
+  [FAIL]  working tree committed
+          47 uncommitted change(s). A pushed HEAD proves
+          nothing while work sits outside it.
+            git add -A && git commit -m "office: <what changed>"
+----------------------------------------------------------------------
+  9/10 gates passed
+  NOT READY TO CLOSE — a failing gate is a finding, never a formality.

@@ -1,0 +1,62 @@
+✔ SNP-7: manifest binds verified signed endpoint and every empty shard (17.037821ms)
+✖ SNP-7/LIF-1/2/7: denied, pending, sent and final facts keep exact payload and reply bindings (24.306364ms)
+✔ SNP-7: source, endpoint, policy and external trust are captured before asynchronous replay (6.395514ms)
+✔ SNP-7/VER-2: unsigned, malformed, dishonest and foreign history cannot mint an expected root (5.104466ms)
+✔ SNP-7/LIF-1: cross-method duplicate identity and changed payload are rejected during projection (4.635315ms)
+✔ SNP-7: cross-request response target and repeated immutable answers cannot pass signed replay (3.678122ms)
+✔ SNP-7/LIF-7: unsupported report outcomes cannot become settled index evidence (1.824689ms)
+✔ SNP-7: unsupported report attribution cannot mint a trusted index root (1.819153ms)
+✔ SNP-7/LIF-7: a final report cannot be followed by another unknown or final report (2.503495ms)
+✔ SNP-7: omission plus recomputed disk checksums cannot prove historical absence (9.552116ms)
+✔ SNP-7: a found request cannot return before later bytes and complete shard digest verify (4.105326ms)
+✔ SNP-7: same-size changed reply bytes cannot replace independently derived evidence (3.594539ms)
+✔ SNP-7: source changes during a lookup refuse even when bytes still equal the root (3.897246ms)
+✔ SNP-7: lookup identity and line ceiling are captured before file awaits (2.982079ms)
+✔ SNP-7: a late source mutation after descriptor stat cannot evade named metadata checks (3.297181ms)
+✔ SNP-7: small provenance root works after generated artefacts leave scope; parsed roots refuse (3.532002ms)
+✔ SNP-7: complete shards distinguish exact identities, neighbouring hits and absent keys (4.333772ms)
+✔ SNP-7: altered row schema, route and cross-request reply targets refuse (4.74906ms)
+✔ SNP-7: another existing request's reply cannot answer this identity (4.134863ms)
+✔ SNP-7: cache source errors, symlinks, directories, missing and oversized rows refuse (7.593698ms)
+✔ SNP-7: completed replies and roots remain distinct across policy changes and restart (6.291882ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 20
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 237.489944
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index.test.ts:58:1
+✖ SNP-7/LIF-1/2/7: denied, pending, sent and final facts keep exact payload and reply bindings (24.306364ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + null
+  - {
+  -   at: 1000,
+  -   event: {
+  -     blockHeight: '11',
+  -     decision: '8ed147672f5ba7c680e7bd0c218986a25e517cb7b69a7dff9abdd0fa58143df4',
+  -     stage: 'send-started'
+  -   },
+  -   hash: 'ec9c600d2698c00a282fa4f1f94b2ded1f7de94a8385d525a16803f09b11b80a',
+  -   kind: 'signing',
+  -   prev: '47103083d1498c98076228ca311af2da023244bf747d23f181f39185a460d0f2',
+  -   seq: 4,
+  -   v: 1
+  - }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:71:50)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: { v: 1, seq: 4, prev: '47103083d1498c98076228ca311af2da023244bf747d23f181f39185a460d0f2', kind: 'signing', at: 1000, event: { stage: 'send-started', decision: '8ed147672f5ba7c680e7bd0c218986a25e517cb7b69a7dff9abdd0fa58143df4', blockHeight: '11' }, hash: 'ec9c600d2698c00a282fa4f1f94b2ded1f7de94a8385d525a16803f09b11b80a' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

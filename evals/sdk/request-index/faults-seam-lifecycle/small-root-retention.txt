@@ -1,0 +1,80 @@
+✖ SNP-7: manifest binds verified signed endpoint and every empty shard (14.698896ms)
+✔ SNP-7/LIF-1/2/7: denied, pending, sent and final facts keep exact payload and reply bindings (30.976135ms)
+✔ SNP-7: source, endpoint, policy and external trust are captured before asynchronous replay (4.242013ms)
+✔ SNP-7/VER-2: unsigned, malformed, dishonest and foreign history cannot mint an expected root (4.425349ms)
+✔ SNP-7/LIF-1: cross-method duplicate identity and changed payload are rejected during projection (4.09151ms)
+✔ SNP-7: cross-request response target and repeated immutable answers cannot pass signed replay (2.883843ms)
+✔ SNP-7/LIF-7: unsupported report outcomes cannot become settled index evidence (1.817729ms)
+✔ SNP-7: unsupported report attribution cannot mint a trusted index root (1.473592ms)
+✔ SNP-7/LIF-7: a final report cannot be followed by another unknown or final report (1.894489ms)
+✔ SNP-7: local report validation remains effective at the controlled replay dependency seam (80.693203ms)
+✔ SNP-7: omission plus recomputed disk checksums cannot prove historical absence (5.908635ms)
+✔ SNP-7: a found request cannot return before later bytes and complete shard digest verify (4.059832ms)
+✔ SNP-7: same-size changed reply bytes cannot replace independently derived evidence (4.284947ms)
+✔ SNP-7: source changes during a lookup refuse even when bytes still equal the root (3.530447ms)
+✔ SNP-7: lookup identity and line ceiling are captured before file awaits (3.570083ms)
+✔ SNP-7: a late source mutation after descriptor stat cannot evade named metadata checks (4.364813ms)
+✖ SNP-7: small provenance root works after generated artefacts leave scope; parsed roots refuse (3.815577ms)
+✔ SNP-7: complete shards distinguish exact identities, neighbouring hits and absent keys (5.646644ms)
+✔ SNP-7: altered row schema, route and cross-request reply targets refuse (4.303811ms)
+✔ SNP-7: another existing request's reply cannot answer this identity (4.312818ms)
+✔ SNP-7: cache source errors, symlinks, directories, missing and oversized rows refuse (6.810484ms)
+✔ SNP-7: runtime loader options must be an object with a valid explicit line ceiling (2.726802ms)
+✔ SNP-7: hardlinked shards and symlinked generation directories refuse (4.225549ms)
+✔ SNP-7: replacing the generation directory after file checks cannot return evidence (3.263478ms)
+✔ SNP-7: deterministic permission/read errors refuse and close every acquired descriptor (3.330332ms)
+✔ SNP-7: completed replies and roots remain distinct across policy changes and restart (6.227237ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 24
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 346.928601
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index.test.ts:41:1
+✖ SNP-7: manifest binds verified signed endpoint and every empty shard (14.698896ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      'digest',
+  +   'shards',
+      'text'
+    ]
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:50:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'digest', 'shards', 'text' ],
+    expected: [ 'digest', 'text' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index.test.ts:225:1
+✖ SNP-7: small provenance root works after generated artefacts leave scope; parsed roots refuse (3.815577ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      'digest',
+  +   'shards',
+      'text'
+    ]
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:230:14)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'digest', 'shards', 'text' ],
+    expected: [ 'digest', 'text' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

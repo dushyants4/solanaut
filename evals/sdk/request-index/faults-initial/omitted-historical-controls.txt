@@ -1,0 +1,184 @@
+✔ SNP-7: manifest binds verified signed endpoint and every empty shard (15.654733ms)
+✖ SNP-7/LIF-1/2/7: denied, pending, sent and final facts keep exact payload and reply bindings (19.812238ms)
+✔ SNP-7: source, endpoint, policy and external trust are captured before asynchronous replay (4.518808ms)
+✔ SNP-7/VER-2: unsigned, malformed, dishonest and foreign history cannot mint an expected root (4.270053ms)
+✔ SNP-7/LIF-1: cross-method duplicate identity and changed payload are rejected during projection (3.371878ms)
+✔ SNP-7: cross-request response target and repeated immutable answers cannot pass signed replay (2.474026ms)
+✖ SNP-7: omission plus recomputed disk checksums cannot prove historical absence (6.064719ms)
+✖ SNP-7: a found request cannot return before later bytes and complete shard digest verify (3.86431ms)
+✖ SNP-7: same-size changed reply bytes cannot replace independently derived evidence (2.609317ms)
+✖ SNP-7: source changes during a lookup refuse even when bytes still equal the root (3.039863ms)
+✖ SNP-7: lookup identity and line ceiling are captured before file awaits (8.48552ms)
+✖ SNP-7: small provenance root works after generated artefacts leave scope; parsed roots refuse (4.30201ms)
+✖ SNP-7: complete shards distinguish exact identities, neighbouring hits and absent keys (2.704015ms)
+✖ SNP-7: altered row schema, route and cross-request reply targets refuse (1.662518ms)
+✖ SNP-7: cache source errors, symlinks, directories, missing and oversized rows refuse (2.32647ms)
+✖ SNP-7: completed replies and roots remain distinct across policy changes and restart (1.541097ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 5
+ℹ fail 11
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 197.500899
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index.test.ts:58:1
+✖ SNP-7/LIF-1/2/7: denied, pending, sent and final facts keep exact payload and reply bindings (19.812238ms)
+  Error [RequestIndexError]: control reply has no unique historical start
+      at projection (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/src/request-index.ts:57:67)
+      at prepareRequestIndex (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/src/request-index.ts:83:68)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:68:20)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'request-index'
+  }
+
+test at packages/sdk/test/request-index.test.ts:119:1
+✖ SNP-7: omission plus recomputed disk checksums cannot prove historical absence (6.064719ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (RequestIndexError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:126:7)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { name: 'RequestIndexError', code: 'request-index' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index.test.ts:132:1
+✖ SNP-7: a found request cannot return before later bytes and complete shard digest verify (3.86431ms)
+  TypeError: Cannot read properties of undefined (reading 'bucket')
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:136:39)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/request-index.test.ts:140:1
+✖ SNP-7: same-size changed reply bytes cannot replace independently derived evidence (2.609317ms)
+  Error [RequestIndexError]: control reply has no unique historical start
+      at projection (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/src/request-index.ts:57:67)
+      at prepareRequestIndex (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/src/request-index.ts:83:68)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:143:20)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'request-index'
+  }
+
+test at packages/sdk/test/request-index.test.ts:151:1
+✖ SNP-7: source changes during a lookup refuse even when bytes still equal the root (3.039863ms)
+  TypeError: Cannot read properties of undefined (reading 'bucket')
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:154:194)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/request-index.test.ts:165:1
+✖ SNP-7: lookup identity and line ceiling are captured before file awaits (8.48552ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + undefined
+  - {
+  -   at: 1000,
+  -   hash: 'ac5fa5be844b05ca1be9f5588f0e9ca967cbbfe869f039b764248cde8f81386c',
+  -   kind: 'request',
+  -   method: 'status',
+  -   payload: '{}',
+  -   prev: '56a0405d847701b6d423d52e5525e5b51dee95e5ccea9b5ddf2a2a81fe05efd2',
+  -   request: {
+  -     clientId: 'client',
+  -     digest: '2c5d2454f3d116f455989b333be5ecba8e3848be4e82f4cf993eb803dc2a1d99',
+  -     guardId: 'workload',
+  -     id: 'hit'
+  -   },
+  -   seq: 1,
+  -   v: 1
+  - }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:168:171)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { v: 1, seq: 1, prev: '56a0405d847701b6d423d52e5525e5b51dee95e5ccea9b5ddf2a2a81fe05efd2', kind: 'request', at: 1000, request: { guardId: 'workload', clientId: 'client', id: 'hit', digest: '2c5d2454f3d116f455989b333be5ecba8e3848be4e82f4cf993eb803dc2a1d99' }, method: 'status', payload: '{}', hash: 'ac5fa5be844b05ca1be9f5588f0e9ca967cbbfe869f039b764248cde8f81386c' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index.test.ts:172:1
+✖ SNP-7: small provenance root works after generated artefacts leave scope; parsed roots refuse (4.30201ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + undefined
+  - {
+  -   at: 1000,
+  -   hash: 'a9019217518ef85437dc4252a279f2309aaadf2c71ccb29c029a96d2522cf20f',
+  -   kind: 'request',
+  -   method: 'status',
+  -   payload: '{}',
+  -   prev: '5a290e7ceae9d7cf3b8646e255538de2e10570bf4bcf9ed9faec4f71b5651198',
+  -   request: {
+  -     clientId: 'client',
+  -     digest: '2c5d2454f3d116f455989b333be5ecba8e3848be4e82f4cf993eb803dc2a1d99',
+  -     guardId: 'workload',
+  -     id: 'historical'
+  -   },
+  -   seq: 1,
+  -   v: 1
+  - }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:177:75)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { v: 1, seq: 1, prev: '5a290e7ceae9d7cf3b8646e255538de2e10570bf4bcf9ed9faec4f71b5651198', kind: 'request', at: 1000, request: { guardId: 'workload', clientId: 'client', id: 'historical', digest: '2c5d2454f3d116f455989b333be5ecba8e3848be4e82f4cf993eb803dc2a1d99' }, method: 'status', payload: '{}', hash: 'a9019217518ef85437dc4252a279f2309aaadf2c71ccb29c029a96d2522cf20f' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index.test.ts:182:1
+✖ SNP-7: complete shards distinguish exact identities, neighbouring hits and absent keys (2.704015ms)
+  Error [RequestIndexError]: control reply has no unique historical start
+      at projection (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/src/request-index.ts:57:67)
+      at prepareRequestIndex (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/src/request-index.ts:83:68)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:192:20)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'request-index'
+  }
+
+test at packages/sdk/test/request-index.test.ts:200:1
+✖ SNP-7: altered row schema, route and cross-request reply targets refuse (1.662518ms)
+  Error [RequestIndexError]: control reply has no unique historical start
+      at projection (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/src/request-index.ts:57:67)
+      at prepareRequestIndex (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/src/request-index.ts:83:68)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:203:20)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'request-index'
+  }
+
+test at packages/sdk/test/request-index.test.ts:213:1
+✖ SNP-7: cache source errors, symlinks, directories, missing and oversized rows refuse (2.32647ms)
+  TypeError: Cannot read properties of undefined (reading 'bucket')
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:216:194)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/request-index.test.ts:228:1
+✖ SNP-7: completed replies and roots remain distinct across policy changes and restart (1.541097ms)
+  Error [RequestIndexError]: control reply has no unique historical start
+      at projection (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/src/request-index.ts:57:67)
+      at prepareRequestIndex (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/src/request-index.ts:83:68)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:231:13)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'request-index'
+  }

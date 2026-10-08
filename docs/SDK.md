@@ -1,7 +1,19 @@
 # SDK reference — private candidate
 
-> **Draft 16** · 2026-10-07 · owner: integrator · for: developers integrating the candidate.
+> **Draft 17** · 2026-10-08 · owner: integrator · for: developers integrating the candidate.
 > Register: `kb/DOCUMENTS.md`. This describes current exports, not a stable-release promise.
+
+Recovery now refuses impossible report/redemption transitions before state changes
+(D22/D23). Valid repeated unknown outcomes and legitimate unsigned historical
+redemptions retain their existing contract. Chronological policy equality applies
+where signed history supplies it. This does not remove trusted SDK telemetry.
+
+The internal request-index module is packaged for component qualification, without
+a root export or supported consumer contract. Its independently replay-derived
+root describes only a completed prefix; hits and absence cannot authorise current
+admissions. Source/installed evidence is `../evals/sdk/request-index.md`.
+The proposed devnet preview and page copy are in `release/STAGED-RELEASE.md` and
+`PRODUCT-PAGE.md`; public availability and stable deployment remain outstanding.
 
 Internal record-only use does not initialise checkpoint evaluation. Original
 checkpoint modules re-export the same error constructors. Actual maintenance
@@ -48,7 +60,7 @@ and isolation qualification remain incomplete. See [CLIENT](CLIENT.md) and [SIGN
 | `createGuard(options)` | Asynchronously validates policy, verifies the pinned Keel module/controller, opens the record and restores its history. Invalid policy, trust or history refuses startup. |
 | `guard.check(proposal, request?)` | Takes unsigned message bytes, time and optional block heights/grouping. Returns a recorded admission or named denial. An admission reserves spending; it is not a signature or a send. |
 | `guard.redeem(message, decisionHash, blockHeight?)` | Checks the exact admitted bytes, receipt, expiry and single use before signing. Returns `{ ok, reason }`; a receipt may not be redeemed again. |
-| `guard.report(decisionHash, outcome)` | Trusted SDK bookkeeping for an admitted decision. Throws for invalid attribution or conflicting outcomes. An unknown outcome retains conservative reservations. |
+| `guard.report(decisionHash, outcome)` | Trusted SDK bookkeeping for an admitted decision. Throws for unsupported outcomes, absent allowed decisions or reports after a final outcome. An unknown outcome retains conservative reservations. |
 | `guard.status()` | Returns latch and sequence/denial state. It does not attest chain settlement, dedicated-user isolation or service health. |
 | `guard.entries()` | Exposes recorded entries in order. Current guard state/history is in memory; bounded archive verification does not make guard replay bounded. |
 | `guard.releaseText(expires)` / `guard.release(text, signature, at)` | Prepares and verifies an operator-signed release for the current latch. Keep the operator outside the principal; SDK time remains caller-supplied. |

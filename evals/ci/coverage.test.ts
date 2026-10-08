@@ -23,7 +23,7 @@ test("CI-2: a critical branch deficit fails even when aggregate totals pass", ()
   assert.throws(()=>requireCoverage(files,inventory),/guard.ts/);
   files[0]!.branches.covered=100; files[2]!.branches.covered=84;
   assert.throws(()=>requireCoverage(files,inventory),/core.ts/);
-  for(const name of ["checkpoint.ts","checkpoint-archives.ts","checkpoint-prefix.ts","checkpoint-state.ts","checkpoint-bundle.ts","checkpoint-envelope.ts","checkpoint-publication.ts","checkpoint-recovery.ts","archive.ts"]){
+  for(const name of ["checkpoint.ts","checkpoint-archives.ts","checkpoint-prefix.ts","checkpoint-state.ts","checkpoint-bundle.ts","checkpoint-envelope.ts","checkpoint-publication.ts","checkpoint-recovery.ts","archive.ts","request-index.ts"]){
     const checkpoint = {path:"packages/sdk/src/"+name,statements:{covered:100,total:100},branches:{covered:84,total:100}};
     const complete = good(); complete[1]!.branches.covered=100;
     complete[0]!.branches.covered=100;

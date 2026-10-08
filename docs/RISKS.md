@@ -1,7 +1,21 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.54** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.55** · 2026-10-08 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
+
+D22/D23 prove that a resealed chain is not enough to establish valid report or
+receipt transitions. Shared recovery now rejects these impossible histories before
+state changes; builder regressions/faults are in the SDK receipts. Unsigned SDK
+history cannot establish chronological policy selection and remains advisory;
+the signed path supplies that selection. Existing negative bigint-height behaviour
+is preserved, not endorsed as chain evidence. Independent security stays owed.
+
+The internal request index independently derives its root through full signed
+replay. Cache checksums alone cannot establish absence or replace replies. It
+describes a completed prefix only: live-tail tracking, owned publication, bounded
+state and qualified restart are still required. A lookup result is not permission
+to admit. The staged SDK proposal and product-page draft do not clear the stable
+Linux product or publication. Failed hosted qualification remains a finding.
 
 Record-only loading now avoids evaluation imports; actual maintenance still
 requires the complete existing validation. Loader failure refuses maintenance and

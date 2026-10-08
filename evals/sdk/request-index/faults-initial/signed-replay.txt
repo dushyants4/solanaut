@@ -1,0 +1,54 @@
+✔ SNP-7: manifest binds verified signed endpoint and every empty shard (15.432746ms)
+✔ SNP-7/LIF-1/2/7: denied, pending, sent and final facts keep exact payload and reply bindings (38.139205ms)
+✔ SNP-7: source, endpoint, policy and external trust are captured before asynchronous replay (3.996209ms)
+✖ SNP-7/VER-2: unsigned, malformed, dishonest and foreign history cannot mint an expected root (5.135808ms)
+✖ SNP-7/LIF-1: cross-method duplicate identity and changed payload are rejected during projection (3.637184ms)
+✔ SNP-7: cross-request response target and repeated immutable answers cannot pass signed replay (1.809319ms)
+✔ SNP-7: omission plus recomputed disk checksums cannot prove historical absence (8.011283ms)
+✔ SNP-7: a found request cannot return before later bytes and complete shard digest verify (4.092248ms)
+✔ SNP-7: same-size changed reply bytes cannot replace independently derived evidence (3.465862ms)
+✔ SNP-7: source changes during a lookup refuse even when bytes still equal the root (3.277686ms)
+✔ SNP-7: lookup identity and line ceiling are captured before file awaits (2.773516ms)
+✔ SNP-7: small provenance root works after generated artefacts leave scope; parsed roots refuse (2.755912ms)
+✔ SNP-7: complete shards distinguish exact identities, neighbouring hits and absent keys (3.601355ms)
+✔ SNP-7: altered row schema, route and cross-request reply targets refuse (3.200776ms)
+✔ SNP-7: cache source errors, symlinks, directories, missing and oversized rows refuse (6.669925ms)
+✔ SNP-7: completed replies and roots remain distinct across policy changes and restart (4.186314ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 14
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 223.523641
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index.test.ts:88:1
+✖ SNP-7/VER-2: unsigned, malformed, dishonest and foreign history cannot mint an expected root (5.135808ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (RequestIndexError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:92:82)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { name: 'RequestIndexError', code: 'request-index' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index.test.ts:100:1
+✖ SNP-7/LIF-1: cross-method duplicate identity and changed payload are rejected during projection (3.637184ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (RequestIndexError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:107:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { name: 'RequestIndexError', code: 'request-index' },
+    operator: 'rejects',
+    diff: 'simple'
+  }

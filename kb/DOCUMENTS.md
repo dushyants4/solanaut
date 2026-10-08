@@ -1,5 +1,30 @@
 # DOCUMENTS.md — the document register
 
+New private consumer documents: `docs/PREVIEW.md`, `docs/PRODUCT-PAGE.md` and
+`docs/release/STAGED-RELEASE.md`. Their receipts are
+`evals/release/staged-preview.md` and `evals/sdk/request-index-integration.md`.
+
+CLAIMS S79–S82 record scoped final source/installed/ordinary/AST evidence and
+private preview consumption. Original failures and exact source hashes remain;
+fifteen isolated recovery/driver faults pass with restoration. Close/private
+sync and exact hosted qualification follow. Formal S78
+progress remains unchanged; component work receives no partial milestone credit.
+
+2026-10-08 concrete private preview registers PREVIEW, staged-preview receipt/
+manifest/index, SDK scope/page links, PROGRESS, HANDOFF and continuing run. Its
+synthetic JavaScript walkthrough executes from an external installed consumer;
+missing-example failure is retained. No public version, supported installation,
+key, signature, funded send or release clearance is introduced.
+
+2026-10-08 candidate integration registers SPEC Draft 4.64, RISKS 1.55,
+OVERVIEW Draft 38, SDK Draft 17, PACKAGING Draft 19, D22/D23 receipts, isolated
+request-index and parent integration receipts/index, staged release and private
+product-page drafts, PROGRESS, HANDOFF and continuing run. The index describes
+completed-prefix evidence only. Shared transition validation preserves unsigned
+history and existing negative-height semantics; no format or public API changes.
+Original peer-found failures, masked fault, type failures and stale population
+assertion remain beside corrections. All release gates and pending decisions stay.
+
 2026-10-08 fixed CI partitions and progress accounting register CI/progress
 receipts/index, CLAIMS S77/S78, release/mission plans, PROGRESS, HANDOFF and today
 continuation record and OVERVIEW Draft 37. All campaigns/limits are retained. Whole milestone progress
@@ -286,21 +311,24 @@ substantive change; *last reviewed* moves at every review.
 | Document | Version | Status | Owner | For | Last reviewed | Next review |
 |---|---|---|---|---|---|---|
 | [README.md](../README.md) | 4 | current | integrator | everyone | 2026-10-01 | 2c.1 |
+| [docs/PRODUCT-PAGE.md](../docs/PRODUCT-PAGE.md) | Draft 1 | review (private) | integrator | human and page reviewers | 2026-10-08 | R.1 |
+| [docs/PREVIEW.md](../docs/PREVIEW.md) | Draft 1 | draft (private candidate) | integrator | SDK evaluators | 2026-10-08 | 5.3 |
+| [docs/release/STAGED-RELEASE.md](../docs/release/STAGED-RELEASE.md) | Draft 1 | review (private scope) | integrator, archivist | human and release reviewers | 2026-10-08 | R.1 |
 | [docs/PRODUCT.md](../docs/PRODUCT.md) | 1.0 | current | architect | every seat, judges | 2026-09-30 | 2c.1 |
 | [docs/ROADMAP.md](../docs/ROADMAP.md) | Draft 3 | review | archivist, with the architect | the human, every seat, judges | 2026-10-05 | every leg |
 | [docs/READINESS.md](../docs/READINESS.md) | 2.0 | current | operator, with the evaluator | the human, every seat, auditors | 2026-10-05 | 3.10 |
-| [docs/RISKS.md](../docs/RISKS.md) | 1.31 | current | architect, with the evaluator | the human, every seat | 2026-10-07 | every Leg 3 milestone |
-| [docs/OVERVIEW.md](../docs/OVERVIEW.md) | Draft 24 | draft | integrator | engineers new to the repo, judges | 2026-10-06 | 3.10 |
-| [docs/SPEC.md](../docs/SPEC.md) | Draft 4.40 | current (§13 approved; foundation IDs trace accepted scope) | architect | the builder, evaluator and integrator seats | 2026-10-07 | 3.1, 3.10 |
+| [docs/RISKS.md](../docs/RISKS.md) | 1.55 | current | architect, with the evaluator | the human, every seat | 2026-10-08 | every Leg 3 milestone |
+| [docs/OVERVIEW.md](../docs/OVERVIEW.md) | Draft 38 | draft | integrator | engineers new to the repo, judges | 2026-10-08 | 3.10 |
+| [docs/SPEC.md](../docs/SPEC.md) | Draft 4.64 | current (§13 approved; foundation IDs trace accepted scope) | architect | the builder, evaluator and integrator seats | 2026-10-08 | 3.1, 3.10 |
 | [docs/SIGNER.md](../docs/SIGNER.md) | Draft 9 | draft | integrator | operators and signer developers | 2026-10-06 | 3.1 |
 | [docs/CLIENT.md](../docs/CLIENT.md) | Draft 1 | draft | integrator | Node SDK consumers | 2026-10-06 | 5.3 |
-| [docs/SDK.md](../docs/SDK.md) | Draft 4 | draft | integrator | developers integrating the candidate | 2026-10-06 | 5.3 |
+| [docs/SDK.md](../docs/SDK.md) | Draft 17 | draft | integrator | developers integrating the candidate | 2026-10-08 | 5.3 |
 | [docs/POLICY.md](../docs/POLICY.md) | Draft 1 | draft | integrator | Linux operators | 2026-10-06 | 3.2 |
 | [docs/RPC.md](../docs/RPC.md) | Draft 2 | draft | integrator | operators and signer developers | 2026-10-05 | 3.1 |
 | [docs/REQUESTS.md](../docs/REQUESTS.md) | Draft 6 | draft | integrator | SDK consumers and signer developers | 2026-10-06 | 3.1 |
 | [docs/STORAGE.md](../docs/STORAGE.md) | Draft 4 | draft | integrator | SDK users and Linux operators | 2026-10-06 | 3.1 |
 | [docs/POLICIES.md](../docs/POLICIES.md) | Draft 1 | draft | integrator | SDK users and operator-tool developers | 2026-10-05 | 3.2 |
-| [docs/PACKAGING.md](../docs/PACKAGING.md) | Draft 8 | draft | integrator | developers and release reviewers | 2026-10-06 | 5.3 |
+| [docs/PACKAGING.md](../docs/PACKAGING.md) | Draft 19 | draft | integrator | developers and release reviewers | 2026-10-08 | 5.3 |
 | [docs/HANDOFF.md](../docs/HANDOFF.md) | Draft 1 | current | Claude; Codex keeps §5 to §7 | Codex, the human, Claude on return | 2026-10-06 | the return to Claude |
 | [AGENTS.md](../AGENTS.md) | 1 | current | harness (Claude or the human; not Codex) | Codex | 2026-10-05 | the return to Claude |
 | [docs/ARCHITECTURE.md](../docs/ARCHITECTURE.md) | 4 | current | architect | everyone | 2026-10-01 | 2c.1 |

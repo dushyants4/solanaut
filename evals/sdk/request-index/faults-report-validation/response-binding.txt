@@ -1,0 +1,70 @@
+✔ SNP-7: manifest binds verified signed endpoint and every empty shard (16.547548ms)
+✖ SNP-7/LIF-1/2/7: denied, pending, sent and final facts keep exact payload and reply bindings (29.218997ms)
+✔ SNP-7: source, endpoint, policy and external trust are captured before asynchronous replay (5.438521ms)
+✔ SNP-7/VER-2: unsigned, malformed, dishonest and foreign history cannot mint an expected root (4.549791ms)
+✔ SNP-7/LIF-1: cross-method duplicate identity and changed payload are rejected during projection (4.077609ms)
+✔ SNP-7: cross-request response target and repeated immutable answers cannot pass signed replay (3.254078ms)
+✔ SNP-7/LIF-7: unsupported report outcomes cannot become settled index evidence (1.628337ms)
+✔ SNP-7: unsupported report attribution cannot mint a trusted index root (1.832239ms)
+✔ SNP-7/LIF-7: a final report cannot be followed by another unknown or final report (2.404347ms)
+✔ SNP-7: omission plus recomputed disk checksums cannot prove historical absence (5.602392ms)
+✔ SNP-7: a found request cannot return before later bytes and complete shard digest verify (3.866949ms)
+✔ SNP-7: same-size changed reply bytes cannot replace independently derived evidence (3.480859ms)
+✔ SNP-7: source changes during a lookup refuse even when bytes still equal the root (4.884169ms)
+✔ SNP-7: lookup identity and line ceiling are captured before file awaits (3.283522ms)
+✔ SNP-7: a late source mutation after descriptor stat cannot evade named metadata checks (3.762904ms)
+✔ SNP-7: small provenance root works after generated artefacts leave scope; parsed roots refuse (4.037621ms)
+✖ SNP-7: complete shards distinguish exact identities, neighbouring hits and absent keys (4.152514ms)
+✔ SNP-7: altered row schema, route and cross-request reply targets refuse (5.635707ms)
+✔ SNP-7: another existing request's reply cannot answer this identity (3.802952ms)
+✔ SNP-7: cache source errors, symlinks, directories, missing and oversized rows refuse (9.551218ms)
+✖ SNP-7: completed replies and roots remain distinct across policy changes and restart (6.225895ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 18
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 257.875204
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index.test.ts:58:1
+✖ SNP-7/LIF-1/2/7: denied, pending, sent and final facts keep exact payload and reply bindings (29.218997ms)
+  Error [RequestIndexError]: request index evidence names another historical request
+      at row (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/src/request-index.ts:137:40)
+      at file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/src/request-index.ts:158:23
+      at lines (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/src/request-index.ts:118:9)
+      at async lookupRequestIndex (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/src/request-index.ts:157:5)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:75:20)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'request-index'
+  }
+
+test at packages/sdk/test/request-index.test.ts:217:1
+✖ SNP-7: complete shards distinguish exact identities, neighbouring hits and absent keys (4.152514ms)
+  Error [RequestIndexError]: request index evidence names another historical request
+      at row (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/src/request-index.ts:137:40)
+      at file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/src/request-index.ts:158:23
+      at lines (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/src/request-index.ts:118:9)
+      at async lookupRequestIndex (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/src/request-index.ts:157:5)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:229:25)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'request-index'
+  }
+
+test at packages/sdk/test/request-index.test.ts:276:1
+✖ SNP-7: completed replies and roots remain distinct across policy changes and restart (6.225895ms)
+  Error [RequestIndexError]: request index evidence names another historical request
+      at row (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/src/request-index.ts:137:40)
+      at file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/src/request-index.ts:158:23
+      at lines (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/src/request-index.ts:118:9)
+      at async lookupRequestIndex (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/src/request-index.ts:157:5)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/request-index-component/packages/sdk/test/request-index.test.ts:282:107)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'request-index'
+  }

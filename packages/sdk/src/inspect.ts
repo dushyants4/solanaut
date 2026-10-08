@@ -61,7 +61,7 @@ export function inspectRecord(entries: readonly Entry[], policyInput: unknown, t
       hash = createPolicy(policy).hash;
       previous = e;
     }
-    apply(state, e, policy);
+    apply(state, e, policy, previous ? hash : undefined);
     if (e.kind === "decision") {
       decisions.push(e);
       if (e.allow) counts.allow++;

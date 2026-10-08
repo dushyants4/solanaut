@@ -1,10 +1,21 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 37** · 2026-10-08 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 38** · 2026-10-08 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
+
+`request-index.ts` is an internal read-only projection for a verified completed
+history prefix. Full signed replay derives the expected manifest and shards;
+lookup verifies complete selected bytes and returns immutable request/reply
+evidence or qualified prefix absence. It does not wire live admissions, publish
+owned generations or bound live state. Shared `state.ts` now validates reports
+and redemption before mutation; signed policy context travels through recovery
+and inspection, preserving unsigned SDK compatibility.
+
+The private staged SDK proposal and product-page draft describe the available
+trusted mode and remaining release work. They are not publication clearance.
 
 Record storage imports lightweight maintenance errors. Publication and recovery
 modules load when actual owned maintenance is requested, after capturing caller

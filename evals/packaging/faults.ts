@@ -15,6 +15,20 @@ function battery() {
 const baseline = battery();
 assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
 const faults = [
+  { name: "index-module", path: "dist/src/request-index.js", caught: "compiled checkpoint payloads", damage: () => undefined },
+  { name: "index-replay", path: "dist/src/request-index.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("const result = await replay(entries, policySeed, sensorV1, pins);", "const result = {ok:true};") },
+  { name: "index-root-provenance", path: "dist/src/request-index.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("const root = roots.get(expected);", "const root = {manifest:JSON.parse(expected.text),text:expected.text};") },
+  { name: "index-digest", path: "dist/src/request-index.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace('if (digest.digest("hex") !== expected.sha256)', 'if (false)') },
+  { name: "index-complete-buckets", path: "dist/src/request-index.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("const shards = buckets.map(bucket => {", "const shards = buckets.slice(0,-1).map(bucket => {") },
+  { name: "index-control-reply", path: "dist/src/request-index.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("row.response = entry;", "row.response = null;") },
+  { name: "index-error-code", path: "dist/src/request-index.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace('code = "request-index"', 'code = "foreign"') },
+  { name: "index-immutable", path: "dist/src/request-index.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("Object.freeze(value);", "void value;") },
+  { name: "replay-report-boundary", path: "dist/src/state.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace('if (e.kind === "report")', 'if (false)') },
+  { name: "replay-report-source", path: "dist/src/state.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace('if (e.source !== "caller" && e.source !== "signer")', 'if (false)') },
+  { name: "replay-report-finality", path: "dist/src/state.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace('if (!unresolved(attempt))\n        throw new Error("recorded report names an attempt with a final outcome");', 'if (false)\n        throw new Error("recorded report names an attempt with a final outcome");') },
+  { name: "replay-redemption-boundary", path: "dist/src/state.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace('if (e.kind === "redeem")', 'if (false)') },
+  { name: "replay-redemption-single-use", path: "dist/src/state.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace('if (s.redeemed.has(e.decision))', 'if (false)') },
+  { name: "replay-redemption-lifetime", path: "dist/src/state.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace('if (d.expires && (height === null || height > BigInt(d.expires.lastValidBlockHeight)))', 'if (false)') },
   { name: "record-eager-publication", path: "dist/src/record.js", caught: "installed record-only", damage: (text: string) => 'import "./checkpoint-publication.js";\n'+text },
   { name: "record-eager-recovery", path: "dist/src/record.js", caught: "installed record-only", damage: (text: string) => 'import "./checkpoint-recovery.js";\n'+text },
   { name: "record-publication-capture", path: "dist/src/record.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("const pins = structuredClone(options), candidate = text;", "const pins = options, candidate = text;") },
