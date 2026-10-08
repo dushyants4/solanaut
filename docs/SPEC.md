@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.62** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.63** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -1231,3 +1231,12 @@ accepts admissions nor authenticates raw archive bytes, publishes restored state
 or bounds retained request/signing maps. Actual archive factories supply pinned
 structural verification through natural completion. Evidence:
 `evals/sdk/replay-stream.md`.
+
+SNP-4/5 reversible loader choice inside ADR-019: record-only operations load
+lightweight checkpoint error constructors. Actual owned maintenance captures
+caller pins before its asynchronous module load and performs all existing
+publication/recovery validation under the held maintenance flag. Error constructors
+remain re-exported from their original modules; no new root export, record format
+or admission path. The unchanged baseline wait remains a separate open finding.
+
+| Draft 4.63 | 2026-10-07 | Defer checkpoint evaluation imports until owned maintenance; preserve captured pins, error identity and all validation. Component evidence only. |

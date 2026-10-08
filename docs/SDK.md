@@ -1,7 +1,11 @@
 # SDK reference — private candidate
 
-> **Draft 15** · 2026-10-07 · owner: integrator · for: developers integrating the candidate.
+> **Draft 16** · 2026-10-07 · owner: integrator · for: developers integrating the candidate.
 > Register: `kb/DOCUMENTS.md`. This describes current exports, not a stable-release promise.
+
+Internal record-only use does not initialise checkpoint evaluation. Original
+checkpoint modules re-export the same error constructors. Actual maintenance
+still validates the full retained history; no new root SDK surface is exposed.
 
 Streamed recomputation remains internal. Public `replay` keeps its array contract
 and synchronous per-record loop. The internal source factory must complete both

@@ -15,6 +15,11 @@ function battery() {
 const baseline = battery();
 assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
 const faults = [
+  { name: "record-eager-publication", path: "dist/src/record.js", caught: "installed record-only", damage: (text: string) => 'import "./checkpoint-publication.js";\n'+text },
+  { name: "record-eager-recovery", path: "dist/src/record.js", caught: "installed record-only", damage: (text: string) => 'import "./checkpoint-recovery.js";\n'+text },
+  { name: "record-publication-capture", path: "dist/src/record.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("const pins = structuredClone(options), candidate = text;", "const pins = options, candidate = text;") },
+  { name: "record-publication-code", path: "dist/src/checkpoint-errors.js", caught: "installed record-only", damage: (text: string) => text.replace('code = "checkpoint-publication"', 'code = "foreign"') },
+  { name: "record-recovery-code", path: "dist/src/checkpoint-errors.js", caught: "installed record-only", damage: (text: string) => text.replace('code = "checkpoint-recovery"', 'code = "foreign"') },
   { name: "stream-replay-export", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("export async function replayStream", "async function replayStream") },
   { name: "stream-replay-source", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("checked !== count || checkedFingerprint !== fingerprint", "false") },
   { name: "stream-replay-decisions", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("const result = await recompute(env, records());", "const result = {ok:true,decisions:0,divergence:null}; for await(const entry of records())void 0;") },
@@ -85,7 +90,7 @@ for (const fault of faults) {
     const result = battery();
     const output = result.stdout + result.stderr;
     assert.equal(result.status, 1, output);
-    assert.match(output, /tests 10\b/, "a harness setup failure is not a caught product fault");
+    assert.match(output, /tests 11\b/, "a harness setup failure is not a caught product fault");
     const failures = output.split("\n").filter((line) => /[✖]|not ok/.test(line));
     assert.ok(failures.some((line) => line.includes(fault.caught)), output);
     console.log(`caught package fault: ${fault.name}`);

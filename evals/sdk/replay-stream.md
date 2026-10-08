@@ -69,3 +69,8 @@ record fingerprints alone do not prove immutable raw file bytes or ownership.
 No guard startup, restored-state publication, admission capability, disk index,
 bounded memory/restart/performance result, independent security, Alpha or release
 clearance. H9/H10/H11 remain pending; every wait/floor remains unchanged.
+
+Hosted 37709169363 against exact b352454 completes unsuccessfully. Runtime
+22.18.0, 24 and 26.7.0 jobs pass; AST fails at the unchanged staged baseline
+wait, while maintained faults are cancelled. Full log/metadata are retained
+in `replay-stream/hosted-b352454/`. This is not corrected hosted qualification.

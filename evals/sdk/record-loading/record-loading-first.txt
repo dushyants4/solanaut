@@ -1,0 +1,34 @@
+✔ SNP-5: owned checkpoint and tail agree with independent preparation without writing history (74.73163ms)
+✔ OWN-2: memory, forged, manual and closed stores cannot recover as kernel owners (23.911188ms)
+✔ OWN-2: replaced record or ownership inode refuses recovery (39.45746ms)
+✔ SNP-6: cached history substitutions and disk corruption refuse instead of accepting a checkpoint (42.717546ms)
+✔ SNP-6: missing, oversized, corrupt and unsupported checkpoint files use verified history (159.441439ms)
+✔ OWN-2: competing recovery and publication share one maintenance boundary (28.397393ms)
+✔ OWN-2: closure, append, cache mutation and inode replacement during replay refuse (135.147685ms)
+✔ SNP-6: short checkpoint reads finish; growth and read errors use verified fallback (100.006771ms)
+✔ SNP-6: captured pins and external anchor remain authoritative on fallback (39.23323ms)
+✔ OWN-2: a failed writer refuses recovery and an established reopened owner validates the record (30.637846ms)
+✔ SNP-4: actual owned publication preserves the previous authenticated envelope on replacement (78.055241ms)
+✔ SNP-4: a memory or forged store cannot claim record ownership (17.223377ms)
+✔ SNP-4: closed or replaced actual ownership cannot replace a checkpoint (40.137726ms)
+✔ SNP-4: tampered signatures or payloads preserve the current checkpoint (19.25922ms)
+✔ SNP-4: valid host signatures and a matching head cannot substitute dishonest admission state (41.624504ms)
+✔ SNP-4: stale endpoints and missing retained archives cannot publish over the last checkpoint (51.181443ms)
+✔ SNP-4: competing publications share the actual owner and only one proceeds (28.774908ms)
+✔ SNP-4: losing ownership during asynchronous validation preserves the previous checkpoint (22.549203ms)
+✔ SNP-4: record changes during replay refuse the stale candidate (16.566613ms)
+✔ SNP-4: corrupt cached history and manual ownership cannot publish (11.53559ms)
+✔ SNP-4: corrupt or symlink current checkpoints preserve evidence and refuse writes (24.25015ms)
+✔ SNP-4: short writes finish completely and sync before acknowledging replacement (16.752761ms)
+✔ SNP-4: write, permission, sync and rename failures preserve an authenticated checkpoint and fail the writer (147.996553ms)
+✔ SNP-4: actual process death at publication boundaries preserves complete authenticated files (845.16967ms)
+✔ OWN-2: kernel record append and reopen do not require evaluation modules (139.949094ms)
+✔ SNP-4/5: fabricated maintenance capabilities refuse before loading evaluation modules (93.050242ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1564.865515

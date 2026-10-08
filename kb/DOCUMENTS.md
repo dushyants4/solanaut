@@ -1,5 +1,13 @@
 # DOCUMENTS.md — the document register
 
+2026-10-07 record loading registers SPEC Draft 4.63, RISKS 1.54, OVERVIEW
+Draft 36, SDK Draft 16, PACKAGING Draft 18, receipt/index, PROGRESS, HANDOFF
+and continuing run. Full maintenance validation and constructor identity stay
+required. Definition 20/fresh seed 24829 retains all prior workloads and limits.
+Initial failures and source/installed faults are retained. CLAIMS S76 records
+final local ordinary/AST/type, installed and isolated driver qualification.
+Exact preceding hosted failure/cancellation is retained; complete release stays open.
+
 2026-10-07 streamed recomputation registers SPEC Draft 4.62, RISKS 1.53,
 OVERVIEW Draft 35, SDK Draft 15, PACKAGING Draft 17, receipt/index, HANDOFF,
 PROGRESS and continuing run. Two-pass canonical agreement and maximum historical

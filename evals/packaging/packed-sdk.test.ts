@@ -311,7 +311,9 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
       if(refusedState.mode!=='full-replay' || refusedState.state!==state.text)throw new Error('installed dishonest signed state accepted');
       let anchorRefused=false;try{await prepareCheckpointRecovery(entries,'corrupt',{...options,expectedAnchor:{seq:context.seq-1,head:'0'.repeat(64)}});}catch(error){anchorRefused=error.name==='CheckpointRecoveryError' && error.code==='checkpoint-recovery';}
       if(!anchorRefused)throw new Error('installed anchor disagreement bypassed');
-      const result=await publishOwnedCheckpoint(store,candidate.text,options);
+      const originalPins=structuredClone(options),pendingPublication=publishOwnedCheckpoint(store,candidate.text,originalPins);
+      originalPins.maxBytes=1;originalPins.archives=[];
+      const result=await pendingPublication;
       if(result.digest!==hash(candidate.text) || result.seq!==context.seq || readFileSync(recordPath+'.checkpoint','utf8')!==candidate.text)throw new Error('owned installed checkpoint differs');
       const owned=await recoverOwnedCheckpoint(store,options);
       if(owned.mode!=='checkpoint' || owned.state!==state.text || owned.seq!==context.seq || !Object.isFrozen(owned))throw new Error('installed owned recovery differs');
@@ -345,7 +347,24 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
     console.log(JSON.stringify({events:p.events.length,requests:s.state.requests.length,uncertain:true}));`;
   const result=spawnSync(process.execPath,["--input-type=module","-e",script,inputPolicy,Buffer.from(transfer(2)).toString("base64")],{cwd:consumer,encoding:"utf8"});
   assert.equal(result.status,0,result.stderr);assert.deepEqual(JSON.parse(result.stdout),{events:1,requests:2,uncertain:true});
-  for(const name of ["checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication","checkpoint-recovery"])for(const extension of ["js","d.ts"])assert.ok(packed.files.some((file:{path:string})=>file.path==="dist/src/"+name+"."+extension));
+  for(const name of ["checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication","checkpoint-recovery","checkpoint-errors"])for(const extension of ["js","d.ts"])assert.ok(packed.files.some((file:{path:string})=>file.path==="dist/src/"+name+"."+extension));
+});
+
+test("PKG-1/OWN-2: installed record-only operations avoid evaluation imports",()=>{
+  const script=`import {registerHooks} from 'node:module';
+    registerHooks({resolve(specifier,context,next){if(['@gubernaut/core','@solana/kit'].includes(specifier))throw new Error('eager evaluation import: '+specifier);return next(specifier,context);}});
+    const base=import.meta.resolve('@solanaut/sdk'),record=await import(new URL('./record.js',base)),errors=await import(new URL('./checkpoint-errors.js',base));
+    const {mkdtempSync,rmSync}=await import('node:fs'),{seal}=await import(new URL('./log.js',base));
+    const directory=mkdtempSync('./record-only-'),path=directory+'/record.jsonl';
+    try{const entry=seal({v:1,kind:'report',seq:0,prev:'',at:0,decision:'a'.repeat(64),outcome:'unknown',source:'caller'});
+      const first=record.fileStore(path,{ownership:'kernel',create:true});first.append(entry);first.close();
+      const second=record.fileStore(path,{ownership:'kernel',create:false});try{if(second.entries.length!==1 || second.entries[0].hash!==entry.hash)throw new Error('installed record differs');}finally{second.close();}
+      for(const [method,code,type] of [['publishOwnedCheckpoint','checkpoint-publication','CheckpointPublicationError'],['recoverOwnedCheckpoint','checkpoint-recovery','CheckpointRecoveryError']]){
+        let refused=false;try{await record[method](record.memoryStore(),null,{});}catch(error){refused=error instanceof errors[type] && error.code===code;}if(!refused)throw new Error('installed capability refusal differs');}
+    }finally{rmSync(directory,{recursive:true,force:true});}
+    console.log('installed record-only verified');`;
+  const result=spawnSync(process.execPath,["--input-type=module","-e",script],{cwd:consumer,encoding:"utf8",timeout:5000,killSignal:"SIGKILL"});
+  assert.equal(result.status,0,result.stderr);assert.equal(result.signal,null);assert.equal(result.error,undefined);assert.match(result.stdout,/installed record-only verified/);
 });
 
 test("PKG-3: installed replay and table-pin commands execute with their documented usage exits", () => {

@@ -208,6 +208,22 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+| 2026-10-07 | OWN-2/SNP-4/5 record loading | commit containing `evals/sdk/record-loading.md` | first failures; source/installed/staging/isolated driver faults; 655 ordinary/AST cases and typecheck | Captured pins, constructor identity and full maintenance validation preserved; CLAIMS S76. No hosted timing fix or complete release claim. |
+
+Record loading candidate: source and installed bootstrap refuse eager evaluation
+imports; actual owned maintenance captures pins before loading and retains full
+validation. Definition 20/fresh seed 24829 adds source/tests without changing
+floors, selected prior workloads or baseline wait. Integrated evidence follows.
+b352454 hosted 37709169363 completes with all runtime jobs passing, AST failing
+at the unchanged baseline wait and maintained faults cancelled. Exact results
+are retained in `evals/sdk/replay-stream/hosted-b352454/`; H11 remains pending.
+
+b352454 streamed recomputation privately pushed; all local close gates pass,
+hosted 37709169363 starts. Consumed owned stashes removed after sync. Diagnostic
+CPU profiling of unchanged selected definition-19 inputs investigates repeated
+checkpoint preparation; no gate, deadline or product source is changed. A disk
+request index remains separate work; no storage/runtime adoption is claimed.
+
 Streamed recomputation final source/compiled/staging/driver faults restore;
 revised ordinary/serial AST pass 652 cases, native typecheck zero and unchanged
 floors pass, CLAIMS S75. Original misses and exact source/AST inputs remain with

@@ -1,0 +1,4 @@
+caught record loading fault: eager-publication
+caught record loading fault: eager-recovery
+caught record loading fault: publication-pin-capture
+All record loading faults caught; restored sources pass

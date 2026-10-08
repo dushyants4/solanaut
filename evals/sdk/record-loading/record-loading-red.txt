@@ -1,0 +1,86 @@
+✖ OWN-2: kernel record append and reopen do not require evaluation modules (111.480732ms)
+✖ SNP-4/5: fabricated maintenance capabilities refuse before loading evaluation modules (95.690077ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 291.026883
+
+✖ failing tests:
+
+test at packages/sdk/test/record-loading.test.ts:11:1
+✖ OWN-2: kernel record append and reopen do not require evaluation modules (111.480732ms)
+  AssertionError [ERR_ASSERTION]: file:///home/dashy/Projects/Solanaut/[eval1]:2
+  registerHooks({resolve(specifier,context,next){if(['@gubernaut/core','@solana/kit'].includes(specifier))throw new Error('record-only operation imported evaluation module: '+specifier);return next(specifier,context);}});
+                                                                                                                ^
+  
+  Error: record-only operation imported evaluation module: @gubernaut/core
+      at resolve (file:///home/dashy/Projects/Solanaut/[eval1]:2:111)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:754:16)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:389:17)
+      at new ModuleJob (node:internal/modules/esm/module_job:368:26)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:579:11)
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/record-loading.test.ts:18:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/record-loading.test.ts:21:1
+✖ SNP-4/5: fabricated maintenance capabilities refuse before loading evaluation modules (95.690077ms)
+  AssertionError [ERR_ASSERTION]: file:///home/dashy/Projects/Solanaut/[eval1]:2
+  registerHooks({resolve(specifier,context,next){if(['@gubernaut/core','@solana/kit'].includes(specifier))throw new Error('record-only operation imported evaluation module: '+specifier);return next(specifier,context);}});
+                                                                                                                ^
+  
+  Error: record-only operation imported evaluation module: @gubernaut/core
+      at resolve (file:///home/dashy/Projects/Solanaut/[eval1]:2:111)
+      at nextStep (node:internal/modules/customization_hooks:189:26)
+      at resolveWithHooks (node:internal/modules/customization_hooks:417:10)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:754:16)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:389:17)
+      at new ModuleJob (node:internal/modules/esm/module_job:368:26)
+      at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:579:11)
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/record-loading.test.ts:25:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

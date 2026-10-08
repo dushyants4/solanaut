@@ -1,7 +1,12 @@
 # PACKAGING.md — private SDK candidate
 
-> **Draft 17** · 2026-10-07 · owner: integrator · for: developers and release reviewers.
+> **Draft 18** · 2026-10-07 · owner: integrator · for: developers and release reviewers.
 > This is release preparation, not a stable release. Register: `kb/DOCUMENTS.md`.
+
+The private installed consumer checks record-only append/reopen and typed
+capability refusal while evaluation imports are blocked. Actual installed
+checkpoint publication separately verifies pins captured before loading.
+Evidence: `evals/sdk/record-loading.md`; complete release gates remain owed.
 
 The private installed consumer also checks internal streamed recomputation over
 actual pinned archive bytes, captured policy authority and changed second reads.

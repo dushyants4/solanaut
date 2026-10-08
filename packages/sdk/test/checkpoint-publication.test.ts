@@ -42,6 +42,15 @@ async function snapshot(f:Awaited<ReturnType<typeof fixture>>,name="archive.json
 }
 const publish=(store:record.EntryStore,text:unknown,options:unknown):Promise<{seq:number;head:string;digest:string;bytes:number}>=>Reflect.apply(Reflect.get(record,"publishOwnedCheckpoint"),undefined,[store,text,options]);
 const refused=(work:()=>Promise<unknown>)=>assert.rejects(Promise.resolve().then(work),error=>error instanceof Error && error.name==="CheckpointPublicationError" && Reflect.get(error,"code")==="checkpoint-publication");
+test("SNP-4: publication pins are captured before asynchronous module loading",async()=>{
+  const f=await fixture();try{
+    const s=await snapshot(f),options=structuredClone(s.options),pending=publish(f.store,s.encoded.text,options);
+    options.maxBytes=1;options.archives.length=0;options.checkpointTrust.checkpointKey=options.checkpointTrust.anchorKey;
+    assert.deepEqual(await pending,{...s.context,digest:s.encoded.digest,bytes:Buffer.byteLength(s.encoded.text)});
+    const limited={...s.options,maxBytes:1},denied=publish(f.store,s.encoded.text,limited);limited.maxBytes=1000000;
+    await refused(()=>denied);assert.equal(readFileSync(f.path+".checkpoint","utf8"),s.encoded.text);
+  }finally{f.close();}
+});
 test("SNP-4: actual owned publication preserves the previous authenticated envelope on replacement",async()=>{
   const f=await fixture();try{
     const first=await snapshot(f),got=await publish(f.store,first.encoded.text,first.options);

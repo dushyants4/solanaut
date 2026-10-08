@@ -1,0 +1,6 @@
+caught record loading fault: eager-publication
+caught record loading fault: eager-recovery
+caught record loading fault: publication-pin-capture
+caught record loading fault: publication-error-code
+caught record loading fault: recovery-error-code
+All record loading faults caught; restored sources pass

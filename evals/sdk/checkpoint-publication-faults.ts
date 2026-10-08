@@ -35,7 +35,7 @@ for(const [path,name,before,after] of faults){
     if(name==="nofollow-current")changed=changed.replace("const named=lstatSync(current);","const named=fstatSync(oldFd!);");
     writeFileSync(path,changed);const result=run();
     if(name==="zero-progress"){assert.equal(Reflect.get(result.error!,"code"),"ETIMEDOUT");assert.equal(result.signal,"SIGKILL");assert.equal(result.status,null);console.log("contained checkpoint publication fault: zero-progress (child deadline; no test completion credit)");}
-    else{assert.equal(result.status,1,name+result.stdout+result.stderr);assert.equal(result.error,undefined);assert.equal(result.signal,null);assert.match(result.stdout,/tests 14\b/);console.log("caught checkpoint publication fault: "+name);}
+    else{assert.equal(result.status,1,name+result.stdout+result.stderr);assert.equal(result.error,undefined);assert.equal(result.signal,null);assert.match(result.stdout,/tests 15\b/);console.log("caught checkpoint publication fault: "+name);}
   }
   finally{writeFileSync(path,source);}
 }

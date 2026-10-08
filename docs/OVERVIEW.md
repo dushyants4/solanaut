@@ -1,10 +1,14 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 35** · 2026-10-07 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 36** · 2026-10-07 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
+
+Record storage imports lightweight maintenance errors. Publication and recovery
+modules load when actual owned maintenance is requested, after capturing caller
+pins and reserving maintenance. Their validation and ownership checks remain.
 
 Internal streamed recomputation shares the array replay's decision checker while
 preserving the array path's synchronous per-record loop. Two complete reads bind

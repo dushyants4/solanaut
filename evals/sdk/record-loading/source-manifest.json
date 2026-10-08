@@ -1,0 +1,17 @@
+{
+  "base": "b352454",
+  "node": "26.7.0",
+  "definition": 20,
+  "seed": 24829,
+  "sha256": {
+    "packages/sdk/src/checkpoint-errors.ts": "2606ed1043175cc003211610c1e8fc68cc150b1b7c39121bd6566ac152fae7c7",
+    "packages/sdk/src/checkpoint-publication.ts": "7d571b4575584d190f6aabca7bb91d48544614077ce4179d83af5c3c49a49a09",
+    "packages/sdk/src/checkpoint-recovery.ts": "e1e0016d4e4644cb6e37ed38fa20e19fdbba29e7d3a61122f042ee0cc6b33959",
+    "packages/sdk/src/record.ts": "37c7b35ca33cbd0bb8ebe45fac9e0ed3d304f372a0ffc93854c4499a0d673dcc",
+    "packages/sdk/test/record-loading.test.ts": "e78c594654b118cb8aaa315bb4d4391ceb499231381da8b8bc6a7c6dcf21855f",
+    "packages/sdk/test/checkpoint-publication.test.ts": "2037df4771424aef3ac1f1eb15fc3030656cd78f000edf440843d7ecee5b9576",
+    "evals/ci/mutation-run.ts": "cd93dc388fcb0dcec7d5be9555051891b9fafe4416b62843cba830e16addaa43",
+    "evals/ci/mutation-stage.ts": "e052f3dfee60ccd43254e306309c39644d60786879486de3eea71177eee7ae89",
+    "evals/ci/mutation-recovery.test.ts": "deb9becbb6c088dd9d1d1f991c4df9b8c3fd9e62dc994b58ca08b12b1bb187d0"
+  }
+}

@@ -1,5 +1,10 @@
 # PROGRESS.md
 
+Record-only loading has source and installed fault evidence
+(`evals/sdk/record-loading.md`). Owned checkpoint maintenance retains full
+validation and captured pins. Local ordinary/AST/type, installed and isolated driver checks pass (CLAIMS S76); no full snapshot,
+restart, hosted timing or stable-release claim.
+
 Internal streamed recomputation has focused source and fault evidence
 (`evals/sdk/replay-stream.md`). Complete reads bind canonical records and retain
 the maximum historical policy window; local ordinary/AST/type and installed

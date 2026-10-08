@@ -1,7 +1,12 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.53** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.54** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
+
+Record-only loading now avoids evaluation imports; actual maintenance still
+requires the complete existing validation. Loader failure refuses maintenance and
+cannot permit admissions. No hosted timing or restart claim follows from this
+component; the unchanged baseline-wait finding remains open.
 
 Bundle preparation captures a common history/endpoint and external authority pins.
 It is unsigned assembly.

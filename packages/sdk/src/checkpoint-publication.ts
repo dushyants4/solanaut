@@ -9,10 +9,8 @@ import {verifyCheckpointEnvelope} from "./checkpoint-envelope.ts";
 import type {CheckpointTrust} from "./checkpoint.ts";
 import type {PolicyTrust} from "./signed-policy.ts";
 import type {Entry} from "./log.ts";
-export class CheckpointPublicationError extends Error{
-  readonly code="checkpoint-publication";
-  constructor(message:string){super(message);this.name="CheckpointPublicationError";}
-}
+import {CheckpointPublicationError} from "./checkpoint-errors.ts";
+export {CheckpointPublicationError} from "./checkpoint-errors.ts";
 export interface CheckpointPublicationOptions{
   checkpointTrust:CheckpointTrust;policyTrust:PolicyTrust;archives:string[];maxBytes:number;
 }

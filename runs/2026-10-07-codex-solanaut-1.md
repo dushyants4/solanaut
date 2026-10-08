@@ -8,6 +8,39 @@ work. This dated continuation retains the earlier session's full record at
 
 ## Did
 
+Record loading final local evidence passes (CLAIMS S76). Ordinary/AST 655 cases,
+unchanged floors and native typecheck pass; installed eleven cases/fifty-three
+faults, forty-four staging and fifteen isolated recovery/driver faults restore.
+Exact b352454 hosted evidence retains successful runtime jobs, unchanged-wait
+AST failure and cancelled maintained-fault job. No gate, deadline or policy
+coefficient changes. Receipt and input/profile evidence are durable before sync.
+
+
+Record-only loading candidate starts from b352454. Diagnostic profile preserves
+the unchanged selected definition; child waiting and eager import graph justify
+a focused reversible loader test, not a conclusion about hosted timeout cause.
+Record-only source cases fail first; old installed artefact and maintained
+inventory refuse before registration. Lightweight errors preserve constructor
+identity. Maintenance captures pins before loader await and keeps all validation,
+owned-boundary checks and maintenance exclusion. Source loading/publication/owned
+recovery faults pass; installed and integrated checks follow. Definition 20 and
+fresh seed 24829 are frozen before integrated measurement; no limit changes.
+A standalone driver overlaps the staging fault campaign accidentally and passes;
+final driver proof will run alone. No score or independent evidence inferred.
+
+
+Streamed recomputation b352454 privately pushed; all local close gates pass.
+Hosted 37709169363 is queued against the exact revision. Both owned temporary
+stashes are consumed and removed after their corrected work is safely pushed.
+Investigating repeated checkpoint preparation without changing any gate: native
+CPU profiling runs the unchanged definition-19 selected workload and explicit
+environment, with input hashes frozen before execution. This is diagnostic,
+not a performance qualification or new timing claim. No product source change.
+Read the version-specific Node SQLite documentation for possible future request
+index work: https://nodejs.org/download/release/v22.18.0/docs/api/sqlite.html.
+Local Node 26 in-memory fixture works without loader flags; the module remains
+only a candidate, with full runtime/storage qualification owed and no adoption.
+
 Final definition-19 recovery/driver campaign catches fifteen faults and restores
 exact inputs. Revised ordinary/serial AST pass 652 cases; native typecheck zero
 and unchanged floors pass, guard 424/442 statements and 379/407 branches. Ten

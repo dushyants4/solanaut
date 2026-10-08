@@ -16,8 +16,9 @@ import { hostname } from "node:os";
 import { dirname } from "node:path";
 import { canonicalJSON } from "./canonical.ts";
 import { hashOf, type Entry } from "./log.ts";
-import {CheckpointPublicationError,validatePublication,replaceCheckpoint,type CheckpointPublicationOptions,type CheckpointPublicationReceipt} from "./checkpoint-publication.ts";
-import {CheckpointRecoveryError,prepareCheckpointRecovery,type CheckpointRecoveryOptions,type PreparedCheckpointRecovery} from "./checkpoint-recovery.ts";
+import {CheckpointPublicationError,CheckpointRecoveryError} from "./checkpoint-errors.ts";
+import type {CheckpointPublicationOptions,CheckpointPublicationReceipt} from "./checkpoint-publication.ts";
+import type {CheckpointRecoveryOptions,PreparedCheckpointRecovery} from "./checkpoint-recovery.ts";
 
 export interface EntryStore {
   /** Every entry kept so far, oldest first. The store, not the guard, adds to it. */
@@ -217,7 +218,10 @@ export function fileStore(path: string, options: FileStoreOptions = {}): EntrySt
       let history:Entry[];
       try{sameFile(reader,path);history=readRecord(path,reader);}finally{closeSync(reader);}
       if(canonicalJSON(history)!==canonicalJSON(entries))throw new CheckpointPublicationError("owned record and cached entries differ");
-      const validated=await validatePublication(text,options,history);
+      // Capture before the asynchronous loader permits changes to caller-owned options.
+      const pins=structuredClone(options),candidate=text;
+      const {validatePublication,replaceCheckpoint}=await import("./checkpoint-publication.ts");
+      const validated=await validatePublication(candidate,pins,history);
       const unchanged=()=>{
         held();const now=fstatSync(fd,{bigint:true});
         if(now.size!==before.size || now.mtimeNs!==before.mtimeNs || now.ctimeNs!==before.ctimeNs)throw new CheckpointPublicationError("owned record changed during checkpoint validation");
@@ -238,7 +242,9 @@ export function fileStore(path: string, options: FileStoreOptions = {}): EntrySt
       let history:Entry[];
       try{sameFile(reader,path);history=readRecord(path,reader);}finally{closeSync(reader);}
       if(canonicalJSON(history)!==canonicalJSON(entries))throw new CheckpointRecoveryError("owned record and cached recovery history differ");
-      const text=readCheckpoint(path+".checkpoint",pins.maxBytes),recovered=await prepareCheckpointRecovery(history,text,pins);
+      const text=readCheckpoint(path+".checkpoint",pins.maxBytes);
+      const {prepareCheckpointRecovery}=await import("./checkpoint-recovery.ts");
+      const recovered=await prepareCheckpointRecovery(history,text,pins);
       held();const after=fstatSync(fd,{bigint:true});
       if(after.size!==before.size || after.mtimeNs!==before.mtimeNs || after.ctimeNs!==before.ctimeNs || canonicalJSON(history)!==canonicalJSON(entries))throw new CheckpointRecoveryError("owned record changed during recovery");
       return recovered;

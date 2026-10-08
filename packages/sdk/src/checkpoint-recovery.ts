@@ -7,10 +7,8 @@ import {prepareCheckpointPrefix,rebuildCheckpointPrefix} from "./checkpoint-pref
 import {verifyCheckpointEnvelope} from "./checkpoint-envelope.ts";
 import {validatePublication,type CheckpointPublicationOptions} from "./checkpoint-publication.ts";
 import type {Entry} from "./log.ts";
-export class CheckpointRecoveryError extends Error{
-  readonly code="checkpoint-recovery";
-  constructor(message:string){super(message);this.name="CheckpointRecoveryError";}
-}
+import {CheckpointRecoveryError} from "./checkpoint-errors.ts";
+export {CheckpointRecoveryError} from "./checkpoint-errors.ts";
 export interface CheckpointRecoveryOptions extends CheckpointPublicationOptions{expectedAnchor?:{seq:number;head:string}}
 export interface PreparedCheckpointRecovery{
   readonly mode:"checkpoint"|"full-replay";readonly reason:"missing-checkpoint"|"invalid-checkpoint"|null;
