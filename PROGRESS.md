@@ -5,6 +5,11 @@ including the approved Beta; CLAIMS S78 and `evals/release/progress.md` freeze t
 scope. This is not release readiness, effort or a completion date. Components
 inside open milestones receive no fractional credit.
 
+Offline MCP tool/network selection has builder evidence in
+`evals/firewall/filter.md`; forwarding, guarded field/rent checks, actual Phantom
+integration and dedicated-user qualification remain owed. Corresponding firewall
+coverage uses unchanged floors. No PHX or release milestone closes.
+
 Private staged SDK scope and product-page copy are prepared in
 `docs/release/STAGED-RELEASE.md` and `docs/PRODUCT-PAGE.md`. They provide no public
 availability, stable Linux deployment or publication clearance. D22/D23 report

@@ -1,0 +1,38 @@
+✔ PHX-3: only explicitly configured supported tools are selectable (1.940539ms)
+✔ PHX-4: explicit devnet is required, including for simulation and both tools (0.315566ms)
+✔ PHX-3/4: configuration is copied, immutable and refuses unsupported policy input (0.812924ms)
+✔ PHX-3: malformed envelopes refuse with fixed redacted errors (0.232904ms)
+✔ PHX-3: selected arguments are detached and deeply frozen without losing transaction fields (0.182335ms)
+✔ PHX-3: byte and nesting limits reject resource abuse at their declared boundaries (0.488487ms)
+✖ PHX-3: accessors, symbols and hostile configuration cannot install unlisted tools or leak errors (0.620499ms)
+✔ PHX-4: an inherited network cannot supply the omitted mainnet default (0.175868ms)
+✔ PHX-3: proxy reads cannot substitute a tool after configuration validation (0.178623ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 8
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 95.394339
+
+✖ failing tests:
+
+test at apps/firewall/test/filter.test.ts:47:1
+✖ PHX-3: accessors, symbols and hostile configuration cannot install unlisted tools or leak errors (0.620499ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (McpFilterError).
+      at refused (file:///home/dashy/Projects/Solanaut/apps/firewall/test/filter.test.ts:8:56)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/firewall/test/filter.test.ts:52:107)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { name: 'McpFilterError', code: 'mcp-filter', reason: 'configuration' },
+    operator: 'throws',
+    diff: 'simple'
+  }

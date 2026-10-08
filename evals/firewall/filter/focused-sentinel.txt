@@ -1,0 +1,17 @@
+✔ PHX-3: only explicitly configured supported tools are selectable (1.868448ms)
+✔ PHX-4: explicit devnet is required, including for simulation and both tools (0.32264ms)
+✔ PHX-3/4: configuration is copied, immutable and refuses unsupported policy input (0.961632ms)
+✔ PHX-3: malformed envelopes refuse with fixed redacted errors (0.238299ms)
+✔ PHX-3: selected arguments are detached and deeply frozen without losing transaction fields (0.174744ms)
+✔ PHX-3: byte and nesting limits reject resource abuse at their declared boundaries (0.499854ms)
+✔ PHX-3: accessors, symbols and hostile configuration cannot install unlisted tools or leak errors (0.322307ms)
+✔ PHX-4: an inherited network cannot supply the omitted mainnet default (0.199547ms)
+✔ PHX-3: proxy reads cannot substitute a tool after configuration validation (0.209039ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 90.656001

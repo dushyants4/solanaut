@@ -7,6 +7,38 @@ progress out of one hundred with an explicit basis. Continue across queue items.
 
 ## Did
 
+Final fixture-only follow-up passes nine focused cases, all sixteen new filter/
+coverage faults, 751 ordinary cases and native typecheck. Unchanged secret scan
+passes on the staged evidence; pre-sync close is nine of ten, with only the
+uncommitted-tree finding. Coherent private sync follows; hosted CI is read after
+push and no passing hosted result is assumed. Final commit is discoverable with
+`git log -- apps/firewall/src/filter.ts`.
+
+Continued from clean privately pushed 588a1ef after the user's stable-release
+instruction. Asked for concrete H9/H11 decisions asynchronously; tool acceptance
+of questions is not human approval. Continue the explicit offline PHX-3/4 grant
+under ADR-011 and HANDOFF item 9. New internal filter tests fail before source,
+then expose accessor, inherited-network, proxy-copy and descriptor-value defects
+before corrections. Capture own data descriptors once and use the exact validated
+copied values. Never forward selected calls; transaction/field/rent and wallet
+admission remain separate. Added corresponding unchanged firewall AST floors
+after inventory/hook first-reds; register the campaign after omission first-red.
+Final product/coverage fault campaign restores; earlier screening miss remains
+retained. Source/type correction and final ordinary/AST checks are recorded below.
+Exact 588a1ef hosted 37849341848 completes failed at the unchanged baseline wait
+across runtime/AST/partition one; full output/job metadata are retained. No H11
+acceptance or wait change. Phantom documentation route reads were inaccessible
+and official-domain search empty; the existing accepted source contract is used,
+with no current published-package compatibility claim.
+Final serial AST run passes 751 cases at every unchanged floor; exact source
+hashes/counts are retained with the firewall receipt. Earlier intermediate
+coverage and the screening miss are preserved. Existing coverage fault campaign
+runs after AST completes, without source mutations overlapping measurement.
+Existing thirty coverage faults restore. Fresh ordinary suite passes 751 cases;
+native typecheck exits zero. Partial transcriptions preserve observed native
+typing failures where no complete first command log exists. No local fault/
+coverage worker survives. Close/diff review precede a coherent private commit.
+
 Resume from clean privately pushed c2df043; fetch succeeds. Preserve completed
 hosted 37846194595 failure and full log/job metadata. Node 22/26 and fault partition
 one fail the unchanged baseline wait; Node 24, AST and partitions two/three pass.
@@ -178,6 +210,20 @@ map, PROGRESS and mission/HANDOFF/document register continuations. Exact candida
 receipts and measured claim rows follow integrated evidence.
 
 ## Found
+
+Staged close passes eight gates and flags the synthetic redaction-test assignment
+at filter test line 28, plus the uncommitted tree. The value was agent-written
+fixture data, not a key/credential. Retain the exact referenced finding, rename
+the fixture to a redaction sentinel, preserve assertions and rerun affected
+checks. Do not change the protected secret scanner or any gate.
+
+Offline filter foundation first uses unsupported native parameter-property syntax;
+explicit fields correct it. Further tests catch accessors/proxies substituting a
+signing tool after validation and inherited values supplying an omitted network
+or accessor descriptor value. The accessor-screen removal initially misses under
+the redundant value type check; retain that result, add the confirmed inherited
+descriptor boundary and observe its first failure. Final screening fault is caught.
+No independent security evidence or complete MCP milestone follows.
 
 The broad ENOENT fallback mistakes deleted required evidence for an unfinished
 supervisor. A completed ticket may name a reused PID; missing result/marker

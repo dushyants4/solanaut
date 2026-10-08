@@ -1,10 +1,17 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 39** · 2026-10-08 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 40** · 2026-10-08 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
+
+`apps/firewall/src/filter.ts` is the internal offline MCP selection component.
+It copies explicit operator tool configuration, requires an explicit devnet
+network, bounds parsing and returns detached immutable call parameters. It does
+not forward, build, sign or send a transaction. Guarded transfer/transaction
+handling, actual Phantom integration and installed server deployment remain owed.
+Evidence: `evals/firewall/filter.md`.
 
 `request-index.ts` is an internal read-only projection for a verified completed
 history prefix. Full signed replay derives the expected manifest and shards;

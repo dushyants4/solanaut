@@ -1,0 +1,44 @@
+✔ PHX-3: only explicitly configured supported tools are selectable (1.888588ms)
+✔ PHX-4: explicit devnet is required, including for simulation and both tools (0.321051ms)
+✔ PHX-3/4: configuration is copied, immutable and refuses unsupported policy input (0.85082ms)
+✔ PHX-3: malformed envelopes refuse with fixed redacted errors (0.275118ms)
+✔ PHX-3: selected arguments are detached and deeply frozen without losing transaction fields (0.191329ms)
+✔ PHX-3: byte and nesting limits reject resource abuse at their declared boundaries (0.51128ms)
+✔ PHX-3: accessors, symbols and hostile configuration cannot install unlisted tools or leak errors (0.221932ms)
+✔ PHX-4: an inherited network cannot supply the omitted mainnet default (0.177951ms)
+✖ PHX-3: proxy reads cannot substitute a tool after configuration validation (0.994805ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 8
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 94.166316
+
+✖ failing tests:
+
+test at apps/firewall/test/filter.test.ts:61:1
+✖ PHX-3: proxy reads cannot substitute a tool after configuration validation (0.994805ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+  +   'sign_solana_message'
+  -   'send_solana_transaction'
+    ]
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/firewall/test/filter.test.ts:63:65)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'sign_solana_message' ],
+    expected: [ 'send_solana_transaction' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

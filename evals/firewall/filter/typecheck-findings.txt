@@ -1,0 +1,13 @@
+Partial transcription of observed tool output, not a complete saved command log.
+
+Initial implementation:
+apps/firewall/src/filter.ts(5,15): error TS1294: This syntax is not allowed when 'erasableSyntaxOnly' is enabled.
+apps/firewall/test/filter.test.ts(24,154): error TS2339: Property 'push' does not exist on type 'readonly string[]'.
+
+Descriptor-capture follow-up:
+apps/firewall/src/filter.ts(25,79): error TS2551: Property 'value' does not exist on type 'number'. Did you mean 'valueOf'?
+
+Explicit constructor fields preserve native type stripping; the mutation test
+casts the readonly array only to exercise its runtime refusal. Native array
+descriptor typing is made explicit as Record<string,PropertyDescriptor>.
+Final complete typecheck output is retained separately in typecheck-complete.txt.

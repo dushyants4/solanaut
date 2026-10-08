@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.68** · 2026-10-08 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.69** · 2026-10-08 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -1297,3 +1297,21 @@ Evidence: `evals/elizaos/published-routes.md`.
 | Draft 4.66 | 2026-10-08 | Internal owned atomic index publication and D25 cache-race regression; definition 24 adds the component, then fresh definition 25/seed 25813 follows the declaration-only correction. Earlier populations and limits remain. Published ElizaOS experiments retain dependency and version findings without production dependency changes or milestone credit. |
 | Draft 4.67 | 2026-10-08 | CI-2 teardown waits for bound supervisor completion before scratch removal and preserves the primary failure; separate ten-second shutdown containment, with the existing baseline wait and all product targets unchanged. No record/evaluation-profile or SDK behaviour change. |
 | Draft 4.68 | 2026-10-08 | CI-2 missing committed result/marker evidence refuses before any fresh supervisor signal; only an existing empty private marker means pending. No completion format, evaluation profile, product or wait change. |
+
+PHX-3/4 reversible offline selection convention under ADR-011: the internal
+firewall filter captures explicit `{cluster: "devnet", tools: [...]}` operator
+configuration, permits only configured transaction-send/transfer tool names and
+requires an own explicit `solana:devnet` network on both. Empty tools denies all.
+Configuration descriptors are captured once; only their own data values are
+validated/copied, with unsupported names, duplicates, sparse arrays and accessors
+refused. Calls are serialized JSON `{name, arguments}` objects, bounded at 65,536
+UTF-8 bytes and value depth 32. Returned data is detached and deeply frozen;
+errors are typed and fixed. Selection is neither a receipt nor authority to
+forward. No raw text is forwarded; duplicate JSON fields use the parsed object's
+last-value semantics. Policy-loading/authentication, transaction/field/rent checks,
+guard admission, wallet revalidation and server/user isolation remain owed.
+No signer RPC, SDK export, record/evaluation-profile or existing rule changes.
+Evidence: `evals/firewall/filter.md`. Firewall source joins AST inventories with
+the same statement/branch and critical floors; no earlier population is removed.
+
+| Draft 4.69 | 2026-10-08 | Offline PHX-3/4 tool/network selection with captured immutable data, bounded/redacted parsing and maintained faults; corresponding firewall AST floors added without relaxing existing gates. Full MCP/Phantom integration remains owed. |

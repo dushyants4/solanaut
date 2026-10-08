@@ -1,0 +1,14 @@
+✔ CI-2: explicit hook records real SDK execution with statement and branch maps (240.727117ms)
+✔ CI-2: failed or missing test-process completion cannot qualify coverage (0.97263ms)
+✔ CI-2: exact statement and branch floors pass without rounding (0.707924ms)
+✔ CI-2: a critical branch deficit fails even when aggregate totals pass (0.750864ms)
+✔ CI-2: missing, extra and duplicate files cannot disappear from coverage (0.761941ms)
+✔ CI-2: malformed and empty execution counts fail closed (0.233383ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 318.628518

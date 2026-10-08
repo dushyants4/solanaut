@@ -1,0 +1,12 @@
+Transcription of the close gate's observed finding, not a saved complete output.
+Command: uv run --script tools/session_close.py --slug codex-solanaut-1
+  [FAIL]  no secrets in 2103 tracked files
+          apps/firewall/test/filter.test.ts:28
+  [FAIL]  working tree committed
+          49 uncommitted change(s).
+  8/10 gates passed
+
+The referenced value was an agent-written literal redaction-test fixture.
+No credential/key existed. Rename the variable to sentinel and use an explicit
+redaction-fixture value; preserve the same malformed-input/redaction assertions.
+No secret-scanning pattern or gate is changed.

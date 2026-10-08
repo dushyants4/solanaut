@@ -1,7 +1,13 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.59** · 2026-10-08 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.60** · 2026-10-08 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
+
+Offline MCP selection now refuses unlisted tools and omitted/foreign networks.
+Accessor/proxy substitution and inherited-default regressions fail first and
+are corrected under captured data semantics. Selection alone cannot authorise
+forwarding: transaction effects, transfer fields/rent and wallet-returned bytes
+remain unqualified. No isolation/live-chain claim. `evals/firewall/filter.md`.
 
 D25's late cached-history checkpoint race now refuses before replacement. Owned
 index publication binds filesystem identity and fresh replay under a real writer;

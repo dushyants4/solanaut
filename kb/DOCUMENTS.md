@@ -1,5 +1,13 @@
 # DOCUMENTS.md — the document register
 
+2026-10-08 offline MCP selection registers SPEC Draft 4.69, OVERVIEW Draft 40,
+RISKS 1.60, PROGRESS, CLAIMS, HANDOFF, continuing run and evaluation index.
+New receipt `evals/firewall/filter.md` retains first failures/misses, restored
+faults, coverage/campaign omissions and exact preceding hosted failure. Full
+MCP/Phantom and stable-release qualification remain owed.
+The release evidence map records the selection/execution boundary; full ordinary,
+AST and native type evidence remain separately scoped in the new receipt.
+
 2026-10-08 missing completion-evidence correction registers SPEC Draft 4.68,
 RISKS 1.59, PROGRESS, CLAIMS, evaluation index, `evals/ci/mutation-stop.md`,
 HANDOFF and the continuing run. Exact c2df043 hosted failure, first-red and

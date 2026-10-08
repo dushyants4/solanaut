@@ -30,6 +30,12 @@ high/critical dependency findings block qualifying that framework graph.
 
 ## Next engineering work
 
+Offline PHX-3/4 [selection evidence](../../evals/firewall/filter.md) now covers
+configured tool names, explicit devnet and detached bounded call parameters.
+It is not guarded execution or a deployed MCP server. Transaction effects,
+transfer fields/rent, returned-wallet bytes, signed policy binding and installed
+cross-user deployment remain the Alpha-path work.
+
 Source review on 2026-10-08 distinguishes the remaining work from delivered
 components. `request-index.ts` already reads a selected shard incrementally and
 validates its complete digest before returning a hit or absence. Its preparation

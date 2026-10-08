@@ -1,0 +1,49 @@
+caught filter fault: configured-tools
+caught filter fault: cluster-pin
+caught filter fault: supported-tools
+caught filter fault: network-pin
+caught filter fault: own-network
+caught filter fault: copied-tools
+caught filter fault: frozen-arguments
+caught filter fault: byte-limit
+caught filter fault: byte-not-character-limit
+caught filter fault: depth-limit
+caught filter fault: call-envelope
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: ✔ PHX-3: only explicitly configured supported tools are selectable (1.980157ms)
+✔ PHX-4: explicit devnet is required, including for simulation and both tools (0.322013ms)
+✔ PHX-3/4: configuration is copied, immutable and refuses unsupported policy input (0.806657ms)
+✔ PHX-3: malformed envelopes refuse with fixed redacted errors (0.216427ms)
+✔ PHX-3: selected arguments are detached and deeply frozen without losing transaction fields (0.164347ms)
+✔ PHX-3: byte and nesting limits reject resource abuse at their declared boundaries (0.495591ms)
+✔ PHX-3: accessors, symbols and hostile configuration cannot install unlisted tools or leak errors (0.231417ms)
+✔ PHX-4: an inherited network cannot supply the omitted mainnet default (0.171507ms)
+✔ PHX-3: proxy reads cannot substitute a tool after configuration validation (0.194388ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 86.934358
+
+
+0 !== 1
+
+    at file:///home/dashy/Projects/Solanaut/evals/firewall/filter-faults.ts:23:82
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

@@ -10,7 +10,7 @@ import { requireCoverage, requireTestProcess } from "./coverage.ts";
 import { coverageTestArguments } from "./coverage-options.ts";
 const testArguments=coverageTestArguments(process.argv.slice(2));
 const root=fileURLToPath(new URL("../../",import.meta.url));
-const inventory=()=>["packages/sdk/src","apps/signer/src"].flatMap(directory=>(readdirSync(join(root,directory),{recursive:true}) as string[]).filter(path=>path.endsWith(".ts")).map(path=>directory+"/"+path)).sort();
+const inventory=()=>["packages/sdk/src","apps/signer/src","apps/firewall/src"].flatMap(directory=>(readdirSync(join(root,directory),{recursive:true}) as string[]).filter(path=>path.endsWith(".ts")).map(path=>directory+"/"+path)).sort();
 const paths=inventory();
 const sources=paths.map(path=>({path,text:readFileSync(join(root,path),"utf8")}));
 const baselines=sources.map(source=>instrumentSource(source.text,source.path).baseline);

@@ -5,6 +5,7 @@ seen failing might not be checking anything.
 
 | Gate | Shown failing | Then passing | Receipt |
 |---|---|---|---|
+| PHX-3/4 offline tool/network selection | absent component; accessor/proxy substitution and inherited defaults; coverage and campaign omissions | captured immutable devnet-only selection, redacted bounded parsing and maintained fault/coverage checks; full MCP qualification owed | `firewall/filter.md` |
 | CI-2 missing committed completion evidence | removing a committed result/marker incorrectly returns pending; retained missing-exception first-red | reader and shutdown refuse before a fresh signal; added fallback fault restores | `ci/mutation-stop.md` |
 | CI-2 mutation scratch teardown | hosted ENOTEMPTY masks the primary timeout; immediate-return fixtures fail; missing-signal fault miss retained | bound supervisor completion before deletion, explicit interruption and refusal checks; baseline wait unchanged | `ci/mutation-stop.md` |
 | PUB-1 current original history inventory | retained original inspector faults and actual-commit-read correction | refreshed private mirror metadata at owned-publication revision; no contents/rights/publication clearance | `ci/history-owned-publication.md` |

@@ -1,0 +1,16 @@
+caught filter fault: configured-tools
+caught filter fault: cluster-pin
+caught filter fault: supported-tools
+caught filter fault: network-pin
+caught filter fault: own-network
+caught filter fault: copied-tools
+caught filter fault: frozen-arguments
+caught filter fault: byte-limit
+caught filter fault: byte-not-character-limit
+caught filter fault: depth-limit
+caught filter fault: call-envelope
+caught filter fault: config-accessors
+caught filter coverage fault: firewall-critical-floor
+caught filter coverage fault: firewall-aggregate-floor
+caught filter coverage fault: firewall-instrumentation
+All filter faults caught; sources restored

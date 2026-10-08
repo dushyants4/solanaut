@@ -1,0 +1,128 @@
+✖ PHX-3: only explicitly configured supported tools are selectable (0.978213ms)
+✖ PHX-4: explicit devnet is required, including for simulation and both tools (0.153956ms)
+✖ PHX-3/4: configuration is copied, immutable and refuses unsupported policy input (0.13655ms)
+✖ PHX-3: malformed envelopes refuse with fixed redacted errors (0.144409ms)
+✖ PHX-3: selected arguments are detached and deeply frozen without losing transaction fields (0.133018ms)
+✖ PHX-3: byte and nesting limits reject resource abuse at their declared boundaries (0.122901ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 0
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 131.608833
+
+✖ failing tests:
+
+test at apps/firewall/test/filter.test.ts:9:1
+✖ PHX-3: only explicitly configured supported tools are selectable (0.978213ms)
+  AssertionError [ERR_ASSERTION]: MCP filter must exist
+      at api (file:///home/dashy/Projects/Solanaut/apps/firewall/test/filter.test.ts:5:23)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/firewall/test/filter.test.ts:10:16)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at apps/firewall/test/filter.test.ts:16:1
+✖ PHX-4: explicit devnet is required, including for simulation and both tools (0.153956ms)
+  AssertionError [ERR_ASSERTION]: MCP filter must exist
+      at api (file:///home/dashy/Projects/Solanaut/apps/firewall/test/filter.test.ts:5:23)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/firewall/test/filter.test.ts:17:16)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at apps/firewall/test/filter.test.ts:22:1
+✖ PHX-3/4: configuration is copied, immutable and refuses unsupported policy input (0.13655ms)
+  AssertionError [ERR_ASSERTION]: MCP filter must exist
+      at api (file:///home/dashy/Projects/Solanaut/apps/firewall/test/filter.test.ts:5:23)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/firewall/test/filter.test.ts:23:59)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at apps/firewall/test/filter.test.ts:27:1
+✖ PHX-3: malformed envelopes refuse with fixed redacted errors (0.144409ms)
+  AssertionError [ERR_ASSERTION]: MCP filter must exist
+      at api (file:///home/dashy/Projects/Solanaut/apps/firewall/test/filter.test.ts:5:23)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/firewall/test/filter.test.ts:28:16)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at apps/firewall/test/filter.test.ts:33:1
+✖ PHX-3: selected arguments are detached and deeply frozen without losing transaction fields (0.133018ms)
+  AssertionError [ERR_ASSERTION]: MCP filter must exist
+      at api (file:///home/dashy/Projects/Solanaut/apps/firewall/test/filter.test.ts:5:23)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/firewall/test/filter.test.ts:34:16)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at apps/firewall/test/filter.test.ts:39:1
+✖ PHX-3: byte and nesting limits reject resource abuse at their declared boundaries (0.122901ms)
+  AssertionError [ERR_ASSERTION]: MCP filter must exist
+      at api (file:///home/dashy/Projects/Solanaut/apps/firewall/test/filter.test.ts:5:23)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/apps/firewall/test/filter.test.ts:40:16)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

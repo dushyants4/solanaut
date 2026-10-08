@@ -11,7 +11,7 @@ registerHooks({load(url,context,nextLoad) {
   const loaded=nextLoad(url,context);
   if(!url.startsWith("file:")) return loaded;
   const path=fileURLToPath(url), name=relative(root,path);
-  if(!/^(packages\/sdk|apps\/signer)\/src\/.+\.ts$/.test(name)) return loaded;
+  if(!/^(packages\/sdk|apps\/(?:signer|firewall))\/src\/.+\.ts$/.test(name)) return loaded;
   return {...loaded,format:"module",source:instrumentSource(readFileSync(path,"utf8"),name).code};
 }});
 process.on("exit",()=> {

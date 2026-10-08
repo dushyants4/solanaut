@@ -8,13 +8,13 @@ function counts(value: CoverageCounts): void {
 const passes = (value: CoverageCounts, floor: number) => value.total===0 || value.covered*100>=value.total*floor;
 export function requireCoverage(files: readonly CoverageFile[], inventory: readonly string[]): void {
   const paths=files.map(file=>file.path);
-  if (new Set(inventory).size!==inventory.length || new Set(paths).size!==paths.length || JSON.stringify([...paths].sort())!==JSON.stringify([...inventory].sort()) || inventory.some(path=>! /^(packages\/sdk|apps\/signer)\/src\/[^\s]+\.ts$/.test(path))) throw new Error("coverage inventory differs");
+  if (new Set(inventory).size!==inventory.length || new Set(paths).size!==paths.length || JSON.stringify([...paths].sort())!==JSON.stringify([...inventory].sort()) || inventory.some(path=>! /^(packages\/sdk|apps\/(?:signer|firewall))\/src\/[^\s]+\.ts$/.test(path))) throw new Error("coverage inventory differs");
   const failures: string[]=[];
   for(const file of files) {
     counts(file.statements); counts(file.branches);
-    if ((file.path.startsWith("apps/signer/src/") || critical.has(file.path.slice("packages/sdk/src/".length))) && !passes(file.branches,85)) failures.push(`${file.path}: branch coverage below critical floor`);
+    if ((file.path.startsWith("apps/signer/src/") || file.path.startsWith("apps/firewall/src/") || critical.has(file.path.slice("packages/sdk/src/".length))) && !passes(file.branches,85)) failures.push(`${file.path}: branch coverage below critical floor`);
   }
-  for(const root of ["packages/sdk/src/","apps/signer/src/"]) {
+  for(const root of ["packages/sdk/src/","apps/signer/src/","apps/firewall/src/"]) {
     const totals={statements:{covered:0,total:0},branches:{covered:0,total:0}};
     for(const file of files.filter(file=>file.path.startsWith(root))) for(const metric of ["statements","branches"] as const) {
       totals[metric].covered+=file[metric].covered; totals[metric].total+=file[metric].total;

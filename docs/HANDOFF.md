@@ -225,6 +225,18 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+Offline PHX-3/4 selection progresses under the explicit item 9 grant while H9/H11
+decisions remain pending. Component tests reproduce accessor/proxy substitution
+and inherited network/descriptor weaknesses before fixes. Captured immutable
+values, explicit devnet and redacted bounded parsing pass maintained faults.
+Firewall coverage/campaign inventories fail first, then include the new path
+without lowering or removing existing gates. `evals/firewall/filter.md` retains
+evidence and preceding 588a1ef hosted failure. No forwarding, policy-loading,
+transfer-field/rent, actual Phantom or deployment qualification claim.
+Final ordinary and serial AST suites pass 751 cases; native typecheck exits zero.
+Thirteen filter and three new coverage faults restore; all thirty existing
+coverage faults restore. Exact final product hashes/counts are retained.
+
 Hosted c2df043 run 37846194595 completes failed; full log/job metadata are retained
 with `evals/ci/mutation-stop.md`. Node 22/26 and partition one fail the unchanged
 baseline wait; Node 24, AST and partitions two/three pass. Missing committed
