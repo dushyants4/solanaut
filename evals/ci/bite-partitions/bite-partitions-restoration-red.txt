@@ -1,0 +1,29 @@
+✖ CI-1: workflow-restoration monitoring covers the partition configuration (4.290226ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 134.152411
+
+✖ failing tests:
+
+test at evals/ci/bite-partitions.test.ts:40:1
+✖ CI-1: workflow-restoration monitoring covers the partition configuration (4.290226ms)
+  AssertionError [ERR_ASSERTION]: Expected "actual" to be strictly unequal to:
+  
+  'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/bite-partitions.test.ts:47:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
+    expected: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }

@@ -8,6 +8,25 @@ work. This dated continuation retains the earlier session's full record at
 
 ## Did
 
+Continued with fixed CI fault partitions. Previous maintained job is cancelled
+near its configured limit; cause is not established from timing alone. Split the
+complete maintained inventory across three separate checkouts, retaining every
+campaign, sequential restoration within each job, default full local execution,
+per-campaign bound and existing job deadline. Initial function/workflow/inventory
+cases fail first. The first workflow duplicate fail-fast fault misses because a
+loose regex accepts contradictory keys. Exact single false value now required;
+miss retained without credit. Final fault and integrated checks follow. Mutation
+selected workload/seed, baseline wait and all readiness floors remain unchanged.
+
+
+Record loading a4d1c25 privately pushed; post-sync close passes every gate and
+hosted 37711212005 starts. Continued with the release evidence map: each mission
+phase links current receipts and remaining owner/dependencies; PROGRESS stale
+pre-publication/recovery statements now describe the actual component state.
+Historical receipts and failures stay intact. Next accepted core work is disk
+request lookup, bounded active state and owned streaming restoration.
+
+
 Record loading final local evidence passes (CLAIMS S76). Ordinary/AST 655 cases,
 unchanged floors and native typecheck pass; installed eleven cases/fifty-three
 faults, forty-four staging and fifteen isolated recovery/driver faults restore.

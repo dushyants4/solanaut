@@ -208,6 +208,15 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+| 2026-10-08 | CI-1 fixed complete fault partitions and release accounting | commit containing `evals/ci/bite-partitions.md` | first failures/misses, source/workflow faults, internal peer review and corrected ordinary/AST/type checks | All 54 campaigns remain required; limits unchanged. CLAIMS S77/S78 record gate scope and 41% formal milestone completion, including Beta. Hosted timing/Alpha/release gates remain open. |
+
+a4d1c25 record loading privately pushed; local close passes every gate. Hosted
+37711212005 is pending. Current release evidence map links component receipts to
+all mission phase exits and names remaining owners/dependencies; PROGRESS's stale
+pre-publication/pre-recovery wording is reconciled without deleting receipts.
+Next accepted work is disk request lookup, bounded state and owned streaming
+restoration. H9/H10/H11 and human/Claude/audit gates stay open.
+
 | 2026-10-07 | OWN-2/SNP-4/5 record loading | commit containing `evals/sdk/record-loading.md` | first failures; source/installed/staging/isolated driver faults; 655 ordinary/AST cases and typecheck | Captured pins, constructor identity and full maintenance validation preserved; CLAIMS S76. No hosted timing fix or complete release claim. |
 
 Record loading candidate: source and installed bootstrap refuse eager evaluation

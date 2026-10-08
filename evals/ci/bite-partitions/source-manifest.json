@@ -1,0 +1,13 @@
+{
+  "base": "a4d1c25",
+  "node": "26.7.0",
+  "date": "2026-10-08",
+  "sha256": {
+    ".github/workflows/ci.yml": "6ae13f00005b4a3459d886a9c2beda6d4e1da9b375efaf6cb2cb2cbc36d2b7ca",
+    "evals/ci/bite.ts": "f0d7108d9fc06e9ef2a182cb50a4981e2c713192a99cf62f82bb937d4bc48a0c",
+    "evals/ci/bite-partitions.test.ts": "c1773163079d0813cf5e308c6aae9b798335ddffe12f44b466d2aeebc3ebb1e3",
+    "evals/ci/bite-partitions-faults.ts": "e7d25fa0bcfb16882f018d29e72003714a510ebde3f402d9899ae350108ee2a9",
+    "evals/ci/bite-faults.ts": "396aeab93b2deb8dfcf0142f0c865dc5092490622df20e28b9b9848c5c0d7d77",
+    "evals/ci/bite-source.test.ts": "85bd273a63c2d7a103a2e68ee01609e5f64fb42420464d565a6c00e6f16e4e9b"
+  }
+}

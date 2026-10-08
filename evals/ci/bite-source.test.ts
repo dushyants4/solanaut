@@ -8,6 +8,7 @@ test("CI-1: restoration fingerprints include operator TypeScript tools",()=>{
   const directory=mkdtempSync(".sandbox/solanaut-1/bite-source-");
   try {
     for(const root of ["packages","apps","evals","tools"]) mkdirSync(join(directory,root));
+    mkdirSync(join(directory,".github/workflows"),{recursive:true});
     const path=join(directory,"tools/run.ts");writeFileSync(path,"original");
     const original=sourceFingerprint(directory);writeFileSync(path,"fault");
     assert.notEqual(sourceFingerprint(directory),original);

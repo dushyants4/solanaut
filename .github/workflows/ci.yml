@@ -57,9 +57,13 @@ jobs:
         run: npm run test:latch:faults
 
   bite:
-    name: maintained fault campaigns
+    name: maintained fault campaigns (${{ matrix.partition }})
     runs-on: ubuntu-24.04
     timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        partition: [1, 2, 3]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -72,7 +76,7 @@ jobs:
       - run: npm run release:prepare
       - run: npm cache add @gubernaut/core@1.0.1
       - name: sequential fault campaigns with restoration checks
-        run: npm run test:bite
+        run: npm run test:bite -- --partition ${{ matrix.partition }}
 
   fuzz:
     name: million-input decoder fuzz

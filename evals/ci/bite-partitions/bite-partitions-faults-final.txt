@@ -1,0 +1,9 @@
+caught fault partition fault: duplicate-partition
+caught fault partition fault: missing-tail
+caught fault partition fault: invalid-partition
+caught fault partition fault: implicit-subset
+caught fault partition fault: failure-loss
+caught fault partition fault: restoration-loss
+caught fault partition fault: workflow-missing-partition
+caught fault partition fault: workflow-cancel-failures
+All fault partition faults caught; restored sources pass

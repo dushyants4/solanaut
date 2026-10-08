@@ -1,5 +1,16 @@
 # DOCUMENTS.md — the document register
 
+2026-10-08 fixed CI partitions and progress accounting register CI/progress
+receipts/index, CLAIMS S77/S78, release/mission plans, PROGRESS, HANDOFF and today
+continuation record and OVERVIEW Draft 37. All campaigns/limits are retained. Whole milestone progress
+includes approved Beta and supplies no effort or release-readiness claim. Exact
+a4d1c25 hosted failures remain beside local passing evidence.
+
+2026-10-07 release evidence map registers its new plan, mission-plan status link,
+PROGRESS reconciliation, HANDOFF and continuing run. Current component evidence
+is distinguished from phase exits; prior failures/receipts remain retained.
+No readiness threshold, architecture acceptance or publication decision changes.
+
 2026-10-07 record loading registers SPEC Draft 4.63, RISKS 1.54, OVERVIEW
 Draft 36, SDK Draft 16, PACKAGING Draft 18, receipt/index, PROGRESS, HANDOFF
 and continuing run. Full maintenance validation and constructor identity stay

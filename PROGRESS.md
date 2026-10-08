@@ -1,5 +1,14 @@
 # PROGRESS.md
 
+Formal milestone completion is 41% (16 of 39 equally weighted milestones),
+including the approved Beta; CLAIMS S78 and `evals/release/progress.md` freeze the
+scope. This is not release readiness, effort or a completion date. Components
+inside open milestones receive no fractional credit.
+
+CI fault partitions preserve every maintained campaign and per-job restoration
+(CLAIMS S77). Corrected ordinary/AST/type checks pass; hosted qualification follows.
+Exact a4d1c25 hosted baseline-wait failures remain retained.
+
 Record-only loading has source and installed fault evidence
 (`evals/sdk/record-loading.md`). Owned checkpoint maintenance retains full
 validation and captured pins. Local ordinary/AST/type, installed and isolated driver checks pass (CLAIMS S76); no full snapshot,
@@ -110,42 +119,32 @@ checkpoint publication/recovery and stable release remain open.
 ## Open
 
 **Solanaut 1.0 mission:** `docs/plans/2026-10-05_solanaut-1.md`, approved in this session.
-Accepted snapshot/replay/retention/maintenance obligations now have SNP-3–8 acceptance
-mapping in `docs/plans/2026-10-06_snapshot-qualification.md`; implementation remains owed.
-The SNP-3 authentication codec has component evidence (`evals/sdk/checkpoint.md`), but
-publication, payload validation, prefix replay and checkpoint restoration remain owed.
-Internal Keel prefix preparation validates retained history through full replay
-before deriving ticks/resets (`evals/sdk/checkpoint-prefix.md`). Its consumer and
-authenticated restoration remain owed; this is component progress only.
-Signed-mode state preparation retains policy, previous decision and unresolved
-request/signing facts (`evals/sdk/checkpoint-state.md`); strict restore remains owed.
-Corrected afed152 hosted CI passes every job. Full corrected-target mutation and
-stable-release gates remain outstanding.
-Admission-state b9c06eb hosted validation has an instrumented baseline-wait failure
-despite other passing jobs. Installed compiled payload cases/faults pass
-(`evals/packaging/checkpoint-payloads.md`); fuller child diagnostics preserve the
-existing wait, with cause and corrected hosted qualification still unresolved.
-Archive catalogue metadata preparation additionally has focused and installed component
-evidence (`evals/sdk/checkpoint-archives.md`); actual file authentication and full
-snapshot qualification remain owed. Root validation currently retains an existing
-staged-baseline timeout under active mutation load.
+Current evidence and remaining phase exits are mapped in
+`docs/plans/2026-10-07_release-evidence-map.md`; the approved Beta remains the
+achieved milestone. Signed payloads, owned atomic publication, owned read-only
+recovery, archive streaming and two-pass recomputation have component receipts.
+They do not finish streamed owned startup, snapshot cadence, disk request lookup,
+bounded active state or SNP-8 maintenance. See the accepted implementation map in
+`docs/plans/2026-10-06_snapshot-qualification.md` and CLAIMS S69–S76.
 
-The superseded frozen guard run is retired with actual interruption evidence.
-Quiet-host ordinary integration passes; earlier timing failures remain retained.
-D21's impossible malformed controller observations have candidate refusal proof
-(`evals/sdk/malformed-replay.md`); fresh corrected-target mutation remains required.
-Mutation preparation retains separate floors for the original and added authentication
-populations (`evals/ci/mutation-authentication.md`). Isolated local integration passes;
-the previous hosted Node 22 baseline-wait failure remains recorded. Serial test-file
-execution preserves its deadline; corrected hosted qualification remains owed.
-Individual Linux installation/lifecycle acceptance is allocated as OPR-1–8; the qualification
-map names dependencies and required drills, with implementation/support evidence still owed.
-Read-only original-origin history inventory is prepared (`evals/ci/history.md`); whole
-publication-scope secrets, confidentiality and rights review still remains owed.
+Local source/installed/AST/type qualification passes through a4d1c25, with hosted
+37711212005 fails Node 22/26 and AST at the unchanged baseline wait; maintained
+faults and Node 24 pass. Preceding b352454 hosted runtime jobs pass; AST fails the
+unchanged staged-baseline wait and maintained faults are cancelled. Exact receipts
+preserve earlier failures, the interrupted mutation run and D21's correction.
+Corrected hosted qualification and the complete frozen mutation score remain owed.
+
+Individual Linux lifecycle acceptance is allocated as OPR-1–8; implementation and
+installed-machine/human evidence remain owed. Actual history-object reads and
+cached graph agreement are checked, but entire proposed public-history secrets,
+confidentiality and source-rights review remains unfinished. Neither the inventory
+nor the corrected checker clears publication.
+
 ADR-012 C is implemented and verified offline (`evals/sdk/latch-c.md`); its complete queue item
 still owes a funded devnet rerun. Historical records' accepted replay differences are enumerated.
 ADR-019/020 are accepted clarifications following the human's instruction to go ahead;
-their signing, recovery and operator paths are next. The isolated signer is not built.
+signing/recovery components are tested; operational startup and dedicated-user
+isolation remain unbuilt and do not achieve the signer milestone.
 Signed SDK policy history is built and tested offline (`evals/sdk/signed-policy.md`);
 its milestone still needs the signer's enforced path and the operator's Phantom evidence.
 The Alpha and stable-release gates are not achieved by this initial work.

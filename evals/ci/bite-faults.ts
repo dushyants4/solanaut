@@ -8,7 +8,7 @@ const faults = [
   ["ignore-failed-exit", "if (result !== 0)", "if (false)"],
   ["ignore-unrestored-source", "if (fingerprint() !== original)", "if (false)"],
   ["invent-clean-result", "ok: failed.length === 0 && skipped.length === 0", "ok: true"],
-  ["skip-first-campaign", "of CAMPAIGNS.entries()", "of CAMPAIGNS.slice(1).entries()"],
+  ["skip-first-campaign", "of campaigns.entries()", "of campaigns.slice(1).entries()"],
 ] as const;
 const battery = () => spawnSync(process.execPath, ["--test", "evals/ci/bite.test.ts"], { encoding: "utf8", timeout: 30_000 });
 const baseline = battery(); assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
