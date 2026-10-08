@@ -1,0 +1,29 @@
+✖ PUB-1: commit-body read failure cannot be replaced by graph or tree metadata (92.467107ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 222.437565
+
+✖ failing tests:
+
+test at evals/ci/history.test.ts:136:1
+✖ PUB-1: commit-body read failure cannot be replaced by graph or tree metadata (92.467107ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:145:12
+      at fixture (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:18:5)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/history.test.ts:136:92)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /commit|object|history/,
+    operator: 'throws',
+    diff: 'simple'
+  }

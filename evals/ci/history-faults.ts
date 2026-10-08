@@ -4,6 +4,11 @@ import { spawnSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 const path = "evals/ci/history.ts";
 const faults = [
+  ["commit-body-read", "readableCommit(commit);", "void 0;"],
+  ["commit-body-hash",'digest("hex")!==commit.id','digest("hex")!==commit.id && false'],
+  ["commit-tree-metadata",'headers[0]!==`tree ${commit.tree}`',"false"],
+  ["commit-parent-metadata","JSON.stringify(parents)!==JSON.stringify(commit.parents)","false"],
+  ["blob-metadata-count","metadata.length !== blobIds.length","false"],
   ["lazy-fetch", 'env.GIT_NO_LAZY_FETCH = "1"', 'env.GIT_NO_LAZY_FETCH = "0"'],
   ["graft-ancestry", 'env.GIT_GRAFT_FILE = "/dev/null"', 'void 0'],
   ["whole-history", '"--parents", "--all", "HEAD"', '"--parents", "HEAD"'],
@@ -24,7 +29,7 @@ for (const [name, from, to] of faults) {
   const original = readFileSync(path, "utf8"); assert.equal(original.split(from).length, 2, "missing or ambiguous history fault site: " + name);
   try {
     writeFileSync(path, original.replace(from, to)); const result = run();
-    assert.equal(result.status, 1, result.stdout + result.stderr); assert.match(result.stdout, /PUB-1/); assert.match(result.stdout, /tests 15\b/);
+    assert.equal(result.status, 1, result.stdout + result.stderr); assert.match(result.stdout, /PUB-1/); assert.match(result.stdout, /tests 16\b/);
     console.log("caught history inventory fault: " + name);
   } finally { writeFileSync(path, original); }
 }

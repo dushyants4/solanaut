@@ -1,5 +1,17 @@
 # DOCUMENTS.md — the document register
 
+2026-10-07 actual commit-read repair registers SPEC Draft 4.60, RISKS 1.51,
+new history receipt/index, historical inventory correction, owned-recovery hosted
+failure receipt, PROGRESS, HANDOFF and continuing run. Actual commit bodies/hashes
+replace insufficient cached metadata as object-read evidence; publication-scope
+review stays open. Streaming work is preserved separately, not part of this repair.
+Actual tree/ordered parent headers must agree with enumerated metadata too; the
+new cases fail first and final eighteen faults restore. Final ordinary/type follows.
+CLAIMS S73 records scoped checker evidence and limitations; it does not clear the
+original repository for publication or infer independent security evidence.
+Final corrected ordinary suite passes 634 cases and native typecheck exits zero;
+CLAIMS S73 records the results and exact history input hashes before private sync.
+
 2026-10-07 owned recovery registers SPEC Draft 4.59, RISKS 1.50, OVERVIEW
 Draft 33, SDK Draft 13, PACKAGING Draft 15, component receipt/index, PROGRESS,
 HANDOFF and continuing run. Actual owner-bound read-only preparation does not

@@ -92,12 +92,14 @@ test("PUB-1: shared blobs retain each historical path and file mode", () => fixt
   assert.deepEqual(shared?.paths, ["past.txt", "renamed.txt"]); assert.deepEqual(shared?.modes, ["100644", "100755"]);
 }));
 test("PUB-1: malformed tree framing and object metadata refuse", () => {
-  for (const variant of ["tree", "size", "count", "duplicate"]) fixture((root, git) => {
+  for (const variant of ["tree", "size", "count", "truncated", "duplicate"]) fixture((root, git) => {
+    if(variant==="truncated"){writeFileSync(join(root,"extra.txt"),"second blob\n");git(["add","."]);git(["commit","-m","extra blob"]);}
     const read: GitRead = (args, input) => {
       const output = git(args, input);
       if (variant === "tree" && args[0] === "ls-tree") return output.slice(0, -1);
-      if (variant === "size" && args[0] === "cat-file") return output.replace(/ blob \d+\n/, " blob 9007199254740992\n");
-      if (variant === "count" && args[0] === "cat-file") return "";
+      if (variant === "size" && args[0] === "cat-file" && args[1]?.startsWith("--batch-check")) return output.replace(/ blob \d+\n/, " blob 9007199254740992\n");
+      if (variant === "count" && args[0] === "cat-file" && args[1]?.startsWith("--batch-check")) return "";
+      if (variant === "truncated" && args[0] === "cat-file" && args[1]?.startsWith("--batch-check")) return output.trimEnd().split("\n")[0]+"\n";
       if (variant === "duplicate" && args[0] === "rev-list") return output + output;
       return output;
     };
@@ -130,4 +132,16 @@ test("PUB-1: cached commit graphs cannot authorise missing historical commit obj
   git(["commit-graph", "write", "--reachable"]);
   rmSync(join(root, ".git", "objects", first.slice(0, 2), first.slice(2)));
   assert.throws(() => inventoryHistory(root), /object|history|git read/);
+}));
+test("PUB-1: commit-body read failure cannot be replaced by graph or tree metadata", () => fixture((root, git) => {
+  const firstTree=git(["rev-parse","HEAD^{tree}"]).trim();writeFileSync(join(root,"past.txt"),"second\n");git(["add","."]);git(["commit","-m","second"]);const head=git(["rev-parse","HEAD"]).trim();
+  for(const mode of ["missing","corrupt","parent","tree"]){
+    const read:GitRead=(args,input)=>{
+      if((mode==="missing"||mode==="corrupt")&&args[0]==="cat-file"&&args[1]==="commit"){if(mode==="missing")throw new Error("historical commit object cannot be read");return git(args,input)+"corrupt";}
+      if(mode==="parent"&&args[0]==="rev-list")return head+"\n";
+      if(mode==="tree"&&args[0]==="rev-parse"&&args[2]===head+"^{tree}")return firstTree+"\n";
+      return git(args,input);
+    };
+    assert.throws(()=>inventoryHistory(root,read),/commit|object|history/);
+  }
 }));

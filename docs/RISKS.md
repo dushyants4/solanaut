@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.50** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.51** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 Bundle preparation captures a common history/endpoint and external authority pins.
@@ -290,3 +290,12 @@ trusted-host mutation or a compromised signer host. No power-loss claim.
 The shared ownership check now rejects a named path replaced by a symlink to the
 held inode. Its confirmed pre-fix failure and installed regression are retained;
 this correction does not establish protection against a compromised host.
+
+PUB-1's earlier missing-commit probe was insufficient: later ordinary integration
+accepts its missing commit through cached graph/tree queries. The checker now
+requires readable commit bodies with matching Git object hashes and actual
+tree/parent headers agreeing with the enumerated metadata; the confirmed
+failure and added read/corruption/truncated-metadata regressions are retained at
+`evals/ci/history-commit-read.md`. The original repository's proposed public history
+still needs confidentiality, secret, source-rights and notices review. Hosted
+49f753b failures remain separate unchanged baseline waits; H11 stays pending.

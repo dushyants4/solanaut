@@ -208,6 +208,23 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+PUB-1 final focused/fault and corrected ordinary/type checks pass; exact inputs and
+all original failures are retained, CLAIMS S73. Final close/private sync precedes
+restoring the archive-stream candidate. No SDK source change in this independent
+repair. Hosted wait failures and H9/H10/H11 remain open.
+
+PUB-1 later integration accepts a cached missing commit. Independent repair reads
+each actual commit body and verifies its Git object hash and tree/parent headers;
+missing/corrupt bodies, differing metadata and valid truncated blob batches refuse.
+Initial failures, sixteen focused cases and eighteen faults are retained at
+`evals/ci/history-commit-read.md`. Corrected ordinary/
+type/close follows. Archive streaming work is preserved in the recorded local
+stash and resumes after this separate coherent repair; no SDK change in this step.
+
+49f753b hosted 37703450078 completes with four failures, each at the unchanged
+real-baseline wait (Node 22/26, AST, maintained faults). Node 24 and other jobs pass.
+Exact logs/revision metadata retained with owned recovery receipt. H11 stays pending.
+
 Owned recovery final source/installed/staging/recovery faults restore; corrected
 ordinary/AST/type and unchanged floors pass. Exact hashes, original failures and
 fresh definition-15 baseline evidence are retained with the receipt, CLAIMS S72.

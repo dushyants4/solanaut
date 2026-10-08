@@ -1,0 +1,19 @@
+caught history inventory fault: commit-body-read
+caught history inventory fault: commit-body-hash
+caught history inventory fault: commit-tree-metadata
+caught history inventory fault: commit-parent-metadata
+caught history inventory fault: blob-metadata-count
+caught history inventory fault: lazy-fetch
+caught history inventory fault: graft-ancestry
+caught history inventory fault: whole-history
+caught history inventory fault: detached-head
+caught history inventory fault: shallow-refusal
+caught history inventory fault: ref-closure
+caught history inventory fault: tree-framing
+caught history inventory fault: blob-shape
+caught history inventory fault: changing-scope
+caught history inventory fault: shared-paths
+caught history inventory fault: shared-modes
+caught history inventory fault: gitlinks
+caught history inventory fault: digest
+All history inventory faults caught; restored source passes

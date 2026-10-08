@@ -8,6 +8,30 @@ work. This dated continuation retains the earlier session's full record at
 
 ## Did
 
+Independent PUB-1 repair final ordinary suite passes 634 cases; native typecheck
+exits zero and eighteen fault trials restore. Exact history hashes/raw failures
+are retained; no SDK source change. CLAIMS S73 records scoped gate evidence. Final
+close/private sync follows before restoring the preserved streaming candidate.
+
+Actual-body hash verification also compares its tree/ordered parent headers with
+enumerated metadata. Hidden-parent and substituted-tree fixtures fail first;
+the added checks and final eighteen-fault campaign pass with restoration. Final
+ordinary integration/typecheck repeats after this correction. SDK source remains
+unchanged; archive streaming work stays in the recorded stash until private sync.
+
+PUB-1 inventory repair is isolated from the unfinished archive-stream candidate,
+preserved in local stash `38b6deba5df31d096cebd99fa6e2f244517ab0b8`.
+Full streaming source/test/document work and its failures resume after the
+independent gate repair's close/private sync. The three history files are restored
+alone; no SDK source changes in this step. Sixteen cases/sixteen faults restore,
+including actual-body read/hash and valid truncated blob batches. Corrected full
+ordinary and native typecheck verification follow before the coherent commit.
+
+Hosted 49f753b run 37703450078 completes with four unchanged real-baseline-wait
+failures (Node 22/26, AST, maintained faults); Node 24 and other jobs pass. Exact
+logs/metadata retained with owned-recovery receipt. H11 stays pending. The local
+history failure is a distinct confirmed defect, not attributed to that wait.
+
 Final fresh definition-15 recovery/driver campaign catches all fifteen faults and
 restores exact sources. Corrected ordinary/AST/type, installed and source/staging
 fault evidence is retained with final hashes and original failures. CLAIMS S72
@@ -464,6 +488,14 @@ implementation, documentation and receipt changes remain in the continuing sessi
 
 ## Found
 
+Later archive-stream ordinary integration fails PUB-1 cached missing-commit
+refusal; a deterministic missing-body regression also fails before implementation.
+Actual commit-body reads and Git object hashes now establish readability before
+metadata inventory. A hash-fault site initially uses a decoded null and fails
+without credit; its corrected unique comparison catches. Empty metadata masks a
+count omission; a valid truncated multi-blob batch catches it. Every initial setup,
+missed fault and corrected result is preserved in `evals/ci/history-commit-read/`.
+
 Owned recovery pre-sync close passes nine gates, including the staged-file secret
 scan, and refuses the uncommitted candidate. Diff review is clean. Private
 commit/push follows; the final clean-tree/pushed check remains required.
@@ -836,6 +868,10 @@ developers and human-run deployment/Phantom/publication remain required. No stab
 or complete snapshot/signing-service claim.
 
 ## Provenance
+
+History object/header repair pre-sync close passes nine gates; only uncommitted
+work refuses closure. Corrected ordinary/type evidence is retained, with SDK
+source unchanged. Private sync follows; streaming work remains in its recorded stash.
 
 Builder-authored evidence on local Linux, Node 26.7.0. This continuation initially
 started from 0978aaa; later component receipts identify their exact base revisions.

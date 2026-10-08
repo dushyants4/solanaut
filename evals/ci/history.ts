@@ -43,9 +43,17 @@ export function inventoryHistory(repository: string, read?: GitRead): HistoryInv
   }).sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
   const commitIds = new Set(commits.map(c => c.id));
   if (commitIds.size !== commits.length || !commitIds.has(before.head) || targets.some(target => !commitIds.has(target)) || commits.some(c => c.parents.some(parent => !commitIds.has(parent)))) throw new Error("incomplete history commit closure");
+  const readableCommit=(commit:HistoryInventory["commits"][number])=>{
+    const body=git(["cat-file","commit",commit.id]),bytes=Buffer.from(body,"utf8");
+    if(createHash(objectFormat).update(`commit ${bytes.length}\0`).update(bytes).digest("hex")!==commit.id)throw new Error("missing or corrupt history commit object");
+    const headers=body.split("\n\n",1)[0]!.split("\n"),parents=headers.filter(line=>line.startsWith("parent ")).map(line=>line.slice(7));
+    if(headers[0]!==`tree ${commit.tree}` || JSON.stringify(parents)!==JSON.stringify(commit.parents))throw new Error("history commit metadata differs from actual object");
+  };
   const objects = new Map<string, { paths: Set<string>; modes: Set<string> }>();
   const links = new Map<string, Set<string>>();
   for (const commit of commits) {
+    // A commit graph can answer ancestry/tree queries without the original commit object.
+    readableCommit(commit);
     const tree = git(["ls-tree", "-r", "-z", "--full-tree", commit.id]);
     if (tree && !tree.endsWith("\0")) throw new Error("incomplete history tree framing");
     for (const entry of tree.split("\0").filter(Boolean)) {

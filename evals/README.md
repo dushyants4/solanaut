@@ -5,6 +5,7 @@ seen failing might not be checking anything.
 
 | Gate | Shown failing | Then passing | Receipt |
 |---|---|---|---|
+| PUB-1 actual commit reads | cached-graph acceptance, body-read and metadata failures retained; fault setup/missed batch case preserved | sixteen cases/eighteen faults restore; full corrected close follows; no publication review clearance | `ci/history-commit-read.md` |
 | SNP-5/6 checkpoint recovery preparation | missing-function, sparse-list defect and missed fixture trials retained | prefix/tail or verified full replay preserves facts; source faults restore; installed/integration follow | `sdk/checkpoint-recovery.md` |
 | SNP-5/6, OWN-2 owned recovery | missing capability, descriptor-reuse and early-refusal fault trials retained | actual owner reads/rechecks history; verified fallback preserves evidence; integration follows | `sdk/checkpoint-owned-recovery.md` |
 | SNP-5 validated prefix rebuilding | missing function, older compiled artefact and enlarged definition refuse | fresh controller matches full-stream next decisions; source faults restore; integration follows | `sdk/checkpoint-rebuild.md` |

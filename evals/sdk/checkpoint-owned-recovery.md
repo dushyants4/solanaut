@@ -20,6 +20,12 @@ store cannot acquire its capability through reused descriptor numbers.
 
 ## Evidence and findings
 
+Hosted 49f753b run 37703450078 completes with four unchanged-baseline-wait
+failures: Node 22/26 ordinary jobs, AST and maintained faults. Node 24 and the
+other jobs pass. Exact metadata/full logs are retained in
+`checkpoint-owned-recovery/hosted-49f753b/`. H11 remains pending; these failures
+are not cleared by local component evidence.
+
 Nine initial cases fail on the missing capability. A further failed-writer and
 established-reopen case exercises the existing storage failure boundary. Initial
 closed-owner omission is masked by closed file descriptors; reopening the record

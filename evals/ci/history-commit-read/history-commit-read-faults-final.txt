@@ -1,0 +1,22 @@
+caught history inventory fault: commit-body-read
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: missing or ambiguous history fault site: commit-body-hash
+
+1 !== 2
+
+    at file:///home/dashy/Projects/Solanaut/evals/ci/history-faults.ts:27:55
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 1,
+  expected: 2,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

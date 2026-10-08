@@ -6,6 +6,12 @@ licence or final publication review, and does not change visibility or rewrite a
 
 ## Scope and evidence
 
+2026-10-07 correction: later full ordinary integration accepts a missing commit
+through the earlier cached-graph fixture. The old refusal below remains a scoped
+historical result, not sufficient evidence that all commit objects are readable.
+Actual body reads and object hashes are now required; see
+`history-commit-read.md` for the failure, stronger regressions and maintained faults.
+
 The inspector captures current HEAD and every local ref, peels commit references, walks their
 complete parent closure and enumerates each commit's NUL-framed tree. Historical blobs retain
 all observed paths and modes, including deleted/renamed files and symlinks. Gitlinks remain

@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.59** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.60** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -1198,3 +1198,11 @@ not guard startup, admission blocking, state loading, cadence or bounded retenti
 The previous checkpoint remains publication evidence; recovery uses the current
 checkpoint or complete verified history, without adding another authority path.
 Component evidence: `evals/sdk/checkpoint-owned-recovery.md`.
+
+PUB-1 inventory must read every enumerated commit's actual body and verify its
+Git object hash under the inspected repository's object format, and compare actual
+tree/ordered parent headers with enumerated metadata. Cached graph/tree
+answers alone do not establish that the historical commit can be read. Missing,
+unreadable or corrupt bodies refuse; incomplete valid blob-metadata batches also
+refuse. This remains read-only metadata preparation, not confidentiality, source
+rights or publication clearance. Evidence: `evals/ci/history-commit-read.md`.

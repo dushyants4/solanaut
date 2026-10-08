@@ -1,5 +1,11 @@
 # PROGRESS.md
 
+History inventory now requires each actual historical commit body and matching Git
+object hash after later integration exposes cached-graph acceptance of a missing
+object (`evals/ci/history-commit-read.md`). Actual tree/parent headers also agree
+with metadata. Focused faults and corrected ordinary/type checks pass; final close
+follows. Publication-scope review remains uncompleted.
+
 Internal owned checkpoint recovery has focused and installed fault evidence
 (`evals/sdk/checkpoint-owned-recovery.md`). It reads actual disk history under
 kernel ownership and repeats ownership/history checks before returning. Local

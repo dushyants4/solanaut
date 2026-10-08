@@ -1,0 +1,47 @@
+caught history inventory fault: commit-body-read
+caught history inventory fault: commit-body-hash
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: ✔ PUB-1: inventory retains deleted and changed blobs rather than only HEAD (61.971402ms)
+✔ PUB-1: divergent branches and annotated tags are inventoried (66.583682ms)
+✔ PUB-1: tabs, newlines and Unicode paths survive NUL tree framing (45.608398ms)
+✔ PUB-1: executable, symlink and gitlink modes remain explicit without following links (46.246249ms)
+✔ PUB-1: shallow and incomplete object histories refuse instead of silently shrinking (30.772469ms)
+✔ PUB-1: detached HEAD and stable repeated inventory have explicit scope and digest (64.937609ms)
+✔ PUB-1: changing refs or HEAD during enumeration refuse (36.300725ms)
+✔ PUB-1: non-commit refs cannot be ignored as irrelevant history (23.836132ms)
+✔ PUB-1: ref targets missing from returned commit closure refuse (39.457135ms)
+✔ PUB-1: shared blobs retain each historical path and file mode (40.722868ms)
+✔ PUB-1: malformed tree framing and object metadata refuse (115.345716ms)
+✔ PUB-1: SHA-256 Git repositories retain full object identities (31.227471ms)
+✔ PUB-1: local grafts cannot hide original commit ancestry (42.760044ms)
+✔ PUB-1: partial-clone inventory refuses missing blobs without lazy fetch or object writes (48.790353ms)
+✔ PUB-1: cached commit graphs cannot authorise missing historical commit objects (39.609236ms)
+✔ PUB-1: commit-body read failure cannot be replaced by graph or tree metadata (39.929435ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 865.574872
+
+
+0 !== 1
+
+    at file:///home/dashy/Projects/Solanaut/evals/ci/history-faults.ts:30:12
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0
