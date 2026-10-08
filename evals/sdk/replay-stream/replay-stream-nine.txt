@@ -1,0 +1,17 @@
+✔ SNP-7: streamed mixed history matches array replay including latch resets (43.958609ms)
+✔ SNP-7: existing array recomputation does not introduce yields between records (10.313695ms)
+✔ SNP-7: truncated or changed second reads cannot qualify a valid prefix (17.744958ms)
+✔ SNP-7: source errors and early divergence close their current iterator (8.479723ms)
+✔ SNP-7: policy is captured before asynchronous source reads (13.668174ms)
+✔ SNP-7: later signed window expansion preserves reservations pruned under an earlier policy (8.199758ms)
+✔ SNP-7: signed replay captures external trust and refuses another sensor or authority (3.346888ms)
+✔ SNP-7: malformed source factories and noncanonical entries refuse with typed errors (0.83104ms)
+✔ SNP-7: actual immutable archive segments replay through natural pinned completion (31.355998ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 315.5981

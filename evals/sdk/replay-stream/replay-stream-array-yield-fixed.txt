@@ -1,0 +1,22 @@
+✔ SNP-7: streamed mixed history matches array replay including latch resets (55.597643ms)
+✔ SNP-7: existing array recomputation does not introduce yields between records (10.207227ms)
+✔ SNP-7: truncated or changed second reads cannot qualify a valid prefix (11.389831ms)
+✔ SNP-7: source errors and early divergence close their current iterator (7.670405ms)
+✔ SNP-7: policy is captured before asynchronous source reads (12.455125ms)
+✔ SNP-7: later signed window expansion preserves reservations pruned under an earlier policy (10.047089ms)
+ℹ Error: A resource generated asynchronous activity after the test ended. This activity created the error "TypeError: Cannot assign to read only property 'hash' of object '#<Object>'" which triggered an uncaughtException event, caught by the test runner.
+✖ packages/sdk/test/replay-stream.test.ts (294.76008ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 301.021757
+
+✖ failing tests:
+
+test at packages/sdk/test/replay-stream.test.ts:1:1
+✖ packages/sdk/test/replay-stream.test.ts (294.76008ms)
+  'test failed'

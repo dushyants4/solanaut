@@ -1,0 +1,19 @@
+{
+  "base": "c2c2f5cfe7a33c627ce721325b1e06cb1e1587af",
+  "node": "v26.7.0",
+  "definition": 19,
+  "seed": 24713,
+  "hashes": {
+    "packages/sdk/src/guard.ts": "11b550832d14a3d1c77882a842b830fe2773bbc865bbd43e11c721e4b0499ceb",
+    "packages/sdk/test/replay-stream.test.ts": "8ff91ff5ebe41eb3eaa71e628cc6cf9d5e1376da30d34375c7b926ec49b55b34",
+    "evals/sdk/replay-stream-faults.ts": "720d0bf5d7834c0a895c384b3434dbcebfbb1d75cf86696b021bd31efa8d86bf",
+    "evals/ci/bite.ts": "2467bb243cf586307152d36975ab50343ad8450d8d59446873f6e79f4602b1f3",
+    "evals/ci/mutation-stage.ts": "0f4ff1a3373f3e050e842aa44253788d292efd37f9e77d82857cc8183682327a",
+    "evals/ci/mutation-stage.test.ts": "24604896f9a14de31d014421c6253a260378ef5208651d67b712aef0cdaf1b11",
+    "evals/ci/mutation-run.ts": "e641baf5357748d8d427ab26d2c5ee4544f6a212b2810bc6b13b64178acf1d40",
+    "evals/ci/mutation-recovery.test.ts": "ff11900cd9426c5ec89370fc3aaaaceef3d9d514e56e421bb7e2ee0ed8859380",
+    "evals/ci/mutation-faults.ts": "8d8cfc89e4c1be228d1a16662a50aa4f202eba959edbd2478582bc77aeb989fa",
+    "evals/packaging/packed-sdk.test.ts": "0b790e1c59db6a4784a03d4f71b330ab5fbff07da8ccce5ebfed12094dcd2ed2",
+    "evals/packaging/faults.ts": "2605b4ab5a62b4ed5e61b20173b5c60af7bb00db92b56cb7b163e0b906fbc6eb"
+  }
+}

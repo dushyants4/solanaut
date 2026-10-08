@@ -15,6 +15,10 @@ function battery() {
 const baseline = battery();
 assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
 const faults = [
+  { name: "stream-replay-export", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("export async function replayStream", "async function replayStream") },
+  { name: "stream-replay-source", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("checked !== count || checkedFingerprint !== fingerprint", "false") },
+  { name: "stream-replay-decisions", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("const result = await recompute(env, records());", "const result = {ok:true,decisions:0,divergence:null}; for await(const entry of records())void 0;") },
+  { name: "stream-replay-trust", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("pins = structuredClone(trust)", "pins = trust") },
   { name: "archive-stream-export", path: "dist/src/archive.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("export function streamArchive", "function streamArchive") },
   { name: "archive-stream-entry", path: "dist/src/archive.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("yield immutable(entry);", "yield entry;") },
   { name: "archive-stream-digest", path: "dist/src/archive.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("sha256 !== expectedDigest", "false") },

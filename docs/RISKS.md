@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.52** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.53** · 2026-10-07 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 Bundle preparation captures a common history/endpoint and external authority pins.
@@ -307,3 +307,10 @@ consumer must not enable admissions from a partial stream. Structural hash-chain
 integrity cannot authenticate policy or reconstruct live admission state alone.
 This removes an I/O prerequisite; complete streaming replay, disk request indexing,
 bounded retention and the existing restart/memory targets remain unqualified.
+
+Internal streamed recomputation compares complete canonical records across two
+reads and preserves the maximum historical policy window (`evals/sdk/replay-stream.md`).
+This does not replace pinned archive verification or a kernel-owned startup path.
+Requests/responses/signing facts still remain in memory; no bounded memory,
+restart-to-ready or performance gate follows from removing the full input array.
+Initial fixture failures, source faults and installed evidence remain retained.

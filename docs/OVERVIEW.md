@@ -1,10 +1,17 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 34** · 2026-10-07 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 35** · 2026-10-07 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
+
+Internal streamed recomputation shares the array replay's decision checker while
+preserving the array path's synchronous per-record loop. Two complete reads bind
+canonical records and determine the maximum historical policy window. Pinned
+archive factories retain structural validation through natural completion. This
+does not wire live recovery or bound request/signing maps; component evidence is
+`evals/sdk/replay-stream.md`.
 
 `checkpoint-envelope.ts` authenticates an internal canonical container with
 opaque payload bytes under both descriptor signing domains. Reader parsing has

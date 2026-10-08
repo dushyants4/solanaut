@@ -208,6 +208,28 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+Streamed recomputation final source/compiled/staging/driver faults restore;
+revised ordinary/serial AST pass 652 cases, native typecheck zero and unchanged
+floors pass, CLAIMS S75. Original misses and exact source/AST inputs remain with
+`evals/sdk/replay-stream.md`. Close/private sync follows. Prior c2c2f5c hosted
+37707464546 completes with runtime/AST/maintained wait failures, other jobs pass;
+full logs/revision metadata retained with archive receipt. H11 remains pending.
+
+Streamed producer-copy omission initially survives a posture-only fixture. Added
+durable request/response hash mutation; missed output retained. Final workload
+declared as definition 19/fresh seed 24713 after provisional 17/18, preserving
+all earlier inputs, floors and limits. Final integrated/driver evidence follows.
+
+Archive c2c2f5c privately pushed; all local close gates pass and hosted 37707464546
+starts. Prior history repair 9a6480f hosted 37706079593 completes with AST and
+maintained-fault failures at the unchanged staged-baseline wait; all runtime jobs
+and other jobs pass. Exact evidence retained with the history repair receipt.
+Internal SNP-7 recomputation follows: two complete canonical-record reads,
+captured policy/trust, maximum historical window and shared decision checker.
+The initial asynchronous array loop is replaced with its existing synchronous
+behaviour; fixture/setup/type failures remain retained. Installed/integrated
+checks follow, definition 17/fresh seed 24517, no changed wait/floor.
+
 Archive streaming final local ordinary/AST/type, installed and fresh recovery/
 driver checks pass with exact restoration, CLAIMS S74. Initial failures and
 source/AST hashes are retained at `evals/sdk/archive-stream.md`. Close/private sync

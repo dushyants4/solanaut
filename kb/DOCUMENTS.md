@@ -1,5 +1,15 @@
 # DOCUMENTS.md — the document register
 
+2026-10-07 streamed recomputation registers SPEC Draft 4.62, RISKS 1.53,
+OVERVIEW Draft 35, SDK Draft 15, PACKAGING Draft 17, receipt/index, HANDOFF,
+PROGRESS and continuing run. Two-pass canonical agreement and maximum historical
+window preserve replay semantics; array callers keep their existing synchronous
+loop. Initial fixture/fault setup failures are retained; integrated evidence
+follows. Full bounded state, actual owned startup and release gates remain open.
+CLAIMS S75 records final local source/installed/integrated/driver evidence; missed
+producer-copy trial and every initial failure remain beside passes. The archive
+receipt also retains completed c2c2f5c hosted wait failures with exact metadata.
+
 2026-10-07 actual commit-read repair registers SPEC Draft 4.60, RISKS 1.51,
 new history receipt/index, historical inventory correction, owned-recovery hosted
 failure receipt, PROGRESS, HANDOFF and continuing run. Actual commit bodies/hashes

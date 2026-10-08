@@ -49,6 +49,12 @@ CLAIMS S73 records these scoped measurements; no publication gate is cleared.
 
 ## Limits
 
+Hosted 9a6480f run 37706079593 completes on 2026-10-08 UTC with AST and maintained
+fault jobs failing at the unchanged real staged-baseline wait. All runtime and
+other jobs pass. Exact revision/job metadata and full log are retained under
+`history-commit-read/hosted-9a6480f/`. No wait/floor is changed or hosted clearance
+inferred. This remains separate from the repaired missing-commit defect.
+
 This is inventory preparation, not the full publication review. It does not clear
 secrets, confidential material, source rights, licences, third-party notices,
 gitlink target repositories, audit or visibility. Existing UTF-8 Git-read and

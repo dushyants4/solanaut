@@ -1,0 +1,110 @@
+✖ SNP-7: streamed mixed history matches array replay including latch resets (32.155998ms)
+✖ SNP-7: truncated or changed second reads cannot qualify a valid prefix (8.341876ms)
+✖ SNP-7: source errors and early divergence close their current iterator (7.380437ms)
+✖ SNP-7: policy is captured before asynchronous source reads (0.462593ms)
+✖ SNP-7: later signed window expansion preserves reservations pruned under an earlier policy (4.446883ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 0
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 266.489405
+
+✖ failing tests:
+
+test at .sandbox/solanaut-1/replay-stream.test.ts:16:1
+✖ SNP-7: streamed mixed history matches array replay including latch resets (32.155998ms)
+  TypeError: Function.prototype.apply was called on undefined, which is undefined and not a function
+      at file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/replay-stream.test.ts:13:167
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/replay-stream.test.ts:17:105)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at .sandbox/solanaut-1/replay-stream.test.ts:19:1
+✖ SNP-7: truncated or changed second reads cannot qualify a valid prefix (8.341876ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   name: 'TypeError'
+  -   code: 'stream-replay',
+  -   name: 'StreamReplayError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/replay-stream.test.ts:21:68)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: TypeError: Function.prototype.apply was called on undefined, which is undefined and not a function
+        at file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/replay-stream.test.ts:13:167
+        at async waitForActual (node:assert:615:5)
+        at async strict.rejects (node:assert:738:25)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/replay-stream.test.ts:21:68)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: { name: 'StreamReplayError', code: 'stream-replay' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at .sandbox/solanaut-1/replay-stream.test.ts:23:1
+✖ SNP-7: source errors and early divergence close their current iterator (7.380437ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   name: 'TypeError'
+  -   code: 'stream-replay',
+  -   name: 'StreamReplayError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/replay-stream.test.ts:25:108)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: TypeError: Function.prototype.apply was called on undefined, which is undefined and not a function
+        at file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/replay-stream.test.ts:13:167
+        at async waitForActual (node:assert:615:5)
+        at async strict.rejects (node:assert:738:25)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/replay-stream.test.ts:25:108)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: { name: 'StreamReplayError', code: 'stream-replay' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at .sandbox/solanaut-1/replay-stream.test.ts:29:1
+✖ SNP-7: policy is captured before asynchronous source reads (0.462593ms)
+  AssertionError [ERR_ASSERTION]: streamed replay is not implemented
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/replay-stream.test.ts:30:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .sandbox/solanaut-1/replay-stream.test.ts:35:1
+✖ SNP-7: later signed window expansion preserves reservations pruned under an earlier policy (4.446883ms)
+  TypeError: Function.prototype.apply was called on undefined, which is undefined and not a function
+      at file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/replay-stream.test.ts:13:167
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/replay-stream.test.ts:42:20)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)

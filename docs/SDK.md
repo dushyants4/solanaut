@@ -1,7 +1,13 @@
 # SDK reference — private candidate
 
-> **Draft 14** · 2026-10-07 · owner: integrator · for: developers integrating the candidate.
+> **Draft 15** · 2026-10-07 · owner: integrator · for: developers integrating the candidate.
 > Register: `kb/DOCUMENTS.md`. This describes current exports, not a stable-release promise.
+
+Streamed recomputation remains internal. Public `replay` keeps its array contract
+and synchronous per-record loop. The internal source factory must complete both
+reads; successful recomputation does not authenticate storage or permit admissions.
+Pinned archive verification, actual ownership and live restoration remain separate
+contracts. Component evidence: `../evals/sdk/replay-stream.md`.
 
 Envelope, bundle, prefix and admission-state preparation remain internal. Installed compiled tests
 do not make their file paths a public API. Publication and recovery are unfinished.

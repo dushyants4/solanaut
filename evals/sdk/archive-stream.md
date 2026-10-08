@@ -57,6 +57,11 @@ Commands: `node --test packages/sdk/test/archive-stream.test.ts`;
 
 ## Limitations
 
+Hosted c2c2f5c run 37707464546 completes on 2026-10-08 UTC with runtime,
+AST and maintained-fault jobs failing at the unchanged real-baseline wait.
+Other jobs pass. Full logs and exact revision/job metadata are retained under
+`archive-stream/hosted-c2c2f5c/`. H11 remains pending; no wait/floor is changed.
+
 Bounded archive I/O is not bounded full replay or live state. The entry consumer
 must fully finish and validate before making admissions. Immutable filesystem
 segments and supported local Linux storage remain assumptions; the hash chain

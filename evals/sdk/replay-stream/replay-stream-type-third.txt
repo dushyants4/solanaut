@@ -1,0 +1,5 @@
+
+> typecheck
+> tsc -p tsconfig.json
+
+packages/sdk/test/replay-stream.test.ts(28,177): error TS2353: Object literal may only specify known properties, and 'reason' does not exist in type 'Omit<Entry, "hash">'.

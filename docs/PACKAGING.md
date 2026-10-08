@@ -1,7 +1,12 @@
 # PACKAGING.md — private SDK candidate
 
-> **Draft 16** · 2026-10-07 · owner: integrator · for: developers and release reviewers.
+> **Draft 17** · 2026-10-07 · owner: integrator · for: developers and release reviewers.
 > This is release preparation, not a stable release. Register: `kb/DOCUMENTS.md`.
+
+The private installed consumer also checks internal streamed recomputation over
+actual pinned archive bytes, captured policy authority and changed second reads.
+No new root export or installed signer support is claimed. Final evidence:
+`../evals/sdk/replay-stream.md`.
 
 Compiled internal prefix/state components have installed-tarball evidence
 (`evals/packaging/checkpoint-payloads.md`). These files remain internal; this is

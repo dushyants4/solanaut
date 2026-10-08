@@ -8,6 +8,32 @@ work. This dated continuation retains the earlier session's full record at
 
 ## Did
 
+Final definition-19 recovery/driver campaign catches fifteen faults and restores
+exact inputs. Revised ordinary/serial AST pass 652 cases; native typecheck zero
+and unchanged floors pass, guard 424/442 statements and 379/407 branches. Ten
+source cases/nine final source faults, ten installed/forty-eight compiled faults
+and forty-two staging/report faults pass. CLAIMS S75 and receipt preserve misses,
+provisional definitions and exact final inputs. Close/private sync follows.
+Prior c2c2f5c hosted 37707464546 completes with runtime/AST/maintained wait failures;
+other jobs pass, full logs/metadata retained. H11 stays pending, wait unchanged.
+
+Producer-copy omission survives the first posture-only case. Added durable
+request/response identity mutation, so retained caller objects would change
+response verification. Strengthened final workload uses definition 19/fresh seed
+24713, after provisional 17/18 definitions; every previous source/test/floor/limit
+remains. Original miss retained; integrated measurement follows on the revised
+case, not the earlier successful ordinary suite.
+
+Archive c2c2f5c privately pushed after preceding hosted completion; all ten local
+close gates pass. Hosted 37707464546 starts. History repair 9a6480f completed
+37706079593 has only AST/maintained-fault failures at unchanged baseline waits,
+with full logs/metadata retained; all runtime and other jobs pass. H11 pending.
+Restored separate streamed-recomputation candidate. Missing-function cases fail
+first; shared decision checker now keeps public array replay synchronous, while
+the streamed factory uses two complete canonical reads and maximum policy window.
+Definition 17/fresh seed 24517 preserves inputs/floors/limits. Integrated evidence
+follows; no bounded-memory or startup claim.
+
 Fresh definition-16 recovery/driver campaign catches fifteen faults and restores
 exact sources, exercising the 371-case staged baseline. Installed consumer
 recheck passes ten cases. Source/AST inputs remain unchanged, CLAIMS S74 and
@@ -523,6 +549,24 @@ record satisfies the close workflow's current-day record requirement. Earlier ca
 implementation, documentation and receipt changes remain in the continuing session record.
 
 ## Found
+
+Streamed-recomputation pre-sync close passes nine gates and refuses only the
+uncommitted candidate. Exact input hashes/staged diff review pass. Retained
+completed hosted logs are explicitly staged; final close verifies that full
+staged-file set before the private commit. No threshold, coefficient or wait changed.
+
+The first producer-copy fault trial misses: changing previous postures in the
+mixed fixture does not change a compared verdict. Preserved the actual all-green
+fault result without credit, then added request-hash mutation before response
+verification. This is a fixture correction, with fresh seeds before measurement.
+
+Streamed replay's first array-yield regression mutates an immutable fixture and
+produces asynchronous activity; no credit. A mutable copy and actual planted
+asynchronous loop establish the compatibility boundary. Initial capture fixture
+also leaks a rejection; corrected availability assertion fails for the missing
+function before implementation. Signed-sensor fault site is initially ambiguous;
+unique streamed-path target catches. Generic seal type fails before specifying
+the actual decision type. All initial failures are retained beside passes.
 
 Archive pre-sync close passes nine gates and refuses only the uncommitted
 candidate; input hashes and staged diff check pass. Commit is prepared locally;

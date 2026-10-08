@@ -1,5 +1,11 @@
 # PROGRESS.md
 
+Internal streamed recomputation has focused source and fault evidence
+(`evals/sdk/replay-stream.md`). Complete reads bind canonical records and retain
+the maximum historical policy window; local ordinary/AST/type and installed
+component checks pass, with final fresh driver evidence in CLAIMS S75. Live
+startup, disk indexing and bounded retained state remain unfinished.
+
 History inventory now requires each actual historical commit body and matching Git
 object hash after later integration exposes cached-graph acceptance of a missing
 object (`evals/ci/history-commit-read.md`). Actual tree/parent headers also agree

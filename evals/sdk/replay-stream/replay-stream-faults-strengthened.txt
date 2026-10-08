@@ -1,0 +1,10 @@
+caught stream replay fault: policy-capture
+caught stream replay fault: trust-capture
+caught stream replay fault: future-window
+caught stream replay fault: signed-sensor
+caught stream replay fault: source-match
+caught stream replay fault: source-fingerprint
+caught stream replay fault: producer-copy
+caught stream replay fault: decision-recomputation
+caught stream replay fault: array-yields
+All stream replay faults caught; restored source passes

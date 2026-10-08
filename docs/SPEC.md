@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.61** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.62** · 2026-10-07 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -1218,3 +1218,16 @@ receipt. The existing public verifier consumes that same iterator fully and
 preserves its receipt/error surface. No root iterator export, policy authentication,
 admission authority or complete bounded-state replay contract is added. Component
 evidence: `evals/sdk/archive-stream.md`.
+
+SNP-7 internal recomputation convention inside ADR-019: a replayable source factory
+is consumed completely to capture the first signed policy, maximum historical
+window and a canonical-record fingerprint. A second complete read uses the same
+decision checker as array replay and must agree in count and fingerprint before
+success. Capture policy/trust before asynchronous reads and copy each streamed
+entry before it enters replay state. A source failure closes its iterator and
+refuses; a decision divergence remains unsuccessful. The public array path keeps
+its synchronous per-record loop. This prepares recomputation only: it neither
+accepts admissions nor authenticates raw archive bytes, publishes restored state
+or bounds retained request/signing maps. Actual archive factories supply pinned
+structural verification through natural completion. Evidence:
+`evals/sdk/replay-stream.md`.

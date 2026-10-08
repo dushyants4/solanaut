@@ -528,6 +528,48 @@ export interface ReplayResult {
 
 const COMPARED = ["allow", "rule", "intentKey", "messageHash", "amounts", "posture", "telemetry", "temperatureMax", "expires", "latch"] as const;
 
+export class StreamReplayError extends Error {
+  readonly code = "stream-replay";
+  constructor(message: string) { super(message); this.name = "StreamReplayError"; }
+}
+
+/** Internal two-pass recomputation; active/request state still needs separate bounds. */
+export async function replayStream(open: () => AsyncIterable<Entry>, policyInput: unknown, sensor: Sensor = sensorV1, trust?: PolicyTrust): Promise<ReplayResult> {
+  try {
+    const policySeed = structuredClone(policyInput), pins = structuredClone(trust);
+    if (typeof open !== "function") throw new StreamReplayError("replay source factory is required");
+    verifyLoadedKeel(VERIFIED_KEEL_DIGEST);
+    let firstPolicy: PolicyEntry | undefined, retentionMs = 0, count = 0, fingerprint = "";
+    // A future longer policy window must not lose reservations pruned by an earlier one.
+    for await (const input of open()) {
+      const text = canonicalJSON(input), entry = JSON.parse(text) as Entry;
+      fingerprint = sha256hex(fingerprint + text); count++;
+      if (entry.kind === "policy") {
+        firstPolicy ??= entry;
+        retentionMs = Math.max(retentionMs, createPolicy(JSON.parse(entry.policy)).policy.windowMs);
+      }
+    }
+    const { policy, hash } = createPolicy(policySeed ?? (firstPolicy ? JSON.parse(firstPolicy.policy) : undefined));
+    if (firstPolicy && sensor !== sensorV1) throw new StreamReplayError("signed policy evaluation profile requires sensor v1");
+    const env: Env = { policy, policyHash: hash, ctx: contextOf(policy), sensor, gov: await Governor.create(), state: initialState(), trust: pins };
+    env.state.retentionMs = Math.max(retentionMs, policy.windowMs);
+    let checked = 0, checkedFingerprint = "";
+    const records = async function* () {
+      for await (const input of open()) {
+        const text = canonicalJSON(input);
+        checkedFingerprint = sha256hex(checkedFingerprint + text); checked++;
+        yield JSON.parse(text) as Entry;
+      }
+    };
+    const result = await recompute(env, records());
+    if (result.ok && (checked !== count || checkedFingerprint !== fingerprint)) throw new StreamReplayError("replay source changed between complete reads");
+    return result;
+  } catch (error) {
+    if (error instanceof StreamReplayError) throw error;
+    throw new StreamReplayError("streamed replay could not complete");
+  }
+}
+
 /**
  * Recompute every decision of a record from its bytes, under `policy`, and name the first that
  * differs. Under the policy it was written with, a sound record replays exactly; under another
@@ -540,9 +582,21 @@ export async function replay(entries: readonly Entry[], policyInput: unknown, se
   if (firstPolicy && sensor !== sensorV1) throw new Error("signed policy evaluation profile requires sensor v1");
   const env: Env = { policy, policyHash: hash, ctx: contextOf(policy), sensor, gov: await Governor.create(), state: initialState(), trust };
   env.state.retentionMs = retentionWindow(entries, policy.windowMs);
+  const checker = replayChecker(env);
+  for (const entry of entries) { const divergence = checker.accept(entry); if (divergence) return divergence; }
+  return checker.finish();
+}
+
+async function recompute(env: Env, entries: Iterable<Entry> | AsyncIterable<Entry>): Promise<ReplayResult> {
+  const checker = replayChecker(env);
+  for await (const entry of entries) { const divergence = checker.accept(entry); if (divergence) return divergence; }
+  return checker.finish();
+}
+
+function replayChecker(env: Env) {
   let decisions = 0;
   let previous: DecisionEntry | undefined;
-  for (const e of entries) {
+  return { accept(e: Entry): ReplayResult | null {
     const diverge = (field: string, recorded: unknown, recomputed: unknown): ReplayResult => ({ ok: false, decisions, divergence: { seq: e.seq, field, recorded, recomputed } });
     if (hashOf(e) !== e.hash) return diverge("hash", e.hash, hashOf(e));
     if (e.kind === "decision" && env.policyEntry && e.policyHash !== env.policyHash) return diverge("policyHash", e.policyHash, env.policyHash);
@@ -571,7 +625,7 @@ export async function replay(entries: readonly Entry[], policyInput: unknown, se
         } catch (err) {
           return diverge("chain", e.prev, (err as Error).message);
         }
-        continue;
+        return null;
       }
     }
     try {
@@ -579,6 +633,6 @@ export async function replay(entries: readonly Entry[], policyInput: unknown, se
     } catch (err) {
       return diverge("chain", e.prev, (err as Error).message);
     }
-  }
-  return { ok: true, decisions, divergence: null };
+    return null;
+  }, finish(): ReplayResult { return { ok: true, decisions, divergence: null }; } };
 }

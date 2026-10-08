@@ -226,6 +226,7 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
     const {prepareCheckpointEnvelope,verifyCheckpointEnvelope,CheckpointEnvelopeError}=await import(new URL('./checkpoint-envelope.js',import.meta.resolve('@solanaut/sdk')));
     const {fileStore,publishOwnedCheckpoint,recoverOwnedCheckpoint}=await import(new URL('./record.js',import.meta.resolve('@solanaut/sdk')));
     const {verifyArchive,streamArchive}=await import(new URL('./archive.js',import.meta.resolve('@solanaut/sdk')));
+    const {replayStream}=await import(new URL('./guard.js',import.meta.resolve('@solanaut/sdk')));
     const {prepareCheckpointRecovery}=await import(new URL('./checkpoint-recovery.js',import.meta.resolve('@solanaut/sdk')));
     const operator=generateKeyPairSync('ed25519'),agent=generateKeyPairSync('ed25519');
     const address=pair=>encodeBase58(Buffer.from(pair.publicKey.export({format:'jwk'}).x,'base64url'));
@@ -287,6 +288,14 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
       const cancelled=streamArchive(archivePath);await cancelled.next();if((await cancelled.return(undefined)).value!==undefined)throw new Error('installed cancelled stream produced receipt');
       let digestRefused=false;try{for await(const _entry of streamArchive(archivePath,{expectedDigest:'0'.repeat(64)}))void 0;}catch(error){digestRefused=error.name==='ArchiveError' && error.code==='digest';}
       if(!digestRefused)throw new Error('installed stream ignored digest');
+      const replayed=await replayStream(()=>streamArchive(archivePath,{expectedHead:context.head}),undefined,undefined,trust);
+      if(!replayed.ok || replayed.decisions!==entries.filter(entry=>entry.kind==='decision').length)throw new Error('installed streamed replay differs');
+      const operatorPin=trust.operatorKey;let captured;
+      try{captured=await replayStream(async function*(){trust.operatorKey=policy.principal[0];yield* entries;},undefined,undefined,trust);}finally{trust.operatorKey=operatorPin;}
+      if(!captured.ok)throw new Error('installed streamed trust was not captured');
+      let opens=0,changedRefused=false;
+      try{await replayStream(async function*(){yield* (++opens===1?entries:entries.slice(0,-1));},undefined,undefined,trust);}catch(error){changedRefused=error.name==='StreamReplayError' && error.code==='stream-replay';}
+      if(!changedRefused || opens!==2)throw new Error('installed replay accepted changed source');
       const receipt=await verifyArchive(archivePath),actual=await prepareCheckpointBundle(entries,undefined,[receipt],context,trust,checkpointTrust);
       const signatures={snapshot:sign(null,Buffer.from(actual.snapshotText),checkpoint.privateKey).toString('base64'),prefix:sign(null,Buffer.from(actual.prefixText),checkpoint.privateKey).toString('base64')};
       const candidate=prepareCheckpointEnvelope({binding:actual.binding,signatures,archives:actual.archives,state:actual.state,prefix:actual.prefix},checkpointTrust,1000000);
