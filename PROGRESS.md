@@ -34,6 +34,12 @@ checkpoint race locally. Published ElizaOS route experiments reach missing-key
 boundaries under fixture conditions, but the dependency graph has unresolved
 high/critical findings (`evals/elizaos/published-routes.md`); no ELZ milestone closes.
 
+Owned publication is privately pushed in 5a33e69. Hosted 37841558758 completes
+failed: the real-baseline wait remains uncleared, and teardown can mask it with
+ENOTEMPTY. Follow-up confirmed-shutdown fixtures and fault evidence are in
+`evals/ci/mutation-stop.md`; the wait and every product threshold remain unchanged.
+Recovery/loading campaign target/count corrections preserve their original trials.
+
 Record-only loading has source and installed fault evidence
 (`evals/sdk/record-loading.md`). Owned checkpoint maintenance retains full
 validation and captured pins. Local ordinary/AST/type, installed and isolated driver checks pass (CLAIMS S76); no full snapshot,

@@ -1,5 +1,19 @@
 # DOCUMENTS.md — the document register
 
+2026-10-08 confirmed-shutdown follow-up registers SPEC Draft 4.67, RISKS 1.58,
+PROGRESS, CLAIMS, evaluation index, `evals/ci/mutation-stop.md`, continuing run
+and HANDOFF. Full failed hosted implementation log/metadata and precise maintained
+campaign corrections remain retained. Baseline wait and release gates are unchanged.
+
+Owned-publication receipt/CLAIMS and continuing run retain the expanded 50-trial
+mutation staging/report campaign; source/test omission faults add no new workload
+definition or relaxed gate. Exact hosted failures are retained separately.
+
+2026-10-08 current-history preparation registers `evals/ci/history-owned-publication.md`,
+its exact mirror manifest/summary, evaluation index, CLAIMS S87, HANDOFF and
+continuing run. The publication scope and full content/rights/secret review remain
+human-owned and unachieved; later archival commits require fresh inventory.
+
 2026-10-08 evidence archival follow-up registers the continuing run's exact private
 sync and hosted run identity. Raw experiment/install logs are explicitly tracked
 despite the generic log ignore rule; receipt definitions and thresholds are unchanged.

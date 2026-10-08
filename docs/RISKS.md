@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.57** · 2026-10-08 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.58** · 2026-10-08 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 D25's late cached-history checkpoint race now refuses before replacement. Owned
@@ -8,6 +8,13 @@ index publication binds filesystem identity and fresh replay under a real writer
 descriptor reuse, late pointer replacement and declaration compatibility regressions
 are retained. Full retained state, index construction, live admissions and startup
 are still unbounded/unqualified. No snapshot milestone closes.
+
+Hosted baseline timeout cleanup can delete files while its supervisor still
+writes them, masking the primary failure with ENOTEMPTY. Confirmed bound shutdown
+now precedes harness scratch deletion; unsupported/unconfirmed evidence preserves
+scratch. The baseline wait remains unchanged and hosted qualification still fails.
+Evidence: `evals/ci/mutation-stop.md`. Trusted tickets are assumed; this is not a
+general PID-reuse or live-signing lifecycle guarantee.
 
 Published ElizaOS route evidence does not qualify its dependency graph: unresolved
 high/critical advisories and incompatible patched peer metadata block release use.

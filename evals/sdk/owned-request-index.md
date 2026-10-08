@@ -113,3 +113,10 @@ installed population passes all eleven cases. The maintained package campaign
 retains all earlier trials and adds module, digest and capability faults.
 All 77 final compiled trials pass, followed by a passing restored candidate;
 the exact campaign output is retained. No setup failure is credited as a catch.
+
+The unchanged mutation report/staging campaign passes its prior 48 trials on the
+candidate. A follow-up adds explicit source/test omission faults for this component;
+all 50 trials pass and restore targets. Earlier inventory first-reds remain
+retained. No staged inputs, selected populations, seed, wait or floor changes.
+Regenerate: `node evals/ci/mutation-faults.ts`. These are gate faults, not a
+completed Stryker score. The updated campaign is in the archival follow-up commit.

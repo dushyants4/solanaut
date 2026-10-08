@@ -1,0 +1,7 @@
+caught mutation stop fault: early-return
+caught mutation stop fault: pending-signal
+caught mutation stop fault: completed-signal
+caught mutation stop fault: initial-evidence
+caught mutation stop fault: completion-shape
+caught mutation stop fault: group-confirmation
+All mutation stop faults caught; restored source passes

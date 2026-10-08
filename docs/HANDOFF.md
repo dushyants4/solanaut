@@ -225,6 +225,18 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+Hosted 5a33e69 run 37841558758 finishes failed. Full log/metadata are retained.
+Recovery/loading campaign corrections narrow intended mutation targets and update
+the completed publication case count without removing trials. CI-2 shutdown
+fixtures reproduce premature scratch deletion; confirmed bound supervisor
+completion now precedes removal and preserves original failures. H11's original
+baseline wait remains unchanged. Receipt: `evals/ci/mutation-stop.md`.
+
+Current original private-mirror history inventory at 5a33e69 is retained in
+`evals/ci/history-owned-publication.md`. It covers advertised refs and complete
+parent closure, with actual commit reads; no contents/rights/secret/publication
+clearance is inferred. Freeze and regenerate for the final proposed public revision.
+
 Owned-publication implementation is privately pushed as 5a33e69; hosted
 37841558758 is queued/running when recorded. No passing CI claim. Generic log
 ignores excluded some retained experiment/install outputs; an archival follow-up

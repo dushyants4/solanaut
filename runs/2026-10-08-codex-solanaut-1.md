@@ -7,9 +7,28 @@ progress out of one hundred with an explicit basis. Continue across queue items.
 
 ## Did
 
+Confirmed-shutdown follow-up passes 742 ordinary cases, native typecheck and
+all fifteen fresh isolated recovery/driver faults with restoration. Exact hosted
+implementation failure and secondary maintenance failures remain retained. Serial
+AST follows quietly; no SDK evaluation, selected population or product floor changes.
+
+Maintained mutation report/staging campaign passes its original 48 trials on
+the owned-publication revision. Add explicit new-source/test omission trials
+after the recorded inventory first-reds; all 50 pass and restore. No measurement
+input, seed, wait, floor or product code change. Hosted 37841558758 has failed
+Node 22 and AST jobs while others are running. Completed-job log reads refuse
+until the whole run completes; no absent log is treated as a result.
+
+While exact hosted implementation CI runs, refresh the existing private original
+mirror and regenerate its complete advertised-ref/parent/tree inventory using
+the unchanged maintained inspector. Exact 5a33e69 manifest and summary are
+retained in `evals/ci/history-owned-publication.md`. No content/rights/secret review
+or publication clearance; later archival commits remain outside this snapshot.
+
 Owned publication is privately pushed as 5a33e69. Hosted 37841558758 starts;
 no result is inferred while queued/running. Preceding duplicate trigger
-37841556684 is cancelled by hosted workflow concurrency, not by an agent command.
+37841556684 is cancelled, consistent with the workflow's enabled concurrency
+cancellation. No agent cancellation command was issued.
 Follow-up explicitly tracks raw experiment/install logs excluded by the generic
 log ignore rule, preserving the receipt's failure/pass inventories remotely.
 
@@ -134,6 +153,16 @@ map, PROGRESS and mission/HANDOFF/document register continuations. Exact candida
 receipts and measured claim rows follow integrated evidence.
 
 ## Found
+
+Exact 5a33e69 hosted run completes failed. Runtime/AST/recovery driver still
+exceed the original baseline wait; ENOTEMPTY during premature scratch removal
+can mask the primary failure. Add confirmed bound shutdown before deletion,
+preserving primary failures and scratch on unconfirmed shutdown. Immediate-return
+fixtures fail first. Initial missing-signal mutation is missed because the actor
+eventually reaches its own deadline; preserve it and assert explicit interruption
+without timeout. Seven final helper faults restore. No baseline wait change.
+Hosted maintained recovery target ambiguity and loading case-count mismatch
+are corrected at their exact intended sites; all sixteen/five trials restore.
 
 Runtime dependency inspection first omitted the scratch consumer manifest, so
 npm ascended to the parent workspace and changed only the agent-owned manifest/
@@ -294,6 +323,13 @@ and H11 proposed harness wait remain pending. All external/human/Claude and
 READINESS release gates remain required; no Alpha or stable-release clearance.
 
 ## Provenance
+
+Final corrective follow-up ordinary/serial AST populations pass 742 cases with
+unchanged SDK/signer floors; native typecheck exits zero. Seven shutdown helper,
+fifty report/staging, sixteen owned-recovery, five record-loading and fifteen
+isolated recovery/driver fault trials pass and restore. Exact source hashes and
+raw first-failures/misses/passes are retained. Hosted 5a33e69 completes failed,
+with full logs/metadata archived; corrective sync and exact hosted check follow.
 
 Final owned-publication evidence is based on 43f20c0 plus this receipt's commit,
 Node 26.7.0/npm 11.19.0. Final compiled campaign catches 77 trials and restores;

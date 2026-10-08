@@ -1,0 +1,32 @@
+caught mutation stop fault: early-return
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: ✔ CI-2: interruption waits for the bound supervisor commit before scratch deletion (5291.225064ms)
+✔ CI-2: completed or corrupt bound evidence cannot trigger a fresh PID signal (87.995643ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5466.4439
+
+
+0 !== 1
+
+    at file:///home/dashy/Projects/Solanaut/evals/ci/mutation-stop-faults.ts:16:82
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

@@ -6,6 +6,7 @@ import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { freezeMutationInputs, verifyMutationInputs, completedMutation } from "./mutation-recovery.ts";
 import { launchSupervisedRun, readSupervisedResult, type RunTicket } from "../../tools/run-supervisor.ts";
+import {stopSupervisedRun} from "../../tools/stop-supervised-run.ts";
 const sleep=(ms:number)=>new Promise(resolve=>setTimeout(resolve,ms));
 function fixture() {
   mkdirSync(".sandbox/solanaut-1/mutation",{recursive:true});const base=resolve(mkdtempSync(".sandbox/solanaut-1/mutation/recovery-test-")),root=join(base,"root"),stage=join(base,"stage");
@@ -59,7 +60,7 @@ test("CI-2: pending and failed actual child execution cannot qualify a present f
   } finally {rmSync(f.base,{recursive:true,force:true});}
 });
 test("CI-2: an asynchronously started real staged baseline finishes without relaunching",async()=>{
-  let stage:string|undefined,ticket:RunTicket|undefined;
+  let stage:string|undefined,ticket:RunTicket|undefined,failed=false;
   try {
     const launch=spawnSync(process.execPath,["evals/ci/mutation-run.ts","--start","--baseline"],{encoding:"utf8",timeout:10000});
     assert.equal(launch.status,0,launch.stdout+launch.stderr);assert.equal(launch.error,undefined);
@@ -82,8 +83,8 @@ test("CI-2: an asynchronously started real staged baseline finishes without rela
     const resultText=JSON.stringify({...JSON.parse(before.toString("utf8")),commandHash:different.identity.commandHash})+"\n";writeFileSync(join(ticket!.directory,"result.json"),resultText);writeFileSync(commitPath,createHash("sha256").update(resultText).digest("hex")+"\n");refuses();
     writeFileSync(ticketPath,ticketText);writeFileSync(join(ticket!.directory,"result.json"),before);writeFileSync(commitPath,commit);
     const foreign=join(stage!,"foreign-execution");mkdirSync(foreign,{mode:0o700});writeFileSync(join(foreign,"result.json"),before,{mode:0o600});writeFileSync(join(foreign,"commit.sha256"),commit,{mode:0o600});writeFileSync(ticketPath,JSON.stringify({...ticket,directory:foreign}));refuses();writeFileSync(ticketPath,ticketText);
-  } finally {
-    if(ticket)try {process.kill(ticket.supervisorPid,"SIGTERM");}catch{}
-    if(stage)rmSync(stage,{recursive:true,force:true});
+  } catch(error){failed=true;throw error;} finally {
+    try{if(ticket)await stopSupervisedRun(ticket);if(stage)rmSync(stage,{recursive:true,force:true});}
+    catch(error){if(failed)console.error("Mutation scratch preserved after unconfirmed cleanup:",error);else throw error;}
   }
 });

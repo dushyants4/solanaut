@@ -1,0 +1,10 @@
+✔ CI-2: interruption waits for the bound supervisor commit before scratch deletion (271.514649ms)
+✔ CI-2: completed or corrupt bound evidence cannot trigger a fresh PID signal (86.381363ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 452.090092
