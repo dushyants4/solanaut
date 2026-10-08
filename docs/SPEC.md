@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.67** · 2026-10-08 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.68** · 2026-10-08 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -1296,3 +1296,4 @@ Evidence: `evals/elizaos/published-routes.md`.
 
 | Draft 4.66 | 2026-10-08 | Internal owned atomic index publication and D25 cache-race regression; definition 24 adds the component, then fresh definition 25/seed 25813 follows the declaration-only correction. Earlier populations and limits remain. Published ElizaOS experiments retain dependency and version findings without production dependency changes or milestone credit. |
 | Draft 4.67 | 2026-10-08 | CI-2 teardown waits for bound supervisor completion before scratch removal and preserves the primary failure; separate ten-second shutdown containment, with the existing baseline wait and all product targets unchanged. No record/evaluation-profile or SDK behaviour change. |
+| Draft 4.68 | 2026-10-08 | CI-2 missing committed result/marker evidence refuses before any fresh supervisor signal; only an existing empty private marker means pending. No completion format, evaluation profile, product or wait change. |

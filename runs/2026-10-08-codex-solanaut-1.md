@@ -7,6 +7,31 @@ progress out of one hundred with an explicit basis. Continue across queue items.
 
 ## Did
 
+Resume from clean privately pushed c2df043; fetch succeeds. Preserve completed
+hosted 37846194595 failure and full log/job metadata. Node 22/26 and fault partition
+one fail the unchanged baseline wait; Node 24, AST and partitions two/three pass.
+No ENOTEMPTY masks the original failure. Source review finds missing committed
+result/marker evidence misclassified as pending. Extend the existing completed
+ticket regression, observe first failure, then refuse ENOENT before signalling.
+Preserve the seven stop faults and add the former fallback as an eighth; all catch
+and both sources restore. Existing supervisor campaign restores. No product source,
+runtime population, baseline wait, score/latency floor or acceptance changes.
+Fresh isolated recovery/driver campaign passes all fifteen trials and restores
+before full ordinary testing. Worker PID 709334 exits; no campaign overlaps the
+ordinary run. Release map records source-confirmed next work: selected-shard lookup
+already streams, while projection preparation, record entries and replay request/
+response/signing maps remain retained. Tail completeness and authoritative history
+consultation precede eviction; no bounded-memory or startup qualification claim.
+Fresh ordinary suite passes 742 cases and native typecheck exits zero. Full
+supervisor, stop and isolated recovery/driver fault campaigns restore their
+sources. Product files, package manifests/lock and accepted thresholds are
+unchanged. Claims/document lints pass; diff review and close precede private sync.
+Pre-sync close passes nine gates, including secret scan over the staged evidence;
+the remaining gate reports the uncommitted tree. Privately commit the coherent
+missing-evidence correction and retained hosted/fault output, then push and
+repeat close. The exact commit is discoverable with `git log -- tools/run-supervisor.ts`;
+hosted qualification follows that revision without claiming success in advance.
+
 Confirmed-shutdown follow-up passes 742 ordinary cases, native typecheck and
 all fifteen fresh isolated recovery/driver faults with restoration. Exact hosted
 implementation failure and secondary maintenance failures remain retained. Serial
@@ -153,6 +178,12 @@ map, PROGRESS and mission/HANDOFF/document register continuations. Exact candida
 receipts and measured claim rows follow integrated evidence.
 
 ## Found
+
+The broad ENOENT fallback mistakes deleted required evidence for an unfinished
+supervisor. A completed ticket may name a reused PID; missing result/marker
+evidence must refuse before a signal. First-red output records the missing
+exception. Zero-length existing private markers remain pending. This narrow
+harness correction does not establish complete PID-reuse protection.
 
 Exact 5a33e69 hosted run completes failed. Runtime/AST/recovery driver still
 exceed the original baseline wait; ENOTEMPTY during premature scratch removal

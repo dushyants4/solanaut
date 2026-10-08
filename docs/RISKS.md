@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.58** · 2026-10-08 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.59** · 2026-10-08 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 D25's late cached-history checkpoint race now refuses before replacement. Owned
@@ -15,6 +15,9 @@ now precedes harness scratch deletion; unsupported/unconfirmed evidence preserve
 scratch. The baseline wait remains unchanged and hosted qualification still fails.
 Evidence: `evals/ci/mutation-stop.md`. Trusted tickets are assumed; this is not a
 general PID-reuse or live-signing lifecycle guarantee.
+Missing committed result/marker evidence now refuses before signalling: absence
+is not pending execution. Exact c2df043 hosted failures remain retained; complete
+CI qualification still owes the unchanged baseline wait.
 
 Published ElizaOS route evidence does not qualify its dependency graph: unresolved
 high/critical advisories and incompatible patched peer metadata block release use.

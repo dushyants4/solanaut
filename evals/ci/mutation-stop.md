@@ -62,3 +62,38 @@ isolated recovery/driver faults pass with restoration. Serial AST follow-up uses
 the same SDK/signer floors. No successful hosted result is inferred from these.
 Final serial AST population passes all 742 cases and unchanged floors. Exact
 product-source hashes/counts are retained in `mutation-stop/coverage-summary.json`.
+
+## Missing committed evidence follow-up
+
+Hosted c2df043 run 37846194595 completes failed. Full output and job metadata
+are retained in `mutation-stop/hosted-c2df043/`. Node 22, Node 26 and fault
+partition one fail the unchanged staged-baseline wait. Node 24, AST coverage
+and fault partitions two and three pass. The original failure is visible rather
+than masked by ENOTEMPTY; complete passing CI remains owed.
+
+`readSupervisedResult` previously treated ENOENT throughout its reader as pending.
+Removing an already committed result or its marker therefore permitted shutdown
+to signal a potentially reused supervisor PID. The maintained completed-ticket
+case removes and restores each file, requires a missing-evidence error from the
+reader and shutdown, and asserts no signal. Its first run fails with "Missing
+expected exception". A zero-length existing private marker remains pending;
+missing required evidence now refuses. No completion format or wait changes.
+
+The two stop cases and existing supervisor suite pass together. The stop campaign
+retains its original seven trials and adds restoration of the former ENOENT
+fallback as an eighth semantic fault. All eight are caught and both sources
+restore. The existing supervisor campaign also passes and restores. Full ordinary,
+typecheck and recovery-driver follow-up are retained separately.
+
+These are local builder/operator checks, not independent evidence or a general
+process-ID identity guarantee. No product code, profile or SDK export changes.
+
+Fresh full ordinary suite passes 742 cases; native typecheck exits zero. All
+fifteen isolated recovery/driver faults pass with source restoration before the
+ordinary run. The product-source inventory and coverage floors are unchanged;
+preceding c2df043 hosted AST evidence remains separate. No fresh full mutation
+score or passing hosted result is inferred. Raw follow-up commands/output:
+`missing-evidence-first-red.txt`, `missing-evidence-pass.txt`,
+`missing-evidence-faults.txt`, `missing-evidence-supervisor-faults.txt`,
+`missing-evidence-driver-faults.txt`, `missing-evidence-ordinary.txt` and
+`missing-evidence-typecheck.txt` under `mutation-stop/`.

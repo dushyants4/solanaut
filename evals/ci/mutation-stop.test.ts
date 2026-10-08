@@ -23,6 +23,11 @@ test("CI-2: completed or corrupt bound evidence cannot trigger a fresh PID signa
     await stopSupervisedRun(ticket);assert.equal(signals,0,"a completed ticket must not signal a potentially reused PID");
     for(const supervisorPid of [0,1,-1,NaN])await assert.rejects(stopSupervisedRun({...ticket,supervisorPid}),/invalid supervisor PID/);assert.equal(signals,0);
     marker=readFileSync(join(ticket.directory,"commit.sha256"),"utf8");const path=join(ticket.directory,"result.json"),original=readFileSync(path,"utf8");
+    for(const [file,text] of [[path,original],[join(ticket.directory,"commit.sha256"),marker]] as const){
+      rmSync(file);
+      try{assert.throws(()=>readSupervisedResult(ticket),/supervised completion evidence is missing/);await assert.rejects(stopSupervisedRun(ticket),/supervised completion evidence is missing/);assert.equal(signals,0,"missing committed evidence must not signal a potentially reused PID");}
+      finally{writeFileSync(file,text,{mode:0o600});}
+    }
     for(const [change,reason] of [[{state:"pending"},/invalid supervisor completion/],[{error:"process group termination unconfirmed"},/process group shutdown is unconfirmed/]] as const){
       const text=JSON.stringify({...JSON.parse(original),...change})+"\n";writeFileSync(path,text);writeFileSync(join(ticket.directory,"commit.sha256"),createHash("sha256").update(text).digest("hex")+"\n");
       try{await assert.rejects(stopSupervisedRun(ticket),reason);assert.equal(signals,0);}finally{writeFileSync(path,original);writeFileSync(join(ticket.directory,"commit.sha256"),marker);}

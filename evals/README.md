@@ -5,6 +5,7 @@ seen failing might not be checking anything.
 
 | Gate | Shown failing | Then passing | Receipt |
 |---|---|---|---|
+| CI-2 missing committed completion evidence | removing a committed result/marker incorrectly returns pending; retained missing-exception first-red | reader and shutdown refuse before a fresh signal; added fallback fault restores | `ci/mutation-stop.md` |
 | CI-2 mutation scratch teardown | hosted ENOTEMPTY masks the primary timeout; immediate-return fixtures fail; missing-signal fault miss retained | bound supervisor completion before deletion, explicit interruption and refusal checks; baseline wait unchanged | `ci/mutation-stop.md` |
 | PUB-1 current original history inventory | retained original inspector faults and actual-commit-read correction | refreshed private mirror metadata at owned-publication revision; no contents/rights/publication clearance | `ci/history-owned-publication.md` |
 | OWN-2/SNP-4/7 owned index publication / D25 | absent capability, cache race, pointer races, fault misses and installed Node type leak retained | owned immutable generation publication, late cache recheck and Node-neutral declarations; component scope only | `sdk/owned-request-index.md` |

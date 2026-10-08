@@ -58,7 +58,7 @@ export function readSupervisedResult(ticket:RunTicket):unknown {
     if(!value || value.supervisorPid!==ticket.supervisorPid || value.runId!==ticket.identity.runId || value.inputHash!==ticket.identity.inputHash || value.commandHash!==ticket.identity.commandHash) throw new Error("supervised result identity differs");
     return value;
   }
-  catch(error) {if((error as NodeJS.ErrnoException).code==="ENOENT") return null;throw error;}
+  catch(error) {if((error as NodeJS.ErrnoException).code==="ENOENT") throw new Error("supervised completion evidence is missing",{cause:error});throw error;}
 }
 function groupExists(pid:number):boolean {try {process.kill(-pid,0);return true;} catch(error) {if((error as NodeJS.ErrnoException).code==="ESRCH")return false;throw error;}}
 async function supervise(directory:string,expectedHash:string) {

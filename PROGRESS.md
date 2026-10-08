@@ -40,6 +40,12 @@ ENOTEMPTY. Follow-up confirmed-shutdown fixtures and fault evidence are in
 `evals/ci/mutation-stop.md`; the wait and every product threshold remain unchanged.
 Recovery/loading campaign target/count corrections preserve their original trials.
 
+Hosted c2df043 run 37846194595 still fails the unchanged baseline wait on Node
+22, Node 26 and fault partition one; Node 24, AST and the other partitions pass.
+Shutdown preserves the original failure. Missing committed-evidence regression
+refuses before any fresh signal (`evals/ci/mutation-stop.md`). Complete passing CI
+remains owed; no formal milestone closes.
+
 Record-only loading has source and installed fault evidence
 (`evals/sdk/record-loading.md`). Owned checkpoint maintenance retains full
 validation and captured pins. Local ordinary/AST/type, installed and isolated driver checks pass (CLAIMS S76); no full snapshot,

@@ -1,0 +1,26 @@
+✔ CI-2: interruption waits for the bound supervisor commit before scratch deletion (281.510097ms)
+✖ CI-2: completed or corrupt bound evidence cannot trigger a fresh PID signal (86.744379ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 449.35587
+
+✖ failing tests:
+
+test at evals/ci/mutation-stop.test.ts:19:1
+✖ CI-2: completed or corrupt bound evidence cannot trigger a fresh PID signal (86.744379ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation-stop.test.ts:28:18)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /supervised completion evidence is missing/,
+    operator: 'throws',
+    diff: 'simple'
+  }

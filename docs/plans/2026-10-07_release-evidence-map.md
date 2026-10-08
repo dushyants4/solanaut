@@ -30,6 +30,24 @@ high/critical dependency findings block qualifying that framework graph.
 
 ## Next engineering work
 
+Source review on 2026-10-08 distinguishes the remaining work from delivered
+components. `request-index.ts` already reads a selected shard incrementally and
+validates its complete digest before returning a hit or absence. Its preparation
+still captures full history and builds all projected rows and shard text.
+`replayStream` makes complete independent source passes, but `GuardState` still
+retains historical request, response and signing maps. The current record store
+also retains its entries array. Input streaming alone therefore cannot establish
+bounded restart or steady-state memory.
+
+Implement current-tail completeness and historical payload/response consultation
+before removing those retained maps. Preserve the explicit trusted synchronous
+SDK mode; any isolated-mode path must consult authoritative historical evidence
+before a new identity is admitted. Keep unresolved attempts and active windows in
+memory, retain all archive evidence, and refuse incomplete or corrupt roots/tails.
+Owned publication of a verified historical prefix is not proof of current absence.
+Qualification must exercise historical retries after the active cache evicts them,
+tail requests created after publication, policy changes and uncertain sends.
+
 Continue the accepted [snapshot sequence](2026-10-06_snapshot-qualification.md):
 historical request/answer lookup on disk, bounded active state and actual owned
 streamed restoration. Preserve payload identity, unresolved reservations, used

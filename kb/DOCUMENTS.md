@@ -1,5 +1,12 @@
 # DOCUMENTS.md — the document register
 
+2026-10-08 missing completion-evidence correction registers SPEC Draft 4.68,
+RISKS 1.59, PROGRESS, CLAIMS, evaluation index, `evals/ci/mutation-stop.md`,
+HANDOFF and the continuing run. Exact c2df043 hosted failure, first-red and
+restored fault output are retained. No product or readiness threshold changes.
+The release evidence map records source-confirmed bounded-state dependencies;
+streamed input and prefix publication do not establish current-tail completeness.
+
 2026-10-08 confirmed-shutdown follow-up registers SPEC Draft 4.67, RISKS 1.58,
 PROGRESS, CLAIMS, evaluation index, `evals/ci/mutation-stop.md`, continuing run
 and HANDOFF. Full failed hosted implementation log/metadata and precise maintained

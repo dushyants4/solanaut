@@ -225,6 +225,15 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+Hosted c2df043 run 37846194595 completes failed; full log/job metadata are retained
+with `evals/ci/mutation-stop.md`. Node 22/26 and partition one fail the unchanged
+baseline wait; Node 24, AST and partitions two/three pass. Missing committed
+completion evidence previously appeared pending; the new regression fails first,
+then refuses before a fresh PID signal. No H11 acceptance or wait change, product
+change or formal milestone credit.
+Follow-up ordinary suite passes 742 cases, native typecheck exits zero; eight stop,
+23 existing supervisor and fifteen isolated recovery/driver faults restore.
+
 Hosted 5a33e69 run 37841558758 finishes failed. Full log/metadata are retained.
 Recovery/loading campaign corrections narrow intended mutation targets and update
 the completed publication case count without removing trials. CI-2 shutdown
