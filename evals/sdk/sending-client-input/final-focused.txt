@@ -1,0 +1,19 @@
+✔ CLT-1: distinct sending client exposes only three methods and preserves explicit identities/payloads (7.294785ms)
+✔ CLT-2: lost proposal reply is explicitly uncertain and never automatically retried (1.76108ms)
+✔ CLT-3: malformed, oversized, duplicate, mismatched and extra response frames refuse (3.077405ms)
+✔ CLT-3: sending/report result shapes are validated before consumers receive them (2.405948ms)
+✔ CLT-4: absolute timeout is not extended by response activity (30.799068ms)
+✔ CLT-1/3: invalid configuration and payloads refuse before connecting (1.935897ms)
+✔ CLT-1: caller byte mutations cannot change the serialized proposal (1.852531ms)
+✔ CLT-2/3: remote refusals use fixed typed codes without exposing peer messages (0.69489ms)
+✔ CLT-1/3: durable denied, uncertain and pre-admission refusal answers remain distinct (1.932739ms)
+✔ CLT-1: request identity is captured before caller mutation (0.73136ms)
+✔ CLT-2: a connection failure before transmission cannot claim proposal execution (0.602475ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 133.07216

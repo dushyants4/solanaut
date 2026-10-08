@@ -15,6 +15,13 @@ function battery() {
 const baseline = battery();
 assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
 const faults = [
+  { name: "client-options-container", path: "dist/src/adapters/sending-client.js", caught: "installed sending client", damage: (text: string) => text.replace('    if (!record(options))\n        throw new SignerClientError("input", "options must be an object");', "") },
+  { name: "client-status-container", path: "dist/src/adapters/sending-client.js", caught: "installed sending client", damage: (text: string) => text.replace('if (!record(input) || !identity(input.id))', 'if (!identity(input.id))') },
+  { name: "client-propose-container", path: "dist/src/adapters/sending-client.js", caught: "installed sending client", damage: (text: string) => text.replace('if (!record(input) || !(input.message instanceof Uint8Array) || input.message.length > 6144)', 'if (!(input.message instanceof Uint8Array) || input.message.length > 6144)') },
+  { name: "client-report-container", path: "dist/src/adapters/sending-client.js", caught: "installed sending client", damage: (text: string) => text.replace('if (!record(input) || !hash(input.decision))', 'if (!hash(input.decision))') },
+  { name: "client-array-container", path: "dist/src/adapters/sending-client.js", caught: "installed sending client", damage: (text: string) => text.replace(' && !Array.isArray(value)', "") },
+  { name: "client-function-container", path: "dist/src/adapters/sending-client.js", caught: "installed sending client", damage: (text: string) => text.replace(' && typeof value === "object"', "") },
+  { name: "client-null-container", path: "dist/src/adapters/sending-client.js", caught: "installed sending client", damage: (text: string) => text.replace('value !== null && ', "") },
   { name: "index-module", path: "dist/src/request-index.js", caught: "compiled checkpoint payloads", damage: () => undefined },
   { name: "index-replay", path: "dist/src/request-index.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("const result = await replay(entries, policySeed, sensorV1, pins);", "const result = {ok:true};") },
   { name: "index-root-provenance", path: "dist/src/request-index.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("const root = roots.get(expected);", "const root = {manifest:JSON.parse(expected.text),text:expected.text};") },

@@ -1,6 +1,6 @@
 # Preparing an operator policy signature
 
-> **Draft 1** · 2026-10-06 · owner: integrator · for: Linux operators.
+> **Draft 2** · 2026-10-08 · owner: integrator · for: Linux operators.
 > Register: `kb/DOCUMENTS.md`. Private candidate; the installed signer and human-run
 > Phantom workflow remain unfinished.
 
@@ -36,16 +36,25 @@ const bytesToSign = new TextEncoder().encode(request.text);
 ```
 
 Preserve the returned signature as canonical base64 and verify it with the existing SDK
-before using an authorisation:
+before using an authorisation. First compare the request's `operatorKey`, `guardId`
+and `cluster` with independently retained operator configuration. Values copied
+from the request do not establish an independent trust pin:
 
 ```ts
 import { verifyPolicyAuthorization } from '@solanaut/sdk';
 
+if (request.operatorKey !== configuredTrust.operatorKey ||
+    request.guardId !== configuredTrust.guardId ||
+    request.cluster !== configuredTrust.cluster) {
+  throw new Error('Policy request differs from configured operator identity');
+}
 const authorization = { ...request, signature: signatureBase64 };
 verifyPolicyAuthorization(policy, authorization);
 ```
 
-The SDK checks the policy's content, pinned operator, guard, cluster and signature. The
+`configuredTrust` is the independently retained public operator/guard/cluster
+configuration. The comparison above pins the request identity; the SDK then
+checks policy content, matching identities and signature. The
 service additionally enforces its externally configured trust and monotonic history.
 Human wallet signing and the complete installed-service replacement ceremony need their
 own evidence. A prepared request alone cannot authorise a policy.

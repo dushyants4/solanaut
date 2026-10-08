@@ -1,0 +1,22 @@
+{
+  "evals/sdk/sending-client-input/artifact-verification.txt": "f61a30c0e4d55ed2e2de088b1c9b94e0b6bd635d968aa490e636b4c8dfe50cd7",
+  "evals/sdk/sending-client-input/build.txt": "e8a2f89bb4fc6971c684d9092f08bc3b6b7c8c6a7c861d81a634abc7fffd6a45",
+  "evals/sdk/sending-client-input/checkpoint-state-faults.txt": "3d832bc6d29850beb7804a37b48934277947326669849980f572d098b3c08a87",
+  "evals/sdk/sending-client-input/compiled-faults.txt": "133d4df14e300b0dd53f0db8adc5e28a03a058c38b5052ba4251eae4112aa33e",
+  "evals/sdk/sending-client-input/coverage-summary.json": "c6cd54709cb002ee9bba20b92a6c029f10aca4de59b20e2ae02247f8b6b67c6f",
+  "evals/sdk/sending-client-input/coverage.txt": "69675eacc4ca21f78f644c9f4bc26bd18a8924382b99126ae416691d8e0e4248",
+  "evals/sdk/sending-client-input/definition-red.txt": "58bf2628d3fc24ab76551fd0b26c289e8c08cbbe5b8eace350d8cc54d1080d93",
+  "evals/sdk/sending-client-input/driver-faults.txt": "7fa23e2a56f2dd43b1b741c9495f1b1bf7a5feb9476ef33875399d6e33cd33f4",
+  "evals/sdk/sending-client-input/faults-final.txt": "499ea7860b501caed99697ce9658831c7310bb7d7cb36c17b0e477fae807f2b2",
+  "evals/sdk/sending-client-input/final-focused.txt": "d810473bdcc109366a8399257a3ff2b6a78fa64f0745901a08c634c67fa68f68",
+  "evals/sdk/sending-client-input/first-failure.txt": "446bf7722fe97374153cd27ed31940d6c10d975118afa8f5728c1c5fd0e79d57",
+  "evals/sdk/sending-client-input/installed-final.txt": "16185d9aa549f390fe87b65fc41873c2e8f9fc255b00f4818fc9da6ce203dd8b",
+  "evals/sdk/sending-client-input/installed-first-failure.txt": "0cf8f486c9be1634124908825e0313d510da69584fdc1f9f39c38a17adc5179d",
+  "evals/sdk/sending-client-input/ordinary.txt": "521825b792b097b7c9db013b4958862bfe933ab9198c42753a9c51fcdb81f8ea",
+  "evals/sdk/sending-client-input/pack.json": "7ae9bc0b63f84ff67d82085cd2607586e5444f0a03f573ed4fa363e787a5c585",
+  "evals/sdk/sending-client-input/session-close-pre.txt": "74b82dba41c292e0d6ca340fb81d2caf6e6e497c7a89341142af3b2bfd47651b",
+  "evals/sdk/sending-client-input/source-manifest.json": "803390fae321629834486f5f185410da8b005a2a3c18c22418b2576aca2d2c52",
+  "evals/sdk/sending-client-input/typecheck.txt": "396901319daac4a4413b23478852db3c572014f86c71d148273565f0f3332696",
+  "evals/release/staged-preview/hosted-39c24de/log.txt": "f34aff00ed14171c11cebc442dbc0e1b6559598b69c886f666069f6ffa771d82",
+  "evals/release/staged-preview/hosted-39c24de/metadata.json": "4bba89b36a6471c24fcba01687e9d3644f0d6689292edbfb9a25409139de2ecb"
+}

@@ -5,6 +5,7 @@ seen failing might not be checking anything.
 
 | Gate | Shown failing | Then passing | Receipt |
 |---|---|---|---|
+| CLT-1/3 runtime argument containers / D24 | native and actual installed missing options raise plain TypeError instead of typed input refusal | object-container guards retain field validation; enhanced existing cases and maintained faults; scoped integration in receipt | `sdk/sending-client-input.md` |
 | Private SDK preview consumer | actual installed case fails for absent companion example | complete synthetic installed JavaScript walkthrough; page/scope drafts and artefact identity retained; no publication clearance | `release/staged-preview.md` |
 | SNP-5/6, LIF-7 report transitions / D22 | accepted impossible report histories, fixture/type failure and masked unknown-release trial retained | pre-mutation validation and valid unknown/late reconciliation; source/installed fault evidence | `sdk/report-replay.md` |
 | SNP-5/6, LIF-2/7 redemption / D23 | absent/denied, duplicate, final, expired and prior signed-policy histories fail refusals | pre-mutation validation and signed context preserve unsigned/negative-height compatibility; source/installed faults | `sdk/redeem-replay.md` |

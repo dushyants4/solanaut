@@ -18,15 +18,17 @@ export class SignerClientError extends Error {
 }
 const identity = (value: unknown) => typeof value === "string" && /^[A-Za-z0-9._:-]{1,128}$/.test(value);
 const hash = (value: unknown) => typeof value === "string" && /^[0-9a-f]{64}$/.test(value);
+const record = (value: unknown) => value !== null && typeof value === "object" && !Array.isArray(value);
 function signature(value: unknown): boolean { try { return typeof value === "string" && decodeBase58(value).length === 64; } catch { return false; } }
 const refusal = (r: Record<string, unknown>) => r.status === "denied" && ["deadline", "unavailable"].includes(String(r.code)) && Object.keys(r).every((key) => ["status", "code"].includes(key));
 export function createSendingClient(options: SendingClientOptions) {
+  if (!record(options)) throw new SignerClientError("input", "options must be an object");
   const { socket: path, clientId } = options; const timeoutMs = options.timeoutMs ?? 30_000;
   if (typeof path !== "string" || !isAbsolute(path)) throw new SignerClientError("input", "socket must be an absolute path");
   if (!identity(clientId)) throw new SignerClientError("input", "invalid client identity");
   if (!Number.isFinite(timeoutMs) || timeoutMs <= 0 || timeoutMs > 30_000) throw new SignerClientError("input", "invalid client timeout");
   function call(method: "propose" | "report" | "status", input: SendingRequest, payload: object): Promise<unknown> {
-    if (!input || !identity(input.id)) return Promise.reject(new SignerClientError("input", "invalid request identity"));
+    if (!record(input) || !identity(input.id)) return Promise.reject(new SignerClientError("input", "invalid request identity"));
     const id = input.id;
     const deadline = input.deadline ?? Date.now() + timeoutMs;
     if (!Number.isFinite(deadline)) return Promise.reject(new SignerClientError("input", "invalid request deadline"));
@@ -68,12 +70,12 @@ export function createSendingClient(options: SendingClientOptions) {
   }
   return Object.freeze({
     async propose(input: SendingRequest & { message: Uint8Array; group?: string }): Promise<SendingResult> {
-      if (!(input.message instanceof Uint8Array) || input.message.length > 6144) throw new SignerClientError("input", "message must be bounded bytes");
+      if (!record(input) || !(input.message instanceof Uint8Array) || input.message.length > 6144) throw new SignerClientError("input", "message must be bounded bytes");
       if (input.group !== undefined && (typeof input.group !== "string" || input.group.length > 256)) throw new SignerClientError("input", "group must be bounded text");
       return await call("propose", input, { message: Buffer.from(input.message).toString("base64"), ...(input.group === undefined ? {} : { group: input.group }) }) as SendingResult;
     },
     async report(input: SendingRequest & { decision: string }): Promise<ReportResult> {
-      if (!hash(input.decision)) throw new SignerClientError("input", "invalid decision hash");
+      if (!record(input) || !hash(input.decision)) throw new SignerClientError("input", "invalid decision hash");
       return await call("report", input, { decision: input.decision }) as ReportResult;
     },
     async status(input: SendingRequest): Promise<Readonly<Record<string, unknown>>> { return await call("status", input, {}) as Readonly<Record<string, unknown>>; },

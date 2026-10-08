@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.64** · 2026-10-08 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.65** · 2026-10-08 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -529,6 +529,7 @@ Each is fixed test-first: the evaluator writes the failing test, and the builder
 | D21 | A resealed malformed-proposal entry can inject non-null Keel fields into replay and restore, although live evaluation never ticks Keel for that input | `guard.ts` (`replay`, `reapply`), reproduced on 2026-10-07 | **closed in the builder candidate:** impossible fields refuse; genuine malformed and parsed history retain replay/restore. `evals/sdk/malformed-replay.md`; full snapshot and fresh mutation qualification remain owed |
 | D22 | Resealed unsupported report outcome/attribution/time or reports after a final outcome are accepted on recovery; invalid reports may advance state or settle signing | `state.ts`, reproduced on 2026-10-08 | **closed in the builder candidate:** validate before every state change; preserve unknown reconciliation, signed-policy changes and late unresolved reports. `evals/sdk/report-replay.md`; broader qualification remains owed |
 | D23 | Resealed absent/denied, duplicate, final, expired or malformed receipt redemption bypasses live checks on recovery | `state.ts`, reproduced on 2026-10-08 | **closed in the builder candidate:** validate before every state change and enforce chronological policy where signed history supplies it. Preserve unsigned-history compatibility and live canonical negative bigint heights. `evals/sdk/redeem-replay.md`; broader qualification remains owed |
+| D24 | Missing/non-record sending-client arguments escape as ordinary TypeError or accept unsupported containers instead of the documented typed input refusal | `adapters/sending-client.ts`, reproduced on 2026-10-08 | **closed in the builder candidate:** check object containers before field access; preserve valid field validation, exact method surface and no automatic retry. `evals/sdk/sending-client-input.md`; broader qualification remains owed |
 
 **Status:** closed at milestone 2a.5 (`evals/sdk/admission.md`), test-first: D1, D2, D5, D6, D7, D9, D10 and D12. D12
 closed early: the guard decodes bytes itself, so `packages/sdk/src` imports no web3.js. D11 closed at milestone 2a.6
@@ -894,7 +895,7 @@ snapshot and RPC IDs are allocated with their implementation steps. Existing SIG
 | LIF-7 | final outcome evidence permanently forbids new signing/send intent for a request, live and on replay; unknown evidence does not settle; interrupted replies may still complete conservatively | settled signed/unsigned histories, resealed invalid stages, signed-policy recovery and executor no-send regression |
 | CLT-1 | sending client exposes propose/report/status distinctly from partial signing and captures exact IDs/message/group before asynchronous work | local socket framing, caller mutation and actual service/installed consumer cases |
 | CLT-2 | transport never automatically retries and typed errors conservatively identify possible proposal execution after transmission | lost-reply count and pre-connect failure; second-write planted fault |
-| CLT-3 | IDs, payload bounds, response framing, canonical envelopes and method result shapes are validated; peer exception text is not returned | malformed/duplicate/wrong-ID/oversized reply and payload fixtures |
+| CLT-3 | Non-null object argument containers other than arrays, IDs, payload bounds, response framing, canonical envelopes and method result shapes are validated; peer exception text is not returned | missing/primitive/array/function arguments and malformed/duplicate/wrong-ID/oversized reply and payload fixtures |
 | CLT-4 | connection wait has an absolute bounded timer, independent of response activity | trickle response fixture and extended-timeout fault |
 | RPC-1 | providers pin devnet identity and obtain message blockhash validity and bounded lifetime at confirmed commitment | genesis/hash/validity substitution fixtures |
 | RPC-2 | requests have bounded deadlines; response envelopes, integer/base58 shapes, context and size are validated; reads back off and sends never retry | malformed/hung/late response, rate limit and send-count tests |
@@ -1269,3 +1270,4 @@ nor live admission authority, actual-owned publication or bounded retained state
 Component evidence: `evals/sdk/request-index.md`.
 
 | Draft 4.64 | 2026-10-08 | D22/D23 recovery transition validation and accepted internal request-index convention; staged SDK/page preparation preserves all release gates. |
+| Draft 4.65 | 2026-10-08 | D24 runtime argument-container refusal under existing CLT contracts; no export/signature/transport or readiness change. Fresh mutation definition 23 retains all populations and limits. |

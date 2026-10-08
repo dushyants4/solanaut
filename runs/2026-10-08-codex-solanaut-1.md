@@ -7,6 +7,25 @@ progress out of one hundred with an explicit basis. Continue across queue items.
 
 ## Did
 
+Follow-up candidate: 718 ordinary and serial AST cases pass, native typecheck
+exits zero, and unchanged floors pass. Eleven native cases/seventeen source
+faults and eleven installed cases/seventy-four compiled faults pass with exact
+restoration. All sixteen checkpoint-state trials and fifteen fresh isolated
+recovery/driver trials pass; CLAIMS S83 records the scope. Actual private tarball
+and source identities are in `evals/release/staged-preview/client-candidate.json`.
+The first preview artefact/manifest and full `39c24de` hosted failure are preserved.
+No stable/public release clearance or formal milestone credit.
+
+Private candidate `39c24de` is pushed and its close workflow passes all ten gates.
+Final read-only peer review verifies the tarball, recorded source identities and
+page scope. Add digest verification before installation and distinguish the
+reviewed base from the corrected candidate. Contract review also finds that
+missing/non-record client arguments escape the documented typed refusal. The
+existing invalid-input case fails first; validate containers before field access.
+No signer source or budget change. Extended fault and installed qualification
+follow. The expanded test-body workload will use definition 23 and fresh seed
+25307 before measurement, with all populations, waits and floors retained.
+
 Final candidate: ordinary and serial AST suites pass 718 cases; typecheck exits
 zero and unchanged floors pass. Source report/redemption/index campaigns catch
 twelve/nineteen/twenty-nine faults, installed consumer eleven cases/sixty-seven
@@ -54,17 +73,50 @@ fail; the workflow-restoration test also fails before fingerprint expansion.
 Final partition and existing aggregation faults pass with restoration. Integrated
 root/type validation follows. No mutation baseline wait change.
 
-Read-only peer audits assess partition correctness, release-progress accounting
-and the next accepted disk-index component. These are builder peer reviews,
-not Claude RT-2 or specialist audit. No delegated writes or fault runs.
+Initial peer audits assess partition correctness, release-progress accounting
+and the next accepted disk-index component read-only. Later delegated index
+and input-regression work is recorded above. All are builder-team peer review,
+not Claude RT-2 or specialist audit.
 
 ## Changed
+
+Client container checks and existing native/installed regressions/fault campaigns;
+checkpoint-state apply-state fault site; frozen mutation definition/seed;
+consumer error/command/trust guidance, preview digests/manifest, and final
+receipts, claims, index, release records and document register. No new export,
+signature, socket method, runtime dependency or signer implementation.
 
 CI partition selection/workflow and maintained tests/faults; release evidence
 map, PROGRESS and mission/HANDOFF/document register continuations. Exact candidate
 receipts and measured claim rows follow integrated evidence.
 
 ## Found
+
+Follow-up pre-close passes nine gates and refuses the dirty tree. Retained in
+`evals/sdk/sending-client-input/session-close-pre.txt`; commit/sync and clean-tree
+verification follow. Claims and knowledge lints pass before that step. No gate
+is bypassed or changed.
+
+Source-signature review catches an invalid third argument in the draft policy
+guide edit. Keep the existing two-argument verifier and compare request identity
+against separately configured public pins before calling it. No API change or
+published incorrect snippet.
+
+Hosted `39c24de` run 37777805134 completes failed. Runtime matrix and fault
+partition one reject the unchanged staged-baseline wait; partition two refuses
+the checkpoint-state apply-state fault's old literal after D23 adds signed
+context. Preserve full logs/metadata under `evals/release/staged-preview/hosted-39c24de/`.
+The literal now targets the same operation with its actual context argument;
+all trials remain required. AST and installed/type steps pass, not the run.
+No H11 wait extension is applied.
+
+The client constructor destructures a missing options container, while propose
+and report read fields on missing payloads. The CLT-1/3 regression observes a
+plain TypeError instead of SignerClientError(input, no possible execution).
+The source correction precedes product-page clearance; first failure remains in
+`evals/sdk/sending-client-input/`. Peer review also finds omitted error remedies,
+an incomplete command summary and policy trust guidance needing an explicit
+independently configured pin. These are corrected without widening APIs.
 
 Initial close uses the shortened slug and looks for a different run filename;
 eight gates pass, with run-name and dirty-tree findings. Use the actual continuing
@@ -129,11 +181,11 @@ follows private sync. Complete owned index publication/tail tracking, bounded
 state/startup and all retained release gates remain open. No formal milestone
 closes from this component; formal completion remains CLAIMS S78's 41%.
 
-Disk-index component development is isolated in `.sandbox/request-index-component`
-on branch `codex/request-index-component`, based on a4d1c25, with parent sources
-unmodified. It is not integrated or qualified. Its builder must retain first
-failures/faults and cannot wire admissions, prune state, alter envelope format or
-expand signer code. No complete SNP-7 or bounded-build claim.
+The disk-index component was developed in `.sandbox/request-index-component`
+on branch `codex/request-index-component`, based on a4d1c25. Its declared paths
+are now integrated and locally qualified in `39c24de` (CLAIMS S81), with first
+failures/faults retained. Admissions, live-tail completeness, state pruning and
+signer startup remain unwired. No complete SNP-7 or bounded-build claim.
 
 
 Finish partition qualification, close and private sync without cancelling the
@@ -144,7 +196,8 @@ READINESS release gates remain required; no Alpha or stable-release clearance.
 
 ## Provenance
 
-Linux/Node 26.7.0; current product base a4d1c25. Earlier receipts name their exact
+Linux/Node 26.7.0; client follow-up base `39c24de`, earlier partition base a4d1c25.
+Earlier receipts name their exact
 revisions and definitions. Partition commands: `node --test evals/ci/bite-partitions.test.ts evals/ci/bite.test.ts`,
 `node evals/ci/bite-partitions-faults.ts`, `node evals/ci/bite-faults.ts`, `npm test`,
 `npm run typecheck`. Scratch output under `.sandbox/solanaut-1/` becomes durable

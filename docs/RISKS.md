@@ -1,7 +1,15 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.55** · 2026-10-08 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.56** · 2026-10-08 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
+
+D24 exposes a documented client error contract missed by native field tests:
+missing or non-record argument containers can throw before validation. The
+correction checks containers before access, with native and installed regressions.
+This is input handling, not signer isolation or evidence of chain execution.
+Throwing getters/proxies remain caller code rather than a promised sanitised
+boundary. Current hosted wait failures still block candidate clearance; correcting
+an outdated maintained fault literal does not clear the other failures.
 
 D22/D23 prove that a resealed chain is not enough to establish valid report or
 receipt transitions. Shared recovery now rejects these impossible histories before

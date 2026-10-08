@@ -413,10 +413,34 @@ test("PKG-3: installed replay and table-pin commands execute with their document
 test("CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader", () => {
   const script = `
     import {createSendingClient,SignerClientError} from '@solanaut/sdk';
+    import {strict as assert} from 'node:assert';
+    import {createServer} from 'node:net';
     const client=createSendingClient({socket:process.argv[1],clientId:'agent',timeoutMs:100});
     let failure;
     try { await client.propose({id:'payment',message:new Uint8Array([1])}); }
     catch(e) { failure={typed:e instanceof SignerClientError,code:e.code,uncertain:e.mayHaveExecuted}; }
+    const inputError=error=>error instanceof SignerClientError && error.code==='input' && error.mayHaveExecuted===false;
+    const invalid=[undefined,null,false,0,'input',1n,Symbol('input'),[],()=>{}];
+    let requests=0;
+    const server=createServer(socket=>{socket.on('error',()=>socket.destroy());socket.on('data',()=>{requests++;socket.destroy();});});
+    const socket=process.argv[1]+'-inputs';
+    await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(socket,resolve);});
+    try{
+      const options={socket,clientId:'agent',timeoutMs:100};
+      assert.throws(()=>createSendingClient(),inputError,'installed missing options');
+      for(const value of [...invalid,Object.assign([],options),Object.assign(()=>{},options)])assert.throws(()=>createSendingClient(value),inputError,'installed options container');
+      for(const value of [{...options,socket:'relative'},{...options,clientId:''},{...options,timeoutMs:30001},{...options,timeoutMs:NaN}])assert.throws(()=>createSendingClient(value),inputError,'installed configuration field');
+      const checked=createSendingClient(options);
+      for(const name of ['propose','report','status']){
+        const payload=name==='propose'?{id:'one',message:new Uint8Array([1])}:name==='report'?{id:'one',decision:'a'.repeat(64)}:{id:'one'};
+        await assert.rejects(async()=>await checked[name](),inputError,'installed missing payload');
+        for(const value of [...invalid,Object.assign([],payload),Object.assign(()=>{},payload)])await assert.rejects(async()=>await checked[name](value),inputError,'installed payload container');
+        for(const value of [{...payload,id:''},{...payload,deadline:NaN}])await assert.rejects(async()=>await checked[name](value),inputError,'installed identity/deadline');
+      }
+      for(const payload of [{id:'one',message:[]},{id:'one',message:new Uint8Array(6145)},{id:'one',message:new Uint8Array([1]),group:1},{id:'one',message:new Uint8Array([1]),group:'x'.repeat(257)}])await assert.rejects(checked.propose(payload),inputError,'installed proposal field');
+      await assert.rejects(checked.report({id:'one',decision:'invalid'}),inputError,'installed decision hash');
+      assert.equal(requests,0,'invalid inputs must not reach the installed socket');
+    }finally{await new Promise(resolve=>server.close(resolve));}
     console.log(JSON.stringify({methods:Object.keys(client).sort(),failure}));
   `;
   const result = spawnSync(process.execPath, ["--input-type=module", "-e", script, join(consumer, "missing.sock")], { cwd: consumer, encoding: "utf8" });

@@ -1,0 +1,52 @@
+✖ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (47.462886ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 640.31563
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:413:1
+✖ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (47.462886ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/run_main:107
+      triggerUncaughtException(
+      ^
+  
+  AssertionError [ERR_ASSERTION]: installed missing options
+      at file:///tmp/solanaut-consumer-Lo37RA/consumer/[eval1]:17:14
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: TypeError: Cannot destructure property 'socket' of 'options' as it is undefined.
+        at createSendingClient (file:///tmp/solanaut-consumer-Lo37RA/consumer/node_modules/@solanaut/sdk/dist/src/adapters/sending-client.js:26:21)
+        at file:///tmp/solanaut-consumer-Lo37RA/consumer/[eval1]:17:25
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at file:///tmp/solanaut-consumer-Lo37RA/consumer/[eval1]:17:14
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5),
+    expected: [Function: inputError],
+    operator: 'throws',
+    diff: 'simple'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:447:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

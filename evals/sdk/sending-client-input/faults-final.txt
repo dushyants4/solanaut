@@ -1,0 +1,18 @@
+caught sending client fault: ignore-response-id
+caught sending client fault: ignore-canonical-envelope
+caught sending client fault: unbounded-response
+caught sending client fault: hide-execution-ambiguity
+caught sending client fault: invent-before-connect-execution
+caught sending client fault: extend-timeout
+caught sending client fault: allow-oversized-message
+caught sending client fault: late-caller-identity
+caught sending client fault: accept-invalid-signature
+caught sending client fault: automatic-retry
+caught sending client fault: missing-options-container-guard
+caught sending client fault: missing-status-container-guard
+caught sending client fault: missing-propose-container-guard
+caught sending client fault: missing-report-container-guard
+caught sending client fault: allow-array-containers
+caught sending client fault: allow-function-containers
+caught sending client fault: allow-null-containers
+All sending client faults caught; restored source passes

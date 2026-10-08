@@ -1,6 +1,6 @@
 # PACKAGING.md — private SDK candidate
 
-> **Draft 19** · 2026-10-08 · owner: integrator · for: developers and release reviewers.
+> **Draft 20** · 2026-10-08 · owner: integrator · for: developers and release reviewers.
 > This is release preparation, not a stable release. Register: `kb/DOCUMENTS.md`.
 
 The private installed consumer exercises the compiled internal request index,
@@ -75,11 +75,22 @@ npm pack ./.sandbox/releases/sdk --ignore-scripts --pack-destination .sandbox/re
 ```
 
 Install that tarball by its absolute path in a separate ESM project. Import `createGuard` from
-`@solanaut/sdk`; no TypeScript loader is required. The installed commands are
-`solanaut-replay <record.jsonl> <policy.json>` and
-`solanaut-pin-table --url <rpc-url> <table-address>`. The table command requires an explicit
-RPC URL. Replay exits successfully only when the supplied history reproduces under the policy.
-Both commands return usage errors when required arguments are absent.
+`@solanaut/sdk`; no TypeScript loader is required. The installed commands are:
+
+- `solanaut-replay <record.jsonl> <policy.json|-> [public-trust.json]`
+- `solanaut-pin-table --url <rpc-url> <table-address>`
+- `solanaut-verify-archive <archive.jsonl> [verification flags]`
+- `solanaut-prepare-policy <policy.json> --version <positive integer> --issued <UTC ISO timestamp>`
+
+The table command requires an explicit RPC URL. Replay exits successfully only
+when the supplied history reproduces under the policy. Required arguments and
+verification flags are documented in [STORAGE](STORAGE.md) and [POLICY](POLICY.md);
+incorrect arguments return usage errors.
+
+For signed policy history, supply `-` in place of the advisory policy and an
+independently pinned public trust file, as described in [POLICIES](POLICIES.md).
+No key material belongs in that file. An untrusted history cannot supply its
+own authority pin.
 
 The package battery installs offline into a temporary directory outside the repository,
 without installation scripts or development dependencies. The explicit cache command supplies

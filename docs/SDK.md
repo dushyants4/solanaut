@@ -1,6 +1,6 @@
 # SDK reference — private candidate
 
-> **Draft 17** · 2026-10-08 · owner: integrator · for: developers integrating the candidate.
+> **Draft 18** · 2026-10-08 · owner: integrator · for: developers integrating the candidate.
 > Register: `kb/DOCUMENTS.md`. This describes current exports, not a stable-release promise.
 
 Recovery now refuses impossible report/redemption transitions before state changes
@@ -39,6 +39,7 @@ Generated declarations contain the complete signatures. The source export list i
 
 `prepareCheckpointArchives(receipts, {seq, head})` returns immutable canonical
 catalogue text and its SHA-256 digest for the checkpoint's archive payload binding.
+`PreparedCheckpointArchives` describes that returned payload.
 Supply ordered receipts from `verifyArchive`, starting at genesis and ending at
 the checkpoint's next sequence and preceding head. Malformed or discontinuous
 metadata throws `CheckpointArchiveError` with code `checkpoint-archives`.
@@ -155,6 +156,7 @@ process isolation. Do not use these interfaces to fabricate chain outcomes or se
 | `SignerClientError` (`code`, `mayHaveExecuted`, optional `remoteCode`) | Follow [CLIENT](CLIENT.md). Preserve requests whenever execution is uncertain. |
 | `ArchiveError` (`code`) | Follow [STORAGE](STORAGE.md); structural success still needs authenticated replay and a recovery drill. |
 | `CheckpointBindingError` (`code: checkpoint-binding`) | Refuse this checkpoint binding. Check the external pins, both signatures, exact profile and independently computed payload digests; complete restore still needs verified replay. |
+| `CheckpointArchiveError` (`code: checkpoint-archives`) | Correct the ordered archive receipts and checkpoint endpoint, then verify the referenced files separately. Preparing a catalogue does not verify its files or restore state. |
 | `RpcRefused` (`refused`, `method`) | The SDK RPC explicitly refused its request. A plain transport error does not establish that a send never reached the chain. |
 
 Startup, record ownership and operational failures can also throw ordinary errors. Keep the

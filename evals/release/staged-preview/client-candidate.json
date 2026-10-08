@@ -1,0 +1,490 @@
+{
+  "date": "2026-10-08",
+  "environment": "local Linux x86-64 Node26.7.0 TypeScript7.0.2",
+  "sourceRevision": "commit containing this manifest; base 39c24de89a3e860cd9e4a08517a616481c5c72ca plus D24 correction",
+  "private": true,
+  "version": "0.0.0",
+  "artifact": ".sandbox/solanaut-1/staged-preview-client/solanaut-sdk-0.0.0.tgz",
+  "sha256": "d0d6f364286053cf20b0072f5e383f203c5102167241091371f9a1027b7ac1b9",
+  "pack": {
+    "id": "@solanaut/sdk@0.0.0",
+    "name": "@solanaut/sdk",
+    "version": "0.0.0",
+    "size": 77648,
+    "unpackedSize": 287204,
+    "shasum": "2c138836f4a3ec261dde43d228af5f1ff726f404",
+    "integrity": "sha512-BIVgsd9q8FKxX0g+q5S6Cmbf4K/5x0ocoGdDHr1oU+HI4wCMTOEmpuBhEkQmjJpnzG62jBCDD8ZJu6hNmJl/3Q==",
+    "filename": "solanaut-sdk-0.0.0.tgz",
+    "files": [
+      {
+        "path": "dist/bin/pin-table.d.ts",
+        "size": 11,
+        "mode": 420
+      },
+      {
+        "path": "dist/bin/pin-table.js",
+        "size": 2039,
+        "mode": 493
+      },
+      {
+        "path": "dist/bin/prepare-policy.d.ts",
+        "size": 11,
+        "mode": 420
+      },
+      {
+        "path": "dist/bin/prepare-policy.js",
+        "size": 3340,
+        "mode": 493
+      },
+      {
+        "path": "dist/bin/replay.d.ts",
+        "size": 11,
+        "mode": 420
+      },
+      {
+        "path": "dist/bin/replay.js",
+        "size": 1769,
+        "mode": 493
+      },
+      {
+        "path": "dist/bin/verify-archive.d.ts",
+        "size": 11,
+        "mode": 420
+      },
+      {
+        "path": "dist/bin/verify-archive.js",
+        "size": 3004,
+        "mode": 493
+      },
+      {
+        "path": "dist/src/adapters/agent-kit.d.ts",
+        "size": 1314,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/adapters/agent-kit.js",
+        "size": 11022,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/adapters/kit.d.ts",
+        "size": 965,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/adapters/kit.js",
+        "size": 3675,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/adapters/rpc.d.ts",
+        "size": 1671,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/adapters/rpc.js",
+        "size": 4225,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/adapters/sending-client.d.ts",
+        "size": 1317,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/adapters/sending-client.js",
+        "size": 7070,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/archive.d.ts",
+        "size": 1125,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/archive.js",
+        "size": 8094,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/authority.d.ts",
+        "size": 296,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/authority.js",
+        "size": 528,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/base58.d.ts",
+        "size": 281,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/base58.js",
+        "size": 2223,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/canonical.d.ts",
+        "size": 134,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/canonical.js",
+        "size": 1324,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-archives.d.ts",
+        "size": 397,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-archives.js",
+        "size": 3621,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-bundle.d.ts",
+        "size": 766,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-bundle.js",
+        "size": 3158,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-envelope.d.ts",
+        "size": 785,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-envelope.js",
+        "size": 2884,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-errors.d.ts",
+        "size": 286,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-errors.js",
+        "size": 440,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-prefix.d.ts",
+        "size": 922,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-prefix.js",
+        "size": 4086,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-publication.d.ts",
+        "size": 951,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-publication.js",
+        "size": 5642,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-recovery.d.ts",
+        "size": 858,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-recovery.js",
+        "size": 5866,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-state.d.ts",
+        "size": 490,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-state.js",
+        "size": 3005,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint.d.ts",
+        "size": 1332,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint.js",
+        "size": 4749,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/classify.d.ts",
+        "size": 3686,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/classify.js",
+        "size": 15013,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/control-request.d.ts",
+        "size": 907,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/control-request.js",
+        "size": 2270,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/errors.d.ts",
+        "size": 641,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/errors.js",
+        "size": 543,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/guard.d.ts",
+        "size": 6138,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/guard.js",
+        "size": 35430,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/index.d.ts",
+        "size": 2751,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/index.js",
+        "size": 1585,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/inspect.d.ts",
+        "size": 2005,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/inspect.js",
+        "size": 3604,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/latch.d.ts",
+        "size": 580,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/latch.js",
+        "size": 2337,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/log.d.ts",
+        "size": 4514,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/log.js",
+        "size": 885,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/message.d.ts",
+        "size": 3342,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/message.js",
+        "size": 14416,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/pda.d.ts",
+        "size": 478,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/pda.js",
+        "size": 3268,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/policy.d.ts",
+        "size": 2834,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/policy.js",
+        "size": 9525,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/profile.d.ts",
+        "size": 556,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/profile.js",
+        "size": 515,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/record.d.ts",
+        "size": 1582,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/record.js",
+        "size": 13328,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/request-index.d.ts",
+        "size": 1919,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/request-index.js",
+        "size": 13563,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/request.d.ts",
+        "size": 588,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/request.js",
+        "size": 1221,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/sensor.d.ts",
+        "size": 3997,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/sensor.js",
+        "size": 5473,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/signed-policy.d.ts",
+        "size": 795,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/signed-policy.js",
+        "size": 4071,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/signing.d.ts",
+        "size": 911,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/signing.js",
+        "size": 3686,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/state.d.ts",
+        "size": 3698,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/state.js",
+        "size": 15396,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/tables.d.ts",
+        "size": 528,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/tables.js",
+        "size": 2204,
+        "mode": 420
+      },
+      {
+        "path": "package.json",
+        "size": 723,
+        "mode": 420
+      }
+    ],
+    "entryCount": 83,
+    "bundled": []
+  },
+  "sourceHashes": {
+    "examples/offline-preview.mjs": "fe884d006f5075b2b58151d5f31a1750eb4bc3ba7bcf33a38863c786a7fc7272",
+    "package-lock.json": "7e461a8dc3c217c556f4720019bfa0fd23790b2c8f5fc05f9fd0e369bfe0c652",
+    "packages/sdk/bin/pin-table.ts": "7feb9a8de3a36597551c364165aa7add6caa79ee4d7a6bd752c55868e9eb9e23",
+    "packages/sdk/bin/prepare-policy.ts": "75afc632da07c838ef33ed4015fa2d3bd4333c64ba01ce67920e3c25f9e7717c",
+    "packages/sdk/bin/prepare-release.ts": "459f11159b8133111a3186c0b213916f555ec495265e0222b5100df95f301a86",
+    "packages/sdk/bin/replay.ts": "6cf046fc40395dcab3c248c72ef640b66484604e49ba405b0e4049745c8f4d03",
+    "packages/sdk/bin/verify-archive.ts": "31dfb5ca21b25057d81e7f8f632edc919e4c5ffee984a1c88b6d196a7310a52a",
+    "packages/sdk/package.json": "26397c1c97dc25cec6c71a2e8969063c27c4dd57a00d83fb1c66a6185290f7c0",
+    "packages/sdk/src/adapters/agent-kit.ts": "df647f79746c9f50927d8e37d925b40b4346590bfa74cc8b98f28d01410b2890",
+    "packages/sdk/src/adapters/kit.ts": "3867dbb71e9bb785342fa054bce7c1bf14a59c298920959792cf8c08aebb41e3",
+    "packages/sdk/src/adapters/rpc.ts": "318eff52cbef2467018f2fcc1b9583028d0acbc131708eec0444f80c23722c4c",
+    "packages/sdk/src/adapters/sending-client.ts": "2a88d2ca3f004ea65f33cda6b240b1652d5b708be39ffff52948b3f06fb6b2f7",
+    "packages/sdk/src/archive.ts": "5089f5167d77cbe9344182e436eb3f2f1c221fd0264a9a729b8a94cbd073e068",
+    "packages/sdk/src/authority.ts": "68f16afbd4eaeb8cd5f287288d66e6b44a2f876340e66806aa67e0b980783bfc",
+    "packages/sdk/src/base58.ts": "4382f6e5b180466b312bb73b38a31a9554919f13b8372335bfb48386da0eca95",
+    "packages/sdk/src/canonical.ts": "940364593dabbd51879b614080356ac615968cf88d66270704727f237936abae",
+    "packages/sdk/src/checkpoint-archives.ts": "2692fa0e5e0a554de3c299afa1e1e49a8676f43b069b994a39a28c966bf9e0ef",
+    "packages/sdk/src/checkpoint-bundle.ts": "c0454ed2cad742d13954006ee5a11325230e9b0e41a39731df3c4d8c5056f95c",
+    "packages/sdk/src/checkpoint-envelope.ts": "60ef7a4bf045162d8b65a2c64200af8bb4c3d6048b1344f5ffb4bb9e7232f1af",
+    "packages/sdk/src/checkpoint-errors.ts": "2606ed1043175cc003211610c1e8fc68cc150b1b7c39121bd6566ac152fae7c7",
+    "packages/sdk/src/checkpoint-prefix.ts": "17cf036ca575a61abf20e3e6dca4d27a60c53d989fda1a8e3f5b344664c48569",
+    "packages/sdk/src/checkpoint-publication.ts": "7d571b4575584d190f6aabca7bb91d48544614077ce4179d83af5c3c49a49a09",
+    "packages/sdk/src/checkpoint-recovery.ts": "e1e0016d4e4644cb6e37ed38fa20e19fdbba29e7d3a61122f042ee0cc6b33959",
+    "packages/sdk/src/checkpoint-state.ts": "711c5b8693e6918cca6206107556df723f569ee4ed0bba473c649a0366206f27",
+    "packages/sdk/src/checkpoint.ts": "e5a13682b909029c91f12422a7860033f65f1c53ac3fffca8b907901e67df382",
+    "packages/sdk/src/classify.ts": "cd8553cca6eb37e2e408d2fb837c2a205854289eb012fd98f23460fec7db2599",
+    "packages/sdk/src/control-request.ts": "32956faf9eb8cf57fcaef48d33aa9a97d91477a6d06545fb673433467d552c06",
+    "packages/sdk/src/errors.ts": "2839d664da4c4b3673c817628a8e36df74eb037b97e0618521f28451bafaab73",
+    "packages/sdk/src/guard.ts": "1821cb1f045ac0f71e110473ea06a6da0f3f0fb7e1d477f2d114a003ef3557ae",
+    "packages/sdk/src/index.ts": "86d844111c9c60aab3d316176a91963ae1e5192dbb4f8712212ff8ff130518b6",
+    "packages/sdk/src/inspect.ts": "cf73e0efbbbab9061a9ba0e368cf7e6521133966035fc69d871dba1269dcc3a3",
+    "packages/sdk/src/latch.ts": "8e04e0bb6fa9f020ae911833d0065f24488fd2ac6013022ec60351e9f03d8958",
+    "packages/sdk/src/log.ts": "30fa1359c4edd95a79d926e428ecf209874ca48bfcf16a5ccfba60125a9e9b1d",
+    "packages/sdk/src/message.ts": "25d82ad6f99a49f223d8353e758b0252e11d14918ffeee1acd48965aefbcc208",
+    "packages/sdk/src/pda.ts": "03654547ae3673c6aad0572d4527666b810153ce921c45fe64a320f536a934b5",
+    "packages/sdk/src/policy.ts": "a82e516b0553c6de720780e891234a36feda918bbdc34ac31d930216ed6703fc",
+    "packages/sdk/src/profile.ts": "437230537c817d15fe0e23b76642966f1121a00e5e20fb57c0b5f266c9f70272",
+    "packages/sdk/src/record.ts": "37c7b35ca33cbd0bb8ebe45fac9e0ed3d304f372a0ffc93854c4499a0d673dcc",
+    "packages/sdk/src/request-index.ts": "331e6be0e96f9b3f8c6f4425383b626b0b46d38ccacd2de5cbf84b477609f1bc",
+    "packages/sdk/src/request.ts": "3f6d5c15bad9dc6b19835a94d6ca0648229de4b1d1a504750d6e4df36fcb0a1d",
+    "packages/sdk/src/sensor.ts": "56834f72925ed8de59560bf2ad8107bda390faf19970bddefbdd3f1ea4f6a0b4",
+    "packages/sdk/src/signed-policy.ts": "6887126eb6e6419dda4c9d7592bde0bc7813a989f159405671ad572b2bd943b9",
+    "packages/sdk/src/signing.ts": "6a13979210438c3a1771e95eb18ee695c04a4d43cb7054e8d6225f8754f3e904",
+    "packages/sdk/src/state.ts": "adfeb1c2ddaf96c48551ba40a6ebe2140da7d972780fa1af8f3e28d38f396b87",
+    "packages/sdk/src/tables.ts": "d64fb906b395900a9b4c513131a152437fba8b47a4a9413fb6793d623d6925cb"
+  },
+  "limitations": [
+    "private build output; not a release freeze",
+    "no public distribution or clean reference-machine qualification",
+    "example synthetic; no signing, RPC or sending"
+  ]
+}

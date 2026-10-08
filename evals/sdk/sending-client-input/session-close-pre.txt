@@ -1,0 +1,12 @@
+session_close.py — gates
+  [PASS] manifests match the seat table
+  [PASS] harness audits clean
+  [PASS] boundary guard passes its fault matrix
+  [PASS] the knowledge vault lints clean
+  [PASS] every measured claim can be regenerated
+  [PASS] no secrets in 1890 tracked files
+  [PASS] run record exists for 2026-10-08
+  [PASS] remote configured
+  [PASS] HEAD is pushed to origin
+  [FAIL] working tree committed: 27 uncommitted changes
+9/10 gates passed; dirty-tree finding is resolved only by private commit/sync.

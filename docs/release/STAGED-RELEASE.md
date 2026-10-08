@@ -1,7 +1,16 @@
 # Staged devnet release — review draft
 
-2026-10-08 · private integrator/archivist preparation · reviewed source revision
-`5b00257b20c8bbfc643d0fc093f6e509dc3a3d38`. No publication approval, supported
+2026-10-08 · private integrator/archivist preparation · reviewed base revision
+`5b00257b20c8bbfc643d0fc093f6e509dc3a3d38`; corrected private SDK candidate
+`39c24de89a3e860cd9e4a08517a616481c5c72ca`, identified by the
+[original artefact manifest](../../evals/release/staged-preview/candidate.json).
+The D24 client follow-up is identified by its separate
+[client-candidate manifest](../../evals/release/staged-preview/client-candidate.json);
+the first manifest and hosted failure remain unchanged evidence.
+Its local source/installed/ordinary/type/AST/fault qualification is in
+[sending-client-input](../../evals/sdk/sending-client-input.md); exact follow-up
+hosted clearance remains owed.
+No publication approval, supported
 installation claim or change to the approved mission.
 
 Solanaut can prepare a concrete developer preview around its trusted SDK. It
@@ -115,6 +124,18 @@ package and typecheck steps pass within the failed runtime jobs. The run remains
 a failure; corrected hosted qualification is required. H11 is still a proposal,
 not permission to alter the wait. Earlier failures remain alongside later results
 in the [evaluation index](../../evals/README.md).
+
+The corrected private candidate `39c24de` also completes with a failed hosted
+[run 37777805134](https://github.com/dushyants4/solanaut/actions/runs/37777805134).
+The runtime matrix and fault partition one reject the unchanged real-baseline
+wait; fault partition two catches an outdated checkpoint-state fault literal
+after the signed-policy context was added. That trial must target the same
+operation at its updated call site. The AST coverage job and installed/type
+steps pass, without clearing the failed run. Full logs and exact revision
+metadata are retained in
+[hosted-39c24de](../../evals/release/staged-preview/hosted-39c24de/metadata.json).
+H11 remains pending. A later source/client correction needs its own artefact
+identity and qualification; no candidate is chosen to hide these findings.
 
 The [history inventory](../../evals/ci/history-commit-read.md) verifies readable
 historical objects and graph agreement. It does not clear confidentiality,

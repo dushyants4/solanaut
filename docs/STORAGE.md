@@ -1,6 +1,6 @@
 # Persistent record ownership
 
-> **Draft 4** · 2026-10-06 · owner: integrator · for: SDK users and Linux operators.
+> **Draft 5** · 2026-10-08 · owner: integrator · for: SDK users and Linux operators.
 > Register: `kb/DOCUMENTS.md`. Foundation evidence: `evals/sdk/ownership.md` (claim S16).
 
 An ordinary `createGuard({ policy, log: path })` uses manual SDK ownership. It refuses an
@@ -81,6 +81,7 @@ See SNP-2 evidence and the exact exit contract in `evals/sdk/archive-cli.md` (S4
 
 | Error code | Operator action |
 |---|---|
+| `input` | Correct the verification options, continuation sequence/head and pin or byte-limit shape before retrying. This refusal does not establish anything about the archive's contents. |
 | `source` | Check the file exists, permissions allow reads and it is a single-link regular file on supported local Linux storage. |
 | `framing`, `record`, `chain` | Retain the failed copy and original evidence. Check the complete copy, continuation identity and compatible record format; do not edit history to make it verify. |
 | `changed-source` | Stop writers and create a fresh immutable copy before verification. |

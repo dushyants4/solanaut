@@ -218,6 +218,18 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+| 2026-10-08 | D24 client containers and private preview follow-up | commit containing `evals/sdk/sending-client-input.md` and `evals/release/staged-preview/client-candidate.json` | native/installed first failures; 718 ordinary/AST cases, typecheck, seventeen source and seventy-four compiled faults; updated checkpoint trial and fresh driver qualification | CLAIMS S83. Original 39c24de artefact/full failed hosted run retained; no public metadata change. Preview guide adds digest verification; formal progress remains 41%, all broader gates pending. |
+
+Private candidate `39c24de` is pushed; its local close passes every gate. Hosted
+37777805134 completes failed: runtime matrix and fault partition one hit the
+unchanged real-baseline wait, and partition two finds the checkpoint-state
+apply-state fault's outdated literal after D23's context argument. Update that
+literal to omit the same operation; no trial is removed. AST and installed/type
+steps pass, without clearing CI. Full logs/revision metadata are retained in
+`evals/release/staged-preview/hosted-39c24de/`. Client contract peer review then
+finds D24's missing/non-record argument TypeError, fixed test-first under CLT-1/3;
+its refreshed source/installed qualification follows. H11 remains a proposal.
+
 | 2026-10-08 | D22/D23 recovery validation, SNP-7 internal index and private staged preview | commit containing `evals/sdk/request-index-integration.md` and `evals/release/staged-preview.md` | first failures/misses, source and compiled faults, 718 ordinary/AST cases, typecheck, unchanged floors and isolated driver qualification | CLAIMS S79–S82. Actual private tarball/example/page scope prepared; no public release. Formal progress remains S78's 41%; full bounded recovery, H9/H10/H11/H12 and human/Claude/audit gates stay open. |
 
 Hosted 5b00257 run 37736599067 completes failed at the unchanged staged-baseline

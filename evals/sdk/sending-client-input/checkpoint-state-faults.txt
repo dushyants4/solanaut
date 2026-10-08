@@ -1,0 +1,17 @@
+caught checkpoint state fault: full-replay
+caught checkpoint state fault: history-capture
+caught checkpoint state fault: policy-capture
+caught checkpoint state fault: trust-capture
+caught checkpoint state fault: map-retention
+caught checkpoint state fault: receipt-retention
+caught checkpoint state fault: amounts
+caught checkpoint state fault: maximal-window
+caught checkpoint state fault: apply-state
+caught checkpoint state fault: previous-decision
+caught checkpoint state fault: policy-version
+caught checkpoint state fault: policy-hash
+caught checkpoint state fault: policy-content
+caught checkpoint state fault: profile
+caught checkpoint state fault: digest
+caught checkpoint state fault: immutable
+All checkpoint state faults caught; restored source passes

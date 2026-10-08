@@ -18,6 +18,13 @@ reviewable through `docs/PREVIEW.md` (CLAIMS S82), with no public availability c
 CI fault partitions preserve every maintained campaign and per-job restoration
 (CLAIMS S77). Corrected ordinary/AST/type checks pass; hosted qualification follows.
 Exact a4d1c25 and 5b00257 hosted baseline-wait failures remain retained.
+Candidate `39c24de` is privately pushed and closes locally, but hosted 37777805134
+fails the runtime/partition-one real-baseline wait and an outdated maintained
+fault literal in partition two. Its AST job passes. Full evidence is retained;
+updated trial/client qualification cannot substitute for a passing complete run.
+D24's client container correction now has native and installed first-failure,
+ordinary/AST/type and source/compiled-fault evidence (CLAIMS S83). The refreshed
+private artefact is separately identified; no formal milestone closes.
 
 Record-only loading has source and installed fault evidence
 (`evals/sdk/record-loading.md`). Owned checkpoint maintenance retains full

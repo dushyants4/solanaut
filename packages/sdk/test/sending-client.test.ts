@@ -80,11 +80,37 @@ test("CLT-4: absolute timeout is not extended by response activity", async () =>
   } finally { await host.close(); }
 });
 test("CLT-1/3: invalid configuration and payloads refuse before connecting", async () => {
-  for (const options of [{ socket: "relative", clientId: "a" }, { socket: "/socket", clientId: "" }, { socket: "/socket", clientId: "a", timeoutMs: 30_001 }]) assert.throws(() => createSendingClient(options), /socket|identity|timeout/);
   const host = await server((_r, socket) => socket.destroy());
   try {
+    const inputError = (error: unknown) => error instanceof SignerClientError && error.code === "input" && !error.mayHaveExecuted;
+    const configure = createSendingClient as (options?: unknown) => unknown;
+    const invalidContainers = [undefined, null, false, 0, "input", 1n, Symbol("input"), [] as unknown, (() => {}) as unknown];
+    const configuration = { socket: host.path, clientId: "a" };
+    assert.throws(() => configure(), inputError, "missing options");
+    for (const options of [...invalidContainers, Object.assign([], configuration), Object.assign(() => {}, configuration)]) {
+      assert.throws(() => configure(options), inputError, "invalid options container");
+    }
+    for (const options of [{ socket: "relative", clientId: "a" }, { socket: "/socket", clientId: "" }, { socket: "/socket", clientId: "a", timeoutMs: 30_001 }, { ...configuration, timeoutMs: NaN }]) {
+      assert.throws(() => configure(options), inputError, "invalid configuration field");
+    }
     const client = createSendingClient({ socket: host.path, clientId: "a" });
-    for (const request of [{ id: "", message: Uint8Array.of(1) }, { id: "one", message: new Uint8Array(6145) }, { id: "one", message: Uint8Array.of(1), group: "x".repeat(257) }, { id: "one", message: Uint8Array.of(1), deadline: NaN }]) await assert.rejects(client.propose(request), /identity|message|group|deadline/);
+    for (const name of ["propose", "report", "status"] as const) {
+      const method = client[name] as (input?: unknown) => Promise<unknown>;
+      const request = name === "propose" ? { id: "one", message: Uint8Array.of(1) } : name === "report" ? { id: "one", decision } : { id: "one" };
+      await assert.rejects(async () => await method(), inputError, `${name}: missing payload`);
+      for (const input of [...invalidContainers, Object.assign([], request), Object.assign(() => {}, request)]) {
+        await assert.rejects(async () => await method(input), inputError, `${name}: invalid payload container`);
+      }
+      for (const input of [{ ...request, id: "" }, { ...request, deadline: NaN }]) {
+        await assert.rejects(async () => await method(input), inputError, `${name}: invalid identity/deadline`);
+      }
+    }
+    for (const request of [{ id: "", message: Uint8Array.of(1) }, { id: "one", message: new Uint8Array(6145) }, { id: "one", message: Uint8Array.of(1), group: "x".repeat(257) }, { id: "one", message: Uint8Array.of(1), deadline: NaN }]) {
+      await assert.rejects(client.propose(request), inputError, "invalid proposal field");
+    }
+    await assert.rejects(client.propose({ id: "one", message: [] } as any), inputError, "message must remain bytes");
+    await assert.rejects(client.propose({ id: "one", message: Uint8Array.of(1), group: 1 } as any), inputError, "group must remain text");
+    await assert.rejects(client.report({ id: "one", decision: "invalid" }), inputError, "invalid decision hash");
     assert.equal(host.calls(), 0);
   } finally { await host.close(); }
 });

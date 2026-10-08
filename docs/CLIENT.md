@@ -1,6 +1,6 @@
 # Sending client
 
-> **Draft 1** · 2026-10-06 · owner: integrator · for: Node SDK consumers.
+> **Draft 2** · 2026-10-08 · owner: integrator · for: Node SDK consumers.
 > Register: `kb/DOCUMENTS.md`. Private candidate; installation and isolated deployment
 > remain under development. Local evidence: S31, `evals/sdk/sending-client.md`.
 
@@ -35,6 +35,9 @@ Callers never supply outcomes. `status({ id })` returns the host's keyless proje
 check its mode and limitations rather than treating it as an isolation attestation.
 
 `SignerClientError` exposes `code`, `mayHaveExecuted` and an optional fixed `remoteCode`.
+Missing arguments, primitive values and array/function containers are refused
+before field access or transmission with `input` and `mayHaveExecuted: false`.
+Valid object fields still undergo identity, message, grouping and deadline checks.
 
 | Code | Meaning | Operator/client action |
 |---|---|---|

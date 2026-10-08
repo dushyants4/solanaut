@@ -1,0 +1,1 @@
+PASS: private tarball digest, shipped inventory/bytes/modes, source identities and AST identities match after restoration.

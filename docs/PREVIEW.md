@@ -8,6 +8,9 @@ The [installed-package evidence](../evals/packaging/packed-sdk.md), claim S14,
 covers a compiled SDK tarball outside the repository. This example uses that
 kind of artefact through documented exports. Its output below is an expected
 result to check, not a new qualification measurement.
+The [first preview receipt](../evals/release/staged-preview.md), S82, and
+[client follow-up receipt](../evals/sdk/sending-client-input.md), S83, retain
+the original artefact and the current corrected candidate separately.
 
 ## Before starting
 
@@ -16,7 +19,7 @@ result to check, not a new qualification measurement.
 - Use a local Linux terminal with npm. This walkthrough does not install or
   qualify the dedicated-user signer, reference deployment or service manager.
 - Obtain the reviewed private artefact at
-  `/home/dashy/Projects/Solanaut/.sandbox/solanaut-1/staged-preview/solanaut-sdk-0.0.0.tgz`
+  `/home/dashy/Projects/Solanaut/.sandbox/solanaut-1/staged-preview-client/solanaut-sdk-0.0.0.tgz`
   and its companion example at
   `/home/dashy/Projects/Solanaut/examples/offline-preview.mjs`.
   The artefact must exist before the installation commands; it is not fetched
@@ -27,6 +30,22 @@ No wallet, private key, funding, signature, Solana CLI configuration or OS-user
 creation is needed. The example makes no RPC call and sends no transaction.
 The addresses and blockhash are synthetic public bytes; the script cannot sign
 them and they are not credentials.
+
+## Verify the private candidate
+
+Before installation, compare both file digests with the retained
+[candidate manifest](../evals/release/staged-preview/client-candidate.json):
+
+```bash
+sha256sum "/home/dashy/Projects/Solanaut/.sandbox/solanaut-1/staged-preview-client/solanaut-sdk-0.0.0.tgz" "/home/dashy/Projects/Solanaut/examples/offline-preview.mjs"
+```
+
+The tarball must match the manifest's `sha256`; the example must match
+`sourceHashes["examples/offline-preview.mjs"]`. A mismatch stops this walkthrough:
+obtain the reviewed files rather than installing a substitute. These hashes
+identify the private files from the commit containing that manifest, following
+`39c24de` and the client input correction. They are not public
+provenance, an audit or publication clearance.
 
 ## Install outside the repository
 
@@ -39,7 +58,7 @@ cd "$preview_consumer_dir"
 cat > package.json <<'JSON'
 {"name":"solanaut-private-preview","private":true,"type":"module"}
 JSON
-npm install --ignore-scripts --omit=dev --no-audit --no-fund "/home/dashy/Projects/Solanaut/.sandbox/solanaut-1/staged-preview/solanaut-sdk-0.0.0.tgz"
+npm install --ignore-scripts --omit=dev --no-audit --no-fund "/home/dashy/Projects/Solanaut/.sandbox/solanaut-1/staged-preview-client/solanaut-sdk-0.0.0.tgz"
 cp "/home/dashy/Projects/Solanaut/examples/offline-preview.mjs" "$preview_consumer_dir/offline-preview.mjs"
 node "$preview_consumer_dir/offline-preview.mjs"
 ```

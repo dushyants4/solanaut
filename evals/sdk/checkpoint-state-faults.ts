@@ -13,7 +13,7 @@ const faults=[
   ["receipt-retention","if(value instanceof Set)return [...value]","if(value instanceof Set)return []"],
   ["amounts",'return value.toString()', 'return "0"'],
   ["maximal-window","retentionWindow(entries,policy.windowMs)","policy.windowMs"],
-  ["apply-state","apply(state,entry,policy)","void 0"],
+  ["apply-state","apply(state,entry,policy,previous?hash:undefined)","void 0"],
   ["previous-decision","previousDecision=entry","previousDecision=null"],
   ["policy-version","version:previous!.version","version:previous!.version+1"],
   ["policy-hash","canonical:canonicalJSON(policy),hash",'canonical:canonicalJSON(policy),hash:"0".repeat(64)'],
