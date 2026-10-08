@@ -10,7 +10,7 @@
 // ones. Linux kernel ownership recovers through flock on an inherited open-file description,
 // held until this store closes or the process dies. Its mutex inode is never unlinked.
 
-import { closeSync, constants, fstatSync, fsyncSync, ftruncateSync, lstatSync, openSync, readFileSync, readSync, unlinkSync, writeSync } from "node:fs";
+import { closeSync, constants, fstatSync, fsyncSync, ftruncateSync, lstatSync, openSync, readFileSync, readSync, unlinkSync, writeSync, type BigIntStats } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { hostname } from "node:os";
 import { dirname } from "node:path";
@@ -19,6 +19,7 @@ import { hashOf, type Entry } from "./log.ts";
 import {CheckpointPublicationError,CheckpointRecoveryError} from "./checkpoint-errors.ts";
 import type {CheckpointPublicationOptions,CheckpointPublicationReceipt} from "./checkpoint-publication.ts";
 import type {CheckpointRecoveryOptions,PreparedCheckpointRecovery} from "./checkpoint-recovery.ts";
+import type {RequestIndexPublicationOptions,RequestIndexPublicationReceipt} from "./request-index-publication.ts";
 
 export interface EntryStore {
   /** Every entry kept so far, oldest first. The store, not the guard, adds to it. */
@@ -30,6 +31,17 @@ export interface EntryStore {
 
 const publishers=new WeakMap<EntryStore,(text:unknown,options:CheckpointPublicationOptions)=>Promise<CheckpointPublicationReceipt>>();
 const recoverers=new WeakMap<EntryStore,(options:CheckpointRecoveryOptions)=>Promise<Readonly<PreparedCheckpointRecovery>>>();
+export class RequestIndexPublicationError extends Error {
+  readonly code="request-index-publication";
+  constructor(message:string){super(message);this.name="RequestIndexPublicationError";}
+}
+const indexPublishers=new WeakMap<EntryStore,(options:RequestIndexPublicationOptions)=>Promise<Readonly<RequestIndexPublicationReceipt>>>();
+/** Internal maintenance capability; a copied store or disk manifest cannot claim ownership. */
+export async function publishOwnedRequestIndex(store:EntryStore,options:RequestIndexPublicationOptions):Promise<Readonly<RequestIndexPublicationReceipt>>{
+  const publish=indexPublishers.get(store);
+  if(!publish)throw new RequestIndexPublicationError("request index publication requires actual file ownership");
+  try{return await publish(options);}catch(error){if(error instanceof RequestIndexPublicationError)throw error;throw new RequestIndexPublicationError("owned request index cannot be published");}
+}
 /** Internal maintenance capability: only the actual kernel-owned store can publish. */
 export async function publishOwnedCheckpoint(store:EntryStore,text:unknown,options:CheckpointPublicationOptions):Promise<CheckpointPublicationReceipt>{
   const publish=publishers.get(store);
@@ -224,7 +236,7 @@ export function fileStore(path: string, options: FileStoreOptions = {}): EntrySt
       const validated=await validatePublication(candidate,pins,history);
       const unchanged=()=>{
         held();const now=fstatSync(fd,{bigint:true});
-        if(now.size!==before.size || now.mtimeNs!==before.mtimeNs || now.ctimeNs!==before.ctimeNs)throw new CheckpointPublicationError("owned record changed during checkpoint validation");
+        if(now.size!==before.size || now.mtimeNs!==before.mtimeNs || now.ctimeNs!==before.ctimeNs || canonicalJSON(history)!==canonicalJSON(entries))throw new CheckpointPublicationError("owned record changed during checkpoint validation");
       };
       unchanged();
       try{replaceCheckpoint(path,validated.text,validated.pins,unchanged);}catch(error){failed=true;throw error;}
@@ -248,6 +260,27 @@ export function fileStore(path: string, options: FileStoreOptions = {}): EntrySt
       held();const after=fstatSync(fd,{bigint:true});
       if(after.size!==before.size || after.mtimeNs!==before.mtimeNs || after.ctimeNs!==before.ctimeNs || canonicalJSON(history)!==canonicalJSON(entries))throw new CheckpointRecoveryError("owned record changed during recovery");
       return recovered;
+    }finally{publishing=false;}
+  });
+  indexPublishers.set(store,async(options)=>{
+    if(publishing)throw new RequestIndexPublicationError("request index maintenance already in progress");
+    publishing=true;
+    try{
+      const pins=structuredClone(options);held();const before=fstatSync(fd,{bigint:true});
+      const reader=openSync(path,constants.O_RDONLY|constants.O_NOFOLLOW);let history:Entry[];
+      try{sameFile(reader,path);history=readRecord(path,reader);}finally{closeSync(reader);}
+      if(canonicalJSON(history)!==canonicalJSON(entries))throw new RequestIndexPublicationError("owned record and cached index history differ");
+      let marker:BigIntStats|undefined;
+      try{marker=lstatSync(path+".request-index",{bigint:true});}catch(error){if((error as NodeJS.ErrnoException).code!=="ENOENT")throw error;}
+      const {validateIndexPublication,replaceRequestIndex}=await import("./request-index-publication.ts");
+      if(marker!==undefined){const named=lstatSync(path+".request-index",{bigint:true});if(marker.dev!==named.dev||marker.ino!==named.ino||marker.size!==named.size||marker.mtimeNs!==named.mtimeNs||marker.ctimeNs!==named.ctimeNs)throw new RequestIndexPublicationError("request index pointer changed during module loading");}
+      else{try{lstatSync(path+".request-index");throw new RequestIndexPublicationError("request index pointer appeared during module loading");}catch(error){if((error as NodeJS.ErrnoException).code!=="ENOENT")throw error;}}
+      const validated=await validateIndexPublication(path,history,pins);
+      const unchanged=()=>{
+        held();const now=fstatSync(fd,{bigint:true});
+        if(now.size!==before.size||now.mtimeNs!==before.mtimeNs||now.ctimeNs!==before.ctimeNs||canonicalJSON(history)!==canonicalJSON(entries))throw new RequestIndexPublicationError("owned record changed during index validation");
+      };
+      unchanged();try{return replaceRequestIndex(path,validated,unchanged);}catch(error){failed=true;throw error;}
     }finally{publishing=false;}
   });
   return store;

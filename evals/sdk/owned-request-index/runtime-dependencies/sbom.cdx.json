@@ -1,0 +1,126 @@
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:41ac9081-e85f-4a2a-9be0-fca1c7c70d29",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-10-08T20:40:48.269Z",
+    "lifecycles": [
+      {
+        "phase": "build"
+      }
+    ],
+    "tools": [
+      {
+        "vendor": "npm",
+        "name": "cli",
+        "version": "11.19.0"
+      }
+    ],
+    "component": {
+      "bom-ref": "solanaut-runtime-dependency-review@0.0.0",
+      "type": "library",
+      "name": "consumer",
+      "version": "0.0.0",
+      "scope": "required",
+      "purl": "pkg:npm/solanaut-runtime-dependency-review@0.0.0",
+      "properties": [
+        {
+          "name": "cdx:npm:package:private",
+          "value": "true"
+        }
+      ],
+      "externalReferences": []
+    }
+  },
+  "components": [
+    {
+      "bom-ref": "@gubernaut/core@1.0.1",
+      "type": "library",
+      "name": "@gubernaut/core",
+      "version": "1.0.1",
+      "scope": "required",
+      "author": "Gubernaut Research",
+      "description": "The Gubernaut controller, in-process, for JavaScript. A deterministic runtime governor for LLM agents that reads three bounded numbers and no tokens, and hard-stops runaway loops. Embedded wasm, no dependencies, runs in Node, Deno, Bun, workerd and the browser.",
+      "purl": "pkg:npm/%40gubernaut/core@1.0.1",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/@gubernaut/core/-/core-1.0.1.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "git+https://github.com/thegubernaut/gubernaut.git"
+        },
+        {
+          "type": "website",
+          "url": "https://gubernaut.com"
+        },
+        {
+          "type": "issue-tracker",
+          "url": "https://github.com/thegubernaut/gubernaut/issues"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "48e9bb91f4654f75c87618fb3aff3dd256788b76c063f13d5a82fe441c9dc8bbeccd819bbc72d27e8deed8553198d0e1546f1ee2dd81e31a6646a135a814a54c"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "@solanaut/sdk@0.0.0",
+      "type": "library",
+      "name": "@solanaut/sdk",
+      "version": "0.0.0",
+      "scope": "required",
+      "description": "The Solanaut guard: a deterministic transaction policy plus Gubernaut Keel's control loop.",
+      "purl": "pkg:npm/%40solanaut/sdk@0.0.0",
+      "properties": [
+        {
+          "name": "cdx:npm:package:private",
+          "value": "true"
+        }
+      ],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "file:/home/dashy/Projects/Solanaut/.sandbox/solanaut-1/runtime-dependency-review/solanaut-sdk-0.0.0.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "3601d6f7cb24181663ac790d86cffe698d81980a34aeb5238a21ea56b1a848bba629ca315ea640fb2e1bcd37a9920f6ad050d300972be41e4eaaddaf3dc35891"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "solanaut-runtime-dependency-review@0.0.0",
+      "dependsOn": [
+        "@solanaut/sdk@0.0.0"
+      ]
+    },
+    {
+      "ref": "@gubernaut/core@1.0.1",
+      "dependsOn": []
+    },
+    {
+      "ref": "@solanaut/sdk@0.0.0",
+      "dependsOn": [
+        "@gubernaut/core@1.0.1"
+      ]
+    }
+  ]
+}

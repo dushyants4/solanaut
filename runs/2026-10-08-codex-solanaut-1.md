@@ -7,6 +7,36 @@ progress out of one hundred with an explicit basis. Continue across queue items.
 
 ## Did
 
+Final continuation: restored workspace passes 740 ordinary cases and native
+typecheck; source campaign catches 27 trials with restoration. Final AST hashes
+match every current product source. Extend the existing installed lifecycle case
+to invoke actual compiled owned index publication, verifying pointer corruption,
+forged ownership, uncertain-send lookup and predecessor retention. Injected
+compiled digest fault produces the expected assertion failure; restored installed
+population passes eleven. All earlier compiled fault trials are preserved.
+
+Stable-release continuation starts from clean `43f20c0`, after successful fetch.
+Fresh live secret-path probes refuse both patch and shell creation as required;
+no probe file appears. Native typecheck passes. Ordinary baseline is running
+without source mutations. Read-only queue/design review selects owned atomic
+request-index publication and the accepted ElizaOS integration as unblocked work.
+H9, H10 and H11 are presented as concrete decisions while independent work
+continues; generic instructions to reach stable 1.0 do not accept them.
+
+Current baseline passes 718 ordinary cases and native typecheck. D25 observes
+the checkpoint publication's late cache race fail before correction. The owned
+index module has first-red capability tests and preserves immutable generations;
+parent review adds a deterministic late-pointer-disappearance regression. New
+critical coverage and mutation inventory checks fail before registration. Retain
+both existing checkpoint storage/cache fault trials with the newly redundant
+cache defence explicitly included, and add a separate D25 late-cache trial.
+
+Published ElizaOS graph research and a sandbox-only correctly resolved install
+use no peer override, script or global change. Actual published stable signing
+routes are exercised through a real runtime with model/RPC fixtures. The graph
+has unresolved dependency advisories and is not release-qualified. No vulnerable
+framework dependency is added to the production workspace.
+
 Follow-up candidate: 718 ordinary and serial AST cases pass, native typecheck
 exits zero, and unchanged floors pass. Eleven native cases/seventeen source
 faults and eleven installed cases/seventy-four compiled faults pass with exact
@@ -80,6 +110,13 @@ not Claude RT-2 or specialist audit.
 
 ## Changed
 
+Current coherent step adds the internal owned-publication component/tests and
+maintained fault campaign, adds D25's checkpoint cache recheck, preserves and
+extends critical coverage/mutation/campaign inventories, and records the
+separate unqualified published-framework experiment. No signer implementation,
+public root export, production dependency, licence, visibility or gate threshold
+changes. Documentation/registers preserve all open release obligations.
+
 Client container checks and existing native/installed regressions/fault campaigns;
 checkpoint-state apply-state fault site; frozen mutation definition/seed;
 consumer error/command/trust guidance, preview digests/manifest, and final
@@ -91,6 +128,43 @@ map, PROGRESS and mission/HANDOFF/document register continuations. Exact candida
 receipts and measured claim rows follow integrated evidence.
 
 ## Found
+
+Runtime dependency inspection first omitted the scratch consumer manifest, so
+npm ascended to the parent workspace and changed only the agent-owned manifest/
+lockfile and installed dependency tree. Exact diff/logs are retained. Restored
+both files from the unchanged revision and ran npm ci successfully; no root
+dependency change remains. The contemporaneous source-fault rerun failed during
+dependency removal and is unqualified, with its output retained. Corrected
+explicit consumer graph contains the packed SDK and published Keel only; its
+audit exits zero. This is a dated known-advisory observation, not security clearance.
+
+Owned-publication failures are retained at the same size as successes: missing
+capability, rename/ctime mismatch, late pointer disappearance, closed-owner and
+masked prefix-head/final-pointer fault misses, faulty error oracle and ambiguous
+checkpoint fault sites. Final source campaign catches 27 trials; checkpoint has
+17 semantic catches plus one contained deadline. PKG-2 then detects a genuine
+Node type leak; the declaration-only correction passes unchanged installed checks.
+Fresh ordinary suite passes 740; typecheck exits zero; 74 compiled faults restore.
+Published ElizaOS graph remains unqualified despite fixture route evidence:
+normal patched-peer resolution fails and high/critical advisories remain.
+The latest 43f20c0 hosted run still fails its existing real-baseline wait, with
+complete logs retained. No pending harness-wait decision has been applied.
+
+Hosted `43f20c0` run 37780907635 completes failed: the runtime matrix, AST and
+maintained partition one reject the unchanged mutation-baseline harness wait.
+Partitions two and three pass, including the corrected checkpoint-state trial.
+Typecheck, installed checks/faults and the other qualification jobs pass; this
+does not establish a passing workflow. Preserve exact logs and revision metadata
+with the next receipt. H11 remains pending.
+
+The published ElizaOS alpha contradicts ADR-017's historical missing-key
+assumption: it generates and stores a key when the private setting is absent.
+It is excluded from the selected stable-version qualification. Repository
+dependency reuse also fails import on its older Zod; a normal separately resolved
+exact graph imports successfully, but advisory and full deployment gates remain.
+An initial runtime probe completes route checks then fails a CommonJS resolution
+check of an import-only package. The corrected resolver and original failure are
+retained. These are findings, not framework integration completion.
 
 Follow-up pre-close passes nine gates and refuses the dirty tree. Retained in
 `evals/sdk/sending-client-input/session-close-pre.txt`; commit/sync and clean-tree
@@ -175,9 +249,28 @@ retained calculation. No estimate replaces a release gate.
 
 ## Open
 
+Definition 25 ordinary and serial AST suites pass 740 cases; unchanged floors
+pass, with corrected source hashes retained separately. Native typecheck exits
+zero and eleven installed cases/seventy-four compiled faults restore. Initial
+close is nine of ten: only the uncommitted tree fails. Fresh isolated driver
+qualification completes before staging. Combined evidence-copy/close command
+was refused heuristically; copying evidence and read-only gate execution were
+separated as instructed, with no protected file changed.
+
+Resumed after interruption with no surviving fault workers. PKG-2 found the new
+internal publication module's Node filesystem type in emitted declarations;
+installed consumer correctly failed without Node typings. No consumer setting
+was relaxed. The builder uses a minimal structural stat interface, preserving
+every runtime identity check; eleven installed cases pass. The failed package
+fault baseline ran no trials. Definition 25/seed 25813 is declared before fresh
+measurement because source declarations changed; populations, limits, waits and
+floors remain. Preceding definition 24 evidence is retained. A combined read and
+scratch-write command mentioning protected harness documentation was refused by
+the boundary guard; no mutation occurred, and the documentation was read normally.
+
 Private SDK/page/guide preparation is complete for review; public distribution
 and stable individual deployment are not cleared. Exact corrected hosted result
-follows private sync. Complete owned index publication/tail tracking, bounded
+follows private sync. Complete live index/tail integration, bounded
 state/startup and all retained release gates remain open. No formal milestone
 closes from this component; formal completion remains CLAIMS S78's 41%.
 
@@ -195,6 +288,14 @@ and H11 proposed harness wait remain pending. All external/human/Claude and
 READINESS release gates remain required; no Alpha or stable-release clearance.
 
 ## Provenance
+
+Final owned-publication evidence is based on 43f20c0 plus this receipt's commit,
+Node 26.7.0/npm 11.19.0. Final compiled campaign catches 77 trials and restores;
+ordinary and serial AST populations pass 740, native typecheck exits zero,
+source campaign catches 27, isolated recovery/driver campaign catches fifteen.
+Raw output, source hashes, failed observations, exact installed lockfile/audit/
+CycloneDX inventory and tarball file inventory are retained under
+`evals/sdk/owned-request-index/`. No independent-security or complete release claim.
 
 Linux/Node 26.7.0; client follow-up base `39c24de`, earlier partition base a4d1c25.
 Earlier receipts name their exact

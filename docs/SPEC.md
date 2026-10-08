@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.65** · 2026-10-08 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.66** · 2026-10-08 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -530,6 +530,7 @@ Each is fixed test-first: the evaluator writes the failing test, and the builder
 | D22 | Resealed unsupported report outcome/attribution/time or reports after a final outcome are accepted on recovery; invalid reports may advance state or settle signing | `state.ts`, reproduced on 2026-10-08 | **closed in the builder candidate:** validate before every state change; preserve unknown reconciliation, signed-policy changes and late unresolved reports. `evals/sdk/report-replay.md`; broader qualification remains owed |
 | D23 | Resealed absent/denied, duplicate, final, expired or malformed receipt redemption bypasses live checks on recovery | `state.ts`, reproduced on 2026-10-08 | **closed in the builder candidate:** validate before every state change and enforce chronological policy where signed history supplies it. Preserve unsigned-history compatibility and live canonical negative bigint heights. `evals/sdk/redeem-replay.md`; broader qualification remains owed |
 | D24 | Missing/non-record sending-client arguments escape as ordinary TypeError or accept unsupported containers instead of the documented typed input refusal | `adapters/sending-client.ts`, reproduced on 2026-10-08 | **closed in the builder candidate:** check object containers before field access; preserve valid field validation, exact method surface and no automatic retry. `evals/sdk/sending-client-input.md`; broader qualification remains owed |
+| D25 | Cached entries can change during asynchronous checkpoint validation without changing the disk file; publication can acknowledge inconsistent cached history | `record.ts`, reproduced on 2026-10-08 | **closed in the builder candidate:** repeat cached-history equality with ownership and disk-stat checks at publication boundaries. First failing regression and retained fault trials: `evals/sdk/owned-request-index.md`; live service and independent qualification remain owed |
 
 **Status:** closed at milestone 2a.5 (`evals/sdk/admission.md`), test-first: D1, D2, D5, D6, D7, D9, D10 and D12. D12
 closed early: the guard decodes bytes itself, so `packages/sdk/src` imports no web3.js. D11 closed at milestone 2a.6
@@ -1271,3 +1272,26 @@ Component evidence: `evals/sdk/request-index.md`.
 
 | Draft 4.64 | 2026-10-08 | D22/D23 recovery transition validation and accepted internal request-index convention; staged SDK/page preparation preserves all release gates. |
 | Draft 4.65 | 2026-10-08 | D24 runtime argument-container refusal under existing CLT contracts; no export/signature/transport or readiness change. Fresh mutation definition 23 retains all populations and limits. |
+
+Internal SNP-7 publication convention under accepted ADR-019: only the actual
+kernel-owned store issues a publication capability. Fresh disk history must agree
+with cached entries, then full signed replay under captured external policy pins
+derives every generation byte. Immutable sibling generation directories retain
+earlier evidence. A canonical pointer is replaced only after complete file and
+directory syncs. Existing pointer/generation evidence must match an independently
+replayed retained prefix; disk metadata never mints provenance. Validation refusal
+preserves the writer; uncertain publication/storage failure fails it closed.
+Index/checkpoint publication and recovery share the maintenance exclusion.
+No root SDK export, signed checkpoint format, pruning, admission, cadence or
+bounded-startup contract changes. Prefix absence is not current-tail absence.
+Component evidence: `evals/sdk/owned-request-index.md`.
+
+ElizaOS version selection remains within ADR-017: the published stable line is
+the candidate for qualification. The inspected alpha generates a key when its
+setting is absent and cannot support the historical keyless assumption. Actual
+stable-framework route experiments require explicit keyless runtime settings as
+well as a public-only character, and no key-carrying exchange providers. Import
+and keyless route results do not clear its dependency advisories or ELZ-1/2/3.
+Evidence: `evals/elizaos/published-routes.md`.
+
+| Draft 4.66 | 2026-10-08 | Internal owned atomic index publication and D25 cache-race regression; definition 24 adds the component, then fresh definition 25/seed 25813 follows the declaration-only correction. Earlier populations and limits remain. Published ElizaOS experiments retain dependency and version findings without production dependency changes or milestone credit. |

@@ -1,7 +1,20 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.56** · 2026-10-08 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.57** · 2026-10-08 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
+
+D25's late cached-history checkpoint race now refuses before replacement. Owned
+index publication binds filesystem identity and fresh replay under a real writer;
+descriptor reuse, late pointer replacement and declaration compatibility regressions
+are retained. Full retained state, index construction, live admissions and startup
+are still unbounded/unqualified. No snapshot milestone closes.
+
+Published ElizaOS route evidence does not qualify its dependency graph: unresolved
+high/critical advisories and incompatible patched peer metadata block release use.
+Its newer alpha generates a key when absent; do not rely on the historical no-key
+assumption for that version. Root workspace audit findings require a separate
+shipped-runtime inventory and remediation. Evidence:
+`evals/elizaos/published-routes.md`, `evals/sdk/owned-request-index.md`.
 
 D24 exposes a documented client error contract missed by native field tests:
 missing or non-record argument containers can throw before validation. The

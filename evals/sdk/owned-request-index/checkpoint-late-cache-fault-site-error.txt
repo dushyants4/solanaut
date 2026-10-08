@@ -1,0 +1,27 @@
+caught checkpoint publication fault: actual-store
+caught checkpoint publication fault: kernel-owner
+caught checkpoint publication fault: closed-owner
+caught checkpoint publication fault: cached-history
+caught checkpoint publication fault: exclusive-publication
+caught checkpoint publication fault: stale-record
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: missing publication fault: late-cached-history
+
+3 !== 2
+
+    at file:///home/dashy/Projects/Solanaut/evals/sdk/checkpoint-publication-faults.ts:34:42
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 3,
+  expected: 2,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

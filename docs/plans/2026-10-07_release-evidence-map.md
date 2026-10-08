@@ -1,7 +1,7 @@
 # Solanaut 1.0 — current release evidence map
 
-2026-10-07 · private operator/archivist preparation · reviewed source revision
-a4d1c25. This maps the approved mission to receipts and remaining work. It is not
+2026-10-08 · private operator/archivist preparation · reviewed base revision
+43f20c0 plus the owned-publication candidate. This maps the approved mission to receipts and remaining work. It is not
 a release decision, support claim or substitute for SPEC/READINESS gates.
 
 The approved Beta remains the achieved milestone. Local component validation is
@@ -9,6 +9,12 @@ recorded in CLAIMS S76; hosted run 37711212005 fails Node 22/26 and AST at the
 unchanged baseline wait; Node 24 and maintained faults pass. Its predecessor
 b352454 passes runtime jobs but fails the unchanged staged-baseline wait in AST;
 maintained faults are cancelled. Keep that failure beside subsequent results.
+Latest base 43f20c0 run 37780907635 fails the unchanged real-baseline wait;
+partitions two and three pass. Full logs remain in the owned-publication receipt.
+Owned atomic index publication and D25's checkpoint cache recheck have component
+evidence in `evals/sdk/owned-request-index.md`. Published ElizaOS runtime routes
+have fixture evidence in `evals/elizaos/published-routes.md`, but unresolved
+high/critical dependency findings block qualifying that framework graph.
 
 | Mission phase | Evidence available | Work before exit / owner |
 |---|---|---|
@@ -45,4 +51,5 @@ Reviewed formal progress on 2026-10-08 is 41%: 16 of 39 equally weighted milesto
 including the approved Beta (CLAIMS S78; [receipt](../../evals/release/progress.md)).
 This is not release readiness or an effort estimate. The fixed CI fault-partition
 component has local evidence in CLAIMS S77; corrected hosted qualification remains
-required. Next disk-index work is isolated from the qualified parent tree.
+required. Next engineering work is live index completeness and bounded recovery;
+the owned publication component does not close those gates.

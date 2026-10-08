@@ -1,0 +1,100 @@
+✔ SNP-7: owned publication derives exact complete generation and immutable root (32.849847ms)
+✔ SNP-7: replacement preserves earlier complete generations and prefix-bound answers (16.093861ms)
+✔ OWN-2: memory, forged, manual, closed and failed stores cannot publish (8.359021ms)
+✔ SNP-7: copied external pins are authoritative before asynchronous loading (10.589761ms)
+✔ OWN-2: a closed capability cannot borrow reused descriptors from a new kernel owner (9.285229ms)
+✔ SNP-7: unsigned and malformed actual histories refuse before cache publication (8.330445ms)
+✔ OWN-2: index, checkpoint publication and recovery share one maintenance boundary (16.212924ms)
+✔ OWN-2: replaced record and lock paths refuse index publication (8.88ms)
+✔ SNP-7: closure, append, cache mutation and aliases during validation preserve the previous generation (64.713091ms)
+✔ SNP-7: current pointer corruption, substitutions and unsupported sources preserve evidence (68.000675ms)
+✔ SNP-7: a valid pointer cannot hide missing, altered or aliased previous generation files (61.008004ms)
+✔ SNP-7: current pointer and generation changes during asynchronous replay refuse (14.418193ms)
+✔ SNP-7: raw disk append during asynchronous validation cannot publish a cached endpoint (8.08272ms)
+✔ SNP-7: pointer reads finish short progress and refuse invalid progress or source changes (64.391199ms)
+✔ SNP-7: publication and validation refusals close every temporary descriptor (7.393105ms)
+✔ SNP-7: pointer disappearance after a successful open is not cache absence (6.664693ms)
+✔ SNP-7: byte-identical previous directory replacement while its files are read refuses (8.389599ms)
+✖ SNP-7: short writes finish and every file and directory is synced before acknowledgement (7.548665ms)
+✖ SNP-7: storage failures preserve complete old or new evidence and fail the writer (90.235826ms)
+✖ SNP-7: late record and pointer replacement after final sync refuse acknowledgement (10.397996ms)
+✖ SNP-7: actual process death at publication boundaries keeps a complete discoverable generation (612.384398ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 17
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1222.174973
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-publication.test.ts:150:1
+✖ SNP-7: short writes finish and every file and directory is synced before acknowledgement (7.548665ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  2 !== 3
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:152:221)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 3,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:156:1
+✖ SNP-7: storage failures preserve complete old or new evidence and fail the writer (90.235826ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '{"digest":"f9fae52405d65f83858887ee889ffcc188ce092c14520225db7b1b0b5b6ba81a","format":1,"generation":"guard.jsonl.request-index.32dc0bf3-671e-428f-a50f-af3eb4ba29ab","head":"77351201f49466fab08d1cc43c12d2afc46cbfc760e2b8e7f908ae3efabd27b5","kind":"solanaut-request-index-pointer","seq":5}\n'
+  - '{"digest":"4b3f51a440c20345a8161e574251a3b49e744648ecafc0981c3702bce7dbe420","format":1,"generation":"guard.jsonl.request-index.5c863878-e974-4ad0-8555-82a1bbab7bd3","head":"f018800caf25f03f8a985c245ae173e8288fe799fed2561024d3bc7c0032f928","kind":"solanaut-request-index-pointer","seq":4}\n'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:164:73)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '{"digest":"f9fae52405d65f83858887ee889ffcc188ce092c14520225db7b1b0b5b6ba81a","format":1,"generation":"guard.jsonl.request-index.32dc0bf3-671e-428f-a50f-af3eb4ba29ab","head":"77351201f49466fab08d1cc43c12d2afc46cbfc760e2b8e7f908ae3efabd27b5","kind":"solanaut-request-index-pointer","seq":5}\n',
+    expected: '{"digest":"4b3f51a440c20345a8161e574251a3b49e744648ecafc0981c3702bce7dbe420","format":1,"generation":"guard.jsonl.request-index.5c863878-e974-4ad0-8555-82a1bbab7bd3","head":"f018800caf25f03f8a985c245ae173e8288fe799fed2561024d3bc7c0032f928","kind":"solanaut-request-index-pointer","seq":4}\n',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:167:1
+✖ SNP-7: late record and pointer replacement after final sync refuse acknowledgement (10.397996ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (RequestIndexPublicationError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:172:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:176:1
+✖ SNP-7: actual process death at publication boundaries keeps a complete discoverable generation (612.384398ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '{"digest":"a4bbd461ab36ca76fe62cec96f24947b04316276f56b50aabcc77546f93c8ff1","format":1,"generation":"guard.jsonl.request-index.da2f1088-dffe-4cc5-8733-591798354208","head":"a78310a5b1f83389893deca4c8befae10fdd17db436243d2a09aa92407abe21f","kind":"solanaut-request-index-pointer","seq":5}\n'
+  - '{"digest":"4d283f02a121966c7679989442508f8dbbbc050163f4553ec680fee1f97668bc","format":1,"generation":"guard.jsonl.request-index.40efbfb3-525b-4f97-abdf-5448addc3bbc","head":"f52ec876ca67414ef7c0bd0b5529fd0f93f9640a99081e5ce0e7de7a6cacd372","kind":"solanaut-request-index-pointer","seq":4}\n'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:181:101)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '{"digest":"a4bbd461ab36ca76fe62cec96f24947b04316276f56b50aabcc77546f93c8ff1","format":1,"generation":"guard.jsonl.request-index.da2f1088-dffe-4cc5-8733-591798354208","head":"a78310a5b1f83389893deca4c8befae10fdd17db436243d2a09aa92407abe21f","kind":"solanaut-request-index-pointer","seq":5}\n',
+    expected: '{"digest":"4d283f02a121966c7679989442508f8dbbbc050163f4553ec680fee1f97668bc","format":1,"generation":"guard.jsonl.request-index.40efbfb3-525b-4f97-abdf-5448addc3bbc","head":"f52ec876ca67414ef7c0bd0b5529fd0f93f9640a99081e5ce0e7de7a6cacd372","kind":"solanaut-request-index-pointer","seq":4}\n',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

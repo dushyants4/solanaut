@@ -1,5 +1,18 @@
 # DOCUMENTS.md — the document register
 
+2026-10-08 owned publication continuation registers SPEC Draft 4.66, STORAGE
+Draft 6, OVERVIEW Draft 39, RISKS 1.57, PROGRESS, CLAIMS, HANDOFF sections 5–7,
+continuing run and evals index. New receipts: `evals/sdk/owned-request-index.md`
+and `evals/elizaos/published-routes.md`, with raw failure/pass inventories. The
+release evidence map records component scope and the exact failed preceding CI.
+CLAIMS S84–S86 separately scope publication, published-framework experiments and
+the actual packed SDK runtime graph; accidental scratch setup/restoration evidence
+is preserved with the publication receipt.
+Packed lifecycle assertions now exercise the actual compiled owned-publication
+module; original package fault trials remain and new module/digest/capability
+trials are recorded. This adds no stable root export or source-rule change.
+No milestone, public version, accepted ADR, release threshold or harness wait changes.
+
 2026-10-08 client follow-up registers SPEC Draft 4.65, RISKS 1.56, CLIENT Draft 2,
 SDK Draft 18, STORAGE Draft 5, POLICY Draft 2 and PACKAGING Draft 20; receipt
 `evals/sdk/sending-client-input.md`, index, new private client-candidate manifest,

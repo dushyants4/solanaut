@@ -228,7 +228,7 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
     const {prepareCheckpointState,CheckpointStateError}=await import(new URL('./checkpoint-state.js',import.meta.resolve('@solanaut/sdk')));
     const {prepareCheckpointBundle}=await import(new URL('./checkpoint-bundle.js',import.meta.resolve('@solanaut/sdk')));
     const {prepareCheckpointEnvelope,verifyCheckpointEnvelope,CheckpointEnvelopeError}=await import(new URL('./checkpoint-envelope.js',import.meta.resolve('@solanaut/sdk')));
-    const {fileStore,publishOwnedCheckpoint,recoverOwnedCheckpoint}=await import(new URL('./record.js',import.meta.resolve('@solanaut/sdk')));
+    const {fileStore,publishOwnedCheckpoint,recoverOwnedCheckpoint,publishOwnedRequestIndex,RequestIndexPublicationError}=await import(new URL('./record.js',import.meta.resolve('@solanaut/sdk')));
     const {verifyArchive,streamArchive}=await import(new URL('./archive.js',import.meta.resolve('@solanaut/sdk')));
     const {replay,replayStream}=await import(new URL('./guard.js',import.meta.resolve('@solanaut/sdk')));
     const {seal}=await import(new URL('./log.js',import.meta.resolve('@solanaut/sdk')));
@@ -304,6 +304,14 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
     const store=fileStore(recordPath,{ownership:'kernel',create:false});
     try{
       const index=await prepareRequestIndex(entries,undefined,context,trust),indexPath=join(directory,'request-index');mkdirSync(indexPath);
+      const published=await publishOwnedRequestIndex(store,{policyTrust:trust}),publishedPointer=readFileSync(recordPath+'.request-index','utf8');
+      if(published.seq!==context.seq || published.head!==context.head || published.digest!==index.digest || !Object.isFrozen(published) || readFileSync(join(published.directory,'manifest.json'),'utf8')!==index.text)throw new Error('installed owned index publication differs');
+      if((await lookupRequestIndex(published.directory,published.root,{clientId:'client',id:'payment'}))?.started?.event.stage!=='send-started')throw new Error('installed published index lost uncertain send');
+      let indexOwnerRefused=false;try{await publishOwnedRequestIndex({...store},{policyTrust:trust});}catch(error){indexOwnerRefused=error instanceof RequestIndexPublicationError && error.code==='request-index-publication';}if(!indexOwnerRefused)throw new Error('installed forged index owner accepted');
+      writeFileSync(recordPath+'.request-index','corrupt');
+      try{let refused=false;try{await publishOwnedRequestIndex(store,{policyTrust:trust});}catch(error){refused=error instanceof RequestIndexPublicationError;}if(!refused || readFileSync(recordPath+'.request-index','utf8')!=='corrupt')throw new Error('installed corrupt index pointer accepted or repaired');}finally{writeFileSync(recordPath+'.request-index',publishedPointer);}
+      const replacement=await publishOwnedRequestIndex(store,{policyTrust:trust});
+      if(replacement.directory===published.directory || readFileSync(join(published.directory,'manifest.json'),'utf8')!==index.text || replacement.digest!==index.digest)throw new Error('installed index replacement lost predecessor');
       const manifest=JSON.parse(index.text);
       if(index.digest!==hash(index.text) || index.root.digest!==index.digest || manifest.seq!==context.seq || manifest.head!==context.head || manifest.guardId!==trust.guardId || manifest.cluster!==trust.cluster || index.shards.map(shard=>shard.bucket).join('')!=='0123456789abcdef')throw new Error('installed index root or complete shard coverage differs');
       writeFileSync(join(indexPath,'manifest.json'),index.text);for(const shard of index.shards)writeFileSync(join(indexPath,shard.bucket+'.jsonl'),shard.text);

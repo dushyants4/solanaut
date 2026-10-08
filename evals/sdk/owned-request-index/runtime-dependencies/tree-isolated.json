@@ -1,0 +1,18 @@
+{
+  "version": "0.0.0",
+  "name": "solanaut-runtime-dependency-review",
+  "dependencies": {
+    "@solanaut/sdk": {
+      "version": "0.0.0",
+      "resolved": "file:/home/dashy/Projects/Solanaut/.sandbox/solanaut-1/runtime-dependency-review/solanaut-sdk-0.0.0.tgz",
+      "overridden": false,
+      "dependencies": {
+        "@gubernaut/core": {
+          "version": "1.0.1",
+          "resolved": "https://registry.npmjs.org/@gubernaut/core/-/core-1.0.1.tgz",
+          "overridden": false
+        }
+      }
+    }
+  }
+}

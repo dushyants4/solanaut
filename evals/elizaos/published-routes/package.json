@@ -1,0 +1,15 @@
+{
+  "name": "solanaut-eliza-published-runtime-experiment",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@elizaos/core": "1.7.2",
+    "@elizaos/plugin-solana": "1.2.6",
+    "@elizaos/service-interfaces": "1.7.2",
+    "form-data": "4.0.2",
+    "whatwg-url": "7.1.0",
+    "typescript": "5.9.3",
+    "zod": "4.3.5"
+  }
+}

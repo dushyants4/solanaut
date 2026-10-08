@@ -1,6 +1,6 @@
 # Persistent record ownership
 
-> **Draft 5** · 2026-10-08 · owner: integrator · for: SDK users and Linux operators.
+> **Draft 6** · 2026-10-08 · owner: integrator · for: SDK users and Linux operators.
 > Register: `kb/DOCUMENTS.md`. Foundation evidence: `evals/sdk/ownership.md` (claim S16).
 
 An ordinary `createGuard({ policy, log: path })` uses manual SDK ownership. It refuses an
@@ -17,6 +17,17 @@ const guard = await createGuard({ policy, log: store, authorization });
 `create: false` is for an established identity. Initial setup must explicitly create its record
 using `fileStore(path, { ownership: "kernel" })`, close it, and retain that history thereafter.
 This SDK option is a foundation; the isolated signer's enforced bootstrap workflow is still owed.
+
+Internal maintenance now also publishes derived request-index generations under
+actual kernel ownership. Each new generation is complete and synced before an
+atomic pointer replacement; earlier generations and history are retained. The
+pointer is a cache hint, never recovery authority. Restart must independently
+replay retained signed history under configured policy pins before using it.
+Corrupt or changed evidence refuses publication. A publication storage failure
+fails the writer; do not delete evidence to clear it. These internal capabilities
+are not operator commands or public SDK exports. Prefix lookup cannot establish
+current request absence, and bounded live state/startup remain unqualified.
+Evidence: `evals/sdk/owned-request-index.md`.
 
 The writer opens a stable mutex inode and passes its descriptor to `/usr/bin/flock` for
 nonblocking exclusive acquisition. The parent retains that descriptor until close or death.

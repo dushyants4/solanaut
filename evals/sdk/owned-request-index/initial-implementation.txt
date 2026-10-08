@@ -1,0 +1,164 @@
+✖ SNP-7: owned publication derives exact complete generation and immutable root (23.256189ms)
+✖ SNP-7: replacement preserves earlier complete generations and prefix-bound answers (7.921008ms)
+✔ OWN-2: memory, forged, manual, closed and failed stores cannot publish (7.383442ms)
+✖ SNP-7: copied external pins are authoritative before asynchronous loading (6.38857ms)
+✔ SNP-7: unsigned and malformed actual histories refuse before cache publication (7.158742ms)
+✖ OWN-2: index, checkpoint publication and recovery share one maintenance boundary (10.281411ms)
+✔ OWN-2: replaced record and lock paths refuse index publication (8.001194ms)
+✖ SNP-7: closure, append, cache mutation and aliases during validation preserve the previous generation (7.254621ms)
+✖ SNP-7: current pointer corruption, substitutions and unsupported sources preserve evidence (6.456824ms)
+✖ SNP-7: a valid pointer cannot hide missing, altered or aliased previous generation files (7.123487ms)
+✖ SNP-7: current pointer and generation changes during asynchronous replay refuse (6.096472ms)
+✖ SNP-7: short writes finish and every file and directory is synced before acknowledgement (6.680286ms)
+✖ SNP-7: storage failures preserve complete old or new evidence and fail the writer (8.024823ms)
+✖ SNP-7: actual process death at publication boundaries keeps a complete discoverable generation (5.616245ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 3
+ℹ fail 11
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 231.513379
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-publication.test.ts:36:1
+✖ SNP-7: owned publication derives exact complete generation and immutable root (23.256189ms)
+  Error [RequestIndexPublicationError]: request index source changed during publication
+      at same (file:///home/dashy/Projects/Solanaut/packages/sdk/src/request-index-publication.ts:18:234)
+      at replaceRequestIndex (file:///home/dashy/Projects/Solanaut/packages/sdk/src/request-index-publication.ts:93:132)
+      at file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:283:30
+      at async publishOwnedRequestIndex (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:43:14)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:37:172)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    code: 'request-index-publication'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:50:1
+✖ SNP-7: replacement preserves earlier complete generations and prefix-bound answers (7.921008ms)
+  Error [RequestIndexPublicationError]: request index source changed during publication
+      at same (file:///home/dashy/Projects/Solanaut/packages/sdk/src/request-index-publication.ts:18:234)
+      at replaceRequestIndex (file:///home/dashy/Projects/Solanaut/packages/sdk/src/request-index-publication.ts:93:132)
+      at file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:283:30
+      at async publishOwnedRequestIndex (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:43:14)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:51:41)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'request-index-publication'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:64:1
+✖ SNP-7: copied external pins are authoritative before asynchronous loading (6.38857ms)
+  Error [RequestIndexPublicationError]: request index source changed during publication
+      at same (file:///home/dashy/Projects/Solanaut/packages/sdk/src/request-index-publication.ts:18:234)
+      at replaceRequestIndex (file:///home/dashy/Projects/Solanaut/packages/sdk/src/request-index-publication.ts:93:132)
+      at file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:283:30
+      at async publishOwnedRequestIndex (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:43:14)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:65:166)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'request-index-publication'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:74:1
+✖ OWN-2: index, checkpoint publication and recovery share one maintenance boundary (10.281411ms)
+  Error [RequestIndexPublicationError]: request index source changed during publication
+      at same (file:///home/dashy/Projects/Solanaut/packages/sdk/src/request-index-publication.ts:18:234)
+      at replaceRequestIndex (file:///home/dashy/Projects/Solanaut/packages/sdk/src/request-index-publication.ts:93:132)
+      at file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:283:30
+      at async publishOwnedRequestIndex (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:43:14) {
+    code: 'request-index-publication'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:83:1
+✖ SNP-7: closure, append, cache mutation and aliases during validation preserve the previous generation (7.254621ms)
+  Error [RequestIndexPublicationError]: request index source changed during publication
+      at same (file:///home/dashy/Projects/Solanaut/packages/sdk/src/request-index-publication.ts:18:234)
+      at replaceRequestIndex (file:///home/dashy/Projects/Solanaut/packages/sdk/src/request-index-publication.ts:93:132)
+      at file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:283:30
+      at async publishOwnedRequestIndex (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:43:14)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:84:133)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'request-index-publication'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:90:1
+✖ SNP-7: current pointer corruption, substitutions and unsupported sources preserve evidence (6.456824ms)
+  Error [RequestIndexPublicationError]: request index source changed during publication
+      at same (file:///home/dashy/Projects/Solanaut/packages/sdk/src/request-index-publication.ts:18:234)
+      at replaceRequestIndex (file:///home/dashy/Projects/Solanaut/packages/sdk/src/request-index-publication.ts:93:132)
+      at file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:283:30
+      at async publishOwnedRequestIndex (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:43:14)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:91:160)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'request-index-publication'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:98:1
+✖ SNP-7: a valid pointer cannot hide missing, altered or aliased previous generation files (7.123487ms)
+  Error [RequestIndexPublicationError]: request index source changed during publication
+      at same (file:///home/dashy/Projects/Solanaut/packages/sdk/src/request-index-publication.ts:18:234)
+      at replaceRequestIndex (file:///home/dashy/Projects/Solanaut/packages/sdk/src/request-index-publication.ts:93:132)
+      at file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:283:30
+      at async publishOwnedRequestIndex (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:43:14)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:99:132)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'request-index-publication'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:104:1
+✖ SNP-7: current pointer and generation changes during asynchronous replay refuse (6.096472ms)
+  Error [RequestIndexPublicationError]: request index source changed during publication
+      at same (file:///home/dashy/Projects/Solanaut/packages/sdk/src/request-index-publication.ts:18:234)
+      at replaceRequestIndex (file:///home/dashy/Projects/Solanaut/packages/sdk/src/request-index-publication.ts:93:132)
+      at file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:283:30
+      at async publishOwnedRequestIndex (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:43:14)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:105:87)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'request-index-publication'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:109:1
+✖ SNP-7: short writes finish and every file and directory is synced before acknowledgement (6.680286ms)
+  Error [RequestIndexPublicationError]: request index source changed during publication
+      at same (file:///home/dashy/Projects/Solanaut/packages/sdk/src/request-index-publication.ts:18:234)
+      at replaceRequestIndex (file:///home/dashy/Projects/Solanaut/packages/sdk/src/request-index-publication.ts:93:132)
+      at file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:283:30
+      at async publishOwnedRequestIndex (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:43:14)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:111:137)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'request-index-publication'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:115:1
+✖ SNP-7: storage failures preserve complete old or new evidence and fail the writer (8.024823ms)
+  Error [RequestIndexPublicationError]: request index source changed during publication
+      at same (file:///home/dashy/Projects/Solanaut/packages/sdk/src/request-index-publication.ts:18:234)
+      at replaceRequestIndex (file:///home/dashy/Projects/Solanaut/packages/sdk/src/request-index-publication.ts:93:132)
+      at file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:283:30
+      at async publishOwnedRequestIndex (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:43:14)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:116:373)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'request-index-publication'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:126:1
+✖ SNP-7: actual process death at publication boundaries keeps a complete discoverable generation (5.616245ms)
+  Error [RequestIndexPublicationError]: request index source changed during publication
+      at same (file:///home/dashy/Projects/Solanaut/packages/sdk/src/request-index-publication.ts:18:234)
+      at replaceRequestIndex (file:///home/dashy/Projects/Solanaut/packages/sdk/src/request-index-publication.ts:93:132)
+      at file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:283:30
+      at async publishOwnedRequestIndex (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:43:14)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:127:194)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'request-index-publication'
+  }

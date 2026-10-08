@@ -1,0 +1,62 @@
+✔ SNP-7: owned publication derives exact complete generation and immutable root (29.974956ms)
+✔ SNP-7: replacement preserves earlier complete generations and prefix-bound answers (16.001886ms)
+✔ OWN-2: memory, forged, manual, closed and failed stores cannot publish (8.842205ms)
+✔ SNP-7: copied external pins are authoritative before asynchronous loading (10.360547ms)
+✔ OWN-2: a closed capability cannot borrow reused descriptors from a new kernel owner (9.633144ms)
+✔ SNP-7: unsigned and malformed actual histories refuse before cache publication (8.041116ms)
+✔ OWN-2: index, checkpoint publication and recovery share one maintenance boundary (15.819065ms)
+✔ OWN-2: replaced record and lock paths refuse index publication (8.272126ms)
+✔ SNP-7: closure, append, cache mutation and aliases during validation preserve the previous generation (61.603568ms)
+✔ SNP-7: current pointer corruption, substitutions and unsupported sources preserve evidence (65.946651ms)
+✔ SNP-7: a valid pointer cannot hide missing, altered or aliased previous generation files (55.232865ms)
+✔ SNP-7: current pointer and generation changes during asynchronous replay refuse (13.240196ms)
+✔ SNP-7: raw disk append during asynchronous validation cannot publish a cached endpoint (7.999455ms)
+✔ SNP-7: pointer reads finish short progress and refuse invalid progress or source changes (57.77996ms)
+✔ SNP-7: publication and validation refusals close every temporary descriptor (7.549701ms)
+✔ SNP-7: pointer disappearance after a successful open is not cache absence (6.966344ms)
+✔ SNP-7: byte-identical previous directory replacement while its files are read refuses (7.970206ms)
+✔ SNP-7: short writes finish and every file and directory is synced before acknowledgement (6.45193ms)
+✖ SNP-7: storage failures preserve complete old or new evidence and fail the writer (9.416473ms)
+✖ SNP-7: late record and pointer replacement after final sync refuse acknowledgement (10.282151ms)
+✔ SNP-7: actual process death at publication boundaries keeps a complete discoverable generation (997.665838ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 19
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1497.002695
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-publication.test.ts:156:1
+✖ SNP-7: storage failures preserve complete old or new evidence and fail the writer (9.416473ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /closed or failed/. Input:
+  
+  'Error: injected index storage failure'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:164:102)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Error],
+    expected: /closed or failed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:167:1
+✖ SNP-7: late record and pointer replacement after final sync refuse acknowledgement (10.282151ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:172:148)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /closed or failed/,
+    operator: 'throws',
+    diff: 'simple'
+  }

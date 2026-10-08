@@ -1,0 +1,43 @@
+✔ SNP-4: publication pins are captured before asynchronous module loading (41.625304ms)
+✔ SNP-4: actual owned publication preserves the previous authenticated envelope on replacement (41.000725ms)
+✔ SNP-4: a memory or forged store cannot claim record ownership (10.616799ms)
+✔ SNP-4: closed or replaced actual ownership cannot replace a checkpoint (32.858288ms)
+✔ SNP-4: tampered signatures or payloads preserve the current checkpoint (20.569455ms)
+✔ SNP-4: valid host signatures and a matching head cannot substitute dishonest admission state (17.136916ms)
+✔ SNP-4: stale endpoints and missing retained archives cannot publish over the last checkpoint (15.60473ms)
+✔ SNP-4: competing publications share the actual owner and only one proceeds (12.999487ms)
+✔ SNP-4: losing ownership during asynchronous validation preserves the previous checkpoint (16.640798ms)
+✔ SNP-4: record changes during replay refuse the stale candidate (19.256547ms)
+✔ SNP-4: cached history changes during validation refuse before checkpoint replacement (17.381847ms)
+✔ SNP-4: corrupt cached history and manual ownership cannot publish (11.078079ms)
+✔ SNP-4: corrupt or symlink current checkpoints preserve evidence and refuse writes (21.417874ms)
+✔ SNP-4: short writes finish completely and sync before acknowledging replacement (18.230221ms)
+✔ SNP-4: write, permission, sync and rename failures preserve an authenticated checkpoint and fail the writer (147.05949ms)
+✔ SNP-4: actual process death at publication boundaries preserves complete authenticated files (766.970689ms)
+✔ OWN-2: kernel record append and reopen do not require evaluation modules (116.156709ms)
+✔ SNP-4/5: fabricated maintenance capabilities refuse before loading evaluation modules (83.736227ms)
+✔ SNP-7: owned publication derives exact complete generation and immutable root (43.432895ms)
+✔ SNP-7: replacement preserves earlier complete generations and prefix-bound answers (24.855773ms)
+✔ OWN-2: memory, forged, manual, closed and failed stores cannot publish (11.738505ms)
+✔ SNP-7: copied external pins are authoritative before asynchronous loading (20.27216ms)
+✔ SNP-7: unsigned and malformed actual histories refuse before cache publication (10.850896ms)
+✔ OWN-2: index, checkpoint publication and recovery share one maintenance boundary (25.084846ms)
+✔ OWN-2: replaced record and lock paths refuse index publication (10.774401ms)
+✔ SNP-7: closure, append, cache mutation and aliases during validation preserve the previous generation (73.742673ms)
+✔ SNP-7: current pointer corruption, substitutions and unsupported sources preserve evidence (70.445401ms)
+✔ SNP-7: a valid pointer cannot hide missing, altered or aliased previous generation files (62.115322ms)
+✔ SNP-7: current pointer and generation changes during asynchronous replay refuse (15.015759ms)
+✔ SNP-7: raw disk append during asynchronous validation cannot publish a cached endpoint (9.21758ms)
+✔ SNP-7: pointer reads finish short progress and refuse invalid progress or source changes (57.087117ms)
+✔ SNP-7: publication and validation refusals close every temporary descriptor (8.925088ms)
+✔ SNP-7: short writes finish and every file and directory is synced before acknowledgement (6.704592ms)
+✔ SNP-7: storage failures preserve complete old or new evidence and fail the writer (141.683345ms)
+✔ SNP-7: actual process death at publication boundaries keeps a complete discoverable generation (1094.918239ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 35
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1843.909332

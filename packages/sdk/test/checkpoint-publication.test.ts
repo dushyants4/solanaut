@@ -111,6 +111,16 @@ test("SNP-4: record changes during replay refuse the stale candidate",async()=>{
     await refused(()=>pending);assert.equal(readFileSync(f.path+".checkpoint","utf8"),s.encoded.text);
   }finally{f.close();}
 });
+test("SNP-4: cached history changes during validation refuse before checkpoint replacement",async()=>{
+  const f=await fixture();const saved=f.store.entries[0]!;
+  try{const s=await snapshot(f);await publish(f.store,s.encoded.text,s.options);
+    const disk=readFileSync(f.path),pending=publish(f.store,s.encoded.text,s.options);
+    f.store.entries[0]={...saved,at:42};
+    await refused(()=>pending);
+    assert.deepEqual(readFileSync(f.path),disk);
+    assert.equal(readFileSync(f.path+".checkpoint","utf8"),s.encoded.text);
+  }finally{f.store.entries[0]=saved;f.close();}
+});
 test("SNP-4: corrupt cached history and manual ownership cannot publish",async()=>{
   const f=await fixture();try{const s=await snapshot(f);const saved=f.store.entries[0]!;f.store.entries[0]={...saved,at:42};await refused(()=>publish(f.store,s.encoded.text,s.options));f.store.entries[0]=saved;
     const path=join(f.directory,"manual.jsonl");writeFileSync(path,readFileSync(f.path));

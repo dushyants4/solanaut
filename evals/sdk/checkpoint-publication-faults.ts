@@ -16,8 +16,11 @@ const faults=[
   [record,"closed-owner",'mode!=="kernel" || !open || failed','mode!=="kernel" || failed'],
   [record,"cached-history",'if(canonicalJSON(history)!==canonicalJSON(entries))throw new CheckpointPublicationError',"if(false)throw new CheckpointPublicationError"],
   [record,"exclusive-publication",'if(publishing)throw new CheckpointPublicationError',"if(false)throw new CheckpointPublicationError"],
-  [record,"stale-record","now.size!==before.size || now.mtimeNs!==before.mtimeNs || now.ctimeNs!==before.ctimeNs","false"],
-  [record,"failed-writer","catch(error){failed=true;throw error;}","catch(error){throw error;}"],
+  [record,"stale-record","now.size!==before.size || now.mtimeNs!==before.mtimeNs || now.ctimeNs!==before.ctimeNs || canonicalJSON(history)!==canonicalJSON(entries)","false"],
+  [record,"late-cached-history"," || canonicalJSON(history)!==canonicalJSON(entries))throw new CheckpointPublicationError",
+    ")throw new CheckpointPublicationError"],
+  [record,"failed-writer","try{replaceCheckpoint(path,validated.text,validated.pins,unchanged);}catch(error){failed=true;throw error;}",
+    "try{replaceCheckpoint(path,validated.text,validated.pins,unchanged);}catch(error){throw error;}"],
   [publication,"derived-state","canonicalJSON(envelope.binding)!==canonicalJSON(bundle.binding) || envelope.archives!==bundle.archives || envelope.state!==bundle.state || envelope.prefix!==bundle.prefix","false"],
   [publication,"receipt-digest","digest:sha256hex(input as string)",'digest:"0".repeat(64)'],
   [publication,"short-progress","offset+=count;","offset=bytes.length;"],
@@ -32,10 +35,12 @@ const faults=[
 for(const [path,name,before,after] of faults){
   const source=sources.get(path)!;assert.equal(source.split(before).length,2,"missing publication fault: "+name);
   try{let changed=source.replace(before,after);
+    // D25 adds a second cache defence; omit both for the retained all-cache fault.
+    if(name==="cached-history")changed=changed.replace(" || canonicalJSON(history)!==canonicalJSON(entries)","");
     if(name==="nofollow-current")changed=changed.replace("const named=lstatSync(current);","const named=fstatSync(oldFd!);");
     writeFileSync(path,changed);const result=run();
     if(name==="zero-progress"){assert.equal(Reflect.get(result.error!,"code"),"ETIMEDOUT");assert.equal(result.signal,"SIGKILL");assert.equal(result.status,null);console.log("contained checkpoint publication fault: zero-progress (child deadline; no test completion credit)");}
-    else{assert.equal(result.status,1,name+result.stdout+result.stderr);assert.equal(result.error,undefined);assert.equal(result.signal,null);assert.match(result.stdout,/tests 15\b/);console.log("caught checkpoint publication fault: "+name);}
+    else{assert.equal(result.status,1,name+result.stdout+result.stderr);assert.equal(result.error,undefined);assert.equal(result.signal,null);assert.match(result.stdout,/tests 16\b/);console.log("caught checkpoint publication fault: "+name);}
   }
   finally{writeFileSync(path,source);}
 }

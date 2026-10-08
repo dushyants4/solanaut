@@ -1,0 +1,27 @@
+✔ SNP-7: owned publication derives exact complete generation and immutable root (30.969159ms)
+✔ SNP-7: replacement preserves earlier complete generations and prefix-bound answers (16.035197ms)
+✔ OWN-2: memory, forged, manual, closed and failed stores cannot publish (7.868776ms)
+✔ SNP-7: copied external pins are authoritative before asynchronous loading (10.231626ms)
+✔ SNP-7: unsigned and malformed actual histories refuse before cache publication (7.923291ms)
+✔ OWN-2: index, checkpoint publication and recovery share one maintenance boundary (18.511392ms)
+✔ OWN-2: replaced record and lock paths refuse index publication (9.385999ms)
+✔ SNP-7: closure, append, cache mutation and aliases during validation preserve the previous generation (62.150597ms)
+✔ SNP-7: current pointer corruption, substitutions and unsupported sources preserve evidence (63.300948ms)
+✔ SNP-7: a valid pointer cannot hide missing, altered or aliased previous generation files (56.470617ms)
+✔ SNP-7: current pointer and generation changes during asynchronous replay refuse (13.708562ms)
+✔ SNP-7: raw disk append during asynchronous validation cannot publish a cached endpoint (8.064133ms)
+✔ SNP-7: pointer reads finish short progress and refuse invalid progress or source changes (52.544786ms)
+✔ SNP-7: publication and validation refusals close every temporary descriptor (7.669062ms)
+✔ SNP-7: pointer disappearance after a successful open is not cache absence (6.025049ms)
+✔ SNP-7: byte-identical previous directory replacement while its files are read refuses (8.536272ms)
+✔ SNP-7: short writes finish and every file and directory is synced before acknowledgement (6.056966ms)
+✔ SNP-7: storage failures preserve complete old or new evidence and fail the writer (121.094186ms)
+✔ SNP-7: actual process death at publication boundaries keeps a complete discoverable generation (980.683693ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1603.851047

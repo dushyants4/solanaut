@@ -1,0 +1,79 @@
+✔ SNP-7: owned publication derives exact complete generation and immutable root (30.573715ms)
+✔ SNP-7: replacement preserves earlier complete generations and prefix-bound answers (16.302231ms)
+✔ OWN-2: memory, forged, manual, closed and failed stores cannot publish (8.519985ms)
+✔ SNP-7: copied external pins are authoritative before asynchronous loading (10.846949ms)
+✔ OWN-2: a closed capability cannot borrow reused descriptors from a new kernel owner (10.373936ms)
+✔ SNP-7: unsigned and malformed actual histories refuse before cache publication (7.446107ms)
+✔ OWN-2: index, checkpoint publication and recovery share one maintenance boundary (16.559708ms)
+✔ OWN-2: replaced record and lock paths refuse index publication (8.294607ms)
+✔ SNP-7: closure, append, cache mutation and aliases during validation preserve the previous generation (64.761019ms)
+✔ SNP-7: current pointer corruption, substitutions and unsupported sources preserve evidence (69.179522ms)
+✔ SNP-7: a valid pointer cannot hide missing, altered or aliased previous generation files (56.968091ms)
+✔ SNP-7: current pointer and generation changes during asynchronous replay refuse (13.925826ms)
+✔ SNP-7: raw disk append during asynchronous validation cannot publish a cached endpoint (8.798377ms)
+✔ SNP-7: pointer reads finish short progress and refuse invalid progress or source changes (59.684776ms)
+✔ SNP-7: publication and validation refusals close every temporary descriptor (8.531211ms)
+✔ SNP-7: pointer disappearance after a successful open is not cache absence (6.684716ms)
+✔ SNP-7: byte-identical previous directory replacement while its files are read refuses (8.030445ms)
+✖ SNP-7: short writes finish and every file and directory is synced before acknowledgement (7.198829ms)
+✖ SNP-7: storage failures preserve complete old or new evidence and fail the writer (113.561037ms)
+✔ SNP-7: late record and pointer replacement after final sync refuse acknowledgement (28.554491ms)
+✖ SNP-7: actual process death at publication boundaries keeps a complete discoverable generation (743.363182ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 18
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1381.77332
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-publication.test.ts:150:1
+✖ SNP-7: short writes finish and every file and directory is synced before acknowledgement (7.198829ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  17 !== 18
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:152:198)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 17,
+    expected: 18,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:156:1
+✖ SNP-7: storage failures preserve complete old or new evidence and fail the writer (113.561037ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (RequestIndexPublicationError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:162:220)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:176:1
+✖ SNP-7: actual process death at publication boundaries keeps a complete discoverable generation (743.363182ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  9 !== null
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:179:293)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 9,
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

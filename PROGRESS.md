@@ -10,7 +10,8 @@ Private staged SDK scope and product-page copy are prepared in
 availability, stable Linux deployment or publication clearance. D22/D23 report
 and receipt replay corrections pass focused and installed faults (CLAIMS S79/S80).
 The internal request index passes local ordinary/type/AST and installed component
-checks (CLAIMS S81); actual owned publication, live-tail integration and bounded state remain
+checks (CLAIMS S81); owned atomic publication now has component evidence
+(`evals/sdk/owned-request-index.md`). Live-tail integration and bounded state remain
 unfinished. Every existing Alpha/human/audit/release gate remains required.
 The actual private tarball and synthetic installed JavaScript walkthrough are
 reviewable through `docs/PREVIEW.md` (CLAIMS S82), with no public availability claim.
@@ -25,6 +26,13 @@ updated trial/client qualification cannot substitute for a passing complete run.
 D24's client container correction now has native and installed first-failure,
 ordinary/AST/type and source/compiled-fault evidence (CLAIMS S83). The refreshed
 private artefact is separately identified; no formal milestone closes.
+
+Hosted `43f20c0` run 37780907635 also fails the existing real-baseline wait;
+partitions two and three pass. Full logs are retained with the publication receipt.
+H11 remains pending, with no wait change. D25 closes the late cached-history
+checkpoint race locally. Published ElizaOS route experiments reach missing-key
+boundaries under fixture conditions, but the dependency graph has unresolved
+high/critical findings (`evals/elizaos/published-routes.md`); no ELZ milestone closes.
 
 Record-only loading has source and installed fault evidence
 (`evals/sdk/record-loading.md`). Owned checkpoint maintenance retains full

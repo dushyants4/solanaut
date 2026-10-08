@@ -15,6 +15,9 @@ function battery() {
 const baseline = battery();
 assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
 const faults = [
+  { name: "owned-index-module", path: "dist/src/request-index-publication.js", caught: "compiled checkpoint payloads", damage: () => undefined },
+  { name: "owned-index-digest", path: "dist/src/request-index-publication.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("digest: prepared.digest, directory, root: prepared.root", 'digest: "0".repeat(64), directory, root: prepared.root') },
+  { name: "owned-index-capability", path: "dist/src/record.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("indexPublishers.get(store)", "indexPublishers.get(store) ?? (async () => ({}))") },
   { name: "client-options-container", path: "dist/src/adapters/sending-client.js", caught: "installed sending client", damage: (text: string) => text.replace('    if (!record(options))\n        throw new SignerClientError("input", "options must be an object");', "") },
   { name: "client-status-container", path: "dist/src/adapters/sending-client.js", caught: "installed sending client", damage: (text: string) => text.replace('if (!record(input) || !identity(input.id))', 'if (!identity(input.id))') },
   { name: "client-propose-container", path: "dist/src/adapters/sending-client.js", caught: "installed sending client", damage: (text: string) => text.replace('if (!record(input) || !(input.message instanceof Uint8Array) || input.message.length > 6144)', 'if (!(input.message instanceof Uint8Array) || input.message.length > 6144)') },

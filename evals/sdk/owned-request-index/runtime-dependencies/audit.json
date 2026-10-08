@@ -1,0 +1,625 @@
+{
+  "auditReportVersion": 2,
+  "vulnerabilities": {
+    "@ai-sdk/provider-utils": {
+      "name": "@ai-sdk/provider-utils",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1193660,
+          "name": "@ai-sdk/provider-utils",
+          "dependency": "@ai-sdk/provider-utils",
+          "title": "@ai-sdk/provider-utils has an Uncontrolled Resource Consumption issue",
+          "url": "https://github.com/advisories/GHSA-866g-f22w-33x8",
+          "severity": "low",
+          "cwe": [
+            "CWE-400"
+          ],
+          "cvss": {
+            "score": 4.3,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L"
+          },
+          "range": "<3.0.28"
+        }
+      ],
+      "effects": [
+        "@ai-sdk/react",
+        "@ai-sdk/ui-utils",
+        "ai"
+      ],
+      "range": "<3.0.28",
+      "nodes": [
+        "node_modules/@ai-sdk/provider-utils"
+      ],
+      "fixAvailable": {
+        "name": "solana-agent-kit",
+        "version": "2.0.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@ai-sdk/react": {
+      "name": "@ai-sdk/react",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "@ai-sdk/provider-utils",
+        "@ai-sdk/ui-utils"
+      ],
+      "effects": [
+        "ai"
+      ],
+      "range": "<=2.0.208",
+      "nodes": [
+        "node_modules/@ai-sdk/react"
+      ],
+      "fixAvailable": {
+        "name": "solana-agent-kit",
+        "version": "2.0.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@ai-sdk/ui-utils": {
+      "name": "@ai-sdk/ui-utils",
+      "severity": "low",
+      "isDirect": false,
+      "via": [
+        "@ai-sdk/provider-utils"
+      ],
+      "effects": [
+        "@ai-sdk/react",
+        "ai"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@ai-sdk/ui-utils"
+      ],
+      "fixAvailable": {
+        "name": "solana-agent-kit",
+        "version": "2.0.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@langchain/core": {
+      "name": "@langchain/core",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "langsmith",
+        "uuid"
+      ],
+      "effects": [],
+      "range": "<=1.1.28 || 1.1.50-dev-1781580357424 - 1.2.0-dev-1775763803878",
+      "nodes": [
+        "node_modules/@langchain/core"
+      ],
+      "fixAvailable": true
+    },
+    "@metaplex-foundation/beet-solana": {
+      "name": "@metaplex-foundation/beet-solana",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@solana/web3.js"
+      ],
+      "effects": [
+        "@sqds/multisig"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@metaplex-foundation/beet-solana"
+      ],
+      "fixAvailable": {
+        "name": "@sqds/multisig",
+        "version": "1.3.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@solana/buffer-layout-utils": {
+      "name": "@solana/buffer-layout-utils",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "@solana/web3.js",
+        "bigint-buffer"
+      ],
+      "effects": [
+        "@solana/spl-token"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@solana/buffer-layout-utils",
+        "node_modules/solana-agent-kit/node_modules/@solana/buffer-layout-utils"
+      ],
+      "fixAvailable": {
+        "name": "solana-agent-kit",
+        "version": "2.0.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@solana/spl-token": {
+      "name": "@solana/spl-token",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "@solana/buffer-layout-utils",
+        "@solana/spl-token-group",
+        "@solana/spl-token-metadata",
+        "@solana/web3.js"
+      ],
+      "effects": [
+        "@sqds/multisig",
+        "solana-agent-kit"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@solana/spl-token",
+        "node_modules/solana-agent-kit/node_modules/@solana/spl-token"
+      ],
+      "fixAvailable": {
+        "name": "solana-agent-kit",
+        "version": "2.0.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@solana/spl-token-group": {
+      "name": "@solana/spl-token-group",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@solana/web3.js"
+      ],
+      "effects": [
+        "@solana/spl-token"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@solana/spl-token-group"
+      ],
+      "fixAvailable": {
+        "name": "solana-agent-kit",
+        "version": "2.0.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@solana/spl-token-metadata": {
+      "name": "@solana/spl-token-metadata",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@solana/web3.js"
+      ],
+      "effects": [
+        "@solana/spl-token"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/@solana/spl-token-metadata"
+      ],
+      "fixAvailable": {
+        "name": "solana-agent-kit",
+        "version": "2.0.1",
+        "isSemVerMajor": true
+      }
+    },
+    "@solana/web3.js": {
+      "name": "@solana/web3.js",
+      "severity": "moderate",
+      "isDirect": true,
+      "via": [
+        "jayson"
+      ],
+      "effects": [
+        "@metaplex-foundation/beet-solana",
+        "@solana/buffer-layout-utils",
+        "@solana/spl-token",
+        "@solana/spl-token-group",
+        "@solana/spl-token-metadata",
+        "@sqds/multisig",
+        "solana-agent-kit"
+      ],
+      "range": "<=0.0.0-pr-29130 || 0.0.4 - 1.99.0",
+      "nodes": [
+        "node_modules/@solana/web3.js"
+      ],
+      "fixAvailable": {
+        "name": "@solana/web3.js",
+        "version": "3.0.2",
+        "isSemVerMajor": true
+      }
+    },
+    "@sqds/multisig": {
+      "name": "@sqds/multisig",
+      "severity": "high",
+      "isDirect": true,
+      "via": [
+        "@metaplex-foundation/beet-solana",
+        "@solana/spl-token",
+        "@solana/web3.js"
+      ],
+      "effects": [],
+      "range": "*",
+      "nodes": [
+        "node_modules/@sqds/multisig"
+      ],
+      "fixAvailable": {
+        "name": "@sqds/multisig",
+        "version": "1.3.1",
+        "isSemVerMajor": true
+      }
+    },
+    "ai": {
+      "name": "ai",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "@ai-sdk/provider-utils",
+        "@ai-sdk/react",
+        "@ai-sdk/ui-utils",
+        {
+          "source": 1111095,
+          "name": "ai",
+          "dependency": "ai",
+          "title": "Vercel’s AI SDK's filetype whitelists can be bypassed when uploading files",
+          "url": "https://github.com/advisories/GHSA-rwvc-j5jr-mgvh",
+          "severity": "low",
+          "cwe": [
+            "CWE-20",
+            "CWE-682"
+          ],
+          "cvss": {
+            "score": 3.7,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N"
+          },
+          "range": "<5.0.52"
+        },
+        "jsondiffpatch"
+      ],
+      "effects": [
+        "solana-agent-kit"
+      ],
+      "range": "<=5.0.206 || 7.0.0-beta.0 - 7.0.0-beta.1-gr2m-test",
+      "nodes": [
+        "node_modules/ai"
+      ],
+      "fixAvailable": {
+        "name": "solana-agent-kit",
+        "version": "2.0.1",
+        "isSemVerMajor": true
+      }
+    },
+    "bigint-buffer": {
+      "name": "bigint-buffer",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1103747,
+          "name": "bigint-buffer",
+          "dependency": "bigint-buffer",
+          "title": "bigint-buffer Vulnerable to Buffer Overflow via toBigIntLE() Function",
+          "url": "https://github.com/advisories/GHSA-3gc7-fjrx-p6mg",
+          "severity": "high",
+          "cwe": [
+            "CWE-120"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": "<=1.1.5"
+        }
+      ],
+      "effects": [
+        "@solana/buffer-layout-utils"
+      ],
+      "range": "*",
+      "nodes": [
+        "node_modules/bigint-buffer"
+      ],
+      "fixAvailable": {
+        "name": "solana-agent-kit",
+        "version": "2.0.1",
+        "isSemVerMajor": true
+      }
+    },
+    "jayson": {
+      "name": "jayson",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "stream-json",
+        "uuid"
+      ],
+      "effects": [
+        "@solana/web3.js"
+      ],
+      "range": "2.0.6 - 4.3.0",
+      "nodes": [
+        "node_modules/jayson"
+      ],
+      "fixAvailable": {
+        "name": "@solana/web3.js",
+        "version": "3.0.2",
+        "isSemVerMajor": true
+      }
+    },
+    "jsondiffpatch": {
+      "name": "jsondiffpatch",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1108189,
+          "name": "jsondiffpatch",
+          "dependency": "jsondiffpatch",
+          "title": "jsondiffpatch is vulnerable to Cross-site Scripting (XSS) via HtmlFormatter::nodeBegin",
+          "url": "https://github.com/advisories/GHSA-33vc-wfww-vjfv",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-79"
+          ],
+          "cvss": {
+            "score": 4.7,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N"
+          },
+          "range": "<0.7.2"
+        },
+        {
+          "source": 1147954,
+          "name": "jsondiffpatch",
+          "dependency": "jsondiffpatch",
+          "title": " jsondiffpatch patch APIs are vulnerable to prototype pollution",
+          "url": "https://github.com/advisories/GHSA-j4fx-xxwh-2485",
+          "severity": "high",
+          "cwe": [
+            "CWE-1321"
+          ],
+          "cvss": {
+            "score": 8.2,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:L"
+          },
+          "range": "<0.7.6"
+        }
+      ],
+      "effects": [
+        "ai"
+      ],
+      "range": "<=0.7.5",
+      "nodes": [
+        "node_modules/jsondiffpatch"
+      ],
+      "fixAvailable": {
+        "name": "solana-agent-kit",
+        "version": "2.0.1",
+        "isSemVerMajor": true
+      }
+    },
+    "langsmith": {
+      "name": "langsmith",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1113091,
+          "name": "langsmith",
+          "dependency": "langsmith",
+          "title": "LangSmith Client SDK Affected by Server-Side Request Forgery via Tracing Header Injection",
+          "url": "https://github.com/advisories/GHSA-v34v-rq6j-cj6p",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-918"
+          ],
+          "cvss": {
+            "score": 5.8,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:N/A:N"
+          },
+          "range": ">=0.3.41 <0.4.6"
+        },
+        {
+          "source": 1116472,
+          "name": "langsmith",
+          "dependency": "langsmith",
+          "title": "LangSmith Client SDKs has Prototype Pollution in langsmith-sdk via Incomplete `__proto__` Guard in Internal lodash `set()`",
+          "url": "https://github.com/advisories/GHSA-fw9q-39r9-c252",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-1321"
+          ],
+          "cvss": {
+            "score": 5.6,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L"
+          },
+          "range": "<=0.5.17"
+        },
+        {
+          "source": 1117058,
+          "name": "langsmith",
+          "dependency": "langsmith",
+          "title": "LangSmith SDK: Streaming token events bypass output redaction",
+          "url": "https://github.com/advisories/GHSA-rr7j-v2q5-chgv",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-200",
+            "CWE-359",
+            "CWE-532"
+          ],
+          "cvss": {
+            "score": 5.3,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N"
+          },
+          "range": "<=0.5.18"
+        },
+        {
+          "source": 1120161,
+          "name": "langsmith",
+          "dependency": "langsmith",
+          "title": "LangSmith SDK: Public prompt pull deserializes untrusted manifests without trust boundary warning",
+          "url": "https://github.com/advisories/GHSA-3644-q5cj-c5c7",
+          "severity": "high",
+          "cwe": [
+            "CWE-502"
+          ],
+          "cvss": {
+            "score": 7.1,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:L/A:N"
+          },
+          "range": "<0.6.0"
+        },
+        "uuid"
+      ],
+      "effects": [
+        "@langchain/core"
+      ],
+      "range": "<=0.5.26",
+      "nodes": [
+        "node_modules/@langchain/core/node_modules/langsmith"
+      ],
+      "fixAvailable": true
+    },
+    "solana-agent-kit": {
+      "name": "solana-agent-kit",
+      "severity": "high",
+      "isDirect": true,
+      "via": [
+        "@solana/spl-token",
+        "@solana/web3.js",
+        "ai"
+      ],
+      "effects": [],
+      "range": "<=2.0.0-beta.11 || >=2.0.2",
+      "nodes": [
+        "node_modules/solana-agent-kit"
+      ],
+      "fixAvailable": {
+        "name": "solana-agent-kit",
+        "version": "2.0.1",
+        "isSemVerMajor": true
+      }
+    },
+    "stream-json": {
+      "name": "stream-json",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1164823,
+          "name": "stream-json",
+          "dependency": "stream-json",
+          "title": "stream-json: pick/ignore/filter/replace filters are O(depth²) on nested input — small crafted JSON blocks the event loop for seconds→minutes (DoS)",
+          "url": "https://github.com/advisories/GHSA-528h-pc64-c93x",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-407"
+          ],
+          "cvss": {
+            "score": 6.2,
+            "vectorString": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": "<=3.4.0"
+        },
+        {
+          "source": 1241262,
+          "name": "stream-json",
+          "dependency": "stream-json",
+          "title": "stream-json: JSONC parser and verifier re-scan the whole accumulated comment on every input chunk",
+          "url": "https://github.com/advisories/GHSA-hqr4-qq8f-hg3x",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-407"
+          ],
+          "cvss": {
+            "score": 6.2,
+            "vectorString": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": "<=3.5.0"
+        },
+        {
+          "source": 1241263,
+          "name": "stream-json",
+          "dependency": "stream-json",
+          "title": "stream-json has a prototype pollution issue: Assembler writes this.current[this.key] on plain objects",
+          "url": "https://github.com/advisories/GHSA-mjw6-4jj6-33hc",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-1321"
+          ],
+          "cvss": {
+            "score": 5.1,
+            "vectorString": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:L"
+          },
+          "range": "<3.6.0"
+        }
+      ],
+      "effects": [
+        "jayson"
+      ],
+      "range": "<=3.5.0",
+      "nodes": [
+        "node_modules/stream-json"
+      ],
+      "fixAvailable": {
+        "name": "@solana/web3.js",
+        "version": "3.0.2",
+        "isSemVerMajor": true
+      }
+    },
+    "uuid": {
+      "name": "uuid",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1119441,
+          "name": "uuid",
+          "dependency": "uuid",
+          "title": "uuid: Missing buffer bounds check in v3/v5/v6 when buf is provided",
+          "url": "https://github.com/advisories/GHSA-w5hq-g745-h8pq",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-787",
+            "CWE-1285"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"
+          },
+          "range": "<11.1.1"
+        }
+      ],
+      "effects": [
+        "@langchain/core",
+        "jayson",
+        "langsmith"
+      ],
+      "range": "<11.1.1",
+      "nodes": [
+        "node_modules/@langchain/core/node_modules/uuid",
+        "node_modules/uuid"
+      ],
+      "fixAvailable": {
+        "name": "@solana/web3.js",
+        "version": "3.0.2",
+        "isSemVerMajor": true
+      }
+    }
+  },
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 3,
+      "moderate": 9,
+      "high": 7,
+      "critical": 0,
+      "total": 19
+    },
+    "dependencies": {
+      "prod": 220,
+      "dev": 255,
+      "optional": 81,
+      "peer": 2,
+      "peerOptional": 0,
+      "total": 557
+    }
+  }
+}

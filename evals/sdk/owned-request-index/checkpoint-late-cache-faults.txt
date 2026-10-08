@@ -1,0 +1,19 @@
+caught checkpoint publication fault: actual-store
+caught checkpoint publication fault: kernel-owner
+caught checkpoint publication fault: closed-owner
+caught checkpoint publication fault: cached-history
+caught checkpoint publication fault: exclusive-publication
+caught checkpoint publication fault: stale-record
+caught checkpoint publication fault: late-cached-history
+caught checkpoint publication fault: failed-writer
+caught checkpoint publication fault: derived-state
+caught checkpoint publication fault: receipt-digest
+caught checkpoint publication fault: short-progress
+contained checkpoint publication fault: zero-progress (child deadline; no test completion credit)
+caught checkpoint publication fault: file-sync
+caught checkpoint publication fault: prior-sync
+caught checkpoint publication fault: final-sync
+caught checkpoint publication fault: preserved-prior
+caught checkpoint publication fault: prior-authentication
+caught checkpoint publication fault: nofollow-current
+All checkpoint publication faults caught; restored source passes

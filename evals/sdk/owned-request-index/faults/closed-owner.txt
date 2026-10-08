@@ -1,0 +1,45 @@
+✔ SNP-7: owned publication derives exact complete generation and immutable root (28.646144ms)
+✔ SNP-7: replacement preserves earlier complete generations and prefix-bound answers (16.227139ms)
+✔ OWN-2: memory, forged, manual, closed and failed stores cannot publish (7.690038ms)
+✔ SNP-7: copied external pins are authoritative before asynchronous loading (11.104757ms)
+✖ OWN-2: a closed capability cannot borrow reused descriptors from a new kernel owner (9.606034ms)
+✔ SNP-7: unsigned and malformed actual histories refuse before cache publication (7.463672ms)
+✔ OWN-2: index, checkpoint publication and recovery share one maintenance boundary (15.669326ms)
+✔ OWN-2: replaced record and lock paths refuse index publication (8.548814ms)
+✔ SNP-7: closure, append, cache mutation and aliases during validation preserve the previous generation (59.557119ms)
+✔ SNP-7: current pointer corruption, substitutions and unsupported sources preserve evidence (66.980207ms)
+✔ SNP-7: a valid pointer cannot hide missing, altered or aliased previous generation files (54.354553ms)
+✔ SNP-7: current pointer and generation changes during asynchronous replay refuse (13.306161ms)
+✔ SNP-7: raw disk append during asynchronous validation cannot publish a cached endpoint (7.708532ms)
+✔ SNP-7: pointer reads finish short progress and refuse invalid progress or source changes (57.358731ms)
+✔ SNP-7: publication and validation refusals close every temporary descriptor (7.453962ms)
+✔ SNP-7: pointer disappearance after a successful open is not cache absence (6.265069ms)
+✔ SNP-7: byte-identical previous directory replacement while its files are read refuses (8.13105ms)
+✔ SNP-7: short writes finish and every file and directory is synced before acknowledgement (6.123144ms)
+✔ SNP-7: storage failures preserve complete old or new evidence and fail the writer (120.109613ms)
+✔ SNP-7: late record and pointer replacement after final sync refuse acknowledgement (27.161434ms)
+✔ SNP-7: actual process death at publication boundaries keeps a complete discoverable generation (949.067212ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 20
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1570.404463
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-publication.test.ts:69:1
+✖ OWN-2: a closed capability cannot borrow reused descriptors from a new kernel owner (9.606034ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (RequestIndexPublicationError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:72:7)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }

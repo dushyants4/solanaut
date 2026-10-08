@@ -1,0 +1,349 @@
+✖ SNP-7: owned publication derives exact complete generation and immutable root (18.995908ms)
+✖ SNP-7: replacement preserves earlier complete generations and prefix-bound answers (4.596364ms)
+✖ OWN-2: memory, forged, manual, closed and failed stores cannot publish (7.733543ms)
+✖ SNP-7: copied external pins are authoritative before asynchronous loading (3.773583ms)
+✖ SNP-7: unsigned and malformed actual histories refuse before cache publication (5.923456ms)
+✖ OWN-2: index, checkpoint publication and recovery share one maintenance boundary (3.324657ms)
+✖ OWN-2: replaced record and lock paths refuse index publication (4.749732ms)
+✖ SNP-7: closure, append, cache mutation and aliases during validation preserve the previous generation (3.630131ms)
+✖ SNP-7: current pointer corruption, substitutions and unsupported sources preserve evidence (3.630353ms)
+✖ SNP-7: a valid pointer cannot hide missing, altered or aliased previous generation files (4.037765ms)
+✖ SNP-7: current pointer and generation changes during asynchronous replay refuse (4.526537ms)
+✖ SNP-7: short writes finish and every file and directory is synced before acknowledgement (3.790286ms)
+✖ SNP-7: storage failures preserve complete old or new evidence and fail the writer (3.747258ms)
+✖ SNP-7: actual process death at publication boundaries keeps a complete discoverable generation (3.209862ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 0
+ℹ fail 14
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 196.277027
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-publication.test.ts:36:1
+✖ SNP-7: owned publication derives exact complete generation and immutable root (18.995908ms)
+  AssertionError [ERR_ASSERTION]: owned request index capability must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at publish (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:31:68)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:37:178)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:50:1
+✖ SNP-7: replacement preserves earlier complete generations and prefix-bound answers (4.596364ms)
+  AssertionError [ERR_ASSERTION]: owned request index capability must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at publish (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:31:68)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:51:47)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:57:1
+✖ OWN-2: memory, forged, manual, closed and failed stores cannot publish (7.733543ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   code: 'ERR_ASSERTION',
+  +   name: 'AssertionError'
+  -   code: 'request-index-publication',
+  -   name: 'RequestIndexPublicationError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:59:71)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: owned request index capability must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+        at publish (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:31:68)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:59:89
+        at async waitForActual (node:assert:615:5)
+        at async strict.rejects (node:assert:738:25)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:59:71)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: { name: 'RequestIndexPublicationError', code: 'request-index-publication' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:64:1
+✖ SNP-7: copied external pins are authoritative before asynchronous loading (3.773583ms)
+  AssertionError [ERR_ASSERTION]: owned request index capability must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at publish (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:31:68)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:65:80)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:69:1
+✖ SNP-7: unsigned and malformed actual histories refuse before cache publication (5.923456ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   code: 'ERR_ASSERTION',
+  +   name: 'AssertionError'
+  -   code: 'request-index-publication',
+  -   name: 'RequestIndexPublicationError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:70:130)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: owned request index capability must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+        at publish (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:31:68)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:70:148
+        at async waitForActual (node:assert:615:5)
+        at async strict.rejects (node:assert:738:25)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:70:130)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: { name: 'RequestIndexPublicationError', code: 'request-index-publication' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:74:1
+✖ OWN-2: index, checkpoint publication and recovery share one maintenance boundary (3.324657ms)
+  AssertionError [ERR_ASSERTION]: owned request index capability must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at publish (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:31:68)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:75:45)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:80:1
+✖ OWN-2: replaced record and lock paths refuse index publication (4.749732ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   code: 'ERR_ASSERTION',
+  +   name: 'AssertionError'
+  -   code: 'request-index-publication',
+  -   name: 'RequestIndexPublicationError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:81:214)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: owned request index capability must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+        at publish (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:31:68)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:81:232
+        at async waitForActual (node:assert:615:5)
+        at async strict.rejects (node:assert:738:25)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:81:214)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: { name: 'RequestIndexPublicationError', code: 'request-index-publication' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:83:1
+✖ SNP-7: closure, append, cache mutation and aliases during validation preserve the previous generation (3.630131ms)
+  AssertionError [ERR_ASSERTION]: owned request index capability must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at publish (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:31:68)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:84:139)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:90:1
+✖ SNP-7: current pointer corruption, substitutions and unsupported sources preserve evidence (3.630353ms)
+  AssertionError [ERR_ASSERTION]: owned request index capability must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at publish (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:31:68)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:91:166)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:98:1
+✖ SNP-7: a valid pointer cannot hide missing, altered or aliased previous generation files (4.037765ms)
+  AssertionError [ERR_ASSERTION]: owned request index capability must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at publish (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:31:68)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:99:138)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:104:1
+✖ SNP-7: current pointer and generation changes during asynchronous replay refuse (4.526537ms)
+  AssertionError [ERR_ASSERTION]: owned request index capability must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at publish (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:31:68)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:105:93)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:109:1
+✖ SNP-7: short writes finish and every file and directory is synced before acknowledgement (3.790286ms)
+  AssertionError [ERR_ASSERTION]: owned request index capability must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at publish (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:31:68)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:111:143)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:115:1
+✖ SNP-7: storage failures preserve complete old or new evidence and fail the writer (3.747258ms)
+  AssertionError [ERR_ASSERTION]: owned request index capability must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at publish (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:31:68)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:116:379)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-publication.test.ts:126:1
+✖ SNP-7: actual process death at publication boundaries keeps a complete discoverable generation (3.209862ms)
+  AssertionError [ERR_ASSERTION]: owned request index capability must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at publish (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:31:68)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:127:200)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

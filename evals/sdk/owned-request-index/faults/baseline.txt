@@ -1,0 +1,29 @@
+✔ SNP-7: owned publication derives exact complete generation and immutable root (30.087789ms)
+✔ SNP-7: replacement preserves earlier complete generations and prefix-bound answers (16.627ms)
+✔ OWN-2: memory, forged, manual, closed and failed stores cannot publish (8.487904ms)
+✔ SNP-7: copied external pins are authoritative before asynchronous loading (11.384798ms)
+✔ OWN-2: a closed capability cannot borrow reused descriptors from a new kernel owner (9.713646ms)
+✔ SNP-7: unsigned and malformed actual histories refuse before cache publication (7.032112ms)
+✔ OWN-2: index, checkpoint publication and recovery share one maintenance boundary (16.294142ms)
+✔ OWN-2: replaced record and lock paths refuse index publication (7.80892ms)
+✔ SNP-7: closure, append, cache mutation and aliases during validation preserve the previous generation (61.05031ms)
+✔ SNP-7: current pointer corruption, substitutions and unsupported sources preserve evidence (65.835172ms)
+✔ SNP-7: a valid pointer cannot hide missing, altered or aliased previous generation files (55.195123ms)
+✔ SNP-7: current pointer and generation changes during asynchronous replay refuse (13.944795ms)
+✔ SNP-7: raw disk append during asynchronous validation cannot publish a cached endpoint (7.879778ms)
+✔ SNP-7: pointer reads finish short progress and refuse invalid progress or source changes (57.138378ms)
+✔ SNP-7: publication and validation refusals close every temporary descriptor (7.731098ms)
+✔ SNP-7: pointer disappearance after a successful open is not cache absence (6.557314ms)
+✔ SNP-7: byte-identical previous directory replacement while its files are read refuses (7.783377ms)
+✔ SNP-7: short writes finish and every file and directory is synced before acknowledgement (7.08411ms)
+✔ SNP-7: storage failures preserve complete old or new evidence and fail the writer (119.192987ms)
+✔ SNP-7: late record and pointer replacement after final sync refuse acknowledgement (27.481273ms)
+✔ SNP-7: actual process death at publication boundaries keeps a complete discoverable generation (959.97737ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1589.659827

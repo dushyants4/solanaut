@@ -1,0 +1,43 @@
+{
+  "checked": "2026-10-08",
+  "basis": "Sandbox npm audit report, GitHub reviewed advisories and exact npm registry version metadata",
+  "findings": [
+    {
+      "package": "form-data",
+      "installed": "4.0.2",
+      "advisory": "https://github.com/advisories/GHSA-fjxv-7rqg-78g4",
+      "severity": "critical",
+      "affectedBranch": ">=4.0.0 <4.0.4",
+      "firstPatchedBranchVersion": "4.0.4",
+      "compatibility": "plugin-solana 1.2.6 declares the exact peer 4.0.2"
+    },
+    {
+      "package": "form-data",
+      "installed": "4.0.2",
+      "advisory": "https://github.com/advisories/GHSA-hmw2-7cc7-3qxx",
+      "severity": "high",
+      "affectedBranch": ">=4.0.0 <4.0.6",
+      "firstPatchedBranchVersion": "4.0.6",
+      "compatibility": "The independent fixed-peer lock-only experiment fails ERESOLVE against the original exact peer metadata"
+    },
+    {
+      "package": "bigint-buffer",
+      "installed": "1.1.5",
+      "advisory": "https://github.com/advisories/GHSA-3gc7-fjrx-p6mg",
+      "severity": "high",
+      "affected": "<=1.1.5",
+      "firstPatchedVersion": null,
+      "compatibility": "The advisory names no patch; the npm version inventory ends at 1.1.5. Scripts are disabled in this experiment and pure-JS fallback loads, but no release waiver or general reachability conclusion follows"
+    },
+    {
+      "package": "pdfjs-dist",
+      "installed": "5.7.284",
+      "advisory": "https://github.com/advisories/GHSA-hq66-cqwq-w95j",
+      "severity": "high",
+      "affected": ">=5.6.83 <6.2.108",
+      "firstPatchedVersion": "6.2.108",
+      "compatibility": "The first patch is outside core 1.7.2's ^5.2.133 dependency range. Older versions preceding the introduced affected range have not been separately audited or qualified"
+    }
+  ],
+  "conclusion": "This exact peer-valid graph imports and passes the five keyless signing-route probes, but is not a release-qualified supported framework graph. No production dependency update, override, fork, manual shim, force, legacy peer resolution or audit fix was applied. A complete remediation cannot be claimed from ordinary compatible updates in the inspected graph; exposure assessment and supported upstream remediation remain owed."
+}

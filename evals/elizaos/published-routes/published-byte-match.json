@@ -1,0 +1,23 @@
+[
+  {
+    "installed": "node_modules/@elizaos/plugin-solana/dist/index.js",
+    "inventory": "../eliza-published-inventory/plugin-solana-1.2.6/package/dist/index.js",
+    "bytes": 78983,
+    "sha256": "063c7976eb240a25f3f53727d9eea5fee2c70cbafb082f8318715fb08c0c5b04",
+    "equal": true
+  },
+  {
+    "installed": "node_modules/@elizaos/core/dist/node/index.node.js",
+    "inventory": "../eliza-published-inventory/core-1.7.2/package/dist/node/index.node.js",
+    "bytes": 1837489,
+    "sha256": "61d45900181f3e14aa0717dced1655d9f47c4ea38e428cd75c560861f942b394",
+    "equal": true
+  },
+  {
+    "installed": "node_modules/@elizaos/service-interfaces/dist/node/index.node.js",
+    "inventory": "../eliza-published-inventory/service-interfaces-1.7.2/package/dist/node/index.node.js",
+    "bytes": 3338,
+    "sha256": "c3032aaf53778712efab8f4ea43745c87f7a582994a1dc9f710f9c16a1472724",
+    "equal": true
+  }
+]

@@ -1,0 +1,1 @@
+{"name":"solanaut-runtime-dependency-review","version":"0.0.0","private":true,"type":"module","dependencies":{"@solanaut/sdk":"file:../solanaut-sdk-0.0.0.tgz"}}

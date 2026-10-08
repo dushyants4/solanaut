@@ -1,0 +1,51 @@
+caught owned index publication fault: actual-owner
+caught owned index publication fault: kernel-owner
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: closed-owner✔ SNP-7: owned publication derives exact complete generation and immutable root (28.849725ms)
+✔ SNP-7: replacement preserves earlier complete generations and prefix-bound answers (15.737479ms)
+✔ OWN-2: memory, forged, manual, closed and failed stores cannot publish (7.421689ms)
+✔ SNP-7: copied external pins are authoritative before asynchronous loading (10.305406ms)
+✔ SNP-7: unsigned and malformed actual histories refuse before cache publication (7.549141ms)
+✔ OWN-2: index, checkpoint publication and recovery share one maintenance boundary (16.697898ms)
+✔ OWN-2: replaced record and lock paths refuse index publication (8.215773ms)
+✔ SNP-7: closure, append, cache mutation and aliases during validation preserve the previous generation (63.436822ms)
+✔ SNP-7: current pointer corruption, substitutions and unsupported sources preserve evidence (60.764877ms)
+✔ SNP-7: a valid pointer cannot hide missing, altered or aliased previous generation files (54.594842ms)
+✔ SNP-7: current pointer and generation changes during asynchronous replay refuse (14.201715ms)
+✔ SNP-7: raw disk append during asynchronous validation cannot publish a cached endpoint (7.629975ms)
+✔ SNP-7: pointer reads finish short progress and refuse invalid progress or source changes (57.217842ms)
+✔ SNP-7: publication and validation refusals close every temporary descriptor (7.106345ms)
+✔ SNP-7: pointer disappearance after a successful open is not cache absence (6.502112ms)
+✔ SNP-7: byte-identical previous directory replacement while its files are read refuses (8.432819ms)
+✔ SNP-7: short writes finish and every file and directory is synced before acknowledgement (6.668319ms)
+✔ SNP-7: storage failures preserve complete old or new evidence and fail the writer (122.319704ms)
+✔ SNP-7: late record and pointer replacement after final sync refuse acknowledgement (18.186737ms)
+✔ SNP-7: actual process death at publication boundaries keeps a complete discoverable generation (976.338792ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1577.241041
+
+
+0 !== 1
+
+    at file:///home/dashy/Projects/Solanaut/evals/sdk/request-index-publication-faults.ts:46:12
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

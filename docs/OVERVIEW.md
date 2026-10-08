@@ -1,6 +1,6 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 38** · 2026-10-08 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 39** · 2026-10-08 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
@@ -9,8 +9,10 @@
 `request-index.ts` is an internal read-only projection for a verified completed
 history prefix. Full signed replay derives the expected manifest and shards;
 lookup verifies complete selected bytes and returns immutable request/reply
-evidence or qualified prefix absence. It does not wire live admissions, publish
-owned generations or bound live state. Shared `state.ts` now validates reports
+evidence or qualified prefix absence. `request-index-publication.ts` publishes
+complete immutable generations through the actual record owner, with a synced
+atomic pointer and retained predecessors. It does not wire live admissions or
+bound live state. Shared `state.ts` now validates reports
 and redemption before mutation; signed policy context travels through recovery
 and inspection, preserving unsigned SDK compatibility.
 
@@ -38,7 +40,8 @@ atomic publication and authenticated recovery are separate responsibilities.
 
 `checkpoint-state.ts` prepares signed-mode admission-state bytes from full verified
 history, retaining lifecycle facts, policy and the previous decision. It neither
-loads state nor bounds memory. Publication, restore and request indexing remain owed.
+loads state nor bounds memory. Complete live publication, restore, request indexing
+and bounded memory remain owed.
 
 `checkpoint-prefix.ts` prepares an internal canonical Keel event payload only after
 full history replay. Events retain source identity, telemetry/posture and resets;

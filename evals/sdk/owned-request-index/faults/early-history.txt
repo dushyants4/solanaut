@@ -1,0 +1,48 @@
+✔ SNP-7: owned publication derives exact complete generation and immutable root (29.148981ms)
+✔ SNP-7: replacement preserves earlier complete generations and prefix-bound answers (15.92901ms)
+✔ OWN-2: memory, forged, manual, closed and failed stores cannot publish (7.192959ms)
+✔ SNP-7: copied external pins are authoritative before asynchronous loading (9.902523ms)
+✔ OWN-2: a closed capability cannot borrow reused descriptors from a new kernel owner (10.073034ms)
+✖ SNP-7: unsigned and malformed actual histories refuse before cache publication (8.858655ms)
+✔ OWN-2: index, checkpoint publication and recovery share one maintenance boundary (16.397212ms)
+✔ OWN-2: replaced record and lock paths refuse index publication (8.427236ms)
+✔ SNP-7: closure, append, cache mutation and aliases during validation preserve the previous generation (59.243546ms)
+✔ SNP-7: current pointer corruption, substitutions and unsupported sources preserve evidence (63.141881ms)
+✔ SNP-7: a valid pointer cannot hide missing, altered or aliased previous generation files (53.527889ms)
+✔ SNP-7: current pointer and generation changes during asynchronous replay refuse (13.196793ms)
+✔ SNP-7: raw disk append during asynchronous validation cannot publish a cached endpoint (8.151972ms)
+✔ SNP-7: pointer reads finish short progress and refuse invalid progress or source changes (55.974169ms)
+✔ SNP-7: publication and validation refusals close every temporary descriptor (8.190062ms)
+✔ SNP-7: pointer disappearance after a successful open is not cache absence (5.842498ms)
+✔ SNP-7: byte-identical previous directory replacement while its files are read refuses (8.317107ms)
+✔ SNP-7: short writes finish and every file and directory is synced before acknowledgement (6.074154ms)
+✔ SNP-7: storage failures preserve complete old or new evidence and fail the writer (118.476867ms)
+✔ SNP-7: late record and pointer replacement after final sync refuse acknowledgement (27.294834ms)
+✔ SNP-7: actual process death at publication boundaries keeps a complete discoverable generation (955.289455ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 20
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1572.627756
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-publication.test.ts:76:1
+✖ SNP-7: unsigned and malformed actual histories refuse before cache publication (8.858655ms)
+  AssertionError [ERR_ASSERTION]: invalid owned history must refuse before pointer access
+  
+  2 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:78:579)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

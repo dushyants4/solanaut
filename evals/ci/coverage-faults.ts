@@ -16,6 +16,7 @@ const faults = [
   ["recovery-critical-inventory", "evals/ci/coverage.ts", '"checkpoint-recovery.ts",', ""],
   ["archive-critical-inventory", "evals/ci/coverage.ts", '"archive.ts",', ""],
   ["request-index-critical-inventory", "evals/ci/coverage.ts", '"request-index.ts",', ""],
+  ["request-index-publication-critical-inventory", "evals/ci/coverage.ts", '"request-index-publication.ts",', ""],
   ["omit-inventory-check", "evals/ci/coverage.ts", 'throw new Error("coverage inventory differs")', "void 0"],
   ["invalid-counts", "evals/ci/coverage.ts", 'throw new Error("invalid coverage counts")', "void 0"],
   ["wrong-counter-variable", "evals/ci/coverage-instrument.ts", 'coverageVariable:"__solanautCoverage"', 'coverageVariable:"__wrongCoverage"'],

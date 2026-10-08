@@ -159,6 +159,13 @@ devnet.
 
 ## 5. Questions and requests for the human
 
+Published-framework qualification finding (2026-10-08): the isolated ElizaOS
+stable graph has unresolved high/critical advisories; a normally resolved patched
+form-data peer fails ERESOLVE. No product dependency was added and no waiver is
+requested. `evals/elizaos/published-routes.md` retains exact metadata, route probes
+and remediation incompatibilities for upstream qualification. H9/H10/H11/H12
+remain pending; resuming work does not accept those decisions.
+
 **H12 — proposed devnet SDK preview scope/version.** A concrete private tarball,
 installed offline walkthrough and claim-traced page draft are now reviewable in
 `docs/PREVIEW.md`, `docs/PRODUCT-PAGE.md` and `docs/release/STAGED-RELEASE.md`.
@@ -217,6 +224,16 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 | O1 | AGENTS.md, build convention | Replace `TypeScript run natively by Node 26, with no build step; ESM;` with `TypeScript run natively by Node 26 for development; a release-only build emits JavaScript and declarations for npm consumers; ESM;` | Explicitly approved by the human in the Solanaut 1.0 mission. | no |
 
 ## 7. Codex's log
+
+2026-10-08 continuation: actual-owned immutable index publication and D25's late
+checkpoint-cache race now have source/fault evidence in
+`evals/sdk/owned-request-index.md`. Installed checks exposed a Node type leak;
+the structural metadata correction preserves runtime checks and the failing
+consumer configuration. Fresh mutation definition 25/seed 25813 follows that
+type-only correction. Published ElizaOS route experiments are separately retained
+and explicitly unqualified. Hosted 43f20c0 fails the unchanged staged-baseline
+wait; full logs remain, other fault partitions pass. Live index/tail integration,
+bounded state/startup and all Alpha/security/human/release gates remain open.
 
 | 2026-10-08 | D24 client containers and private preview follow-up | commit containing `evals/sdk/sending-client-input.md` and `evals/release/staged-preview/client-candidate.json` | native/installed first failures; 718 ordinary/AST cases, typecheck, seventeen source and seventy-four compiled faults; updated checkpoint trial and fresh driver qualification | CLAIMS S83. Original 39c24de artefact/full failed hosted run retained; no public metadata change. Preview guide adds digest verification; formal progress remains 41%, all broader gates pending. |
 
