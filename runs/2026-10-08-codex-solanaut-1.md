@@ -7,6 +7,12 @@ progress out of one hundred with an explicit basis. Continue across queue items.
 
 ## Did
 
+Owned publication is privately pushed as 5a33e69. Hosted 37841558758 starts;
+no result is inferred while queued/running. Preceding duplicate trigger
+37841556684 is cancelled by hosted workflow concurrency, not by an agent command.
+Follow-up explicitly tracks raw experiment/install logs excluded by the generic
+log ignore rule, preserving the receipt's failure/pass inventories remotely.
+
 Final continuation: restored workspace passes 740 ordinary cases and native
 typecheck; source campaign catches 27 trials with restoration. Final AST hashes
 match every current product source. Extend the existing installed lifecycle case

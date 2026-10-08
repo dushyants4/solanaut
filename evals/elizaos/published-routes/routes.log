@@ -1,0 +1,22 @@
+bigint: Failed to load bindings, pure JS will be used (try npm run rebuild?)
+getTokenAccountsByKeypair - getParsedTokenAccountsByOwner 11111111111111111111111111111111
+ Error      Error during transfer (error=Private key not found in settings)
+ Error      Error during transfer (error=Private key not found in settings)
+ Error      Error during token swap (error=Private key not found in settings)
+ Error      #Solanaut keyless published fixture  SolanaService: transferSol failed (error=Failed to get wallet keypair)
+batchGetMultipleAccountsInfo(getBalancesByAddrs) - getMultipleAccountsInfo 1/1
+signal.sourceTokenCA So11111111111111111111111111111111111111112 signal.targetTokenCA EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v wallet.amount 1,000,000
+initialQuote {
+  totalLamportsNeeded: 5000,
+  inAmount: '1000000',
+  outAmount: '1000',
+  otherAmountThreshold: '900',
+  slippageBps: 200,
+  priceImpactPct: 0.1,
+  routePlan: []
+}
+impliedSlippageBps 1000 jupSlip 200
+adjusted amount 1,000,000 price impact slippage 50
+executingSwap 11111111111111111111111111111111 So11111111111111111111111111111111111111112 EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v with 1000bps slippage
+ Error      Error in swap execution: TypeError: Expected String
+{"node":"v26.7.0","pluginEntry":"/home/dashy/Projects/Solanaut/.sandbox/solanaut-1/eliza-runtime/node_modules/@elizaos/plugin-solana/dist/index.js","pluginSha256":"063c7976eb240a25f3f53727d9eea5fee2c70cbafb082f8318715fb08c0c5b04","actualCoreRuntime":true,"publicOnly":true,"privateAliasesAbsent":true,"noExchangeProviders":true,"results":[{"name":"SOL transfer action","outcome":"Private key not found in settings","counters":{"signed":0,"sends":0,"secretKeyConstruction":0,"generatedKeys":0,"nativeNetwork":0,"latestBlockhash":0,"parsedTokenAccounts":0,"accountSubscriptions":0,"balanceReads":0,"quoteFetches":0,"swapFetches":0,"tradingQuotes":0,"tradingSwapRequests":0,"externalPrivateKeyReads":0,"modelCalls":1}},{"name":"SPL transfer action","outcome":"Private key not found in settings","counters":{"signed":0,"sends":0,"secretKeyConstruction":0,"generatedKeys":0,"nativeNetwork":0,"latestBlockhash":0,"parsedTokenAccounts":0,"accountSubscriptions":0,"balanceReads":0,"quoteFetches":0,"swapFetches":0,"tradingQuotes":0,"tradingSwapRequests":0,"externalPrivateKeyReads":0,"modelCalls":1}},{"name":"Swap action","outcome":"Private key not found in settings","counters":{"signed":0,"sends":0,"secretKeyConstruction":0,"generatedKeys":0,"nativeNetwork":0,"latestBlockhash":0,"parsedTokenAccounts":0,"accountSubscriptions":0,"balanceReads":0,"quoteFetches":1,"swapFetches":1,"tradingQuotes":0,"tradingSwapRequests":0,"externalPrivateKeyReads":0,"modelCalls":1}},{"name":"Wallet service transfer","outcome":"Failed to get wallet keypair","counters":{"signed":0,"sends":0,"secretKeyConstruction":0,"generatedKeys":0,"nativeNetwork":0,"latestBlockhash":1,"parsedTokenAccounts":0,"accountSubscriptions":0,"balanceReads":0,"quoteFetches":0,"swapFetches":0,"tradingQuotes":0,"tradingSwapRequests":0,"externalPrivateKeyReads":0,"modelCalls":0}},{"name":"External wallet trading path","outcome":"Missing external privateKey reaches actual bs58 decoder; response success false","counters":{"signed":0,"sends":0,"secretKeyConstruction":0,"generatedKeys":0,"nativeNetwork":0,"latestBlockhash":0,"parsedTokenAccounts":0,"accountSubscriptions":0,"balanceReads":1,"quoteFetches":0,"swapFetches":0,"tradingQuotes":1,"tradingSwapRequests":1,"externalPrivateKeyReads":1,"modelCalls":0}}],"counters":{"signed":0,"sends":0,"secretKeyConstruction":0,"generatedKeys":0,"nativeNetwork":0,"latestBlockhash":1,"parsedTokenAccounts":2,"accountSubscriptions":1,"balanceReads":1,"quoteFetches":1,"swapFetches":1,"tradingQuotes":1,"tradingSwapRequests":1,"externalPrivateKeyReads":1,"modelCalls":3},"limitations":["Synthetic public addresses and unsigned transaction bytes","Model/cache/RPC/Jupiter/network boundary fixtures; published core and plugin methods unmodified","No keys, signatures, transaction sends or live service deployment","Builder-team component experiment, not independent RT-2 or complete ELZ-1/2/3 qualification"]}

@@ -225,6 +225,11 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+Owned-publication implementation is privately pushed as 5a33e69; hosted
+37841558758 is queued/running when recorded. No passing CI claim. Generic log
+ignores excluded some retained experiment/install outputs; an archival follow-up
+explicitly tracks them without source, workload or threshold changes.
+
 2026-10-08 continuation: actual-owned immutable index publication and D25's late
 checkpoint-cache race now have source/fault evidence in
 `evals/sdk/owned-request-index.md`. Installed checks exposed a Node type leak;

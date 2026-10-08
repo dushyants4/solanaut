@@ -1,5 +1,9 @@
 # DOCUMENTS.md — the document register
 
+2026-10-08 evidence archival follow-up registers the continuing run's exact private
+sync and hosted run identity. Raw experiment/install logs are explicitly tracked
+despite the generic log ignore rule; receipt definitions and thresholds are unchanged.
+
 2026-10-08 owned publication continuation registers SPEC Draft 4.66, STORAGE
 Draft 6, OVERVIEW Draft 39, RISKS 1.57, PROGRESS, CLAIMS, HANDOFF sections 5–7,
 continuing run and evals index. New receipts: `evals/sdk/owned-request-index.md`
