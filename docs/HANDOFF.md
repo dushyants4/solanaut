@@ -243,6 +243,12 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-09 local facade archive: `36a1ae7` is committed locally; its Git bundle
+verifies and restores the exact clean revision with passing full object-integrity
+verification. Post-commit close passes nine of ten checks, failing only pushed
+HEAD under the human's instruction. The AST/driver timeout finding remains open;
+no stable milestone closes. No push occurs.
+
 2026-10-09 private admission/control facade: implementation and local qualification
 continue under ADR-019, receipt `evals/sdk/owned-guard.md`. No history or mutable
 guard/store escapes; exact established signed policy/index, captured configuration,

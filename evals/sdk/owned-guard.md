@@ -118,3 +118,9 @@ invented for this fixture-name correction.
 Corrected pre-commit close passes eight of ten checks, failing only pushed HEAD
 and the staged tree; secret scanning and all other local close checks pass.
 Archive the partial implementation locally with its wider qualification open.
+
+Local implementation commit: `36a1ae793e08855e817496837fcf5d7ea34abd37`.
+Its local Git bundle verifies and restores that exact clean revision with passing
+full object-integrity verification. Post-commit close passes nine of ten checks;
+only pushed HEAD fails under the explicit local-only direction. This backs up
+source history on the same machine, not operator state or off-device storage.

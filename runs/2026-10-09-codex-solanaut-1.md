@@ -205,6 +205,13 @@ No replay component pass follows from drafted tests or the interrupted builder.
 
 ## Open
 
+Private facade implementation is locally committed as
+`36a1ae793e08855e817496837fcf5d7ea34abd37`. Its local Git bundle verifies;
+cloning the bundle restores exactly that clean revision and full object-integrity
+verification passes. Post-commit close passes nine of ten checks, failing only
+unpushed HEAD as required by the human's no-push instruction. AST/driver wait
+findings and H9/H11 acceptance remain open. No remote contact or publication occurs.
+
 Corrected pre-commit close passes eight of ten checks: only unpushed HEAD and the
 staged tree fail. Secret scanning of the staged candidate passes. Native product
 tests/typecheck and authored diff checks pass. Local partial-component commit
