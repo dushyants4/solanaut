@@ -243,6 +243,13 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-09 D32 local archive: correction is committed as `944579d`; its local
+Git bundle verifies and restores the exact clean revision with passing full
+object-integrity verification. Post-commit close passes nine of ten checks,
+failing only pushed HEAD under the no-push instruction. All workers are finished;
+AST/driver wait, H9/H11, bounded recovery and independent release gates remain
+open. No stable milestone or remote synchronisation is claimed.
+
 2026-10-09 D32 follow-up: private facade admission can return the trusted SDK's
 unrecorded sentinel after append failure or identity collision. Real owned
 storage/collision tests fail first, as does the installed previous candidate.

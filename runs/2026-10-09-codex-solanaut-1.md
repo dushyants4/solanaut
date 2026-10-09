@@ -224,6 +224,14 @@ No replay component pass follows from drafted tests or the interrupted builder.
 
 ## Open
 
+D32 is locally committed as `944579d469c9f4712f4e74d6cbfff3a394ba0cdb`.
+Its local Git bundle verifies and restores that exact clean revision; full object
+integrity verification passes. Post-commit close passes nine of ten checks,
+failing only pushed HEAD under the explicit no-push instruction. No push occurs.
+All new workers are finished; no background qualification is left running.
+H9/H11 are still unanswered, full AST/driver qualification and bounded recovery
+remain open, and formal progress remains CLAIMS S78's milestone measure.
+
 D32 final serial AST executes 835 cases with 834 passing and its unchanged
 baseline wait failing; full reports are retained and qualification stays open.
 Every bound product/evaluation/archive identity matches after fault restoration.

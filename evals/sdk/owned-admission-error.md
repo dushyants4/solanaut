@@ -76,3 +76,10 @@ Every bound product/evaluation/archive digest matches after restoration.
 Pre-commit close passes eight of ten checks, failing only pushed HEAD and the
 staged tree. Secret scan and authored diff checks pass. Local commit and backup
 verification follow; the coverage failure remains a qualification finding.
+
+Local implementation commit: `944579d469c9f4712f4e74d6cbfff3a394ba0cdb`.
+Its Git bundle verifies; a local clone restores the exact clean revision with
+passing full object-integrity verification. Post-commit close passes nine of ten
+checks, failing only pushed HEAD under the human's explicit local-only direction.
+No push occurs. Source-history backup does not establish operator-state recovery
+or off-device protection; AST/driver and stable-release gates remain open.
