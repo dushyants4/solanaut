@@ -12,6 +12,11 @@ misses. Native/typecheck/source/compiled qualification passes, but serial AST
 fails the unchanged real-baseline wait; coverage remains open, CLAIMS S99.
 No milestone credit follows.
 
+The exact D33 revision passes local Node 24 native/serial AST, typecheck and
+installed consumer qualification, CLAIMS S100. Bound candidate identities match.
+This does not clear Node 26's quiet AST wait failure or qualify the full runtime
+matrix, clean Ubuntu installation or a stable milestone.
+
 Private asynchronous admission/control facade implementation has partial local
 evidence in `evals/sdk/owned-guard.md`, CLAIMS S95. It opens established signed history
 without exposing guard/store/history and serializes observations and shutdown.

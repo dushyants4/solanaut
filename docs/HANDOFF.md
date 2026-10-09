@@ -243,6 +243,14 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-09 Node runtime follow-up: D33 is locally committed as `fba638a`; its
+complete-history bundle and exact clean clone/full fsck pass. Close fails only
+unpushed HEAD under the latest direction. Inventory identifies Node 24.19.0 already
+installed, so qualify unchanged native/installed populations with that runtime
+and the restored private candidate. Preserve Node 26's serial AST wait failure;
+Node 24 native/AST/typecheck/installed checks pass with exact bound identities,
+CLAIMS S100. No H9/H11 acceptance, complete runtime matrix or stable gate is inferred.
+
 2026-10-09 live record consistency: operator release is locally committed as
 `7a64856`; its bundle verifies and an explicit `main` checkout restores exact
 clean HEAD with full fsck passing. The initial clone lacked a default HEAD;

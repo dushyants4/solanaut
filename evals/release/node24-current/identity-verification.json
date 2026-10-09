@@ -1,0 +1,11 @@
+{
+  "revision": "fba638ad2d55b359771a6cf4ac517a3b1c6521ad",
+  "runtime": "24.19.0",
+  "at_utc": "2026-10-09T21:19:20.567586+00:00",
+  "definition": 38,
+  "seed": 38653,
+  "selected_cases": 541,
+  "candidate_manifest": "evals/sdk/live-record/installed-candidate.json",
+  "candidate_manifest_sha256": "f9c178633c77261ad1af282f58e30d386b167ac87b46048ef93b0adb2841ce82",
+  "all_bound_digests_match": true
+}

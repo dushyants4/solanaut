@@ -12,6 +12,18 @@ each component. Preserve every accepted security and release gate.
 
 ## Did
 
+Existing Node 24 qualification passes native, serial AST, typecheck and installed
+consumer populations with exact candidate hashes, CLAIMS S100. Archive raw reports
+and register unchanged development pins. Node 26's quiet AST wait failure remains
+open; one runtime's pass does not qualify the complete matrix or release.
+
+D33 commits locally as `fba638a`. Its complete-history bundle verifies; explicit
+main clone restores exact clean revision and full fsck passes. Post-commit close
+passes nine of ten, only pushed HEAD failing. Continue on the already-installed
+Node 24.19.0 with unchanged native and installed-consumer populations, same
+private compiled candidate and exact identity checks. Runtime evidence lives in
+`evals/release/node24-current.md`; no tool installation or global change.
+
 Operator release commits locally as `7a64856`. Its complete-history bundle
 verifies; explicit main checkout restores exact clean HEAD and full fsck passes.
 Post-commit close passes nine of ten, failing only pushed HEAD under the latest

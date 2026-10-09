@@ -1,5 +1,12 @@
 # DOCUMENTS.md — the document register
 
+2026-10-09 existing Node runtime follow-up registers
+`evals/release/node24-current.md`, HANDOFF and continuing run. The D33 local
+Git bundle restores exact clean history with fsck passing; Node 24 is already
+installed. Unchanged native/AST/typecheck/consumer qualification passes, CLAIMS
+S100; register PROGRESS/TOOLCHAIN and the receipt index. Bound identities match,
+and Node 26's quiet serial AST deadline failure remains retained.
+
 2026-10-09 live journal consistency registers SPEC Draft 4.78/STO-3/D33,
 OVERVIEW 49, STORAGE Draft 9, RISKS 1.70, PROGRESS, HANDOFF and continuing run, plus
 `evals/sdk/live-record.md` and its index. Preserve first fixture/API failures and

@@ -18,6 +18,12 @@ Installed 2026-09-27 on `omarchy` (Omarchy Linux, x86_64).
 
 ## PATH
 
+Local release qualification also uses already-installed Node 24.19.0/npm 11.17.0
+through explicit `mise exec node@24.19.0 --` commands. No installation, global
+configuration or development pin change is performed. Current-host evidence is
+`evals/release/node24-current.md` (CLAIMS S100); clean Ubuntu and the complete
+runtime matrix remain unqualified.
+
 `~/.bashrc` carries one block, added 2026-09-27:
 
 ```bash
