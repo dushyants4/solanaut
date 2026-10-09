@@ -26,7 +26,8 @@ AI agents with wallets: frameworks, where to hook in, failure data. Also:
 
 ### [Competitors and adjacent tools](wiki/competitors/_index.md)
 Who already sells caps and allowlists, and where each enforces. Entities: [Squads v4](wiki/competitors/squads.md) ·
-[Privy](wiki/competitors/privy.md) · [Phantom](wiki/competitors/phantom.md). Updated 2026-09-30.
+[Privy](wiki/competitors/privy.md) · [Phantom](wiki/competitors/phantom.md). Updated 2026-10-08 with
+the [published signing-seam brief](briefs/2026-10-08_phantom-signing-seam.md).
 
 ### [Gubernaut Keel](wiki/gubernaut/_index.md)
 The controller Solanaut depends on: API, postures, limits, upstream findings. Updated 2026-09-27.

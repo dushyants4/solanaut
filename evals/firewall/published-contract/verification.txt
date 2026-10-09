@@ -1,0 +1,7 @@
+@phantom/mcp-server 1.2.8 download SHA-256 and registry SHA-512 agree
+@phantom/cli 2.0.1 download SHA-256 and registry SHA-512 agree
+package/src/index.ts member hash and numbered excerpts agree
+package/src/actions/send-solana-transaction.ts member hash and numbered excerpts agree
+package/src/actions/transfer-tokens.ts member hash and numbered excerpts agree
+Current documentation hash agrees; its observation is separate from pinned package schemas
+Static evidence consistency only; no package execution or compatibility qualification

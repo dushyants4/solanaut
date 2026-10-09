@@ -88,3 +88,13 @@ one fails the same real-baseline case. Other jobs pass. Full log and revision/jo
 metadata are retained in `../firewall/filter/hosted-0332c97/`; no passing complete
 hosted qualification is inferred. Full independent security, Linux isolation,
 human operations and all stable-release gates remain required.
+
+Exact implementation `7118ae242b25f50305c0b49d6f9c9c4da2e30df9` is privately
+pushed and the unchanged post-push close passes all ten gates. Hosted run
+`37871842802` completes failed: each ordinary runtime and AST suite reports
+769 cases, 768 pass and one unchanged staged-baseline wait failure. Partition
+one fails only the same real-baseline case; partitions two and three pass. The
+new lookup campaign catches all 26 faults and restores; new lookup tests pass
+on every runtime and under AST. Typechecks and installed package checks pass.
+Full exact log and revision/job metadata: `request-index-lookup/hosted-7118ae2/`.
+These passing component steps do not replace the failed complete hosted gate.

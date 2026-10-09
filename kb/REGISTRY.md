@@ -89,6 +89,14 @@ milestone that needs it adds it, and not before.
 
 Surfpool is not on npm; it installs as a binary, and version 1.5 or later runs v1 transactions.
 
+Exact Phantom route inspection on 2026-10-08 separately captures MCP 1.2.9,
+CLI 3.0.0 and client 2.0.4. MCP delegates through a ranged CLI dependency, and
+CLI declares a ranged client dependency; these selected archives are not a
+resolved installation or an accepted dependency pin. Stock inspected MCP routes
+return after broadcast. A separate client sign-only API exists, but its live
+support/nonbroadcast contract remains unqualified. Primary evidence:
+[published routes](sources/2026-10-08_phantom-published-routes.md).
+
 ## Findings about upstream
 
 A defect found in a Gubernaut package is written here and in the run record for the human. Solanaut

@@ -1,0 +1,49 @@
+{
+  "version": "2.0.4",
+  "dist": {
+    "shasum": "429402b5ea488ef4c7543b327700b9d5613bfbf7",
+    "tarball": "https://registry.npmjs.org/@phantom/browser-sdk/-/browser-sdk-2.0.4.tgz",
+    "fileCount": 5,
+    "integrity": "sha512-Bfo5puUMJw2JxuqKTKbt8tQfyiNwK08N0L2IInh4hTUlv7/KXoYfxyqtkl0XMGsR5U4P2v0H9KdfQMTEdUEwgA==",
+    "signatures": [
+      {
+        "sig": "MEUCIFdGclwyAOloV/tS2//41LG80hXo1bSNyVJm9WL7ng41AiEA/MvdSJHWUuR2Qyz9OxTK+I6CyJVU3W34qiwdJ9sAaek=",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      },
+      {
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "sig": "MEQCIBypiPJyg2GsVIdun+pyMYMB7Q4GFH7wKKt9Xmt7HiZmAiB8zUundhAy8nRWkkWQuWQj4SjPf6qGnIH+HBH6zdriUQ=="
+      }
+    ],
+    "attestations": {
+      "url": "https://registry.npmjs.org/-/npm/v1/attestations/@phantom%2fbrowser-sdk@2.0.4",
+      "provenance": {
+        "predicateType": "https://slsa.dev/provenance/v1"
+      }
+    },
+    "unpackedSize": 335538
+  },
+  "repository": {
+    "url": "git+https://github.com/phantom/phantom-connect-sdk.git",
+    "type": "git",
+    "directory": "packages/browser-sdk"
+  },
+  "dependencies": {
+    "bs58": "^6.0.0",
+    "jose": "^6.0.12",
+    "axios": "1.15.2",
+    "buffer": "^6.0.3",
+    "tweetnacl": "^1.0.3",
+    "eventemitter3": "^5.0.1",
+    "@phantom/auth2": "^2.0.3",
+    "@phantom/client": "^2.0.4",
+    "@phantom/parsers": "^2.0.4",
+    "@phantom/base64url": "^2.0.4",
+    "@phantom/constants": "^2.0.4",
+    "@phantom/sdk-types": "^2.0.4",
+    "@phantom/chain-interfaces": "^2.0.4",
+    "@phantom/indexed-db-stamper": "^2.0.2",
+    "@phantom/browser-injected-sdk": "^2.0.2",
+    "@phantom/embedded-provider-core": "^2.0.4"
+  }
+}

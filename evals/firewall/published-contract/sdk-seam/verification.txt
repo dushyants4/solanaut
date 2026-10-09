@@ -1,0 +1,9 @@
+client-2.0.4.tgz registry integrity and retained download hash agree
+browser-sdk-2.0.4.tgz registry integrity and retained download hash agree
+embedded-provider-core-2.0.4.tgz registry integrity and retained download hash agree
+package/src/session/manager.ts source hash and numbered excerpts agree
+package/dist/index.d.ts source hash and numbered excerpts agree
+package/dist/index.mjs source hash and numbered excerpts agree
+package/dist/index.mjs source hash and numbered excerpts agree
+Separate current documentation hash agrees
+Static evidence only; no live nonbroadcast, supported service capability, resolved graph or interception qualification

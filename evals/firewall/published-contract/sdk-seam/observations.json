@@ -1,0 +1,134 @@
+{
+  "inspection": "static published SDK seam research, not execution or live support qualification",
+  "observed_at_utc": "2026-10-09T01:58:17.551579+00:00",
+  "solanaut_revision": "7118ae242b25f50305c0b49d6f9c9c4da2e30df9",
+  "dependency_scope": {
+    "declaring_package": "@phantom/cli@3.0.0",
+    "declared_client_range": "^2.0.4",
+    "selected_client": "2.0.4",
+    "cli_metadata": "../current-pair/cli-3.0.0-metadata.json",
+    "resolved_installed_graph": "not created or inferred",
+    "additional_support_research": [
+      "@phantom/browser-sdk@2.0.4",
+      "@phantom/embedded-provider-core@2.0.4"
+    ]
+  },
+  "packages": [
+    {
+      "package": "@phantom/client",
+      "version": "2.0.4",
+      "archive_url": "https://registry.npmjs.org/@phantom/client/-/client-2.0.4.tgz",
+      "archive_sha256": "375f76cca5b624e5b4cf53ee00f5aad33448ac62018c3d6f937d830eba80ade3",
+      "archive_sha512_integrity": "sha512-bE5NJPfLkOvM8U3wAQt9PW6j7RZew+zl9a8I3x5TRMfJ4K1MeNRQ+luvEIeh9NP+t8Y/0GLekE3zMAaPpqlMkA==",
+      "registry_integrity_matches": true,
+      "registry_sha1_matches": true,
+      "registry_signature_verification": "not performed"
+    },
+    {
+      "package": "@phantom/browser-sdk",
+      "version": "2.0.4",
+      "archive_url": "https://registry.npmjs.org/@phantom/browser-sdk/-/browser-sdk-2.0.4.tgz",
+      "archive_sha256": "6c4c31e7d72588c3b1d9758f403e5681079a2a8285992394827615db0f07e0a8",
+      "archive_sha512_integrity": "sha512-Bfo5puUMJw2JxuqKTKbt8tQfyiNwK08N0L2IInh4hTUlv7/KXoYfxyqtkl0XMGsR5U4P2v0H9KdfQMTEdUEwgA==",
+      "registry_integrity_matches": true,
+      "registry_sha1_matches": true,
+      "registry_signature_verification": "not performed"
+    },
+    {
+      "package": "@phantom/embedded-provider-core",
+      "version": "2.0.4",
+      "archive_url": "https://registry.npmjs.org/@phantom/embedded-provider-core/-/embedded-provider-core-2.0.4.tgz",
+      "archive_sha256": "cf40e418412063dcc517ad6bcac79b5677e6c45b70499cc4a5ae044982594c0c",
+      "archive_sha512_integrity": "sha512-zmPWRp6hZLCEIwQKrW32Ohsn4bjaDVh66IpGGe/HvnJs8ekQ78zdIYit7MGBXb3T8p/Bk8ViVEa0lVFnRlyR/g==",
+      "registry_integrity_matches": true,
+      "registry_sha1_matches": true,
+      "registry_signature_verification": "not performed"
+    }
+  ],
+  "sources": [
+    {
+      "archive": "cli-3.0.0.tgz",
+      "path": "package/src/session/manager.ts",
+      "sha256": "bbd4226ea4ed5ba9f8c8f64cf77eb30b8b862ae0ad59824b24a40cbf637c7118",
+      "observation": "Both inspected SSO/device client constructors set user-wallet; no actual session was read.",
+      "selected_excerpts": [
+        {
+          "line": 457,
+          "excerpt": "walletType: \"user-wallet\","
+        },
+        {
+          "line": 503,
+          "excerpt": "walletType: \"user-wallet\","
+        }
+      ]
+    },
+    {
+      "archive": "client-2.0.4.tgz",
+      "path": "package/dist/index.d.ts",
+      "sha256": "c76465997b99dd0ef0cfc8ccaca8480a312dc589b5c5c823a1437301a1308618",
+      "sign_transaction_parameters": [
+        "walletId",
+        "transaction",
+        "networkId",
+        "derivationIndex?",
+        "account?",
+        "presignTransaction?"
+      ],
+      "sign_transaction_result_fields": [
+        "rawTransaction:string"
+      ],
+      "observation": "Public types expose sign-only wire return and per-call presign callback; callback context contains networkId and walletId.",
+      "selected_excerpts": []
+    },
+    {
+      "archive": "client-2.0.4.tgz",
+      "path": "package/dist/index.mjs",
+      "sha256": "b119b968dd650ee03fd0e6eedfdb6453d7a7a8e2d32d882fd60468f9e4d08e63",
+      "observation": "signTransaction selects shared signing with includeSubmissionConfig false and returns rawTransaction. Its KMS sign request omits submissionConfig and X-Rpc-Method is signTransaction. User-wallet preparation still receives network-derived submissionConfig with that method header.",
+      "presign_timing": "after getTransactionForSigning/prepare and before KMS signing; callback applies only if the prepared value is a string",
+      "postsign_interception_in_sign_and_send": "not exposed; final signed wire comes back after the KMS submission-enabled request",
+      "selected_excerpts": [
+        {
+          "line": 698,
+          "excerpt": "const result = await this.performTransactionSigning(params, false, params.presignTransaction);"
+        },
+        {
+          "line": 615,
+          "excerpt": "transactionForSigning = await presignTransaction(transactionForSigning, {"
+        },
+        {
+          "line": 630,
+          "excerpt": "signRequest.submissionConfig = submissionConfig;"
+        }
+      ]
+    },
+    {
+      "archive": "embedded-provider-core-2.0.4.tgz",
+      "path": "package/dist/index.mjs",
+      "sha256": "9e9413dbbc0fd4b6cbc1439ef85e6b4df731b6b2ba1707331002f9b3a436e0a6",
+      "observation": "Its signTransaction method delegates to client.signTransaction and parses the returned raw wire; it does not delegate to signAndSendTransaction in that method. This local implementation is not evidence that remote service authorises the call.",
+      "selected_excerpts": [
+        {
+          "line": 1003,
+          "excerpt": "const rawResponse = await this.client.signTransaction({"
+        }
+      ]
+    }
+  ],
+  "current_official_documentation": {
+    "source_url": "https://docs.phantom.com/sdks/browser-sdk/sign-and-send-transaction",
+    "download_url": "https://docs.phantom.com/sdks/browser-sdk/sign-and-send-transaction.md",
+    "download_sha256": "cf3af8e5697d0848d5e30fdc4576f93009218c07f05c87f1a95f4ea5d28ecd8e",
+    "observation": "Browser SDK docs explicitly state embedded wallets do not support signTransaction/signAllTransactions, and support signAndSendTransaction with a per-call presign callback after Phantom construction/validation. That callback is before the embedded wallet signs; it is not a final signed-wire interception.",
+    "scope": "Current Browser SDK product support statement, not proof of exact CLI account permissions or a resolved SDK dependency graph."
+  },
+  "conclusion": "A low-level sign-only API exists in inspected client code, but a supported live nonbroadcast path for the intended agent wallet is not established. Stock MCP routes still expose neither this API nor a callback. A presign integration would validate prepared bytes before remote signing, not obtain final signed wire before broadcast.",
+  "limitations": [
+    "No module import/execution, dependencies installed or resolved graph.",
+    "No keys, authentication/session reads, RPC, signing or send.",
+    "Static absence of KMS submissionConfig is not a live guarantee of remote nonbroadcast or authorisation.",
+    "No service capability, byte mutation, interception integration, isolation, independent security or release credit.",
+    "No ADR/deployment changes authorised or implemented.",
+    "Registry hashes were compared; registry origin signatures/provenance were not verified."
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "source_url": "https://docs.phantom.com/phantom-mcp-server/tools",
+  "download_url": "https://docs.phantom.com/phantom-mcp-server/tools.md",
+  "observed_at_utc": "2026-10-09T01:41:52.824957+00:00",
+  "download_sha256": "8b133a7d163e8100a24f38c8c9ea9f9e0676eecd6270b9815d93928bc29c5184",
+  "method": "current official documentation, not tied to the inspected package revision",
+  "observations": [
+    "send_solana_transaction accepts a base64 transaction; omitted networkId defaults to solana:mainnet.",
+    "Send arguments include walletId and derivationIndex, and confirmed true authorises signing and broadcast.",
+    "transfer_tokens documents rpcUrl, walletId, derivationIndex, decimals and createAssociatedTokenAccount.",
+    "Transfer amount is documented as a string and amountUnit defaults to ui.",
+    "These current documentation fields must not be treated as the exact CLI 2.0.1 schema."
+  ],
+  "retention": "Raw documentation stays in ignored scratch; no complete third-party page vendored."
+}

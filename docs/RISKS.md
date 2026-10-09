@@ -1,7 +1,16 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.61** · 2026-10-08 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.62** · 2026-10-08 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
+
+Exact published Phantom MCP send/transfer routes return after broadcast; the
+accepted wallet-byte revalidation requirement cannot rely on those results.
+Low-level client sign-only code exists, but its live support and nonbroadcast
+behaviour remain unqualified. A presign callback checks bytes before the remote
+signature, not the final signed wire. Browser SDK embedded-wallet support limits
+do not establish the exact CLI user-wallet's permissions. Static primary evidence:
+`evals/firewall/published-contract-current.md`, `evals/firewall/published-sdk-seam.md`.
+No dependency or accepted architecture contract is changed by this finding.
 
 Offline MCP selection now refuses unlisted tools and omitted/foreign networks.
 Accessor/proxy substitution and inherited-default regressions fail first and

@@ -159,6 +159,15 @@ devnet.
 
 ## 5. Questions and requests for the human
 
+Phantom compatibility finding (2026-10-08): exact inspected stock MCP routes
+return after broadcast. Client sign-only code exists, but live support and
+nonbroadcast behaviour for the intended agent wallet remain unqualified; the
+presign callback runs before the signature. Browser SDK embedded-wallet limits
+do not establish exact CLI user-wallet permissions. Static receipts:
+`evals/firewall/published-contract-current.md`, `evals/firewall/published-sdk-seam.md`.
+Continue accepted offline filtering/preparation and qualification work; this
+finding grants no replacement deployment contract or release exception.
+
 Published-framework qualification finding (2026-10-08): the isolated ElizaOS
 stable graph has unresolved high/critical advisories; a normally resolved patched
 form-data peer fails ERESOLVE. No product dependency was added and no waiver is
@@ -224,6 +233,26 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 | O1 | AGENTS.md, build convention | Replace `TypeScript run natively by Node 26, with no build step; ESM;` with `TypeScript run natively by Node 26 for development; a release-only build emits JavaScript and declarations for npm consumers; ESM;` | Explicitly approved by the human in the Solanaut 1.0 mission. | no |
 
 ## 7. Codex's log
+
+Owned lookup implementation `7118ae2` is privately pushed; the unchanged close
+workflow passes all ten gates afterwards. Its source/test/workload paths stay
+unchanged during the separate Phantom research. Exact hosted run `37871842802`
+is checked separately; incomplete or failed hosted results are not replaced by
+the passing local component evidence.
+
+Exact implementation hosted `37871842802` completes failed: all runtime/AST
+suites pass 768 of 769 with one unchanged baseline-wait failure, and partition
+one fails that same real-baseline case. Other partitions, new lookup tests and
+all 26 lookup faults pass/restored; type/installed checks pass. Full metadata/log:
+`evals/sdk/request-index-lookup/hosted-7118ae2/`. H11 remains pending.
+
+Published Phantom route research retains exact archives' public metadata,
+integrity agreement, source hashes, short excerpts and separate current official
+support observations. No package/session/wallet was executed or accessed. The
+knowledge source, brief, wiki and registry distinguish stock MCP post-send
+results from the low-level sign-only candidate and its unqualified live contract.
+CLAIMS M14 scopes those external facts. No milestone, dependency, policy, signer
+budget, harness wait, public version or publication decision changes.
 
 Internal owned current-head lookup progresses under accepted ADR-019. It
 authenticates the actual published disk prefix, validates complete current signed

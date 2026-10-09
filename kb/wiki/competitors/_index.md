@@ -2,7 +2,7 @@
 type: topic
 status: current
 created: 2026-09-27
-updated: 2026-09-30
+updated: 2026-10-08
 ---
 
 # Competitors and adjacent tools
@@ -16,6 +16,7 @@ updated: 2026-09-30
 - [Swig](../../sources/2026-09-27_swig-wallet.md)
 - [recurring delegation](../../sources/2026-09-27_solana-recurring-delegation.md)
 - [Phantom's MCP server](../../sources/2026-09-30_phantom-mcp-server.md)
+- [Phantom's inspected published routes](../../sources/2026-10-08_phantom-published-routes.md)
 - [coldstar-agent-signer](../../sources/2026-09-30_coldstar-agent-signer.md)
 - [Kora](../../sources/2026-09-30_kora-configuration.md)
 - [the landscape, via-agent](../../sources/2026-09-27_agent-landscape-via-agent.md)
@@ -48,8 +49,9 @@ read so far describes is control of retries, fee escalation, or re-sends after a
 - **On-chain caps per period exist.** Swig's documentation reports an audit by Accretion; the Squads v4 multisig's
   audit status is confirmed before mainnet (ADR-008). Solanaut composes with Squads instead of re-inventing a cap
   (ADR-006), and names the agent's key on the limit rather than making it a multisig member.
-- **Phantom's agent wallet keeps keys out of the agent's process,** and its send tool takes raw transaction bytes, so
-  a firewall can stand in front of it (ADR-011).
+- **Phantom's agent wallet keeps keys out of the agent's process** and its send tool takes raw transaction bytes.
+  Input filtering can stand in front of it (ADR-011); the inspected MCP routes do not expose the pre-send signed-byte
+  interception required for wallet revalidation. See the [signing-seam brief](../../briefs/2026-10-08_phantom-signing-seam.md).
 
 ## For Solanaut
 

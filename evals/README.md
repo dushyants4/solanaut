@@ -3,6 +3,12 @@
 **Every gate here was shown failing on an injected fault before it was trusted.** A gate never
 seen failing might not be checking anything.
 
+Static primary-source research is separate from executable gates: Phantom's
+[earlier published MCP pair](firewall/published-contract.md),
+[current exact pair](firewall/published-contract-current.md) and
+[low-level SDK seam](firewall/published-sdk-seam.md). These preserve route and
+support limitations; they establish no live compatibility or release clearance.
+
 | Gate | Shown failing | Then passing | Receipt |
 |---|---|---|---|
 | SNP-7/OWN-2/LIF current-head lookup | absent API; unvalidated helper tail mutation; manual/closed-owner and ordering fault misses; earlier compiled API absence | authenticated disk prefix plus complete validated tail, immutable endpoints and maintained faults; admission/boundedness still owed | `sdk/request-index-lookup.md` |

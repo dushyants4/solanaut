@@ -1,0 +1,150 @@
+{
+  "inspection": "static primary-package current-pair inspection, not execution or compatibility qualification",
+  "observed_at_utc": "2026-10-09T01:45:56.894410+00:00",
+  "solanaut_revision": "0332c977eb0dadec8a5592324fb8ad1f76ab2db0",
+  "selected_pair": {
+    "mcp": "1.2.9",
+    "cli": "3.0.0",
+    "dependency_declared_by_mcp": "^3.0.0",
+    "resolved_installed_graph": "not created or inferred"
+  },
+  "packages": [
+    {
+      "package": "@phantom/mcp-server",
+      "version": "1.2.9",
+      "archive_url": "https://registry.npmjs.org/@phantom/mcp-server/-/mcp-server-1.2.9.tgz",
+      "archive_sha256": "a6a9a1aa906a5e17046f7e5975914c891023162fff2b032ca377005f9bff5d17",
+      "archive_sha512_integrity": "sha512-1a11to0UQ0HGIsiMzFHpToYW+7jDfIDa0WK0tjeT7deSw9qzvbDKJjDXIUPV76fEPS6WkJ8BogIgPD8BJGeiew==",
+      "integrity_matches_registry": true,
+      "sha1_matches_registry": true,
+      "registry_signature_verification": "not performed; public signature metadata retained only"
+    },
+    {
+      "package": "@phantom/cli",
+      "version": "3.0.0",
+      "archive_url": "https://registry.npmjs.org/@phantom/cli/-/cli-3.0.0.tgz",
+      "archive_sha256": "ade1b68dacd3754008a8c5c732f222ffc08676b992fc22ef4493aa35419a39c8",
+      "archive_sha512_integrity": "sha512-CahxYdxIaijmFXJPotOEpgRRwYRttKdTH3EeBzeuWnk39CPkOlLxGwX8UCAXGq8uhDSmKqiq4P3u2En+jOwH0A==",
+      "integrity_matches_registry": true,
+      "sha1_matches_registry": true,
+      "registry_signature_verification": "not performed; public signature metadata retained only"
+    }
+  ],
+  "sources": [
+    {
+      "archive": "mcp-server-1.2.9.tgz",
+      "path": "package/src/index.ts",
+      "sha256": "f259bbf0cf9820a2c6f6d017e44c13d30711df33fd4bed41de38ef9444eaefd7",
+      "selected_excerpts": [
+        {
+          "line": 22,
+          "excerpt": "await cli.serve([\"--mcp\"]);"
+        }
+      ]
+    },
+    {
+      "archive": "cli-3.0.0.tgz",
+      "path": "package/src/actions/send-solana-transaction.ts",
+      "sha256": "f3a1e0f9a9cea93c2ab520f81ff1e5262faf347b71167b2531a0d7a18cde48f1",
+      "schema_fields": [
+        "transaction",
+        "networkId",
+        "derivationIndex",
+        "confirmed",
+        "walletId"
+      ],
+      "confirmed_accepts_boolean_and_stringbool": true,
+      "default_network": "solana:mainnet",
+      "observed_send_method": "client.signAndSendTransaction",
+      "post_call_result_fields": [
+        "signature",
+        "networkId",
+        "account"
+      ],
+      "byte_identical_to_inspected_cli_2_0_1_source": true,
+      "selected_excerpts": [
+        {
+          "line": 116,
+          "excerpt": "const result = await client.signAndSendTransaction({"
+        },
+        {
+          "line": 127,
+          "excerpt": "signature: result.hash ?? null,"
+        }
+      ]
+    },
+    {
+      "archive": "cli-3.0.0.tgz",
+      "path": "package/src/actions/transfer-tokens.ts",
+      "sha256": "092e905005d901117e590399381808fbdc058604862511c39b38b2e43b138370",
+      "schema_fields": [
+        "networkId",
+        "to",
+        "amount",
+        "amountUnit",
+        "tokenMint",
+        "decimals",
+        "derivationIndex",
+        "createAssociatedTokenAccount",
+        "confirmed",
+        "walletId"
+      ],
+      "caller_rpc_url_schema_field": false,
+      "amount_accepts_strings_and_numbers": true,
+      "decimals_uses_numeric_coercion": true,
+      "confirmed_accepts_boolean_and_stringbool": true,
+      "default_create_associated_token_account": true,
+      "transaction_construction": "inside each invocation; confirmed call rebuilds rather than receiving the simulation transaction",
+      "solana_raw_transaction_available": "returned after awaited signAndSendTransaction",
+      "solana_subsection_byte_identical_to_inspected_cli_2_0_1": true,
+      "selected_excerpts": [
+        {
+          "line": 253,
+          "excerpt": "const result = await client.signAndSendTransaction({"
+        },
+        {
+          "line": 382,
+          "excerpt": "const result = await client.signAndSendTransaction({"
+        },
+        {
+          "line": 270,
+          "excerpt": "rawTransaction: result.rawTransaction,"
+        },
+        {
+          "line": 399,
+          "excerpt": "rawTransaction: result.rawTransaction,"
+        }
+      ]
+    },
+    {
+      "archive": "cli-3.0.0.tgz",
+      "path": "package/src/utils/actions.ts",
+      "sha256": "bdf5c2ba6803dfe54a7f3edaa0dcf1a84cd67916f477e313c3575da6eab62db3",
+      "observation": "tool handler parses input and invokes wrapped action; no signed-byte callback in exposed tool arguments",
+      "selected_excerpts": []
+    },
+    {
+      "archive": "cli-3.0.0.tgz",
+      "path": "package/src/tools/types.ts",
+      "sha256": "002d2b63249eecce647f6ee871553e1a8f5639bdfadb2ead7ddaf2c8925ca78d",
+      "observation": "tool handler accepts parameter record and context; no signed-byte interception parameter declared",
+      "selected_excerpts": []
+    },
+    {
+      "archive": "cli-3.0.0.tgz",
+      "path": "package/dist/index.js",
+      "sha256": "1cc7bf41cd3d5fc078f8fd17c82a84449e80e1a0db7519031d37fbcbefea5722",
+      "observation": "compiled entry bytes contain signAndSendTransaction call and after-call rawTransaction return patterns",
+      "selected_excerpts": []
+    }
+  ],
+  "conclusion": "Neither inspected MCP action route exposes pre-broadcast signed-byte interception; the compatible signing/interception seam remains unresolved. This does not rule out a differently designed SDK integration or future upstream capability.",
+  "limitations": [
+    "No published module imported or executed.",
+    "No dependency graph installation, audit, provenance signature verification or compatibility qualification.",
+    "No authentication/session/key access, RPC, signing or send.",
+    "Static local-route inspection does not establish remote wallet mutation behaviour.",
+    "Current docs observation remains separately retained; it is not substituted for pinned package schemas.",
+    "Registry integrity comparison is not independent origin authentication."
+  ]
+}

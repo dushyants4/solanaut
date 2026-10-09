@@ -1,0 +1,45 @@
+{
+  "version": "2.0.4",
+  "dist": {
+    "shasum": "009b0a25f2f2e4473e7dc44f9ca57f70541c3428",
+    "tarball": "https://registry.npmjs.org/@phantom/embedded-provider-core/-/embedded-provider-core-2.0.4.tgz",
+    "fileCount": 8,
+    "integrity": "sha512-zmPWRp6hZLCEIwQKrW32Ohsn4bjaDVh66IpGGe/HvnJs8ekQ78zdIYit7MGBXb3T8p/Bk8ViVEa0lVFnRlyR/g==",
+    "signatures": [
+      {
+        "sig": "MEUCICIn0XFV3y8X0ca8plTE99ZLgNG3Vg4EV8BQlpBQdHL7AiEA7K/Eeq2LIUHgz1FNAyzOrcq3hWNBq/4QxhytwSbGjx8=",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      },
+      {
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "sig": "MEUCIFrBPY3fJohyK+AzpmYd6FKjz88beW93Ar193FcgRTwFAiEA/hqmTW8iFDrCKfFLq2DoOaxulBt20kEDl+Y09a/pBho="
+      }
+    ],
+    "attestations": {
+      "url": "https://registry.npmjs.org/-/npm/v1/attestations/@phantom%2fembedded-provider-core@2.0.4",
+      "provenance": {
+        "predicateType": "https://slsa.dev/provenance/v1"
+      }
+    },
+    "unpackedSize": 349925
+  },
+  "repository": {
+    "url": "git+https://github.com/phantom/phantom-connect-sdk.git",
+    "type": "git",
+    "directory": "packages/embedded-provider-core"
+  },
+  "dependencies": {
+    "bs58": "^6.0.0",
+    "buffer": "^6.0.3",
+    "eventemitter3": "^5.0.1",
+    "@phantom/auth2": "^2.0.3",
+    "@phantom/utils": "^2.0.4",
+    "@phantom/client": "^2.0.4",
+    "@phantom/parsers": "^2.0.4",
+    "@phantom/base64url": "^2.0.4",
+    "@phantom/constants": "^2.0.4",
+    "@phantom/sdk-types": "^2.0.4",
+    "@phantom/api-key-stamper": "^2.0.4",
+    "@phantom/chain-interfaces": "^2.0.4"
+  }
+}

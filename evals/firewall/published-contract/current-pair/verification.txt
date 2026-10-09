@@ -1,0 +1,10 @@
+mcp-server-1.2.9.tgz recorded hashes and registry integrity agree
+cli-3.0.0.tgz recorded hashes and registry integrity agree
+package/src/index.ts hash and selected numbered excerpts agree
+package/src/actions/send-solana-transaction.ts hash and selected numbered excerpts agree
+package/src/actions/transfer-tokens.ts hash and selected numbered excerpts agree
+package/src/utils/actions.ts hash and selected numbered excerpts agree
+package/src/tools/types.ts hash and selected numbered excerpts agree
+package/dist/index.js hash and selected numbered excerpts agree
+Send source and Solana transfer subsection agree with inspected older source; compiled route patterns present
+Static evidence only; no installed graph, execution, origin signature verification or compatibility qualification

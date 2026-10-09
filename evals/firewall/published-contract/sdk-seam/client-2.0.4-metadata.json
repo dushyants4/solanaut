@@ -1,0 +1,44 @@
+{
+  "version": "2.0.4",
+  "dist": {
+    "shasum": "0b903ce624f4d880bc0e1dce5f916868b985bab2",
+    "tarball": "https://registry.npmjs.org/@phantom/client/-/client-2.0.4.tgz",
+    "fileCount": 5,
+    "integrity": "sha512-bE5NJPfLkOvM8U3wAQt9PW6j7RZew+zl9a8I3x5TRMfJ4K1MeNRQ+luvEIeh9NP+t8Y/0GLekE3zMAaPpqlMkA==",
+    "signatures": [
+      {
+        "sig": "MEUCIEyAw1F5RVKRzTrvCu/x12xJxRU5iharjPIEqRYrFzvbAiEAqIsuXW/E6mq0jePF/c8+5PiSDsDMAZAO2KNOMUZU9x0=",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      },
+      {
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "sig": "MEQCIEv8ueQexXhByGOk99MASYyzHzwxChdap68ObPSTMNydAiB4ditXrtsmt2OdiIcLk4/4/VV2Yd1K+X/amhGkffUWIg=="
+      }
+    ],
+    "attestations": {
+      "url": "https://registry.npmjs.org/-/npm/v1/attestations/@phantom%2fclient@2.0.4",
+      "provenance": {
+        "predicateType": "https://slsa.dev/provenance/v1"
+      }
+    },
+    "unpackedSize": 104819
+  },
+  "repository": {
+    "url": "git+https://github.com/phantom/phantom-connect-sdk.git",
+    "type": "git",
+    "directory": "packages/client"
+  },
+  "dependencies": {
+    "bs58": "^6.0.0",
+    "axios": "1.15.2",
+    "buffer": "^6.0.3",
+    "ethers": "^6.17.0",
+    "@phantom/utils": "^2.0.4",
+    "@phantom/crypto": "^2.0.4",
+    "@phantom/base64url": "^2.0.4",
+    "@phantom/constants": "^2.0.4",
+    "@phantom/sdk-types": "^2.0.4",
+    "@phantom/api-key-stamper": "^2.0.4",
+    "@phantom/openapi-wallet-service": "0.1.11"
+  }
+}

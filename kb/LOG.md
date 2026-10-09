@@ -72,3 +72,9 @@ grep "| research |" kb/LOG.md             # every research pass
 ## [2026-10-05 16:05] decision | the Alpha's scope approved (2c.1): SPEC §13, ADR-013 to ADR-018, the risk register and the thresholds; ADR-012's option C accepted, to be built first under Codex | design/ADR-012..018, docs/SPEC.md, docs/READINESS.md, docs/RISKS.md, kb/DOCUMENTS.md
 
 ## [2026-10-05 16:23] build | Leg 3 handed to Codex: AGENTS.md; docs/HANDOFF.md; .codex/ (the boundary guard as a hook, a workspace-write sandbox, T4 rules); the guard extended to Codex's patches and shell reads, 59/59 | AGENTS.md, docs/HANDOFF.md, .codex/, tools/boundary_guard.py, evals/harness/boundary_guard.md, runs/2026-10-05-handoff-to-codex.md
+
+## [2026-10-09 02:03] research | exact Phantom MCP routes return after broadcast; separate client sign-only API and presign timing retained with support and live-contract limits | kb/sources/2026-10-08_phantom-published-routes.md, evals/firewall/published-contract.md, evals/firewall/published-contract-current.md, evals/firewall/published-sdk-seam.md, kb/REGISTRY.md
+
+## [2026-10-09 02:03] file-back | pre-send validation answer distinguishes stock MCP results from the unqualified SDK candidate; accepted requirements remain | kb/briefs/2026-10-08_phantom-signing-seam.md, kb/INDEX.md
+
+## [2026-10-09 02:03] fix | Phantom wiki previously presented wallet-byte comparison as current functionality; state accepted Alpha requirement and actual route limitation | kb/wiki/competitors/phantom.md, kb/wiki/competitors/_index.md, kb/DOCUMENTS.md

@@ -65,6 +65,12 @@ lookup unless its complete history binding is established; corrupted or missing
 index state must rebuild from verified history or refuse.
 
 Do not wire additional signer implementation past the pending budget decision.
+Exact published Phantom MCP routes return after broadcast. The separately
+inspected client sign-only API is a candidate, not a qualified live seam; presign
+callbacks precede the signature. Establish supported wallet permissions and final
+byte validation before forwarding, without silently replacing the accepted MCP
+deployment contract. Static evidence: [current routes](../../evals/firewall/published-contract-current.md)
+and [SDK seam](../../evals/firewall/published-sdk-seam.md).
 Do not build the proposed anchor ceremony before acceptance. Timing qualification
 starts only after workload/analysis and reference environment are frozen, and
 runs separately from fault workers. No complete mutation score is inferred from

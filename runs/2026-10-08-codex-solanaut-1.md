@@ -7,6 +7,27 @@ progress out of one hundred with an explicit basis. Continue across queue items.
 
 ## Did
 
+Research archival pre-close passes nine of ten unchanged gates, including the
+staged secret scan. Only the uncommitted tree fails before private sync. Product,
+test and workload definitions remain identical to qualified `7118ae2`; no full
+suite is repeated for the documentation-only archival step. Diff whitespace
+findings occur only in retained verbatim hosted logs; authored files pass.
+
+Owned lookup commit `7118ae242b25f50305c0b49d6f9c9c4da2e30df9` is privately
+pushed. The unchanged post-push close passes all ten gates. Its exact hosted run
+`37871842802` is reviewed separately; at the initial follow-up it remains in
+progress with failed jobs, so no complete hosted pass is claimed.
+
+Finish separate primary-source Phantom research. Exact published MCP/CLI routes
+return after broadcast. The low-level client exposes sign-only wire results and
+a presign callback, but callback timing precedes signing; live authorisation and
+nonbroadcast behaviour remain unqualified. Scope current Browser SDK embedded
+support restrictions separately from CLI user-wallet configuration. Root review
+confirms current archive hashes, metadata integrity and numbered excerpts agree.
+Retain summaries and brief excerpts, not full third-party source. No dependencies
+installed/resolved, modules run, authentication/session/key read, RPC, signing or
+send. Register external facts as M14 and file the answer into the knowledge base.
+
 The owned-lookup candidate passes 769 fresh ordinary and serial AST cases, native
 typecheck and all unchanged floors. Exact AST hashes match restored product
 sources and the actual private tarball manifest. All 26 new semantic lookup,
@@ -251,6 +272,13 @@ receipts and measured claim rows follow integrated evidence.
 
 ## Found
 
+Exact owned-lookup CI `37871842802` at `7118ae2` completes failed: each runtime
+and AST suite reports 769 cases, 768 pass and one failure at the unchanged staged
+baseline wait. Partition one fails only that same real-baseline case. Other
+partitions, lookup cases and its 26-fault campaign pass/restored; typechecks and
+installed checks pass. Full logs/metadata are retained under the lookup receipt.
+No new lookup regression appears in that evidence; H11 is not accepted or applied.
+
 New lookup initially lacks its API. Initial type errors and fixture mistakes
 remain in complete logs. Peer review exposes D26's direct-helper caller-history
 mutation, reproduced before synchronous capture. The initial fault campaign misses
@@ -408,6 +436,12 @@ Progress percentage now uses the explicit reviewed milestone denominator and
 retained calculation. No estimate replaces a release gate.
 
 ## Open
+
+Phantom's stock MCP results cannot establish pre-send final-byte validation.
+The SDK candidate requires its supported-wallet contract and actual nonbroadcast
+qualification; a replacement architecture needs acceptance before implementation.
+Static API presence and a presign callback do not satisfy that gate. Continue
+independent accepted filtering and owned indexed-admission work.
 
 Definition 25 ordinary and serial AST suites pass 740 cases; unchanged floors
 pass, with corrected source hashes retained separately. Native typecheck exits

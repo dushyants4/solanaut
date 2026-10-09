@@ -3,13 +3,14 @@ type: entity
 status: current
 kind: product
 created: 2026-09-30
-updated: 2026-09-30
+updated: 2026-10-08
 ---
 
 # Phantom
 
 **Sources:**
 - [the MCP server](../../sources/2026-09-30_phantom-mcp-server.md)
+- [exact published signing routes](../../sources/2026-10-08_phantom-published-routes.md)
 - [Lighthouse assertions](../../sources/2026-09-30_phantom-lighthouse.md)
 - [domain warnings](../../sources/2026-09-30_phantom-domain-warnings.md)
 - [the Lighthouse program](../../sources/2026-09-30_lighthouse-program.md)
@@ -35,10 +36,13 @@ gives AI agents a wallet held in Phantom's key service.
   `send_solana_transaction`'s bytes through the guard, checks `transfer_tokens`' fields, and refuses the other tools.
   *Inference:* against a compromise under the same OS user the firewall is advisory, because Phantom's session file
   can be read.
-- **Appended instructions.** Because Phantom may change a transaction by appending Lighthouse assertions, Solanaut
-  compares the signed message with the admitted one, and admits only appended Lighthouse instructions with read-only
-  accounts (`docs/SPEC.md` §8).
-- **The live test.** ADR-008 proposes a capped mainnet canary with a fresh Phantom account as the operator.
+- **Appended instructions.** The accepted Alpha requirement is to compare returned wallet bytes before sending,
+  allowing only the narrow Lighthouse additions in `docs/SPEC.md` §8. Exact inspected MCP send/transfer routes
+  expose results after broadcast; a compatible pre-send seam remains unqualified. See the
+  [signing-seam brief](../../briefs/2026-10-08_phantom-signing-seam.md). The inspected client has a
+  sign-only API, but its live support and nonbroadcast behaviour are not established; its presign callback
+  runs before the signature.
+- **The live test.** The human deferred ADR-008's mainnet canary. The approved mission and rehearsals remain devnet.
 
 ## Related
 

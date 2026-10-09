@@ -1,5 +1,16 @@
 # DOCUMENTS.md — the document register
 
+2026-10-08 Phantom primary-source research registers the three new receipts:
+`evals/firewall/published-contract.md`, `published-contract-current.md` and
+`published-sdk-seam.md`, with exact static metadata/hashes/short excerpts and
+regenerating commands. Source note, signing-seam brief, competitor wiki/index,
+knowledge INDEX/REGISTRY/LOG, evaluation index, RISKS 1.62, CLAIMS M14, HANDOFF,
+release evidence map and continuing run are updated. Source/packaged product
+bytes, dependencies, workload definitions and release gates are unchanged.
+The continuing record retains the private `7118ae2` push and ten close passes.
+The lookup receipt and CLAIMS record the exact failed hosted implementation run;
+full job metadata/logs distinguish unchanged-wait failure from passing new cases.
+
 2026-10-08 owned current-head lookup registers SPEC Draft 4.70, OVERVIEW Draft 41,
 STORAGE Draft 7, RISKS 1.61, PROGRESS, HANDOFF, continuing run, evaluation index
 and release evidence map. New receipt `evals/sdk/request-index-lookup.md` retains

@@ -1,0 +1,34 @@
+{
+  "version": "1.2.9",
+  "dist": {
+    "shasum": "619948610103b766e00cbe70825c788aeea6f288",
+    "tarball": "https://registry.npmjs.org/@phantom/mcp-server/-/mcp-server-1.2.9.tgz",
+    "fileCount": 17,
+    "integrity": "sha512-1a11to0UQ0HGIsiMzFHpToYW+7jDfIDa0WK0tjeT7deSw9qzvbDKJjDXIUPV76fEPS6WkJ8BogIgPD8BJGeiew==",
+    "signatures": [
+      {
+        "sig": "MEQCIFdpKxEdSp/f7cM24E2oHSJdJtRVi/K1fHP4NxLRJw89AiBFIWZdBBPCirfklZA5PbS//6ksy55hUTIaHjNbFuNBpg==",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      },
+      {
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "sig": "MEUCIGRLsQ66PA/ncWv7uxoatcgXYGUrH9k/AGOYM5+7DWZvAiEA0LcCcLe/pBsootjDSZs79scxkAsrNmyg+vlnLV/jl4U="
+      }
+    ],
+    "attestations": {
+      "url": "https://registry.npmjs.org/-/npm/v1/attestations/@phantom%2fmcp-server@1.2.9",
+      "provenance": {
+        "predicateType": "https://slsa.dev/provenance/v1"
+      }
+    },
+    "unpackedSize": 49872
+  },
+  "repository": {
+    "url": "git+https://github.com/phantom/phantom-connect-sdk.git",
+    "type": "git",
+    "directory": "packages/mcp-server"
+  },
+  "dependencies": {
+    "@phantom/cli": "^3.0.0"
+  }
+}
