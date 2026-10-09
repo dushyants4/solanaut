@@ -221,6 +221,7 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
   const script=`
     import {createGuard,preparePolicyText,verifyPolicyAuthorization,PolicyAuthorizationError,verifyCheckpointBinding,encodeBase58,EVALUATION_PROFILE} from '@solanaut/sdk';
     import {generateKeyPairSync,sign,createHash} from 'node:crypto';
+    import {spawnSync} from 'node:child_process';
     import {mkdtempSync,mkdirSync,writeFileSync,readFileSync,rmSync,renameSync,symlinkSync,unlinkSync} from 'node:fs';
     import {tmpdir} from 'node:os';
     import {join} from 'node:path';
@@ -260,6 +261,24 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
     g.recordSigning({stage:'response',decision:d.hash,status:'uncertain',signature});
     const request=g.beginRequest({clientId:'client',id:'status'},'status',{},1001);g.finishRequest(request.hash,{ready:true});
     const entries=g.entries(),context={seq:entries.length,head:entries.at(-1).hash};g.close();
+    const replayRecord='replay-signed.jsonl',replayTrust='replay-trust.json',replayPolicy='replay-policy.json',replayMarker='installed-replay-redaction-sentinel';
+    const replayCLI=(...args)=>spawnSync(join(process.cwd(),'node_modules/.bin/solanaut-replay'),args,{encoding:'utf8',timeout:5000});
+    const refusedReplay=result=>{if(result.error || result.signal || result.status!==2 || result.stdout!=='' || result.stderr.includes(replayMarker) || result.stderr.includes(process.cwd()))throw new Error('installed replay did not safely refuse source');};
+    writeFileSync(replayRecord,entries.map(e=>JSON.stringify(e)+'\\n').join(''));writeFileSync(replayTrust,JSON.stringify(trust));writeFileSync(replayPolicy,JSON.stringify(policy));
+    const signedReplay=replayCLI(replayRecord,'-',replayTrust);if(signedReplay.status!==0 || !signedReplay.stdout.includes('no divergence'))throw new Error('installed replay rejected authentic signed lifecycle');
+    writeFileSync('replay-wrong-trust.json',JSON.stringify({...trust,guardId:'foreign'}));if(replayCLI(replayRecord,'-','replay-wrong-trust.json').status===0)throw new Error('installed replay ignored independent trust');
+    writeFileSync('replay-extra-trust.json',JSON.stringify({...trust,extra:replayMarker}));refusedReplay(replayCLI(replayRecord,'-','replay-extra-trust.json'));
+    const utf8Trust=JSON.stringify({...trust,guardId:'UTF8-SENTINEL'}),utf8Offset=utf8Trust.indexOf('UTF8-SENTINEL');writeFileSync('replay-utf8-trust.json',Buffer.concat([Buffer.from(utf8Trust.slice(0,utf8Offset)),Buffer.from([255]),Buffer.from(utf8Trust.slice(utf8Offset+'UTF8-SENTINEL'.length))]));refusedReplay(replayCLI(replayRecord,'-','replay-utf8-trust.json'));
+    writeFileSync('replay-blank.jsonl',readFileSync(replayRecord,'utf8')+'\\n');refusedReplay(replayCLI('replay-blank.jsonl','-',replayTrust));
+    const legacyGuard=await createGuard({policy}),legacyDecision=legacyGuard.check({message:new Uint8Array(message),at:1000});legacyGuard.close();
+    writeFileSync('replay-legacy.jsonl',JSON.stringify(legacyDecision)+'\\n');if(replayCLI('replay-legacy.jsonl',replayPolicy).status!==0)throw new Error('installed replay broke legacy arguments');
+    const {hash:oldLegacyHash,...legacyBody}=legacyDecision,changedDecision=seal({...legacyBody,allow:replayMarker});
+    writeFileSync('replay-divergence.jsonl',JSON.stringify(changedDecision)+'\\n');const divergedReplay=replayCLI('replay-divergence.jsonl',replayPolicy);
+    if(divergedReplay.status!==1 || divergedReplay.stdout!=='diverges at seq 0, field allow\\n  recorded: [redacted]\\n  recomputed: [redacted]\\n' || divergedReplay.stderr!=='')throw new Error('installed replay altered divergence or exposed values');
+    refusedReplay(replayCLI('missing-'+replayMarker,replayPolicy));
+    refusedReplay(replayCLI('replay-legacy.jsonl','missing-policy-'+replayMarker));
+    writeFileSync('replay-large-policy.json',JSON.stringify(policy)+' '.repeat(1048576));refusedReplay(replayCLI('replay-legacy.jsonl','replay-large-policy.json'));
+    writeFileSync('replay-large-record.jsonl',JSON.stringify(seal({...legacyBody,reason:'a'.repeat(1048576)}))+'\\n');refusedReplay(replayCLI('replay-large-record.jsonl',replayPolicy));
     function reportAfter(prefix,changes={}){return seal({v:1,kind:'report',seq:prefix.length,prev:prefix.at(-1).hash,at:1001,decision:d.hash,outcome:'unknown',source:'caller',...changes});}
     const invalidReports=[...['outcome','source'].map(field=>[...entries,reportAfter(entries,{[field]:'unsupported'})]),...[null,-1,'1001'].map(at=>[...entries,reportAfter(entries,{at})])];
     for(const outcome of ['landed','failed','expired']){const final=[...entries,reportAfter(entries,{outcome})];for(const next of ['unknown','landed','failed','expired'])invalidReports.push([...final,reportAfter(final,{outcome:next})]);}

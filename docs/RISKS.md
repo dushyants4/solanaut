@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.63** · 2026-10-08 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.64** · 2026-10-09 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 Exact published Phantom MCP send/transfer routes return after broadcast; the
@@ -11,6 +11,18 @@ signature, not the final signed wire. Browser SDK embedded-wallet support limits
 do not establish the exact CLI user-wallet's permissions. Static primary evidence:
 `evals/firewall/published-contract-current.md`, `evals/firewall/published-sdk-seam.md`.
 No dependency or accepted architecture contract is changed by this finding.
+
+Hosted CI cannot start the latest archival jobs because of the account issue
+retained in `evals/sdk/replay-command/hosted-0a199aa/` (H13). A refused runner
+does not establish a test failure or pass. Earlier cancelled component logs
+already retain the unchanged baseline-wait failure (H11); these are separate
+findings. Local checks cannot clear the required complete hosted gate.
+
+The replay command now refuses unsafe sources and redacts diagnostic values.
+Correcting drafted rehash fixtures preserves valid-chain adversarial cases;
+explicit trust field membership closes the candidate's delimiter collision.
+It still retains replay state and proves neither verified backup capture nor
+restored service readiness. Evidence: `evals/sdk/replay-command.md`.
 
 The owned proposal companion refuses a stale lookup-to-commit head and serializes
 its requests. Peer review reproduces D27 cached reply aliasing and D28 shared

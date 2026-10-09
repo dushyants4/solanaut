@@ -1,0 +1,49 @@
+✔ PKG-3: legacy two positional arguments preserve success text and exit (132.419685ms)
+✔ PKG-3/VER-1: signed policy history replays with independent public trust and retained lifecycle facts (117.492212ms)
+✔ PKG-3: missing and extra positional arguments retain the usage exit (279.556457ms)
+✔ OPR-2/PKG-3: malformed policy and trust sources never expose source text or sensitive paths (388.357878ms)
+✔ OPR-2/PKG-3: invalid policies report fixed diagnostics rather than validator values (116.527531ms)
+✔ POL-2/VER-2/PKG-3: signed history cannot authenticate its own missing or substituted trust (413.677964ms)
+✖ OPR-2/PKG-3: public trust accepts exactly its public pin fields (563.061388ms)
+✔ VER-1/VER-2/PKG-3: forged signatures, unsupported profiles and policy rollback refuse (499.909468ms)
+✔ PKG-3: first divergence keeps its sequence/field and redacts detail values (98.396447ms)
+✔ SNP-1/PKG-3: blank lines, incomplete framing and corrupt final records cannot produce success (575.398006ms)
+✔ SNP-1/PKG-3: actual record line ceiling has an inclusive boundary (225.780579ms)
+✔ OPR-2/PKG-3: public JSON source ceilings are inclusive and invalid UTF-8 refuses (596.09958ms)
+✔ OPR-2/SNP-1/PKG-3: symlink, hardlink and directory inputs refuse without reading their content (1157.827149ms)
+✔ OPR-2/SNP-1/PKG-3: special files fail without a blocking read (298.846599ms)
+✔ SNP-7/PKG-3: successful command uses two complete actual archive reads (102.573872ms)
+✔ SNP-7/PKG-3: valid but changed complete sources between actual reads refuse (107.330574ms)
+✔ SNP-8/PKG-3: successful verification leaves all input bytes and directory contents unchanged (207.00821ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 16
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5968.496682
+
+✖ failing tests:
+
+test at packages/sdk/test/replay-command.test.ts:95:1
+✖ OPR-2/PKG-3: public trust accepts exactly its public pin fields (563.061388ms)
+  AssertionError [ERR_ASSERTION]: diverges at seq 0, field chain
+    recorded: [redacted]
+    recomputed: [redacted]
+  
+  
+  1 !== 2
+  
+      at safeFailure (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:30:10)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:97:5)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

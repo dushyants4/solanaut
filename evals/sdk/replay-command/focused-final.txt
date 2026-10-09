@@ -1,0 +1,27 @@
+✔ PKG-3: legacy two positional arguments preserve success text and exit (114.537543ms)
+✔ PKG-3/VER-1: signed policy history replays with independent public trust and retained lifecycle facts (112.378793ms)
+✔ PKG-3: missing and extra positional arguments retain the usage exit (276.811067ms)
+✔ OPR-2/PKG-3: malformed policy and trust sources never expose source text or sensitive paths (357.329431ms)
+✔ OPR-2/PKG-3: invalid policies report fixed diagnostics rather than validator values (97.035269ms)
+✔ POL-2/VER-2/PKG-3: signed history cannot authenticate its own missing or substituted trust (390.250428ms)
+✔ OPR-2/PKG-3: public trust accepts exactly its public pin fields (635.545905ms)
+✔ VER-1/VER-2/PKG-3: forged signatures, unsupported profiles and policy rollback refuse (393.080614ms)
+✔ PKG-3: first divergence keeps its sequence/field and redacts detail values (99.180913ms)
+✔ SNP-1/PKG-3: blank lines, incomplete framing and corrupt final records cannot produce success (558.151601ms)
+✔ SNP-1/PKG-3: actual record line ceiling has an inclusive boundary (227.748228ms)
+✔ OPR-2/PKG-3: public JSON source ceilings are inclusive and invalid UTF-8 refuses (682.551054ms)
+✔ OPR-2/PKG-3: public descriptor opens enforce no-follow and nonblocking flags (93.844312ms)
+✔ OPR-2/PKG-3: observed public source replacement refuses after a real descriptor read (89.339044ms)
+✔ OPR-2/SNP-1/PKG-3: symlink, hardlink and directory inputs refuse without reading their content (1110.769175ms)
+✔ OPR-2/SNP-1/PKG-3: special files fail without a blocking read (279.77157ms)
+✔ SNP-7/PKG-3: successful command uses two complete actual archive reads (104.709197ms)
+✔ SNP-7/PKG-3: valid but changed complete sources between actual reads refuse (96.841063ms)
+✔ SNP-8/PKG-3: successful verification leaves all input bytes and directory contents unchanged (200.729408ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5998.445853

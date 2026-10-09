@@ -178,7 +178,8 @@ test("POL-4: the operator replay command uses signed history and an external pub
   assert.equal(good.status, 0, good.stderr + good.stdout);
   const untrusted = spawnSync(process.execPath, ["packages/sdk/bin/replay.ts", path, "-"], { encoding: "utf8" });
   assert.equal(untrusted.status, 1);
-  assert.match(untrusted.stdout, /externally pinned/);
+  assert.equal(untrusted.stdout, "diverges at seq 0, field chain\n  recorded: [redacted]\n  recomputed: [redacted]\n");
+  assert.equal(untrusted.stderr, "");
 });
 test("POL-4: extending the window reconstructs spending pruned under the old window", async () => {
   const path = join(mkdtempSync(join(tmpdir(), "solanaut-window-change-")), "guard.jsonl");

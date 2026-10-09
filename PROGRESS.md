@@ -5,6 +5,12 @@ including the approved Beta; CLAIMS S78 and `evals/release/progress.md` freeze t
 scope. This is not release readiness, effort or a completion date. Components
 inside open milestones receive no fractional credit.
 
+The existing read-only replay command has local source and installed component
+qualification in `evals/sdk/replay-command.md`: strict streamed history reads,
+bounded public inputs, independent trust pins and redacted diagnostics. It is no
+bounded-state or recovered-service claim. Hosted archival jobs cannot start due
+to the account issue recorded as H13; earlier H11 wait failures remain distinct.
+
 Internal owned proposal consultation has focused/related and semantic-fault
 evidence in `evals/sdk/owned-request-admission.md`. It serializes disk lookup with
 a current-head check before evaluation/commit and preserves historical decisions.

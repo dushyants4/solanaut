@@ -169,3 +169,12 @@ fails the same case. Other jobs, the lookup tests and its twenty-six faults pass
 Full job metadata and log: `owned-request-admission/hosted-d0d8dc3/`. That failure
 is not replaced by passing local component checks. H9/H10/H11/H12 and all required
 Alpha, audit, outside-user and human-controlled release gates remain open.
+
+Exact component `8a343d42b0d60dd188ba7fc5f2d9a198d6346364` is privately pushed.
+Hosted `37949141048` is cancelled by the subsequent archival push; its retained
+partial runtime/AST logs already show the unchanged staged-baseline wait failure.
+Other completed jobs pass, but cancelled jobs do not establish complete coverage
+or restoration. Full available log and job metadata: `hosted-8a343d4/`.
+The current-day run-record archival follow-up `0a199aa` closes all ten local gates,
+with product/test/workload bytes unchanged. Its hosted jobs never start because
+of the account issue retained in `../replay-command/hosted-0a199aa/` (H13).

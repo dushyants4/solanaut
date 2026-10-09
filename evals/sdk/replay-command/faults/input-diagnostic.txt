@@ -1,0 +1,30 @@
+✖ OPR-2/PKG-3: malformed policy and trust sources never expose source text or sensitive paths (300.183005ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 385.974873
+
+✖ failing tests:
+
+test at packages/sdk/test/replay-command.test.ts:77:1
+✖ OPR-2/PKG-3: malformed policy and trust sources never expose source text or sensitive paths (300.183005ms)
+  AssertionError [ERR_ASSERTION]: The input was expected to not match the regular expression /private-diagnostic-marker/. Input:
+  
+  "Error: ENOENT: no such file or directory, open '/tmp/solanaut-replay-command-7m9nSH/private-diagnostic-marker-missing'\n"
+  
+      at safeFailure (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:31:10)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:82:3)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: "Error: ENOENT: no such file or directory, open '/tmp/solanaut-replay-command-7m9nSH/private-diagnostic-marker-missing'\n",
+    expected: /private-diagnostic-marker/,
+    operator: 'doesNotMatch',
+    diff: 'simple'
+  }

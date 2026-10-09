@@ -159,6 +159,15 @@ devnet.
 
 ## 5. Questions and requests for the human
 
+**H13 — hosted CI account availability (2026-10-09).** Exact archival run
+`37949577048` cannot start any job. GitHub's annotations say recent account
+payments failed or the spending limit needs increasing. The human account owner
+must resolve the account setting; Codex makes no purchase or billing change.
+Metadata, annotations and failed log retrieval are retained in
+`evals/sdk/replay-command/hosted-0a199aa/`. No test execution, code failure or
+passing hosted qualification is inferred from jobs that never started. H11's
+separate baseline-wait proposal and all release gates remain required.
+
 Phantom compatibility finding (2026-10-08): exact inspected stock MCP routes
 return after broadcast. Client sign-only code exists, but live support and
 nonbroadcast behaviour for the intended agent wallet remain unqualified; the
@@ -233,6 +242,15 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 | O1 | AGENTS.md, build convention | Replace `TypeScript run natively by Node 26, with no build step; ESM;` with `TypeScript run natively by Node 26 for development; a release-only build emits JavaScript and declarations for npm consumers; ESM;` | Explicitly approved by the human in the Solanaut 1.0 mission. | no |
 
 ## 7. Codex's log
+
+2026-10-09: existing replay command qualified as a read-only local component;
+receipt `evals/sdk/replay-command.md`. Actual streamed reads, bounded public JSON,
+independent pins and redaction preserve positional/exit compatibility. First
+fixture errors, the candidate's trust-field collision and the prior POL-4 raw
+detail assertion are retained. Exact redacted sequence/field output replaces only
+that obsolete value assertion; missing trust still refuses. Full regression,
+isolated driver, close and private sync results belong to the same receipt and
+current run. No bounded-state, backup recovery or stable-release milestone closes.
 
 2026-10-09 resume: owned proposal component `8a343d4` is privately pushed.
 Exact hosted `37949141048` remains in progress. Post-push close fails only the

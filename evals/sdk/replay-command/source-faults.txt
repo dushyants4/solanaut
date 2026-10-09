@@ -1,0 +1,14 @@
+caught replay command fault: external-trust
+caught replay command fault: divergence-exit
+caught replay command fault: complete-source
+caught replay command fault: fresh-source
+caught replay command fault: public-ceiling
+caught replay command fault: archive-ceiling
+caught replay command fault: public-utf8
+caught replay command fault: trust-fields
+caught replay command fault: nofollow
+caught replay command fault: nonblocking
+caught replay command fault: source-stability
+caught replay command fault: detail-redaction
+caught replay command fault: input-diagnostic
+All replay command faults caught; source restored

@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.70** · 2026-10-08 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.72** · 2026-10-09 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -534,6 +534,8 @@ Each is fixed test-first: the evaluator writes the failing test, and the builder
 | D26 | The new internal request-lookup helper can fold a caller-mutated history after validating its captured snapshot, returning unrecorded tail facts | `request-index-publication.ts`, reproduced on 2026-10-08 before integration | **closed in the builder candidate:** synchronously capture history, identity and policy pins, then use that same history for validation and folding. Actual owned callers already supply private history. First-red and retained faults: `evals/sdk/request-index-lookup.md`; no admission or bounded-state qualification |
 | D27 | A fresh owned-admission reply shares nested data with cached log state, unlike authenticated lookup replies | new `guard.ts` companion, reproduced on 2026-10-08 before integration | **closed in the builder candidate:** detach and recursively freeze companion replies. The trusted synchronous SDK contract is unchanged. First-red: `evals/sdk/owned-request-admission.md`; broader qualification remains owed |
 | D28 | Cloning a shared-buffer proposal preserves shared byte backing, so caller mutation changes queued admission bytes | new `guard.ts` companion, reproduced on 2026-10-08 before integration | **closed in the builder candidate:** copy captured message bytes into a private ordinary Uint8Array before binding/queueing. First-red: `evals/sdk/owned-request-admission.md`; no atomic concurrent-memory snapshot or isolated deployment claim |
+| D29 | Replay command drops blank record lines, loads the entire file, follows final source links and exposes raw errors/detail values | `bin/replay.ts`, reproduced on 2026-10-09 | **closed in the local candidate:** compose verified streamed reads, bound public JSON inputs and redact diagnostics. First failures and fault evidence: `evals/sdk/replay-command.md`; complete release qualification remains separate |
+| D30 | Joining trust field names with commas lets comma-containing names imitate the expected field set | initial replay-command candidate, reproduced on 2026-10-09 | **closed:** explicit key cardinality and membership; signed malformed-field regression fails before correction. No trust learned from history and no policy rule change |
 
 **Status:** closed at milestone 2a.5 (`evals/sdk/admission.md`), test-first: D1, D2, D5, D6, D7, D9, D10 and D12. D12
 closed early: the guard decodes bytes itself, so `packages/sdk/src` imports no web3.js. D11 closed at milestone 2a.6
@@ -1354,3 +1356,21 @@ record/evaluator change, isolation or completed SNP-7 claim.
 Component evidence: `evals/sdk/owned-request-admission.md`.
 
 | Draft 4.71 | 2026-10-08 | Internal serialized owned proposal consultation with D27 reply detachment and D28 shared-byte capture corrections. Definition 27/seed 27241 retains prior sources/tests/floors/limits and adds the companion tests. Bounded state, complete asynchronous facade, signer deployment and release gates remain owed. |
+
+Read-only PKG-3/SNP operator replay convention under accepted ADR-010/014/019:
+keep `<record.jsonl> <policy.json|-> [public-trust.json]`, the existing success
+text and first-divergence sequence/field. Exit 0 means matched replay, 1 a replay
+divergence (including policy/profile/history violations), and 2 usage or an unsafe,
+unreadable or structurally invalid input. Both detail labels now print `[redacted]`;
+diagnostics never print input values, source paths or raw exceptions.
+The command composes complete `streamArchive` reads with `replayStream`. Public
+JSON inputs have a specified inclusive 1,048,576-byte ceiling; archive lines use
+the same inclusive ceiling excluding their newline. On Linux, require regular
+single-link sources, refuse final source symlinks/nonblocking special files and
+observed descriptor/path changes, and decode UTF-8 strictly. Capture public JSON
+before asynchronous replay. Trust accepts exactly the three nonempty public pin
+strings, independently provided; `-` selects recorded signed policies. No new
+flags, stable exports, signer method, format/profile or policy semantics.
+Streaming input does not bound retained replay state or qualify service recovery.
+
+| Draft 4.72 | 2026-10-09 | Safe read-only replay command and D29/D30 corrections; definition 28/seed 28483 retains the complete prior selected population, floors, waits and limits. Installed command and source/compiled qualification remain separately scoped; H13 hosted account availability and all release gates remain open. |

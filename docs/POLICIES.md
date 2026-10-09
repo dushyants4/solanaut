@@ -1,6 +1,6 @@
 # POLICIES.md — signing and verifying policy history
 
-> **Draft 1** · 2026-10-05 · owner: integrator · for: SDK users and operator-tool developers.
+> **Draft 2** · 2026-10-09 · owner: integrator · for: SDK users and operator-tool developers.
 > This foundation is tested offline; isolated deployment and Phantom rehearsals are still owed.
 > Evidence: `evals/sdk/signed-policy.md`, claim S15. Register: `kb/DOCUMENTS.md`.
 
@@ -46,6 +46,21 @@ with the same arguments. Ordinary legacy records still accept `<record.jsonl> <p
 Use `replay(entries, undefined, undefined, trust)` or `inspectRecord(entries, policy, trust)`
 in the SDK. Replay names the first divergence; missing trust or unsupported history never counts
 as successful replay.
+
+The source and installed replay commands read verified JSONL framing and chain
+through complete streamed passes. Use regular, single-link files on Linux in an
+operator-owned directory. Final source symlinks, special files and observed source
+changes refuse. Public policy/trust JSON is limited to 1,048,576 bytes each;
+record lines use that same byte ceiling excluding the newline. These are specified
+reader bounds, not memory or restart measurements. Trust contains exactly the
+three independently retained nonempty public pin strings.
+
+Exit 0 means matched replay, 1 a replay divergence, and 2 usage or unsafe/unreadable
+input. The first divergent sequence and field remain visible; the `recorded` and
+`recomputed` values now print `[redacted]`. Errors hide raw inputs and paths.
+Check the retained source, configured policy and public pins when verification
+cannot complete. Success does not establish backup freshness or running-service
+recovery. Component evidence: `evals/sdk/replay-command.md`.
 
 `PolicyAuthorizationError` has code `policy-authorization`; correct the external pin or prepare
 a valid higher signed version. `PolicyError` still reports invalid policy fields. Unsupported

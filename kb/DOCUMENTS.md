@@ -1,5 +1,14 @@
 # DOCUMENTS.md — the document register
 
+2026-10-09 replay-command integration registers SPEC Draft 4.72, OVERVIEW 43,
+RISKS 1.64, POLICIES 2, PROGRESS, HANDOFF, continuing run, evaluation index and
+`evals/sdk/replay-command.md`, CLAIMS S93 and its package/coverage manifests.
+Retain original/corrected fixture failures, D29/D30,
+source/compiled qualification and exact hosted cancellation/account evidence.
+The previous POL-4 detail assertion becomes exact redacted sequence/field output;
+its refusal remains, and the original full failure is retained.
+Public arguments, policy semantics, release metadata and all gates stay binding.
+
 2026-10-09 continuation registers `runs/2026-10-09-codex-solanaut-1.md` and
 HANDOFF's private owned-admission sync/date-rollover entry. No product, workload,
 public release metadata or gate changes in this archival follow-up.

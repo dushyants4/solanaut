@@ -1,0 +1,265 @@
+✔ PKG-3: legacy two positional arguments preserve success text and exit (108.664204ms)
+✔ PKG-3/VER-1: signed policy history replays with independent public trust and retained lifecycle facts (108.820128ms)
+✔ PKG-3: missing and extra positional arguments retain the usage exit (260.624369ms)
+✖ OPR-2/PKG-3: malformed policy and trust sources never expose source text or sensitive paths (269.32449ms)
+✖ OPR-2/PKG-3: invalid policies report fixed diagnostics rather than validator values (95.870134ms)
+✔ POL-2/VER-2/PKG-3: signed history cannot authenticate its own missing or substituted trust (405.341322ms)
+✖ OPR-2/PKG-3: public trust accepts exactly its public pin fields (102.023499ms)
+✔ VER-1/VER-2/PKG-3: forged signatures, unsupported profiles and policy rollback refuse (403.417609ms)
+✖ PKG-3: first divergence keeps its sequence/field and redacts detail values (91.782885ms)
+✖ SNP-1/PKG-3: blank lines, incomplete framing and corrupt final records cannot produce success (97.45171ms)
+✖ SNP-1/PKG-3: actual record line ceiling has an inclusive boundary (111.212741ms)
+✖ OPR-2/PKG-3: public JSON source ceilings are inclusive and invalid UTF-8 refuses (296.529445ms)
+✖ OPR-2/SNP-1/PKG-3: symlink, hardlink and directory inputs refuse without reading their content (102.892049ms)
+✖ OPR-2/SNP-1/PKG-3: special files fail without a blocking read (5023.387718ms)
+✖ SNP-7/PKG-3: successful command uses two complete actual archive reads (94.275539ms)
+✖ SNP-7/PKG-3: valid but changed complete sources between actual reads refuse (103.438685ms)
+✔ SNP-8/PKG-3: successful verification leaves all input bytes and directory contents unchanged (207.408671ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 6
+ℹ fail 11
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7965.182725
+
+✖ failing tests:
+
+test at packages/sdk/test/replay-command.test.ts:76:1
+✖ OPR-2/PKG-3: malformed policy and trust sources never expose source text or sensitive paths (269.32449ms)
+  AssertionError [ERR_ASSERTION]: The input was expected to not match the regular expression /private-diagnostic-marker/. Input:
+  
+  "replay: ENOENT: no such file or directory, open '/tmp/solanaut-replay-command-DZa34u/private-diagnostic-marker-missing'\n"
+  
+      at safeFailure (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:30:10)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:81:3)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: "replay: ENOENT: no such file or directory, open '/tmp/solanaut-replay-command-DZa34u/private-diagnostic-marker-missing'\n",
+    expected: /private-diagnostic-marker/,
+    operator: 'doesNotMatch',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/replay-command.test.ts:84:1
+✖ OPR-2/PKG-3: invalid policies report fixed diagnostics rather than validator values (95.870134ms)
+  AssertionError [ERR_ASSERTION]: The input was expected to not match the regular expression /private-diagnostic-marker/. Input:
+  
+  'replay: invalid policy: principal[0] must be a base58 address of 32 bytes, not "private-diagnostic-marker"\n'
+  
+      at safeFailure (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:30:10)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:85:102)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'replay: invalid policy: principal[0] must be a base58 address of 32 bytes, not "private-diagnostic-marker"\n',
+    expected: /private-diagnostic-marker/,
+    operator: 'doesNotMatch',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/replay-command.test.ts:94:1
+✖ OPR-2/PKG-3: public trust accepts exactly its public pin fields (102.023499ms)
+  AssertionError [ERR_ASSERTION]: diverges at seq 0, field chain
+    recorded:   ""
+    recomputed: "signed policy history requires an externally pinned operator, guard and cluster"
+  
+  
+  1 !== 2
+  
+      at safeFailure (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:29:10)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:96:5)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/replay-command.test.ts:112:1
+✖ PKG-3: first divergence keeps its sequence/field and redacts detail values (91.782885ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'diverges at seq 0, field hash\n' +
+  +   '  recorded:   "a6f929c8218a1ffbb292f575ca3ad9b6c6944dd02c7573112b5186604c6dfec8"\n' +
+  +   '  recomputed: "d26a3526f41b4a3be0fbf20a245e53e9b67ada5f87aeca803d4f8353518ca5f9"\n'
+  - 'diverges at seq 0, field rule\n' +
+  -   '  recorded: [redacted]\n' +
+  -   '  recomputed: [redacted]\n'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:116:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'diverges at seq 0, field hash\n  recorded:   "a6f929c8218a1ffbb292f575ca3ad9b6c6944dd02c7573112b5186604c6dfec8"\n  recomputed: "d26a3526f41b4a3be0fbf20a245e53e9b67ada5f87aeca803d4f8353518ca5f9"\n',
+    expected: 'diverges at seq 0, field rule\n  recorded: [redacted]\n  recomputed: [redacted]\n',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/replay-command.test.ts:118:1
+✖ SNP-1/PKG-3: blank lines, incomplete framing and corrupt final records cannot produce success (97.45171ms)
+  AssertionError [ERR_ASSERTION]: replays: 1 entries, 1 decisions recomputed, no divergence
+  
+  
+  0 !== 2
+  
+      at safeFailure (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:29:10)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:121:5)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/replay-command.test.ts:124:1
+✖ SNP-1/PKG-3: actual record line ceiling has an inclusive boundary (111.212741ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:128:90)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/replay-command.test.ts:131:1
+✖ OPR-2/PKG-3: public JSON source ceilings are inclusive and invalid UTF-8 refuses (296.529445ms)
+  AssertionError [ERR_ASSERTION]: replays: 1 entries, 1 decisions recomputed, no divergence
+  
+  
+  0 !== 2
+  
+      at safeFailure (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:29:10)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:136:149)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/replay-command.test.ts:139:1
+✖ OPR-2/SNP-1/PKG-3: symlink, hardlink and directory inputs refuse without reading their content (102.892049ms)
+  AssertionError [ERR_ASSERTION]: replays: 1 entries, 1 decisions recomputed, no divergence
+  
+  
+  0 !== 2
+  
+      at safeFailure (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:29:10)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:146:5)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/replay-command.test.ts:150:1
+✖ OPR-2/SNP-1/PKG-3: special files fail without a blocking read (5023.387718ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + Error: spawnSync /home/dashy/.local/share/mise/installs/node/26.7.0/bin/node ETIMEDOUT
+  +     at Object.spawnSync (node:internal/child_process:1144:20)
+  +     at spawnSync (node:child_process:928:24)
+  +     at invoke (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:25:34)
+  +     at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:152:15)
+  +     at Test.runInAsyncScope (node:async_hooks:226:14)
+  +     at Test.run (node:internal/test_runner/test:1397:25)
+  +     at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+  +   code: 'ETIMEDOUT',
+  +   errno: -110,
+  +   path: '/home/dashy/.local/share/mise/installs/node/26.7.0/bin/node',
+  +   spawnargs: [
+  +     'packages/sdk/bin/replay.ts',
+  +     '/tmp/solanaut-replay-command-DZa34u/fifo-private-diagnostic-marker',
+  +     '/tmp/solanaut-replay-command-DZa34u/policy.json'
+  +   ],
+  +   syscall: 'spawnSync /home/dashy/.local/share/mise/installs/node/26.7.0/bin/node'
+  + }
+  - undefined
+  
+      at safeFailure (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:28:10)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:152:3)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Error],
+    expected: undefined,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/replay-command.test.ts:175:1
+✖ SNP-7/PKG-3: successful command uses two complete actual archive reads (94.275539ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 2
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:177:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/replay-command.test.ts:179:1
+✖ SNP-7/PKG-3: valid but changed complete sources between actual reads refuse (103.438685ms)
+  AssertionError [ERR_ASSERTION]: replays: 1 entries, 1 decisions recomputed, no divergence
+  
+  
+  0 !== 2
+  
+      at safeFailure (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:29:10)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:181:60)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -65,7 +65,7 @@ test("CI-2: an asynchronously started real staged baseline finishes without rela
     const launch=spawnSync(process.execPath,["evals/ci/mutation-run.ts","--start","--baseline"],{encoding:"utf8",timeout:10000});
     assert.equal(launch.status,0,launch.stdout+launch.stderr);assert.equal(launch.error,undefined);
     stage=launch.stdout.match(/Mutation run directory: (.+)/)?.[1];assert.equal(typeof stage,"string");
-    const manifest=JSON.parse(readFileSync(join(stage!,"manifest.json"),"utf8"));assert.equal(manifest.definition,27);assert.equal(manifest.environment.FUZZ_SEED,"27241");
+    const manifest=JSON.parse(readFileSync(join(stage!,"manifest.json"),"utf8"));assert.equal(manifest.definition,28);assert.equal(manifest.environment.FUZZ_SEED,"28483");
     ticket=JSON.parse(readFileSync(join(stage!,"ticket.json"),"utf8"));
     const specification=JSON.parse(readFileSync(join(ticket!.directory,"spec.json"),"utf8"));
     assert.equal(specification.command.args[1],"--experimental-test-isolation=none");

@@ -1,0 +1,44 @@
+✔ CI-1: fixed fault partitions cover the maintained inventory exactly once (1.827383ms)
+✔ CI-1: malformed partition arguments cannot silently omit campaigns (0.527168ms)
+✔ CI-1: workflow requires every fixed partition with the existing restoration runner (10.630892ms)
+✔ CI-1: partition execution retains failures and stops on non-restoring sources (0.41805ms)
+✔ CI-1: workflow-restoration monitoring covers the partition configuration (1.730684ms)
+✖ CI-1: exact inventory accepts every maintained campaign and rejects omission/addition/duplication (13.116433ms)
+✔ CI-1: all campaigns run sequentially; failure/null exit fails aggregation without hiding other findings (1.048952ms)
+✔ CI-1: changed source stops further mutation, reports skipped work and fails the gate (0.199726ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 115.712886
+
+✖ failing tests:
+
+test at evals/ci/bite.test.ts:6:1
+✖ CI-1: exact inventory accepts every maintained campaign and rejects omission/addition/duplication (13.116433ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "fault campaign inventory differs from the maintained list"
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/bite.test.ts:8:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: fault campaign inventory differs from the maintained list
+        at validateInventory (file:///home/dashy/Projects/Solanaut/evals/ci/bite.ts:9:90)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/bite.test.ts:8:29
+        at getActual (node:assert:580:5)
+        at strict.doesNotThrow (node:assert:748:32)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/bite.test.ts:8:10)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.start (node:internal/test_runner/test:1257:17)
+        at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }

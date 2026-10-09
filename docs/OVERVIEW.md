@@ -1,10 +1,17 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 42** · 2026-10-08 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 43** · 2026-10-09 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
+
+The existing replay command now uses complete verified streamed history reads
+and independently supplied public policy pins. It bounds public JSON inputs and
+redacts errors/divergence values while preserving arguments, exit semantics,
+success text and the first divergent sequence/field. It writes no guard state;
+retained replay maps and actual isolated startup remain separate work.
+Evidence: `evals/sdk/replay-command.md`.
 
 The internal `guard.ts` companion `checkOwnedRequest` serializes proposal
 consultation with the actual owned disk lookup and rechecks the live head before

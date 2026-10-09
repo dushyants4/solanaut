@@ -15,6 +15,14 @@ function battery() {
 const baseline = battery();
 assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
 const faults = [
+  { name: "replay-cli-trust", path: "dist/bin/replay.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("replayStream(open, policy, undefined, trust)", "replayStream(open, policy, undefined)") },
+  { name: "replay-cli-divergence", path: "dist/bin/replay.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("if (res.ok)", "if (true)") },
+  { name: "replay-cli-public-ceiling", path: "dist/bin/replay.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("limit = 1_048_576", "limit = 16_777_216") },
+  { name: "replay-cli-line-ceiling", path: "dist/bin/replay.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("streamArchive(recordPath)", "streamArchive(recordPath, {maxLineBytes:16_777_216})") },
+  { name: "replay-cli-fields", path: "dist/bin/replay.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("keys.length !== 3 || keys.some", "false && keys.some") },
+  { name: "replay-cli-detail", path: "dist/bin/replay.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace('console.log("  recorded: [redacted]");', 'console.log(`  recorded: ${JSON.stringify(d.recorded)}`);') },
+  { name: "replay-cli-input-error", path: "dist/bin/replay.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace('catch {\n    console.error("replay: public policy or trust input could not be read safely");', 'catch (error) {\n    console.error(String(error));') },
+  { name: "replay-cli-utf8", path: "dist/bin/replay.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("{ fatal: true }", "{ fatal: false }") },
   { name: "owned-admission-export", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("export async function checkOwnedRequest", "async function checkOwnedRequest") },
   { name: "owned-admission-error", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace('code = "owned-request-admission"', 'code = "foreign"') },
   { name: "owned-admission-shared-bytes", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("captured.message = new Uint8Array(captured.message);", "void 0;") },

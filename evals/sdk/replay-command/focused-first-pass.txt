@@ -1,0 +1,65 @@
+✔ PKG-3: legacy two positional arguments preserve success text and exit (120.665934ms)
+✔ PKG-3/VER-1: signed policy history replays with independent public trust and retained lifecycle facts (109.009538ms)
+✔ PKG-3: missing and extra positional arguments retain the usage exit (309.043372ms)
+✔ OPR-2/PKG-3: malformed policy and trust sources never expose source text or sensitive paths (404.64878ms)
+✔ OPR-2/PKG-3: invalid policies report fixed diagnostics rather than validator values (110.305621ms)
+✔ POL-2/VER-2/PKG-3: signed history cannot authenticate its own missing or substituted trust (424.128836ms)
+✔ OPR-2/PKG-3: public trust accepts exactly its public pin fields (490.455288ms)
+✔ VER-1/VER-2/PKG-3: forged signatures, unsupported profiles and policy rollback refuse (410.190662ms)
+✖ PKG-3: first divergence keeps its sequence/field and redacts detail values (100.172768ms)
+✔ SNP-1/PKG-3: blank lines, incomplete framing and corrupt final records cannot produce success (580.926381ms)
+✖ SNP-1/PKG-3: actual record line ceiling has an inclusive boundary (111.977861ms)
+✔ OPR-2/PKG-3: public JSON source ceilings are inclusive and invalid UTF-8 refuses (604.27661ms)
+✔ OPR-2/SNP-1/PKG-3: symlink, hardlink and directory inputs refuse without reading their content (1174.511251ms)
+✔ OPR-2/SNP-1/PKG-3: special files fail without a blocking read (307.721965ms)
+✔ SNP-7/PKG-3: successful command uses two complete actual archive reads (97.877591ms)
+✔ SNP-7/PKG-3: valid but changed complete sources between actual reads refuse (101.218374ms)
+✔ SNP-8/PKG-3: successful verification leaves all input bytes and directory contents unchanged (216.345241ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 15
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5762.41145
+
+✖ failing tests:
+
+test at packages/sdk/test/replay-command.test.ts:112:1
+✖ PKG-3: first divergence keeps its sequence/field and redacts detail values (100.172768ms)
+  AssertionError [ERR_ASSERTION]: replay: history verification could not complete; check the source, policy and public trust pins
+  
+  
+  2 !== 1
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:115:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/replay-command.test.ts:124:1
+✖ SNP-1/PKG-3: actual record line ceiling has an inclusive boundary (111.977861ms)
+  AssertionError [ERR_ASSERTION]: replay: history verification could not complete; check the source, policy and public trust pins
+  
+  
+  2 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:128:90)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

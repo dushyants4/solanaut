@@ -1,0 +1,31 @@
+✖ OPR-2/PKG-3: public JSON source ceilings are inclusive and invalid UTF-8 refuses (313.285617ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 396.521289
+
+✖ failing tests:
+
+test at packages/sdk/test/replay-command.test.ts:132:1
+✖ OPR-2/PKG-3: public JSON source ceilings are inclusive and invalid UTF-8 refuses (313.285617ms)
+  AssertionError [ERR_ASSERTION]: replays: 1 entries, 1 decisions recomputed, no divergence
+  
+  
+  0 !== 2
+  
+      at safeFailure (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:30:10)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/replay-command.test.ts:137:149)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
