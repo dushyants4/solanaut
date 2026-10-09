@@ -1,0 +1,432 @@
+✖ SNP-7/LIF-1: prefix and tail retries return exact durable admissions without reevaluation (53.222392ms)
+✖ SNP-7: fresh replies and collision denials are detached and deeply immutable (35.776762ms)
+✖ LIF-1: changed bytes, group and control methods cannot reuse a request identity (35.230141ms)
+✖ SNP-7/LIF-1: FIFO concurrent identities observe reservations from earlier admissions (47.584649ms)
+✖ LIF-1: concurrent identical payloads admit once; conflicting queued payloads refuse (43.785063ms)
+✖ SNP-7: proposal bytes, identity, grouping, time and lifetime are captured before queueing (25.828945ms)
+✖ SNP-7/LIF-1: shared-memory message bytes cannot change the captured admission payload (28.060191ms)
+✔ OWN-2/SNP-7: missing or corrupt disk evidence refuses before any admission (66.526364ms)
+✔ OWN-2: copied, unsigned, memory and manual guards cannot obtain owned admission authority (28.900005ms)
+✔ OWN-2/SNP-7: caller-replaced public methods cannot redirect the private admission context (25.274635ms)
+✔ SNP-7: a failed queued lookup does not poison subsequent work after evidence is restored (23.956623ms)
+✔ SNP-7/OWN-2: closure before queue execution or during an actual shard read prevents admission (45.020559ms)
+✔ SNP-7: trusted synchronous mutation during owned lookup invalidates its captured head (25.259549ms)
+✔ SNP-7: an actual owned result followed by a trusted mutation cannot authorize stale absence (391.879479ms)
+✔ STO-1/SNP-7: append failure admits nothing and the failed writer remains unavailable (31.94334ms)
+✖ LIF-1/7/POL-4: historical retry preserves pending reservations and used receipts across signed policy replacement (36.695746ms)
+✖ LIF-1/SNP-7: historical denials preserve latch and cannot accumulate denial ticks (34.024228ms)
+✔ SNP-7: malformed proposal identity rejects without a record; ordinary proposal validation stays synchronous (24.964388ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 9
+ℹ fail 9
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1086.608778
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-request-admission.test.ts:36:1
+✖ SNP-7/LIF-1: prefix and tail retries return exact durable admissions without reevaluation (53.222392ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(first.request)
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-request-admission.test.ts:38:101)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:43:1
+✖ SNP-7: fresh replies and collision denials are detached and deeply immutable (35.776762ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(first.request)
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-request-admission.test.ts:45:220)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:53:1
+✖ LIF-1: changed bytes, group and control methods cannot reuse a request identity (35.230141ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+  +   allow: false,
+  -   allow: true,
+      amounts: {
+        fees: '5000',
+        sol: '1',
+        tokens: []
+      },
+  +   at: 1001,
+  -   at: 1000,
+      blockHeight: '10',
+  -   expires: {
+  -     lastValidBlockHeight: '100'
+  -   },
+      group: 'original',
+  +   hash: '14f9adfce6002082a101f2be680c11b576e7ab2dfb342afbff093431189c0f2c',
+  -   hash: '2226c72635b38bd25809a866b78e264c7fed4ad9c57514eda42be1f17563ef14',
+      intentKey: 'added78b203f28586aa0546c3fcd3afd12c23d4a3e9f486e4f0d33ea8ed577b3',
+      keel: {
+        digest: '834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8',
+        verified: 'bytes',
+        version: '1.0.1'
+  ...
+      posture: 'DEFAULT',
+  +   prev: '2226c72635b38bd25809a866b78e264c7fed4ad9c57514eda42be1f17563ef14',
+  +   reason: 'an earlier attempt at the same effects (decision 2226c72635b3…) could still land; report its outcome, or propose once its last valid block height has passed',
+  +   rule: 'intent-in-flight',
+  +   seq: 2,
+  -   prev: '54e3d2f0fefd306e82b46c292f721550e4f98c04ab804b7d4cee3d569b30261f',
+  -   reason: '',
+  -   seq: 1,
+      shape: '4ace82c5091f8ed180333d75fa4418d89986ce84c676db8267c6a1517b562f9b',
+      source: 'caller',
+      telemetry: {
+        intensity: 1e-9,
+  +     repetition: 1,
+  -     repetition: 0,
+        valence: 0.2
+      },
+      temperatureMax: 1,
+      v: 1
+    }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-request-admission.test.ts:56:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:64:1
+✖ SNP-7/LIF-1: FIFO concurrent identities observe reservations from earlier admissions (47.584649ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+  +   allow: false,
+  -   allow: true,
+      amounts: {
+        fees: '5000',
+        sol: '2',
+        tokens: []
+      },
+  +   at: 1002,
+  -   at: 1000,
+      blockHeight: '10',
+  -   expires: {
+  -     lastValidBlockHeight: '100'
+  -   },
+      group: null,
+  +   hash: 'bf5e9c3f65f812db786a30dca45180a95b862664b6d57af3b9fe540f1bef790a',
+  -   hash: 'd7bcebfc3336e4747e3dc35092df758d82b452be884d01054b7e3bac4420027a',
+      intentKey: '6f01895fa6afb82037c85a5a460443a3f49de1e830d7ca178903dc4d2e630b4a',
+      keel: {
+        digest: '834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8',
+        verified: 'bytes',
+        version: '1.0.1'
+  ...
+      posture: 'DEFAULT',
+  +   prev: 'fd34c1c7790e6565306adbff092764f2f79fc9ddbe4d63a67e9ea1b4aaa08ca8',
+  +   reason: 'an earlier attempt at the same effects (decision d7bcebfc3336…) could still land; report its outcome, or propose once its last valid block height has passed',
+  +   rule: 'intent-in-flight',
+  +   seq: 3,
+  -   prev: '815e2c4f3c98c9d166945eccad04ca2db498588dc8405a29f99dbdd19eddfc66',
+  -   reason: '',
+  -   seq: 1,
+      shape: '4ace82c5091f8ed180333d75fa4418d89986ce84c676db8267c6a1517b562f9b',
+      source: 'caller',
+      telemetry: {
+        intensity: 1,
+  +     repetition: 1,
+  +     valence: -0.09999999999999998
+  -     repetition: 0,
+  -     valence: 0.2
+      },
+      temperatureMax: 1,
+      v: 1
+    }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-request-admission.test.ts:67:166)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:71:1
+✖ LIF-1: concurrent identical payloads admit once; conflicting queued payloads refuse (43.785063ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+  +   allow: false,
+  -   allow: true,
+      amounts: {
+        fees: '5000',
+        sol: '1',
+        tokens: []
+      },
+      at: 1000,
+      blockHeight: '10',
+  -   expires: {
+  -     lastValidBlockHeight: '100'
+  -   },
+      group: null,
+  +   hash: '37e051a1ffa9a7f89ece42f276504281cafe28a9d30b1088414f23b3fd499216',
+  -   hash: 'cb595f9c435a9f864f90090d7142430341071a23b9f1f93e12e3be3dfb40c502',
+      intentKey: 'fb562e3041a8aabdf0e7efc402fbd69f824246a323c9513f47f9c1135e7e0d87',
+      keel: {
+        digest: '834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8',
+        verified: 'bytes',
+        version: '1.0.1'
+  ...
+      posture: 'DEFAULT',
+  +   prev: 'cb595f9c435a9f864f90090d7142430341071a23b9f1f93e12e3be3dfb40c502',
+  +   reason: 'an earlier attempt at the same effects (decision cb595f9c435a…) could still land; report its outcome, or propose once its last valid block height has passed',
+  +   rule: 'intent-in-flight',
+  +   seq: 2,
+  -   prev: '09f9fb3a4fb51e0ccdec05805c8bb228a0d63d1c5ad6cd6492f6df2543663fa8',
+  -   reason: '',
+  -   seq: 1,
+      shape: '4ace82c5091f8ed180333d75fa4418d89986ce84c676db8267c6a1517b562f9b',
+      source: 'caller',
+      telemetry: {
+        intensity: 1e-9,
+  +     repetition: 1,
+  -     repetition: 0,
+        valence: 0.2
+      },
+      temperatureMax: 1,
+      v: 1
+    }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-request-admission.test.ts:73:144)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:78:1
+✖ SNP-7: proposal bytes, identity, grouping, time and lifetime are captured before queueing (25.828945ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'captured'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-request-admission.test.ts:82:265)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'captured',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:85:1
+✖ SNP-7/LIF-1: shared-memory message bytes cannot change the captured admission payload (28.060191ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+  +   allow: false,
+  -   allow: true,
+      amounts: {
+        fees: '5000',
+        sol: '1',
+        tokens: []
+      },
+      at: 1000,
+      blockHeight: '10',
+  -   expires: {
+  -     lastValidBlockHeight: '100'
+  -   },
+      group: null,
+  +   hash: '37ff995054a6d8262870c5a269c2126b0c1a0a9e8b51621dc287aba21f711478',
+  -   hash: 'b6bd616a98f52986a417d3dab6dd8768a5c73d4909071e0cdd5e70124adae64a',
+      intentKey: '6d0c266a62b8ab17c95d1fd1f4e5e2441c03a98e4d1620dd068fe664ce178dff',
+      keel: {
+        digest: '834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8',
+        verified: 'bytes',
+        version: '1.0.1'
+  ...
+      posture: 'DEFAULT',
+  +   prev: 'b6bd616a98f52986a417d3dab6dd8768a5c73d4909071e0cdd5e70124adae64a',
+  +   reason: 'an earlier attempt at the same effects (decision b6bd616a98f5…) could still land; report its outcome, or propose once its last valid block height has passed',
+  +   rule: 'intent-in-flight',
+  +   seq: 2,
+  -   prev: '0bcb7c92179edb66c94290718a543b102e6fdb0fd8a0f9f2aea21e94f5ea2b7b',
+  -   reason: '',
+  -   seq: 1,
+      shape: '4ace82c5091f8ed180333d75fa4418d89986ce84c676db8267c6a1517b562f9b',
+      source: 'caller',
+      telemetry: {
+        intensity: 1e-9,
+  +     repetition: 1,
+  -     repetition: 0,
+        valence: 0.2
+      },
+      temperatureMax: 1,
+      v: 1
+    }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-request-admission.test.ts:90:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:154:1
+✖ LIF-1/7/POL-4: historical retry preserves pending reservations and used receipts across signed policy replacement (36.695746ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      allow: true,
+      amounts: {
+        fees: '5000',
+        sol: '1',
+        tokens: []
+      },
+  +   at: 50000,
+  +   blockHeight: '1000',
+  -   at: 1000,
+  -   blockHeight: '10',
+      expires: {
+        lastValidBlockHeight: '100'
+      },
+      group: null,
+  +   hash: '2d6c0683a510a41a25d851bd71c9c75fa82815b6ca98b0000c8f6760400b704a',
+  -   hash: '66f401c132268dfd6076a3c48b8f8fb7f45d1d1ffbc0dbcf33ad287b71aa919c',
+      intentKey: '24c6571a68a361ecbd7c8b7f5e2f8c2bf8d67e62ae216b1d0fba7372499f3b3e',
+      keel: {
+        digest: '834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8',
+        verified: 'bytes',
+        version: '1.0.1'
+  ...
+      messageHash: '6f7bf165d9da8cec57255181647b7b9fe93c16a345579c1787e04f5949a12a54',
+  +   policyHash: 'e723ae436bff8e62bda51b8d1046691bc399b311a0838be6de8f01a9896dae44',
+  -   policyHash: '63f9e001e31bcae67928afb2ba59f358f45f618fb370e91b831f7891e28ffc7a',
+      posture: 'DEFAULT',
+  +   prev: 'c81c1d873a57e1cea82fdab6249d0c279b4d57ed0b25ac8d0cd127839713ec2c',
+  -   prev: '70f1a0db1c6827c371d04020364b9bf88ca6754cbf4dd6f33f584a6abfc8e2d2',
+      reason: '',
+  +   seq: 5,
+  -   seq: 1,
+      shape: '4ace82c5091f8ed180333d75fa4418d89986ce84c676db8267c6a1517b562f9b',
+      source: 'caller',
+      telemetry: {
+        intensity: 1e-9,
+  +     repetition: 1,
+  +     valence: -0.09999999999999998
+  -     repetition: 0,
+  -     valence: 0.2
+      },
+      temperatureMax: 1,
+      v: 1
+    }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-request-admission.test.ts:158:63)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:163:1
+✖ LIF-1/SNP-7: historical denials preserve latch and cannot accumulate denial ticks (34.024228ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      allow: false,
+      amounts: null,
+  +   at: 9000,
+  -   at: 1000,
+      blockHeight: null,
+      group: null,
+  +   hash: 'f038481b2803f643c4da2d593acba0bc153829308a651d9eb70f195cc69ae073',
+  -   hash: 'ee5417d17f1defea42be72bb7a4515d1088b35c016351f910236f4b7ef44eede',
+      intentKey: null,
+      keel: {
+        digest: '834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8',
+        verified: 'bytes',
+        version: '1.0.1'
+  ...
+      lastValidBlockHeight: null,
+  -   latch: true,
+      message: '/w==',
+      messageHash: null,
+      policyHash: 'a4903d2ba200682ff42b59769f51ecbb92a5d9d1504bb219b229c8199411ef14',
+      posture: null,
+  +   prev: 'ee5417d17f1defea42be72bb7a4515d1088b35c016351f910236f4b7ef44eede',
+  -   prev: 'd968d1a225ce7d3fe9e1d5362492fcc1fdc0156b1e6e27bad836173e0d8fea84',
+      reason: 'message version 127 (first byte 0xff) is not legacy, 0 or 1',
+      rule: 'unsupported-version',
+  +   seq: 2,
+  -   seq: 1,
+      shape: null,
+      source: 'caller',
+      telemetry: null,
+      temperatureMax: null,
+      v: 1
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-request-admission.test.ts:166:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

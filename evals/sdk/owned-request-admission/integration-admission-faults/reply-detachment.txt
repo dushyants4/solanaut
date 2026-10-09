@@ -1,0 +1,89 @@
+✔ SNP-7/LIF-1: prefix and tail retries return exact durable admissions without reevaluation (84.203692ms)
+✖ SNP-7: fresh replies and collision denials are detached and deeply immutable (39.950463ms)
+✔ LIF-1: changed bytes, group and control methods cannot reuse a request identity (43.65329ms)
+✔ SNP-7/LIF-1: FIFO concurrent identities observe reservations from earlier admissions (48.518399ms)
+✔ LIF-1: concurrent identical payloads admit once; conflicting queued payloads refuse (43.628704ms)
+✔ SNP-7: proposal bytes, identity, grouping, time and lifetime are captured before queueing (25.265527ms)
+✔ SNP-7/LIF-1: shared-memory message bytes cannot change the captured admission payload (26.544111ms)
+✔ OWN-2/SNP-7: missing or corrupt disk evidence refuses before any admission (66.590145ms)
+✔ OWN-2: copied, unsigned, memory and manual guards cannot obtain owned admission authority (29.426891ms)
+✔ OWN-2/SNP-7: caller-replaced public methods cannot redirect the private admission context (25.887852ms)
+✔ SNP-7: a failed queued lookup does not poison subsequent work after evidence is restored (35.026346ms)
+✔ SNP-7/OWN-2: closure before queue execution or during an actual shard read prevents admission (46.992636ms)
+✔ SNP-7: trusted synchronous mutation during owned lookup invalidates its captured head (24.190084ms)
+✔ SNP-7: an actual owned result followed by a trusted mutation cannot authorize stale absence (332.565493ms)
+✔ STO-1/SNP-7: append failure admits nothing and the failed writer remains unavailable (24.480569ms)
+✔ LIF-1/7/POL-4: historical retry preserves pending reservations and used receipts across signed policy replacement (41.838306ms)
+✔ LIF-1/SNP-7: historical denials preserve latch and cannot accumulate denial ticks (30.24238ms)
+✔ SNP-7: malformed proposal identity rejects without a record; ordinary proposal validation stays synchronous (24.251598ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 17
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1076.774842
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-request-admission.test.ts:43:1
+✖ SNP-7: fresh replies and collision denials are detached and deeply immutable (39.950463ms)
+  AssertionError [ERR_ASSERTION]: Expected "actual" not to be reference-equal to "expected":
+  
+  {
+    allow: true,
+    amounts: {
+      fees: '5000',
+      sol: '1',
+      tokens: []
+    },
+    at: 1000,
+    blockHeight: '10',
+    expires: {
+      lastValidBlockHeight: '100'
+    },
+    group: null,
+    hash: '4ae22c540d4a7e01422d659aa4114504cfaf66a89cf9c4ca5577eaff3670f810',
+    intentKey: '5deb0f73868a57382df319c3a1035b42b4cfcd14a351342570253f0be4babb89',
+    keel: {
+      digest: '834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8',
+      verified: 'bytes',
+      version: '1.0.1'
+    },
+    kind: 'decision',
+    lastValidBlockHeight: '100',
+    message: 'AQABA30y/iQl8n2z3k1F/Vp5tmxta3NXiQps095BToPg+zaVAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUAQICAAEMAgAAAAEAAAAAAAAA',
+    messageHash: 'b9675301c2fcabfb9339b69a7735961fca219f929e4ca3d7512508950b7a473e',
+    policyHash: '1234727c4e086fadf08cdb2986408105763e8cb1694830640f258f99ca464c59',
+    posture: 'DEFAULT',
+    prev: '9a18dc40ddd5371b297c4489ef5b9b3178250d56924d19ae0809a3a7695f1242',
+    reason: '',
+    request: {
+      clientId: 'client',
+      digest: '9420beadfedb95c9e79a04bb574091c136183561582a6210ba441e0f4d0fa5e7',
+      guardId: 'workload',
+      id: 'payment'
+    },
+    seq: 1,
+    shape: '4ace82c5091f8ed180333d75fa4418d89986ce84c676db8267c6a1517b562f9b',
+    source: 'caller',
+    telemetry: {
+      intensity: 1e-9,
+      repetition: 0,
+      valence: 0.2
+    },
+    temperatureMax: 1,
+    v: 1
+  }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-request-admission.test.ts:46:79)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }

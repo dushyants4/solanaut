@@ -1,0 +1,54 @@
+✔ SNP-7: owned publication derives exact complete generation and immutable root (38.264613ms)
+✔ SNP-7: replacement preserves earlier complete generations and prefix-bound answers (19.828126ms)
+✔ OWN-2: memory, forged, manual, closed and failed stores cannot publish (9.446779ms)
+✔ SNP-7: copied external pins are authoritative before asynchronous loading (13.816034ms)
+✔ OWN-2: a closed capability cannot borrow reused descriptors from a new kernel owner (13.229118ms)
+✔ SNP-7: unsigned and malformed actual histories refuse before cache publication (9.006788ms)
+✖ OWN-2: index, checkpoint publication and recovery share one maintenance boundary (13.175614ms)
+✔ OWN-2: replaced record and lock paths refuse index publication (9.029771ms)
+✔ SNP-7: closure, append, cache mutation and aliases during validation preserve the previous generation (79.12986ms)
+✔ SNP-7: current pointer corruption, substitutions and unsupported sources preserve evidence (82.635157ms)
+✔ SNP-7: a valid pointer cannot hide missing, altered or aliased previous generation files (68.308559ms)
+✔ SNP-7: current pointer and generation changes during asynchronous replay refuse (16.868394ms)
+✔ SNP-7: raw disk append during asynchronous validation cannot publish a cached endpoint (9.719471ms)
+✔ SNP-7: pointer reads finish short progress and refuse invalid progress or source changes (72.085827ms)
+✔ SNP-7: publication and validation refusals close every temporary descriptor (9.402023ms)
+✔ SNP-7: pointer disappearance after a successful open is not cache absence (7.883068ms)
+✔ SNP-7: byte-identical previous directory replacement while its files are read refuses (10.68556ms)
+✔ SNP-7: short writes finish and every file and directory is synced before acknowledgement (7.959599ms)
+✔ SNP-7: storage failures preserve complete old or new evidence and fail the writer (152.559515ms)
+✔ SNP-7: late record and pointer replacement after final sync refuse acknowledgement (35.723275ms)
+✔ SNP-7: actual process death at publication boundaries keeps a complete discoverable generation (1227.142615ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 20
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2010.641023
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-publication.test.ts:81:1
+✖ OWN-2: index, checkpoint publication and recovery share one maintenance boundary (13.175614ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+      code: 'request-index-publication',
+  +   message: 'request index pointer appeared during publication',
+  -   message: 'request index maintenance already in progress',
+      name: 'RequestIndexPublicationError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:82:72)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [RequestIndexPublicationError],
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }

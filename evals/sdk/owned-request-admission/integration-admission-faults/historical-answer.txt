@@ -1,0 +1,179 @@
+✖ SNP-7/LIF-1: prefix and tail retries return exact durable admissions without reevaluation (71.145852ms)
+✔ SNP-7: fresh replies and collision denials are detached and deeply immutable (41.541444ms)
+✖ LIF-1: changed bytes, group and control methods cannot reuse a request identity (30.461557ms)
+✖ SNP-7/LIF-1: FIFO concurrent identities observe reservations from earlier admissions (47.078566ms)
+✔ LIF-1: concurrent identical payloads admit once; conflicting queued payloads refuse (43.571952ms)
+✔ SNP-7: proposal bytes, identity, grouping, time and lifetime are captured before queueing (25.002587ms)
+✔ SNP-7/LIF-1: shared-memory message bytes cannot change the captured admission payload (27.047164ms)
+✔ OWN-2/SNP-7: missing or corrupt disk evidence refuses before any admission (64.708711ms)
+✔ OWN-2: copied, unsigned, memory and manual guards cannot obtain owned admission authority (29.14276ms)
+✔ OWN-2/SNP-7: caller-replaced public methods cannot redirect the private admission context (24.848838ms)
+✔ SNP-7: a failed queued lookup does not poison subsequent work after evidence is restored (25.412394ms)
+✔ SNP-7/OWN-2: closure before queue execution or during an actual shard read prevents admission (45.071975ms)
+✔ SNP-7: trusted synchronous mutation during owned lookup invalidates its captured head (25.289203ms)
+✔ SNP-7: an actual owned result followed by a trusted mutation cannot authorize stale absence (309.236769ms)
+✔ STO-1/SNP-7: append failure admits nothing and the failed writer remains unavailable (24.51848ms)
+✖ LIF-1/7/POL-4: historical retry preserves pending reservations and used receipts across signed policy replacement (43.403703ms)
+✖ LIF-1/SNP-7: historical denials preserve latch and cannot accumulate denial ticks (28.416757ms)
+✔ SNP-7: malformed proposal identity rejects without a record; ordinary proposal validation stays synchronous (25.632401ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 13
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1026.114516
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-request-admission.test.ts:36:1
+✖ SNP-7/LIF-1: prefix and tail retries return exact durable admissions without reevaluation (71.145852ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      allow: true,
+      amounts: {
+        fees: '5000',
+        sol: '1',
+        tokens: []
+      },
+  +   at: 9000,
+  -   at: 1000,
+      blockHeight: '10',
+      expires: {
+        lastValidBlockHeight: '100'
+      },
+      group: null,
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-request-admission.test.ts:39:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:53:1
+✖ LIF-1: changed bytes, group and control methods cannot reuse a request identity (30.461557ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      allow: true,
+      amounts: {
+        fees: '5000',
+        sol: '1',
+        tokens: []
+      },
+  +   at: 1001,
+  -   at: 1000,
+      blockHeight: '10',
+      expires: {
+        lastValidBlockHeight: '100'
+      },
+      group: 'original',
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-request-admission.test.ts:56:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:64:1
+✖ SNP-7/LIF-1: FIFO concurrent identities observe reservations from earlier admissions (47.078566ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      allow: true,
+      amounts: {
+        fees: '5000',
+        sol: '2',
+        tokens: []
+      },
+  +   at: 1002,
+  -   at: 1000,
+      blockHeight: '10',
+      expires: {
+        lastValidBlockHeight: '100'
+      },
+      group: null,
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-request-admission.test.ts:67:166)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:154:1
+✖ LIF-1/7/POL-4: historical retry preserves pending reservations and used receipts across signed policy replacement (43.403703ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      allow: true,
+      amounts: {
+        fees: '5000',
+        sol: '1',
+        tokens: []
+      },
+  +   at: 50000,
+  -   at: 1000,
+      blockHeight: '10',
+      expires: {
+        lastValidBlockHeight: '100'
+      },
+      group: null,
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-request-admission.test.ts:158:63)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:163:1
+✖ LIF-1/SNP-7: historical denials preserve latch and cannot accumulate denial ticks (28.416757ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      allow: false,
+      amounts: null,
+  +   at: 9000,
+  -   at: 1000,
+      blockHeight: null,
+      group: null,
+      hash: '22271bc567830b50304db2edd9e95fd24c56298b8312000695e16e1fa3c05fec',
+      intentKey: null,
+      keel: {
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-request-admission.test.ts:166:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

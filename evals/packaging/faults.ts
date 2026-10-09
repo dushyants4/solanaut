@@ -15,6 +15,15 @@ function battery() {
 const baseline = battery();
 assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
 const faults = [
+  { name: "owned-admission-export", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("export async function checkOwnedRequest", "async function checkOwnedRequest") },
+  { name: "owned-admission-error", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace('code = "owned-request-admission"', 'code = "foreign"') },
+  { name: "owned-admission-shared-bytes", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("captured.message = new Uint8Array(captured.message);", "void 0;") },
+  { name: "owned-admission-reply-detachment", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("const reply = structuredClone(decision);", "const reply = decision;") },
+  { name: "owned-admission-reply-freeze", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("freeze(reply);", "void 0;") },
+  { name: "owned-admission-head", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("evidence.seq !== state.seq || evidence.head !== state.head", "false") },
+  { name: "owned-admission-fifo", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("const pending = queue.then(run);", "const pending = run();") },
+  { name: "owned-admission-disk", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("await lookupOwnedRequestIndex(store, id, { policyTrust: authorization })", "({seq:state.seq,head:state.head,row:null})") },
+  { name: "owned-admission-payload", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace('historical.kind !== "decision" || historical.request.digest !== binding.digest', "false") },
   { name: "owned-lookup-capability", path: "dist/src/record.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("indexLookups.get(store)", "indexLookups.get(store) ?? (async () => ({}))") },
   { name: "owned-lookup-error", path: "dist/src/record.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace('code = "request-index-lookup"', 'code = "foreign"') },
   { name: "owned-lookup-tail", path: "dist/src/request-index-publication.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("captured.slice(prefix.seq)", "[]") },

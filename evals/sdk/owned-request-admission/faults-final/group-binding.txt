@@ -1,0 +1,107 @@
+✔ SNP-7/LIF-1: prefix and tail retries return exact durable admissions without reevaluation (75.839652ms)
+✔ SNP-7: fresh replies and collision denials are detached and deeply immutable (33.929349ms)
+✖ LIF-1: changed bytes, group and control methods cannot reuse a request identity (30.868134ms)
+✔ SNP-7/LIF-1: FIFO concurrent identities observe reservations from earlier admissions (45.02146ms)
+✔ LIF-1: concurrent identical payloads admit once; conflicting queued payloads refuse (47.507323ms)
+✔ SNP-7: proposal bytes, identity, grouping, time and lifetime are captured before queueing (23.856532ms)
+✔ SNP-7/LIF-1: shared-memory message bytes cannot change the captured admission payload (25.794492ms)
+✔ OWN-2/SNP-7: missing or corrupt disk evidence refuses before any admission (62.188989ms)
+✔ OWN-2: copied, unsigned, memory and manual guards cannot obtain owned admission authority (28.459713ms)
+✔ OWN-2/SNP-7: caller-replaced public methods cannot redirect the private admission context (23.180602ms)
+✔ SNP-7: a failed queued lookup does not poison subsequent work after evidence is restored (24.065677ms)
+✔ SNP-7/OWN-2: closure before queue execution or during an actual shard read prevents admission (42.382684ms)
+✔ SNP-7: trusted synchronous mutation during owned lookup invalidates its captured head (24.91442ms)
+✔ SNP-7: an actual owned result followed by a trusted mutation cannot authorize stale absence (274.724441ms)
+✔ STO-1/SNP-7: append failure admits nothing and the failed writer remains unavailable (24.335772ms)
+✔ LIF-1/7/POL-4: historical retry preserves pending reservations and used receipts across signed policy replacement (44.250369ms)
+✔ LIF-1/SNP-7: historical denials preserve latch and cannot accumulate denial ticks (30.276615ms)
+✔ SNP-7: malformed proposal identity rejects without a record; ordinary proposal validation stays synchronous (24.252564ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 17
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 962.603621
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-request-admission.test.ts:53:1
+✖ LIF-1: changed bytes, group and control methods cannot reuse a request identity (30.868134ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   allow: false,
+  +   amounts: null,
+  -   allow: true,
+  -   amounts: {
+  -     fees: '5000',
+  -     sol: '1',
+  -     tokens: []
+  -   },
+      at: 1000,
+  +   blockHeight: null,
+  +   group: null,
+  +   hash: '',
+  +   intentKey: null,
+  -   blockHeight: '10',
+  -   expires: {
+  -     lastValidBlockHeight: '100'
+  -   },
+  -   group: 'original',
+  -   hash: '13e0b0a9707de9b362fcbbaaa2796f0ceaaacb096940252c419acd32f6cd5666',
+  -   intentKey: '24723a752f54e6341ec73771916e92570dcf24c89587eddc0f2204ebc2f695b7',
+      keel: {
+        digest: '834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8',
+        verified: 'bytes',
+        version: '1.0.1'
+      },
+      kind: 'decision',
+  +   lastValidBlockHeight: null,
+  +   message: '',
+  +   messageHash: null,
+  -   lastValidBlockHeight: '100',
+  -   message: 'AQABAx3Y9UnwxVDcRyXBKOigOYiWF9WNV753WycrLYqTyi9+AgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUAQICAAEMAgAAAAEAAAAAAAAA',
+  -   messageHash: 'bf04d1bc96fc168989475de7540f744854b9b49853582d8e5ad2367392b2d930',
+      policyHash: '01d664a19c684582829d48fbc7f984b458eba0107663022459a8715ee358e625',
+  +   posture: null,
+  +   prev: '13e0b0a9707de9b362fcbbaaa2796f0ceaaacb096940252c419acd32f6cd5666',
+  +   reason: 'request identity was reused with a different payload',
+  +   rule: 'fail-closed',
+  +   seq: -1,
+  +   shape: null,
+  -   posture: 'DEFAULT',
+  -   prev: '29e4f01b8924f48af4edab055be56362b66565dadef6e20f7aa31ca9daf19696',
+  -   reason: '',
+  -   request: {
+  -     clientId: 'client',
+  -     digest: 'f5caf674507fb5809e6f227dbb030bdd333a35ef81c33bbcb73f1bfa9b9a79f9',
+  -     guardId: 'workload',
+  -     id: 'same'
+  -   },
+  -   seq: 1,
+  -   shape: '4ace82c5091f8ed180333d75fa4418d89986ce84c676db8267c6a1517b562f9b',
+      source: 'caller',
+  +   telemetry: null,
+  +   temperatureMax: null,
+  -   telemetry: {
+  -     intensity: 1e-9,
+  -     repetition: 0,
+  -     valence: 0.2
+  -   },
+  -   temperatureMax: 1,
+      v: 1
+    }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:56:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

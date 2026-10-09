@@ -1,0 +1,44 @@
+✔ SNP-7: owned publication derives exact complete generation and immutable root (37.383779ms)
+✔ SNP-7: replacement preserves earlier complete generations and prefix-bound answers (19.979836ms)
+✔ OWN-2: memory, forged, manual, closed and failed stores cannot publish (9.375526ms)
+✔ SNP-7: copied external pins are authoritative before asynchronous loading (13.863638ms)
+✔ OWN-2: a closed capability cannot borrow reused descriptors from a new kernel owner (12.214533ms)
+✔ SNP-7: unsigned and malformed actual histories refuse before cache publication (9.835617ms)
+✔ OWN-2: index, checkpoint publication and recovery share one maintenance boundary (20.000822ms)
+✔ OWN-2: replaced record and lock paths refuse index publication (9.692163ms)
+✔ SNP-7: closure, append, cache mutation and aliases during validation preserve the previous generation (75.535122ms)
+✔ SNP-7: current pointer corruption, substitutions and unsupported sources preserve evidence (79.582335ms)
+✔ SNP-7: a valid pointer cannot hide missing, altered or aliased previous generation files (67.368584ms)
+✔ SNP-7: current pointer and generation changes during asynchronous replay refuse (16.326244ms)
+✔ SNP-7: raw disk append during asynchronous validation cannot publish a cached endpoint (9.974626ms)
+✔ SNP-7: pointer reads finish short progress and refuse invalid progress or source changes (68.366504ms)
+✔ SNP-7: publication and validation refusals close every temporary descriptor (9.276101ms)
+✔ SNP-7: pointer disappearance after a successful open is not cache absence (7.377474ms)
+✔ SNP-7: byte-identical previous directory replacement while its files are read refuses (10.496743ms)
+✖ SNP-7: short writes finish and every file and directory is synced before acknowledgement (6.647396ms)
+✔ SNP-7: storage failures preserve complete old or new evidence and fail the writer (144.000845ms)
+✔ SNP-7: late record and pointer replacement after final sync refuse acknowledgement (34.514437ms)
+✔ SNP-7: actual process death at publication boundaries keeps a complete discoverable generation (1167.285513ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 20
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1937.156911
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-publication.test.ts:150:1
+✖ SNP-7: short writes finish and every file and directory is synced before acknowledgement (6.647396ms)
+  RequestIndexPublicationError: request index written size differs
+      at writeFile (file:///home/dashy/Projects/Solanaut/packages/sdk/src/request-index-publication.ts:106:131)
+      at replaceRequestIndex (file:///home/dashy/Projects/Solanaut/packages/sdk/src/request-index-publication.ts:119:5)
+      at file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:295:30
+      at async publishOwnedRequestIndex (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:55:14)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-publication.test.ts:152:137)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'request-index-publication'
+  }

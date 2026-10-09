@@ -16,7 +16,7 @@ import { EVALUATION_PROFILE, VERIFIED_KEEL_DIGEST, VERIFIED_KEEL_MODULE } from "
 import { PolicyAuthorizationError, verifyPolicyAuthorization, verifyPolicyEntry, type PolicyAuthorization, type PolicyTrust } from "./signed-policy.ts";
 import { DecodeError } from "./message.ts";
 import { contextOf, createPolicy, type Policy } from "./policy.ts";
-import { fileStore, memoryStore, type EntryStore } from "./record.ts";
+import { fileStore, lookupOwnedRequestIndex, memoryStore, type EntryStore } from "./record.ts";
 import { sensorV1, type Sensor } from "./sensor.ts";
 import { bindRequest, requestKey, type RequestIdentity } from "./request.ts";
 import { verifySigning, type SigningEvent } from "./signing.ts";
@@ -125,6 +125,28 @@ export interface Guard {
   close(): void;
   readonly policy: Policy;
   readonly policyHash: string;
+}
+
+export class OwnedRequestAdmissionError extends Error {
+  readonly code = "owned-request-admission";
+  constructor(message: string) { super(message); this.name = "OwnedRequestAdmissionError"; }
+}
+const ownedAdmissions = new WeakMap<Guard, (proposal: ProposalV1, identity: RequestIdentity) => Promise<Decision>>();
+function admissionReply(decision: Decision): Decision {
+  const freeze = (value: unknown): void => {
+    if (value && typeof value === "object") { for (const child of Object.values(value)) freeze(child); Object.freeze(value); }
+  };
+  const reply = structuredClone(decision); freeze(reply); return reply;
+}
+/** Internal companion: unchanged synchronous SDK methods still retain their full history. */
+export async function checkOwnedRequest(guard: Guard, proposal: ProposalV1, identity: RequestIdentity): Promise<Decision> {
+  const admit = ownedAdmissions.get(guard);
+  if (!admit) throw new OwnedRequestAdmissionError("owned admission requires a genuine signed guard");
+  try { return await admit(proposal, identity); }
+  catch (error) {
+    if (error instanceof OwnedRequestAdmissionError) throw error;
+    throw new OwnedRequestAdmissionError("owned admission cannot establish current request evidence");
+  }
 }
 
 const fmt = (n: bigint) => n.toLocaleString("en-US");
@@ -477,7 +499,7 @@ export async function createGuard(opts: GuardOptions): Promise<Guard> {
     return { ok: true, reason: "" };
   };
 
-  return {
+  const guard: Guard = {
     beginRequest(identity, method, input, at) {
       if (!Number.isFinite(at) || at < 0) throw new Error("invalid request time");
       const payload = controlPayload(method, input); const request = controlBinding(policy.latch.guardId, identity, method, payload);
@@ -515,6 +537,32 @@ export async function createGuard(opts: GuardOptions): Promise<Guard> {
     policy,
     policyHash,
   };
+  if (authorization) {
+    let queue: Promise<void> = Promise.resolve();
+    ownedAdmissions.set(guard, (proposal, identity) => {
+      // The caller may change input while earlier admissions are waiting on disk reads.
+      const captured = structuredClone(proposal), id = structuredClone(identity);
+      // structuredClone preserves SharedArrayBuffer backing; own the actual message bytes too.
+      if (captured?.message instanceof Uint8Array) captured.message = new Uint8Array(captured.message);
+      const binding = bindRequest(policy.latch.guardId, id, captured?.message, captured?.intent);
+      const run = async (): Promise<Decision> => {
+        if (shut) throw new OwnedRequestAdmissionError("owned admission guard is closed or failed");
+        const evidence = await lookupOwnedRequestIndex(store, id, { policyTrust: authorization });
+        if (shut || evidence.seq !== state.seq || evidence.head !== state.head) throw new OwnedRequestAdmissionError("owned admission history changed before commit");
+        const historical = evidence.row?.start;
+        if (historical) {
+          if (historical.kind !== "decision" || historical.request!.digest !== binding.digest) return admissionReply(unrecorded("request identity was reused with a different payload"));
+          return admissionReply(historical);
+        }
+        // No await separates verified absence from the existing synchronous evaluation/commit.
+        return admissionReply(check(captured, id));
+      };
+      const pending = queue.then(run);
+      queue = pending.then(() => undefined, () => undefined);
+      return pending;
+    });
+  }
+  return guard;
 }
 
 export interface ReplayResult {

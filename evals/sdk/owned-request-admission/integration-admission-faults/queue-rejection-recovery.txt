@@ -1,0 +1,81 @@
+✔ SNP-7/LIF-1: prefix and tail retries return exact durable admissions without reevaluation (112.151806ms)
+✔ SNP-7: fresh replies and collision denials are detached and deeply immutable (37.695605ms)
+✔ LIF-1: changed bytes, group and control methods cannot reuse a request identity (50.771974ms)
+✔ SNP-7/LIF-1: FIFO concurrent identities observe reservations from earlier admissions (47.027236ms)
+✔ LIF-1: concurrent identical payloads admit once; conflicting queued payloads refuse (42.945641ms)
+✔ SNP-7: proposal bytes, identity, grouping, time and lifetime are captured before queueing (24.719297ms)
+✔ SNP-7/LIF-1: shared-memory message bytes cannot change the captured admission payload (27.579068ms)
+✔ OWN-2/SNP-7: missing or corrupt disk evidence refuses before any admission (67.112507ms)
+✔ OWN-2: copied, unsigned, memory and manual guards cannot obtain owned admission authority (29.194767ms)
+✔ OWN-2/SNP-7: caller-replaced public methods cannot redirect the private admission context (26.472624ms)
+✖ SNP-7: a failed queued lookup does not poison subsequent work after evidence is restored (22.220867ms)
+✖ SNP-7/OWN-2: closure before queue execution or during an actual shard read prevents admission (42.591164ms)
+✔ SNP-7: trusted synchronous mutation during owned lookup invalidates its captured head (33.888084ms)
+✖ SNP-7: an actual owned result followed by a trusted mutation cannot authorize stale absence (161.945638ms)
+✔ STO-1/SNP-7: append failure admits nothing and the failed writer remains unavailable (27.550143ms)
+✔ LIF-1/7/POL-4: historical retry preserves pending reservations and used receipts across signed policy replacement (45.202087ms)
+✔ LIF-1/SNP-7: historical denials preserve latch and cannot accumulate denial ticks (30.05215ms)
+✔ SNP-7: malformed proposal identity rejects without a record; ordinary proposal validation stays synchronous (24.880815ms)
+ℹ Error: Test "OWN-2/SNP-7: missing or corrupt disk evidence refuses before any admission" at packages/sdk/test/owned-request-admission.test.ts:93:1 generated asynchronous activity after the test ended. This activity created the error "RequestIndexLookupError: owned request index cannot establish current evidence" and would have caused the test to fail, but instead triggered an unhandledRejection event.
+ℹ Error: Test "OWN-2/SNP-7: missing or corrupt disk evidence refuses before any admission" at packages/sdk/test/owned-request-admission.test.ts:93:1 generated asynchronous activity after the test ended. This activity created the error "RequestIndexLookupError: owned request index cannot establish current evidence" and would have caused the test to fail, but instead triggered an unhandledRejection event.
+ℹ Error: Test "OWN-2/SNP-7: missing or corrupt disk evidence refuses before any admission" at packages/sdk/test/owned-request-admission.test.ts:93:1 generated asynchronous activity after the test ended. This activity created the error "RequestIndexLookupError: owned request index cannot establish current evidence" and would have caused the test to fail, but instead triggered an unhandledRejection event.
+ℹ Error: Test "OWN-2: copied, unsigned, memory and manual guards cannot obtain owned admission authority" at packages/sdk/test/owned-request-admission.test.ts:99:1 generated asynchronous activity after the test ended. This activity created the error "RequestIndexLookupError: current request lookup requires actual file ownership" and would have caused the test to fail, but instead triggered an unhandledRejection event.
+ℹ Error: Test "OWN-2: copied, unsigned, memory and manual guards cannot obtain owned admission authority" at packages/sdk/test/owned-request-admission.test.ts:99:1 generated asynchronous activity after the test ended. This activity created the error "RequestIndexLookupError: owned request index cannot establish current evidence" and would have caused the test to fail, but instead triggered an unhandledRejection event.
+ℹ Error: Test "SNP-7: a failed queued lookup does not poison subsequent work after evidence is restored" at packages/sdk/test/owned-request-admission.test.ts:113:1 generated asynchronous activity after the test ended. This activity created the error "RequestIndexLookupError: owned request index cannot establish current evidence" and would have caused the test to fail, but instead triggered an unhandledRejection event.
+ℹ Error: Test "SNP-7/OWN-2: closure before queue execution or during an actual shard read prevents admission" at packages/sdk/test/owned-request-admission.test.ts:119:1 generated asynchronous activity after the test ended. This activity created the error "RequestIndexLookupError: owned request index cannot establish current evidence" and would have caused the test to fail, but instead triggered an unhandledRejection event.
+ℹ Error: Test "SNP-7: trusted synchronous mutation during owned lookup invalidates its captured head" at packages/sdk/test/owned-request-admission.test.ts:125:1 generated asynchronous activity after the test ended. This activity created the error "RequestIndexLookupError: owned record changed during request lookup" and would have caused the test to fail, but instead triggered an unhandledRejection event.
+ℹ Error: Test "STO-1/SNP-7: append failure admits nothing and the failed writer remains unavailable" at packages/sdk/test/owned-request-admission.test.ts:147:1 generated asynchronous activity after the test ended. This activity created the error "OwnedRequestAdmissionError: owned admission guard is closed or failed" and would have caused the test to fail, but instead triggered an unhandledRejection event.
+ℹ tests 18
+ℹ suites 0
+ℹ pass 15
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 937.522609
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-request-admission.test.ts:113:1
+✖ SNP-7: a failed queued lookup does not poison subsequent work after evidence is restored (22.220867ms)
+  OwnedRequestAdmissionError: owned admission cannot establish current request evidence
+      at checkOwnedRequest (file:///home/dashy/Projects/Solanaut/packages/sdk/src/guard.ts:148:11)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-request-admission.test.ts:116:16)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'owned-request-admission'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:119:1
+✖ SNP-7/OWN-2: closure before queue execution or during an actual shard read prevents admission (42.591164ms)
+  OwnedRequestAdmissionError: owned admission guard is closed or failed
+      at run (file:///home/dashy/Projects/Solanaut/packages/sdk/src/guard.ts:549:25) {
+    code: 'owned-request-admission'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:131:1
+✖ SNP-7: an actual owned result followed by a trusted mutation cannot authorize stale absence (161.945638ms)
+  AssertionError [ERR_ASSERTION]: file:///home/dashy/Projects/Solanaut/packages/sdk/src/guard.ts:551
+          if (shut || evidence.seq !== state.seq || evidence.head !== state.head) throw new OwnedRequestAdmissionError("owned admission history changed before commit");
+                                                                                        ^
+  
+  OwnedRequestAdmissionError: owned admission history changed before commit
+      at run (file:///home/dashy/Projects/Solanaut/packages/sdk/src/guard.ts:551:87) {
+    code: 'owned-request-admission'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-request-admission.test.ts:144:110)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

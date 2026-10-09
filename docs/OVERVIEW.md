@@ -1,10 +1,18 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 41** · 2026-10-08 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 42** · 2026-10-08 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
+
+The internal `guard.ts` companion `checkOwnedRequest` serializes proposal
+consultation with the actual owned disk lookup and rechecks the live head before
+returning a payload-matching old decision or synchronously committing verified
+absence. Genuine signed guard context, private input bytes and immutable detached
+replies protect its boundary. Existing synchronous methods and retained history
+stay intact. It is a consultation seam, not a bounded facade or signer expansion.
+Evidence: `evals/sdk/owned-request-admission.md`.
 
 The internal owned request lookup in `record.ts` authenticates the published
 disk prefix and complete signed current history, then folds the tail for one

@@ -7,6 +7,53 @@ progress out of one hundred with an explicit basis. Continue across queue items.
 
 ## Did
 
+Correct companion pre-close passes nine of ten unchanged gates; only the staged
+uncommitted tree fails. Whitespace findings are confined to verbatim raw fault/
+hosted command output, which is retained byte-for-byte; authored files pass.
+The next isolated builder prepares replay-command tests but hits its service
+usage limit before execution or implementation. Root continues from that draft;
+no completed CLI component or child test execution is claimed.
+
+The fresh isolated recovery/driver campaign completes all fifteen catches with
+exact restoration under the declared 500-case baseline; no full/AST measurements
+overlap these mutations. Root source/compiled fault workers have all stopped.
+Finish diff, unchanged close and coherent private sync before continuing the
+replay command. Existing H9/H10/H11/H12 remain unanswered and unapplied.
+
+Fresh corrected ordinary and serial AST suites each pass 787 cases; native
+typecheck exits zero and every unchanged floor passes. Guard AST counts are
+470/488 statements and 412/438 branches; all measured source hashes match the
+restored files and actual private tarball manifest. The separate isolated
+recovery/driver campaign starts after both full measurements finish. No full
+Stryker score or H11 wait change is inferred. Safe existing replay-command
+qualification is selected as the next independent accepted component; its
+isolated builder prepares test fixtures without executing during these checks.
+
+Root integration preserves every previous compiled trial and adds nine concrete
+admission faults. The eleven installed cases pass and all ninety-one compiled
+trials catch/restored. Registry, partition and staging/report campaigns catch
+five, twelve and fifty-two respectively. Fresh native admission/lookup/publication
+campaigns catch twenty-one, twenty-six and twenty-seven, with exact restoration
+before the full ordinary/type/serial AST sequence begins. Raw root outputs and
+each native trial are retained with the companion receipt. A read-only peer
+confirms compiled needles are unique, old trials are byte-identical and the gap
+assertion awaits actual lookup; this is builder-peer evidence, not RT-2.
+
+Research archive `d0d8dc344c902548ac964f16cdd9f223a9f1e4af` is privately pushed;
+post-push close passes all ten gates. Hosted `37872800833` is read separately.
+The next accepted ADR-019 component is an internal serialized owned proposal
+check, developed test-first in `.sandbox/owned-admission-component` from
+`7118ae2`. It keeps the exposed synchronous guard and all maps intact, adds no
+stable export or signer wiring and is not a bounded-recovery claim. Actual older
+compiled artefact fails the new installed lifecycle assertion for absent API.
+
+Before expanded selected-baseline measurement, declare definition 27 and fresh
+seed 27241. Add owned-request-admission cases to every earlier selected test and
+retain all prior whole sources, waits, limits, supervision and score/coverage
+floors. No complete mutation score or H11 acceptance follows. A peer nested-reply
+mutation finding is handed to the builder for a first-red regression before
+integration; peer review is not independent RT-2.
+
 Research archival pre-close passes nine of ten unchanged gates, including the
 staged secret scan. Only the uncommitted tree fails before private sync. Product,
 test and workload definitions remain identical to qualified `7118ae2`; no full
@@ -271,6 +318,29 @@ map, PROGRESS and mission/HANDOFF/document register continuations. Exact candida
 receipts and measured claim rows follow integrated evidence.
 
 ## Found
+
+First companion pre-close invocation uses `--slug solanaut-1` instead of the
+existing run's `--slug codex-solanaut-1`: eight of ten gates pass, with wrong
+record-name and uncommitted-tree findings. Use the correct documented basename;
+no run rename, close-gate edit or exception. Correct invocation follows.
+
+First root ordinary run passes 786 of 787 and fails the baseline-population
+assertion left at 482 after the declared eighteen-case expansion. The actual
+baseline completes within the unchanged wait. Preserve complete output and
+change the exact assertion to 500; this changes no workload, source, threshold,
+wait or H11 decision. Fresh full qualification follows.
+
+Read-only peer review reproduces two new companion defects before integration:
+D27 fresh replies share nested cached history, and D28 cloned SharedArrayBuffer
+messages remain caller-mutable. Exact first-red output precedes companion-only
+detached recursive freezing and private byte copying. Initial fixture typecheck
+widens its cluster literal; literal annotation preserves assertions and fixes it.
+Original trusted synchronous SDK behaviour and retained state remain unchanged.
+
+Archival `d0d8dc3` run `37872800833` also completes failed: same unchanged baseline
+wait in runtime/AST and partition one; other jobs and lookup faults pass. Full
+metadata/logs are retained with the new companion receipt. No passing full hosted
+gate is inferred from either preceding revision.
 
 Exact owned-lookup CI `37871842802` at `7118ae2` completes failed: each runtime
 and AST suite reports 769 cases, 768 pass and one failure at the unchanged staged

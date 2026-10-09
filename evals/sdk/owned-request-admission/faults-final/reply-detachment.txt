@@ -1,0 +1,89 @@
+✔ SNP-7/LIF-1: prefix and tail retries return exact durable admissions without reevaluation (87.186189ms)
+✖ SNP-7: fresh replies and collision denials are detached and deeply immutable (29.534068ms)
+✔ LIF-1: changed bytes, group and control methods cannot reuse a request identity (45.148144ms)
+✔ SNP-7/LIF-1: FIFO concurrent identities observe reservations from earlier admissions (47.872095ms)
+✔ LIF-1: concurrent identical payloads admit once; conflicting queued payloads refuse (45.283128ms)
+✔ SNP-7: proposal bytes, identity, grouping, time and lifetime are captured before queueing (27.856189ms)
+✔ SNP-7/LIF-1: shared-memory message bytes cannot change the captured admission payload (28.259722ms)
+✔ OWN-2/SNP-7: missing or corrupt disk evidence refuses before any admission (79.212729ms)
+✔ OWN-2: copied, unsigned, memory and manual guards cannot obtain owned admission authority (32.475376ms)
+✔ OWN-2/SNP-7: caller-replaced public methods cannot redirect the private admission context (27.412341ms)
+✔ SNP-7: a failed queued lookup does not poison subsequent work after evidence is restored (26.054548ms)
+✔ SNP-7/OWN-2: closure before queue execution or during an actual shard read prevents admission (50.696757ms)
+✔ SNP-7: trusted synchronous mutation during owned lookup invalidates its captured head (26.138811ms)
+✔ SNP-7: an actual owned result followed by a trusted mutation cannot authorize stale absence (329.408421ms)
+✔ STO-1/SNP-7: append failure admits nothing and the failed writer remains unavailable (25.42484ms)
+✔ LIF-1/7/POL-4: historical retry preserves pending reservations and used receipts across signed policy replacement (44.440303ms)
+✔ LIF-1/SNP-7: historical denials preserve latch and cannot accumulate denial ticks (30.030464ms)
+✔ SNP-7: malformed proposal identity rejects without a record; ordinary proposal validation stays synchronous (27.021252ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 17
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1102.127732
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-request-admission.test.ts:43:1
+✖ SNP-7: fresh replies and collision denials are detached and deeply immutable (29.534068ms)
+  AssertionError [ERR_ASSERTION]: Expected "actual" not to be reference-equal to "expected":
+  
+  {
+    allow: true,
+    amounts: {
+      fees: '5000',
+      sol: '1',
+      tokens: []
+    },
+    at: 1000,
+    blockHeight: '10',
+    expires: {
+      lastValidBlockHeight: '100'
+    },
+    group: null,
+    hash: '17340aaedce32ba809d88e6f1a883991554e25b0b7bb96d8238afe2e8fec154a',
+    intentKey: '6a72b18b54bbf828455b721d45c6ab0de24388023b6acd96bc03a23f7f6e80b2',
+    keel: {
+      digest: '834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8',
+      verified: 'bytes',
+      version: '1.0.1'
+    },
+    kind: 'decision',
+    lastValidBlockHeight: '100',
+    message: 'AQABA7lcYsJcadyW6DU0k9fiK+J06PLBorcbbaLLSmSIOTRhAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUAQICAAEMAgAAAAEAAAAAAAAA',
+    messageHash: 'cbdc59fc1391661fbda5651d709e3cdf5130a86e1b3c07f41a1a304c57cdc797',
+    policyHash: '0f014ba9860f66b3386d0d231d6b3ee5e2fda232c4e61aba04010c901131c850',
+    posture: 'DEFAULT',
+    prev: 'f7eafa6015ced092a13a5410da5eb477c022467582587e70caf2da4bf7c370fd',
+    reason: '',
+    request: {
+      clientId: 'client',
+      digest: 'afdf509f82a4a403cf66d735b2a8d6fc2570842970231208cd7ec316ab1600ec',
+      guardId: 'workload',
+      id: 'payment'
+    },
+    seq: 1,
+    shape: '4ace82c5091f8ed180333d75fa4418d89986ce84c676db8267c6a1517b562f9b',
+    source: 'caller',
+    telemetry: {
+      intensity: 1e-9,
+      repetition: 0,
+      valence: 0.2
+    },
+    temperatureMax: 1,
+    v: 1
+  }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:46:79)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }

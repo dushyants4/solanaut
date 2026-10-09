@@ -1,0 +1,133 @@
+✔ SNP-7/LIF-1: prefix and tail retries return exact durable admissions without reevaluation (78.361791ms)
+✔ SNP-7: fresh replies and collision denials are detached and deeply immutable (31.89749ms)
+✔ LIF-1: changed bytes, group and control methods cannot reuse a request identity (24.343486ms)
+✔ SNP-7/LIF-1: FIFO concurrent identities observe reservations from earlier admissions (35.273553ms)
+✔ LIF-1: concurrent identical payloads admit once; conflicting queued payloads refuse (22.811121ms)
+✔ SNP-7: proposal bytes, identity, grouping, time and lifetime are captured before queueing (21.915131ms)
+✔ SNP-7/LIF-1: shared-memory message bytes cannot change the captured admission payload (23.060222ms)
+✖ OWN-2/SNP-7: missing or corrupt disk evidence refuses before any admission (26.470457ms)
+✖ OWN-2: copied, unsigned, memory and manual guards cannot obtain owned admission authority (32.477879ms)
+✔ OWN-2/SNP-7: caller-replaced public methods cannot redirect the private admission context (23.180789ms)
+✖ SNP-7: a failed queued lookup does not poison subsequent work after evidence is restored (22.832883ms)
+✖ SNP-7/OWN-2: closure before queue execution or during an actual shard read prevents admission (47.306312ms)
+✖ SNP-7: trusted synchronous mutation during owned lookup invalidates its captured head (23.117028ms)
+✖ SNP-7: an actual owned result followed by a trusted mutation cannot authorize stale absence (130.424813ms)
+✔ STO-1/SNP-7: append failure admits nothing and the failed writer remains unavailable (24.082783ms)
+✔ LIF-1/7/POL-4: historical retry preserves pending reservations and used receipts across signed policy replacement (41.64618ms)
+✔ LIF-1/SNP-7: historical denials preserve latch and cannot accumulate denial ticks (24.007835ms)
+✔ SNP-7: malformed proposal identity rejects without a record; ordinary proposal validation stays synchronous (26.144631ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 12
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 753.825948
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-request-admission.test.ts:93:1
+✖ OWN-2/SNP-7: missing or corrupt disk evidence refuses before any admission (26.470457ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (OwnedRequestAdmissionError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-request-admission.test.ts:96:60)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:99:1
+✖ OWN-2: copied, unsigned, memory and manual guards cannot obtain owned admission authority (32.477879ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (OwnedRequestAdmissionError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-request-admission.test.ts:104:65)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:113:1
+✖ SNP-7: a failed queued lookup does not poison subsequent work after evidence is restored (22.832883ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (OwnedRequestAdmissionError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-request-admission.test.ts:115:91)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:119:1
+✖ SNP-7/OWN-2: closure before queue execution or during an actual shard read prevents admission (47.306312ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (OwnedRequestAdmissionError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-request-admission.test.ts:122:129)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:125:1
+✖ SNP-7: trusted synchronous mutation during owned lookup invalidates its captured head (23.117028ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (OwnedRequestAdmissionError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-request-admission.test.ts:128:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:131:1
+✖ SNP-7: an actual owned result followed by a trusted mutation cannot authorize stale absence (130.424813ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/run_main:107
+      triggerUncaughtException(
+      ^
+  
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (OwnedRequestAdmissionError).
+      at async file:///home/dashy/Projects/Solanaut/[eval1]:8:66 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: {
+      name: 'OwnedRequestAdmissionError',
+      code: 'owned-request-admission'
+    },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-request-admission.test.ts:144:110)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

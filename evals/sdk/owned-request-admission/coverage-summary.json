@@ -1,0 +1,551 @@
+{
+  "definition": 1,
+  "node": "v26.7.0",
+  "testArguments": [
+    "--test-concurrency=1"
+  ],
+  "hashes": {
+    "apps/firewall/src/filter.ts": "580ebdeb5c64e7ead28400bac70111345717dac895a197ff1788288e8bf568c2",
+    "apps/signer/src/clock.ts": "dabb511d573a7cbe19bc56e71fa928d8b7e0e88f022d391c75d29579ad76c2af",
+    "apps/signer/src/core.ts": "74d1e674be1092928232cded0b8417163f6b3a6e35508607f539f3191d10db5c",
+    "apps/signer/src/handler.ts": "9bc599c47ee061c341140abe2fb6e03434b738c4d084b9635903cf9d07e454dd",
+    "apps/signer/src/rpc.ts": "3b884a20f2105d9368ef2d480dd1b9d11c34e3e06042221a4131ba28c72f595c",
+    "apps/signer/src/service.ts": "b10422416a5b0f20a4c709a07f1ccd948b8614692ddde3a5a2cd86fe3080f04f",
+    "apps/signer/src/socket.ts": "d72b5f641143948a3f4c0e764e45f2a59c58a2a353eec28c5b43c979f298c303",
+    "packages/sdk/src/adapters/agent-kit.ts": "df647f79746c9f50927d8e37d925b40b4346590bfa74cc8b98f28d01410b2890",
+    "packages/sdk/src/adapters/kit.ts": "3867dbb71e9bb785342fa054bce7c1bf14a59c298920959792cf8c08aebb41e3",
+    "packages/sdk/src/adapters/rpc.ts": "318eff52cbef2467018f2fcc1b9583028d0acbc131708eec0444f80c23722c4c",
+    "packages/sdk/src/adapters/sending-client.ts": "2a88d2ca3f004ea65f33cda6b240b1652d5b708be39ffff52948b3f06fb6b2f7",
+    "packages/sdk/src/archive.ts": "5089f5167d77cbe9344182e436eb3f2f1c221fd0264a9a729b8a94cbd073e068",
+    "packages/sdk/src/authority.ts": "68f16afbd4eaeb8cd5f287288d66e6b44a2f876340e66806aa67e0b980783bfc",
+    "packages/sdk/src/base58.ts": "4382f6e5b180466b312bb73b38a31a9554919f13b8372335bfb48386da0eca95",
+    "packages/sdk/src/canonical.ts": "940364593dabbd51879b614080356ac615968cf88d66270704727f237936abae",
+    "packages/sdk/src/checkpoint-archives.ts": "2692fa0e5e0a554de3c299afa1e1e49a8676f43b069b994a39a28c966bf9e0ef",
+    "packages/sdk/src/checkpoint-bundle.ts": "c0454ed2cad742d13954006ee5a11325230e9b0e41a39731df3c4d8c5056f95c",
+    "packages/sdk/src/checkpoint-envelope.ts": "60ef7a4bf045162d8b65a2c64200af8bb4c3d6048b1344f5ffb4bb9e7232f1af",
+    "packages/sdk/src/checkpoint-errors.ts": "2606ed1043175cc003211610c1e8fc68cc150b1b7c39121bd6566ac152fae7c7",
+    "packages/sdk/src/checkpoint-prefix.ts": "17cf036ca575a61abf20e3e6dca4d27a60c53d989fda1a8e3f5b344664c48569",
+    "packages/sdk/src/checkpoint-publication.ts": "7d571b4575584d190f6aabca7bb91d48544614077ce4179d83af5c3c49a49a09",
+    "packages/sdk/src/checkpoint-recovery.ts": "e1e0016d4e4644cb6e37ed38fa20e19fdbba29e7d3a61122f042ee0cc6b33959",
+    "packages/sdk/src/checkpoint-state.ts": "711c5b8693e6918cca6206107556df723f569ee4ed0bba473c649a0366206f27",
+    "packages/sdk/src/checkpoint.ts": "e5a13682b909029c91f12422a7860033f65f1c53ac3fffca8b907901e67df382",
+    "packages/sdk/src/classify.ts": "cd8553cca6eb37e2e408d2fb837c2a205854289eb012fd98f23460fec7db2599",
+    "packages/sdk/src/control-request.ts": "32956faf9eb8cf57fcaef48d33aa9a97d91477a6d06545fb673433467d552c06",
+    "packages/sdk/src/errors.ts": "2839d664da4c4b3673c817628a8e36df74eb037b97e0618521f28451bafaab73",
+    "packages/sdk/src/guard.ts": "de5c02cb01a0295fd05902184b34327cd06d3dbbe3505d87bc03b5d3b6da53d2",
+    "packages/sdk/src/index.ts": "86d844111c9c60aab3d316176a91963ae1e5192dbb4f8712212ff8ff130518b6",
+    "packages/sdk/src/inspect.ts": "cf73e0efbbbab9061a9ba0e368cf7e6521133966035fc69d871dba1269dcc3a3",
+    "packages/sdk/src/latch.ts": "8e04e0bb6fa9f020ae911833d0065f24488fd2ac6013022ec60351e9f03d8958",
+    "packages/sdk/src/log.ts": "30fa1359c4edd95a79d926e428ecf209874ca48bfcf16a5ccfba60125a9e9b1d",
+    "packages/sdk/src/message.ts": "25d82ad6f99a49f223d8353e758b0252e11d14918ffeee1acd48965aefbcc208",
+    "packages/sdk/src/pda.ts": "03654547ae3673c6aad0572d4527666b810153ce921c45fe64a320f536a934b5",
+    "packages/sdk/src/policy.ts": "a82e516b0553c6de720780e891234a36feda918bbdc34ac31d930216ed6703fc",
+    "packages/sdk/src/profile.ts": "437230537c817d15fe0e23b76642966f1121a00e5e20fb57c0b5f266c9f70272",
+    "packages/sdk/src/record.ts": "5469ef033cc52ddf8a8d9b792fd809cd2264d1171c5c314800c2b22d9fab60b2",
+    "packages/sdk/src/request-index-publication.ts": "63be4cb6bd1dc922b6671919093e3c36332bfee0f825c6b33a52874c3268d4b8",
+    "packages/sdk/src/request-index.ts": "331e6be0e96f9b3f8c6f4425383b626b0b46d38ccacd2de5cbf84b477609f1bc",
+    "packages/sdk/src/request.ts": "3f6d5c15bad9dc6b19835a94d6ca0648229de4b1d1a504750d6e4df36fcb0a1d",
+    "packages/sdk/src/sensor.ts": "56834f72925ed8de59560bf2ad8107bda390faf19970bddefbdd3f1ea4f6a0b4",
+    "packages/sdk/src/signed-policy.ts": "6887126eb6e6419dda4c9d7592bde0bc7813a989f159405671ad572b2bd943b9",
+    "packages/sdk/src/signing.ts": "6a13979210438c3a1771e95eb18ee695c04a4d43cb7054e8d6225f8754f3e904",
+    "packages/sdk/src/state.ts": "adfeb1c2ddaf96c48551ba40a6ebe2140da7d972780fa1af8f3e28d38f396b87",
+    "packages/sdk/src/tables.ts": "d64fb906b395900a9b4c513131a152437fba8b47a4a9413fb6793d623d6925cb"
+  },
+  "files": [
+    {
+      "path": "apps/firewall/src/filter.ts",
+      "statements": {
+        "covered": 52,
+        "total": 52
+      },
+      "branches": {
+        "covered": 52,
+        "total": 53
+      }
+    },
+    {
+      "path": "apps/signer/src/clock.ts",
+      "statements": {
+        "covered": 4,
+        "total": 4
+      },
+      "branches": {
+        "covered": 2,
+        "total": 2
+      }
+    },
+    {
+      "path": "apps/signer/src/core.ts",
+      "statements": {
+        "covered": 105,
+        "total": 111
+      },
+      "branches": {
+        "covered": 78,
+        "total": 88
+      }
+    },
+    {
+      "path": "apps/signer/src/handler.ts",
+      "statements": {
+        "covered": 60,
+        "total": 60
+      },
+      "branches": {
+        "covered": 55,
+        "total": 55
+      }
+    },
+    {
+      "path": "apps/signer/src/rpc.ts",
+      "statements": {
+        "covered": 153,
+        "total": 153
+      },
+      "branches": {
+        "covered": 114,
+        "total": 114
+      }
+    },
+    {
+      "path": "apps/signer/src/service.ts",
+      "statements": {
+        "covered": 42,
+        "total": 46
+      },
+      "branches": {
+        "covered": 15,
+        "total": 16
+      }
+    },
+    {
+      "path": "apps/signer/src/socket.ts",
+      "statements": {
+        "covered": 102,
+        "total": 113
+      },
+      "branches": {
+        "covered": 70,
+        "total": 79
+      }
+    },
+    {
+      "path": "packages/sdk/src/adapters/agent-kit.ts",
+      "statements": {
+        "covered": 112,
+        "total": 126
+      },
+      "branches": {
+        "covered": 67,
+        "total": 83
+      }
+    },
+    {
+      "path": "packages/sdk/src/adapters/kit.ts",
+      "statements": {
+        "covered": 40,
+        "total": 47
+      },
+      "branches": {
+        "covered": 20,
+        "total": 28
+      }
+    },
+    {
+      "path": "packages/sdk/src/adapters/rpc.ts",
+      "statements": {
+        "covered": 45,
+        "total": 47
+      },
+      "branches": {
+        "covered": 32,
+        "total": 38
+      }
+    },
+    {
+      "path": "packages/sdk/src/adapters/sending-client.ts",
+      "statements": {
+        "covered": 108,
+        "total": 113
+      },
+      "branches": {
+        "covered": 111,
+        "total": 117
+      }
+    },
+    {
+      "path": "packages/sdk/src/archive.ts",
+      "statements": {
+        "covered": 100,
+        "total": 103
+      },
+      "branches": {
+        "covered": 110,
+        "total": 113
+      }
+    },
+    {
+      "path": "packages/sdk/src/authority.ts",
+      "statements": {
+        "covered": 6,
+        "total": 6
+      },
+      "branches": {
+        "covered": 11,
+        "total": 11
+      }
+    },
+    {
+      "path": "packages/sdk/src/base58.ts",
+      "statements": {
+        "covered": 52,
+        "total": 52
+      },
+      "branches": {
+        "covered": 13,
+        "total": 13
+      }
+    },
+    {
+      "path": "packages/sdk/src/canonical.ts",
+      "statements": {
+        "covered": 20,
+        "total": 20
+      },
+      "branches": {
+        "covered": 21,
+        "total": 22
+      }
+    },
+    {
+      "path": "packages/sdk/src/checkpoint-archives.ts",
+      "statements": {
+        "covered": 48,
+        "total": 48
+      },
+      "branches": {
+        "covered": 57,
+        "total": 57
+      }
+    },
+    {
+      "path": "packages/sdk/src/checkpoint-bundle.ts",
+      "statements": {
+        "covered": 28,
+        "total": 28
+      },
+      "branches": {
+        "covered": 21,
+        "total": 21
+      }
+    },
+    {
+      "path": "packages/sdk/src/checkpoint-envelope.ts",
+      "statements": {
+        "covered": 38,
+        "total": 38
+      },
+      "branches": {
+        "covered": 23,
+        "total": 23
+      }
+    },
+    {
+      "path": "packages/sdk/src/checkpoint-errors.ts",
+      "statements": {
+        "covered": 6,
+        "total": 6
+      },
+      "branches": {
+        "covered": 0,
+        "total": 0
+      }
+    },
+    {
+      "path": "packages/sdk/src/checkpoint-prefix.ts",
+      "statements": {
+        "covered": 46,
+        "total": 47
+      },
+      "branches": {
+        "covered": 42,
+        "total": 43
+      }
+    },
+    {
+      "path": "packages/sdk/src/checkpoint-publication.ts",
+      "statements": {
+        "covered": 79,
+        "total": 85
+      },
+      "branches": {
+        "covered": 52,
+        "total": 59
+      }
+    },
+    {
+      "path": "packages/sdk/src/checkpoint-recovery.ts",
+      "statements": {
+        "covered": 56,
+        "total": 58
+      },
+      "branches": {
+        "covered": 76,
+        "total": 79
+      }
+    },
+    {
+      "path": "packages/sdk/src/checkpoint-state.ts",
+      "statements": {
+        "covered": 44,
+        "total": 44
+      },
+      "branches": {
+        "covered": 23,
+        "total": 24
+      }
+    },
+    {
+      "path": "packages/sdk/src/checkpoint.ts",
+      "statements": {
+        "covered": 54,
+        "total": 54
+      },
+      "branches": {
+        "covered": 71,
+        "total": 71
+      }
+    },
+    {
+      "path": "packages/sdk/src/classify.ts",
+      "statements": {
+        "covered": 162,
+        "total": 173
+      },
+      "branches": {
+        "covered": 149,
+        "total": 161
+      }
+    },
+    {
+      "path": "packages/sdk/src/control-request.ts",
+      "statements": {
+        "covered": 24,
+        "total": 24
+      },
+      "branches": {
+        "covered": 43,
+        "total": 43
+      }
+    },
+    {
+      "path": "packages/sdk/src/errors.ts",
+      "statements": {
+        "covered": 5,
+        "total": 5
+      },
+      "branches": {
+        "covered": 0,
+        "total": 0
+      }
+    },
+    {
+      "path": "packages/sdk/src/guard.ts",
+      "statements": {
+        "covered": 470,
+        "total": 488
+      },
+      "branches": {
+        "covered": 412,
+        "total": 438
+      }
+    },
+    {
+      "path": "packages/sdk/src/index.ts",
+      "statements": {
+        "covered": 0,
+        "total": 0
+      },
+      "branches": {
+        "covered": 0,
+        "total": 0
+      }
+    },
+    {
+      "path": "packages/sdk/src/inspect.ts",
+      "statements": {
+        "covered": 33,
+        "total": 35
+      },
+      "branches": {
+        "covered": 35,
+        "total": 40
+      }
+    },
+    {
+      "path": "packages/sdk/src/latch.ts",
+      "statements": {
+        "covered": 17,
+        "total": 17
+      },
+      "branches": {
+        "covered": 10,
+        "total": 11
+      }
+    },
+    {
+      "path": "packages/sdk/src/log.ts",
+      "statements": {
+        "covered": 5,
+        "total": 5
+      },
+      "branches": {
+        "covered": 0,
+        "total": 0
+      }
+    },
+    {
+      "path": "packages/sdk/src/message.ts",
+      "statements": {
+        "covered": 221,
+        "total": 224
+      },
+      "branches": {
+        "covered": 95,
+        "total": 99
+      }
+    },
+    {
+      "path": "packages/sdk/src/pda.ts",
+      "statements": {
+        "covered": 48,
+        "total": 53
+      },
+      "branches": {
+        "covered": 14,
+        "total": 18
+      }
+    },
+    {
+      "path": "packages/sdk/src/policy.ts",
+      "statements": {
+        "covered": 118,
+        "total": 121
+      },
+      "branches": {
+        "covered": 101,
+        "total": 107
+      }
+    },
+    {
+      "path": "packages/sdk/src/profile.ts",
+      "statements": {
+        "covered": 3,
+        "total": 3
+      },
+      "branches": {
+        "covered": 0,
+        "total": 0
+      }
+    },
+    {
+      "path": "packages/sdk/src/record.ts",
+      "statements": {
+        "covered": 293,
+        "total": 302
+      },
+      "branches": {
+        "covered": 165,
+        "total": 174
+      }
+    },
+    {
+      "path": "packages/sdk/src/request-index-publication.ts",
+      "statements": {
+        "covered": 173,
+        "total": 181
+      },
+      "branches": {
+        "covered": 132,
+        "total": 140
+      }
+    },
+    {
+      "path": "packages/sdk/src/request-index.ts",
+      "statements": {
+        "covered": 178,
+        "total": 192
+      },
+      "branches": {
+        "covered": 169,
+        "total": 185
+      }
+    },
+    {
+      "path": "packages/sdk/src/request.ts",
+      "statements": {
+        "covered": 16,
+        "total": 16
+      },
+      "branches": {
+        "covered": 22,
+        "total": 22
+      }
+    },
+    {
+      "path": "packages/sdk/src/sensor.ts",
+      "statements": {
+        "covered": 42,
+        "total": 42
+      },
+      "branches": {
+        "covered": 25,
+        "total": 26
+      }
+    },
+    {
+      "path": "packages/sdk/src/signed-policy.ts",
+      "statements": {
+        "covered": 45,
+        "total": 45
+      },
+      "branches": {
+        "covered": 50,
+        "total": 52
+      }
+    },
+    {
+      "path": "packages/sdk/src/signing.ts",
+      "statements": {
+        "covered": 54,
+        "total": 54
+      },
+      "branches": {
+        "covered": 70,
+        "total": 70
+      }
+    },
+    {
+      "path": "packages/sdk/src/state.ts",
+      "statements": {
+        "covered": 210,
+        "total": 219
+      },
+      "branches": {
+        "covered": 203,
+        "total": 215
+      }
+    },
+    {
+      "path": "packages/sdk/src/tables.ts",
+      "statements": {
+        "covered": 23,
+        "total": 23
+      },
+      "branches": {
+        "covered": 12,
+        "total": 12
+      }
+    }
+  ]
+}

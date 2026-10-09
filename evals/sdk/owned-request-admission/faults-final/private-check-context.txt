@@ -1,0 +1,38 @@
+✔ SNP-7/LIF-1: prefix and tail retries return exact durable admissions without reevaluation (95.143862ms)
+✔ SNP-7: fresh replies and collision denials are detached and deeply immutable (35.254637ms)
+✔ LIF-1: changed bytes, group and control methods cannot reuse a request identity (47.739107ms)
+✔ SNP-7/LIF-1: FIFO concurrent identities observe reservations from earlier admissions (46.739044ms)
+✔ LIF-1: concurrent identical payloads admit once; conflicting queued payloads refuse (42.517209ms)
+✔ SNP-7: proposal bytes, identity, grouping, time and lifetime are captured before queueing (24.599555ms)
+✔ SNP-7/LIF-1: shared-memory message bytes cannot change the captured admission payload (33.333803ms)
+✔ OWN-2/SNP-7: missing or corrupt disk evidence refuses before any admission (65.259701ms)
+✔ OWN-2: copied, unsigned, memory and manual guards cannot obtain owned admission authority (30.563788ms)
+✖ OWN-2/SNP-7: caller-replaced public methods cannot redirect the private admission context (23.66556ms)
+✔ SNP-7: a failed queued lookup does not poison subsequent work after evidence is restored (25.473701ms)
+✔ SNP-7/OWN-2: closure before queue execution or during an actual shard read prevents admission (45.379552ms)
+✔ SNP-7: trusted synchronous mutation during owned lookup invalidates its captured head (24.886469ms)
+✔ SNP-7: an actual owned result followed by a trusted mutation cannot authorize stale absence (331.928489ms)
+✔ STO-1/SNP-7: append failure admits nothing and the failed writer remains unavailable (33.632896ms)
+✔ LIF-1/7/POL-4: historical retry preserves pending reservations and used receipts across signed policy replacement (52.6485ms)
+✔ LIF-1/SNP-7: historical denials preserve latch and cannot accumulate denial ticks (34.992328ms)
+✔ SNP-7: malformed proposal identity rejects without a record; ordinary proposal validation stays synchronous (27.754023ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 17
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1110.834577
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-request-admission.test.ts:107:1
+✖ OWN-2/SNP-7: caller-replaced public methods cannot redirect the private admission context (23.66556ms)
+  OwnedRequestAdmissionError: owned admission cannot establish current request evidence
+      at checkOwnedRequest (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/src/guard.ts:148:11)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:110:20)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'owned-request-admission'
+  }

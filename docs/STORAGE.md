@@ -1,6 +1,6 @@
 # Persistent record ownership
 
-> **Draft 7** · 2026-10-08 · owner: integrator · for: SDK users and Linux operators.
+> **Draft 8** · 2026-10-08 · owner: integrator · for: SDK users and Linux operators.
 > Register: `kb/DOCUMENTS.md`. Foundation evidence: `evals/sdk/ownership.md` (claim S16).
 
 An ordinary `createGuard({ policy, log: path })` uses manual SDK ownership. It refuses an
@@ -36,6 +36,15 @@ only through that current head. It shares maintenance exclusion and refuses late
 owner, record, cache or pointer changes. It performs no writes or repairs, and an
 answer cannot authorise an admission without a serialized head check. Full history
 and construction remain retained. Evidence: `evals/sdk/request-index-lookup.md`.
+
+An internal owned proposal companion now serializes that consultation with
+evaluation/commit. It requires a genuine signed guard and actual owned evidence;
+changed heads or unavailable indexes refuse admission. Historical decisions remain
+payload-bound across policy changes; retries do not free reservations or reuse
+receipts. This adds no public root export or operator command. It keeps every
+historical map and array: pruning requires a distinct private async facade so
+trusted synchronous APIs cannot bypass historical lookup. Evidence:
+`evals/sdk/owned-request-admission.md`. Full memory/startup gates remain owed.
 
 The writer opens a stable mutex inode and passes its descriptor to `/usr/bin/flock` for
 nonblocking exclusive acquisition. The parent retains that descriptor until close or death.

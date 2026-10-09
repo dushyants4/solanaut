@@ -1,0 +1,26 @@
+✔ SNP-7/LIF-1: prefix and tail retries return exact durable admissions without reevaluation (48.969639ms)
+✔ SNP-7: fresh replies and collision denials are detached and deeply immutable (18.463618ms)
+✔ LIF-1: changed bytes, group and control methods cannot reuse a request identity (21.58068ms)
+✔ SNP-7/LIF-1: FIFO concurrent identities observe reservations from earlier admissions (26.824416ms)
+✔ LIF-1: concurrent identical payloads admit once; conflicting queued payloads refuse (24.96789ms)
+✔ SNP-7: proposal bytes, identity, grouping, time and lifetime are captured before queueing (7.455663ms)
+✔ SNP-7/LIF-1: shared-memory message bytes cannot change the captured admission payload (10.678119ms)
+✔ OWN-2/SNP-7: missing or corrupt disk evidence refuses before any admission (19.150722ms)
+✔ OWN-2: copied, unsigned, memory and manual guards cannot obtain owned admission authority (9.105894ms)
+✔ OWN-2/SNP-7: caller-replaced public methods cannot redirect the private admission context (8.263ms)
+✔ SNP-7: a failed queued lookup does not poison subsequent work after evidence is restored (9.033359ms)
+✔ SNP-7/OWN-2: closure before queue execution or during an actual shard read prevents admission (12.547819ms)
+✔ SNP-7: trusted synchronous mutation during owned lookup invalidates its captured head (8.263398ms)
+✔ SNP-7: an actual owned result followed by a trusted mutation cannot authorize stale absence (233.592389ms)
+✔ STO-1/SNP-7: append failure admits nothing and the failed writer remains unavailable (9.267587ms)
+✔ LIF-1/7/POL-4: historical retry preserves pending reservations and used receipts across signed policy replacement (22.278797ms)
+✔ LIF-1/SNP-7: historical denials preserve latch and cannot accumulate denial ticks (14.267443ms)
+✔ SNP-7: malformed proposal identity rejects without a record; ordinary proposal validation stays synchronous (7.927099ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 636.119604

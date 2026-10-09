@@ -1,0 +1,62 @@
+✔ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (32.635611ms)
+✔ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (25.33744ms)
+✔ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (31.199799ms)
+✔ SNP-7/LIF-2: denied replies and unrelated non-request decisions do not disappear or redirect lookup (9.467291ms)
+✔ OWN-2: fake, copied, manual, closed and failed owners cannot consult current history (15.474563ms)
+✔ SNP-7: missing published index is a refusal, never an automatic write or empty answer (5.733541ms)
+✖ SNP-7: identity and external pins are captured before async reads and invalid containers refuse (9.335789ms)
+✔ OWN-2: lookup, index publication, checkpoint publication and recovery share maintenance exclusion (11.507927ms)
+✔ SNP-7: full current replay rejects unrelated dishonest tails even when a prefix hit exists (7.040342ms)
+✔ SNP-7: fresh disk and cached history mismatch refuses without changing evidence (16.753763ms)
+✔ SNP-7/OWN-2: concurrent append, cache change, closure and inode substitution refuse current answers (36.938227ms)
+✔ SNP-7: corrupt pointer or any generation evidence refuses without repairing the cache (49.936395ms)
+✔ SNP-7: pointer disappearance or byte-identical replacement during module loading refuses (10.134617ms)
+✔ SNP-7: late pointer, record and cache changes during actual shard lookup refuse (24.102852ms)
+✔ SNP-7: helper captures history before awaits instead of folding unvalidated caller mutations (7.231299ms)
+✔ OWN-2: a valid cache under a manual owner still cannot claim kernel-owned current evidence (7.965373ms)
+✔ OWN-2: a healthy closed lookup capability cannot borrow a reopened owner's reused descriptors (10.222123ms)
+✔ SNP-7/LIF-3/4: a complete payment lifecycle wholly in the tail matches a newly published index (18.197805ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 17
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 411.748388
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-lookup.test.ts:88:1
+✖ SNP-7: identity and external pins are captured before async reads and invalid containers refuse (9.335789ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + undefined
+  - {
+  -   at: 1000,
+  -   hash: 'e3850c3618f122cb6a5cdf54a5b73c2bd872a6b13e944d9d71b56352562f79ea',
+  -   kind: 'request',
+  -   method: 'status',
+  -   payload: '{}',
+  -   prev: '4b85dd3f6fd9962516661f8d8403e0ea581d2aedaac2513711e3d5726169c7e6',
+  -   request: {
+  -     clientId: 'client',
+  -     digest: '2c5d2454f3d116f455989b333be5ecba8e3848be4e82f4cf993eb803dc2a1d99',
+  -     guardId: 'workload',
+  -     id: 'one'
+  -   },
+  -   seq: 1,
+  -   v: 1
+  - }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:90:161)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

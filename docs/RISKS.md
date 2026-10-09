@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.62** · 2026-10-08 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.63** · 2026-10-08 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 Exact published Phantom MCP send/transfer routes return after broadcast; the
@@ -11,6 +11,14 @@ signature, not the final signed wire. Browser SDK embedded-wallet support limits
 do not establish the exact CLI user-wallet's permissions. Static primary evidence:
 `evals/firewall/published-contract-current.md`, `evals/firewall/published-sdk-seam.md`.
 No dependency or accepted architecture contract is changed by this finding.
+
+The owned proposal companion refuses a stale lookup-to-commit head and serializes
+its requests. Peer review reproduces D27 cached reply aliasing and D28 shared
+message backing before fixes; detached recursively frozen replies and private
+byte copying close those candidate defects. Full history/index construction is
+still retained. Do not evict maps from an exposed synchronous guard: its trusted
+methods would bypass consultation. General SDK bookkeeping adds no signer wiring
+or SIG-11 waiver. Evidence: `evals/sdk/owned-request-admission.md`.
 
 Offline MCP selection now refuses unlisted tools and omitted/foreign networks.
 Accessor/proxy substitution and inherited-default regressions fail first and

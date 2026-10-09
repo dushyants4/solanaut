@@ -1,5 +1,16 @@
 # DOCUMENTS.md — the document register
 
+2026-10-08 owned serialized proposal integration registers SPEC Draft 4.71,
+OVERVIEW Draft 42, STORAGE Draft 8, RISKS 1.63, PROGRESS, HANDOFF, evaluation
+index, release evidence map and continuing run. New receipt:
+`evals/sdk/owned-request-admission.md`, with absent API/installed/staging failures,
+D27/D28 first-reds, source faults and exact preceding archival hosted failure.
+Existing public exports, signer budget and readiness thresholds are unchanged.
+CLAIMS S92 and the receipt retain the root full-suite stale-population failure,
+the exact corrected 500-case expectation, final ordinary/AST/type evidence,
+source/compiled/inventory/staging faults, source hashes and private tarball identity.
+Changing the exact population assertion changes no workload, wait or floor.
+
 2026-10-08 Phantom primary-source research registers the three new receipts:
 `evals/firewall/published-contract.md`, `published-contract-current.md` and
 `published-sdk-seam.md`, with exact static metadata/hashes/short excerpts and

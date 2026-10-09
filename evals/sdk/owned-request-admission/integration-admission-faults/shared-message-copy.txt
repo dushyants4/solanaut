@@ -1,0 +1,47 @@
+✔ SNP-7/LIF-1: prefix and tail retries return exact durable admissions without reevaluation (78.364884ms)
+✔ SNP-7: fresh replies and collision denials are detached and deeply immutable (38.678798ms)
+✔ LIF-1: changed bytes, group and control methods cannot reuse a request identity (42.03474ms)
+✔ SNP-7/LIF-1: FIFO concurrent identities observe reservations from earlier admissions (41.807361ms)
+✔ LIF-1: concurrent identical payloads admit once; conflicting queued payloads refuse (40.787568ms)
+✔ SNP-7: proposal bytes, identity, grouping, time and lifetime are captured before queueing (24.134601ms)
+✖ SNP-7/LIF-1: shared-memory message bytes cannot change the captured admission payload (27.883703ms)
+✔ OWN-2/SNP-7: missing or corrupt disk evidence refuses before any admission (72.328311ms)
+✔ OWN-2: copied, unsigned, memory and manual guards cannot obtain owned admission authority (28.521145ms)
+✔ OWN-2/SNP-7: caller-replaced public methods cannot redirect the private admission context (25.954543ms)
+✔ SNP-7: a failed queued lookup does not poison subsequent work after evidence is restored (26.019372ms)
+✔ SNP-7/OWN-2: closure before queue execution or during an actual shard read prevents admission (45.991951ms)
+✔ SNP-7: trusted synchronous mutation during owned lookup invalidates its captured head (23.595656ms)
+✔ SNP-7: an actual owned result followed by a trusted mutation cannot authorize stale absence (343.467225ms)
+✔ STO-1/SNP-7: append failure admits nothing and the failed writer remains unavailable (24.089346ms)
+✔ LIF-1/7/POL-4: historical retry preserves pending reservations and used receipts across signed policy replacement (44.613497ms)
+✔ LIF-1/SNP-7: historical denials preserve latch and cannot accumulate denial ticks (30.289962ms)
+✔ SNP-7: malformed proposal identity rejects without a record; ordinary proposal validation stays synchronous (24.145781ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 17
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1058.741243
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-request-admission.test.ts:85:1
+✖ SNP-7/LIF-1: shared-memory message bytes cannot change the captured admission payload (27.883703ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'AQABA0EQGz56iWtEtNMkDXwfG3v/J02APXfLV477YZtE74QmAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUAQICAAEMAgAAAAIAAAAAAAAA'
+  - 'AQABA0EQGz56iWtEtNMkDXwfG3v/J02APXfLV477YZtE74QmAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUAQICAAEMAgAAAAEAAAAAAAAA'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-request-admission.test.ts:89:67)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'AQABA0EQGz56iWtEtNMkDXwfG3v/J02APXfLV477YZtE74QmAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUAQICAAEMAgAAAAIAAAAAAAAA',
+    expected: 'AQABA0EQGz56iWtEtNMkDXwfG3v/J02APXfLV477YZtE74QmAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUAQICAAEMAgAAAAEAAAAAAAAA',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

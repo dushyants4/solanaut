@@ -57,6 +57,12 @@ Owned publication of a verified historical prefix is not proof of current absenc
 Qualification must exercise historical retries after the active cache evicts them,
 tail requests created after publication, policy changes and uncertain sends.
 
+The internal [owned proposal companion](../../evals/sdk/owned-request-admission.md)
+now provides serialized proposal lookup-to-commit consultation. It leaves the
+trusted synchronous guard exposed and all historical maps retained. Complete
+control/reply/signing consultation and a distinct facade that privately owns the
+guard are needed before pruning; no complete bounded-memory gate closes here.
+
 Continue the accepted [snapshot sequence](2026-10-06_snapshot-qualification.md):
 historical request/answer lookup on disk, bounded active state and actual owned
 streamed restoration. Preserve payload identity, unresolved reservations, used

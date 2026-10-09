@@ -1,0 +1,26 @@
+✔ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (40.2041ms)
+✔ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (29.77141ms)
+✔ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (33.611049ms)
+✔ SNP-7/LIF-2: denied replies and unrelated non-request decisions do not disappear or redirect lookup (10.146405ms)
+✔ OWN-2: fake, copied, manual, closed and failed owners cannot consult current history (14.671563ms)
+✔ SNP-7: missing published index is a refusal, never an automatic write or empty answer (5.750496ms)
+✔ SNP-7: identity and external pins are captured before async reads and invalid containers refuse (11.692552ms)
+✔ OWN-2: lookup, index publication, checkpoint publication and recovery share maintenance exclusion (11.164737ms)
+✔ SNP-7: full current replay rejects unrelated dishonest tails even when a prefix hit exists (7.905928ms)
+✔ SNP-7: fresh disk and cached history mismatch refuses without changing evidence (17.346642ms)
+✔ SNP-7/OWN-2: concurrent append, cache change, closure and inode substitution refuse current answers (36.560726ms)
+✔ SNP-7: corrupt pointer or any generation evidence refuses without repairing the cache (49.621348ms)
+✔ SNP-7: pointer disappearance or byte-identical replacement during module loading refuses (12.064694ms)
+✔ SNP-7: late pointer, record and cache changes during actual shard lookup refuse (27.210791ms)
+✔ SNP-7: helper captures history before awaits instead of folding unvalidated caller mutations (8.275477ms)
+✔ OWN-2: a valid cache under a manual owner still cannot claim kernel-owned current evidence (8.000857ms)
+✔ OWN-2: a healthy closed lookup capability cannot borrow a reopened owner's reused descriptors (10.192435ms)
+✔ SNP-7/LIF-3/4: a complete payment lifecycle wholly in the tail matches a newly published index (20.704753ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 483.703223

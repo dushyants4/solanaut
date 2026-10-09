@@ -532,6 +532,8 @@ Each is fixed test-first: the evaluator writes the failing test, and the builder
 | D24 | Missing/non-record sending-client arguments escape as ordinary TypeError or accept unsupported containers instead of the documented typed input refusal | `adapters/sending-client.ts`, reproduced on 2026-10-08 | **closed in the builder candidate:** check object containers before field access; preserve valid field validation, exact method surface and no automatic retry. `evals/sdk/sending-client-input.md`; broader qualification remains owed |
 | D25 | Cached entries can change during asynchronous checkpoint validation without changing the disk file; publication can acknowledge inconsistent cached history | `record.ts`, reproduced on 2026-10-08 | **closed in the builder candidate:** repeat cached-history equality with ownership and disk-stat checks at publication boundaries. First failing regression and retained fault trials: `evals/sdk/owned-request-index.md`; live service and independent qualification remain owed |
 | D26 | The new internal request-lookup helper can fold a caller-mutated history after validating its captured snapshot, returning unrecorded tail facts | `request-index-publication.ts`, reproduced on 2026-10-08 before integration | **closed in the builder candidate:** synchronously capture history, identity and policy pins, then use that same history for validation and folding. Actual owned callers already supply private history. First-red and retained faults: `evals/sdk/request-index-lookup.md`; no admission or bounded-state qualification |
+| D27 | A fresh owned-admission reply shares nested data with cached log state, unlike authenticated lookup replies | new `guard.ts` companion, reproduced on 2026-10-08 before integration | **closed in the builder candidate:** detach and recursively freeze companion replies. The trusted synchronous SDK contract is unchanged. First-red: `evals/sdk/owned-request-admission.md`; broader qualification remains owed |
+| D28 | Cloning a shared-buffer proposal preserves shared byte backing, so caller mutation changes queued admission bytes | new `guard.ts` companion, reproduced on 2026-10-08 before integration | **closed in the builder candidate:** copy captured message bytes into a private ordinary Uint8Array before binding/queueing. First-red: `evals/sdk/owned-request-admission.md`; no atomic concurrent-memory snapshot or isolated deployment claim |
 
 **Status:** closed at milestone 2a.5 (`evals/sdk/admission.md`), test-first: D1, D2, D5, D6, D7, D9, D10 and D12. D12
 closed early: the guard decodes bytes itself, so `packages/sdk/src` imports no web3.js. D11 closed at milestone 2a.6
@@ -1333,3 +1335,22 @@ root SDK export, record/evaluator format change or bounded-memory claim.
 Component evidence: `evals/sdk/request-index-lookup.md`.
 
 | Draft 4.70 | 2026-10-08 | Internal owned current-head request evidence and D26 history-capture correction; fresh mutation definition 26/seed 26179 includes every earlier population and adds lookup tests. Admission wiring, bounded state and stable release remain owed. |
+
+Internal SNP-7 serialized proposal convention under accepted ADR-019:
+`checkOwnedRequest` binds genuine signed guards to their private store/state/check
+context, captures input and privately copies actual bytes before a per-guard FIFO.
+The actual owned index lookup must establish evidence through the live sequence
+and head. Check closure and that head after lookup, then return a matching historical
+decision or synchronously evaluate/commit verified absence, without another await.
+Kind/digest collisions return an unrecorded fail-closed decision; unavailable or
+changed evidence and invalid captured input use `OwnedRequestAdmissionError`, code
+`owned-request-admission`. Append failure follows the existing unrecorded denial
+and failed-writer semantics. Queue rejection does not poison later work. Companion
+replies are detached and deeply frozen; public synchronous methods remain unchanged.
+All maps, arrays and index construction remain retained. Never evict history from
+the exposed synchronous guard; a future distinct async facade must privately own
+it and route all relevant consultation first. No root SDK export, signer wiring,
+record/evaluator change, isolation or completed SNP-7 claim.
+Component evidence: `evals/sdk/owned-request-admission.md`.
+
+| Draft 4.71 | 2026-10-08 | Internal serialized owned proposal consultation with D27 reply detachment and D28 shared-byte capture corrections. Definition 27/seed 27241 retains prior sources/tests/floors/limits and adds the companion tests. Bounded state, complete asynchronous facade, signer deployment and release gates remain owed. |

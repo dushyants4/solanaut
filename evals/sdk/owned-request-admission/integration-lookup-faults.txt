@@ -1,0 +1,27 @@
+caught owned request lookup fault: actual-capability
+caught owned request lookup fault: kernel-owner
+caught owned request lookup fault: closed-owner
+caught owned request lookup fault: failed-owner
+caught owned request lookup fault: maintenance
+caught owned request lookup fault: captured-identity
+caught owned request lookup fault: captured-pins
+caught owned request lookup fault: early-cache
+caught owned request lookup fault: late-cache
+caught owned request lookup fault: record-boundary
+caught owned request lookup fault: late-owner
+caught owned request lookup fault: loading-pointer
+caught owned request lookup fault: full-current-replay
+caught owned request lookup fault: disk-consultation
+caught owned request lookup fault: captured-history
+caught owned request lookup fault: tail-start
+caught owned request lookup fault: tail-response
+caught owned request lookup fault: tail-redemption
+caught owned request lookup fault: tail-signed
+caught owned request lookup fault: tail-started
+caught owned request lookup fault: tail-signing-response
+caught owned request lookup fault: tail-report
+caught owned request lookup fault: tail-settlement
+caught owned request lookup fault: final-pointer
+caught owned request lookup fault: current-endpoint
+caught owned request lookup fault: immutable-answer
+All owned request lookup faults caught; sources restored

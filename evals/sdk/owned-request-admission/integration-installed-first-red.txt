@@ -1,0 +1,38 @@
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (288.412293ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1017.324652
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:219:1
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (288.412293ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-AaYIoH/consumer/[eval1]:165
+        const beforeRetry=live.status().seq,historicalDecision=await checkOwnedRequest(live,{message:new Uint8Array(message),at:2000,blockHeight:200n},{clientId:'client',id:'payment'});
+                                                                     ^
+  
+  TypeError: checkOwnedRequest is not a function
+      at file:///tmp/solanaut-consumer-AaYIoH/consumer/[eval1]:165:68
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:411:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

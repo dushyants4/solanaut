@@ -1,0 +1,30 @@
+✖ SNP-7/LIF-1: shared-memory message bytes cannot change the captured admission payload (33.303144ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 148.853874
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-request-admission.test.ts:84:1
+✖ SNP-7/LIF-1: shared-memory message bytes cannot change the captured admission payload (33.303144ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'AQABA8EZY33zA8ms88yHNKzdOcjZ+Lclf3DzjTaNcdHe3ADsAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUAQICAAEMAgAAAAIAAAAAAAAA'
+  - 'AQABA8EZY33zA8ms88yHNKzdOcjZ+Lclf3DzjTaNcdHe3ADsAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUAQICAAEMAgAAAAEAAAAAAAAA'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:88:67)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'AQABA8EZY33zA8ms88yHNKzdOcjZ+Lclf3DzjTaNcdHe3ADsAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUAQICAAEMAgAAAAIAAAAAAAAA',
+    expected: 'AQABA8EZY33zA8ms88yHNKzdOcjZ+Lclf3DzjTaNcdHe3ADsAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUAQICAAEMAgAAAAEAAAAAAAAA',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

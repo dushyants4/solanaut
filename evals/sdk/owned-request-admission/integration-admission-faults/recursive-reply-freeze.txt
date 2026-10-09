@@ -1,0 +1,45 @@
+✔ SNP-7/LIF-1: prefix and tail retries return exact durable admissions without reevaluation (91.442747ms)
+✖ SNP-7: fresh replies and collision denials are detached and deeply immutable (35.364719ms)
+✔ LIF-1: changed bytes, group and control methods cannot reuse a request identity (43.38632ms)
+✔ SNP-7/LIF-1: FIFO concurrent identities observe reservations from earlier admissions (45.486517ms)
+✔ LIF-1: concurrent identical payloads admit once; conflicting queued payloads refuse (41.540627ms)
+✔ SNP-7: proposal bytes, identity, grouping, time and lifetime are captured before queueing (23.660593ms)
+✔ SNP-7/LIF-1: shared-memory message bytes cannot change the captured admission payload (26.916519ms)
+✔ OWN-2/SNP-7: missing or corrupt disk evidence refuses before any admission (71.444891ms)
+✔ OWN-2: copied, unsigned, memory and manual guards cannot obtain owned admission authority (28.44748ms)
+✔ OWN-2/SNP-7: caller-replaced public methods cannot redirect the private admission context (23.298604ms)
+✔ SNP-7: a failed queued lookup does not poison subsequent work after evidence is restored (24.118211ms)
+✔ SNP-7/OWN-2: closure before queue execution or during an actual shard read prevents admission (42.340197ms)
+✔ SNP-7: trusted synchronous mutation during owned lookup invalidates its captured head (24.130038ms)
+✔ SNP-7: an actual owned result followed by a trusted mutation cannot authorize stale absence (351.45994ms)
+✔ STO-1/SNP-7: append failure admits nothing and the failed writer remains unavailable (26.787822ms)
+✔ LIF-1/7/POL-4: historical retry preserves pending reservations and used receipts across signed policy replacement (50.455045ms)
+✔ LIF-1/SNP-7: historical denials preserve latch and cannot accumulate denial ticks (30.54833ms)
+✔ SNP-7: malformed proposal identity rejects without a record; ordinary proposal validation stays synchronous (23.902881ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 17
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1087.778408
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-request-admission.test.ts:43:1
+✖ SNP-7: fresh replies and collision denials are detached and deeply immutable (35.364719ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(Object.isFrozen(value))
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-request-admission.test.ts:47:129)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

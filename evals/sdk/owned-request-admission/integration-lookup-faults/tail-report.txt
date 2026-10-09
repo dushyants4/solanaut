@@ -1,0 +1,89 @@
+✔ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (43.412761ms)
+✔ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (32.436107ms)
+✖ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (22.464523ms)
+✔ SNP-7/LIF-2: denied replies and unrelated non-request decisions do not disappear or redirect lookup (14.0046ms)
+✔ OWN-2: fake, copied, manual, closed and failed owners cannot consult current history (16.160523ms)
+✔ SNP-7: missing published index is a refusal, never an automatic write or empty answer (5.930562ms)
+✔ SNP-7: identity and external pins are captured before async reads and invalid containers refuse (12.320595ms)
+✔ OWN-2: lookup, index publication, checkpoint publication and recovery share maintenance exclusion (11.010487ms)
+✔ SNP-7: full current replay rejects unrelated dishonest tails even when a prefix hit exists (8.734638ms)
+✔ SNP-7: fresh disk and cached history mismatch refuses without changing evidence (16.613563ms)
+✔ SNP-7/OWN-2: concurrent append, cache change, closure and inode substitution refuse current answers (39.991618ms)
+✔ SNP-7: corrupt pointer or any generation evidence refuses without repairing the cache (51.518051ms)
+✔ SNP-7: pointer disappearance or byte-identical replacement during module loading refuses (10.188479ms)
+✔ SNP-7: late pointer, record and cache changes during actual shard lookup refuse (24.419773ms)
+✔ SNP-7: helper captures history before awaits instead of folding unvalidated caller mutations (8.523339ms)
+✔ OWN-2: a valid cache under a manual owner still cannot claim kernel-owned current evidence (8.057986ms)
+✔ OWN-2: a healthy closed lookup capability cannot borrow a reopened owner's reused descriptors (10.310649ms)
+✖ SNP-7/LIF-3/4: a complete payment lifecycle wholly in the tail matches a newly published index (15.810198ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 16
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 467.879493
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-lookup.test.ts:60:1
+✖ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (22.464523ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'unknown'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:65:331)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'unknown',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:152:1
+✖ SNP-7/LIF-3/4: a complete payment lifecycle wholly in the tail matches a newly published index (15.810198ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      format: 1,
+      key: '["workload","client","new-payment"]',
+      kind: 'solanaut-request-index-row',
+      redeem: {
+  ...
+      },
+  +   report: null,
+  -   report: {
+  -     at: 1000,
+  -     decision: 'f1f8febdf6243ec65e1bd9ac9b1bc165786b56230cce9c75f1e569b830d4b7c8',
+  -     hash: 'd3d0a3149dc269a0af183bd40676948c544e19186014a0965eef723304e82203',
+  -     kind: 'report',
+  -     outcome: 'failed',
+  -     prev: '497299b69f2a90118506060c82e97982ea6aecbf21d44434175a5ee7b8b5d424',
+  -     seq: 8,
+  -     source: 'caller',
+  -     v: 1
+  -   },
+      response: {
+        at: 1000,
+        event: {
+          decision: 'f1f8febdf6243ec65e1bd9ac9b1bc165786b56230cce9c75f1e569b830d4b7c8',
+          signature: '43346kguxVcUJscjzkC7wZAkNs8vbHok6cDscKCvyStiNV23K74kBA3puMyh14FWobZGx6t1u27sWRffhVShSFv9',
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:155:224)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

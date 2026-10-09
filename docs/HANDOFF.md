@@ -234,6 +234,25 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+The next SNP-7 component integrates internal owned proposal consultation under
+accepted ADR-019. Genuine signed guard context, captured private bytes and FIFO
+precede actual disk lookup; the live head/closure check precedes synchronous
+commit. D27 nested reply aliasing and D28 shared backing regressions fail first
+and are corrected before integration. All arrays/maps remain; an exposed sync
+guard cannot be pruned. Receipt: `evals/sdk/owned-request-admission.md`.
+Fresh definition 27/seed 27241 retains every prior mutation source/test, wait,
+limit and floor and adds the companion population. No signer expansion or
+H9/H10/H11/H12 acceptance follows.
+
+Root qualification passes 787 ordinary/serial AST cases and native typecheck at
+all unchanged floors. Twenty-one admission, twenty-six lookup, twenty-seven
+publication, ninety-one compiled and fifteen fresh isolated recovery/driver
+faults catch/restored. Definition 27's exact selected count is 500; its stale 482
+expectation first fails and is corrected without changing a workload or wait.
+Evidence/source hashes/private tarball identity are in the companion receipt.
+Next independent work strengthens the existing read-only replay command;
+its isolated builder prepares fixtures during these measurements.
+
 Owned lookup implementation `7118ae2` is privately pushed; the unchanged close
 workflow passes all ten gates afterwards. Its source/test/workload paths stay
 unchanged during the separate Phantom research. Exact hosted run `37871842802`

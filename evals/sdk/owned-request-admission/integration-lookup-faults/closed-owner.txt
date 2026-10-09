@@ -1,0 +1,42 @@
+✔ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (75.666872ms)
+✔ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (56.166511ms)
+✔ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (37.052489ms)
+✔ SNP-7/LIF-2: denied replies and unrelated non-request decisions do not disappear or redirect lookup (9.845643ms)
+✔ OWN-2: fake, copied, manual, closed and failed owners cannot consult current history (14.581381ms)
+✔ SNP-7: missing published index is a refusal, never an automatic write or empty answer (6.533139ms)
+✔ SNP-7: identity and external pins are captured before async reads and invalid containers refuse (11.246161ms)
+✔ OWN-2: lookup, index publication, checkpoint publication and recovery share maintenance exclusion (11.806946ms)
+✔ SNP-7: full current replay rejects unrelated dishonest tails even when a prefix hit exists (8.147101ms)
+✔ SNP-7: fresh disk and cached history mismatch refuses without changing evidence (17.127999ms)
+✔ SNP-7/OWN-2: concurrent append, cache change, closure and inode substitution refuse current answers (39.756713ms)
+✔ SNP-7: corrupt pointer or any generation evidence refuses without repairing the cache (49.847639ms)
+✔ SNP-7: pointer disappearance or byte-identical replacement during module loading refuses (10.405044ms)
+✔ SNP-7: late pointer, record and cache changes during actual shard lookup refuse (25.384043ms)
+✔ SNP-7: helper captures history before awaits instead of folding unvalidated caller mutations (7.838383ms)
+✔ OWN-2: a valid cache under a manual owner still cannot claim kernel-owned current evidence (7.810868ms)
+✖ OWN-2: a healthy closed lookup capability cannot borrow a reopened owner's reused descriptors (10.442404ms)
+✔ SNP-7/LIF-3/4: a complete payment lifecycle wholly in the tail matches a newly published index (19.309956ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 17
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 522.794788
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-lookup.test.ts:147:1
+✖ OWN-2: a healthy closed lookup capability cannot borrow a reopened owner's reused descriptors (10.442404ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (RequestIndexLookupError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:149:9)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }

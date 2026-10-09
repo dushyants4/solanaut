@@ -224,13 +224,14 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
     import {mkdtempSync,mkdirSync,writeFileSync,readFileSync,rmSync,renameSync,symlinkSync,unlinkSync} from 'node:fs';
     import {tmpdir} from 'node:os';
     import {join} from 'node:path';
+    import {registerHooks} from 'node:module';
     const {prepareCheckpointPrefix,rebuildCheckpointPrefix,CheckpointPrefixError}=await import(new URL('./checkpoint-prefix.js',import.meta.resolve('@solanaut/sdk')));
     const {prepareCheckpointState,CheckpointStateError}=await import(new URL('./checkpoint-state.js',import.meta.resolve('@solanaut/sdk')));
     const {prepareCheckpointBundle}=await import(new URL('./checkpoint-bundle.js',import.meta.resolve('@solanaut/sdk')));
     const {prepareCheckpointEnvelope,verifyCheckpointEnvelope,CheckpointEnvelopeError}=await import(new URL('./checkpoint-envelope.js',import.meta.resolve('@solanaut/sdk')));
     const {fileStore,publishOwnedCheckpoint,recoverOwnedCheckpoint,publishOwnedRequestIndex,lookupOwnedRequestIndex,RequestIndexLookupError,RequestIndexPublicationError}=await import(new URL('./record.js',import.meta.resolve('@solanaut/sdk')));
     const {verifyArchive,streamArchive}=await import(new URL('./archive.js',import.meta.resolve('@solanaut/sdk')));
-    const {replay,replayStream}=await import(new URL('./guard.js',import.meta.resolve('@solanaut/sdk')));
+    const {replay,replayStream,checkOwnedRequest,OwnedRequestAdmissionError}=await import(new URL('./guard.js',import.meta.resolve('@solanaut/sdk')));
     const {seal}=await import(new URL('./log.js',import.meta.resolve('@solanaut/sdk')));
     const {prepareCheckpointRecovery}=await import(new URL('./checkpoint-recovery.js',import.meta.resolve('@solanaut/sdk')));
     const {prepareRequestIndex,lookupRequestIndex,RequestIndexError}=await import(new URL('./request-index.js',import.meta.resolve('@solanaut/sdk')));
@@ -381,8 +382,31 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
       const current=await lookupOwnedRequestIndex(store,{clientId:'client',id:'tail'},{policyTrust:trust});
       if(current.seq!==store.entries.length || current.head!==tailReply.hash || current.indexSeq!==context.seq || current.row?.start.hash!==tail.hash || current.row?.response?.hash!==tailReply.hash || !Object.isFrozen(current.row.response))throw new Error('installed current lookup skipped or altered tail');
       const absent=await lookupOwnedRequestIndex(store,{clientId:'client',id:'absent'},{policyTrust:trust});if(absent.row!==null || absent.head!==tailReply.hash)throw new Error('installed current absence lacks tail binding');
+      if('checkOwnedRequest' in await import('@solanaut/sdk'))throw new Error('internal owned admission leaked into stable exports');
+      const beforeRetry=live.status().seq,historicalDecision=await checkOwnedRequest(live,{message:new Uint8Array(message),at:2000,blockHeight:200n},{clientId:'client',id:'payment'});
+      if(historicalDecision.hash!==d.hash || !Object.isFrozen(historicalDecision) || live.status().seq!==beforeRetry || live.redeem(message,d.hash,10n).ok)throw new Error('installed indexed retry changed history or reused receipt');
+      const conflict=await checkOwnedRequest(live,{message:new Uint8Array(message),at:2000,intent:'different'},{clientId:'client',id:'payment'});
+      const methodConflict=await checkOwnedRequest(live,{message:new Uint8Array(message),at:2000},{clientId:'client',id:'tail'});
+      if(conflict.allow || conflict.seq!==-1 || methodConflict.allow || methodConflict.seq!==-1 || live.status().seq!==beforeRetry)throw new Error('installed indexed collision admitted or recorded');
+      const queued=await Promise.all([checkOwnedRequest(live,{message:new Uint8Array(message),at:2001},{clientId:'client',id:'queued'}),checkOwnedRequest(live,{message:new Uint8Array(message),at:2002},{clientId:'client',id:'queued'})]);
+      if(queued[0].hash!==queued[1].hash || queued[0].seq!==beforeRetry || live.status().seq!==beforeRetry+1)throw new Error('installed indexed queue admitted duplicate identity');
+      if(!Object.isFrozen(queued[0].keel) || !Object.isFrozen(queued[0].amounts) || !Object.isFrozen(queued[0].amounts.tokens) || queued[0]===store.entries.at(-1) || queued[0].amounts===store.entries.at(-1).amounts)throw new Error('installed fresh admission reply aliases mutable log state');
+      const freshBefore=JSON.stringify(store.entries);try{queued[0].amounts.sol='999';}catch{}if(JSON.stringify(store.entries)!==freshBefore)throw new Error('installed admission reply changed log');
+      const freshRetry=await checkOwnedRequest(live,{message:new Uint8Array(message),at:2003},{clientId:'client',id:'queued'});if(freshRetry.hash!==queued[0].hash || live.status().seq!==beforeRetry+1)throw new Error('installed immutable fresh reply failed later lookup');
+      const shared=new Uint8Array(new SharedArrayBuffer(message.length));shared.set(message);const capturedShared=Buffer.from(shared).toString('base64'),pendingShared=checkOwnedRequest(live,{message:shared,at:2004},{clientId:'client',id:'shared'});shared.fill(255);
+      if((await pendingShared).message!==capturedShared)throw new Error('installed queued admission retained shared byte backing');
+      let admissionOwnerRefused=false;try{await checkOwnedRequest({...live},{message:new Uint8Array(message),at:2003},{clientId:'client',id:'forged'});}catch(error){admissionOwnerRefused=error instanceof OwnedRequestAdmissionError && error.code==='owned-request-admission';}if(!admissionOwnerRefused)throw new Error('installed forged admission guard accepted');
       const pointerBeforeLookup=readFileSync(recordPath+'.request-index','utf8');writeFileSync(recordPath+'.request-index','corrupt');
-      try{let refused=false;try{await lookupOwnedRequestIndex(store,{clientId:'client',id:'tail'},{policyTrust:trust});}catch(error){refused=error instanceof RequestIndexLookupError && error.code==='request-index-lookup';}if(!refused || readFileSync(recordPath+'.request-index','utf8')!=='corrupt')throw new Error('installed corrupt lookup pointer accepted or repaired');}finally{writeFileSync(recordPath+'.request-index',pointerBeforeLookup);}
+      try{let refused=false;try{await lookupOwnedRequestIndex(store,{clientId:'client',id:'tail'},{policyTrust:trust});}catch(error){refused=error instanceof RequestIndexLookupError && error.code==='request-index-lookup';}if(!refused || readFileSync(recordPath+'.request-index','utf8')!=='corrupt')throw new Error('installed corrupt lookup pointer accepted or repaired');
+        const beforeRefusal=live.status().seq;let admissionRefused=false;try{await checkOwnedRequest(live,{message:new Uint8Array(message),at:2004},{clientId:'client',id:'corrupt'});}catch(error){admissionRefused=error instanceof OwnedRequestAdmissionError && error.code==='owned-request-admission';}if(!admissionRefused || live.status().seq!==beforeRefusal || readFileSync(recordPath+'.request-index','utf8')!=='corrupt')throw new Error('installed corrupt index authorised admission');
+      }finally{writeFileSync(recordPath+'.request-index',pointerBeforeLookup);}
+      const actualRecordURL=new URL('./record.js',import.meta.resolve('@solanaut/sdk')).href,gapGuardURL=new URL('./guard.js?owned-gap',import.meta.resolve('@solanaut/sdk')).href;
+      const gapSource='import * as real from '+JSON.stringify(actualRecordURL)+';export * from '+JSON.stringify(actualRecordURL)+';export async function lookupOwnedRequestIndex(...args){const answer=await real.lookupOwnedRequestIndex(...args);globalThis.afterOwnedAdmissionLookup();return answer;}';
+      const gapHook=registerHooks({resolve(specifier,context,next){if(specifier==='./record.js' && context.parentURL===gapGuardURL)return {url:'data:text/javascript,'+encodeURIComponent(gapSource),shortCircuit:true};return next(specifier,context);}});let gapModule;
+      try{gapModule=await import(gapGuardURL);}finally{gapHook.deregister();}
+      const gapGuard=await gapModule.createGuard({policy,authorization,log:store}),beforeGap=gapGuard.status().seq;globalThis.afterOwnedAdmissionLookup=()=>gapGuard.check({message:Uint8Array.of(255),at:2005});
+      try{let gapRefused=false;try{await gapModule.checkOwnedRequest(gapGuard,{message:new Uint8Array(message),at:2006},{clientId:'client',id:'gap'});}catch(error){gapRefused=error instanceof gapModule.OwnedRequestAdmissionError && error.code==='owned-request-admission';}if(!gapRefused || gapGuard.status().seq!==beforeGap+1 || store.entries.some(entry=>entry.kind==='decision' && entry.request?.id==='gap'))throw new Error('installed stale absence authorised commit');}
+      finally{delete globalThis.afterOwnedAdmissionLookup;gapGuard.close();}
     }finally{store.close();rmSync(directory,{recursive:true,force:true});}
     if(prefix.digest!==hash(prefix.text) || state.digest!==hash(state.text) || !Object.isFrozen(prefix) || !Object.isFrozen(state))throw new Error('payload digest or immutability differs');
     if(JSON.stringify(s.profile)!==JSON.stringify(p.profile) || Object.keys(EVALUATION_PROFILE).some(k=>s.profile[k]!==EVALUATION_PROFILE[k]))throw new Error('payload profile differs');

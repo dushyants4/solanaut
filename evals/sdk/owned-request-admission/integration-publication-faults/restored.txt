@@ -1,0 +1,29 @@
+✔ SNP-7: owned publication derives exact complete generation and immutable root (35.234486ms)
+✔ SNP-7: replacement preserves earlier complete generations and prefix-bound answers (19.032516ms)
+✔ OWN-2: memory, forged, manual, closed and failed stores cannot publish (9.31404ms)
+✔ SNP-7: copied external pins are authoritative before asynchronous loading (13.118474ms)
+✔ OWN-2: a closed capability cannot borrow reused descriptors from a new kernel owner (12.470057ms)
+✔ SNP-7: unsigned and malformed actual histories refuse before cache publication (9.526125ms)
+✔ OWN-2: index, checkpoint publication and recovery share one maintenance boundary (20.036118ms)
+✔ OWN-2: replaced record and lock paths refuse index publication (9.275024ms)
+✔ SNP-7: closure, append, cache mutation and aliases during validation preserve the previous generation (75.946119ms)
+✔ SNP-7: current pointer corruption, substitutions and unsupported sources preserve evidence (82.225542ms)
+✔ SNP-7: a valid pointer cannot hide missing, altered or aliased previous generation files (67.88711ms)
+✔ SNP-7: current pointer and generation changes during asynchronous replay refuse (16.608591ms)
+✔ SNP-7: raw disk append during asynchronous validation cannot publish a cached endpoint (9.420529ms)
+✔ SNP-7: pointer reads finish short progress and refuse invalid progress or source changes (70.903098ms)
+✔ SNP-7: publication and validation refusals close every temporary descriptor (9.976328ms)
+✔ SNP-7: pointer disappearance after a successful open is not cache absence (9.137071ms)
+✔ SNP-7: byte-identical previous directory replacement while its files are read refuses (10.32936ms)
+✔ SNP-7: short writes finish and every file and directory is synced before acknowledgement (7.883235ms)
+✔ SNP-7: storage failures preserve complete old or new evidence and fail the writer (144.988983ms)
+✔ SNP-7: late record and pointer replacement after final sync refuse acknowledgement (32.845239ms)
+✔ SNP-7: actual process death at publication boundaries keeps a complete discoverable generation (1157.962336ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1920.024166

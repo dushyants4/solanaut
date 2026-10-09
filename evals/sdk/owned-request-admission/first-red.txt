@@ -1,0 +1,419 @@
+✖ SNP-7/LIF-1: prefix and tail retries return exact durable admissions without reevaluation (23.439867ms)
+✖ LIF-1: changed bytes, group and control methods cannot reuse a request identity (7.180222ms)
+✖ SNP-7/LIF-1: FIFO concurrent identities observe reservations from earlier admissions (6.364629ms)
+✖ LIF-1: concurrent identical payloads admit once; conflicting queued payloads refuse (6.603742ms)
+✖ SNP-7: proposal bytes, identity, grouping, time and lifetime are captured before queueing (6.501478ms)
+✖ OWN-2/SNP-7: missing or corrupt disk evidence refuses before any admission (7.789105ms)
+✖ OWN-2: copied, unsigned, memory and manual guards cannot obtain owned admission authority (5.676929ms)
+✖ SNP-7: a failed queued lookup does not poison subsequent work after evidence is restored (5.797782ms)
+✖ SNP-7/OWN-2: closure before queue execution or during an actual shard read prevents admission (5.797326ms)
+✖ SNP-7: trusted synchronous mutation during owned lookup invalidates its captured head (5.914184ms)
+✖ SNP-7: an actual owned result followed by a trusted mutation cannot authorize stale absence (107.334373ms)
+✖ STO-1/SNP-7: append failure admits nothing and the failed writer remains unavailable (5.764171ms)
+✖ LIF-1/7/POL-4: historical retry preserves pending reservations and used receipts across signed policy replacement (5.375094ms)
+✖ LIF-1/SNP-7: historical denials preserve latch and cannot accumulate denial ticks (6.45869ms)
+✖ SNP-7: malformed proposal identity rejects without a record; ordinary proposal validation stays synchronous (6.74868ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 0
+ℹ fail 15
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 332.048473
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-request-admission.test.ts:36:1
+✖ SNP-7/LIF-1: prefix and tail retries return exact durable admissions without reevaluation (23.439867ms)
+  AssertionError [ERR_ASSERTION]: owned serialized admission must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at check (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:20:61)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:38:23)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:43:1
+✖ LIF-1: changed bytes, group and control methods cannot reuse a request identity (7.180222ms)
+  AssertionError [ERR_ASSERTION]: owned serialized admission must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at check (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:20:61)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:45:23)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:53:1
+✖ SNP-7/LIF-1: FIFO concurrent identities observe reservations from earlier admissions (6.364629ms)
+  AssertionError [ERR_ASSERTION]: owned serialized admission must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at check (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:20:61)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:55:17)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:60:1
+✖ LIF-1: concurrent identical payloads admit once; conflicting queued payloads refuse (6.603742ms)
+  AssertionError [ERR_ASSERTION]: owned serialized admission must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at check (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:20:61)
+      at file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:62:63
+      at Array.from (<anonymous>)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:62:43)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:67:1
+✖ SNP-7: proposal bytes, identity, grouping, time and lifetime are captured before queueing (6.501478ms)
+  AssertionError [ERR_ASSERTION]: owned serialized admission must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at check (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:20:61)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:69:143)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:74:1
+✖ OWN-2/SNP-7: missing or corrupt disk evidence refuses before any admission (7.789105ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   code: 'ERR_ASSERTION',
+  +   name: 'AssertionError'
+  -   code: 'owned-request-admission',
+  -   name: 'OwnedRequestAdmissionError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:77:60)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: owned serialized admission must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+        at check (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:20:61)
+        at file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:77:78
+        at async waitForActual (node:assert:615:5)
+        at async strict.rejects (node:assert:738:25)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:77:60)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: { name: 'OwnedRequestAdmissionError', code: 'owned-request-admission' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:80:1
+✖ OWN-2: copied, unsigned, memory and manual guards cannot obtain owned admission authority (5.676929ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   code: 'ERR_ASSERTION',
+  +   name: 'AssertionError'
+  -   code: 'owned-request-admission',
+  -   name: 'OwnedRequestAdmissionError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:82:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: owned serialized admission must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+        at check (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:20:61)
+        at file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:82:23
+        at async waitForActual (node:assert:615:5)
+        at async strict.rejects (node:assert:738:25)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:82:5)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: { name: 'OwnedRequestAdmissionError', code: 'owned-request-admission' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:88:1
+✖ SNP-7: a failed queued lookup does not poison subsequent work after evidence is restored (5.797782ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   code: 'ERR_ASSERTION',
+  +   name: 'AssertionError'
+  -   code: 'owned-request-admission',
+  -   name: 'OwnedRequestAdmissionError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:90:91)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: owned serialized admission must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+        at check (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:20:61)
+        at file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:90:109
+        at async waitForActual (node:assert:615:5)
+        at async strict.rejects (node:assert:738:25)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:90:91)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: { name: 'OwnedRequestAdmissionError', code: 'owned-request-admission' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:94:1
+✖ SNP-7/OWN-2: closure before queue execution or during an actual shard read prevents admission (5.797326ms)
+  AssertionError [ERR_ASSERTION]: owned serialized admission must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at check (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:20:61)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:97:50)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:100:1
+✖ SNP-7: trusted synchronous mutation during owned lookup invalidates its captured head (5.914184ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   code: 'ERR_ASSERTION',
+  +   name: 'AssertionError'
+  -   code: 'owned-request-admission',
+  -   name: 'OwnedRequestAdmissionError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:103:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: owned serialized admission must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+        at check (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:20:61)
+        at file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:103:23
+        at async waitForActual (node:assert:615:5)
+        at async strict.rejects (node:assert:738:25)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:103:5)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: { name: 'OwnedRequestAdmissionError', code: 'owned-request-admission' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:106:1
+✖ SNP-7: an actual owned result followed by a trusted mutation cannot authorize stale absence (107.334373ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/run_main:107
+      triggerUncaughtException(
+      ^
+  
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/[eval1]:8:16 {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:119:110)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:122:1
+✖ STO-1/SNP-7: append failure admits nothing and the failed writer remains unavailable (5.764171ms)
+  AssertionError [ERR_ASSERTION]: owned serialized admission must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at check (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:20:61)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:125:26)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:129:1
+✖ LIF-1/7/POL-4: historical retry preserves pending reservations and used receipts across signed policy replacement (5.375094ms)
+  AssertionError [ERR_ASSERTION]: owned serialized admission must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at check (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:20:61)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:131:23)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:138:1
+✖ LIF-1/SNP-7: historical denials preserve latch and cannot accumulate denial ticks (6.45869ms)
+  AssertionError [ERR_ASSERTION]: owned serialized admission must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at check (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:20:61)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:140:24)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-request-admission.test.ts:145:1
+✖ SNP-7: malformed proposal identity rejects without a record; ordinary proposal validation stays synchronous (6.74868ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   code: 'ERR_ASSERTION',
+  +   name: 'AssertionError'
+  -   code: 'owned-request-admission',
+  -   name: 'OwnedRequestAdmissionError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:147:153)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: owned serialized admission must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+        at check (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:20:61)
+        at file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:147:171
+        at async waitForActual (node:assert:615:5)
+        at async strict.rejects (node:assert:738:25)
+        at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:147:153)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: { name: 'OwnedRequestAdmissionError', code: 'owned-request-admission' },
+    operator: 'rejects',
+    diff: 'simple'
+  }

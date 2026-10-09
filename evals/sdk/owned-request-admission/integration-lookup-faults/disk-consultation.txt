@@ -1,0 +1,127 @@
+✔ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (27.72881ms)
+✖ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (10.938839ms)
+✖ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (16.407869ms)
+✔ SNP-7/LIF-2: denied replies and unrelated non-request decisions do not disappear or redirect lookup (13.533922ms)
+✔ OWN-2: fake, copied, manual, closed and failed owners cannot consult current history (15.661137ms)
+✔ SNP-7: missing published index is a refusal, never an automatic write or empty answer (6.246808ms)
+✖ SNP-7: identity and external pins are captured before async reads and invalid containers refuse (10.046524ms)
+✔ OWN-2: lookup, index publication, checkpoint publication and recovery share maintenance exclusion (11.429687ms)
+✔ SNP-7: full current replay rejects unrelated dishonest tails even when a prefix hit exists (8.046441ms)
+✔ SNP-7: fresh disk and cached history mismatch refuses without changing evidence (17.366283ms)
+✔ SNP-7/OWN-2: concurrent append, cache change, closure and inode substitution refuse current answers (36.011592ms)
+✔ SNP-7: corrupt pointer or any generation evidence refuses without repairing the cache (47.793261ms)
+✔ SNP-7: pointer disappearance or byte-identical replacement during module loading refuses (11.061076ms)
+✖ SNP-7: late pointer, record and cache changes during actual shard lookup refuse (7.121203ms)
+✔ SNP-7: helper captures history before awaits instead of folding unvalidated caller mutations (7.789582ms)
+✔ OWN-2: a valid cache under a manual owner still cannot claim kernel-owned current evidence (7.379359ms)
+✔ OWN-2: a healthy closed lookup capability cannot borrow a reopened owner's reused descriptors (10.24807ms)
+✔ SNP-7/LIF-3/4: a complete payment lifecycle wholly in the tail matches a newly published index (19.076028ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 14
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 368.655493
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-lookup.test.ts:49:1
+✖ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (10.938839ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - null
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:51:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:60:1
+✖ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (16.407869ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + undefined
+  - {
+  -   at: 1000,
+  -   event: {
+  -     decision: 'a3a406f6bca8904baaff74b53214072c08e5d325d68227265972c3d53b654b6f',
+  -     signature: '4fhLnXYSLjhd4KAqDtAvE8rp5ff1fSgS5gd7jEeeBaFKkefG41e9ERn4k6K4emK9QrP7ExCQfCgb3sQ6f2orqKJT',
+  -     stage: 'signed',
+  -     wire: 'AbdrqaAa9JRNz+OwIB0Vd8l0f4XDTq8Q11p1ysCTKenwvbwLhQmtRRJY0G5CDo5y+Eyw7Vc6kuv4byHeGt4owwwBAAEDQrFJLTVD3OAtwG/nzyLJn1ZpvM1I3eIGlQNlTdLUfewCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQBAgIAAQwCAAAAAQAAAAAAAAA='
+  -   },
+  -   hash: '57661b5dcd6f1be8ccb76d01a49bccc5eb1a3d7b250308362df9cb5de9bb0296',
+  -   kind: 'signing',
+  -   prev: 'a9d306a1e4d5eb3d3ac4ba96feb8d70d369802d19e3d523b2f122d0b5c5c0ad8',
+  -   seq: 3,
+  -   v: 1
+  - }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:65:124)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:88:1
+✖ SNP-7: identity and external pins are captured before async reads and invalid containers refuse (10.046524ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + undefined
+  - {
+  -   at: 1000,
+  -   hash: '26cfd995963bf56034c33abb6fd2b8009e94ec16317c21bf708f248bb220df04',
+  -   kind: 'request',
+  -   method: 'status',
+  -   payload: '{}',
+  -   prev: 'a891961f61452eee08af97efa01bfdd7a340f2cd509ec5755ebb2d5041766540',
+  -   request: {
+  -     clientId: 'client',
+  -     digest: '2c5d2454f3d116f455989b333be5ecba8e3848be4e82f4cf993eb803dc2a1d99',
+  -     guardId: 'workload',
+  -     id: 'one'
+  -   },
+  -   seq: 1,
+  -   v: 1
+  - }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:90:161)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:129:1
+✖ SNP-7: late pointer, record and cache changes during actual shard lookup refuse (7.121203ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (RequestIndexLookupError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:132:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }

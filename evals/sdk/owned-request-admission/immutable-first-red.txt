@@ -1,0 +1,72 @@
+✖ SNP-7: fresh replies and collision denials are detached and deeply immutable (33.07055ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 146.262935
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-request-admission.test.ts:43:1
+✖ SNP-7: fresh replies and collision denials are detached and deeply immutable (33.07055ms)
+  AssertionError [ERR_ASSERTION]: Expected "actual" not to be reference-equal to "expected":
+  
+  {
+    allow: true,
+    amounts: {
+      fees: '5000',
+      sol: '1',
+      tokens: []
+    },
+    at: 1000,
+    blockHeight: '10',
+    expires: {
+      lastValidBlockHeight: '100'
+    },
+    group: null,
+    hash: '046ac22c7d522add15f0495947869ec12e1b48c5e4c8cd85f0da4849715a608c',
+    intentKey: '7d7439dac8330f7e605a6f040c8c73e37898689d3c91612cd6a06045c140d406',
+    keel: {
+      digest: '834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8',
+      verified: 'bytes',
+      version: '1.0.1'
+    },
+    kind: 'decision',
+    lastValidBlockHeight: '100',
+    message: 'AQABA0zes82/r2Vq6+ami2xfz9UxQGPz4Gi/dD1k+MVAHl7lAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUAQICAAEMAgAAAAEAAAAAAAAA',
+    messageHash: '63a936da664b7b5efd09df3e4ce1079859521da4b33abff3447100ae48a20c0c',
+    policyHash: 'f9a43856edb9d0508dd14bbb56616c9893b87d7861aae72bd458008b0c91bd06',
+    posture: 'DEFAULT',
+    prev: '150f2a8ba5ac1ca30dbe1b1e77152739e7cf416d5ea5cd5f335284f6dfbc4110',
+    reason: '',
+    request: {
+      clientId: 'client',
+      digest: '027a87fdfa42893bbf0c67b89f134e3749381ce56e37b47fe883884f42957c23',
+      guardId: 'workload',
+      id: 'payment'
+    },
+    seq: 1,
+    shape: '4ace82c5091f8ed180333d75fa4418d89986ce84c676db8267c6a1517b562f9b',
+    source: 'caller',
+    telemetry: {
+      intensity: 1e-9,
+      repetition: 0,
+      valence: 0.2
+    },
+    temperatureMax: 1,
+    v: 1
+  }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/owned-admission-component/packages/sdk/test/owned-request-admission.test.ts:46:79)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { v: 1, seq: 1, prev: '150f2a8ba5ac1ca30dbe1b1e77152739e7cf416d5ea5cd5f335284f6dfbc4110', kind: 'decision', at: 1000, source: 'caller', message: 'AQABA0zes82/r2Vq6+ami2xfz9UxQGPz4Gi/dD1k+MVAHl7lAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUAQICAAEMAgAAAAEAAAAAAAAA', blockHeight: '10', lastValidBlockHeight: '100', group: null, policyHash: 'f9a43856edb9d0508dd14bbb56616c9893b87d7861aae72bd458008b0c91bd06', keel: { version: '1.0.1', digest: '834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8', verified: 'bytes' }, intentKey: '7d7439dac8330f7e605a6f040c8c73e37898689d3c91612cd6a06045c140d406', messageHash: '63a936da664b7b5efd09df3e4ce1079859521da4b33abff3447100ae48a20c0c', shape: '4ace82c5091f8ed180333d75fa4418d89986ce84c676db8267c6a1517b562f9b', amounts: { sol: '1', tokens: [], fees: '5000' }, posture: 'DEFAULT', telemetry: { intensity: 1e-9, valence: 0.2, repetition: 0 }, temperatureMax: 1, allow: true, reason: '', expires: { lastValidBlockHeight: '100' }, request: { guardId: 'workload', clientId: 'client', id: 'payment', digest: '027a87fdfa42893bbf0c67b89f134e3749381ce56e37b47fe883884f42957c23' }, hash: '046ac22c7d522add15f0495947869ec12e1b48c5e4c8cd85f0da4849715a608c' },
+    expected: { v: 1, seq: 1, prev: '150f2a8ba5ac1ca30dbe1b1e77152739e7cf416d5ea5cd5f335284f6dfbc4110', kind: 'decision', at: 1000, source: 'caller', message: 'AQABA0zes82/r2Vq6+ami2xfz9UxQGPz4Gi/dD1k+MVAHl7lAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUAQICAAEMAgAAAAEAAAAAAAAA', blockHeight: '10', lastValidBlockHeight: '100', group: null, policyHash: 'f9a43856edb9d0508dd14bbb56616c9893b87d7861aae72bd458008b0c91bd06', keel: { version: '1.0.1', digest: '834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8', verified: 'bytes' }, intentKey: '7d7439dac8330f7e605a6f040c8c73e37898689d3c91612cd6a06045c140d406', messageHash: '63a936da664b7b5efd09df3e4ce1079859521da4b33abff3447100ae48a20c0c', shape: '4ace82c5091f8ed180333d75fa4418d89986ce84c676db8267c6a1517b562f9b', amounts: { sol: '1', tokens: [], fees: '5000' }, posture: 'DEFAULT', telemetry: { intensity: 1e-9, valence: 0.2, repetition: 0 }, temperatureMax: 1, allow: true, reason: '', expires: { lastValidBlockHeight: '100' }, request: { guardId: 'workload', clientId: 'client', id: 'payment', digest: '027a87fdfa42893bbf0c67b89f134e3749381ce56e37b47fe883884f42957c23' }, hash: '046ac22c7d522add15f0495947869ec12e1b48c5e4c8cd85f0da4849715a608c' },
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }

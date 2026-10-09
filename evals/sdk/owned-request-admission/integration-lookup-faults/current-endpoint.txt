@@ -1,0 +1,105 @@
+✖ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (33.927333ms)
+✖ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (25.729644ms)
+✔ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (35.160727ms)
+✔ SNP-7/LIF-2: denied replies and unrelated non-request decisions do not disappear or redirect lookup (11.102581ms)
+✔ OWN-2: fake, copied, manual, closed and failed owners cannot consult current history (14.561374ms)
+✔ SNP-7: missing published index is a refusal, never an automatic write or empty answer (6.192691ms)
+✔ SNP-7: identity and external pins are captured before async reads and invalid containers refuse (12.435187ms)
+✔ OWN-2: lookup, index publication, checkpoint publication and recovery share maintenance exclusion (12.65859ms)
+✔ SNP-7: full current replay rejects unrelated dishonest tails even when a prefix hit exists (7.58249ms)
+✔ SNP-7: fresh disk and cached history mismatch refuses without changing evidence (18.398542ms)
+✔ SNP-7/OWN-2: concurrent append, cache change, closure and inode substitution refuse current answers (39.73567ms)
+✔ SNP-7: corrupt pointer or any generation evidence refuses without repairing the cache (47.668882ms)
+✔ SNP-7: pointer disappearance or byte-identical replacement during module loading refuses (10.466086ms)
+✔ SNP-7: late pointer, record and cache changes during actual shard lookup refuse (23.788814ms)
+✖ SNP-7: helper captures history before awaits instead of folding unvalidated caller mutations (8.156514ms)
+✔ OWN-2: a valid cache under a manual owner still cannot claim kernel-owned current evidence (7.585735ms)
+✔ OWN-2: a healthy closed lookup capability cannot borrow a reopened owner's reused descriptors (8.574309ms)
+✔ SNP-7/LIF-3/4: a complete payment lifecycle wholly in the tail matches a newly published index (18.705902ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 15
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 434.639923
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-lookup.test.ts:39:1
+✖ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (33.927333ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+  +   head: 'e32b73e462bd8c109aaee2bbead35acdec69339e4be215d9d4aa71aae0477917',
+  -   head: 'e34c19c1c76d5b182b40c2d2929c54e671a31d90efad93f8af1f4b3feb316682',
+      indexHead: 'e32b73e462bd8c109aaee2bbead35acdec69339e4be215d9d4aa71aae0477917',
+      indexSeq: 1,
+      row: {
+        format: 1,
+        key: '["workload","client","tail"]',
+  ...
+      },
+  +   seq: 1
+  -   seq: 2
+    }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:43:71)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:49:1
+✖ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (25.729644ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   head: '302f684c0bb2ca5bd83b5a11bf845642d2faa1cf6308cedfd963a0068795e6b6',
+  +   seq: 2
+  -   head: '78351031354f4277504830c8b7c52630ff8d44c33c5d32e646a794e1e5459c34',
+  -   seq: 4
+    }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:54:194)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:135:1
+✖ SNP-7: helper captures history before awaits instead of folding unvalidated caller mutations (8.156514ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   head: 'a2abc922e9dc5b0289bba1f716e5957430936c417beee096038282226ba696d7',
+  +   seq: 1
+  -   head: '22437223b571b67fc8cbcf35842fea1b38193d50fa530fbc7af667f02dc8aa37',
+  -   seq: 2
+    }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:139:36)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

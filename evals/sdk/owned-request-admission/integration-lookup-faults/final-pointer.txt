@@ -1,0 +1,42 @@
+✔ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (31.046994ms)
+✔ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (24.914438ms)
+✔ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (30.789789ms)
+✔ SNP-7/LIF-2: denied replies and unrelated non-request decisions do not disappear or redirect lookup (9.230304ms)
+✔ OWN-2: fake, copied, manual, closed and failed owners cannot consult current history (14.717332ms)
+✔ SNP-7: missing published index is a refusal, never an automatic write or empty answer (5.677341ms)
+✔ SNP-7: identity and external pins are captured before async reads and invalid containers refuse (10.731311ms)
+✔ OWN-2: lookup, index publication, checkpoint publication and recovery share maintenance exclusion (10.680865ms)
+✔ SNP-7: full current replay rejects unrelated dishonest tails even when a prefix hit exists (8.288079ms)
+✔ SNP-7: fresh disk and cached history mismatch refuses without changing evidence (15.815462ms)
+✔ SNP-7/OWN-2: concurrent append, cache change, closure and inode substitution refuse current answers (36.417312ms)
+✔ SNP-7: corrupt pointer or any generation evidence refuses without repairing the cache (51.816797ms)
+✔ SNP-7: pointer disappearance or byte-identical replacement during module loading refuses (10.214635ms)
+✖ SNP-7: late pointer, record and cache changes during actual shard lookup refuse (8.453331ms)
+✔ SNP-7: helper captures history before awaits instead of folding unvalidated caller mutations (7.64839ms)
+✔ OWN-2: a valid cache under a manual owner still cannot claim kernel-owned current evidence (8.423359ms)
+✔ OWN-2: a healthy closed lookup capability cannot borrow a reopened owner's reused descriptors (9.626901ms)
+✔ SNP-7/LIF-3/4: a complete payment lifecycle wholly in the tail matches a newly published index (19.903805ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 17
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 395.925005
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-lookup.test.ts:129:1
+✖ SNP-7: late pointer, record and cache changes during actual shard lookup refuse (8.453331ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (RequestIndexLookupError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:132:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }

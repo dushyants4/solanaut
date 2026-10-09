@@ -1,0 +1,107 @@
+✔ SNP-7/LIF-1: prefix and tail retries return exact durable admissions without reevaluation (80.728861ms)
+✔ SNP-7: fresh replies and collision denials are detached and deeply immutable (39.058541ms)
+✔ LIF-1: changed bytes, group and control methods cannot reuse a request identity (41.216409ms)
+✔ SNP-7/LIF-1: FIFO concurrent identities observe reservations from earlier admissions (49.400885ms)
+✔ LIF-1: concurrent identical payloads admit once; conflicting queued payloads refuse (41.39399ms)
+✔ SNP-7: proposal bytes, identity, grouping, time and lifetime are captured before queueing (23.694515ms)
+✔ SNP-7/LIF-1: shared-memory message bytes cannot change the captured admission payload (28.091739ms)
+✔ OWN-2/SNP-7: missing or corrupt disk evidence refuses before any admission (64.699369ms)
+✔ OWN-2: copied, unsigned, memory and manual guards cannot obtain owned admission authority (26.898623ms)
+✔ OWN-2/SNP-7: caller-replaced public methods cannot redirect the private admission context (24.285877ms)
+✔ SNP-7: a failed queued lookup does not poison subsequent work after evidence is restored (24.193559ms)
+✔ SNP-7/OWN-2: closure before queue execution or during an actual shard read prevents admission (44.558519ms)
+✔ SNP-7: trusted synchronous mutation during owned lookup invalidates its captured head (23.824757ms)
+✔ SNP-7: an actual owned result followed by a trusted mutation cannot authorize stale absence (331.993901ms)
+✔ STO-1/SNP-7: append failure admits nothing and the failed writer remains unavailable (24.990607ms)
+✖ LIF-1/7/POL-4: historical retry preserves pending reservations and used receipts across signed policy replacement (37.017571ms)
+✔ LIF-1/SNP-7: historical denials preserve latch and cannot accumulate denial ticks (30.496076ms)
+✔ SNP-7: malformed proposal identity rejects without a record; ordinary proposal validation stays synchronous (24.406399ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 17
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1043.750238
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-request-admission.test.ts:154:1
+✖ LIF-1/7/POL-4: historical retry preserves pending reservations and used receipts across signed policy replacement (37.017571ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   allow: false,
+  +   amounts: null,
+  -   allow: true,
+  -   amounts: {
+  -     fees: '5000',
+  -     sol: '1',
+  -     tokens: []
+  -   },
+      at: 1000,
+  +   blockHeight: null,
+  -   blockHeight: '10',
+  -   expires: {
+  -     lastValidBlockHeight: '100'
+  -   },
+      group: null,
+  +   hash: '',
+  +   intentKey: null,
+  -   hash: '587d484d5ab26dff301b13d4c6ab5fd6cf5af0d27bd0eae65ee8cbf53af85f6b',
+  -   intentKey: '08c69df9c9b7bc073037cf8db52034b08a2dae21553ba385564522eb6da7b032',
+      keel: {
+        digest: '834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8',
+        verified: 'bytes',
+        version: '1.0.1'
+      },
+      kind: 'decision',
+  +   lastValidBlockHeight: null,
+  +   message: '',
+  +   messageHash: null,
+  +   policyHash: '7b66b5d07b95985a5ecbadf86b0a9a96f5e980d3a26f313c036565bcd6438d51',
+  +   posture: null,
+  +   prev: 'facc0cc9faadf44ffd097366e66c7b73289569df1d3af114a1b375bfd31f9c26',
+  +   reason: 'old policy',
+  +   rule: 'fail-closed',
+  +   seq: -1,
+  +   shape: null,
+  -   lastValidBlockHeight: '100',
+  -   message: 'AQABA1OwKzmoXEtPeU/vWyEG42w3sC74cTnbeWvNvoUNVcpIAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUAQICAAEMAgAAAAEAAAAAAAAA',
+  -   messageHash: '5d875de7c1d13de7ceffab4fe505de87d540ceb52ba0ff72dd49520edba84950',
+  -   policyHash: '9198bf0d37cd0c7ef29dc21432411959a6bb09081007aea43ce442c3bb9391f4',
+  -   posture: 'DEFAULT',
+  -   prev: '90b4f0654f93e9997ba0f10ba41dc6071305a518bb83524d762382c816fb8981',
+  -   reason: '',
+  -   request: {
+  -     clientId: 'client',
+  -     digest: 'bc48e5700bf1790716376d95de5ee18d7ab98cef3c50174b35fce7d7fc5f6df6',
+  -     guardId: 'workload',
+  -     id: 'pending'
+  -   },
+  -   seq: 1,
+  -   shape: '4ace82c5091f8ed180333d75fa4418d89986ce84c676db8267c6a1517b562f9b',
+      source: 'caller',
+  +   telemetry: null,
+  +   temperatureMax: null,
+  -   telemetry: {
+  -     intensity: 1e-9,
+  -     repetition: 0,
+  -     valence: 0.2
+  -   },
+  -   temperatureMax: 1,
+      v: 1
+    }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-request-admission.test.ts:158:63)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

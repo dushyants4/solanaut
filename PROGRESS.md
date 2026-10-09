@@ -5,10 +5,22 @@ including the approved Beta; CLAIMS S78 and `evals/release/progress.md` freeze t
 scope. This is not release readiness, effort or a completion date. Components
 inside open milestones receive no fractional credit.
 
+Internal owned proposal consultation has focused/related and semantic-fault
+evidence in `evals/sdk/owned-request-admission.md`. It serializes disk lookup with
+a current-head check before evaluation/commit and preserves historical decisions.
+D27 nested reply aliasing and D28 shared-byte capture fail before fixes. Complete
+native/installed/coverage integration is recorded separately in that receipt;
+history maps and arrays remain retained. No bounded state or signer milestone closes.
+
+Exact hosted implementation 7118ae2 and archival d0d8dc3 both fail the unchanged
+staged-baseline wait; all new lookup tests and its maintained campaign pass.
+Complete logs identify their revisions. H9/H10/H11/H12 remain pending; no timing
+or release exception is inferred from passing local component steps.
+
 Owned current-head request evidence now has component tests and semantic faults
 in `evals/sdk/request-index-lookup.md`. It authenticates the published disk prefix
 and complete current tail, preserves lifecycle replies and refuses stale evidence.
-Actual admission wiring and bounded history/state remain unfinished; no SNP, SIG
+Actual isolated-signer admission wiring and bounded history/state remain unfinished; no SNP, SIG
 or release milestone closes. All earlier gates remain required.
 
 Offline MCP tool/network selection has builder evidence in
