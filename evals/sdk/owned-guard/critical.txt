@@ -1,0 +1,13 @@
+✔ CI-2: failed or missing test-process completion cannot qualify coverage (2.590359ms)
+✔ CI-2: exact statement and branch floors pass without rounding (1.702722ms)
+✔ CI-2: a critical branch deficit fails even when aggregate totals pass (3.268223ms)
+✔ CI-2: missing, extra and duplicate files cannot disappear from coverage (0.711603ms)
+✔ CI-2: malformed and empty execution counts fail closed (0.684248ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 223.538175

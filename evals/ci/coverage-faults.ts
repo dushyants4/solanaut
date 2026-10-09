@@ -2,6 +2,7 @@ import { strict as assert } from "node:assert";
 import { spawnSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 const faults = [
+  ["owned-facade-critical-inventory", "evals/ci/coverage.ts", '"owned-guard.ts",', ""],
   ["failed-test-process", "evals/ci/coverage.ts", "if(status!==0)", "if(false)"],
   ["statement-floor", "evals/ci/coverage.ts", "passes(totals.statements,95)", "passes(totals.statements,94)"],
   ["branch-floor", "evals/ci/coverage.ts", "passes(totals.branches,90)", "passes(totals.branches,89)"],

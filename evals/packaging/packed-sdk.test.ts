@@ -28,6 +28,43 @@ const transfer = (to: number) => craftLegacy({
 });
 const inputPolicy = JSON.stringify(WORKLOAD_POLICY, (_key, value) => typeof value === "bigint" ? value.toString() : value);
 
+test("PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace",()=>{
+  const script=`
+    import {createGuard,preparePolicyText,encodeBase58} from '@solanaut/sdk';
+    import {generateKeyPairSync,sign} from 'node:crypto';
+    import {mkdtempSync,readFileSync,writeFileSync,existsSync,rmSync} from 'node:fs';
+    import {tmpdir} from 'node:os';import {join} from 'node:path';
+    const base=import.meta.resolve('@solanaut/sdk'),{openOwnedGuard,OwnedGuardError}=await import(new URL('./owned-guard.js',base)),{fileStore,publishOwnedRequestIndex}=await import(new URL('./record.js',base));
+    const root=await import('@solanaut/sdk');if('openOwnedGuard' in root || 'OwnedGuardError' in root)throw new Error('private facade leaked root exports');
+    const directory=mkdtempSync(join(tmpdir(),'solanaut-owned-facade-')),path=join(directory,'guard.jsonl'),operator=generateKeyPairSync('ed25519');
+    const operatorKey=encodeBase58(Buffer.from(operator.publicKey.export({format:'jwk'}).x,'base64url'));
+    const policy=JSON.parse(process.argv[1]);policy.latch.releaseKey=operatorKey;policy.latch.cluster='devnet';
+    const issued='2026-10-09T00:00:00.000Z',trust={operatorKey,guardId:policy.latch.guardId,cluster:'devnet'};
+    const authorization=version=>{const text=preparePolicyText(policy,version,issued);return {...trust,version,issued,text,signature:sign(null,Buffer.from(text),operator.privateKey).toString('base64')};};
+    const options=()=>({path,policy,authorization:authorization(1)}),refuse=async call=>{let denied=false;try{await call();}catch(error){denied=error instanceof OwnedGuardError && error.code==='owned-guard';}if(!denied)throw new Error('installed private facade accepted invalid operation');};
+    try{
+      const missing=join(directory,'missing.jsonl');await refuse(()=>openOwnedGuard({...options(),path:missing}));if(existsSync(missing))throw new Error('installed facade created history');
+      const store=fileStore(path,{ownership:'kernel'}),trusted=await createGuard({policy,authorization:authorization(1),log:store});await publishOwnedRequestIndex(store,{policyTrust:trust});trusted.close();
+      const before=readFileSync(path);await refuse(()=>openOwnedGuard({...options(),authorization:authorization(2)}));if(!readFileSync(path).equals(before))throw new Error('installed facade upgraded policy');
+      const input=options(),opening=openOwnedGuard(input);input.authorization.guardId='changed';const g=await opening;
+      try{
+        if(!Object.isFrozen(g)||!Object.isFrozen(g.policy.latch)||'guard' in g||'store' in g||'entries' in g)throw new Error('installed facade exposed mutable authority');
+        const id={clientId:'client',id:'captured'},payload={decision:'a'.repeat(64)},pending=g.beginRequest(id,'report',payload,1000),observed=g.status();id.id='changed';payload.decision='b'.repeat(64);
+        const start=await pending;if(start.request.id!=='captured'||JSON.parse(start.payload).decision!=='a'.repeat(64)||(await observed).seq!==start.seq+1)throw new Error('installed facade capture or FIFO failed');
+        const actual={clientId:'client',id:'captured'},answer={nested:{ready:true}},finishing=g.finishRequest(actual,start.hash,answer);answer.nested.ready=false;await finishing;
+        const result=await g.requestResult(actual,start.hash);if(!result.nested.ready||!Object.isFrozen(result.nested))throw new Error('installed facade response capture failed');
+        await refuse(()=>g.beginRequest(actual,'status',{},2000));await g.beginRequest({clientId:'client',id:'next'},'status',{},2000);
+        const bytes=new Uint8Array(new SharedArrayBuffer(1));bytes[0]=255;const decision=g.check({message:bytes,at:2001},{clientId:'client',id:'proposal'});bytes[0]=0;if((await decision).message!=='/w==')throw new Error('installed facade retained shared bytes');
+        const preceding=g.beginRequest({clientId:'client',id:'last'},'status',{},2002),closing=g.close();await preceding;await closing;await refuse(()=>g.status());await g.close();
+      }finally{await g.close();}
+      const index=readFileSync(path+'.request-index');writeFileSync(path+'.request-index','corrupt');await refuse(()=>openOwnedGuard(options()));writeFileSync(path+'.request-index',index);
+      const restored=await openOwnedGuard(options());await restored.close();
+    }finally{rmSync(directory,{recursive:true,force:true});}
+    console.log('private owned facade qualified');`;
+  const result=spawnSync(process.execPath,["--input-type=module","-e",script,inputPolicy],{cwd:consumer,encoding:"utf8",timeout:15000});
+  assert.equal(result.status,0,result.stderr);assert.equal(result.error,undefined);assert.equal(result.signal,null);assert.equal(result.stdout,"private owned facade qualified\n");
+});
+
 test("PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts", () => {
   const script = `
     import {createGuard,replay,memoryStore} from '@solanaut/sdk';

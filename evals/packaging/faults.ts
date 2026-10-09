@@ -15,6 +15,16 @@ function battery() {
 const baseline = battery();
 assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
 const faults = [
+  { name: "facade-export", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace("export async function openOwnedGuard", "async function openOwnedGuard") },
+  { name: "facade-fresh-history", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace("ownership: \"kernel\", create: false", "ownership: \"kernel\", create: true") },
+  { name: "facade-config-capture", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace("const options = structuredClone(input);", "const options = input;") },
+  { name: "facade-upgrade", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace("lastPolicy.version !== options.authorization.version || lastPolicy.text !== options.authorization.text", "false") },
+  { name: "facade-index", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace('await lookupOwnedRequestIndex(store, { clientId: "owned-startup", id: "validation" }, { policyTrust: options.authorization })', '({seq:guard.status().seq,head:store.entries.at(-1)?.hash})') },
+  { name: "facade-freeze", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace("return Object.freeze({", "return ({") },
+  { name: "facade-payload", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace("const id = structuredClone(identity), value = structuredClone(payload);", "const id = structuredClone(identity), value = payload;") },
+  { name: "facade-response", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace("const id = structuredClone(identity), value = structuredClone(result);", "const id = structuredClone(identity), value = result;") },
+  { name: "facade-shared-bytes", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace("p.message = new Uint8Array(p.message);", "void p;") },
+  { name: "facade-close-drain", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace("closing = queue.then", "closing = Promise.resolve().then") },
   { name: "owned-control-export", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("export function beginOwnedRequest", "function beginOwnedRequest") },
   { name: "owned-control-code", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace('code = "owned-control-request"', 'code = "foreign"') },
   { name: "owned-control-head", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("controlEvidence.seq !== state.seq || controlEvidence.head !== state.head", "false") },
@@ -145,7 +155,7 @@ for (const fault of faults) {
     const result = battery();
     const output = result.stdout + result.stderr;
     assert.equal(result.status, 1, output);
-    assert.match(output, /tests 11\b/, "a harness setup failure is not a caught product fault");
+    assert.match(output, /tests 12\b/, "a harness setup failure is not a caught product fault");
     const failures = output.split("\n").filter((line) => /[✖]|not ok/.test(line));
     assert.ok(failures.some((line) => line.includes(fault.caught)), output);
     console.log(`caught package fault: ${fault.name}`);

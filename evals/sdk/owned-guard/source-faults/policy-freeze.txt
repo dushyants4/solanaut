@@ -1,0 +1,28 @@
+✖ SNP-7/OWN-2: factory keeps the guard and history private with a frozen asynchronous surface (101.312305ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 223.758849
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-guard.test.ts:30:1
+✖ SNP-7/OWN-2: factory keeps the guard and history private with a frozen asynchronous surface (101.312305ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(Object.isFrozen(g.policy))
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:33:42)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

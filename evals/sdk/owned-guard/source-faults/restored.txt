@@ -1,0 +1,17 @@
+✔ SNP-7/OWN-2: factory keeps the guard and history private with a frozen asynchronous surface (84.503293ms)
+✔ OPR-2/VER-1: missing, empty and unsigned established histories refuse without creating a fresh identity (65.869838ms)
+✔ POL-4/OPR-2: configuration cannot upgrade, roll back, substitute a guard or start on invalid signatures (63.31141ms)
+✔ OWN-2/SNP-7: competing opens and corrupt index fail closed and release failed startup ownership (72.753321ms)
+✔ SNP-7/LIF-4: queued inputs, detached replies and observations share one FIFO (71.119502ms)
+✔ LIF-1/SNP-7: private admissions copy shared bytes and cannot mutate durable replies (46.815906ms)
+✔ OWN-2/LIF-4: close drains preceding work, denies later calls and releases ownership once (61.596456ms)
+✔ LIF-4/OPR-2: refusal does not poison the queue and raw diagnostics never escape (71.868607ms)
+✔ OPR-2/SNP-7: startup captures signed configuration before its first await (33.705902ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 703.928813

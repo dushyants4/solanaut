@@ -243,6 +243,23 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-09 private admission/control facade: implementation and local qualification
+continue under ADR-019, receipt `evals/sdk/owned-guard.md`. No history or mutable
+guard/store escapes; exact established signed policy/index, captured configuration,
+shared FIFO and orderly close. Preserve absent API/module, bigint-fixture/type
+errors, redundant-check missed fault and concurrent unchanged-wait failures.
+Definition 34/seed 34183 includes malformed and valid foreign-cluster boundaries
+after the focused critical branch deficit; all limits and earlier inputs remain.
+H9 acceptance is still pending; no signer expansion, bounded state or milestone
+completion is assumed. Local commits only.
+
+Quiet facade ordinary suite/typecheck pass; quiet serial AST and isolated driver
+baseline still fail H11's unchanged wait. Receipt/CLAIMS S95 retain both outcomes,
+all source/package fault proofs, raw failed AST reports and bound private inputs.
+The exact H11 proposal is requested asynchronously; delivery is not acceptance.
+Local implementation may be archived with its broader qualification explicitly
+open; the guard, floors, waits and remote-sync gate are unchanged.
+
 2026-10-09 local backup: owned controls are committed as `b1d8ed1`; the local
 Git bundle verifies and restores that exact clean revision with passing full
 object-integrity verification. Post-commit close passes nine of ten gates;

@@ -1,0 +1,17 @@
+✔ CI-1: fixed fault partitions cover the maintained inventory exactly once (3.225678ms)
+✔ CI-1: malformed partition arguments cannot silently omit campaigns (0.67649ms)
+✔ CI-1: workflow requires every fixed partition with the existing restoration runner (0.648975ms)
+✔ CI-1: partition execution retains failures and stops on non-restoring sources (0.668382ms)
+✔ CI-1: workflow-restoration monitoring covers the partition configuration (5.928794ms)
+✔ CI-1: exact inventory accepts every maintained campaign and rejects omission/addition/duplication (23.859658ms)
+✔ CI-1: all campaigns run sequentially; failure/null exit fails aggregation without hiding other findings (1.687709ms)
+✔ CI-1: changed source stops further mutation, reports skipped work and fails the gate (0.283351ms)
+✔ CI-2: mutation staging copies only the frozen inputs and tests execute its changed source (603.064891ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 745.821279

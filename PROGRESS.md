@@ -5,6 +5,14 @@ including the approved Beta; CLAIMS S78 and `evals/release/progress.md` freeze t
 scope. This is not release readiness, effort or a completion date. Components
 inside open milestones receive no fractional credit.
 
+Private asynchronous admission/control facade implementation has partial local
+evidence in `evals/sdk/owned-guard.md`, CLAIMS S95. It opens established signed history
+without exposing guard/store/history and serializes observations and shutdown.
+It retains full state and does not yet expose signing/lifecycle maintenance.
+The quiet ordinary suite/typecheck pass; serial AST still fails the unchanged
+baseline wait. Preserve concurrent and quiet failures; complete qualification
+and milestone credit remain open. H11's proposed wait change needs acceptance.
+
 Owned control start/response/result companions have local component evidence in
 `evals/sdk/owned-control-request.md`. They share proposal admission's FIFO and
 verify current owned disk evidence. Full retained state, private service facade

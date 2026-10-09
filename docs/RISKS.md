@@ -1,11 +1,17 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.65** · 2026-10-09 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.66** · 2026-10-09 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 Local-only commits now replace the previous standing push grant. The unchanged
 close workflow cannot pass its pushed-HEAD check for those commits. Record that
 finding; no hosted execution, backup to a remote or stable-release gate is implied.
+The internal admission/control facade now owns its guard/store privately, so
+its callers cannot interrupt owned operations through trusted synchronous methods.
+Its surface is partial and full histories remain in memory; no executable signer,
+OS isolation, bounded recovery or startup target follows. Configuration refuses
+implicit upgrade, but explicit operator lifecycle tooling remains owed. Status
+observes private memory and does not independently authenticate chain outcomes.
 Owned controls now share admission's FIFO and reject stale disk evidence, but
 trusted synchronous callers can still interrupt them. Full retained state and
 actual isolated startup remain unresolved (`evals/sdk/owned-control-request.md`).

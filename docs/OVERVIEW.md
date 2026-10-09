@@ -1,10 +1,17 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 44** · 2026-10-09 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 45** · 2026-10-09 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
+
+Internal `owned-guard.ts` opens established signed devnet history and privately
+owns its guard/store. Admission, control requests, status and close are queued;
+configuration/inputs are captured and the frozen surface exposes no history.
+It refuses implicit creation or policy upgrade. Signing journal, redemption,
+outcome reporting, operator actions, maintenance and bounded state remain owed.
+This is not a stable root export or operational signer.
 
 Internal owned control companions share the proposal admission FIFO. They capture
 inputs, consult actual owned disk evidence, check the current head and return

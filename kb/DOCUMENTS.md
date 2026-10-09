@@ -1,5 +1,17 @@
 # DOCUMENTS.md — the document register
 
+2026-10-09 private owned facade registers SPEC Draft 4.74, OVERVIEW 45,
+RISKS 1.66, PROGRESS, HANDOFF, continuing run and `evals/sdk/owned-guard.md`.
+Capture established signed-history ownership, private admission/control surface,
+FIFO observations and orderly close; full retained state and service remain open.
+Preserve all first failures, redundant-check fault miss, concurrent unchanged-wait
+failures and the focused critical branch deficit. Definition 34/seed 34183 follows
+the boundary-case expansion; all earlier inputs, floors and waits are retained.
+CLAIMS S95 and the evaluation index register partial measured evidence and the
+private package/source/input manifest. Ordinary/type/source/installed checks pass;
+quiet serial AST and isolated driver still fail the unchanged baseline wait.
+All failures/raw AST reports remain retained; no complete qualification closes.
+
 2026-10-09 local owned-control integration registers SPEC Draft 4.73, OVERVIEW 44,
 RISKS 1.65, PROGRESS, HANDOFF, continuing run and `evals/sdk/owned-control-request.md`
 with its evaluation index. Capture shared FIFO/current disk evidence and local-only

@@ -1,0 +1,21 @@
+✖ OPR-2/SNP-7: startup captures signed configuration before its first await (75.88356ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 244.7588
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-guard.test.ts:102:1
+✖ OPR-2/SNP-7: startup captures signed configuration before its first await (75.88356ms)
+  OwnedGuardError: owned guard cannot establish or complete the requested operation
+      at openOwnedGuard (file:///home/dashy/Projects/Solanaut/packages/sdk/src/owned-guard.ts:50:11)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:105:13)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    code: 'owned-guard'
+  }

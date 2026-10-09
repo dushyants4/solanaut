@@ -1394,3 +1394,27 @@ root exports, signer socket methods, bounded state or a completed SNP-7 claim.
 Evidence: `evals/sdk/owned-control-request.md`.
 
 | Draft 4.73 | 2026-10-09 | Shared owned control/admission FIFO and D31 private-dispatch correction. Preserve definition 29's inventory failure and definition 30's wait failure; final definition 31/seed 31907 retains nineteen new cases and batches all six actual gap scenarios without dropping assertions. All floors, waits and limits remain. Local commits only; no remote/hosted/release completion follows. |
+
+Internal SNP-7 admission/control facade convention under accepted ADR-019:
+`openOwnedGuard` captures signed configuration before awaiting and owns its guard
+and kernel file store privately. Require an existing devnet history starting with
+a signed policy, exactly the current signed content/version/text and an existing
+authenticated request index. Refuse implicit policy installation or upgrade;
+failed startup releases ownership. A fixed `OwnedGuardError`, code `owned-guard`,
+hides raw configuration/storage diagnostics.
+
+The frozen internal surface offers asynchronous admission, control start/finish/
+result, status and close, plus a detached frozen policy and policy hash. It exposes
+neither mutable guard/store nor history. Capture inputs before queueing, including
+private ordinary message-byte backing; share a FIFO for operations and observations.
+Close stops accepting immediately, drains earlier work and releases ownership;
+repeat close returns the same completion. A refused operation does not poison the
+queue. Status describes private in-memory state; it is not independent chain proof.
+
+Trusted synchronous SDK exports remain unchanged. The facade does not implement
+redemption, signing journal, outcome reporting, operator release, maintenance or
+an executable signer. Full histories and state maps still remain in memory.
+No SIG-11 budget pass, bounded recovery, process isolation or stable-release claim
+follows. Component evidence: `evals/sdk/owned-guard.md`.
+
+| Draft 4.74 | 2026-10-09 | Private asynchronous admission/control facade on established owned signed history. No mutable guard/store/history escapes; shared observations and orderly close. Definition 34/seed 34183 retains prior populations and limits, adds facade tests/source and its critical coverage designation. Preserve the prior concurrent definition 32 wait failure and definition 33 focused branch deficit; add malformed-input and valid foreign-cluster boundaries before final measurement. Broader qualification remains owed. |

@@ -113,6 +113,27 @@ and qualification evidence will be recorded as work proceeds.
 
 ## Found
 
+Pre-commit close's secret scanner flags the malformed-status fixture field named
+`secret`, whose value is the literal dummy `PRIVATE_SENTINEL`; it is not key or
+credential material. Keep the sentinel/redaction assertion and rename only the
+invalid extra field to `extra`, which the same strict status codec rejects.
+No scanner or validation rule changes. Recheck the affected source population,
+typecheck and native suite; record the prior manifest as the pre-name-correction
+evaluation identity. Product and compiled package bytes remain unchanged.
+
+The private facade's first implemented test expects a bigint response to refuse,
+contrary to the existing canonical codec; retain the failure and use NaN instead.
+Initial dynamic test invocation lacks its return-type annotation. The version-only
+fault misses due to the independent signed-text check; the combined trial catches.
+Focused AST misses malformed/foreign-cluster boundaries and falls below the
+critical floor; add those cases before definition 34's final measurement.
+Both concurrent qualification attempts fail the existing real-baseline wait.
+The quiet ordinary suite passes, but quiet serial AST and isolated driver baseline
+still fail that unchanged wait. Neither receives qualification or fault credit.
+Documentation patches with invalid final contexts make no edit; valid contexts
+are applied separately. H11's exact wait proposal is delivered asynchronously;
+no response is assumed. All original failures and raw AST reports are preserved.
+
 The unchanged isolated H11 diagnostic passes in about eighteen seconds, leaving
 little scheduling margin under the twenty-second wait. Preserve its output,
 not a full-suite pass. Batch the new test's same six real gap cases into one
@@ -183,6 +204,41 @@ Hosted qualification is pending and H11's historical timeout remains unaccepted.
 No replay component pass follows from drafted tests or the interrupted builder.
 
 ## Open
+
+Corrected pre-commit close passes eight of ten checks: only unpushed HEAD and the
+staged tree fail. Secret scanning of the staged candidate passes. Native product
+tests/typecheck and authored diff checks pass. Local partial-component commit
+preserves AST/driver failures; independent release qualification remains open.
+
+Current facade outcome: corrected dummy-fixture naming passes nine focused and
+834 ordinary cases plus typecheck. All product/archive digests remain identical;
+only that test's evaluation-input digest changes. Seventeen source and 118
+compiled faults, twelve installed cases and registry/partition/coverage/report
+campaign evidence are retained. Quiet AST and isolated driver qualification stay
+open on H11's wait. Commit this partial implementation locally with that finding
+explicit; no push, threshold acceptance or stable-release claim follows.
+
+Private facade quiet ordinary suite passes all 834 cases and typecheck exits zero.
+Nine focused cases, seventeen source faults, twelve installed cases and all 118
+compiled faults pass/restored. Quiet serial AST executes 834 with 833 passing;
+the unchanged real-baseline wait fails and coverage qualification refuses.
+Preserve its complete raw reports/output. No coverage pass or milestone closes.
+H11's exact proposed harness wait is now requested asynchronously; question
+delivery is not acceptance. Native build gates pass for a local partial-component
+commit; wider qualification remains open. Final driver/staging checks continue.
+
+Continue with the private asynchronous admission/control facade under ADR-019.
+It opens established signed devnet history, refuses implicit upgrade, owns its
+guard/store privately and queues observations/shutdown with mutations. The new
+tests fail first on missing factory; retain the bigint-fixture and initial
+unknown-return-type errors. The version-only fault misses because signed text
+still protects the boundary; the combined semantic fault is caught. The initial
+ordinary run hits H11's unchanged wait while compiled faults compete for CPU.
+Keep that failure; run final measurements without competing campaigns. The new
+critical-file assertion fails before designation. Definition 33/seed 33811 is
+declared before subsequent measurement; all previous populations/limits remain.
+Receipt `evals/sdk/owned-guard.md` is a draft until final qualification completes.
+H9 remains unanswered; no signer expansion or threshold acceptance is assumed.
 
 Owned controls are committed locally as `b1d8ed153ed162293bb923a5134703ea4eb3ca7c`.
 `git bundle verify .sandbox/local-backups/solanaut-1-b1d8ed1.bundle`
