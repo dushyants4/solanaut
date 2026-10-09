@@ -15,6 +15,7 @@ function battery() {
 const baseline = battery();
 assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
 const faults = [
+  { name: "record-single-link", path: "dist/src/record.js", caught: "installed record refuses", damage: (text: string) => text.replace("held.nlink !== 1n || named.nlink !== 1n", "false") },
   { name: "record-live-evidence", path: "dist/src/record.js", caught: "installed writer", damage: (text: string) => text.replace("current.size !== expected.size || current.mtimeNs !== expected.mtimeNs || current.ctimeNs !== expected.ctimeNs", "false") },
   { name: "record-live-times", path: "dist/src/record.js", caught: "installed writer", damage: (text: string) => text.replace("current.mtimeNs !== expected.mtimeNs || current.ctimeNs !== expected.ctimeNs", "false") },
   { name: "record-live-failure", path: "dist/src/record.js", caught: "installed writer", damage: (text: string) => text.replace("failed = true;", "failed = false;") },
@@ -167,7 +168,7 @@ for (const fault of faults) {
     const result = battery();
     const output = result.stdout + result.stderr;
     assert.equal(result.status, 1, output);
-    assert.match(output, /tests 13\b/, "a harness setup failure is not a caught product fault");
+    assert.match(output, /tests 14\b/, "a harness setup failure is not a caught product fault");
     const failures = output.split("\n").filter((line) => /[✖]|not ok/.test(line));
     assert.ok(failures.some((line) => line.includes(fault.caught)), output);
     console.log(`caught package fault: ${fault.name}`);

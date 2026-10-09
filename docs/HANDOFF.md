@@ -243,6 +243,16 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-09 ownership alias follow-up: Node 24 evidence is locally archived as
+`8b1d29d` with its verified Git bundle. Reproduce hardlinked journal/mutex startup
+acceptance; separate journal pathnames obtain separate locks. Add single-link
+descriptor/named-inode checks under ADR-019, preserving cleanup and mutex evidence.
+Source/installed first failures are retained in `evals/sdk/record-alias.md`.
+Definition 39/seed 39743 retains earlier inputs/limits and adds the alias cases.
+Source/compiled/native/typecheck pass with exact bound restored identities,
+CLAIMS S101. Quiet serial AST fails the unchanged staged-baseline wait; complete
+coverage remains open, without H9/H11 acceptance or signer expansion.
+
 2026-10-09 Node 24 compiled follow-up: all retained compiled trials catch and
 the restored installed baseline passes, CLAIMS S100. Exact bound product/input/
 emitted-file/archive hashes match afterwards. Corrected archive `12e3895` has a

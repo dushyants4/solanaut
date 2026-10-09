@@ -1,7 +1,7 @@
 // OWN: safe SDK stale-lock refusal and kernel-held ownership across processes.
 import { strict as assert } from "node:assert";
 import { spawn, spawnSync } from "node:child_process";
-import { existsSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, linkSync, mkdtempSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import { hostname, tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
@@ -55,4 +55,22 @@ test("OWN-3: established protected records are not recreated if missing", () => 
   assert.equal(existsSync(path), false);
   const initial = fileStore(path, { ownership: "kernel" }); initial.close();
   const existing = fileStore(path, { ownership: "kernel", create: false }); existing.close();
+});
+for (const ownership of ["manual", "kernel"] as const) test(`OWN-2/4: ${ownership} refuses a hardlinked journal alias and releases failed startup ownership`, () => {
+  const path = record(), alias = path + ".alias";
+  const owner = fileStore(path, { ownership });
+  try {
+    linkSync(path, alias);
+    assert.throws(() => { const other = fileStore(alias, { ownership, create: false }); other.close(); }, /single-link/, "another pathname must not acquire the same journal through a different mutex");
+  } finally { owner.close(); unlinkSync(alias); }
+  const reopened = fileStore(path, { ownership, create: false }); reopened.close();
+  const aliasOwner = fileStore(alias, { ownership }); aliasOwner.close();
+});
+test("OWN-2/4: kernel startup refuses a hardlinked mutex without changing its evidence", () => {
+  const path = record(), owner = fileStore(path, { ownership: "kernel" }); owner.close();
+  const mutex = path + ".lock", alias = mutex + ".alias", before = readFileSync(mutex);
+  linkSync(mutex, alias);
+  try { assert.throws(() => { const other = fileStore(path, { ownership: "kernel", create: false }); other.close(); }, /single-link/); assert.deepEqual(readFileSync(mutex), before); }
+  finally { unlinkSync(alias); }
+  const reopened = fileStore(path, { ownership: "kernel", create: false }); reopened.close();
 });

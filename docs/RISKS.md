@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.70** · 2026-10-09 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.71** · 2026-10-09 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 Local-only commits now replace the previous standing push grant. The unchanged
@@ -10,6 +10,10 @@ Live journal metadata changes now refuse before another append, including
 same-inode corruption under advisory ownership. The signer host remains trusted:
 metadata comparisons are not authenticated content reads or atomic protection
 against privileged changes during a write. Maintenance stops writers before repair.
+Journal/mutex hardlinks also refuse, preventing an alternate pathname from
+opening the journal with a different pathname lock. This supports exclusive
+ownership on the stated local filesystem; it does not freeze the trusted host
+or make advisory locking mandatory for unrelated processes.
 Private operator release queues captured signatures and exposes durable success
 or fixed refusal. Preparation is keyless, and pending reservations remain after
 release. Caller time remains trusted SDK input; no operator ceremony, isolated

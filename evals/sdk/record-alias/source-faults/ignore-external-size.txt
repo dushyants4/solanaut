@@ -1,0 +1,66 @@
+✔ OWN-1: SDK refuses stale ownership instead of removing the lock (33.404738ms)
+✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (7.370961ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (303.762543ms)
+✔ OWN-3: established protected records are not recreated if missing (7.433317ms)
+✔ OWN-2: manual refuses a hardlinked journal alias and releases failed startup ownership (6.762176ms)
+✔ OWN-2: kernel refuses a hardlinked journal alias and releases failed startup ownership (8.510535ms)
+✔ OWN-2: kernel startup refuses a hardlinked mutex without changing its evidence (5.24137ms)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (15.837224ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (3.95886ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (3.955764ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (4.179216ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (3.809859ms)
+✖ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (5.577768ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (4.191006ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (5.326474ms)
+✖ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (5.694888ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (4.981021ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (5.340003ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 16
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 488.035255
+
+✖ failing tests:
+
+test at packages/sdk/test/storage-failures.test.ts:52:114
+✖ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (5.577768ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'intent-in-flight'
+  - 'fail-closed'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:78:47)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'intent-in-flight',
+    expected: 'fail-closed',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:52:114
+✖ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (5.694888ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'intent-in-flight'
+  - 'fail-closed'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:78:47)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'intent-in-flight',
+    expected: 'fail-closed',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

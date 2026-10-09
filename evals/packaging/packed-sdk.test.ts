@@ -108,6 +108,28 @@ test("PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot
   assert.equal(result.status,0,result.stderr);assert.equal(result.error,undefined);assert.equal(result.signal,null);assert.equal(result.stdout,"live journal damage refused\n");
 });
 
+test("PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup", () => {
+  const script=`
+    import fs from 'node:fs';import {tmpdir} from 'node:os';import {join} from 'node:path';
+    const base=import.meta.resolve('@solanaut/sdk'),{fileStore}=await import(new URL('./record.js',base));
+    const directory=fs.mkdtempSync(join(tmpdir(),'solanaut-record-alias-'));
+    const refuse=call=>{let denied=false;try{const other=call();other.close();}catch(error){denied=/single-link/.test(error.message);}if(!denied)throw new Error('installed record admitted an aliased inode');};
+    try{
+      for(const ownership of ['manual','kernel']){
+        const path=join(directory,ownership+'.jsonl'),alias=path+'.alias',owner=fileStore(path,{ownership});
+        try{fs.linkSync(path,alias);refuse(()=>fileStore(alias,{ownership,create:false}));}finally{owner.close();fs.unlinkSync(alias);}
+        fileStore(path,{ownership,create:false}).close();fileStore(alias,{ownership}).close();
+      }
+      const path=join(directory,'mutex.jsonl');fileStore(path,{ownership:'kernel'}).close();
+      const mutex=path+'.lock',alias=mutex+'.alias',before=fs.readFileSync(mutex);fs.linkSync(mutex,alias);
+      try{refuse(()=>fileStore(path,{ownership:'kernel',create:false}));if(!fs.readFileSync(mutex).equals(before))throw new Error('installed aliased mutex evidence changed');}finally{fs.unlinkSync(alias);}
+      fileStore(path,{ownership:'kernel',create:false}).close();
+    }finally{fs.rmSync(directory,{recursive:true,force:true});}
+    console.log('record aliases refused');`;
+  const result=spawnSync(process.execPath,["--input-type=module","-e",script],{cwd:consumer,encoding:"utf8",timeout:15000});
+  assert.equal(result.status,0,result.stderr);assert.equal(result.error,undefined);assert.equal(result.signal,null);assert.equal(result.stdout,"record aliases refused\n");
+});
+
 test("PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts", () => {
   const script = `
     import {createGuard,replay,memoryStore} from '@solanaut/sdk';

@@ -1,6 +1,6 @@
 # Persistent record ownership
 
-> **Draft 9** · 2026-10-09 · owner: integrator · for: SDK users and Linux operators.
+> **Draft 10** · 2026-10-09 · owner: integrator · for: SDK users and Linux operators.
 > Register: `kb/DOCUMENTS.md`. Foundation evidence: `evals/sdk/ownership.md` (claim S16).
 
 An ordinary `createGuard({ policy, log: path })` uses manual SDK ownership. It refuses an
@@ -56,6 +56,13 @@ Use an operator-owned directory on a local Linux filesystem. The agent must not 
 replace the record or its mutex. Network filesystems, distributed writers and mixed old/new
 active binaries are unsupported. Stop all old writers before upgrading to this ownership mode.
 The initial Ubuntu reference installation still needs clean-machine qualification.
+
+The live journal and its mutex must both be single-link regular files. Hardlinked
+aliases refuse ownership rather than opening the same journal through different
+pathname locks. Stop all writers and retain evidence before resolving an alias;
+do not remove mutex names to clear a lock. Failed startup releases its acquired
+ownership. This does not prevent privileged concurrent host changes. Evidence:
+`evals/sdk/record-alias.md`.
 
 The store completes short writes and syncs before acknowledgement. A write or sync failure
 closes the writer; restart may retain an unacknowledged complete entry conservatively. This

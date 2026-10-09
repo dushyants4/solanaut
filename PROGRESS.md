@@ -5,6 +5,12 @@ including the approved Beta; CLAIMS S78 and `evals/release/progress.md` freeze t
 scope. This is not release readiness, effort or a completion date. Components
 inside open milestones receive no fractional credit.
 
+Record/mutex alias refusal is being qualified under accepted ADR-019. Source and
+installed prior-candidate failures live in `evals/sdk/record-alias.md`; single-link
+checks preserve pathname ownership and failed-startup cleanup. Source/compiled/
+native/typecheck pass; quiet serial AST fails the unchanged real-baseline wait,
+CLAIMS S101. Complete coverage and all stable milestones remain open.
+
 D33's live journal change regression is corrected in the local candidate;
 manual/kernel writers refuse external byte-count or timestamp changes and remain
 failed after repair. `evals/sdk/live-record.md` retains first failures and fault

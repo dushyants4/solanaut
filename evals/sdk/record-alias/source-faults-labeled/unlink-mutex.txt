@@ -1,0 +1,68 @@
+✔ OWN-1: SDK refuses stale ownership instead of removing the lock (29.386434ms)
+✖ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (6.981359ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (280.715387ms)
+✔ OWN-3: established protected records are not recreated if missing (6.049323ms)
+✔ OWN-2/4: manual refuses a hardlinked journal alias and releases failed startup ownership (6.564864ms)
+✔ OWN-2/4: kernel refuses a hardlinked journal alias and releases failed startup ownership (8.335926ms)
+✖ OWN-2/4: kernel startup refuses a hardlinked mutex without changing its evidence (1.866957ms)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (14.463981ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (5.978519ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (4.12928ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (3.693053ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (3.282237ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (6.533244ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (3.691899ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (4.352997ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (4.487045ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (4.583002ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (3.178485ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 16
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 443.283663
+
+✖ failing tests:
+
+test at packages/sdk/test/ownership.test.ts:19:1
+✖ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (6.981359ms)
+  AssertionError [ERR_ASSERTION]: a kernel mutex inode must never be unlinked on close
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/ownership.test.ts:25:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/ownership.test.ts:69:1
+✖ OWN-2/4: kernel startup refuses a hardlinked mutex without changing its evidence (1.866957ms)
+  Error: ENOENT: no such file or directory, open '/tmp/solanaut-ownership-D2D8Tq/guard.jsonl.lock'
+      at Object.openSync (node:fs:697:18)
+      at readFileSync (node:fs:543:35)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/ownership.test.ts:71:68)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/tmp/solanaut-ownership-D2D8Tq/guard.jsonl.lock'
+  }

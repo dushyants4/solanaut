@@ -1,12 +1,13 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 49** · 2026-10-09 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 50** · 2026-10-09 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
 
-The file writer compares descriptor size and nanosecond modification/change times
+The file writer requires single-link journal and mutex inodes, refusing hardlinked
+aliases before accepting ownership. It compares descriptor size and nanosecond modification/change times
 against its completed startup or last synced append before adding another line.
 Unexpected change fails that writer permanently; restoring bytes does not revive
 it. This checks live storage consistency alongside inode ownership. It does not

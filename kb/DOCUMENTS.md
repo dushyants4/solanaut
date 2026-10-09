@@ -1,5 +1,18 @@
 # DOCUMENTS.md — the document register
 
+2026-10-09 record aliases register SPEC Draft 4.79/OWN-4, OVERVIEW 50, STORAGE
+Draft 10, RISKS 1.71, PROGRESS, HANDOFF, continuing run and
+`evals/sdk/record-alias.md` with its receipt index. Preserve absent refusal in
+source/installed prior candidates and verify cleanup. Definition 39/seed 39743
+retains earlier populations/limits; broader qualification is pending.
+CLAIMS S101 registers partial source/installed evidence with all earlier cases
+and trials retained; no full candidate or stable milestone credit follows.
+Register final local native/compiled passes and the quiet serial AST deadline
+failure with exact restored candidate identities. Complete coverage remains open.
+Source requirement labels are corrected and remeasured: native/source pass,
+serial AST repeats the unchanged deadline failure. Both manifests/raw report
+populations are retained, with final labelled identities matching.
+
 2026-10-09 Node 24 maintained compiled follow-up registers CLAIMS S100,
 runtime receipt, HANDOFF and continuing run. Every retained compiled trial
 catches; final installed baseline and post-restoration identities pass. Earlier

@@ -1,0 +1,45 @@
+✔ OWN-1: SDK refuses stale ownership instead of removing the lock (40.76611ms)
+✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (9.460796ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (287.722064ms)
+✔ OWN-3: established protected records are not recreated if missing (6.084424ms)
+✔ OWN-2/4: manual refuses a hardlinked journal alias and releases failed startup ownership (8.305399ms)
+✔ OWN-2/4: kernel refuses a hardlinked journal alias and releases failed startup ownership (6.612575ms)
+✔ OWN-2/4: kernel startup refuses a hardlinked mutex without changing its evidence (7.354819ms)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (15.062066ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (4.353201ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (5.488024ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (3.506145ms)
+✖ STO-2/SIG-8: fsync denies and permanently shuts this writer (4.032475ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (5.27485ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (4.732559ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (4.414307ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (4.198927ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (4.304281ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (3.471235ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 17
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 472.537084
+
+✖ failing tests:
+
+test at packages/sdk/test/storage-failures.test.ts:32:71
+✖ STO-2/SIG-8: fsync denies and permanently shuts this writer (4.032475ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:45:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

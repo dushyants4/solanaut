@@ -107,6 +107,7 @@ function sameFile(fd: number, path: string): void {
   const held = fstatSync(fd, { bigint: true });
   const named = lstatSync(path, { bigint: true });
   if (!named.isFile() || held.dev !== named.dev || held.ino !== named.ino) throw new Error("the record or ownership inode was replaced");
+  if (held.nlink !== 1n || named.nlink !== 1n) throw new Error("the record or ownership inode must be single-link");
 }
 
 function lock(path: string, mode: "manual" | "kernel"): { held(): void; release(): void } {

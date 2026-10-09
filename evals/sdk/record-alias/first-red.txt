@@ -1,0 +1,74 @@
+✔ OWN-1: SDK refuses stale ownership instead of removing the lock (28.669152ms)
+✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (6.397343ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (274.413361ms)
+✔ OWN-3: established protected records are not recreated if missing (5.511696ms)
+✖ OWN-2: manual refuses a hardlinked journal alias and releases failed startup ownership (4.182576ms)
+✖ OWN-2: kernel refuses a hardlinked journal alias and releases failed startup ownership (4.638719ms)
+✖ OWN-2: kernel startup refuses a hardlinked mutex without changing its evidence (5.174046ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 4
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 388.621317
+
+✖ failing tests:
+
+test at packages/sdk/test/ownership.test.ts:59:56
+✖ OWN-2: manual refuses a hardlinked journal alias and releases failed startup ownership (4.182576ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception: another pathname must not acquire the same journal through a different mutex
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/ownership.test.ts:64:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /single-link/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/ownership.test.ts:59:56
+✖ OWN-2: kernel refuses a hardlinked journal alias and releases failed startup ownership (4.638719ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception: another pathname must not acquire the same journal through a different mutex
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/ownership.test.ts:64:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /single-link/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/ownership.test.ts:69:1
+✖ OWN-2: kernel startup refuses a hardlinked mutex without changing its evidence (5.174046ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/ownership.test.ts:73:16)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /single-link/,
+    operator: 'throws',
+    diff: 'simple'
+  }

@@ -12,6 +12,24 @@ each component. Preserve every accepted security and release gate.
 
 ## Did
 
+Final requirement-labelled D34 inputs pass source faults/native again; serial AST
+repeats the unchanged wait failure. Preserve both input manifests and both raw
+coverage report populations. Final product/evaluation/emitted-file/archive
+identities match. No threshold or coefficient change is made.
+
+D34's source/compiled/installed/native and final restored typecheck pass,
+CLAIMS S101. Quiet serial AST fails the unchanged real-baseline wait. Preserve
+raw reports and exact bound product/input/emitted-file/archive identities; no
+complete coverage, floor or stable milestone credit follows. Complete unchanged
+close, local commit and verified source-history backup before other core work.
+
+Node 24 qualification archives locally as `8b1d29d`, with a verified complete-history
+bundle. Continue into D34: manual/kernel journal aliases and a kernel mutex alias
+are accepted before correction. Under ADR-019, require single-link descriptor and
+named journal/mutex inodes, preserving cleanup and mutex evidence. Declare
+definition 39/seed 39743 before full measurement. Source fault trials retain all
+earlier cases. No signer, policy, socket, record/profile format or gate changes.
+
 Corrected runtime archive `12e3895` restores exact clean history with full fsck;
 post-commit close passes nine of ten, only pushed HEAD failing. Continue with
 all maintained compiled trials under the existing Node 24 runtime. Every trial
@@ -192,6 +210,17 @@ Current-day run record and project register; subsequent replay component paths
 and qualification evidence will be recorded as work proceeds.
 
 ## Found
+
+Final D34 review finds that source case names cite OWN-2 but omit the explicitly
+allocated OWN-4. Add its requirement label and retain the earlier outputs/manifest.
+The source campaign passes with labelled cases; remeasure native/AST against
+that exact input identity. No behaviour, definition, seed, wait or floor changes.
+
+Ownership alias source and installed previous candidates fail on missing refusal.
+The initial typecheck overlaps the source-fault campaign; do not count it as final
+restored qualification. Re-run typecheck and build after exact source restoration.
+Existing rename/replacement cases retain the displaced inode, preserving the
+named-path fault's independent falsifiability after the new link-count check.
 
 Node 24 archival pre-commit close fails the protected claims grammar: S100 lists
 mise-prefixed commands, while the parser accepts command names beginning npm/node/uv.

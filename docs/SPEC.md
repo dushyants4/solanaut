@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.78** · 2026-10-09 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.79** · 2026-10-09 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -539,6 +539,7 @@ Each is fixed test-first: the evaluator writes the failing test, and the builder
 | D31 | New owned-control dispatch calls mutable public SDK bookkeeping methods, so a caller can replace its start/response implementation | local owned-control candidate, reproduced on 2026-10-09 | **closed in the local candidate:** capture private start/completion functions before exposing the guard. Public-method replacement regression and planted dispatch faults are retained in `evals/sdk/owned-control-request.md`; no isolation or stable-release claim |
 | D32 | The new private facade returns an unrecorded admission as a decision, including raw storage diagnostics after an append failure | local facade `36a1ae7`, reproduced on 2026-10-09 | **corrected in the builder candidate:** negative-sequence admissions throw the fixed typed `OwnedGuardError`; identity collision likewise refuses. Preserve real storage-failure and installed previous-candidate failures in `evals/sdk/owned-admission-error.md`. Broader qualification remains open |
 | D33 | A held journal inode can change outside the writer while its cached history still acknowledges another decision | local `7a64856`, reproduced on 2026-10-09 in manual and kernel ownership | **corrected in the builder candidate:** before appending, require the descriptor size, nanosecond modification time and change time to match the last synced append or completed startup. A mismatch fails the store permanently without appending. Preserve real append/truncation/same-size overwrite regressions and fault misses in `evals/sdk/live-record.md`. This is storage consistency under the supported host boundary, not protection against privileged concurrent tampering |
+| D34 | Hardlinked journal aliases can open with separate pathname mutexes; kernel startup accepts a linked mutex | local `8b1d29d`, reproduced on 2026-10-09 | **corrected in the builder candidate:** require descriptor and named journal/mutex inodes to have one link, preserving evidence and failed-startup cleanup. Source and installed prior-candidate failures are retained in `evals/sdk/record-alias.md`. Wider qualification is pending; the signer host remains trusted |
 
 **Status:** closed at milestone 2a.5 (`evals/sdk/admission.md`), test-first: D1, D2, D5, D6, D7, D9, D10 and D12. D12
 closed early: the guard decodes bytes itself, so `packages/sdk/src` imports no web3.js. D11 closed at milestone 2a.6
@@ -887,6 +888,7 @@ snapshot and RPC IDs are allocated with their implementation steps. Existing SIG
 | OWN-1 | manual SDK mode refuses stale ownership without removing its marker | stale dead-PID fixture and unchanged marker bytes |
 | OWN-2 | Linux kernel ownership survives helper exit, excludes concurrent writers, releases on process death and retains its mutex inode | same-process exclusion and competing processes after SIGKILL |
 | OWN-3 | established protected history must exist; initial creation is explicit | missing history rejection and explicit bootstrap fixture |
+| OWN-4 | journal and mutex inodes must have a single link; aliases cannot open through separate pathname locks | manual/kernel journal aliases, kernel mutex alias, evidence preservation and failed-startup cleanup |
 | STO-1 | a short write cannot acknowledge an incomplete record | forced short writes, complete JSON line and matching decision hash |
 | STO-2 | write, permission, progress or sync failure denies and closes the writer | ENOSPC, EACCES, zero progress and fsync injection under SIG-8 |
 | STO-3 | before appending, a file writer refuses an external size or timestamp change and remains failed after repair | manual/kernel append, truncation, same-size overwrite, stale timestamp injection and direct store refusal |
@@ -1459,3 +1461,4 @@ Evidence: `evals/sdk/owned-release.md`.
 
 | Draft 4.77 | 2026-10-09 | Queue private operator prompt/release with canonical preparation, captured signature backing and durable success only. Preserve absent APIs, rule-field fixture error and the overbroad FIFO trial failure. Definition 37/seed 37417 adds operator cases without changing prior inputs/limits. Full lifecycle, bounded state and release qualification remain owed. |
 | Draft 4.78 | 2026-10-09 | Record D33 and STO-3: check live descriptor size/timestamps before append, fail the store permanently on change, and retain fixture/fault misses. Add stale timestamp and direct-store tests. Definition 38/seed 38653 retains earlier inputs/limits. Metadata consistency does not establish host tamper protection or any stable milestone. |
+| Draft 4.79 | 2026-10-09 | Allocate OWN-4 inside ADR-019: refuse hardlinked journal/mutex aliases so a pathname alias cannot obtain a separate owner. Source and installed prior-candidate tests fail first; keep every earlier case/fault and declare definition 39/seed 39743 before full measurement. No host tamper-proof, bounded recovery or release milestone claim. |
