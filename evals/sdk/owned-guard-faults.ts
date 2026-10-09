@@ -5,6 +5,8 @@ import {spawnSync} from "node:child_process";
 const path="packages/sdk/src/owned-guard.ts",source=readFileSync(path,"utf8"),directory=".sandbox/solanaut-1/owned-facade/faults";
 mkdirSync(directory,{recursive:true});
 const faults=[
+  ["unrecorded-admission","if(decision.seq<0)throw new OwnedGuardError();","void decision;","never exposes storage diagnostics"],
+  ["unrecorded-collision","if(decision.seq<0)throw new OwnedGuardError();","void decision;","copy shared bytes"],
   ["fresh-history","ownership:\"kernel\",create:false","ownership:\"kernel\",create:true","missing, empty and unsigned"],
   ["startup-capture","const options=structuredClone(input);","const options=input;","startup captures signed configuration"],
   ["implicit-upgrade","lastPolicy.version!==options.authorization.version||lastPolicy.text!==options.authorization.text","false","configuration cannot upgrade"],

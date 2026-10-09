@@ -15,6 +15,7 @@ function battery() {
 const baseline = battery();
 assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
 const faults = [
+  { name: "facade-unrecorded-admission", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace("if (decision.seq < 0)", "if (false)") },
   { name: "facade-export", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace("export async function openOwnedGuard", "async function openOwnedGuard") },
   { name: "facade-fresh-history", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace("ownership: \"kernel\", create: false", "ownership: \"kernel\", create: true") },
   { name: "facade-config-capture", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace("const options = structuredClone(input);", "const options = input;") },

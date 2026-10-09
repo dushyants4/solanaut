@@ -1,0 +1,48 @@
+✔ SNP-7/OWN-2: factory keeps the guard and history private with a frozen asynchronous surface (139.137188ms)
+✔ OPR-2/VER-1: missing, empty and unsigned established histories refuse without creating a fresh identity (57.308147ms)
+✔ POL-4/OPR-2: configuration cannot upgrade, roll back, substitute a guard or start on invalid signatures (51.506833ms)
+✔ OWN-2/SNP-7: competing opens and corrupt index fail closed and release failed startup ownership (54.694092ms)
+✔ SNP-7/LIF-4: queued inputs, detached replies and observations share one FIFO (57.445122ms)
+✖ LIF-1/SNP-7: private admissions copy shared bytes and cannot mutate durable replies (44.824234ms)
+✔ OWN-2/LIF-4: close drains preceding work, denies later calls and releases ownership once (38.503463ms)
+✔ LIF-4/OPR-2: refusal does not poison the queue and raw diagnostics never escape (39.905944ms)
+✔ OPR-2/SNP-7: startup captures signed configuration before its first await (27.089589ms)
+✖ OPR-2/STO-1/LIF-1: an unrecorded admission never exposes storage diagnostics as a decision (30.587381ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 8
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 645.536611
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-guard.test.ts:79:1
+✖ LIF-1/SNP-7: private admissions copy shared bytes and cannot mutate durable replies (44.824234ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (OwnedGuardError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:85:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-guard.test.ts:110:1
+✖ OPR-2/STO-1/LIF-1: an unrecorded admission never exposes storage diagnostics as a decision (30.587381ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:113:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [Function (anonymous)],
+    operator: 'rejects',
+    diff: 'simple'
+  }

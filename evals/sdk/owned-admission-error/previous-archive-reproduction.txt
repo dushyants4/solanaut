@@ -1,0 +1,3 @@
+Exact local Git bundle restore revision: 36a1ae793e08855e817496837fcf5d7ea34abd37
+Previous archive SHA-256 reproduced: b8d5761407a0c95fea0256a315b6b676ca67e60c8be83c49c1b8091e0c30244a
+Pinned existing dependency tree used for compilation only; not clean-machine installation.

@@ -67,7 +67,12 @@ function facade(guard:Guard):OwnedGuard {
     check(proposal:ProposalV1,identity:RequestIdentity){return captured(()=>{
       const p=structuredClone(proposal),id=structuredClone(identity);
       if(p?.message instanceof Uint8Array)p.message=new Uint8Array(p.message);
-      return ()=>checkOwnedRequest(guard,p,id);
+      return async()=>{
+        const decision=await checkOwnedRequest(guard,p,id);
+        // A failed append or identity collision is not a durable admission reply.
+        if(decision.seq<0)throw new OwnedGuardError();
+        return decision;
+      };
     });},
     beginRequest(identity:RequestIdentity,method:ControlMethod,payload:unknown,at:number){return captured(()=>{
       const id=structuredClone(identity),value=structuredClone(payload);

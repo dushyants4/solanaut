@@ -113,6 +113,25 @@ and qualification evidence will be recorded as work proceeds.
 
 ## Found
 
+Packing D32 reuses the private `0.0.0` tarball filename and overwrites the earlier
+ignored candidate archive. Detect its digest mismatch, preserve the new archive
+in a separate component directory, and reproduce the earlier archive from the
+exact `36a1ae7` local bundle restore with the pinned release compiler. Its SHA-256
+matches the prior manifest byte for byte. Initial reconstruction fails because
+the restored checkout has no scratch directory; create that directory, then build.
+The restore uses the existing pinned dependency tree for compilation only; no
+clean-machine install or consumer-test claim follows. Keep candidate artefacts
+in distinct directories instead of relying on a reused private package filename.
+
+D32: the private facade returns an unrecorded sentinel as an admission reply.
+After an actual journal append failure the trusted SDK places its storage error
+in that sentinel's reason; identity collision likewise returns a negative-sequence
+value. Both facade regressions fail first on missing expected typed rejection.
+Keep the SDK/helper contract; reject only negative-sequence facade replies with
+fixed `OwnedGuardError`. Actual sequence/failed-writer state is preserved.
+Source and installed first failures are retained in the D32 receipt. No signing,
+resending, budget expansion or threshold acceptance is involved.
+
 Pre-commit close's secret scanner flags the malformed-status fixture field named
 `secret`, whose value is the literal dummy `PRIVATE_SENTINEL`; it is not key or
 credential material. Keep the sentinel/redaction assertion and rename only the
@@ -204,6 +223,21 @@ Hosted qualification is pending and H11's historical timeout remains unaccepted.
 No replay component pass follows from drafted tests or the interrupted builder.
 
 ## Open
+
+D32 final serial AST executes 835 cases with 834 passing and its unchanged
+baseline wait failing; full reports are retained and qualification stays open.
+Every bound product/evaluation/archive identity matches after fault restoration.
+Pre-commit close passes eight of ten checks, failing only unpushed HEAD and the
+staged tree; secret scan and authored diff checks pass. Commit the correction
+locally with all limitations explicit, then verify its source-history backup.
+
+D32 candidate passes ten focused cases, nineteen source faults, twelve installed
+cases, all 119 compiled faults, 835 quiet ordinary cases and native typecheck.
+Source and package inputs are bound in its distinct private candidate manifest.
+The serial AST run has already failed H11's unchanged wait; retain its complete
+output when it finishes and never infer full coverage qualification. H9/H11 are
+unanswered; no dependent expansion or threshold acceptance is assumed. Prepare
+the local coherent correction commit with the qualification finding explicit.
 
 Private facade implementation is locally committed as
 `36a1ae793e08855e817496837fcf5d7ea34abd37`. Its local Git bundle verifies;

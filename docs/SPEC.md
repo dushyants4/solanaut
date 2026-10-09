@@ -537,6 +537,7 @@ Each is fixed test-first: the evaluator writes the failing test, and the builder
 | D29 | Replay command drops blank record lines, loads the entire file, follows final source links and exposes raw errors/detail values | `bin/replay.ts`, reproduced on 2026-10-09 | **closed in the local candidate:** compose verified streamed reads, bound public JSON inputs and redact diagnostics. First failures and fault evidence: `evals/sdk/replay-command.md`; complete release qualification remains separate |
 | D30 | Joining trust field names with commas lets comma-containing names imitate the expected field set | initial replay-command candidate, reproduced on 2026-10-09 | **closed:** explicit key cardinality and membership; signed malformed-field regression fails before correction. No trust learned from history and no policy rule change |
 | D31 | New owned-control dispatch calls mutable public SDK bookkeeping methods, so a caller can replace its start/response implementation | local owned-control candidate, reproduced on 2026-10-09 | **closed in the local candidate:** capture private start/completion functions before exposing the guard. Public-method replacement regression and planted dispatch faults are retained in `evals/sdk/owned-control-request.md`; no isolation or stable-release claim |
+| D32 | The new private facade returns an unrecorded admission as a decision, including raw storage diagnostics after an append failure | local facade `36a1ae7`, reproduced on 2026-10-09 | **corrected in the builder candidate:** negative-sequence admissions throw the fixed typed `OwnedGuardError`; identity collision likewise refuses. Preserve real storage-failure and installed previous-candidate failures in `evals/sdk/owned-admission-error.md`. Broader qualification remains open |
 
 **Status:** closed at milestone 2a.5 (`evals/sdk/admission.md`), test-first: D1, D2, D5, D6, D7, D9, D10 and D12. D12
 closed early: the guard decodes bytes itself, so `packages/sdk/src` imports no web3.js. D11 closed at milestone 2a.6
@@ -1418,3 +1419,13 @@ No SIG-11 budget pass, bounded recovery, process isolation or stable-release cla
 follows. Component evidence: `evals/sdk/owned-guard.md`.
 
 | Draft 4.74 | 2026-10-09 | Private asynchronous admission/control facade on established owned signed history. No mutable guard/store/history escapes; shared observations and orderly close. Definition 34/seed 34183 retains prior populations and limits, adds facade tests/source and its critical coverage designation. Preserve the prior concurrent definition 32 wait failure and definition 33 focused branch deficit; add malformed-input and valid foreign-cluster boundaries before final measurement. Broader qualification remains owed. |
+
+Private facade admission convention under ADR-019: only a recorded decision with
+nonnegative sequence is an admission reply. The trusted SDK's unrecorded denial
+sentinel remains unchanged; the private facade converts it to fixed typed
+`OwnedGuardError`, whether caused by storage failure or identity collision.
+Nothing is recorded, signed or resent to manufacture a reply. Preserve failed
+writer state and every existing durable denial/retry. Evidence:
+`evals/sdk/owned-admission-error.md`.
+
+| Draft 4.75 | 2026-10-09 | D32 rejects unrecorded facade replies with a fixed typed error. Real append-failure and collision tests fail first; maintain all old source/compiled trials and add regressions. Definition 35/seed 35447 retains all earlier inputs/limits with the additional storage case. No completed AST/driver, bounded recovery or release gate is inferred. |

@@ -1,0 +1,18 @@
+✖ OWN-2/LIF-4: close drains preceding work, denies later calls and releases ownership once (51.007426ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 120.816668
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-guard.test.ts:89:1
+✖ OWN-2/LIF-4: close drains preceding work, denies later calls and releases ownership once (51.007426ms)
+  OwnedGuardError: owned guard cannot establish or complete the requested operation
+      at file:///home/dashy/Projects/Solanaut/packages/sdk/src/owned-guard.ts:58:107 {
+    code: 'owned-guard'
+  }

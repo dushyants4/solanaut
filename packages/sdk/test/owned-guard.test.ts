@@ -4,6 +4,7 @@ import {test} from "node:test";
 import {generateKeyPairSync,sign} from "node:crypto";
 import fs from "node:fs";
 import asyncFs from "node:fs/promises";
+import {syncBuiltinESMExports} from "node:module";
 import {join} from "node:path";
 import {createGuard} from "../src/guard.ts";
 import {fileStore,publishOwnedRequestIndex} from "../src/record.ts";
@@ -81,6 +82,7 @@ test("LIF-1/SNP-7: private admissions copy shared bytes and cannot mutate durabl
     const pending=g.check(proposal,id);message[0]=0;proposal.at=2000;id.id="changed";
     const decision=await pending;assert.equal(decision.message,"/w==");assert.equal(decision.at,1000);assert.equal(decision.request!.id,"proposal");assert.ok(Object.isFrozen(decision));
     assert.deepEqual(await g.check({message:Uint8Array.of(255),at:9000},identity("proposal")),decision);
+    await refused(()=>g.check({message:Uint8Array.of(0),at:1000},identity("proposal")));
     await refused(()=>g.check({message:null as unknown as Uint8Array,at:1000},identity("invalid-bytes")));
   }finally{await g.close();}}finally{f.close();}
 });
@@ -104,4 +106,12 @@ test("OPR-2/SNP-7: startup captures signed configuration before its first await"
     options.path=join(f.directory,"substituted.jsonl");options.authorization.guardId="changed";options.policy.latch.guardId="changed";
     const g=await pending;try{assert.equal(g.policy.latch.guardId,f.policy.latch.guardId);assert.equal((await g.status()).seq,1);assert.equal(fs.existsSync(options.path),false);}finally{await g.close();}
   }finally{f.close();}
+});
+test("OPR-2/STO-1/LIF-1: an unrecorded admission never exposes storage diagnostics as a decision",async()=>{
+  const f=await fixture(),original=fs.writeSync;try{const g=await f.open();try{
+    const before=await g.status();fs.writeSync=(()=>{throw new Error("PRIVATE_SENTINEL: storage unavailable");}) as typeof fs.writeSync;syncBuiltinESMExports();
+    await assert.rejects(g.check({message:Uint8Array.of(255),at:1000},identity("failed")),(error:Error)=>error.name==="OwnedGuardError"&&!error.message.includes("PRIVATE_SENTINEL"));
+    fs.writeSync=original;syncBuiltinESMExports();assert.equal((await g.status()).seq,before.seq);
+    await refused(()=>g.check({message:Uint8Array.of(255),at:2000},identity("later")));
+  }finally{fs.writeSync=original;syncBuiltinESMExports();await g.close();}}finally{fs.writeSync=original;syncBuiltinESMExports();f.close();}
 });

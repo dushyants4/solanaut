@@ -1,5 +1,16 @@
 # DOCUMENTS.md — the document register
 
+2026-10-09 D32 correction registers SPEC Draft 4.75, OVERVIEW 46, RISKS 1.67,
+PROGRESS, HANDOFF, continuing run and `evals/sdk/owned-admission-error.md`.
+Preserve real append-failure/collision and installed previous-candidate failures;
+fixed facade errors do not alter the trusted SDK or failed-writer state.
+Definition 35/seed 35447 adds one selected case and retains all earlier inputs,
+fault trials, floors and waits. CLAIMS S96 and the evaluation index register
+source/installed/native/type results and separate package/input manifests.
+Serial AST's unchanged wait fails; qualification remains open. Preserve the
+tarball-path overwrite finding and exact prior-archive reproduction from local
+Git backup; the existing dependency tree is used only for that rebuild.
+
 2026-10-09 private owned facade registers SPEC Draft 4.74, OVERVIEW 45,
 RISKS 1.66, PROGRESS, HANDOFF, continuing run and `evals/sdk/owned-guard.md`.
 Capture established signed-history ownership, private admission/control surface,

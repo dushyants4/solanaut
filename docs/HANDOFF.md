@@ -243,6 +243,20 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-09 D32 follow-up: private facade admission can return the trusted SDK's
+unrecorded sentinel after append failure or identity collision. Real owned
+storage/collision tests fail first, as does the installed previous candidate.
+Reject negative-sequence facade replies with fixed typed error; preserve SDK
+denials, durable retries and failed-writer state. Definition 35/seed 35447 precedes
+measurement and adds the storage case without removing any earlier input/limit.
+Receipt `evals/sdk/owned-admission-error.md`; qualification continues locally.
+
+D32 source/installed/native/type evidence is complete locally; serial AST still
+fails the unchanged baseline wait. Keep all outputs and raw coverage reports.
+CLAIMS S96 carries the scoped results. Detect/recover the overwritten private
+tarball by exact reproduction from `36a1ae7`'s local Git backup; new candidate
+archive uses a separate component path. No complete coverage or milestone closes.
+
 2026-10-09 local facade archive: `36a1ae7` is committed locally; its Git bundle
 verifies and restores the exact clean revision with passing full object-integrity
 verification. Post-commit close passes nine of ten checks, failing only pushed

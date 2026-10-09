@@ -13,6 +13,18 @@ The quiet ordinary suite/typecheck pass; serial AST still fails the unchanged
 baseline wait. Preserve concurrent and quiet failures; complete qualification
 and milestone credit remain open. H11's proposed wait change needs acceptance.
 
+D32 follow-up refuses unrecorded facade admission replies with a fixed typed
+error, preserving the trusted SDK contract and failed-writer state. Source and
+installed first failures are retained in `evals/sdk/owned-admission-error.md`;
+candidate qualification continues without changing the existing waits or gates.
+
+D32's corrected candidate has source/installed/native/type evidence in CLAIMS
+S96. Complete serial AST still fails its real-baseline wait; no coverage pass or
+stable milestone is inferred. The prior private tarball is reproduced exactly
+from a local Git backup after detecting filename reuse; new artefacts use a
+distinct component directory. This is source/artefact evidence, not an operator
+backup drill or clean-machine installation.
+
 Owned control start/response/result companions have local component evidence in
 `evals/sdk/owned-control-request.md`. They share proposal admission's FIFO and
 verify current owned disk evidence. Full retained state, private service facade

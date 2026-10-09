@@ -55,6 +55,7 @@ test("PKG-1/SNP-7: private owned facade restores and serializes installed JavaSc
         const result=await g.requestResult(actual,start.hash);if(!result.nested.ready||!Object.isFrozen(result.nested))throw new Error('installed facade response capture failed');
         await refuse(()=>g.beginRequest(actual,'status',{},2000));await g.beginRequest({clientId:'client',id:'next'},'status',{},2000);
         const bytes=new Uint8Array(new SharedArrayBuffer(1));bytes[0]=255;const decision=g.check({message:bytes,at:2001},{clientId:'client',id:'proposal'});bytes[0]=0;if((await decision).message!=='/w==')throw new Error('installed facade retained shared bytes');
+        await refuse(()=>g.check({message:Uint8Array.of(0),at:2001},{clientId:'client',id:'proposal'}));
         const preceding=g.beginRequest({clientId:'client',id:'last'},'status',{},2002),closing=g.close();await preceding;await closing;await refuse(()=>g.status());await g.close();
       }finally{await g.close();}
       const index=readFileSync(path+'.request-index');writeFileSync(path+'.request-index','corrupt');await refuse(()=>openOwnedGuard(options()));writeFileSync(path+'.request-index',index);
