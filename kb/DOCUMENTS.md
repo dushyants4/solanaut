@@ -1,5 +1,10 @@
 # DOCUMENTS.md — the document register
 
+2026-10-09 Node 24 maintained compiled follow-up registers CLAIMS S100,
+runtime receipt, HANDOFF and continuing run. Every retained compiled trial
+catches; final installed baseline and post-restoration identities pass. Earlier
+quiet Node 26 AST wait failure remains open.
+
 2026-10-09 existing Node runtime follow-up registers
 `evals/release/node24-current.md`, HANDOFF and continuing run. The D33 local
 Git bundle restores exact clean history with fsck passing; Node 24 is already

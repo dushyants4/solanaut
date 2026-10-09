@@ -7,5 +7,8 @@
   "selected_cases": 541,
   "candidate_manifest": "evals/sdk/live-record/installed-candidate.json",
   "candidate_manifest_sha256": "f9c178633c77261ad1af282f58e30d386b167ac87b46048ef93b0adb2841ce82",
-  "all_bound_digests_match": true
+  "all_bound_digests_match": true,
+  "post_compiled_faults_at_utc": "2026-10-09T21:28:49.858607+00:00",
+  "compiled_faults_caught": 130,
+  "post_compiled_faults_all_bound_digests_match": true
 }

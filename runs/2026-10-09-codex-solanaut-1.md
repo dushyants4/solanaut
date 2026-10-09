@@ -12,6 +12,12 @@ each component. Preserve every accepted security and release gate.
 
 ## Did
 
+Corrected runtime archive `12e3895` restores exact clean history with full fsck;
+post-commit close passes nine of ten, only pushed HEAD failing. Continue with
+all maintained compiled trials under the existing Node 24 runtime. Every trial
+catches, final installed baseline passes and exact bound identities match after
+restoration, CLAIMS S100. Archive the outputs before the next core component.
+
 Existing Node 24 qualification passes native, serial AST, typecheck and installed
 consumer populations with exact candidate hashes, CLAIMS S100. Archive raw reports
 and register unchanged development pins. Node 26's quiet AST wait failure remains

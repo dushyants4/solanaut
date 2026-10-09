@@ -19,6 +19,7 @@ mise exec node@24.19.0 -- npm test
 mise exec node@24.19.0 -- node --test evals/packaging/packed-sdk.test.ts
 mise exec node@24.19.0 -- npm run typecheck
 mise exec node@24.19.0 -- npm run test:coverage -- --serial
+mise exec node@24.19.0 -- node evals/packaging/faults.ts
 ```
 
 Candidate identities are those in `evals/sdk/live-record/installed-candidate.json`;
@@ -34,6 +35,12 @@ reliability or clear H11. Exact bound candidate identities still match; raw
 reports and scoped identity verification are archived. CLAIMS S100 records the
 measurements. No new implementation or workload definition is introduced.
 Earlier Node 26 AST wait failure remains an open finding.
+
+Maintained Node 24 compiled qualification also catches all 130 retained faults;
+the final restored installed consumer baseline passes. Exact product, evaluation,
+emitted-file and separate archive identities match again after restoration.
+The corrected local Git bundle restores exact clean `12e3895` and fsck passes;
+post-commit close fails only pushed HEAD, retained under the no-push direction.
 
 Archival close initially rejects S100's mise-prefixed command grammar; its parser
 requires an underlying npm/node/uv command. The first archival commit is made

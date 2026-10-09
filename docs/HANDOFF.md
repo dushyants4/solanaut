@@ -243,6 +243,13 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-09 Node 24 compiled follow-up: all retained compiled trials catch and
+the restored installed baseline passes, CLAIMS S100. Exact bound product/input/
+emitted-file/archive hashes match afterwards. Corrected archive `12e3895` has a
+verified complete-history bundle and exact clean clone/full fsck; post-commit
+close fails only unpushed HEAD. Continue local core work; all outstanding human,
+Claude, audit and stable gates remain.
+
 2026-10-09 archival correction: Node 24 evidence commits as `f5380fb` before
 the pre-commit output is inspected; close rejects S100's mise-prefixed grammar.
 Preserve this workflow failure. Add underlying npm/node commands within the
