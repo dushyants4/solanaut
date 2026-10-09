@@ -82,6 +82,32 @@ test("PKG-1/SNP-7: private owned facade restores and serializes installed JavaSc
   assert.equal(result.status,0,result.stderr);assert.equal(result.error,undefined);assert.equal(result.signal,null);assert.equal(result.stdout,"private owned facade qualified\n");
 });
 
+test("PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair", () => {
+  const script = `
+    import {createGuard} from '@solanaut/sdk';
+    import fs from 'node:fs';import {tmpdir} from 'node:os';import {join} from 'node:path';
+    const base=import.meta.resolve('@solanaut/sdk'),{fileStore}=await import(new URL('./record.js',base));
+    const directory=fs.mkdtempSync(join(tmpdir(),'solanaut-live-record-'));
+    try{for(const ownership of ['manual','kernel'])for(const damage of ['append','truncate','overwrite']){
+      const path=join(directory,ownership+'-'+damage+'.jsonl'),store=fileStore(path,{ownership}),g=await createGuard({policy:JSON.parse(process.argv[1]),log:store});
+      try{
+        const message=new Uint8Array(Buffer.from(process.argv[2],'base64'));
+        if(!g.check({message,at:1000}).allow)throw new Error('live record fixture denied');
+        const original=fs.readFileSync(path,'utf8');
+        if(damage==='append')fs.appendFileSync(path,'{}'+String.fromCharCode(10));
+        else if(damage==='truncate')fs.truncateSync(path,0);
+        else{if(!original.includes('"at":1000'))throw new Error('overwrite fixture absent');fs.writeFileSync(path,original.replace('"at":1000','"at":9000'));}
+        const damaged=fs.readFileSync(path,'utf8'),denied=g.check({message,at:2000});
+        if(denied.seq!==-1||denied.rule!=='fail-closed'||fs.readFileSync(path,'utf8')!==damaged||g.entries().length!==1)throw new Error('installed writer acknowledged damaged history');
+        fs.writeFileSync(path,original);if(g.check({message,at:3000}).seq!==-1||fs.readFileSync(path,'utf8')!==original)throw new Error('installed writer revived after damage');
+        let failed=false;try{store.append(store.entries[0]);}catch(error){failed=/closed or failed/.test(error.message);}if(!failed)throw new Error('installed store failure was not permanent');
+      }finally{g.close();store.close();}
+    }}finally{fs.rmSync(directory,{recursive:true,force:true});}
+    console.log('live journal damage refused');`;
+  const result=spawnSync(process.execPath,["--input-type=module","-e",script,inputPolicy,Buffer.from(transfer(2)).toString("base64")],{cwd:consumer,encoding:"utf8",timeout:15000});
+  assert.equal(result.status,0,result.stderr);assert.equal(result.error,undefined);assert.equal(result.signal,null);assert.equal(result.stdout,"live journal damage refused\n");
+});
+
 test("PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts", () => {
   const script = `
     import {createGuard,replay,memoryStore} from '@solanaut/sdk';

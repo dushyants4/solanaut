@@ -1,6 +1,6 @@
 # Persistent record ownership
 
-> **Draft 8** · 2026-10-08 · owner: integrator · for: SDK users and Linux operators.
+> **Draft 9** · 2026-10-09 · owner: integrator · for: SDK users and Linux operators.
 > Register: `kb/DOCUMENTS.md`. Foundation evidence: `evals/sdk/ownership.md` (claim S16).
 
 An ordinary `createGuard({ policy, log: path })` uses manual SDK ownership. It refuses an
@@ -61,6 +61,14 @@ The store completes short writes and syncs before acknowledgement. A write or sy
 closes the writer; restart may retain an unacknowledged complete entry conservatively. This
 does not prove power-loss durability. Back up history and ownership configuration together;
 verified backup, rollback, snapshots and the full recovery programme remain release work.
+
+Before each append, the writer also compares descriptor byte count and nanosecond
+modification/change times with completed startup or its last synced append.
+External changes fail that store permanently without adding another line. Restoring
+the original bytes does not revive it. Stop all writers, retain evidence and verify
+the intended history before a compatible restart. This is a metadata consistency
+check under the signer-host trust boundary; it neither authenticates content nor
+prevents privileged changes during a write. Evidence: `evals/sdk/live-record.md`.
 
 For a stopped, immutable archive, the SDK exports `verifyArchive(path, options)`:
 

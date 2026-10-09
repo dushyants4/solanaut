@@ -1,0 +1,131 @@
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (13.87118ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (5.149812ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (7.030897ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (4.082551ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (3.28554ms)
+✖ STO-2/SIG-8/OWN-2: manual writer refuses external append on its held inode (4.861446ms)
+✖ STO-2/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (3.429919ms)
+✖ STO-2/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (5.883276ms)
+✖ STO-2/SIG-8/OWN-2: kernel writer refuses external append on its held inode (3.74821ms)
+✖ STO-2/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (4.127986ms)
+✖ STO-2/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (3.001849ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 5
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 146.869863
+
+✖ failing tests:
+
+test at packages/sdk/test/storage-failures.test.ts:52:114
+✖ STO-2/SIG-8/OWN-2: manual writer refuses external append on its held inode (4.861446ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'intent-in-flight'
+  - 'fail-closed'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:69:47)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'intent-in-flight',
+    expected: 'fail-closed',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:52:114
+✖ STO-2/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (3.429919ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'intent-in-flight'
+  - 'fail-closed'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:69:47)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'intent-in-flight',
+    expected: 'fail-closed',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:52:114
+✖ STO-2/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (5.883276ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(original.includes('"at":1000'))
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:63:14)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:52:114
+✖ STO-2/SIG-8/OWN-2: kernel writer refuses external append on its held inode (3.74821ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'intent-in-flight'
+  - 'fail-closed'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:69:47)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'intent-in-flight',
+    expected: 'fail-closed',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:52:114
+✖ STO-2/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (4.127986ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'intent-in-flight'
+  - 'fail-closed'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:69:47)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'intent-in-flight',
+    expected: 'fail-closed',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:52:114
+✖ STO-2/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (3.001849ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(original.includes('"at":1000'))
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:63:14)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

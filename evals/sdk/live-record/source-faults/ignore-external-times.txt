@@ -1,0 +1,63 @@
+✔ OWN-1: SDK refuses stale ownership instead of removing the lock (58.639009ms)
+✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (10.408011ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (501.318857ms)
+✔ OWN-3: established protected records are not recreated if missing (11.641509ms)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (22.388155ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (7.693653ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (6.774664ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (4.972748ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (5.98031ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (9.804465ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (7.572223ms)
+✖ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (9.613964ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (8.15433ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (9.142694ms)
+✖ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (7.367967ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 13
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 739.034633
+
+✖ failing tests:
+
+test at packages/sdk/test/storage-failures.test.ts:52:114
+✖ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (9.613964ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'intent-in-flight'
+  - 'fail-closed'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:78:47)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'intent-in-flight',
+    expected: 'fail-closed',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:52:114
+✖ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (7.367967ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'intent-in-flight'
+  - 'fail-closed'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:78:47)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'intent-in-flight',
+    expected: 'fail-closed',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

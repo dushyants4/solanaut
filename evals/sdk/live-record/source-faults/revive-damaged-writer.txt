@@ -1,0 +1,137 @@
+✔ OWN-1: SDK refuses stale ownership instead of removing the lock (51.866647ms)
+✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (11.610307ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (424.945467ms)
+✔ OWN-3: established protected records are not recreated if missing (10.48483ms)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (24.830573ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (7.020236ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (7.617026ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (6.209888ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (5.100411ms)
+✖ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (8.384262ms)
+✖ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (7.011379ms)
+✖ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (5.897579ms)
+✖ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (6.537237ms)
+✖ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (5.487663ms)
+✖ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (5.306453ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 9
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 673.556968
+
+✖ failing tests:
+
+test at packages/sdk/test/storage-failures.test.ts:52:114
+✖ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (8.384262ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception: the store itself remains failed even behind another guard
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:84:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /closed or failed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:52:114
+✖ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (7.011379ms)
+  AssertionError [ERR_ASSERTION]: the store itself remains failed even behind another guard
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:84:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: the owned record changed outside this writer
+        at Object.append (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:227:131)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:84:31
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:84:12)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /closed or failed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:52:114
+✖ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (5.897579ms)
+  AssertionError [ERR_ASSERTION]: the store itself remains failed even behind another guard
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:84:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: the owned record changed outside this writer
+        at Object.append (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:227:131)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:84:31
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:84:12)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /closed or failed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:52:114
+✖ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (6.537237ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception: the store itself remains failed even behind another guard
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:84:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /closed or failed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:52:114
+✖ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (5.487663ms)
+  AssertionError [ERR_ASSERTION]: the store itself remains failed even behind another guard
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:84:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: the owned record changed outside this writer
+        at Object.append (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:227:131)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:84:31
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:84:12)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /closed or failed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:52:114
+✖ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (5.306453ms)
+  AssertionError [ERR_ASSERTION]: the store itself remains failed even behind another guard
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:84:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: the owned record changed outside this writer
+        at Object.append (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:227:131)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:84:31
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:84:12)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /closed or failed/,
+    operator: 'throws',
+    diff: 'simple'
+  }

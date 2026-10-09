@@ -5,6 +5,13 @@ including the approved Beta; CLAIMS S78 and `evals/release/progress.md` freeze t
 scope. This is not release readiness, effort or a completion date. Components
 inside open milestones receive no fractional credit.
 
+D33's live journal change regression is corrected in the local candidate;
+manual/kernel writers refuse external byte-count or timestamp changes and remain
+failed after repair. `evals/sdk/live-record.md` retains first failures and fault
+misses. Native/typecheck/source/compiled qualification passes, but serial AST
+fails the unchanged real-baseline wait; coverage remains open, CLAIMS S99.
+No milestone credit follows.
+
 Private asynchronous admission/control facade implementation has partial local
 evidence in `evals/sdk/owned-guard.md`, CLAIMS S95. It opens established signed history
 without exposing guard/store/history and serializes observations and shutdown.

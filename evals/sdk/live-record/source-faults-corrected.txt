@@ -1,0 +1,52 @@
+caught ownership/storage fault: ignore-kernel-lock
+caught ownership/storage fault: automatic-stale-takeover
+caught ownership/storage fault: unlink-mutex
+caught ownership/storage fault: create-missing-history
+caught ownership/storage fault: incomplete-short-write
+caught ownership/storage fault: ignore-sync-failure
+caught ownership/storage fault: ignore-external-size
+caught ownership/storage fault: ignore-external-times
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: ✔ OWN-1: SDK refuses stale ownership instead of removing the lock (33.77673ms)
+✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (6.981755ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (293.184672ms)
+✔ OWN-3: established protected records are not recreated if missing (5.773662ms)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (15.04924ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (5.418888ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (5.142704ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (3.544467ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (3.382039ms)
+✔ STO-2/SIG-8/OWN-2: manual writer refuses external append on its held inode (5.537151ms)
+✔ STO-2/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (3.583323ms)
+✔ STO-2/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (3.824754ms)
+✔ STO-2/SIG-8/OWN-2: kernel writer refuses external append on its held inode (4.279527ms)
+✔ STO-2/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (5.103153ms)
+✔ STO-2/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (3.397427ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 447.69885
+
+
+0 !== 1
+
+    at file:///home/dashy/Projects/Solanaut/evals/sdk/ownership-faults.ts:35:12
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

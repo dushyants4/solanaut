@@ -12,6 +12,18 @@ each component. Preserve every accepted security and release gate.
 
 ## Did
 
+Operator release commits locally as `7a64856`. Its complete-history bundle
+verifies; explicit main checkout restores exact clean HEAD and full fsck passes.
+Post-commit close passes nine of ten, failing only pushed HEAD under the latest
+direction. Continue into live record consistency: reproduce D33 for both manual
+and kernel ownership and guard pre-append descriptor size/timestamps, failing
+the store permanently. Declaration 38/seed 38653 precedes candidate measurement.
+Source/installed/compiled/native/typecheck pass, CLAIMS S99; quiet serial AST
+fails the unchanged real-baseline wait. Preserve all raw reports without floor
+credit or a deadline change. Post-restoration product/input/emitted-file/archive
+identities match. Existing installed Node 24.19.0 is available for independent
+runtime qualification after this coherent local commit; no tool installation.
+
 Continue as instructed until session limits, from clean local `46922d5`.
 Fresh context reads/fetch and both correctly refused live probes precede the
 private operator-release seam. The earlier unchanged product's native/AST pass
@@ -162,6 +174,15 @@ Current-day run record and project register; subsequent replay component paths
 and qualification evidence will be recorded as work proceeds.
 
 ## Found
+
+Local bundle clone initially lacks a default HEAD; explicit main checkout fixes
+the restore setup without changing history. First live-record fixture uses an
+unsupported `store` option, corrected to `log` before claiming product failure.
+Corrected cases acknowledge damaged history instead of failing closed. The size
+fault first misses because timestamps independently detect growth; add stale
+timestamp injection. The failed-store fault misses behind guard shutdown; add
+direct-store assertions rather than taking false catch credit. All originals
+remain archived beside the corrected source campaign.
 
 The first ADR read uses an incorrect filename and fails; locate/read the actual
 accepted ADR before work. New release/surface tests fail first on missing APIs.

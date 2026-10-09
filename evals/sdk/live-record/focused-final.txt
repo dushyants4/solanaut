@@ -1,0 +1,19 @@
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (32.17743ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (12.360645ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (8.755854ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (11.390209ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (7.877947ms)
+✔ STO-2/SIG-8/OWN-2: manual writer refuses external append on its held inode (9.746274ms)
+✔ STO-2/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (8.619041ms)
+✔ STO-2/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (8.186606ms)
+✔ STO-2/SIG-8/OWN-2: kernel writer refuses external append on its held inode (12.228659ms)
+✔ STO-2/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (9.378066ms)
+✔ STO-2/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (9.735276ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 340.14307

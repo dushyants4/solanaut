@@ -1,5 +1,13 @@
 # DOCUMENTS.md — the document register
 
+2026-10-09 live journal consistency registers SPEC Draft 4.78/STO-3/D33,
+OVERVIEW 49, STORAGE Draft 9, RISKS 1.70, PROGRESS, HANDOFF and continuing run, plus
+`evals/sdk/live-record.md` and its index. Preserve first fixture/API failures and
+two semantic fault misses before adding independent storage assertions. Definition
+38/seed 38653 retains previous populations/limits. CLAIMS S99 registers partial
+local source/installed/compiled/native evidence and the failed quiet serial AST
+deadline. Restored candidate identities match; complete coverage remains open.
+
 2026-10-09 private operator release registers SPEC Draft 4.77, OVERVIEW 48,
 RISKS 1.69, PROGRESS, HANDOFF, continuing run and `evals/sdk/owned-release.md`
 with the evaluation index. Queue canonical keyless prompts and signature capture;

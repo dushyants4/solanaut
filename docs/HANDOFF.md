@@ -243,6 +243,21 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-09 live record consistency: operator release is locally committed as
+`7a64856`; its bundle verifies and an explicit `main` checkout restores exact
+clean HEAD with full fsck passing. The initial clone lacked a default HEAD;
+preserve that setup failure. Post-commit close fails only pushed HEAD, required
+by the no-push direction. Reproduce D33 in both ownership modes; add live size/time
+comparison and permanent failed-store regressions under ADR-019. First fixture
+uses the wrong option, then corrected cases fail on acknowledged damaged history.
+Initial size fault misses under redundant timestamp checks; stale timestamp
+injection makes byte-count checking independently falsifiable. Failed-store fault
+also misses behind the guard's shutdown; add a direct store assertion. Definition
+38/seed 38653 retains prior inputs/limits, selecting the additional storage cases.
+Native/typecheck/source/compiled checks pass with bound restored identities,
+CLAIMS S99. Quiet serial AST fails the unchanged real-baseline wait, so complete
+coverage qualification remains open. No human proposal is accepted by continuation.
+
 2026-10-09 continued private lifecycle: from clean local `46922d5`, fresh probes
 refuse and context/fetch are verified. Queue operator release-text preparation
 and captured-signature release under ADR-019/existing latch rules. Preserve

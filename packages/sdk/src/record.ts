@@ -198,11 +198,13 @@ export function fileStore(path: string, options: FileStoreOptions = {}): EntrySt
   const owner = lock(path, mode);
   let fd: number;
   let entries: Entry[];
+  let expected: BigIntStats;
   try {
     fd = openSync(path, constants.O_RDWR | constants.O_APPEND | constants.O_NOFOLLOW | (options.create === false ? 0 : constants.O_CREAT), 0o600);
     sameFile(fd, path);
     entries = readRecord(path, fd);
     if (options.create !== false) syncDirectory(path);
+    expected = fstatSync(fd, { bigint: true });
   } catch (e) {
     if (fd! !== undefined) closeSync(fd!);
     owner.release();
@@ -221,8 +223,11 @@ export function fileStore(path: string, options: FileStoreOptions = {}): EntrySt
       if (!open || failed) throw new Error("the record is closed or failed");
       try {
         owner.held(); sameFile(fd, path);
+        const current = fstatSync(fd, { bigint: true });
+        if (current.size !== expected.size || current.mtimeNs !== expected.mtimeNs || current.ctimeNs !== expected.ctimeNs) throw new Error("the owned record changed outside this writer");
         writeAll(fd, Buffer.from(`${canonicalJSON(entry)}\n`));
         fsyncSync(fd);
+        expected = fstatSync(fd, { bigint: true });
       } catch (error) { failed = true; throw error; }
       entries.push(entry);
     },

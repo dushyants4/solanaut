@@ -49,3 +49,38 @@ for (const failure of ["ENOSPC", "EACCES", "zero-progress", "fsync"]) test(`STO-
     assert.equal(g.entries().length, 0);
   } finally { restore(); g.close(); }
 });
+for (const ownership of ["manual", "kernel"] as const) for (const damage of ["append", "truncate", "overwrite"]) test(`STO-2/3/SIG-8/OWN-2: ${ownership} writer refuses external ${damage} on its held inode`, async () => {
+  const path = record();
+  const { fileStore } = await import("../src/record.ts");
+  const store = fileStore(path, { ownership });
+  const g = await createGuard({ policy: WORKLOAD_POLICY, log: store });
+  try {
+    assert.equal(g.check({ message: payment(), at: 1000 }).allow, true);
+    const before = fs.statSync(path, { bigint: true }), original = fs.readFileSync(path, "utf8");
+    if (damage === "append") {
+      fs.appendFileSync(path, "{}\n");
+      // A coarse or stale timestamp must not hide a changed byte count.
+      const stat = fs.fstatSync;
+      mock.method(fs, "fstatSync", (...args: unknown[]) => {
+        const value = Reflect.apply(stat, fs, args);
+        return typeof value.size === "bigint" && value.ino === before.ino ? Object.assign(value, { mtimeNs: before.mtimeNs, ctimeNs: before.ctimeNs }) : value;
+      });
+      syncBuiltinESMExports();
+    }
+    else if (damage === "truncate") fs.truncateSync(path, 0);
+    else {
+      assert.ok(original.includes('"at":1000'));
+      fs.writeFileSync(path, original.replace('"at":1000', '"at":9000'));
+      fs.utimesSync(path, before.atime, before.mtime);
+    }
+    const damaged = fs.readFileSync(path, "utf8");
+    const denied = g.check({ message: payment(), at: 2000 });
+    assert.equal(denied.allow, false); assert.equal(denied.rule, "fail-closed"); assert.equal(denied.seq, -1);
+    assert.equal(fs.readFileSync(path, "utf8"), damaged, "no line may follow unverified external bytes");
+    assert.equal(g.entries().length, 1, "no uncommitted transition enters the cache");
+    fs.writeFileSync(path, original);
+    assert.equal(g.check({ message: payment(), at: 3000 }).seq, -1, "repair cannot revive this failed writer");
+    assert.equal(fs.readFileSync(path, "utf8"), original);
+    assert.throws(() => store.append(store.entries[0]!), /closed or failed/, "the store itself remains failed even behind another guard");
+  } finally { restore(); g.close(); store.close(); }
+});

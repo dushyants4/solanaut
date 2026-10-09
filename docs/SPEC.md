@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.77** · 2026-10-09 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.78** · 2026-10-09 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -538,6 +538,7 @@ Each is fixed test-first: the evaluator writes the failing test, and the builder
 | D30 | Joining trust field names with commas lets comma-containing names imitate the expected field set | initial replay-command candidate, reproduced on 2026-10-09 | **closed:** explicit key cardinality and membership; signed malformed-field regression fails before correction. No trust learned from history and no policy rule change |
 | D31 | New owned-control dispatch calls mutable public SDK bookkeeping methods, so a caller can replace its start/response implementation | local owned-control candidate, reproduced on 2026-10-09 | **closed in the local candidate:** capture private start/completion functions before exposing the guard. Public-method replacement regression and planted dispatch faults are retained in `evals/sdk/owned-control-request.md`; no isolation or stable-release claim |
 | D32 | The new private facade returns an unrecorded admission as a decision, including raw storage diagnostics after an append failure | local facade `36a1ae7`, reproduced on 2026-10-09 | **corrected in the builder candidate:** negative-sequence admissions throw the fixed typed `OwnedGuardError`; identity collision likewise refuses. Preserve real storage-failure and installed previous-candidate failures in `evals/sdk/owned-admission-error.md`. Broader qualification remains open |
+| D33 | A held journal inode can change outside the writer while its cached history still acknowledges another decision | local `7a64856`, reproduced on 2026-10-09 in manual and kernel ownership | **corrected in the builder candidate:** before appending, require the descriptor size, nanosecond modification time and change time to match the last synced append or completed startup. A mismatch fails the store permanently without appending. Preserve real append/truncation/same-size overwrite regressions and fault misses in `evals/sdk/live-record.md`. This is storage consistency under the supported host boundary, not protection against privileged concurrent tampering |
 
 **Status:** closed at milestone 2a.5 (`evals/sdk/admission.md`), test-first: D1, D2, D5, D6, D7, D9, D10 and D12. D12
 closed early: the guard decodes bytes itself, so `packages/sdk/src` imports no web3.js. D11 closed at milestone 2a.6
@@ -888,6 +889,7 @@ snapshot and RPC IDs are allocated with their implementation steps. Existing SIG
 | OWN-3 | established protected history must exist; initial creation is explicit | missing history rejection and explicit bootstrap fixture |
 | STO-1 | a short write cannot acknowledge an incomplete record | forced short writes, complete JSON line and matching decision hash |
 | STO-2 | write, permission, progress or sync failure denies and closes the writer | ENOSPC, EACCES, zero progress and fsync injection under SIG-8 |
+| STO-3 | before appending, a file writer refuses an external size or timestamp change and remains failed after repair | manual/kernel append, truncation, same-size overwrite, stale timestamp injection and direct store refusal |
 | SNP-1 | immutable archive verification uses bounded line buffering, validates record framing/hash chain/continuation identity and optional external head/digest pins; malformed, changing or non-regular sources fail with typed errors | streamed archive positive/negative/boundary and source-change/resource fixtures; this is structural integrity, not signed snapshot/state or policy authentication |
 | SNP-2 | an installed read-only archive command accepts explicit head/digest/continuation/line-limit options, rejects unknown/duplicate/malformed arguments and prints JSON receipts or typed errors; exits distinguish success, archive refusal and usage | command positive/negative/boundary cases, unchanged source bytes and actual installed npm executable |
 | SNP-3 | a canonical checkpoint and authenticated Keel prefix bind externally pinned checkpoint authority, guard/cluster, format/profile, policy version/hash, sequence/head, archive digests and admission state; principal and anchor authority are not repurposed | valid signatures; wrong/missing signatures, authority substitution, cross-guard/cluster/profile/policy substitution and altered state/prefix/archive fixtures |
@@ -1456,3 +1458,4 @@ this is not the isolated signer or a public socket/root API.
 Evidence: `evals/sdk/owned-release.md`.
 
 | Draft 4.77 | 2026-10-09 | Queue private operator prompt/release with canonical preparation, captured signature backing and durable success only. Preserve absent APIs, rule-field fixture error and the overbroad FIFO trial failure. Definition 37/seed 37417 adds operator cases without changing prior inputs/limits. Full lifecycle, bounded state and release qualification remain owed. |
+| Draft 4.78 | 2026-10-09 | Record D33 and STO-3: check live descriptor size/timestamps before append, fail the store permanently on change, and retain fixture/fault misses. Add stale timestamp and direct-store tests. Definition 38/seed 38653 retains earlier inputs/limits. Metadata consistency does not establish host tamper protection or any stable milestone. |

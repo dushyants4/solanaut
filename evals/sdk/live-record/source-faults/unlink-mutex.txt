@@ -1,0 +1,46 @@
+✔ OWN-1: SDK refuses stale ownership instead of removing the lock (59.864236ms)
+✖ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (10.297013ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (454.959562ms)
+✔ OWN-3: established protected records are not recreated if missing (10.456078ms)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (29.916379ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (8.32641ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (9.498491ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (7.619693ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (7.402906ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (10.299551ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (9.067204ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (8.399339ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (6.692951ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (7.67497ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (7.240857ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 14
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 705.43858
+
+✖ failing tests:
+
+test at packages/sdk/test/ownership.test.ts:19:1
+✖ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (10.297013ms)
+  AssertionError [ERR_ASSERTION]: a kernel mutex inode must never be unlinked on close
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/ownership.test.ts:25:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

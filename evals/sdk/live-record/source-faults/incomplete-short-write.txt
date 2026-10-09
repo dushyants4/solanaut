@@ -1,0 +1,39 @@
+✔ OWN-1: SDK refuses stale ownership instead of removing the lock (60.959018ms)
+✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (12.291091ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (423.438856ms)
+✔ OWN-3: established protected records are not recreated if missing (9.889031ms)
+✖ STO-1/SIG-8: short writes complete before an admission is acknowledged (25.778379ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (9.459131ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (8.424743ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (6.564535ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (5.101055ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (6.782992ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (5.854109ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (5.827556ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (7.702564ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (5.889185ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (4.885242ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 14
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 666.226821
+
+✖ failing tests:
+
+test at packages/sdk/test/storage-failures.test.ts:15:1
+✖ STO-1/SIG-8: short writes complete before an admission is acknowledged (25.778379ms)
+  AssertionError [ERR_ASSERTION]: the entire line must exist before admission
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:28:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
