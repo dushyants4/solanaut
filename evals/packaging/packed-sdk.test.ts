@@ -32,6 +32,7 @@ test("PKG-1/SNP-7: private owned facade restores and serializes installed JavaSc
   const script=`
     import {createGuard,preparePolicyText,encodeBase58} from '@solanaut/sdk';
     import {generateKeyPairSync,sign} from 'node:crypto';
+    import fs from 'node:fs';import {syncBuiltinESMExports} from 'node:module';
     import {mkdtempSync,readFileSync,writeFileSync,existsSync,rmSync} from 'node:fs';
     import {tmpdir} from 'node:os';import {join} from 'node:path';
     const base=import.meta.resolve('@solanaut/sdk'),{openOwnedGuard,OwnedGuardError}=await import(new URL('./owned-guard.js',base)),{fileStore,publishOwnedRequestIndex}=await import(new URL('./record.js',base));
@@ -62,10 +63,19 @@ test("PKG-1/SNP-7: private owned facade restores and serializes installed JavaSc
         await refuse(()=>g.beginRequest(actual,'status',{},2000));await g.beginRequest({clientId:'client',id:'next'},'status',{},2000);
         const bytes=new Uint8Array(new SharedArrayBuffer(1));bytes[0]=255;const decision=g.check({message:bytes,at:2001},{clientId:'client',id:'proposal'});bytes[0]=0;if((await decision).message!=='/w==')throw new Error('installed facade retained shared bytes');
         await refuse(()=>g.check({message:Uint8Array.of(0),at:2001},{clientId:'client',id:'proposal'}));
+        const latching=[0,1].map(i=>g.check({message:Uint8Array.of(255),at:2002+i},{clientId:'client',id:'latch-'+i})),preparing=g.releaseText('2026-10-10T00:00:00.000Z');await Promise.all(latching);const text=await preparing;
+        await refuse(()=>g.releaseText('2026-10-10'));await refuse(()=>g.releaseText('2026-99-99T00:00:00.000Z'));
+        const releaseSignature=new Uint8Array(new SharedArrayBuffer(64));releaseSignature.set(sign(null,Buffer.from(text),operator.privateKey));const releasing=g.release(text,releaseSignature,4000),releaseStatus=g.status();releaseSignature.fill(0);
+        const released=await releasing;if(!released.released||!Object.isFrozen(released)||(await releaseStatus).latched)throw new Error('installed release capture or durability failed');await refuse(()=>g.release(text,releaseSignature,4000));
         const preceding=g.beginRequest({clientId:'client',id:'last'},'status',{},2002),closing=g.close();await preceding;await closing;await refuse(()=>g.status());await g.close();
       }finally{await g.close();}
       const index=readFileSync(path+'.request-index');writeFileSync(path+'.request-index','corrupt');await refuse(()=>openOwnedGuard(options()));writeFileSync(path+'.request-index',index);
-      const restored=await openOwnedGuard(options());try{const decision=readFileSync(path,'utf8').trim().split(String.fromCharCode(10)).map(line=>JSON.parse(line)).find(entry=>entry.kind==='decision'&&entry.request?.id==='redeem');await refuse(()=>restored.redeem(new Uint8Array(Buffer.from(process.argv[2],'base64')),decision.hash,10n));}finally{await restored.close();}
+      const restored=await openOwnedGuard(options());try{const decision=readFileSync(path,'utf8').trim().split(String.fromCharCode(10)).map(line=>JSON.parse(line)).find(entry=>entry.kind==='decision'&&entry.request?.id==='redeem');await refuse(()=>restored.redeem(new Uint8Array(Buffer.from(process.argv[2],'base64')),decision.hash,10n));
+        for(let i=0;i<3;i++)await restored.check({message:Uint8Array.of(255),at:5000+i},{clientId:'client',id:'disk-latch-'+i});
+        const before=await restored.status(),text=await restored.releaseText('2026-10-10T00:00:00.000Z'),signature=new Uint8Array(sign(null,Buffer.from(text),operator.privateKey)),original=fs.writeSync;
+        try{fs.writeSync=()=>{throw new Error('PRIVATE_SENTINEL: release storage unavailable');};syncBuiltinESMExports();await refuse(()=>restored.release(text,signature,6000));}finally{fs.writeSync=original;syncBuiltinESMExports();}
+        if(!(await restored.status()).latched||(await restored.status()).seq!==before.seq)throw new Error('installed failed release changed latch');
+      }finally{await restored.close();}
     }finally{rmSync(directory,{recursive:true,force:true});}
     console.log('private owned facade qualified');`;
   const result=spawnSync(process.execPath,["--input-type=module","-e",script,inputPolicy,Buffer.from(transfer(2)).toString("base64")],{cwd:consumer,encoding:"utf8",timeout:15000});

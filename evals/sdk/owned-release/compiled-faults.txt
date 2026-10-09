@@ -1,0 +1,328 @@
+caught package fault: facade-release-bytes
+caught package fault: facade-release-refusal
+caught package fault: facade-release-reply
+caught package fault: facade-release-prompt
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: fault must change the candidate
+    at file:///home/dashy/Projects/Solanaut/evals/packaging/faults.ts:161:14
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '// ADR-019: private admission/control ownership, not the trusted synchronous SDK.\n' +
+    'import { canonicalJSON } from "./canonical.js";\n' +
+    'import { createPolicy } from "./policy.js";\n' +
+    'import { verifyPolicyAuthorization } from "./signed-policy.js";\n' +
+    'import { fileStore, lookupOwnedRequestIndex } from "./record.js";\n' +
+    'import { createGuard, checkOwnedRequest, beginOwnedRequest, finishOwnedRequest, ownedRequestResult } from "./guard.js";\n' +
+    'import { parseReleaseText } from "./latch.js";\n' +
+    'export class OwnedGuardError extends Error {\n' +
+    '    code = "owned-guard";\n' +
+    '    constructor() { super("owned guard cannot establish or complete the requested operation"); this.name = "OwnedGuardError"; }\n' +
+    '}\n' +
+    'function detached(input) {\n' +
+    '    const copy = structuredClone(input);\n' +
+    '    function freeze(value) { if (value && typeof value === "object") {\n' +
+    '        for (const child of Object.values(value))\n' +
+    '            freeze(child);\n' +
+    '        Object.freeze(value);\n' +
+    '    } }\n' +
+    '    freeze(copy);\n' +
+    '    return copy;\n' +
+    '}\n' +
+    '/** Internal only: no key, signing, sending, maintenance setup or implicit policy upgrade. */\n' +
+    'export async function openOwnedGuard(input) {\n' +
+    '    let store, guard;\n' +
+    '    try {\n' +
+    '        const options = structuredClone(input);\n' +
+    '        if (!options || typeof options.path !== "string" || options.path.length === 0)\n' +
+    '            throw new OwnedGuardError();\n' +
+    '        const policy = verifyPolicyAuthorization(options.policy, options.authorization);\n' +
+    '        if (policy.latch.cluster !== "devnet")\n' +
+    '            throw new OwnedGuardError();\n' +
+    '        store = fileStore(options.path, { ownership: "kernel", create: false });\n' +
+    '        const lastPolicy = store.entries.findLast(entry => entry.kind === "policy");\n' +
+    '        if (store.entries[0]?.kind !== "policy" || lastPolicy?.kind !== "policy" || lastPolicy.policy !== canonicalJSON(policy) || lastPolicy.version !== options.authorization.version || lastPolicy.text !== options.authorization.text)\n' +
+    '            throw new OwnedGuardError();\n' +
+    '        guard = await createGuard({ policy, authorization: options.authorization, log: store });\n' +
+    '        const evidence = await lookupOwnedRequestIndex(store, { clientId: "owned-startup", id: "validation" }, { policyTrust: options.authorization });\n' +
+    '        const last = store.entries.at(-1);\n' +
+    '        if (evidence.seq !== guard.status().seq || evidence.head !== last?.hash)\n' +
+    '            throw new OwnedGuardError();\n' +
+    '        return facade(guard);\n' +
+    '    }\n' +
+    '    catch {\n' +
+    '        try {\n' +
+    '            if (guard)\n' +
+    '                guard.close();\n' +
+    '            else\n' +
+    '                store?.close();\n' +
+    '        }\n' +
+    '        catch { /* Preserve the fixed startup error. */ }\n' +
+    '        throw new OwnedGuardError();\n' +
+    '    }\n' +
+    '}\n' +
+    'function facade(guard) {\n' +
+    '    let queue = Promise.resolve(), accepting = true, closed = false, closing;\n' +
+    '    function enqueue(work) {\n' +
+    '        if (!accepting)\n' +
+    '            return Promise.reject(new OwnedGuardError());\n' +
+    '        const pending = queue.then(() => { if (closed)\n' +
+    '            throw new OwnedGuardError(); return work(); }).catch(() => { throw new OwnedGuardError(); });\n' +
+    '        queue = pending.then(() => undefined, () => undefined);\n' +
+    '        return pending;\n' +
+    '    }\n' +
+    '    function captured(capture) {\n' +
+    '        try {\n' +
+    '            return enqueue(capture());\n' +
+    '        }\n' +
+    '        catch {\n' +
+    '            return Promise.reject(new OwnedGuardError());\n' +
+    '        }\n' +
+    '    }\n' +
+    '    const policy = detached(createPolicy(guard.policy).policy);\n' +
+    '    return Object.freeze({\n' +
+    '        policy, policyHash: guard.policyHash,\n' +
+    '        check(proposal, identity) {\n' +
+    '            return captured(() => {\n' +
+    '                const p = structuredClone(proposal), id = structuredClone(identity);\n' +
+    '                if (p?.message instanceof Uint8Array)\n' +
+    '                    p.message = new Uint8Array(p.message);\n' +
+    '                return async () => {\n' +
+    '                    const decision = await checkOwnedRequest(guard, p, id);\n' +
+    '                    // A failed append or identity collision is not a durable admission reply.\n' +
+    '                    if (decision.seq < 0)\n' +
+    '                        throw new OwnedGuardError();\n' +
+    '                    return decision;\n' +
+    '                };\n' +
+    '            });\n' +
+    '        },\n' +
+    '        beginRequest(identity, method, payload, at) {\n' +
+    '            return captured(() => {\n' +
+    '                const id = structuredClone(identity), value = structuredClone(payload);\n' +
+    '                return () => beginOwnedRequest(guard, id, method, value, at);\n' +
+    '            });\n' +
+    '        },\n' +
+    '        redeem(message, decisionHash, blockHeight) {\n' +
+    '            return captured(() => {\n' +
+    '                if (!(message instanceof Uint8Array))\n' +
+    '                    throw new OwnedGuardError();\n' +
+    '                const bytes = new Uint8Array(message);\n' +
+    '                return async () => {\n' +
+    '                    const result = guard.redeem(bytes, decisionHash, blockHeight);\n' +
+    '                    if (!result.ok)\n' +
+    '                        throw new OwnedGuardError();\n' +
+    '                    return detached(result);\n' +
+    '                };\n' +
+    '            });\n' +
+    '        },\n' +
+    '        releaseText(expires) {\n' +
+    '            return captured(() => {\n' +
+    '                if (typeof expires !== "string")\n' +
+    '                    throw new OwnedGuardError();\n' +
+    '                return async () => {\n' +
+    '                    const text = guard.releaseText(expires);\n' +
+    '                    if (!parseReleaseText(text) || !Number.isFinite(Date.parse(expires)))\n' +
+    '                        throw new OwnedGuardError();\n' +
+    '                    return text;\n' +
+    '                };\n' +
+    '            });\n' +
+    '        },\n' +
+    '        release(text, signature, at) {\n' +
+    '            return captured(() => {\n' +
+    '                if (!(signature instanceof Uint8Array))\n' +
+    '                    throw new OwnedGuardError();\n' +
+    '                const signatureBytes = new Uint8Array(signature);\n' +
+    '                return async () => {\n' +
+    '                    const released = guard.release(text, signatureBytes, at);\n' +
+    '                    if (!released.released)\n' +
+    '                        throw new OwnedGuardError();\n' +
+    '                    return detached(released);\n' +
+    '                };\n' +
+    '            });\n' +
+    '        },\n' +
+    '        finishRequest(identity, startHash, result) {\n' +
+    '            return captured(() => {\n' +
+    '                const id = structuredClone(identity), value = structuredClone(result);\n' +
+    '                return () => finishOwnedRequest(guard, id, startHash, value);\n' +
+    '            });\n' +
+    '        },\n' +
+    '        requestResult(identity, startHash) {\n' +
+    '            return captured(() => {\n' +
+    '                const id = structuredClone(identity);\n' +
+    '                return () => ownedRequestResult(guard, id, startHash);\n' +
+    '            });\n' +
+    '        },\n' +
+    '        status() { return enqueue(() => detached(guard.status())); },\n' +
+    '        close() {\n' +
+    '            if (closing)\n' +
+    '                return closing;\n' +
+    '            accepting = false;\n' +
+    '            closing = queue.then(() => { closed = true; guard.close(); }).catch(() => { throw new OwnedGuardError(); });\n' +
+    '            return closing;\n' +
+    '        },\n' +
+    '    });\n' +
+    '}\n',
+  expected: '// ADR-019: private admission/control ownership, not the trusted synchronous SDK.\n' +
+    'import { canonicalJSON } from "./canonical.js";\n' +
+    'import { createPolicy } from "./policy.js";\n' +
+    'import { verifyPolicyAuthorization } from "./signed-policy.js";\n' +
+    'import { fileStore, lookupOwnedRequestIndex } from "./record.js";\n' +
+    'import { createGuard, checkOwnedRequest, beginOwnedRequest, finishOwnedRequest, ownedRequestResult } from "./guard.js";\n' +
+    'import { parseReleaseText } from "./latch.js";\n' +
+    'export class OwnedGuardError extends Error {\n' +
+    '    code = "owned-guard";\n' +
+    '    constructor() { super("owned guard cannot establish or complete the requested operation"); this.name = "OwnedGuardError"; }\n' +
+    '}\n' +
+    'function detached(input) {\n' +
+    '    const copy = structuredClone(input);\n' +
+    '    function freeze(value) { if (value && typeof value === "object") {\n' +
+    '        for (const child of Object.values(value))\n' +
+    '            freeze(child);\n' +
+    '        Object.freeze(value);\n' +
+    '    } }\n' +
+    '    freeze(copy);\n' +
+    '    return copy;\n' +
+    '}\n' +
+    '/** Internal only: no key, signing, sending, maintenance setup or implicit policy upgrade. */\n' +
+    'export async function openOwnedGuard(input) {\n' +
+    '    let store, guard;\n' +
+    '    try {\n' +
+    '        const options = structuredClone(input);\n' +
+    '        if (!options || typeof options.path !== "string" || options.path.length === 0)\n' +
+    '            throw new OwnedGuardError();\n' +
+    '        const policy = verifyPolicyAuthorization(options.policy, options.authorization);\n' +
+    '        if (policy.latch.cluster !== "devnet")\n' +
+    '            throw new OwnedGuardError();\n' +
+    '        store = fileStore(options.path, { ownership: "kernel", create: false });\n' +
+    '        const lastPolicy = store.entries.findLast(entry => entry.kind === "policy");\n' +
+    '        if (store.entries[0]?.kind !== "policy" || lastPolicy?.kind !== "policy" || lastPolicy.policy !== canonicalJSON(policy) || lastPolicy.version !== options.authorization.version || lastPolicy.text !== options.authorization.text)\n' +
+    '            throw new OwnedGuardError();\n' +
+    '        guard = await createGuard({ policy, authorization: options.authorization, log: store });\n' +
+    '        const evidence = await lookupOwnedRequestIndex(store, { clientId: "owned-startup", id: "validation" }, { policyTrust: options.authorization });\n' +
+    '        const last = store.entries.at(-1);\n' +
+    '        if (evidence.seq !== guard.status().seq || evidence.head !== last?.hash)\n' +
+    '            throw new OwnedGuardError();\n' +
+    '        return facade(guard);\n' +
+    '    }\n' +
+    '    catch {\n' +
+    '        try {\n' +
+    '            if (guard)\n' +
+    '                guard.close();\n' +
+    '            else\n' +
+    '                store?.close();\n' +
+    '        }\n' +
+    '        catch { /* Preserve the fixed startup error. */ }\n' +
+    '        throw new OwnedGuardError();\n' +
+    '    }\n' +
+    '}\n' +
+    'function facade(guard) {\n' +
+    '    let queue = Promise.resolve(), accepting = true, closed = false, closing;\n' +
+    '    function enqueue(work) {\n' +
+    '        if (!accepting)\n' +
+    '            return Promise.reject(new OwnedGuardError());\n' +
+    '        const pending = queue.then(() => { if (closed)\n' +
+    '            throw new OwnedGuardError(); return work(); }).catch(() => { throw new OwnedGuardError(); });\n' +
+    '        queue = pending.then(() => undefined, () => undefined);\n' +
+    '        return pending;\n' +
+    '    }\n' +
+    '    function captured(capture) {\n' +
+    '        try {\n' +
+    '            return enqueue(capture());\n' +
+    '        }\n' +
+    '        catch {\n' +
+    '            return Promise.reject(new OwnedGuardError());\n' +
+    '        }\n' +
+    '    }\n' +
+    '    const policy = detached(createPolicy(guard.policy).policy);\n' +
+    '    return Object.freeze({\n' +
+    '        policy, policyHash: guard.policyHash,\n' +
+    '        check(proposal, identity) {\n' +
+    '            return captured(() => {\n' +
+    '                const p = structuredClone(proposal), id = structuredClone(identity);\n' +
+    '                if (p?.message instanceof Uint8Array)\n' +
+    '                    p.message = new Uint8Array(p.message);\n' +
+    '                return async () => {\n' +
+    '                    const decision = await checkOwnedRequest(guard, p, id);\n' +
+    '                    // A failed append or identity collision is not a durable admission reply.\n' +
+    '                    if (decision.seq < 0)\n' +
+    '                        throw new OwnedGuardError();\n' +
+    '                    return decision;\n' +
+    '                };\n' +
+    '            });\n' +
+    '        },\n' +
+    '        beginRequest(identity, method, payload, at) {\n' +
+    '            return captured(() => {\n' +
+    '                const id = structuredClone(identity), value = structuredClone(payload);\n' +
+    '                return () => beginOwnedRequest(guard, id, method, value, at);\n' +
+    '            });\n' +
+    '        },\n' +
+    '        redeem(message, decisionHash, blockHeight) {\n' +
+    '            return captured(() => {\n' +
+    '                if (!(message instanceof Uint8Array))\n' +
+    '                    throw new OwnedGuardError();\n' +
+    '                const bytes = new Uint8Array(message);\n' +
+    '                return async () => {\n' +
+    '                    const result = guard.redeem(bytes, decisionHash, blockHeight);\n' +
+    '                    if (!result.ok)\n' +
+    '                        throw new OwnedGuardError();\n' +
+    '                    return detached(result);\n' +
+    '                };\n' +
+    '            });\n' +
+    '        },\n' +
+    '        releaseText(expires) {\n' +
+    '            return captured(() => {\n' +
+    '                if (typeof expires !== "string")\n' +
+    '                    throw new OwnedGuardError();\n' +
+    '                return async () => {\n' +
+    '                    const text = guard.releaseText(expires);\n' +
+    '                    if (!parseReleaseText(text) || !Number.isFinite(Date.parse(expires)))\n' +
+    '                        throw new OwnedGuardError();\n' +
+    '                    return text;\n' +
+    '                };\n' +
+    '            });\n' +
+    '        },\n' +
+    '        release(text, signature, at) {\n' +
+    '            return captured(() => {\n' +
+    '                if (!(signature instanceof Uint8Array))\n' +
+    '                    throw new OwnedGuardError();\n' +
+    '                const signatureBytes = new Uint8Array(signature);\n' +
+    '                return async () => {\n' +
+    '                    const released = guard.release(text, signatureBytes, at);\n' +
+    '                    if (!released.released)\n' +
+    '                        throw new OwnedGuardError();\n' +
+    '                    return detached(released);\n' +
+    '                };\n' +
+    '            });\n' +
+    '        },\n' +
+    '        finishRequest(identity, startHash, result) {\n' +
+    '            return captured(() => {\n' +
+    '                const id = structuredClone(identity), value = structuredClone(result);\n' +
+    '                return () => finishOwnedRequest(guard, id, startHash, value);\n' +
+    '            });\n' +
+    '        },\n' +
+    '        requestResult(identity, startHash) {\n' +
+    '            return captured(() => {\n' +
+    '                const id = structuredClone(identity);\n' +
+    '                return () => ownedRequestResult(guard, id, startHash);\n' +
+    '            });\n' +
+    '        },\n' +
+    '        status() { return enqueue(() => detached(guard.status())); },\n' +
+    '        close() {\n' +
+    '            if (closing)\n' +
+    '                return closing;\n' +
+    '            accepting = false;\n' +
+    '            closing = queue.then(() => { closed = true; guard.close(); }).catch(() => { throw new OwnedGuardError(); });\n' +
+    '            return closing;\n' +
+    '        },\n' +
+    '    });\n' +
+    '}\n',
+  operator: 'notStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

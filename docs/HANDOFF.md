@@ -243,6 +243,15 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-09 continued private lifecycle: from clean local `46922d5`, fresh probes
+refuse and context/fetch are verified. Queue operator release-text preparation
+and captured-signature release under ADR-019/existing latch rules. Preserve
+first source/installed API failures, rule-field fixture correction and the
+overbroad FIFO trial failure; the strict checker stays unchanged. Definition
+37/seed 37417 retains prior populations/limits. Receipt `evals/sdk/owned-release.md`;
+local qualification passes with exact restored identities, CLAIMS S98. No H9/H11 acceptance, signer expansion, remote
+push, operational ceremony or stable milestone follows.
+
 2026-10-09 private redemption continuation: fresh live probes refuse correctly;
 read-only fetch changes no local work. Under ADR-019, extend the private facade
 with queued captured-byte redemption, frozen durable success and fixed refusal

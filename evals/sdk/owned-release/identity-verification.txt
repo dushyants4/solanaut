@@ -1,0 +1,2 @@
+All bound product, evaluation, emitted-file and archive hashes match after restoration.
+219 bound files checked.

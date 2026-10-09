@@ -1,11 +1,15 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.68** · 2026-10-09 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.69** · 2026-10-09 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 Local-only commits now replace the previous standing push grant. The unchanged
 close workflow cannot pass its pushed-HEAD check for those commits. Record that
 finding; no hosted execution, backup to a remote or stable-release gate is implied.
+Private operator release queues captured signatures and exposes durable success
+or fixed refusal. Preparation is keyless, and pending reservations remain after
+release. Caller time remains trusted SDK input; no operator ceremony, isolated
+signer or new agent socket capability is established by this component.
 Private redemption now shares the facade FIFO and exposes only durable success
 or fixed error. This is bookkeeping before signing, not proof a transaction was
 signed or sent. All reservations and used receipts retain their existing rules.

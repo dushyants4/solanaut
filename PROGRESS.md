@@ -9,6 +9,11 @@ Private asynchronous admission/control facade implementation has partial local
 evidence in `evals/sdk/owned-guard.md`, CLAIMS S95. It opens established signed history
 without exposing guard/store/history and serializes observations and shutdown.
 It retains full state and does not yet expose signing/lifecycle maintenance.
+Private operator release is integrated under accepted ADR-019 and the
+existing latch rules. Source/installed first failures, queued prompt/signature
+capture, reservation preservation and failed-release restart evidence live in
+`evals/sdk/owned-release.md`, CLAIMS S98. Native/serial AST, typecheck and retained
+source/compiled faults pass locally. Operational ceremonies and full lifecycle remain open.
 Private redemption is integrated under ADR-019, with source/installed
 first failures and shared FIFO, receipt-use/restart and failed-write regressions
 in `evals/sdk/owned-redemption.md`, CLAIMS S97. Its ordinary repeat/typecheck and

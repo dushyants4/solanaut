@@ -15,6 +15,11 @@ function battery() {
 const baseline = battery();
 assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
 const faults = [
+  { name: "facade-release-bytes", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace("const signatureBytes = new Uint8Array(signature);", "const signatureBytes = signature;") },
+  { name: "facade-release-refusal", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace("if (!released.released)", "if (false)") },
+  { name: "facade-release-reply", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace("return detached(released);", "return released;") },
+  { name: "facade-release-prompt", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace("if (!parseReleaseText(text) || !Number.isFinite(Date.parse(expires)))", "if (false)") },
+  { name: "facade-release-text-fifo", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace(/releaseText\(expires\) \{\s+return captured\(\(\) =>/, "releaseText(expires) { return (capture => capture()().catch(() => { throw new OwnedGuardError(); }))(() =>") },
   { name: "facade-redemption-bytes", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace("const bytes = new Uint8Array(message);", "const bytes = message;") },
   { name: "facade-redemption-refusal", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace("if (!result.ok)", "if (false)") },
   { name: "facade-redemption-reply", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace("return detached(result);", "return result;") },

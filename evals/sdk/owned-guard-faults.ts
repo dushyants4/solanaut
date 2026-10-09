@@ -5,6 +5,15 @@ import {spawnSync} from "node:child_process";
 const path="packages/sdk/src/owned-guard.ts",source=readFileSync(path,"utf8"),directory=".sandbox/solanaut-1/owned-facade/faults";
 mkdirSync(directory,{recursive:true});
 const faults=[
+  ["release-fifo","release(text:string,signature:Uint8Array,at:number){return captured(()=>{","release(text:string,signature:Uint8Array,at:number){return (capture=>capture()())(()=>{","captures shared signatures behind control"],
+  ["release-text-fifo","releaseText(expires:string){return captured(()=>{","releaseText(expires:string){return (capture=>capture()().catch(()=>{throw new OwnedGuardError();}))(()=>{","captures shared signatures behind control"],
+  ["release-bytes","const signatureBytes=new Uint8Array(signature);","const signatureBytes=signature;","captures shared signatures behind control"],
+  ["release-refusal","if(!released.released)throw new OwnedGuardError();","void released;","refuses invalid prompts, signatures"],
+  ["release-storage","if(!released.released)throw new OwnedGuardError();","void released;","hides diagnostics and preserves latch"],
+  ["release-reply","return detached(released);","return released;","captures shared signatures behind control"],
+  ["release-prompt-shape","!parseReleaseText(text)||!Number.isFinite(Date.parse(expires))","!Number.isFinite(Date.parse(expires))","refuses invalid prompts, signatures"],
+  ["release-prompt-date","!parseReleaseText(text)||!Number.isFinite(Date.parse(expires))","!parseReleaseText(text)","refuses invalid prompts, signatures"],
+  ["release-prompt-type","if(typeof expires!==\"string\")throw new OwnedGuardError();","void expires;","refuses invalid prompts, signatures"],
   ["redemption-fifo","redeem(message:Uint8Array,decisionHash:string,blockHeight?:bigint){return captured(()=>{","redeem(message:Uint8Array,decisionHash:string,blockHeight?:bigint){return (capture=>capture()())(()=>{","captures bytes, queues observations"],
   ["redemption-bytes","const bytes=new Uint8Array(message);","const bytes=message;","captures bytes, queues observations"],
   ["redemption-refusal","if(!result.ok)throw new OwnedGuardError();","void result;","refuses changed bytes, foreign receipts"],

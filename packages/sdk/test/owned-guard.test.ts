@@ -31,13 +31,53 @@ const identity=(id:string)=>({clientId:"client",id});
 const refused=(work:()=>Promise<unknown>)=>assert.rejects(Promise.resolve().then(work),{name:"OwnedGuardError",code:"owned-guard"});
 test("SNP-7/OWN-2: factory keeps the guard and history private with a frozen asynchronous surface",async()=>{
   const f=await fixture();try{const g=await f.open();try{
-    assert.deepEqual(Object.keys(g).sort(),["beginRequest","check","close","finishRequest","policy","policyHash","redeem","requestResult","status"].sort());
+    assert.deepEqual(Object.keys(g).sort(),["beginRequest","check","close","finishRequest","policy","policyHash","redeem","release","releaseText","requestResult","status"].sort());
     assert.ok(Object.isFrozen(g));assert.ok(Object.isFrozen(g.policy));assert.ok(Object.isFrozen(g.policy.latch));
     assert.equal(Reflect.get(g,"guard"),undefined);assert.equal(Reflect.get(g,"store"),undefined);assert.equal(Reflect.get(g,"entries"),undefined);
     const pending=g.status();assert.ok(pending instanceof Promise);const status=await pending;assert.equal(status.seq,1);assert.ok(Object.isFrozen(status));
   }finally{await g.close();}}finally{f.close();}
 });
 const payment=()=>craftLegacy({header:[1,0,1],keys:[key(1),key(2),key(0)],instructions:[{program:2,accounts:[0,1],data:[2,0,0,0,1,0,0,0,0,0,0,0]}]});
+const releasePrompt=(g:OwnedGuard,expires="2026-10-10T00:00:00.000Z"):Promise<string>=>{const call=Reflect.get(g,"releaseText");assert.equal(typeof call,"function","private release text must exist");return Reflect.apply(call,g,[expires]);};
+const releaseLatch=(g:OwnedGuard,text:string,signature:Uint8Array,at:number):Promise<Readonly<{released:boolean;reason:string}>>=>{const call=Reflect.get(g,"release");assert.equal(typeof call,"function","private release must exist");return Reflect.apply(call,g,[text,signature,at]);};
+async function latch(g:OwnedGuard){for(let i=0;i<3;i++)await g.check({message:Uint8Array.of(255),at:2000+i*1000},identity("latch-"+i));assert.equal((await g.status()).latched,true);}
+test("SNP-5/7: private operator release captures shared signatures behind control work and preserves reservations",async()=>{
+  const f=await fixture(),original=asyncFs.open;try{const g=await f.open();try{
+    const message=payment(),admitted=await g.check({message,at:1000,blockHeight:10n,lastValidBlockHeight:20n},identity("pending"));assert.equal(admitted.allow,true);
+    const denials=[0,1,2].map(i=>g.check({message:Uint8Array.of(255),at:2000+i*1000},identity("latch-"+i))),preparing=releasePrompt(g);await Promise.all(denials);
+    const before=await g.status(),text=await preparing;assert.equal(before.latched,true);assert.match(text,/cluster: devnet/);assert.ok(text.includes("policy: "+g.policyHash));assert.ok(text.includes("seq: "+before.latchSeq));
+    let unlock!:()=>void,reached!:()=>void,held=false;const gate=new Promise<void>(r=>unlock=r),reading=new Promise<void>(r=>reached=r);
+    asyncFs.open=(async(...args:Parameters<typeof asyncFs.open>)=>{const handle=await Reflect.apply(original,asyncFs,args);if(!held&&String(args[0]).endsWith(".jsonl")){held=true;reached();await gate;}return handle;}) as typeof asyncFs.open;
+    const preceding=g.beginRequest(identity("before-release"),"status",{},4500);await reading;
+    const signature=new Uint8Array(new SharedArrayBuffer(64));signature.set(sign(null,Buffer.from(text),f.operator.privateKey));
+    const pending=releaseLatch(g,text,signature,5000),observed=g.status();signature.fill(0);unlock();const start=await preceding,result=await pending;
+    assert.equal(start.seq,before.seq);assert.deepEqual(result,{released:true,reason:""});assert.ok(Object.isFrozen(result));assert.equal((await observed).latched,false);assert.equal((await observed).seq,before.seq+2);
+    const retry=await g.check({message,at:5001,blockHeight:21n,lastValidBlockHeight:30n},identity("still-reserved"));assert.equal(retry.allow,false);assert.equal(retry.rule,"intent-in-flight");
+  }finally{asyncFs.open=original;await g.close();}
+    const restored=await f.open();try{assert.equal((await restored.status()).latched,false);}finally{await restored.close();}
+  }finally{asyncFs.open=original;f.close();}
+});
+test("OPR-2/SNP-7: private release refuses invalid prompts, signatures, scope and expiry without opening the latch",async()=>{
+  const f=await fixture();try{const g=await f.open();try{
+    await refused(()=>releasePrompt(g));await latch(g);const before=await g.status(),text=await releasePrompt(g),signature=new Uint8Array(sign(null,Buffer.from(text),f.operator.privateKey));
+    await refused(()=>releasePrompt(g,"PRIVATE_SENTINEL"));await refused(()=>releasePrompt(g,null as unknown as string));
+    for(const expires of ["2026-10-10","2026-99-99T00:00:00.000Z",{toString:()=>"2026-10-10T00:00:00.000Z"}])await refused(()=>releasePrompt(g,expires as string));
+    const expired=await releasePrompt(g,"1970-01-01T00:00:03.000Z"),expiredSignature=new Uint8Array(sign(null,Buffer.from(expired),f.operator.privateKey));
+    for(const call of [()=>releaseLatch(g,text,Uint8Array.of(0),5000),()=>releaseLatch(g,text.replace("cluster: devnet","cluster: mainnet-beta"),signature,5000),()=>releaseLatch(g,expired,expiredSignature,5000),()=>releaseLatch(g,text,null as unknown as Uint8Array,5000),()=>releaseLatch(g,text,signature,NaN)])await refused(call);
+    assert.deepEqual(await g.status(),before);assert.equal((await releaseLatch(g,text,signature,5000)).released,true);await refused(()=>releaseLatch(g,text,signature,5000));
+    await g.close();await refused(()=>releasePrompt(g));await refused(()=>releaseLatch(g,text,signature,5000));
+  }finally{await g.close();}}finally{f.close();}
+});
+test("STO-1/OPR-2/SNP-5: failed private operator release hides diagnostics and preserves latch across restart",async()=>{
+  const f=await fixture(),original=fs.writeSync;try{const g=await f.open();try{
+    await latch(g);const before=await g.status(),text=await releasePrompt(g),signature=new Uint8Array(sign(null,Buffer.from(text),f.operator.privateKey));
+    fs.writeSync=(()=>{throw new Error("PRIVATE_SENTINEL: release storage unavailable");}) as typeof fs.writeSync;syncBuiltinESMExports();
+    await assert.rejects(releaseLatch(g,text,signature,5000),(error:Error)=>error.name==="OwnedGuardError"&&Reflect.get(error,"code")==="owned-guard"&&!error.message.includes("PRIVATE_SENTINEL"));
+    fs.writeSync=original;syncBuiltinESMExports();assert.deepEqual(await g.status(),before);await refused(()=>releaseLatch(g,text,signature,5000));
+  }finally{fs.writeSync=original;syncBuiltinESMExports();await g.close();}
+    const restored=await f.open();try{assert.equal((await restored.status()).latched,true);}finally{await restored.close();}
+  }finally{fs.writeSync=original;syncBuiltinESMExports();f.close();}
+});
 const redeem=(g:OwnedGuard,message:Uint8Array,hash:string,height?:bigint):Promise<Readonly<{ok:boolean;reason:string}>>=>{
   const call=Reflect.get(g,"redeem");assert.equal(typeof call,"function","private redemption must exist");return Reflect.apply(call,g,[message,hash,height]);
 };

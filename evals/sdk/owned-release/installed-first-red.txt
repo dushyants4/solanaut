@@ -1,0 +1,38 @@
+✖ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (115.374665ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 745.411236
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:31:1
+✖ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (115.374665ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-LFc6Sa/consumer/[eval1]:35
+          const latching=[0,1].map(i=>g.check({message:Uint8Array.of(255),at:2002+i},{clientId:'client',id:'latch-'+i})),preparing=g.releaseText('2026-10-10T00:00:00.000Z');await Promise.all(latching);const text=await preparing;
+                                                                                                                                     ^
+  
+  TypeError: g.releaseText is not a function
+      at file:///tmp/solanaut-consumer-LFc6Sa/consumer/[eval1]:35:132
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:82:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

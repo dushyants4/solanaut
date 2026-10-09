@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.76** · 2026-10-09 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.77** · 2026-10-09 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -1413,7 +1413,7 @@ repeat close returns the same completion. A refused operation does not poison th
 queue. Status describes private in-memory state; it is not independent chain proof.
 
 Trusted synchronous SDK exports remain unchanged. The facade does not implement
-signing journal, outcome reporting, operator release, maintenance or
+signing journal, outcome reporting, maintenance or
 an executable signer. Full histories and state maps still remain in memory.
 No SIG-11 budget pass, bounded recovery, process isolation or stable-release claim
 follows. Component evidence: `evals/sdk/owned-guard.md`.
@@ -1441,3 +1441,18 @@ Internal only; public SDK and socket interfaces remain unchanged. Evidence:
 `evals/sdk/owned-redemption.md`.
 
 | Draft 4.76 | 2026-10-09 | Queue private redemption with captured bytes, checked synced success and fixed refusal errors. Preserve first source/installed failures and fixture/build setup findings. Definition 36/seed 36191 adds the redemption cases while retaining prior inputs and limits. Complete lifecycle, bounded recovery and release qualification remain owed. |
+
+Private operator-release convention under accepted ADR-019 and existing latch
+rules: asynchronous `releaseText` and `release` share the facade FIFO. Preparation
+accepts primitive expiry text and refuses a noncanonical structured prompt or
+non-finite parsed expiry. Expired canonical text may still be prepared; execution
+checks the latest recorded clock as before. Capture signature bytes into ordinary
+private backing before queueing. Only existing checked synced success returns a
+detached frozen result; every refusal uses fixed `OwnedGuardError`. Preserve
+pending reservations and used receipts through release, and latch state through
+failed writes/restart. No signature, send, key, authority or policy change is
+performed by preparation or by these wrappers. Trusted SDK caller time remains;
+this is not the isolated signer or a public socket/root API.
+Evidence: `evals/sdk/owned-release.md`.
+
+| Draft 4.77 | 2026-10-09 | Queue private operator prompt/release with canonical preparation, captured signature backing and durable success only. Preserve absent APIs, rule-field fixture error and the overbroad FIFO trial failure. Definition 37/seed 37417 adds operator cases without changing prior inputs/limits. Full lifecycle, bounded state and release qualification remain owed. |

@@ -12,6 +12,25 @@ each component. Preserve every accepted security and release gate.
 
 ## Did
 
+Continue as instructed until session limits, from clean local `46922d5`.
+Fresh context reads/fetch and both correctly refused live probes precede the
+private operator-release seam. The earlier unchanged product's native/AST pass
+and typecheck are the continuing baseline; no new baseline run is claimed.
+Add queued release-text preparation and signature-captured latch release under
+accepted ADR-019/SPEC latch rules. Generic SDK operator actions only: no signer
+bootstrap, budget reinterpretation, keys, RPC, signing, send or public API change.
+Definition 37/seed 37417 adds the operator cases before candidate full measurement,
+retaining every earlier population, floor, wait and supervisor/product limit.
+
+Operator release local qualification passes: focused/source/installed/compiled,
+native/serial AST and typecheck, CLAIMS S98. Exact source/input/emitted-file and
+separate archive identities match after restoration. Coverage is archived under
+the receipt. No independent or whole-milestone credit follows. Complete close,
+local commit and verified local source-history backup before continuing.
+Pre-commit close passes eight of ten, failing only dirty tree and unpushed HEAD.
+The latter remains open under the explicit no-push instruction. Authored
+TypeScript/Markdown diffs are read and their whitespace check passes.
+
 Continue locally from `fe6369f`, with fresh instruction/context reads, read-only
 fetch and correctly refused live secret-path probes. Implement the next private
 ADR-019 lifecycle seam: queued redemption captures ordinary byte backing,
@@ -143,6 +162,21 @@ Current-day run record and project register; subsequent replay component paths
 and qualification evidence will be recorded as work proceeds.
 
 ## Found
+
+The first ADR read uses an incorrect filename and fails; locate/read the actual
+accepted ADR before work. New release/surface tests fail first on missing APIs.
+The initial positive fixture compares explanatory `reason` with a rule ID;
+preserve it and correct only that assertion to `rule`, retaining the exact
+reservation-denial expectation. Initial release-text FIFO fault also bypasses
+error mapping, so the existing trial's strict diagnostic check rejects it.
+Preserve the raw failure and revise only that fault to preserve error mapping
+while bypassing the queue. No fault checker or test expectation is weakened.
+The installed prior JavaScript likewise fails on the absent release method.
+The initial compiled FIFO trial matches single-line formatting that the compiler
+does not emit; the unchanged-candidate assertion rejects it. Preserve the failed
+campaign and correct only the matcher to the actual multiline method. The full
+retained campaign then completes with exact restored package passing. Bind a
+separate archive and all product/evaluation/emitted-file hashes before full runs.
 
 Redemption tests first fail on absent method/surface. The installed test's first
 attempt has a nested-template newline syntax error; preserve it separately,

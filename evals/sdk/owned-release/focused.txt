@@ -1,0 +1,45 @@
+✔ SNP-7/OWN-2: factory keeps the guard and history private with a frozen asynchronous surface (65.31272ms)
+✖ SNP-5/7: private operator release captures shared signatures behind control work and preserves reservations (73.746685ms)
+✔ OPR-2/SNP-7: private release refuses invalid prompts, signatures, scope and expiry without opening the latch (49.089015ms)
+✔ STO-1/OPR-2/SNP-5: failed private operator release hides diagnostics and preserves latch across restart (47.518362ms)
+✔ LIF-2/SNP-7: private redemption captures bytes, queues observations and survives restart once (44.20667ms)
+✔ LIF-2/OPR-2: private redemption refuses changed bytes, foreign receipts and expired lifetimes without consuming them (38.379592ms)
+✔ STO-1/OPR-2/LIF-2: private redemption never acknowledges a failed append or exposes storage diagnostics (32.465122ms)
+✔ OPR-2/VER-1: missing, empty and unsigned established histories refuse without creating a fresh identity (43.101979ms)
+✔ POL-4/OPR-2: configuration cannot upgrade, roll back, substitute a guard or start on invalid signatures (39.317013ms)
+✔ OWN-2/SNP-7: competing opens and corrupt index fail closed and release failed startup ownership (41.600423ms)
+✔ SNP-7/LIF-4: queued inputs, detached replies and observations share one FIFO (43.317622ms)
+✔ LIF-1/SNP-7: private admissions copy shared bytes and cannot mutate durable replies (36.08985ms)
+✔ OWN-2/LIF-4: close drains preceding work, denies later calls and releases ownership once (38.075307ms)
+✔ LIF-4/OPR-2: refusal does not poison the queue and raw diagnostics never escape (37.528004ms)
+✔ OPR-2/SNP-7: startup captures signed configuration before its first await (27.692252ms)
+✔ OPR-2/STO-1/LIF-1: an unrecorded admission never exposes storage diagnostics as a decision (29.825474ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 15
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 769.770168
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-guard.test.ts:44:1
+✖ SNP-5/7: private operator release captures shared signatures behind control work and preserves reservations (73.746685ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'an earlier attempt at the same effects (decision 2b80618c19a6…) is past its last valid block height, but its outcome was never reported, so it may have landed; report landed, failed or expired, or propose once the window has passed since the first attempt'
+  - 'intent-in-flight'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:54:157)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'an earlier attempt at the same effects (decision 2b80618c19a6…) is past its last valid block height, but its outcome was never reported, so it may have landed; report landed, failed or expired, or propose once the window has passed since the first attempt',
+    expected: 'intent-in-flight',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

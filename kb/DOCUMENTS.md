@@ -1,5 +1,14 @@
 # DOCUMENTS.md — the document register
 
+2026-10-09 private operator release registers SPEC Draft 4.77, OVERVIEW 48,
+RISKS 1.69, PROGRESS, HANDOFF, continuing run and `evals/sdk/owned-release.md`
+with the evaluation index. Queue canonical keyless prompts and signature capture;
+preserve reservations and failed-write latch state. First source/installed
+failures, the rule-field fixture error and overbroad FIFO trial remain retained.
+Definition 37/seed 37417 keeps earlier populations/floors/waits/limits. Candidate
+qualification passes locally, recorded in CLAIMS S98 with exact restored candidate
+identities; no signer budget, isolation or release milestone closes.
+
 2026-10-09 private redemption registers SPEC Draft 4.76, OVERVIEW 47, RISKS
 1.68, PROGRESS, HANDOFF, continuing run and `evals/sdk/owned-redemption.md` with
 the evaluation index. Queue captured bytes and checked durable receipt use on

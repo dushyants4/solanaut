@@ -1,0 +1,25 @@
+✖ SNP-5/7: private operator release captures shared signatures behind control work and preserves reservations (83.86261ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 194.775851
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-guard.test.ts:44:1
+✖ SNP-5/7: private operator release captures shared signatures behind control work and preserves reservations (83.86261ms)
+  Error: the guard is not latched
+      at Object.currentReleaseText [as releaseText] (file:///home/dashy/Projects/Solanaut/packages/sdk/src/guard.ts:484:31)
+      at file:///home/dashy/Projects/Solanaut/packages/sdk/src/owned-guard.ts:97:26
+      at file:///home/dashy/Projects/Solanaut/packages/sdk/src/owned-guard.ts:94:59
+      at Object.releaseText (file:///home/dashy/Projects/Solanaut/packages/sdk/src/owned-guard.ts:94:62)
+      at releasePrompt (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:41:215)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:47:119)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+(node:1712642) PromiseRejectionHandledWarning: Promise rejection was handled asynchronously (rejection id: 1)
+(Use `node --trace-warnings ...` to show where the warning was created)

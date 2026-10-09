@@ -7,11 +7,14 @@ import {createGuard,checkOwnedRequest,beginOwnedRequest,finishOwnedRequest,owned
 import type {RequestIdentity} from "./request.ts";
 import type {ControlMethod} from "./control-request.ts";
 import type {ControlRequestEntry,ControlResponseEntry} from "./log.ts";
+import {parseReleaseText} from "./latch.ts";
 
 export interface OwnedGuardOptions {path:string;policy:unknown;authorization:PolicyAuthorization}
 export interface OwnedGuard {
   check(proposal:ProposalV1,identity:RequestIdentity):Promise<Decision>;
   redeem(message:Uint8Array,decisionHash:string,blockHeight?:bigint):Promise<Readonly<{ok:boolean;reason:string}>>;
+  releaseText(expires:string):Promise<string>;
+  release(text:string,signature:Uint8Array,at:number):Promise<Readonly<{released:boolean;reason:string}>>;
   beginRequest(identity:RequestIdentity,method:ControlMethod,payload:unknown,at:number):Promise<ControlRequestEntry>;
   finishRequest(identity:RequestIdentity,startHash:string,result:unknown):Promise<ControlResponseEntry>;
   requestResult(identity:RequestIdentity,startHash:string):Promise<unknown>;
@@ -86,6 +89,23 @@ function facade(guard:Guard):OwnedGuard {
         const result=guard.redeem(bytes,decisionHash,blockHeight);
         if(!result.ok)throw new OwnedGuardError();
         return detached(result);
+      };
+    });},
+    releaseText(expires:string){return captured(()=>{
+      if(typeof expires!=="string")throw new OwnedGuardError();
+      return async()=>{
+        const text=guard.releaseText(expires);
+        if(!parseReleaseText(text)||!Number.isFinite(Date.parse(expires)))throw new OwnedGuardError();
+        return text;
+      };
+    });},
+    release(text:string,signature:Uint8Array,at:number){return captured(()=>{
+      if(!(signature instanceof Uint8Array))throw new OwnedGuardError();
+      const signatureBytes=new Uint8Array(signature);
+      return async()=>{
+        const released=guard.release(text,signatureBytes,at);
+        if(!released.released)throw new OwnedGuardError();
+        return detached(released);
       };
     });},
     finishRequest(identity:RequestIdentity,startHash:string,result:unknown){return captured(()=>{
