@@ -5,6 +5,13 @@ including the approved Beta; CLAIMS S78 and `evals/release/progress.md` freeze t
 scope. This is not release readiness, effort or a completion date. Components
 inside open milestones receive no fractional credit.
 
+Startup record read consistency is being qualified under ADR-019. Actual
+descriptor-read changes first fail to refuse; the local candidate checks metadata
+and inode identity before parsing/repair, preserving failed-startup ownership
+cleanup. `evals/sdk/record-read-stability.md` retains local native/type/source/
+compiled passes and the unchanged quiet serial AST wait failure, CLAIMS S102.
+Complete coverage remains open; no milestone closes.
+
 Record/mutex alias refusal is being qualified under accepted ADR-019. Source and
 installed prior-candidate failures live in `evals/sdk/record-alias.md`; single-link
 checks preserve pathname ownership and failed-startup cleanup. Source/compiled/

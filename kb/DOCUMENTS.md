@@ -1,5 +1,15 @@
 # DOCUMENTS.md — the document register
 
+2026-10-09 startup read consistency registers SPEC Draft 4.80/STO-4,
+OVERVIEW 51, STORAGE Draft 11, RISKS 1.72, PROGRESS, HANDOFF, continuing run and
+`evals/sdk/record-read-stability.md` with its index. Preserve actual descriptor
+mutation and installed previous-candidate failures. Definition 40/seed 40529
+retains earlier populations/limits; wider qualification is pending.
+CLAIMS S102 registers scoped focused/source/installed/type evidence; broader
+qualification and all stable gates remain open.
+Register final native/compiled passes and the quiet serial AST wait failure,
+with exact bound restored candidate identities. Complete coverage stays open.
+
 2026-10-09 record aliases register SPEC Draft 4.79/OWN-4, OVERVIEW 50, STORAGE
 Draft 10, RISKS 1.71, PROGRESS, HANDOFF, continuing run and
 `evals/sdk/record-alias.md` with its receipt index. Preserve absent refusal in

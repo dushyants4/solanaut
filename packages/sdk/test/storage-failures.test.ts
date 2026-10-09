@@ -84,3 +84,28 @@ for (const ownership of ["manual", "kernel"] as const) for (const damage of ["ap
     assert.throws(() => store.append(store.entries[0]!), /closed or failed/, "the store itself remains failed even behind another guard");
   } finally { restore(); g.close(); store.close(); }
 });
+for (const ownership of ["manual", "kernel"] as const) for (const damage of ["append", "truncate", "overwrite"]) test(`STO-4/SIG-8/OWN-2: ${ownership} refuses journal ${damage} during startup read and releases ownership`, async () => {
+  const path = record(), seed = await createGuard({ policy: WORKLOAD_POLICY, log: path });
+  assert.equal(seed.check({ message: payment(), at: 1000 }).allow, true); seed.close();
+  const original = fs.readFileSync(path, "utf8"), inode = fs.statSync(path).ino, read = fs.readFileSync;
+  const { fileStore } = await import("../src/record.ts");
+  let changed = false;
+  mock.method(fs, "readFileSync", (...args: unknown[]) => {
+    const value = Reflect.apply(read, fs, args);
+    if (!changed && typeof args[0] === "number" && typeof value === "string" && fs.fstatSync(args[0]).ino === inode) {
+      changed = true;
+      if (damage === "append") fs.appendFileSync(path, "{}\n");
+      else if (damage === "truncate") fs.truncateSync(path, 0);
+      else fs.writeFileSync(path, original.replace('"at":1000', '"at":9000'));
+    }
+    return value;
+  });
+  syncBuiltinESMExports();
+  try {
+    assert.throws(() => { const store = fileStore(path, { ownership, create: false }); store.close(); }, /record changed during read/);
+    assert.equal(changed, true, "the actual descriptor read must cross the injected change");
+  } finally { restore(); }
+  const damaged = fs.readFileSync(path, "utf8"); assert.notEqual(damaged, original);
+  fs.writeFileSync(path, original);
+  const restored = fileStore(path, { ownership, create: false }); restored.close();
+});

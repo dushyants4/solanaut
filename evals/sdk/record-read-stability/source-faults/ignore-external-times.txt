@@ -1,0 +1,72 @@
+✔ OWN-1: SDK refuses stale ownership instead of removing the lock (29.842328ms)
+✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (8.259893ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (308.905541ms)
+✔ OWN-3: established protected records are not recreated if missing (6.799227ms)
+✔ OWN-2/4: manual refuses a hardlinked journal alias and releases failed startup ownership (7.281727ms)
+✔ OWN-2/4: kernel refuses a hardlinked journal alias and releases failed startup ownership (7.343299ms)
+✔ OWN-2/4: kernel startup refuses a hardlinked mutex without changing its evidence (5.353854ms)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (15.891448ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (4.831889ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (3.999617ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (3.500654ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (3.311551ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (5.002366ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (4.528335ms)
+✖ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (4.714399ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (3.940745ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (4.275713ms)
+✖ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (4.734172ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal append during startup read and releases ownership (10.727852ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal truncate during startup read and releases ownership (8.65572ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal overwrite during startup read and releases ownership (11.24132ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal append during startup read and releases ownership (17.746222ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal truncate during startup read and releases ownership (19.52178ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal overwrite during startup read and releases ownership (53.210917ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 22
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 478.869479
+
+✖ failing tests:
+
+test at packages/sdk/test/storage-failures.test.ts:52:114
+✖ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (4.714399ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'intent-in-flight'
+  - 'fail-closed'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:78:47)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'intent-in-flight',
+    expected: 'fail-closed',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:52:114
+✖ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (4.734172ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'intent-in-flight'
+  - 'fail-closed'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:78:47)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'intent-in-flight',
+    expected: 'fail-closed',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

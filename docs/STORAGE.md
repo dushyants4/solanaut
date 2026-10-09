@@ -1,6 +1,6 @@
 # Persistent record ownership
 
-> **Draft 10** · 2026-10-09 · owner: integrator · for: SDK users and Linux operators.
+> **Draft 11** · 2026-10-09 · owner: integrator · for: SDK users and Linux operators.
 > Register: `kb/DOCUMENTS.md`. Foundation evidence: `evals/sdk/ownership.md` (claim S16).
 
 An ordinary `createGuard({ policy, log: path })` uses manual SDK ownership. It refuses an
@@ -68,6 +68,13 @@ The store completes short writes and syncs before acknowledgement. A write or sy
 closes the writer; restart may retain an unacknowledged complete entry conservatively. This
 does not prove power-loss durability. Back up history and ownership configuration together;
 verified backup, rollback, snapshots and the full recovery programme remain release work.
+
+Record reads also compare descriptor size and nanosecond modification/change times
+before and after reading, and recheck inode identity. Observed changes refuse before
+parsing or torn-tail repair. Failed startup releases ownership and retains the
+changed evidence. Stop all writers and verify the intended immutable history before
+operator recovery; a metadata comparison does not freeze the host or source.
+Evidence: `evals/sdk/record-read-stability.md`.
 
 Before each append, the writer also compares descriptor byte count and nanosecond
 modification/change times with completed startup or its last synced append.

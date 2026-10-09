@@ -1,0 +1,68 @@
+✖ OWN-1: SDK refuses stale ownership instead of removing the lock (34.992539ms)
+✖ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (10.243115ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (305.792922ms)
+✔ OWN-3: established protected records are not recreated if missing (6.882135ms)
+✔ OWN-2/4: manual refuses a hardlinked journal alias and releases failed startup ownership (6.665743ms)
+✔ OWN-2/4: kernel refuses a hardlinked journal alias and releases failed startup ownership (6.866182ms)
+✔ OWN-2/4: kernel startup refuses a hardlinked mutex without changing its evidence (5.391628ms)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (14.815757ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (4.681732ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (3.688984ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (4.063994ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (4.026221ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (4.80378ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (3.885844ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (3.632948ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (3.708639ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (3.368455ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (3.681358ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal append during startup read and releases ownership (9.608087ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal truncate during startup read and releases ownership (7.35986ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal overwrite during startup read and releases ownership (9.017205ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal append during startup read and releases ownership (8.626901ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal truncate during startup read and releases ownership (8.655239ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal overwrite during startup read and releases ownership (13.186988ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 22
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 476.416642
+
+✖ failing tests:
+
+test at packages/sdk/test/ownership.test.ts:11:1
+✖ OWN-1: SDK refuses stale ownership instead of removing the lock (34.992539ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/ownership.test.ts:16:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /stale|locked/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/ownership.test.ts:19:1
+✖ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (10.243115ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/ownership.test.ts:28:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /kernel|locked|stale/,
+    operator: 'throws',
+    diff: 'simple'
+  }

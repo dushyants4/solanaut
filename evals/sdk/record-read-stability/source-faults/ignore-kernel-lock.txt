@@ -1,0 +1,70 @@
+✔ OWN-1: SDK refuses stale ownership instead of removing the lock (37.120682ms)
+✖ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (5.168424ms)
+✖ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (282.267167ms)
+✔ OWN-3: established protected records are not recreated if missing (6.031169ms)
+✔ OWN-2/4: manual refuses a hardlinked journal alias and releases failed startup ownership (6.779472ms)
+✔ OWN-2/4: kernel refuses a hardlinked journal alias and releases failed startup ownership (6.754834ms)
+✔ OWN-2/4: kernel startup refuses a hardlinked mutex without changing its evidence (5.260377ms)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (14.904168ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (4.816032ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (4.398612ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (3.451352ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (3.82483ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (4.869493ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (3.569224ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (3.579778ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (3.6974ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (4.052172ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (3.298527ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal append during startup read and releases ownership (8.961932ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal truncate during startup read and releases ownership (8.602858ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal overwrite during startup read and releases ownership (8.659692ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal append during startup read and releases ownership (8.144546ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal truncate during startup read and releases ownership (8.590328ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal overwrite during startup read and releases ownership (15.907751ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 22
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 453.868747
+
+✖ failing tests:
+
+test at packages/sdk/test/ownership.test.ts:19:1
+✖ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (5.168424ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/ownership.test.ts:22:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /locked/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/ownership.test.ts:30:1
+✖ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (282.267167ms)
+  AssertionError [ERR_ASSERTION]: ["owner","owner","owner","owner","owner","owner","owner","owner"]
+  
+  8 !== 1
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/ownership.test.ts:46:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 8,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

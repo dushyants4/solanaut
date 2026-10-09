@@ -1,4 +1,4 @@
-// CI-2 definition 39: record alias refusal; retain all prior populations and limits.
+// CI-2 definition 40: record read stability; retain all prior populations and limits.
 import { createHash } from "node:crypto";
 import { copyFileSync, closeSync, fsyncSync, mkdirSync, mkdtempSync, openSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
@@ -7,7 +7,7 @@ import { MUTATION_PATHS, MUTATION_TESTS, MUTATION_RUN_LIMIT_MS, stageMutation } 
 import { freezeMutationInputs, completedMutation } from "./mutation-recovery.ts";
 import { readSupervisedResult, type RunCommand, type RunTicket } from "../../tools/run-supervisor.ts";
 const root=fileURLToPath(new URL("../../",import.meta.url)),hash=(bytes:Uint8Array|string)=>createHash("sha256").update(bytes).digest("hex");
-const environment={PATH:dirname(process.execPath)+":/usr/bin:/bin",LANG:"C.UTF-8",FUZZ_RUNS:"5000",FUZZ_SEED:"39743",NO_COLOR:"1"};
+const environment={PATH:dirname(process.execPath)+":/usr/bin:/bin",LANG:"C.UTF-8",FUZZ_RUNS:"5000",FUZZ_SEED:"40529",NO_COLOR:"1"};
 function command(destination:string,baseline:boolean):RunCommand {
   return {command:process.execPath,args:baseline?["--test","--experimental-test-isolation=none",...MUTATION_TESTS]:[join(root,"node_modules/@stryker-mutator/core/bin/stryker.js"),"run","stryker.config.json"],cwd:destination,timeoutMs:MUTATION_RUN_LIMIT_MS,graceMs:5000,env:environment};
 }
@@ -23,7 +23,7 @@ async function start(baseline:boolean) {
   for(const name of ["run-supervisor.ts","run-completion.ts"])copyFileSync(join(root,"tools",name),join(supervision,name));
   const supervisorHashes=Object.fromEntries(["run-supervisor.ts","run-completion.ts"].map(name=>[name,hash(readFileSync(join(supervision,name)))]));
   const binding=freezeMutationInputs(root,destination),cmd=command(destination,baseline);
-  save(destination,"manifest.json",{definition:39,node:process.version,baseline,runLimitMs:MUTATION_RUN_LIMIT_MS,binding,tests:MUTATION_TESTS,environment,supervisorHashes,started:new Date().toISOString()});
+  save(destination,"manifest.json",{definition:40,node:process.version,baseline,runLimitMs:MUTATION_RUN_LIMIT_MS,binding,tests:MUTATION_TESTS,environment,supervisorHashes,started:new Date().toISOString()});
   const frozen=await import(pathToFileURL(join(supervision,"run-supervisor.ts")).href) as typeof import("../../tools/run-supervisor.ts");
   const ticket=frozen.launchSupervisedRun(join(destination,"execution"),cmd,hash(readFileSync(join(destination,"manifest.json"))));
   save(destination,"ticket.json",ticket);console.log("Mutation run directory: "+destination);
@@ -31,7 +31,7 @@ async function start(baseline:boolean) {
 }
 function finish(destination:string) {
   const bytes=readFileSync(join(destination,"manifest.json")),manifest=JSON.parse(bytes.toString("utf8"));
-  if(manifest.definition!==39 || manifest.node!==process.version || typeof manifest.baseline!=="boolean" || manifest.runLimitMs!==MUTATION_RUN_LIMIT_MS || JSON.stringify(manifest.tests)!==JSON.stringify(MUTATION_TESTS) || JSON.stringify(manifest.environment)!==JSON.stringify(environment))throw new Error("mutation execution definition differs");
+  if(manifest.definition!==40 || manifest.node!==process.version || typeof manifest.baseline!=="boolean" || manifest.runLimitMs!==MUTATION_RUN_LIMIT_MS || JSON.stringify(manifest.tests)!==JSON.stringify(MUTATION_TESTS) || JSON.stringify(manifest.environment)!==JSON.stringify(environment))throw new Error("mutation execution definition differs");
   for(const name of ["run-supervisor.ts","run-completion.ts"])if(hash(readFileSync(join(destination,"supervision",name)))!==manifest.supervisorHashes?.[name])throw new Error("frozen supervisor source changed");
   const ticket=JSON.parse(readFileSync(join(destination,"ticket.json"),"utf8")) as RunTicket;
   if(ticket.directory!==join(destination,"execution") || ticket.identity.inputHash!==hash(bytes) || ticket.identity.commandHash!==hash(JSON.stringify(command(destination,manifest.baseline))))throw new Error("mutation ticket binding differs");

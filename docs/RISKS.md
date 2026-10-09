@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.71** · 2026-10-09 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.72** · 2026-10-09 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 Local-only commits now replace the previous standing push grant. The unchanged
@@ -10,6 +10,10 @@ Live journal metadata changes now refuse before another append, including
 same-inode corruption under advisory ownership. The signer host remains trusted:
 metadata comparisons are not authenticated content reads or atomic protection
 against privileged changes during a write. Maintenance stops writers before repair.
+Reads now compare observed metadata and current inode identity before their bytes
+seed recovery or maintenance. A mismatch refuses before torn-tail repair; failed
+startup releases acquired ownership. This is observed-read consistency, not an
+atomic host snapshot or protection against privileged changes after validation.
 Journal/mutex hardlinks also refuse, preventing an alternate pathname from
 opening the journal with a different pathname lock. This supports exclusive
 ownership on the stated local filesystem; it does not freeze the trusted host

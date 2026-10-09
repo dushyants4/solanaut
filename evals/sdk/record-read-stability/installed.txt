@@ -1,0 +1,23 @@
+✔ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (148.492699ms)
+✔ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (72.914088ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (68.376218ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (109.859816ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (230.67977ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (0.412612ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (256.27168ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (115.199328ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (112.16907ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (112.032815ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (48.853013ms)
+✔ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (872.123288ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (38.403457ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (88.127857ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (46.804594ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2922.633991

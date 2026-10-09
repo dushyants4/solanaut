@@ -1,0 +1,118 @@
+✔ OWN-1: SDK refuses stale ownership instead of removing the lock (33.070975ms)
+✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (7.506226ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (292.306994ms)
+✔ OWN-3: established protected records are not recreated if missing (5.884261ms)
+✔ OWN-2/4: manual refuses a hardlinked journal alias and releases failed startup ownership (6.625778ms)
+✔ OWN-2/4: kernel refuses a hardlinked journal alias and releases failed startup ownership (8.03469ms)
+✔ OWN-2/4: kernel startup refuses a hardlinked mutex without changing its evidence (5.370152ms)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (16.824748ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (4.826771ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (3.810695ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (4.110425ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (3.962844ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (4.96058ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (3.989401ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (5.411179ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (4.096957ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (3.531086ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (3.656722ms)
+✖ STO-4/SIG-8/OWN-2: manual refuses journal append during startup read and releases ownership (6.957599ms)
+✖ STO-4/SIG-8/OWN-2: manual refuses journal truncate during startup read and releases ownership (6.041686ms)
+✖ STO-4/SIG-8/OWN-2: manual refuses journal overwrite during startup read and releases ownership (8.189537ms)
+✖ STO-4/SIG-8/OWN-2: kernel refuses journal append during startup read and releases ownership (6.319259ms)
+✖ STO-4/SIG-8/OWN-2: kernel refuses journal truncate during startup read and releases ownership (5.395613ms)
+✖ STO-4/SIG-8/OWN-2: kernel refuses journal overwrite during startup read and releases ownership (9.579065ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 18
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 458.442366
+
+✖ failing tests:
+
+test at packages/sdk/test/storage-failures.test.ts:87:114
+✖ STO-4/SIG-8/OWN-2: manual refuses journal append during startup read and releases ownership (6.957599ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:105:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /record changed during read/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:87:114
+✖ STO-4/SIG-8/OWN-2: manual refuses journal truncate during startup read and releases ownership (6.041686ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:105:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /record changed during read/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:87:114
+✖ STO-4/SIG-8/OWN-2: manual refuses journal overwrite during startup read and releases ownership (8.189537ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:105:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /record changed during read/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:87:114
+✖ STO-4/SIG-8/OWN-2: kernel refuses journal append during startup read and releases ownership (6.319259ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:105:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /record changed during read/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:87:114
+✖ STO-4/SIG-8/OWN-2: kernel refuses journal truncate during startup read and releases ownership (5.395613ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:105:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /record changed during read/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:87:114
+✖ STO-4/SIG-8/OWN-2: kernel refuses journal overwrite during startup read and releases ownership (9.579065ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:105:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /record changed during read/,
+    operator: 'throws',
+    diff: 'simple'
+  }

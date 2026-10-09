@@ -12,6 +12,20 @@ each component. Preserve every accepted security and release gate.
 
 ## Did
 
+D35's focused/source/installed/compiled/native and typecheck pass, CLAIMS S102.
+Quiet serial AST fails the unchanged real-baseline wait. Archive raw reports
+without floor credit; exact product/input/emitted-file/archive identities match
+after restoration. Read the diff, run unchanged close and save the coherent
+local commit and source-history backup before other work. No remote push.
+
+D34 is locally committed as `84cac38` with a verified complete-history bundle
+and exact clean clone/full fsck. Close passes nine of ten, only pushed HEAD
+failing. Continue into D35 observed startup-read consistency: actual descriptor
+mutation after returning bytes is accepted before correction in both ownership
+modes. Under ADR-019, verify metadata and inode identity before parse/repair.
+Source/installed cases fail first; retain every prior trial and declare definition
+40/seed 40529 before full measurement. No signing, record/profile or gate change.
+
 Final requirement-labelled D34 inputs pass source faults/native again; serial AST
 repeats the unchanged wait failure. Preserve both input manifests and both raw
 coverage report populations. Final product/evaluation/emitted-file/archive
@@ -210,6 +224,11 @@ Current-day run record and project register; subsequent replay component paths
 and qualification evidence will be recorded as work proceeds.
 
 ## Found
+
+D35's startup fixtures first fail on missing refusal after actual descriptor
+append/truncation/same-size overwrite. The installed previous candidate likewise
+accepts stale bytes. Preserve both failures; refuse before parse or torn-tail
+repair, and prove stopped restoration can reopen after failed-startup cleanup.
 
 Final D34 review finds that source case names cite OWN-2 but omit the explicitly
 allocated OWN-4. Add its requirement label and retain the earlier outputs/manifest.

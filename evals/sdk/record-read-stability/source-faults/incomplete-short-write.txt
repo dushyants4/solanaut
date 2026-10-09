@@ -1,0 +1,48 @@
+✔ OWN-1: SDK refuses stale ownership instead of removing the lock (28.716455ms)
+✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (9.568388ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (295.937979ms)
+✔ OWN-3: established protected records are not recreated if missing (5.569441ms)
+✔ OWN-2/4: manual refuses a hardlinked journal alias and releases failed startup ownership (6.667122ms)
+✔ OWN-2/4: kernel refuses a hardlinked journal alias and releases failed startup ownership (6.608709ms)
+✔ OWN-2/4: kernel startup refuses a hardlinked mutex without changing its evidence (5.477158ms)
+✖ STO-1/SIG-8: short writes complete before an admission is acknowledged (15.806643ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (4.536437ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (4.859722ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (4.184324ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (3.662648ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (4.5954ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (4.060643ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (4.650597ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (3.475051ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (3.789677ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (3.046123ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal append during startup read and releases ownership (9.995869ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal truncate during startup read and releases ownership (10.171187ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal overwrite during startup read and releases ownership (7.859579ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal append during startup read and releases ownership (9.697134ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal truncate during startup read and releases ownership (15.416612ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal overwrite during startup read and releases ownership (35.808542ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 23
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 454.395223
+
+✖ failing tests:
+
+test at packages/sdk/test/storage-failures.test.ts:15:1
+✖ STO-1/SIG-8: short writes complete before an admission is acknowledged (15.806643ms)
+  AssertionError [ERR_ASSERTION]: the entire line must exist before admission
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:28:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

@@ -1,0 +1,74 @@
+✔ OWN-1: SDK refuses stale ownership instead of removing the lock (32.522436ms)
+✖ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (6.065608ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (283.803516ms)
+✔ OWN-3: established protected records are not recreated if missing (5.86333ms)
+✔ OWN-2/4: manual refuses a hardlinked journal alias and releases failed startup ownership (6.754022ms)
+✔ OWN-2/4: kernel refuses a hardlinked journal alias and releases failed startup ownership (7.444607ms)
+✖ OWN-2/4: kernel startup refuses a hardlinked mutex without changing its evidence (1.885704ms)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (16.102843ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (5.293327ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (3.788716ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (3.738272ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (3.409111ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (4.74256ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (3.494189ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (3.78307ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (4.781811ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (3.724171ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (3.597098ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal append during startup read and releases ownership (8.350026ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal truncate during startup read and releases ownership (7.337068ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal overwrite during startup read and releases ownership (11.120608ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal append during startup read and releases ownership (9.220026ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal truncate during startup read and releases ownership (8.584965ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal overwrite during startup read and releases ownership (23.783962ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 22
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 446.607644
+
+✖ failing tests:
+
+test at packages/sdk/test/ownership.test.ts:19:1
+✖ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (6.065608ms)
+  AssertionError [ERR_ASSERTION]: a kernel mutex inode must never be unlinked on close
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/ownership.test.ts:25:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/ownership.test.ts:69:1
+✖ OWN-2/4: kernel startup refuses a hardlinked mutex without changing its evidence (1.885704ms)
+  Error: ENOENT: no such file or directory, open '/tmp/solanaut-ownership-LAT9YP/guard.jsonl.lock'
+      at Object.openSync (node:fs:697:18)
+      at readFileSync (node:fs:543:35)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/ownership.test.ts:71:68)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/tmp/solanaut-ownership-LAT9YP/guard.jsonl.lock'
+  }

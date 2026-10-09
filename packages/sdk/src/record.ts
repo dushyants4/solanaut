@@ -148,7 +148,11 @@ function lock(path: string, mode: "manual" | "kernel"): { held(): void; release(
 }
 
 function readRecord(path: string, fd: number): Entry[] {
+  const before = fstatSync(fd, { bigint: true });
   const text = readFileSync(fd, "utf8");
+  sameFile(fd, path);
+  const after = fstatSync(fd, { bigint: true });
+  if (before.size !== after.size || before.mtimeNs !== after.mtimeNs || before.ctimeNs !== after.ctimeNs) throw new Error("the record changed during read");
   const end = text.lastIndexOf("\n") + 1;
   if (end < text.length) {
     // A torn last line: cut it, so the next entry starts on a clean line.

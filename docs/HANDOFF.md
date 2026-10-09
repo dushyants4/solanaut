@@ -243,6 +243,17 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-09 startup consistency: alias correction is locally committed as
+`84cac38`, with verified bundle, exact clean clone/full fsck and close failing
+only unpushed HEAD. Reproduce startup acceptance of stale read bytes when the
+journal changes during descriptor reading. Add descriptor metadata and current
+inode verification before parse/torn-tail repair under ADR-019. Source and
+installed previous-candidate failures remain retained. Definition 40/seed 40529
+adds startup cases while retaining every previous input/limit. Qualification
+passes native/type/source/compiled with exact bound restored identities, CLAIMS
+S102. Quiet serial AST fails the unchanged real-baseline wait; complete coverage
+remains open, without accepting H9/H11 or changing the signer surface.
+
 2026-10-09 ownership alias follow-up: Node 24 evidence is locally archived as
 `8b1d29d` with its verified Git bundle. Reproduce hardlinked journal/mutex startup
 acceptance; separate journal pathnames obtain separate locks. Add single-link

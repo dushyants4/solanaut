@@ -130,6 +130,26 @@ test("PKG-1/OWN-2: installed record refuses journal and mutex aliases with faile
   assert.equal(result.status,0,result.stderr);assert.equal(result.error,undefined);assert.equal(result.signal,null);assert.equal(result.stdout,"record aliases refused\n");
 });
 
+test("PKG-1/STO-4: installed record rejects changes during startup read and releases ownership", () => {
+  const script=`
+    import {createGuard} from '@solanaut/sdk';import fs from 'node:fs';import {syncBuiltinESMExports} from 'node:module';import {tmpdir} from 'node:os';import {join} from 'node:path';
+    const base=import.meta.resolve('@solanaut/sdk'),{fileStore}=await import(new URL('./record.js',base)),directory=fs.mkdtempSync(join(tmpdir(),'solanaut-read-stability-'));
+    try{for(const ownership of ['manual','kernel'])for(const damage of ['append','truncate','overwrite']){
+      const path=join(directory,ownership+'-'+damage+'.jsonl'),seed=await createGuard({policy:JSON.parse(process.argv[1]),log:path});
+      if(!seed.check({message:new Uint8Array(Buffer.from(process.argv[2],'base64')),at:1000}).allow)throw new Error('read stability fixture denied');seed.close();
+      const original=fs.readFileSync(path,'utf8'),inode=fs.statSync(path).ino,read=fs.readFileSync;let changed=false,denied=false;
+      try{
+        fs.readFileSync=(...args)=>{const value=Reflect.apply(read,fs,args);if(!changed&&typeof args[0]==='number'&&typeof value==='string'&&fs.fstatSync(args[0]).ino===inode){changed=true;if(damage==='append')fs.appendFileSync(path,'{}'+String.fromCharCode(10));else if(damage==='truncate')fs.truncateSync(path,0);else fs.writeFileSync(path,original.replace('"at":1000','"at":9000'));}return value;};syncBuiltinESMExports();
+        try{fileStore(path,{ownership,create:false}).close();}catch(error){denied=/record changed during read/.test(error.message);}
+      }finally{fs.readFileSync=read;syncBuiltinESMExports();}
+      if(!changed||!denied||fs.readFileSync(path,'utf8')===original)throw new Error('installed record accepted or repaired an unstable read');
+      fs.writeFileSync(path,original);fileStore(path,{ownership,create:false}).close();
+    }}finally{fs.rmSync(directory,{recursive:true,force:true});}
+    console.log('unstable startup reads refused');`;
+  const result=spawnSync(process.execPath,["--input-type=module","-e",script,inputPolicy,Buffer.from(transfer(2)).toString("base64")],{cwd:consumer,encoding:"utf8",timeout:15000});
+  assert.equal(result.status,0,result.stderr);assert.equal(result.error,undefined);assert.equal(result.signal,null);assert.equal(result.stdout,"unstable startup reads refused\n");
+});
+
 test("PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts", () => {
   const script = `
     import {createGuard,replay,memoryStore} from '@solanaut/sdk';
