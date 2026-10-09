@@ -1,0 +1,41 @@
+✖ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (32.821663ms)
+✔ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (23.974802ms)
+✔ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (29.830092ms)
+✔ SNP-7/LIF-2: denied replies and unrelated non-request decisions do not disappear or redirect lookup (10.143552ms)
+✔ OWN-2: fake, copied, manual, closed and failed owners cannot consult current history (14.598322ms)
+✔ SNP-7: missing published index is a refusal, never an automatic write or empty answer (5.243831ms)
+✔ SNP-7: identity and external pins are captured before async reads and invalid containers refuse (10.388063ms)
+✔ OWN-2: lookup, index publication, checkpoint publication and recovery share maintenance exclusion (10.441733ms)
+✔ SNP-7: full current replay rejects unrelated dishonest tails even when a prefix hit exists (7.819586ms)
+✔ SNP-7: fresh disk and cached history mismatch refuses without changing evidence (15.947471ms)
+✔ SNP-7/OWN-2: concurrent append, cache change, closure and inode substitution refuse current answers (37.746114ms)
+✔ SNP-7: corrupt pointer or any generation evidence refuses without repairing the cache (49.689268ms)
+✔ SNP-7: pointer disappearance or byte-identical replacement during module loading refuses (11.177332ms)
+✔ SNP-7: late pointer, record and cache changes during actual shard lookup refuse (24.088969ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 13
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 362.455412
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-lookup.test.ts:38:1
+✖ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (32.821663ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(Object.isFrozen(got))
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:43:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

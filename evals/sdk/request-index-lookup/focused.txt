@@ -1,0 +1,45 @@
+✔ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (32.952764ms)
+✖ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (14.804642ms)
+✔ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (33.05449ms)
+✔ SNP-7/LIF-2: denied replies and unrelated non-request decisions do not disappear or redirect lookup (9.824167ms)
+✔ OWN-2: fake, copied, manual, closed and failed owners cannot consult current history (15.021596ms)
+✔ SNP-7: missing published index is a refusal, never an automatic write or empty answer (5.264857ms)
+✔ SNP-7: identity and external pins are captured before async reads and invalid containers refuse (10.40795ms)
+✔ OWN-2: lookup, index publication, checkpoint publication and recovery share maintenance exclusion (10.336609ms)
+✖ SNP-7: full current replay rejects unrelated dishonest tails even when a prefix hit exists (9.316629ms)
+✔ SNP-7: fresh disk and cached history mismatch refuses without changing evidence (14.504868ms)
+✔ SNP-7/OWN-2: concurrent append, cache change, closure and inode substitution refuse current answers (34.695737ms)
+✔ SNP-7: corrupt pointer or any generation evidence refuses without repairing the cache (46.074561ms)
+✔ SNP-7: pointer disappearance or byte-identical replacement during module loading refuses (9.697663ms)
+✔ SNP-7: late pointer, record and cache changes during actual shard lookup refuse (22.37723ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 12
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 356.312946
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-lookup.test.ts:48:1
+✖ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (14.804642ms)
+  TypeError: f.guard.updatePolicy is not a function
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:51:106)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/request-index-lookup.test.ts:98:1
+✖ SNP-7: full current replay rejects unrelated dishonest tails even when a prefix hit exists (9.316629ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (RequestIndexLookupError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:102:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }

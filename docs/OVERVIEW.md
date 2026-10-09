@@ -1,10 +1,17 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 40** · 2026-10-08 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 41** · 2026-10-08 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
+
+The internal owned request lookup in `record.ts` authenticates the published
+disk prefix and complete signed current history, then folds the tail for one
+identity. Immutable request/reply evidence carries both current and index heads;
+late record/cache/pointer changes refuse. This read-only maintenance capability
+requires an existing index. It neither authorises admission nor bounds construction
+or retained state. Evidence: `evals/sdk/request-index-lookup.md`.
 
 `apps/firewall/src/filter.ts` is the internal offline MCP selection component.
 It copies explicit operator tool configuration, requires an explicit devnet

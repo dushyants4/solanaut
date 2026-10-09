@@ -1,0 +1,38 @@
+✔ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (30.765427ms)
+✔ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (26.568108ms)
+✔ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (32.747325ms)
+✔ SNP-7/LIF-2: denied replies and unrelated non-request decisions do not disappear or redirect lookup (9.564792ms)
+✔ OWN-2: fake, copied, manual, closed and failed owners cannot consult current history (13.593628ms)
+✔ SNP-7: missing published index is a refusal, never an automatic write or empty answer (5.535243ms)
+✖ SNP-7: identity and external pins are captured before async reads and invalid containers refuse (6.696886ms)
+✔ OWN-2: lookup, index publication, checkpoint publication and recovery share maintenance exclusion (11.421866ms)
+✔ SNP-7: full current replay rejects unrelated dishonest tails even when a prefix hit exists (7.584707ms)
+✔ SNP-7: fresh disk and cached history mismatch refuses without changing evidence (17.501332ms)
+✔ SNP-7/OWN-2: concurrent append, cache change, closure and inode substitution refuse current answers (36.742708ms)
+✔ SNP-7: corrupt pointer or any generation evidence refuses without repairing the cache (46.297842ms)
+✔ SNP-7: pointer disappearance or byte-identical replacement during module loading refuses (9.814722ms)
+✔ SNP-7: late pointer, record and cache changes during actual shard lookup refuse (23.167154ms)
+✔ SNP-7: helper captures history before awaits instead of folding unvalidated caller mutations (7.765521ms)
+✔ OWN-2: a valid cache under a manual owner still cannot claim kernel-owned current evidence (7.149717ms)
+✔ OWN-2: a healthy closed lookup capability cannot borrow a reopened owner's reused descriptors (10.189199ms)
+✔ SNP-7/LIF-3/4: a complete payment lifecycle wholly in the tail matches a newly published index (17.256659ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 17
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 398.727547
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-lookup.test.ts:88:1
+✖ SNP-7: identity and external pins are captured before async reads and invalid containers refuse (6.696886ms)
+  RequestIndexLookupError: owned request index cannot establish current evidence
+      at lookupOwnedRequestIndex (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:49:121)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:90:172)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'request-index-lookup'
+  }

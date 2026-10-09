@@ -19,7 +19,8 @@ import { hashOf, type Entry } from "./log.ts";
 import {CheckpointPublicationError,CheckpointRecoveryError} from "./checkpoint-errors.ts";
 import type {CheckpointPublicationOptions,CheckpointPublicationReceipt} from "./checkpoint-publication.ts";
 import type {CheckpointRecoveryOptions,PreparedCheckpointRecovery} from "./checkpoint-recovery.ts";
-import type {RequestIndexPublicationOptions,RequestIndexPublicationReceipt} from "./request-index-publication.ts";
+import type {RequestIndexLookupReceipt,RequestIndexPublicationOptions,RequestIndexPublicationReceipt} from "./request-index-publication.ts";
+import type {RequestIdentity} from "./request.ts";
 
 export interface EntryStore {
   /** Every entry kept so far, oldest first. The store, not the guard, adds to it. */
@@ -36,6 +37,17 @@ export class RequestIndexPublicationError extends Error {
   constructor(message:string){super(message);this.name="RequestIndexPublicationError";}
 }
 const indexPublishers=new WeakMap<EntryStore,(options:RequestIndexPublicationOptions)=>Promise<Readonly<RequestIndexPublicationReceipt>>>();
+export class RequestIndexLookupError extends Error {
+  readonly code="request-index-lookup";
+  constructor(message:string){super(message);this.name="RequestIndexLookupError";}
+}
+const indexLookups=new WeakMap<EntryStore,(identity:RequestIdentity,options:RequestIndexPublicationOptions)=>Promise<Readonly<RequestIndexLookupReceipt>>>();
+/** Internal read-only evidence through a captured owned head, not an admission permit. */
+export async function lookupOwnedRequestIndex(store:EntryStore,identity:RequestIdentity,options:RequestIndexPublicationOptions):Promise<Readonly<RequestIndexLookupReceipt>> {
+  const lookup=indexLookups.get(store);
+  if(!lookup)throw new RequestIndexLookupError("current request lookup requires actual file ownership");
+  try{return await lookup(identity,options);}catch(error){if(error instanceof RequestIndexLookupError)throw error;throw new RequestIndexLookupError("owned request index cannot establish current evidence");}
+}
 /** Internal maintenance capability; a copied store or disk manifest cannot claim ownership. */
 export async function publishOwnedRequestIndex(store:EntryStore,options:RequestIndexPublicationOptions):Promise<Readonly<RequestIndexPublicationReceipt>>{
   const publish=indexPublishers.get(store);
@@ -281,6 +293,24 @@ export function fileStore(path: string, options: FileStoreOptions = {}): EntrySt
         if(now.size!==before.size||now.mtimeNs!==before.mtimeNs||now.ctimeNs!==before.ctimeNs||canonicalJSON(history)!==canonicalJSON(entries))throw new RequestIndexPublicationError("owned record changed during index validation");
       };
       unchanged();try{return replaceRequestIndex(path,validated,unchanged);}catch(error){failed=true;throw error;}
+    }finally{publishing=false;}
+  });
+  indexLookups.set(store,async(identity,options)=>{
+    if(publishing)throw new RequestIndexLookupError("request index maintenance already in progress");
+    publishing=true;
+    try{
+      const id=structuredClone(identity),pins=structuredClone(options);held();const before=fstatSync(fd,{bigint:true});
+      const reader=openSync(path,constants.O_RDONLY|constants.O_NOFOLLOW);let history:Entry[];
+      try{sameFile(reader,path);history=readRecord(path,reader);}finally{closeSync(reader);}
+      if(canonicalJSON(history)!==canonicalJSON(entries))throw new RequestIndexLookupError("owned record and cached lookup history differ");
+      const marker=lstatSync(path+".request-index",{bigint:true});
+      const {lookupIndexPublication}=await import("./request-index-publication.ts");
+      const named=lstatSync(path+".request-index",{bigint:true});
+      if(marker.dev!==named.dev||marker.ino!==named.ino||marker.size!==named.size||marker.mtimeNs!==named.mtimeNs||marker.ctimeNs!==named.ctimeNs)throw new RequestIndexLookupError("request index pointer changed during lookup loading");
+      const answer=await lookupIndexPublication(path,history,id,pins);
+      held();const now=fstatSync(fd,{bigint:true});
+      if(now.size!==before.size||now.mtimeNs!==before.mtimeNs||now.ctimeNs!==before.ctimeNs||canonicalJSON(history)!==canonicalJSON(entries))throw new RequestIndexLookupError("owned record changed during request lookup");
+      return answer;
     }finally{publishing=false;}
   });
   return store;

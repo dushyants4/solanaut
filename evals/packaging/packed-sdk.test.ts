@@ -228,7 +228,7 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
     const {prepareCheckpointState,CheckpointStateError}=await import(new URL('./checkpoint-state.js',import.meta.resolve('@solanaut/sdk')));
     const {prepareCheckpointBundle}=await import(new URL('./checkpoint-bundle.js',import.meta.resolve('@solanaut/sdk')));
     const {prepareCheckpointEnvelope,verifyCheckpointEnvelope,CheckpointEnvelopeError}=await import(new URL('./checkpoint-envelope.js',import.meta.resolve('@solanaut/sdk')));
-    const {fileStore,publishOwnedCheckpoint,recoverOwnedCheckpoint,publishOwnedRequestIndex,RequestIndexPublicationError}=await import(new URL('./record.js',import.meta.resolve('@solanaut/sdk')));
+    const {fileStore,publishOwnedCheckpoint,recoverOwnedCheckpoint,publishOwnedRequestIndex,lookupOwnedRequestIndex,RequestIndexLookupError,RequestIndexPublicationError}=await import(new URL('./record.js',import.meta.resolve('@solanaut/sdk')));
     const {verifyArchive,streamArchive}=await import(new URL('./archive.js',import.meta.resolve('@solanaut/sdk')));
     const {replay,replayStream}=await import(new URL('./guard.js',import.meta.resolve('@solanaut/sdk')));
     const {seal}=await import(new URL('./log.js',import.meta.resolve('@solanaut/sdk')));
@@ -374,6 +374,15 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
       if(readFileSync(recordPath+'.checkpoint.previous','utf8')!==candidate.text)throw new Error('installed predecessor lost');
       let refused=false;try{await publishOwnedCheckpoint({...store},candidate.text,options);}catch(error){refused=error.name==='CheckpointPublicationError' && error.code==='checkpoint-publication';}
       if(!refused)throw new Error('forged installed ownership accepted');
+      const historical=await lookupOwnedRequestIndex(store,{clientId:'client',id:'payment'},{policyTrust:trust});
+      if(historical.row?.started?.event.stage!=='send-started' || historical.row?.response?.event.status!=='uncertain' || historical.seq!==context.seq || historical.indexHead!==context.head || !Object.isFrozen(historical) || !Object.isFrozen(historical.row))throw new Error('installed current lookup lost uncertain history');
+      let lookupOwnerRefused=false;try{await lookupOwnedRequestIndex({...store},{clientId:'client',id:'payment'},{policyTrust:trust});}catch(error){lookupOwnerRefused=error instanceof RequestIndexLookupError && error.code==='request-index-lookup';}if(!lookupOwnerRefused)throw new Error('installed forged lookup owner accepted');
+      const live=await createGuard({policy,authorization,log:store}),tail=live.beginRequest({clientId:'client',id:'tail'},'status',{},1002),tailReply=live.finishRequest(tail.hash,{ready:true});
+      const current=await lookupOwnedRequestIndex(store,{clientId:'client',id:'tail'},{policyTrust:trust});
+      if(current.seq!==store.entries.length || current.head!==tailReply.hash || current.indexSeq!==context.seq || current.row?.start.hash!==tail.hash || current.row?.response?.hash!==tailReply.hash || !Object.isFrozen(current.row.response))throw new Error('installed current lookup skipped or altered tail');
+      const absent=await lookupOwnedRequestIndex(store,{clientId:'client',id:'absent'},{policyTrust:trust});if(absent.row!==null || absent.head!==tailReply.hash)throw new Error('installed current absence lacks tail binding');
+      const pointerBeforeLookup=readFileSync(recordPath+'.request-index','utf8');writeFileSync(recordPath+'.request-index','corrupt');
+      try{let refused=false;try{await lookupOwnedRequestIndex(store,{clientId:'client',id:'tail'},{policyTrust:trust});}catch(error){refused=error instanceof RequestIndexLookupError && error.code==='request-index-lookup';}if(!refused || readFileSync(recordPath+'.request-index','utf8')!=='corrupt')throw new Error('installed corrupt lookup pointer accepted or repaired');}finally{writeFileSync(recordPath+'.request-index',pointerBeforeLookup);}
     }finally{store.close();rmSync(directory,{recursive:true,force:true});}
     if(prefix.digest!==hash(prefix.text) || state.digest!==hash(state.text) || !Object.isFrozen(prefix) || !Object.isFrozen(state))throw new Error('payload digest or immutability differs');
     if(JSON.stringify(s.profile)!==JSON.stringify(p.profile) || Object.keys(EVALUATION_PROFILE).some(k=>s.profile[k]!==EVALUATION_PROFILE[k]))throw new Error('payload profile differs');

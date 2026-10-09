@@ -1,0 +1,43 @@
+✔ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (31.322693ms)
+✔ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (23.10189ms)
+✖ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (16.54984ms)
+✔ SNP-7/LIF-2: denied replies and unrelated non-request decisions do not disappear or redirect lookup (9.550511ms)
+✔ OWN-2: fake, copied, manual, closed and failed owners cannot consult current history (14.110856ms)
+✔ SNP-7: missing published index is a refusal, never an automatic write or empty answer (5.761753ms)
+✔ SNP-7: identity and external pins are captured before async reads and invalid containers refuse (11.018089ms)
+✔ OWN-2: lookup, index publication, checkpoint publication and recovery share maintenance exclusion (10.96343ms)
+✔ SNP-7: full current replay rejects unrelated dishonest tails even when a prefix hit exists (8.28253ms)
+✔ SNP-7: fresh disk and cached history mismatch refuses without changing evidence (16.622845ms)
+✔ SNP-7/OWN-2: concurrent append, cache change, closure and inode substitution refuse current answers (36.278153ms)
+✔ SNP-7: corrupt pointer or any generation evidence refuses without repairing the cache (48.904664ms)
+✔ SNP-7: pointer disappearance or byte-identical replacement during module loading refuses (10.10381ms)
+✔ SNP-7: late pointer, record and cache changes during actual shard lookup refuse (23.226527ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 13
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 352.07482
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-lookup.test.ts:59:1
+✖ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (16.54984ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'unknown'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:64:331)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'unknown',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

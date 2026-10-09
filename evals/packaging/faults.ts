@@ -15,6 +15,11 @@ function battery() {
 const baseline = battery();
 assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
 const faults = [
+  { name: "owned-lookup-capability", path: "dist/src/record.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("indexLookups.get(store)", "indexLookups.get(store) ?? (async () => ({}))") },
+  { name: "owned-lookup-error", path: "dist/src/record.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace('code = "request-index-lookup"', 'code = "foreign"') },
+  { name: "owned-lookup-tail", path: "dist/src/request-index-publication.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("captured.slice(prefix.seq)", "[]") },
+  { name: "owned-lookup-endpoint", path: "dist/src/request-index-publication.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("return freeze({ seq: validated.seq, head: validated.head, indexSeq: prefix.seq", "return freeze({ seq: prefix.seq, head: prefix.head, indexSeq: prefix.seq") },
+  { name: "owned-lookup-immutable", path: "dist/src/request-index-publication.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("return freeze({ seq: validated.seq", "return ({ seq: validated.seq") },
   { name: "owned-index-module", path: "dist/src/request-index-publication.js", caught: "compiled checkpoint payloads", damage: () => undefined },
   { name: "owned-index-digest", path: "dist/src/request-index-publication.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("digest: prepared.digest, directory, root: prepared.root", 'digest: "0".repeat(64), directory, root: prepared.root') },
   { name: "owned-index-capability", path: "dist/src/record.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("indexPublishers.get(store)", "indexPublishers.get(store) ?? (async () => ({}))") },

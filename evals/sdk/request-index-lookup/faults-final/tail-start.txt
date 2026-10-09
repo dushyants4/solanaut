@@ -1,0 +1,352 @@
+✖ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (28.578399ms)
+✖ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (20.970656ms)
+✖ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (15.44215ms)
+✖ SNP-7/LIF-2: denied replies and unrelated non-request decisions do not disappear or redirect lookup (10.569539ms)
+✔ OWN-2: fake, copied, manual, closed and failed owners cannot consult current history (14.667148ms)
+✔ SNP-7: missing published index is a refusal, never an automatic write or empty answer (5.618735ms)
+✔ SNP-7: identity and external pins are captured before async reads and invalid containers refuse (11.63987ms)
+✔ OWN-2: lookup, index publication, checkpoint publication and recovery share maintenance exclusion (11.067539ms)
+✔ SNP-7: full current replay rejects unrelated dishonest tails even when a prefix hit exists (7.001864ms)
+✔ SNP-7: fresh disk and cached history mismatch refuses without changing evidence (16.97325ms)
+✔ SNP-7/OWN-2: concurrent append, cache change, closure and inode substitution refuse current answers (35.619664ms)
+✔ SNP-7: corrupt pointer or any generation evidence refuses without repairing the cache (46.341671ms)
+✔ SNP-7: pointer disappearance or byte-identical replacement during module loading refuses (9.390135ms)
+✔ SNP-7: late pointer, record and cache changes during actual shard lookup refuse (22.975732ms)
+✖ SNP-7: helper captures history before awaits instead of folding unvalidated caller mutations (7.331071ms)
+✔ OWN-2: a valid cache under a manual owner still cannot claim kernel-owned current evidence (7.691347ms)
+✔ OWN-2: a healthy closed lookup capability cannot borrow a reopened owner's reused descriptors (8.940238ms)
+✖ SNP-7/LIF-3/4: a complete payment lifecycle wholly in the tail matches a newly published index (14.159287ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 12
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 374.50237
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-lookup.test.ts:39:1
+✖ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (28.578399ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      head: '5ac9024fe255e9b17bfb34145aebd6fb5de14d8864aaaa308d7b26a608c839db',
+      indexHead: 'd2a3f77dfe305a1b9df87721a2eeeb8c7dcb89f209e6c42c7af57fc8039c01ab',
+      indexSeq: 1,
+  +   row: null,
+  -   row: {
+  -     format: 1,
+  -     key: '["workload","client","tail"]',
+  -     kind: 'solanaut-request-index-row',
+  -     redeem: null,
+  -     report: null,
+  -     response: null,
+  -     settled: null,
+  -     signed: null,
+  -     start: {
+  -       at: 1000,
+  -       hash: '5ac9024fe255e9b17bfb34145aebd6fb5de14d8864aaaa308d7b26a608c839db',
+  -       kind: 'request',
+  -       method: 'status',
+  -       payload: '{}',
+  -       prev: 'd2a3f77dfe305a1b9df87721a2eeeb8c7dcb89f209e6c42c7af57fc8039c01ab',
+  -       request: {
+  -         clientId: 'client',
+  -         digest: '2c5d2454f3d116f455989b333be5ecba8e3848be4e82f4cf993eb803dc2a1d99',
+  -         guardId: 'workload',
+  -         id: 'tail'
+  -       },
+  -       seq: 1,
+  -       v: 1
+  -     },
+  -     started: null
+  -   },
+      seq: 2
+    }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:43:71)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:49:1
+✖ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (20.970656ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + null
+  - {
+  -   at: 1000,
+  -   hash: 'a983ea4e6ad669023520ccb052bfc9c4a83b1db85e11292c2467efdb65e08f4d',
+  -   kind: 'response',
+  -   prev: '12ae75e34e21936c2a8ea2c9674d6ccf4e2af675f3c09af73ee2ba7a8d14ffdf',
+  -   request: '12ae75e34e21936c2a8ea2c9674d6ccf4e2af675f3c09af73ee2ba7a8d14ffdf',
+  -   result: '{"ready":true}',
+  -   seq: 2,
+  -   v: 1
+  - }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:54:112)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:60:1
+✖ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (15.44215ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + null
+  - {
+  -   at: 1000,
+  -   event: {
+  -     decision: 'd3a0b81e2b9e608ce641bbdec7bdcea50c9c7d431d50de91cb9df2cfac11916b',
+  -     signature: '4hfQecVy1u8bjZ4u5JBgmvyNVcxX64238ezrsFFHSdiCeAXh7qCUzzoixaWpo3EhLA6krrGwNU715M413VyVPowk',
+  -     stage: 'signed',
+  -     wire: 'Abkd1TtUMzMxSotvTLBvLITzBHoWvobd5z5gkpthxLFtiqIfhlNKsHrBtkCbAmP0RulAivbQdg7dMDfCdRZV8w8BAAEDXd9gTfyKZ80AFgJ2g77iKDAVhy2lS6QWo8eJW2uevZsCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQBAgIAAQwCAAAAAQAAAAAAAAA='
+  -   },
+  -   hash: '4f5e8cb4d9cf5ad836e275778ecd685e3a6f7ab344dc5fc64e9efe9e872a1b68',
+  -   kind: 'signing',
+  -   prev: '1cca406de14f1b59e07ecc9556ef9c27b541127ee5a64cc71bdf11bb05a71c19',
+  -   seq: 3,
+  -   v: 1
+  - }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:65:124)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:70:1
+✖ SNP-7/LIF-2: denied replies and unrelated non-request decisions do not disappear or redirect lookup (10.569539ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + undefined
+  - {
+  -   allow: false,
+  -   amounts: null,
+  -   at: 1000,
+  -   blockHeight: null,
+  -   group: null,
+  -   hash: 'c2ef6bfd7df5d8dcd65e89a36175faf283e9a582682109f376dae613738a1209',
+  -   intentKey: null,
+  -   keel: {
+  -     digest: '834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8',
+  -     verified: 'bytes',
+  -     version: '1.0.1'
+  -   },
+  -   kind: 'decision',
+  -   lastValidBlockHeight: null,
+  -   message: '/w==',
+  -   messageHash: null,
+  -   policyHash: '2ebcbf426e790de44072b81de4689172b7b8af17fa31271bf25559b7b7ec3900',
+  -   posture: null,
+  -   prev: 'ad7394621db746cd87230594ae1eef1ae27c032d2b311b9ee0be0ac6097e5268',
+  -   reason: 'message version 127 (first byte 0xff) is not legacy, 0 or 1',
+  -   request: {
+  -     clientId: 'client',
+  -     digest: 'c0a1d36c8cd63471c8fa09e41d624b29057651130016f242cb5f916392de398d',
+  -     guardId: 'workload',
+  -     id: 'denied'
+  -   },
+  -   rule: 'unsupported-version',
+  -   seq: 1,
+  -   shape: null,
+  -   source: 'caller',
+  -   telemetry: null,
+  -   temperatureMax: null,
+  -   v: 1
+  - }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:73:73)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:135:1
+✖ SNP-7: helper captures history before awaits instead of folding unvalidated caller mutations (7.331071ms)
+  AssertionError [ERR_ASSERTION]: only captured validated tail evidence may be returned
+  + actual - expected
+  
+  + undefined
+  - null
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:139:91)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:152:1
+✖ SNP-7/LIF-3/4: a complete payment lifecycle wholly in the tail matches a newly published index (14.159287ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + null
+  - {
+  -   format: 1,
+  -   key: '["workload","client","new-payment"]',
+  -   kind: 'solanaut-request-index-row',
+  -   redeem: {
+  -     at: 1000,
+  -     blockHeight: '10',
+  -     decision: '18b5cc24932479997db798f710dab850b5f0e313dddebb81ac8c1143a757a4d3',
+  -     hash: 'd4a8ea3e9b045e4efd4ecd0025532ce3585324296b5d7d4a34e75a62eaf1e2e1',
+  -     kind: 'redeem',
+  -     prev: '18b5cc24932479997db798f710dab850b5f0e313dddebb81ac8c1143a757a4d3',
+  -     seq: 2,
+  -     v: 1
+  -   },
+  -   report: {
+  -     at: 1000,
+  -     decision: '18b5cc24932479997db798f710dab850b5f0e313dddebb81ac8c1143a757a4d3',
+  -     hash: '64d3bf6a731a0b99e11128c05a54f4cea3f73f6f37f1da781e12cbb2714790de',
+  -     kind: 'report',
+  -     outcome: 'failed',
+  -     prev: '22bc739ebcc9cecec1d1efad852b45a8792241c9ed5127a1b0a945008decc450',
+  -     seq: 8,
+  -     source: 'caller',
+  -     v: 1
+  -   },
+  -   response: {
+  -     at: 1000,
+  -     event: {
+  -       decision: '18b5cc24932479997db798f710dab850b5f0e313dddebb81ac8c1143a757a4d3',
+  -       signature: '3HGwG1MXXZkXJXfrK7ykHHQy27JRSiCNPCeeFuan9qff2vmy8faTMXt6yorbcv5s1kncvkAFs81rE1aka6j7QEYr',
+  -       stage: 'response',
+  -       status: 'uncertain'
+  -     },
+  -     hash: '3bbc5897ac9a63354bd462ffe4c822dd84d49dfeeca0687e4e4933b0e9e2744e',
+  -     kind: 'signing',
+  -     prev: '7bd4291eee1b58571fd448670b59b34121af40e7332d5ca395f7f1dd0a9852fe',
+  -     seq: 5,
+  -     v: 1
+  -   },
+  -   settled: {
+  -     at: 1000,
+  -     decision: '18b5cc24932479997db798f710dab850b5f0e313dddebb81ac8c1143a757a4d3',
+  -     hash: '64d3bf6a731a0b99e11128c05a54f4cea3f73f6f37f1da781e12cbb2714790de',
+  -     kind: 'report',
+  -     outcome: 'failed',
+  -     prev: '22bc739ebcc9cecec1d1efad852b45a8792241c9ed5127a1b0a945008decc450',
+  -     seq: 8,
+  -     source: 'caller',
+  -     v: 1
+  -   },
+  -   signed: {
+  -     at: 1000,
+  -     event: {
+  -       decision: '18b5cc24932479997db798f710dab850b5f0e313dddebb81ac8c1143a757a4d3',
+  -       signature: '3HGwG1MXXZkXJXfrK7ykHHQy27JRSiCNPCeeFuan9qff2vmy8faTMXt6yorbcv5s1kncvkAFs81rE1aka6j7QEYr',
+  -       stage: 'signed',
+  -       wire: 'AXIRl9oTY+DFAVbh+JAbmxg+l2zR0YbmAc5veH4glnsWgKXQBXErt8EJdaqDZuCLg/lMZ6ZL+qeaUaH8jnyBXQMBAAEDMEbUXjSS4osuAMxiFkZlTqxpfsqPHFA+DwTZuaAgRScCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQBAgIAAQwCAAAAAQAAAAAAAAA='
+  -     },
+  -     hash: '94a996a2e4743a357d7b2a282e2838cd27a2047be5ab62e7317ac5216a95c6e1',
+  -     kind: 'signing',
+  -     prev: 'd4a8ea3e9b045e4efd4ecd0025532ce3585324296b5d7d4a34e75a62eaf1e2e1',
+  -     seq: 3,
+  -     v: 1
+  -   },
+  -   start: {
+  -     allow: true,
+  -     amounts: {
+  -       fees: '5000',
+  -       sol: '1',
+  -       tokens: []
+  -     },
+  -     at: 1000,
+  -     blockHeight: '10',
+  -     expires: {
+  -       lastValidBlockHeight: '100'
+  -     },
+  -     group: null,
+  -     hash: '18b5cc24932479997db798f710dab850b5f0e313dddebb81ac8c1143a757a4d3',
+  -     intentKey: 'f0c38e727d9d0b6a00cb2340b6ce9f5351208a730fff6dbf282820ea7d364072',
+  -     keel: {
+  -       digest: '834015d73e6576d6c597b5a32a62c24ac56a50c7023261bf84b96beb01ded7d8',
+  -       verified: 'bytes',
+  -       version: '1.0.1'
+  -     },
+  -     kind: 'decision',
+  -     lastValidBlockHeight: '100',
+  -     message: 'AQABAzBG1F40kuKLLgDMYhZGZU6saX7KjxxQPg8E2bmgIEUnAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUAQICAAEMAgAAAAEAAAAAAAAA',
+  -     messageHash: 'd4a82310e6ea623baca62de91641f86e371cd07beeaeff9b73a5e51f29d92e7d',
+  -     policyHash: 'd25f8f758063291e4ab2e35cdc3dbf680fc4a3cbd8accdef2dfcff700a6d2e65',
+  -     posture: 'DEFAULT',
+  -     prev: 'aa800ddf30662b841797e504fd4cfce75f29a93fb67158cfcdeb65f93ba06652',
+  -     reason: '',
+  -     request: {
+  -       clientId: 'client',
+  -       digest: '472c158c54d78b3ae7e4ed1007f6cc2ba31252fc1f001314710351d35207f014',
+  -       guardId: 'workload',
+  -       id: 'new-payment'
+  -     },
+  -     seq: 1,
+  -     shape: '4ace82c5091f8ed180333d75fa4418d89986ce84c676db8267c6a1517b562f9b',
+  -     source: 'caller',
+  -     telemetry: {
+  -       intensity: 1e-9,
+  -       repetition: 0,
+  -       valence: 0.2
+  -     },
+  -     temperatureMax: 1,
+  -     v: 1
+  -   },
+  -   started: {
+  -     at: 1000,
+  -     event: {
+  -       blockHeight: '11',
+  -       decision: '18b5cc24932479997db798f710dab850b5f0e313dddebb81ac8c1143a757a4d3',
+  -       stage: 'send-started'
+  -     },
+  -     hash: '7bd4291eee1b58571fd448670b59b34121af40e7332d5ca395f7f1dd0a9852fe',
+  -     kind: 'signing',
+  -     prev: '94a996a2e4743a357d7b2a282e2838cd27a2047be5ab62e7317ac5216a95c6e1',
+  -     seq: 4,
+  -     v: 1
+  -   }
+  - }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:155:224)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

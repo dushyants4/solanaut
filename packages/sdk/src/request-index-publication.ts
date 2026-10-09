@@ -3,18 +3,20 @@ import {closeSync,constants,fstatSync,fsyncSync,lstatSync,mkdirSync,openSync,rea
 import {basename,dirname,join} from "node:path";
 import {randomUUID} from "node:crypto";
 import {canonicalJSON} from "./canonical.ts";
-import {prepareRequestIndex,type PreparedRequestIndex,type VerifiedRequestIndexRoot} from "./request-index.ts";
-import {RequestIndexPublicationError} from "./record.ts";
+import {lookupRequestIndex,prepareRequestIndex,type PreparedRequestIndex,type RequestIndexRow,type VerifiedRequestIndexRoot} from "./request-index.ts";
+import {RequestIndexLookupError,RequestIndexPublicationError} from "./record.ts";
+import {bindRequest,requestKey,type RequestIdentity} from "./request.ts";
 import type {PolicyTrust} from "./signed-policy.ts";
 import type {Entry} from "./log.ts";
 export {RequestIndexPublicationError} from "./record.ts";
 export interface RequestIndexPublicationOptions {policyTrust:PolicyTrust}
 export interface RequestIndexPublicationReceipt {readonly seq:number;readonly head:string;readonly digest:string;readonly directory:string;readonly root:VerifiedRequestIndexRoot}
+export interface RequestIndexLookupReceipt {readonly seq:number;readonly head:string;readonly indexSeq:number;readonly indexHead:string;readonly row:Readonly<RequestIndexRow>|null}
 // Keep filesystem implementation types out of the installed consumer declaration graph.
 interface SourceStat {dev:bigint;ino:bigint;size:bigint;nlink:bigint;mtimeNs:bigint;ctimeNs:bigint;isFile():boolean;isDirectory():boolean}
 interface Source {path:string;text:string;stat:SourceStat}
 interface Pointer {format:1;kind:"solanaut-request-index-pointer";generation:string;seq:number;head:string;digest:string}
-interface ValidatedPublication {prepared:Readonly<PreparedRequestIndex>;pointer:Source|undefined;seq:number;head:string}
+interface ValidatedPublication {prepared:Readonly<PreparedRequestIndex>;pointer:Source|undefined;prefix?:{root:VerifiedRequestIndexRoot;directory:string;seq:number;head:string};seq:number;head:string}
 const hex=(value:unknown)=>typeof value==="string"&&/^[0-9a-f]{64}$/.test(value);
 function same(expected:SourceStat,actual:SourceStat,directory=false):void {
   if(!(directory?actual.isDirectory():actual.isFile()&&actual.nlink===1n)||actual.dev!==expected.dev||actual.ino!==expected.ino||actual.size!==expected.size||actual.mtimeNs!==expected.mtimeNs||actual.ctimeNs!==expected.ctimeNs)throw new RequestIndexPublicationError("request index source changed during publication");
@@ -60,12 +62,40 @@ export async function validateIndexPublication(path:string,history:Entry[],optio
   if(!pins||Array.isArray(pins)||Object.keys(pins).join(",")!=="policyTrust"||!pins.policyTrust)throw new RequestIndexPublicationError("request index publication options are invalid");
   const source=current(path),old=source===undefined?undefined:pointer(source,path,history),directory=old===undefined?undefined:join(dirname(path),old.generation),before=directory===undefined?undefined:lstatSync(directory,{bigint:true});
   const endpoint={seq:history.length,head:history.at(-1)?.hash??""},prepared=await prepareRequestIndex(history,undefined,endpoint,pins.policyTrust);
+  let prefix:ValidatedPublication["prefix"];
   if(old!==undefined){
     const prior=await prepareRequestIndex(history.slice(0,old.seq),undefined,{seq:old.seq,head:old.head},pins.policyTrust);
     if(prior.digest!==old.digest)throw new RequestIndexPublicationError("current request index digest differs from independently derived prefix");
     verifyGeneration(directory!,prior,before);
+    prefix={root:prior.root,directory:directory!,seq:old.seq,head:old.head};
   }
-  unchangedPointer(path,source);return {prepared,pointer:source,...endpoint};
+  unchangedPointer(path,source);return {prepared,pointer:source,prefix,...endpoint};
+}
+function freeze<T>(value:T):T {
+  if(value&&typeof value==="object"){for(const child of Object.values(value))freeze(child);Object.freeze(value);}return value;
+}
+/** The prefix row is authenticated on disk; complete signed replay validates every tail entry. */
+export async function lookupIndexPublication(path:string,history:Entry[],identity:RequestIdentity,options:RequestIndexPublicationOptions):Promise<Readonly<RequestIndexLookupReceipt>> {
+  const captured=structuredClone(history),id=structuredClone(identity),pins=structuredClone(options),binding=bindRequest(pins.policyTrust.guardId,id,new Uint8Array()),key=requestKey(binding);
+  const validated=await validateIndexPublication(path,captured,pins),prefix=validated.prefix;
+  if(!prefix)throw new RequestIndexLookupError("current request lookup requires a published index");
+  let row:{-readonly [K in keyof RequestIndexRow]:RequestIndexRow[K]}|null=structuredClone(await lookupRequestIndex(prefix.directory,prefix.root,id));
+  for(const entry of captured.slice(prefix.seq)){
+    if(entry.kind==="request"||(entry.kind==="decision"&&entry.request)){
+      if(requestKey(entry.request!)!==key)continue;
+      if(row)throw new RequestIndexLookupError("tail repeats an indexed request identity");
+      row={format:1,kind:"solanaut-request-index-row",key,start:entry,redeem:null,signed:null,started:null,response:null,report:null,settled:null};
+    }else if(row&&entry.kind==="response"&&entry.request===row.start.hash)row.response=entry;
+    else if(row&&(entry.kind==="redeem"||entry.kind==="report"||entry.kind==="signing")&&(entry.kind==="signing"?entry.event.decision:entry.decision)===row.start.hash){
+      if(entry.kind==="redeem")row.redeem=entry;
+      else if(entry.kind==="report"){row.report=entry;if(entry.outcome!=="unknown")row.settled??=entry;}
+      else if(entry.event.stage==="signed")row.signed=entry;
+      else if(entry.event.stage==="send-started")row.started=entry;
+      else row.response=entry;
+    }
+  }
+  unchangedPointer(path,validated.pointer);
+  return freeze({seq:validated.seq,head:validated.head,indexSeq:prefix.seq,indexHead:prefix.head,row});
 }
 function writeAll(fd:number,text:string):void {
   const bytes=Buffer.from(text,"utf8");let offset=0;

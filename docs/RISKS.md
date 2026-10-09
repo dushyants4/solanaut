@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.60** · 2026-10-08 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.61** · 2026-10-08 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 Offline MCP selection now refuses unlisted tools and omitted/foreign networks.
@@ -8,6 +8,13 @@ Accessor/proxy substitution and inherited-default regressions fail first and
 are corrected under captured data semantics. Selection alone cannot authorise
 forwarding: transaction effects, transfer fields/rent and wallet-returned bytes
 remain unqualified. No isolation/live-chain claim. `evals/firewall/filter.md`.
+
+Owned request evidence now covers a complete validated tail through a captured
+head, including uncertain sends and historical replies. D26's helper mutation
+first-red is corrected by synchronous history capture. An answer is still not an
+atomic admission permit: future serialized commit must compare the current head.
+Replay/construction and historical maps remain unbounded; no map eviction is
+authorised by this component. `evals/sdk/request-index-lookup.md`.
 
 D25's late cached-history checkpoint race now refuses before replacement. Owned
 index publication binds filesystem identity and fresh replay under a real writer;

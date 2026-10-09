@@ -90,3 +90,9 @@ After the fixture rename, nine focused cases, all sixteen filter/coverage faults
 751 ordinary cases and native typecheck pass. The unchanged close scan then passes;
 pre-sync close reports only the uncommitted tree. No scan exemption or weakened
 pattern is introduced. Final evidence filenames carry the `sentinel` suffix.
+
+Exact implementation revision `0332c97` hosted run `37851655446` completes
+failed. All runtime/AST jobs and maintained partition one fail the unchanged
+staged-baseline wait; the remaining jobs pass. Full output and revision/job
+metadata are retained in `filter/hosted-0332c97/`. No new product regression is
+observed in those logs, but passing complete hosted qualification remains owed.

@@ -45,8 +45,11 @@ retains historical request, response and signing maps. The current record store
 also retains its entries array. Input streaming alone therefore cannot establish
 bounded restart or steady-state memory.
 
-Implement current-tail completeness and historical payload/response consultation
-before removing those retained maps. Preserve the explicit trusted synchronous
+Internal [owned current-head lookup](../../evals/sdk/request-index-lookup.md) now
+authenticates the actual disk prefix and folds the complete signed-validated tail,
+returning immutable evidence with both endpoint pairs. It retains full construction
+and historical state. Integrate that consultation into a serialized admission
+path with a current-head check before removing retained maps. Preserve the explicit trusted synchronous
 SDK mode; any isolated-mode path must consult authoritative historical evidence
 before a new identity is admitted. Keep unresolved attempts and active windows in
 memory, retain all archive evidence, and refuse incomplete or corrupt roots/tails.

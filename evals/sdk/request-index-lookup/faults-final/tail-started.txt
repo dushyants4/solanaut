@@ -1,0 +1,99 @@
+✔ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (46.838492ms)
+✔ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (26.091868ms)
+✖ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (20.447591ms)
+✔ SNP-7/LIF-2: denied replies and unrelated non-request decisions do not disappear or redirect lookup (10.19174ms)
+✔ OWN-2: fake, copied, manual, closed and failed owners cannot consult current history (15.058362ms)
+✔ SNP-7: missing published index is a refusal, never an automatic write or empty answer (6.523377ms)
+✔ SNP-7: identity and external pins are captured before async reads and invalid containers refuse (14.109818ms)
+✔ OWN-2: lookup, index publication, checkpoint publication and recovery share maintenance exclusion (12.83988ms)
+✔ SNP-7: full current replay rejects unrelated dishonest tails even when a prefix hit exists (9.981819ms)
+✔ SNP-7: fresh disk and cached history mismatch refuses without changing evidence (70.55302ms)
+✔ SNP-7/OWN-2: concurrent append, cache change, closure and inode substitution refuse current answers (87.310604ms)
+✔ SNP-7: corrupt pointer or any generation evidence refuses without repairing the cache (57.589244ms)
+✔ SNP-7: pointer disappearance or byte-identical replacement during module loading refuses (10.611258ms)
+✔ SNP-7: late pointer, record and cache changes during actual shard lookup refuse (23.852123ms)
+✔ SNP-7: helper captures history before awaits instead of folding unvalidated caller mutations (8.401139ms)
+✔ OWN-2: a valid cache under a manual owner still cannot claim kernel-owned current evidence (7.903326ms)
+✔ OWN-2: a healthy closed lookup capability cannot borrow a reopened owner's reused descriptors (9.509549ms)
+✖ SNP-7/LIF-3/4: a complete payment lifecycle wholly in the tail matches a newly published index (15.845856ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 16
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 580.813795
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-lookup.test.ts:60:1
+✖ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (20.447591ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + null
+  - {
+  -   at: 1000,
+  -   event: {
+  -     blockHeight: '11',
+  -     decision: '488162ae9852129e2023b77dcbe86c37da5e67694aa7e1571ae6f6b0a6069c16',
+  -     stage: 'send-started'
+  -   },
+  -   hash: 'f52481130b9247088387986cd4c5b59d835f3b4c392f3e21af5e23bbcb468e37',
+  -   kind: 'signing',
+  -   prev: 'acda257713b7beb10d7916f4bd0021c2b9e85ff8d2e6add3669fac2364d85a5b',
+  -   seq: 4,
+  -   v: 1
+  - }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:65:171)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:152:1
+✖ SNP-7/LIF-3/4: a complete payment lifecycle wholly in the tail matches a newly published index (15.845856ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      format: 1,
+      key: '["workload","client","new-payment"]',
+      kind: 'solanaut-request-index-row',
+      redeem: {
+  ...
+      },
+  +   started: null
+  -   started: {
+  -     at: 1000,
+  -     event: {
+  -       blockHeight: '11',
+  -       decision: 'bc839ea5b332dc296417b95e6baa91e2cbd0c701d818ae38733a3d6ee902a729',
+  -       stage: 'send-started'
+  -     },
+  -     hash: '38c73b9f2c8397c2f3020cff209cac8bf784a20bc5af0f4ad4e9bfaf097dcffd',
+  -     kind: 'signing',
+  -     prev: '58febe67a77065984f4893aea61a6c4eb41e1fb40e853700051c262a481284cc',
+  -     seq: 4,
+  -     v: 1
+  -   }
+    }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:155:224)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

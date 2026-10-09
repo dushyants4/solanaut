@@ -225,6 +225,25 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+Internal owned current-head lookup progresses under accepted ADR-019. It
+authenticates the actual published disk prefix, validates complete current signed
+history and folds the tail for an immutable request/reply answer carrying both
+endpoint pairs. D26's direct-helper mutable-history regression fails first, then
+captured history fixes it. Initial manual/closed-owner/order fault misses remain;
+valid-cache, healthy descriptor reuse and early-refusal cases now catch them.
+Source/installed evidence and limitations: `evals/sdk/request-index-lookup.md`.
+No admission wiring, eviction, bounded-state or completed milestone claim.
+Definition 26/seed 26179 is declared before expanded measurement, preserving all
+earlier selected tests and every wait/floor/limit. H9/H10/H11/H12 stay pending.
+Exact preceding 0332c97 hosted 37851655446 fails the unchanged wait; full log and
+job metadata are retained with the filter receipt.
+
+Final local ordinary/serial AST populations pass 769 cases; native typecheck and
+all unchanged floors pass. Source hashes match restored files and the private
+compiled artefact manifest. Lookup/publication/compiled/staging/recovery campaigns
+restore after their respective 26/27/82/51/15 catches; CLAIMS S91 scopes them.
+No full hosted, bounded recovery, independent security or stable-release claim.
+
 Offline PHX-3/4 selection progresses under the explicit item 9 grant while H9/H11
 decisions remain pending. Component tests reproduce accessor/proxy substitution
 and inherited network/descriptor weaknesses before fixes. Captured immutable

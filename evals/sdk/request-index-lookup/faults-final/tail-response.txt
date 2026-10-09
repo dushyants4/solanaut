@@ -1,0 +1,84 @@
+✔ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (32.451848ms)
+✖ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (22.786376ms)
+✔ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (30.880877ms)
+✔ SNP-7/LIF-2: denied replies and unrelated non-request decisions do not disappear or redirect lookup (11.607401ms)
+✔ OWN-2: fake, copied, manual, closed and failed owners cannot consult current history (13.652593ms)
+✔ SNP-7: missing published index is a refusal, never an automatic write or empty answer (6.012599ms)
+✔ SNP-7: identity and external pins are captured before async reads and invalid containers refuse (11.744048ms)
+✔ OWN-2: lookup, index publication, checkpoint publication and recovery share maintenance exclusion (10.37824ms)
+✔ SNP-7: full current replay rejects unrelated dishonest tails even when a prefix hit exists (6.49939ms)
+✔ SNP-7: fresh disk and cached history mismatch refuses without changing evidence (16.989073ms)
+✔ SNP-7/OWN-2: concurrent append, cache change, closure and inode substitution refuse current answers (35.66908ms)
+✔ SNP-7: corrupt pointer or any generation evidence refuses without repairing the cache (46.889048ms)
+✔ SNP-7: pointer disappearance or byte-identical replacement during module loading refuses (10.521399ms)
+✔ SNP-7: late pointer, record and cache changes during actual shard lookup refuse (24.039908ms)
+✔ SNP-7: helper captures history before awaits instead of folding unvalidated caller mutations (7.621979ms)
+✔ OWN-2: a valid cache under a manual owner still cannot claim kernel-owned current evidence (6.98906ms)
+✔ OWN-2: a healthy closed lookup capability cannot borrow a reopened owner's reused descriptors (8.850275ms)
+✖ SNP-7/LIF-3/4: a complete payment lifecycle wholly in the tail matches a newly published index (18.542565ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 16
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 405.43135
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-lookup.test.ts:49:1
+✖ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (22.786376ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + null
+  - {
+  -   at: 1000,
+  -   hash: '397e3048e62360ea0c1ee84b7e86575a739a73b96e7f8a0db5d337b26fc3092c',
+  -   kind: 'response',
+  -   prev: '7eb2716f30e92ecf8425d379d65ccb0b69c8c1b26fa4330e489e42fd4c0e3a3a',
+  -   request: '7eb2716f30e92ecf8425d379d65ccb0b69c8c1b26fa4330e489e42fd4c0e3a3a',
+  -   result: '{"ready":true}',
+  -   seq: 2,
+  -   v: 1
+  - }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:54:112)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:152:1
+✖ SNP-7/LIF-3/4: a complete payment lifecycle wholly in the tail matches a newly published index (18.542565ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + null
+  - {
+  -   at: 1001,
+  -   hash: '880b954923772fcb641724e78662264b21b282614f2e972b1810238d57358399',
+  -   kind: 'response',
+  -   prev: '81b40714529cf89891c78d66067be26205ba24331adaaf3bb2adb53a2f571ed4',
+  -   request: '81b40714529cf89891c78d66067be26205ba24331adaaf3bb2adb53a2f571ed4',
+  -   result: '{"ready":true}',
+  -   seq: 10,
+  -   v: 1
+  - }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:156:143)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

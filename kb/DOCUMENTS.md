@@ -1,5 +1,17 @@
 # DOCUMENTS.md — the document register
 
+2026-10-08 owned current-head lookup registers SPEC Draft 4.70, OVERVIEW Draft 41,
+STORAGE Draft 7, RISKS 1.61, PROGRESS, HANDOFF, continuing run, evaluation index
+and release evidence map. New receipt `evals/sdk/request-index-lookup.md` retains
+missing API/installed failures, the helper history-capture first-red, fault misses
+and corrected ownership/order oracles. Formal milestones and gates are unchanged.
+The filter receipt retains exact 0332c97 hosted failure metadata/logs.
+
+CLAIMS S91 records final local ordinary/AST/type, source/compiled and expanded
+staging/recovery qualification; the new receipt retains source hashes and actual
+private tarball identity. Existing public version/private metadata and formal
+milestones remain unchanged.
+
 2026-10-08 offline MCP selection registers SPEC Draft 4.69, OVERVIEW Draft 40,
 RISKS 1.60, PROGRESS, CLAIMS, HANDOFF, continuing run and evaluation index.
 New receipt `evals/firewall/filter.md` retains first failures/misses, restored

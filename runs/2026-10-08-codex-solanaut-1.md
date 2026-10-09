@@ -7,6 +7,39 @@ progress out of one hundred with an explicit basis. Continue across queue items.
 
 ## Did
 
+The owned-lookup candidate passes 769 fresh ordinary and serial AST cases, native
+typecheck and all unchanged floors. Exact AST hashes match restored product
+sources and the actual private tarball manifest. All 26 new semantic lookup,
+27 retained publication, 82 compiled, 51 staging/report and 15 fresh isolated
+recovery/driver fault trials pass with restoration. Installed population remains
+11 cases, with expanded lifecycle assertions. No local source mutation overlaps
+ordinary/AST measurement. CLAIMS S91 and the component receipt retain evidence.
+The candidate is a component, not stable Linux deployment or admission authority.
+
+Diff review and claim/knowledge lints pass. No local source-fault, coverage or
+supervisor process survives. The boundary guard refuses a redirected close-command
+log as a protected-path/mutation false positive; run the documented close command
+directly without redirection. Its manifest, harness, boundary, knowledge, claims,
+secret, record and remote checks pass; only the uncommitted-tree gate remains
+before private sync. No guard/policy change or protected-file write is attempted.
+
+Resume from privately pushed 0332c97; fetch succeeds. Exact hosted 37851655446
+fails all runtime/AST jobs and maintained partition one at the unchanged baseline
+wait; remaining jobs pass. Full log and job metadata are retained with the filter
+receipt. Read-only peer review selects internal owned current-head lookup under
+ADR-019. Initial missing API cases, type errors and a mistaken reason-only
+divergence fixture are retained. The owned path consults the authenticated disk
+prefix and folds the complete signed-validated tail before returning both heads.
+Peer review then exposes a direct helper caller's mutable-history gap; the new
+regression fails before synchronous capture fixes it. Initial semantic faults miss
+manual ownership, healthy closed descriptor reuse and early-cache ordering; add
+the actual valid-cache/reopened-owner/order oracles, retaining those misses.
+The final component campaign catches all its trials with exact restoration.
+Before any expanded baseline/AST measurement, declare mutation definition 26 and
+fresh seed 26179. Include the new lookup tests without removing previous selected
+tests or sources; all waits, score/coverage floors and supervisor limits remain.
+No signer expansion, admission wiring, eviction or bounded-memory claim.
+
 Final fixture-only follow-up passes nine focused cases, all sixteen new filter/
 coverage faults, 751 ordinary cases and native typecheck. Unchanged secret scan
 passes on the staged evidence; pre-sync close is nine of ten, with only the
@@ -192,6 +225,13 @@ not Claude RT-2 or specialist audit.
 
 ## Changed
 
+Internal owned lookup adds a maintenance capability in `record.ts` and prefix/
+tail evidence folding in `request-index-publication.ts`. Its requirement-linked
+tests, semantic fault campaign, installed assertions and receipts accompany it.
+Mutation staging includes the new tests with fresh definition/seed, preserving
+all earlier populations and limits. SPEC/OVERVIEW/STORAGE/RISKS, progress, index,
+release map, HANDOFF and document register track the component and limitations.
+
 Current coherent step adds the internal owned-publication component/tests and
 maintained fault campaign, adds D25's checkpoint cache recheck, preserves and
 extends critical coverage/mutation/campaign inventories, and records the
@@ -210,6 +250,14 @@ map, PROGRESS and mission/HANDOFF/document register continuations. Exact candida
 receipts and measured claim rows follow integrated evidence.
 
 ## Found
+
+New lookup initially lacks its API. Initial type errors and fixture mistakes
+remain in complete logs. Peer review exposes D26's direct-helper caller-history
+mutation, reproduced before synchronous capture. The initial fault campaign misses
+manual ownership, a healthy closed owner's reused descriptors and early cache
+ordering; retained misses lead to stronger actual-cache/reopened/order oracles.
+The final source campaign catches all 26 trials and restores both sources.
+Exact 0332c97 hosted run fails the unchanged staged-baseline wait; H11 is pending.
 
 Staged close passes eight gates and flags the synthetic redaction-test assignment
 at filter test line 28, plus the uncommitted tree. The value was agent-written

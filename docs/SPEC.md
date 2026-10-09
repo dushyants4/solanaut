@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.69** · 2026-10-08 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.70** · 2026-10-08 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -531,6 +531,7 @@ Each is fixed test-first: the evaluator writes the failing test, and the builder
 | D23 | Resealed absent/denied, duplicate, final, expired or malformed receipt redemption bypasses live checks on recovery | `state.ts`, reproduced on 2026-10-08 | **closed in the builder candidate:** validate before every state change and enforce chronological policy where signed history supplies it. Preserve unsigned-history compatibility and live canonical negative bigint heights. `evals/sdk/redeem-replay.md`; broader qualification remains owed |
 | D24 | Missing/non-record sending-client arguments escape as ordinary TypeError or accept unsupported containers instead of the documented typed input refusal | `adapters/sending-client.ts`, reproduced on 2026-10-08 | **closed in the builder candidate:** check object containers before field access; preserve valid field validation, exact method surface and no automatic retry. `evals/sdk/sending-client-input.md`; broader qualification remains owed |
 | D25 | Cached entries can change during asynchronous checkpoint validation without changing the disk file; publication can acknowledge inconsistent cached history | `record.ts`, reproduced on 2026-10-08 | **closed in the builder candidate:** repeat cached-history equality with ownership and disk-stat checks at publication boundaries. First failing regression and retained fault trials: `evals/sdk/owned-request-index.md`; live service and independent qualification remain owed |
+| D26 | The new internal request-lookup helper can fold a caller-mutated history after validating its captured snapshot, returning unrecorded tail facts | `request-index-publication.ts`, reproduced on 2026-10-08 before integration | **closed in the builder candidate:** synchronously capture history, identity and policy pins, then use that same history for validation and folding. Actual owned callers already supply private history. First-red and retained faults: `evals/sdk/request-index-lookup.md`; no admission or bounded-state qualification |
 
 **Status:** closed at milestone 2a.5 (`evals/sdk/admission.md`), test-first: D1, D2, D5, D6, D7, D9, D10 and D12. D12
 closed early: the guard decodes bytes itself, so `packages/sdk/src` imports no web3.js. D11 closed at milestone 2a.6
@@ -1315,3 +1316,20 @@ Evidence: `evals/firewall/filter.md`. Firewall source joins AST inventories with
 the same statement/branch and critical floors; no earlier population is removed.
 
 | Draft 4.69 | 2026-10-08 | Offline PHX-3/4 tool/network selection with captured immutable data, bounded/redacted parsing and maintained faults; corresponding firewall AST floors added without relaxing existing gates. Full MCP/Phantom integration remains owed. |
+
+Internal SNP-7 current-evidence convention under accepted ADR-019: only the actual
+kernel-owned store grants `lookupOwnedRequestIndex`. An existing published index
+is required; this read-only operation never creates or repairs it. Capture identity,
+history and external policy pins before asynchronous work. Fresh disk history must
+match the cache; complete signed current replay independently derives the prefix
+root. Authenticate the actual disk prefix row or absence, then fold the verified
+tail for that identity. Return immutable lifecycle evidence plus current and index
+sequence/head pairs. Recheck ownership, record/cache and pointer boundaries after
+awaits, under the shared maintenance exclusion. Corrupt, missing or changed evidence
+refuses. The answer is evidence through its captured head, not permission to admit;
+future serialized admission must compare that head again before committing.
+Full arrays/index construction remain retained; no eviction, signer expansion,
+root SDK export, record/evaluator format change or bounded-memory claim.
+Component evidence: `evals/sdk/request-index-lookup.md`.
+
+| Draft 4.70 | 2026-10-08 | Internal owned current-head request evidence and D26 history-capture correction; fresh mutation definition 26/seed 26179 includes every earlier population and adds lookup tests. Admission wiring, bounded state and stable release remain owed. |

@@ -1,0 +1,87 @@
+✔ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (35.656902ms)
+✔ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (28.420262ms)
+✖ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (17.473141ms)
+✖ SNP-7/LIF-2: denied replies and unrelated non-request decisions do not disappear or redirect lookup (10.123346ms)
+✔ OWN-2: fake, copied, manual, closed and failed owners cannot consult current history (14.580768ms)
+✔ SNP-7: missing published index is a refusal, never an automatic write or empty answer (5.276792ms)
+✔ SNP-7: identity and external pins are captured before async reads and invalid containers refuse (10.903121ms)
+✔ OWN-2: lookup, index publication, checkpoint publication and recovery share maintenance exclusion (11.540578ms)
+✔ SNP-7: full current replay rejects unrelated dishonest tails even when a prefix hit exists (7.673974ms)
+✔ SNP-7: fresh disk and cached history mismatch refuses without changing evidence (15.949424ms)
+✔ SNP-7/OWN-2: concurrent append, cache change, closure and inode substitution refuse current answers (35.591534ms)
+✔ SNP-7: corrupt pointer or any generation evidence refuses without repairing the cache (47.925377ms)
+✔ SNP-7: pointer disappearance or byte-identical replacement during module loading refuses (10.175078ms)
+✔ SNP-7: late pointer, record and cache changes during actual shard lookup refuse (22.691134ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 12
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 369.446269
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-lookup.test.ts:59:1
+✖ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (17.473141ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + null
+  - {
+  -   at: 1000,
+  -   event: {
+  -     decision: 'b93611c6c79c4a2d32838b0fe4b210f7259e417434d8e4d235ce72b254493db6',
+  -     signature: '2ogmjCrgXQshkXDnzeAWdoybmP9kyGVXojTb3k818WiwZ9mAgicMp4CydpoeJZfN7MtNQ5PGtsGWyrzHvqc2CFuc',
+  -     stage: 'response',
+  -     status: 'uncertain'
+  -   },
+  -   hash: '7adf5a98d70e2397c6d42b9e0c48c3691d194d30abbdfb7f81117924c5990199',
+  -   kind: 'signing',
+  -   prev: '8aaa37defad8da4eb721c87c318be2222d5ee4be94b526a952eb791bde6d23f3',
+  -   seq: 5,
+  -   v: 1
+  - }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:64:220)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:69:1
+✖ SNP-7/LIF-2: denied replies and unrelated non-request decisions do not disappear or redirect lookup (10.123346ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + null
+  - {
+  -   at: 1000,
+  -   event: {
+  -     decision: 'c662ef6ea8292ea453fc76eccaafbf47d73221e74cbaf59f130a3b8fed0ea44a',
+  -     stage: 'response',
+  -     status: 'denied'
+  -   },
+  -   hash: 'd820b76881bf2d3975225fd361c4b9a83c9aee7b67f0449133bce477c7abeaa4',
+  -   kind: 'signing',
+  -   prev: 'c662ef6ea8292ea453fc76eccaafbf47d73221e74cbaf59f130a3b8fed0ea44a',
+  -   seq: 2,
+  -   v: 1
+  - }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:72:113)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

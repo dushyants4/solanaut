@@ -1,0 +1,52 @@
+✔ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (32.594812ms)
+✔ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (24.073362ms)
+✔ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (29.784766ms)
+✔ SNP-7/LIF-2: denied replies and unrelated non-request decisions do not disappear or redirect lookup (9.252658ms)
+✔ OWN-2: fake, copied, manual, closed and failed owners cannot consult current history (14.626072ms)
+✔ SNP-7: missing published index is a refusal, never an automatic write or empty answer (5.333346ms)
+✔ SNP-7: identity and external pins are captured before async reads and invalid containers refuse (11.458701ms)
+✔ OWN-2: lookup, index publication, checkpoint publication and recovery share maintenance exclusion (10.543223ms)
+✔ SNP-7: full current replay rejects unrelated dishonest tails even when a prefix hit exists (7.569431ms)
+✔ SNP-7: fresh disk and cached history mismatch refuses without changing evidence (15.547311ms)
+✖ SNP-7/OWN-2: concurrent append, cache change, closure and inode substitution refuse current answers (15.19269ms)
+✔ SNP-7: corrupt pointer or any generation evidence refuses without repairing the cache (47.731263ms)
+✔ SNP-7: pointer disappearance or byte-identical replacement during module loading refuses (9.536506ms)
+✖ SNP-7: late pointer, record and cache changes during actual shard lookup refuse (23.228697ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 12
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 336.813502
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-lookup.test.ts:110:1
+✖ SNP-7/OWN-2: concurrent append, cache change, closure and inode substitution refuse current answers (15.19269ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (RequestIndexLookupError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:113:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:125:1
+✖ SNP-7: late pointer, record and cache changes during actual shard lookup refuse (23.228697ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (RequestIndexLookupError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:128:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }

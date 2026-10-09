@@ -1,0 +1,12 @@
+
+> typecheck
+> tsc -p tsconfig.json
+
+packages/sdk/src/request-index-publication.ts(88,79): error TS2540: Cannot assign to 'response' because it is a read-only property.
+packages/sdk/src/request-index-publication.ts(90,36): error TS2540: Cannot assign to 'redeem' because it is a read-only property.
+packages/sdk/src/request-index-publication.ts(91,42): error TS2540: Cannot assign to 'report' because it is a read-only property.
+packages/sdk/src/request-index-publication.ts(91,88): error TS2540: Cannot assign to 'settled' because it is a read-only property.
+packages/sdk/src/request-index-publication.ts(92,48): error TS2540: Cannot assign to 'signed' because it is a read-only property.
+packages/sdk/src/request-index-publication.ts(93,54): error TS2540: Cannot assign to 'started' because it is a read-only property.
+packages/sdk/src/request-index-publication.ts(94,16): error TS2540: Cannot assign to 'response' because it is a read-only property.
+packages/sdk/test/request-index-lookup.test.ts(51,106): error TS2339: Property 'updatePolicy' does not exist on type 'Guard'.

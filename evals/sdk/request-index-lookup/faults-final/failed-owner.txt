@@ -1,0 +1,42 @@
+✔ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (29.98239ms)
+✔ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (26.195469ms)
+✔ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (29.50932ms)
+✔ SNP-7/LIF-2: denied replies and unrelated non-request decisions do not disappear or redirect lookup (8.866333ms)
+✖ OWN-2: fake, copied, manual, closed and failed owners cannot consult current history (11.891383ms)
+✔ SNP-7: missing published index is a refusal, never an automatic write or empty answer (5.524849ms)
+✔ SNP-7: identity and external pins are captured before async reads and invalid containers refuse (10.714115ms)
+✔ OWN-2: lookup, index publication, checkpoint publication and recovery share maintenance exclusion (11.522637ms)
+✔ SNP-7: full current replay rejects unrelated dishonest tails even when a prefix hit exists (8.011061ms)
+✔ SNP-7: fresh disk and cached history mismatch refuses without changing evidence (16.017903ms)
+✔ SNP-7/OWN-2: concurrent append, cache change, closure and inode substitution refuse current answers (35.554254ms)
+✔ SNP-7: corrupt pointer or any generation evidence refuses without repairing the cache (49.02802ms)
+✔ SNP-7: pointer disappearance or byte-identical replacement during module loading refuses (10.551177ms)
+✔ SNP-7: late pointer, record and cache changes during actual shard lookup refuse (24.430886ms)
+✔ SNP-7: helper captures history before awaits instead of folding unvalidated caller mutations (7.428688ms)
+✔ OWN-2: a valid cache under a manual owner still cannot claim kernel-owned current evidence (7.086136ms)
+✔ OWN-2: a healthy closed lookup capability cannot borrow a reopened owner's reused descriptors (9.158435ms)
+✔ SNP-7/LIF-3/4: a complete payment lifecycle wholly in the tail matches a newly published index (18.310005ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 17
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 397.084201
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-lookup.test.ts:76:1
+✖ OWN-2: fake, copied, manual, closed and failed owners cannot consult current history (11.891383ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (RequestIndexLookupError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:79:248)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }

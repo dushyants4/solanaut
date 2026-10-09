@@ -1,0 +1,45 @@
+✖ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (29.26679ms)
+✔ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (29.732709ms)
+✔ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (29.902431ms)
+✔ SNP-7/LIF-2: denied replies and unrelated non-request decisions do not disappear or redirect lookup (9.32208ms)
+✔ OWN-2: fake, copied, manual, closed and failed owners cannot consult current history (13.557469ms)
+✔ SNP-7: missing published index is a refusal, never an automatic write or empty answer (5.489623ms)
+✔ SNP-7: identity and external pins are captured before async reads and invalid containers refuse (12.028108ms)
+✔ OWN-2: lookup, index publication, checkpoint publication and recovery share maintenance exclusion (11.532885ms)
+✔ SNP-7: full current replay rejects unrelated dishonest tails even when a prefix hit exists (7.423953ms)
+✔ SNP-7: fresh disk and cached history mismatch refuses without changing evidence (16.917742ms)
+✔ SNP-7/OWN-2: concurrent append, cache change, closure and inode substitution refuse current answers (36.474639ms)
+✔ SNP-7: corrupt pointer or any generation evidence refuses without repairing the cache (47.674915ms)
+✔ SNP-7: pointer disappearance or byte-identical replacement during module loading refuses (11.392209ms)
+✔ SNP-7: late pointer, record and cache changes during actual shard lookup refuse (22.862824ms)
+✔ SNP-7: helper captures history before awaits instead of folding unvalidated caller mutations (7.855352ms)
+✔ OWN-2: a valid cache under a manual owner still cannot claim kernel-owned current evidence (7.531374ms)
+✔ OWN-2: a healthy closed lookup capability cannot borrow a reopened owner's reused descriptors (10.223992ms)
+✔ SNP-7/LIF-3/4: a complete payment lifecycle wholly in the tail matches a newly published index (19.203421ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 17
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 417.076765
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-lookup.test.ts:39:1
+✖ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (29.26679ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(Object.isFrozen(got))
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:44:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

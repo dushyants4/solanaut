@@ -46,6 +46,7 @@ const faults=[
   ["request-index-tests","mutation-stage.ts",',"request-index"',""],
   ["request-index-publication-scope","mutation-stage.ts",',"request-index-publication.ts"',""],
   ["request-index-publication-tests","mutation-stage.ts",',"request-index-publication"',""],
+  ["request-index-lookup-tests","mutation-stage.ts",',"request-index-lookup"',""],
   ["report-replay-tests","mutation-stage.ts",',"report-replay"',""],
   ["redeem-replay-tests","mutation-stage.ts",',"redeem-replay"',""],
   ["envelope-tests","mutation-stage.ts",',"checkpoint-envelope"',""],

@@ -1,0 +1,69 @@
+✖ CI-1: exact inventory accepts every maintained campaign and rejects omission/addition/duplication (13.571542ms)
+✔ CI-1: all campaigns run sequentially; failure/null exit fails aggregation without hiding other findings (0.883103ms)
+✔ CI-1: changed source stops further mutation, reports skipped work and fails the gate (0.204787ms)
+✖ CI-2: mutation staging copies only the frozen inputs and tests execute its changed source (20.603398ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 2
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 107.717108
+
+✖ failing tests:
+
+test at evals/ci/bite.test.ts:6:1
+✖ CI-1: exact inventory accepts every maintained campaign and rejects omission/addition/duplication (13.571542ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "fault campaign inventory differs from the maintained list"
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/bite.test.ts:8:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: fault campaign inventory differs from the maintained list
+        at validateInventory (file:///home/dashy/Projects/Solanaut/evals/ci/bite.ts:9:90)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/bite.test.ts:8:29
+        at getActual (node:assert:580:5)
+        at strict.doesNotThrow (node:assert:748:32)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/bite.test.ts:8:10)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.start (node:internal/test_runner/test:1257:17)
+        at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at evals/ci/mutation-stage.test.ts:8:1
+✖ CI-2: mutation staging copies only the frozen inputs and tests execute its changed source (20.603398ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      'packages/sdk/test/adapters.test.ts',
+      'packages/sdk/test/admission.test.ts',
+      'packages/sdk/test/boundary-validation.test.ts',
+      'packages/sdk/test/classify.test.ts',
+  ...
+      'packages/sdk/test/request-index-publication.test.ts',
+  -   'packages/sdk/test/request-index-lookup.test.ts'
+    ]
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation-stage.test.ts:16:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'packages/sdk/test/adapters.test.ts', 'packages/sdk/test/admission.test.ts', 'packages/sdk/test/boundary-validation.test.ts', 'packages/sdk/test/classify.test.ts', 'packages/sdk/test/decode.test.ts', 'packages/sdk/test/drain.battery.test.ts', 'packages/sdk/test/durable.test.ts', 'packages/sdk/test/inspect.test.ts', 'packages/sdk/test/keel.test.ts', 'packages/sdk/test/latch-c.test.ts', 'packages/sdk/test/ownership.test.ts', 'packages/sdk/test/pin-table.test.ts', 'packages/sdk/test/policy.test.ts', 'packages/sdk/test/request-identity.test.ts', 'packages/sdk/test/sensor.battery.test.ts', 'packages/sdk/test/signed-policy.test.ts', 'packages/sdk/test/signing-history.test.ts', 'packages/sdk/test/storage-failures.test.ts', 'packages/sdk/test/checkpoint.test.ts', 'packages/sdk/test/checkpoint-archives.test.ts', 'packages/sdk/test/malformed-replay.test.ts', 'packages/sdk/test/checkpoint-prefix.test.ts', 'packages/sdk/test/checkpoint-state.test.ts', 'packages/sdk/test/checkpoint-bundle.test.ts', 'packages/sdk/test/checkpoint-envelope.test.ts', 'packages/sdk/test/checkpoint-publication.test.ts', 'packages/sdk/test/checkpoint-recovery.test.ts', 'packages/sdk/test/checkpoint-owned-recovery.test.ts', 'packages/sdk/test/archive.test.ts', 'packages/sdk/test/archive-anchor.test.ts', 'packages/sdk/test/archive-stream.test.ts', 'packages/sdk/test/replay-stream.test.ts', 'packages/sdk/test/record-loading.test.ts', 'packages/sdk/test/report-replay.test.ts', 'packages/sdk/test/request-index.test.ts', 'packages/sdk/test/redeem-replay.test.ts', 'packages/sdk/test/request-index-publication.test.ts' ],
+    expected: [ 'packages/sdk/test/adapters.test.ts', 'packages/sdk/test/admission.test.ts', 'packages/sdk/test/boundary-validation.test.ts', 'packages/sdk/test/classify.test.ts', 'packages/sdk/test/decode.test.ts', 'packages/sdk/test/drain.battery.test.ts', 'packages/sdk/test/durable.test.ts', 'packages/sdk/test/inspect.test.ts', 'packages/sdk/test/keel.test.ts', 'packages/sdk/test/latch-c.test.ts', 'packages/sdk/test/ownership.test.ts', 'packages/sdk/test/pin-table.test.ts', 'packages/sdk/test/policy.test.ts', 'packages/sdk/test/request-identity.test.ts', 'packages/sdk/test/sensor.battery.test.ts', 'packages/sdk/test/signed-policy.test.ts', 'packages/sdk/test/signing-history.test.ts', 'packages/sdk/test/storage-failures.test.ts', 'packages/sdk/test/checkpoint.test.ts', 'packages/sdk/test/checkpoint-archives.test.ts', 'packages/sdk/test/malformed-replay.test.ts', 'packages/sdk/test/checkpoint-prefix.test.ts', 'packages/sdk/test/checkpoint-state.test.ts', 'packages/sdk/test/checkpoint-bundle.test.ts', 'packages/sdk/test/checkpoint-envelope.test.ts', 'packages/sdk/test/checkpoint-publication.test.ts', 'packages/sdk/test/checkpoint-recovery.test.ts', 'packages/sdk/test/checkpoint-owned-recovery.test.ts', 'packages/sdk/test/archive.test.ts', 'packages/sdk/test/archive-anchor.test.ts', 'packages/sdk/test/archive-stream.test.ts', 'packages/sdk/test/replay-stream.test.ts', 'packages/sdk/test/record-loading.test.ts', 'packages/sdk/test/report-replay.test.ts', 'packages/sdk/test/request-index.test.ts', 'packages/sdk/test/redeem-replay.test.ts', 'packages/sdk/test/request-index-publication.test.ts', 'packages/sdk/test/request-index-lookup.test.ts' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

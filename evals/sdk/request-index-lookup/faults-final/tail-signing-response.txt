@@ -1,0 +1,136 @@
+✔ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (33.083479ms)
+✔ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (26.642954ms)
+✖ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (19.068683ms)
+✖ SNP-7/LIF-2: denied replies and unrelated non-request decisions do not disappear or redirect lookup (11.465443ms)
+✔ OWN-2: fake, copied, manual, closed and failed owners cannot consult current history (14.323369ms)
+✔ SNP-7: missing published index is a refusal, never an automatic write or empty answer (5.608901ms)
+✔ SNP-7: identity and external pins are captured before async reads and invalid containers refuse (12.319142ms)
+✔ OWN-2: lookup, index publication, checkpoint publication and recovery share maintenance exclusion (12.836948ms)
+✔ SNP-7: full current replay rejects unrelated dishonest tails even when a prefix hit exists (9.130143ms)
+✔ SNP-7: fresh disk and cached history mismatch refuses without changing evidence (17.417729ms)
+✔ SNP-7/OWN-2: concurrent append, cache change, closure and inode substitution refuse current answers (37.391228ms)
+✔ SNP-7: corrupt pointer or any generation evidence refuses without repairing the cache (46.737436ms)
+✔ SNP-7: pointer disappearance or byte-identical replacement during module loading refuses (10.443319ms)
+✔ SNP-7: late pointer, record and cache changes during actual shard lookup refuse (22.137104ms)
+✔ SNP-7: helper captures history before awaits instead of folding unvalidated caller mutations (8.176583ms)
+✔ OWN-2: a valid cache under a manual owner still cannot claim kernel-owned current evidence (6.983543ms)
+✔ OWN-2: a healthy closed lookup capability cannot borrow a reopened owner's reused descriptors (9.446244ms)
+✖ SNP-7/LIF-3/4: a complete payment lifecycle wholly in the tail matches a newly published index (14.768608ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 15
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 410.729698
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-lookup.test.ts:60:1
+✖ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (19.068683ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + null
+  - {
+  -   at: 1000,
+  -   event: {
+  -     decision: 'f1d955021416b91c10876034ae25b99ff94c9c0ed4dd969222c9b11e535bdb7d',
+  -     signature: '2uBArGDgJsoW5W2cmUqLAUN7EApHn8KVdYomoqcBRNya1R7LmAdxfF2h1mKdh7VmAUDTcvEf9xDzzVyoq5Y5bgtC',
+  -     stage: 'response',
+  -     status: 'uncertain'
+  -   },
+  -   hash: '693395901ad398b257e3530f7661c102cd375aa5db86f06792cb3c37dbfd3f35',
+  -   kind: 'signing',
+  -   prev: '968625f080a7d7b80ca379fafaef367a384188527aa9570c837be1054d3f8811',
+  -   seq: 5,
+  -   v: 1
+  - }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:65:220)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:70:1
+✖ SNP-7/LIF-2: denied replies and unrelated non-request decisions do not disappear or redirect lookup (11.465443ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + null
+  - {
+  -   at: 1000,
+  -   event: {
+  -     decision: '6f18fc454945b6e5d659317cb85c9b69c77deb8f1715bba8f31d0869796c9c58',
+  -     stage: 'response',
+  -     status: 'denied'
+  -   },
+  -   hash: 'e88b4cf364d5ba8541e5a8cf60d731e8d6b18aa17b5362ff365212936a5e2b8c',
+  -   kind: 'signing',
+  -   prev: '6f18fc454945b6e5d659317cb85c9b69c77deb8f1715bba8f31d0869796c9c58',
+  -   seq: 2,
+  -   v: 1
+  - }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:73:113)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:152:1
+✖ SNP-7/LIF-3/4: a complete payment lifecycle wholly in the tail matches a newly published index (14.768608ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      format: 1,
+      key: '["workload","client","new-payment"]',
+      kind: 'solanaut-request-index-row',
+      redeem: {
+  ...
+      },
+  +   response: null,
+  -   response: {
+  -     at: 1000,
+  -     event: {
+  -       decision: '0ac8a91a51a9f248988e0c3335ab54ad304a55de879544ef635a2d559ec2781d',
+  -       signature: '4PqXtXH7gneAwVdSHWohcDf3Q5TMTPxB8M3JozZTKo6MCrmdvQy3YZUACcVFT9Mqv2U3Rv4PsXbejjP2WDv4KUf8',
+  -       stage: 'response',
+  -       status: 'uncertain'
+  -     },
+  -     hash: '287e2cdd3e2a2f5aab7db78ec6ad2a37a2ffb36f0c062fa3310e2df2d056924a',
+  -     kind: 'signing',
+  -     prev: 'c33aa31e70c28271c98aae6886abe350f295f36d78ae53c5c00771b18ab85c6c',
+  -     seq: 5,
+  -     v: 1
+  -   },
+      settled: {
+        at: 1000,
+        decision: '0ac8a91a51a9f248988e0c3335ab54ad304a55de879544ef635a2d559ec2781d',
+        hash: '52f3c0c127a305f7d377cff4f5796a12f1d796860eb286fa1b5928db43362fc8',
+        kind: 'report',
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:155:224)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

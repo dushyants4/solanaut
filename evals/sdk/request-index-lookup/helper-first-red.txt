@@ -1,0 +1,56 @@
+✔ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (34.414424ms)
+✔ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (35.972002ms)
+✔ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (30.806778ms)
+✔ SNP-7/LIF-2: denied replies and unrelated non-request decisions do not disappear or redirect lookup (9.488642ms)
+✔ OWN-2: fake, copied, manual, closed and failed owners cannot consult current history (13.051415ms)
+✔ SNP-7: missing published index is a refusal, never an automatic write or empty answer (5.377072ms)
+✔ SNP-7: identity and external pins are captured before async reads and invalid containers refuse (10.31532ms)
+✔ OWN-2: lookup, index publication, checkpoint publication and recovery share maintenance exclusion (10.907833ms)
+✔ SNP-7: full current replay rejects unrelated dishonest tails even when a prefix hit exists (6.993497ms)
+✔ SNP-7: fresh disk and cached history mismatch refuses without changing evidence (15.168428ms)
+✔ SNP-7/OWN-2: concurrent append, cache change, closure and inode substitution refuse current answers (34.745508ms)
+✔ SNP-7: corrupt pointer or any generation evidence refuses without repairing the cache (45.989346ms)
+✔ SNP-7: pointer disappearance or byte-identical replacement during module loading refuses (10.447964ms)
+✔ SNP-7: late pointer, record and cache changes during actual shard lookup refuse (23.493667ms)
+✖ SNP-7: helper captures history before awaits instead of folding unvalidated caller mutations (8.370132ms)
+✔ OWN-2: a valid cache under a manual owner still cannot claim kernel-owned current evidence (6.735362ms)
+✔ OWN-2: a healthy closed lookup capability cannot borrow a reopened owner's reused descriptors (9.924629ms)
+✔ SNP-7/LIF-3/4: a complete payment lifecycle wholly in the tail matches a newly published index (18.058825ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 17
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 416.305273
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-lookup.test.ts:135:1
+✖ SNP-7: helper captures history before awaits instead of folding unvalidated caller mutations (8.370132ms)
+  AssertionError [ERR_ASSERTION]: only captured validated tail evidence may be returned
+  + actual - expected
+  
+  + {
+  +   at: 1000,
+  +   hash: '9150ebac01f753ef09303ae5313c4a2299a8b007700f2cf410c8120dffb1500c',
+  +   kind: 'response',
+  +   prev: 'ffa8f5559192b023b33e8ad5b3e0fede46c87dd3211bf2e8c5c75b4c2ba3ceaa',
+  +   request: 'ffa8f5559192b023b33e8ad5b3e0fede46c87dd3211bf2e8c5c75b4c2ba3ceaa',
+  +   result: '{"unrecorded":true}',
+  +   seq: 2,
+  +   v: 1
+  + }
+  - null
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:139:91)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

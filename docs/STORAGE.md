@@ -1,6 +1,6 @@
 # Persistent record ownership
 
-> **Draft 6** · 2026-10-08 · owner: integrator · for: SDK users and Linux operators.
+> **Draft 7** · 2026-10-08 · owner: integrator · for: SDK users and Linux operators.
 > Register: `kb/DOCUMENTS.md`. Foundation evidence: `evals/sdk/ownership.md` (claim S16).
 
 An ordinary `createGuard({ policy, log: path })` uses manual SDK ownership. It refuses an
@@ -28,6 +28,14 @@ fails the writer; do not delete evidence to clear it. These internal capabilitie
 are not operator commands or public SDK exports. Prefix lookup cannot establish
 current request absence, and bounded live state/startup remain unqualified.
 Evidence: `evals/sdk/owned-request-index.md`.
+
+Internal current-head request lookup now authenticates that disk prefix and folds
+the complete signed-validated tail under the actual owner. It requires an existing
+index and returns both endpoint pairs with immutable evidence; absence is qualified
+only through that current head. It shares maintenance exclusion and refuses late
+owner, record, cache or pointer changes. It performs no writes or repairs, and an
+answer cannot authorise an admission without a serialized head check. Full history
+and construction remain retained. Evidence: `evals/sdk/request-index-lookup.md`.
 
 The writer opens a stable mutex inode and passes its descriptor to `/usr/bin/flock` for
 nonblocking exclusive acquisition. The parent retains that descriptor until close or death.

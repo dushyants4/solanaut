@@ -1,0 +1,22 @@
+✔ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (34.408355ms)
+✔ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (25.737397ms)
+✔ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (31.452959ms)
+✔ SNP-7/LIF-2: denied replies and unrelated non-request decisions do not disappear or redirect lookup (9.661859ms)
+✔ OWN-2: fake, copied, manual, closed and failed owners cannot consult current history (14.561606ms)
+✔ SNP-7: missing published index is a refusal, never an automatic write or empty answer (6.005266ms)
+✔ SNP-7: identity and external pins are captured before async reads and invalid containers refuse (10.674313ms)
+✔ OWN-2: lookup, index publication, checkpoint publication and recovery share maintenance exclusion (10.523811ms)
+✔ SNP-7: full current replay rejects unrelated dishonest tails even when a prefix hit exists (7.29186ms)
+✔ SNP-7: fresh disk and cached history mismatch refuses without changing evidence (14.657535ms)
+✔ SNP-7/OWN-2: concurrent append, cache change, closure and inode substitution refuse current answers (36.481857ms)
+✔ SNP-7: corrupt pointer or any generation evidence refuses without repairing the cache (46.488675ms)
+✔ SNP-7: pointer disappearance or byte-identical replacement during module loading refuses (10.027733ms)
+✔ SNP-7: late pointer, record and cache changes during actual shard lookup refuse (23.278168ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 359.40068

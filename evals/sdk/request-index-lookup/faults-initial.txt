@@ -1,0 +1,52 @@
+caught owned request lookup fault: actual-capability
+MISSED owned request lookup fault: kernel-owner
+MISSED owned request lookup fault: closed-owner
+caught owned request lookup fault: failed-owner
+caught owned request lookup fault: maintenance
+caught owned request lookup fault: captured-identity
+caught owned request lookup fault: captured-pins
+MISSED owned request lookup fault: early-cache
+caught owned request lookup fault: late-cache
+caught owned request lookup fault: record-boundary
+caught owned request lookup fault: late-owner
+caught owned request lookup fault: loading-pointer
+caught owned request lookup fault: full-current-replay
+caught owned request lookup fault: disk-consultation
+caught owned request lookup fault: tail-start
+caught owned request lookup fault: tail-response
+caught owned request lookup fault: tail-redemption
+caught owned request lookup fault: tail-signed
+caught owned request lookup fault: tail-started
+caught owned request lookup fault: tail-signing-response
+caught owned request lookup fault: tail-report
+caught owned request lookup fault: tail-settlement
+caught owned request lookup fault: final-pointer
+caught owned request lookup fault: current-endpoint
+caught owned request lookup fault: immutable-answer
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: missed semantic faults require regressions
++ actual - expected
+
++ [
++   'kernel-owner',
++   'closed-owner',
++   'early-cache'
++ ]
+- []
+
+    at file:///home/dashy/Projects/Solanaut/evals/sdk/request-index-lookup-faults.ts:52:8
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: [ 'kernel-owner', 'closed-owner', 'early-cache' ],
+  expected: [],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

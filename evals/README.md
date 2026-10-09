@@ -5,6 +5,7 @@ seen failing might not be checking anything.
 
 | Gate | Shown failing | Then passing | Receipt |
 |---|---|---|---|
+| SNP-7/OWN-2/LIF current-head lookup | absent API; unvalidated helper tail mutation; manual/closed-owner and ordering fault misses; earlier compiled API absence | authenticated disk prefix plus complete validated tail, immutable endpoints and maintained faults; admission/boundedness still owed | `sdk/request-index-lookup.md` |
 | PHX-3/4 offline tool/network selection | absent component; accessor/proxy substitution and inherited defaults; coverage and campaign omissions | captured immutable devnet-only selection, redacted bounded parsing and maintained fault/coverage checks; full MCP qualification owed | `firewall/filter.md` |
 | CI-2 missing committed completion evidence | removing a committed result/marker incorrectly returns pending; retained missing-exception first-red | reader and shutdown refuse before a fresh signal; added fallback fault restores | `ci/mutation-stop.md` |
 | CI-2 mutation scratch teardown | hosted ENOTEMPTY masks the primary timeout; immediate-return fixtures fail; missing-signal fault miss retained | bound supervisor completion before deletion, explicit interruption and refusal checks; baseline wait unchanged | `ci/mutation-stop.md` |

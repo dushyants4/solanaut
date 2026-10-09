@@ -1,0 +1,322 @@
+✖ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (24.265991ms)
+✖ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (7.895459ms)
+✖ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (12.211445ms)
+✖ SNP-7/LIF-2: denied replies and unrelated non-request decisions do not disappear or redirect lookup (6.830591ms)
+✖ OWN-2: fake, copied, manual, closed and failed owners cannot consult current history (10.894428ms)
+✖ SNP-7: missing published index is a refusal, never an automatic write or empty answer (3.418674ms)
+✖ SNP-7: identity and external pins are captured before async reads and invalid containers refuse (5.703633ms)
+✖ OWN-2: lookup, index publication, checkpoint publication and recovery share maintenance exclusion (6.484943ms)
+✖ SNP-7: full current replay rejects unrelated dishonest tails even when a prefix hit exists (6.376989ms)
+✖ SNP-7: fresh disk and cached history mismatch refuses without changing evidence (5.631677ms)
+✖ SNP-7/OWN-2: concurrent append, cache change, closure and inode substitution refuse current answers (5.160097ms)
+✖ SNP-7: corrupt pointer or any generation evidence refuses without repairing the cache (6.800015ms)
+✖ SNP-7: pointer disappearance or byte-identical replacement during module loading refuses (7.365191ms)
+✖ SNP-7: late pointer, record and cache changes during actual shard lookup refuse (5.915529ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 0
+ℹ fail 14
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 267.385703
+
+✖ failing tests:
+
+test at packages/sdk/test/request-index-lookup.test.ts:38:1
+✖ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (24.265991ms)
+  AssertionError [ERR_ASSERTION]: owned current-head lookup must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at lookup (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:23:67)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:42:21)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:48:1
+✖ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (7.895459ms)
+  AssertionError [ERR_ASSERTION]: owned current-head lookup must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at lookup (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:23:67)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:50:25)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:57:1
+✖ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (12.211445ms)
+  AssertionError [ERR_ASSERTION]: owned current-head lookup must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at lookup (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:23:67)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:62:27)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:67:1
+✖ SNP-7/LIF-2: denied replies and unrelated non-request decisions do not disappear or redirect lookup (6.830591ms)
+  AssertionError [ERR_ASSERTION]: owned current-head lookup must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at lookup (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:23:67)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:70:21)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:73:1
+✖ OWN-2: fake, copied, manual, closed and failed owners cannot consult current history (10.894428ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   code: 'ERR_ASSERTION',
+  +   name: 'AssertionError'
+  -   code: 'request-index-lookup',
+  -   name: 'RequestIndexLookupError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:75:71)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [AssertionError],
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:80:1
+✖ SNP-7: missing published index is a refusal, never an automatic write or empty answer (3.418674ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   code: 'ERR_ASSERTION',
+  +   name: 'AssertionError'
+  -   code: 'request-index-lookup',
+  -   name: 'RequestIndexLookupError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:81:75)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [AssertionError],
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:85:1
+✖ SNP-7: identity and external pins are captured before async reads and invalid containers refuse (5.703633ms)
+  AssertionError [ERR_ASSERTION]: owned current-head lookup must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at lookup (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:23:67)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:87:73)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:92:1
+✖ OWN-2: lookup, index publication, checkpoint publication and recovery share maintenance exclusion (6.484943ms)
+  AssertionError [ERR_ASSERTION]: owned current-head lookup must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at lookup (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:23:67)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:93:102)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:98:1
+✖ SNP-7: full current replay rejects unrelated dishonest tails even when a prefix hit exists (6.376989ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   code: 'ERR_ASSERTION',
+  +   name: 'AssertionError'
+  -   code: 'request-index-lookup',
+  -   name: 'RequestIndexLookupError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:102:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [AssertionError],
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:105:1
+✖ SNP-7: fresh disk and cached history mismatch refuses without changing evidence (5.631677ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   code: 'ERR_ASSERTION',
+  +   name: 'AssertionError'
+  -   code: 'request-index-lookup',
+  -   name: 'RequestIndexLookupError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:106:324)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [AssertionError],
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:108:1
+✖ SNP-7/OWN-2: concurrent append, cache change, closure and inode substitution refuse current answers (5.160097ms)
+  AssertionError [ERR_ASSERTION]: owned current-head lookup must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at lookup (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:23:67)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:109:166)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:114:1
+✖ SNP-7: corrupt pointer or any generation evidence refuses without repairing the cache (6.800015ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   code: 'ERR_ASSERTION',
+  +   name: 'AssertionError'
+  -   code: 'request-index-lookup',
+  -   name: 'RequestIndexLookupError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:117:67)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [AssertionError],
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:120:1
+✖ SNP-7: pointer disappearance or byte-identical replacement during module loading refuses (7.365191ms)
+  AssertionError [ERR_ASSERTION]: owned current-head lookup must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at lookup (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:23:67)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:121:207)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/request-index-lookup.test.ts:123:1
+✖ SNP-7: late pointer, record and cache changes during actual shard lookup refuse (5.915529ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   code: 'ERR_ASSERTION',
+  +   name: 'AssertionError'
+  -   code: 'request-index-lookup',
+  -   name: 'RequestIndexLookupError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/request-index-lookup.test.ts:126:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [AssertionError],
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }

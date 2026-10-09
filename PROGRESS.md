@@ -5,6 +5,12 @@ including the approved Beta; CLAIMS S78 and `evals/release/progress.md` freeze t
 scope. This is not release readiness, effort or a completion date. Components
 inside open milestones receive no fractional credit.
 
+Owned current-head request evidence now has component tests and semantic faults
+in `evals/sdk/request-index-lookup.md`. It authenticates the published disk prefix
+and complete current tail, preserves lifecycle replies and refuses stale evidence.
+Actual admission wiring and bounded history/state remain unfinished; no SNP, SIG
+or release milestone closes. All earlier gates remain required.
+
 Offline MCP tool/network selection has builder evidence in
 `evals/firewall/filter.md`; forwarding, guarded field/rent checks, actual Phantom
 integration and dedicated-user qualification remain owed. Corresponding firewall
