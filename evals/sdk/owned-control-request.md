@@ -136,3 +136,9 @@ Pre-commit unchanged close passes nine of ten gates, failing only the uncommitte
 tree. Its staged secret scan, claims and knowledge checks pass. Authored code/doc
 diff checks pass; raw evidence retains its original whitespace. Local commit and
 bundle verification results follow in the continuing run; no push is authorised.
+
+Local implementation commit: `b1d8ed153ed162293bb923a5134703ea4eb3ca7c`.
+Its Git bundle verifies and a local clone restores exactly that revision with
+clean status and a passing full object-integrity check. Post-commit close passes
+nine of ten gates, failing only pushed HEAD under the explicit local-only
+restriction. Source-history recovery is distinct from operator-state recovery.

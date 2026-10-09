@@ -243,6 +243,12 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-09 local backup: owned controls are committed as `b1d8ed1`; the local
+Git bundle verifies and restores that exact clean revision with passing full
+object-integrity verification. Post-commit close passes nine of ten gates;
+only pushed HEAD fails under the human's explicit no-push instruction. This is
+source-history backup evidence, not operator-state or off-device recovery.
+
 2026-10-09 owned-control component: `evals/sdk/owned-control-request.md`, CLAIMS
 S94. Shared FIFO, verified current disk evidence, captured canonical inputs and
 immutable replies pass local source/installed/full/AST qualification. D31 mutable

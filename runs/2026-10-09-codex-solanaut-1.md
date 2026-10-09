@@ -184,6 +184,15 @@ No replay component pass follows from drafted tests or the interrupted builder.
 
 ## Open
 
+Owned controls are committed locally as `b1d8ed153ed162293bb923a5134703ea4eb3ca7c`.
+`git bundle verify .sandbox/local-backups/solanaut-1-b1d8ed1.bundle`
+passes. A local clone from that bundle restores exactly that HEAD;
+`git fsck --full --no-dangling` exits zero and the restored working tree is clean.
+This verifies a local source-history backup, not an off-device or operator-state
+backup. Post-commit close passes nine of ten gates: only pushed HEAD fails.
+The latest human direction prohibits pushing; the gate remains unchanged and
+its finding stays open. No remote synchronisation or stable-release claim follows.
+
 Pre-commit close passes nine of ten gates, failing only the uncommitted tree;
 the staged secret scan and all other local checks pass. Preserve raw outputs
 verbatim. Create the coherent local commit and a verified local Git bundle,
