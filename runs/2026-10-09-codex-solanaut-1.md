@@ -187,6 +187,13 @@ and qualification evidence will be recorded as work proceeds.
 
 ## Found
 
+Node 24 archival pre-commit close fails the protected claims grammar: S100 lists
+mise-prefixed commands, while the parser accepts command names beginning npm/node/uv.
+The archive commits before this output is inspected; record that workflow error.
+Add the actual underlying npm/node commands within the explicitly scoped existing
+Node 24 environment. Keep the linter unchanged and re-run close before the
+corrective local commit. No tested source, workload or artefact identity changes.
+
 Local bundle clone initially lacks a default HEAD; explicit main checkout fixes
 the restore setup without changing history. First live-record fixture uses an
 unsupported `store` option, corrected to `log` before claiming product failure.

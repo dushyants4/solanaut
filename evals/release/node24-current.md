@@ -34,3 +34,9 @@ reliability or clear H11. Exact bound candidate identities still match; raw
 reports and scoped identity verification are archived. CLAIMS S100 records the
 measurements. No new implementation or workload definition is introduced.
 Earlier Node 26 AST wait failure remains an open finding.
+
+Archival close initially rejects S100's mise-prefixed command grammar; its parser
+requires an underlying npm/node/uv command. The first archival commit is made
+before that output is inspected. Preserve the workflow finding and add the actual
+underlying commands under the explicitly scoped Node environment, without changing
+the protected linter, measured inputs or results. Re-run close before correction.

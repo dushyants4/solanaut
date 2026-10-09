@@ -243,6 +243,12 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-09 archival correction: Node 24 evidence commits as `f5380fb` before
+the pre-commit output is inspected; close rejects S100's mise-prefixed grammar.
+Preserve this workflow failure. Add underlying npm/node commands within the
+explicit existing Node 24 context and re-run close before corrective local commit.
+No protected linter, tested implementation, input definition or result changes.
+
 2026-10-09 Node runtime follow-up: D33 is locally committed as `fba638a`; its
 complete-history bundle and exact clean clone/full fsck pass. Close fails only
 unpushed HEAD under the latest direction. Inventory identifies Node 24.19.0 already
