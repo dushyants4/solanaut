@@ -1,5 +1,9 @@
 # DOCUMENTS.md — the document register
 
+2026-10-09 continuation registers `runs/2026-10-09-codex-solanaut-1.md` and
+HANDOFF's private owned-admission sync/date-rollover entry. No product, workload,
+public release metadata or gate changes in this archival follow-up.
+
 2026-10-08 owned serialized proposal integration registers SPEC Draft 4.71,
 OVERVIEW Draft 42, STORAGE Draft 8, RISKS 1.63, PROGRESS, HANDOFF, evaluation
 index, release evidence map and continuing run. New receipt:

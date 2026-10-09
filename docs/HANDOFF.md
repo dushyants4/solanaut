@@ -234,6 +234,13 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-09 resume: owned proposal component `8a343d4` is privately pushed.
+Exact hosted `37949141048` remains in progress. Post-push close fails only the
+missing current-day run after the service interruption; the new manual record
+preserves the previous day and leaves the workflow unchanged. Root takes over
+the prepared read-only replay-command tests after the isolated builder's service
+usage limit; no execution or implementation is claimed from that draft.
+
 The next SNP-7 component integrates internal owned proposal consultation under
 accepted ADR-019. Genuine signed guard context, captured private bytes and FIFO
 precede actual disk lookup; the live head/closure check precedes synchronous
