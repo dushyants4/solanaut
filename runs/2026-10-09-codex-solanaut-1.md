@@ -35,6 +35,14 @@ unchanged real-baseline wait. Same-definition quiet diagnostic repeat passes
 all 838. Keep both outcomes; timing instability remains open, not waived.
 Evidence is CLAIMS S97 and `evals/sdk/owned-redemption.md`. No milestone closes.
 
+Redemption is committed locally as `4d9d1fe02f69e057b3ae1691d7ce34f2bd5ed2cc`.
+Its local Git bundle verifies; clone restores that exact clean HEAD and full
+object-integrity checks pass. The maintained recovery-driver campaign completes
+nine recovery trials and observes six driver refusals, but its final restored
+baseline fails the unchanged wait. Preserve the failed campaign without complete
+driver-pass credit. All bound product/input/emitted-file/archive digests match
+after restoration. No source mutation or worker is left behind by that campaign.
+
 Final owned-control qualification: definition 31/seed 31907 preserves all six
 real gap scenarios in one helper process, with exact case-completion assertions.
 Nineteen focused cases and all twenty control faults pass/restored. Every prior
@@ -151,6 +159,12 @@ create the correct directory and pack successfully to a new component path.
 Remove only the mistaken empty staging subdirectories. No previous archive is
 overwritten. Two attempted run-record patches fail exact-context verification
 and change nothing; correct the contexts before recording these results.
+
+The staged whole diff check flags whitespace in verbatim failure/type/close
+outputs. Preserve those bytes; the authored TypeScript/Markdown diff check
+passes. Pre-commit close passes eight checks, failing only dirty tree and
+unpushed HEAD. The latter is required by the human's no-push direction; the
+unchanged gate is not weakened or reported as a complete close pass.
 
 Packing D32 reuses the private `0.0.0` tarball filename and overwrites the earlier
 ignored candidate archive. Detect its digest mismatch, preserve the new archive

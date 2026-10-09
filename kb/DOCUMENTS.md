@@ -12,6 +12,10 @@ private inputs and raw reports. The first ordinary wait failure is retained;
 its diagnostic repeat passes, confirming timing instability. No release gate or
 threshold acceptance follows. All raw AST reports and bound identity checks are
 retained with the receipt.
+The maintained driver campaign's final restored baseline repeats the unchanged
+wait failure; retain it without complete campaign credit. Record exact hash
+restoration and `4d9d1fe`'s verified local bundle clone/object-integrity proof in
+the receipt, CLAIMS follow-up, HANDOFF, PROGRESS and continuing run.
 
 2026-10-09 D32 correction registers SPEC Draft 4.75, OVERVIEW 46, RISKS 1.67,
 PROGRESS, HANDOFF, continuing run and `evals/sdk/owned-admission-error.md`.

@@ -257,6 +257,14 @@ weight. Bound product/evaluation/emitted-file/archive digests match. Timing
 instability, private signing/report/release lifecycle, bounded state, H9/H11 and
 all independent/human release gates remain open. Local archival close follows.
 
+Redemption is locally committed as `4d9d1fe`; its bundle verifies and restores
+the exact clean revision with full object-integrity verification. Maintained
+recovery trials complete, but final restored driver baseline fails the unchanged
+wait: preserve it, verify exact source/archive restoration and claim no complete
+driver pass. The next accepted facade work is signing journal, outcome reporting
+and operator release, followed by bounded retained state; no H9/H11 acceptance
+or stable milestone is inferred. Archival evidence remains local only.
+
 2026-10-09 D32 local archive: correction is committed as `944579d`; its local
 Git bundle verifies and restores the exact clean revision with passing full
 object-integrity verification. Post-commit close passes nine of ten checks,

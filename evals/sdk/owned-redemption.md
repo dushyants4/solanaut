@@ -66,3 +66,20 @@ No mutation score or fresh isolated-driver qualification is claimed.
 H9/H11 approval is not inferred from “Work”. Human, Claude, audit and publication
 gates remain.
 Local Git commits/backups only; no remote push or stable milestone credit.
+
+## Maintained driver follow-up and local archive
+
+`node evals/ci/mutation-recovery-faults.ts` completes its nine recovery fault
+trials with initial/restored baselines passing. Six driver refusals are observed,
+but the final restored baseline fails the unchanged wait. Preserve the entire
+failed output; do not award complete driver-campaign credit. Every bound product,
+evaluation, emitted-file and archive digest matches after restoration.
+This independently repeats the timing finding within builder-authored checks;
+it is not an independent security review. H11 remains open.
+
+Implementation is committed locally as `4d9d1fe`. Its local Git bundle verifies;
+cloning it restores exactly that clean revision and full object-integrity checks
+pass. This is source-history backup on the same machine, not operator-state or
+off-device recovery. Pre-commit close passes the local checks but fails dirty tree
+and unpushed HEAD. Raw output whitespace is preserved; the authored TypeScript
+and Markdown diff check passes. No push, threshold change or stable release follows.

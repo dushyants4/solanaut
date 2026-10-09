@@ -16,6 +16,9 @@ serial AST pass; its initial ordinary baseline wait fails and is retained.
 The older facade's serial AST runs fail the unchanged
 baseline wait. Preserve concurrent and quiet failures; complete qualification
 and milestone credit remain open. H11's proposed wait change needs acceptance.
+Redemption's maintained driver follow-up also fails its final restored baseline
+wait. Exact product/input/archive restoration is verified; no complete driver
+credit is taken. Implementation and its verified source-history backup are local.
 
 D32 follow-up refuses unrecorded facade admission replies with a fixed typed
 error, preserving the trusted SDK contract and failed-writer state. Source and
