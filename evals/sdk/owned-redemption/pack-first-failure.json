@@ -1,0 +1,7 @@
+{
+  "error": {
+    "code": "ENOENT",
+    "summary": "ENOENT: no such file or directory, open '/home/dashy/Projects/Solanaut/.sandbox/solanaut-1/owned-redemption/solanaut-sdk-0.0.0.tgz'",
+    "detail": "This is related to npm not being able to find a file."
+  }
+}

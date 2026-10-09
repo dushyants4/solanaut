@@ -9,7 +9,11 @@ Private asynchronous admission/control facade implementation has partial local
 evidence in `evals/sdk/owned-guard.md`, CLAIMS S95. It opens established signed history
 without exposing guard/store/history and serializes observations and shutdown.
 It retains full state and does not yet expose signing/lifecycle maintenance.
-The quiet ordinary suite/typecheck pass; serial AST still fails the unchanged
+Private redemption is integrated under ADR-019, with source/installed
+first failures and shared FIFO, receipt-use/restart and failed-write regressions
+in `evals/sdk/owned-redemption.md`, CLAIMS S97. Its ordinary repeat/typecheck and
+serial AST pass; its initial ordinary baseline wait fails and is retained.
+The older facade's serial AST runs fail the unchanged
 baseline wait. Preserve concurrent and quiet failures; complete qualification
 and milestone credit remain open. H11's proposed wait change needs acceptance.
 
@@ -19,7 +23,7 @@ installed first failures are retained in `evals/sdk/owned-admission-error.md`;
 candidate qualification continues without changing the existing waits or gates.
 
 D32's corrected candidate has source/installed/native/type evidence in CLAIMS
-S96. Complete serial AST still fails its real-baseline wait; no coverage pass or
+S96. That candidate's serial AST fails its real-baseline wait; no coverage pass or
 stable milestone is inferred. The prior private tarball is reproduced exactly
 from a local Git backup after detecting filename reuse; new artefacts use a
 distinct component directory. This is source/artefact evidence, not an operator

@@ -12,6 +12,29 @@ each component. Preserve every accepted security and release gate.
 
 ## Did
 
+Continue locally from `fe6369f`, with fresh instruction/context reads, read-only
+fetch and correctly refused live secret-path probes. Implement the next private
+ADR-019 lifecycle seam: queued redemption captures ordinary byte backing,
+delegates the existing checked durable transition, returns only frozen success
+and converts every refusal to fixed `OwnedGuardError`. No signing/send, root
+export, socket method, threshold or policy change follows. Definition 36/seed
+36191 retains earlier inputs and limits, adding the redemption cases before
+candidate full measurement. Source, installed and fault qualification follows.
+
+Private redemption source trials catch the added boundaries, including execution
+ahead of held control work, and restore exact source. The retained compiled
+campaign completes with restored installed package passing. Separate candidate
+archive and source/input/emitted-file digests are bound before final ordinary and
+serial AST measurement. No new signer, root/socket API or human action is taken.
+
+Redemption candidate passes thirteen focused cases, twenty-four source trials,
+twelve installed cases and all 122 compiled faults/restoration. Serial AST passes
+838 cases and unchanged floors; owned-guard is 92/95 statements and 36/38 branches.
+Typecheck passes. Initial quiet ordinary run passes 837 of 838, failing only the
+unchanged real-baseline wait. Same-definition quiet diagnostic repeat passes
+all 838. Keep both outcomes; timing instability remains open, not waived.
+Evidence is CLAIMS S97 and `evals/sdk/owned-redemption.md`. No milestone closes.
+
 Final owned-control qualification: definition 31/seed 31907 preserves all six
 real gap scenarios in one helper process, with exact case-completion assertions.
 Nineteen focused cases and all twenty control faults pass/restored. Every prior
@@ -112,6 +135,22 @@ Current-day run record and project register; subsequent replay component paths
 and qualification evidence will be recorded as work proceeds.
 
 ## Found
+
+Redemption tests first fail on absent method/surface. The installed test's first
+attempt has a nested-template newline syntax error; preserve it separately,
+correct only the fixture and observe the missing installed method. A staging
+build overlaps source fault injection, so it is discarded as qualification:
+rebuild only after exact source restoration, then test the compiled candidate.
+Prior baseline passes, but source/test changes begin after its owned-case
+population executes and before the entire baseline ends; it is historical
+baseline evidence, not candidate qualification. Fresh full measurement is owed.
+
+The first archival pack fails because a staging-relative directory creation
+does not create the intended root scratch directory. Preserve its npm error JSON,
+create the correct directory and pack successfully to a new component path.
+Remove only the mistaken empty staging subdirectories. No previous archive is
+overwritten. Two attempted run-record patches fail exact-context verification
+and change nothing; correct the contexts before recording these results.
 
 Packing D32 reuses the private `0.0.0` tarball filename and overwrites the earlier
 ignored candidate archive. Detect its digest mismatch, preserve the new archive

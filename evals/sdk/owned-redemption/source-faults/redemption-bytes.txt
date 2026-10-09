@@ -1,0 +1,18 @@
+✖ LIF-2/SNP-7: private redemption captures bytes, queues observations and survives restart once (113.601719ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 233.804689
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-guard.test.ts:44:1
+✖ LIF-2/SNP-7: private redemption captures bytes, queues observations and survives restart once (113.601719ms)
+  OwnedGuardError: owned guard cannot establish or complete the requested operation
+      at file:///home/dashy/Projects/Solanaut/packages/sdk/src/owned-guard.ts:59:107 {
+    code: 'owned-guard'
+  }

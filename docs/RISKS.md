@@ -1,11 +1,14 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.67** · 2026-10-09 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.68** · 2026-10-09 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 Local-only commits now replace the previous standing push grant. The unchanged
 close workflow cannot pass its pushed-HEAD check for those commits. Record that
 finding; no hosted execution, backup to a remote or stable-release gate is implied.
+Private redemption now shares the facade FIFO and exposes only durable success
+or fixed error. This is bookkeeping before signing, not proof a transaction was
+signed or sent. All reservations and used receipts retain their existing rules.
 The internal admission/control facade now owns its guard/store privately, so
 its callers cannot interrupt owned operations through trusted synchronous methods.
 Its surface is partial and full histories remain in memory; no executable signer,

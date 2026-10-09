@@ -49,6 +49,12 @@ test("PKG-1/SNP-7: private owned facade restores and serializes installed JavaSc
       const input=options(),opening=openOwnedGuard(input);input.authorization.guardId='changed';const g=await opening;
       try{
         if(!Object.isFrozen(g)||!Object.isFrozen(g.policy.latch)||'guard' in g||'store' in g||'entries' in g)throw new Error('installed facade exposed mutable authority');
+        const message=new Uint8Array(Buffer.from(process.argv[2],'base64')),admitted=await g.check({message,at:900,blockHeight:10n,lastValidBlockHeight:20n},{clientId:'client',id:'redeem'});
+        if(!admitted.allow)throw new Error('installed redemption fixture denied');
+        await refuse(()=>g.redeem(message,admitted.hash,21n));
+        const shared=new Uint8Array(new SharedArrayBuffer(message.length));shared.set(message);const redeeming=g.redeem(shared,admitted.hash,10n),redemptionStatus=g.status();shared.fill(255);
+        const redeemed=await redeeming;if(!redeemed.ok||!Object.isFrozen(redeemed)||(await redemptionStatus).seq!==admitted.seq+2)throw new Error('installed redemption capture or durability failed');
+        await refuse(()=>g.redeem(message,admitted.hash,10n));
         const id={clientId:'client',id:'captured'},payload={decision:'a'.repeat(64)},pending=g.beginRequest(id,'report',payload,1000),observed=g.status();id.id='changed';payload.decision='b'.repeat(64);
         const start=await pending;if(start.request.id!=='captured'||JSON.parse(start.payload).decision!=='a'.repeat(64)||(await observed).seq!==start.seq+1)throw new Error('installed facade capture or FIFO failed');
         const actual={clientId:'client',id:'captured'},answer={nested:{ready:true}},finishing=g.finishRequest(actual,start.hash,answer);answer.nested.ready=false;await finishing;
@@ -59,10 +65,10 @@ test("PKG-1/SNP-7: private owned facade restores and serializes installed JavaSc
         const preceding=g.beginRequest({clientId:'client',id:'last'},'status',{},2002),closing=g.close();await preceding;await closing;await refuse(()=>g.status());await g.close();
       }finally{await g.close();}
       const index=readFileSync(path+'.request-index');writeFileSync(path+'.request-index','corrupt');await refuse(()=>openOwnedGuard(options()));writeFileSync(path+'.request-index',index);
-      const restored=await openOwnedGuard(options());await restored.close();
+      const restored=await openOwnedGuard(options());try{const decision=readFileSync(path,'utf8').trim().split(String.fromCharCode(10)).map(line=>JSON.parse(line)).find(entry=>entry.kind==='decision'&&entry.request?.id==='redeem');await refuse(()=>restored.redeem(new Uint8Array(Buffer.from(process.argv[2],'base64')),decision.hash,10n));}finally{await restored.close();}
     }finally{rmSync(directory,{recursive:true,force:true});}
     console.log('private owned facade qualified');`;
-  const result=spawnSync(process.execPath,["--input-type=module","-e",script,inputPolicy],{cwd:consumer,encoding:"utf8",timeout:15000});
+  const result=spawnSync(process.execPath,["--input-type=module","-e",script,inputPolicy,Buffer.from(transfer(2)).toString("base64")],{cwd:consumer,encoding:"utf8",timeout:15000});
   assert.equal(result.status,0,result.stderr);assert.equal(result.error,undefined);assert.equal(result.signal,null);assert.equal(result.stdout,"private owned facade qualified\n");
 });
 

@@ -1,5 +1,18 @@
 # DOCUMENTS.md — the document register
 
+2026-10-09 private redemption registers SPEC Draft 4.76, OVERVIEW 47, RISKS
+1.68, PROGRESS, HANDOFF, continuing run and `evals/sdk/owned-redemption.md` with
+the evaluation index. Queue captured bytes and checked durable receipt use on
+the private facade; fixed errors hide append diagnostics. Preserve source and
+installed first failures, fixture syntax error and discarded overlapping build.
+Definition 36/seed 36191 retains earlier workloads/limits. Qualification remains
+open; no signer, bounded-state or stable milestone is credited.
+CLAIMS S97 registers partial measured source/installed/AST evidence with bound
+private inputs and raw reports. The first ordinary wait failure is retained;
+its diagnostic repeat passes, confirming timing instability. No release gate or
+threshold acceptance follows. All raw AST reports and bound identity checks are
+retained with the receipt.
+
 2026-10-09 D32 correction registers SPEC Draft 4.75, OVERVIEW 46, RISKS 1.67,
 PROGRESS, HANDOFF, continuing run and `evals/sdk/owned-admission-error.md`.
 Preserve real append-failure/collision and installed previous-candidate failures;

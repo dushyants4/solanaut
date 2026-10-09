@@ -11,6 +11,7 @@ import {fileStore,publishOwnedRequestIndex} from "../src/record.ts";
 import {encodeBase58} from "../src/base58.ts";
 import {preparePolicyText} from "../src/signed-policy.ts";
 import {WORKLOAD_POLICY} from "./support/workload.ts";
+import {craftLegacy,key} from "./support/craft.ts";
 import type {OwnedGuard} from "../src/owned-guard.ts";
 const modulePath="../src/owned-guard.ts",owned=await import(modulePath).catch(()=>({}));
 async function fixture(){
@@ -30,11 +31,45 @@ const identity=(id:string)=>({clientId:"client",id});
 const refused=(work:()=>Promise<unknown>)=>assert.rejects(Promise.resolve().then(work),{name:"OwnedGuardError",code:"owned-guard"});
 test("SNP-7/OWN-2: factory keeps the guard and history private with a frozen asynchronous surface",async()=>{
   const f=await fixture();try{const g=await f.open();try{
-    assert.deepEqual(Object.keys(g).sort(),["beginRequest","check","close","finishRequest","policy","policyHash","requestResult","status"].sort());
+    assert.deepEqual(Object.keys(g).sort(),["beginRequest","check","close","finishRequest","policy","policyHash","redeem","requestResult","status"].sort());
     assert.ok(Object.isFrozen(g));assert.ok(Object.isFrozen(g.policy));assert.ok(Object.isFrozen(g.policy.latch));
     assert.equal(Reflect.get(g,"guard"),undefined);assert.equal(Reflect.get(g,"store"),undefined);assert.equal(Reflect.get(g,"entries"),undefined);
     const pending=g.status();assert.ok(pending instanceof Promise);const status=await pending;assert.equal(status.seq,1);assert.ok(Object.isFrozen(status));
   }finally{await g.close();}}finally{f.close();}
+});
+const payment=()=>craftLegacy({header:[1,0,1],keys:[key(1),key(2),key(0)],instructions:[{program:2,accounts:[0,1],data:[2,0,0,0,1,0,0,0,0,0,0,0]}]});
+const redeem=(g:OwnedGuard,message:Uint8Array,hash:string,height?:bigint):Promise<Readonly<{ok:boolean;reason:string}>>=>{
+  const call=Reflect.get(g,"redeem");assert.equal(typeof call,"function","private redemption must exist");return Reflect.apply(call,g,[message,hash,height]);
+};
+test("LIF-2/SNP-7: private redemption captures bytes, queues observations and survives restart once",async()=>{
+  const f=await fixture(),original=asyncFs.open;try{const g=await f.open();let hash:string;try{
+    const message=payment(),decision=await g.check({message,at:1000,blockHeight:10n,lastValidBlockHeight:20n},identity("redeem"));assert.equal(decision.allow,true);hash=decision.hash;
+    const before=(await g.status()).seq,shared=new Uint8Array(new SharedArrayBuffer(message.length));shared.set(message);
+    let release!:()=>void,reached!:()=>void,held=false;const gate=new Promise<void>(r=>release=r),reading=new Promise<void>(r=>reached=r);
+    asyncFs.open=(async(...args:Parameters<typeof asyncFs.open>)=>{const handle=await Reflect.apply(original,asyncFs,args);if(!held&&String(args[0]).endsWith(".jsonl")){held=true;reached();await gate;}return handle;}) as typeof asyncFs.open;
+    const preceding=g.beginRequest(identity("before-redemption"),"status",{},1001);await reading;
+    const pending=redeem(g,shared,hash,10n),observation=g.status();shared.fill(255);
+    release();const start=await preceding,result=await pending;assert.equal(start.seq,before);assert.deepEqual(result,{ok:true,reason:""});assert.ok(Object.isFrozen(result));assert.equal((await observation).seq,before+2);
+    await refused(()=>redeem(g,message,hash,10n));assert.equal((await g.status()).seq,before+2);
+  }finally{asyncFs.open=original;await g.close();}
+    const restored=await f.open();try{await refused(()=>redeem(restored,payment(),hash!,10n));}finally{await restored.close();}
+  }finally{asyncFs.open=original;f.close();}
+});
+test("LIF-2/OPR-2: private redemption refuses changed bytes, foreign receipts and expired lifetimes without consuming them",async()=>{
+  const f=await fixture();try{const g=await f.open();try{
+    const message=payment(),decision=await g.check({message,at:1000,blockHeight:10n,lastValidBlockHeight:20n},identity("bounds"));assert.equal(decision.allow,true);const before=(await g.status()).seq;
+    for(const call of [()=>redeem(g,Uint8Array.of(255),decision.hash,10n),()=>redeem(g,message,"a".repeat(64),10n),()=>redeem(g,message,decision.hash),()=>redeem(g,message,decision.hash,21n),()=>redeem(g,null as unknown as Uint8Array,decision.hash,10n)])await refused(call);
+    assert.equal((await g.status()).seq,before);assert.equal((await redeem(g,message,decision.hash,20n)).ok,true);
+    await g.close();await refused(()=>redeem(g,message,decision.hash,20n));
+  }finally{await g.close();}}finally{f.close();}
+});
+test("STO-1/OPR-2/LIF-2: private redemption never acknowledges a failed append or exposes storage diagnostics",async()=>{
+  const f=await fixture(),original=fs.writeSync;try{const g=await f.open();try{
+    const message=payment(),decision=await g.check({message,at:1000},identity("disk"));assert.equal(decision.allow,true);const before=(await g.status()).seq;
+    fs.writeSync=(()=>{throw new Error("PRIVATE_SENTINEL: redemption storage unavailable");}) as typeof fs.writeSync;syncBuiltinESMExports();
+    await assert.rejects(redeem(g,message,decision.hash),(error:Error)=>error.name==="OwnedGuardError"&&Reflect.get(error,"code")==="owned-guard"&&!error.message.includes("PRIVATE_SENTINEL"));
+    fs.writeSync=original;syncBuiltinESMExports();assert.equal((await g.status()).seq,before);await refused(()=>redeem(g,message,decision.hash));
+  }finally{fs.writeSync=original;syncBuiltinESMExports();await g.close();}}finally{fs.writeSync=original;syncBuiltinESMExports();f.close();}
 });
 test("OPR-2/VER-1: missing, empty and unsigned established histories refuse without creating a fresh identity",async()=>{
   const f=await fixture();try{

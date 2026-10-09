@@ -1,0 +1,24 @@
+
+session_close.py — gates
+======================================================================
+  [PASS]  manifests match the seat table
+  [PASS]  harness audits clean
+  [PASS]  boundary guard passes its fault matrix
+  [PASS]  the knowledge vault lints clean
+  [PASS]  every measured claim can be regenerated
+  [PASS]  no secrets in 2943 tracked files
+  [PASS]  run record exists for 2026-10-09
+  [PASS]  remote configured
+  [FAIL]  HEAD is pushed to origin
+          HEAD is ahead of origin/main. Standing rule 7: synchronise at
+          every milestone, not once at the end. Unpushed work is one disk
+          failure from gone, and that has already happened here once.
+            git push origin main
+  [FAIL]  working tree committed
+          152 uncommitted change(s). A pushed HEAD proves
+          nothing while work sits outside it.
+            git add -A && git commit -m "office: <what changed>"
+----------------------------------------------------------------------
+  8/10 gates passed
+  NOT READY TO CLOSE — a failing gate is a finding, never a formality.
+

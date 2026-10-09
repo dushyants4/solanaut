@@ -1,0 +1,25 @@
+caught owned facade fault: redemption-fifo
+caught owned facade fault: redemption-bytes
+caught owned facade fault: redemption-refusal
+caught owned facade fault: redemption-storage
+caught owned facade fault: redemption-reply
+caught owned facade fault: unrecorded-admission
+caught owned facade fault: unrecorded-collision
+caught owned facade fault: fresh-history
+caught owned facade fault: startup-capture
+caught owned facade fault: implicit-upgrade
+caught owned facade fault: index-evidence
+caught owned facade fault: startup-cleanup
+caught owned facade fault: error-code
+caught owned facade fault: surface-freeze
+caught owned facade fault: policy-freeze
+caught owned facade fault: private-history
+caught owned facade fault: fifo-status
+caught owned facade fault: identity-capture
+caught owned facade fault: payload-capture
+caught owned facade fault: answer-capture
+caught owned facade fault: shared-bytes
+caught owned facade fault: drain-close
+caught owned facade fault: refuse-after-close
+caught owned facade fault: recover-queue
+All owned facade faults caught; exact source restored

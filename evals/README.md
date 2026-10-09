@@ -11,6 +11,7 @@ support limitations; they establish no live compatibility or release clearance.
 
 | Gate | Shown failing | Then passing | Receipt |
 |---|---|---|---|
+| private queued redemption · LIF-2, SNP-7, OPR-2, STO-1 | absent source/installed method; fixture/build/pack setup errors and ordinary wait failure retained | shared queue/private bytes, durable success and fixed errors; ordinary repeat/type/source/installed/AST pass, timing instability and full lifecycle remain open | `sdk/owned-redemption.md` |
 | SNP-7/LIF owned serialized proposal check | absent native/compiled API, cached reply aliasing and shared byte mutation; retained fixture type error and staging omission | genuine captured private context, FIFO/current-head checks, detached replies and semantic faults; complete bounded facade still owed | `sdk/owned-request-admission.md` |
 | PKG-3/SNP safe operator replay | blank-line acceptance, unsafe sources and raw diagnostics; invalid rehash fixture, joined-field collision and installed fixture import error retained | complete streamed history, bounded independent public pins, redaction and source/installed faults; full operational recovery still owed | `sdk/replay-command.md` |
 | owned control FIFO · LIF-4/5, SNP-7, OWN-2 | absent APIs, stale inventory and D31 public-method dispatch; ambiguous/source-layout trial setup failures retained | actual owned start/response/result consultation shares admission's FIFO; local component, no bounded-state or service/release qualification | `sdk/owned-control-request.md` |

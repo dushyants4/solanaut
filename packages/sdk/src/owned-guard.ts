@@ -11,6 +11,7 @@ import type {ControlRequestEntry,ControlResponseEntry} from "./log.ts";
 export interface OwnedGuardOptions {path:string;policy:unknown;authorization:PolicyAuthorization}
 export interface OwnedGuard {
   check(proposal:ProposalV1,identity:RequestIdentity):Promise<Decision>;
+  redeem(message:Uint8Array,decisionHash:string,blockHeight?:bigint):Promise<Readonly<{ok:boolean;reason:string}>>;
   beginRequest(identity:RequestIdentity,method:ControlMethod,payload:unknown,at:number):Promise<ControlRequestEntry>;
   finishRequest(identity:RequestIdentity,startHash:string,result:unknown):Promise<ControlResponseEntry>;
   requestResult(identity:RequestIdentity,startHash:string):Promise<unknown>;
@@ -77,6 +78,15 @@ function facade(guard:Guard):OwnedGuard {
     beginRequest(identity:RequestIdentity,method:ControlMethod,payload:unknown,at:number){return captured(()=>{
       const id=structuredClone(identity),value=structuredClone(payload);
       return ()=>beginOwnedRequest(guard,id,method,value,at);
+    });},
+    redeem(message:Uint8Array,decisionHash:string,blockHeight?:bigint){return captured(()=>{
+      if(!(message instanceof Uint8Array))throw new OwnedGuardError();
+      const bytes=new Uint8Array(message);
+      return async()=>{
+        const result=guard.redeem(bytes,decisionHash,blockHeight);
+        if(!result.ok)throw new OwnedGuardError();
+        return detached(result);
+      };
     });},
     finishRequest(identity:RequestIdentity,startHash:string,result:unknown){return captured(()=>{
       const id=structuredClone(identity),value=structuredClone(result);

@@ -1,17 +1,19 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 46** · 2026-10-09 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 47** · 2026-10-09 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
 
 Internal `owned-guard.ts` opens established signed devnet history and privately
-owns its guard/store. Admission, control requests, status and close are queued;
+owns its guard/store. Admission, redemption, control requests, status and close are queued;
 configuration/inputs are captured and the frozen surface exposes no history.
-It refuses implicit creation or policy upgrade. Signing journal, redemption,
+It refuses implicit creation or policy upgrade. Signing journal,
 outcome reporting, operator actions, maintenance and bounded state remain owed.
 This is not a stable root export or operational signer.
+Redemption captures private bytes and returns frozen synced success; refusals use
+the fixed typed error, including failed writes. Receipt use survives restart.
 The facade also refuses the trusted SDK's unrecorded admission sentinel with its
 fixed typed error; a storage failure or identity collision is not a durable reply.
 The trusted SDK retains its existing synchronous denial behaviour.

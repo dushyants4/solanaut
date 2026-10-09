@@ -5,6 +5,11 @@ import {spawnSync} from "node:child_process";
 const path="packages/sdk/src/owned-guard.ts",source=readFileSync(path,"utf8"),directory=".sandbox/solanaut-1/owned-facade/faults";
 mkdirSync(directory,{recursive:true});
 const faults=[
+  ["redemption-fifo","redeem(message:Uint8Array,decisionHash:string,blockHeight?:bigint){return captured(()=>{","redeem(message:Uint8Array,decisionHash:string,blockHeight?:bigint){return (capture=>capture()())(()=>{","captures bytes, queues observations"],
+  ["redemption-bytes","const bytes=new Uint8Array(message);","const bytes=message;","captures bytes, queues observations"],
+  ["redemption-refusal","if(!result.ok)throw new OwnedGuardError();","void result;","refuses changed bytes, foreign receipts"],
+  ["redemption-storage","if(!result.ok)throw new OwnedGuardError();","void result;","never acknowledges a failed append"],
+  ["redemption-reply","return detached(result);","return result;","captures bytes, queues observations"],
   ["unrecorded-admission","if(decision.seq<0)throw new OwnedGuardError();","void decision;","never exposes storage diagnostics"],
   ["unrecorded-collision","if(decision.seq<0)throw new OwnedGuardError();","void decision;","copy shared bytes"],
   ["fresh-history","ownership:\"kernel\",create:false","ownership:\"kernel\",create:true","missing, empty and unsigned"],

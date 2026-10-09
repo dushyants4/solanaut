@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.73** · 2026-10-09 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.76** · 2026-10-09 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -1413,7 +1413,7 @@ repeat close returns the same completion. A refused operation does not poison th
 queue. Status describes private in-memory state; it is not independent chain proof.
 
 Trusted synchronous SDK exports remain unchanged. The facade does not implement
-redemption, signing journal, outcome reporting, operator release, maintenance or
+signing journal, outcome reporting, operator release, maintenance or
 an executable signer. Full histories and state maps still remain in memory.
 No SIG-11 budget pass, bounded recovery, process isolation or stable-release claim
 follows. Component evidence: `evals/sdk/owned-guard.md`.
@@ -1429,3 +1429,15 @@ writer state and every existing durable denial/retry. Evidence:
 `evals/sdk/owned-admission-error.md`.
 
 | Draft 4.75 | 2026-10-09 | D32 rejects unrecorded facade replies with a fixed typed error. Real append-failure and collision tests fail first; maintain all old source/compiled trials and add regressions. Definition 35/seed 35447 retains all earlier inputs/limits with the additional storage case. No completed AST/driver, bounded recovery or release gate is inferred. |
+
+Private redemption convention under accepted ADR-019: asynchronous `redeem`
+captures ordinary byte backing before queueing on the same facade FIFO. Delegate
+the trusted SDK's checked durable transition; only successful synced redemption
+returns a detached frozen result. All refusals throw fixed `OwnedGuardError`,
+including failed appends, without exposing storage diagnostics or reopening a
+writer. A refusal consumes no receipt; a successful redemption remains used after
+restart. No keys, signing, sends or reservation release follow from this method.
+Internal only; public SDK and socket interfaces remain unchanged. Evidence:
+`evals/sdk/owned-redemption.md`.
+
+| Draft 4.76 | 2026-10-09 | Queue private redemption with captured bytes, checked synced success and fixed refusal errors. Preserve first source/installed failures and fixture/build setup findings. Definition 36/seed 36191 adds the redemption cases while retaining prior inputs and limits. Complete lifecycle, bounded recovery and release qualification remain owed. |

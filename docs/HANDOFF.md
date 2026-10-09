@@ -243,6 +243,20 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-09 private redemption continuation: fresh live probes refuse correctly;
+read-only fetch changes no local work. Under ADR-019, extend the private facade
+with queued captured-byte redemption, frozen durable success and fixed refusal
+errors. Source/installed first failures and nested-template/build setup findings
+are retained. Definition 36/seed 36191 preserves earlier inputs and limits;
+receipt `evals/sdk/owned-redemption.md`, qualification continues. No H9/H11
+acceptance, public export, signer expansion, push or milestone credit follows.
+
+Redemption's source/installed/type/serial AST qualification and ordinary repeat
+pass locally, CLAIMS S97; preserve the initial ordinary wait failure at equal
+weight. Bound product/evaluation/emitted-file/archive digests match. Timing
+instability, private signing/report/release lifecycle, bounded state, H9/H11 and
+all independent/human release gates remain open. Local archival close follows.
+
 2026-10-09 D32 local archive: correction is committed as `944579d`; its local
 Git bundle verifies and restores the exact clean revision with passing full
 object-integrity verification. Post-commit close passes nine of ten checks,

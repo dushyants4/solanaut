@@ -15,6 +15,9 @@ function battery() {
 const baseline = battery();
 assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
 const faults = [
+  { name: "facade-redemption-bytes", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace("const bytes = new Uint8Array(message);", "const bytes = message;") },
+  { name: "facade-redemption-refusal", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace("if (!result.ok)", "if (false)") },
+  { name: "facade-redemption-reply", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace("return detached(result);", "return result;") },
   { name: "facade-unrecorded-admission", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace("if (decision.seq < 0)", "if (false)") },
   { name: "facade-export", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace("export async function openOwnedGuard", "async function openOwnedGuard") },
   { name: "facade-fresh-history", path: "dist/src/owned-guard.js", caught: "private owned facade", damage: (text: string) => text.replace("ownership: \"kernel\", create: false", "ownership: \"kernel\", create: true") },
