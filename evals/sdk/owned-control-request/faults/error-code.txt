@@ -1,0 +1,33 @@
+✖ OWN-2/SNP-7: corrupt or missing index evidence blocks control mutations and reads (42.921969ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 121.875533
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-control-request.test.ts:121:1
+✖ OWN-2/SNP-7: corrupt or missing index evidence blocks control mutations and reads (42.921969ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   code: 'foreign',
+  -   code: 'owned-control-request',
+      name: 'OwnedControlRequestError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:125:42)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [OwnedControlRequestError],
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }

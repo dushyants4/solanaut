@@ -5,6 +5,12 @@ including the approved Beta; CLAIMS S78 and `evals/release/progress.md` freeze t
 scope. This is not release readiness, effort or a completion date. Components
 inside open milestones receive no fractional credit.
 
+Owned control start/response/result companions have local component evidence in
+`evals/sdk/owned-control-request.md`. They share proposal admission's FIFO and
+verify current owned disk evidence. Full retained state, private service facade
+and bounded startup remain open. The human now requires local commits only;
+unpushed close/hosted gates remain honestly outstanding.
+
 The existing read-only replay command has local source and installed component
 qualification in `evals/sdk/replay-command.md`: strict streamed history reads,
 bounded public inputs, independent trust pins and redacted diagnostics. It is no

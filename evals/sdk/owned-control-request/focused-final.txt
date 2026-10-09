@@ -1,0 +1,26 @@
+✔ LIF-4/SNP-7: control starts retry exactly from prefix and tail without another entry (85.75322ms)
+✔ LIF-4/LIF-1: methods, payloads and admission share the identity namespace (55.240149ms)
+✔ LIF-5: a pre-admission refusal and its exact bounded reply survive index publication (54.717904ms)
+✔ LIF-4/SNP-7: response commits once and differing canonical replies refuse (51.683637ms)
+✔ LIF-4: unknown identity, admission, foreign start and wrong start hash cannot return or finish controls (49.714482ms)
+✔ LIF-4: pending result remains undefined; null and nested completed replies are detached and frozen (51.06933ms)
+✔ LIF-4/SNP-7: identities, canonical payloads and result values are captured before queueing (33.974223ms)
+✔ LIF-4/SNP-7: concurrent mixed operations share FIFO ordering with proposal admission (39.105075ms)
+✔ OWN-2/SNP-7: copied, unsigned, memory and manual guards lack owned control authority (27.801959ms)
+✔ OWN-2/SNP-7: corrupt or missing index evidence blocks control mutations and reads (44.472831ms)
+✔ LIF-4: malformed identities, methods, payloads, time and oversized responses make no durable entry (23.849694ms)
+✔ LIF-4/SNP-7: duplicate concurrent starts and replies write exactly once (47.078712ms)
+✔ LIF-4/SNP-7: authenticated prefix replies remain exact after genuine owner restart (54.833676ms)
+✔ STO-1/LIF-4: control append failure leaves the failed writer unavailable without a reply (23.712757ms)
+✔ SNP-7/OWN-2: closure and trusted mutation during actual reads forbid stale control commits (48.020467ms)
+✔ SNP-7: actual control lookup followed by closure or a trusted mutation cannot authorize stale work (924.533907ms)
+✔ LIF-4/SNP-7: a queued refusal does not poison subsequent verified work (32.595449ms)
+✔ LIF-4: fresh starts and responses cannot alias retained journal objects (36.736555ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1768.092301

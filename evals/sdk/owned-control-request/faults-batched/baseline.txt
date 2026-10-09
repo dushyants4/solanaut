@@ -1,0 +1,27 @@
+✔ LIF-4/SNP-7: control starts retry exactly from prefix and tail without another entry (87.975181ms)
+✔ LIF-4/LIF-1: methods, payloads and admission share the identity namespace (51.192903ms)
+✔ LIF-5: a pre-admission refusal and its exact bounded reply survive index publication (51.860327ms)
+✔ LIF-4/SNP-7: response commits once and differing canonical replies refuse (50.913181ms)
+✔ LIF-4: unknown identity, admission, foreign start and wrong start hash cannot return or finish controls (46.898049ms)
+✔ LIF-4: pending result remains undefined; null and nested completed replies are detached and frozen (44.236116ms)
+✔ LIF-4/SNP-7: identities, canonical payloads and result values are captured before queueing (26.764698ms)
+✔ LIF-4/SNP-7: concurrent mixed operations share FIFO ordering with proposal admission (39.019549ms)
+✔ OWN-2/SNP-7: copied, unsigned, memory and manual guards lack owned control authority (27.858139ms)
+✔ OWN-2/SNP-7: corrupt or missing index evidence blocks control mutations and reads (45.221111ms)
+✔ LIF-4: malformed identities, methods, payloads, time and oversized responses make no durable entry (27.380042ms)
+✔ LIF-4/SNP-7: duplicate concurrent starts and replies write exactly once (58.51005ms)
+✔ LIF-4/SNP-7: authenticated prefix replies remain exact after genuine owner restart (63.16276ms)
+✔ STO-1/LIF-4: control append failure leaves the failed writer unavailable without a reply (25.364535ms)
+✔ SNP-7/OWN-2: closure and trusted mutation during actual reads forbid stale control commits (54.207965ms)
+✔ SNP-7: actual control lookup followed by closure or a trusted mutation cannot authorize stale work (297.462508ms)
+✔ LIF-4/SNP-7: a queued refusal does not poison subsequent verified work (34.310774ms)
+✔ LIF-4: fresh starts and responses cannot alias retained journal objects (31.454337ms)
+✔ OWN-2/LIF-4: mutable public SDK methods cannot replace private owned bookkeeping (31.309687ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1179.269675

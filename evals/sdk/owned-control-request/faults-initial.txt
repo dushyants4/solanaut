@@ -1,0 +1,19 @@
+caught owned control fault: genuine-capability
+caught owned control fault: error-code
+caught owned control fault: disk-evidence
+caught owned control fault: current-head
+caught owned control fault: late-close
+caught owned control fault: begin-identity
+caught owned control fault: begin-payload
+caught owned control fault: begin-collision
+caught owned control fault: finish-identity
+caught owned control fault: finish-payload
+caught owned control fault: start-hash
+caught owned control fault: immutable-response
+caught owned control fault: historical-time
+caught owned control fault: pending-only
+caught owned control fault: shared-fifo
+caught owned control fault: queue-recovery
+caught owned control fault: reply-detachment
+caught owned control fault: reply-freeze
+All owned control faults caught; exact source restored

@@ -1,10 +1,16 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 43** · 2026-10-09 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 44** · 2026-10-09 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
+
+Internal owned control companions share the proposal admission FIFO. They capture
+inputs, consult actual owned disk evidence, check the current head and return
+detached immutable starts/replies. They preserve the trusted synchronous SDK and
+add no root export or signer method. They retain full state; bounded recovery and
+service wiring remain separate. Evidence: `evals/sdk/owned-control-request.md`.
 
 The existing replay command now uses complete verified streamed history reads
 and independently supplied public policy pins. It bounds public JSON inputs and

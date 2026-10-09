@@ -243,6 +243,21 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-09 owned-control component: `evals/sdk/owned-control-request.md`, CLAIMS
+S94. Shared FIFO, verified current disk evidence, captured canonical inputs and
+immutable replies pass local source/installed/full/AST qualification. D31 mutable
+public-method dispatch fails first and is corrected with private captures.
+Initial inventory/setup and unchanged-wait failures remain retained. Definition
+31/seed 31907 keeps all cases, trials, floors and waits; the six actual gap
+scenarios share one helper process with explicit completion inventory. Local
+commits only; no bounded-state, signer isolation, hosted or stable milestone closes.
+
+2026-10-09 local-only direction: the human prohibits remote pushes and requests
+continued implementation with local Git commits. This supersedes the standing
+sync grant. Keep the unchanged remote/close checks honest: committed-but-unpushed
+work is expected, not a full close pass. Existing independent/publication gates
+remain required. Shared owned control FIFO is the next accepted core component.
+
 2026-10-09: existing replay command qualified as a read-only local component;
 receipt `evals/sdk/replay-command.md`. Actual streamed reads, bounded public JSON,
 independent pins and redaction preserve positional/exit compatibility. First

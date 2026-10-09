@@ -1,0 +1,27 @@
+✔ LIF-4/SNP-7: control starts retry exactly from prefix and tail without another entry (74.284516ms)
+✔ LIF-4/LIF-1: methods, payloads and admission share the identity namespace (58.410564ms)
+✔ LIF-5: a pre-admission refusal and its exact bounded reply survive index publication (49.641499ms)
+✔ LIF-4/SNP-7: response commits once and differing canonical replies refuse (51.3112ms)
+✔ LIF-4: unknown identity, admission, foreign start and wrong start hash cannot return or finish controls (54.041236ms)
+✔ LIF-4: pending result remains undefined; null and nested completed replies are detached and frozen (42.746609ms)
+✔ LIF-4/SNP-7: identities, canonical payloads and result values are captured before queueing (26.515181ms)
+✔ LIF-4/SNP-7: concurrent mixed operations share FIFO ordering with proposal admission (39.447992ms)
+✔ OWN-2/SNP-7: copied, unsigned, memory and manual guards lack owned control authority (27.940503ms)
+✔ OWN-2/SNP-7: corrupt or missing index evidence blocks control mutations and reads (46.368899ms)
+✔ LIF-4: malformed identities, methods, payloads, time and oversized responses make no durable entry (23.844889ms)
+✔ LIF-4/SNP-7: duplicate concurrent starts and replies write exactly once (48.36918ms)
+✔ LIF-4/SNP-7: authenticated prefix replies remain exact after genuine owner restart (57.62302ms)
+✔ STO-1/LIF-4: control append failure leaves the failed writer unavailable without a reply (25.860148ms)
+✔ SNP-7/OWN-2: closure and trusted mutation during actual reads forbid stale control commits (49.659042ms)
+✔ SNP-7: actual control lookup followed by closure or a trusted mutation cannot authorize stale work (309.794575ms)
+✔ LIF-4/SNP-7: a queued refusal does not poison subsequent verified work (34.893994ms)
+✔ LIF-4: fresh starts and responses cannot alias retained journal objects (31.463568ms)
+✔ OWN-2/LIF-4: mutable public SDK methods cannot replace private owned bookkeeping (31.381789ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1163.914333

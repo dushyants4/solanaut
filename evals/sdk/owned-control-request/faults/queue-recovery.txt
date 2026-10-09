@@ -1,0 +1,19 @@
+✖ LIF-4/SNP-7: a queued refusal does not poison subsequent verified work (54.035081ms)
+ℹ Error: Test "LIF-4/SNP-7: a queued refusal does not poison subsequent verified work" at packages/sdk/test/owned-control-request.test.ts:182:1 generated asynchronous activity after the test ended. This activity created the error "OwnedControlRequestError: request response cannot change" and would have caused the test to fail, but instead triggered an unhandledRejection event.
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 135.171386
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-control-request.test.ts:182:1
+✖ LIF-4/SNP-7: a queued refusal does not poison subsequent verified work (54.035081ms)
+  OwnedControlRequestError: owned control cannot establish current request evidence
+      at ownedControl (file:///home/dashy/Projects/Solanaut/packages/sdk/src/guard.ts:149:17) {
+    code: 'owned-control-request'
+  }

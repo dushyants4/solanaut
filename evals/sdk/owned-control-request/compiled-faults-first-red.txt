@@ -1,0 +1,422 @@
+
+> test:package:faults
+> node evals/packaging/faults.ts
+
+caught package fault: owned-control-export
+caught package fault: owned-control-code
+caught package fault: owned-control-head
+caught package fault: owned-control-start-capture
+caught package fault: owned-control-answer-capture
+caught package fault: owned-control-immutable
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: fault must change the candidate
+    at file:///home/dashy/Projects/Solanaut/evals/packaging/faults.ts:140:14
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '// The guard (docs/SPEC.md §5 and §7, ADR-004, ADR-010): message bytes in, a decision out, by rules\n' +
+    '// 0 to 19 in order; the first rule that fails is the reason. Every decision is an entry of a\n' +
+    '// hash-chained record, kept by a store before the guard answers; an allowed one is a receipt bound\n' +
+    "// to the exact bytes. The record is the guard's state: on start the guard applies every entry\n" +
+    '// again, Keel included, and continues where it stopped. Every error is a denial: a guard that\n' +
+    '// cannot decide, or cannot record, does not sign.\n' +
+    'import { readFileSync } from "node:fs";\n' +
+    'import { fileURLToPath } from "node:url";\n' +
+    'import { Governor, wasmDigest } from "@gubernaut/core";\n' +
+    'import { effectsOf } from "./classify.js";\n' +
+    'import { canonicalJSON, sha256hex } from "./canonical.js";\n' +
+    'import { parseReleaseText, releaseText, verifyEd25519 } from "./latch.js";\n' +
+    'import { hashOf, OUTCOMES, seal } from "./log.js";\n' +
+    'import { EVALUATION_PROFILE, VERIFIED_KEEL_DIGEST, VERIFIED_KEEL_MODULE } from "./profile.js";\n' +
+    'import { PolicyAuthorizationError, verifyPolicyAuthorization, verifyPolicyEntry } from "./signed-policy.js";\n' +
+    'import { DecodeError } from "./message.js";\n' +
+    'import { contextOf, createPolicy } from "./policy.js";\n' +
+    'import { fileStore, lookupOwnedRequestIndex, memoryStore } from "./record.js";\n' +
+    'import { sensorV1 } from "./sensor.js";\n' +
+    'import { bindRequest, requestKey } from "./request.js";\n' +
+    'import { verifySigning } from "./signing.js";\n' +
+    'import { copyAuthority } from "./authority.js";\n' +
+    'import { controlBinding, controlPayload, controlResult } from "./control-request.js";\n' +
+    'import { apply, couldStillLand, currentIntent, initialState, nowFor, retentionWindow, unresolved, windowTotals } from "./state.js";\n' +
+    "/** The controller Solanaut was built and tested against: @gubernaut/core 1.0.1's embedded wasm, by SHA-256. */\n" +
+    'export { VERIFIED_KEEL_DIGEST } from "./profile.js";\n' +
+    '/** The module that runs it, `dist/index.js` of @gubernaut/core 1.0.1, by SHA-256: the JavaScript around the wasm counts too. */\n' +
+    'export { VERIFIED_KEEL_MODULE } from "./profile.js";\n' +
+    'const KEEL_VERSION = "1.0.1";\n' +
+    '/**\n' +
+    " * Hash a Keel module's source and the controller embedded in it (defect D4). Keel 1.0.1 declares\n" +
+    ' * its digest as a constant and checks only the length of what it loads (upstream finding U-1), so\n' +
+    ' * Solanaut hashes the bytes itself: the wasm against the declared digest, and the whole module,\n' +
+    ' * which is the code that runs the wasm, against the pinned file.\n' +
+    ' */\n' +
+    'export function verifyKeelSource(text) {\n' +
+    '    const moduleSha256 = sha256hex(text);\n' +
+    '    const m = /var WASM_BASE64 = "([A-Za-z0-9+/=]+)";/.exec(text);\n' +
+    '    const wasmSha256 = m ? sha256hex(new Uint8Array(Buffer.from(m[1], "base64"))) : "";\n' +
+    '    let problem = "";\n' +
+    '    if (!m)\n' +
+    '        problem = "the module embeds no controller";\n' +
+    '    else if (wasmSha256 !== VERIFIED_KEEL_DIGEST)\n' +
+    '        problem = `the embedded controller hashes to ${wasmSha256}, not the verified ${VERIFIED_KEEL_DIGEST}`;\n' +
+    '    else if (moduleSha256 !== VERIFIED_KEEL_MODULE)\n' +
+    '        problem = `the module that runs the controller hashes to ${moduleSha256}, not the verified ${VERIFIED_KEEL_MODULE}`;\n' +
+    '    return { ok: problem === "", moduleSha256, wasmSha256, problem };\n' +
+    '}\n' +
+    '/** Verify the Keel module this process actually loads, by the path Node resolves for it. */\n' +
+    'function verifyLoadedKeel(expectedDigest) {\n' +
+    '    const path = fileURLToPath(import.meta.resolve("@gubernaut/core"));\n' +
+    '    const v = verifyKeelSource(readFileSync(path, "utf8"));\n' +
+    '    if (!v.ok)\n' +
+    "        throw new Error(`Keel's controller failed verification: ${v.problem}. Refusing to guard with an unverified controller.`);\n" +
+    '    if (v.wasmSha256 !== expectedDigest || wasmDigest !== expectedDigest) {\n' +
+    "        throw new Error(`Keel's controller digest is ${v.wasmSha256}, not the expected ${expectedDigest}. Refusing to guard with an unverified controller.`);\n" +
+    '    }\n' +
+    '}\n' +
+    'export class OwnedRequestAdmissionError extends Error {\n' +
+    '    code = "owned-request-admission";\n' +
+    '    constructor(message) { super(message); this.name = "OwnedRequestAdmissionError"; }\n' +
+    '}\n' +
+    'const ownedAdmissions = new WeakMap();\n' +
+    'export class OwnedControlRequestError extends Error {\n' +
+    '    code = "owned-control-request";\n' +
+    '    constructor(message) { super(message); this.name = "OwnedControlRequestError"; }\n' +
+    '}\n' +
+    'const ownedControls = new WeakMap();\n' +
+    'async function ownedControl(guard, work) {\n' +
+    '    const controls = ownedControls.get(guard);\n' +
+    '    if (!controls)\n' +
+    '        throw new OwnedControlRequestError("owned controls require a genuine signed guard");\n' +
+    '    try {\n' +
+    '        return await work(controls);\n' +
+    '    }\n' +
+    '    catch {\n' +
+    '        throw new OwnedControlRequestError("owned control cannot establish current request evidence");\n' +
+    '    }\n' +
+    '}\n' +
+    '/** Internal companions share the owned admission FIFO; no signing or sending. */\n' +
+    'export function beginOwnedRequest(guard, identity, method, input, at) {\n' +
+    '    return ownedControl(guard, controls => controls.begin(identity, method, input, at));\n' +
+    '}\n' +
+    'export function finishOwnedRequest(guard, identity, startHash, input) {\n' +
+    '    return ownedControl(guard, controls => controls.finish(identity, startHash, input));\n' +
+    '}\n' +
+    'export function ownedRequestResult(guard, identity, startHash) {\n' +
+    '    return ownedControl(guard, controls => controls.result(identity, startHash));\n' +
+    '}\n' +
+    'function controlReply(input) {\n' +
+    '    const freezeReply = (value) => {\n' +
+    '        if (value && typeof value === "object") {\n' +
+    '            for (const child of Object.values(value))\n' +
+    '                freezeReply(child);\n' +
+    '            Object.freeze(value);\n' +
+    '        }\n' +
+    '    };\n' +
+    '    const reply = structuredClone(input);\n' +
+    '    freezeReply(reply);\n' +
+    '    return reply;\n' +
+    '}\n' +
+    'function admissionReply(decision) {\n' +
+    '    const freeze = (value) => {\n' +
+    '        if (value && typeof value === "object") {\n' +
+    '            for (const child of Object.values(value))\n' +
+    '                freeze(child);\n' +
+    '            Object.freeze(value);\n' +
+    '        }\n' +
+    '    };\n' +
+    '    const reply = structuredClone(decision);\n' +
+    '    freeze(reply);\n' +
+    '    return reply;\n' +
+    '}\n' +
+    '/** Internal companion: unchanged synchronous SDK methods still retain their full history. */\n' +
+    'export async function checkOwnedRequest(guard, proposal, identity) {\n' +
+    '    const admit = ownedAdmissions.get(guard);\n' +
+    '    if (!admit)\n' +
+    '        throw new OwnedRequestAdmissionError("owned admission requires a genuine signed guard");\n' +
+    '    try {\n' +
+    '        return await admit(proposal, identity);\n' +
+    '    }\n' +
+    '    catch (error) {\n' +
+    '        if (error instanceof OwnedRequestAdmissionError)\n' +
+    '            throw error;\n' +
+    '        throw new OwnedRequestAdmissionError("owned admission cannot establish current request evidence");\n' +
+    '    }\n' +
+    '}\n' +
+    'const fmt = (n) => n.toLocaleString("en-US");\n' +
+    'const isHeight = (h) => h === undefined || (typeof h === "bigint" && h >= 0n);\n' +
+    'const telemetryAccepted = (t) => {\n' +
+    '    if (t === null || typeof t !== "object")\n' +
+    '        return false;\n' +
+    '    const x = t;\n' +
+    '    return ["intensity", "valence", "repetition"].every((k) => typeof x[k] === "number") && Governor.accepts(t);\n' +
+    '};\n' +
+    'const describeTelemetry = (t) => {\n' +
+    '    try {\n' +
+    '        return JSON.stringify(t, (_k, v) => (typeof v === "number" && !Number.isFinite(v) ? String(v) : v)) ?? String(t);\n' +
+    '    }\n' +
+    '    catch {\n' +
+    '        return String(t);\n' +
+    '    }\n' +
+    '};\n' +
+    'function proposalProblem(p) {\n' +
+    '    if (p === null || typeof p !== "object")\n' +
+    '        return "the proposal is not an object";\n' +
+    '    const q = p;\n' +
+    '    if (!(q.message instanceof Uint8Array))\n' +
+    '        return "message must be the serialized message, as a Uint8Array";\n' +
+    '    if (typeof q.at !== "number" || !Number.isFinite(q.at) || q.at < 0)\n' +
+    '        return "at must be a time in milliseconds";\n' +
+    '    if (!isHeight(q.blockHeight))\n' +
+    '        return "blockHeight must be a non-negative bigint";\n' +
+    '    if (!isHeight(q.lastValidBlockHeight))\n' +
+    '        return "lastValidBlockHeight must be a non-negative bigint";\n' +
+    '    if (q.intent !== undefined && (typeof q.intent !== "string" || q.intent.length > 256))\n' +
+    '        return "intent must be text of at most 256 characters";\n' +
+    '    return null;\n' +
+    '}\n' +
+    '/** What a message would move, totalled: SOL, each mint, and fees with tips. */\n' +
+    'function totals(e) {\n' +
+    '    const sol = e.sol.reduce((t, x) => t + x.lamports, 0n);\n' +
+    '    const tokens = new Map();\n' +
+    '    for (const t of e.tokens)\n' +
+    '        if (t.mint !== null)\n' +
+    '            tokens.set(t.mint, (tokens.get(t.mint) ?? 0n) + t.amount);\n' +
+    '    return { sol, tokens, fees: e.priorityFee + e.baseFee + e.tips };\n' +
+    '}\n' +
+    "/** Every guard verifies the controller's bytes before it exists, so every decision it makes says so. */\n" +
+    'const KEEL = { version: KEEL_VERSION, digest: wasmDigest, verified: "bytes" };\n' +
+    '/**\n' +
+    ' * One decision, by rules 1 to 19 in order, against the state as it stands. It ticks Keel for\n' +
+    " * every parsed proposal and changes nothing else: committing the result is the caller's. A denial\n" +
+    " * that completes the policy's run of denials trips the latch. At REGROUND, Keel's own denial\n" +
+    ' * or a second consecutive REGROUND denial trips it (ADR-012 C).\n' +
+    ' */\n' +
+    'function evaluate(env, p, previous) {\n' +
+    '    const body = evaluateRules(env, p);\n' +
+    '    const { state, policy } = env;\n' +
+    '    const regroundTrips = body.posture === "REGROUND" && (body.rule === "loop-reground" || (previous?.allow === false && previous.posture === "REGROUND"));\n' +
+    '    const trips = !body.allow && !state.latched && (state.consecutiveDenials + 1 >= policy.latch.afterDenials || regroundTrips);\n' +
+    '    return trips ? { ...body, latch: true } : body;\n' +
+    '}\n' +
+    'function evaluateRules(env, p) {\n' +
+    '    const { policy, state } = env;\n' +
+    '    const at = typeof p?.at === "number" && Number.isFinite(p.at) && p.at >= 0 ? p.at : (state.maxAt ?? 0);\n' +
+    '    const base = {\n' +
+    '        kind: "decision",\n' +
+    '        at,\n' +
+    '        source: env.authority ? "signer" : "caller",\n' +
+    '        ...(env.authority ? { deployment: env.authority } : {}),\n' +
+    '        message: p?.message instanceof Uint8Array ? Buffer.from(p.message).toString("base64") : "",\n' +
+    '        blockHeight: typeof p?.blockHeight === "bigint" ? p.blockHeight.toString() : null,\n' +
+    '        lastValidBlockHeight: typeof p?.lastValidBlockHeight === "bigint" ? p.lastValidBlockHeight.toString() : null,\n' +
+    '        group: typeof p?.intent === "string" ? p.intent : null,\n' +
+    '        policyHash: env.policyHash,\n' +
+    '        keel: KEEL,\n' +
+    '    }'... 33113 more characters,
+  expected: '// The guard (docs/SPEC.md §5 and §7, ADR-004, ADR-010): message bytes in, a decision out, by rules\n' +
+    '// 0 to 19 in order; the first rule that fails is the reason. Every decision is an entry of a\n' +
+    '// hash-chained record, kept by a store before the guard answers; an allowed one is a receipt bound\n' +
+    "// to the exact bytes. The record is the guard's state: on start the guard applies every entry\n" +
+    '// again, Keel included, and continues where it stopped. Every error is a denial: a guard that\n' +
+    '// cannot decide, or cannot record, does not sign.\n' +
+    'import { readFileSync } from "node:fs";\n' +
+    'import { fileURLToPath } from "node:url";\n' +
+    'import { Governor, wasmDigest } from "@gubernaut/core";\n' +
+    'import { effectsOf } from "./classify.js";\n' +
+    'import { canonicalJSON, sha256hex } from "./canonical.js";\n' +
+    'import { parseReleaseText, releaseText, verifyEd25519 } from "./latch.js";\n' +
+    'import { hashOf, OUTCOMES, seal } from "./log.js";\n' +
+    'import { EVALUATION_PROFILE, VERIFIED_KEEL_DIGEST, VERIFIED_KEEL_MODULE } from "./profile.js";\n' +
+    'import { PolicyAuthorizationError, verifyPolicyAuthorization, verifyPolicyEntry } from "./signed-policy.js";\n' +
+    'import { DecodeError } from "./message.js";\n' +
+    'import { contextOf, createPolicy } from "./policy.js";\n' +
+    'import { fileStore, lookupOwnedRequestIndex, memoryStore } from "./record.js";\n' +
+    'import { sensorV1 } from "./sensor.js";\n' +
+    'import { bindRequest, requestKey } from "./request.js";\n' +
+    'import { verifySigning } from "./signing.js";\n' +
+    'import { copyAuthority } from "./authority.js";\n' +
+    'import { controlBinding, controlPayload, controlResult } from "./control-request.js";\n' +
+    'import { apply, couldStillLand, currentIntent, initialState, nowFor, retentionWindow, unresolved, windowTotals } from "./state.js";\n' +
+    "/** The controller Solanaut was built and tested against: @gubernaut/core 1.0.1's embedded wasm, by SHA-256. */\n" +
+    'export { VERIFIED_KEEL_DIGEST } from "./profile.js";\n' +
+    '/** The module that runs it, `dist/index.js` of @gubernaut/core 1.0.1, by SHA-256: the JavaScript around the wasm counts too. */\n' +
+    'export { VERIFIED_KEEL_MODULE } from "./profile.js";\n' +
+    'const KEEL_VERSION = "1.0.1";\n' +
+    '/**\n' +
+    " * Hash a Keel module's source and the controller embedded in it (defect D4). Keel 1.0.1 declares\n" +
+    ' * its digest as a constant and checks only the length of what it loads (upstream finding U-1), so\n' +
+    ' * Solanaut hashes the bytes itself: the wasm against the declared digest, and the whole module,\n' +
+    ' * which is the code that runs the wasm, against the pinned file.\n' +
+    ' */\n' +
+    'export function verifyKeelSource(text) {\n' +
+    '    const moduleSha256 = sha256hex(text);\n' +
+    '    const m = /var WASM_BASE64 = "([A-Za-z0-9+/=]+)";/.exec(text);\n' +
+    '    const wasmSha256 = m ? sha256hex(new Uint8Array(Buffer.from(m[1], "base64"))) : "";\n' +
+    '    let problem = "";\n' +
+    '    if (!m)\n' +
+    '        problem = "the module embeds no controller";\n' +
+    '    else if (wasmSha256 !== VERIFIED_KEEL_DIGEST)\n' +
+    '        problem = `the embedded controller hashes to ${wasmSha256}, not the verified ${VERIFIED_KEEL_DIGEST}`;\n' +
+    '    else if (moduleSha256 !== VERIFIED_KEEL_MODULE)\n' +
+    '        problem = `the module that runs the controller hashes to ${moduleSha256}, not the verified ${VERIFIED_KEEL_MODULE}`;\n' +
+    '    return { ok: problem === "", moduleSha256, wasmSha256, problem };\n' +
+    '}\n' +
+    '/** Verify the Keel module this process actually loads, by the path Node resolves for it. */\n' +
+    'function verifyLoadedKeel(expectedDigest) {\n' +
+    '    const path = fileURLToPath(import.meta.resolve("@gubernaut/core"));\n' +
+    '    const v = verifyKeelSource(readFileSync(path, "utf8"));\n' +
+    '    if (!v.ok)\n' +
+    "        throw new Error(`Keel's controller failed verification: ${v.problem}. Refusing to guard with an unverified controller.`);\n" +
+    '    if (v.wasmSha256 !== expectedDigest || wasmDigest !== expectedDigest) {\n' +
+    "        throw new Error(`Keel's controller digest is ${v.wasmSha256}, not the expected ${expectedDigest}. Refusing to guard with an unverified controller.`);\n" +
+    '    }\n' +
+    '}\n' +
+    'export class OwnedRequestAdmissionError extends Error {\n' +
+    '    code = "owned-request-admission";\n' +
+    '    constructor(message) { super(message); this.name = "OwnedRequestAdmissionError"; }\n' +
+    '}\n' +
+    'const ownedAdmissions = new WeakMap();\n' +
+    'export class OwnedControlRequestError extends Error {\n' +
+    '    code = "owned-control-request";\n' +
+    '    constructor(message) { super(message); this.name = "OwnedControlRequestError"; }\n' +
+    '}\n' +
+    'const ownedControls = new WeakMap();\n' +
+    'async function ownedControl(guard, work) {\n' +
+    '    const controls = ownedControls.get(guard);\n' +
+    '    if (!controls)\n' +
+    '        throw new OwnedControlRequestError("owned controls require a genuine signed guard");\n' +
+    '    try {\n' +
+    '        return await work(controls);\n' +
+    '    }\n' +
+    '    catch {\n' +
+    '        throw new OwnedControlRequestError("owned control cannot establish current request evidence");\n' +
+    '    }\n' +
+    '}\n' +
+    '/** Internal companions share the owned admission FIFO; no signing or sending. */\n' +
+    'export function beginOwnedRequest(guard, identity, method, input, at) {\n' +
+    '    return ownedControl(guard, controls => controls.begin(identity, method, input, at));\n' +
+    '}\n' +
+    'export function finishOwnedRequest(guard, identity, startHash, input) {\n' +
+    '    return ownedControl(guard, controls => controls.finish(identity, startHash, input));\n' +
+    '}\n' +
+    'export function ownedRequestResult(guard, identity, startHash) {\n' +
+    '    return ownedControl(guard, controls => controls.result(identity, startHash));\n' +
+    '}\n' +
+    'function controlReply(input) {\n' +
+    '    const freezeReply = (value) => {\n' +
+    '        if (value && typeof value === "object") {\n' +
+    '            for (const child of Object.values(value))\n' +
+    '                freezeReply(child);\n' +
+    '            Object.freeze(value);\n' +
+    '        }\n' +
+    '    };\n' +
+    '    const reply = structuredClone(input);\n' +
+    '    freezeReply(reply);\n' +
+    '    return reply;\n' +
+    '}\n' +
+    'function admissionReply(decision) {\n' +
+    '    const freeze = (value) => {\n' +
+    '        if (value && typeof value === "object") {\n' +
+    '            for (const child of Object.values(value))\n' +
+    '                freeze(child);\n' +
+    '            Object.freeze(value);\n' +
+    '        }\n' +
+    '    };\n' +
+    '    const reply = structuredClone(decision);\n' +
+    '    freeze(reply);\n' +
+    '    return reply;\n' +
+    '}\n' +
+    '/** Internal companion: unchanged synchronous SDK methods still retain their full history. */\n' +
+    'export async function checkOwnedRequest(guard, proposal, identity) {\n' +
+    '    const admit = ownedAdmissions.get(guard);\n' +
+    '    if (!admit)\n' +
+    '        throw new OwnedRequestAdmissionError("owned admission requires a genuine signed guard");\n' +
+    '    try {\n' +
+    '        return await admit(proposal, identity);\n' +
+    '    }\n' +
+    '    catch (error) {\n' +
+    '        if (error instanceof OwnedRequestAdmissionError)\n' +
+    '            throw error;\n' +
+    '        throw new OwnedRequestAdmissionError("owned admission cannot establish current request evidence");\n' +
+    '    }\n' +
+    '}\n' +
+    'const fmt = (n) => n.toLocaleString("en-US");\n' +
+    'const isHeight = (h) => h === undefined || (typeof h === "bigint" && h >= 0n);\n' +
+    'const telemetryAccepted = (t) => {\n' +
+    '    if (t === null || typeof t !== "object")\n' +
+    '        return false;\n' +
+    '    const x = t;\n' +
+    '    return ["intensity", "valence", "repetition"].every((k) => typeof x[k] === "number") && Governor.accepts(t);\n' +
+    '};\n' +
+    'const describeTelemetry = (t) => {\n' +
+    '    try {\n' +
+    '        return JSON.stringify(t, (_k, v) => (typeof v === "number" && !Number.isFinite(v) ? String(v) : v)) ?? String(t);\n' +
+    '    }\n' +
+    '    catch {\n' +
+    '        return String(t);\n' +
+    '    }\n' +
+    '};\n' +
+    'function proposalProblem(p) {\n' +
+    '    if (p === null || typeof p !== "object")\n' +
+    '        return "the proposal is not an object";\n' +
+    '    const q = p;\n' +
+    '    if (!(q.message instanceof Uint8Array))\n' +
+    '        return "message must be the serialized message, as a Uint8Array";\n' +
+    '    if (typeof q.at !== "number" || !Number.isFinite(q.at) || q.at < 0)\n' +
+    '        return "at must be a time in milliseconds";\n' +
+    '    if (!isHeight(q.blockHeight))\n' +
+    '        return "blockHeight must be a non-negative bigint";\n' +
+    '    if (!isHeight(q.lastValidBlockHeight))\n' +
+    '        return "lastValidBlockHeight must be a non-negative bigint";\n' +
+    '    if (q.intent !== undefined && (typeof q.intent !== "string" || q.intent.length > 256))\n' +
+    '        return "intent must be text of at most 256 characters";\n' +
+    '    return null;\n' +
+    '}\n' +
+    '/** What a message would move, totalled: SOL, each mint, and fees with tips. */\n' +
+    'function totals(e) {\n' +
+    '    const sol = e.sol.reduce((t, x) => t + x.lamports, 0n);\n' +
+    '    const tokens = new Map();\n' +
+    '    for (const t of e.tokens)\n' +
+    '        if (t.mint !== null)\n' +
+    '            tokens.set(t.mint, (tokens.get(t.mint) ?? 0n) + t.amount);\n' +
+    '    return { sol, tokens, fees: e.priorityFee + e.baseFee + e.tips };\n' +
+    '}\n' +
+    "/** Every guard verifies the controller's bytes before it exists, so every decision it makes says so. */\n" +
+    'const KEEL = { version: KEEL_VERSION, digest: wasmDigest, verified: "bytes" };\n' +
+    '/**\n' +
+    ' * One decision, by rules 1 to 19 in order, against the state as it stands. It ticks Keel for\n' +
+    " * every parsed proposal and changes nothing else: committing the result is the caller's. A denial\n" +
+    " * that completes the policy's run of denials trips the latch. At REGROUND, Keel's own denial\n" +
+    ' * or a second consecutive REGROUND denial trips it (ADR-012 C).\n' +
+    ' */\n' +
+    'function evaluate(env, p, previous) {\n' +
+    '    const body = evaluateRules(env, p);\n' +
+    '    const { state, policy } = env;\n' +
+    '    const regroundTrips = body.posture === "REGROUND" && (body.rule === "loop-reground" || (previous?.allow === false && previous.posture === "REGROUND"));\n' +
+    '    const trips = !body.allow && !state.latched && (state.consecutiveDenials + 1 >= policy.latch.afterDenials || regroundTrips);\n' +
+    '    return trips ? { ...body, latch: true } : body;\n' +
+    '}\n' +
+    'function evaluateRules(env, p) {\n' +
+    '    const { policy, state } = env;\n' +
+    '    const at = typeof p?.at === "number" && Number.isFinite(p.at) && p.at >= 0 ? p.at : (state.maxAt ?? 0);\n' +
+    '    const base = {\n' +
+    '        kind: "decision",\n' +
+    '        at,\n' +
+    '        source: env.authority ? "signer" : "caller",\n' +
+    '        ...(env.authority ? { deployment: env.authority } : {}),\n' +
+    '        message: p?.message instanceof Uint8Array ? Buffer.from(p.message).toString("base64") : "",\n' +
+    '        blockHeight: typeof p?.blockHeight === "bigint" ? p.blockHeight.toString() : null,\n' +
+    '        lastValidBlockHeight: typeof p?.lastValidBlockHeight === "bigint" ? p.lastValidBlockHeight.toString() : null,\n' +
+    '        group: typeof p?.intent === "string" ? p.intent : null,\n' +
+    '        policyHash: env.policyHash,\n' +
+    '        keel: KEEL,\n' +
+    '    }'... 33113 more characters,
+  operator: 'notStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

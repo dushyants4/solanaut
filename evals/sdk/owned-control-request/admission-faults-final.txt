@@ -1,0 +1,22 @@
+caught owned admission fault: genuine-capability
+caught owned admission fault: proposal-capture
+caught owned admission fault: identity-capture
+caught owned admission fault: shared-message-copy
+caught owned admission fault: group-binding
+caught owned admission fault: time-capture
+caught owned admission fault: group-capture
+caught owned admission fault: height-capture
+caught owned admission fault: owned-disk-consultation
+caught owned admission fault: current-head
+caught owned admission fault: late-closure
+caught owned admission fault: payload-collision
+caught owned admission fault: historical-answer
+caught owned admission fault: historical-policy-retry
+caught owned admission fault: admission-identity
+caught owned admission fault: private-check-context
+caught owned admission fault: fifo
+caught owned admission fault: queue-rejection-recovery
+caught owned admission fault: reply-detachment
+caught owned admission fault: recursive-reply-freeze
+caught owned admission fault: collision-reply-freeze
+All owned admission faults caught; source restored

@@ -1,0 +1,27 @@
+✔ LIF-4/SNP-7: control starts retry exactly from prefix and tail without another entry (72.806403ms)
+✔ LIF-4/LIF-1: methods, payloads and admission share the identity namespace (52.633928ms)
+✔ LIF-5: a pre-admission refusal and its exact bounded reply survive index publication (51.635088ms)
+✔ LIF-4/SNP-7: response commits once and differing canonical replies refuse (50.874032ms)
+✔ LIF-4: unknown identity, admission, foreign start and wrong start hash cannot return or finish controls (48.665881ms)
+✔ LIF-4: pending result remains undefined; null and nested completed replies are detached and frozen (46.995131ms)
+✔ LIF-4/SNP-7: identities, canonical payloads and result values are captured before queueing (27.467718ms)
+✔ LIF-4/SNP-7: concurrent mixed operations share FIFO ordering with proposal admission (41.094009ms)
+✔ OWN-2/SNP-7: copied, unsigned, memory and manual guards lack owned control authority (34.763989ms)
+✔ OWN-2/SNP-7: corrupt or missing index evidence blocks control mutations and reads (46.201981ms)
+✔ LIF-4: malformed identities, methods, payloads, time and oversized responses make no durable entry (24.418355ms)
+✔ LIF-4/SNP-7: duplicate concurrent starts and replies write exactly once (47.21199ms)
+✔ LIF-4/SNP-7: authenticated prefix replies remain exact after genuine owner restart (58.728191ms)
+✔ STO-1/LIF-4: control append failure leaves the failed writer unavailable without a reply (24.659998ms)
+✔ SNP-7/OWN-2: closure and trusted mutation during actual reads forbid stale control commits (57.010215ms)
+✔ SNP-7: actual control lookup followed by closure or a trusted mutation cannot authorize stale work (906.662032ms)
+✔ LIF-4/SNP-7: a queued refusal does not poison subsequent verified work (32.797192ms)
+✔ LIF-4: fresh starts and responses cannot alias retained journal objects (30.833501ms)
+✔ OWN-2/LIF-4: mutable public SDK methods cannot replace private owned bookkeeping (31.071852ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1762.359686

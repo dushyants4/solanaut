@@ -1,5 +1,17 @@
 # DOCUMENTS.md — the document register
 
+2026-10-09 local owned-control integration registers SPEC Draft 4.73, OVERVIEW 44,
+RISKS 1.65, PROGRESS, HANDOFF, continuing run and `evals/sdk/owned-control-request.md`
+with its evaluation index. Capture shared FIFO/current disk evidence and local-only
+version control; preserve all setup/first failures. Full retained state, hosted
+execution and stable-release gates remain open.
+CLAIMS S94 and the private package/evaluation manifests carry scoped measured
+results; no private package version or signer implementation changes.
+The final definition 31 workload batches the same six real gap cases, preserves
+definition 29/30 failures and retains all cases/trials/floors/waits. Complete local
+ordinary/AST/type/driver/staging evidence and matching source/archive hashes are
+registered beside the receipt. H9's explicit acceptance remains pending.
+
 2026-10-09 replay-command integration registers SPEC Draft 4.72, OVERVIEW 43,
 RISKS 1.64, POLICIES 2, PROGRESS, HANDOFF, continuing run, evaluation index and
 `evals/sdk/replay-command.md`, CLAIMS S93 and its package/coverage manifests.

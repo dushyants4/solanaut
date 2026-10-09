@@ -1,7 +1,18 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.64** · 2026-10-09 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.65** · 2026-10-09 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
+
+Local-only commits now replace the previous standing push grant. The unchanged
+close workflow cannot pass its pushed-HEAD check for those commits. Record that
+finding; no hosted execution, backup to a remote or stable-release gate is implied.
+Owned controls now share admission's FIFO and reject stale disk evidence, but
+trusted synchronous callers can still interrupt them. Full retained state and
+actual isolated startup remain unresolved (`evals/sdk/owned-control-request.md`).
+The initial owned-control candidate dispatches through mutable public SDK
+methods; D31 is reproduced and corrected by capturing private bookkeeping.
+Earlier installed passes do not qualify that corrected candidate; repeat them
+with fresh workload identity and preserve the original failures.
 
 Exact published Phantom MCP send/transfer routes return after broadcast; the
 accepted wallet-byte revalidation requirement cannot rely on those results.

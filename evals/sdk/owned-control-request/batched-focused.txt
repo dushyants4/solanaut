@@ -1,0 +1,27 @@
+✔ LIF-4/SNP-7: control starts retry exactly from prefix and tail without another entry (102.994309ms)
+✔ LIF-4/LIF-1: methods, payloads and admission share the identity namespace (60.81666ms)
+✔ LIF-5: a pre-admission refusal and its exact bounded reply survive index publication (57.025375ms)
+✔ LIF-4/SNP-7: response commits once and differing canonical replies refuse (67.612231ms)
+✔ LIF-4: unknown identity, admission, foreign start and wrong start hash cannot return or finish controls (50.39908ms)
+✔ LIF-4: pending result remains undefined; null and nested completed replies are detached and frozen (43.796209ms)
+✔ LIF-4/SNP-7: identities, canonical payloads and result values are captured before queueing (26.825931ms)
+✔ LIF-4/SNP-7: concurrent mixed operations share FIFO ordering with proposal admission (42.045509ms)
+✔ OWN-2/SNP-7: copied, unsigned, memory and manual guards lack owned control authority (30.28922ms)
+✔ OWN-2/SNP-7: corrupt or missing index evidence blocks control mutations and reads (45.936924ms)
+✔ LIF-4: malformed identities, methods, payloads, time and oversized responses make no durable entry (25.25087ms)
+✔ LIF-4/SNP-7: duplicate concurrent starts and replies write exactly once (50.651538ms)
+✔ LIF-4/SNP-7: authenticated prefix replies remain exact after genuine owner restart (61.025068ms)
+✔ STO-1/LIF-4: control append failure leaves the failed writer unavailable without a reply (24.166969ms)
+✔ SNP-7/OWN-2: closure and trusted mutation during actual reads forbid stale control commits (68.158446ms)
+✔ SNP-7: actual control lookup followed by closure or a trusted mutation cannot authorize stale work (324.408254ms)
+✔ LIF-4/SNP-7: a queued refusal does not poison subsequent verified work (42.909617ms)
+✔ LIF-4: fresh starts and responses cannot alias retained journal objects (31.804136ms)
+✔ OWN-2/LIF-4: mutable public SDK methods cannot replace private owned bookkeeping (32.568144ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1271.979252

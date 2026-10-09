@@ -1,0 +1,128 @@
+✖ CI-2: an asynchronously started real staged baseline finishes without relaunching (17676.154279ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17842.474818
+
+✖ failing tests:
+
+test at evals/ci/mutation-recovery.test.ts:62:1
+✖ CI-2: an asynchronously started real staged baseline finishes without relaunching (17676.154279ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /tests 518\b/. Input:
+  
+  "✔ guardedWallet exposes exactly BaseWallet's members, frozen, and never the wallet it wraps (52.709904ms)\n" +
+    "✔ guardedWallet refuses a wallet whose key is outside the policy's principal, or no RPC to send through (1.282149ms)\n" +
+    '✔ signTransaction: an allowed payment is signed by the wrapped wallet; a drain throws SolanautDenied before the wallet is asked (7.693677ms)\n' +
+    '✔ the adapters give the same verdicts as the SDK, for legacy and v0 transactions (19.200388ms)\n' +
+    '✔ a re-sign of the same payment while the first could still land throws intent-in-flight (2.191425ms)\n' +
+    '✔ a wallet that changes the message before signing it is caught: its signatures are stripped, and the call throws (1.885385ms)\n' +
+    '✔ a wallet whose signature does not verify over the admitted bytes is caught (1.55707ms)\n' +
+    '✔ a wallet that signs a whole batch in place but returns it short: every caller object is stripped, and what was signed is held, not released (4.384133ms)\n' +
+    '✔ wallet-changed-message carries no decision, on guardedWallet (guardedSigner: its own test) (2.158238ms)\n' +
+    '✔ signAllTransactions is all or nothing: one denial signs none, and the admitted ones are released (6.238749ms)\n' +
+    '✔ signAndSendTransaction: checks, signs, sends exactly the admitted bytes itself, and reports the outcome (5.249731ms)\n' +
+    '✔ a send the RPC refuses is reported failed, and rethrown (3.444658ms)\n' +
+    '✔ a send whose fate is unknown is reported unknown, not failed: the signed bytes may still land, so a re-sign is refused (4.308249ms)\n' +
+    '✔ D14, sign-only: before the next proposal, guardedWallet reads the outcome of what it signed and reports it (4.29543ms)\n' +
+    '✔ D14, sign-only: a payment seen but not yet confirmed is not reported, and without a status reader the guard holds the intent (3.052288ms)\n' +
+    '✔ signMessage is denied: a raw signature over chosen bytes can be a transaction signature (0.387453ms)\n' +
+    '✔ guardedSigner: checks every transaction first, all or nothing, reads expiry from the lifetime, and verifies the signatures it returns (21.394773ms)\n' +
+    '✔ jsonRpc: sends base64 bytes, reads the height, and turns signature statuses into outcomes (2514.828516ms)\n' +
+    '✔ rule 0: an invalid policy means no guard (0.778066ms)\n' +
+    '✔ rule 1: bytes that do not parse, and ill-typed fields, deny as malformed-proposal (D5: never a throw) (1.615464ms)\n' +
+    '✔ rule 2: a version other than legacy, 0 or 1 denies as unsupported-version (0.529588ms)\n' +
+    '✔ rule 3: a lookup table the policy does not pin denies as lookup-table-unpinned (0.853173ms)\n' +
+    '✔ rule 5: a durable nonce, even paying an allowed destination, denies as durable-nonce-denied (1.690299ms)\n' +
+    '✔ rule 6: a required signer outside the principal denies as other-signer (0.772429ms)\n' +
+    '✔ rule 7: a program off the allowlist denies as program-not-allowed (0.78207ms)\n' +
+    '✔ rule 8: an allowlisted program the guard does not decode denies while opaque is deny, and passes when allow (1.358383ms)\n' +
+    '✔ rule 9: Approve, an unknown System instruction and a v1 ComputeBudget decoy deny as instruction-denied (D6, D10) (6.260589ms)\n' +
+    '✔ rule 10: SOL or tokens to an address the policy does not allow deny as destination-not-allowed (10.056784ms)\n' +
+    '✔ rule 11: an unlisted mint denies as mint-not-allowed; a plain Transfer from an unknown account as token-mint-unknown (5.364782ms)\n' +
+    '✔ rule 12: SOL or a mint over its per-transaction cap denies as over-per-tx-cap, summed over the message (2.590792ms)\n' +
+    '✔ rule 13: a priority fee over the cap denies as over-fee-cap, in legacy and in v1 (1.579849ms)\n' +
+    '✔ rules 14 and 15, the double-send battery: in flight until reported failed or expired; attempts are counted (3.348393ms)\n' +
+    '✔ D14: an attempt nobody reported may have landed, so past its expiry it still holds its intent, until reported or until the window passes (2.330976ms)\n' +
+    '✔ intents: a landed intent is done, and the same payment again is a new intent (1.058253ms)\n' +
+    '✔ intents: without block heights, only a report ends an attempt (1.162868ms)\n' +
+    '✔ reports: only for allowed decisions this guard made (0.985355ms)\n' +
+    '✔ rule 16: the window counts what was allowed; a failed report releases it, an unknown one keeps it; it slides (4.484378ms)\n' +
+    '✔ rule 16: each mint and the fees have their own window (3.119248ms)\n' +
+    '✔ rule 16, the boundaries: a payment exactly one window later is outside it, one millisecond earlier is inside (1.300787ms)\n' +
+    "✔ rule 16: a mint's window is its own (6.896779ms)\n" +
+    '✔ the concurrency battery: 50 proposals in one tick admit exactly what fits the window (15.528842ms)\n' +
+    '  retry loop stopped at turn 3: DEFAULT -> DEFAULT -> REGROUND (loop-reground)\n' +
+    '✔ rule 17: an identical failing retry loop is stopped by Keel as loop-reground, and the turn is measured (1.466574ms)\n' +
+    "✔ rule 18: under INHIBIT, an amount over the per-transaction cap times Keel's clamp (0.30) denies as inhibit-cap (0.923001ms)\n" +
+    '✔ varied, successful payments at a realistic pace are not stopped (5.396852ms)\n' +
+    '✔ every parsed proposal reaches Keel, allowed or denied; a malformed one does not (1.080171ms)\n' +
+    '✔ rule 19: anything that throws denies as fail-closed, and check never throws (1.161065ms)\n' +
+    '✔ rule order: a proposal that breaks several rules is denied by the first (7.544309ms)\n' +
+    '✔ the latch battery: it trips after the set run of denials; only a fresh, exact operator release frees it (3.768829ms)\n' +
+    '✔ receipts (D7): an allowed decision binds the message hash, expiry and policy; redeemed once, for those bytes only (1.312709ms)\n' +
+    '✔ decisions are a hash chain, and each carries its bytes, so the record replays on its own (0.898999ms)\n' +
+    '✔ D1: guard.policy is frozen, and changing it is refused (0.763267ms)\n' +
+    '✔ a controller that is not the verified binary is refused at creation (0.219897ms)\n' +
+    '✔ S36: a receipt reported expired, failed or landed no longer redeems (1.482606ms)\n' +
+    "✔ S80: a release's expiry is judged on the latest recorded time, so a clock that steps back cannot revive an expired release (0.907912ms)\n" +
+    '✔ S82: an attempt a trusted height shows can still land stays in the window past windowMs; reported expired, it leaves (1.044177ms)\n' +
+    '✔ ANC-3: an externally pinned middle, first and last anchor verify with a valid tail (3.074765ms)\n' +
+    '✔ ANC-3: a fully resealed rewrite before the anchor is refused (2.473831ms)\n' +
+    '✔ ANC-3: matching a head at another sequence cannot substitute for the anchor (0.808103ms)\n' +
+    '✔ ANC-3: an absent anchor in empty or truncated history is refused (0.648515ms)\n' +
+    '✔ ANC-3: continuation segments must actually contain the pinned anchor (0.598654ms)\n' +
+    '✔ ANC-3: malformed or unsupported anchor options refuse before opening a source (0.24118ms)\n' +
+    '✔ ANC-3: caller mutation cannot change the captured anchor or receipt (0.658309ms)\n' +
+    '✔ ANC-3: a valid rewrite after the anchor is outside its integrity coverage (0.741286ms)\n' +
+    '✔ SNP-1: natural streamed completion matches the full verifier and deeply freezes entries (9.416626ms)\n' +
+    '✔ SNP-1: streamed empty and continuation boundaries retain sequence and predecessor pins (1.006599ms)\n' +
+    '✔ SNP-1: consumer backpressure suspends reads after the first bounded chunk (30.100949ms)\n' +
+    '✔ SNP-1: cancellation and consumer failure close the source without a completion receipt (0.839259ms)\n' +
+    '✔ SNP-1: damaged later entries and conflicting final pins cannot produce natural completion (1.042435ms)\n' +
+    '✔ SNP-1: appending, truncating or replacing a source after a yield invalidates completion (1.153746ms)\n' +
+    '✔ SNP-1: option pins are captured when the iterator is created, before asynchronous reading (0.548324ms)\n' +
+    '✔ SNP-1: streamed unsupported sources and malformed or oversized frames refuse before yielding (1.12326ms)\n' +
+    '✔ SNP-1: a FIFO without a writer is refused without blocking on open (78.683046ms)\n' +
+    '✔ SNP-1: full and continuation archives match head, digest, sequence and byte count (5.77858ms)\n' +
+    '✔ SNP-1: empty archive is structural empty history, not proof of an established guard (0.408609ms)\n' +
+    '✔ SNP-1: line bound accepts the exact UTF-8 length and refuses one byte less (0.467296ms)\n' +
+    '✔ SNP-1: invalid options reject before source reads (0.197872ms)\n' +
+    '✔ SNP-1: missing, symlink and directory sources refuse (0.396684ms)\n' +
+    '✔ SNP-1: incomplete/blank and invalid UTF-8 frames refuse (0.483167ms)\n' +
+    '✔ SNP-1: malformed JSON and unsupported record envelopes refuse (0.706026ms)\n' +
+    '✔ SNP-1: altered hash, sequence and predecessor refuse (0.621556ms)\n' +
+    '✔ SNP-1: external head and raw digest pins refuse rewritten or truncated archives (1.56642ms)\n' +
+    '✔ SNP-1: competing source changes refuse and descriptors close on success and failure (1.992771ms)\n' +
+    '✔ SNP-1: fractional signer timestamps remain supported and unsafe sequence overflow refuses (1.176922ms)\n' +
+    '✔ SNP-1: hardlinks and pathname replacement during verification refuse (4.870322ms)\n' +
+    '✔ SNP-1: malformed/unknown options refuse and pins are captured before asynchronous reads (0.734976ms)\n' +
+    '✔ SNP-1: multibyte frames cross chunks and oversized unfinished lines stop after one read (1.616547ms)\n' +
+    '✔ SNP-1: changed length refuses even when source timestamps do not reveal it (0.488694ms)\n' +
+    '✔ LAT/POL-2: malformed release text and public signature inputs cannot authenticate (0.575276ms)\n' +
+    '✔ LIF-1/4: unsupported canonical values and malformed payload types refuse binding (0.460523ms)\n' +
+    '✔ LIF-4: malformed recorded request/response time and noncanonical content cannot restore (0.948851ms)\n' +
+    '✔ LIF-2: unknown requests, cross-policy signing and unsupported stages cannot journal (0.868685ms)\n' +
+    '✔ SIG-8: corrupted decision hashes refuse restore and deterministically diverge in replay (1.072317ms)\n' +
+    '✔ T2/T15: empty token-program instruction data is denied under both programs (0.080299ms)\n' +
+    '✔ SNP-3: archive catalogue bytes and digest have an independent canonical oracle (0.44679ms)\n' +
+    '✔ SNP-3: receipt field insertion order cannot change catalogue bytes (0.200097ms)\n' +
+    '✔ SNP-3: caller array methods cannot substitute unvalidated receipts (0.203484ms)\n' +
+    '✔ SNP-3: only genesis may have an empty archive catalogue (0.227137ms)\n' +
+    '✔ SNP-3: malformed checkpoint context never binds an archive catalogue (0.308587ms)\n' +
+    '✔ SNP-3: malformed receipt fields and unsupported data refuse (1.198608ms)\n' +
+    '✔ SNP-3: gaps, omitted segments, duplicate segments and reordered segments '... 44018 more characters
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation-recovery.test.ts:77:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: "✔ guardedWallet exposes exactly BaseWallet's members, frozen, and never the wallet it wraps (52.709904ms)\n✔ guardedWallet refuses a wallet whose key is outside the policy's principal, or no RPC to send through (1.282149ms)\n✔ signTransaction: an allowed payment is signed by the wrapped wallet; a drain throws SolanautDenied before the wallet is asked (7.693677ms)\n✔ the adapters give the same verdicts as the SDK, for legacy and v0 transactions (19.200388ms)\n✔ a re-sign of the same payment while the first could still land throws intent-in-flight (2.191425ms)\n✔ a wallet that changes the message before signing it is caught: its signatures are stripped, and the call throws (1.885385ms)\n✔ a wallet whose signature does not verify over the admitted bytes is caught (1.55707ms)\n✔ a wallet that signs a whole batch in place but returns it short: every caller object is stripped, and what was signed is held, not released (4.384133ms)\n✔ wallet-changed-message carries no decision, on guardedWallet (guardedSigner: its own test) (2.158238ms)\n✔ signAllTransactions is all or nothing: one denial signs none, and the admitted ones are released (6.238749ms)\n✔ signAndSendTransaction: checks, signs, sends exactly the admitted bytes itself, and reports the outcome (5.249731ms)\n✔ a send the RPC refuses is reported failed, and rethrown (3.444658ms)\n✔ a send whose fate is unknown is reported unknown, not failed: the signed bytes may still land, so a re-sign is refused (4.308249ms)\n✔ D14, sign-only: before the next proposal, guardedWallet reads the outcome of what it signed and reports it (4.29543ms)\n✔ D14, sign-only: a payment seen but not yet confirmed is not reported, and without a status reader the guard holds the intent (3.052288ms)\n✔ signMessage is denied: a raw signature over chosen bytes can be a transaction signature (0.387453ms)\n✔ guardedSigner: checks every transaction first, all or nothing, reads expiry from the lifetime, and verifies the signatures it returns (21.394773ms)\n✔ jsonRpc: sends base64 bytes, reads the height, and turns signature statuses into outcomes (2514.828516ms)\n✔ rule 0: an invalid policy means no guard (0.778066ms)\n✔ rule 1: bytes that do not parse, and ill-typed fields, deny as malformed-proposal (D5: never a throw) (1.615464ms)\n✔ rule 2: a version other than legacy, 0 or 1 denies as unsupported-version (0.529588ms)\n✔ rule 3: a lookup table the policy does not pin denies as lookup-table-unpinned (0.853173ms)\n✔ rule 5: a durable nonce, even paying an allowed destination, denies as durable-nonce-denied (1.690299ms)\n✔ rule 6: a required signer outside the principal denies as other-signer (0.772429ms)\n✔ rule 7: a program off the allowlist denies as program-not-allowed (0.78207ms)\n✔ rule 8: an allowlisted program the guard does not decode denies while opaque is deny, and passes when allow (1.358383ms)\n✔ rule 9: Approve, an unknown System instruction and a v1 ComputeBudget decoy deny as instruction-denied (D6, D10) (6.260589ms)\n✔ rule 10: SOL or tokens to an address the policy does not allow deny as destination-not-allowed (10.056784ms)\n✔ rule 11: an unlisted mint denies as mint-not-allowed; a plain Transfer from an unknown account as token-mint-unknown (5.364782ms)\n✔ rule 12: SOL or a mint over its per-transaction cap denies as over-per-tx-cap, summed over the message (2.590792ms)\n✔ rule 13: a priority fee over the cap denies as over-fee-cap, in legacy and in v1 (1.579849ms)\n✔ rules 14 and 15, the double-send battery: in flight until reported failed or expired; attempts are counted (3.348393ms)\n✔ D14: an attempt nobody reported may have landed, so past its expiry it still holds its intent, until reported or until the window passes (2.330976ms)\n✔ intents: a landed intent is done, and the same payment again is a new intent (1.058253ms)\n✔ intents: without block heights, only a report ends an attempt (1.162868ms)\n✔ reports: only for allowed decisions this guard made (0.985355ms)\n✔ rule 16: the window counts what was allowed; a failed report releases it, an unknown one keeps it; it slides (4.484378ms)\n✔ rule 16: each mint and the fees have their own window (3.119248ms)\n✔ rule 16, the boundaries: a payment exactly one window later is outside it, one millisecond earlier is inside (1.300787ms)\n✔ rule 16: a mint's window is its own (6.896779ms)\n✔ the concurrency battery: 50 proposals in one tick admit exactly what fits the window (15.528842ms)\n  retry loop stopped at turn 3: DEFAULT -> DEFAULT -> REGROUND (loop-reground)\n✔ rule 17: an identical failing retry loop is stopped by Keel as loop-reground, and the turn is measured (1.466574ms)\n✔ rule 18: under INHIBIT, an amount over the per-transaction cap times Keel's clamp (0.30) denies as inhibit-cap (0.923001ms)\n✔ varied, successful payments at a realistic pace are not stopped (5.396852ms)\n✔ every parsed proposal reaches Keel, allowed or denied; a malformed one does not (1.080171ms)\n✔ rule 19: anything that throws denies as fail-closed, and check never throws (1.161065ms)\n✔ rule order: a proposal that breaks several rules is denied by the first (7.544309ms)\n✔ the latch battery: it trips after the set run of denials; only a fresh, exact operator release frees it (3.768829ms)\n✔ receipts (D7): an allowed decision binds the message hash, expiry and policy; redeemed once, for those bytes only (1.312709ms)\n✔ decisions are a hash chain, and each carries its bytes, so the record replays on its own (0.898999ms)\n✔ D1: guard.policy is frozen, and changing it is refused (0.763267ms)\n✔ a controller that is not the verified binary is refused at creation (0.219897ms)\n✔ S36: a receipt reported expired, failed or landed no longer redeems (1.482606ms)\n✔ S80: a release's expiry is judged on the latest recorded time, so a clock that steps back cannot revive an expired release (0.907912ms)\n✔ S82: an attempt a trusted height shows can still land stays in the window past windowMs; reported expired, it leaves (1.044177ms)\n✔ ANC-3: an externally pinned middle, first and last anchor verify with a valid tail (3.074765ms)\n✔ ANC-3: a fully resealed rewrite before the anchor is refused (2.473831ms)\n✔ ANC-3: matching a head at another sequence cannot substitute for the anchor (0.808103ms)\n✔ ANC-3: an absent anchor in empty or truncated history is refused (0.648515ms)\n✔ ANC-3: continuation segments must actually contain the pinned anchor (0.598654ms)\n✔ ANC-3: malformed or unsupported anchor options refuse before opening a source (0.24118ms)\n✔ ANC-3: caller mutation cannot change the captured anchor or receipt (0.658309ms)\n✔ ANC-3: a valid rewrite after the anchor is outside its integrity coverage (0.741286ms)\n✔ SNP-1: natural streamed completion matches the full verifier and deeply freezes entries (9.416626ms)\n✔ SNP-1: streamed empty and continuation boundaries retain sequence and predecessor pins (1.006599ms)\n✔ SNP-1: consumer backpressure suspends reads after the first bounded chunk (30.100949ms)\n✔ SNP-1: cancellation and consumer failure close the source without a completion receipt (0.839259ms)\n✔ SNP-1: damaged later entries and conflicting final pins cannot produce natural completion (1.042435ms)\n✔ SNP-1: appending, truncating or replacing a source after a yield invalidates completion (1.153746ms)\n✔ SNP-1: option pins are captured when the iterator is created, before asynchronous reading (0.548324ms)\n✔ SNP-1: streamed unsupported sources and malformed or oversized frames refuse before yielding (1.12326ms)\n✔ SNP-1: a FIFO without a writer is refused without blocking on open (78.683046ms)\n✔ SNP-1: full and continuation archives match head, digest, sequence and byte count (5.77858ms)\n✔ SNP-1: empty archive is structural empty history, not proof of an established guard (0.408609ms)\n✔ SNP-1: line bound accepts the exact UTF-8 length and refuses one byte less (0.467296ms)\n✔ SNP-1: invalid options reject before source reads (0.197872ms)\n✔ SNP-1: missing, symlink and directory sources refuse (0.396684ms)\n✔ SNP-1: incomplete/blank and invalid UTF-8 frames refuse (0.483167ms)\n✔ SNP-1: malformed JSON and unsupported record envelopes refuse (0.706026ms)\n✔ SNP-1: altered hash, sequence and predecessor refuse (0.621556ms)\n✔ SNP-1: external head and raw digest pins refuse rewritten or truncated archives (1.56642ms)\n✔ SNP-1: competing source changes refuse and descriptors close on success and failure (1.992771ms)\n✔ SNP-1: fractional signer timestamps remain supported and unsafe sequence overflow refuses (1.176922ms)\n✔ SNP-1: hardlinks and pathname replacement during verification refuse (4.870322ms)\n✔ SNP-1: malformed/unknown options refuse and pins are captured before asynchronous reads (0.734976ms)\n✔ SNP-1: multibyte frames cross chunks and oversized unfinished lines stop after one read (1.616547ms)\n✔ SNP-1: changed length refuses even when source timestamps do not reveal it (0.488694ms)\n✔ LAT/POL-2: malformed release text and public signature inputs cannot authenticate (0.575276ms)\n✔ LIF-1/4: unsupported canonical values and malformed payload types refuse binding (0.460523ms)\n✔ LIF-4: malformed recorded request/response time and noncanonical content cannot restore (0.948851ms)\n✔ LIF-2: unknown requests, cross-policy signing and unsupported stages cannot journal (0.868685ms)\n✔ SIG-8: corrupted decision hashes refuse restore and deterministically diverge in replay (1.072317ms)\n✔ T2/T15: empty token-program instruction data is denied under both programs (0.080299ms)\n✔ SNP-3: archive catalogue bytes and digest have an independent canonical oracle (0.44679ms)\n✔ SNP-3: receipt field insertion order cannot change catalogue bytes (0.200097ms)\n✔ SNP-3: caller array methods cannot substitute unvalidated receipts (0.203484ms)\n✔ SNP-3: only genesis may have an empty archive catalogue (0.227137ms)\n✔ SNP-3: malformed checkpoint context never binds an archive catalogue (0.308587ms)\n✔ SNP-3: malformed receipt fields and unsupported data refuse (1.198608ms)\n✔ SNP-3: gaps, omitted segments, duplicate segments and reordered segments "... 44018 more characters,
+    expected: /tests 518\b/,
+    operator: 'match',
+    diff: 'simple'
+  }

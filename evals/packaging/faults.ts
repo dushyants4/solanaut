@@ -15,6 +15,15 @@ function battery() {
 const baseline = battery();
 assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
 const faults = [
+  { name: "owned-control-export", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("export function beginOwnedRequest", "function beginOwnedRequest") },
+  { name: "owned-control-code", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace('code = "owned-control-request"', 'code = "foreign"') },
+  { name: "owned-control-head", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("controlEvidence.seq !== state.seq || controlEvidence.head !== state.head", "false") },
+  { name: "owned-control-start-capture", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("startControl(id, method, JSON.parse(payload), at)", "startControl(id, method, input, at)") },
+  { name: "owned-control-answer-capture", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("completeControl(startHash, JSON.parse(result))", "completeControl(startHash, input)") },
+  { name: "owned-control-immutable", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace('row.response.kind !== "response" || row.response.result !== result', 'row.response.kind !== "response"') },
+  { name: "owned-control-freeze", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("freezeReply(reply);", "void 0;") },
+  { name: "owned-control-private-start", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("startControl(id, method, JSON.parse(payload), at)", "guard.beginRequest(id, method, JSON.parse(payload), at)") },
+  { name: "owned-control-private-response", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("completeControl(startHash, JSON.parse(result))", "guard.finishRequest(startHash, JSON.parse(result))") },
   { name: "replay-cli-trust", path: "dist/bin/replay.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("replayStream(open, policy, undefined, trust)", "replayStream(open, policy, undefined)") },
   { name: "replay-cli-divergence", path: "dist/bin/replay.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("if (res.ok)", "if (true)") },
   { name: "replay-cli-public-ceiling", path: "dist/bin/replay.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("limit = 1_048_576", "limit = 16_777_216") },

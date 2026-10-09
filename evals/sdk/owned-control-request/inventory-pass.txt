@@ -1,0 +1,11 @@
+✔ CI-1: exact inventory accepts every maintained campaign and rejects omission/addition/duplication (15.665268ms)
+✔ CI-1: all campaigns run sequentially; failure/null exit fails aggregation without hiding other findings (0.90056ms)
+✔ CI-1: changed source stops further mutation, reports skipped work and fails the gate (0.153461ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 116.624804

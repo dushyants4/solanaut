@@ -1,0 +1,40 @@
+caught owned admission fault: genuine-capability
+caught owned admission fault: proposal-capture
+caught owned admission fault: identity-capture
+caught owned admission fault: shared-message-copy
+caught owned admission fault: group-binding
+caught owned admission fault: time-capture
+caught owned admission fault: group-capture
+caught owned admission fault: height-capture
+caught owned admission fault: owned-disk-consultation
+caught owned admission fault: current-head
+caught owned admission fault: late-closure
+caught owned admission fault: payload-collision
+caught owned admission fault: historical-answer
+caught owned admission fault: historical-policy-retry
+caught owned admission fault: admission-identity
+caught owned admission fault: private-check-context
+caught owned admission fault: fifo
+caught owned admission fault: queue-rejection-recovery
+caught owned admission fault: reply-detachment
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: fault must select exactly one site: recursive-reply-freeze
+
+3 !== 2
+
+    at file:///home/dashy/Projects/Solanaut/evals/sdk/owned-request-admission-faults.ts:37:10
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 3,
+  expected: 2,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

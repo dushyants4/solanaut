@@ -232,7 +232,7 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
     const {prepareCheckpointEnvelope,verifyCheckpointEnvelope,CheckpointEnvelopeError}=await import(new URL('./checkpoint-envelope.js',import.meta.resolve('@solanaut/sdk')));
     const {fileStore,publishOwnedCheckpoint,recoverOwnedCheckpoint,publishOwnedRequestIndex,lookupOwnedRequestIndex,RequestIndexLookupError,RequestIndexPublicationError}=await import(new URL('./record.js',import.meta.resolve('@solanaut/sdk')));
     const {verifyArchive,streamArchive}=await import(new URL('./archive.js',import.meta.resolve('@solanaut/sdk')));
-    const {replay,replayStream,checkOwnedRequest,OwnedRequestAdmissionError}=await import(new URL('./guard.js',import.meta.resolve('@solanaut/sdk')));
+    const {replay,replayStream,checkOwnedRequest,OwnedRequestAdmissionError,beginOwnedRequest,finishOwnedRequest,ownedRequestResult,OwnedControlRequestError}=await import(new URL('./guard.js',import.meta.resolve('@solanaut/sdk')));
     const {seal}=await import(new URL('./log.js',import.meta.resolve('@solanaut/sdk')));
     const {prepareCheckpointRecovery}=await import(new URL('./checkpoint-recovery.js',import.meta.resolve('@solanaut/sdk')));
     const {prepareRequestIndex,lookupRequestIndex,RequestIndexError}=await import(new URL('./request-index.js',import.meta.resolve('@solanaut/sdk')));
@@ -415,9 +415,26 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
       const shared=new Uint8Array(new SharedArrayBuffer(message.length));shared.set(message);const capturedShared=Buffer.from(shared).toString('base64'),pendingShared=checkOwnedRequest(live,{message:shared,at:2004},{clientId:'client',id:'shared'});shared.fill(255);
       if((await pendingShared).message!==capturedShared)throw new Error('installed queued admission retained shared byte backing');
       let admissionOwnerRefused=false;try{await checkOwnedRequest({...live},{message:new Uint8Array(message),at:2003},{clientId:'client',id:'forged'});}catch(error){admissionOwnerRefused=error instanceof OwnedRequestAdmissionError && error.code==='owned-request-admission';}if(!admissionOwnerRefused)throw new Error('installed forged admission guard accepted');
+      const publicSDK=await import('@solanaut/sdk');if(['beginOwnedRequest','finishOwnedRequest','ownedRequestResult','OwnedControlRequestError'].some(name=>name in publicSDK))throw new Error('internal owned controls leaked into stable exports');
+      const controlId={clientId:'client',id:'installed-control'},controlInput={decision:d.hash},controlPending=beginOwnedRequest(live,controlId,'report',controlInput,2005);controlId.id='changed';controlInput.decision='a'.repeat(64);
+      const controlStart=await controlPending,actualControlId={clientId:'client',id:'installed-control'};if(controlStart.request.id!==actualControlId.id || JSON.parse(controlStart.payload).decision!==d.hash || !Object.isFrozen(controlStart.request) || store.entries.find(entry=>entry.hash===controlStart.hash)===controlStart)throw new Error('installed control start capture or detachment failed');
+      if(await ownedRequestResult(live,actualControlId,controlStart.hash)!==undefined)throw new Error('installed pending control acquired an answer');
+      const controlAnswer={nested:{ready:true}},controlReplyPending=finishOwnedRequest(live,actualControlId,controlStart.hash,controlAnswer);controlAnswer.nested.ready=false;
+      const controlResponse=await controlReplyPending,controlCount=live.status().seq,readControl=await ownedRequestResult(live,actualControlId,controlStart.hash);
+      if(!readControl.nested.ready || !Object.isFrozen(readControl.nested) || !Object.isFrozen(controlResponse) || store.entries.find(entry=>entry.hash===controlResponse.hash)===controlResponse)throw new Error('installed control response capture or immutability failed');
+      if((await beginOwnedRequest(live,actualControlId,'report',{decision:d.hash},9000)).hash!==controlStart.hash || (await finishOwnedRequest(live,actualControlId,controlStart.hash,{nested:{ready:true}})).hash!==controlResponse.hash || live.status().seq!==controlCount)throw new Error('installed control retry changed durable history');
+      const mustRefuseControl=async call=>{let refused=false;try{await call();}catch(error){refused=error instanceof OwnedControlRequestError && error.code==='owned-control-request';}if(!refused)throw new Error('installed invalid owned control accepted');};
+      await mustRefuseControl(()=>beginOwnedRequest(live,actualControlId,'status',{},2006));await mustRefuseControl(()=>finishOwnedRequest(live,actualControlId,controlStart.hash,{nested:{ready:false}}));await mustRefuseControl(()=>ownedRequestResult(live,actualControlId,'a'.repeat(64)));
+      for(const call of [()=>beginOwnedRequest({...live},actualControlId,'status',{},2006),()=>finishOwnedRequest({...live},actualControlId,controlStart.hash,{}),()=>ownedRequestResult({...live},actualControlId,controlStart.hash)])await mustRefuseControl(call);
+      const publicStart=live.beginRequest,publicFinish=live.finishRequest;let replacedCalled=false;
+      try{live.beginRequest=()=>{replacedCalled=true;throw new Error('public start replaced');};live.finishRequest=()=>{replacedCalled=true;throw new Error('public finish replaced');};
+        const privateId={clientId:'client',id:'private-control'},privateStart=await beginOwnedRequest(live,privateId,'status',{},2006);await finishOwnedRequest(live,privateId,privateStart.hash,{ready:true});if(replacedCalled || !(await ownedRequestResult(live,privateId,privateStart.hash)).ready)throw new Error('installed control called mutable public bookkeeping');
+      }finally{live.beginRequest=publicStart;live.finishRequest=publicFinish;}
       const pointerBeforeLookup=readFileSync(recordPath+'.request-index','utf8');writeFileSync(recordPath+'.request-index','corrupt');
       try{let refused=false;try{await lookupOwnedRequestIndex(store,{clientId:'client',id:'tail'},{policyTrust:trust});}catch(error){refused=error instanceof RequestIndexLookupError && error.code==='request-index-lookup';}if(!refused || readFileSync(recordPath+'.request-index','utf8')!=='corrupt')throw new Error('installed corrupt lookup pointer accepted or repaired');
         const beforeRefusal=live.status().seq;let admissionRefused=false;try{await checkOwnedRequest(live,{message:new Uint8Array(message),at:2004},{clientId:'client',id:'corrupt'});}catch(error){admissionRefused=error instanceof OwnedRequestAdmissionError && error.code==='owned-request-admission';}if(!admissionRefused || live.status().seq!==beforeRefusal || readFileSync(recordPath+'.request-index','utf8')!=='corrupt')throw new Error('installed corrupt index authorised admission');
+        for(const call of [()=>beginOwnedRequest(live,{clientId:'client',id:'corrupt-control'},'status',{},2006),()=>finishOwnedRequest(live,actualControlId,controlStart.hash,{nested:{ready:true}}),()=>ownedRequestResult(live,actualControlId,controlStart.hash)])await mustRefuseControl(call);
+        if(live.status().seq!==beforeRefusal)throw new Error('installed corrupt evidence permitted control mutation');
       }finally{writeFileSync(recordPath+'.request-index',pointerBeforeLookup);}
       const actualRecordURL=new URL('./record.js',import.meta.resolve('@solanaut/sdk')).href,gapGuardURL=new URL('./guard.js?owned-gap',import.meta.resolve('@solanaut/sdk')).href;
       const gapSource='import * as real from '+JSON.stringify(actualRecordURL)+';export * from '+JSON.stringify(actualRecordURL)+';export async function lookupOwnedRequestIndex(...args){const answer=await real.lookupOwnedRequestIndex(...args);globalThis.afterOwnedAdmissionLookup();return answer;}';
@@ -425,6 +442,12 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay 
       try{gapModule=await import(gapGuardURL);}finally{gapHook.deregister();}
       const gapGuard=await gapModule.createGuard({policy,authorization,log:store}),beforeGap=gapGuard.status().seq;globalThis.afterOwnedAdmissionLookup=()=>gapGuard.check({message:Uint8Array.of(255),at:2005});
       try{let gapRefused=false;try{await gapModule.checkOwnedRequest(gapGuard,{message:new Uint8Array(message),at:2006},{clientId:'client',id:'gap'});}catch(error){gapRefused=error instanceof gapModule.OwnedRequestAdmissionError && error.code==='owned-request-admission';}if(!gapRefused || gapGuard.status().seq!==beforeGap+1 || store.entries.some(entry=>entry.kind==='decision' && entry.request?.id==='gap'))throw new Error('installed stale absence authorised commit');}
+      finally{delete globalThis.afterOwnedAdmissionLookup;}
+      try{globalThis.afterOwnedAdmissionLookup=()=>gapGuard.check({message:Uint8Array.of(255),at:2007});
+        for(const call of [()=>gapModule.beginOwnedRequest(gapGuard,actualControlId,'report',{decision:d.hash},9000),()=>gapModule.finishOwnedRequest(gapGuard,actualControlId,controlStart.hash,{nested:{ready:true}}),()=>gapModule.ownedRequestResult(gapGuard,actualControlId,controlStart.hash)]){
+          const before=gapGuard.status().seq;let refused=false;try{await call();}catch(error){refused=error instanceof gapModule.OwnedControlRequestError && error.code==='owned-control-request';}if(!refused || gapGuard.status().seq!==before+1)throw new Error('installed stale control lookup authorised work');
+        }
+      }
       finally{delete globalThis.afterOwnedAdmissionLookup;gapGuard.close();}
     }finally{store.close();rmSync(directory,{recursive:true,force:true});}
     if(prefix.digest!==hash(prefix.text) || state.digest!==hash(state.text) || !Object.isFrozen(prefix) || !Object.isFrozen(state))throw new Error('payload digest or immutability differs');

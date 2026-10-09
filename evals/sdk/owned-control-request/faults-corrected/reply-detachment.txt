@@ -1,0 +1,43 @@
+✖ LIF-4: fresh starts and responses cannot alias retained journal objects (104.062242ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 191.224712
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-control-request.test.ts:189:1
+✖ LIF-4: fresh starts and responses cannot alias retained journal objects (104.062242ms)
+  AssertionError [ERR_ASSERTION]: Expected "actual" not to be reference-equal to "expected":
+  
+  {
+    at: 1000,
+    hash: '5253edc136642dff9a2e8076b5b6e71a014ed5612781ae143e6ab1eaaefecaaa',
+    kind: 'request',
+    method: 'status',
+    payload: '{}',
+    prev: '453e5d9e801d5e77f1e4392fd020a43ae5d10cd1b87bdd8567508e5847761671',
+    request: {
+      clientId: 'client',
+      digest: '2c5d2454f3d116f455989b333be5ecba8e3848be4e82f4cf993eb803dc2a1d99',
+      guardId: 'workload',
+      id: 'detached'
+    },
+    seq: 1,
+    v: 1
+  }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:192:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }

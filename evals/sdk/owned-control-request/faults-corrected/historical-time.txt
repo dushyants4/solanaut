@@ -1,0 +1,36 @@
+✖ LIF-4/SNP-7: control starts retry exactly from prefix and tail without another entry (57.379363ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 132.052444
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-control-request.test.ts:44:1
+✖ LIF-4/SNP-7: control starts retry exactly from prefix and tail without another entry (57.379363ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   at: 9000,
+  -   at: 1000,
+      hash: 'e6985398174028f95c7a7eaa87666ca87c971c0b163734127eb5e87cee6eaf2f',
+      kind: 'request',
+      method: 'status',
+      payload: '{}',
+      prev: '75f554aa251a64ba725aad6c2c6cdea07a739fdd9858fee9c987f94ffaeb0060',
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:48:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

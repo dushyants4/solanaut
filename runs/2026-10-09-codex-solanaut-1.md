@@ -1,11 +1,36 @@
-# Solanaut 1.0 — safe operator replay qualification
+# Solanaut 1.0 — owned controls and local qualification
 
 ## Asked
+
+Latest direction: continue implementation with local Git commits/backups only;
+do not push any commit or branch. This overrides the earlier standing sync grant.
+Neither hosted CI nor public release gates can be completed by local commits.
+Retain the unchanged close gate's unpushed finding rather than weakening it.
 
 Resume and keep progressing towards stable Solanaut 1.0 without pausing after
 each component. Preserve every accepted security and release gate.
 
 ## Did
+
+Final owned-control qualification: definition 31/seed 31907 preserves all six
+real gap scenarios in one helper process, with exact case-completion assertions.
+Nineteen focused cases and all twenty control faults pass/restored. Every prior
+case and semantic trial remains. Corrected package bytes retain the eleven-case
+installed pass and all 108 compiled catches; their source identity is unchanged
+by the test-only batching. Fresh ordinary/serial AST suites each pass 825 cases,
+typecheck exits zero and unchanged floors pass. Guard coverage is 536/556
+statements and 451/479 branches; full hashes match the private tarball manifest.
+
+Local-only continuation starts at `789bc7b`. Root instructions/current records
+are reread; fetch/status are clean. Both required live probes are correctly
+refused and create no file. The next accepted ADR-019 component is shared FIFO
+owned control lookup/start/response consultation with proposal admission; LIF-4/5,
+SNP-7 and OWN-2. No signer line-budget or public socket/root export change.
+Baseline passes 806 cases and typecheck. Eighteen owned-control cases are frozen
+before full qualification; retain every prior selected source/test and add this
+guard-component population. Definition 29/seed 29531 and exact selected count
+518 are declared before measurement. All waits, limits, floors and policy/loop
+coefficients remain unchanged. No full mutation-score claim.
 
 Replay command integration: nineteen focused cases and thirteen semantic source
 faults pass/restored; eleven installed cases and all ninety-nine compiled faults
@@ -16,6 +41,16 @@ package manifest, which also binds command bins and evaluation inputs.
 Definition 28/seed 28483 retains all prior selected inputs and 500 baseline cases;
 no waits, limits or floors change. Isolated recovery/driver and staging campaigns
 run sequentially after full coverage, with no fault/baseline overlap.
+
+Owned-control definition 29 full suite runs 824 cases and fails its stale exact
+selected-test inventory assertion. Preserve that failure; add only the newly
+selected test to the expected list. Before further qualification, reproduce D31:
+mutable public SDK bookkeeping can replace owned dispatch. Capture private start
+and completion functions at guard creation. Add a nineteenth regression and two
+source/compiled faults, retaining all earlier trials. Declare definition 30,
+fresh seed 30703 and exact selected count 519 before final measurement. The
+definition 29 tarball/input manifest is retained separately, never claimed as
+the corrected candidate. No coefficient, wait, floor or limit changes.
 All fifteen isolated recovery/driver and fifty-two staging/report faults are
 caught/restored; every bound product/evaluation digest matches afterward. The
 unchanged selected 500-case baseline passes locally. Hosted qualification still
@@ -78,6 +113,49 @@ and qualification evidence will be recorded as work proceeds.
 
 ## Found
 
+The unchanged isolated H11 diagnostic passes in about eighteen seconds, leaving
+little scheduling margin under the twenty-second wait. Preserve its output,
+not a full-suite pass. Batch the new test's same six real gap cases into one
+helper process, with per-case independent histories/owners and an exact completed
+case count. Keep every operation, head/closure assertion and timeout; remove
+only repeated runtime startup. Declare definition 31/seed 31907 before this
+measurement change; selected count stays 519. Product/package bytes are unchanged,
+so previous compiled proof remains applicable. H11 stays pending.
+
+Definition 30's first full run executes 825 cases: 824 pass, and the real staged
+baseline's unchanged twenty-second wait expires before completion. Retain
+`full-definition30-wait-first-red.txt`; no other fault workers overlap. This
+reproduces the existing H11 availability problem locally, rather than a new
+trust or policy finding. Run an unchanged isolated diagnostic to distinguish
+host/test contention from an inherently unfinished population. Do not extend
+the wait, omit cases or infer a full-suite pass from that diagnostic.
+
+Claims lint rejects the draft S94 row because its regeneration text points only
+to receipt commands rather than naming a command literally. Retain that gate
+finding; add the actual regenerating commands to the row without changing the
+lint or its requirements.
+
+D31 private-dispatch regression fails on the candidate, and its installed
+counterpart also fails on the previous compiled candidate. Retain both outputs.
+After correction, nineteen control plus eighteen admission cases pass together;
+twenty control and twenty-one retained admission faults catch/restored. Repeat
+compiled/full/AST qualification under frozen definition 30, not the superseded
+definition 29 candidate. No workspace/public interface or signer-budget change.
+
+Owned-control local work: missing APIs fail all original fifteen cases and the
+expanded seventeen-case population. A prior admission fault trial stops on an
+ambiguous recursion text site; the compiled freeze trial also stops on a source
+needle absent from emitted JS. Retain both setup errors without catch credit.
+Correct precise site selection/naming, then all eighteen control and twenty-one
+admission semantic trials catch/restored. The selected-population test fails at
+518 while the original 500 execute, then includes all eighteen new tests without
+removing any prior input. Installed previous SDK fails on absent begin API; the
+candidate passes eleven cases and all 106 compiled faults catch/restored.
+Those definition 29 passes precede D31. The corrected candidate passes eleven
+installed cases and all 108 compiled faults, with restoration. Both private
+dispatch regressions catch. Initial artefact identities and failures remain
+distinct; the final manifest binds definition 30 and all corrected source inputs.
+
 The combined final staging/lint shell invocation is refused by the boundary
 heuristic because it places a mutating verb beside protected read-only gate
 paths. No action from that invocation runs. Follow the documented remedy:
@@ -105,6 +183,21 @@ Hosted qualification is pending and H11's historical timeout remains unaccepted.
 No replay component pass follows from drafted tests or the interrupted builder.
 
 ## Open
+
+Pre-commit close passes nine of ten gates, failing only the uncommitted tree;
+the staged secret scan and all other local checks pass. Preserve raw outputs
+verbatim. Create the coherent local commit and a verified local Git bundle,
+then continue independent work with H9 awaiting explicit acceptance. No remote
+push or hosted/release qualification is authorised by the latest instruction.
+
+Current owned-control candidate passes nineteen focused cases, twenty control and
+twenty-one admission source faults, eleven installed cases, 108 compiled faults,
+825 ordinary/AST cases, typecheck, unchanged floors, fifteen isolated driver and
+fifty-two staging/report faults. All bound source/input/archive digests match
+after restoration. Complete local commit and verified local bundle backup;
+do not push. The unchanged close's unpushed finding remains required by the
+latest direction. ADR-021 acceptance is requested asynchronously under H9; no
+answer is assumed. Independent private SDK/recovery work remains available.
 
 Replay source/installed/full/AST/driver qualification is complete locally and
 artefact identities are retained. Pre-commit close passes nine of ten gates;

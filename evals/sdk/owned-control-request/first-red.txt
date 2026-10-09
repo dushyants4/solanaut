@@ -1,0 +1,352 @@
+✖ LIF-4/SNP-7: control starts retry exactly from prefix and tail without another entry (48.949517ms)
+✖ LIF-4/LIF-1: methods, payloads and admission share the identity namespace (24.643929ms)
+✖ LIF-5: a pre-admission refusal and its exact bounded reply survive index publication (21.421139ms)
+✖ LIF-4/SNP-7: response commits once and differing canonical replies refuse (21.255482ms)
+✖ LIF-4: unknown identity, admission, foreign start and wrong start hash cannot return or finish controls (22.808878ms)
+✖ LIF-4: pending result remains undefined; null and nested completed replies are detached and frozen (21.055727ms)
+✖ LIF-4/SNP-7: identities, canonical payloads and result values are captured before queueing (22.008313ms)
+✖ LIF-4/SNP-7: concurrent mixed operations share FIFO ordering with proposal admission (29.116528ms)
+✖ OWN-2/SNP-7: copied, unsigned, memory and manual guards lack owned control authority (28.991945ms)
+✖ OWN-2/SNP-7: corrupt or missing index evidence blocks control mutations and reads (23.970419ms)
+✖ LIF-4: malformed identities, methods, payloads, time and oversized responses make no durable entry (20.722392ms)
+✖ LIF-4/SNP-7: duplicate concurrent starts and replies write exactly once (23.845197ms)
+✖ LIF-4/SNP-7: authenticated prefix replies remain exact after genuine owner restart (20.814952ms)
+✖ STO-1/LIF-4: control append failure leaves the failed writer unavailable without a reply (21.553175ms)
+✖ SNP-7/OWN-2: closure and trusted mutation during actual reads forbid stale control commits (22.355772ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 0
+ℹ fail 15
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 512.804602
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-control-request.test.ts:44:1
+✖ LIF-4/SNP-7: control starts retry exactly from prefix and tail without another entry (48.949517ms)
+  AssertionError [ERR_ASSERTION]: owned control consultation must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at invoke (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:39:46)
+      at begin (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:41:116)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:46:23)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-control-request.test.ts:52:1
+✖ LIF-4/LIF-1: methods, payloads and admission share the identity namespace (24.643929ms)
+  AssertionError [ERR_ASSERTION]: owned control consultation must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at invoke (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:39:46)
+      at begin (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:41:116)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:54:23)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-control-request.test.ts:61:1
+✖ LIF-5: a pre-admission refusal and its exact bounded reply survive index publication (21.421139ms)
+  AssertionError [ERR_ASSERTION]: owned control consultation must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at invoke (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:39:46)
+      at begin (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:41:116)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:63:87)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-control-request.test.ts:69:1
+✖ LIF-4/SNP-7: response commits once and differing canonical replies refuse (21.255482ms)
+  AssertionError [ERR_ASSERTION]: owned control consultation must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at invoke (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:39:46)
+      at begin (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:41:116)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:71:45)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-control-request.test.ts:77:1
+✖ LIF-4: unknown identity, admission, foreign start and wrong start hash cannot return or finish controls (22.808878ms)
+  AssertionError [ERR_ASSERTION]: owned control consultation must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at invoke (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:39:46)
+      at begin (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:41:116)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:79:44)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-control-request.test.ts:86:1
+✖ LIF-4: pending result remains undefined; null and nested completed replies are detached and frozen (21.055727ms)
+  AssertionError [ERR_ASSERTION]: owned control consultation must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at invoke (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:39:46)
+      at begin (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:41:116)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:88:46)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-control-request.test.ts:96:1
+✖ LIF-4/SNP-7: identities, canonical payloads and result values are captured before queueing (22.008313ms)
+  AssertionError [ERR_ASSERTION]: owned control consultation must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at invoke (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:39:46)
+      at begin (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:41:116)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:98:77)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-control-request.test.ts:104:1
+✖ LIF-4/SNP-7: concurrent mixed operations share FIFO ordering with proposal admission (29.116528ms)
+  AssertionError [ERR_ASSERTION]: owned control consultation must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at invoke (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:39:46)
+      at begin (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:41:116)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:109:18)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-control-request.test.ts:114:1
+✖ OWN-2/SNP-7: copied, unsigned, memory and manual guards lack owned control authority (28.991945ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   code: 'ERR_ASSERTION',
+  +   name: 'AssertionError'
+  -   code: 'owned-control-request',
+  -   name: 'OwnedControlRequestError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:117:67)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [AssertionError],
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-control-request.test.ts:120:1
+✖ OWN-2/SNP-7: corrupt or missing index evidence blocks control mutations and reads (23.970419ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   code: 'ERR_ASSERTION',
+  +   name: 'AssertionError'
+  -   code: 'owned-control-request',
+  -   name: 'OwnedControlRequestError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:124:42)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [AssertionError],
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-control-request.test.ts:127:1
+✖ LIF-4: malformed identities, methods, payloads, time and oversized responses make no durable entry (20.722392ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   code: 'ERR_ASSERTION',
+  +   name: 'AssertionError'
+  -   code: 'owned-control-request',
+  -   name: 'OwnedControlRequestError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:130:194)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [AssertionError],
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-control-request.test.ts:135:1
+✖ LIF-4/SNP-7: duplicate concurrent starts and replies write exactly once (23.845197ms)
+  AssertionError [ERR_ASSERTION]: owned control consultation must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at invoke (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:39:46)
+      at begin (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:41:116)
+      at file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:137:87
+      at Array.from (<anonymous>)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:137:67)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-control-request.test.ts:143:1
+✖ LIF-4/SNP-7: authenticated prefix replies remain exact after genuine owner restart (20.814952ms)
+  AssertionError [ERR_ASSERTION]: owned control consultation must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at invoke (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:39:46)
+      at begin (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:41:116)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:145:46)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-control-request.test.ts:151:1
+✖ STO-1/LIF-4: control append failure leaves the failed writer unavailable without a reply (21.553175ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   code: 'ERR_ASSERTION',
+  +   name: 'AssertionError'
+  -   code: 'owned-control-request',
+  -   name: 'OwnedControlRequestError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:154:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [AssertionError],
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-control-request.test.ts:158:1
+✖ SNP-7/OWN-2: closure and trusted mutation during actual reads forbid stale control commits (22.355772ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   code: 'ERR_ASSERTION',
+  +   name: 'AssertionError'
+  -   code: 'owned-control-request',
+  -   name: 'OwnedControlRequestError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:161:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [AssertionError],
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }

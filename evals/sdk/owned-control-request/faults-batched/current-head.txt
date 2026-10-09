@@ -1,0 +1,43 @@
+✖ SNP-7: actual control lookup followed by closure or a trusted mutation cannot authorize stale work (287.737456ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 365.971377
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-control-request.test.ts:165:1
+✖ SNP-7: actual control lookup followed by closure or a trusted mutation cannot authorize stale work (287.737456ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/run_main:107
+      triggerUncaughtException(
+      ^
+  
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (OwnedControlRequestError).
+      at async file:///home/dashy/Projects/Solanaut/[eval1]:10:11 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { name: 'OwnedControlRequestError', code: 'owned-control-request' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-control-request.test.ts:187:80)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

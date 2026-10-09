@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.72** · 2026-10-09 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.73** · 2026-10-09 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -536,6 +536,7 @@ Each is fixed test-first: the evaluator writes the failing test, and the builder
 | D28 | Cloning a shared-buffer proposal preserves shared byte backing, so caller mutation changes queued admission bytes | new `guard.ts` companion, reproduced on 2026-10-08 before integration | **closed in the builder candidate:** copy captured message bytes into a private ordinary Uint8Array before binding/queueing. First-red: `evals/sdk/owned-request-admission.md`; no atomic concurrent-memory snapshot or isolated deployment claim |
 | D29 | Replay command drops blank record lines, loads the entire file, follows final source links and exposes raw errors/detail values | `bin/replay.ts`, reproduced on 2026-10-09 | **closed in the local candidate:** compose verified streamed reads, bound public JSON inputs and redact diagnostics. First failures and fault evidence: `evals/sdk/replay-command.md`; complete release qualification remains separate |
 | D30 | Joining trust field names with commas lets comma-containing names imitate the expected field set | initial replay-command candidate, reproduced on 2026-10-09 | **closed:** explicit key cardinality and membership; signed malformed-field regression fails before correction. No trust learned from history and no policy rule change |
+| D31 | New owned-control dispatch calls mutable public SDK bookkeeping methods, so a caller can replace its start/response implementation | local owned-control candidate, reproduced on 2026-10-09 | **closed in the local candidate:** capture private start/completion functions before exposing the guard. Public-method replacement regression and planted dispatch faults are retained in `evals/sdk/owned-control-request.md`; no isolation or stable-release claim |
 
 **Status:** closed at milestone 2a.5 (`evals/sdk/admission.md`), test-first: D1, D2, D5, D6, D7, D9, D10 and D12. D12
 closed early: the guard decodes bytes itself, so `packages/sdk/src` imports no web3.js. D11 closed at milestone 2a.6
@@ -1374,3 +1375,22 @@ flags, stable exports, signer method, format/profile or policy semantics.
 Streaming input does not bound retained replay state or qualify service recovery.
 
 | Draft 4.72 | 2026-10-09 | Safe read-only replay command and D29/D30 corrections; definition 28/seed 28483 retains the complete prior selected population, floors, waits and limits. Installed command and source/compiled qualification remain separately scoped; H13 hosted account availability and all release gates remain open. |
+
+Internal LIF-4/5 and SNP-7 owned-control convention under ADR-019: genuine signed
+guards provide `beginOwnedRequest`, `finishOwnedRequest` and `ownedRequestResult`
+alongside owned admission, all sharing one FIFO. Capture identity and canonical
+payload/result before queueing; verify actual kernel-owned index evidence through
+the current head before synchronous bookkeeping or reply capture. Matching starts
+and completed responses return exact detached recursively frozen objects; method,
+payload or start-hash collisions refuse. A known pending control has undefined
+result; unknown identities or admissions are not control requests. Typed internal
+failure is `OwnedControlRequestError`, code `owned-control-request`, with fixed
+diagnostics. Preserve all existing codec bounds, formats and policy semantics.
+Capture the private start/completion functions when creating the guard; later
+replacement of public SDK methods does not replace owned bookkeeping (D31).
+Trusted synchronous mutations can interrupt lookup and invalidate its head;
+these methods neither sign/send nor release spending reservations. They are not
+root exports, signer socket methods, bounded state or a completed SNP-7 claim.
+Evidence: `evals/sdk/owned-control-request.md`.
+
+| Draft 4.73 | 2026-10-09 | Shared owned control/admission FIFO and D31 private-dispatch correction. Preserve definition 29's inventory failure and definition 30's wait failure; final definition 31/seed 31907 retains nineteen new cases and batches all six actual gap scenarios without dropping assertions. All floors, waits and limits remain. Local commits only; no remote/hosted/release completion follows. |

@@ -132,6 +132,38 @@ export class OwnedRequestAdmissionError extends Error {
   constructor(message: string) { super(message); this.name = "OwnedRequestAdmissionError"; }
 }
 const ownedAdmissions = new WeakMap<Guard, (proposal: ProposalV1, identity: RequestIdentity) => Promise<Decision>>();
+export class OwnedControlRequestError extends Error {
+  readonly code = "owned-control-request";
+  constructor(message: string) { super(message); this.name = "OwnedControlRequestError"; }
+}
+interface OwnedControls {
+  begin(identity: RequestIdentity, method: ControlMethod, input: unknown, at: number): Promise<ControlRequestEntry>;
+  finish(identity: RequestIdentity, startHash: string, input: unknown): Promise<ControlResponseEntry>;
+  result(identity: RequestIdentity, startHash: string): Promise<unknown>;
+}
+const ownedControls = new WeakMap<Guard, OwnedControls>();
+async function ownedControl<T>(guard: Guard, work: (controls: OwnedControls) => Promise<T>): Promise<T> {
+  const controls = ownedControls.get(guard);
+  if (!controls) throw new OwnedControlRequestError("owned controls require a genuine signed guard");
+  try { return await work(controls); }
+  catch { throw new OwnedControlRequestError("owned control cannot establish current request evidence"); }
+}
+/** Internal companions share the owned admission FIFO; no signing or sending. */
+export function beginOwnedRequest(guard: Guard, identity: RequestIdentity, method: ControlMethod, input: unknown, at: number): Promise<ControlRequestEntry> {
+  return ownedControl(guard, controls => controls.begin(identity, method, input, at));
+}
+export function finishOwnedRequest(guard: Guard, identity: RequestIdentity, startHash: string, input: unknown): Promise<ControlResponseEntry> {
+  return ownedControl(guard, controls => controls.finish(identity, startHash, input));
+}
+export function ownedRequestResult(guard: Guard, identity: RequestIdentity, startHash: string): Promise<unknown> {
+  return ownedControl(guard, controls => controls.result(identity, startHash));
+}
+function controlReply<T>(input: T): T {
+  const freezeReply = (value: unknown): void => {
+    if (value && typeof value === "object") { for (const child of Object.values(value)) freezeReply(child); Object.freeze(value); }
+  };
+  const reply = structuredClone(input); freezeReply(reply); return reply;
+}
 function admissionReply(decision: Decision): Decision {
   const freeze = (value: unknown): void => {
     if (value && typeof value === "object") { for (const child of Object.values(value)) freeze(child); Object.freeze(value); }
@@ -539,6 +571,12 @@ export async function createGuard(opts: GuardOptions): Promise<Guard> {
   };
   if (authorization) {
     let queue: Promise<void> = Promise.resolve();
+    const startControl = guard.beginRequest, completeControl = guard.finishRequest;
+    function enqueue<T>(run: () => Promise<T>): Promise<T> {
+      const pending = queue.then(run);
+      queue = pending.then(() => undefined, () => undefined);
+      return pending;
+    }
     ownedAdmissions.set(guard, (proposal, identity) => {
       // The caller may change input while earlier admissions are waiting on disk reads.
       const captured = structuredClone(proposal), id = structuredClone(identity);
@@ -557,9 +595,48 @@ export async function createGuard(opts: GuardOptions): Promise<Guard> {
         // No await separates verified absence from the existing synchronous evaluation/commit.
         return admissionReply(check(captured, id));
       };
-      const pending = queue.then(run);
-      queue = pending.then(() => undefined, () => undefined);
-      return pending;
+      return enqueue(run);
+    });
+    const currentControl = async <T>(controlId: RequestIdentity, work: (row: Awaited<ReturnType<typeof lookupOwnedRequestIndex>>["row"]) => T): Promise<T> => {
+      if (shut) throw new OwnedControlRequestError("owned control guard is closed or failed");
+      const controlEvidence = await lookupOwnedRequestIndex(store, controlId, { policyTrust: authorization });
+      if (shut || controlEvidence.seq !== state.seq || controlEvidence.head !== state.head) throw new OwnedControlRequestError("owned control history changed before commit");
+      // No await separates the authenticated current head from bookkeeping or reply capture.
+      return work(controlEvidence.row);
+    };
+    ownedControls.set(guard, {
+      begin(identity, method, input, at) {
+        if (!Number.isFinite(at) || at < 0) throw new OwnedControlRequestError("invalid request time");
+        const id = structuredClone(identity), payload = controlPayload(method, input);
+        const binding = controlBinding(policy.latch.guardId, id, method, payload);
+        return enqueue(() => currentControl(id, row => {
+          if (row) {
+            if (row.start.kind !== "request" || row.start.request.digest !== binding.digest) throw new OwnedControlRequestError("request identity reused with different payload");
+            return controlReply(row.start);
+          }
+          return controlReply(startControl(id, method, JSON.parse(payload), at));
+        }));
+      },
+      finish(identity, startHash, input) {
+        const id = structuredClone(identity), result = controlResult(input);
+        return enqueue(() => currentControl(id, row => {
+          if (row?.start.kind !== "request" || row.start.hash !== startHash) throw new OwnedControlRequestError("unknown control request");
+          if (row.response) {
+            if (row.response.kind !== "response" || row.response.result !== result) throw new OwnedControlRequestError("request response cannot change");
+            return controlReply(row.response);
+          }
+          return controlReply(completeControl(startHash, JSON.parse(result)));
+        }));
+      },
+      result(identity, startHash) {
+        const id = structuredClone(identity);
+        return enqueue(() => currentControl(id, row => {
+          if (row?.start.kind !== "request" || row.start.hash !== startHash) throw new OwnedControlRequestError("unknown control request");
+          if (!row.response) return undefined;
+          if (row.response.kind !== "response") throw new OwnedControlRequestError("invalid control response");
+          return controlReply(JSON.parse(row.response.result));
+        }));
+      },
     });
   }
   return guard;
