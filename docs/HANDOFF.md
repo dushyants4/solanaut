@@ -251,6 +251,10 @@ detail assertion are retained. Exact redacted sequence/field output replaces onl
 that obsolete value assertion; missing trust still refuses. Full regression,
 isolated driver, close and private sync results belong to the same receipt and
 current run. No bounded-state, backup recovery or stable-release milestone closes.
+Implementation `9996f00` is privately pushed; unchanged post-push close passes.
+Exact hosted `37954540242` starts no job steps because of H13; its failed account
+annotations and metadata are retained with the receipt. No hosted qualification
+or release progress credit follows from that refusal.
 
 2026-10-09 resume: owned proposal component `8a343d4` is privately pushed.
 Exact hosted `37949141048` remains in progress. Post-push close fails only the

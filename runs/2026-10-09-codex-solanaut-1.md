@@ -109,7 +109,11 @@ No replay component pass follows from drafted tests or the interrupted builder.
 Replay source/installed/full/AST/driver qualification is complete locally and
 artefact identities are retained. Pre-commit close passes nine of ten gates;
 only the uncommitted tree remains. Secret scan covers all staged evidence.
-Complete private sync and post-push close; hosted execution remains H13-blocked.
+Implementation `9996f00` is privately pushed; post-push unchanged close passes
+ten of ten gates. Exact hosted `37954540242` completes failed without job steps;
+metadata/annotations and unavailable-log evidence are retained. Hosted execution
+remains H13-blocked. This archival follow-up changes no tested implementation,
+test workload or package identity.
 Shared owned control FIFO, private facade, bounded state/startup,
 H9/H10/H11/H12, human operations, outside developers, Claude RT-2 and specialist
 audit/release gates remain open. Formal progress remains CLAIMS S78's 41%.

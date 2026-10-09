@@ -8,6 +8,9 @@ source/compiled qualification and exact hosted cancellation/account evidence.
 The previous POL-4 detail assertion becomes exact redacted sequence/field output;
 its refusal remains, and the original full failure is retained.
 Public arguments, policy semantics, release metadata and all gates stay binding.
+The exact `9996f00` hosted account refusal and successful local post-push close
+are registered with that receipt and continuing run; no implementation changes
+in the evidence-only follow-up.
 
 2026-10-09 continuation registers `runs/2026-10-09-codex-solanaut-1.md` and
 HANDOFF's private owned-admission sync/date-rollover entry. No product, workload,
