@@ -1,5 +1,9 @@
 # DOCUMENTS.md — the document register
 
+2026-10-10 registers H11 timing receipt/observer/generated-copy proof/raw inputs,
+CLAIMS S123, PROGRESS, HANDOFF, evaluation index, continuing record and diagnostic status
+report. Original product/gates stay unchanged; proposal remains unaccepted.
+
 2026-10-10 registers installed Node 24 D40 receipt/helper/raw controls and faults,
 CLAIMS S122, PROGRESS, HANDOFF, evaluation index, release map and continuing run.
 Original source and earlier evidence are untouched; patch remains unapplied.

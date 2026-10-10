@@ -2,10 +2,30 @@
 
 ## Asked
 
+Provide an active-operation, bottleneck, completed/remaining and completion
+diagnostic update; continue work afterwards. Retain local-only version control.
+
 Continue locally towards stable Solanaut 1.0 until session limits. No remote
 push. Preserve all release, independent and human gates.
 
 ## Did
+
+Complete requested status diagnosis in docs/plans/2026-10-10_status-diagnostic.md.
+Latest read-only hosted annotations again confirm account billing/spending refusal
+before job steps. Exact H11 owner diff is O6; acceptance/application remain owed.
+Preserve measured observer source; the regenerating helper now refuses differing
+bound inputs and records actual HEAD. Preflight passes without a new timing claim.
+
+Resume at clean e7d92e1; fetch/read status and latest hosted job metadata without
+pushing. No Solanaut test/validator/soak worker is active at inspection. Both
+live boundary probes are correctly refused and no probe file appears. Fresh
+native baseline again fails H11 on original product. Observe unchanged staged
+child: all 573 cases complete naturally in 22.223 seconds, status zero, no
+timeout/signal/error. Original finish verifies completion, not a mutation score.
+Prepare exact unapplied H11 owner diff and validate a generated review copy:
+all six original recovery cases pass with original backend/assertions. All
+bound product/evaluation/emitted identities remain unchanged. H11 still needs
+human acceptance and owner application; no gate or stable milestone closes.
 
 At 69ada72, complete local bundle and exact clean restore/full Git integrity
 verify; clean close passes nine of ten, only unpushed HEAD fails. Qualify the
@@ -187,6 +207,18 @@ This dated continuation satisfies the current-day run-record requirement without
 changing the close checker or discarding the preceding record.
 
 ## Found
+
+Local-only revision e7d92e1 is not the remote CI revision. No-push remains
+binding: historical hosted results do not qualify new local commits, even if
+the account's billing setting is later resolved. Final exact hosted/publish
+handoff stays human-owned; no remote sync or alternative upload is attempted.
+
+Fresh native passes 894/895, only H11 fails. This rules out D40 as the cause of
+that reproduced failure. The original staged population takes longer than its
+unit wait; no hung child follows from this sample. Heavy cases are real restart,
+local RPC and traffic work, not current devnet requests. A mixed probe-presence/
+scratch-setup command is boundary-refused before execution; split ordinary
+read verification and setup as directed. Original wait/thresholds stay unchanged.
 
 S122's first claims check rejects the mise-prefixed command. Preserve the
 failure; state the equivalent uv invocation with the existing Node 24 environment

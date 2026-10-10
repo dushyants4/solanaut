@@ -1,5 +1,10 @@
 # PROGRESS.md
 
+H11 diagnosis on unchanged e7d92e1 reproduces the native wait failure. The actual
+staged child naturally passes its complete population after the wait; exact
+owner diff and generated-copy proof are in baseline-latency. H11 remains pending,
+with no original gate change or formal milestone advancement.
+
 The preserved D40 archive has installed Node 24 boundary/fault evidence, S122.
 This is scoped compatibility of an unapplied patch, not a milestone or H11 fix.
 

@@ -1,0 +1,50 @@
+// Observe the unchanged staged baseline; this is not a replacement CI wait.
+import {spawnSync} from "node:child_process";
+import {createHash} from "node:crypto";
+import {copyFileSync,mkdirSync,readFileSync,writeFileSync} from "node:fs";
+import {join} from "node:path";
+import {readSupervisedResult} from "../../../tools/run-supervisor.ts";
+import {stopSupervisedRun} from "../../../tools/stop-supervised-run.ts";
+
+const output="evals/ci/baseline-latency",scratch=".sandbox/solanaut-1/status-diagnostic";
+mkdirSync(output,{recursive:true});mkdirSync(scratch,{recursive:true});
+const hash=bytes=>createHash("sha256").update(bytes).digest("hex");
+const save=(name,value)=>writeFileSync(join(output,name),JSON.stringify(value,null,2)+"\n");
+const started=process.hrtime.bigint(),elapsed=()=>Number(process.hrtime.bigint()-started)/1e6;
+const launch=spawnSync(process.execPath,["evals/ci/mutation-run.ts","--start","--baseline"],{encoding:"utf8",timeout:10000});
+writeFileSync(join(output,"launch.txt"),launch.stdout+launch.stderr);
+if(launch.status!==0||launch.error)throw new Error("unchanged baseline launch failed");
+const stage=launch.stdout.match(/Mutation run directory: (.+)/)?.[1];
+if(!stage)throw new Error("baseline directory missing");
+const ticket=JSON.parse(readFileSync(join(stage,"ticket.json"),"utf8"));
+writeFileSync(join(scratch,"observed-ticket.json"),JSON.stringify(ticket,null,2)+"\n");
+const manifest=JSON.parse(readFileSync(join(stage,"manifest.json"),"utf8"));
+const specification=JSON.parse(readFileSync(join(ticket.directory,"spec.json"),"utf8"));
+if(manifest.definition!==45||manifest.environment.FUZZ_SEED!=="45691"||!manifest.baseline)throw new Error("unexpected workload");
+const checkpoints=[],bound=Object.fromEntries(Object.entries(manifest.binding));
+let result=null,atTwenty=null,complete=false;
+try{
+  // Observer-only containment; the actual command retains its original limit.
+  while(elapsed()<75000){
+    result=readSupervisedResult(ticket);
+    const bytes=readFileSync(join(ticket.directory,"output.txt"));
+    const sample={elapsedMs:elapsed(),bytes:bytes.length,outputSha256:hash(bytes),complete:result!==null};
+    checkpoints.push(sample);
+    if(!atTwenty&&sample.elapsedMs>=20000){
+      atTwenty=sample;copyFileSync(join(ticket.directory,"output.txt"),join(output,"at-twenty.txt"));
+    }
+    if(result!==null){complete=true;break;}
+    await new Promise(resolve=>setTimeout(resolve,250));
+  }
+}finally{
+  if(!complete)await stopSupervisedRun(ticket);
+  result=readSupervisedResult(ticket);
+  for(const [directory,name] of [[stage,"manifest.json"],[stage,"ticket.json"],[ticket.directory,"spec.json"],[ticket.directory,"result.json"],[ticket.directory,"commit.sha256"],[ticket.directory,"output.txt"]])copyFileSync(join(directory,name),join(output,name));
+  save("observation.json",{reviewedRevision:"e7d92e1edeb86d6de2d9da36899d2e918f16341e",runtime:process.version,stage,ticket,elapsedMs:elapsed(),complete,atTwenty,checkpoints,command:specification.command,binding:bound,result,scope:"unchanged diagnostic only; no H11 wait or score qualification"});
+}
+if(!complete)throw new Error("diagnostic did not observe natural completion");
+const finish=spawnSync(process.execPath,["evals/ci/mutation-run.ts","--finish",stage],{encoding:"utf8",timeout:10000});
+writeFileSync(join(output,"finish.txt"),finish.stdout+finish.stderr);
+save("finish-status.json",{status:finish.status,error:finish.error?.code??null});
+if(finish.status!==0||finish.error)throw new Error("unchanged finish refused baseline");
+console.log(JSON.stringify({elapsedMs:elapsed(),complete,result,atTwenty}));

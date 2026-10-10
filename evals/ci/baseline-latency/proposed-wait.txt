@@ -1,0 +1,14 @@
+✔ CI-2: supervised completion qualifies only the bound complete synthetic mutation fixture (120.012374ms)
+✔ CI-2: an extra staged input cannot silently enter the frozen population (1.562326ms)
+✔ CI-2: every copied source, test, package, configuration and lock input remains bound (4.817294ms)
+✔ CI-2: missing, symlinked and mismatched staged inputs cannot be frozen (1.722628ms)
+✔ CI-2: pending and failed actual child execution cannot qualify a present fixture report (269.340943ms)
+✔ CI-2: an asynchronously started real staged baseline finishes without relaunching (20248.704727ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 20747.105666

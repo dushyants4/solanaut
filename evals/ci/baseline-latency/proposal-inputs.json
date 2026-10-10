@@ -1,0 +1,18 @@
+{
+  "scope": "unapplied H11 review copy only; original backend, tests and limits remain",
+  "originalSha256": "30cb59765c989bbc9237c562c7b5be1a306bab5c6a847eecdf0d744e393377de",
+  "generatedSha256": "3b3e3b38b0a9e946e3c1c8814088c96a66853ae3f948ad46975a02bf1bdb8acf",
+  "patchSha256": "b85b59592ea7d78f5b3388c983fbc2b23cf728805335d264d12993a56495e537",
+  "edits": [
+    [
+      "const end=Date.now()+20000;",
+      "const end=Date.now()+60000;"
+    ],
+    [
+      "staged baseline incomplete after unchanged wait",
+      "staged baseline incomplete after configured harness wait"
+    ]
+  ],
+  "importRelocations": 3,
+  "destination": "/home/dashy/Projects/Solanaut/.sandbox/solanaut-1/status-diagnostic/proposed-wait.test.ts"
+}

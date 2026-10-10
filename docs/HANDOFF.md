@@ -246,8 +246,17 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 | O3 | Proposed parallel package runner | Exact unapplied diff: `evals/packaging/parallel-lifecycle/corrected/termination-owner.patch`; send SIGTERM once per owned child group, escalate to SIGKILL after the declared grace if still live, clear escalation on close. Combine with O2 and freshly qualify unchanged full populations/entry point before adoption. | S114 observes ignored SIGTERM leaving the original proposed parent waiting. Corrected fixture refuses incomplete execution; missing/late escalation and false completion are caught. Nominal S111 completion is not universal termination evidence. Maintained gate/deadline remain unchanged. | no |
 | O4 | .github/workflows/ci.yml | Exact unapplied diff: `evals/sdk/adapter-wire/owner-ci.patch`; use the existing pinned uv action in runtime jobs, pack the private SDK, execute actual installed ADP-1 cases and source/emitted fault trials. Retain all current steps, runtime matrix and limits. | D39's new wire boundary has local tests/fault evidence; protected CI needs owner application and exact hosted/runtime qualification. `git apply --check` accepts the draft. No deadline, assertion, population or threshold is weakened. | no |
 | O5 | .github/workflows/ci.yml | Exact unapplied combined diff: `evals/sdk/adapter-buffer/owner-ci.patch`; supersedes O4's application by retaining its installed/source/emitted trials and adding D40 private-buffer installation and copy-omission trials. | Private raw-buffer ownership has local fault evidence. Existing pinned action, runtime matrix, job limits and earlier gates stay unchanged. Read-only patch validation passes; owner application and exact hosted/matrix qualification remain owed. | no |
+| O6 | evals/ci/mutation-recovery.test.ts | Exact unapplied diff: `evals/ci/baseline-latency/owner-wait.patch`; H11's proposed 20,000→60,000 ms harness wait and diagnostic text only. Apply only after human acceptance. | Unchanged source reproduces H11; original staged child naturally passes 573 cases in 22.223 seconds. Generated review copy passes all six original recovery cases. Backend, selected population, seed, score/readiness targets and completion checks stay unchanged. Current gate remains failed; matrix/hosted/maintained qualification follows owner application. | no |
 
 ## 7. Codex's log
+
+2026-10-10 current-task diagnosis on e7d92e1: no Solanaut worker is initially
+running, clean local-only tree. Original full native again fails H11. An unchanged
+staged child naturally passes the complete population after its unit wait;
+original finish verifies actual completion. Exact owner wait proposal O6 and
+generated-copy proof are preserved; human acceptance remains required. Latest
+hosted annotations again report account billing/spending refusal before steps.
+No rate-limited devnet operation, gate modification or milestone progress follows.
 
 2026-10-10 D40 preparation is committed as 001c6c9 with raw-evidence whitespace
 finding recorded at 69ada72. Complete local bundle/exact clean restore/full Git

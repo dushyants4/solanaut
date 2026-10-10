@@ -1,0 +1,70 @@
+
+X main ci · 37954690141
+Triggered via push about 1 day ago
+
+JOBS
+X million-input decoder fuzz in 2s (ID 113902097517)
+X guard tests and typecheck (22.18.0) in 2s (ID 113902097845)
+X maintained fault campaigns (2) in 2s (ID 113902097881)
+X AST statement and branch floors in 2s (ID 113902097913)
+X guard tests and typecheck (26.7.0) in 2s (ID 113902097935)
+X pinned real-transaction differential decoding in 2s (ID 113902097936)
+X pinned mixed-history replay (26.7.0) in 3s (ID 113902098015)
+X pinned mixed-history replay (24) in 2s (ID 113902098017)
+X pinned mixed-history replay (22.18.0) in 2s (ID 113902098098)
+X frozen synthetic benign traffic and loop evidence in 2s (ID 113902098321)
+X maintained fault campaigns (3) in 3s (ID 113902098356)
+X guard tests and typecheck (24) in 3s (ID 113902098360)
+X knowledge vault and write boundary in 2s (ID 113902098418)
+X maintained fault campaigns (1) in 3s (ID 113902098547)
+X verified persisted-prefix kill recovery in 3s (ID 113902098573)
+
+ANNOTATIONS
+X The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings
+million-input decoder fuzz: .github#1
+
+X The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings
+guard tests and typecheck (22.18.0): .github#1
+
+X The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings
+maintained fault campaigns (2): .github#1
+
+X The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings
+AST statement and branch floors: .github#1
+
+X The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings
+guard tests and typecheck (26.7.0): .github#1
+
+X The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings
+pinned real-transaction differential decoding: .github#1
+
+X The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings
+pinned mixed-history replay (26.7.0): .github#1
+
+X The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings
+pinned mixed-history replay (24): .github#1
+
+X The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings
+pinned mixed-history replay (22.18.0): .github#1
+
+X The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings
+frozen synthetic benign traffic and loop evidence: .github#1
+
+X The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings
+maintained fault campaigns (3): .github#1
+
+X The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings
+guard tests and typecheck (24): .github#1
+
+X The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings
+knowledge vault and write boundary: .github#1
+
+X The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings
+maintained fault campaigns (1): .github#1
+
+X The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings
+verified persisted-prefix kill recovery: .github#1
+
+
+To see what failed, try: gh run view 37954690141 --log-failed
+View this run on GitHub: https://github.com/dushyants4/solanaut/actions/runs/37954690141

@@ -1,0 +1,2 @@
+Mutation run directory: /home/dashy/Projects/Solanaut/.sandbox/solanaut-1/mutation/run-Klc160
+Started only; inspect execution/output.txt and use --finish after actual completion.
