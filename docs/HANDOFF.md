@@ -246,6 +246,14 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-10 exact f1e253f current Node 24 native/type/installed checks and new
+compiled lifecycle faults pass. Current Node 26 direct package campaign passes;
+its standalone invocation does not qualify the maintained enclosing deadline.
+Quiet Node 24 AST again fails only the unchanged H11 wait. Preserve every runtime
+output separately and restore earlier helper output locations byte-for-byte.
+All current bound identities match; CLAIMS S113. No installation, push or stable
+release claim; H9/H11/H14 and external gates remain pending.
+
 2026-10-10 private owned signing-history operation under accepted ADR-019 queues
 captured events and delegates the existing verifier/synced append. Absent-method
 and frozen-surface failures are retained; source/emitted faults and actual offline

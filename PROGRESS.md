@@ -1,5 +1,9 @@
 # PROGRESS.md
 
+Exact f1e253f current Node 24 native/type/installed and compiled component checks
+pass; direct package faults pass and all bound identities restore, CLAIMS S113.
+Quiet AST fails the unchanged H11 wait. This closes no stable-release milestone.
+
 The private owned facade now journals captured signing-history facts through its
 shared queue under accepted ADR-019. Initial failures, source/emitted faults,
 offline installed private-facade tests and full native pass; component receipt

@@ -1,7 +1,9 @@
 # Solanaut 1.0 — current release evidence map
 
-2026-10-09 · private operator/archivist preparation · reviewed implementation
-4addaa4 with existing Node 24 qualification in progress. This maps the approved mission to receipts and remaining work. It is not
+2026-10-10 · private operator/archivist preparation · reviewed implementation
+f1e253f, with current Node 24 native/type/installed passes and the unchanged quiet
+AST wait failure in [the exact runtime receipt](../../evals/release/owned-signing-current.md), CLAIMS S113. Earlier Node 24 evidence
+belongs to 4addaa4. This maps the approved mission to receipts and remaining work. It is not
 a release decision, support claim or substitute for SPEC/READINESS gates.
 
 The approved Beta remains the achieved milestone. Local component validation is
@@ -60,10 +62,13 @@ tail requests created after publication, policy changes and uncertain sends.
 The internal [owned proposal companion](../../evals/sdk/owned-request-admission.md)
 provides serialized proposal lookup-to-commit consultation. The newer private
 [facade](../../evals/sdk/owned-guard.md) keeps the mutable guard private and queues
-admission, status, control, redemption, trusted SDK reports, operator release and closure. Component
+admission, status, control, redemption, trusted SDK reports, operator release,
+signing-history facts and closure. Component
 receipts preserve durable reply checks and fault findings. All historical maps
 remain retained. The [trusted report component](../../evals/sdk/owned-report.md)
 records caller attribution and does not qualify isolated chain reconciliation.
+The [private signing journal](../../evals/sdk/owned-signing.md) captures facts
+and delegates the existing synced verifier; it creates no signature or send.
 Signing lifecycle completion, disk-backed state pruning
 and actual owned streamed restoration remain required; the facade does not close
 the bounded-memory gate.
@@ -72,14 +77,20 @@ Earlier [record read completion](../../evals/sdk/record-read-completion.md)
 passes corrected native/type/serial AST/floors, CLAIMS S103; that result belongs
 to its exact candidate. Later physical append completion and post-sync identity
 components retain source/installed faults and quiet AST failures, CLAIMS S105–106.
-The newest trusted-report candidate passes native/type/source/installed/compiled
-checks with exact restored identities, CLAIMS S108, but its quiet serial AST
-fails the unchanged staged wait. Existing Node 24 follows the exact new revision
-in [its runtime receipt](../../evals/release/node24-owned-report.md). The previous
-complete-read Node 24 result remains distinct, CLAIMS S104. All earlier failed
+The newer private signing-journal candidate passes native/type/source/installed/
+emitted-fault checks with exact restored identities, CLAIMS S112. Its quiet serial
+AST fails the unchanged staged wait. Earlier trusted-report and Node 24 evidence
+remain distinct, CLAIMS S108–109, in [their runtime receipt](../../evals/release/node24-owned-report.md).
+The previous complete-read Node 24 result remains distinct, CLAIMS S104. All earlier failed
 runs remain archived. Hosted execution remains
 account-blocked under H13, and no remote push is authorised. Neither a local pass
 nor a started hosted/runtime process supplies missing qualification.
+
+The actual maintained runner still fails as CLAIMS S110. An isolated execution
+prototype completes the original package fault population within the unchanged
+outer deadline, CLAIMS S111; its validator misses are preserved and corrected
+regressions catch them. Exact owner draft is unapplied in HANDOFF §6. A direct
+standalone package campaign pass does not qualify its enclosing runner.
 
 Continue the accepted [snapshot sequence](2026-10-06_snapshot-qualification.md):
 historical request/answer lookup on disk, bounded active state and actual owned
@@ -110,9 +121,9 @@ or documentation-only exceptions.
 No public visibility, package publication, user creation, funding, tool installation,
 external contact or policy/threshold change was performed for this map.
 
-Reviewed formal progress on 2026-10-09 remains 41%: 16 of 39 equally weighted milestones,
+Reviewed formal progress on 2026-10-10 remains 41%: 16 of 39 equally weighted milestones,
 including the approved Beta (CLAIMS S78; [receipt](../../evals/release/progress.md)).
 This is not release readiness or an effort estimate. The fixed CI fault-partition
 component has local evidence in CLAIMS S77; corrected hosted qualification remains
-required. Next engineering work is live index completeness and bounded recovery;
+required. Next engineering work is accepted bounded-state design and owned recovery;
 the owned publication component does not close those gates.

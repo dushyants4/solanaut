@@ -1,5 +1,10 @@
 # evals/ — receipts
 
+`release/owned-signing-current.md`: S113 exact f1e253f direct package campaign
+and current Node 24 native/type/installed/compiled component passes; quiet AST
+fails the unchanged H11 wait. Original runtime logs remain distinct and bound
+identities restore. No maintained-runner or complete matrix qualification.
+
 `sdk/owned-signing.md`: private queued journal facts under ADR-019, with absent
 method/surface failures, source/emitted faults and actual installed private facade.
 Trusted SDK bookkeeping only; full qualification follows separately.

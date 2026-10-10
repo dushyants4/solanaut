@@ -1,0 +1,8 @@
+{
+  "scope": "private installed facade; repository fixture writers and transaction builders",
+  "archiveSha256": "9f241d5424c330cc81239edb4e68236a6133ae9842063696d8f1b70eebdf2c0d",
+  "installedModuleSha256": "99726f00301d2e7b0400bda5a819ef3f5a1777c2f8e5983a7356aa0f8360a6a4",
+  "externalConsumer": "/tmp/solanaut-owned-signing-pe36yx5f",
+  "packageSymlink": false,
+  "status": 0
+}

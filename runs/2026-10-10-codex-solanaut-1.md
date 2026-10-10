@@ -7,6 +7,15 @@ push. Preserve all release, independent and human gates.
 
 ## Did
 
+Commit private queued signing journal as f1e253f; verify its complete local
+bundle, exact clean clone and full integrity check. Clean close passes nine of
+ten, failing only deliberately unpushed HEAD. Run the current emitted artefact's
+entire standalone package fault campaign; it catches all original faults and
+passes the restored installed baseline. Bound source/evaluation/emitted/archive
+identities match afterwards. This direct pass does not qualify the unchanged
+enclosing maintained-runner deadline. Continue current Node 24 qualification
+with the already installed runtime, no installation or global change.
+
 Commit isolated package prototype as f6d5e29 after native/type and close checks.
 Verify its complete local Git bundle, exact clean clone and full integrity check.
 Clean close passes nine of ten, failing only deliberately unpushed HEAD. Continue
@@ -44,6 +53,11 @@ no threshold, deadline, workload, assertion or protected gate is changed.
 
 ## Changed
 
+CLAIMS S113/current runtime receipt archives exact f1e253f direct package faults,
+Node 24 native/type/installed/new compiled trials and unchanged quiet AST failure.
+Final bound inputs match, restored Node 26 typecheck passes. Reconcile the release
+map with current private facade and earlier evidence; no milestone closes.
+
 S112 completes the private journal component receipt and records native/type,
 source/emitted faults, maintained facade trials and actual installed results.
 Quiet AST executes the complete suite and fails only the unchanged H11 wait;
@@ -65,6 +79,12 @@ This dated continuation satisfies the current-day run-record requirement without
 changing the close checker or discarding the preceding record.
 
 ## Found
+
+Node 24 component helpers write the earlier S112 output locations. Archive every
+new runtime output separately before restoring the exact committed original logs;
+neither runtime's evidence is discarded or relabelled. Product and emitted code
+are restored exactly by the fault helper. Future regeneration must snapshot the
+old output locations first. No source, gate or threshold fix is needed.
 
 The first AST command uses an unsupported scheduling argument and is refused
 by the existing usage check before measurement. Preserve that output; use the

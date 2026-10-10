@@ -1,5 +1,16 @@
 # DOCUMENTS.md — the document register
 
+2026-10-10 registers exact f1e253f current runtime/package receipt, raw outputs,
+CLAIMS S113, PROGRESS, evaluation index, release map, HANDOFF and continuing run.
+Node 24 passes native/type/installed/component faults and fails the unchanged
+quiet AST wait. Earlier overwritten helper logs are preserved separately before
+exact restoration; no complete maintained-runner, matrix or release claim.
+
+2026-10-10 release evidence map reconciles f1e253f private signing journalling,
+its separate quiet AST failure, earlier runtime evidence and unapplied isolated
+package gate prototype. Formal milestones and protected release thresholds
+are unchanged; current runtime/package qualification is separate evidence.
+
 2026-10-10 registers private owned signing-history journalling: SPEC Draft 4.85,
 OVERVIEW Draft 56, RISKS 1.77, receipt/index and continuing run. Accepted ADR-019;
 no signing/send implementation, signer helper change or completed milestone.
