@@ -248,6 +248,12 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-10 the actual unchanged full maintained runner on 71a1ef4 attempts every
+campaign and fails mutation recovery and packaging, skipping none, S120.
+Preserve aggregate/raw failures and interrupted emitted request-index bytes;
+release rebuild restores every bound candidate identity and typecheck passes.
+H11/O2/O3 remain owed; no waiver, gate change, push or milestone credit.
+
 2026-10-10 D39/ADP-1 demonstrates unchecked serialized wallet bytes reaching RPC.
 Correct by capturing one wire and verifying its message/signature before send.
 A further destructive serializer exposes premature reservation release in the

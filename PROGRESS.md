@@ -1,5 +1,10 @@
 # PROGRESS.md
 
+Actual unchanged full maintained fault qualification of 71a1ef4 fails mutation
+recovery and packaging, with no skipped campaigns, CLAIMS S120. Interrupted
+emitted bytes are preserved; rebuild restores every bound candidate identity.
+Component passes do not waive either failure or close a stable milestone.
+
 D39's sending adapter verifies one captured serialized wire before RPC and
 retains verified signing as unknown on refusal. Native/type and source/emitted/
 installed component evidence is in adapter-wire, CLAIMS S119. This exact candidate

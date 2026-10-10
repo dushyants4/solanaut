@@ -1,5 +1,9 @@
 # DOCUMENTS.md — the document register
 
+2026-10-10 registers maintained D39 fault receipt/raw failures/identity manifests,
+CLAIMS S120, PROGRESS, HANDOFF, evaluation index and continuing run. Actual
+unchanged runner fails; candidate restoration is not qualification.
+
 2026-10-10 registers D39/ADP-1: SPEC 4.86, OVERVIEW 57, RISKS 1.78, SDK 19,
 adapter-wire receipt/raw evidence/counters, CLAIMS S119, PROGRESS, HANDOFF, evaluation index, release
 map/staged draft and continuing run. Accepted ADR-009; public methods, signer

@@ -7,6 +7,22 @@ push. Preserve all release, independent and human gates.
 
 ## Did
 
+The complete maintained run on 71a1ef4 finishes with mutation recovery and
+packaging failed, no skipped campaigns. Archive all output and the interrupted
+emitted request-index module before release rebuild. All bound source,
+evaluation, emitted and archive identities then match; restored typecheck
+passes. PID/group 3697594 is gone. Launch status was not actual worker status;
+the preserved final aggregate JSON supplies the result, S120. No gates change.
+
+Commit D39/ADP-1 as 71a1ef4; verify complete local bundle, exact clean restore
+and full Git integrity check. Clean close passes nine of ten, failing only
+intentionally unpushed HEAD. Start the complete unchanged maintained inventory
+against this revision, not a generated owner draft. Raw output is
+.sandbox/solanaut-1/adapter-wire-current/full.txt; dedicated runner identity is in
+.sandbox/solanaut-1/adapter-wire-current/runner.pid, PID/group 3697594. No other fault, timing,
+native or AST worker overlaps. Preserve failures and verify/restage current
+bound inputs before further qualification; no actual gate or deadline changes.
+
 The final D39 bookkeeping-failure fixture exposes missed cleanup/raw reporting
 errors. Preserve the failing injected-method case and the earlier native/AST
 passing artefact with all counters/source/test snapshots. Strip signatures first,
@@ -143,6 +159,26 @@ This dated continuation satisfies the current-day run-record requirement without
 changing the close checker or discarding the preceding record.
 
 ## Found
+
+The unchanged full maintained gate fails mutation recovery and packaging on
+71a1ef4, S120. Preserve the generated mismatch before rebuilding, and verify
+every bound input afterwards. Restored native suite passes all 895 cases and
+typecheck passes; neither erases the fault failures. A combined log-copy/checker
+command is refused by the boundary heuristic before execution; split the
+ordinary copy and unchanged read-only checks as directed. A malformed patch
+context also makes no edit; use the exact surrounding document text.
+
+The long maintained run initially targets its eventual receipt path. Move the
+open log inode into .sandbox without changing the worker or any source input;
+archive completed bytes back into evals only after termination. This follows
+the long-process scratch-log rule and preserves all output.
+
+Follow-up inspection identifies a plausible remaining ADP-1 alias: constructing
+Uint8Array directly from an ArrayBuffer/SharedArrayBuffer creates a view rather
+than a private copy. Reproduce external buffer mutation at the RPC handoff after
+the complete maintained worker finishes; do not edit product inputs during that
+run or claim a defect from inspection alone. Current S119's ordinary byte cases
+and input scope remain unchanged evidence.
 
 A second mixed document-mutation/checker command is boundary-refused in full;
 no part runs. Use exact file-tool edits as directed and invoke existing checkers

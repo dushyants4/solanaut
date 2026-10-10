@@ -1,0 +1,5 @@
+
+> release:prepare
+> node packages/sdk/bin/prepare-release.ts
+
+Private SDK candidate staged in .sandbox/releases/sdk
