@@ -12,6 +12,18 @@ each component. Preserve every accepted security and release gate.
 
 ## Did
 
+Exact `701372e` existing Node 24 qualification completes: native/type/installed
+and all 134 compiled faults pass, restored consumer baseline passes and all bound
+product/evaluation/emitted-file/archive identities match. Quiet AST remains a
+failed gate at the unchanged staged wait, retained with raw reports. Refresh
+the release evidence map and runtime/evaluation records without changing pins,
+limits or product files. Archive as a local commit and verified local Git backup.
+
+Commit complete-read correction locally as `701372e8de28160ec8965a3600de184d20f0c00a`.
+Verify its local Git bundle and exact clean clone. Full clone integrity checking
+continues. Start qualification with already installed Node 24.19.0 against that
+unchanged product revision/private archive, retaining all original limits.
+
 Complete-read correction passes thirty focused cases, thirteen source faults,
 sixteen installed cases and 134 compiled faults, with restored passing baselines.
 Corrected definition 42/seed 42719 runs all 862 native and quiet serial AST cases
@@ -239,6 +251,15 @@ Current-day run record and project register; subsequent replay component paths
 and qualification evidence will be recorded as work proceeds.
 
 ## Found
+
+Node 24 complete-read qualification passes all 862 native and sixteen installed
+cases with typecheck zero. Quiet serial AST executes 862: 861 pass and the
+unchanged staged-baseline wait fails. Archive raw reports and output; complete
+coverage fails with no floor pass. H11 stays pending; compiled faults continue.
+
+Post-701372e close reports eight of ten because new Node 24 runtime evidence
+started before close completed: unpushed HEAD and uncommitted evidence. The
+committed implementation clone is clean, but no clean-tree close is claimed.
 
 Complete-read pre-commit close passes eight of ten: only uncommitted tree and
 unpushed HEAD fail. Latest explicit user instruction prohibits pushing; retain

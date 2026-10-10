@@ -1,5 +1,14 @@
 # DOCUMENTS.md — the document register
 
+2026-10-09 existing Node 24 follow-up registers
+`evals/release/node24-read-completion.md`, its raw outputs and evaluation index,
+CLAIMS S104 and the continuing run. Exact product revision 701372e and component
+identities remain unchanged. Native/type/installed pass; broader qualification
+remains partial: quiet AST fails the unchanged staged wait. TOOLCHAIN and the
+release evidence map now name the exact current candidate and private facade;
+all 134 compiled faults catch/restored and bound identities match. No complete
+matrix, coverage, independent or stable claim.
+
 2026-10-09 read completion registers SPEC Draft 4.81/STO-5, OVERVIEW 52,
 STORAGE Draft 12, RISKS 1.73, PROGRESS, HANDOFF, continuing run and
 `evals/sdk/record-read-completion.md` with its index. Preserve acknowledged-history

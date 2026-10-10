@@ -22,7 +22,9 @@ Local release qualification also uses already-installed Node 24.19.0/npm 11.17.0
 through explicit `mise exec node@24.19.0 --` commands. No installation, global
 configuration or development pin change is performed. Current-host evidence is
 `evals/release/node24-current.md` (CLAIMS S100); clean Ubuntu and the complete
-runtime matrix remain unqualified.
+runtime matrix remain unqualified. The newer exact `701372e` follow-up is
+`evals/release/node24-read-completion.md` (CLAIMS S104): no installation or pin
+change, native/type/installed passes and a failed unchanged quiet AST wait.
 
 `~/.bashrc` carries one block, added 2026-09-27:
 

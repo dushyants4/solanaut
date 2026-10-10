@@ -1,0 +1,15 @@
+{
+  "scope": "current-host Node 24 qualification after restored compiled faults; quiet AST failed",
+  "revision": "701372e8de28160ec8965a3600de184d20f0c00a",
+  "node": "24.19.0",
+  "captured_at_utc": "2026-10-10T02:03:41.464055+00:00",
+  "candidate_manifest": "evals/sdk/record-read-completion/installed-candidate.json",
+  "manifest_sha256": "73aa56b2ca174786265b430319ea81f74f47cb7a0cd1346d01061c02ac3ea524",
+  "checked": {
+    "product_sources": 51,
+    "evaluation_inputs": 87,
+    "compiled_files": 86
+  },
+  "archive_sha256": "0b1092c7ea0b08fa4fdedbefc0e57d4cf01f1750abf60d569b71afa707715253",
+  "mismatches": []
+}

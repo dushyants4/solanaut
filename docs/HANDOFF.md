@@ -243,6 +243,15 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-09 exact `701372e` Node 24 follow-up: already installed runtime passes
+native/type/installed and all retained compiled faults with restored identities,
+CLAIMS S104. Quiet serial AST fails the unchanged staged-baseline wait; archive
+raw reports/output without claiming complete coverage. Product pins, workload
+limits and signer surface remain unchanged. Implementation's local bundle and
+exact clean clone/full fsck verify. Post-commit close saw newly started runtime
+evidence and correctly failed dirty/unpushed; no clean close is inferred. Updated
+release evidence map keeps bounded state and independent/human gates explicit.
+
 2026-10-09 read completion: startup consistency is locally committed as
 `67948e6` with verified source-history bundle and exact clean clone/full fsck;
 post-commit close fails only unpushed HEAD. Reproduce short read results

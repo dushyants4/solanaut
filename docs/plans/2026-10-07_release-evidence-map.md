@@ -1,7 +1,7 @@
 # Solanaut 1.0 — current release evidence map
 
-2026-10-08 · private operator/archivist preparation · reviewed base revision
-43f20c0 plus the owned-publication candidate. This maps the approved mission to receipts and remaining work. It is not
+2026-10-09 · private operator/archivist preparation · reviewed implementation
+701372e with existing Node 24 qualification in progress. This maps the approved mission to receipts and remaining work. It is not
 a release decision, support claim or substitute for SPEC/READINESS gates.
 
 The approved Beta remains the achieved milestone. Local component validation is
@@ -9,7 +9,7 @@ recorded in CLAIMS S76; hosted run 37711212005 fails Node 22/26 and AST at the
 unchanged baseline wait; Node 24 and maintained faults pass. Its predecessor
 b352454 passes runtime jobs but fails the unchanged staged-baseline wait in AST;
 maintained faults are cancelled. Keep that failure beside subsequent results.
-Latest base 43f20c0 run 37780907635 fails the unchanged real-baseline wait;
+Earlier base 43f20c0 run 37780907635 fails the unchanged real-baseline wait;
 partitions two and three pass. Full logs remain in the owned-publication receipt.
 Owned atomic index publication and D25's checkpoint cache recheck have component
 evidence in `evals/sdk/owned-request-index.md`. Published ElizaOS runtime routes
@@ -58,10 +58,22 @@ Qualification must exercise historical retries after the active cache evicts the
 tail requests created after publication, policy changes and uncertain sends.
 
 The internal [owned proposal companion](../../evals/sdk/owned-request-admission.md)
-now provides serialized proposal lookup-to-commit consultation. It leaves the
-trusted synchronous guard exposed and all historical maps retained. Complete
-control/reply/signing consultation and a distinct facade that privately owns the
-guard are needed before pruning; no complete bounded-memory gate closes here.
+provides serialized proposal lookup-to-commit consultation. The newer private
+[facade](../../evals/sdk/owned-guard.md) keeps the mutable guard private and queues
+admission, status, control, redemption, operator release and closure. Component
+receipts preserve durable reply checks and fault findings. All historical maps
+remain retained. Signing/report lifecycle completion, disk-backed state pruning
+and actual owned streamed restoration remain required; the facade does not close
+the bounded-memory gate.
+
+Current [record read completion](../../evals/sdk/record-read-completion.md)
+passes corrected native/type/serial AST/floors with retained source/compiled
+faults, CLAIMS S103. All earlier failed runs remain archived. Existing Node 24
+native/type/installed checks pass, but its quiet AST fails the unchanged staged
+wait; all retained compiled faults catch and restored bound identities match,
+CLAIMS S104. Hosted execution remains
+account-blocked under H13, and no remote push is authorised. Neither a local pass
+nor a started hosted/runtime process supplies missing qualification.
 
 Continue the accepted [snapshot sequence](2026-10-06_snapshot-qualification.md):
 historical request/answer lookup on disk, bounded active state and actual owned
@@ -86,7 +98,7 @@ or documentation-only exceptions.
 No public visibility, package publication, user creation, funding, tool installation,
 external contact or policy/threshold change was performed for this map.
 
-Reviewed formal progress on 2026-10-08 is 41%: 16 of 39 equally weighted milestones,
+Reviewed formal progress on 2026-10-09 remains 41%: 16 of 39 equally weighted milestones,
 including the approved Beta (CLAIMS S78; [receipt](../../evals/release/progress.md)).
 This is not release readiness or an effort estimate. The fixed CI fault-partition
 component has local evidence in CLAIMS S77; corrected hosted qualification remains

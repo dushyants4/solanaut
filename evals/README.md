@@ -1,5 +1,10 @@
 # evals/ — receipts
 
+Existing Node 24 qualification for exact `701372e`:
+`release/node24-read-completion.md` retains native/type/installed passes;
+all 134 retained compiled faults catch/restored; quiet AST fails the unchanged
+staged wait. Bound candidate identities match. Complete coverage remains open.
+
 **Every gate here was shown failing on an injected fault before it was trusted.** A gate never
 seen failing might not be checking anything.
 
