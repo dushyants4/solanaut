@@ -1,5 +1,9 @@
 # DOCUMENTS.md — the document register
 
+2026-10-10 registers current restored-history receipt, full metadata manifest/raw
+summary/clean status, CLAIMS S118, PROGRESS, HANDOFF, evaluation index, release
+map and continuing run. Named local ref scope only; no content or public clearance.
+
 2026-10-10 registers generated combined owner-entry and repeated private rebuild
 receipts, helpers, raw evidence, CLAIMS S116/S117, PROGRESS, HANDOFF, evaluation
 index, staged release draft, release map and continuing run. Exact actual gate

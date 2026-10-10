@@ -1,5 +1,9 @@
 # PROGRESS.md
 
+The exact locally restored f4f3d92 history has a current PUB-1 metadata inventory,
+S118. Entire proposed public-history content review and visibility remain owed;
+no stable-release milestone closes.
+
 Combined O2/O3 generated-entry qualification passes its original extra baseline
 and full unchanged campaign, S116. Same-host repeated private build/pack matches
 the current candidate bytes/modes, S117. Owner application and actual maintained

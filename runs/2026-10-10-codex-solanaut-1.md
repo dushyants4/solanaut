@@ -7,6 +7,13 @@ push. Preserve all release, independent and human gates.
 
 ## Did
 
+Commit entry/rebuild evidence as f4f3d92; verify complete local bundle, exact clean
+restore and integrity check. Clean close passes nine of ten, failing only
+intentionally unpushed HEAD. Run the unchanged actual PUB-1 history inspector on
+the restored repository; capture its full reachable metadata inventory as S118.
+Source content, original refs and human drop remain untouched. This is scoped
+review preparation, not rights, secrecy, licence or publication clearance.
+
 Generated combined O2/O3 entry completes its retained original healthy baseline,
 all original faults and worker controls under the unchanged outer timeout. The
 damaged CLI baseline fails first, before workers. Preserve exact generation,

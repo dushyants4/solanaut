@@ -247,6 +247,13 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-10 f4f3d92 evidence commit has verified complete local bundle, exact clean
+restore and Git integrity check. Clean close passes nine of ten, failing only
+intentionally unpushed HEAD. Existing PUB-1 inspector inventories the named
+restored ref set and its complete reachable closure, CLAIMS S118. Original refs
+and human drop stay unchanged. Content/rights/secret/licence/publication review
+and the final public scope remain human-owned; no stable milestone closes.
+
 2026-10-10 combined O2/O3 generated entry rejects a damaged CLI in its retained
 original extra baseline, then the healthy full unchanged campaign passes,
 CLAIMS S116. Actual protected entry remains unchanged; owner application and

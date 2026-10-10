@@ -32,6 +32,12 @@ high/critical dependency findings block qualifying that framework graph.
 
 ## Next engineering work
 
+Exact locally restored f4f3d92 reachable history has a fresh PUB-1 metadata
+inventory, CLAIMS S118. It identifies the restored ref set and entire closure;
+original harness refs and human drop are unchanged. It supplies no blob-content,
+rights, secrecy or licence clearance. Freeze the final public scope and review
+all proposed historical content before human-controlled visibility changes.
+
 Offline PHX-3/4 [selection evidence](../../evals/firewall/filter.md) now covers
 configured tool names, explicit devnet and detached bounded call parameters.
 It is not guarded execution or a deployed MCP server. Transaction effects,
