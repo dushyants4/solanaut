@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`release/node24-buffer.md`: the preserved unapplied D40 archive passes six
+installed Node 24 boundary cases and catches three installed copy omissions,
+CLAIMS S122. H11 and all full-release gates remain unchanged.
+
 `sdk/adapter-buffer.md`: D40/ADP-1 reproduces raw-buffer aliases, privately copies
 captures and retains first failures, source/emitted trials and installed evidence.
 The first full native run fails the existing H11 wait; no stable gate is waived.

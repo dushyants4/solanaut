@@ -1,5 +1,9 @@
 # DOCUMENTS.md — the document register
 
+2026-10-10 registers installed Node 24 D40 receipt/helper/raw controls and faults,
+CLAIMS S122, PROGRESS, HANDOFF, evaluation index, release map and continuing run.
+Original source and earlier evidence are untouched; patch remains unapplied.
+
 2026-10-10 registers D40/ADP-1: SPEC 4.87, RISKS 1.79, SDK 20, OVERVIEW 58,
 adapter-buffer receipt/helpers/raw failures, CLAIMS S121, PROGRESS, HANDOFF, evaluation index,
 release map/staged draft and continuing run. Private byte ownership correction

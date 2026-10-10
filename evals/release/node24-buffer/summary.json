@@ -1,0 +1,12 @@
+{
+  "runtime": "v24.19.0",
+  "archiveSha256": "55e8753409bb04960271418e1a3d907b8f3130ff16c10a0a143080be50af489d",
+  "packageSymlink": false,
+  "caught": [
+    "legacy-message-copy",
+    "versioned-message-copy",
+    "wire-copy"
+  ],
+  "restored": true,
+  "scope": "installed patched wallet export; repository guard/builders, no complete runtime matrix"
+}

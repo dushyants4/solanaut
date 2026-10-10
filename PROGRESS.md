@@ -1,5 +1,8 @@
 # PROGRESS.md
 
+The preserved D40 archive has installed Node 24 boundary/fault evidence, S122.
+This is scoped compatibility of an unapplied patch, not a milestone or H11 fix.
+
 D40's prepared patch privately owns wallet message/wire captures, including raw buffer returns.
 Six first failures, source/emitted omission trials and actual installed cases
 are preserved in adapter-buffer. The first full native run fails H11's unchanged

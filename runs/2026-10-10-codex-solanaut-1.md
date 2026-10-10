@@ -7,6 +7,14 @@ push. Preserve all release, independent and human gates.
 
 ## Did
 
+At 69ada72, complete local bundle and exact clean restore/full Git integrity
+verify; clean close passes nine of ten, only unpushed HEAD fails. Qualify the
+preserved D40 archive through a fresh offline consumer on already installed
+Node 24.19.0: all six boundary cases pass, all three installed copy omissions
+are caught, exact restoration and final control pass, S122. Validate archive,
+snapshot, installed implementation and support identities; no source/global
+runtime change, earlier-output overwrite or complete runtime-matrix claim.
+
 D40 preparation close passes eight of ten: only dirty tree and intentionally
 unpushed HEAD fail. Secret, boundary, claims, vault and harness checks pass.
 This is a T1 archival step: live product/test inputs remain exactly the already
@@ -179,6 +187,10 @@ This dated continuation satisfies the current-day run-record requirement without
 changing the close checker or discarding the preceding record.
 
 ## Found
+
+S122's first claims check rejects the mise-prefixed command. Preserve the
+failure; state the equivalent uv invocation with the existing Node 24 environment
+prerequisite and retain the actual command in the receipt. The gate is unchanged.
 
 The archival staged diff check reports whitespace in verbatim Node assertion
 output and unified-diff context lines. Preserve raw evidence/patch context

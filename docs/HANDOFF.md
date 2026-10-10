@@ -249,6 +249,13 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-10 D40 preparation is committed as 001c6c9 with raw-evidence whitespace
+finding recorded at 69ada72. Complete local bundle/exact clean restore/full Git
+integrity verify; clean close passes nine of ten, only unpushed HEAD fails.
+Then the preserved patched archive passes all six installed Node 24 cases;
+three installed copy omissions are caught and exact restoration/control pass,
+S122. No source or earlier runtime evidence changes; D40/H11 remain open.
+
 O5 application depends on D40 source/test integration and fresh complete gate
 qualification; its exact draft is not an executable substitute for that work.
 

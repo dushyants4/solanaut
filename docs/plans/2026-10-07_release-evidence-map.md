@@ -5,6 +5,8 @@ patch privately copies raw buffer captures, with reproduced aliases and
 installed evidence in [its component receipt](../../evals/sdk/adapter-buffer.md).
 Both full native runs and quiet AST fail H11. The patch remains unapplied and
 original product inputs are restored; no release freeze or qualification follows.
+The preserved patched archive has installed Node 24 boundary/fault proof, S122;
+that scoped compatibility does not replace full native/coverage qualification.
 Earlier D39 component evidence remains [separate](../../evals/sdk/adapter-wire.md),
 CLAIMS S119. Its actual unchanged full maintained gate fails, CLAIMS S120.
 Earlier f1e253f Node 24 native/type/installed passes and quiet AST wait failure
