@@ -180,6 +180,11 @@ changing the close checker or discarding the preceding record.
 
 ## Found
 
+The archival staged diff check reports whitespace in verbatim Node assertion
+output and unified-diff context lines. Preserve raw evidence/patch context
+rather than silently normalising them; do not claim a clean staged whitespace
+check. The local archival commit is 001c6c9, with live product unchanged.
+
 D40 quiet serial AST likewise passes 900 of 901, failing H11's unchanged wait.
 Preserve full output and all raw counters; no floor pass is produced. Run one
 unchanged native diagnostic after the failed checks to record repeatability,
