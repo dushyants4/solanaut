@@ -1,0 +1,18 @@
+✔ CI-2/PKG-1: parallel prototype accepts the complete installed control (1.529836ms)
+✔ CI-2/PKG-1: parallel prototype accepts a complete targeted fault (0.168495ms)
+✔ CI-2/PKG-1: parallel prototype refuses timeout (0.277997ms)
+✔ CI-2/PKG-1: parallel prototype refuses termination (0.077449ms)
+✔ CI-2/PKG-1: parallel prototype refuses spawn error (0.072603ms)
+✔ CI-2/PKG-1: parallel prototype refuses partial population (0.070761ms)
+✔ CI-2/PKG-1: parallel prototype refuses wrong target (0.130226ms)
+✔ CI-2/PKG-1: parallel prototype refuses cancelled case (0.070811ms)
+✔ CI-2/PKG-1: parallel prototype refuses inconsistent counts (0.106625ms)
+✔ CI-2/PKG-1: parallel prototype refuses passing mutant (0.130142ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 58.353405

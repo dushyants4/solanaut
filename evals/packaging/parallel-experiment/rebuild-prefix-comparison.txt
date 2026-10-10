@@ -1,0 +1,58 @@
+✔ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (373.797246ms)
+✔ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (306.815546ms)
+✔ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (144.66362ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (106.141493ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (170.499292ms)
+✔ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (177.977685ms)
+✔ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (128.51597ms)
+✔ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (108.862936ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (225.271018ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (0.868348ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (520.536057ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (220.580388ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (229.232585ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (194.852617ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (101.45632ms)
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1357.813917ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (85.333328ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (170.637273ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (85.336496ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6275.55118
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:418:1
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1357.813917ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-G4qzds/consumer/[eval1]:86
+      if(!prefixRefused)throw new Error('installed altered prefix accepted');
+                              ^
+  
+  Error: installed altered prefix accepted
+      at file:///tmp/solanaut-consumer-G4qzds/consumer/[eval1]:86:29
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:667:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,35 @@
+{
+  "results": [
+    {
+      "fault": "timeout",
+      "status": 1,
+      "caught": true
+    },
+    {
+      "fault": "population",
+      "status": 1,
+      "caught": true
+    },
+    {
+      "fault": "target",
+      "status": 1,
+      "caught": true
+    },
+    {
+      "fault": "signal",
+      "status": 1,
+      "caught": true
+    },
+    {
+      "fault": "control",
+      "status": 1,
+      "caught": true
+    },
+    {
+      "fault": "footer",
+      "status": 1,
+      "caught": true
+    }
+  ],
+  "source_restored_sha256": "7ca04950c47bc75634a3bb1067d86a0368f03458d3543a13a23e3efe91fdf4d7"
+}

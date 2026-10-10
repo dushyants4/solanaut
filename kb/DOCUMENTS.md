@@ -1,5 +1,12 @@
 # DOCUMENTS.md — the document register
 
+2026-10-10 registers `evals/packaging/parallel-experiment.md`, prototype/validator
+and raw evidence, HANDOFF and continuing run. Isolated candidate copies retain
+the entire original installed suite and fault list under the existing limit;
+qualification passes as a prototype only, CLAIMS S111. Initial validator misses
+are retained and strengthened tests catch them. Exact owner draft is unapplied;
+PROGRESS, CLAIMS and evaluation index record scope. Maintained gate stays failed.
+
 2026-10-10 registers the current-day run continuation
 `runs/2026-10-10-codex-solanaut-1.md`; preserve the preceding dated record and
 all failed qualification evidence. No calendar override or gate change.

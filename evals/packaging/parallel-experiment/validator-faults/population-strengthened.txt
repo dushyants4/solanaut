@@ -1,0 +1,58 @@
+✔ CI-2/PKG-1: parallel prototype accepts the complete installed control (2.728051ms)
+✔ CI-2/PKG-1: parallel prototype accepts a complete targeted fault (0.314004ms)
+✔ CI-2/PKG-1: parallel prototype refuses timeout (0.536164ms)
+✔ CI-2/PKG-1: parallel prototype refuses termination (0.139114ms)
+✔ CI-2/PKG-1: parallel prototype refuses spawn error (0.134071ms)
+✖ CI-2/PKG-1: parallel prototype refuses partial population (0.844786ms)
+✔ CI-2/PKG-1: parallel prototype refuses wrong target (0.255784ms)
+✔ CI-2/PKG-1: parallel prototype refuses cancelled case (0.137291ms)
+✖ CI-2/PKG-1: parallel prototype refuses inconsistent counts (0.240976ms)
+✔ CI-2/PKG-1: parallel prototype refuses passing mutant (0.326946ms)
+✔ CI-2/PKG-1: parallel prototype refuses failed control (0.237951ms)
+✔ CI-2/PKG-1: parallel prototype refuses earlier forged footer (0.152237ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 10
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 117.003991
+
+✖ failing tests:
+
+test at evals/packaging/parallel-experiment.test.mjs:20:3
+✖ CI-2/PKG-1: parallel prototype refuses partial population (0.844786ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:20:68)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /unqualified installed result/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/packaging/parallel-experiment.test.mjs:20:3
+✖ CI-2/PKG-1: parallel prototype refuses inconsistent counts (0.240976ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:20:68)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /unqualified installed result/,
+    operator: 'throws',
+    diff: 'simple'
+  }

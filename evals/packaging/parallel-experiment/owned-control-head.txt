@@ -1,0 +1,58 @@
+✔ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (376.622536ms)
+✔ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (352.039561ms)
+✔ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (146.894314ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (104.48607ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (179.196438ms)
+✔ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (167.114875ms)
+✔ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (131.317446ms)
+✔ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (119.211443ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (272.727184ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (1.806702ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (558.607205ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (208.81142ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (237.736451ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (196.459526ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (103.144334ms)
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1891.756999ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (81.789328ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (193.173275ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (91.027424ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7002.165575
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:418:1
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1891.756999ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-AH1fp2/consumer/[eval1]:228
+            const before=gapGuard.status().seq;let refused=false;try{await call();}catch(error){refused=error instanceof gapModule.OwnedControlRequestError && error.code==='owned-control-request';}if(!refused || gapGuard.status().seq!==before+1)throw new Error('installed stale control lookup authorised work');
+                                                                                                                                                                                                                                                           ^
+  
+  Error: installed stale control lookup authorised work
+      at file:///tmp/solanaut-consumer-AH1fp2/consumer/[eval1]:228:250
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:667:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

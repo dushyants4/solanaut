@@ -1,0 +1,66 @@
+✔ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (334.778949ms)
+✔ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (320.256726ms)
+✔ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (137.637323ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (104.964282ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (168.122764ms)
+✔ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (161.124874ms)
+✔ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (131.417857ms)
+✔ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (124.546001ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (240.698343ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (0.705286ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (562.286291ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (214.217736ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (228.19896ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (206.063037ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (94.758905ms)
+✔ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1910.536171ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (69.869507ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (188.882187ms)
+✖ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (87.49145ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6816.552763
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:695:1
+✖ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (87.49145ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/run_main:107
+      triggerUncaughtException(
+      ^
+  
+  AssertionError [ERR_ASSERTION]: Missing expected exception (inputError): installed options container
+      at file:///tmp/solanaut-consumer-kfwb2a/consumer/[eval1]:18:102
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [Function: inputError],
+    operator: 'throws',
+    diff: 'simple'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:729:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

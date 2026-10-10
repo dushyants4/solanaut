@@ -1,0 +1,40 @@
+✔ CI-2/PKG-1: parallel prototype accepts the complete installed control (3.349876ms)
+✔ CI-2/PKG-1: parallel prototype accepts a complete targeted fault (0.471824ms)
+✖ CI-2/PKG-1: parallel prototype refuses timeout (1.266886ms)
+✔ CI-2/PKG-1: parallel prototype refuses termination (0.492299ms)
+✔ CI-2/PKG-1: parallel prototype refuses spawn error (0.210994ms)
+✔ CI-2/PKG-1: parallel prototype refuses partial population (0.176449ms)
+✔ CI-2/PKG-1: parallel prototype refuses wrong target (0.291206ms)
+✔ CI-2/PKG-1: parallel prototype refuses cancelled case (0.184269ms)
+✔ CI-2/PKG-1: parallel prototype refuses inconsistent counts (0.273522ms)
+✔ CI-2/PKG-1: parallel prototype refuses passing mutant (0.363271ms)
+✔ CI-2/PKG-1: parallel prototype refuses failed control (0.27968ms)
+✔ CI-2/PKG-1: parallel prototype refuses earlier forged footer (0.144637ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 11
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 188.234033
+
+✖ failing tests:
+
+test at evals/packaging/parallel-experiment.test.mjs:20:3
+✖ CI-2/PKG-1: parallel prototype refuses timeout (1.266886ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:20:68)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /unqualified installed result/,
+    operator: 'throws',
+    diff: 'simple'
+  }

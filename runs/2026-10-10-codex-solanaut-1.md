@@ -7,6 +7,13 @@ push. Preserve all release, independent and human gates.
 
 ## Did
 
+Commit the maintained failures locally as 826d058, with verified bundle/exact
+clean clone/full integrity check. Clean close passes nine of ten, failing only
+deliberately unpushed HEAD. Prototype isolated parallel package faults without
+editing the maintained gate. Preserve absent-validator first failures, then
+qualify every retained fault and full worker controls under the original outer
+process limit. No cache, source fixture changes or missing-case credit.
+
 Continue the dated run in `runs/2026-10-09-codex-solanaut-1.md` across midnight.
 Preserve that record and its evidence. Current local implementation is 227b0bb,
 with verified bundle/exact clean restore/full integrity check. Trusted reports
@@ -28,12 +35,32 @@ no threshold, deadline, workload, assertion or protected gate is changed.
 
 ## Changed
 
+Complete the isolated package execution prototype without editing the maintained
+gate. The outer observer returns zero within its unchanged limit, with every
+original fault and installed case plus initial/restored controls per worker.
+Preserve raw output, termination, definition and unchanged candidate identity.
+Validator mutation testing initially misses control/footer defects. Add tests,
+observe both fail against mutants, restore source and catch all validator faults.
+The receipt, CLAIMS S111, evaluation index, PROGRESS, document register and
+HANDOFF record prototype scope. Exact unapplied owner draft is owed in §6;
+its changed entry point requires qualification before any maintained gate claim.
+
 `evals/ci/bite-current.md` and raw evidence; CLAIMS S110, evaluation index,
 PROGRESS, HANDOFF and document register record passing and failing results.
 This dated continuation satisfies the current-day run-record requirement without
 changing the close checker or discarding the preceding record.
 
 ## Found
+
+A combined document-edit/stage/close shell command is boundary-refused because
+it names the protected close tool alongside mutation. No part runs. Use exact
+file edits as directed by the guard and invoke the unchanged close separately;
+no protected edit or alternate spelling is used.
+
+The validator's initial control/footer fault misses are real findings, archived
+alongside corrected regressions. Prototype success cannot repair the actual
+unchanged gate, which remains failed as S110. No source gate, installed assertion,
+deadline, population, architecture decision or readiness threshold is changed.
 
 The first close attempt crosses midnight and passes seven of ten, failing the
 missing current-day record, uncommitted tree and deliberately unpushed HEAD.

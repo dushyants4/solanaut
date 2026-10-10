@@ -1,0 +1,56 @@
+✖ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (129.088779ms)
+✔ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (264.12938ms)
+✔ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (106.916995ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (80.355559ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (131.627858ms)
+✔ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (123.660882ms)
+✔ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (94.363577ms)
+✔ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (100.217901ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (218.616417ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (0.576971ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (437.33891ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (159.295178ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (156.280334ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (187.03015ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (95.857447ms)
+✔ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1308.122765ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (53.555928ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (125.725397ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (65.617354ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5103.148277
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:31:1
+✖ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (129.088779ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-opsFXN/consumer/[eval1]:10
+          let coerced=0;const hostile={toString(){coerced++;return 'unknown';}};await refuse(()=>g.report(decision.hash,hostile));await refuse(()=>g.report(hostile,'unknown'));await refuse(()=>g.report('f'.repeat(64),'landed'));if(coerced||JSON.stringify(await g.status())!==JSON.stringify(before))throw new Error('installed report evaluated coercions or changed state');
+                                                                                                                                                                                                                                                                                                                ^
+  
+  Error: installed report evaluated coercions or changed state
+      at file:///tmp/solanaut-consumer-opsFXN/consumer/[eval1]:10:303
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:49:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

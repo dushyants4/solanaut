@@ -1,5 +1,10 @@
 # evals/ — receipts
 
+`packaging/parallel-experiment.md`: S111 isolated execution prototype completes
+the unchanged package fault population inside the original deadline. Retained
+validator misses become failing regressions and caught faults. Owner draft is
+unapplied; this does not pass the maintained gate or waive S110/H11 failures.
+
 Current maintained fault runner: `ci/bite-current.md` retains actual partition
 execution and bound source identity. All campaigns run without skips, partition
 three passes, and the other partitions fail the package timeout and unchanged

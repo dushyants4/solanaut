@@ -1,0 +1,27 @@
+✔ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (340.166136ms)
+✔ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (327.724274ms)
+✔ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (132.646348ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (108.520557ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (159.577587ms)
+✔ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (144.663062ms)
+✔ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (121.926951ms)
+✔ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (110.585628ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (218.718951ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (2.481744ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (469.210244ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (187.059435ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (177.42735ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (165.458052ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (77.196271ms)
+✔ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1254.288256ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (55.662842ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (133.118103ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (63.236433ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5736.101229

@@ -1,0 +1,15 @@
+{
+  "product_sources": {
+    "count": 51,
+    "mismatches": []
+  },
+  "evaluation_inputs": {
+    "count": 87,
+    "mismatches": []
+  },
+  "compiled_files": {
+    "count": 86,
+    "mismatches": []
+  },
+  "archive_sha256": "32c90cbd34a1d09e684334f70ef32d1b708cf15e2e701ce855df8a255310a613"
+}

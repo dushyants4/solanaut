@@ -1,5 +1,10 @@
 # PROGRESS.md
 
+The isolated package execution prototype completes with every original fault
+and installed case under the unchanged outer deadline, CLAIMS S111. Initial
+validator misses are retained and become caught regressions. Exact owner draft
+is unapplied; maintained gates and milestone credit remain unchanged.
+
 The unchanged maintained fault runner fails its uncached package campaign;
 reproduction records termination at the existing process limit. Sources restore
 and interrupted emitted files are rebuilt, CLAIMS S110. Execution-only cache

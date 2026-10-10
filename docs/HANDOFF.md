@@ -242,8 +242,24 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 |---|---|---|---|---|
 | | | | | |
 | O1 | AGENTS.md, build convention | Replace `TypeScript run natively by Node 26, with no build step; ESM;` with `TypeScript run natively by Node 26 for development; a release-only build emits JavaScript and declarations for npm consumers; ESM;` | Explicitly approved by the human in the Solanaut 1.0 mission. | no |
+| O2 | evals/packaging/faults.ts | Exact unapplied diff: `evals/packaging/parallel-experiment/owner-draft.patch`; retain all fault declarations and original initial control, import the measured isolated runner and replace sequential mutation with its complete execution. Add `node --test evals/packaging/parallel-experiment.test.mjs` to maintained qualification and verify cleanup/partial refusal before acceptance. | S111 prototype catches the entire original population inside the unchanged outer deadline; S110 actual maintained gate remains failed. Extra original control and changed entry point need fresh owner qualification. No process limit or readiness target changes. | no |
 
 ## 7. Codex's log
+
+2026-10-10 isolated package prototype completes under the unchanged outer
+deadline with all original faults and installed cases, cache disabled, and
+healthy initial/restored worker controls, CLAIMS S111. Validator fault testing
+first misses control/footer defects; both misses are preserved, new tests fail
+against the mutants, and strengthened tests catch every validator fault.
+Exact runner/candidate identities restore. The maintained gate remains failed;
+unapplied owner draft is owed in §6. No push or stable-release claim.
+
+2026-10-10 package execution prototype: maintained failures are locally committed
+as 826d058, with verified bundle/exact clean clone/full fsck. Clean close passes
+nine of ten, failing only deliberately unpushed HEAD. Test isolated parallel
+copies with the entire existing fault/installed populations and original outer
+limit, cache disabled. Qualification is pending; the maintained gate stays
+unchanged and failed. Any protected edit goes to its authorised owner.
 
 2026-10-10 calendar continuation: preserve the previous day's run and add the
 current-day continuation required by the unchanged close checker. Maintained

@@ -1,0 +1,89 @@
+✔ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (340.965585ms)
+✖ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (170.981766ms)
+✔ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (132.549965ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (111.010634ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (197.464553ms)
+✔ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (159.723576ms)
+✔ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (154.53939ms)
+✔ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (114.960134ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (237.425475ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (1.037178ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (552.574457ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (271.745756ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (237.560206ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (221.539832ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (107.197418ms)
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1460.064353ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (84.698357ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (177.327858ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (88.093345ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 17
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6258.341929
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:52:1
+✖ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (170.981766ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-gciSl3/consumer/node_modules/@solanaut/sdk/dist/src/owned-guard.js:61
+              throw new OwnedGuardError(); return work(); }).catch(() => { throw new OwnedGuardError(); });
+                                                                                 ^
+  
+  OwnedGuardError: owned guard cannot establish or complete the requested operation
+      at file:///tmp/solanaut-consumer-gciSl3/consumer/node_modules/@solanaut/sdk/dist/src/owned-guard.js:61:80 {
+    code: 'owned-guard'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:103:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/packaging/packed-sdk.test.ts:418:1
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1460.064353ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-gciSl3/consumer/[eval1]:116
+        if(index.digest!==hash(index.text) || index.root.digest!==index.digest || manifest.seq!==context.seq || manifest.head!==context.head || manifest.guardId!==trust.guardId || manifest.cluster!==trust.cluster || index.shards.map(shard=>shard.bucket).join('')!=='0123456789abcdef')throw new Error('installed index root or complete shard coverage differs');
+                                                                                                                                                                                                                                                                                                  ^
+  
+  Error: installed index root or complete shard coverage differs
+      at file:///tmp/solanaut-consumer-gciSl3/consumer/[eval1]:116:289
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:667:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

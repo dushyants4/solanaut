@@ -1,0 +1,415 @@
+✖ CI-2/PKG-1: parallel prototype accepts the complete installed control (2.081249ms)
+✖ CI-2/PKG-1: parallel prototype accepts a complete targeted fault (0.218501ms)
+✖ CI-2/PKG-1: parallel prototype refuses timeout (0.506098ms)
+✖ CI-2/PKG-1: parallel prototype refuses termination (0.166517ms)
+✖ CI-2/PKG-1: parallel prototype refuses spawn error (0.171751ms)
+✖ CI-2/PKG-1: parallel prototype refuses partial population (0.172019ms)
+✖ CI-2/PKG-1: parallel prototype refuses wrong target (0.152081ms)
+✖ CI-2/PKG-1: parallel prototype refuses cancelled case (0.179471ms)
+✖ CI-2/PKG-1: parallel prototype refuses inconsistent counts (0.185668ms)
+✖ CI-2/PKG-1: parallel prototype refuses passing mutant (0.224032ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 0
+ℹ fail 10
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 65.4569
+
+✖ failing tests:
+
+test at evals/packaging/parallel-experiment.test.mjs:7:1
+✖ CI-2/PKG-1: parallel prototype accepts the complete installed control (2.081249ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "parallel validator must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  "
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:7:89)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: parallel validator must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+        at check (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:6:91)
+        at file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:7:106
+        at getActual (node:assert:580:5)
+        at strict.doesNotThrow (node:assert:748:32)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:7:89)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.start (node:internal/test_runner/test:1257:17)
+        at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at evals/packaging/parallel-experiment.test.mjs:8:1
+✖ CI-2/PKG-1: parallel prototype accepts a complete targeted fault (0.218501ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "parallel validator must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  "
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:8:84)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: parallel validator must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+        at check (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:6:91)
+        at file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:8:101
+        at getActual (node:assert:580:5)
+        at strict.doesNotThrow (node:assert:748:32)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:8:84)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at evals/packaging/parallel-experiment.test.mjs:18:3
+✖ CI-2/PKG-1: parallel prototype refuses timeout (0.506098ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /unqualified installed result/. Input:
+  
+  'AssertionError [ERR_ASSERTION]: parallel validator must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:18:68)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: parallel validator must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+        at check (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:6:91)
+        at file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:18:79
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:18:68)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /unqualified installed result/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/packaging/parallel-experiment.test.mjs:18:3
+✖ CI-2/PKG-1: parallel prototype refuses termination (0.166517ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /unqualified installed result/. Input:
+  
+  'AssertionError [ERR_ASSERTION]: parallel validator must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:18:68)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: parallel validator must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+        at check (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:6:91)
+        at file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:18:79
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:18:68)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /unqualified installed result/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/packaging/parallel-experiment.test.mjs:18:3
+✖ CI-2/PKG-1: parallel prototype refuses spawn error (0.171751ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /unqualified installed result/. Input:
+  
+  'AssertionError [ERR_ASSERTION]: parallel validator must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:18:68)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: parallel validator must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+        at check (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:6:91)
+        at file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:18:79
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:18:68)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /unqualified installed result/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/packaging/parallel-experiment.test.mjs:18:3
+✖ CI-2/PKG-1: parallel prototype refuses partial population (0.172019ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /unqualified installed result/. Input:
+  
+  'AssertionError [ERR_ASSERTION]: parallel validator must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:18:68)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: parallel validator must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+        at check (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:6:91)
+        at file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:18:79
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:18:68)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /unqualified installed result/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/packaging/parallel-experiment.test.mjs:18:3
+✖ CI-2/PKG-1: parallel prototype refuses wrong target (0.152081ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /unqualified installed result/. Input:
+  
+  'AssertionError [ERR_ASSERTION]: parallel validator must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:18:68)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: parallel validator must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+        at check (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:6:91)
+        at file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:18:79
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:18:68)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /unqualified installed result/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/packaging/parallel-experiment.test.mjs:18:3
+✖ CI-2/PKG-1: parallel prototype refuses cancelled case (0.179471ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /unqualified installed result/. Input:
+  
+  'AssertionError [ERR_ASSERTION]: parallel validator must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:18:68)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: parallel validator must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+        at check (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:6:91)
+        at file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:18:79
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:18:68)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /unqualified installed result/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/packaging/parallel-experiment.test.mjs:18:3
+✖ CI-2/PKG-1: parallel prototype refuses inconsistent counts (0.185668ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /unqualified installed result/. Input:
+  
+  'AssertionError [ERR_ASSERTION]: parallel validator must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:18:68)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: parallel validator must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+        at check (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:6:91)
+        at file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:18:79
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:18:68)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /unqualified installed result/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at evals/packaging/parallel-experiment.test.mjs:18:3
+✖ CI-2/PKG-1: parallel prototype refuses passing mutant (0.224032ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /unqualified installed result/. Input:
+  
+  'AssertionError [ERR_ASSERTION]: parallel validator must exist\n' +
+    '+ actual - expected\n' +
+    '\n' +
+    "+ 'undefined'\n" +
+    "- 'function'\n"
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:18:68)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: AssertionError [ERR_ASSERTION]: parallel validator must exist
+    + actual - expected
+    
+    + 'undefined'
+    - 'function'
+    
+        at check (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:6:91)
+        at file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:18:79
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/parallel-experiment.test.mjs:18:68)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /unqualified installed result/,
+    operator: 'throws',
+    diff: 'simple'
+  }

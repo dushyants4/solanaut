@@ -1,0 +1,58 @@
+✔ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (269.682731ms)
+✔ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (371.919494ms)
+✔ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (161.461266ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (98.734668ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (140.770986ms)
+✔ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (125.34097ms)
+✖ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (76.697426ms)
+✔ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (92.110189ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (203.003884ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (0.917714ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (455.898326ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (165.215671ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (162.069969ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (152.201285ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (79.645719ms)
+✔ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1376.345928ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (58.834004ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (142.616987ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (64.841921ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5384.276191
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:195:1
+✖ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (76.697426ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-Dnb6K6/consumer/[eval1]:7
+          const first=g.check({message:new Uint8Array(Buffer.from(process.argv[2],'base64')),at:1000});if(!changed||first.seq!==-1||first.rule!=='fail-closed'||store.entries.length!==0)throw new Error('installed writer acknowledged inconsistent physical bytes');
+                                                                                                                                                                                               ^
+  
+  Error: installed writer acknowledged inconsistent physical bytes
+      at file:///tmp/solanaut-consumer-Dnb6K6/consumer/[eval1]:7:190
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:211:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
