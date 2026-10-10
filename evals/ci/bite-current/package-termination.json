@@ -1,0 +1,10 @@
+{
+  "node": "v26.7.0",
+  "started": "2026-10-10T03:41:55.024Z",
+  "finished": "2026-10-10T03:46:55.131Z",
+  "elapsedMs": 300106.383664,
+  "timeoutMs": 300000,
+  "status": null,
+  "signal": "SIGTERM",
+  "errorCode": "ETIMEDOUT"
+}

@@ -1,0 +1,437 @@
+
+> test:bite
+> node evals/ci/bite.ts --partition 2
+
+Running fault campaign: packaging/faults.ts
+caught package fault: facade-report-fifo
+caught package fault: facade-report-commit
+caught package fault: facade-report-outcome
+caught package fault: facade-report-decision
+caught package fault: facade-report-primitives
+caught package fault: facade-report-storage
+caught package fault: record-post-append-owner
+caught package fault: record-post-append-inode
+caught package fault: record-append-completion
+caught package fault: record-append-base
+caught package fault: record-read-completion
+caught package fault: record-decoded-read-count
+caught package fault: record-read-stability
+caught package fault: record-single-link
+caught package fault: record-live-evidence
+caught package fault: record-live-times
+caught package fault: record-live-failure
+caught package fault: facade-release-bytes
+caught package fault: facade-release-refusal
+caught package fault: facade-release-reply
+caught package fault: facade-release-prompt
+caught package fault: facade-release-text-fifo
+caught package fault: facade-redemption-bytes
+caught package fault: facade-redemption-refusal
+caught package fault: facade-redemption-reply
+caught package fault: facade-unrecorded-admission
+caught package fault: facade-export
+caught package fault: facade-fresh-history
+caught package fault: facade-config-capture
+caught package fault: facade-upgrade
+caught package fault: facade-index
+caught package fault: facade-freeze
+caught package fault: facade-payload
+caught package fault: facade-response
+caught package fault: facade-shared-bytes
+caught package fault: facade-close-drain
+caught package fault: owned-control-export
+caught package fault: owned-control-code
+caught package fault: owned-control-head
+caught package fault: owned-control-start-capture
+caught package fault: owned-control-answer-capture
+caught package fault: owned-control-immutable
+caught package fault: owned-control-freeze
+caught package fault: owned-control-private-start
+caught package fault: owned-control-private-response
+caught package fault: replay-cli-trust
+caught package fault: replay-cli-divergence
+caught package fault: replay-cli-public-ceiling
+caught package fault: replay-cli-line-ceiling
+caught package fault: replay-cli-fields
+caught package fault: replay-cli-detail
+caught package fault: replay-cli-input-error
+caught package fault: replay-cli-utf8
+caught package fault: owned-admission-export
+caught package fault: owned-admission-error
+caught package fault: owned-admission-shared-bytes
+caught package fault: owned-admission-reply-detachment
+caught package fault: owned-admission-reply-freeze
+caught package fault: owned-admission-head
+caught package fault: owned-admission-fifo
+caught package fault: owned-admission-disk
+caught package fault: owned-admission-payload
+caught package fault: owned-lookup-capability
+caught package fault: owned-lookup-error
+caught package fault: owned-lookup-tail
+caught package fault: owned-lookup-endpoint
+caught package fault: owned-lookup-immutable
+caught package fault: owned-index-module
+caught package fault: owned-index-digest
+caught package fault: owned-index-capability
+caught package fault: client-options-container
+caught package fault: client-status-container
+caught package fault: client-propose-container
+caught package fault: client-report-container
+caught package fault: client-array-container
+caught package fault: client-function-container
+caught package fault: client-null-container
+caught package fault: index-module
+caught package fault: index-replay
+caught package fault: index-root-provenance
+caught package fault: index-digest
+caught package fault: index-complete-buckets
+caught package fault: index-control-reply
+Running fault campaign: sdk/checkpoint-faults.ts
+caught checkpoint fault: signature-length-bound
+caught checkpoint fault: key-length-bound
+caught checkpoint fault: format
+caught checkpoint fault: profile
+caught checkpoint fault: sequence
+caught checkpoint fault: policy-version
+caught checkpoint fault: head
+caught checkpoint fault: principal-role
+caught checkpoint fault: anchor-role
+caught checkpoint fault: guard-pin
+caught checkpoint fault: network-pin
+caught checkpoint fault: key-pin
+caught checkpoint fault: mutable-guard-pin
+caught checkpoint fault: mutable-state-digest
+caught checkpoint fault: archive-digest
+caught checkpoint fault: state-digest
+caught checkpoint fault: prefix-digest
+caught checkpoint fault: snapshot-signature
+caught checkpoint fault: prefix-signature
+caught checkpoint fault: signature-domain
+caught checkpoint fault: canonical-base64
+caught checkpoint fault: immutable-result
+caught checkpoint fault: candidate-export
+All checkpoint faults caught; restored source passes
+Running fault campaign: sdk/checkpoint-archives-faults.ts
+caught checkpoint catalogue fault: unknown-fields
+caught checkpoint catalogue fault: dense-array
+caught checkpoint catalogue fault: caller-array-method
+caught checkpoint catalogue fault: integer-fields
+caught checkpoint catalogue fault: bytes-span
+caught checkpoint catalogue fault: first-sequence
+caught checkpoint catalogue fault: entry-count
+caught checkpoint catalogue fault: segment-head
+caught checkpoint catalogue fault: segment-digest
+caught checkpoint catalogue fault: anchor-integer
+caught checkpoint catalogue fault: anchor-first
+caught checkpoint catalogue fault: anchor-end
+caught checkpoint catalogue fault: anchor-head
+caught checkpoint catalogue fault: endpoint-sequence
+caught checkpoint catalogue fault: endpoint-head
+caught checkpoint catalogue fault: captured-endpoint
+caught checkpoint catalogue fault: canonical-order
+caught checkpoint catalogue fault: digest
+caught checkpoint catalogue fault: immutable-result
+caught checkpoint catalogue fault: SDK export
+All checkpoint catalogue faults caught; restored source passes
+Running fault campaign: sdk/checkpoint-prefix-faults.ts
+caught checkpoint prefix fault: rebuild-prefix-comparison
+caught checkpoint prefix fault: rebuild-reset
+caught checkpoint prefix fault: rebuild-posture
+caught checkpoint prefix fault: rebuild-events
+caught checkpoint prefix fault: rebuild-immutable
+caught checkpoint prefix fault: endpoint-fields
+caught checkpoint prefix fault: captured-endpoint
+caught checkpoint prefix fault: captured-history
+caught checkpoint prefix fault: endpoint-sequence
+caught checkpoint prefix fault: endpoint-head
+caught checkpoint prefix fault: full-replay
+caught checkpoint prefix fault: policy-trust
+caught checkpoint prefix fault: reset-events
+caught checkpoint prefix fault: tick-events
+caught checkpoint prefix fault: event-sequence
+caught checkpoint prefix fault: event-hash
+caught checkpoint prefix fault: telemetry
+caught checkpoint prefix fault: posture
+caught checkpoint prefix fault: profile
+caught checkpoint prefix fault: domain
+caught checkpoint prefix fault: digest
+caught checkpoint prefix fault: immutable
+All checkpoint prefix faults caught; restored source passes
+Running fault campaign: sdk/checkpoint-state-faults.ts
+caught checkpoint state fault: full-replay
+caught checkpoint state fault: history-capture
+caught checkpoint state fault: policy-capture
+caught checkpoint state fault: trust-capture
+caught checkpoint state fault: map-retention
+caught checkpoint state fault: receipt-retention
+caught checkpoint state fault: amounts
+caught checkpoint state fault: maximal-window
+caught checkpoint state fault: apply-state
+caught checkpoint state fault: previous-decision
+caught checkpoint state fault: policy-version
+caught checkpoint state fault: policy-hash
+caught checkpoint state fault: policy-content
+caught checkpoint state fault: profile
+caught checkpoint state fault: digest
+caught checkpoint state fault: immutable
+All checkpoint state faults caught; restored source passes
+Running fault campaign: sdk/checkpoint-bundle-faults.ts
+caught checkpoint bundle fault: endpoint-capture
+caught checkpoint bundle fault: policy-pins-capture
+caught checkpoint bundle fault: checkpoint-pins-capture
+caught checkpoint bundle fault: history-capture
+caught checkpoint bundle fault: catalogue-capture
+caught checkpoint bundle fault: anchor-role
+caught checkpoint bundle fault: trust-shape
+caught checkpoint bundle fault: principal-role
+caught checkpoint bundle fault: current-principals
+caught checkpoint bundle fault: identity
+caught checkpoint bundle fault: version
+caught checkpoint bundle fault: policy-hash
+caught checkpoint bundle fault: sequence
+caught checkpoint bundle fault: head
+caught checkpoint bundle fault: archive-digest
+caught checkpoint bundle fault: state-digest
+caught checkpoint bundle fault: prefix-digest
+caught checkpoint bundle fault: prefix-domain
+caught checkpoint bundle fault: immutable-binding
+caught checkpoint bundle fault: immutable-result
+All checkpoint bundle faults caught; restored source passes
+Running fault campaign: sdk/checkpoint-envelope-faults.ts
+caught checkpoint envelope fault: array-shape
+caught checkpoint envelope fault: exact-fields
+caught checkpoint envelope fault: canonical-framing
+caught checkpoint envelope fault: format
+caught checkpoint envelope fault: safe-ceiling
+caught checkpoint envelope fault: preparse-ceiling
+caught checkpoint envelope fault: utf8-ceiling
+caught checkpoint envelope fault: archive-binding
+caught checkpoint envelope fault: state-binding
+caught checkpoint envelope fault: prefix-binding
+caught checkpoint envelope fault: encoder-pins
+caught checkpoint envelope fault: encoder-verification
+caught checkpoint envelope fault: encoded-digest
+caught checkpoint envelope fault: encoded-immutable
+caught checkpoint envelope fault: signatures-immutable
+caught checkpoint envelope fault: decoded-immutable
+All checkpoint envelope faults caught; restored source passes
+Running fault campaign: sdk/checkpoint-publication-faults.ts
+caught checkpoint publication fault: actual-store
+caught checkpoint publication fault: kernel-owner
+caught checkpoint publication fault: closed-owner
+caught checkpoint publication fault: cached-history
+caught checkpoint publication fault: exclusive-publication
+caught checkpoint publication fault: stale-record
+caught checkpoint publication fault: late-cached-history
+caught checkpoint publication fault: failed-writer
+caught checkpoint publication fault: derived-state
+caught checkpoint publication fault: receipt-digest
+caught checkpoint publication fault: short-progress
+contained checkpoint publication fault: zero-progress (child deadline; no test completion credit)
+caught checkpoint publication fault: file-sync
+caught checkpoint publication fault: prior-sync
+caught checkpoint publication fault: final-sync
+caught checkpoint publication fault: preserved-prior
+caught checkpoint publication fault: prior-authentication
+caught checkpoint publication fault: nofollow-current
+All checkpoint publication faults caught; restored source passes
+Running fault campaign: sdk/checkpoint-recovery-faults.ts
+caught checkpoint recovery fault: capture-pins
+caught checkpoint recovery fault: unknown-configuration
+caught checkpoint recovery fault: positive-ceiling
+caught checkpoint recovery fault: safe-ceiling
+caught checkpoint recovery fault: foreign-guard
+caught checkpoint recovery fault: foreign-cluster
+caught checkpoint recovery fault: separate-authority
+caught checkpoint recovery fault: principal-coverage
+caught checkpoint recovery fault: dense-principals
+caught checkpoint recovery fault: archive-fields
+caught checkpoint recovery fault: principal-fields
+caught checkpoint recovery fault: anchor-binding
+caught checkpoint recovery fault: derived-checkpoint-validation
+caught checkpoint recovery fault: tail-reset
+caught checkpoint recovery fault: tail-tick
+caught checkpoint recovery fault: tail-posture
+caught checkpoint recovery fault: fallback-prefix
+caught checkpoint recovery fault: fallback-mode
+caught checkpoint recovery fault: admission-state
+caught checkpoint recovery fault: immutable-receipt
+All checkpoint recovery faults caught; restored source passes
+Running fault campaign: sdk/checkpoint-owned-recovery-faults.ts
+caught owned recovery fault: named-path-alias
+caught owned recovery fault: actual-store
+caught owned recovery fault: kernel-owner
+caught owned recovery fault: closed-owner
+caught owned recovery fault: failed-owner
+caught owned recovery fault: maintenance-exclusive
+caught owned recovery fault: captured-options
+caught owned recovery fault: read-ceiling
+caught owned recovery fault: cached-history
+caught owned recovery fault: final-ownership
+caught owned recovery fault: final-record-boundary
+caught owned recovery fault: final-cached-history
+caught owned recovery fault: checkpoint-nofollow
+caught owned recovery fault: checkpoint-invalid-reason
+caught owned recovery fault: checkpoint-reads
+caught owned recovery fault: recovery-result
+All owned recovery faults caught; restored source passes
+Running fault campaign: sdk/malformed-replay-faults.ts
+caught malformed replay fault: posture
+caught malformed replay fault: telemetry
+caught malformed replay fault: temperature
+caught malformed replay fault: invalid-input-scope
+caught malformed replay fault: entire-refusal
+All malformed replay faults caught; restored source passes
+Running fault campaign: sdk/report-replay-faults.ts
+caught report replay fault: entire report refusal
+caught report replay fault: outcome enum
+caught report replay fault: source enum
+caught report replay fault: finite time
+caught report replay fault: negative time
+caught report replay fault: permanent finality
+caught report replay fault: reservation validation
+caught report replay fault: validation after mutation
+caught report replay fault: unknown releases value
+caught report replay fault: repeat unknown inflates sensor
+caught report replay fault: expired retains fees
+caught report replay fault: final signing not settled
+All report replay faults caught; restored source passes
+Running fault campaign: sdk/redeem-replay-faults.ts
+caught redemption replay fault: entire redemption refusal
+caught redemption replay fault: finite redemption time
+caught redemption replay fault: negative redemption time
+caught redemption replay fault: allowed reservation
+caught redemption replay fault: single-use receipt
+caught redemption replay fault: permanent receipt finality
+caught redemption replay fault: signed chronological policy
+caught redemption replay fault: unsigned historical compatibility
+caught redemption replay fault: canonical receipt height
+caught redemption replay fault: inclusive expiry
+caught redemption replay fault: expiry verification
+caught redemption replay fault: mandatory expiry height
+caught redemption replay fault: live negative bigint compatibility
+caught redemption replay fault: unbounded receipt null height
+caught redemption replay fault: validation before state mutation
+caught redemption replay fault: used receipt state
+caught redemption replay fault: signing redemption state
+caught redemption replay fault: restore and replay policy context
+caught redemption replay fault: inspection policy context
+All redemption replay faults caught; exact source restoration passes
+Running fault campaign: sdk/request-index-faults.ts
+caught request index fault: signed-replay
+caught request index fault: report-outcome-validation
+caught request index fault: report-source-validation
+caught request index fault: report-finality-validation
+caught request index fault: decision-divergence
+caught request index fault: empty-shard-coverage
+caught request index fault: control-namespace
+caught request index fault: send-started-evidence
+caught request index fault: final-outcome-evidence
+caught request index fault: operator-binding
+caught request index fault: endpoint-capture
+caught request index fault: trust-capture
+caught request index fault: omitted-historical-controls
+caught request index fault: root-provenance
+caught request index fault: small-root-retention
+caught request index fault: deep-immutability
+caught request index fault: independent-shard-digest
+caught request index fault: read-error-absence
+caught request index fault: source-change
+caught request index fault: late-named-source-change
+caught request index fault: line-ceiling
+caught request index fault: options-shape
+caught request index fault: null-line-ceiling
+caught request index fault: descriptor-cleanup
+caught request index fault: generation-replacement
+caught request index fault: single-link-sources
+caught request index fault: exact-identity
+caught request index fault: response-binding
+caught request index fault: latest-outcome
+All request index faults caught; source restored and focused baseline passes
+Running fault campaign: sdk/archive-cli-faults.ts
+caught archive CLI fault: duplicate-flag
+caught archive CLI fault: unknown-flag
+caught archive CLI fault: noncanonical-integer
+caught archive CLI fault: drop-head-pin
+caught archive CLI fault: invent-receipt
+caught archive CLI fault: successful-refusal-exit
+caught archive CLI fault: write-source
+All archive CLI faults caught; restored command passes
+Running fault campaign: sdk/archive-faults.ts
+caught archive fault: blocking-fifo-open
+caught archive fault: ignore-version
+caught archive fault: ignore-kind
+caught archive fault: ignore-sequence
+caught archive fault: ignore-predecessor
+caught archive fault: ignore-content-hash
+caught archive fault: complete-line-bound
+caught archive fault: unfinished-line-bound
+caught archive fault: ignore-source-change
+caught archive fault: ignore-path-replacement
+caught archive fault: ignore-head-pin
+caught archive fault: ignore-byte-pin
+caught archive fault: mutable-head-pin
+caught archive fault: reject-fractional-clock
+caught archive fault: unsafe-sequence-overflow
+caught archive fault: leak-descriptor
+All archive faults caught; restored source passes
+Running fault campaign: sdk/archive-stream-faults.ts
+caught archive stream fault: entry-hash
+caught archive stream fault: immutable-entry
+caught archive stream fault: immutable-descendants
+caught archive stream fault: immutable-receipt
+caught archive stream fault: close-on-cancellation
+caught archive stream fault: natural-source-check
+caught archive stream fault: head-pin
+caught archive stream fault: digest-pin
+caught archive stream fault: mutable-pin
+caught archive stream fault: stream-entry
+caught archive stream fault: receipt-count
+All archive stream faults caught; restored source passes
+Running fault campaign: sdk/replay-stream-faults.ts
+caught stream replay fault: policy-capture
+caught stream replay fault: trust-capture
+caught stream replay fault: future-window
+caught stream replay fault: signed-sensor
+caught stream replay fault: source-match
+caught stream replay fault: source-fingerprint
+caught stream replay fault: producer-copy
+caught stream replay fault: decision-recomputation
+caught stream replay fault: array-yields
+All stream replay faults caught; restored source passes
+Running fault campaign: sdk/record-loading-faults.ts
+caught record loading fault: eager-publication
+caught record loading fault: eager-recovery
+caught record loading fault: publication-pin-capture
+caught record loading fault: publication-error-code
+caught record loading fault: recovery-error-code
+All record loading faults caught; restored sources pass
+Running fault campaign: sdk/archive-anchor-faults.ts
+caught archive anchor fault: head-binding
+caught archive anchor fault: sequence-binding
+caught archive anchor fault: missing-anchor
+caught archive anchor fault: integer-sequence
+caught archive anchor fault: segment-coverage
+caught archive anchor fault: head-shape
+caught archive anchor fault: mutable-sequence
+caught archive anchor fault: mutable-head
+caught archive anchor fault: receipt-binding
+All anchor faults caught; restored source passes
+Running fault campaign: sdk/archive-anchor-cli-faults.ts
+caught anchor command fault: paired-flags
+caught anchor command fault: sequence-value
+caught anchor command fault: head-value
+caught anchor command fault: drop-anchor
+All anchor command faults caught; restored command passes
+Running fault campaign: sdk/prepare-policy-faults.ts
+caught policy command fault: version-binding
+caught policy command fault: text-binding
+caught policy command fault: identity-binding
+caught policy command fault: cluster-restriction
+caught policy command fault: bounded-source
+caught policy command fault: symlink-refusal
+caught policy command fault: policy-error
+caught policy command fault: version-spelling
+caught policy command fault: timestamp-spelling
+All policy command faults caught; restored source passes
+{"ok":false,"failed":["packaging/faults.ts"],"skipped":[]}

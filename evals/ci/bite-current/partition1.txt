@@ -1,0 +1,1047 @@
+
+> test:bite
+> node evals/ci/bite.ts --partition 1
+
+Running fault campaign: ci/bite-faults.ts
+caught bite aggregation fault: omit-campaign
+caught bite aggregation fault: ignore-failed-exit
+caught bite aggregation fault: ignore-unrestored-source
+caught bite aggregation fault: invent-clean-result
+caught bite aggregation fault: skip-first-campaign
+All bite aggregation faults caught; restored source passes
+Running fault campaign: ci/bite-partitions-faults.ts
+caught fault partition fault: duplicate-partition
+caught fault partition fault: missing-tail
+caught fault partition fault: invalid-partition
+caught fault partition fault: implicit-subset
+caught fault partition fault: failure-loss
+caught fault partition fault: restoration-loss
+caught fault partition fault: workflow-missing-partition
+caught fault partition fault: workflow-fingerprint
+caught fault partition fault: workflow-deadline
+caught fault partition fault: workflow-cancel-failures
+caught fault partition fault: workflow-skip-job
+caught fault partition fault: workflow-ignore-failure
+All fault partition faults caught; restored sources pass
+Running fault campaign: ci/ordinary-serial-faults.ts
+caught ordinary serial fault: omitted leading scheduling option
+Ordinary serial fault caught; restored root command passes
+Running fault campaign: ci/dependency-faults.ts
+caught dependency fault: scoped-pin
+caught dependency fault: installed-version
+caught dependency fault: constructor-guard
+caught dependency fault: comma-null-guard
+All dependency faults caught; installed bytes restored and tests pass
+Running fault campaign: ci/latch-faults.ts
+caught latch fault: v0
+caught latch fault: only-keel
+caught latch fault: only-previous
+caught latch fault: last-entry
+caught latch fault: no-replay-predecessor
+caught latch fault: no-denial-threshold
+caught latch fault: skip-intervening-decision
+All latch faults caught; restored source passes
+Running fault campaign: ci/property-faults.ts
+caught property fault: incomplete-process
+caught property fault: ordinary-diagnostics
+caught property fault: first-counterexample
+caught property fault: fault-mode-whitelist
+caught property fault: budget-floor
+caught property fault: incomplete-count
+caught property fault: skips
+caught property fault: failed-result
+caught property fault: seed-validation
+caught property fault: address-alphabet
+caught property fault: account-writability
+caught property fault: unexpected-error
+All property faults caught; restored source passes
+Running fault campaign: ci/fuzz-faults.ts
+caught fuzz gate fault: lower-budget
+caught fuzz gate fault: ignore-process-failure
+caught fuzz gate fault: accept-duplicate-summary
+caught fuzz gate fault: ignore-total
+caught fuzz gate fault: ignore-outcome-sum
+caught fuzz gate fault: empty-accepted-domain
+caught fuzz product fault: unexpected-decoder-exception
+All fuzz faults caught; restored source passes
+Running fault campaign: ci/cap-faults.ts
+property starting: sol-per-tx; seed=-633280166; requested=10000
+✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (37.123251ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 167.898696
+
+✖ failing tests:
+
+test at packages/sdk/test/caps.property.test.ts:22:1
+✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (37.123251ms)
+  Error: property failed: sol-per-tx
+  Property failed after 22 tests
+  { seed: -633280166, path: "21", endOnFailure: true }
+  Counterexample: [15738899481202780734n,18446744073709551615n,0n,true]
+  Shrunk 0 time(s)
+  
+  Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/evals/ci/properties.ts:19:28)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/caps.property.test.ts:23:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: per-tx-boundary
+property starting: sol-per-tx; seed=2090007848; requested=10000
+✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (12.660966ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 151.957971
+
+✖ failing tests:
+
+test at packages/sdk/test/caps.property.test.ts:22:1
+✖ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (12.660966ms)
+  Error: property failed: sol-per-tx
+  Property failed after 1 tests
+  { seed: 2090007848, path: "0", endOnFailure: true }
+  Counterexample: [13768027867122280368n,18446744073709551612n,0n,false]
+  Shrunk 0 time(s)
+  
+  Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/evals/ci/properties.ts:19:28)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/caps.property.test.ts:23:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: per-tx-disabled
+property starting: sol-window; seed=2028874214; requested=10000
+✖ CI-2 SOL window property: pending admissions match independent reservation sum (98.727466ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 248.101799
+
+✖ failing tests:
+
+test at packages/sdk/test/caps.property.test.ts:33:1
+✖ CI-2 SOL window property: pending admissions match independent reservation sum (98.727466ms)
+  Error: property failed: sol-window
+  Property failed after 69 tests
+  { seed: 2028874214, path: "68", endOnFailure: true }
+  Counterexample: [4n,[0n,165077n,6n,474976n,223638n,4n]]
+  Shrunk 0 time(s)
+  
+  Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/evals/ci/properties.ts:19:28)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/caps.property.test.ts:34:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: window-boundary
+property starting: sol-window; seed=-113982765; requested=10000
+✖ CI-2 SOL window property: pending admissions match independent reservation sum (44.552994ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 186.022429
+
+✖ failing tests:
+
+test at packages/sdk/test/caps.property.test.ts:33:1
+✖ CI-2 SOL window property: pending admissions match independent reservation sum (44.552994ms)
+  Error: property failed: sol-window
+  Property failed after 17 tests
+  { seed: -113982765, path: "16", endOnFailure: true }
+  Counterexample: [1003563n,[515542n,889521n,399970n,637269n,475840n,789154n]]
+  Shrunk 0 time(s)
+  
+  Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/evals/ci/properties.ts:19:28)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/caps.property.test.ts:34:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: ignore-reservation
+property starting: async-false; seed=325216896; requested=10000
+property starting: async-count; seed=704664485; requested=10000
+✖ CI-2 asynchronous runner enforces failures and the completed execution floor (4.526614ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 113.633494
+
+✖ failing tests:
+
+test at evals/ci/properties.test.ts:25:1
+✖ CI-2 asynchronous runner enforces failures and the completed execution floor (4.526614ms)
+  Error: property run incomplete or skipped
+      at validateCompletion (file:///home/dashy/Projects/Solanaut/evals/ci/properties.ts:26:68)
+      at checkAsyncProperty (file:///home/dashy/Projects/Solanaut/evals/ci/properties.ts:20:3)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/properties.test.ts:29:3)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+caught cap property fault: async-short-run
+All cap property faults caught; restored source passes
+Running fault campaign: ci/coverage-faults.ts
+caught coverage fault: owned-facade-critical-inventory
+caught coverage fault: failed-test-process
+caught coverage fault: statement-floor
+caught coverage fault: branch-floor
+caught coverage fault: critical-floor
+caught coverage fault: checkpoint-critical-inventory
+caught coverage fault: catalogue-critical-inventory
+caught coverage fault: prefix-critical-inventory
+caught coverage fault: snapshot-state-critical-inventory
+caught coverage fault: bundle-critical-inventory
+caught coverage fault: envelope-critical-inventory
+caught coverage fault: publication-critical-inventory
+caught coverage fault: recovery-critical-inventory
+caught coverage fault: archive-critical-inventory
+caught coverage fault: request-index-critical-inventory
+caught coverage fault: request-index-publication-critical-inventory
+caught coverage fault: omit-inventory-check
+caught coverage fault: invalid-counts
+caught coverage fault: wrong-counter-variable
+caught coverage fault: skip-native-stripping
+caught coverage fault: omit-unimported-source
+caught coverage fault: incomplete-statement-map
+caught coverage fault: invalid-branch-shape
+caught coverage fault: accept-counter-fabrication
+caught coverage fault: release-input-coercion
+caught coverage fault: raw-canonical-bytes
+caught coverage fault: cross-policy-signing
+caught coverage fault: noncanonical-recorded-policy
+caught coverage fault: unsupported-signing-stage
+caught coverage fault: busy-slot-bound
+caught coverage fault: expired-provider-lifetime
+All coverage faults caught; restored sources pass
+Running fault campaign: ci/coverage-options-faults.ts
+caught coverage execution fault: default-scheduling
+caught coverage execution fault: serial-scheduling
+caught coverage execution fault: option-whitelist
+All coverage execution faults caught; restored source passes
+Running fault campaign: ci/mutation-faults.ts
+caught mutation gate fault: process-completion
+caught mutation gate fault: score-floor
+caught mutation gate fault: group-floor
+caught mutation gate fault: group-classification
+caught mutation gate fault: group-valid-population
+caught mutation gate fault: source-inventory
+caught mutation gate fault: source-content
+caught mutation gate fault: mutant-identity
+caught mutation gate fault: status-completion
+caught mutation gate fault: valid-population
+caught mutation gate fault: location-boundary
+caught mutation gate fault: staging-threshold
+caught mutation gate fault: staging-scope
+caught mutation gate fault: checkpoint-scope
+caught mutation gate fault: catalogue-scope
+caught mutation gate fault: checkpoint-tests
+caught mutation gate fault: catalogue-tests
+caught mutation gate fault: malformed-history-tests
+caught mutation gate fault: working-tree-mutation
+caught mutation gate fault: prefix-scope
+caught mutation gate fault: state-scope
+caught mutation gate fault: signed-policy-scope
+caught mutation gate fault: prefix-tests
+caught mutation gate fault: state-tests
+caught mutation gate fault: bundle-scope
+caught mutation gate fault: bundle-tests
+caught mutation gate fault: envelope-scope
+caught mutation gate fault: record-scope
+caught mutation gate fault: publication-scope
+caught mutation gate fault: publication-tests
+caught mutation gate fault: recovery-scope
+caught mutation gate fault: recovery-tests
+caught mutation gate fault: owned-recovery-tests
+caught mutation gate fault: archive-scope
+caught mutation gate fault: archive-tests
+caught mutation gate fault: archive-anchor-tests
+caught mutation gate fault: archive-stream-tests
+caught mutation gate fault: replay-stream-tests
+caught mutation gate fault: checkpoint-error-scope
+caught mutation gate fault: record-loading-tests
+caught mutation gate fault: request-index-scope
+caught mutation gate fault: request-index-tests
+caught mutation gate fault: request-index-publication-scope
+caught mutation gate fault: request-index-publication-tests
+caught mutation gate fault: request-index-lookup-tests
+caught mutation gate fault: owned-request-admission-tests
+caught mutation gate fault: report-replay-tests
+caught mutation gate fault: redeem-replay-tests
+caught mutation gate fault: envelope-tests
+caught mutation gate fault: staging-execution
+caught mutation gate fault: whole-run-resource-limit
+caught mutation gate fault: per-mutant-timeout
+All mutation report/staging faults caught; restored sources pass
+Running fault campaign: ci/mutation-recovery-faults.ts
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: ✔ CI-2: supervised completion qualifies only the bound complete synthetic mutation fixture (129.081773ms)
+✔ CI-2: an extra staged input cannot silently enter the frozen population (1.63882ms)
+✔ CI-2: every copied source, test, package, configuration and lock input remains bound (5.425621ms)
+✔ CI-2: missing, symlinked and mismatched staged inputs cannot be frozen (2.082633ms)
+✔ CI-2: pending and failed actual child execution cannot qualify a present fixture report (269.493237ms)
+✖ CI-2: an asynchronously started real staged baseline finishes without relaunching (21845.956926ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 22366.939574
+
+✖ failing tests:
+
+test at evals/ci/mutation-recovery.test.ts:62:1
+✖ CI-2: an asynchronously started real staged baseline finishes without relaunching (21845.956926ms)
+  AssertionError [ERR_ASSERTION]: staged baseline incomplete after unchanged wait; {"runId":"9373dbd5-6cb9-4c63-b38e-3e304f1a8f05","inputHash":"731f45b2414b30d9ecfc7f4465e1a86abd7bf3a6aae029e4ced19f9c8661709b","commandHash":"f292c737137492d86ef32a5eb51feec6996958246fd21a9041e35e829fcd8c64"}
+  ✔ guardedWallet exposes exactly BaseWallet's members, frozen, and never the wallet it wraps (59.948277ms)
+  ✔ guardedWallet refuses a wallet whose key is outside the policy's principal, or no RPC to send through (3.18045ms)
+  ✔ signTransaction: an allowed payment is signed by the wrapped wallet; a drain throws SolanautDenied before the wallet is asked (9.945499ms)
+  ✔ the adapters give the same verdicts as the SDK, for legacy and v0 transactions (22.782398ms)
+  ✔ a re-sign of the same payment while the first could still land throws intent-in-flight (2.928383ms)
+  ✔ a wallet that changes the message before signing it is caught: its signatures are stripped, and the call throws (2.545954ms)
+  ✔ a wallet whose signature does not verify over the admitted bytes is caught (1.888559ms)
+  ✔ a wallet that signs a whole batch in place but returns it short: every caller object is stripped, and what was signed is held, not released (4.978915ms)
+  ✔ wallet-changed-message carries no decision, on guardedWallet (guardedSigner: its own test) (3.894676ms)
+  ✔ signAllTransactions is all or nothing: one denial signs none, and the admitted ones are released (12.347558ms)
+  ✔ signAndSendTransaction: checks, signs, sends exactly the admitted bytes itself, and reports the outcome (8.839757ms)
+  ✔ a send the RPC refuses is reported failed, and rethrown (6.193695ms)
+  ✔ a send whose fate is unknown is reported unknown, not failed: the signed bytes may still land, so a re-sign is refused (4.001522ms)
+  ✔ D14, sign-only: before the next proposal, guardedWallet reads the outcome of what it signed and reports it (4.69296ms)
+  ✔ D14, sign-only: a payment seen but not yet confirmed is not reported, and without a status reader the guard holds the intent (3.662866ms)
+  ✔ signMessage is denied: a raw signature over chosen bytes can be a transaction signature (0.435024ms)
+  ✔ guardedSigner: checks every transaction first, all or nothing, reads expiry from the lifetime, and verifies the signatures it returns (24.294558ms)
+  ✔ jsonRpc: sends base64 bytes, reads the height, and turns signature statuses into outcomes (2541.59044ms)
+  ✔ rule 0: an invalid policy means no guard (0.766684ms)
+  ✔ rule 1: bytes that do not parse, and ill-typed fields, deny as malformed-proposal (D5: never a throw) (1.598352ms)
+  ✔ rule 2: a version other than legacy, 0 or 1 denies as unsupported-version (0.52157ms)
+  ✔ rule 3: a lookup table the policy does not pin denies as lookup-table-unpinned (0.82627ms)
+  ✔ rule 5: a durable nonce, even paying an allowed destination, denies as durable-nonce-denied (1.56849ms)
+  ✔ rule 6: a required signer outside the principal denies as other-signer (0.755826ms)
+  ✔ rule 7: a program off the allowlist denies as program-not-allowed (0.77071ms)
+  ✔ rule 8: an allowlisted program the guard does not decode denies while opaque is deny, and passes when allow (1.191917ms)
+  ✔ rule 9: Approve, an unknown System instruction and a v1 ComputeBudget decoy deny as instruction-denied (D6, D10) (6.484877ms)
+  ✔ rule 10: SOL or tokens to an address the policy does not allow deny as destination-not-allowed (9.013321ms)
+  ✔ rule 11: an unlisted mint denies as mint-not-allowed; a plain Transfer from an unknown account as token-mint-unknown (4.68297ms)
+  ✔ rule 12: SOL or a mint over its per-transaction cap denies as over-per-tx-cap, summed over the message (2.713312ms)
+  ✔ rule 13: a priority fee over the cap denies as over-fee-cap, in legacy and in v1 (1.53527ms)
+  ✔ rules 14 and 15, the double-send battery: in flight until reported failed or expired; attempts are counted (3.287959ms)
+  ✔ D14: an attempt nobody reported may have landed, so past its expiry it still holds its intent, until reported or until the window passes (2.303382ms)
+  ✔ intents: a landed intent is done, and the same payment again is a new intent (0.937172ms)
+  ✔ intents: without block heights, only a report ends an attempt (1.1362ms)
+  ✔ reports: only for allowed decisions this guard made (1.048987ms)
+  ✔ rule 16: the window counts what was allowed; a failed report releases it, an unknown one keeps it; it slides (4.786847ms)
+  ✔ rule 16: each mint and the fees have their own window (2.52465ms)
+  ✔ rule 16, the boundaries: a payment exactly one window later is outside it, one millisecond earlier is inside (1.215797ms)
+  ✔ rule 16: a mint's window is its own (5.868542ms)
+  ✔ the concurrency battery: 50 proposals in one tick admit exactly what fits the window (14.997668ms)
+    retry loop stopped at turn 3: DEFAULT -> DEFAULT -> REGROUND (loop-reground)
+  ✔ rule 17: an identical failing retry loop is stopped by Keel as loop-reground, and the turn is measured (1.341737ms)
+  ✔ rule 18: under INHIBIT, an amount over the per-transaction cap times Keel's clamp (0.30) denies as inhibit-cap (0.884114ms)
+  ✔ varied, successful payments at a realistic pace are not stopped (5.913352ms)
+  ✔ every parsed proposal reaches Keel, allowed or denied; a malformed one does not (1.084503ms)
+  ✔ rule 19: anything that throws denies as fail-closed, and check never throws (1.076768ms)
+  ✔ rule order: a proposal that breaks several rules is denied by the first (7.286931ms)
+  ✔ the latch battery: it trips after the set run of denials; only a fresh, exact operator release frees it (3.773383ms)
+  ✔ receipts (D7): an allowed decision binds the message hash, expiry and policy; redeemed once, for those bytes only (1.767063ms)
+  ✔ decisions are a hash chain, and each carries its bytes, so the record replays on its own (1.073155ms)
+  ✔ D1: guard.policy is frozen, and changing it is refused (0.649487ms)
+  ✔ a controller that is not the verified binary is refused at creation (0.234126ms)
+  ✔ S36: a receipt reported expired, failed or landed no longer redeems (1.50557ms)
+  ✔ S80: a release's expiry is judged on the latest recorded time, so a clock that steps back cannot revive an expired release (0.938853ms)
+  ✔ S82: an attempt a trusted height shows can still land stays in the window past windowMs; reported expired, it leaves (1.095308ms)
+  ✔ ANC-3: an externally pinned middle, first and last anchor verify with a valid tail (2.862188ms)
+  ✔ ANC-3: a fully resealed rewrite before the anchor is refused (2.378793ms)
+  ✔ ANC-3: matching a head at another sequence cannot substitute for the anchor (0.851855ms)
+  ✔ ANC-3: an absent anchor in empty or truncated history is refused (0.70685ms)
+  ✔ ANC-3: continuation segments must actually contain the pinned anchor (0.630004ms)
+  ✔ ANC-3: malformed or unsupported anchor options refuse before opening a source (0.261713ms)
+  ✔ ANC-3: caller mutation cannot change the captured anchor or receipt (0.812124ms)
+  ✔ ANC-3: a valid rewrite after the anchor is outside its integrity coverage (1.213257ms)
+  ✔ SNP-1: natural streamed completion matches the full verifier and deeply freezes entries (9.112816ms)
+  ✔ SNP-1: streamed empty and continuation boundaries retain sequence and predecessor pins (1.151144ms)
+  ✔ SNP-1: consumer backpressure suspends reads after the first bounded chunk (30.074691ms)
+  ✔ SNP-1: cancellation and consumer failure close the source without a completion receipt (0.903891ms)
+  ✔ SNP-1: damaged later entries and conflicting final pins cannot produce natural completion (1.029366ms)
+  ✔ SNP-1: appending, truncating or replacing a source after a yield invalidates completion (0.9332ms)
+  ✔ SNP-1: option pins are captured when the iterator is created, before asynchronous reading (0.481066ms)
+  ✔ SNP-1: streamed unsupported sources and malformed or oversized frames refuse before yielding (1.090597ms)
+  ✔ SNP-1: a FIFO without a writer is refused without blocking on open (67.610038ms)
+  ✔ SNP-1: full and continuation archives match head, digest, sequence and byte count (5.669666ms)
+  ✔ SNP-1: empty archive is structural empty history, not proof of an established guard (0.41389ms)
+  ✔ SNP-1: line bound accepts the exact UTF-8 length and refuses one byte less (0.432559ms)
+  ✔ SNP-1: invalid options reject before source reads (0.199346ms)
+  ✔ SNP-1: missing, symlink and directory sources refuse (0.372864ms)
+  ✔ SNP-1: incomplete/blank and invalid UTF-8 frames refuse (0.520426ms)
+  ✔ SNP-1: malformed JSON and unsupported record envelopes refuse (0.792032ms)
+  ✔ SNP-1: altered hash, sequence and predecessor refuse (0.566523ms)
+  ✔ SNP-1: external head and raw digest pins refuse rewritten or truncated archives (1.218642ms)
+  ✔ SNP-1: competing source changes refuse and descriptors close on success and failure (1.739297ms)
+  ✔ SNP-1: fractional signer timestamps remain supported and unsafe sequence overflow refuses (1.129601ms)
+  ✔ SNP-1: hardlinks and pathname replacement during verification refuse (1.329724ms)
+  ✔ SNP-1: malformed/unknown options refuse and pins are captured before asynchronous reads (0.853606ms)
+  ✔ SNP-1: multibyte frames cross chunks and oversized unfinished lines stop after one read (7.403279ms)
+  ✔ SNP-1: changed length refuses even when source timestamps do not reveal it (0.773614ms)
+  ✔ LAT/POL-2: malformed release text and public signature inputs cannot authenticate (0.770372ms)
+  ✔ LIF-1/4: unsupported canonical values and malformed payload types refuse binding (0.504764ms)
+  ✔ LIF-4: malformed recorded request/response time and noncanonical content cannot restore (0.876175ms)
+  ✔ LIF-2: unknown requests, cross-policy signing and unsupported stages cannot journal (1.106809ms)
+  ✔ SIG-8: corrupted decision hashes refuse restore and deterministically diverge in replay (1.092779ms)
+  ✔ T2/T15: empty token-program instruction data is denied under both programs (0.080148ms)
+  ✔ SNP-3: archive catalogue bytes and digest have an independent canonical oracle (0.457135ms)
+  ✔ SNP-3: receipt field insertion order cannot change catalogue bytes (0.206364ms)
+  ✔ SNP-3: caller array methods cannot substitute unvalidated receipts (0.201635ms)
+  ✔ SNP-3: only genesis may have an empty archive catalogue (0.221998ms)
+  ✔ SNP-3: malformed checkpoint context never binds an archive catalogue (0.307593ms)
+  ✔ SNP-3: malformed receipt fields and unsupported data refuse (1.379194ms)
+  ✔ SNP-3: gaps, omitted segments, duplicate segments and reordered segments refuse (0.272496ms)
+  ✔ SNP-3: catalogue endpoint must match both next sequence and preceding head (0.277747ms)
+  ✔ SNP-3: observed anchor metadata is retained and bounded by its segment (0.626807ms)
+  ✔ SNP-3: caller receipts cannot mutate the captured endpoint (0.157194ms)
+  ✔ SNP-3: throwing accessors, cycles and unsupported JSON produce typed refusal (0.218309ms)
+  ✔ SNP-3: prepared catalogue does not retain caller-owned mutable values (0.110967ms)
+  ✔ SNP-3: safe integer endpoints do not overflow catalogue arithmetic (0.126652ms)
+  ✔ SNP-3: actual verified immutable segments prepare a complete catalogue (1.330037ms)
+  ✔ SNP-3: SDK exports archive catalogue preparation and typed refusal (2.584915ms)
+  ✔ SNP-3: bundle binds all derived payload bytes and supplies both signing domains (5.347425ms)
+  ✔ SNP-3: bundle refuses missing or foreign policy and checkpoint pins (9.215039ms)
+  ✔ SNP-3: bundle refuses stale history and incomplete archive catalogue (7.170551ms)
+  ✔ SNP-3: bundle rejects resealed dishonest history and unsigned state (1.979499ms)
+  ✔ SNP-3: bundle captures caller history, archive metadata, endpoint and pins before awaiting (5.723608ms)
+  ✔ SNP-3: bundle normalises malformed caller input to typed refusal (2.535825ms)
+  ✔ SNP-3: canonical envelope round trip authenticates exact opaque bytes under both domains (2.07604ms)
+  ✔ SNP-3: altered opaque payload bytes cannot reuse descriptor signatures (1.491369ms)
+  ✔ SNP-3: envelope refuses wrong pins, missing signatures and swapped signing domains (1.892022ms)
+  ✔ SNP-3: envelope rejects noncanonical framing, unsupported fields and duplicate keys (1.825034ms)
+  ✔ SNP-3: envelope size ceiling uses UTF-8 bytes and accepts its exact boundary (1.60907ms)
+  ✔ SNP-3: oversized envelope refuses before JSON parsing (1.120061ms)
+  ✔ SNP-3: envelope preparation captures external pins before caller metadata accessors (2.268035ms)
+  ✔ SNP-3: malformed encoder input and caller exceptions receive redacted typed refusal (0.754298ms)
+  ✔ SNP-5: owned checkpoint and tail agree with independent preparation without writing history (28.751453ms)
+  ✔ OWN-2: memory, forged, manual and closed stores cannot recover as kernel owners (15.415896ms)
+  ✔ OWN-2: replaced record or ownership inode refuses recovery (22.085203ms)
+  ✔ SNP-6: cached history substitutions and disk corruption refuse instead of accepting a checkpoint (37.687391ms)
+  ✔ SNP-6: missing, oversized, corrupt and unsupported checkpoint files use verified history (69.609248ms)
+  ✔ OWN-2: competing recovery and publication share one maintenance boundary (24.210798ms)
+  ✔ OWN-2: closure, append, cache mutation and inode replacement during replay refuse (123.571763ms)
+  ✔ SNP-6: short checkpoint reads finish; growth and read errors use verified fallback (99.450033ms)
+  ✔ SNP-6: captured pins and external anchor remain authoritative on fallback (24.380867ms)
+  ✔ OWN-2: a failed writer refuses recovery and an established reopened owner validates the record (19.394498ms)
+  ✔ SNP-3/5: genesis has canonical empty events and a payload digest (0.707218ms)
+  ✔ SNP-5: a rebuilt controller agrees with full-history ticks and resets on its next decision (13.270484ms)
+  ✔ SNP-5: reordered, missing, altered or injected controller events cannot rebuild (39.804098ms)
+  ✔ SNP-5: rebuild uses captured history, endpoint and prefix through asynchronous validation (12.10718ms)
+  ✔ SNP-5: a fresh controller that diverges from recorded postures refuses rebuild (13.438316ms)
+  ✔ SNP-3/5: mixed history retains every tick and reset, with source sequence/hash (12.391972ms)
+  ✔ SNP-3/5: stale, missing, reordered and tampered history cannot produce a prefix (10.32287ms)
+  ✔ SNP-3/5: resealed dishonest telemetry still requires full decision replay (1.146754ms)
+  ✔ SNP-3/5: malformed inputs cannot inject controller events (0.942522ms)
+  ✔ SNP-3/5: wrong policy and caller serialization methods cannot bypass validation (5.838507ms)
+  ✔ SNP-3/5: async replay uses a captured history and endpoint (11.679207ms)
+  ✔ SNP-3/5: fresh Keel reproduces prefix postures across reset boundaries (7.223541ms)
+  ✔ SNP-3/5: signed policy changes require externally pinned policy trust (6.375793ms)
+  ✔ SNP-4: publication pins are captured before asynchronous module loading (12.600394ms)
+  ✔ SNP-4: actual owned publication preserves the previous authenticated envelope on replacement (17.51344ms)
+  ✔ SNP-4: a memory or forged store cannot claim record ownership (7.609887ms)
+  ✔ SNP-4: closed or replaced actual ownership cannot replace a checkpoint (20.310907ms)
+  ✔ SNP-4: tampered signatures or payloads preserve the current checkpoint (11.190889ms)
+  ✔ SNP-4: valid host signatures and a matching head cannot substitute dishonest admission state (16.224102ms)
+  ✔ SNP-4: stale endpoints and missing retained archives cannot publish over the last checkpoint (12.581206ms)
+  ✔ SNP-4: competing publications share the actual owner and only one proceeds (10.593806ms)
+  ✔ SNP-4: losing ownership during asynchronous validation preserves the previous checkpoint (13.245216ms)
+  ✔ SNP-4: record changes during replay refuse the stale candidate (13.860419ms)
+  ✔ SNP-4: cached history changes during validation refuse before checkpoint replacement (13.011635ms)
+  ✔ SNP-4: corrupt cached history and manual ownership cannot publish (9.640072ms)
+  ✔ SNP-4: corrupt or symlink current checkpoints preserve evidence and refuse writes (22.328238ms)
+  ✔ SNP-4: short writes finish completely and sync before acknowledging replacement (14.728379ms)
+  ✔ SNP-4: write, permission, sync and rename failures preserve an authenticated checkpoint and fail the writer (131.737599ms)
+  ✔ SNP-4: actual process death at publication boundaries preserves complete authenticated files (681.359037ms)
+  ✔ SNP-5: checkpoint prefix plus mixed tail equals full-state and next-controller replay (33.603138ms)
+  ✔ SNP-6: missing or corrupt checkpoints fall back to verified history with unresolved facts (42.338867ms)
+  ✔ SNP-6: correctly signed dishonest checkpoint state falls back rather than loading it (27.215412ms)
+  ✔ SNP-6: a valid checkpoint cannot hide invalid, foreign or missing full history (15.636218ms)
+  ✔ SNP-6: external anchor disagreement or missing anchored history cannot be bypassed by fallback (33.329015ms)
+  ✔ SNP-6: missing archives allow only verified full history; invalid authority configuration refuses (27.92199ms)
+  ✔ SNP-5/6: recovery captures caller history and external pins before asynchronous verification (22.369323ms)
+  ✔ SNP-5: divergent fresh-controller tail refuses recovery after full history validates (24.822669ms)
+  ✔ SNP-3/5: signed initial state carries policy, endpoint and every state field (2.030789ms)
+  ✔ SNP-3/5: unresolved send, reservation, redemption and latch remain in the payload (5.13189ms)
+  ✔ SNP-3/5: release resets sensor/latch without erasing pending admission or predecessor (3.903708ms)
+  ✔ SNP-3/5: signed policy changes retain current version and maximum history window (5.147882ms)
+  ✔ SNP-3/5: missing trust, unsupported history and asynchronous caller changes cannot alter state (4.869809ms)
+  ✔ SNP-3/5: pending control identities and completed answers remain distinct (2.165038ms)
+  ✔ SNP-3: canonical checkpoint and prefix domains bind every descriptor field (1.215307ms)
+  ✔ SNP-3: pinned signatures and independently computed digests return immutable metadata (1.245833ms)
+  ✔ SNP-3: a foreign checkpoint signature is denied under the external pin (1.186504ms)
+  ✔ SNP-3: checkpoint authority cannot share a principal or anchor role (0.807361ms)
+  ✔ SNP-3: foreign guard, cluster or checkpoint pin is denied (0.811908ms)
+  ✔ SNP-3: a trusted signature cannot authorise a false checkpoint authority descriptor (0.608536ms)
+  ✔ SNP-3: independently observed payload digest mismatches deny even valid signatures (0.726991ms)
+  ✔ SNP-3: altered policy, sequence, head or payload bindings cannot reuse signatures (1.675528ms)
+  ✔ SNP-3: snapshot and prefix signatures are not interchangeable (1.276366ms)
+  ✔ SNP-3: missing, malformed and noncanonical signatures deny (3.514581ms)
+  ✔ SNP-3: unsupported formats/profiles and malformed descriptor values deny (1.431463ms)
+  ✔ SNP-3: genesis and safe sequence/version boundaries are explicit (1.906678ms)
+  ✔ SNP-3: malformed trust and observed digest records cannot authorise bindings (0.878193ms)
+  ✔ SNP-3: caller metadata cannot mutate captured external pins or observed digests (1.289311ms)
+  ✔ SNP-3: malformed JSON and throwing accessors produce typed refusal (15.550292ms)
+  ✔ SNP-3: returned metadata does not retain mutable caller references (1.284562ms)
+  ✔ SNP-3: candidate SDK entry exports the binding API and typed refusal (0.279672ms)
+  ✔ SNP-3: excessive public keys refuse before unbounded base58 decoding (69.489423ms)
+  ✔ SNP-3: invalid signature lengths refuse before base64 decoding (82.2313ms)
+  ✔ the curve check and program-derived addresses agree with web3.js on random inputs (123.663024ms)
+  ✔ associated token accounts are derived as the token client derives them, for Token and Token-2022 (40.42229ms)
+  ✔ System Transfer is value-moving: the destination and lamports are counted, in every version (1.450841ms)
+  ✔ System TransferWithSeed, CreateAccount and CreateAccountWithSeed move lamports, and are counted (1.297909ms)
+  ✔ System CreateAccountAllowPrefund: funded lamports are counted; unfunded moves nothing; a principal account is never assigned away (1.111025ms)
+  ✔ System Assign and Allocate are denied: they hand an account to another program (0.519023ms)
+  ✔ durable nonces: AdvanceNonceAccount first marks the message, and every nonce instruction is denied (1.070695ms)
+  ✔ System: an unknown instruction, or data that does not fit its layout, is denied (0.436256ms)
+  ✔ Token Transfer from the principal's associated account infers the mint; to an allowed owner's account, names the owner (1.943528ms)
+  ✔ Token Transfer from any other account leaves the mint unknown, and a non-associated destination has no owner (0.659237ms)
+  ✔ TransferChecked names its mint and decimals, under Token and under Token-2022 (4.005992ms)
+  ✔ Token: Approve, CloseAccount and the other authority-granting instructions are denied; Revoke and SyncNative are benign (1.525847ms)
+  ✔ Token: every discriminator has the class the spec gives it, under both token programs (12.455035ms)
+  ✔ Token: a transfer whose authority does not sign (a multisig authority) is denied (2.083915ms)
+  ✔ ComputeBudget: the instruction names match the compute-budget client for every discriminator (5.583321ms)
+  ✔ System: the instruction names match the system client for every discriminator (0.526322ms)
+  ✔ fees, legacy and v0: price × limit, rounded up; the default limit when none is set; no price, no fee (2.347885ms)
+  ✔ fees: two of the same ComputeBudget instruction, or the deprecated RequestUnits, are denied (0.660225ms)
+  ✔ fees, v1: the priority fee is the config's lamport total, and any ComputeBudget instruction is a denied decoy (1.091203ms)
+  ✔ fees: 5,000 lamports per signature, and SOL to a tip account counts as a tip, not a payment (0.390924ms)
+  ✔ other signers: every required signer outside the principal is reported, for rule 6 (0.920167ms)
+  ✔ Memo is benign; a program the guard does not decode is listed as opaque (0.462056ms)
+  ✔ the message hash is the SHA-256 of the message bytes (0.379153ms)
+  ✔ the intent key ignores the blockhash, the fees, memos and the version, and follows what moves (1.748735ms)
+  ✔ v0: a destination loaded from a pinned table is classified like a static one (0.654175ms)
+  ✔ base58 of the system program id decodes to 32 zero bytes (sanity for the constants) (0.086656ms)
+  ✔ base58 agrees with kit's address codec on 500 random keys and on known program ids (19.065961ms)
+  ✔ base58 refuses characters outside the alphabet; isAddress accepts only canonical 32-byte keys (0.377917ms)
+  ✔ golden set: 300 kit-built messages, 100 per version, decode exactly as kit decodes them (167.875788ms)
+  ✔ golden set: every instruction's accounts resolve as kit resolves them, v0 tables pinned (159.265574ms)
+  ✔ golden set: v1 config values are read from the mask, in mask order (36.477694ms)
+  ✔ legacy and v0 messages built by web3.js decode as web3.js reads them (2.90445ms)
+  ✔ versions other than legacy, 0 and 1 are unsupported (2.181782ms)
+  ✔ every truncation of a valid message is malformed, in every version (86.075453ms)
+  ✔ bytes after the end of a message are malformed (1.304386ms)
+  ✔ a non-canonical compact length is malformed (0.262717ms)
+  ✔ inconsistent headers are malformed (0.270075ms)
+  ✔ an instruction may not name the fee payer as its program, or an index past the accounts (0.296292ms)
+  ✔ an address listed twice is malformed (0.169574ms)
+  ✔ v1: an unknown config bit, a half-set priority-fee pair, a short config, or over 64 accounts are malformed (0.776012ms)
+  ✔ a message too large to land is malformed: 1,232 bytes for legacy and v0 with signatures, 4,096 for v1 (1.044881ms)
+  ✔ v0: an unpinned table, or an index past its pin, is lookup-table-unpinned (0.526545ms)
+  ✔ v0: writable entries of all tables come before read-only entries of any table (0.220145ms)
+  ✔ v0: a program loaded from a table, a table that loads nothing, or an address both static and looked up is malformed (0.341723ms)
+  ✔ legacy and v1 messages resolve from their static accounts alone (0.879591ms)
+  ✔ transactions: wire bytes split into the exact message and its signatures, in every version (26.829829ms)
+  ✔ transactions: a wrong signature count, a short or long tail, or a v0 message first is malformed (2.228596ms)
+  ✔ lookup table accounts decode as web3.js decodes them; a bad type or length is refused (1.361171ms)
+  ✔ a table pin is the table's address and its entries, and a deactivated table is refused (0.333142ms)
+    fuzz: 5000 inputs, 892 accepted and matched kit, 4108 refused with a named rule
+  ✔ fuzz: 5000 mutated messages either decode exactly as kit does, or are refused with a DecodeError (308.645138ms)
+    drain battery, 40 of 40 denied:
+      T1   destination-not-allowed  SOL to a new recipient
+      T1   destination-not-allowed  SOL to a new recipient, as v0
+      T1   destination-not-allowed  SOL to a new recipient, as v1
+      T1   destination-not-allowed  an allowed payment with a second, hidden transfer to the attacker
+      T1   destination-not-allowed  a tip-shaped transfer to an address the policy does not name as a tip account
+      T1   destination-not-allowed  TransferWithSeed out of a seed-derived account, to the attacker
+      T27  destination-not-allowed  CreateAccountWithSeed funding an account at the attacker's address
+      T26  other-signer             CreateAccount funding a counterparty's fresh key, which must sign
+      T26  other-signer             CreateAccountAllowPrefund funding an account the counterparty holds
+      T2   instruction-denied       Token Approve: the attacker as delegate
+      T2   instruction-denied       Token ApproveChecked
+      T2   instruction-denied       Token SetAuthority: the account's owner changed to the attacker
+      T2   instruction-denied       Token CloseAccount: the rent to the attacker
+      T2   instruction-denied       Token-2022 Approve
+      T2   instruction-denied       Token Burn: value destroyed
+      T2   instruction-denied       System Assign: the agent's account handed to a program
+      T2   instruction-denied       System Allocate on the agent's account
+      T22  instruction-denied       p-token Batch, which could carry a transfer the guard would not see
+      T22  instruction-denied       a System instruction the guard does not know
+      T15  instruction-denied       Token-2022 TransferCheckedWithFee, an extension instruction
+      T5   over-per-tx-cap          an oversized send of a listed mint
+      T1   destination-not-allowed  a listed token to the attacker's associated account
+      T1   destination-not-allowed  a listed token to an account that is no one's associated account
+      T5   mint-not-allowed         an unlisted mint
+      T5   token-mint-unknown       a plain Transfer out of an account the guard cannot tie to a mint
+      T15  mint-not-allowed         a Token-2022 mint moved by the Token program
+      T3   program-not-allowed      a program off the allowlist
+      T3   opaque-program           an allowlisted swap program the guard cannot read
+      T19  durable-nonce-denied     a durable-nonce transfer, valid forever
+      T19  durable-nonce-denied     WithdrawNonceAccount to the attacker
+      T19  durable-nonce-denied     AuthorizeNonceAccount: the nonce handed to the attacker
+      T14  lookup-table-unpinned    a destination loaded from a table the policy does not pin
+      T14  lookup-table-unpinned    a destination at an index past the pinned prefix
+      T14  destination-not-allowed  a pinned table's entry that is the attacker's address
+      T23  over-fee-cap             a compute-unit price with no limit, so the default limit sets the fee
+      T23  over-fee-cap             a v1 config's priority fee over the cap
+      T23  instruction-denied       a v1 message with a ComputeBudget decoy beside a large config fee
+      T26  other-signer             a counterparty's co-signed instruction alongside the agent's payment
+      T22  unsupported-version      an unknown message version
+      T8   malformed-proposal       a valid message with bytes hidden after its end
+  ✔ the drain battery: 40 shapes, each denied before signing by its named rule (30.561921ms)
+  ✔ the drain battery's control: the same policy allows a plain payment to the treasury (1.105419ms)
+    workload: 160 entries: allow 67, redeem 16, deny:destination-not-allowed 16, report 16, deny:malformed-proposal 7, deny:intent-in-flight 15, release 13, deny:inhibit-cap 2, deny:over-window-cap 6, deny:latched 1, deny:unsupported-version 1
+  ✔ the reference workload exercises what a restart must restore (0.431269ms)
+  ✔ the record is synced to disk entry by entry, and a guard reopened on it has every entry (12.587103ms)
+  ✔ D11: a reopened guard decides as the uninterrupted one would: windows, intents, the latch and Keel survive (45.241513ms)
+    restart battery: 20 kills; the record has 160 entries
+  ✔ the restart battery: SIGKILLed at 20 random points and restarted each time, the record ends identical to an uninterrupted run (2800.39839ms)
+  ✔ a torn final line, the mark of a crash mid-write, is dropped: it was never acknowledged (9.960628ms)
+  ✔ a record that is broken before its last line refuses to start: fail closed (21.789435ms)
+  ✔ one writer: a second guard refuses; stale SDK ownership requires kernel recovery (186.368944ms)
+  ✔ replay recomputes every decision from its bytes and names the first divergence (46.355193ms)
+  ✔ a record that cannot be written denies, and the guard stays shut (3.338822ms)
+  ✔ npm run replay: exit 0 for a record that replays, 1 with the divergence under a narrower policy, 2 for no policy (530.654647ms)
+  ✔ the latch is a fact of the record: restored under a policy with a higher threshold, the guard stays latched (8.509159ms)
+  ✔ S83: a release in the record is verified on restore and in replay: a forged one refuses to start, and replay names it (3.180198ms)
+  ✔ S81: a lock file that names no process refuses to start, and says so plainly (0.509917ms)
+  ✔ inspectRecord agrees with the live guard: latch, window totals, intents in flight, counts (7.503505ms)
+  ✔ inspectRecord shows a latch, the run of denials, and what is still in flight (31.095623ms)
+  ✔ inspectRecord marks each decision that latched the guard, and lists the operator's releases (32.445139ms)
+  ✔ inspectRecord refuses a record that does not chain, as a restore would (1.184544ms)
+  ✔ D4: the loaded controller module and its embedded wasm hash to the pinned values (0.191441ms)
+  ✔ D4: a controller with one byte changed, in the wasm or in the JavaScript around it, is refused (0.309198ms)
+  ✔ D4: a guard's decisions say the controller was verified by its bytes (0.514264ms)
+    U-2: tick() on telemetry accepts() refuses: null → DEFAULT; "0.5" → DEFAULT; true → DEFAULT; [0.7] → DEFAULT
+  ✔ U-2, reproduced: Keel's tick() takes telemetry that accepts() refuses, coercing it (0.312013ms)
+  ✔ D3: telemetry that is not three finite numbers in range never reaches Keel; the proposal denies, and Keel's state does not move (2.206208ms)
+    U-3: Governor.create({ equilibrium: NaN, arousal: 5 }) → created; the next tick gives INHIBIT with equilibrium 0.30000000000000004
+  ✔ U-3, reproduced or refuted: Governor.create() with a non-finite or out-of-range state (0.191832ms)
+  ✔ sensor v1, intensity: the rate term is zero at or below the expected rate, and full at five times it (0.267372ms)
+  ✔ sensor v1, valence: denials, failures, expiries and unknown outcomes lower it; a landing resets it (0.118014ms)
+  ✔ sensor v1, repetition: the same payment 1; the same payment at higher fees 0.8; the same shape 0.5; else 0 (0.154864ms)
+  ✔ sensor v1 is the default, and its coefficients are stated (0.073914ms)
+  ✔ sensor v1, repetition: a payment repeated after it landed is a new payment, not a retry (0.089571ms)
+  ✔ sensor v1, repetition: the same shape at higher fees is escalation only against a payment that did not land (0.089302ms)
+  ✔ through the guard: the same payment again after it landed reads as the same shape; before it lands, as a retry (0.730275ms)
+  ✔ LAT-1 / RT-3: a single REGROUND denial by an earlier rule does not latch (1.024905ms)
+  ✔ LAT-2 / RT-3: two consecutive REGROUND denials latch, across report and restart (8.85507ms)
+  ✔ LAT-2 / RT-3: a decision without REGROUND breaks the consecutive pair (1.010809ms)
+  ✔ LAT-3 / RT-3: Keel's own loop denial latches immediately (0.555768ms)
+  ✔ LAT-4 / RT-3: the policy's consecutive-denial threshold still latches without REGROUND (0.746978ms)
+  ✔ LAT-5 / RT-3: replay names the accepted one-time divergence of a V0 latch (1.067288ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: identical failing retries, 400 ms (5.72617ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: identical failing retries, 5 s (4.661338ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: rising fees, failing, 400 ms (5.837439ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: two shapes alternating, failing, 400 ms (4.97675ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5: one early re-sign, then 10 normal payments (5.021341ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: cockpit demo: unknown outcome, re-sent once (4.712719ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: the kit's double signing: six payments signed twice (7.001195ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: drain storm: the same drain (4.915284ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: drain storm: new address and amount (5.045268ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 10% of the cap (5.629694ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 20% of the cap (5.532986ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 30% of the cap (5.28883ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 40% of the cap (5.211011ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 60% of the cap (5.099455ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: scene 5 at 80% of the cap (7.475562ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: cockpit demo at its proportions (5.563031ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: benign: expected rate (223.329736ms)
+  ✔ LAT-6 / RT-3: option C reproduces the archived stream: benign: bursts (209.092149ms)
+  ✔ SNP-5/D21: genuine malformed proposal history retains its null controller fields (1.032085ms)
+  ✔ SNP-5/D21: resealed malformed inputs cannot inject controller events into replay or restore (1.965685ms)
+  ✔ SNP-5/D21: real parsed controller events remain replayable and restorable (0.79788ms)
+  ✔ LIF-4/SNP-7: control starts retry exactly from prefix and tail without another entry (114.035943ms)
+  ✔ LIF-4/LIF-1: methods, payloads and admission share the identity namespace (52.729445ms)
+  ✔ LIF-5: a pre-admission refusal and its exact bounded reply survive index publication (54.158915ms)
+  ✔ LIF-4/SNP-7: response commits once and differing canonical replies refuse (58.522027ms)
+  ✔ LIF-4: unknown identity, admission, foreign start and wrong start hash cannot return or finish controls (52.130054ms)
+  ✔ LIF-4: pending result remains undefined; null and nested completed replies are detached and frozen (46.97424ms)
+  ✔ LIF-4/SNP-7: identities, canonical payloads and result values are captured before queueing (33.588454ms)
+  ✔ LIF-4/SNP-7: concurrent mixed operations share FIFO ordering with proposal admission (42.804049ms)
+  ✔ OWN-2/SNP-7: copied, unsigned, memory and manual guards lack owned control authority (30.63873ms)
+  ✔ OWN-2/SNP-7: corrupt or missing index evidence blocks control mutations and reads (48.19269ms)
+  ✔ LIF-4: malformed identities, methods, payloads, time and oversized responses make no durable entry (26.676011ms)
+  ✔ LIF-4/SNP-7: duplicate concurrent starts and replies write exactly once (54.029983ms)
+  ✔ LIF-4/SNP-7: authenticated prefix replies remain exact after genuine owner restart (68.524595ms)
+  ✔ STO-1/LIF-4: control append failure leaves the failed writer unavailable without a reply (25.812995ms)
+  ✔ SNP-7/OWN-2: closure and trusted mutation during actual reads forbid stale control commits (50.724581ms)
+  ✔ SNP-7: actual control lookup followed by closure or a trusted mutation cannot authorize stale work (326.916854ms)
+  ✔ LIF-4/SNP-7: a queued refusal does not poison subsequent verified work (39.125502ms)
+  ✔ LIF-4: fresh starts and responses cannot alias retained journal objects (35.166472ms)
+  ✔ OWN-2/LIF-4: mutable public SDK methods cannot replace private owned bookkeeping (32.212044ms)
+  ✔ SNP-7/OWN-2: factory keeps the guard and history private with a frozen asynchronous surface (31.129828ms)
+  ✔ SNP-5/7: private report records unknown durably with caller attribution and preserves used receipts (53.403133ms)
+  ✔ SNP-5/7: private report records failed durably with caller attribution and preserves used receipts (49.985833ms)
+  ✔ SNP-5/7: private report records expired durably with caller attribution and preserves used receipts (46.365731ms)
+  ✔ SNP-5/7: private report records landed durably with caller attribution and preserves used receipts (44.999313ms)
+  ✔ SNP-7: private report queues behind control work and before observations and closure (38.765853ms)
+  ✔ SNP-7: private report refuses malformed, denied and foreign decisions without evaluating caller coercions (39.015064ms)
+  ✔ STO-1/SNP-5/7: failed private report hides diagnostics and preserves unresolved reservation on restart (51.200265ms)
+  ✔ SNP-5/7: private operator release captures shared signatures behind control work and preserves reservations (74.716026ms)
+  ✔ OPR-2/SNP-7: private release refuses invalid prompts, signatures, scope and expiry without opening the latch (44.476416ms)
+  ✔ STO-1/OPR-2/SNP-5: failed private operator release hides diagnostics and preserves latch across restart (56.356636ms)
+  ✔ LIF-2/SNP-7: private redemption captures bytes, queues observations and survives restart once (48.66324ms)
+  ✔ LIF-2/OPR-2: private redemption refuses changed bytes, foreign receipts and expired lifetimes without consuming them (35.654064ms)
+  ✔ STO-1/OPR-2/LIF-2: private redemption never acknowledges a failed append or exposes storage diagnostics (34.525294ms)
+  ✔ OPR-2/VER-1: missing, empty and unsigned established histories refuse without creating a fresh identity (47.239895ms)
+  ✔ POL-4/OPR-2: configuration cannot upgrade, roll back, substitute a guard or start on invalid signatures (46.737571ms)
+  ✔ OWN-2/SNP-7: competing opens and corrupt index fail closed and release failed startup ownership (50.747834ms)
+  ✔ SNP-7/LIF-4: queued inputs, detached replies and observations share one FIFO (47.741276ms)
+  ✔ LIF-1/SNP-7: private admissions copy shared bytes and cannot mutate durable replies (40.010184ms)
+  ✔ OWN-2/LIF-4: close drains preceding work, denies later calls and releases ownership once (43.142339ms)
+  ✔ LIF-4/OPR-2: refusal does not poison the queue and raw diagnostics never escape (47.007477ms)
+  ✔ OPR-2/SNP-7: startup captures signed configuration before its first await (32.135043ms)
+  ✔ OPR-2/STO-1/LIF-1: an unrecorded admission never exposes storage diagnostics as a decision (32.890865ms)
+  ✔ SNP-7/LIF-1: prefix and tail retries return exact durable admissions without reevaluation (51.541091ms)
+  ✔ SNP-7: fresh replies and collision denials are detached and deeply immutable (32.152062ms)
+  ✔ LIF-1: changed bytes, group and control methods cannot reuse a request identity (43.035516ms)
+  ✔ SNP-7/LIF-1: FIFO concurrent identities observe reservations from earlier admissions (33.528259ms)
+  ✔ LIF-1: concurrent identical payloads admit once; conflicting queued payloads refuse (43.01463ms)
+  ✔ SNP-7: proposal bytes, identity, grouping, time and lifetime are captured before queueing (31.660976ms)
+  ✔ SNP-7/LIF-1: shared-memory message bytes cannot change the captured admission payload (30.295987ms)
+  ✔ OWN-2/SNP-7: missing or corrupt disk evidence refuses before any admission (68.003352ms)
+  ✔ OWN-2: copied, unsigned, memory and manual guards cannot obtain owned admission authority (30.702952ms)
+  ✔ OWN-2/SNP-7: caller-replaced public methods cannot redirect the private admission context (29.78265ms)
+  ✔ SNP-7: a failed queued lookup does not poison subsequent work after evidence is restored (32.740036ms)
+  ✔ SNP-7/OWN-2: closure before queue execution or during an actual shard read prevents admission (47.504045ms)
+  ✔ SNP-7: trusted synchronous mutation during owned lookup invalidates its captured head (25.390266ms)
+  ✔ SNP-7: an actual owned result followed by a trusted mutation cannot authorize stale absence (312.217958ms)
+  ✔ STO-1/SNP-7: append failure admits nothing and the failed writer remains unavailable (25.81855ms)
+  ✔ LIF-1/7/POL-4: historical retry preserves pending reservations and used receipts across signed policy replacement (46.498279ms)
+  ✔ LIF-1/SNP-7: historical denials preserve latch and cannot accumulate denial ticks (37.446229ms)
+  ✔ SNP-7: malformed proposal identity rejects without a record; ordinary proposal validation stays synchronous (32.076611ms)
+  ✔ OWN-1: SDK refuses stale ownership instead of removing the lock (33.440917ms)
+  ✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (10.098609ms)
+  ✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (398.219047ms)
+  ✔ OWN-3: established protected records are not recreated if missing (12.872986ms)
+  ✔ OWN-2/4: manual refuses a hardlinked journal alias and releases failed startup ownership (16.557675ms)
+  ✔ OWN-2/4: kernel refuses a hardlinked journal alias and releases failed startup ownership (22.686522ms)
+  ✔ OWN-2/4: kernel startup refuses a hardlinked mutex without changing its evidence (15.820069ms)
+  ✔ pin-table prints the table's address and entries, read at finalized commitment (222.046783ms)
+  ✔ pin-table refuses: no --url, an account another program owns, no account, a deactivated table (601.047342ms)
+  ✔ a valid policy loads, with amounts as bigint and a 64-hex hash (2.531311ms)
+  ✔ the hash depends on content only: key order and amount spelling do not change it; any value does (6.32563ms)
+  ✔ the hash is SHA-256 of canonical JSON: sorted keys, no whitespace, amounts as decimal strings (0.514611ms)
+  ✔ D1: the policy is a frozen copy; neither the caller's object nor the returned one can widen it (1.195107ms)
+  ✔ D2: a cap that is not a whole, non-negative amount is refused, never read as no cap (6.628516ms)
+  ✔ D9: amounts past 2^53 are exact (2.748964ms)
+  ✔ rule 0: addresses must be canonical base58 keys, and the principal must hold one (3.986931ms)
+  ✔ rule 0: the latch's release key is never a principal key, so the agent cannot release its own latch (0.447651ms)
+  ✔ rule 0: one entry per mint and per table, a known token program, and a known cluster (1.319871ms)
+  ✔ rule 0: counts and durations are positive whole numbers; the guard id fits on one line (4.489349ms)
+  ✔ rule 0: v1 never signs messages or co-signs, and refuses any field it does not know (1.638337ms)
+  ✔ every problem is reported at once, so an operator fixes them in one pass (0.617301ms)
+  ✔ the classifier's context comes from the policy (0.601397ms)
+  ✔ OWN-2: kernel record append and reopen do not require evaluation modules (220.073099ms)
+  ✔ SNP-4/5: fabricated maintenance capabilities refuse before loading evaluation modules (121.75631ms)
+  ✔ SNP-5/6/LIF-2/D23: inclusive expiry and canonical negative bigint heights preserve live receipt semantics (6.784768ms)
+  ✔ SNP-5/6/LIF-2/D23: a receipt without expiry accepts its recorded null height (2.206305ms)
+  ✔ SNP-5/6/D23: legitimate unsigned redeemed history reopens under a changed advisory policy (2.479189ms)
+  ✔ SNP-5/6/LIF-2/D23: absent and denied decisions cannot mint recovered receipts (3.997899ms)
+  ✔ SNP-5/6/LIF-2/D23: a resealed duplicate redemption is refused (2.490085ms)
+  ✔ SNP-5/6/LIF-7/D23: final landed evidence forbids recovered redemption (2.215461ms)
+  ✔ SNP-5/6/LIF-7/D23: final failed evidence forbids recovered redemption (2.279974ms)
+  ✔ SNP-5/6/LIF-7/D23: final expired evidence forbids recovered redemption (2.121844ms)
+  ✔ SNP-5/6/LIF-2/D23: receipt height above its admitted expiry refuses recovery (2.022706ms)
+  ✔ SNP-5/6/LIF-2/D23: expiring receipts require recorded height evidence (1.971708ms)
+  ✔ SNP-5/6/LIF-2/D23: malformed and noncanonical recorded bigint heights refuse recovery (14.470449ms)
+  ✔ SNP-5/6/D23: invalid redemption timestamps refuse recovery (5.144694ms)
+  ✔ SNP-5/6/LIF-2/7/D23: rejected redemption leaves the complete state unchanged (6.84949ms)
+  ✔ SNP-5/6/POL-4/LIF-2/D23: chronological signed policy rejects a forged prior-policy redemption (12.649548ms)
+  ✔ SNP-5/6/POL-4/LIF-2/D23: signed redemption before a later policy change remains valid history (13.40984ms)
+  ✔ SNP-5/6/LIF-7/D23: retained request and signing facts cannot redeem a pruned final reservation (3.302161ms)
+  ✔ SNP-7: streamed mixed history matches array replay including latch resets (21.741028ms)
+  ✔ SNP-7: existing array recomputation does not introduce yields between records (11.860034ms)
+  ✔ SNP-7: a producer cannot change replay state by mutating an already yielded record (19.711508ms)
+  ✔ SNP-7: truncated or changed second reads cannot qualify a valid prefix (14.488817ms)
+  ✔ SNP-7: source errors and early divergence close their current iterator (8.143307ms)
+  ✔ SNP-7: policy is captured before asynchronous source reads (16.145036ms)
+  ✔ SNP-7: later signed window expansion preserves reservations pruned under an earlier policy (7.971641ms)
+  ✔ SNP-7: signed replay captures external trust and refuses another sensor or authority (3.221902ms)
+  ✔ SNP-7: malformed source factories and noncanonical entries refuse with typed errors (0.836311ms)
+  ✔ SNP-7: actual immutable archive segments replay through natural pinned completion (27.18274ms)
+  ✔ SNP-5/LIF-7/D22: repeated unknown reports followed by each final outcome remain replayable and restorable (5.023677ms)
+  ✔ SNP-5/6/D22: resealed unsupported report outcome refuses every recovery path (2.030466ms)
+  ✔ SNP-5/6/D22: resealed unsupported report source refuses every recovery path (1.635898ms)
+  ✔ SNP-5/6/D22: resealed report timestamp -1 refuses every recovery path (1.684463ms)
+  ✔ SNP-5/6/D22: resealed report timestamp null refuses every recovery path (1.627457ms)
+  ✔ SNP-5/6/D22: resealed report timestamp 1000 refuses every recovery path (1.597615ms)
+  ✔ SNP-5/6/D22: reports naming an absent or denied decision refuse every recovery path (3.142027ms)
+  ✔ SNP-5/6/LIF-7/D22: resealed reports after final landed refuse every recovery path (5.389036ms)
+  ✔ SNP-5/6/LIF-7/D22: resealed reports after final failed refuse every recovery path (5.870695ms)
+  ✔ SNP-5/6/LIF-7/D22: resealed reports after final expired refuse every recovery path (5.499522ms)
+  ✔ SNP-5/6/LIF-7/D22: invalid reports change no head, clock, signing, reservation or sensor state (3.555412ms)
+  ✔ SNP-5/6/D22: state boundary rejects non-finite report times before mutation (0.94672ms)
+  ✔ SNP-5/LIF-7/D22: unknown repeats preserve reservation, unsettled signing and unknown count (0.659101ms)
+  ✔ SNP-5/D22: both attribution enums and finite fractional timestamps remain supported (6.660211ms)
+  ✔ SNP-5/6/D22: retained request and signing facts cannot resurrect a pruned final reservation (2.798755ms)
+  ✔ SNP-5/POL-4/LIF-7/D22: late unresolved reports survive signed policy changes and expiry (8.104256ms)
+  ✔ LIF-1: duplicate admission returns the original entry without another reservation or controller tick (0.889551ms)
+  ✔ LIF-1: duplicate denied request returns the same denial without accumulating latch denials (0.619889ms)
+  ✔ LIF-1: changed bytes or grouping under the same identity are refused (0.81451ms)
+  ✔ LIF-1: client identities are separate namespaces and invalid identities fail closed (0.980877ms)
+  ✔ LIF-1: identity and original decision survive durable restart (8.321042ms)
+  ✔ LIF-1: resealed digest request evidence refuses restore and replay (1.397494ms)
+  ✔ LIF-1: resealed guard request evidence refuses restore and replay (1.040055ms)
+  ✔ LIF-1: resealed duplicate request evidence refuses restore and replay (1.180286ms)
+  ✔ SNP-7/LIF-1: current absence and tail starts are bound to both exact endpoints (15.457787ms)
+  ✔ SNP-7/LIF-2: historical starts gain exact tail replies across policy changes (38.636869ms)
+  ✔ SNP-7/LIF-3/4/7: tail redemption, uncertain send and final outcome preserve every fact (31.500059ms)
+  ✔ SNP-7/LIF-2: denied replies and unrelated non-request decisions do not disappear or redirect lookup (12.603587ms)
+  ✔ OWN-2: fake, copied, manual, closed and failed owners cannot consult current history (18.044038ms)
+  ✔ SNP-7: missing published index is a refusal, never an automatic write or empty answer (7.854628ms)
+  ✔ SNP-7: identity and external pins are captured before async reads and invalid containers refuse (14.44379ms)
+  ✔ OWN-2: lookup, index publication, checkpoint publication and recovery share maintenance exclusion (14.922549ms)
+  ✔ SNP-7: full current replay rejects unrelated dishonest tails even when a prefix hit exists (9.846248ms)
+  ✔ SNP-7: fresh disk and cached history mismatch refuses without changing evidence (25.916394ms)
+  ✔ SNP-7/OWN-2: concurrent append, cache change, closure and inode substitution refuse current answers (51.544779ms)
+  ✔ SNP-7: corrupt pointer or any generation evidence refuses without repairing the cache (63.467679ms)
+  ✔ SNP-7: pointer disappearance or byte-identical replacement during module loading refuses (14.694004ms)
+  ✔ SNP-7: late pointer, record and cache changes during actual shard lookup refuse (36.242894ms)
+  ✔ SNP-7: helper captures history before awaits instead of folding unvalidated caller mutations (10.033936ms)
+  ✔ OWN-2: a valid cache under a manual owner still cannot claim kernel-owned current evidence (10.910458ms)
+  ✔ OWN-2: a healthy closed lookup capability cannot borrow a reopened owner's reused descriptors (13.53362ms)
+  ✔ SNP-7/LIF-3/4: a complete payment lifecycle wholly in the tail matches a newly published index (23.77928ms)
+  ✔ SNP-7: owned publication derives exact complete generation and immutable root (11.071135ms)
+  ✔ SNP-7: replacement preserves earlier complete generations and prefix-bound answers (12.878433ms)
+  ✔ OWN-2: memory, forged, manual, closed and failed stores cannot publish (8.98353ms)
+  ✔ SNP-7: copied external pins are authoritative before asynchronous loading (10.159322ms)
+  ✔ OWN-2: a closed capability cannot borrow reused descriptors from a new kernel owner (10.974192ms)
+  ✔ SNP-7: unsigned and malformed actual histories refuse before cache publication (9.733918ms)
+  ✔ OWN-2: index, checkpoint publication and recovery share one maintenance boundary (9.082284ms)
+  ✔ OWN-2: replaced record and lock paths refuse index publication (14.664423ms)
+  ✔ SNP-7: closure, append, cache mutation and aliases during validation preserve the previous generation (72.305458ms)
+  ✔ SNP-7: current pointer corruption, substitutions and unsupported sources preserve evidence (86.295782ms)
+  ✔ SNP-7: a valid pointer cannot hide missing, altered or aliased previous generation files (69.701234ms)
+  ✔ SNP-7: current pointer and generation changes during asynchronous replay refuse (22.499926ms)
+  ✔ SNP-7: raw disk append during asynchronous validation cannot publish a cached endpoint (11.571992ms)
+  ✔ SNP-7: pointer reads finish short progress and refuse invalid progress or source changes (77.094441ms)
+  ✔ SNP-7: publication and validation refusals close every temporary descriptor (9.61659ms)
+  ✔ SNP-7: pointer disappearance after a successful open is not cache absence (7.997692ms)
+  ✔ SNP-7: byte-identical previous directory replacement while its files are read refuses (10.384412ms)
+  ✔ SNP-7: short writes finish and every file and directory is synced before acknowledgement (7.829688ms)
+  ✔ SNP-7: storage failures preserve complete old or new evidence and fail the writer (158.830552ms)
+  ✔ SNP-7: late record and pointer replacement after final sync refuse acknowledgement (33.140672ms)
+  ✔ SNP-7: actual process death at publication boundaries keeps a complete discoverable generation (1212.534544ms)
+  ✔ SNP-7: manifest binds verified signed endpoint and every empty shard (7.349355ms)
+  ✔ SNP-7/LIF-1/2/7: denied, pending, sent and final facts keep exact payload and reply bindings (7.571041ms)
+  ✔ SNP-7: source, endpoint, policy and external trust are captured before asynchronous replay (3.294662ms)
+  ✔ SNP-7/VER-2: unsigned, malformed, dishonest and foreign history cannot mint an expected root (3.148746ms)
+  ✔ SNP-7/LIF-1: cross-method duplicate identity and changed payload are rejected during projection (3.206179ms)
+  ✔ SNP-7: cross-request response target and repeated immutable answers cannot pass signed replay (2.609352ms)
+  ✔ SNP-7/LIF-7: unsupported report outcomes cannot become settled index evidence (1.383313ms)
+  ✔ SNP-7: unsupported report attribution cannot mint a trusted index root (1.317877ms)
+  ✔ SNP-7/LIF-7: a final report cannot be followed by another unknown or final report (1.690407ms)
+  ✔ SNP-7: local report validation remains effective at the controlled replay dependency seam (95.473619ms)
+  ✔ SNP-7: omission plus recomputed disk checksums cannot prove historical absence (3.848743ms)
+  ✔ SNP-7: a found request cannot return before later bytes and complete shard digest verify (3.311631ms)
+  ✔ SNP-7: same-size changed reply bytes cannot replace independently derived evidence (3.574957ms)
+  ✔ SNP-7: source changes during a lookup refuse even when bytes still equal the root (3.504837ms)
+  ✔ SNP-7: lookup identity and line ceiling are captured before file awaits (3.076939ms)
+  ✔ SNP-7: a late source mutation after descriptor stat cannot evade named metadata checks (3.067336ms)
+  ✔ SNP-7: small provenance root works after generated artefacts leave scope; parsed roots refuse (3.076415ms)
+  ✔ SNP-7: complete shards distinguish exact identities, neighbouring hits and absent keys (4.189034ms)
+  ✔ SNP-7: altered row schema, route and cross-request reply targets refuse (4.457657ms)
+  ✔ SNP-7: another existing request's reply cannot answer this identity (3.512424ms)
+  ✔ SNP-7: cache source errors, symlinks, directories, missing and oversized rows refuse (8.030786ms)
+  ✔ SNP-7: runtime loader options must be an object with a valid explicit line ceiling (2.937202ms)
+  ✔ SNP-7: hardlinked shards and symlinked generation directories refuse (3.365284ms)
+  ✔ SNP-7: replacing the generation directory after file checks cannot return evidence (3.283317ms)
+  ✔ SNP-7: deterministic permission/read errors refuse and close every acquired descriptor (5.777867ms)
+  ✔ SNP-7: completed replies and roots remain distinct across policy changes and restart (15.952984ms)
+    benign: Poisson, 6 a minute (the policy's expected rate) · sensor v0: 497 of 600 stopped, 82.83% (95% CI 79.61% to 85.64%) {"loop-reground":1,"latched":496}
+    benign: Poisson, 6 a minute (the policy's expected rate) · sensor v1: 0 of 600 stopped, 0.00% (95% CI 0.00% to 0.64%) {}
+    benign: bursts of 5 payouts, 0.2 to 0.6 s apart, every 5 minutes · sensor v0: 130 of 600 stopped, 21.67% (95% CI 18.56% to 25.14%) {"loop-reground":1,"latched":129}
+    benign: bursts of 5 payouts, 0.2 to 0.6 s apart, every 5 minutes · sensor v1: 0 of 600 stopped, 0.00% (95% CI 0.00% to 0.64%) {}
+  ✔ the benign battery: 600 payments at the expected rate, and 600 in bursts; v0 against v1, measured (654.880395ms)
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/mutation-recovery.test.ts:73:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: null,
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }
+
+
+1 !== 0
+
+    at file:///home/dashy/Projects/Solanaut/evals/ci/mutation-recovery-faults.ts:17:33
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 1,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0
+Running fault campaign: ci/run-completion-faults.ts
+caught run-completion fault: strict-fields
+caught run-completion fault: captured-fields
+caught run-completion fault: external-identity
+caught run-completion fault: bound-identity
+caught run-completion fault: capture-external-pins
+caught run-completion fault: format
+caught run-completion fault: completed-state
+caught run-completion fault: process-pid
+caught run-completion fault: distinct-process
+caught run-completion fault: ordered-time
+caught run-completion fault: canonical-time
+caught run-completion fault: actual-exit
+caught run-completion fault: signal
+caught run-completion fault: launch-error
+caught run-completion fault: deadline
+caught run-completion fault: operator-tool-restoration
+All completion faults caught; restored source passes
+Running fault campaign: ci/run-supervisor-faults.ts
+caught supervisor fault: worker-environment
+caught supervisor fault: child-environment
+caught supervisor fault: environment-whitelist
+caught supervisor fault: interruption-state
+caught supervisor fault: worker-detachment
+caught supervisor fault: launcher-release
+caught supervisor fault: retained-output
+caught supervisor fault: actual-exit
+caught supervisor fault: actual-signal
+caught supervisor fault: deadline-state
+caught supervisor fault: specification-pin
+caught supervisor fault: command-pin
+caught supervisor fault: ticket-pid
+caught supervisor fault: ticket-run
+caught supervisor fault: ticket-input
+caught supervisor fault: ticket-command
+caught supervisor fault: uncommitted-result
+caught supervisor fault: result-digest
+caught supervisor fault: result-file-sync
+caught supervisor fault: result-directory-sync
+caught supervisor fault: early-commit
+caught supervisor fault: private-storage
+caught supervisor fault: descendant-termination
+All supervisor faults caught; restored source passes
+Running fault campaign: ci/performance-faults.ts
+caught timing fault: missing-process
+caught timing fault: wrong-quantile
+caught timing fault: pre-latency
+caught timing fault: synced-latency
+caught timing fault: decision-rate
+caught timing fault: replay-rate
+caught timing fault: restart-population
+caught timing fault: snapshot-trust
+caught timing fault: keel-replay
+caught timing fault: restart-duration
+caught timing fault: freshness
+caught timing fault: pre-regression
+caught timing fault: synced-regression
+caught timing fault: compatible-reference
+caught timing fault: zero-sample
+caught timing fault: missing-observations
+All timing faults caught; restored source passes
+Running fault campaign: ci/differential-faults.ts
+caught differential fault: process
+caught differential fault: population
+caught differential fault: digest
+caught differential fault: versions
+caught differential fault: programs
+caught differential fault: completion
+caught differential fault: mismatch
+caught differential fault: oracle-comparison
+caught differential fault: strict-refusal
+caught differential fault: corpus-pin
+caught differential fault: corpus-framing
+caught differential fault: duplicate-transaction
+All differential faults caught; restored sources pass
+Running fault campaign: ci/traffic-faults.ts
+caught traffic fault: process
+caught traffic fault: definition
+caught traffic fault: profiles
+caught traffic fault: seeds
+caught traffic fault: population
+caught traffic fault: completion
+caught traffic fault: denial-counts
+caught traffic fault: rule-counts
+caught traffic fault: confidence
+caught traffic fault: uncertainty
+caught traffic fault: burst-cadence
+caught traffic fault: fee-range
+caught traffic fault: recurring-effects
+caught traffic fault: guard-policy
+caught traffic fault: landed-outcomes
+caught traffic fault: loop-inventory
+caught traffic fault: failed-outcomes
+caught traffic fault: first-refusal
+All traffic faults caught; restored sources pass
+Running fault campaign: ci/replay-faults.ts
+caught replay gate fault: short-history
+caught replay gate fault: ignore-divergence
+caught replay gate fault: ignore-recomputed-count
+caught replay gate fault: ignore-entry-count
+caught replay gate fault: ignore-head
+caught replay gate fault: ignore-workload-kind
+caught replay product fault: previously-missed-per-tx-cap
+caught replay product fault: changed-record-and-evaluation
+All replay faults caught; restored pinned workload passes
+Running fault campaign: ci/concurrency-faults.ts
+caught SDK concurrency fault: short-budget
+caught SDK concurrency fault: over-admission
+caught SDK concurrency fault: incomplete-evidence
+caught SDK concurrency fault: wrong-reservations
+caught SDK concurrency fault: wrong-rule
+caught SDK concurrency fault: skip-barrier
+caught SDK concurrency product fault: ignored-pending-window
+All SDK concurrency faults caught; restored source passes
+Running fault campaign: ci/kill-faults.ts
+caught kill recovery fault: short-count
+caught kill recovery fault: ignore-completion
+caught kill recovery fault: ignore-replay
+caught kill recovery fault: ignore-signal
+caught kill recovery fault: ignore-acknowledgement
+caught kill recovery fault: send-wrong-signal
+caught kill recovery fault: skip-state-restore
+All kill recovery faults caught; restored source passes
+Running fault campaign: ci/history-faults.ts
+caught history inventory fault: commit-body-read
+caught history inventory fault: commit-body-hash
+caught history inventory fault: commit-tree-metadata
+caught history inventory fault: commit-parent-metadata
+caught history inventory fault: blob-metadata-count
+caught history inventory fault: lazy-fetch
+caught history inventory fault: graft-ancestry
+caught history inventory fault: whole-history
+caught history inventory fault: detached-head
+caught history inventory fault: shallow-refusal
+caught history inventory fault: ref-closure
+caught history inventory fault: tree-framing
+caught history inventory fault: blob-shape
+caught history inventory fault: changing-scope
+caught history inventory fault: shared-paths
+caught history inventory fault: shared-modes
+caught history inventory fault: gitlinks
+caught history inventory fault: digest
+All history inventory faults caught; restored source passes
+{"ok":false,"failed":["ci/mutation-recovery-faults.ts"],"skipped":[]}

@@ -1,5 +1,11 @@
 # evals/ — receipts
 
+Current maintained fault runner: `ci/bite-current.md` retains actual partition
+execution and bound source identity. All campaigns run without skips, partition
+three passes, and the other partitions fail the package timeout and unchanged
+H11 baseline wait. Restored identities/typecheck pass, complete gate fails,
+CLAIMS S110; all process limits stay unchanged.
+
 Node 24 follow-up: `release/node24-owned-report.md` qualifies exact private
 4addaa4 under the already installed runtime. Preserve all existing inputs and
 limits. Native/type/installed/compiled checks pass with restored identities;

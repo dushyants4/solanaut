@@ -1,0 +1,5 @@
+product_sources: exact reviewed identities match
+evaluation_inputs: exact reviewed identities match
+compiled_files: exact reviewed identities match
+archive: exact reviewed identity matches
+Cache-configured invocation also times out; no remedy established

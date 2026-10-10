@@ -1,0 +1,35 @@
+{
+  "revision": "227b0bb95476feccebaa9516ca88c86a90050acb",
+  "node": "v26.7.0",
+  "campaigns_attempted": 65,
+  "partitions": [
+    {
+      "partition": 1,
+      "attempted": 21,
+      "ok": false,
+      "failed": [
+        "ci/mutation-recovery-faults.ts"
+      ],
+      "skipped": []
+    },
+    {
+      "partition": 2,
+      "attempted": 22,
+      "ok": false,
+      "failed": [
+        "packaging/faults.ts"
+      ],
+      "skipped": []
+    },
+    {
+      "partition": 3,
+      "attempted": 22,
+      "ok": true,
+      "failed": [],
+      "skipped": []
+    }
+  ],
+  "source_fingerprint_match": true,
+  "bound_product_evaluation_compiled_archive_match": true,
+  "complete_gate_pass": false
+}

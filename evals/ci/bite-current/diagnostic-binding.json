@@ -1,0 +1,7 @@
+{
+  "revision": "227b0bb95476feccebaa9516ca88c86a90050acb",
+  "observer_sha256": "d49e02fadd1acf8e55eb7048e5a81fba0c2d5d05e5eab0f14b69fa9e157fa458",
+  "package_fault_script_sha256": "dac72a30ff1630a8c8856acae372c9dd86d210213760513d7ceef412ad22696a",
+  "uncached_termination_verified": true,
+  "source_after_partition_matches": true
+}

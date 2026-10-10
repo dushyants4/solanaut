@@ -1,0 +1,8 @@
+{
+  "scope": "requested execution configuration; not a successful status probe",
+  "node": "26.7.0",
+  "NODE_COMPILE_CACHE": "/home/dashy/Projects/Solanaut/.sandbox/solanaut-1/bite-current/compile-cache",
+  "NODE_COMPILE_CACHE_PORTABLE": "1",
+  "status_probe": "boundary guard refused the mixed setup/status command; not retried",
+  "coverage": "cache not enabled"
+}

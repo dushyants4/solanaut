@@ -12,6 +12,20 @@ each component. Preserve every accepted security and release gate.
 
 ## Did
 
+The calendar crosses into 2026-10-10 during continued qualification. Preserve
+this dated record; the current-day continuation is
+`runs/2026-10-10-codex-solanaut-1.md`. No close-check date override or gate edit.
+
+Present the committed ADR-021 and ADR-023 proposals through an asynchronous
+human decision request while validation continues. Successful question delivery
+is not acceptance; H9/H14 remain pending until an explicit answer arrives.
+
+Commit current Node 24 evidence and retention proposal locally as `227b0bb`;
+verify bundle/exact clean clone/full fsck, with clean close nine of ten and only
+deliberately unpushed HEAD failing. Qualify maintained fault partitions through
+their unchanged actual runner and process limits; preserve source identities,
+failures and emitted restoration separately from direct script successes.
+
 Inspect remaining full-history state, checkpoint and index construction.
 Write proposed ADR-023 and queue H14 before compact-format or resource-admission
 changes. Preserve late replies, unresolved attempts, authenticated absence and
@@ -315,6 +329,36 @@ Current-day run record and project register; subsequent replay component paths
 and qualification evidence will be recorded as work proceeds.
 
 ## Found
+
+All 65 maintained campaigns execute across unchanged partitions, none skipped.
+Partition three passes; partition one fails only mutation recovery's initial
+unmodified baseline at the existing H11 staged wait, before fault trials run.
+Partition two fails only the package campaign; uncached and cache-configured
+diagnostics confirm its unchanged-limit timeout. Final source fingerprint and
+all bound identities match; restored typecheck passes. Complete gate fails.
+
+Maintained partition three passes all selected campaigns with none failed or
+skipped. Partition one continues; neither waives partition two's failed package
+campaign, so complete maintained-fault qualification remains open.
+
+The separately configured compile-cache invocation also times out with the same
+termination fields and limit. It establishes no remedy. Both failures remain
+archived, emitted files are rebuilt and every bound identity matches before
+running the other maintained partitions. No deadline or gate is relaxed.
+
+The unchanged package child invocation reproduces `ETIMEDOUT`, null status and
+`SIGTERM`. Preserve termination/output and rebuild emitted files. A mixed cache
+setup/status command is refused by the boundary guard's secrets heuristic; no
+cache-status result exists and that probe is not retried. Record only requested
+scratch-cache configuration, then execute the separately planned fault run.
+No source, deadline, workload or assertion changes; coverage stays uncached.
+
+Maintained partition two fails: all selected campaigns execute, only the package
+campaign fails, none skipped. Source fingerprint and bound source/evaluation
+hashes match afterwards, but interrupted emitted request-index.js differs.
+Rebuild from reviewed source before package use. The runner does not emit its
+child termination detail; reproduce only that invocation with the same limit
+and an observational termination receipt. No gate or workload changes.
 
 Current runtime/retention-record pre-commit close passes eight of ten: dirty
 tree and deliberately unpushed HEAD fail; all other close checks pass.

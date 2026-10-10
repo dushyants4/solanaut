@@ -1,0 +1,329 @@
+
+> test:bite
+> node evals/ci/bite.ts --partition 3
+
+Running fault campaign: sdk/policy-signature-faults.ts
+caught policy signature fault: encoded-size
+caught policy signature fault: captured-decoder
+caught policy signature fault: captured-canonical
+All policy signature faults caught; restored source passes
+Running fault campaign: sdk/control-request-faults.ts
+caught control-request fault: control-payload-reuse
+caught control-request fault: proposal-namespace-reuse
+caught control-request fault: change-answer
+caught control-request fault: record-digest
+caught control-request fault: duplicate-start
+caught control-request fault: unknown-response
+caught control-request fault: duplicate-response
+caught control-request fault: response-bound
+All control-request faults caught; restored source passes
+Running fault campaign: sdk/ownership-faults.ts
+caught ownership/storage fault: ignore-kernel-lock
+caught ownership/storage fault: automatic-stale-takeover
+caught ownership/storage fault: unlink-mutex
+caught ownership/storage fault: create-missing-history
+caught ownership/storage fault: incomplete-short-write
+caught ownership/storage fault: ignore-sync-failure
+caught ownership/storage fault: ignore-external-size
+caught ownership/storage fault: ignore-external-times
+caught ownership/storage fault: revive-damaged-writer
+caught ownership/storage fault: ignore-single-link
+caught ownership/storage fault: ignore-read-stability
+caught ownership/storage fault: ignore-read-completion
+caught ownership/storage fault: decoded-read-count
+caught ownership/storage fault: ignore-append-completion
+caught ownership/storage fault: ignore-append-base
+caught ownership/storage fault: ignore-post-append-owner
+caught ownership/storage fault: ignore-post-append-record
+All ownership/storage faults caught; restored source passes
+Running fault campaign: sdk/request-faults.ts
+caught request fault: ignore-retry
+caught request fault: ignore-changed-payload
+caught request fault: ignore-recorded-binding
+caught request fault: ignore-duplicate-history
+All request faults caught; restored source passes
+Running fault campaign: sdk/sending-client-faults.ts
+caught sending client fault: ignore-response-id
+caught sending client fault: ignore-canonical-envelope
+caught sending client fault: unbounded-response
+caught sending client fault: hide-execution-ambiguity
+caught sending client fault: invent-before-connect-execution
+caught sending client fault: extend-timeout
+caught sending client fault: allow-oversized-message
+caught sending client fault: late-caller-identity
+caught sending client fault: accept-invalid-signature
+caught sending client fault: automatic-retry
+caught sending client fault: missing-options-container-guard
+caught sending client fault: missing-status-container-guard
+caught sending client fault: missing-propose-container-guard
+caught sending client fault: missing-report-container-guard
+caught sending client fault: allow-array-containers
+caught sending client fault: allow-function-containers
+caught sending client fault: allow-null-containers
+All sending client faults caught; restored source passes
+Running fault campaign: sdk/signing-faults.ts
+caught signing fault: no-redemption
+caught signing fault: changed-bytes
+caught signing fault: invalid-signature
+caught signing fault: send-before-signed
+caught signing fault: expired-send
+caught signing fault: repeat-send
+caught signing fault: repeat-response
+All signing faults caught; restored source passes
+Running fault campaign: signer/authority-faults.ts
+caught authority fault: mutable-host-configuration
+caught authority fault: caller-decision-attribution
+caught authority fault: caller-report-attribution
+caught authority fault: allow-non-devnet
+caught authority fault: use-changing-wall-clock
+All authority faults caught; restored source passes
+Running fault campaign: signer/core-faults.ts
+caught signer core fault: ignore-deadline
+caught signer core fault: ignore-completed-payload
+caught signer core fault: invent-outcome
+caught signer core fault: late-outcome
+caught signer core fault: send-without-intent
+caught signer core fault: forget-persisted-response
+All signer core faults caught; restored source passes
+Running fault campaign: signer/handler-faults.ts
+caught handler fault: concurrent-payload
+caught handler fault: duplicate-work
+caught handler fault: ignore-cached-answer
+caught handler fault: ignore-new-deadline
+caught handler fault: ignore-late-deadline
+caught handler fault: omit-request-deadline
+caught handler fault: ignore-control-namespace
+caught handler fault: omit-refusal-answer
+caught handler fault: admission-as-refusal
+All handler faults caught; restored source passes
+Running fault campaign: signer/policy-recovery-faults.ts
+caught policy recovery fault: skip-final-executor-check
+caught policy recovery fault: forget-final-history
+caught policy recovery fault: unknown-becomes-final
+caught policy recovery fault: allow-settled-signing
+caught policy recovery fault: allow-old-policy-send
+All policy recovery faults caught; restored source passes
+Running fault campaign: signer/recovery-faults.ts
+caught recovery fault: abort-on-attempt-error
+caught recovery fault: hide-attempt-error
+caught recovery fault: skip-chain-after-refusal
+caught recovery fault: invent-recovery-success
+All recovery faults caught; restored source passes
+Running fault campaign: signer/rpc-faults.ts
+caught RPC fault: ignore-network
+caught RPC fault: fractional-height
+caught RPC fault: ignore-context
+caught RPC fault: one-provider-outcome
+caught RPC fault: retry-send
+caught RPC fault: ignore-blockhash
+caught RPC fault: ignore-envelope-id
+caught RPC fault: unreferenced-deadline
+All RPC faults caught; restored source passes
+Running fault campaign: signer/service-faults.ts
+caught service fault: accept-unsigned-bootstrap
+caught service fault: ignore-history-mode
+caught service fault: claim-key-isolation
+caught service fault: hide-recovery-error
+caught service fault: release-before-drain
+caught service fault: skip-work-drain
+caught service fault: skip-recovery-tracking
+caught service fault: allow-recovery-after-stop
+All service faults caught; restored source passes
+Running fault campaign: signer/socket-faults.ts
+caught socket fault: public-parent
+caught socket fault: unknown-method
+caught socket fault: empty-identity
+caught socket fault: unbounded-frame
+caught socket fault: unbounded-response
+caught socket fault: activity-deadline
+caught socket fault: replace-live-listener
+caught socket fault: hold-completed-slot
+caught socket fault: oversized-proposal
+All socket faults caught; restored source passes
+Running fault campaign: sdk/request-index-publication-faults.ts
+caught owned index publication fault: actual-owner
+caught owned index publication fault: kernel-owner
+caught owned index publication fault: closed-owner
+caught owned index publication fault: exclusive-maintenance
+caught owned index publication fault: captured-pins
+caught owned index publication fault: early-history
+caught owned index publication fault: late-cache
+caught owned index publication fault: record-boundary
+caught owned index publication fault: failed-writer
+caught owned index publication fault: pointer-shape
+caught owned index publication fault: prefix-head
+caught owned index publication fault: prior-digest
+caught owned index publication fault: prior-generation
+caught owned index publication fault: generation-inventory
+caught owned index publication fault: generation-bytes
+caught owned index publication fault: single-link
+caught owned index publication fault: short-write
+caught owned index publication fault: file-sync
+caught owned index publication fault: generation-sync
+caught owned index publication fault: generation-parent-sync
+caught owned index publication fault: pointer-sync
+caught owned index publication fault: final-sync
+caught owned index publication fault: final-owner
+caught owned index publication fault: final-pointer
+caught owned index publication fault: receipt-digest
+caught owned index publication fault: immutable-receipt
+caught owned index publication fault: descriptor-cleanup
+All owned request-index publication faults caught; sources restored
+Running fault campaign: ci/mutation-stop-faults.ts
+caught mutation stop fault: PID-boundary
+caught mutation stop fault: early-return
+caught mutation stop fault: pending-signal
+caught mutation stop fault: completed-signal
+caught mutation stop fault: initial-evidence
+caught mutation stop fault: completion-shape
+caught mutation stop fault: group-confirmation
+caught mutation stop fault: missing-completion-evidence
+All mutation stop faults caught; restored sources pass
+Running fault campaign: firewall/filter-faults.ts
+caught filter fault: configured-tools
+caught filter fault: cluster-pin
+caught filter fault: supported-tools
+caught filter fault: network-pin
+caught filter fault: own-network
+caught filter fault: copied-tools
+caught filter fault: frozen-arguments
+caught filter fault: byte-limit
+caught filter fault: byte-not-character-limit
+caught filter fault: depth-limit
+caught filter fault: call-envelope
+caught filter fault: config-accessors
+caught filter fault: captured-config-values
+caught filter coverage fault: firewall-critical-floor
+caught filter coverage fault: firewall-aggregate-floor
+caught filter coverage fault: firewall-instrumentation
+All filter faults caught; sources restored
+Running fault campaign: sdk/request-index-lookup-faults.ts
+caught owned request lookup fault: actual-capability
+caught owned request lookup fault: kernel-owner
+caught owned request lookup fault: closed-owner
+caught owned request lookup fault: failed-owner
+caught owned request lookup fault: maintenance
+caught owned request lookup fault: captured-identity
+caught owned request lookup fault: captured-pins
+caught owned request lookup fault: early-cache
+caught owned request lookup fault: late-cache
+caught owned request lookup fault: record-boundary
+caught owned request lookup fault: late-owner
+caught owned request lookup fault: loading-pointer
+caught owned request lookup fault: full-current-replay
+caught owned request lookup fault: disk-consultation
+caught owned request lookup fault: captured-history
+caught owned request lookup fault: tail-start
+caught owned request lookup fault: tail-response
+caught owned request lookup fault: tail-redemption
+caught owned request lookup fault: tail-signed
+caught owned request lookup fault: tail-started
+caught owned request lookup fault: tail-signing-response
+caught owned request lookup fault: tail-report
+caught owned request lookup fault: tail-settlement
+caught owned request lookup fault: final-pointer
+caught owned request lookup fault: current-endpoint
+caught owned request lookup fault: immutable-answer
+All owned request lookup faults caught; sources restored
+Running fault campaign: sdk/owned-request-admission-faults.ts
+caught owned admission fault: genuine-capability
+caught owned admission fault: proposal-capture
+caught owned admission fault: identity-capture
+caught owned admission fault: shared-message-copy
+caught owned admission fault: group-binding
+caught owned admission fault: time-capture
+caught owned admission fault: group-capture
+caught owned admission fault: height-capture
+caught owned admission fault: owned-disk-consultation
+caught owned admission fault: current-head
+caught owned admission fault: late-closure
+caught owned admission fault: payload-collision
+caught owned admission fault: historical-answer
+caught owned admission fault: historical-policy-retry
+caught owned admission fault: admission-identity
+caught owned admission fault: private-check-context
+caught owned admission fault: fifo
+caught owned admission fault: queue-rejection-recovery
+caught owned admission fault: reply-detachment
+caught owned admission fault: recursive-reply-freeze
+caught owned admission fault: collision-reply-freeze
+All owned admission faults caught; source restored
+Running fault campaign: sdk/replay-command-faults.ts
+caught replay command fault: external-trust
+caught replay command fault: divergence-exit
+caught replay command fault: complete-source
+caught replay command fault: fresh-source
+caught replay command fault: public-ceiling
+caught replay command fault: archive-ceiling
+caught replay command fault: public-utf8
+caught replay command fault: trust-fields
+caught replay command fault: nofollow
+caught replay command fault: nonblocking
+caught replay command fault: source-stability
+caught replay command fault: detail-redaction
+caught replay command fault: input-diagnostic
+All replay command faults caught; source restored
+Running fault campaign: sdk/owned-control-request-faults.ts
+caught owned control fault: genuine-capability
+caught owned control fault: error-code
+caught owned control fault: disk-evidence
+caught owned control fault: current-head
+caught owned control fault: late-close
+caught owned control fault: begin-identity
+caught owned control fault: begin-payload
+caught owned control fault: begin-collision
+caught owned control fault: finish-identity
+caught owned control fault: finish-payload
+caught owned control fault: start-hash
+caught owned control fault: immutable-response
+caught owned control fault: historical-time
+caught owned control fault: pending-only
+caught owned control fault: shared-fifo
+caught owned control fault: queue-recovery
+caught owned control fault: reply-detachment
+caught owned control fault: reply-freeze
+caught owned control fault: private-start
+caught owned control fault: private-response
+All owned control faults caught; exact source restored
+Running fault campaign: sdk/owned-guard-faults.ts
+caught owned facade fault: report-fifo
+caught owned facade fault: report-commit
+caught owned facade fault: report-outcome
+caught owned facade fault: report-decision
+caught owned facade fault: report-primitives
+caught owned facade fault: report-storage
+caught owned facade fault: release-fifo
+caught owned facade fault: release-text-fifo
+caught owned facade fault: release-bytes
+caught owned facade fault: release-refusal
+caught owned facade fault: release-storage
+caught owned facade fault: release-reply
+caught owned facade fault: release-prompt-shape
+caught owned facade fault: release-prompt-date
+caught owned facade fault: release-prompt-type
+caught owned facade fault: redemption-fifo
+caught owned facade fault: redemption-bytes
+caught owned facade fault: redemption-refusal
+caught owned facade fault: redemption-storage
+caught owned facade fault: redemption-reply
+caught owned facade fault: unrecorded-admission
+caught owned facade fault: unrecorded-collision
+caught owned facade fault: fresh-history
+caught owned facade fault: startup-capture
+caught owned facade fault: implicit-upgrade
+caught owned facade fault: index-evidence
+caught owned facade fault: startup-cleanup
+caught owned facade fault: error-code
+caught owned facade fault: surface-freeze
+caught owned facade fault: policy-freeze
+caught owned facade fault: private-history
+caught owned facade fault: fifo-status
+caught owned facade fault: identity-capture
+caught owned facade fault: payload-capture
+caught owned facade fault: answer-capture
+caught owned facade fault: shared-bytes
+caught owned facade fault: drain-close
+caught owned facade fault: refuse-after-close
+caught owned facade fault: recover-queue
+All owned facade faults caught; exact source restored
+{"ok":true,"failed":[],"skipped":[]}

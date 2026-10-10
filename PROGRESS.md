@@ -1,5 +1,13 @@
 # PROGRESS.md
 
+The unchanged maintained fault runner fails its uncached package campaign;
+reproduction records termination at the existing process limit. Sources restore
+and interrupted emitted files are rebuilt, CLAIMS S110. Execution-only cache
+qualification also times out and establishes no remedy. Partition three passes;
+partition one fails the unchanged H11 wait at its unmodified baseline. No
+campaigns are skipped, restored identities/typecheck pass, and the complete
+maintained gate fails. No gate, workload or deadline is changed.
+
 The exact private trusted-report revision has current-host Node 24 native,
 type and installed passes in `evals/release/node24-owned-report.md`; quiet AST
 fails the unchanged staged wait. Frozen mixed-history replay matches on both

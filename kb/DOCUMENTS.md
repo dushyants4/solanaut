@@ -1,5 +1,20 @@
 # DOCUMENTS.md — the document register
 
+2026-10-10 registers the current-day run continuation
+`runs/2026-10-10-codex-solanaut-1.md`; preserve the preceding dated record and
+all failed qualification evidence. No calendar override or gate change.
+
+2026-10-09 maintained-runner qualification registers `evals/ci/bite-current.md`,
+raw execution/source identity, HANDOFF and continuing run. Exact 227b0bb,
+unchanged inventory/partition/process limits; no complete gate claim yet.
+CLAIMS S110 records the actual partition failure, preserved changed emitted
+module, exact restoration and reproduced termination. The separate compile-cache
+experiment changes only execution configuration, not cases or deadlines.
+It also times out and is not adopted. All maintained campaigns execute without
+skips: partition three passes, partition one fails its unmodified H11 baseline,
+and partition two fails the package campaign. Final identities/typecheck pass;
+complete gate fails. PROGRESS, CLAIMS S110 and the evaluation index retain this.
+
 2026-10-09 bounded-retention proposal registers
 `design/ADR-023-bounded-owned-working-state.md`, HANDOFF H14 and the continuing
 run. It is proposed, not accepted: compact format, verified evicted-fact lookup,

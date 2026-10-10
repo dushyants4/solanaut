@@ -1,0 +1,7 @@
+{
+  "product_sources": [],
+  "evaluation_inputs": [],
+  "compiled_files": [
+    ".sandbox/releases/sdk/dist/src/request-index.js"
+  ]
+}

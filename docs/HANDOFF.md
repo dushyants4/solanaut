@@ -245,6 +245,27 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-10 calendar continuation: preserve the previous day's run and add the
+current-day continuation required by the unchanged close checker. Maintained
+fault results remain failed as in CLAIMS S110; no calendar override, approval
+inference or gate change. Local archival commit/backup follows, no push.
+
+2026-10-09 maintained runner: runtime/retention records are locally committed as
+`227b0bb`, with verified bundle/exact clean clone/full fsck. Clean close passes
+nine of ten, failing only deliberately unpushed HEAD. Run unchanged maintained
+fault partitions against that exact candidate, preserving process limits,
+source identity and all failures in `evals/ci/bite-current.md`. Individual script
+passes do not qualify the runner. No remote push or gate relaxation.
+Actual uncached partition two fails only the package campaign, with none skipped.
+The source fingerprint matches; an interrupted emitted module differs and is
+rebuilt before reuse. Same-limit diagnostic reproduces ETIMEDOUT/SIGTERM, CLAIMS
+S110. The separate scratch-cache invocation also times out; no remedy or cache
+status is inferred. Restore all bound emitted identities before reuse. Other
+maintained partitions complete: all 65 campaigns execute with none skipped.
+Partition three passes; partition one fails mutation recovery's unmodified
+baseline at the existing H11 wait, before its faults run. Final source and bound
+identities match and typecheck passes. Complete maintained qualification fails.
+
 2026-10-09 bounded-retention design: inspect current state, checkpoint and index
 construction. Propose ADR-023/H14 before changing compact format or resource
 admission; retain late replies, unresolved reservations, complete negative lookup
