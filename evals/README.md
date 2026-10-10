@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`sdk/adapter-buffer.md`: D40/ADP-1 reproduces raw-buffer aliases, privately copies
+captures and retains first failures, source/emitted trials and installed evidence.
+The first full native run fails the existing H11 wait; no stable gate is waived.
+
 `ci/adapter-wire-current.md`: exact D39 candidate's unchanged complete maintained
 runner fails mutation recovery and packaging; raw failures and interrupted
 emitted bytes remain alongside verified restoration, CLAIMS S120.

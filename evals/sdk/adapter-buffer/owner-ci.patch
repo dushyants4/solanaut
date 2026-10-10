@@ -1,0 +1,26 @@
+--- a/.github/workflows/ci.yml
++++ b/.github/workflows/ci.yml
+@@ -55,6 +55,23 @@
+       - name: latch fault injections
+         if: ${{ !cancelled() }}
+         run: npm run test:latch:faults
++      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0, existing harness pin
++        if: ${{ !cancelled() }}
++        with:
++          enable-cache: false
++      - name: serialized wallet boundary and faults
++        if: ${{ !cancelled() }}
++        run: |
++          mkdir -p .sandbox/solanaut-1/adapter-wire
++          npm pack ./.sandbox/releases/sdk --ignore-scripts --json --pack-destination .sandbox/solanaut-1/adapter-wire
++          uv run --script evals/sdk/adapter-wire/install.py
++          uv run --script evals/sdk/adapter-wire/faults.py
++          uv run --script evals/sdk/adapter-wire/faults.py --compiled
++          mkdir -p .sandbox/solanaut-1/adapter-buffer
++          npm pack ./.sandbox/releases/sdk --ignore-scripts --json --pack-destination .sandbox/solanaut-1/adapter-buffer
++          uv run --script evals/sdk/adapter-buffer/install.py
++          uv run --script evals/sdk/adapter-buffer/faults.py
++          uv run --script evals/sdk/adapter-buffer/faults.py --compiled
+ 
+   bite:
+     name: maintained fault campaigns (${{ matrix.partition }})

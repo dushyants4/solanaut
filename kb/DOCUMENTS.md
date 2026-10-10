@@ -1,5 +1,11 @@
 # DOCUMENTS.md — the document register
 
+2026-10-10 registers D40/ADP-1: SPEC 4.87, RISKS 1.79, SDK 20, OVERVIEW 58,
+adapter-buffer receipt/helpers/raw failures, CLAIMS S121, PROGRESS, HANDOFF, evaluation index,
+release map/staged draft and continuing run. Private byte ownership correction
+is archived as an unapplied patch after repeated H11 full-suite/AST failures;
+original source is restored. Earlier candidate evidence is separate.
+
 2026-10-10 registers maintained D39 fault receipt/raw failures/identity manifests,
 CLAIMS S120, PROGRESS, HANDOFF, evaluation index and continuing run. Actual
 unchanged runner fails; candidate restoration is not qualification.

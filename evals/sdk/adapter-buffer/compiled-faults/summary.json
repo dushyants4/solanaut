@@ -1,0 +1,9 @@
+{
+  "caught": [
+    "legacy-message-copy",
+    "versioned-message-copy",
+    "wire-copy"
+  ],
+  "sourceRestored": true,
+  "restoredStatus": 0
+}

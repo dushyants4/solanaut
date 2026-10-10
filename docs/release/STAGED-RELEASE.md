@@ -1,5 +1,12 @@
 # Staged devnet release — review draft
 
+Prepared local D40/ADP-1 patch privately copies raw buffer captures after
+reproduced alias failures. Its [separate receipt](../../evals/sdk/adapter-buffer.md)
+binds the patched private archive. Two full native runs and quiet AST fail the
+unchanged H11 wait; the patch remains unapplied, original product restored.
+Earlier D39's full maintained qualification also fails, CLAIMS S120.
+Neither candidate supplies a stable or staged publication decision.
+
 Later local D39/ADP-1 candidate corrects the serialised wallet send boundary;
 its [separate receipt and manifest](../../evals/sdk/adapter-wire.md) identify
 the newer private archive. Earlier f1e253f runtime/rebuild/preview evidence stays

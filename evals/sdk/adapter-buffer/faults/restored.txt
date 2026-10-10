@@ -1,0 +1,39 @@
+✔ ADP-1/ADR-009: RPC handoff privately captures raw ArrayBuffer wire (15.143485ms)
+✔ ADP-1/ADR-009: legacy admission privately captures raw ArrayBuffer message (3.503475ms)
+✔ ADP-1/ADR-009: versioned admission privately captures raw ArrayBuffer message (2.568399ms)
+✔ ADP-1/ADR-009: RPC handoff privately captures raw SharedArrayBuffer wire (4.239875ms)
+✔ ADP-1/ADR-009: legacy admission privately captures raw SharedArrayBuffer message (2.193194ms)
+✔ ADP-1/ADR-009: versioned admission privately captures raw SharedArrayBuffer message (3.061803ms)
+✔ ADP-1/ADR-009: adapter refuses different-message before RPC and retains the signed admission (19.331445ms)
+✔ ADP-1/ADR-009: adapter refuses different-message-admission-signature before RPC and retains the signed admission (3.945647ms)
+✔ ADP-1/ADR-009: adapter refuses invalid-signature before RPC and retains the signed admission (4.884124ms)
+✔ ADP-1/ADR-009: adapter refuses malformed-wire before RPC and retains the signed admission (3.678592ms)
+✔ ADP-1/ADR-009: adapter sends one captured valid wire without invoking serialization again (4.413319ms)
+✔ ADP-1/ADR-009: serializer erasing an already verified signature cannot release its reservation (6.039418ms)
+✔ ADP-1/ADR-009: failed unknown bookkeeping still strips signatures and refuses before RPC (3.959968ms)
+✔ guardedWallet exposes exactly BaseWallet's members, frozen, and never the wallet it wraps (7.969794ms)
+✔ guardedWallet refuses a wallet whose key is outside the policy's principal, or no RPC to send through (1.540454ms)
+✔ signTransaction: an allowed payment is signed by the wrapped wallet; a drain throws SolanautDenied before the wallet is asked (36.194585ms)
+✔ the adapters give the same verdicts as the SDK, for legacy and v0 transactions (28.960751ms)
+✔ a re-sign of the same payment while the first could still land throws intent-in-flight (3.580079ms)
+✔ a wallet that changes the message before signing it is caught: its signatures are stripped, and the call throws (2.266504ms)
+✔ a wallet whose signature does not verify over the admitted bytes is caught (2.006257ms)
+✔ a wallet that signs a whole batch in place but returns it short: every caller object is stripped, and what was signed is held, not released (4.669674ms)
+✔ wallet-changed-message carries no decision, on guardedWallet (guardedSigner: its own test) (2.38275ms)
+✔ signAllTransactions is all or nothing: one denial signs none, and the admitted ones are released (9.127135ms)
+✔ signAndSendTransaction: checks, signs, sends exactly the admitted bytes itself, and reports the outcome (7.816075ms)
+✔ a send the RPC refuses is reported failed, and rethrown (6.542144ms)
+✔ a send whose fate is unknown is reported unknown, not failed: the signed bytes may still land, so a re-sign is refused (5.876607ms)
+✔ D14, sign-only: before the next proposal, guardedWallet reads the outcome of what it signed and reports it (5.377645ms)
+✔ D14, sign-only: a payment seen but not yet confirmed is not reported, and without a status reader the guard holds the intent (6.189411ms)
+✔ signMessage is denied: a raw signature over chosen bytes can be a transaction signature (0.605947ms)
+✔ guardedSigner: checks every transaction first, all or nothing, reads expiry from the lifetime, and verifies the signatures it returns (24.417643ms)
+✔ jsonRpc: sends base64 bytes, reads the height, and turns signature statuses into outcomes (3025.771767ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3660.707235

@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.86** · 2026-10-10 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.87** · 2026-10-10 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -545,6 +545,7 @@ Each is fixed test-first: the evaluator writes the failing test, and the builder
 | D37 | A reported completed write can be acknowledged without the expected physical append delta | local `72dde39`, reproduced with write-result suppression and actual extra append on 2026-10-09 | **corrected in the builder candidate:** require the post-sync descriptor size to equal prior size plus canonical entry bytes before acknowledgement/cache mutation. Preserve fault misses and positive nonempty-journal controls in `evals/sdk/record-write-completion.md`. Wider qualification remains pending; this is observed storage consistency, not authenticated content |
 | D38 | Journal or mutex replacement during append can still be acknowledged through the old descriptor | local `3fe0f0d`, actual inode replacements reproduced on 2026-10-09 | **corrected in the builder candidate:** after syncing, verify held mutex and current named journal identity before size validation/cache mutation. Preserve both inodes and foreign markers; permanently fail on mismatch. `evals/sdk/record-write-identity.md` retains initial failures. Wider qualification remains pending; the signer host remains trusted |
 | D39 | Wallet message inspection and serialisation can disagree, allowing changed or malformed wire bytes to reach RPC | local b5498e8, reproduced on 2026-10-10 | **corrected in the builder candidate:** capture serialised bytes once, decode and compare the admitted message, verify its wallet signature before RPC. Preserve already verified signing as unknown even if serialisation erases the object signature; strip caller/returned signatures on refusal. Initial failures and adversarial cases: `evals/sdk/adapter-wire.md`; full release qualification remains separate |
+| D40 | Raw buffer serializer returns leave admitted messages or verified wire aliased to externally mutable storage | local 32abc73, reproduced on 2026-10-10 | **open; correction prepared as an unapplied patch:** privately copy both legacy/versioned object-message captures and serialised send wire. `evals/sdk/adapter-buffer.md` preserves six first failures and exact source/emitted faults. Both full native runs and quiet AST fail H11; restore original source rather than integrate without the required green suite. Deterministic alias tests are not concurrent scheduler or isolated-service qualification |
 
 **Status:** closed at milestone 2a.5 (`evals/sdk/admission.md`), test-first: D1, D2, D5, D6, D7, D9, D10 and D12. D12
 closed early: the guard decodes bytes itself, so `packages/sdk/src` imports no web3.js. D11 closed at milestone 2a.6
@@ -1041,7 +1042,7 @@ wallet/RPC authority, public method, policy rule or signer budget expansion.
 
 | ID | Requirement | Verified by |
 |---|---|---|
-| ADP-1 | The sending adapter captures serialised wire once and verifies its admitted message and wallet signature before RPC. Invalid/malformed wire refuses as wallet-changed-message and strips exposed object signatures even if unknown reporting fails. Previously verified signing remains unresolved if serialisation erases evidence; no premature reservation release | altered message/signature/malformed wire, destructive serializer, failed-report cleanup, one-call positive control and source/installed fault cases |
+| ADP-1 | The sending adapter privately copies admitted messages and serialised wire, including raw ArrayBuffer/SharedArrayBuffer returns, and verifies the admitted message and wallet signature before RPC. Invalid/malformed wire refuses as wallet-changed-message and strips exposed object signatures even if unknown reporting fails. Previously verified signing remains unresolved if serialisation erases evidence; no premature reservation release | altered message/signature/malformed wire, raw-buffer aliasing at admission/send, destructive serializer, failed-report cleanup, one-call positive control and source/installed fault cases |
 
 ## Changes
 
@@ -1485,6 +1486,7 @@ Evidence: `evals/sdk/owned-release.md`.
 | Draft 4.84 | 2026-10-09 | Queue private trusted SDK reports with caller attribution and current journal time; preserve reservations on failed writes and used receipts across outcomes/restart. Primitive inputs refuse coercions; no socket/RPC authority or root export. Preserve absent-method failures and stalled FIFO fixture, adding cleanup. Definition 45/seed 45691 retains prior inputs/limits. Isolated lifecycle, bounded state and stable qualification remain owed. |
 | Draft 4.85 | 2026-10-10 | Queue captured signing-history facts through the private facade under ADR-019; delegate the existing verifier and synced append, return immutable detached entries, drain before close. Preserve finality, unknown reservations and restart no-resend. No signing, sending, keys, root export, socket method or bounded-state claim. |
 | Draft 4.86 | 2026-10-10 | D39/ADP-1 verifies one captured serialised wire before RPC, retains already verified signing on destructive serialisation and preserves cleanup on failed reporting. Initial failures and source/emitted/installed regressions are retained; existing SDK trust, public methods, policy and signer budget remain unchanged. |
+| Draft 4.87 | 2026-10-10 | D40/ADP-1 privately copies raw buffer returns at legacy/versioned message capture and serialised send. Preserve reproduced alias failures and earlier D39 evidence; no public method or trust boundary change. |
 
 Internal SNP-5/7 convention under ADR-019: private `report(hash, outcome)` queues
 the existing trusted SDK report operation with admission, control, redemption,

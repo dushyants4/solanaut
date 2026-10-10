@@ -1,5 +1,11 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
+Raw ArrayBuffer/SharedArrayBuffer serializer returns must be privately copied:
+a Uint8Array view can otherwise change after admission or wire verification.
+The deterministic alias failures and prepared correction are in `evals/sdk/adapter-buffer.md`.
+The patch remains unapplied because full native/coverage fail H11; D40 remains
+open in current source. Caller/key/RPC trust remains the SDK's assumption.
+
 The wallet adapter now validates the captured serialised wire before RPC under
 ADR-009. An object can report a valid message while serialising different bytes;
 serialisation can also erase a previously verified signature. Such refusal keeps
@@ -27,7 +33,7 @@ the writer permanently. This checks physical byte count under the trusted host
 boundary; it does not detect every same-size concurrent modification or prove
 power-loss durability. Evidence: `evals/sdk/record-write-completion.md`.
 
-> **1.78** · 2026-10-10 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.79** · 2026-10-10 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 Local-only commits now replace the previous standing push grant. The unchanged

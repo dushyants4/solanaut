@@ -1,0 +1,14 @@
+✔ ADP-1/ADR-009: RPC handoff privately captures raw ArrayBuffer wire (18.886539ms)
+✔ ADP-1/ADR-009: legacy admission privately captures raw ArrayBuffer message (2.665505ms)
+✔ ADP-1/ADR-009: versioned admission privately captures raw ArrayBuffer message (2.035931ms)
+✔ ADP-1/ADR-009: RPC handoff privately captures raw SharedArrayBuffer wire (3.688439ms)
+✔ ADP-1/ADR-009: legacy admission privately captures raw SharedArrayBuffer message (1.744039ms)
+✔ ADP-1/ADR-009: versioned admission privately captures raw SharedArrayBuffer message (1.608995ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 248.086077

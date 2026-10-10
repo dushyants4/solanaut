@@ -1,7 +1,12 @@
 # Solanaut 1.0 — current release evidence map
 
-2026-10-10 · private operator/archivist preparation · latest local D39 wallet
-candidate is bound in [its component receipt](../../evals/sdk/adapter-wire.md), CLAIMS S119.
+2026-10-10 · private operator/archivist preparation · prepared D40 wallet
+patch privately copies raw buffer captures, with reproduced aliases and
+installed evidence in [its component receipt](../../evals/sdk/adapter-buffer.md).
+Both full native runs and quiet AST fail H11. The patch remains unapplied and
+original product inputs are restored; no release freeze or qualification follows.
+Earlier D39 component evidence remains [separate](../../evals/sdk/adapter-wire.md),
+CLAIMS S119. Its actual unchanged full maintained gate fails, CLAIMS S120.
 Earlier f1e253f Node 24 native/type/installed passes and quiet AST wait failure
 remain scoped to [their exact runtime receipt](../../evals/release/owned-signing-current.md), CLAIMS S113.
 Earlier Node 24 evidence belongs to 4addaa4. This maps the approved mission to receipts and remaining work. It is not

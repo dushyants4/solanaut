@@ -1,5 +1,11 @@
 # PROGRESS.md
 
+D40's prepared patch privately owns wallet message/wire captures, including raw buffer returns.
+Six first failures, source/emitted omission trials and actual installed cases
+are preserved in adapter-buffer. The first full native run fails H11's unchanged
+wait; the unchanged diagnostic and quiet AST fail too. The patch is archived
+unapplied rather than integrated without the required green full suite.
+
 Actual unchanged full maintained fault qualification of 71a1ef4 fails mutation
 recovery and packaging, with no skipped campaigns, CLAIMS S120. Interrupted
 emitted bytes are preserved; rebuild restores every bound candidate identity.

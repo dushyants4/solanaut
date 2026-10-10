@@ -245,8 +245,28 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 | O2 | evals/packaging/faults.ts | Exact unapplied diff: `evals/packaging/parallel-experiment/owner-draft.patch`; retain all fault declarations and original initial control, import the measured isolated runner and replace sequential mutation with its complete execution. Add `node --test evals/packaging/parallel-experiment.test.mjs` to maintained qualification and verify cleanup/partial refusal before acceptance. | S111 prototype catches the entire original population inside the unchanged outer deadline; S110 actual maintained gate remains failed. Extra original control and changed entry point need fresh owner qualification. No process limit or readiness target changes. | no |
 | O3 | Proposed parallel package runner | Exact unapplied diff: `evals/packaging/parallel-lifecycle/corrected/termination-owner.patch`; send SIGTERM once per owned child group, escalate to SIGKILL after the declared grace if still live, clear escalation on close. Combine with O2 and freshly qualify unchanged full populations/entry point before adoption. | S114 observes ignored SIGTERM leaving the original proposed parent waiting. Corrected fixture refuses incomplete execution; missing/late escalation and false completion are caught. Nominal S111 completion is not universal termination evidence. Maintained gate/deadline remain unchanged. | no |
 | O4 | .github/workflows/ci.yml | Exact unapplied diff: `evals/sdk/adapter-wire/owner-ci.patch`; use the existing pinned uv action in runtime jobs, pack the private SDK, execute actual installed ADP-1 cases and source/emitted fault trials. Retain all current steps, runtime matrix and limits. | D39's new wire boundary has local tests/fault evidence; protected CI needs owner application and exact hosted/runtime qualification. `git apply --check` accepts the draft. No deadline, assertion, population or threshold is weakened. | no |
+| O5 | .github/workflows/ci.yml | Exact unapplied combined diff: `evals/sdk/adapter-buffer/owner-ci.patch`; supersedes O4's application by retaining its installed/source/emitted trials and adding D40 private-buffer installation and copy-omission trials. | Private raw-buffer ownership has local fault evidence. Existing pinned action, runtime matrix, job limits and earlier gates stay unchanged. Read-only patch validation passes; owner application and exact hosted/matrix qualification remain owed. | no |
 
 ## 7. Codex's log
+
+O5 application depends on D40 source/test integration and fresh complete gate
+qualification; its exact draft is not an executable substitute for that work.
+
+D40 final disposition: both full native runs and quiet AST fail the unchanged
+H11 wait. Preserve all failures/counters and exact candidate source/test patch
+in adapter-buffer, S121. Restore original product/test inputs; the private-copy
+correction is **prepared, not integrated** until required full checks pass.
+No deadline change, native pass, milestone, public preview or waiver follows.
+O5 remains a read-only validated unapplied combined CI draft.
+
+2026-10-10 S120 evidence committed as 32abc73; complete local bundle verifies,
+exact restore is clean and full Git integrity succeeds. Clean close passes nine
+of ten, failing only intentionally unpushed HEAD. No remote action occurs.
+
+D40/ADP-1 reproduces raw-buffer aliasing at admission and RPC handoff. Six first
+failures are preserved separately; privately copy each capture. Source/emitted
+omission trials and actual installed public export pass; prior S119 evidence is
+not overwritten. Public methods and SDK/key/RPC trust remain unchanged.
 
 2026-10-10 the actual unchanged full maintained runner on 71a1ef4 attempts every
 campaign and fails mutation recovery and packaging, skipping none, S120.

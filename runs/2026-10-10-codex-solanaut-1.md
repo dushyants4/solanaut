@@ -7,6 +7,26 @@ push. Preserve all release, independent and human gates.
 
 ## Did
 
+D40 preparation close passes eight of ten: only dirty tree and intentionally
+unpushed HEAD fail. Secret, boundary, claims, vault and harness checks pass.
+This is a T1 archival step: live product/test inputs remain exactly the already
+verified D39 source, while D40's unqualified correction is preserved as a patch.
+
+D40 final diagnostic repeats H11 (900/901), as did native and quiet AST. Preserve
+all output/counters and exact source/test candidate.patch plus input snapshots.
+Before deferral, every bound candidate source/evaluation/emitted/archive identity
+matches. Restore original product/test inputs and emitted build; the correction
+stays prepared rather than integrated with a failing required full suite.
+Read-only candidate/combined CI patch validation succeeds. D40 remains open.
+
+Commit S120 as 32abc73, verify complete local bundle and exact clean restore/full
+Git integrity. Clean close passes nine of ten, failing only intentionally
+unpushed HEAD. Then reproduce D40's raw ArrayBuffer/SharedArrayBuffer aliases:
+all six cases fail before implementation. Privately copy both object-message
+branches and serialised wire. Source/emitted copy-omission mutations and actual
+offline installed cases pass. New helpers/evidence are separate from S119.
+No public methods, signer scope, protected gate or trusted SDK assumptions change.
+
 The complete maintained run on 71a1ef4 finishes with mutation recovery and
 packaging failed, no skipped campaigns. Archive all output and the interrupted
 emitted request-index module before release rebuild. All bound source,
@@ -159,6 +179,20 @@ This dated continuation satisfies the current-day run-record requirement without
 changing the close checker or discarding the preceding record.
 
 ## Found
+
+D40 quiet serial AST likewise passes 900 of 901, failing H11's unchanged wait.
+Preserve full output and all raw counters; no floor pass is produced. Run one
+unchanged native diagnostic after the failed checks to record repeatability,
+not to waive the failure or infer wait acceptance. Definitions remain unchanged.
+
+D40's first complete native run passes 900 of 901 cases, failing only H11's
+unchanged real staged-baseline wait. Archive this failure separately. No full
+native pass or wait acceptance follows; quiet serial AST is separate evidence.
+
+D40 confirms the earlier alias suspicion: raw buffers create views, allowing
+admission or send bytes to change after checking. Six failures are archived
+before correction. A document patch with repeated target operations is rejected
+without edits; correct its structure, not the protected patch tool.
 
 The unchanged full maintained gate fails mutation recovery and packaging on
 71a1ef4, S120. Preserve the generated mismatch before rebuilding, and verify
