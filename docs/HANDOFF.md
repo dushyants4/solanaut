@@ -230,6 +230,8 @@ Codex appends; the human answers in place. Open at the transfer:
 
 | H10 | 2026-10-06 | anchor program / ANC-1 | **Decision requested:** accept or reject `design/ADR-022-anchor-enrolment-and-rotation.md`. Accepted ADR-020 requires operator enrolment/rotation, but ANC-1 still specifies only `anchor(head, seq)` without its ceremony account contract. Proposal: explicit enrol/anchor/rotate instructions with a stable operator namespace and preserved history. This changes the accepted instruction surface; no dependent program implementation until acceptance. Generic externally pinned archive verification is independent and can proceed. |
 
+| H14 | 2026-10-09 | SNP-7 compact owned retention | **Decision requested:** accept or reject `design/ADR-023-bounded-owned-working-state.md`. Existing state/checkpoint/index construction retains full history; deleting maps would lose late lifecycle and duplicate-request evidence. Proposal: separately versioned compact owned checkpoints, verified disk consultation for evicted facts, explicit operator-owned active-decision/pending-control capacity with durable pre-admission refusal, and maintenance reconstruction for window extensions. No limit values, dependency, migration or signer expansion is authorised before acceptance; all readiness targets stay unchanged. Independent component and runtime work continues. |
+
 ## 6. Owed edits, to files Codex may not change
 
 Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.codex/`, `.claude/`,
@@ -242,6 +244,25 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 | O1 | AGENTS.md, build convention | Replace `TypeScript run natively by Node 26, with no build step; ESM;` with `TypeScript run natively by Node 26 for development; a release-only build emits JavaScript and declarations for npm consumers; ESM;` | Explicitly approved by the human in the Solanaut 1.0 mission. | no |
 
 ## 7. Codex's log
+
+2026-10-09 bounded-retention design: inspect current state, checkpoint and index
+construction. Propose ADR-023/H14 before changing compact format or resource
+admission; retain late replies, unresolved reservations, complete negative lookup
+and policy-window reconstruction. No dependent implementation or threshold
+change. Architect-seat references `kb/PATTERNS.md` and `kb/GAPS.md` are absent
+in this repository; do not search another project's workspace for them.
+
+2026-10-09 Node 24 follow-up: queued trusted reports are locally committed as
+`4addaa4`, with verified bundle, exact clean clone and full fsck. Clean close
+passes nine of ten, failing only deliberately unpushed HEAD. Qualify the exact
+candidate in the already installed Node 24.19.0 environment; retain definition
+45, prior inputs, floors, waits and limits. No installation, remote push or
+H9/H11 acceptance. Evidence is `evals/release/node24-owned-report.md`.
+All 879 native and nineteen installed cases pass; typecheck passes. Quiet serial
+AST executes 879: 878 pass and the unchanged staged wait fails, with no floor
+pass. All 144 retained compiled faults catch/restored and bound identities
+match. Frozen mixed-history replay matches its existing digest under both local
+runtimes, CLAIMS S109. No complete matrix or stable qualification.
 
 2026-10-09 private trusted report: crash receipt is locally committed as
 `ae6ba56`, with verified bundle/exact clean clone/full fsck; clean close fails

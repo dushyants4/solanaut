@@ -1,5 +1,11 @@
 # evals/ — receipts
 
+Node 24 follow-up: `release/node24-owned-report.md` qualifies exact private
+4addaa4 under the already installed runtime. Preserve all existing inputs and
+limits. Native/type/installed/compiled checks pass with restored identities;
+quiet AST fails the unchanged staged wait. Frozen replay matches on both local
+runtimes, CLAIMS S109; no complete matrix or stable claim.
+
 Private trusted SDK report: `sdk/owned-report.md` retains absent-method failures,
 initial stalled FIFO fixture and installed prior-candidate failure. Queued caller
 reporting is not authoritative isolated reporting. Native/type/source/compiled

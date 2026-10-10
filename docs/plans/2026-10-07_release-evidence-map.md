@@ -1,7 +1,7 @@
 # Solanaut 1.0 — current release evidence map
 
 2026-10-09 · private operator/archivist preparation · reviewed implementation
-701372e with existing Node 24 qualification in progress. This maps the approved mission to receipts and remaining work. It is not
+4addaa4 with existing Node 24 qualification in progress. This maps the approved mission to receipts and remaining work. It is not
 a release decision, support claim or substitute for SPEC/READINESS gates.
 
 The approved Beta remains the achieved milestone. Local component validation is
@@ -60,18 +60,24 @@ tail requests created after publication, policy changes and uncertain sends.
 The internal [owned proposal companion](../../evals/sdk/owned-request-admission.md)
 provides serialized proposal lookup-to-commit consultation. The newer private
 [facade](../../evals/sdk/owned-guard.md) keeps the mutable guard private and queues
-admission, status, control, redemption, operator release and closure. Component
+admission, status, control, redemption, trusted SDK reports, operator release and closure. Component
 receipts preserve durable reply checks and fault findings. All historical maps
-remain retained. Signing/report lifecycle completion, disk-backed state pruning
+remain retained. The [trusted report component](../../evals/sdk/owned-report.md)
+records caller attribution and does not qualify isolated chain reconciliation.
+Signing lifecycle completion, disk-backed state pruning
 and actual owned streamed restoration remain required; the facade does not close
 the bounded-memory gate.
 
-Current [record read completion](../../evals/sdk/record-read-completion.md)
-passes corrected native/type/serial AST/floors with retained source/compiled
-faults, CLAIMS S103. All earlier failed runs remain archived. Existing Node 24
-native/type/installed checks pass, but its quiet AST fails the unchanged staged
-wait; all retained compiled faults catch and restored bound identities match,
-CLAIMS S104. Hosted execution remains
+Earlier [record read completion](../../evals/sdk/record-read-completion.md)
+passes corrected native/type/serial AST/floors, CLAIMS S103; that result belongs
+to its exact candidate. Later physical append completion and post-sync identity
+components retain source/installed faults and quiet AST failures, CLAIMS S105–106.
+The newest trusted-report candidate passes native/type/source/installed/compiled
+checks with exact restored identities, CLAIMS S108, but its quiet serial AST
+fails the unchanged staged wait. Existing Node 24 follows the exact new revision
+in [its runtime receipt](../../evals/release/node24-owned-report.md). The previous
+complete-read Node 24 result remains distinct, CLAIMS S104. All earlier failed
+runs remain archived. Hosted execution remains
 account-blocked under H13, and no remote push is authorised. Neither a local pass
 nor a started hosted/runtime process supplies missing qualification.
 
@@ -81,6 +87,12 @@ streamed restoration. Preserve payload identity, unresolved reservations, used
 receipts, latch and the full evidence history. A cache cannot authorise a negative
 lookup unless its complete history binding is established; corrupted or missing
 index state must rebuild from verified history or refuse.
+
+The inspected compact-state and resource-admission choices are now explicit in
+[proposed ADR-023](../../design/ADR-023-bounded-owned-working-state.md), H14.
+It preserves late lifecycle evidence, authenticated absence and maintenance
+reconstruction after window extension. No compact format or capacity policy is
+accepted or implemented; independent work continues while that decision waits.
 
 Do not wire additional signer implementation past the pending budget decision.
 Exact published Phantom MCP routes return after broadcast. The separately

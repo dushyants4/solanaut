@@ -12,6 +12,18 @@ each component. Preserve every accepted security and release gate.
 
 ## Did
 
+Inspect remaining full-history state, checkpoint and index construction.
+Write proposed ADR-023 and queue H14 before compact-format or resource-admission
+changes. Preserve late replies, unresolved attempts, authenticated absence and
+policy-window reconstruction; no dependent implementation or gate change.
+Architect-seat references to kb/PATTERNS.md and kb/GAPS.md are absent here;
+record the missing references without reading another project's workspace.
+
+Commit private trusted reports locally as `4addaa4`; verify source-history bundle
+and clean exact clone/full fsck. Clean close passes nine of ten, failing only
+deliberately unpushed HEAD. Qualify that exact candidate under already installed
+Node 24.19.0 with unchanged definition 45; no tool installation or pin change.
+
 Continue the private facade with queued trusted SDK report under ADR-019. Seven
 absent-method cases fail first. Delegate existing durable caller-attributed
 outcomes, require primitive inputs, keep current journal time and fixed errors.
@@ -303,6 +315,15 @@ Current-day run record and project register; subsequent replay component paths
 and qualification evidence will be recorded as work proceeds.
 
 ## Found
+
+Current runtime/retention-record pre-commit close passes eight of ten: dirty
+tree and deliberately unpushed HEAD fail; all other close checks pass.
+
+Exact `4addaa4` Node 24 qualification passes native/type/installed/compiled
+checks with restored identities. Quiet serial AST executes 879: 878 pass and
+the unchanged staged wait fails; preserve all reports with no floor pass.
+Frozen mixed-history replay matches its existing head under both local runtimes.
+No complete matrix, installed Ubuntu, independent or stable qualification.
 
 Private trusted-report pre-commit close passes eight of ten: only the dirty tree
 and deliberately unpushed HEAD fail. Secret, claims, knowledge and boundary

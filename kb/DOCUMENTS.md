@@ -1,5 +1,22 @@
 # DOCUMENTS.md — the document register
 
+2026-10-09 bounded-retention proposal registers
+`design/ADR-023-bounded-owned-working-state.md`, HANDOFF H14 and the continuing
+run. It is proposed, not accepted: compact format, verified evicted-fact lookup,
+explicit resource refusal and maintenance window reconstruction. No dependent
+code, measured memory/restart result, gate change or stable qualification.
+
+2026-10-09 Node 24 follow-up registers `evals/release/node24-owned-report.md`,
+its runtime evidence, HANDOFF and continuing run. Exact locally committed
+4addaa4, unchanged definition 45, existing Node 24.19.0; qualification continues.
+All retained compiled faults catch and restored candidate identities match.
+CLAIMS S109 records native/type/installed passes, failed unchanged quiet AST wait
+and frozen replay matching on both local runtimes. TOOLCHAIN evidence and
+PROGRESS are updated without changing pins, floors or milestone achievement.
+No installation, pin change or complete runtime/Ubuntu/stable claim. The current
+release evidence map distinguishes the newer report and append components from
+the older complete-read coverage pass; isolated and bounded-state gaps remain.
+
 2026-10-09 private trusted reporting registers SPEC Draft 4.84/SNP-5/7, OVERVIEW
 55, RISKS 1.76, PROGRESS, HANDOFF, continuing run, `evals/sdk/owned-report.md`
 and its index. Preserve seven absent-method failures, initial FIFO fixture stall

@@ -1,5 +1,11 @@
 # PROGRESS.md
 
+The exact private trusted-report revision has current-host Node 24 native,
+type and installed passes in `evals/release/node24-owned-report.md`; quiet AST
+fails the unchanged staged wait. Frozen mixed-history replay matches on both
+local runtimes, CLAIMS S109. Compact owned retention/resource refusal is proposed
+in ADR-023/H14 and remains unimplemented pending acceptance. No milestone closes.
+
 Private queued trusted SDK reports are being qualified under ADR-019. Seven
 absent-method tests fail first; the FIFO fixture's initial stalled read is
 preserved and corrected with cleanup. Source/type/installed checks are in

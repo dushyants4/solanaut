@@ -25,6 +25,10 @@ configuration or development pin change is performed. Current-host evidence is
 runtime matrix remain unqualified. The newer exact `701372e` follow-up is
 `evals/release/node24-read-completion.md` (CLAIMS S104): no installation or pin
 change, native/type/installed passes and a failed unchanged quiet AST wait.
+The newest exact `4addaa4` candidate is recorded in
+`evals/release/node24-owned-report.md` (CLAIMS S109): existing Node 24,
+unchanged private artefact, no installation or pin change. Runtime passes and
+failed coverage remain distinct; this does not qualify the complete matrix.
 
 `~/.bashrc` carries one block, added 2026-09-27:
 
