@@ -1,0 +1,71 @@
+✖ ADP-1/ADR-009: adapter refuses different-message before RPC and retains the signed admission (12.334135ms)
+✖ ADP-1/ADR-009: adapter refuses different-message-admission-signature before RPC and retains the signed admission (2.439843ms)
+✖ ADP-1/ADR-009: adapter refuses invalid-signature before RPC and retains the signed admission (1.758062ms)
+✖ ADP-1/ADR-009: adapter refuses malformed-wire before RPC and retains the signed admission (1.836476ms)
+✔ ADP-1/ADR-009: adapter sends one captured valid wire without invoking serialization again (2.284141ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 1
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 142.988497
+
+✖ failing tests:
+
+test at packages/sdk/test/adapter-wire.test.ts:23:128
+✖ ADP-1/ADR-009: adapter refuses different-message before RPC and retains the signed admission (12.334135ms)
+  AssertionError [ERR_ASSERTION]: caller signatures are stripped
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/adapter-wire.test.ts:29:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/adapter-wire.test.ts:23:128
+✖ ADP-1/ADR-009: adapter refuses different-message-admission-signature before RPC and retains the signed admission (2.439843ms)
+  AssertionError [ERR_ASSERTION]: caller signatures are stripped
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/adapter-wire.test.ts:29:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/adapter-wire.test.ts:23:128
+✖ ADP-1/ADR-009: adapter refuses invalid-signature before RPC and retains the signed admission (1.758062ms)
+  AssertionError [ERR_ASSERTION]: caller signatures are stripped
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/adapter-wire.test.ts:29:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/adapter-wire.test.ts:23:128
+✖ ADP-1/ADR-009: adapter refuses malformed-wire before RPC and retains the signed admission (1.836476ms)
+  AssertionError [ERR_ASSERTION]: caller signatures are stripped
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/adapter-wire.test.ts:29:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

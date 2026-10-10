@@ -1,0 +1,1 @@
+{"archiveSha256": "0cd0d7238242afb7a7b33592f89b6c92cc903fa22df739fd0311dc2b6d707cab", "changed": {"product_sources": ["packages/sdk/src/adapters/agent-kit.ts"], "evaluation_inputs": ["packages/sdk/test/adapter-wire.test.ts", "evals/sdk/adapter-wire/faults.py", "evals/sdk/adapter-wire/install.py"], "compiled_files": [".sandbox/releases/sdk/dist/src/adapters/agent-kit.js"]}}

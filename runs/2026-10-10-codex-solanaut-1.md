@@ -7,6 +7,31 @@ push. Preserve all release, independent and human gates.
 
 ## Did
 
+The final D39 bookkeeping-failure fixture exposes missed cleanup/raw reporting
+errors. Preserve the failing injected-method case and the earlier native/AST
+passing artefact with all counters/source/test snapshots. Strip signatures first,
+retain the original admission on failed unknown reporting and return the fixed
+wallet refusal. Seven focused/combined cases, five source/emitted faults, actual
+installed cases, full native/type and final quiet serial AST/floors pass; all
+current bound identities match after coverage. Both passing candidates' raw
+counters and input snapshots remain distinct. Exact
+unapplied CI edit is O4 and passes read-only patch validation; no gate changes.
+
+Inspect accepted ADR-009's send boundary. Reproduce different-message, invalid-
+signature and malformed serialisation reaching RPC; preserve first failures.
+Capture/decode/verify one wire before sending. Initial valid-byte fixture compared
+Buffer with Uint8Array; preserve that failure and correct its representation
+before implementation. Further adversarial serialisation erases a verified
+signature and the first correction incorrectly expires its reservation. Preserve
+that new first failure; capture the already verified transaction identity and
+record unknown on local refusal, stripping signatures without freeing admission.
+All source fault trials catch omission of message/signature checks, reservation
+retention and single serialisation. Existing adapter cases remain green.
+Full ordinary/type, regenerated actual installed artefact and quiet serial AST
+with unchanged floors pass, S119. Earlier H11 failures are retained, with no wait
+acceptance or hosted/maintained/full release credit. New candidate inputs/archive
+match after coverage; original previous manifests/archive remain intact.
+
 Commit entry/rebuild evidence as f4f3d92; verify complete local bundle, exact clean
 restore and integrity check. Clean close passes nine of ten, failing only
 intentionally unpushed HEAD. Run the unchanged actual PUB-1 history inspector on

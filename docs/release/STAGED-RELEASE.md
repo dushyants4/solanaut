@@ -1,6 +1,11 @@
 # Staged devnet release — review draft
 
-Current engineering review, 2026-10-10: unchanged product `f1e253f`, with private
+Later local D39/ADP-1 candidate corrects the serialised wallet send boundary;
+its [separate receipt and manifest](../../evals/sdk/adapter-wire.md) identify
+the newer private archive. Earlier f1e253f runtime/rebuild/preview evidence stays
+historical and supplies no replacement freeze or clearance for this correction.
+
+Earlier engineering review, 2026-10-10: product `f1e253f`, with private
 signing-journal and exact current Node 24 evidence, CLAIMS S112/S113. The original preview manifests
 below remain historical evidence; no replacement preview freeze or clearance is
 inferred. New component evidence is [read completion](../../evals/sdk/record-read-completion.md),

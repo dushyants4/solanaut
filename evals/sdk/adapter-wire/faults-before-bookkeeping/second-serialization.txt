@@ -1,0 +1,33 @@
+✔ ADP-1/ADR-009: adapter refuses different-message before RPC and retains the signed admission (11.107781ms)
+✔ ADP-1/ADR-009: adapter refuses different-message-admission-signature before RPC and retains the signed admission (2.196038ms)
+✔ ADP-1/ADR-009: adapter refuses invalid-signature before RPC and retains the signed admission (2.155719ms)
+✔ ADP-1/ADR-009: adapter refuses malformed-wire before RPC and retains the signed admission (1.4205ms)
+✖ ADP-1/ADR-009: adapter sends one captured valid wire without invoking serialization again (2.59627ms)
+✔ ADP-1/ADR-009: serializer erasing an already verified signature cannot release its reservation (1.359084ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 134.551528
+
+✖ failing tests:
+
+test at packages/sdk/test/adapter-wire.test.ts:36:1
+✖ ADP-1/ADR-009: adapter sends one captured valid wire without invoking serialization again (2.59627ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  2 !== 1
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/adapter-wire.test.ts:40:54)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

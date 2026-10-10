@@ -1,0 +1,13 @@
+{
+  "product_sources": [
+    "packages/sdk/src/adapters/agent-kit.ts"
+  ],
+  "evaluation_inputs": [
+    "packages/sdk/test/adapter-wire.test.ts",
+    "evals/sdk/adapter-wire/faults.py",
+    "evals/sdk/adapter-wire/install.py"
+  ],
+  "compiled_files": [
+    ".sandbox/releases/sdk/dist/src/adapters/agent-kit.js"
+  ]
+}

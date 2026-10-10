@@ -1,10 +1,15 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 56** · 2026-10-10 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 57** · 2026-10-10 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
+
+The wallet sending adapter captures serialised wire once, verifies its message
+and wallet signature, then sends those same bytes. Malformed/changed serialisation
+refuses before RPC; already verified signing remains unknown, even if the
+serializer erases its object evidence. Trusted SDK mode and public methods remain.
 
 The private owned facade queues captured signing-history facts, returns detached
 immutable entries after the existing verifier/synced append, and drains before

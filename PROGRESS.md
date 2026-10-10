@@ -1,5 +1,11 @@
 # PROGRESS.md
 
+D39's sending adapter verifies one captured serialized wire before RPC and
+retains verified signing as unknown on refusal. Native/type and source/emitted/
+installed component evidence is in adapter-wire, CLAIMS S119. This exact candidate
+also passes quiet serial AST and unchanged floors; earlier H11 failures and all
+hosted/maintained/stable gates remain recorded. No formal milestone closes.
+
 The exact locally restored f4f3d92 history has a current PUB-1 metadata inventory,
 S118. Entire proposed public-history content review and visibility remain owed;
 no stable-release milestone closes.

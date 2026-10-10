@@ -1,0 +1,11 @@
+{
+  "caught": [
+    "message",
+    "signature",
+    "reservation",
+    "strip",
+    "second-serialization"
+  ],
+  "sourceRestored": true,
+  "restoredStatus": 0
+}

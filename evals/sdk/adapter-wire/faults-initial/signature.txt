@@ -1,0 +1,28 @@
+✔ ADP-1/ADR-009: adapter refuses different-message before RPC and retains the signed admission (14.553569ms)
+✔ ADP-1/ADR-009: adapter refuses different-message-admission-signature before RPC and retains the signed admission (3.615392ms)
+✖ ADP-1/ADR-009: adapter refuses invalid-signature before RPC and retains the signed admission (2.561425ms)
+✔ ADP-1/ADR-009: adapter refuses malformed-wire before RPC and retains the signed admission (1.863906ms)
+✔ ADP-1/ADR-009: adapter sends one captured valid wire without invoking serialization again (2.085559ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 257.564768
+
+✖ failing tests:
+
+test at packages/sdk/test/adapter-wire.test.ts:23:128
+✖ ADP-1/ADR-009: adapter refuses invalid-signature before RPC and retains the signed admission (2.561425ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/adapter-wire.test.ts:27:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }

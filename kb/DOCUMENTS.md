@@ -1,5 +1,10 @@
 # DOCUMENTS.md — the document register
 
+2026-10-10 registers D39/ADP-1: SPEC 4.86, OVERVIEW 57, RISKS 1.78, SDK 19,
+adapter-wire receipt/raw evidence/counters, CLAIMS S119, PROGRESS, HANDOFF, evaluation index, release
+map/staged draft and continuing run. Accepted ADR-009; public methods, signer
+budget, SDK trust boundary and stable thresholds remain unchanged.
+
 2026-10-10 registers current restored-history receipt, full metadata manifest/raw
 summary/clean status, CLAIMS S118, PROGRESS, HANDOFF, evaluation index, release
 map and continuing run. Named local ref scope only; no content or public clearance.

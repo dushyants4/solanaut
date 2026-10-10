@@ -1,0 +1,112 @@
+✖ ADP-1/ADR-009: adapter refuses different-message before RPC and retains the signed admission (11.343142ms)
+✖ ADP-1/ADR-009: adapter refuses different-message-admission-signature before RPC and retains the signed admission (2.461149ms)
+✖ ADP-1/ADR-009: adapter refuses invalid-signature before RPC and retains the signed admission (2.115757ms)
+✖ ADP-1/ADR-009: adapter refuses malformed-wire before RPC and retains the signed admission (1.366498ms)
+✔ ADP-1/ADR-009: adapter sends one captured valid wire without invoking serialization again (2.493875ms)
+✖ ADP-1/ADR-009: serializer erasing an already verified signature cannot release its reservation (1.350449ms)
+✔ ADP-1/ADR-009: failed unknown bookkeeping still strips signatures and refuses before RPC (1.485151ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 2
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 145.528316
+
+✖ failing tests:
+
+test at .sandbox/solanaut-1/adapter-wire/compiled-cases.ts:23:128
+✖ ADP-1/ADR-009: adapter refuses different-message before RPC and retains the signed admission (11.343142ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'expired'
+  - 'unknown'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/adapter-wire/compiled-cases.ts:31:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'expired',
+    expected: 'unknown',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .sandbox/solanaut-1/adapter-wire/compiled-cases.ts:23:128
+✖ ADP-1/ADR-009: adapter refuses different-message-admission-signature before RPC and retains the signed admission (2.461149ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'expired'
+  - 'unknown'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/adapter-wire/compiled-cases.ts:31:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'expired',
+    expected: 'unknown',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .sandbox/solanaut-1/adapter-wire/compiled-cases.ts:23:128
+✖ ADP-1/ADR-009: adapter refuses invalid-signature before RPC and retains the signed admission (2.115757ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'expired'
+  - 'unknown'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/adapter-wire/compiled-cases.ts:31:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'expired',
+    expected: 'unknown',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .sandbox/solanaut-1/adapter-wire/compiled-cases.ts:23:128
+✖ ADP-1/ADR-009: adapter refuses malformed-wire before RPC and retains the signed admission (1.366498ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'expired'
+  - 'unknown'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/adapter-wire/compiled-cases.ts:31:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'expired',
+    expected: 'unknown',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .sandbox/solanaut-1/adapter-wire/compiled-cases.ts:43:1
+✖ ADP-1/ADR-009: serializer erasing an already verified signature cannot release its reservation (1.350449ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'expired'
+  - 'unknown'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/adapter-wire/compiled-cases.ts:49:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'expired',
+    expected: 'unknown',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

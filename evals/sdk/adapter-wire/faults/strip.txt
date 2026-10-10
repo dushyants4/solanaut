@@ -1,0 +1,157 @@
+✖ ADP-1/ADR-009: adapter refuses different-message before RPC and retains the signed admission (11.799791ms)
+✖ ADP-1/ADR-009: adapter refuses different-message-admission-signature before RPC and retains the signed admission (1.970363ms)
+✖ ADP-1/ADR-009: adapter refuses invalid-signature before RPC and retains the signed admission (1.560592ms)
+✖ ADP-1/ADR-009: adapter refuses malformed-wire before RPC and retains the signed admission (1.633797ms)
+✔ ADP-1/ADR-009: adapter sends one captured valid wire without invoking serialization again (2.223815ms)
+✔ ADP-1/ADR-009: serializer erasing an already verified signature cannot release its reservation (1.52442ms)
+✖ ADP-1/ADR-009: failed unknown bookkeeping still strips signatures and refuses before RPC (1.907148ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 2
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 144.662773
+
+✖ failing tests:
+
+test at packages/sdk/test/adapter-wire.test.ts:23:128
+✖ ADP-1/ADR-009: adapter refuses different-message before RPC and retains the signed admission (11.799791ms)
+  AssertionError [ERR_ASSERTION]: caller signatures are stripped
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/adapter-wire.test.ts:29:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/adapter-wire.test.ts:23:128
+✖ ADP-1/ADR-009: adapter refuses different-message-admission-signature before RPC and retains the signed admission (1.970363ms)
+  AssertionError [ERR_ASSERTION]: caller signatures are stripped
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/adapter-wire.test.ts:29:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/adapter-wire.test.ts:23:128
+✖ ADP-1/ADR-009: adapter refuses invalid-signature before RPC and retains the signed admission (1.560592ms)
+  AssertionError [ERR_ASSERTION]: caller signatures are stripped
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/adapter-wire.test.ts:29:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/adapter-wire.test.ts:23:128
+✖ ADP-1/ADR-009: adapter refuses malformed-wire before RPC and retains the signed admission (1.633797ms)
+  AssertionError [ERR_ASSERTION]: caller signatures are stripped
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/adapter-wire.test.ts:29:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/adapter-wire.test.ts:53:1
+✖ ADP-1/ADR-009: failed unknown bookkeeping still strips signatures and refuses before RPC (1.907148ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + Buffer(64) [Uint8Array] [
+  +   27,
+  +   139,
+  +   142,
+  +   27,
+  +   234,
+  +   175,
+  +   194,
+  +   204,
+  +   156,
+  +   22,
+  +   36,
+  +   69,
+  +   252,
+  +   82,
+  +   37,
+  +   15,
+  +   57,
+  +   23,
+  +   20,
+  +   207,
+  +   15,
+  +   106,
+  +   216,
+  +   246,
+  +   48,
+  +   165,
+  +   153,
+  +   135,
+  +   236,
+  +   99,
+  +   109,
+  +   246,
+  +   141,
+  +   115,
+  +   203,
+  +   235,
+  +   192,
+  +   244,
+  +   220,
+  +   190,
+  +   166,
+  +   8,
+  +   205,
+  +   115,
+  +   71,
+  +   66,
+  +   11,
+  +   46,
+  +   133,
+  +   155,
+  +   87,
+  +   68,
+  +   23,
+  +   217,
+  +   109,
+  +   174,
+  +   234,
+  +   132,
+  +   147,
+  +   31,
+  +   171,
+  +   187,
+  +   25,
+  +   14
+  + ]
+  - null
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/adapter-wire.test.ts:59:42)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: <Buffer 1b 8b 8e 1b ea af c2 cc 9c 16 24 45 fc 52 25 0f 39 17 14 cf 0f 6a d8 f6 30 a5 99 87 ec 63 6d f6 8d 73 cb eb c0 f4 dc be a6 08 cd 73 47 42 0b 2e 85 9b ... 14 more bytes>,
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

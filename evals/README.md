@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`sdk/adapter-wire.md`: D39/ADP-1 verifies actual serialized wire before RPC and
+preserves previously signed reservations after destructive serialization.
+Initial failures, source/emitted faults and actual installed cases retained.
+
 `release/local-history-current.md`: unchanged PUB-1 inspector inventories the
 exact clean local restored candidate's reachable history, CLAIMS S118. Metadata
 inventory is not publication, rights, licence or secret clearance.

@@ -1,7 +1,15 @@
 # SDK reference — private candidate
 
-> **Draft 18** · 2026-10-08 · owner: integrator · for: developers integrating the candidate.
+> **Draft 19** · 2026-10-10 · owner: integrator · for: developers integrating the candidate.
 > Register: `kb/DOCUMENTS.md`. This describes current exports, not a stable-release promise.
+
+The sending wallet wrapper now verifies the captured serialised wire before RPC,
+including its admitted message and wallet signature. A refusal uses
+`wallet-changed-message`; discard the rejected transaction object and inspect the
+recorded outcome before retrying. Previously verified signing remains unknown
+even if serialisation erases its object signature. Trusted SDK inputs and direct
+key access remain its stated limits. Evidence: [adapter-wire](../evals/sdk/adapter-wire.md),
+CLAIMS S119; this is not an isolated signing-service claim.
 
 Recovery now refuses impossible report/redemption transitions before state changes
 (D22/D23). Valid repeated unknown outcomes and legitimate unsigned historical

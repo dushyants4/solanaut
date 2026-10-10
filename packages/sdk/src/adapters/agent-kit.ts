@@ -27,6 +27,7 @@ import type { Guard } from "../guard.ts";
 import type { Decision } from "../log.ts";
 import { verifyEd25519 } from "../latch.ts";
 import { encodeBase58 } from "../base58.ts";
+import { decodeMessage, decodeTransaction } from "../message.ts";
 import { SolanautDenied } from "../errors.ts";
 import { jsonRpc, type RpcLike } from "./rpc.ts";
 
@@ -235,9 +236,26 @@ export function guardedWallet<Tx = any>(wallet: BaseWalletLike<Tx>, guard: Guard
   async function signAndSend<T extends Tx>(tx: T, options?: unknown): Promise<{ signature: string }> {
     const { signed, admitted } = await signAll([tx]);
     const a = admitted[0]!;
+    const signedId = idOf(signed[0], key);
+    let wire: Uint8Array;
+    try {
+      // A foreign transaction can serialize different bytes from serializeMessage().
+      wire = new Uint8Array((signed[0] as any).serialize());
+      const decoded = decodeTransaction(wire);
+      const index = decodeMessage(decoded.message).staticAccounts.indexOf(key);
+      if (!equal(decoded.message, a.message) || index < 0 || !verifyEd25519(key, a.message, decoded.signatures[index] ?? new Uint8Array())) throw new Error("serialized transaction differs from admission");
+    } catch {
+      // Signing already verified; a serializer erasing evidence cannot free the admission.
+      if (signedId) unreported.set(a.decision.hash, { decision: a.decision.hash, signature: signedId, lastValidBlockHeight: a.lastValidBlockHeight });
+      [tx, ...signed].forEach(strip);
+      try { guard.report(a.decision.hash, "unknown"); } catch {
+        // A failed journal keeps the original admission; never acknowledge a send.
+      }
+      throw new SolanautDenied("wallet-changed-message", "the serialized transaction does not carry the admitted message and wallet signature; its signatures were removed", null);
+    }
     let signature: string;
     try {
-      signature = await rpc.sendRawTransaction(new Uint8Array((signed[0] as any).serialize()), options);
+      signature = await rpc.sendRawTransaction(wire, options);
     } catch (e) {
       // Only the RPC's refusal proves the bytes went nowhere. After any other failure they may still
       // land, so the payment stays in flight until its blockhash expires, rather than free a re-sign.

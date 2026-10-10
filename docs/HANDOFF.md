@@ -244,8 +244,19 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 | O1 | AGENTS.md, build convention | Replace `TypeScript run natively by Node 26, with no build step; ESM;` with `TypeScript run natively by Node 26 for development; a release-only build emits JavaScript and declarations for npm consumers; ESM;` | Explicitly approved by the human in the Solanaut 1.0 mission. | no |
 | O2 | evals/packaging/faults.ts | Exact unapplied diff: `evals/packaging/parallel-experiment/owner-draft.patch`; retain all fault declarations and original initial control, import the measured isolated runner and replace sequential mutation with its complete execution. Add `node --test evals/packaging/parallel-experiment.test.mjs` to maintained qualification and verify cleanup/partial refusal before acceptance. | S111 prototype catches the entire original population inside the unchanged outer deadline; S110 actual maintained gate remains failed. Extra original control and changed entry point need fresh owner qualification. No process limit or readiness target changes. | no |
 | O3 | Proposed parallel package runner | Exact unapplied diff: `evals/packaging/parallel-lifecycle/corrected/termination-owner.patch`; send SIGTERM once per owned child group, escalate to SIGKILL after the declared grace if still live, clear escalation on close. Combine with O2 and freshly qualify unchanged full populations/entry point before adoption. | S114 observes ignored SIGTERM leaving the original proposed parent waiting. Corrected fixture refuses incomplete execution; missing/late escalation and false completion are caught. Nominal S111 completion is not universal termination evidence. Maintained gate/deadline remain unchanged. | no |
+| O4 | .github/workflows/ci.yml | Exact unapplied diff: `evals/sdk/adapter-wire/owner-ci.patch`; use the existing pinned uv action in runtime jobs, pack the private SDK, execute actual installed ADP-1 cases and source/emitted fault trials. Retain all current steps, runtime matrix and limits. | D39's new wire boundary has local tests/fault evidence; protected CI needs owner application and exact hosted/runtime qualification. `git apply --check` accepts the draft. No deadline, assertion, population or threshold is weakened. | no |
 
 ## 7. Codex's log
+
+2026-10-10 D39/ADP-1 demonstrates unchecked serialized wallet bytes reaching RPC.
+Correct by capturing one wire and verifying its message/signature before send.
+A further destructive serializer exposes premature reservation release in the
+first correction; preserve that failure and keep verified signing unknown even
+after erasure. Source/emitted faults, actual installed cases and native/type
+checks pass. Quiet serial AST and existing floors pass for this exact candidate,
+CLAIMS S119; earlier H11 failures are preserved. Public methods and signer-specific
+scope remain unchanged; hosted/maintained/full release qualification stays owed.
+No push or stable milestone closes.
 
 2026-10-10 f4f3d92 evidence commit has verified complete local bundle, exact clean
 restore and Git integrity check. Clean close passes nine of ten, failing only

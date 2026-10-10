@@ -1,0 +1,62 @@
+// ADR-009: the wire handed to RPC must carry the admitted signed message.
+import {strict as assert} from "node:assert";
+import {test} from "node:test";
+import {generateKeyPairSync,sign} from "node:crypto";
+import {createGuard} from "../src/guard.ts";
+import {guardedWallet,type BaseWalletLike,type RpcLike} from "../src/adapters/agent-kit.ts";
+import {encodeBase58} from "../src/base58.ts";
+import {WORKLOAD_POLICY} from "./support/workload.ts";
+import {craftLegacy,key} from "./support/craft.ts";
+
+function fixture(){
+  const agent=generateKeyPairSync("ed25519"),bytes=Buffer.from(agent.publicKey.export({format:"jwk"}).x!,"base64url"),address=encodeBase58(bytes);
+  const publicKey={toBase58:()=>address,toBytes:()=>new Uint8Array(bytes)};
+  const message=(destination:number)=>craftLegacy({header:[1,0,1],keys:[[...bytes],key(destination),key(0)],instructions:[{program:2,accounts:[0,1],data:[2,0,0,0,1,0,0,0,0,0,0,0]}]});
+  const admitted=message(2),foreign=message(3),signature=sign(null,admitted,agent.privateKey);
+  const wire=(value:Uint8Array,sig=sign(null,value,agent.privateKey))=>Buffer.concat([Buffer.from([1]),sig,value]);
+  const tx={serializeMessage:()=>admitted,signatures:[{publicKey,signature:signature as Uint8Array|null}],serialize:()=>wire(admitted)};
+  const wallet:BaseWalletLike<typeof tx>={publicKey,signTransaction:async t=>t,signAllTransactions:async ts=>ts,signAndSendTransaction:async()=>{throw new Error("wallet must not send");},signMessage:async()=>{throw new Error("must not sign messages");}};
+  const sent:Uint8Array[]=[],rpc:RpcLike={getBlockHeight:async()=>10n,sendRawTransaction:async value=>{sent.push(value);return encodeBase58(signature);},confirm:async()=>"landed"};
+  const policy={...structuredClone(WORKLOAD_POLICY),principal:[address]};
+  return {admitted,foreign,signature,wire,tx,wallet,rpc,sent,policy};
+}
+for(const fault of ["different-message","different-message-admission-signature","invalid-signature","malformed-wire"] as const)test(`ADP-1/ADR-009: adapter refuses ${fault} before RPC and retains the signed admission`,async()=>{
+  const f=fixture(),g=await createGuard({policy:f.policy});try{
+    f.tx.serialize=()=>fault==="different-message"?f.wire(f.foreign):fault==="different-message-admission-signature"?f.wire(f.foreign,f.signature):fault==="invalid-signature"?f.wire(f.admitted,Buffer.alloc(64,1)):Buffer.from([0]);
+    const wallet=guardedWallet(f.wallet,g,{rpc:f.rpc,now:()=>1000});
+    await assert.rejects(wallet.signAndSendTransaction(f.tx),(error:Error)=>Reflect.get(error,"rule")==="wallet-changed-message");
+    assert.equal(f.sent.length,0);
+    assert.ok(f.tx.signatures.every(row=>row.signature===null),"caller signatures are stripped");
+    const decision=g.entries().find(e=>e.kind==="decision")!;
+    assert.equal(g.entries().filter(e=>e.kind==="report").at(-1)?.outcome,"unknown");
+    assert.equal(g.check({message:f.admitted,at:1001,blockHeight:11n,lastValidBlockHeight:160n}).rule,"intent-in-flight");
+    assert.ok(decision.hash);
+  }finally{g.close();}
+});
+test("ADP-1/ADR-009: adapter sends one captured valid wire without invoking serialization again",async()=>{
+  const f=fixture(),g=await createGuard({policy:f.policy});try{
+    let calls=0;const expected=f.wire(f.admitted);f.tx.serialize=()=>{calls++;return calls===1?expected:f.wire(f.foreign);};
+    const wallet=guardedWallet(f.wallet,g,{rpc:f.rpc,now:()=>1000});
+    await wallet.signAndSendTransaction(f.tx);assert.equal(calls,1);assert.equal(f.sent.length,1);assert.deepEqual(f.sent[0],new Uint8Array(expected));
+  }finally{g.close();}
+});
+test("ADP-1/ADR-009: serializer erasing an already verified signature cannot release its reservation",async()=>{
+  const f=fixture(),g=await createGuard({policy:f.policy});try{
+    f.tx.serialize=()=>{f.tx.signatures[0]!.signature=null;throw new Error("PRIVATE_SENTINEL: serialization failed");};
+    const wallet=guardedWallet(f.wallet,g,{rpc:f.rpc,now:()=>1000});
+    await assert.rejects(wallet.signAndSendTransaction(f.tx),(error:Error)=>Reflect.get(error,"rule")==="wallet-changed-message"&&!error.message.includes("PRIVATE_SENTINEL"));
+    assert.equal(f.sent.length,0);
+    assert.equal(g.entries().filter(e=>e.kind==="report").at(-1)?.outcome,"unknown");
+    assert.equal(g.check({message:f.admitted,at:1001,blockHeight:11n,lastValidBlockHeight:160n}).rule,"intent-in-flight");
+  }finally{g.close();}
+});
+test("ADP-1/ADR-009: failed unknown bookkeeping still strips signatures and refuses before RPC",async()=>{
+  const f=fixture(),g=await createGuard({policy:f.policy});try{
+    f.tx.serialize=()=>Buffer.from([0]);
+    g.report=()=>{throw new Error("PRIVATE_SENTINEL: journal unavailable");};
+    const wallet=guardedWallet(f.wallet,g,{rpc:f.rpc,now:()=>1000});
+    await assert.rejects(wallet.signAndSendTransaction(f.tx),(error:Error)=>Reflect.get(error,"rule")==="wallet-changed-message"&&!error.message.includes("PRIVATE_SENTINEL"));
+    assert.equal(f.sent.length,0);assert.equal(f.tx.signatures[0]!.signature,null);
+    assert.equal(g.check({message:f.admitted,at:1001,blockHeight:11n,lastValidBlockHeight:160n}).rule,"intent-in-flight");
+  }finally{g.close();}
+});

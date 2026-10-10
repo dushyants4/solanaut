@@ -1,5 +1,11 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
+The wallet adapter now validates the captured serialised wire before RPC under
+ADR-009. An object can report a valid message while serialising different bytes;
+serialisation can also erase a previously verified signature. Such refusal keeps
+the admission unknown. The trusted SDK's direct key-access limit remains; this
+does not qualify isolated signing. Component evidence: `evals/sdk/adapter-wire.md`.
+
 Private signing-history journalling is trusted SDK bookkeeping. It must not
 be exposed as a socket operation or presented as independent chain evidence.
 The existing cryptographic/stage verifier and synced append remain required;
@@ -21,7 +27,7 @@ the writer permanently. This checks physical byte count under the trusted host
 boundary; it does not detect every same-size concurrent modification or prove
 power-loss durability. Evidence: `evals/sdk/record-write-completion.md`.
 
-> **1.77** · 2026-10-10 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.78** · 2026-10-10 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 Local-only commits now replace the previous standing push grant. The unchanged

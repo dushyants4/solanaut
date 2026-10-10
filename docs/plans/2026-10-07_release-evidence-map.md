@@ -1,9 +1,10 @@
 # Solanaut 1.0 — current release evidence map
 
-2026-10-10 · private operator/archivist preparation · reviewed implementation
-f1e253f, with current Node 24 native/type/installed passes and the unchanged quiet
-AST wait failure in [the exact runtime receipt](../../evals/release/owned-signing-current.md), CLAIMS S113. Earlier Node 24 evidence
-belongs to 4addaa4. This maps the approved mission to receipts and remaining work. It is not
+2026-10-10 · private operator/archivist preparation · latest local D39 wallet
+candidate is bound in [its component receipt](../../evals/sdk/adapter-wire.md), CLAIMS S119.
+Earlier f1e253f Node 24 native/type/installed passes and quiet AST wait failure
+remain scoped to [their exact runtime receipt](../../evals/release/owned-signing-current.md), CLAIMS S113.
+Earlier Node 24 evidence belongs to 4addaa4. This maps the approved mission to receipts and remaining work. It is not
 a release decision, support claim or substitute for SPEC/READINESS gates.
 
 The approved Beta remains the achieved milestone. Local component validation is
@@ -31,6 +32,15 @@ high/critical dependency findings block qualifying that framework graph.
 | Maintain and later mainnet | Maintenance scope is allocated in READINESS | After release, operator/human maintain incident, dependency, compatibility and re-audit records. Mainnet requires a separate approved scope and release decision; devnet evidence provides no mainnet qualification. |
 
 ## Next engineering work
+
+D39 corrects the wallet's serialised send boundary under accepted ADR-009.
+The newer bound [component candidate](../../evals/sdk/adapter-wire.md) verifies
+one captured wire and retains already signed reservations after destructive
+serialisation. Earlier f1e253f runtime/rebuild/archive evidence stays scoped to
+that revision; it does not qualify this newer correction. Native/type and
+installed/source/emitted component checks pass. This candidate's quiet serial AST
+and unchanged floors pass; earlier H11 failures remain, and hosted/maintained/full
+release gates stay owed.
 
 Exact locally restored f4f3d92 reachable history has a fresh PUB-1 metadata
 inventory, CLAIMS S118. It identifies the restored ref set and entire closure;
