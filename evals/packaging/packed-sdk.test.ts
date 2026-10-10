@@ -139,7 +139,7 @@ test("PKG-1/STO-4: installed record rejects changes during startup read and rele
       if(!seed.check({message:new Uint8Array(Buffer.from(process.argv[2],'base64')),at:1000}).allow)throw new Error('read stability fixture denied');seed.close();
       const original=fs.readFileSync(path,'utf8'),inode=fs.statSync(path).ino,read=fs.readFileSync;let changed=false,denied=false;
       try{
-        fs.readFileSync=(...args)=>{const value=Reflect.apply(read,fs,args);if(!changed&&typeof args[0]==='number'&&typeof value==='string'&&fs.fstatSync(args[0]).ino===inode){changed=true;if(damage==='append')fs.appendFileSync(path,'{}'+String.fromCharCode(10));else if(damage==='truncate')fs.truncateSync(path,0);else fs.writeFileSync(path,original.replace('"at":1000','"at":9000'));}return value;};syncBuiltinESMExports();
+        fs.readFileSync=(...args)=>{const value=Reflect.apply(read,fs,args);if(!changed&&typeof args[0]==='number'&&(typeof value==='string'||Buffer.isBuffer(value))&&fs.fstatSync(args[0]).ino===inode){changed=true;if(damage==='append')fs.appendFileSync(path,'{}'+String.fromCharCode(10));else if(damage==='truncate')fs.truncateSync(path,0);else fs.writeFileSync(path,original.replace('"at":1000','"at":9000'));}return value;};syncBuiltinESMExports();
         try{fileStore(path,{ownership,create:false}).close();}catch(error){denied=/record changed during read/.test(error.message);}
       }finally{fs.readFileSync=read;syncBuiltinESMExports();}
       if(!changed||!denied||fs.readFileSync(path,'utf8')===original)throw new Error('installed record accepted or repaired an unstable read');
@@ -148,6 +148,27 @@ test("PKG-1/STO-4: installed record rejects changes during startup read and rele
     console.log('unstable startup reads refused');`;
   const result=spawnSync(process.execPath,["--input-type=module","-e",script,inputPolicy,Buffer.from(transfer(2)).toString("base64")],{cwd:consumer,encoding:"utf8",timeout:15000});
   assert.equal(result.status,0,result.stderr);assert.equal(result.error,undefined);assert.equal(result.signal,null);assert.equal(result.stdout,"unstable startup reads refused\n");
+});
+
+test("PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails", () => {
+  const script=`
+    import {createGuard} from '@solanaut/sdk';import fs from 'node:fs';import {syncBuiltinESMExports} from 'node:module';import {tmpdir} from 'node:os';import {join} from 'node:path';
+    const base=import.meta.resolve('@solanaut/sdk'),{fileStore}=await import(new URL('./record.js',base)),directory=fs.mkdtempSync(join(tmpdir(),'solanaut-read-completion-'));
+    try{for(const ownership of ['manual','kernel']){
+      for(const fault of ['short','oversized']){
+        const path=join(directory,ownership+'-'+fault+'.jsonl'),seed=await createGuard({policy:JSON.parse(process.argv[1]),log:path});
+        if(!seed.check({message:new Uint8Array(Buffer.from(process.argv[2],'base64')),at:1000}).allow)throw new Error('read completion fixture denied');seed.close();
+        const original=fs.readFileSync(path),inode=fs.statSync(path).ino,read=fs.readFileSync;let changed=false,denied=false;
+        try{fs.readFileSync=(...args)=>{const value=Reflect.apply(read,fs,args);if(!changed&&typeof args[0]==='number'&&fs.fstatSync(args[0]).ino===inode){changed=true;if(typeof value==='string')return fault==='short'?value.slice(0,-2):value+'{';return fault==='short'?value.subarray(0,value.length-2):Buffer.concat([value,Buffer.from('{')]);}return value;};syncBuiltinESMExports();try{fileStore(path,{ownership,create:false}).close();}catch(error){denied=/record read was incomplete/.test(error.message);}}
+        finally{fs.readFileSync=read;syncBuiltinESMExports();}
+        if(!changed||!denied||!fs.readFileSync(path).equals(original))throw new Error('installed incomplete read removed or accepted acknowledged history');
+        fileStore(path,{ownership,create:false}).close();
+        fs.appendFileSync(path,Buffer.from([240,159]));const restored=fileStore(path,{ownership,create:false});try{if(restored.entries.length!==1||!fs.readFileSync(path).equals(original))throw new Error('installed genuine UTF-8 tail recovery failed');}finally{restored.close();}
+      }
+    }}finally{fs.rmSync(directory,{recursive:true,force:true});}
+    console.log('incomplete reads refused without loss');`;
+  const result=spawnSync(process.execPath,["--input-type=module","-e",script,inputPolicy,Buffer.from(transfer(2)).toString("base64")],{cwd:consumer,encoding:"utf8",timeout:15000});
+  assert.equal(result.status,0,result.stderr);assert.equal(result.error,undefined);assert.equal(result.signal,null);assert.equal(result.stdout,"incomplete reads refused without loss\n");
 });
 
 test("PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts", () => {

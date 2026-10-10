@@ -64,7 +64,8 @@ test("SNP-6: missing, oversized, corrupt and unsupported checkpoint files use ve
     if(kind==="corrupt")writeFileSync(current,"corrupt");
     if(kind==="symlink"){evidence=join(f.directory,"evidence");writeFileSync(evidence,f.encoded.text);symlinkSync(evidence,current);}
     if(kind==="directory")mkdirSync(current);
-    fs.readSync=((...args:Parameters<typeof fs.readSync>)=>{reads++;return Reflect.apply(originalRead,fs,args);}) as typeof fs.readSync;syncBuiltinESMExports();
+    const inode=kind==="missing"?undefined:fs.statSync(current).ino;
+    fs.readSync=((...args:Parameters<typeof fs.readSync>)=>{if(fs.fstatSync(args[0]).ino===inode)reads++;return Reflect.apply(originalRead,fs,args);}) as typeof fs.readSync;syncBuiltinESMExports();
     const got=await recover(f.store,f.options);assert.equal(got.mode,"full-replay");assert.equal(got.reason,kind==="missing"?"missing-checkpoint":"invalid-checkpoint");assert.notEqual(JSON.parse(got.state).state.latched,null);
     if(kind!=="corrupt")assert.equal(reads,0,"unsupported checkpoint sources must refuse before reading their content");
     if(evidence)assert.equal(readFileSync(evidence,"utf8"),f.encoded.text);if(kind==="corrupt")assert.equal(readFileSync(current,"utf8"),"corrupt");
@@ -84,8 +85,8 @@ test("OWN-2: closure, append, cache mutation and inode replacement during replay
   }finally{f.close();}}
 });
 test("SNP-6: short checkpoint reads finish; growth and read errors use verified fallback",async()=>{
-  for(const fault of ["short","growth","read-error","negative","fraction","excess"]){const f=await fixture(),original=fs.readSync;let reads=0;
-    try{fs.readSync=((fd:number,buffer:Buffer,offset:number,length:number,position:number|null)=>{reads++;if(fault==="read-error")throw Object.assign(new Error("injected read failure"),{code:"EIO"});
+  for(const fault of ["short","growth","read-error","negative","fraction","excess"]){const f=await fixture(),original=fs.readSync,inode=fs.statSync(f.path+".checkpoint").ino;let reads=0;
+    try{fs.readSync=((fd:number,buffer:Buffer,offset:number,length:number,position:number|null)=>{if(fs.fstatSync(fd).ino!==inode)return original(fd,buffer,offset,length,position);reads++;if(fault==="read-error")throw Object.assign(new Error("injected read failure"),{code:"EIO"});
       if(fault==="negative")return -1;if(fault==="fraction")return 0.5;if(fault==="excess")return length+1;
       const count=original(fd,buffer,offset,Math.min(length,97),position);if(fault==="growth"&&reads===1)fs.appendFileSync(f.path+".checkpoint","changed");return count;}) as typeof fs.readSync;syncBuiltinESMExports();
       const got=await recover(f.store,f.options);assert.ok(reads>0);assert.equal(got.mode,fault==="short"?"checkpoint":"full-replay");

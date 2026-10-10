@@ -17,6 +17,8 @@ const faults = [
   ["revive-damaged-writer", "failed = true; throw error;", "failed = false; throw error;"],
   ["ignore-single-link", "held.nlink !== 1n || named.nlink !== 1n", "false"],
   ["ignore-read-stability", "before.size !== after.size || before.mtimeNs !== after.mtimeNs || before.ctimeNs !== after.ctimeNs", "false"],
+  ["ignore-read-completion", "BigInt(bytes.length) !== before.size", "false"],
+  ["decoded-read-count", "BigInt(bytes.length) !== before.size", 'BigInt(Buffer.byteLength(bytes.toString("utf8"))) !== before.size'],
 ] as const;
 const outputDirectory = ".sandbox/solanaut-1/ownership-faults";
 mkdirSync(outputDirectory, { recursive: true });
@@ -35,7 +37,7 @@ for (const [name, from, to] of faults) {
     const output = result.stdout + result.stderr;
     writeFileSync(outputDirectory + "/" + name + ".txt", output);
     assert.equal(result.status, 1, output);
-    assert.match(output, /tests 24\b/, "setup errors cannot count as caught faults");
+    assert.match(output, /tests 30\b/, "setup errors cannot count as caught faults");
     assert.match(output, /AssertionError/, "must fail a behavioural assertion");
     console.log(`caught ownership/storage fault: ${name}`);
   } finally { writeFileSync(path, original); }

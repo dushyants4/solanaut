@@ -92,7 +92,7 @@ for (const ownership of ["manual", "kernel"] as const) for (const damage of ["ap
   let changed = false;
   mock.method(fs, "readFileSync", (...args: unknown[]) => {
     const value = Reflect.apply(read, fs, args);
-    if (!changed && typeof args[0] === "number" && typeof value === "string" && fs.fstatSync(args[0]).ino === inode) {
+    if (!changed && typeof args[0] === "number" && (typeof value === "string" || Buffer.isBuffer(value)) && fs.fstatSync(args[0]).ino === inode) {
       changed = true;
       if (damage === "append") fs.appendFileSync(path, "{}\n");
       else if (damage === "truncate") fs.truncateSync(path, 0);
@@ -108,4 +108,36 @@ for (const ownership of ["manual", "kernel"] as const) for (const damage of ["ap
   const damaged = fs.readFileSync(path, "utf8"); assert.notEqual(damaged, original);
   fs.writeFileSync(path, original);
   const restored = fileStore(path, { ownership, create: false }); restored.close();
+});
+for (const ownership of ["manual", "kernel"] as const) for (const fault of ["short", "oversized"]) test(`STO-5/SIG-8/OWN-2: ${ownership} rejects ${fault} startup reads without truncating acknowledged entries`, async () => {
+  const path = record(), seed = await createGuard({ policy: WORKLOAD_POLICY, log: path });
+  assert.equal(seed.check({ message: payment(), at: 1000 }).allow, true); seed.close();
+  const original = fs.readFileSync(path), inode = fs.statSync(path).ino, read = fs.readFileSync;
+  const { fileStore } = await import("../src/record.ts");
+  let changed = false, failure: Error | undefined;
+  mock.method(fs, "readFileSync", (...args: unknown[]) => {
+    const value = Reflect.apply(read, fs, args);
+    if (!changed && typeof args[0] === "number" && fs.fstatSync(args[0]).ino === inode) {
+      changed = true;
+      if (typeof value === "string") return fault === "short" ? value.slice(0, -2) : value + "{";
+      return fault === "short" ? value.subarray(0, value.length - 2) : Buffer.concat([value, Buffer.from("{")]);
+    }
+    return value;
+  });
+  syncBuiltinESMExports();
+  try { try { fileStore(path, { ownership, create: false }).close(); } catch (error) { failure = error as Error; } }
+  finally { restore(); }
+  assert.equal(changed, true); assert.deepEqual(fs.readFileSync(path), original, "an incomplete read cannot repair or discard an acknowledged line");
+  assert.match(failure?.message ?? "", /record read was incomplete/);
+  const restored = fileStore(path, { ownership, create: false }); assert.equal(restored.entries.length, 1); restored.close();
+});
+for (const ownership of ["manual", "kernel"] as const) test(`STO-5/SIG-8: ${ownership} repairs a genuinely torn UTF-8 tail using byte boundaries`, async () => {
+  const path = record(), seed = await createGuard({ policy: WORKLOAD_POLICY, log: path });
+  assert.equal(seed.check({ message: payment(), at: 1000 }).allow, true); seed.close();
+  const original = fs.readFileSync(path); fs.appendFileSync(path, Buffer.from([0xf0, 0x9f]));
+  const { fileStore } = await import("../src/record.ts");
+  let restored: ReturnType<typeof fileStore> | undefined;
+  assert.doesNotThrow(() => { restored = fileStore(path, { ownership, create: false }); }, "a genuinely torn UTF-8 tail must remain recoverable");
+  assert.ok(restored);
+  try { assert.equal(restored.entries.length, 1); assert.deepEqual(fs.readFileSync(path), original); } finally { restored.close(); }
 });

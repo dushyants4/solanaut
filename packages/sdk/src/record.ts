@@ -149,18 +149,19 @@ function lock(path: string, mode: "manual" | "kernel"): { held(): void; release(
 
 function readRecord(path: string, fd: number): Entry[] {
   const before = fstatSync(fd, { bigint: true });
-  const text = readFileSync(fd, "utf8");
+  const bytes = readFileSync(fd);
   sameFile(fd, path);
   const after = fstatSync(fd, { bigint: true });
   if (before.size !== after.size || before.mtimeNs !== after.mtimeNs || before.ctimeNs !== after.ctimeNs) throw new Error("the record changed during read");
-  const end = text.lastIndexOf("\n") + 1;
-  if (end < text.length) {
+  if (BigInt(bytes.length) !== before.size) throw new Error("the record read was incomplete");
+  const end = bytes.lastIndexOf(10) + 1;
+  if (end < bytes.length) {
     // A torn last line: cut it, so the next entry starts on a clean line.
-    ftruncateSync(fd, Buffer.byteLength(text.slice(0, end), "utf8"));
+    ftruncateSync(fd, end);
     fsyncSync(fd);
   }
   const entries: Entry[] = [];
-  const lines = text.slice(0, end).split("\n").slice(0, -1);
+  const lines = bytes.subarray(0, end).toString("utf8").split("\n").slice(0, -1);
   lines.forEach((line, i) => {
     let e: Entry;
     try {

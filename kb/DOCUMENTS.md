@@ -1,5 +1,15 @@
 # DOCUMENTS.md — the document register
 
+2026-10-09 read completion registers SPEC Draft 4.81/STO-5, OVERVIEW 52,
+STORAGE Draft 12, RISKS 1.73, PROGRESS, HANDOFF, continuing run and
+`evals/sdk/record-read-completion.md` with its index. Preserve acknowledged-history
+loss, installed prior-candidate failure and the initial fault diagnostic mismatch.
+Definition 41/seed 41587's full failures are retained. Scope checkpoint injection
+to its descriptor, preserving every fault/assertion; declare definition 42/seed
+42719 before corrected measurement. CLAIMS S103 registers focused/source/
+installed/compiled/type evidence and corrected native/AST/floor passes. Initial
+full failures remain archived; bound restored identities match. No stable gate closes.
+
 2026-10-09 startup read consistency registers SPEC Draft 4.80/STO-4,
 OVERVIEW 51, STORAGE Draft 11, RISKS 1.72, PROGRESS, HANDOFF, continuing run and
 `evals/sdk/record-read-stability.md` with its index. Preserve actual descriptor

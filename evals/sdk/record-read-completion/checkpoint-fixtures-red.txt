@@ -1,0 +1,47 @@
+✔ SNP-5: owned checkpoint and tail agree with independent preparation without writing history (50.790299ms)
+✔ OWN-2: memory, forged, manual and closed stores cannot recover as kernel owners (20.509278ms)
+✔ OWN-2: replaced record or ownership inode refuses recovery (28.438551ms)
+✔ SNP-6: cached history substitutions and disk corruption refuse instead of accepting a checkpoint (34.967185ms)
+✖ SNP-6: missing, oversized, corrupt and unsupported checkpoint files use verified history (20.340448ms)
+✔ OWN-2: competing recovery and publication share one maintenance boundary (25.790289ms)
+✔ OWN-2: closure, append, cache mutation and inode replacement during replay refuse (117.320984ms)
+✖ SNP-6: short checkpoint reads finish; growth and read errors use verified fallback (45.585404ms)
+✔ SNP-6: captured pins and external anchor remain authoritative on fallback (23.718542ms)
+✔ OWN-2: a failed writer refuses recovery and an established reopened owner validates the record (21.083988ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 8
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 591.895864
+
+✖ failing tests:
+
+test at packages/sdk/test/checkpoint-owned-recovery.test.ts:61:1
+✖ SNP-6: missing, oversized, corrupt and unsupported checkpoint files use verified history (20.340448ms)
+  AssertionError [ERR_ASSERTION]: unsupported checkpoint sources must refuse before reading their content
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-owned-recovery.test.ts:69:32)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/checkpoint-owned-recovery.test.ts:86:1
+✖ SNP-6: short checkpoint reads finish; growth and read errors use verified fallback (45.585404ms)
+  Error [CheckpointRecoveryError]: owned checkpoint cannot be recovered
+      at recoverOwnedCheckpoint (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:68:113)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/checkpoint-owned-recovery.test.ts:91:17)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    code: 'checkpoint-recovery'
+  }

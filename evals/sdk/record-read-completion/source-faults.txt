@@ -1,0 +1,87 @@
+caught ownership/storage fault: ignore-kernel-lock
+caught ownership/storage fault: automatic-stale-takeover
+caught ownership/storage fault: unlink-mutex
+caught ownership/storage fault: create-missing-history
+caught ownership/storage fault: incomplete-short-write
+caught ownership/storage fault: ignore-sync-failure
+caught ownership/storage fault: ignore-external-size
+caught ownership/storage fault: ignore-external-times
+caught ownership/storage fault: revive-damaged-writer
+caught ownership/storage fault: ignore-single-link
+caught ownership/storage fault: ignore-read-stability
+caught ownership/storage fault: ignore-read-completion
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: must fail a behavioural assertion
+    at file:///home/dashy/Projects/Solanaut/evals/sdk/ownership-faults.ts:41:12
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '✔ OWN-1: SDK refuses stale ownership instead of removing the lock (31.561025ms)\n' +
+    '✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (8.02351ms)\n' +
+    '✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (352.040554ms)\n' +
+    '✔ OWN-3: established protected records are not recreated if missing (7.59134ms)\n' +
+    '✔ OWN-2/4: manual refuses a hardlinked journal alias and releases failed startup ownership (8.037119ms)\n' +
+    '✔ OWN-2/4: kernel refuses a hardlinked journal alias and releases failed startup ownership (7.508635ms)\n' +
+    '✔ OWN-2/4: kernel startup refuses a hardlinked mutex without changing its evidence (6.471839ms)\n' +
+    '✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (16.920517ms)\n' +
+    '✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (5.161966ms)\n' +
+    '✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (3.920845ms)\n' +
+    '✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (3.991395ms)\n' +
+    '✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (4.102922ms)\n' +
+    '✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (4.971377ms)\n' +
+    '✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (4.001634ms)\n' +
+    '✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (5.307641ms)\n' +
+    '✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (5.255744ms)\n' +
+    '✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (3.772857ms)\n' +
+    '✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (3.885521ms)\n' +
+    '✔ STO-4/SIG-8/OWN-2: manual refuses journal append during startup read and releases ownership (10.697048ms)\n' +
+    '✔ STO-4/SIG-8/OWN-2: manual refuses journal truncate during startup read and releases ownership (10.434374ms)\n' +
+    '✔ STO-4/SIG-8/OWN-2: manual refuses journal overwrite during startup read and releases ownership (9.461733ms)\n' +
+    '✔ STO-4/SIG-8/OWN-2: kernel refuses journal append during startup read and releases ownership (9.22199ms)\n' +
+    '✔ STO-4/SIG-8/OWN-2: kernel refuses journal truncate during startup read and releases ownership (22.29664ms)\n' +
+    '✔ STO-4/SIG-8/OWN-2: kernel refuses journal overwrite during startup read and releases ownership (41.859288ms)\n' +
+    '✔ STO-5/SIG-8/OWN-2: manual rejects short startup reads without truncating acknowledged entries (38.09086ms)\n' +
+    '✔ STO-5/SIG-8/OWN-2: manual rejects oversized startup reads without truncating acknowledged entries (53.445777ms)\n' +
+    '✔ STO-5/SIG-8/OWN-2: kernel rejects short startup reads without truncating acknowledged entries (42.482373ms)\n' +
+    '✔ STO-5/SIG-8/OWN-2: kernel rejects oversized startup reads without truncating acknowledged entries (23.623316ms)\n' +
+    '✖ STO-5/SIG-8: manual repairs a genuinely torn UTF-8 tail using byte boundaries (8.492181ms)\n' +
+    '✖ STO-5/SIG-8: kernel repairs a genuinely torn UTF-8 tail using byte boundaries (7.259214ms)\n' +
+    'ℹ tests 30\n' +
+    'ℹ suites 0\n' +
+    'ℹ pass 28\n' +
+    'ℹ fail 2\n' +
+    'ℹ cancelled 0\n' +
+    'ℹ skipped 0\n' +
+    'ℹ todo 0\n' +
+    'ℹ duration_ms 525.60931\n' +
+    '\n' +
+    '✖ failing tests:\n' +
+    '\n' +
+    'test at packages/sdk/test/storage-failures.test.ts:134:56\n' +
+    '✖ STO-5/SIG-8: manual repairs a genuinely torn UTF-8 tail using byte boundaries (8.492181ms)\n' +
+    '  Error: the record read was incomplete\n' +
+    '      at readRecord (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:156:80)\n' +
+    '      at fileStore (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:211:15)\n' +
+    '      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:139:20)\n' +
+    '      at async Test.run (node:internal/test_runner/test:1404:7)\n' +
+    '      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)\n' +
+    '\n' +
+    'test at packages/sdk/test/storage-failures.test.ts:134:56\n' +
+    '✖ STO-5/SIG-8: kernel repairs a genuinely torn UTF-8 tail using byte boundaries (7.259214ms)\n' +
+    '  Error: the record read was incomplete\n' +
+    '      at readRecord (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:156:80)\n' +
+    '      at fileStore (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:211:15)\n' +
+    '      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:139:20)\n' +
+    '      at async Test.run (node:internal/test_runner/test:1404:7)\n' +
+    '      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)\n',
+  expected: /AssertionError/,
+  operator: 'match',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

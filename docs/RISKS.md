@@ -1,6 +1,6 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
-> **1.72** · 2026-10-09 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.73** · 2026-10-09 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 Local-only commits now replace the previous standing push grant. The unchanged
@@ -14,6 +14,10 @@ Reads now compare observed metadata and current inode identity before their byte
 seed recovery or maintenance. A mismatch refuses before torn-tail repair; failed
 startup releases acquired ownership. This is observed-read consistency, not an
 atomic host snapshot or protection against privileged changes after validation.
+Unexpected read lengths refuse before repair, preventing a short result from
+discarding acknowledged history. Physical byte count is checked before decoding;
+genuinely torn UTF-8 tails remain recoverable. Whole-file reads still allocate
+full history, so this does not establish bounded startup or memory.
 Journal/mutex hardlinks also refuse, preventing an alternate pathname from
 opening the journal with a different pathname lock. This supports exclusive
 ownership on the stated local filesystem; it does not freeze the trusted host

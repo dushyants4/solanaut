@@ -12,6 +12,21 @@ each component. Preserve every accepted security and release gate.
 
 ## Did
 
+Complete-read correction passes thirty focused cases, thirteen source faults,
+sixteen installed cases and 134 compiled faults, with restored passing baselines.
+Corrected definition 42/seed 42719 runs all 862 native and quiet serial AST cases
+successfully; typecheck and unchanged coverage floors pass. Exact bound product,
+evaluation, emitted-file and separate archive identities match. Preserve initial
+definition 41 fixture/wait failures and the fault diagnostic mismatch. Close and
+local commit/verified backup follow; no remote push or stable gate is claimed.
+
+D35 commits locally as `67948e6`, with verified complete-history bundle and exact
+clean clone/full fsck. Close passes nine of ten, only pushed HEAD failing.
+Continue into D36: injected short complete-reader results truncate acknowledged
+entries. Under ADR-019, require raw byte count before byte-offset repair while
+retaining genuine torn UTF-8 recovery. Source/installed cases fail first; preserve
+all earlier trials and declare definition 41/seed 41587 before full measurement.
+
 D35's focused/source/installed/compiled/native and typecheck pass, CLAIMS S102.
 Quiet serial AST fails the unchanged real-baseline wait. Archive raw reports
 without floor credit; exact product/input/emitted-file/archive identities match
@@ -224,6 +239,28 @@ Current-day run record and project register; subsequent replay component paths
 and qualification evidence will be recorded as work proceeds.
 
 ## Found
+
+Complete-read pre-commit close passes eight of ten: only uncommitted tree and
+unpushed HEAD fail. Latest explicit user instruction prohibits pushing; retain
+the unchanged finding and local-only backup limitation. Stage all evidence and
+repeat the secret/close checks before the local commit.
+
+Read completion definition 41 executes 862 native cases: 859 pass, two checkpoint
+fixtures fail because global `readSync` faults/counters intercept the now-raw
+journal reads, and the unchanged staged-baseline wait fails. Retain the complete
+output and focused fixture failure. Scope checkpoint faults/counters to their
+actual descriptor inode; preserve every fault, fallback assertion and case.
+Focused checkpoint cases and corrected typecheck pass. Definition 42/seed 42719
+retains 556 selected cases and all earlier inputs/limits before remeasurement.
+All 134 compiled package faults caught; the restored sixteen-case consumer
+baseline passes. Product/archive identity is unchanged by this fixture correction.
+
+D36 first fails with acknowledged bytes removed after a short read result, and
+oversized results accepted. Genuine incomplete UTF-8 tails still repair in the
+positive controls. The initial decoded-count fault fails with an ordinary error,
+which the strict checker refuses; strengthen the positive recovery assertion
+instead of weakening the checker. Earlier descriptor-change fixtures are widened
+to retain their injection with both string and raw-buffer reader results.
 
 D35's startup fixtures first fail on missing refusal after actual descriptor
 append/truncation/same-size overwrite. The installed previous candidate likewise

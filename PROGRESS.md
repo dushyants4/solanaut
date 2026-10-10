@@ -5,6 +5,14 @@ including the approved Beta; CLAIMS S78 and `evals/release/progress.md` freeze t
 scope. This is not release readiness, effort or a completion date. Components
 inside open milestones receive no fractional credit.
 
+Read completion is being qualified under ADR-019. Short read results previously
+truncate acknowledged history; the candidate verifies physical byte count before
+repair while preserving genuine torn UTF-8 recovery. Source/installed failures
+live in `evals/sdk/record-read-completion.md`. Corrected native/serial AST each
+pass all 862 cases, typecheck and unchanged floors pass, source/compiled faults
+catch, and exact bound identities match. Initial full fixture/wait failures are
+retained; no stable milestone closes, CLAIMS S103.
+
 Startup record read consistency is being qualified under ADR-019. Actual
 descriptor-read changes first fail to refuse; the local candidate checks metadata
 and inode identity before parsing/repair, preserving failed-startup ownership

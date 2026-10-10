@@ -243,6 +243,20 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-09 read completion: startup consistency is locally committed as
+`67948e6` with verified source-history bundle and exact clean clone/full fsck;
+post-commit close fails only unpushed HEAD. Reproduce short read results
+truncating acknowledged entries. Check raw byte count before repair and use byte
+newline offsets, preserving genuine torn UTF-8 recovery. Source/installed first
+failures and the decoded-count fault's initial diagnostic mismatch are retained;
+strengthen the positive assertion, keeping the strict checker unchanged.
+Definition 41's full fixture/wait failures remain archived. Scope checkpoint
+faults/counters to their actual inode while retaining every fault/assertion;
+definition 42/seed 42719 retains earlier inputs/limits. Corrected native/quiet
+serial AST each pass all 862 cases, unchanged floors and typecheck pass, all
+source/compiled faults catch and bound restored identities match, CLAIMS S103.
+No H9/H11 acceptance, signer expansion, stable milestone or remote push follows.
+
 2026-10-09 startup consistency: alias correction is locally committed as
 `84cac38`, with verified bundle, exact clean clone/full fsck and close failing
 only unpushed HEAD. Reproduce startup acceptance of stale read bytes when the

@@ -1,0 +1,86 @@
+✔ OWN-1: SDK refuses stale ownership instead of removing the lock (38.89456ms)
+✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (9.28106ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (326.999844ms)
+✔ OWN-3: established protected records are not recreated if missing (6.585851ms)
+✔ OWN-2/4: manual refuses a hardlinked journal alias and releases failed startup ownership (6.80972ms)
+✔ OWN-2/4: kernel refuses a hardlinked journal alias and releases failed startup ownership (6.635285ms)
+✔ OWN-2/4: kernel startup refuses a hardlinked mutex without changing its evidence (5.387837ms)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (17.691567ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (5.101339ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (3.631651ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (3.659925ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (3.419564ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (4.837159ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (4.052342ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (4.140016ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (4.97737ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (4.789269ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (4.321104ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal append during startup read and releases ownership (11.02842ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal truncate during startup read and releases ownership (9.834589ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal overwrite during startup read and releases ownership (9.372706ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal append during startup read and releases ownership (8.135853ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal truncate during startup read and releases ownership (10.696149ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal overwrite during startup read and releases ownership (17.665352ms)
+✔ STO-5/SIG-8/OWN-2: manual rejects short startup reads without truncating acknowledged entries (30.598739ms)
+✔ STO-5/SIG-8/OWN-2: manual rejects oversized startup reads without truncating acknowledged entries (51.993066ms)
+✔ STO-5/SIG-8/OWN-2: kernel rejects short startup reads without truncating acknowledged entries (52.291669ms)
+✔ STO-5/SIG-8/OWN-2: kernel rejects oversized startup reads without truncating acknowledged entries (24.84323ms)
+✖ STO-5/SIG-8: manual repairs a genuinely torn UTF-8 tail using byte boundaries (17.646563ms)
+✖ STO-5/SIG-8: kernel repairs a genuinely torn UTF-8 tail using byte boundaries (11.20271ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 28
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 495.976421
+
+✖ failing tests:
+
+test at packages/sdk/test/storage-failures.test.ts:134:56
+✖ STO-5/SIG-8: manual repairs a genuinely torn UTF-8 tail using byte boundaries (17.646563ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception: a genuinely torn UTF-8 tail must remain recoverable
+  Actual message: "the record read was incomplete"
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:140:10)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: the record read was incomplete
+        at readRecord (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:156:80)
+        at fileStore (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:211:15)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:140:42
+        at getActual (node:assert:580:5)
+        at strict.doesNotThrow (node:assert:748:32)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:140:10)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:134:56
+✖ STO-5/SIG-8: kernel repairs a genuinely torn UTF-8 tail using byte boundaries (11.20271ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception: a genuinely torn UTF-8 tail must remain recoverable
+  Actual message: "the record read was incomplete"
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:140:10)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: the record read was incomplete
+        at readRecord (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:156:80)
+        at fileStore (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:211:15)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:140:42
+        at getActual (node:assert:580:5)
+        at strict.doesNotThrow (node:assert:748:32)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:140:10)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }

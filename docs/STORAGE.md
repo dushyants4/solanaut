@@ -1,6 +1,6 @@
 # Persistent record ownership
 
-> **Draft 11** · 2026-10-09 · owner: integrator · for: SDK users and Linux operators.
+> **Draft 12** · 2026-10-09 · owner: integrator · for: SDK users and Linux operators.
 > Register: `kb/DOCUMENTS.md`. Foundation evidence: `evals/sdk/ownership.md` (claim S16).
 
 An ordinary `createGuard({ policy, log: path })` uses manual SDK ownership. It refuses an
@@ -75,6 +75,11 @@ parsing or torn-tail repair. Failed startup releases ownership and retains the
 changed evidence. Stop all writers and verify the intended immutable history before
 operator recovery; a metadata comparison does not freeze the host or source.
 Evidence: `evals/sdk/record-read-stability.md`.
+The complete raw read must match the descriptor's byte count before any repair.
+A short or oversized result refuses while retaining the original evidence.
+Genuine incomplete tails are cut at byte newline boundaries, preserving complete
+entries even when the suffix contains a partial UTF-8 character. Evidence:
+`evals/sdk/record-read-completion.md`. Full-history allocation remains unbounded.
 
 Before each append, the writer also compares descriptor byte count and nanosecond
 modification/change times with completed startup or its last synced append.

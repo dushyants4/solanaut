@@ -1,0 +1,18 @@
+✔ SNP-5: owned checkpoint and tail agree with independent preparation without writing history (66.809908ms)
+✔ OWN-2: memory, forged, manual and closed stores cannot recover as kernel owners (19.73052ms)
+✔ OWN-2: replaced record or ownership inode refuses recovery (29.250825ms)
+✔ SNP-6: cached history substitutions and disk corruption refuse instead of accepting a checkpoint (36.741932ms)
+✔ SNP-6: missing, oversized, corrupt and unsupported checkpoint files use verified history (89.673425ms)
+✔ OWN-2: competing recovery and publication share one maintenance boundary (27.324736ms)
+✔ OWN-2: closure, append, cache mutation and inode replacement during replay refuse (130.353209ms)
+✔ SNP-6: short checkpoint reads finish; growth and read errors use verified fallback (86.529608ms)
+✔ SNP-6: captured pins and external anchor remain authoritative on fallback (23.295263ms)
+✔ OWN-2: a failed writer refuses recovery and an established reopened owner validates the record (20.88509ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 755.406246

@@ -1,6 +1,6 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 51** · 2026-10-09 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 52** · 2026-10-09 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
@@ -15,6 +15,9 @@ make an advisory lock mandatory for other processes or make the host tamper-proo
 Record reads also verify descriptor size and nanosecond modification/change times
 across the read, plus current inode identity, before parsing or torn-tail repair.
 Observed changes refuse startup/maintenance rather than seed a stale cache.
+The complete raw read must also match descriptor byte count before any repair.
+Torn tails are cut at byte newline boundaries, preserving complete entries even
+when the unfinished suffix contains a partial UTF-8 character.
 
 Internal `owned-guard.ts` opens established signed devnet history and privately
 owns its guard/store. Admission, redemption, control requests, status and close are queued;
