@@ -247,6 +247,13 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-10 combined O2/O3 generated entry rejects a damaged CLI in its retained
+original extra baseline, then the healthy full unchanged campaign passes,
+CLAIMS S116. Actual protected entry remains unchanged; owner application and
+fresh maintained inventory qualification are owed. Repeated same-host private
+build/pack matches current bytes, modes and archive, CLAIMS S117; altered
+comparison manifests are refused. No release freeze, milestone or push follows.
+
 2026-10-10 full corrected parallel proposal completes in a generated copy with
 unchanged original fault/installed populations and outer timeout, CLAIMS S115.
 Healthy initial/restored worker controls pass; original stage bytes/modes and

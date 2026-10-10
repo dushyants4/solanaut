@@ -7,6 +7,22 @@ push. Preserve all release, independent and human gates.
 
 ## Did
 
+Generated combined O2/O3 entry completes its retained original healthy baseline,
+all original faults and worker controls under the unchanged outer timeout. The
+damaged CLI baseline fails first, before workers. Preserve exact generation,
+raw baseline/fault/entry output, summary and termination as S116. Actual source
+and gates stay unchanged. After workers finish, run the actual private release
+build/pack twice; bytes/modes/archive match the current candidate, S117. Three
+altered comparison manifests are refused; bound inputs remain unchanged.
+
+Commit complete corrected proposal evidence as e16c9df; verify full local bundle,
+exact clean restore and integrity check. Clean close passes nine of ten, failing
+only intentionally unpushed HEAD. Generate the combined O2/O3 entry draft in
+scratch without modifying either protected source. Preserve the original extra
+baseline and instrument only its raw output. A copied candidate with its replay
+CLI shebang removed fails that baseline before any fault worker starts. The full
+generated entry campaign follows under the unchanged outer timeout.
+
 Commit interruption evidence as 2067447 with verified full local bundle/exact
 clean clone/integrity check. Clean close passes nine of ten, failing only
 deliberately unpushed HEAD. Run the exact termination proposal in a generated

@@ -1,7 +1,7 @@
 # Staged devnet release — review draft
 
-Current engineering review, 2026-10-09: locally committed `3fe0f0d` plus the
-post-sync identity candidate being qualified. The original preview manifests
+Current engineering review, 2026-10-10: unchanged product `f1e253f`, with private
+signing-journal and exact current Node 24 evidence, CLAIMS S112/S113. The original preview manifests
 below remain historical evidence; no replacement preview freeze or clearance is
 inferred. New component evidence is [read completion](../../evals/sdk/record-read-completion.md),
 [append completion](../../evals/sdk/record-write-completion.md) and
@@ -9,7 +9,10 @@ inferred. New component evidence is [read completion](../../evals/sdk/record-rea
 Native/type/installed checks have scoped local passes; unchanged staged-wait
 failures remain open. Post-sync compiled qualification and restored identities
 pass, with the full limits retained; no complete coverage gate follows.
-Existing Node 24 results stay separately scoped, CLAIMS S104. No remote push is
+Generated combined owner-entry qualification and same-host private rebuild
+identity pass as CLAIMS S116/S117. Actual gate edits remain unapplied; this is
+neither a new preview freeze nor public provenance. Earlier Node 24 results
+stay separately scoped, CLAIMS S104/S109. No remote push is
 authorised, hosted execution remains H13-blocked, and H9/H11/H12 remain pending.
 The [current evidence map](../plans/2026-10-07_release-evidence-map.md) identifies
 bounded state, isolated deployment and independent/human gates still owed.

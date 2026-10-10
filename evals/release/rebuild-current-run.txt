@@ -1,0 +1,1 @@
+{"ok": true, "builds": 2, "comparisonFaultsCaught": ["file-bytes", "executable-mode", "archive-bytes"], "archiveSha256": "9f241d5424c330cc81239edb4e68236a6133ae9842063696d8f1b70eebdf2c0d", "originalStageUnchanged": true}

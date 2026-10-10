@@ -99,6 +99,13 @@ Complete generated-copy qualification now passes unchanged populations and
 timeout, CLAIMS S115. The maintained entry point and its extra original control
 remain separate owner qualification; no actual gate has changed.
 
+Combined generated O2/O3 entry now passes its retained extra baseline and full
+unchanged campaign, CLAIMS S116; a damaged CLI is refused before workers. This
+reduces the proposed integration evidence gap without applying the actual edit
+or qualifying the maintained inventory. Repeated same-host private build/pack
+reproduces current bytes/modes/archive, CLAIMS S117. Neither supplies clean-machine
+installation, independent reproducibility, provenance or an audited freeze.
+
 Continue the accepted [snapshot sequence](2026-10-06_snapshot-qualification.md):
 historical request/answer lookup on disk, bounded active state and actual owned
 streamed restoration. Preserve payload identity, unresolved reservations, used

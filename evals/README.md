@@ -1,5 +1,12 @@
 # evals/ — receipts
 
+`packaging/parallel-entry.md`: generated O2/O3 entry retains the original extra
+baseline, rejects a damaged CLI before workers and completes the full unchanged
+population. Actual maintained source remains unchanged, CLAIMS S116.
+
+`release/rebuild-current.md`: repeated same-host private SDK build/pack bytes and
+modes match the current candidate; comparator faults are refused, CLAIMS S117.
+
 `packaging/parallel-lifecycle-full.md`: S115 complete generated corrected proposal
 passes unchanged original populations and timeout with healthy worker controls.
 Actual maintained entry and gates stay unchanged/failed; O2/O3 remain unapplied.

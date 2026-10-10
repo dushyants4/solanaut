@@ -1,0 +1,87 @@
+✔ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (344.881024ms)
+✔ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (322.560897ms)
+✔ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (125.708885ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (95.775279ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (171.396691ms)
+✔ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (170.884077ms)
+✔ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (134.499897ms)
+✖ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (105.49954ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (252.501668ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (1.039152ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (531.574206ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (239.903614ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (241.998208ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (197.38528ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (105.61519ms)
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1528.387522ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (66.408331ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (210.715275ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (118.172787ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 17
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6545.609165
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:214:1
+✖ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (105.49954ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-Dr2ze9/consumer/[eval1]:7
+          const first=g.check({message:new Uint8Array(Buffer.from(process.argv[2],'base64')),at:1000});if(!changed||first.seq!==-1||first.rule!=='fail-closed'||store.entries.length!==0)throw new Error('installed writer acknowledged replaced evidence');
+                                                                                                                                                                                               ^
+  
+  Error: installed writer acknowledged replaced evidence
+      at file:///tmp/solanaut-consumer-Dr2ze9/consumer/[eval1]:7:190
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:227:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/packaging/packed-sdk.test.ts:418:1
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1528.387522ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-Dr2ze9/consumer/[eval1]:167
+        try{let aliasRefused=false;try{await pendingOwned;}catch(error){aliasRefused=error.name==='CheckpointRecoveryError' && error.code==='checkpoint-recovery';}if(!aliasRefused)throw new Error('installed ownership alias accepted');}
+                                                                                                                                                                                          ^
+  
+  Error: installed ownership alias accepted
+      at file:///tmp/solanaut-consumer-Dr2ze9/consumer/[eval1]:167:185
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:667:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

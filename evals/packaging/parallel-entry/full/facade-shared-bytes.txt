@@ -1,0 +1,58 @@
+✔ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (372.18238ms)
+✖ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (232.590938ms)
+✔ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (133.76611ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (116.468439ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (178.418156ms)
+✔ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (147.060449ms)
+✔ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (130.321784ms)
+✔ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (116.808451ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (265.272279ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (0.924946ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (525.73643ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (210.284398ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (213.340672ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (212.008051ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (103.001972ms)
+✔ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1766.45977ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (79.148713ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (190.172084ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (98.366099ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6632.855289
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:52:1
+✖ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (232.590938ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-lLS2Kv/consumer/[eval1]:33
+          const bytes=new Uint8Array(new SharedArrayBuffer(1));bytes[0]=255;const decision=g.check({message:bytes,at:2001},{clientId:'client',id:'proposal'});bytes[0]=0;if((await decision).message!=='/w==')throw new Error('installed facade retained shared bytes');
+                                                                                                                                                                                                                    ^
+  
+  Error: installed facade retained shared bytes
+      at file:///tmp/solanaut-consumer-lLS2Kv/consumer/[eval1]:33:211
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:103:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

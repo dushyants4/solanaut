@@ -1,0 +1,58 @@
+✔ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (260.543648ms)
+✔ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (244.672508ms)
+✖ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (82.850123ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (84.902332ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (152.643194ms)
+✔ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (156.667535ms)
+✔ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (158.472635ms)
+✔ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (136.517357ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (272.069046ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (1.177575ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (667.620104ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (281.529667ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (250.60956ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (248.092045ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (115.906938ms)
+✔ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (2089.085639ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (97.531304ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (207.555924ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (127.759667ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6802.778108
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:106:1
+✖ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (82.850123ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-PhDAXy/consumer/[eval1]:16
+          if(denied.seq!==-1||denied.rule!=='fail-closed'||fs.readFileSync(path,'utf8')!==damaged||g.entries().length!==1)throw new Error('installed writer acknowledged damaged history');
+                                                                                                                                ^
+  
+  Error: installed writer acknowledged damaged history
+      at file:///tmp/solanaut-consumer-PhDAXy/consumer/[eval1]:16:127
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:129:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

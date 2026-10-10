@@ -1,0 +1,58 @@
+✔ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (251.116824ms)
+✔ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (246.210201ms)
+✔ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (98.529432ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (72.646955ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (128.602933ms)
+✖ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (88.224659ms)
+✔ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (118.904808ms)
+✔ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (130.195173ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (221.491342ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (0.655444ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (411.463508ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (158.078125ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (154.96721ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (154.885658ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (75.427109ms)
+✔ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1413.338833ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (58.037504ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (152.987745ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (66.509165ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5443.021556
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:174:1
+✖ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (88.224659ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-Bg4aLN/consumer/[eval1]:11
+          if(!changed||!denied||!fs.readFileSync(path).equals(original))throw new Error('installed incomplete read removed or accepted acknowledged history');
+                                                                              ^
+  
+  Error: installed incomplete read removed or accepted acknowledged history
+      at file:///tmp/solanaut-consumer-Bg4aLN/consumer/[eval1]:11:77
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:192:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

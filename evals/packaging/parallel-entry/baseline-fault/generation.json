@@ -1,0 +1,11 @@
+{
+  "scope": "generated O2/O3 entry; baseline log instrumentation only; actual gate unchanged",
+  "negativeBaseline": true,
+  "originalEntrySha256": "dac72a30ff1630a8c8856acae372c9dd86d210213760513d7ceef412ad22696a",
+  "originalPrototypeSha256": "7ca04950c47bc75634a3bb1067d86a0368f03458d3543a13a23e3efe91fdf4d7",
+  "entryDraftSha256": "0c362b730ca9467dcc4fa1c1fbadb811f8608c53b357e99faa38d21e71ca8a37",
+  "terminationDraftSha256": "b35aec564941eca1624efcee9f0ff1cffd84373cfc678ccbf60acd1677d28b29",
+  "generatedEntrySha256": "29355277a051457fe306c4f2baee9a70640bfde46d4753f70837e5550ef3df60",
+  "generatedRunnerSha256": "1c1491334f68396dcd2968b3be43b7ced924b1229971f9cdd449e42f65372b31",
+  "observerSha256": "9ff65e9f1f57a6fcafeb5ad560e1e76382bdd8bf998a3f6a38d5ce425211e49e"
+}

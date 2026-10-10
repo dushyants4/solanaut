@@ -1,0 +1,596 @@
+{
+  "prototypeOnly": true,
+  "ok": true,
+  "expired": false,
+  "errors": [],
+  "originalStageUnchanged": true,
+  "elapsedMs": 251655.953863,
+  "controls": [
+    "worker-1-initial.txt",
+    "worker-2-initial.txt",
+    "worker-3-initial.txt",
+    "worker-0-initial.txt",
+    "worker-2-final.txt",
+    "worker-0-final.txt",
+    "worker-1-final.txt",
+    "worker-3-final.txt"
+  ],
+  "results": [
+    {
+      "name": "facade-report-fifo",
+      "log": "facade-report-fifo.txt"
+    },
+    {
+      "name": "facade-report-outcome",
+      "log": "facade-report-outcome.txt"
+    },
+    {
+      "name": "facade-report-decision",
+      "log": "facade-report-decision.txt"
+    },
+    {
+      "name": "facade-report-commit",
+      "log": "facade-report-commit.txt"
+    },
+    {
+      "name": "facade-report-primitives",
+      "log": "facade-report-primitives.txt"
+    },
+    {
+      "name": "facade-report-storage",
+      "log": "facade-report-storage.txt"
+    },
+    {
+      "name": "record-post-append-inode",
+      "log": "record-post-append-inode.txt"
+    },
+    {
+      "name": "record-post-append-owner",
+      "log": "record-post-append-owner.txt"
+    },
+    {
+      "name": "record-append-base",
+      "log": "record-append-base.txt"
+    },
+    {
+      "name": "record-append-completion",
+      "log": "record-append-completion.txt"
+    },
+    {
+      "name": "record-read-completion",
+      "log": "record-read-completion.txt"
+    },
+    {
+      "name": "record-decoded-read-count",
+      "log": "record-decoded-read-count.txt"
+    },
+    {
+      "name": "record-read-stability",
+      "log": "record-read-stability.txt"
+    },
+    {
+      "name": "record-single-link",
+      "log": "record-single-link.txt"
+    },
+    {
+      "name": "record-live-evidence",
+      "log": "record-live-evidence.txt"
+    },
+    {
+      "name": "record-live-times",
+      "log": "record-live-times.txt"
+    },
+    {
+      "name": "record-live-failure",
+      "log": "record-live-failure.txt"
+    },
+    {
+      "name": "facade-release-bytes",
+      "log": "facade-release-bytes.txt"
+    },
+    {
+      "name": "facade-release-refusal",
+      "log": "facade-release-refusal.txt"
+    },
+    {
+      "name": "facade-release-reply",
+      "log": "facade-release-reply.txt"
+    },
+    {
+      "name": "facade-release-prompt",
+      "log": "facade-release-prompt.txt"
+    },
+    {
+      "name": "facade-release-text-fifo",
+      "log": "facade-release-text-fifo.txt"
+    },
+    {
+      "name": "facade-redemption-refusal",
+      "log": "facade-redemption-refusal.txt"
+    },
+    {
+      "name": "facade-redemption-bytes",
+      "log": "facade-redemption-bytes.txt"
+    },
+    {
+      "name": "facade-redemption-reply",
+      "log": "facade-redemption-reply.txt"
+    },
+    {
+      "name": "facade-export",
+      "log": "facade-export.txt"
+    },
+    {
+      "name": "facade-unrecorded-admission",
+      "log": "facade-unrecorded-admission.txt"
+    },
+    {
+      "name": "facade-fresh-history",
+      "log": "facade-fresh-history.txt"
+    },
+    {
+      "name": "facade-config-capture",
+      "log": "facade-config-capture.txt"
+    },
+    {
+      "name": "facade-upgrade",
+      "log": "facade-upgrade.txt"
+    },
+    {
+      "name": "facade-freeze",
+      "log": "facade-freeze.txt"
+    },
+    {
+      "name": "facade-index",
+      "log": "facade-index.txt"
+    },
+    {
+      "name": "facade-payload",
+      "log": "facade-payload.txt"
+    },
+    {
+      "name": "facade-response",
+      "log": "facade-response.txt"
+    },
+    {
+      "name": "facade-shared-bytes",
+      "log": "facade-shared-bytes.txt"
+    },
+    {
+      "name": "facade-close-drain",
+      "log": "facade-close-drain.txt"
+    },
+    {
+      "name": "owned-control-export",
+      "log": "owned-control-export.txt"
+    },
+    {
+      "name": "owned-control-code",
+      "log": "owned-control-code.txt"
+    },
+    {
+      "name": "owned-control-head",
+      "log": "owned-control-head.txt"
+    },
+    {
+      "name": "owned-control-start-capture",
+      "log": "owned-control-start-capture.txt"
+    },
+    {
+      "name": "owned-control-answer-capture",
+      "log": "owned-control-answer-capture.txt"
+    },
+    {
+      "name": "owned-control-immutable",
+      "log": "owned-control-immutable.txt"
+    },
+    {
+      "name": "owned-control-freeze",
+      "log": "owned-control-freeze.txt"
+    },
+    {
+      "name": "owned-control-private-start",
+      "log": "owned-control-private-start.txt"
+    },
+    {
+      "name": "replay-cli-trust",
+      "log": "replay-cli-trust.txt"
+    },
+    {
+      "name": "replay-cli-divergence",
+      "log": "replay-cli-divergence.txt"
+    },
+    {
+      "name": "owned-control-private-response",
+      "log": "owned-control-private-response.txt"
+    },
+    {
+      "name": "replay-cli-public-ceiling",
+      "log": "replay-cli-public-ceiling.txt"
+    },
+    {
+      "name": "replay-cli-fields",
+      "log": "replay-cli-fields.txt"
+    },
+    {
+      "name": "replay-cli-line-ceiling",
+      "log": "replay-cli-line-ceiling.txt"
+    },
+    {
+      "name": "replay-cli-detail",
+      "log": "replay-cli-detail.txt"
+    },
+    {
+      "name": "replay-cli-input-error",
+      "log": "replay-cli-input-error.txt"
+    },
+    {
+      "name": "replay-cli-utf8",
+      "log": "replay-cli-utf8.txt"
+    },
+    {
+      "name": "owned-admission-export",
+      "log": "owned-admission-export.txt"
+    },
+    {
+      "name": "owned-admission-error",
+      "log": "owned-admission-error.txt"
+    },
+    {
+      "name": "owned-admission-shared-bytes",
+      "log": "owned-admission-shared-bytes.txt"
+    },
+    {
+      "name": "owned-admission-reply-detachment",
+      "log": "owned-admission-reply-detachment.txt"
+    },
+    {
+      "name": "owned-admission-reply-freeze",
+      "log": "owned-admission-reply-freeze.txt"
+    },
+    {
+      "name": "owned-admission-fifo",
+      "log": "owned-admission-fifo.txt"
+    },
+    {
+      "name": "owned-admission-head",
+      "log": "owned-admission-head.txt"
+    },
+    {
+      "name": "owned-admission-disk",
+      "log": "owned-admission-disk.txt"
+    },
+    {
+      "name": "owned-admission-payload",
+      "log": "owned-admission-payload.txt"
+    },
+    {
+      "name": "owned-lookup-capability",
+      "log": "owned-lookup-capability.txt"
+    },
+    {
+      "name": "owned-lookup-error",
+      "log": "owned-lookup-error.txt"
+    },
+    {
+      "name": "owned-lookup-tail",
+      "log": "owned-lookup-tail.txt"
+    },
+    {
+      "name": "owned-lookup-endpoint",
+      "log": "owned-lookup-endpoint.txt"
+    },
+    {
+      "name": "owned-index-module",
+      "log": "owned-index-module.txt"
+    },
+    {
+      "name": "owned-lookup-immutable",
+      "log": "owned-lookup-immutable.txt"
+    },
+    {
+      "name": "owned-index-digest",
+      "log": "owned-index-digest.txt"
+    },
+    {
+      "name": "owned-index-capability",
+      "log": "owned-index-capability.txt"
+    },
+    {
+      "name": "client-options-container",
+      "log": "client-options-container.txt"
+    },
+    {
+      "name": "client-status-container",
+      "log": "client-status-container.txt"
+    },
+    {
+      "name": "client-propose-container",
+      "log": "client-propose-container.txt"
+    },
+    {
+      "name": "client-report-container",
+      "log": "client-report-container.txt"
+    },
+    {
+      "name": "client-array-container",
+      "log": "client-array-container.txt"
+    },
+    {
+      "name": "client-function-container",
+      "log": "client-function-container.txt"
+    },
+    {
+      "name": "index-module",
+      "log": "index-module.txt"
+    },
+    {
+      "name": "client-null-container",
+      "log": "client-null-container.txt"
+    },
+    {
+      "name": "index-replay",
+      "log": "index-replay.txt"
+    },
+    {
+      "name": "index-root-provenance",
+      "log": "index-root-provenance.txt"
+    },
+    {
+      "name": "index-digest",
+      "log": "index-digest.txt"
+    },
+    {
+      "name": "index-complete-buckets",
+      "log": "index-complete-buckets.txt"
+    },
+    {
+      "name": "index-control-reply",
+      "log": "index-control-reply.txt"
+    },
+    {
+      "name": "index-error-code",
+      "log": "index-error-code.txt"
+    },
+    {
+      "name": "index-immutable",
+      "log": "index-immutable.txt"
+    },
+    {
+      "name": "replay-report-boundary",
+      "log": "replay-report-boundary.txt"
+    },
+    {
+      "name": "replay-report-source",
+      "log": "replay-report-source.txt"
+    },
+    {
+      "name": "replay-report-finality",
+      "log": "replay-report-finality.txt"
+    },
+    {
+      "name": "replay-redemption-boundary",
+      "log": "replay-redemption-boundary.txt"
+    },
+    {
+      "name": "replay-redemption-single-use",
+      "log": "replay-redemption-single-use.txt"
+    },
+    {
+      "name": "replay-redemption-lifetime",
+      "log": "replay-redemption-lifetime.txt"
+    },
+    {
+      "name": "record-eager-publication",
+      "log": "record-eager-publication.txt"
+    },
+    {
+      "name": "record-publication-capture",
+      "log": "record-publication-capture.txt"
+    },
+    {
+      "name": "record-eager-recovery",
+      "log": "record-eager-recovery.txt"
+    },
+    {
+      "name": "record-publication-code",
+      "log": "record-publication-code.txt"
+    },
+    {
+      "name": "record-recovery-code",
+      "log": "record-recovery-code.txt"
+    },
+    {
+      "name": "stream-replay-export",
+      "log": "stream-replay-export.txt"
+    },
+    {
+      "name": "stream-replay-source",
+      "log": "stream-replay-source.txt"
+    },
+    {
+      "name": "stream-replay-decisions",
+      "log": "stream-replay-decisions.txt"
+    },
+    {
+      "name": "stream-replay-trust",
+      "log": "stream-replay-trust.txt"
+    },
+    {
+      "name": "archive-stream-export",
+      "log": "archive-stream-export.txt"
+    },
+    {
+      "name": "archive-stream-entry",
+      "log": "archive-stream-entry.txt"
+    },
+    {
+      "name": "archive-stream-digest",
+      "log": "archive-stream-digest.txt"
+    },
+    {
+      "name": "archive-stream-count",
+      "log": "archive-stream-count.txt"
+    },
+    {
+      "name": "owned-recovery-named-path",
+      "log": "owned-recovery-named-path.txt"
+    },
+    {
+      "name": "owned-recovery-export",
+      "log": "owned-recovery-export.txt"
+    },
+    {
+      "name": "owned-recovery-capability",
+      "log": "owned-recovery-capability.txt"
+    },
+    {
+      "name": "recovery-module",
+      "log": "recovery-module.txt"
+    },
+    {
+      "name": "owned-recovery-result",
+      "log": "owned-recovery-result.txt"
+    },
+    {
+      "name": "recovery-anchor",
+      "log": "recovery-anchor.txt"
+    },
+    {
+      "name": "recovery-mode",
+      "log": "recovery-mode.txt"
+    },
+    {
+      "name": "recovery-validation",
+      "log": "recovery-validation.txt"
+    },
+    {
+      "name": "rebuild-prefix-comparison",
+      "log": "rebuild-prefix-comparison.txt"
+    },
+    {
+      "name": "rebuild-prefix-events",
+      "log": "rebuild-prefix-events.txt"
+    },
+    {
+      "name": "publication-module",
+      "log": "publication-module.txt"
+    },
+    {
+      "name": "publication-digest",
+      "log": "publication-digest.txt"
+    },
+    {
+      "name": "publication-ownership",
+      "log": "publication-ownership.txt"
+    },
+    {
+      "name": "prefix-module",
+      "log": "prefix-module.txt"
+    },
+    {
+      "name": "bundle-module",
+      "log": "bundle-module.txt"
+    },
+    {
+      "name": "envelope-module",
+      "log": "envelope-module.txt"
+    },
+    {
+      "name": "envelope-byte-ceiling",
+      "log": "envelope-byte-ceiling.txt"
+    },
+    {
+      "name": "envelope-state-binding",
+      "log": "envelope-state-binding.txt"
+    },
+    {
+      "name": "envelope-framing",
+      "log": "envelope-framing.txt"
+    },
+    {
+      "name": "bundle-digest",
+      "log": "bundle-digest.txt"
+    },
+    {
+      "name": "bundle-payload",
+      "log": "bundle-payload.txt"
+    },
+    {
+      "name": "policy-signature-size",
+      "log": "policy-signature-size.txt"
+    },
+    {
+      "name": "bundle-domain",
+      "log": "bundle-domain.txt"
+    },
+    {
+      "name": "prefix-digest",
+      "log": "prefix-digest.txt"
+    },
+    {
+      "name": "prefix-replay",
+      "log": "prefix-replay.txt"
+    },
+    {
+      "name": "state-digest",
+      "log": "state-digest.txt"
+    },
+    {
+      "name": "state-maps",
+      "log": "state-maps.txt"
+    },
+    {
+      "name": "state-predecessor",
+      "log": "state-predecessor.txt"
+    },
+    {
+      "name": "state-profile",
+      "log": "state-profile.txt"
+    },
+    {
+      "name": "state-replay",
+      "log": "state-replay.txt"
+    },
+    {
+      "name": "state-policy",
+      "log": "state-policy.txt"
+    },
+    {
+      "name": "malformed-replay",
+      "log": "malformed-replay.txt"
+    },
+    {
+      "name": "checkpoint-archives-digest",
+      "log": "checkpoint-archives-digest.txt"
+    },
+    {
+      "name": "checkpoint-archives-export",
+      "log": "checkpoint-archives-export.txt"
+    },
+    {
+      "name": "checkpoint-signature-bound",
+      "log": "checkpoint-signature-bound.txt"
+    },
+    {
+      "name": "export",
+      "log": "export.txt"
+    },
+    {
+      "name": "checkpoint-export",
+      "log": "checkpoint-export.txt"
+    },
+    {
+      "name": "dependency",
+      "log": "dependency.txt"
+    },
+    {
+      "name": "types",
+      "log": "types.txt"
+    },
+    {
+      "name": "cli",
+      "log": "cli.txt"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+✔ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (417.969349ms)
+✔ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (433.902855ms)
+✔ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (160.751708ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (128.029067ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (235.233667ms)
+✔ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (192.070157ms)
+✔ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (135.030245ms)
+✔ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (123.958939ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (257.243413ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (0.855192ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (650.119479ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (241.660883ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (233.351937ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (293.950678ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (153.36106ms)
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1907.511792ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (109.692397ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (266.972497ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (135.082133ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8138.990531
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:418:1
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1907.511792ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-d24mHJ/consumer/node_modules/@solanaut/sdk/dist/src/checkpoint.js:67
+          throw new CheckpointBindingError("checkpoint payload digest differs");
+                ^
+  
+  CheckpointBindingError: checkpoint payload digest differs
+      at verifyCheckpointBinding (file:///tmp/solanaut-consumer-d24mHJ/consumer/node_modules/@solanaut/sdk/dist/src/checkpoint.js:67:15)
+      at file:///tmp/solanaut-consumer-d24mHJ/consumer/[eval1]:93:5 {
+    code: 'checkpoint-binding'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:667:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

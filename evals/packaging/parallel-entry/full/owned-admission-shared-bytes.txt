@@ -1,0 +1,58 @@
+✔ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (327.437146ms)
+✔ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (322.422709ms)
+✔ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (133.937957ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (110.022338ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (180.961309ms)
+✔ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (154.094835ms)
+✔ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (137.592045ms)
+✔ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (111.318001ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (220.79959ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (1.484426ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (508.281969ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (240.006104ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (197.012892ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (198.799966ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (101.125772ms)
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1622.142979ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (92.360943ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (198.464333ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (82.151208ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6451.04258
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:418:1
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1622.142979ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-Yk9ufC/consumer/[eval1]:196
+        if((await pendingShared).message!==capturedShared)throw new Error('installed queued admission retained shared byte backing');
+                                                                ^
+  
+  Error: installed queued admission retained shared byte backing
+      at file:///tmp/solanaut-consumer-Yk9ufC/consumer/[eval1]:196:63
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:667:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

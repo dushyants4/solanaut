@@ -1,0 +1,58 @@
+✔ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (328.071824ms)
+✔ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (316.46891ms)
+✔ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (133.002564ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (91.487511ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (168.22839ms)
+✔ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (153.038687ms)
+✔ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (131.172787ms)
+✔ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (135.3388ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (269.671636ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (1.048807ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (507.218366ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (231.964965ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (227.131752ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (236.115817ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (110.571371ms)
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1381.312649ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (73.391247ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (181.525848ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (103.310575ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6600.592101
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:418:1
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1381.312649ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-KD3bDS/consumer/[eval1]:121
+        let forgedRootRefused=false;try{await lookupRequestIndex(indexPath,structuredClone(index.root),{clientId:'client',id:'absent'});}catch(error){forgedRootRefused=error instanceof RequestIndexError && error.code==='request-index';}if(!forgedRootRefused)throw new Error('installed cache minted root authority');
+                                                                                                                                                                                                                                                                        ^
+  
+  Error: installed cache minted root authority
+      at file:///tmp/solanaut-consumer-KD3bDS/consumer/[eval1]:121:263
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:667:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

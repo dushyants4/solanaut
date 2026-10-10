@@ -1,5 +1,10 @@
 # PROGRESS.md
 
+Combined O2/O3 generated-entry qualification passes its original extra baseline
+and full unchanged campaign, S116. Same-host repeated private build/pack matches
+the current candidate bytes/modes, S117. Owner application and actual maintained
+qualification remain owed; no milestone, stable or publication credit follows.
+
 The generated corrected parallel proposal passes the complete unchanged package
 campaign within its existing timeout, S115. Owner application/maintained-entry
 qualification remains owed; no milestone or stable-release credit follows.

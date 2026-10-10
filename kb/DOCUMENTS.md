@@ -1,5 +1,10 @@
 # DOCUMENTS.md — the document register
 
+2026-10-10 registers generated combined owner-entry and repeated private rebuild
+receipts, helpers, raw evidence, CLAIMS S116/S117, PROGRESS, HANDOFF, evaluation
+index, staged release draft, release map and continuing run. Exact actual gate
+and product remain unchanged; no release freeze or stable milestone closes.
+
 2026-10-10 registers complete generated corrected parallel proposal, generation/
 full raw fault/control/termination/identity evidence, CLAIMS S115, PROGRESS,
 HANDOFF, evaluation index, release map and continuing run. O2/O3 are unapplied;

@@ -1,0 +1,60 @@
+✔ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (263.711028ms)
+✔ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (235.027901ms)
+✔ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (101.068892ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (73.433344ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (130.296139ms)
+✖ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (84.033061ms)
+✔ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (108.83753ms)
+✔ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (133.869439ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (218.056829ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (0.781248ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (405.970344ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (158.94119ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (160.774964ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (158.806464ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (77.482551ms)
+✔ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1438.572487ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (56.949316ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (138.603392ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (69.307441ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5411.681613
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:174:1
+✖ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (84.033061ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-32AemX/consumer/node_modules/@solanaut/sdk/dist/src/record.js:187
+          throw new Error("the record read was incomplete");
+                ^
+  
+  Error: the record read was incomplete
+      at readRecord (file:///tmp/solanaut-consumer-32AemX/consumer/node_modules/@solanaut/sdk/dist/src/record.js:187:15)
+      at fileStore (file:///tmp/solanaut-consumer-32AemX/consumer/node_modules/@solanaut/sdk/dist/src/record.js:257:19)
+      at file:///tmp/solanaut-consumer-32AemX/consumer/[eval1]:13:71
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:192:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

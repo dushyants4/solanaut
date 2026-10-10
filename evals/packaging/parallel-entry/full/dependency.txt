@@ -1,0 +1,677 @@
+✖ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (64.209064ms)
+✖ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (64.29174ms)
+✖ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (68.882057ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (131.978616ms)
+✖ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (66.00462ms)
+✖ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (65.633399ms)
+✖ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (76.699779ms)
+✖ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (78.056335ms)
+✖ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (97.076717ms)
+✖ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (5.260754ms)
+✖ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (871.614332ms)
+✖ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (85.443933ms)
+✖ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (130.264991ms)
+✖ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (76.897488ms)
+✖ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (71.16487ms)
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (70.770404ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (113.895545ms)
+✖ PKG-3: installed replay and table-pin commands execute with their documented usage exits (78.31943ms)
+✖ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (69.131547ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 2
+ℹ fail 17
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4168.528682
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:31:1
+✖ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (64.209064ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/package_json_reader:301
+    throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+          ^
+  
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@gubernaut/core' imported from /tmp/solanaut-consumer-vJOZ7l/consumer/node_modules/@solanaut/sdk/dist/src/guard.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:49:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/packaging/packed-sdk.test.ts:52:1
+✖ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (64.29174ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/package_json_reader:301
+    throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+          ^
+  
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@gubernaut/core' imported from /tmp/solanaut-consumer-vJOZ7l/consumer/node_modules/@solanaut/sdk/dist/src/guard.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:103:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/packaging/packed-sdk.test.ts:106:1
+✖ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (68.882057ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/package_json_reader:301
+    throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+          ^
+  
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@gubernaut/core' imported from /tmp/solanaut-consumer-vJOZ7l/consumer/node_modules/@solanaut/sdk/dist/src/guard.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:129:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/packaging/packed-sdk.test.ts:154:1
+✖ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (66.00462ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/package_json_reader:301
+    throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+          ^
+  
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@gubernaut/core' imported from /tmp/solanaut-consumer-vJOZ7l/consumer/node_modules/@solanaut/sdk/dist/src/guard.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:171:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/packaging/packed-sdk.test.ts:174:1
+✖ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (65.633399ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/package_json_reader:301
+    throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+          ^
+  
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@gubernaut/core' imported from /tmp/solanaut-consumer-vJOZ7l/consumer/node_modules/@solanaut/sdk/dist/src/guard.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:192:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/packaging/packed-sdk.test.ts:195:1
+✖ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (76.699779ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/package_json_reader:301
+    throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+          ^
+  
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@gubernaut/core' imported from /tmp/solanaut-consumer-vJOZ7l/consumer/node_modules/@solanaut/sdk/dist/src/guard.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:211:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/packaging/packed-sdk.test.ts:214:1
+✖ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (78.056335ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/package_json_reader:301
+    throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+          ^
+  
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@gubernaut/core' imported from /tmp/solanaut-consumer-vJOZ7l/consumer/node_modules/@solanaut/sdk/dist/src/guard.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:227:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/packaging/packed-sdk.test.ts:230:1
+✖ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (97.076717ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/package_json_reader:301
+    throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+          ^
+  
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@gubernaut/core' imported from /tmp/solanaut-consumer-vJOZ7l/consumer/node_modules/@solanaut/sdk/dist/src/guard.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:251:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/packaging/packed-sdk.test.ts:259:1
+✖ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (5.260754ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + {}
+  - {
+  -   '@gubernaut/core': '1.0.1'
+  - }
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:269:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: {},
+    expected: { '@gubernaut/core': '1.0.1' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at evals/packaging/packed-sdk.test.ts:272:1
+✖ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (871.614332ms)
+  AssertionError [ERR_ASSERTION]: consumer.ts(7,5): error TS2578: Unused '@ts-expect-error' directive.
+  node_modules/@solanaut/sdk/dist/src/checkpoint-recovery.d.ts(1,31): error TS2307: Cannot find module '@gubernaut/core' or its corresponding type declarations.
+  node_modules/@solanaut/sdk/dist/src/log.d.ts(1,41): error TS2307: Cannot find module '@gubernaut/core' or its corresponding type declarations.
+  node_modules/@solanaut/sdk/dist/src/sensor.d.ts(1,32): error TS2307: Cannot find module '@gubernaut/core' or its corresponding type declarations.
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:321:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/packaging/packed-sdk.test.ts:323:1
+✖ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (85.443933ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/package_json_reader:301
+    throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+          ^
+  
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@gubernaut/core' imported from /tmp/solanaut-consumer-vJOZ7l/consumer/node_modules/@solanaut/sdk/dist/src/guard.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:340:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/packaging/packed-sdk.test.ts:349:1
+✖ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (130.264991ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/package_json_reader:301
+    throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+          ^
+  
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@gubernaut/core' imported from /tmp/solanaut-consumer-vJOZ7l/consumer/node_modules/@solanaut/sdk/dist/src/guard.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:363:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/packaging/packed-sdk.test.ts:371:1
+✖ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (76.897488ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/package_json_reader:301
+    throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+          ^
+  
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@gubernaut/core' imported from /tmp/solanaut-consumer-vJOZ7l/consumer/node_modules/@solanaut/sdk/dist/src/guard.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:375:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/packaging/packed-sdk.test.ts:384:1
+✖ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (71.16487ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/package_json_reader:301
+    throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+          ^
+  
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@gubernaut/core' imported from /tmp/solanaut-consumer-vJOZ7l/consumer/node_modules/@solanaut/sdk/dist/src/guard.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:414:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/packaging/packed-sdk.test.ts:418:1
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (70.770404ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/package_json_reader:301
+    throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+          ^
+  
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@gubernaut/core' imported from /tmp/solanaut-consumer-vJOZ7l/consumer/node_modules/@solanaut/sdk/dist/src/guard.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:667:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/packaging/packed-sdk.test.ts:688:1
+✖ PKG-3: installed replay and table-pin commands execute with their documented usage exits (78.31943ms)
+  AssertionError [ERR_ASSERTION]: solanaut-replay: node:internal/modules/package_json_reader:301
+    throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+          ^
+  
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@gubernaut/core' imported from /tmp/solanaut-consumer-vJOZ7l/consumer/node_modules/@solanaut/sdk/dist/src/guard.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 2
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:691:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/packaging/packed-sdk.test.ts:695:1
+✖ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (69.131547ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/package_json_reader:301
+    throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+          ^
+  
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@gubernaut/core' imported from /tmp/solanaut-consumer-vJOZ7l/consumer/node_modules/@solanaut/sdk/dist/src/guard.js
+      at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+      at packageResolve (node:internal/modules/esm/resolve:784:25)
+      at moduleResolve (node:internal/modules/esm/resolve:873:18)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:277:33) {
+    code: 'ERR_MODULE_NOT_FOUND'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:729:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
