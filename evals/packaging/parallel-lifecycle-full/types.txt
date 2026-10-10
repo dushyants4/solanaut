@@ -1,0 +1,86 @@
+✔ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (353.416422ms)
+✔ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (304.157131ms)
+✔ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (130.917758ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (107.01102ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (192.236585ms)
+✔ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (170.392995ms)
+✔ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (136.073185ms)
+✔ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (115.065757ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (271.633137ms)
+✖ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (18.455769ms)
+✖ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (575.200408ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (233.034722ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (227.807097ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (249.167026ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (103.899394ms)
+✔ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1830.557299ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (76.064848ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (173.592038ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (87.180479ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 17
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6911.145759
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:259:1
+✖ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (18.455769ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(files.includes("dist/src/index.d.ts"))
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:262:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at evals/packaging/packed-sdk.test.ts:272:1
+✖ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (575.200408ms)
+  AssertionError [ERR_ASSERTION]: consumer.ts(2,323): error TS7016: Could not find a declaration file for module '@solanaut/sdk'. '/tmp/solanaut-consumer-5QeCWS/consumer/node_modules/@solanaut/sdk/dist/src/index.js' implicitly has an 'any' type.
+    Try `npm i --save-dev @types/solanaut__sdk` if it exists or add a new declaration (.d.ts) file containing `declare module '@solanaut/sdk';`
+  consumer.ts(7,5): error TS2578: Unused '@ts-expect-error' directive.
+  consumer.ts(15,5): error TS2578: Unused '@ts-expect-error' directive.
+  consumer.ts(17,5): error TS2578: Unused '@ts-expect-error' directive.
+  consumer.ts(24,5): error TS2578: Unused '@ts-expect-error' directive.
+  consumer.ts(26,5): error TS2578: Unused '@ts-expect-error' directive.
+  consumer.ts(28,5): error TS2578: Unused '@ts-expect-error' directive.
+  consumer.ts(35,5): error TS2578: Unused '@ts-expect-error' directive.
+  consumer.ts(37,5): error TS2578: Unused '@ts-expect-error' directive.
+  consumer.ts(40,37): error TS7016: Could not find a declaration file for module '@solanaut/sdk'. '/tmp/solanaut-consumer-5QeCWS/consumer/node_modules/@solanaut/sdk/dist/src/index.js' implicitly has an 'any' type.
+    Try `npm i --save-dev @types/solanaut__sdk` if it exists or add a new declaration (.d.ts) file containing `declare module '@solanaut/sdk';`
+  consumer.ts(41,28): error TS7016: Could not find a declaration file for module '@solanaut/sdk'. '/tmp/solanaut-consumer-5QeCWS/consumer/node_modules/@solanaut/sdk/dist/src/index.js' implicitly has an 'any' type.
+    Try `npm i --save-dev @types/solanaut__sdk` if it exists or add a new declaration (.d.ts) file containing `declare module '@solanaut/sdk';`
+  consumer.ts(43,5): error TS2578: Unused '@ts-expect-error' directive.
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:321:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

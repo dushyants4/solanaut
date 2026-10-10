@@ -1,5 +1,10 @@
 # DOCUMENTS.md — the document register
 
+2026-10-10 registers complete generated corrected parallel proposal, generation/
+full raw fault/control/termination/identity evidence, CLAIMS S115, PROGRESS,
+HANDOFF, evaluation index, release map and continuing run. O2/O3 are unapplied;
+actual maintained gate and stable milestones remain unchanged.
+
 2026-10-10 registers proposed parallel lifecycle interruption receipt/fixture,
 exact termination draft, raw red/green/fault evidence, CLAIMS S114, PROGRESS,
 HANDOFF, evaluation index and continuing run. Earlier prototype receipt gains

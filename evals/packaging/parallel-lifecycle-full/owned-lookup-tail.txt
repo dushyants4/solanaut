@@ -1,0 +1,89 @@
+✔ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (452.560077ms)
+✖ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (241.844383ms)
+✔ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (155.721657ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (102.141286ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (183.61156ms)
+✔ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (172.42806ms)
+✔ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (149.773858ms)
+✔ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (154.989481ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (267.669209ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (0.904766ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (531.423129ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (251.474259ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (263.119084ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (221.092571ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (134.050743ms)
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1670.351328ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (70.831363ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (182.592044ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (82.233786ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 17
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7963.271194
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:52:1
+✖ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (241.844383ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-e2xuFg/consumer/node_modules/@solanaut/sdk/dist/src/owned-guard.js:61
+              throw new OwnedGuardError(); return work(); }).catch(() => { throw new OwnedGuardError(); });
+                                                                                 ^
+  
+  OwnedGuardError: owned guard cannot establish or complete the requested operation
+      at file:///tmp/solanaut-consumer-e2xuFg/consumer/node_modules/@solanaut/sdk/dist/src/owned-guard.js:61:80 {
+    code: 'owned-guard'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:103:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/packaging/packed-sdk.test.ts:418:1
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1670.351328ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-e2xuFg/consumer/[eval1]:182
+        if(current.seq!==store.entries.length || current.head!==tailReply.hash || current.indexSeq!==context.seq || current.row?.start.hash!==tail.hash || current.row?.response?.hash!==tailReply.hash || !Object.isFrozen(current.row.response))throw new Error('installed current lookup skipped or altered tail');
+                                                                                                                                                                                                                                                        ^
+  
+  Error: installed current lookup skipped or altered tail
+      at file:///tmp/solanaut-consumer-e2xuFg/consumer/[eval1]:182:247
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:667:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

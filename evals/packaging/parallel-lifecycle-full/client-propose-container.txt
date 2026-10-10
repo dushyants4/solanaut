@@ -1,0 +1,72 @@
+✔ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (306.899122ms)
+✔ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (294.672938ms)
+✔ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (137.007903ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (97.293396ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (198.244707ms)
+✔ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (179.68251ms)
+✔ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (123.277981ms)
+✔ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (120.334482ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (251.930022ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (0.9202ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (570.224176ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (237.930426ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (248.121927ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (236.917869ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (127.230689ms)
+✔ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1732.694635ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (73.039985ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (163.115085ms)
+✖ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (97.537949ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6665.622579
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:695:1
+✖ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (97.537949ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/run_main:107
+      triggerUncaughtException(
+      ^
+  
+  AssertionError [ERR_ASSERTION]: installed missing payload
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async file:///tmp/solanaut-consumer-mAL8W5/consumer/[eval1]:23:9 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: TypeError: Cannot read properties of undefined (reading 'message')
+        at Object.propose (file:///tmp/solanaut-consumer-mAL8W5/consumer/node_modules/@solanaut/sdk/dist/src/adapters/sending-client.js:120:25)
+        at file:///tmp/solanaut-consumer-mAL8W5/consumer/[eval1]:23:58
+        at waitForActual (node:assert:601:21)
+        at strict.rejects (node:assert:738:31)
+        at file:///tmp/solanaut-consumer-mAL8W5/consumer/[eval1]:23:22
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5),
+    expected: [Function: inputError],
+    operator: 'rejects',
+    diff: 'simple'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:729:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

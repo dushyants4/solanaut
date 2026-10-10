@@ -1,0 +1,70 @@
+✔ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (305.198117ms)
+✔ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (318.393689ms)
+✔ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (128.901235ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (101.299201ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (171.765376ms)
+✔ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (186.923558ms)
+✔ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (130.097121ms)
+✔ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (124.742577ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (256.565792ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (0.803493ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (520.257872ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (218.831137ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (210.335108ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (215.480688ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (106.474834ms)
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (95.416533ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (73.741664ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (174.346055ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (88.103214ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4920.495782
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:418:1
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (95.416533ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/esm/resolve:272
+      throw new ERR_MODULE_NOT_FOUND(
+            ^
+  
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/tmp/solanaut-consumer-jYmwJC/consumer/node_modules/@solanaut/sdk/dist/src/checkpoint-recovery.js' imported from /tmp/solanaut-consumer-jYmwJC/consumer/[eval1]
+      at finalizeResolution (node:internal/modules/esm/resolve:272:11)
+      at moduleResolve (node:internal/modules/esm/resolve:879:10)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at node:internal/modules/esm/loader:639:32
+      at TracingChannel.tracePromise (node:diagnostics_channel:538:22) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///tmp/solanaut-consumer-jYmwJC/consumer/node_modules/@solanaut/sdk/dist/src/checkpoint-recovery.js'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:667:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

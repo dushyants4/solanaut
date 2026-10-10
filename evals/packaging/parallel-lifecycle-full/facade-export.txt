@@ -1,0 +1,86 @@
+✖ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (201.501357ms)
+✖ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (121.98699ms)
+✔ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (204.301271ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (174.330118ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (261.179231ms)
+✔ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (242.801122ms)
+✔ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (224.275532ms)
+✔ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (215.672939ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (358.118744ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (2.12816ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (927.556432ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (330.440667ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (318.797199ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (293.637004ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (139.901681ms)
+✔ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1944.520851ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (101.838527ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (228.193531ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (109.983709ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 17
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8826.416637
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:31:1
+✖ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (201.501357ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-lYZbSA/consumer/[eval1]:8
+        const path=join(directory,outcome+'.jsonl'),options={path,policy,authorization},store=fileStore(path,{ownership:'kernel'}),seed=await createGuard({policy,authorization,log:store});await publishOwnedRequestIndex(store,{policyTrust:authorization});seed.close();let g=await openOwnedGuard(options);const read=asyncFs.open,write=fs.writeSync;
+                                                                                                                                                                                                                                                                                       ^
+  
+  TypeError: openOwnedGuard is not a function
+      at file:///tmp/solanaut-consumer-lYZbSA/consumer/[eval1]:8:278
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:49:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/packaging/packed-sdk.test.ts:52:1
+✖ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (121.98699ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-lYZbSA/consumer/[eval1]:14
+      const options=()=>({path,policy,authorization:authorization(1)}),refuse=async call=>{let denied=false;try{await call();}catch(error){denied=error instanceof OwnedGuardError && error.code==='owned-guard';}if(!denied)throw new Error('installed private facade accepted invalid operation');};
+                                                                                                                                                                                                                                   ^
+  
+  Error: installed private facade accepted invalid operation
+      at refuse (file:///tmp/solanaut-consumer-lYZbSA/consumer/[eval1]:14:226)
+      at file:///tmp/solanaut-consumer-lYZbSA/consumer/[eval1]:16:59
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:103:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

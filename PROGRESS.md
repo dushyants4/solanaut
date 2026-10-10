@@ -1,5 +1,9 @@
 # PROGRESS.md
 
+The generated corrected parallel proposal passes the complete unchanged package
+campaign within its existing timeout, S115. Owner application/maintained-entry
+qualification remains owed; no milestone or stable-release credit follows.
+
 The proposed parallel runner fails an ignored-SIGTERM interruption fixture.
 Generated correction and fault regressions pass with owned cleanup, S114; exact
 owner draft is unapplied and needs fresh full qualification. No gate closes.

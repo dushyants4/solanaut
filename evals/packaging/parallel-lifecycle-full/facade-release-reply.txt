@@ -1,0 +1,58 @@
+✔ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (363.873917ms)
+✖ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (268.833286ms)
+✔ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (135.075598ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (102.975546ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (188.482363ms)
+✔ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (157.22909ms)
+✔ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (130.297731ms)
+✔ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (130.192914ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (234.014882ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (0.994633ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (449.339795ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (225.207814ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (200.78555ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (218.695545ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (95.705035ms)
+✔ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1769.776974ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (67.687513ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (182.297937ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (90.035523ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6646.890492
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:52:1
+✖ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (268.833286ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-e6VYzc/consumer/[eval1]:38
+          const released=await releasing;if(!released.released||!Object.isFrozen(released)||(await releaseStatus).latched)throw new Error('installed release capture or durability failed');await refuse(()=>g.release(text,releaseSignature,4000));
+                                                                                                                                ^
+  
+  Error: installed release capture or durability failed
+      at file:///tmp/solanaut-consumer-e6VYzc/consumer/[eval1]:38:127
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:103:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

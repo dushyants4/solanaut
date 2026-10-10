@@ -52,6 +52,10 @@ scratch and is reproducible from the hash-bound prototype and declared edits.
 
 ## What remains
 
+Subsequent complete generated-copy qualification is recorded separately in
+`parallel-lifecycle-full.md`, CLAIMS S115. It retains unchanged populations and
+timeout, and does not promote the actual maintained entry point.
+
 The correction is applied only to generated fixture copies. Combine the exact
 termination draft with HANDOFF O2 before considering promotion; freshly qualify
 the complete unchanged installed/fault populations and the maintained entry

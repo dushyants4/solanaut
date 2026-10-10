@@ -7,6 +7,14 @@ push. Preserve all release, independent and human gates.
 
 ## Did
 
+Commit interruption evidence as 2067447 with verified full local bundle/exact
+clean clone/integrity check. Clean close passes nine of ten, failing only
+deliberately unpushed HEAD. Run the exact termination proposal in a generated
+copy with full original fault/installed populations, cache disabled and unchanged
+outer timeout. All faults/worker controls pass, original stage is unchanged,
+and current candidate identities match. S115 records this proof separately from
+unapplied O2/O3 and the failed actual maintained runner. No gate/product edit.
+
 Commit current runtime evidence as 2dd8264 with verified full local bundle/exact
 clean restore/integrity check. Clean close passes nine of ten, failing only
 deliberately unpushed HEAD. Test ignored termination in a controlled copy of the

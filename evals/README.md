@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`packaging/parallel-lifecycle-full.md`: S115 complete generated corrected proposal
+passes unchanged original populations and timeout with healthy worker controls.
+Actual maintained entry and gates stay unchanged/failed; O2/O3 remain unapplied.
+
 `packaging/parallel-lifecycle.md`: S114 ignored-termination finding in the proposed
 runner, failing acceptance, corrected generated copy and caught cleanup/completion
 faults. Exact owner draft is unapplied; no maintained-gate or product-fault credit.

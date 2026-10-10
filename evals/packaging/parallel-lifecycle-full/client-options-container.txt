@@ -1,0 +1,72 @@
+✔ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (349.704791ms)
+✔ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (341.030109ms)
+✔ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (146.784034ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (99.211618ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (156.954714ms)
+✔ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (167.867665ms)
+✔ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (128.626283ms)
+✔ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (121.601829ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (238.274798ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (0.795796ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (518.498379ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (209.091744ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (206.844148ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (186.935475ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (93.963809ms)
+✔ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1844.043822ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (79.119472ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (194.629158ms)
+✖ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (104.585618ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6679.383252
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:695:1
+✖ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (104.585618ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/run_main:107
+      triggerUncaughtException(
+      ^
+  
+  AssertionError [ERR_ASSERTION]: installed missing options
+      at file:///tmp/solanaut-consumer-fWJHYt/consumer/[eval1]:17:14
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: TypeError: Cannot destructure property 'socket' of 'options' as it is undefined.
+        at createSendingClient (file:///tmp/solanaut-consumer-fWJHYt/consumer/node_modules/@solanaut/sdk/dist/src/adapters/sending-client.js:28:21)
+        at file:///tmp/solanaut-consumer-fWJHYt/consumer/[eval1]:17:25
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at file:///tmp/solanaut-consumer-fWJHYt/consumer/[eval1]:17:14
+        at process.processTicksAndRejections (node:internal/process/task_queues:104:5),
+    expected: [Function: inputError],
+    operator: 'throws',
+    diff: 'simple'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:729:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

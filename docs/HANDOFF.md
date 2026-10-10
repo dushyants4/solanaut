@@ -247,6 +247,13 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-10 full corrected parallel proposal completes in a generated copy with
+unchanged original fault/installed populations and outer timeout, CLAIMS S115.
+Healthy initial/restored worker controls pass; original stage bytes/modes and
+every bound current candidate identity match. Exact original prototype/gates
+are unchanged. O2/O3 owner application and fresh maintained entry qualification
+remain owed; no stable milestone closes or push occurs.
+
 2026-10-10 proposed parallel-runner interruption probe finds ignored SIGTERM
 leaves children and parent waiting. Strict CI-2 acceptance fails first. Generated
 corrected copy stops its owned groups and refuses incomplete execution; three

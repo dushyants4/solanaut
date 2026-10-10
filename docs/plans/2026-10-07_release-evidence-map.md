@@ -95,6 +95,9 @@ Ignored-termination qualification finds a further limitation, CLAIMS S114:
 SIGTERM-only cleanup leaves controlled children and parent waiting. Generated
 termination correction catches cleanup/completion faults; combine O2/O3 and
 freshly qualify before adoption. No universal deadline enforcement is inferred.
+Complete generated-copy qualification now passes unchanged populations and
+timeout, CLAIMS S115. The maintained entry point and its extra original control
+remain separate owner qualification; no actual gate has changed.
 
 Continue the accepted [snapshot sequence](2026-10-06_snapshot-qualification.md):
 historical request/answer lookup on disk, bounded active state and actual owned

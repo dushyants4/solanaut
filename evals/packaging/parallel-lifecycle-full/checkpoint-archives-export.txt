@@ -1,0 +1,61 @@
+✔ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (356.52757ms)
+✔ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (324.973649ms)
+✔ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (139.512667ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (117.215837ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (184.286274ms)
+✔ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (183.036441ms)
+✔ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (144.264867ms)
+✔ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (132.400889ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (249.51988ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (0.872642ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (557.743258ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (210.892934ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (210.336974ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (199.153001ms)
+✖ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (103.60537ms)
+✔ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1846.275114ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (68.121849ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (198.691871ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (78.71519ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6754.492148
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:384:1
+✖ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (103.60537ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-fCIPd1/consumer/[eval1]:2
+      import {prepareCheckpointText,prepareCheckpointPrefixText,verifyCheckpointBinding,CheckpointBindingError,prepareCheckpointArchives,CheckpointArchiveError,EVALUATION_PROFILE,encodeBase58} from '@solanaut/sdk';
+                                                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^
+  SyntaxError: The requested module '@solanaut/sdk' does not provide an export named 'CheckpointArchiveError'
+      at #asyncInstantiate (node:internal/modules/esm/module_job:463:21)
+      at async ModuleJob.run (node:internal/modules/esm/module_job:561:5)
+      at async node:internal/modules/esm/loader:226:26
+      at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:223:20)
+      at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:414:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

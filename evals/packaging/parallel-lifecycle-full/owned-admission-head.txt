@@ -1,0 +1,58 @@
+✔ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (687.638735ms)
+✔ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (508.065744ms)
+✔ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (254.133798ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (199.951843ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (424.153121ms)
+✔ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (345.224704ms)
+✔ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (194.829589ms)
+✔ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (195.535222ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (446.938751ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (1.246748ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (1067.484439ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (338.20429ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (418.962542ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (504.826878ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (182.895229ms)
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (3070.029413ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (169.47462ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (369.400954ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (144.185359ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12069.549874
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:418:1
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (3070.029413ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-pF6wfc/consumer/[eval1]:224
+        try{let gapRefused=false;try{await gapModule.checkOwnedRequest(gapGuard,{message:new Uint8Array(message),at:2006},{clientId:'client',id:'gap'});}catch(error){gapRefused=error instanceof gapModule.OwnedRequestAdmissionError && error.code==='owned-request-admission';}if(!gapRefused || gapGuard.status().seq!==beforeGap+1 || store.entries.some(entry=>entry.kind==='decision' && entry.request?.id==='gap'))throw new Error('installed stale absence authorised commit');}
+                                                                                                                                                                                                                                                                                                                                                                                                                                 ^
+  
+  Error: installed stale absence authorised commit
+      at file:///tmp/solanaut-consumer-pF6wfc/consumer/[eval1]:224:416
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:667:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

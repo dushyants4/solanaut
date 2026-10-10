@@ -1,0 +1,132 @@
+✖ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (113.964321ms)
+✖ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (128.119877ms)
+✔ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (128.859827ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (116.183138ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (172.493403ms)
+✔ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (159.309461ms)
+✔ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (125.274578ms)
+✔ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (115.135077ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (287.147119ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (0.849911ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (579.31995ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (228.420214ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (235.974264ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (206.871218ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (106.733572ms)
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (106.605401ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (74.938229ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (169.902567ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (94.781315ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 16
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4635.489509
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:31:1
+✖ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (113.964321ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-2Lq48R/consumer/node_modules/@solanaut/sdk/dist/src/record.js:56
+          throw new RequestIndexPublicationError("owned request index cannot be published");
+                ^
+  
+  RequestIndexPublicationError: owned request index cannot be published
+      at publishOwnedRequestIndex (file:///tmp/solanaut-consumer-2Lq48R/consumer/node_modules/@solanaut/sdk/dist/src/record.js:56:15)
+      at async file:///tmp/solanaut-consumer-2Lq48R/consumer/[eval1]:8:187 {
+    code: 'request-index-publication'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:49:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/packaging/packed-sdk.test.ts:52:1
+✖ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (128.119877ms)
+  AssertionError [ERR_ASSERTION]: file:///tmp/solanaut-consumer-2Lq48R/consumer/node_modules/@solanaut/sdk/dist/src/record.js:56
+          throw new RequestIndexPublicationError("owned request index cannot be published");
+                ^
+  
+  RequestIndexPublicationError: owned request index cannot be published
+      at publishOwnedRequestIndex (file:///tmp/solanaut-consumer-2Lq48R/consumer/node_modules/@solanaut/sdk/dist/src/record.js:56:15)
+      at async file:///tmp/solanaut-consumer-2Lq48R/consumer/[eval1]:17:133 {
+    code: 'request-index-publication'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:103:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/packaging/packed-sdk.test.ts:418:1
+✖ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (106.605401ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/esm/resolve:272
+      throw new ERR_MODULE_NOT_FOUND(
+            ^
+  
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/tmp/solanaut-consumer-2Lq48R/consumer/node_modules/@solanaut/sdk/dist/src/request-index.js' imported from /tmp/solanaut-consumer-2Lq48R/consumer/[eval1]
+      at finalizeResolution (node:internal/modules/esm/resolve:272:11)
+      at moduleResolve (node:internal/modules/esm/resolve:879:10)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:708:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:728:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:766:56)
+      at #resolve (node:internal/modules/esm/loader:690:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:610:35)
+      at node:internal/modules/esm/loader:639:32
+      at TracingChannel.tracePromise (node:diagnostics_channel:538:22) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///tmp/solanaut-consumer-2Lq48R/consumer/node_modules/@solanaut/sdk/dist/src/request-index.js'
+  }
+  
+  Node.js v26.7.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:667:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
