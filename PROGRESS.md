@@ -1,5 +1,9 @@
 # PROGRESS.md
 
+The proposed parallel runner fails an ignored-SIGTERM interruption fixture.
+Generated correction and fault regressions pass with owned cleanup, S114; exact
+owner draft is unapplied and needs fresh full qualification. No gate closes.
+
 Exact f1e253f current Node 24 native/type/installed and compiled component checks
 pass; direct package faults pass and all bound identities restore, CLAIMS S113.
 Quiet AST fails the unchanged H11 wait. This closes no stable-release milestone.

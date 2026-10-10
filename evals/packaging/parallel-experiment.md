@@ -43,6 +43,12 @@ or a maintained gate pass. The earlier sequential and cache-configured timeouts
 remain failed, as does the separate H11 baseline. No deadline extension, test
 filter, product change or readiness waiver follows.
 
+Later interruption qualification in `parallel-lifecycle.md` finds that SIGTERM
+alone leaves an ignoring child and its parent waiting. The nominal completion
+above remains valid; it does not establish universal timeout enforcement. Combine
+the unapplied termination correction with the owner draft and requalify before
+promotion. The maintained gate remains unchanged and failed.
+
 ## Exact owed edit
 
 `parallel-experiment/owner-draft.patch` is an unapplied unified diff for the

@@ -1,0 +1,2 @@
+fixture child 3345559
+fixture ignored SIGTERM

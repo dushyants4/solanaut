@@ -1,0 +1,15 @@
+{
+  "prototypeOnly": true,
+  "ok": false,
+  "expired": true,
+  "errors": [
+    "Error: unqualified installed result",
+    "Error: unqualified installed result",
+    "Error: unqualified installed result",
+    "Error: unqualified installed result"
+  ],
+  "originalStageUnchanged": true,
+  "elapsedMs": 2963.411164,
+  "controls": [],
+  "results": []
+}

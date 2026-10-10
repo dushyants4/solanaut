@@ -7,6 +7,14 @@ push. Preserve all release, independent and human gates.
 
 ## Did
 
+Commit current runtime evidence as 2dd8264 with verified full local bundle/exact
+clean restore/integrity check. Clean close passes nine of ten, failing only
+deliberately unpushed HEAD. Test ignored termination in a controlled copy of the
+parallel execution proposal. Original acceptance fails; generated correction
+stops only owned groups and refuses incomplete work. Three injected cleanup/
+completion faults fail the acceptance, then the corrected control passes.
+No actual gate/product edit. Exact owner draft and scope are recorded as S114.
+
 Commit private queued signing journal as f1e253f; verify its complete local
 bundle, exact clean clone and full integrity check. Clean close passes nine of
 ten, failing only deliberately unpushed HEAD. Run the current emitted artefact's
@@ -79,6 +87,21 @@ This dated continuation satisfies the current-day run-record requirement without
 changing the close checker or discarding the preceding record.
 
 ## Found
+
+A second mixed document-mutation/checker command is boundary-refused in full;
+no part runs. Use exact file-tool edits as directed and invoke existing checkers
+separately. The fence is functioning; no protected file or checker is changed.
+
+The first S114 claims check rejects a Python-only regenerating command because
+its accepted forms are npm, node and uv. Preserve this checker failure; run the
+equivalent supported uv script command and add it to the receipt/claim. Do not
+modify the protected checker or waive reproducibility.
+
+Nominal S111 completion under its configured timeout is not proof that SIGTERM
+will terminate every child. The controlled ignored-signal fixture leaves the
+original parent waiting. Preserve this finding at the same weight as the earlier
+normal pass. All fixture children are removed using only their recorded owned
+groups. Corrected-copy evidence does not qualify a maintained implementation.
 
 Node 24 component helpers write the earlier S112 output locations. Archive every
 new runtime output separately before restoring the exact committed original logs;

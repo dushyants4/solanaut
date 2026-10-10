@@ -1,0 +1,3 @@
+(node:3345545) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Parallel prototype complete; maintained gate still unchanged

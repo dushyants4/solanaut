@@ -243,8 +243,16 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 | | | | | |
 | O1 | AGENTS.md, build convention | Replace `TypeScript run natively by Node 26, with no build step; ESM;` with `TypeScript run natively by Node 26 for development; a release-only build emits JavaScript and declarations for npm consumers; ESM;` | Explicitly approved by the human in the Solanaut 1.0 mission. | no |
 | O2 | evals/packaging/faults.ts | Exact unapplied diff: `evals/packaging/parallel-experiment/owner-draft.patch`; retain all fault declarations and original initial control, import the measured isolated runner and replace sequential mutation with its complete execution. Add `node --test evals/packaging/parallel-experiment.test.mjs` to maintained qualification and verify cleanup/partial refusal before acceptance. | S111 prototype catches the entire original population inside the unchanged outer deadline; S110 actual maintained gate remains failed. Extra original control and changed entry point need fresh owner qualification. No process limit or readiness target changes. | no |
+| O3 | Proposed parallel package runner | Exact unapplied diff: `evals/packaging/parallel-lifecycle/corrected/termination-owner.patch`; send SIGTERM once per owned child group, escalate to SIGKILL after the declared grace if still live, clear escalation on close. Combine with O2 and freshly qualify unchanged full populations/entry point before adoption. | S114 observes ignored SIGTERM leaving the original proposed parent waiting. Corrected fixture refuses incomplete execution; missing/late escalation and false completion are caught. Nominal S111 completion is not universal termination evidence. Maintained gate/deadline remain unchanged. | no |
 
 ## 7. Codex's log
+
+2026-10-10 proposed parallel-runner interruption probe finds ignored SIGTERM
+leaves children and parent waiting. Strict CI-2 acceptance fails first. Generated
+corrected copy stops its owned groups and refuses incomplete execution; three
+planted faults are caught, with complete controlled cleanup. Exact termination
+draft is owed as O3, combined with O2 before fresh full qualification. No actual
+gate/product change or stable-release credit. S114 records scope and limitations.
 
 2026-10-10 exact f1e253f current Node 24 native/type/installed checks and new
 compiled lifecycle faults pass. Current Node 26 direct package campaign passes;

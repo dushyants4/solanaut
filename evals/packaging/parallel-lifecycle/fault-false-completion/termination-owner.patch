@@ -1,0 +1,20 @@
+--- a/evals/packaging/parallel-experiment.mjs
++++ b/evals/packaging/parallel-experiment.mjs
+@@ -45,7 +45,16 @@
+     faults:faults.map(({name,path,caught})=>({name,path,caught}))};
+   writeFileSync(join(output,"definition.json"),JSON.stringify(definition,null,2)+"\n");
+   const began=performance.now(),children=new Set(),results=[],controls=[],errors=[];let next=0,expired=false;
+-  function stop(child){if(child.pid&&child.exitCode===null&&child.signalCode===null)try{process.kill(-child.pid,"SIGTERM");}catch{/* Already exited. */}}
++  const stopping=new WeakSet();
++  function stop(child){
++    if(!child.pid||child.exitCode!==null||child.signalCode!==null||stopping.has(child))return;
++    stopping.add(child);
++    try{process.kill(-child.pid,"SIGTERM");}catch{return;}
++    const escalation=setTimeout(()=>{
++      if(child.exitCode===null&&child.signalCode===null)try{process.kill(-child.pid,"SIGKILL");}catch{/* Already exited. */}
++    },100);
++    child.once("close",()=>clearTimeout(escalation));
++  }
+   const interrupt=()=>{expired=true;for(const child of children)stop(child);};
+   process.once("SIGTERM",interrupt);
+   const deadline=setTimeout(interrupt,definition.processLimitMs);

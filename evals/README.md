@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`packaging/parallel-lifecycle.md`: S114 ignored-termination finding in the proposed
+runner, failing acceptance, corrected generated copy and caught cleanup/completion
+faults. Exact owner draft is unapplied; no maintained-gate or product-fault credit.
+
 `release/owned-signing-current.md`: S113 exact f1e253f direct package campaign
 and current Node 24 native/type/installed/compiled component passes; quiet AST
 fails the unchanged H11 wait. Original runtime logs remain distinct and bound

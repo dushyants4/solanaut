@@ -1,0 +1,17 @@
+{
+  "prototypeSha256": "7ca04950c47bc75634a3bb1067d86a0368f03458d3543a13a23e3efe91fdf4d7",
+  "fixtureSha256": "1b0df383616f5a2f91e8d1575632d4fe6942e513b5a1b4952c39d7f4055d59b0",
+  "fixtureLimitMs": 1000,
+  "observationElapsedMs": 3020.1755480084103,
+  "fixtureChildren": [
+    3345553,
+    3345559,
+    3345565,
+    3345573
+  ],
+  "ignoredChildren": 4,
+  "parentStillRunning": false,
+  "corrected": true,
+  "fault": "false-completion",
+  "scope": "artificial interruption fixture; no installed tests or product faults qualified"
+}

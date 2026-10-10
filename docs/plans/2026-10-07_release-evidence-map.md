@@ -91,6 +91,10 @@ prototype completes the original package fault population within the unchanged
 outer deadline, CLAIMS S111; its validator misses are preserved and corrected
 regressions catch them. Exact owner draft is unapplied in HANDOFF §6. A direct
 standalone package campaign pass does not qualify its enclosing runner.
+Ignored-termination qualification finds a further limitation, CLAIMS S114:
+SIGTERM-only cleanup leaves controlled children and parent waiting. Generated
+termination correction catches cleanup/completion faults; combine O2/O3 and
+freshly qualify before adoption. No universal deadline enforcement is inferred.
 
 Continue the accepted [snapshot sequence](2026-10-06_snapshot-qualification.md):
 historical request/answer lookup on disk, bounded active state and actual owned

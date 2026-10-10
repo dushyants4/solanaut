@@ -1,5 +1,11 @@
 # DOCUMENTS.md — the document register
 
+2026-10-10 registers proposed parallel lifecycle interruption receipt/fixture,
+exact termination draft, raw red/green/fault evidence, CLAIMS S114, PROGRESS,
+HANDOFF, evaluation index and continuing run. Earlier prototype receipt gains
+the observed termination limitation. Actual gate/product source is unchanged.
+The release evidence map records O2/O3's combined qualification debt.
+
 2026-10-10 registers exact f1e253f current runtime/package receipt, raw outputs,
 CLAIMS S113, PROGRESS, evaluation index, release map, HANDOFF and continuing run.
 Node 24 passes native/type/installed/component faults and fails the unchanged
