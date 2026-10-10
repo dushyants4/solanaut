@@ -1,0 +1,25 @@
+✖ OPR-2/STO-1/LIF-1: an unrecorded admission never exposes storage diagnostics as a decision (62.696017ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 156.518277
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-guard.test.ts:229:1
+✖ OPR-2/STO-1/LIF-1: an unrecorded admission never exposes storage diagnostics as a decision (62.696017ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:232:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [Function (anonymous)],
+    operator: 'rejects',
+    diff: 'simple'
+  }

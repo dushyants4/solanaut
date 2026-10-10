@@ -1,5 +1,11 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
+Private signing-history journalling is trusted SDK bookkeeping. It must not
+be exposed as a socket operation or presented as independent chain evidence.
+The existing cryptographic/stage verifier and synced append remain required;
+the queued wrapper creates no signature/send. Evidence: `evals/sdk/owned-signing.md`.
+Bounded retention and isolated signer deployment remain owed.
+
 Private queued reporting remains trusted SDK bookkeeping with caller attribution.
 It must not be wired as authoritative isolated-agent outcome telemetry. A socket
 report remains a hint; the signer must reconcile chain evidence before releasing
@@ -15,7 +21,7 @@ the writer permanently. This checks physical byte count under the trusted host
 boundary; it does not detect every same-size concurrent modification or prove
 power-loss durability. Evidence: `evals/sdk/record-write-completion.md`.
 
-> **1.76** · 2026-10-09 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.77** · 2026-10-10 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 Local-only commits now replace the previous standing push grant. The unchanged

@@ -1,0 +1,109 @@
+✖ LIF-2/SNP-5: private signing journal persists immutable stages and rejects restart resend (71.886513ms)
+✖ LIF-2: private signing journal records denied and conservative unsigned uncertain responses (44.726586ms)
+✖ LIF-7: private journal forbids signing after final landed across restart (36.415411ms)
+✖ LIF-7: private journal forbids signing after final failed across restart (35.03872ms)
+✖ LIF-7: private journal forbids signing after final expired across restart (35.687495ms)
+✔ LIF-7: private journal preserves unknown reservations without settling signing (44.896878ms)
+✖ LIF-2/SNP-7: private signing journal captures mutable events before queued work and drains before close (36.982412ms)
+✖ LIF-2: private signing journal refuses invalid stages and forged signed evidence without append (33.081507ms)
+✖ STO-1/LIF-2: private signing journal never acknowledges storage failure and recovers retained admission (34.668491ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 1
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 495.290996
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-signing.test.ts:46:1
+✖ LIF-2/SNP-5: private signing journal persists immutable stages and rejects restart resend (71.886513ms)
+  TypeError: Cannot read properties of undefined (reading 'kind')
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-signing.test.ts:49:59)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+
+test at packages/sdk/test/owned-signing.test.ts:57:1
+✖ LIF-2: private signing journal records denied and conservative unsigned uncertain responses (44.726586ms)
+  TypeError: Cannot read properties of undefined (reading 'at')
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-signing.test.ts:60:110)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/owned-signing.test.ts:65:61
+✖ LIF-7: private journal forbids signing after final landed across restart (36.415411ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (OwnedGuardError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-signing.test.ts:67:103)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { name: 'OwnedGuardError', code: 'owned-guard' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-signing.test.ts:65:61
+✖ LIF-7: private journal forbids signing after final failed across restart (35.03872ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (OwnedGuardError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-signing.test.ts:67:103)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { name: 'OwnedGuardError', code: 'owned-guard' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-signing.test.ts:65:61
+✖ LIF-7: private journal forbids signing after final expired across restart (35.687495ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (OwnedGuardError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-signing.test.ts:67:103)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { name: 'OwnedGuardError', code: 'owned-guard' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-signing.test.ts:78:1
+✖ LIF-2/SNP-7: private signing journal captures mutable events before queued work and drains before close (36.982412ms)
+  TypeError: Cannot read properties of undefined (reading 'seq')
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-signing.test.ts:85:82)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7)
+
+test at packages/sdk/test/owned-signing.test.ts:91:1
+✖ LIF-2: private signing journal refuses invalid stages and forged signed evidence without append (33.081507ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection (OwnedGuardError).
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-signing.test.ts:94:355)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { name: 'OwnedGuardError', code: 'owned-guard' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-signing.test.ts:98:1
+✖ STO-1/LIF-2: private signing journal never acknowledges storage failure and recovers retained admission (34.668491ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-signing.test.ts:102:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }

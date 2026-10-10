@@ -1,5 +1,10 @@
 # PROGRESS.md
 
+The private owned facade now journals captured signing-history facts through its
+shared queue under accepted ADR-019. Initial failures, source/emitted faults,
+offline installed private-facade tests and full native pass; component receipt
+`evals/sdk/owned-signing.md`. No completed milestone or isolated signer claim.
+
 The isolated package execution prototype completes with every original fault
 and installed case under the unchanged outer deadline, CLAIMS S111. Initial
 validator misses are retained and become caught regressions. Exact owner draft

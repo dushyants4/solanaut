@@ -1,0 +1,20 @@
+✖ SNP-5/7: private operator release captures shared signatures behind control work and preserves reservations (63.795842ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 158.806596
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-guard.test.ts:88:1
+✖ SNP-5/7: private operator release captures shared signatures behind control work and preserves reservations (63.795842ms)
+  OwnedGuardError: owned guard cannot establish or complete the requested operation
+      at file:///home/dashy/Projects/Solanaut/packages/sdk/src/owned-guard.ts:107:79 {
+    code: 'owned-guard'
+  }
+(node:3154507) PromiseRejectionHandledWarning: Promise rejection was handled asynchronously (rejection id: 2)
+(Use `node --trace-warnings ...` to show where the warning was created)

@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`sdk/owned-signing.md`: private queued journal facts under ADR-019, with absent
+method/surface failures, source/emitted faults and actual installed private facade.
+Trusted SDK bookkeeping only; full qualification follows separately.
+
 `packaging/parallel-experiment.md`: S111 isolated execution prototype completes
 the unchanged package fault population inside the original deadline. Retained
 validator misses become failing regressions and caught faults. Owner draft is

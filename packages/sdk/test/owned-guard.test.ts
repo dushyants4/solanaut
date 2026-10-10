@@ -31,7 +31,7 @@ const identity=(id:string)=>({clientId:"client",id});
 const refused=(work:()=>Promise<unknown>)=>assert.rejects(Promise.resolve().then(work),{name:"OwnedGuardError",code:"owned-guard"});
 test("SNP-7/OWN-2: factory keeps the guard and history private with a frozen asynchronous surface",async()=>{
   const f=await fixture();try{const g=await f.open();try{
-    assert.deepEqual(Object.keys(g).sort(),["beginRequest","check","close","finishRequest","policy","policyHash","redeem","report","release","releaseText","requestResult","status"].sort());
+    assert.deepEqual(Object.keys(g).sort(),["beginRequest","check","close","finishRequest","policy","policyHash","recordSigning","redeem","report","release","releaseText","requestResult","status"].sort());
     assert.ok(Object.isFrozen(g));assert.ok(Object.isFrozen(g.policy));assert.ok(Object.isFrozen(g.policy.latch));
     assert.equal(Reflect.get(g,"guard"),undefined);assert.equal(Reflect.get(g,"store"),undefined);assert.equal(Reflect.get(g,"entries"),undefined);
     const pending=g.status();assert.ok(pending instanceof Promise);const status=await pending;assert.equal(status.seq,1);assert.ok(Object.isFrozen(status));

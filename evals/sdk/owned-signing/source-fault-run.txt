@@ -1,0 +1,1 @@
+[{"fault": "capture", "status": 1, "caught": true}, {"fault": "commit", "status": 1, "caught": true}, {"fault": "immutable-reply", "status": 1, "caught": true}, {"fault": "wrong-stage", "status": 1, "caught": true}, {"fault": "storage", "status": 1, "caught": true}, {"fault": "fifo", "status": 1, "caught": true}]

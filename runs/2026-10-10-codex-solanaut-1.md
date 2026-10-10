@@ -7,6 +7,15 @@ push. Preserve all release, independent and human gates.
 
 ## Did
 
+Commit isolated package prototype as f6d5e29 after native/type and close checks.
+Verify its complete local Git bundle, exact clean clone and full integrity check.
+Clean close passes nine of ten, failing only deliberately unpushed HEAD. Continue
+accepted ADR-019 private lifecycle journalling; capture events before shared
+queue, delegate existing stage verifier/append and return detached frozen entries.
+Observe every new case fail on the absent method and surface check fail first.
+Source/emitted faults, actual offline installed private facade and existing
+installed tests pass. Full native/AST checks follow without overlapping faults.
+
 Commit the maintained failures locally as 826d058, with verified bundle/exact
 clean clone/full integrity check. Clean close passes nine of ten, failing only
 deliberately unpushed HEAD. Prototype isolated parallel package faults without
@@ -35,6 +44,11 @@ no threshold, deadline, workload, assertion or protected gate is changed.
 
 ## Changed
 
+S112 completes the private journal component receipt and records native/type,
+source/emitted faults, maintained facade trials and actual installed results.
+Quiet AST executes the complete suite and fails only the unchanged H11 wait;
+no floor credit. Candidate inputs and tarball are bound with exact hashes.
+
 Complete the isolated package execution prototype without editing the maintained
 gate. The outer observer returns zero within its unchanged limit, with every
 original fault and installed case plus initial/restored controls per worker.
@@ -51,6 +65,18 @@ This dated continuation satisfies the current-day run-record requirement without
 changing the close checker or discarding the preceding record.
 
 ## Found
+
+The first AST command uses an unsupported scheduling argument and is refused
+by the existing usage check before measurement. Preserve that output; use the
+documented serial option without changing the gate. Quiet AST again reports
+the existing H11 staged-baseline wait failure; retain the full result separately
+from native/component successes. No floor credit or mutation score follows.
+
+A batched read command is refused by the secrets heuristic; no output is
+obtained and the refused query is not retried through another route. No secret
+or real key was accessed. A fault-runner diagnostic initially rejects a valid
+OwnedGuardError capture failure; retain it and recognise the fixed facade error
+alongside assertion errors, requiring the named failed case and complete suite.
 
 A combined document-edit/stage/close shell command is boundary-refused because
 it names the protected close tool alongside mutation. No part runs. Use exact

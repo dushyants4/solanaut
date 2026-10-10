@@ -1,0 +1,15 @@
+{
+  "product_sources": [
+    "packages/sdk/src/owned-guard.ts"
+  ],
+  "evaluation_inputs": [
+    "evals/sdk/owned-signing/faults.py",
+    "evals/sdk/owned-signing/install.py",
+    "packages/sdk/test/owned-guard.test.ts",
+    "packages/sdk/test/owned-signing.test.ts"
+  ],
+  "compiled_files": [
+    ".sandbox/releases/sdk/dist/src/owned-guard.d.ts",
+    ".sandbox/releases/sdk/dist/src/owned-guard.js"
+  ]
+}

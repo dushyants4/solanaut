@@ -1,0 +1,36 @@
+{
+  "compiled": false,
+  "results": [
+    {
+      "fault": "capture",
+      "status": 1,
+      "caught": true
+    },
+    {
+      "fault": "commit",
+      "status": 1,
+      "caught": true
+    },
+    {
+      "fault": "immutable-reply",
+      "status": 1,
+      "caught": true
+    },
+    {
+      "fault": "wrong-stage",
+      "status": 1,
+      "caught": true
+    },
+    {
+      "fault": "storage",
+      "status": 1,
+      "caught": true
+    },
+    {
+      "fault": "fifo",
+      "status": 1,
+      "caught": true
+    }
+  ],
+  "restoredSha256": "4872708287cc7949ea5cc86a7deba531866fe36a645a0c066b722a249d45edce"
+}

@@ -1,0 +1,17 @@
+✔ LIF-2/SNP-5: private signing journal persists immutable stages and rejects restart resend (132.535859ms)
+✔ LIF-2: private signing journal records denied and conservative unsigned uncertain responses (50.451116ms)
+✔ LIF-7: private journal forbids signing after final landed across restart (44.290219ms)
+✔ LIF-7: private journal forbids signing after final failed across restart (43.401177ms)
+✔ LIF-7: private journal forbids signing after final expired across restart (42.50054ms)
+✔ LIF-7: private journal preserves unknown reservations without settling signing (47.709221ms)
+✔ LIF-2/SNP-7: private signing journal captures mutable events before queued work and drains before close (48.581039ms)
+✔ LIF-2: private signing journal refuses invalid stages and forged signed evidence without append (34.289003ms)
+✔ STO-1/LIF-2: private signing journal never acknowledges storage failure and recovers retained admission (46.525412ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 625.070579

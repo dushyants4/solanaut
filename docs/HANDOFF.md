@@ -246,6 +246,18 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-10 private owned signing-history operation under accepted ADR-019 queues
+captured events and delegates the existing verifier/synced append. Absent-method
+and frozen-surface failures are retained; source/emitted faults and actual offline
+installed private facade pass. Full native passes. No key loading, signer execution,
+broadcast, root export or socket method. Complete lifecycle, conservative signer
+budget, bounded retention and stable-release qualification remain owed.
+
+S112 records exact native/component successes and the quiet AST failure at
+the unchanged H11 wait. No coverage-floor or complete maintained-runner credit.
+All product/evaluation/emitted/archive identities remain bound and unchanged
+after fault restoration. Private queued journalling is ready for review only.
+
 2026-10-10 isolated package prototype completes under the unchanged outer
 deadline with all original faults and installed cases, cache disabled, and
 healthy initial/restored worker controls, CLAIMS S111. Validator fault testing

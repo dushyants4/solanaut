@@ -1,0 +1,36 @@
+✖ LIF-2/SNP-5: private signing journal persists immutable stages and rejects restart resend (78.29894ms)
+✔ LIF-2: private signing journal records denied and conservative unsigned uncertain responses (50.957497ms)
+✔ LIF-7: private journal forbids signing after final landed across restart (44.133669ms)
+✔ LIF-7: private journal forbids signing after final failed across restart (42.477153ms)
+✔ LIF-7: private journal forbids signing after final expired across restart (41.525049ms)
+✔ LIF-7: private journal preserves unknown reservations without settling signing (39.299821ms)
+✔ LIF-2/SNP-7: private signing journal captures mutable events before queued work and drains before close (48.256332ms)
+✔ LIF-2: private signing journal refuses invalid stages and forged signed evidence without append (32.90473ms)
+✔ STO-1/LIF-2: private signing journal never acknowledges storage failure and recovers retained admission (48.539822ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 8
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 550.822655
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-signing.test.ts:46:1
+✖ LIF-2/SNP-5: private signing journal persists immutable stages and rejects restart resend (78.29894ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(Object.isFrozen(entry))
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-signing.test.ts:49:119)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

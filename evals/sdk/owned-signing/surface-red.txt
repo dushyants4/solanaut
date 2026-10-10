@@ -1,0 +1,56 @@
+✖ SNP-7/OWN-2: factory keeps the guard and history private with a frozen asynchronous surface (66.462022ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 202.053398
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-guard.test.ts:32:1
+✖ SNP-7/OWN-2: factory keeps the guard and history private with a frozen asynchronous surface (66.462022ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+      'beginRequest',
+      'check',
+      'close',
+      'finishRequest',
+      'policy',
+      'policyHash',
+  -   'recordSigning',
+      'redeem',
+      'release',
+      'releaseText',
+      'report',
+      'requestResult',
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:34:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+      'beginRequest',  'check',
+      'close',         'finishRequest',
+      'policy',        'policyHash',
+      'redeem',        'release',
+      'releaseText',   'report',
+      'requestResult', 'status'
+    ],
+    expected: [
+      'beginRequest',  'check',
+      'close',         'finishRequest',
+      'policy',        'policyHash',
+      'recordSigning', 'redeem',
+      'release',       'releaseText',
+      'report',        'requestResult',
+      'status'
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

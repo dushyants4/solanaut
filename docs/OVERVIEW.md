@@ -1,10 +1,15 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 55** · 2026-10-09 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 56** · 2026-10-10 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
+
+The private owned facade queues captured signing-history facts, returns detached
+immutable entries after the existing verifier/synced append, and drains before
+closing. It journals trusted SDK facts and signs or sends nothing. Component
+evidence: `evals/sdk/owned-signing.md`; full retained state remains unbounded.
 
 The private facade queues trusted SDK outcome reports with its other mutations
 and observations. It delegates the existing durable caller-attributed report

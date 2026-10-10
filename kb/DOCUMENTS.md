@@ -1,5 +1,11 @@
 # DOCUMENTS.md — the document register
 
+2026-10-10 registers private owned signing-history journalling: SPEC Draft 4.85,
+OVERVIEW Draft 56, RISKS 1.77, receipt/index and continuing run. Accepted ADR-019;
+no signing/send implementation, signer helper change or completed milestone.
+CLAIMS S112 and PROGRESS retain native/component passes and quiet AST failure
+at the unchanged H11 wait. Exact candidate identities and all raw faults retained.
+
 2026-10-10 registers `evals/packaging/parallel-experiment.md`, prototype/validator
 and raw evidence, HANDOFF and continuing run. Isolated candidate copies retain
 the entire original installed suite and fault list under the existing limit;

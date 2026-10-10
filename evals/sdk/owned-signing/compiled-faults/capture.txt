@@ -1,0 +1,26 @@
+✔ LIF-2/SNP-5: private signing journal persists immutable stages and rejects restart resend (88.924526ms)
+✔ LIF-2: private signing journal records denied and conservative unsigned uncertain responses (50.61005ms)
+✔ LIF-7: private journal forbids signing after final landed across restart (45.05221ms)
+✔ LIF-7: private journal forbids signing after final failed across restart (43.416418ms)
+✔ LIF-7: private journal forbids signing after final expired across restart (41.649444ms)
+✔ LIF-7: private journal preserves unknown reservations without settling signing (40.217497ms)
+✖ LIF-2/SNP-7: private signing journal captures mutable events before queued work and drains before close (39.101647ms)
+✔ LIF-2: private signing journal refuses invalid stages and forged signed evidence without append (34.696784ms)
+✔ STO-1/LIF-2: private signing journal never acknowledges storage failure and recovers retained admission (48.742419ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 8
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 548.614952
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-signing.test.ts:78:1
+✖ LIF-2/SNP-7: private signing journal captures mutable events before queued work and drains before close (39.101647ms)
+  Error [OwnedGuardError]: owned guard cannot establish or complete the requested operation
+      at file:///home/dashy/Projects/Solanaut/.sandbox/releases/sdk/dist/src/owned-guard.js:61:80 {
+    code: 'owned-guard'
+  }
