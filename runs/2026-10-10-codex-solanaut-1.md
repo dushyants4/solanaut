@@ -10,6 +10,20 @@ push. Preserve all release, independent and human gates.
 
 ## Did
 
+Local timing checkpoint 11234cc and D40 implementation e715238 are committed
+without push. Complete bundles verify, exact restores are clean and full Git
+integrity checks succeed. Their clean closes pass every check except the
+deliberately unpushed HEAD. Corrected-candidate timing follows that verified base.
+
+At clean locally committed/backed-up e715238, refresh the same frozen SDK timing
+on the corrected candidate. Old input pins first refuse its changed adapter;
+only that input hash/revision changes. Workload/controller/definition fields
+stay unchanged, runner only relocates its definition path, controls/faults pass.
+Sequential actual profiles reproduce the original head and exact persisted
+bytes. Separate disk replay/corruption refusal/restored control and typecheck
+pass. Memory p99 is slower than the earlier run; retain it without tuning or
+replacement. No approved regression or complete performance gate is claimed.
+
 At clean backed-up 11234cc, freshly reproduce all six D40 failures, then apply
 the exact accepted ADR-009 private-copy correction. Combined cases pass;
 source/emitted omission faults and actual installed tests pass with exact
@@ -230,6 +244,16 @@ This dated continuation satisfies the current-day run-record requirement without
 changing the close checker or discarding the preceding record.
 
 ## Found
+
+Corrected-candidate timing's staged whitespace check again flags the preserved
+raw typecheck output's final blank line. No output normalisation or clean
+overall whitespace-check claim is made.
+
+Current frozen memory timing exceeds the earlier run's p99 by more than the
+specified regression tolerance. Preserve both populations; no controlled
+reference baseline or cause is established. Synced timing and replay meet their
+scoped comparisons, but missing restart/freshness/isolated evidence prevents
+complete performance qualification. Nothing is tuned against these results.
 
 D40 integration staged whitespace check flags raw assertion formatting and
 typecheck final blank lines. Preserve exact first-failure, mutation, coverage

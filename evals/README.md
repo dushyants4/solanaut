@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`ci/sdk-timing-current.md`: corrected e715238 candidate reproduces the frozen
+SDK history with actual memory/synced-file timings and persisted replay, S126.
+Slower memory p99 is retained; external-reference/full performance remains owed.
+
 `sdk/adapter-buffer-current.md`: exact D40 correction integrates locally after
 fresh full native/type passes; source/emitted/installed trials retained separately.
 Current serial coverage still fails H11; no complete stable gate follows, S125.

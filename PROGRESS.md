@@ -6,7 +6,8 @@ owner diff and generated-copy proof are in baseline-latency. H11 remains pending
 with no original gate change or formal milestone advancement.
 
 Scoped frozen SDK timing now has actual memory/synced-file and replay observations,
-CLAIMS S124. Original history is reproduced and actual persisted bytes replay.
+CLAIMS S124 and corrected-candidate S126. Original history is reproduced and actual
+persisted bytes replay; slower memory p99 stays visible without retuning.
 This does not complete CI-2 performance or change the formal milestone count.
 
 D40's private message/wire copies are now integrated locally after fresh full

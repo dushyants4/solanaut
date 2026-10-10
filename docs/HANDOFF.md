@@ -250,7 +250,16 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
-2026-10-10 D40 current integration at 11234cc: six fresh tests-first failures,
+2026-10-10 current e715238 SDK timing: first prove the old source pin refuses
+the changed wallet adapter; bind the correction without changing the workload.
+Both actual profiles reproduce the original head and exact persisted bytes.
+Controls, omissions, substitutions and corrupt-history refusal are retained.
+Memory p99 is slower than the earlier run; no tuning/replacement or reference
+regression pass follows, CLAIMS S126. Product/gates remain unchanged and formal
+milestone accounting stays open; local-only commits/backups continue.
+
+2026-10-10 D40 integration from 11234cc, committed locally as e715238:
+complete local bundle/exact clean restore/full integrity check succeed. Six fresh tests-first failures,
 source/emitted copy omissions and actual installed cases qualify the preserved
 exact correction without overwriting original receipts. Rebuilt archive and all
 original candidate hashes match. Full native/type pass; serial coverage still

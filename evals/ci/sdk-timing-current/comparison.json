@@ -1,0 +1,13 @@
+{
+  "memory": {
+    "earlierP99Ns": 168862,
+    "currentP99Ns": 380569,
+    "exceedsTwentyPercentIncrease": true
+  },
+  "synced-file": {
+    "earlierP99Ns": 3278427,
+    "currentP99Ns": 3214112,
+    "exceedsTwentyPercentIncrease": false
+  },
+  "qualification": "diagnostic only; not an approved external baseline or complete performance gate"
+}

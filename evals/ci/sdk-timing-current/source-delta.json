@@ -1,0 +1,8 @@
+{
+  "previousDefinitionSha256": "26990db0fa9ffd1a2e1db883b2f1ac004f0877310231144c85d947adc8d147b5",
+  "changedInputFiles": [
+    "packages/sdk/src/adapters/agent-kit.ts"
+  ],
+  "workloadFieldsChanged": false,
+  "sdkCheckImplementationChanged": false
+}
