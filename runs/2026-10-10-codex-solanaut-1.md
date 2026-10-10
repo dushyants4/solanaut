@@ -10,6 +10,24 @@ push. Preserve all release, independent and human gates.
 
 ## Did
 
+Resume at clean fc3caff; fetch succeeds, no push. Both live boundary probes
+refuse and no probe file appears. The new batch regression reproduces signed
+admissions incorrectly expiring after wallet array reversal/removal, plus
+caller membership edits during admission. Preserve first failures and the
+fixture generic-type correction. Under accepted ADR-009, capture private
+membership before the first await and delegate a separate array. Combined
+adapter tests, source/emitted omissions, actual offline installed tests and
+existing package tests pass. Full candidate native passes 904/905, failing
+only H11's original wait. Preserve source/test/compiled/archive identities and
+complete raw output, then restore all original product hashes and remove the
+temporary native test. Final archived-test helper trials and restored typecheck
+pass. O7 is an exact unapplied CI draft for after integration qualifies.
+Existing Node 24 runs the identical four installed component cases and catches
+three installed omissions; exact restore/final control pass, without tool
+installation or a full runtime/matrix claim. Original product remains restored.
+The pre-change full native baseline likewise fails only H11's original wait. No
+architecture acceptance, protected edit, tuning or stable gate is inferred.
+
 Local timing checkpoint 11234cc and D40 implementation e715238 are committed
 without push. Complete bundles verify, exact restores are clean and full Git
 integrity checks succeed. Their clean closes pass every check except the
@@ -244,6 +262,31 @@ This dated continuation satisfies the current-day run-record requirement without
 changing the close checker or discarding the preceding record.
 
 ## Found
+
+D41 is a confirmed current product defect. Wallet reversal/removal after valid
+signing reports expired instead of unknown and misses cleanup; caller membership
+edits during awaits also replace requested transactions. Three assertions fail
+first, alongside a passing ordinary control. The new fixture's initial generic
+type error is retained. Candidate/native and original/native both fail H11;
+the prepared correction is deliberately not integrated. No test or wait is
+weakened, no unchanged failed gate is rerun to select a pass, and no independent
+or stable milestone is credited. The scratch emitted staging is a prepared
+candidate; rebuild before treating it as the restored product.
+A documentation patch fails exact-context verification without changing the
+file; the later exact insertion succeeds. No boundary refusal is bypassed.
+Staged whitespace checking flags raw assertion indentation, exact unified-patch
+context and typecheck EOF blank lines. Preserve the raw evidence and applicable
+patch bytes; no overall whitespace-clean claim follows. Product source has no
+diff after restoration. All new helper/snapshot/draft and documentation changes
+are reviewed separately from the raw failures.
+The broad staged key-pattern scan pauses commit for Token/Token-2022 words in
+retained test output. Review finds no credential-shaped match in the other
+patterns; these are programme/test nouns, not secrets. The unchanged close
+secret scanner supplies the separate tracked-file check.
+Prepared D41 pre-commit close passes eight of ten: only the uncommitted artefacts
+and deliberately unpushed HEAD fail. All remaining unchanged close checks pass,
+including claims, vault, boundary and tracked secret scanning. A local archival
+commit and complete bundle/exact clean restore follow; no product integration.
 
 Corrected-candidate timing's staged whitespace check again flags the preserved
 raw typecheck output's final blank line. No output normalisation or clean

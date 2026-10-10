@@ -1,0 +1,12 @@
+✔ ADP-1/ADR-009: reverse of wallet batch cannot release signed admissions or defeat cleanup (12.305912ms)
+✔ ADP-1/ADR-009: remove of wallet batch cannot release signed admissions or defeat cleanup (2.860017ms)
+✔ ADP-1/ADR-009: caller array edits during admission do not replace the requested batch (2.185397ms)
+✔ ADP-1/ADR-009: an ordinary batch returns its admitted objects without broadcasting (1.48568ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 167.450528

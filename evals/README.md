@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`sdk/adapter-batch.md`: D41 reproduces premature signed-admission expiry after
+wallet array edits. Prepared private membership passes component/installed
+checks; full native still fails H11, so product integration remains deferred.
+
 `ci/sdk-timing-current.md`: corrected e715238 candidate reproduces the frozen
 SDK history with actual memory/synced-file timings and persisted replay, S126.
 Slower memory p99 is retained; external-reference/full performance remains owed.

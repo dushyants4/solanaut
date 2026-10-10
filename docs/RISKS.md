@@ -1,5 +1,11 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
+Wallet batch-array edits after signing can currently expire admissions that may
+still land and leave caller signatures outside cleanup (D41). Private membership
+is prepared and component-tested in `evals/sdk/adapter-batch.md`; full native still
+fails H11, so the product correction is not integrated. SDK key holders can also
+retain/send signatures outside the wrapper. Isolated signing remains essential.
+
 Raw ArrayBuffer/SharedArrayBuffer serializer returns must be privately copied:
 a Uint8Array view can otherwise change after admission or wire verification.
 The deterministic alias failures and originally deferred correction remain in
@@ -35,7 +41,7 @@ the writer permanently. This checks physical byte count under the trusted host
 boundary; it does not detect every same-size concurrent modification or prove
 power-loss durability. Evidence: `evals/sdk/record-write-completion.md`.
 
-> **1.79** · 2026-10-10 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.80** · 2026-10-10 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 Local-only commits now replace the previous standing push grant. The unchanged

@@ -1,0 +1,9 @@
+{
+  "caught": [
+    "caller-membership",
+    "wallet-membership",
+    "signed-reservation"
+  ],
+  "restored": true,
+  "implementationSha256": "3c5f09874312dd5c5526616737b33329e0ce49659f70882f7974dea383464425"
+}

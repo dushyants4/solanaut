@@ -1,0 +1,11 @@
+{
+  "runtime": "v24.19.0",
+  "archiveSha256": "965cd0ee3d28ece4cba128eed79ec349476d61d22e9a52c7635448ce4bbb9ddc",
+  "installedImplementationSha256": "58e706fc72aa2ba80216caaf4a12cc50002f5147c341fffaf92d81baea32bad6",
+  "caught": [
+    "caller-membership",
+    "wallet-membership",
+    "signed-reservation"
+  ],
+  "restored": true
+}

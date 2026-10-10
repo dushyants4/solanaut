@@ -1,5 +1,12 @@
 # Solanaut 1.0 — current release evidence map
 
+D41 is open in the current product: wallet batch-array edits can prematurely
+expire visible valid signing and defeat cleanup. Its prepared private membership
+correction has first-failure/source/emitted/installed evidence in
+[adapter-batch](../../evals/sdk/adapter-batch.md), CLAIMS S127. The candidate full
+native suite fails only H11; exact original product restoration prevents a T2
+commit on a failed gate. No release or milestone credit follows.
+
 2026-10-10 · private operator/archivist preparation · D40 wallet correction
 privately copies raw buffer captures and is integrated locally after fresh full
 native/type passes, CLAIMS S125, [current receipt](../../evals/sdk/adapter-buffer-current.md).

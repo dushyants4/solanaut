@@ -247,8 +247,16 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 | O4 | .github/workflows/ci.yml | Exact unapplied diff: `evals/sdk/adapter-wire/owner-ci.patch`; use the existing pinned uv action in runtime jobs, pack the private SDK, execute actual installed ADP-1 cases and source/emitted fault trials. Retain all current steps, runtime matrix and limits. | D39's new wire boundary has local tests/fault evidence; protected CI needs owner application and exact hosted/runtime qualification. `git apply --check` accepts the draft. No deadline, assertion, population or threshold is weakened. | no |
 | O5 | .github/workflows/ci.yml | Exact unapplied combined diff: `evals/sdk/adapter-buffer/owner-ci.patch`; supersedes O4's application by retaining its installed/source/emitted trials and adding D40 private-buffer installation and copy-omission trials. | Private raw-buffer ownership has local fault evidence. Existing pinned action, runtime matrix, job limits and earlier gates stay unchanged. Read-only patch validation passes; owner application and exact hosted/matrix qualification remain owed. | no |
 | O6 | evals/ci/mutation-recovery.test.ts | Exact unapplied diff: `evals/ci/baseline-latency/owner-wait.patch`; H11's proposed 20,000→60,000 ms harness wait and diagnostic text only. Apply only after human acceptance. | Unchanged source reproduces H11; original staged child naturally passes 573 cases in 22.223 seconds. Generated review copy passes all six original recovery cases. Backend, selected population, seed, score/readiness targets and completion checks stay unchanged. Current gate remains failed; matrix/hosted/maintained qualification follows owner application. | no |
+| O7 | .github/workflows/ci.yml | Exact unapplied combined diff: `evals/sdk/adapter-batch/owner-ci.patch`; supersedes O5's application while retaining D39/D40 steps and adding D41 source/emitted/installed batch trials. Apply only after D41 product integration qualifies. | Local prepared component catches membership omissions. Full native still fails H11, so D41 remains unintegrated; source trials deliberately refuse the original product. Read-only patch validation passes. Matrix, limits and existing checks remain unchanged; exact hosted qualification stays owed. | no |
 
 ## 7. Codex's log
+
+2026-10-10 D41/ADP-1 from fc3caff: reproduce wallet reversal/removal releasing
+visible valid signing and caller array edits changing admission membership.
+Prepare private membership before awaits and a separate wallet array; component,
+source/emitted and actual installed checks pass. Original and corrected full
+native fail H11's unchanged wait. Preserve exact candidate/source/test/raw evidence
+without integrating product or applying O7. No push or stable milestone credit.
 
 2026-10-10 current e715238 SDK timing: first prove the old source pin refuses
 the changed wallet adapter; bind the correction without changing the workload.

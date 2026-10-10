@@ -1,5 +1,10 @@
 # PROGRESS.md
 
+D41 batch membership defects reproduce at fc3caff. A private membership candidate
+passes focused/source/emitted/installed checks, but corrected full native still
+fails H11's unchanged wait. Preserve the candidate without product integration.
+Stable milestones and formal accounting remain open.
+
 H11 diagnosis on unchanged e7d92e1 reproduces the native wait failure. The actual
 staged child naturally passes its complete population after the wait; exact
 owner diff and generated-copy proof are in baseline-latency. H11 remains pending,

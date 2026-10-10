@@ -140,6 +140,12 @@ registry package or release channel is created by this proposal.
 
 ## Evidence and present blockers
 
+The current wallet batch path has D41's membership defect. A wallet can reorder
+or remove batch entries after signing, defeating cleanup and prematurely expiring
+admissions. [The prepared correction](../../evals/sdk/adapter-batch.md) remains
+unintegrated because full native testing fails H11. This is an additional product
+blocker; the page must not present the current adapter as qualified against it.
+
 The external [tarball battery](../../evals/packaging/packed-sdk.md) installs an
 actual package outside the repository without workspace symlinks or TypeScript
 loaders. It uses cached runtime metadata and the builder's machine; its consumer

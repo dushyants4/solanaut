@@ -1,0 +1,28 @@
+✔ ADP-1/ADR-009: reverse of wallet batch cannot release signed admissions or defeat cleanup (11.987725ms)
+✔ ADP-1/ADR-009: remove of wallet batch cannot release signed admissions or defeat cleanup (2.517801ms)
+✖ ADP-1/ADR-009: caller array edits during admission do not replace the requested batch (2.140996ms)
+✔ ADP-1/ADR-009: an ordinary batch returns its admitted objects without broadcasting (2.434759ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 157.352941
+
+✖ failing tests:
+
+test at .sandbox/solanaut-1/adapter-batch/compiled-cases.ts:48:1
+✖ ADP-1/ADR-009: caller array edits during admission do not replace the requested batch (2.140996ms)
+  SolanautDenied: wallet-changed-message: the wallet signed something other than the admitted messages, not with its key, or not all of them; its signatures were removed
+      at signAll (file:///home/dashy/Projects/Solanaut/.sandbox/releases/sdk/dist/src/adapters/agent-kit.js:199:15)
+      at async signOnly (file:///home/dashy/Projects/Solanaut/.sandbox/releases/sdk/dist/src/adapters/agent-kit.js:203:38)
+      at async Object.signAllTransactions (file:///home/dashy/Projects/Solanaut/.sandbox/releases/sdk/dist/src/adapters/agent-kit.js:255:46)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/adapter-batch/compiled-cases.ts:53:20)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    rule: 'wallet-changed-message',
+    reason: 'the wallet signed something other than the admitted messages, not with its key, or not all of them; its signatures were removed',
+    decision: null
+  }

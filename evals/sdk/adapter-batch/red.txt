@@ -1,0 +1,74 @@
+✖ ADP-1/ADR-009: reverse of wallet batch cannot release signed admissions or defeat cleanup (31.196288ms)
+✖ ADP-1/ADR-009: remove of wallet batch cannot release signed admissions or defeat cleanup (5.342318ms)
+✖ ADP-1/ADR-009: caller array edits during admission do not replace the requested batch (3.091524ms)
+✔ ADP-1/ADR-009: an ordinary batch returns its admitted objects without broadcasting (5.444126ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 1
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 266.308534
+
+✖ failing tests:
+
+test at packages/sdk/test/adapter-batch.test.ts:31:52
+✖ ADP-1/ADR-009: reverse of wallet batch cannot release signed admissions or defeat cleanup (31.196288ms)
+  AssertionError [ERR_ASSERTION]: both validly signed messages may still land
+  + actual - expected
+  
+    [
+  +   'expired',
+  +   'expired'
+  -   'unknown',
+  -   'unknown'
+    ]
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/adapter-batch.test.ts:41:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ 'expired', 'expired' ],
+    expected: [ 'unknown', 'unknown' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/adapter-batch.test.ts:31:52
+✖ ADP-1/ADR-009: remove of wallet batch cannot release signed admissions or defeat cleanup (5.342318ms)
+  AssertionError [ERR_ASSERTION]: both validly signed messages may still land
+  + actual - expected
+  
+    [
+  +   'expired',
+  +   'expired'
+  -   'unknown',
+  -   'unknown'
+    ]
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/adapter-batch.test.ts:41:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ 'expired', 'expired' ],
+    expected: [ 'unknown', 'unknown' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/adapter-batch.test.ts:48:1
+✖ ADP-1/ADR-009: caller array edits during admission do not replace the requested batch (3.091524ms)
+  SolanautDenied: wallet-changed-message: the wallet signed something other than the admitted messages, not with its key, or not all of them; its signatures were removed
+      at signAll (file:///home/dashy/Projects/Solanaut/packages/sdk/src/adapters/agent-kit.ts:227:11)
+      at async signOnly (file:///home/dashy/Projects/Solanaut/packages/sdk/src/adapters/agent-kit.ts:232:34)
+      at async Object.signAllTransactions (file:///home/dashy/Projects/Solanaut/packages/sdk/src/adapters/agent-kit.ts:277:61)
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/adapter-batch.test.ts:53:20)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    rule: 'wallet-changed-message',
+    reason: 'the wallet signed something other than the admitted messages, not with its key, or not all of them; its signatures were removed',
+    decision: null
+  }

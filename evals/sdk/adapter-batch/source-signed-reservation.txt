@@ -1,0 +1,60 @@
+✖ ADP-1/ADR-009: reverse of wallet batch cannot release signed admissions or defeat cleanup (11.387283ms)
+✖ ADP-1/ADR-009: remove of wallet batch cannot release signed admissions or defeat cleanup (3.304915ms)
+✔ ADP-1/ADR-009: caller array edits during admission do not replace the requested batch (2.820841ms)
+✔ ADP-1/ADR-009: an ordinary batch returns its admitted objects without broadcasting (1.805319ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 2
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 148.370046
+
+✖ failing tests:
+
+test at .sandbox/solanaut-1/adapter-batch/source-cases.ts:31:52
+✖ ADP-1/ADR-009: reverse of wallet batch cannot release signed admissions or defeat cleanup (11.387283ms)
+  AssertionError [ERR_ASSERTION]: both validly signed messages may still land
+  + actual - expected
+  
+    [
+  +   'expired',
+  +   'expired'
+  -   'unknown',
+  -   'unknown'
+    ]
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/adapter-batch/source-cases.ts:41:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ 'expired', 'expired' ],
+    expected: [ 'unknown', 'unknown' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at .sandbox/solanaut-1/adapter-batch/source-cases.ts:31:52
+✖ ADP-1/ADR-009: remove of wallet batch cannot release signed admissions or defeat cleanup (3.304915ms)
+  AssertionError [ERR_ASSERTION]: both validly signed messages may still land
+  + actual - expected
+  
+    [
+  +   'expired',
+  +   'expired'
+  -   'unknown',
+  -   'unknown'
+    ]
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/.sandbox/solanaut-1/adapter-batch/source-cases.ts:41:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ 'expired', 'expired' ],
+    expected: [ 'unknown', 'unknown' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

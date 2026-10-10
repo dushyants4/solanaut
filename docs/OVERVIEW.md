@@ -1,10 +1,15 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 59** · 2026-10-10 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 60** · 2026-10-10 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
+
+D41's private batch membership correction remains prepared, not integrated.
+Wallet array edits can currently defeat cleanup and prematurely release signed
+admissions; `evals/sdk/adapter-batch.md` retains the reproduction and candidate.
+H11's native wait failure prevents the product commit; no gate is relaxed.
 
 The wallet sending adapter captures serialised wire once, verifies its message
 and wallet signature, then sends those same bytes. Malformed/changed serialisation

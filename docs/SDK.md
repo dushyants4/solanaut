@@ -1,7 +1,13 @@
 # SDK reference — private candidate
 
-> **Draft 21** · 2026-10-10 · owner: integrator · for: developers integrating the candidate.
+> **Draft 22** · 2026-10-10 · owner: integrator · for: developers integrating the candidate.
 > Register: `kb/DOCUMENTS.md`. This describes current exports, not a stable-release promise.
+
+The current wallet batch path has an open membership defect, D41: wallet array
+reversal/removal after signing can defeat cleanup and prematurely expire signed
+admissions. The prepared correction in [adapter-batch](../evals/sdk/adapter-batch.md)
+is not integrated because full native testing fails H11. Do not treat the current
+batch adapter as qualified against mutable wallet membership.
 
 The sending wallet wrapper verifies the captured serialised wire's admitted
 message and wallet signature before RPC. A refusal uses

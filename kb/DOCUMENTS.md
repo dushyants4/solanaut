@@ -1,5 +1,14 @@
 # DOCUMENTS.md — the document register
 
+2026-10-10 registers D41 prepared batch-membership receipt, bound source/test
+snapshots, helper, raw failures/component/installed qualification and deferred
+O7 CI draft; CLAIMS S127, SPEC 4.89, RISKS 1.80, SDK 22, OVERVIEW 60, PROGRESS,
+HANDOFF, evaluation index, release evidence map/staged draft and continuing run.
+H11's native failure prevents product integration; no stable
+gate changes and earlier evidence remains preserved.
+The Node 24 helper/runtime output/complete installed trials add scoped candidate
+compatibility evidence; original product and archive remain unchanged.
+
 2026-10-10 registers corrected-candidate SDK timing receipt/frozen copies/raw
 observations/history/comparison and refusal evidence, CLAIMS S126, PROGRESS,
 HANDOFF, evaluation index, release evidence map and continuing run. No product or gate changes;
