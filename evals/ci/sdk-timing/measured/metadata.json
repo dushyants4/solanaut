@@ -1,0 +1,19 @@
+{
+  "definitionSha256": "26990db0fa9ffd1a2e1db883b2f1ac004f0877310231144c85d947adc8d147b5",
+  "runnerSha256": "8a5ad1a096992622f5dea054265d931de370a6b0daf8cac5ff1dd0e7841302f7",
+  "revision": "1633231b4765438152e2bb9c78278bc9fe923062",
+  "time": "2026-10-10T18:17:47.416Z",
+  "node": "v26.7.0",
+  "platform": "linux",
+  "arch": "x64",
+  "kernel": "7.2.5-3-omarchy",
+  "cpu": "11th Gen Intel(R) Core(TM) i5-1155G7 @ 2.50GHz",
+  "logicalCpus": 8,
+  "totalMemory": 8048594944,
+  "filesystem": {
+    "type": 2435016766,
+    "blockSize": 4096
+  },
+  "process": 4102794,
+  "qualification": "scoped SDK diagnostic; not the complete CI-2 performance gate"
+}

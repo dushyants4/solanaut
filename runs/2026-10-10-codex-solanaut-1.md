@@ -10,6 +10,17 @@ push. Preserve all release, independent and human gates.
 
 ## Did
 
+Continue from clean 1633231 with unblocked CI-2 performance evidence. Freeze the
+existing mixed replay workload and original SDK/input hashes before measuring.
+Four report cases fail against a stub, then pass. Six validator omissions and
+two preflight substitutions refuse; exact restores/final controls pass. Actual
+memory and synced-file profiles run sequentially without another evaluation,
+retain all raw observations and reproduce the frozen mixed-history head.
+Separate actual persisted-byte replay passes; a scratch corrupted hash refuses
+and the original passes again. Typecheck and the fresh full native suite pass;
+the earlier intermittent H11 failures remain unresolved, not replaced. No full performance gate or
+stable milestone is claimed; product, thresholds and protected gates are unchanged.
+
 Complete requested status diagnosis in docs/plans/2026-10-10_status-diagnostic.md.
 Latest read-only hosted annotations again confirm account billing/spending refusal
 before job steps. Exact H11 owner diff is O6; acceptance/application remain owed.
@@ -207,6 +218,10 @@ This dated continuation satisfies the current-day run-record requirement without
 changing the close checker or discarding the preceding record.
 
 ## Found
+
+Scoped timing staged whitespace check reports the raw typecheck output's final
+blank line. Preserve the original output; do not normalise evidence or claim
+a clean whitespace check. Actual measurements are partial SDK evidence only.
 
 Local-only revision e7d92e1 is not the remote CI revision. No-push remains
 binding: historical hosted results do not qualify new local commits, even if

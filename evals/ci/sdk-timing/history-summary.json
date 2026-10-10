@@ -1,0 +1,20 @@
+{
+  "entries": 13651,
+  "kinds": {
+    "decision": 10000,
+    "redeem": 1365,
+    "report": 1365,
+    "release": 921
+  },
+  "decisions": {
+    "allow": 5837,
+    "destination-not-allowed": 1331,
+    "malformed-proposal": 354,
+    "intent-in-flight": 1229,
+    "inhibit-cap": 376,
+    "latched": 136,
+    "unsupported-version": 329,
+    "over-window-cap": 408
+  },
+  "historySha256": "bb7d00ece4abb0294ce221218c57c9186d9faa306288b64d06956166aab26991"
+}

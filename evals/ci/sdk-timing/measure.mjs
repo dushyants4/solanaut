@@ -1,0 +1,91 @@
+import { createHash } from 'node:crypto';
+import { mkdirSync, readFileSync, writeFileSync, statfsSync } from 'node:fs';
+import { cpus, release, totalmem } from 'node:os';
+import { resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { execFileSync } from 'node:child_process';
+import { createGuard, replay } from '../../../packages/sdk/src/guard.ts';
+import { step, WORKLOAD_POLICY } from '../../../packages/sdk/test/support/workload.ts';
+import { p99 } from '../performance.ts';
+
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
+const positive = value => Number.isSafeInteger(value) && value > 0;
+const hash = bytes => createHash('sha256').update(bytes).digest('hex');
+export function validateProfile(profile, definition) {
+  if (!['memory', 'synced-file'].includes(profile.storage)) throw new Error('invalid storage');
+  if (profile.decisions !== definition.decisions || !positive(profile.entries) || profile.entries < profile.decisions) throw new Error('incomplete population');
+  if (!Array.isArray(profile.samplesNs) || profile.samplesNs.length !== definition.decisions || profile.samplesNs.some(value => !positive(value))) throw new Error('incomplete timing samples');
+  if (!positive(profile.elapsedNs) || !positive(profile.replayNs) || profile.elapsedNs < profile.samplesNs.reduce((sum, value) => sum + value, 0)) throw new Error('invalid clock evidence');
+  if (profile.head !== definition.head) throw new Error('frozen history differs');
+  if (!profile.replay || profile.replay.ok !== true || profile.replay.decisions !== definition.decisions || profile.replay.divergence !== null) throw new Error('replay incomplete or divergent');
+  if (!Array.isArray(profile.kinds) || ['decision', 'report', 'redeem', 'release'].some(kind => !profile.kinds.includes(kind))) throw new Error('mixed operations incomplete');
+}
+function checkInputs(definition) {
+  for (const [path, digest] of Object.entries(definition.inputs)) {
+    if (hash(readFileSync(resolve(root, path))) !== digest) throw new Error(`frozen input differs: ${path}`);
+  }
+}
+async function measure(storage, definition, output) {
+  const guard = await createGuard({ policy: WORKLOAD_POLICY, ...(storage === 'synced-file' ? { log: resolve(output, 'history.jsonl') } : {}) });
+  const samplesNs = [];
+  const view = { ...guard, entries: () => guard.entries().slice(-10), check: (...args) => {
+    const start = process.hrtime.bigint();
+    const decision = guard.check(...args);
+    samplesNs.push(Number(process.hrtime.bigint() - start));
+    return decision;
+  } };
+  try {
+    const start = process.hrtime.bigint();
+    for (let index = 0; samplesNs.length < definition.decisions; index++) {
+      if (index >= definition.maxSteps) throw new Error('frozen workload exhausted');
+      step(view, index + definition.firstStep);
+      if (guard.status().seq !== index + 1) throw new Error('step did not append exactly one record');
+    }
+    const elapsedNs = Number(process.hrtime.bigint() - start);
+    const entries = guard.entries();
+    const replayStart = process.hrtime.bigint();
+    const replayResult = await replay(entries, WORKLOAD_POLICY);
+    const replayNs = Number(process.hrtime.bigint() - replayStart);
+    const profile = { storage, decisions: samplesNs.length, samplesNs, elapsedNs, replayNs,
+      replay: replayResult, entries: entries.length, head: entries.at(-1).hash,
+      kinds: [...new Set(entries.map(entry => entry.kind))].sort() };
+    validateProfile(profile, definition);
+    return { ...profile, p99Ns: p99(samplesNs), decisionsPerSecond: definition.decisions * 1e9 / elapsedNs,
+      replayPerSecond: definition.decisions * 1e9 / replayNs,
+      targets: { syncedP99: storage === 'synced-file' ? p99(samplesNs) <= 25_000_000 : null,
+        workloadRate: BigInt(definition.decisions) * 1_000_000_000n >= BigInt(elapsedNs) * 200n,
+        replayRate: BigInt(definition.decisions) * 1_000_000_000n >= BigInt(replayNs) * 5_000n } };
+  } finally { guard.close(); }
+}
+async function main() {
+  const definitionBytes = readFileSync(resolve(root, 'evals/ci/sdk-timing/definition.json'));
+  const definition = JSON.parse(definitionBytes);
+  if (process.version !== definition.node) throw new Error('frozen Node runtime differs');
+  checkInputs(definition);
+  if (process.argv[2] === '--check-inputs') { console.log('Frozen input identities pass'); return; }
+  if (!process.argv[2]) throw new Error('supply a fresh output directory');
+  const output = resolve(process.argv[2]); mkdirSync(output, { mode: 0o700 });
+  const fs = statfsSync(output);
+  const metadata = { definitionSha256: hash(definitionBytes), runnerSha256: hash(readFileSync(fileURLToPath(import.meta.url))),
+    revision: execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim(),
+    time: new Date().toISOString(), node: process.version, platform: process.platform, arch: process.arch,
+    kernel: release(), cpu: cpus()[0]?.model, logicalCpus: cpus().length, totalMemory: totalmem(),
+    filesystem: { type: fs.type, blockSize: fs.bsize }, process: process.pid,
+    qualification: 'scoped SDK diagnostic; not the complete CI-2 performance gate' };
+  writeFileSync(resolve(output, 'metadata.json'), JSON.stringify(metadata, null, 2) + '\n', { flag: 'wx' });
+  const profiles = [];
+  for (const storage of definition.profiles) {
+    checkInputs(definition);
+    const profile = await measure(storage, definition, output);
+    checkInputs(definition);
+    writeFileSync(resolve(output, `${storage}.json`), JSON.stringify(profile, null, 2) + '\n', { flag: 'wx' });
+    profiles.push(profile);
+    console.log(JSON.stringify({ ...profile, samplesNs: `retained in ${storage}.json` }));
+  }
+  writeFileSync(resolve(output, 'completion.json'), JSON.stringify({ complete: true,
+    profiles: profiles.map(profile => ({ storage: profile.storage, head: profile.head, decisions: profile.decisions })),
+    inputIdentitiesVerified: true, fullPerformanceGate: false }, null, 2) + '\n', { flag: 'wx' });
+}
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  try { await main(); } catch (error) { console.error(error); process.exitCode = 1; }
+}

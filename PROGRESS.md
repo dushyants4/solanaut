@@ -5,6 +5,10 @@ staged child naturally passes its complete population after the wait; exact
 owner diff and generated-copy proof are in baseline-latency. H11 remains pending,
 with no original gate change or formal milestone advancement.
 
+Scoped frozen SDK timing now has actual memory/synced-file and replay observations,
+CLAIMS S124. Original history is reproduced and actual persisted bytes replay.
+This does not complete CI-2 performance or change the formal milestone count.
+
 The preserved D40 archive has installed Node 24 boundary/fault evidence, S122.
 This is scoped compatibility of an unapplied patch, not a milestone or H11 fix.
 
@@ -473,8 +477,10 @@ partial signing is unchanged; this is not installed signer or live-chain qualifi
    Bound completion-record checks and operator-tool restoration have local fixture evidence
    (`evals/ci/run-completion.md`). Detached child supervision and ordered publication now
    have component evidence (`evals/ci/run-supervisor.md`); qualification integration remains owed.
-   Performance report checks are prepared (`evals/ci/performance.md`); actual measurements
-   remain owed. Public ledger differential checks now retain a regression corpus and a fresh
+   Performance report checks are prepared (`evals/ci/performance.md`); scoped frozen SDK
+   memory/synced-file timings now exist (`evals/ci/sdk-timing.md`). Full performance and
+   reference-baseline qualification remain owed. Public ledger differential checks retain
+   a regression corpus and a fresh
    qualification block (`evals/ci/differential.md`); hosted CI is checked after private sync.
    Frozen synthetic benign traffic passes its local target (`evals/ci/traffic.md`);
    alternating and distinct failed-outcome streams remain unrefused within the horizon.

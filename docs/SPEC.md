@@ -820,8 +820,11 @@ are maintained fault campaigns. The required Stryker score remains unmeasured at
 no signer/firewall mutation qualification follows from these report checks.
 
 Performance report checks preserve the existing timing/rate/restart/freshness/regression
-targets (`evals/ci/performance.md`). Actual measurements and compatible reference baseline
-remain owed; complete report observations and snapshot/Keel evidence are required.
+targets (`evals/ci/performance.md`). Scoped SDK memory/synced-file measurements of
+the frozen mixed replay history are in `evals/ci/sdk-timing.md`; they are not
+pre-log isolation or complete qualification. The compatible reference baseline,
+isolated signer, restart/freshness and full report observations remain owed;
+authenticated snapshot/Keel evidence is required.
 The offline differential gate pins complete public ledger wires and execution-time loaded
 addresses, compares kit decoding/resolution and the observed supported program-client fields
 (`evals/ci/differential.md`). Conservative trailing-data refusals are tested explicitly.

@@ -250,6 +250,13 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-10 frozen SDK timing on 1633231: original mixed replay workload is measured
+sequentially with memory and actual synced file stores. Both reproduce the frozen
+history; separate actual persisted-byte replay passes and corrupted hash refuses.
+First failures and validator/input faults are preserved, CLAIMS S124. No pre-log
+isolation, isolated signer, snapshot restart, dashboard or full performance gate
+is claimed. H11/package/human gates and formal milestone accounting remain open.
+
 2026-10-10 current-task diagnosis on e7d92e1: no Solanaut worker is initially
 running, clean local-only tree. Original full native again fails H11. An unchanged
 staged child naturally passes the complete population after its unit wait;

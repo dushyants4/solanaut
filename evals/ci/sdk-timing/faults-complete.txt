@@ -1,0 +1,261 @@
+✔ CI-2: scoped timings require a complete frozen mixed history (1.811539ms)
+✔ CI-2: every measured decision has a positive integral duration (1.338532ms)
+✔ CI-2: replay completion and mixed operations cannot be inferred from counts (2.832009ms)
+✔ CI-2: clocks and storage labels refuse malformed or impossible observations (0.664441ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 134.271108
+
+
+FAULT population
+✖ CI-2: scoped timings require a complete frozen mixed history (1.99666ms)
+✔ CI-2: every measured decision has a positive integral duration (0.915061ms)
+✔ CI-2: replay completion and mixed operations cannot be inferred from counts (2.003851ms)
+✔ CI-2: clocks and storage labels refuse malformed or impossible observations (0.601671ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 130.842265
+
+✖ failing tests:
+
+test at evals/ci/sdk-timing/measure.test.mjs:8:1
+✖ CI-2: scoped timings require a complete frozen mixed history (1.99666ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/sdk-timing/measure.test.mjs:11:51)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /population/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+
+FAULT samples
+✔ CI-2: scoped timings require a complete frozen mixed history (1.692861ms)
+✖ CI-2: every measured decision has a positive integral duration (1.006688ms)
+✔ CI-2: replay completion and mixed operations cannot be inferred from counts (2.119747ms)
+✔ CI-2: clocks and storage labels refuse malformed or impossible observations (0.574548ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 112.222564
+
+✖ failing tests:
+
+test at evals/ci/sdk-timing/measure.test.mjs:15:1
+✖ CI-2: every measured decision has a positive integral duration (1.006688ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/sdk-timing/measure.test.mjs:18:58)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /samples/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+
+FAULT clock
+✔ CI-2: scoped timings require a complete frozen mixed history (2.030054ms)
+✔ CI-2: every measured decision has a positive integral duration (0.88006ms)
+✔ CI-2: replay completion and mixed operations cannot be inferred from counts (1.890903ms)
+✖ CI-2: clocks and storage labels refuse malformed or impossible observations (0.822816ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 118.1849
+
+✖ failing tests:
+
+test at evals/ci/sdk-timing/measure.test.mjs:33:1
+✖ CI-2: clocks and storage labels refuse malformed or impossible observations (0.822816ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/sdk-timing/measure.test.mjs:36:48)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /clock/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+
+FAULT history
+✖ CI-2: scoped timings require a complete frozen mixed history (1.977813ms)
+✔ CI-2: every measured decision has a positive integral duration (0.786884ms)
+✔ CI-2: replay completion and mixed operations cannot be inferred from counts (2.213587ms)
+✔ CI-2: clocks and storage labels refuse malformed or impossible observations (0.722781ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 128.60954
+
+✖ failing tests:
+
+test at evals/ci/sdk-timing/measure.test.mjs:8:1
+✖ CI-2: scoped timings require a complete frozen mixed history (1.977813ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/sdk-timing/measure.test.mjs:13:57)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /history/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+
+FAULT replay
+✔ CI-2: scoped timings require a complete frozen mixed history (1.771903ms)
+✔ CI-2: every measured decision has a positive integral duration (0.78106ms)
+✖ CI-2: replay completion and mixed operations cannot be inferred from counts (1.339761ms)
+✔ CI-2: clocks and storage labels refuse malformed or impossible observations (0.579553ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 119.691993
+
+✖ failing tests:
+
+test at evals/ci/sdk-timing/measure.test.mjs:22:1
+✖ CI-2: replay completion and mixed operations cannot be inferred from counts (1.339761ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/sdk-timing/measure.test.mjs:26:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /replay/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+
+FAULT operations
+✔ CI-2: scoped timings require a complete frozen mixed history (1.730442ms)
+✔ CI-2: every measured decision has a positive integral duration (0.718354ms)
+✖ CI-2: replay completion and mixed operations cannot be inferred from counts (1.897897ms)
+✔ CI-2: clocks and storage labels refuse malformed or impossible observations (0.555967ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 121.115479
+
+✖ failing tests:
+
+test at evals/ci/sdk-timing/measure.test.mjs:22:1
+✖ CI-2: replay completion and mixed operations cannot be inferred from counts (1.897897ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/sdk-timing/measure.test.mjs:30:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /operations/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+
+✔ CI-2: scoped timings require a complete frozen mixed history (1.89324ms)
+✔ CI-2: every measured decision has a positive integral duration (0.771892ms)
+✔ CI-2: replay completion and mixed operations cannot be inferred from counts (1.907746ms)
+✔ CI-2: clocks and storage labels refuse malformed or impossible observations (0.579734ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 123.118766
+
+
+Six omissions caught; exact source restored and final control passes
+Frozen input identities pass
+
+
+FAULT preflight runtime
+
+Error: frozen Node runtime differs
+    at main (file:///home/dashy/Projects/Solanaut/evals/ci/sdk-timing/measure.mjs:63:50)
+    at file:///home/dashy/Projects/Solanaut/evals/ci/sdk-timing/measure.mjs:90:15
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+FAULT preflight identity
+
+Error: frozen input differs: packages/sdk/src/guard.ts
+    at checkInputs (file:///home/dashy/Projects/Solanaut/evals/ci/sdk-timing/measure.mjs:25:67)
+    at main (file:///home/dashy/Projects/Solanaut/evals/ci/sdk-timing/measure.mjs:64:3)
+    at file:///home/dashy/Projects/Solanaut/evals/ci/sdk-timing/measure.mjs:90:15
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Frozen input identities pass
+
+
+Runtime and input substitutions refused; exact frozen definition restored

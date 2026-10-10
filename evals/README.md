@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`ci/sdk-timing.md`: frozen mixed-history SDK memory/synced-file timings and replay,
+actual persisted-history verification and planted refusals, CLAIMS S124.
+Complete performance qualification, reference baseline and stable gates remain owed.
+
 `ci/baseline-latency.md`: unchanged product reproduces H11; actual staged child
 completes naturally after the wait. Exact unapplied owner diff and complete
 generated recovery-copy proof are preserved separately from the failed gate.

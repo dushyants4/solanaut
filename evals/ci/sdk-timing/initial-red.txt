@@ -1,0 +1,127 @@
+✖ CI-2: scoped timings require a complete frozen mixed history (5.503902ms)
+✖ CI-2: every measured decision has a positive integral duration (0.382104ms)
+✖ CI-2: replay completion and mixed operations cannot be inferred from counts (0.299518ms)
+✖ CI-2: clocks and storage labels refuse malformed or impossible observations (0.330812ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 62.645968
+
+✖ failing tests:
+
+test at evals/ci/sdk-timing/measure.test.mjs:8:1
+✖ CI-2: scoped timings require a complete frozen mixed history (5.503902ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "measurement runner not implemented"
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/sdk-timing/measure.test.mjs:9:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: measurement runner not implemented
+        at validateProfile (file:///home/dashy/Projects/Solanaut/evals/ci/sdk-timing/measure.mjs:1:43)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/sdk-timing/measure.test.mjs:9:29
+        at getActual (node:assert:580:5)
+        at strict.doesNotThrow (node:assert:748:32)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/sdk-timing/measure.test.mjs:9:10)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.start (node:internal/test_runner/test:1257:17)
+        at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at evals/ci/sdk-timing/measure.test.mjs:15:1
+✖ CI-2: every measured decision has a positive integral duration (0.382104ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "measurement runner not implemented"
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/sdk-timing/measure.test.mjs:16:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: measurement runner not implemented
+        at validateProfile (file:///home/dashy/Projects/Solanaut/evals/ci/sdk-timing/measure.mjs:1:43)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/sdk-timing/measure.test.mjs:16:29
+        at getActual (node:assert:580:5)
+        at strict.doesNotThrow (node:assert:748:32)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/sdk-timing/measure.test.mjs:16:10)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at evals/ci/sdk-timing/measure.test.mjs:22:1
+✖ CI-2: replay completion and mixed operations cannot be inferred from counts (0.299518ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "measurement runner not implemented"
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/sdk-timing/measure.test.mjs:23:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: measurement runner not implemented
+        at validateProfile (file:///home/dashy/Projects/Solanaut/evals/ci/sdk-timing/measure.mjs:1:43)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/sdk-timing/measure.test.mjs:23:29
+        at getActual (node:assert:580:5)
+        at strict.doesNotThrow (node:assert:748:32)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/sdk-timing/measure.test.mjs:23:10)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at evals/ci/sdk-timing/measure.test.mjs:33:1
+✖ CI-2: clocks and storage labels refuse malformed or impossible observations (0.330812ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "measurement runner not implemented"
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/sdk-timing/measure.test.mjs:34:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: measurement runner not implemented
+        at validateProfile (file:///home/dashy/Projects/Solanaut/evals/ci/sdk-timing/measure.mjs:1:43)
+        at file:///home/dashy/Projects/Solanaut/evals/ci/sdk-timing/measure.test.mjs:34:29
+        at getActual (node:assert:580:5)
+        at strict.doesNotThrow (node:assert:748:32)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/ci/sdk-timing/measure.test.mjs:34:10)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }

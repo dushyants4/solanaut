@@ -1,5 +1,10 @@
 # DOCUMENTS.md — the document register
 
+2026-10-10 registers frozen SDK timing receipt/definition/runner/tests/faults,
+raw observations and persisted history, CLAIMS S124, SPEC performance scope,
+PROGRESS, HANDOFF, evaluation index, release evidence map and continuing run.
+Existing gates/product remain unchanged; complete performance is still owed.
+
 2026-10-10 registers H11 timing receipt/observer/generated-copy proof/raw inputs,
 CLAIMS S123, PROGRESS, HANDOFF, evaluation index, continuing record and diagnostic status
 report. Original product/gates stay unchanged; proposal remains unaccepted.
