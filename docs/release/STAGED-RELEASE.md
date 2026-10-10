@@ -1,9 +1,10 @@
 # Staged devnet release — review draft
 
-Prepared local D40/ADP-1 patch privately copies raw buffer captures after
-reproduced alias failures. Its [separate receipt](../../evals/sdk/adapter-buffer.md)
-binds the patched private archive. Two full native runs and quiet AST fail the
-unchanged H11 wait; the patch remains unapplied, original product restored.
+Local D40/ADP-1 correction privately copies raw buffer captures after fresh
+reproduced alias failures. Its [current receipt](../../evals/sdk/adapter-buffer-current.md)
+records full native/type passes and the exact preserved private archive, S125.
+Serial coverage still fails H11; no complete stable gate follows. Earlier
+deferral and failures remain in [the original receipt](../../evals/sdk/adapter-buffer.md).
 Earlier D39's full maintained qualification also fails, CLAIMS S120.
 Neither candidate supplies a stable or staged publication decision.
 

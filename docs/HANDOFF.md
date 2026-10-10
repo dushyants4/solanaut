@@ -250,6 +250,14 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-10 D40 current integration at 11234cc: six fresh tests-first failures,
+source/emitted copy omissions and actual installed cases qualify the preserved
+exact correction without overwriting original receipts. Rebuilt archive and all
+original candidate hashes match. Full native/type pass; serial coverage still
+fails H11. The accepted ADR-009 implementation is corrected locally; independent,
+maintained/hosted and stable gates remain open, CLAIMS S125. Existing Node 24
+full native also fails only H11; its typecheck and final binding pass. O5 stays unapplied.
+
 2026-10-10 frozen SDK timing on 1633231: original mixed replay workload is measured
 sequentially with memory and actual synced file stores. Both reproduce the frozen
 history; separate actual persisted-byte replay passes and corrupted hash refuses.

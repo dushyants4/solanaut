@@ -1,6 +1,6 @@
 # SDK reference — private candidate
 
-> **Draft 20** · 2026-10-10 · owner: integrator · for: developers integrating the candidate.
+> **Draft 21** · 2026-10-10 · owner: integrator · for: developers integrating the candidate.
 > Register: `kb/DOCUMENTS.md`. This describes current exports, not a stable-release promise.
 
 The sending wallet wrapper verifies the captured serialised wire's admitted
@@ -11,10 +11,12 @@ even if serialisation erases its object signature. Trusted SDK inputs and direct
 key access remain its stated limits. Evidence: [adapter-wire](../evals/sdk/adapter-wire.md),
 CLAIMS S119; this is not an isolated signing-service claim.
 
-Raw ArrayBuffer/SharedArrayBuffer returns still expose aliasing in the current
-implementation. The private-copy correction and tests are an unapplied patch in
-[adapter-buffer](../evals/sdk/adapter-buffer.md), pending the required full gate.
-Do not treat the passing patched archive as a qualified installed release.
+The wrapper privately copies raw ArrayBuffer/SharedArrayBuffer message and wire
+returns before admission/verification. Local integration evidence is in
+[adapter-buffer-current](../evals/sdk/adapter-buffer-current.md), CLAIMS S125;
+the earlier [prepared correction](../evals/sdk/adapter-buffer.md) retains its failures.
+Full native/type checks pass; existing H11 coverage and maintained/hosted release
+gates remain open. This is not a qualified installed stable release.
 
 Recovery now refuses impossible report/redemption transitions before state changes
 (D22/D23). Valid repeated unknown outcomes and legitimate unsigned historical

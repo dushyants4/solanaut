@@ -1,12 +1,12 @@
 # Solanaut 1.0 — current release evidence map
 
-2026-10-10 · private operator/archivist preparation · prepared D40 wallet
-patch privately copies raw buffer captures, with reproduced aliases and
-installed evidence in [its component receipt](../../evals/sdk/adapter-buffer.md).
-Both full native runs and quiet AST fail H11. The patch remains unapplied and
-original product inputs are restored; no release freeze or qualification follows.
-The preserved patched archive has installed Node 24 boundary/fault proof, S122;
-that scoped compatibility does not replace full native/coverage qualification.
+2026-10-10 · private operator/archivist preparation · D40 wallet correction
+privately copies raw buffer captures and is integrated locally after fresh full
+native/type passes, CLAIMS S125, [current receipt](../../evals/sdk/adapter-buffer-current.md).
+Current serial coverage still fails H11; no complete stable gate follows.
+Earlier deferral/failures remain in [the original receipt](../../evals/sdk/adapter-buffer.md).
+The identical archive has earlier installed Node 24 boundary/fault proof, S122;
+that scoped compatibility does not replace full runtime/coverage qualification.
 Earlier D39 component evidence remains [separate](../../evals/sdk/adapter-wire.md),
 CLAIMS S119. Its actual unchanged full maintained gate fails, CLAIMS S120.
 Earlier f1e253f Node 24 native/type/installed passes and quiet AST wait failure

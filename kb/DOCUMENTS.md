@@ -1,5 +1,12 @@
 # DOCUMENTS.md — the document register
 
+2026-10-10 registers D40 local integration: current receipt/wrapper/generated
+helpers/raw failures and qualification, CLAIMS S125, SPEC 4.88, OVERVIEW 59,
+SDK 21, RISKS, PROGRESS, HANDOFF, evaluation index, release map/staged draft,
+status diagnosis and continuing run.
+Earlier adapter-buffer/timing receipts clarify historical source scope; earlier
+raw evidence remains intact. H11 coverage and all complete release gates stay open.
+
 2026-10-10 registers frozen SDK timing receipt/definition/runner/tests/faults,
 raw observations and persisted history, CLAIMS S124, SPEC performance scope,
 PROGRESS, HANDOFF, evaluation index, release evidence map and continuing run.

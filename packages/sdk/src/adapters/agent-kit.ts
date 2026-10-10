@@ -75,8 +75,9 @@ const equal = (a: Uint8Array, b: Uint8Array) => a.length === b.length && a.every
 
 /** The message bytes a web3.js transaction's signatures cover. */
 function messageOf(tx: any): Uint8Array {
-  if (tx && typeof tx.serializeMessage === "function") return new Uint8Array(tx.serializeMessage());
-  if (tx && tx.message && typeof tx.message.serialize === "function") return new Uint8Array(tx.message.serialize());
+  // A raw buffer creates a view; the second constructor privately owns the captured bytes.
+  if (tx && typeof tx.serializeMessage === "function") return new Uint8Array(new Uint8Array(tx.serializeMessage()));
+  if (tx && tx.message && typeof tx.message.serialize === "function") return new Uint8Array(new Uint8Array(tx.message.serialize()));
   throw new TypeError("not a web3.js Transaction or VersionedTransaction");
 }
 
@@ -240,7 +241,7 @@ export function guardedWallet<Tx = any>(wallet: BaseWalletLike<Tx>, guard: Guard
     let wire: Uint8Array;
     try {
       // A foreign transaction can serialize different bytes from serializeMessage().
-      wire = new Uint8Array((signed[0] as any).serialize());
+      wire = new Uint8Array(new Uint8Array((signed[0] as any).serialize()));
       const decoded = decodeTransaction(wire);
       const index = decodeMessage(decoded.message).staticAccounts.indexOf(key);
       if (!equal(decoded.message, a.message) || index < 0 || !verifyEd25519(key, a.message, decoded.signatures[index] ?? new Uint8Array())) throw new Error("serialized transaction differs from admission");

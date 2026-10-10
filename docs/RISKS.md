@@ -2,9 +2,11 @@
 
 Raw ArrayBuffer/SharedArrayBuffer serializer returns must be privately copied:
 a Uint8Array view can otherwise change after admission or wire verification.
-The deterministic alias failures and prepared correction are in `evals/sdk/adapter-buffer.md`.
-The patch remains unapplied because full native/coverage fail H11; D40 remains
-open in current source. Caller/key/RPC trust remains the SDK's assumption.
+The deterministic alias failures and originally deferred correction remain in
+`evals/sdk/adapter-buffer.md`. D40's implementation is corrected locally with
+fresh full native/type and source/emitted/installed proof in
+`evals/sdk/adapter-buffer-current.md`. Coverage still fails H11; maintained and
+hosted release gates remain open. Caller/key/RPC trust remains the SDK's assumption.
 
 The wallet adapter now validates the captured serialised wire before RPC under
 ADR-009. An object can report a valid message while serialising different bytes;

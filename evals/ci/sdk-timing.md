@@ -31,6 +31,9 @@ in `sdk-timing/definition.json`. The actual command uses
 `timeout 180 node evals/ci/sdk-timing/measure.mjs evals/ci/sdk-timing/measured`
 and exits zero. No other Solanaut evaluation runs concurrently. Each profile
 records every observation without filtering and reproduces the existing head.
+Use the local 11234cc checkpoint to reproduce this frozen source population.
+Later D40 integration intentionally fails its old input preflight; these timings
+are not relabelled as measurements of that different candidate.
 
 | Local SDK profile | Decision p99 | Whole workload decisions/second | Replay decisions/second |
 |---|---:|---:|---:|

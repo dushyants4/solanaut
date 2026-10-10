@@ -3,9 +3,13 @@
 Builder-authored local evidence, 2026-10-10 Toronto, Linux/Node 26.7.0.
 Measured claims are scoped in CLAIMS S121.
 Reviewed base 32abc738f436b392f41a0a77643838a143eb3d35 plus bound candidate.
-Status: **prepared, not integrated**. The exact source/test candidate.patch
+Historical status at the reviewed base: **prepared, not integrated**. Later
+local integration is recorded separately in [adapter-buffer-current](adapter-buffer-current.md),
+CLAIMS S125, with fresh full native/type passes and unresolved H11 coverage.
+The failures below remain historical evidence. The exact source/test candidate.patch
 passes read-only application validation on the restored original source.
-Apply that patch before the regeneration commands below; they describe the
+Apply that patch only to the reviewed original base before the regeneration
+commands below; current integrated source already contains it. They describe the
 patched candidate, not current unmodified HEAD. Original source/test snapshots,
 candidate manifest and the private archive remain separately bound evidence.
 Accepted ADR-009 §9 requires comparison with the admitted message and sending

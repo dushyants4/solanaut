@@ -9,14 +9,12 @@ Scoped frozen SDK timing now has actual memory/synced-file and replay observatio
 CLAIMS S124. Original history is reproduced and actual persisted bytes replay.
 This does not complete CI-2 performance or change the formal milestone count.
 
-The preserved D40 archive has installed Node 24 boundary/fault evidence, S122.
-This is scoped compatibility of an unapplied patch, not a milestone or H11 fix.
-
-D40's prepared patch privately owns wallet message/wire captures, including raw buffer returns.
-Six first failures, source/emitted omission trials and actual installed cases
-are preserved in adapter-buffer. The first full native run fails H11's unchanged
-wait; the unchanged diagnostic and quiet AST fail too. The patch is archived
-unapplied rather than integrated without the required green full suite.
+D40's private message/wire copies are now integrated locally after fresh full
+native/type passes and exact source/emitted/installed qualification, CLAIMS S125.
+Earlier deferral and all failures remain in adapter-buffer. Current serial
+coverage still fails H11; no floor, maintained/hosted or stable milestone closes.
+The same archive's earlier installed Node 24 boundary/fault evidence remains
+scoped as S122 and is not full runtime qualification.
 
 Actual unchanged full maintained fault qualification of 71a1ef4 fails mutation
 recovery and packaging, with no skipped campaigns, CLAIMS S120. Interrupted

@@ -10,6 +10,18 @@ push. Preserve all release, independent and human gates.
 
 ## Did
 
+At clean backed-up 11234cc, freshly reproduce all six D40 failures, then apply
+the exact accepted ADR-009 private-copy correction. Combined cases pass;
+source/emitted omission faults and actual installed tests pass with exact
+restoration. Generated helpers relocate only output/scratch paths; prior
+receipts remain byte-for-byte intact. All original candidate hashes and rebuilt
+archive match S121. Fresh full native passes all cases and typecheck passes,
+supporting local integration. Serial coverage repeats H11's baseline wait;
+retain full output and raw counters without floor credit. No stable milestone
+closes and no protected gate or threshold changes. Existing Node 24 full native
+passes all except H11; its typecheck passes. All final candidate identities
+match, previous raw receipts stay intact, and no evaluation worker remains.
+
 Continue from clean 1633231 with unblocked CI-2 performance evidence. Freeze the
 existing mixed replay workload and original SDK/input hashes before measuring.
 Four report cases fail against a stub, then pass. Six validator omissions and
@@ -218,6 +230,17 @@ This dated continuation satisfies the current-day run-record requirement without
 changing the close checker or discarding the preceding record.
 
 ## Found
+
+D40 integration staged whitespace check flags raw assertion formatting and
+typecheck final blank lines. Preserve exact first-failure, mutation, coverage
+and runtime output rather than normalising evidence. Product diff has no such
+finding; no clean overall whitespace-check claim is made.
+
+D40 current integration satisfies fresh full native/type checks, but serial
+coverage passes all except H11's existing baseline wait. The coverage gate
+refuses before producing a floor summary. Preserve all counters and raw output,
+and retain earlier native/AST failures. Local correction is not coverage or
+complete release qualification; no failed gate is waived or edited.
 
 Scoped timing staged whitespace check reports the raw typecheck output's final
 blank line. Preserve the original output; do not normalise evidence or claim

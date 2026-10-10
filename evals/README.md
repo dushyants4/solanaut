@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`sdk/adapter-buffer-current.md`: exact D40 correction integrates locally after
+fresh full native/type passes; source/emitted/installed trials retained separately.
+Current serial coverage still fails H11; no complete stable gate follows, S125.
+
 `ci/sdk-timing.md`: frozen mixed-history SDK memory/synced-file timings and replay,
 actual persisted-history verification and planted refusals, CLAIMS S124.
 Complete performance qualification, reference baseline and stable gates remain owed.

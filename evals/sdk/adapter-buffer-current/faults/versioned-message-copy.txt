@@ -1,0 +1,42 @@
+✔ ADP-1/ADR-009: RPC handoff privately captures raw ArrayBuffer wire (10.870136ms)
+✔ ADP-1/ADR-009: legacy admission privately captures raw ArrayBuffer message (2.185048ms)
+✖ ADP-1/ADR-009: versioned admission privately captures raw ArrayBuffer message (2.424321ms)
+✔ ADP-1/ADR-009: RPC handoff privately captures raw SharedArrayBuffer wire (2.120698ms)
+✔ ADP-1/ADR-009: legacy admission privately captures raw SharedArrayBuffer message (0.891362ms)
+✖ ADP-1/ADR-009: versioned admission privately captures raw SharedArrayBuffer message (1.402448ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 4
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 142.264375
+
+✖ failing tests:
+
+test at packages/sdk/test/adapter-buffer.test.ts:38:39
+✖ ADP-1/ADR-009: versioned admission privately captures raw ArrayBuffer message (2.424321ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/adapter-buffer.test.ts:48:7)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/adapter-buffer.test.ts:38:39
+✖ ADP-1/ADR-009: versioned admission privately captures raw SharedArrayBuffer message (1.402448ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/adapter-buffer.test.ts:48:7)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }

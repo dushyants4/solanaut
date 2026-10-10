@@ -5,7 +5,7 @@ Formal progress remains CLAIMS S78: 16 of 39 milestones, rounded to 41%.
 This is milestone accounting, not effort, elapsed time or release readiness.
 Components inside unfinished milestones receive no fractional credit.
 
-At inspection the tree is clean and no Solanaut test, validator or soak worker
+At the original inspection the tree is clean and no Solanaut test, validator or soak worker
 is active. The current continuation diagnoses H11, observes actual completion,
 tests a review copy and archives an exact owner edit. No background job is
 waiting to finish the product. Runtime servers visible in the process inventory
@@ -17,12 +17,19 @@ The generated sixty-second review copy passes all six original recovery cases;
 the actual gate stays unchanged. Evidence and scope: CLAIMS S123 and
 [baseline latency](../../evals/ci/baseline-latency.md).
 
+Subsequent local work adds frozen SDK memory/synced-file timing, CLAIMS S124,
+and integrates D40's exact private-copy correction after fresh full native/type
+passes, CLAIMS S125. The serial AST run still fails H11, so neither correction
+nor timings complete a release gate. The newer receipts retain every earlier
+failure and keep historical candidate identities separate.
+
 | Completed or prepared | Remaining qualification |
 |---|---|
 | Human-approved Beta: decoding, classification, policy/admission, journal/replay, Keel, adapters, devnet Squads and cockpit | Alpha and stable release remain unapproved |
 | Accepted latch correction; signed-policy, lifecycle, exclusive ownership, authenticated history/index, storage hardening and queued bookkeeping components | Complete isolated signer, authoritative RPC, durable send reconciliation and bounded retention/restart |
 | Private release-only build, installed consumer checks, replay tooling, scoped fault/property/recovery batteries and verified local Git restore | Complete CI matrix, mutation/fuzz/differential/performance, concurrency and soak requirements |
-| D39 serialised-wire correction integrated; D40 correction with focused/source/emitted/installed Node 26 and Node 24 proof prepared | D40 remains an unapplied patch because full native/AST fail H11 |
+| D39 serialised-wire and D40 private-byte-copy corrections integrated; fresh native/type and source/emitted/installed proof | Current serial coverage still fails H11; exact runtime/maintained/hosted and release qualification remain owed |
+| Frozen mixed SDK memory/synced-file decision timing and replay observations | Before-log isolation, isolated signer, authenticated snapshot restart, dashboard and approved reference-regression measurements |
 | Framework/MCP compatibility research, filter components and operator preparation | Qualified Eliza graph, Token-2022/ATA, Phantom paths, opaque fallback qualification, anchor, alerts/dashboard |
 | Installation/preview/documentation and publication-review preparation | Clean Ubuntu operational drills, outside developers, usability/accessibility, Claude RT-2, specialist audit, bounty and publication |
 
@@ -52,7 +59,7 @@ To accelerate: resolve the owner/architecture queue first, arrange external
 resources while implementation continues, and run quiet timing/fault jobs
 without overlap. Retain the original evaluation populations and failures.
 Use the already tested isolated package proposal rather than repeating the
-known failing sequential campaign unchanged. Once decisions move, integrate
-the preserved D40 patch and qualify the exact candidate. A staged SDK preview
+known failing sequential campaign unchanged. D40 is now integrated locally;
+once decisions move, qualify the complete exact candidate. A staged SDK preview
 needs H12 acceptance and separate publication decisions; it cannot be called
 stable 1.0. No push or publication occurs in this continuation.
