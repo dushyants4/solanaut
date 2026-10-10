@@ -171,6 +171,25 @@ test("PKG-1/STO-5: installed record rejects inconsistent read lengths and safely
   assert.equal(result.status,0,result.stderr);assert.equal(result.error,undefined);assert.equal(result.signal,null);assert.equal(result.stdout,"incomplete reads refused without loss\n");
 });
 
+test("PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement", () => {
+  const script=`
+    import {createGuard} from '@solanaut/sdk';import fs from 'node:fs';import {syncBuiltinESMExports} from 'node:module';import {tmpdir} from 'node:os';import {join} from 'node:path';
+    const {fileStore}=await import(new URL('./record.js',import.meta.resolve('@solanaut/sdk'))),directory=fs.mkdtempSync(join(tmpdir(),'solanaut-write-completion-'));
+    try{for(const ownership of ['manual','kernel'])for(const fault of ['missing','extra']){
+      const path=join(directory,ownership+'-'+fault+'.jsonl'),store=fileStore(path,{ownership}),g=await createGuard({policy:JSON.parse(process.argv[1]),log:store}),inode=fs.statSync(path).ino,write=fs.writeSync;let changed=false;
+      try{fs.writeSync=(...args)=>{if(!changed&&fs.fstatSync(args[0]).ino===inode){changed=true;if(fault==='missing')return args[3];const count=Reflect.apply(write,fs,args);write(args[0],Buffer.from('{}'+String.fromCharCode(10)));return count;}return Reflect.apply(write,fs,args);};syncBuiltinESMExports();
+        const first=g.check({message:new Uint8Array(Buffer.from(process.argv[2],'base64')),at:1000});if(!changed||first.seq!==-1||first.rule!=='fail-closed'||store.entries.length!==0)throw new Error('installed writer acknowledged inconsistent physical bytes');
+        fs.writeSync=write;syncBuiltinESMExports();const evidence=fs.readFileSync(path);if(g.check({message:new Uint8Array(Buffer.from(process.argv[2],'base64')),at:2000}).seq!==-1||!fs.readFileSync(path).equals(evidence))throw new Error('installed failed writer appended after repair');
+      }finally{fs.writeSync=write;syncBuiltinESMExports();g.close();store.close();}
+    }for(const ownership of ['manual','kernel']){
+      const path=join(directory,ownership+'-complete.jsonl'),store=fileStore(path,{ownership}),g=await createGuard({policy:JSON.parse(process.argv[1]),log:store});
+      try{for(let at=1000;at<1002;at++)if(g.check({message:new Uint8Array(Buffer.from(process.argv[2],'base64')),at}).seq!==at-1000)throw new Error('installed complete nonempty append refused');if(store.entries.length!==2||fs.readFileSync(path,'utf8').trimEnd().split(String.fromCharCode(10)).length!==2)throw new Error('installed complete entries were not kept');}finally{g.close();store.close();}
+    }}finally{fs.rmSync(directory,{recursive:true,force:true});}
+    console.log('inconsistent appends refused');`;
+  const result=spawnSync(process.execPath,["--input-type=module","-e",script,inputPolicy,Buffer.from(transfer(2)).toString("base64")],{cwd:consumer,encoding:"utf8",timeout:15000});
+  assert.equal(result.status,0,result.stderr);assert.equal(result.error,undefined);assert.equal(result.signal,null);assert.equal(result.stdout,"inconsistent appends refused\n");
+});
+
 test("PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts", () => {
   const script = `
     import {createGuard,replay,memoryStore} from '@solanaut/sdk';

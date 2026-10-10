@@ -1,0 +1,103 @@
+✔ OWN-1: SDK refuses stale ownership instead of removing the lock (31.813141ms)
+✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (7.93749ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (317.835095ms)
+✔ OWN-3: established protected records are not recreated if missing (6.1688ms)
+✖ OWN-2/4: manual refuses a hardlinked journal alias and releases failed startup ownership (4.672852ms)
+✖ OWN-2/4: kernel refuses a hardlinked journal alias and releases failed startup ownership (4.250826ms)
+✖ OWN-2/4: kernel startup refuses a hardlinked mutex without changing its evidence (4.411414ms)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (16.557257ms)
+✔ STO-2/SIG-8/OWN-2: manual refuses missing-write physical append evidence before acknowledgement (6.23592ms)
+✔ STO-2/SIG-8/OWN-2: manual refuses extra-write physical append evidence before acknowledgement (4.079446ms)
+✔ STO-2/SIG-8/OWN-2: kernel refuses missing-write physical append evidence before acknowledgement (3.580553ms)
+✔ STO-2/SIG-8/OWN-2: kernel refuses extra-write physical append evidence before acknowledgement (3.972294ms)
+✔ STO-1/SIG-8: manual acknowledges complete appends to a nonempty journal (4.309377ms)
+✔ STO-1/SIG-8: kernel acknowledges complete appends to a nonempty journal (4.532498ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (3.509963ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (4.544601ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (3.42501ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (3.301315ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (4.156876ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (4.65622ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (4.343548ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (3.868079ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (3.799426ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (4.291647ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal append during startup read and releases ownership (10.445673ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal truncate during startup read and releases ownership (17.118182ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal overwrite during startup read and releases ownership (30.875507ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal append during startup read and releases ownership (36.32941ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal truncate during startup read and releases ownership (36.057844ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal overwrite during startup read and releases ownership (62.724197ms)
+✔ STO-5/SIG-8/OWN-2: manual rejects short startup reads without truncating acknowledged entries (26.878799ms)
+✔ STO-5/SIG-8/OWN-2: manual rejects oversized startup reads without truncating acknowledged entries (9.585471ms)
+✔ STO-5/SIG-8/OWN-2: kernel rejects short startup reads without truncating acknowledged entries (8.271865ms)
+✔ STO-5/SIG-8/OWN-2: kernel rejects oversized startup reads without truncating acknowledged entries (7.407459ms)
+✔ STO-5/SIG-8: manual repairs a genuinely torn UTF-8 tail using byte boundaries (5.35814ms)
+✔ STO-5/SIG-8: kernel repairs a genuinely torn UTF-8 tail using byte boundaries (5.795093ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 33
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 488.922404
+
+✖ failing tests:
+
+test at packages/sdk/test/ownership.test.ts:59:56
+✖ OWN-2/4: manual refuses a hardlinked journal alias and releases failed startup ownership (4.672852ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception: another pathname must not acquire the same journal through a different mutex
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/ownership.test.ts:64:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /single-link/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/ownership.test.ts:59:56
+✖ OWN-2/4: kernel refuses a hardlinked journal alias and releases failed startup ownership (4.250826ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception: another pathname must not acquire the same journal through a different mutex
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/ownership.test.ts:64:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /single-link/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/ownership.test.ts:69:1
+✖ OWN-2/4: kernel startup refuses a hardlinked mutex without changing its evidence (4.411414ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/ownership.test.ts:73:16)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /single-link/,
+    operator: 'throws',
+    diff: 'simple'
+  }

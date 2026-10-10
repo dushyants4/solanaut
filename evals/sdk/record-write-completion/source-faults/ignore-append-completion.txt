@@ -1,0 +1,114 @@
+✔ OWN-1: SDK refuses stale ownership instead of removing the lock (29.426105ms)
+✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (8.017571ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (322.644596ms)
+✔ OWN-3: established protected records are not recreated if missing (5.657663ms)
+✔ OWN-2/4: manual refuses a hardlinked journal alias and releases failed startup ownership (9.286874ms)
+✔ OWN-2/4: kernel refuses a hardlinked journal alias and releases failed startup ownership (9.392532ms)
+✔ OWN-2/4: kernel startup refuses a hardlinked mutex without changing its evidence (7.087081ms)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (17.279428ms)
+✖ STO-2/SIG-8/OWN-2: manual refuses missing-write physical append evidence before acknowledgement (5.005376ms)
+✖ STO-2/SIG-8/OWN-2: manual refuses extra-write physical append evidence before acknowledgement (4.293449ms)
+✖ STO-2/SIG-8/OWN-2: kernel refuses missing-write physical append evidence before acknowledgement (4.468218ms)
+✖ STO-2/SIG-8/OWN-2: kernel refuses extra-write physical append evidence before acknowledgement (5.115787ms)
+✔ STO-1/SIG-8: manual acknowledges complete appends to a nonempty journal (4.455371ms)
+✔ STO-1/SIG-8: kernel acknowledges complete appends to a nonempty journal (3.394188ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (4.246893ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (4.322199ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (4.007068ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (3.416452ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (5.617465ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (3.870078ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (4.039374ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (4.045897ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (4.405313ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (5.375748ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal append during startup read and releases ownership (17.52416ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal truncate during startup read and releases ownership (40.752851ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal overwrite during startup read and releases ownership (30.812223ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal append during startup read and releases ownership (72.9612ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal truncate during startup read and releases ownership (43.523309ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal overwrite during startup read and releases ownership (13.292077ms)
+✔ STO-5/SIG-8/OWN-2: manual rejects short startup reads without truncating acknowledged entries (9.223958ms)
+✔ STO-5/SIG-8/OWN-2: manual rejects oversized startup reads without truncating acknowledged entries (6.917693ms)
+✔ STO-5/SIG-8/OWN-2: kernel rejects short startup reads without truncating acknowledged entries (8.885633ms)
+✔ STO-5/SIG-8/OWN-2: kernel rejects oversized startup reads without truncating acknowledged entries (7.845075ms)
+✔ STO-5/SIG-8: manual repairs a genuinely torn UTF-8 tail using byte boundaries (5.923331ms)
+✔ STO-5/SIG-8: kernel repairs a genuinely torn UTF-8 tail using byte boundaries (6.425143ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 32
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 502.255358
+
+✖ failing tests:
+
+test at packages/sdk/test/storage-failures.test.ts:32:110
+✖ STO-2/SIG-8/OWN-2: manual refuses missing-write physical append evidence before acknowledgement (5.005376ms)
+  AssertionError [ERR_ASSERTION]: physical append disagreement must not acknowledge a decision
+  
+  0 !== -1
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:47:41)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: -1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:32:110
+✖ STO-2/SIG-8/OWN-2: manual refuses extra-write physical append evidence before acknowledgement (4.293449ms)
+  AssertionError [ERR_ASSERTION]: physical append disagreement must not acknowledge a decision
+  
+  0 !== -1
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:47:41)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: -1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:32:110
+✖ STO-2/SIG-8/OWN-2: kernel refuses missing-write physical append evidence before acknowledgement (4.468218ms)
+  AssertionError [ERR_ASSERTION]: physical append disagreement must not acknowledge a decision
+  
+  0 !== -1
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:47:41)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: -1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:32:110
+✖ STO-2/SIG-8/OWN-2: kernel refuses extra-write physical append evidence before acknowledgement (5.115787ms)
+  AssertionError [ERR_ASSERTION]: physical append disagreement must not acknowledge a decision
+  
+  0 !== -1
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:47:41)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: -1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

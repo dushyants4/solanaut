@@ -1,0 +1,44 @@
+✔ OWN-1: SDK refuses stale ownership instead of removing the lock (30.650913ms)
+✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (7.816705ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (326.338968ms)
+✔ OWN-3: established protected records are not recreated if missing (7.329476ms)
+✔ OWN-2/4: manual refuses a hardlinked journal alias and releases failed startup ownership (7.488474ms)
+✔ OWN-2/4: kernel refuses a hardlinked journal alias and releases failed startup ownership (11.641598ms)
+✔ OWN-2/4: kernel startup refuses a hardlinked mutex without changing its evidence (7.629977ms)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (19.502946ms)
+✔ STO-2/SIG-8/OWN-2: manual refuses missing-write physical append evidence before acknowledgement (6.475879ms)
+✔ STO-2/SIG-8/OWN-2: manual refuses extra-write physical append evidence before acknowledgement (4.713251ms)
+✔ STO-2/SIG-8/OWN-2: kernel refuses missing-write physical append evidence before acknowledgement (4.305054ms)
+✔ STO-2/SIG-8/OWN-2: kernel refuses extra-write physical append evidence before acknowledgement (5.081358ms)
+✔ STO-1/SIG-8: manual acknowledges complete appends to a nonempty journal (5.622577ms)
+✔ STO-1/SIG-8: kernel acknowledges complete appends to a nonempty journal (3.647063ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (3.935526ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (3.538017ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (4.643307ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (3.781785ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (3.724766ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (3.721286ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (4.02854ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (5.683987ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (4.494055ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (4.421103ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal append during startup read and releases ownership (10.699361ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal truncate during startup read and releases ownership (9.272819ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal overwrite during startup read and releases ownership (13.958953ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal append during startup read and releases ownership (35.226405ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal truncate during startup read and releases ownership (44.036626ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal overwrite during startup read and releases ownership (65.370751ms)
+✔ STO-5/SIG-8/OWN-2: manual rejects short startup reads without truncating acknowledged entries (52.49572ms)
+✔ STO-5/SIG-8/OWN-2: manual rejects oversized startup reads without truncating acknowledged entries (11.113371ms)
+✔ STO-5/SIG-8/OWN-2: kernel rejects short startup reads without truncating acknowledged entries (8.481993ms)
+✔ STO-5/SIG-8/OWN-2: kernel rejects oversized startup reads without truncating acknowledged entries (7.701143ms)
+✔ STO-5/SIG-8: manual repairs a genuinely torn UTF-8 tail using byte boundaries (4.988008ms)
+✔ STO-5/SIG-8: kernel repairs a genuinely torn UTF-8 tail using byte boundaries (7.113858ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 36
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 506.055862

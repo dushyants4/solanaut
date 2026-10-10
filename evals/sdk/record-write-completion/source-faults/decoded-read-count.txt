@@ -1,0 +1,92 @@
+✔ OWN-1: SDK refuses stale ownership instead of removing the lock (28.227175ms)
+✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (8.226257ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (326.539756ms)
+✔ OWN-3: established protected records are not recreated if missing (6.472021ms)
+✔ OWN-2/4: manual refuses a hardlinked journal alias and releases failed startup ownership (12.045502ms)
+✔ OWN-2/4: kernel refuses a hardlinked journal alias and releases failed startup ownership (9.242949ms)
+✔ OWN-2/4: kernel startup refuses a hardlinked mutex without changing its evidence (6.037159ms)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (16.849901ms)
+✔ STO-2/SIG-8/OWN-2: manual refuses missing-write physical append evidence before acknowledgement (5.66984ms)
+✔ STO-2/SIG-8/OWN-2: manual refuses extra-write physical append evidence before acknowledgement (3.649964ms)
+✔ STO-2/SIG-8/OWN-2: kernel refuses missing-write physical append evidence before acknowledgement (3.667421ms)
+✔ STO-2/SIG-8/OWN-2: kernel refuses extra-write physical append evidence before acknowledgement (3.74454ms)
+✔ STO-1/SIG-8: manual acknowledges complete appends to a nonempty journal (3.723834ms)
+✔ STO-1/SIG-8: kernel acknowledges complete appends to a nonempty journal (3.239132ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (3.452704ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (4.604893ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (3.782448ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (2.936159ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (3.59866ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (4.605934ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (3.877278ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (4.624164ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (3.638991ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (4.547068ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal append during startup read and releases ownership (9.192052ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal truncate during startup read and releases ownership (8.72015ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal overwrite during startup read and releases ownership (14.93672ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal append during startup read and releases ownership (23.422692ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal truncate during startup read and releases ownership (36.620111ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal overwrite during startup read and releases ownership (21.067433ms)
+✔ STO-5/SIG-8/OWN-2: manual rejects short startup reads without truncating acknowledged entries (40.661757ms)
+✔ STO-5/SIG-8/OWN-2: manual rejects oversized startup reads without truncating acknowledged entries (39.749795ms)
+✔ STO-5/SIG-8/OWN-2: kernel rejects short startup reads without truncating acknowledged entries (35.440594ms)
+✔ STO-5/SIG-8/OWN-2: kernel rejects oversized startup reads without truncating acknowledged entries (17.980241ms)
+✖ STO-5/SIG-8: manual repairs a genuinely torn UTF-8 tail using byte boundaries (7.147267ms)
+✖ STO-5/SIG-8: kernel repairs a genuinely torn UTF-8 tail using byte boundaries (5.35187ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 34
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 505.540707
+
+✖ failing tests:
+
+test at packages/sdk/test/storage-failures.test.ts:168:56
+✖ STO-5/SIG-8: manual repairs a genuinely torn UTF-8 tail using byte boundaries (7.147267ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception: a genuinely torn UTF-8 tail must remain recoverable
+  Actual message: "the record read was incomplete"
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:174:10)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: the record read was incomplete
+        at readRecord (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:156:80)
+        at fileStore (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:211:15)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:174:42
+        at getActual (node:assert:580:5)
+        at strict.doesNotThrow (node:assert:748:32)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:174:10)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:168:56
+✖ STO-5/SIG-8: kernel repairs a genuinely torn UTF-8 tail using byte boundaries (5.35187ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception: a genuinely torn UTF-8 tail must remain recoverable
+  Actual message: "the record read was incomplete"
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:174:10)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: the record read was incomplete
+        at readRecord (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:156:80)
+        at fileStore (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:211:15)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:174:42
+        at getActual (node:assert:580:5)
+        at strict.doesNotThrow (node:assert:748:32)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:174:10)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }

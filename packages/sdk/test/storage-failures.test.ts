@@ -29,6 +29,40 @@ test("STO-1/SIG-8: short writes complete before an admission is acknowledged", a
     assert.equal(JSON.parse(bytes).hash, d.hash);
   } finally { restore(); g.close(); }
 });
+for (const ownership of ["manual", "kernel"] as const) for (const fault of ["missing-write", "extra-write"]) test(`STO-2/SIG-8/OWN-2: ${ownership} refuses ${fault} physical append evidence before acknowledgement`, async () => {
+  const path = record(), { fileStore } = await import("../src/record.ts"), store = fileStore(path, { ownership });
+  const g = await createGuard({ policy: WORKLOAD_POLICY, log: store }), inode = fs.statSync(path).ino, write = fs.writeSync;
+  let changed = false;
+  mock.method(fs, "writeSync", (...args: unknown[]) => {
+    if (!changed && typeof args[0] === "number" && fs.fstatSync(args[0]).ino === inode) {
+      changed = true;
+      if (fault === "missing-write") return args[3];
+      const count = Reflect.apply(write, fs, args); write(args[0], Buffer.from("{}\n")); return count;
+    }
+    return Reflect.apply(write, fs, args);
+  });
+  syncBuiltinESMExports();
+  try {
+    const first = g.check({ message: payment(), at: 1000 });
+    assert.equal(changed, true); assert.equal(first.seq, -1, "physical append disagreement must not acknowledge a decision");
+    assert.equal(first.rule, "fail-closed"); assert.equal(g.entries().length, 0);
+    const evidence = fs.readFileSync(path); restore();
+    assert.equal(g.check({ message: payment(), at: 2000 }).seq, -1);
+    assert.deepEqual(fs.readFileSync(path), evidence, "failed writer must retain physical evidence without another append");
+    assert.throws(() => store.append(undefined!), /closed or failed/);
+  } finally { restore(); g.close(); store.close(); }
+});
+for (const ownership of ["manual", "kernel"] as const) test(`STO-1/SIG-8: ${ownership} acknowledges complete appends to a nonempty journal`, async () => {
+  const path = record(), { fileStore } = await import("../src/record.ts"), store = fileStore(path, { ownership });
+  const g = await createGuard({ policy: WORKLOAD_POLICY, log: store });
+  try {
+    assert.equal(g.check({ message: payment(), at: 1000 }).seq, 0);
+    assert.equal(g.check({ message: payment(), at: 1001 }).seq, 1);
+    const lines = fs.readFileSync(path, "utf8").trimEnd().split("\n");
+    assert.equal(lines.length, 2); assert.equal(store.entries.length, 2);
+    assert.deepEqual(lines.map(line => JSON.parse(line).hash), store.entries.map(entry => entry.hash));
+  } finally { g.close(); store.close(); }
+});
 for (const failure of ["ENOSPC", "EACCES", "zero-progress", "fsync"]) test(`STO-2/SIG-8: ${failure} denies and permanently shuts this writer`, async () => {
   const path = record();
   const g = await createGuard({ policy: WORKLOAD_POLICY, log: path });

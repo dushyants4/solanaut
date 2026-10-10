@@ -243,6 +243,17 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-09 physical append completion: `72dde39` runtime evidence is locally
+committed, with verified bundle/exact clean clone/full fsck. Clean close passes
+nine of ten, failing only unpushed HEAD as required by the user. Reproduce
+missing/extra physical append acknowledgement; check post-sync size delta before
+cache mutation. Preserve the moved sync-fault site diagnostic and nonempty-
+journal test miss, then add positive controls without changing the checker.
+Definition 43/seed 43907 retains prior inputs/limits; native/type/source/compiled
+pass with exact restored identities. Quiet serial AST fails the unchanged staged
+wait; no complete coverage/floor pass or stable gate follows. Local commit/backup
+follow under ADR-019 without H9/H11 acceptance, signer expansion or push.
+
 2026-10-09 exact `701372e` Node 24 follow-up: already installed runtime passes
 native/type/installed and all retained compiled faults with restored identities,
 CLAIMS S104. Quiet serial AST fails the unchanged staged-baseline wait; archive

@@ -1,5 +1,10 @@
 # evals/ — receipts
 
+Physical append completion: `sdk/record-write-completion.md` preserves missing/
+extra-write acknowledgements, fault-site diagnostic and nonempty-journal test
+miss. Native/type/source/compiled pass with exact restored identities; quiet
+serial AST fails the unchanged staged-baseline wait. Complete coverage stays open.
+
 Existing Node 24 qualification for exact `701372e`:
 `release/node24-read-completion.md` retains native/type/installed passes;
 all 134 retained compiled faults catch/restored; quiet AST fails the unchanged

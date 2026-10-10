@@ -12,6 +12,19 @@ each component. Preserve every accepted security and release gate.
 
 ## Did
 
+Physical append qualification completes locally: all 136 retained compiled
+faults catch, restored seventeen-case consumer baseline and final typecheck pass,
+and every bound product/evaluation/emitted-file/archive identity matches. Native
+passes all 868; quiet AST fails the unchanged wait, retained in full. Read the
+diff, close, then local commit and verified backup; never push.
+
+Continue from local `72dde39` with physical append completion under ADR-019.
+Four manual/kernel negative cases fail first when missing or extra physical
+writes are acknowledged. Verify exact post-sync byte delta before cache update;
+disagreement permanently fails the store. Add nonempty-journal positive controls
+after a fault miss. Declare definition 43/seed 43907, 562 selected cases before
+full measurement, retaining every prior source/test/floor/wait/limit.
+
 Exact `701372e` existing Node 24 qualification completes: native/type/installed
 and all 134 compiled faults pass, restored consumer baseline passes and all bound
 product/evaluation/emitted-file/archive identities match. Quiet AST remains a
@@ -251,6 +264,20 @@ Current-day run record and project register; subsequent replay component paths
 and qualification evidence will be recorded as work proceeds.
 
 ## Found
+
+Append qualification passes all 868 native cases, thirty-six focused cases,
+fifteen source faults, seventeen installed cases and typecheck. Quiet serial AST
+executes 868: 867 pass and one unchanged real-baseline wait fails. Preserve raw
+reports and output; no complete coverage or floor pass is claimed. The expanded
+compiled campaign continues; final identity checks wait for exact restoration.
+
+Append source campaign first stops at the moved sync-fault anchor; preserve its
+diagnostic, relocate the same swallowed-sync fault, keeping the strict checker.
+The second campaign misses ignoring the prior file size. Add positive nonempty
+journal cases in both modes and the installed consumer. All fifteen source
+faults then catch/restored. Initial installed previous candidate fails; rebuilt
+consumer and typecheck pass. Prior `72dde39` clean close is nine of ten, failing
+only intentionally unpushed HEAD, with verified bundle/clone/full fsck.
 
 Node 24 complete-read qualification passes all 862 native and sixteen installed
 cases with typecheck zero. Quiet serial AST executes 862: 861 pass and the

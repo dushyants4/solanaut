@@ -231,9 +231,12 @@ export function fileStore(path: string, options: FileStoreOptions = {}): EntrySt
         owner.held(); sameFile(fd, path);
         const current = fstatSync(fd, { bigint: true });
         if (current.size !== expected.size || current.mtimeNs !== expected.mtimeNs || current.ctimeNs !== expected.ctimeNs) throw new Error("the owned record changed outside this writer");
-        writeAll(fd, Buffer.from(`${canonicalJSON(entry)}\n`));
+        const bytes = Buffer.from(`${canonicalJSON(entry)}\n`);
+        writeAll(fd, bytes);
         fsyncSync(fd);
-        expected = fstatSync(fd, { bigint: true });
+        const synced = fstatSync(fd, { bigint: true });
+        if (synced.size !== current.size + BigInt(bytes.length)) throw new Error("the record append length was inconsistent");
+        expected = synced;
       } catch (error) { failed = true; throw error; }
       entries.push(entry);
     },

@@ -1,5 +1,12 @@
 # PROGRESS.md
 
+Physical append completion is being qualified under ADR-019. The candidate
+checks the synced physical byte delta before acknowledgement. Source faults and
+positive nonempty-journal controls live in `evals/sdk/record-write-completion.md`;
+native/type/source/compiled pass with exact restored identities. Quiet serial AST
+fails the unchanged staged-baseline wait; complete coverage remains open and no
+milestone closes, CLAIMS S105.
+
 Formal milestone completion is 41% (16 of 39 equally weighted milestones),
 including the approved Beta; CLAIMS S78 and `evals/release/progress.md` freeze the
 scope. This is not release readiness, effort or a completion date. Components

@@ -1,10 +1,16 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 52** · 2026-10-09 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 53** · 2026-10-09 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
+
+The file writer verifies the synced physical size delta equals the exact entry
+bytes before acknowledgement and cache mutation. Missing or extra physical
+writes fail the store permanently, preserving evidence. Component qualification
+is `evals/sdk/record-write-completion.md`; this is not authenticated content or
+bounded-state recovery.
 
 The file writer requires single-link journal and mutex inodes, refusing hardlinked
 aliases before accepting ownership. It compares descriptor size and nanosecond modification/change times

@@ -1,5 +1,14 @@
 # DOCUMENTS.md — the document register
 
+2026-10-09 physical append completion registers SPEC Draft 4.82/STO-1/2, OVERVIEW
+53, RISKS 1.74, STORAGE Draft 13, PROGRESS, HANDOFF, continuing run,
+`evals/sdk/record-write-completion.md` and its index. Preserve first source/
+installed failures, moved fault-site diagnostic and the nonempty-journal fault
+miss. Definition 43/seed 43907 retains earlier populations/limits. Wider
+qualification retains native/type/source/compiled passes with exact restored
+identities, and quiet serial AST's unchanged staged-baseline wait failure.
+CLAIMS S105 records scoped evidence; complete coverage remains open.
+
 2026-10-09 existing Node 24 follow-up registers
 `evals/release/node24-read-completion.md`, its raw outputs and evaluation index,
 CLAIMS S104 and the continuing run. Exact product revision 701372e and component

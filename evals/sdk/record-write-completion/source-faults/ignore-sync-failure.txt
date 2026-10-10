@@ -1,0 +1,63 @@
+✔ OWN-1: SDK refuses stale ownership instead of removing the lock (34.574489ms)
+✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (6.791284ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (322.230544ms)
+✔ OWN-3: established protected records are not recreated if missing (7.651122ms)
+✔ OWN-2/4: manual refuses a hardlinked journal alias and releases failed startup ownership (8.407849ms)
+✔ OWN-2/4: kernel refuses a hardlinked journal alias and releases failed startup ownership (7.819517ms)
+✔ OWN-2/4: kernel startup refuses a hardlinked mutex without changing its evidence (5.44351ms)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (15.777807ms)
+✔ STO-2/SIG-8/OWN-2: manual refuses missing-write physical append evidence before acknowledgement (5.061263ms)
+✔ STO-2/SIG-8/OWN-2: manual refuses extra-write physical append evidence before acknowledgement (4.885217ms)
+✔ STO-2/SIG-8/OWN-2: kernel refuses missing-write physical append evidence before acknowledgement (3.742349ms)
+✔ STO-2/SIG-8/OWN-2: kernel refuses extra-write physical append evidence before acknowledgement (4.062172ms)
+✔ STO-1/SIG-8: manual acknowledges complete appends to a nonempty journal (3.770899ms)
+✔ STO-1/SIG-8: kernel acknowledges complete appends to a nonempty journal (3.480366ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (4.554024ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (3.638555ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (3.389305ms)
+✖ STO-2/SIG-8: fsync denies and permanently shuts this writer (3.693991ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (4.557921ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (3.706464ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (3.488867ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (3.92455ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (4.01347ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (3.30757ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal append during startup read and releases ownership (9.189213ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal truncate during startup read and releases ownership (10.550845ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal overwrite during startup read and releases ownership (10.52935ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal append during startup read and releases ownership (30.867242ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal truncate during startup read and releases ownership (20.848234ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal overwrite during startup read and releases ownership (16.594558ms)
+✔ STO-5/SIG-8/OWN-2: manual rejects short startup reads without truncating acknowledged entries (20.008718ms)
+✔ STO-5/SIG-8/OWN-2: manual rejects oversized startup reads without truncating acknowledged entries (37.772986ms)
+✔ STO-5/SIG-8/OWN-2: kernel rejects short startup reads without truncating acknowledged entries (53.429696ms)
+✔ STO-5/SIG-8/OWN-2: kernel rejects oversized startup reads without truncating acknowledged entries (22.660158ms)
+✔ STO-5/SIG-8: manual repairs a genuinely torn UTF-8 tail using byte boundaries (9.55056ms)
+✔ STO-5/SIG-8: kernel repairs a genuinely torn UTF-8 tail using byte boundaries (7.410604ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 35
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 498.080057
+
+✖ failing tests:
+
+test at packages/sdk/test/storage-failures.test.ts:66:71
+✖ STO-2/SIG-8: fsync denies and permanently shuts this writer (3.693991ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:79:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

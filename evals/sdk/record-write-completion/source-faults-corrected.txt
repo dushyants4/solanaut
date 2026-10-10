@@ -1,0 +1,77 @@
+caught ownership/storage fault: ignore-kernel-lock
+caught ownership/storage fault: automatic-stale-takeover
+caught ownership/storage fault: unlink-mutex
+caught ownership/storage fault: create-missing-history
+caught ownership/storage fault: incomplete-short-write
+caught ownership/storage fault: ignore-sync-failure
+caught ownership/storage fault: ignore-external-size
+caught ownership/storage fault: ignore-external-times
+caught ownership/storage fault: revive-damaged-writer
+caught ownership/storage fault: ignore-single-link
+caught ownership/storage fault: ignore-read-stability
+caught ownership/storage fault: ignore-read-completion
+caught ownership/storage fault: decoded-read-count
+caught ownership/storage fault: ignore-append-completion
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: ✔ OWN-1: SDK refuses stale ownership instead of removing the lock (45.748194ms)
+✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (9.464398ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (350.174504ms)
+✔ OWN-3: established protected records are not recreated if missing (7.535287ms)
+✔ OWN-2/4: manual refuses a hardlinked journal alias and releases failed startup ownership (8.230599ms)
+✔ OWN-2/4: kernel refuses a hardlinked journal alias and releases failed startup ownership (7.223254ms)
+✔ OWN-2/4: kernel startup refuses a hardlinked mutex without changing its evidence (5.649435ms)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (18.925274ms)
+✔ STO-2/SIG-8/OWN-2: manual refuses missing-write physical append evidence before acknowledgement (6.161482ms)
+✔ STO-2/SIG-8/OWN-2: manual refuses extra-write physical append evidence before acknowledgement (4.055258ms)
+✔ STO-2/SIG-8/OWN-2: kernel refuses missing-write physical append evidence before acknowledgement (3.536341ms)
+✔ STO-2/SIG-8/OWN-2: kernel refuses extra-write physical append evidence before acknowledgement (4.21559ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (3.8888ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (3.130032ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (3.093324ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (4.131176ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (5.49701ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (4.292927ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (4.269617ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (3.790551ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (3.759715ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (4.429588ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal append during startup read and releases ownership (12.168085ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal truncate during startup read and releases ownership (9.400046ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal overwrite during startup read and releases ownership (16.352536ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal append during startup read and releases ownership (22.612485ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal truncate during startup read and releases ownership (19.368806ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal overwrite during startup read and releases ownership (26.031667ms)
+✔ STO-5/SIG-8/OWN-2: manual rejects short startup reads without truncating acknowledged entries (46.077942ms)
+✔ STO-5/SIG-8/OWN-2: manual rejects oversized startup reads without truncating acknowledged entries (58.942569ms)
+✔ STO-5/SIG-8/OWN-2: kernel rejects short startup reads without truncating acknowledged entries (35.531888ms)
+✔ STO-5/SIG-8/OWN-2: kernel rejects oversized startup reads without truncating acknowledged entries (12.395993ms)
+✔ STO-5/SIG-8: manual repairs a genuinely torn UTF-8 tail using byte boundaries (8.146822ms)
+✔ STO-5/SIG-8: kernel repairs a genuinely torn UTF-8 tail using byte boundaries (6.510587ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 538.121195
+
+
+0 !== 1
+
+    at file:///home/dashy/Projects/Solanaut/evals/sdk/ownership-faults.ts:41:12
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:650:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 1,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

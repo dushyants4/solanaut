@@ -11,7 +11,7 @@ const faults = [
   ["unlink-mutex", 'if (mode === "manual") { sameFile(fd, lockPath); unlinkSync(lockPath); }', '{ sameFile(fd, lockPath); unlinkSync(lockPath); }'],
   ["create-missing-history", 'options.create === false ? 0 : constants.O_CREAT', 'constants.O_CREAT'],
   ["incomplete-short-write", "offset += written;", "return;"],
-  ["ignore-sync-failure", "fsyncSync(fd);\n        expected", "try { fsyncSync(fd); } catch {}\n        expected"],
+  ["ignore-sync-failure", "fsyncSync(fd);\n        const synced", "try { fsyncSync(fd); } catch {}\n        const synced"],
   ["ignore-external-size", "current.size !== expected.size ||", "false ||"],
   ["ignore-external-times", "current.mtimeNs !== expected.mtimeNs || current.ctimeNs !== expected.ctimeNs", "false"],
   ["revive-damaged-writer", "failed = true; throw error;", "failed = false; throw error;"],
@@ -19,6 +19,8 @@ const faults = [
   ["ignore-read-stability", "before.size !== after.size || before.mtimeNs !== after.mtimeNs || before.ctimeNs !== after.ctimeNs", "false"],
   ["ignore-read-completion", "BigInt(bytes.length) !== before.size", "false"],
   ["decoded-read-count", "BigInt(bytes.length) !== before.size", 'BigInt(Buffer.byteLength(bytes.toString("utf8"))) !== before.size'],
+  ["ignore-append-completion", "synced.size !== current.size + BigInt(bytes.length)", "false"],
+  ["ignore-append-base", "synced.size !== current.size + BigInt(bytes.length)", "synced.size !== BigInt(bytes.length)"],
 ] as const;
 const outputDirectory = ".sandbox/solanaut-1/ownership-faults";
 mkdirSync(outputDirectory, { recursive: true });
@@ -37,7 +39,7 @@ for (const [name, from, to] of faults) {
     const output = result.stdout + result.stderr;
     writeFileSync(outputDirectory + "/" + name + ".txt", output);
     assert.equal(result.status, 1, output);
-    assert.match(output, /tests 30\b/, "setup errors cannot count as caught faults");
+    assert.match(output, /tests 36\b/, "setup errors cannot count as caught faults");
     assert.match(output, /AssertionError/, "must fail a behavioural assertion");
     console.log(`caught ownership/storage fault: ${name}`);
   } finally { writeFileSync(path, original); }

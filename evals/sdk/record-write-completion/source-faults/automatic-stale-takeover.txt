@@ -1,0 +1,80 @@
+✖ OWN-1: SDK refuses stale ownership instead of removing the lock (46.646185ms)
+✖ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (13.383446ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (323.403766ms)
+✔ OWN-3: established protected records are not recreated if missing (7.421325ms)
+✔ OWN-2/4: manual refuses a hardlinked journal alias and releases failed startup ownership (11.204228ms)
+✔ OWN-2/4: kernel refuses a hardlinked journal alias and releases failed startup ownership (7.610208ms)
+✔ OWN-2/4: kernel startup refuses a hardlinked mutex without changing its evidence (7.014143ms)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (16.688122ms)
+✔ STO-2/SIG-8/OWN-2: manual refuses missing-write physical append evidence before acknowledgement (6.42367ms)
+✔ STO-2/SIG-8/OWN-2: manual refuses extra-write physical append evidence before acknowledgement (4.922909ms)
+✔ STO-2/SIG-8/OWN-2: kernel refuses missing-write physical append evidence before acknowledgement (3.823395ms)
+✔ STO-2/SIG-8/OWN-2: kernel refuses extra-write physical append evidence before acknowledgement (4.056973ms)
+✔ STO-1/SIG-8: manual acknowledges complete appends to a nonempty journal (4.072884ms)
+✔ STO-1/SIG-8: kernel acknowledges complete appends to a nonempty journal (3.776775ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (3.483759ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (4.091366ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (3.591182ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (4.114746ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (6.061089ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (6.303856ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (5.423233ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (5.283073ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (5.865029ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (4.525328ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal append during startup read and releases ownership (12.752259ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal truncate during startup read and releases ownership (9.294329ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal overwrite during startup read and releases ownership (11.980036ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal append during startup read and releases ownership (16.019383ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal truncate during startup read and releases ownership (33.116101ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal overwrite during startup read and releases ownership (32.283445ms)
+✔ STO-5/SIG-8/OWN-2: manual rejects short startup reads without truncating acknowledged entries (49.185734ms)
+✔ STO-5/SIG-8/OWN-2: manual rejects oversized startup reads without truncating acknowledged entries (50.824664ms)
+✔ STO-5/SIG-8/OWN-2: kernel rejects short startup reads without truncating acknowledged entries (16.750561ms)
+✔ STO-5/SIG-8/OWN-2: kernel rejects oversized startup reads without truncating acknowledged entries (8.89968ms)
+✔ STO-5/SIG-8: manual repairs a genuinely torn UTF-8 tail using byte boundaries (6.051892ms)
+✔ STO-5/SIG-8: kernel repairs a genuinely torn UTF-8 tail using byte boundaries (5.500748ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 34
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 531.068118
+
+✖ failing tests:
+
+test at packages/sdk/test/ownership.test.ts:11:1
+✖ OWN-1: SDK refuses stale ownership instead of removing the lock (46.646185ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/ownership.test.ts:16:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /stale|locked/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/ownership.test.ts:19:1
+✖ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (13.383446ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/ownership.test.ts:28:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /kernel|locked|stale/,
+    operator: 'throws',
+    diff: 'simple'
+  }

@@ -1,0 +1,65 @@
+✔ OWN-1: SDK refuses stale ownership instead of removing the lock (36.320327ms)
+✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (8.641834ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (309.774696ms)
+✖ OWN-3: established protected records are not recreated if missing (3.009915ms)
+✔ OWN-2/4: manual refuses a hardlinked journal alias and releases failed startup ownership (8.238293ms)
+✔ OWN-2/4: kernel refuses a hardlinked journal alias and releases failed startup ownership (9.999476ms)
+✔ OWN-2/4: kernel startup refuses a hardlinked mutex without changing its evidence (7.15729ms)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (15.577448ms)
+✔ STO-2/SIG-8/OWN-2: manual refuses missing-write physical append evidence before acknowledgement (5.77829ms)
+✔ STO-2/SIG-8/OWN-2: manual refuses extra-write physical append evidence before acknowledgement (4.723346ms)
+✔ STO-2/SIG-8/OWN-2: kernel refuses missing-write physical append evidence before acknowledgement (3.742462ms)
+✔ STO-2/SIG-8/OWN-2: kernel refuses extra-write physical append evidence before acknowledgement (3.944984ms)
+✔ STO-1/SIG-8: manual acknowledges complete appends to a nonempty journal (3.767162ms)
+✔ STO-1/SIG-8: kernel acknowledges complete appends to a nonempty journal (3.28691ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (3.569456ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (4.509079ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (3.465401ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (3.607758ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (5.854221ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (4.514043ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (3.933642ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (4.135984ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (3.904592ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (3.841755ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal append during startup read and releases ownership (9.261586ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal truncate during startup read and releases ownership (10.391791ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal overwrite during startup read and releases ownership (18.055563ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal append during startup read and releases ownership (27.218545ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal truncate during startup read and releases ownership (42.698619ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal overwrite during startup read and releases ownership (41.328754ms)
+✔ STO-5/SIG-8/OWN-2: manual rejects short startup reads without truncating acknowledged entries (42.548238ms)
+✔ STO-5/SIG-8/OWN-2: manual rejects oversized startup reads without truncating acknowledged entries (21.042119ms)
+✔ STO-5/SIG-8/OWN-2: kernel rejects short startup reads without truncating acknowledged entries (16.264264ms)
+✔ STO-5/SIG-8/OWN-2: kernel rejects oversized startup reads without truncating acknowledged entries (7.606127ms)
+✔ STO-5/SIG-8: manual repairs a genuinely torn UTF-8 tail using byte boundaries (6.446711ms)
+✔ STO-5/SIG-8: kernel repairs a genuinely torn UTF-8 tail using byte boundaries (4.821186ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 35
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 479.740781
+
+✖ failing tests:
+
+test at packages/sdk/test/ownership.test.ts:52:1
+✖ OWN-3: established protected records are not recreated if missing (3.009915ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/ownership.test.ts:54:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /ENOENT/,
+    operator: 'throws',
+    diff: 'simple'
+  }
