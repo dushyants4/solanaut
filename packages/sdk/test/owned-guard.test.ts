@@ -31,13 +31,57 @@ const identity=(id:string)=>({clientId:"client",id});
 const refused=(work:()=>Promise<unknown>)=>assert.rejects(Promise.resolve().then(work),{name:"OwnedGuardError",code:"owned-guard"});
 test("SNP-7/OWN-2: factory keeps the guard and history private with a frozen asynchronous surface",async()=>{
   const f=await fixture();try{const g=await f.open();try{
-    assert.deepEqual(Object.keys(g).sort(),["beginRequest","check","close","finishRequest","policy","policyHash","redeem","release","releaseText","requestResult","status"].sort());
+    assert.deepEqual(Object.keys(g).sort(),["beginRequest","check","close","finishRequest","policy","policyHash","redeem","report","release","releaseText","requestResult","status"].sort());
     assert.ok(Object.isFrozen(g));assert.ok(Object.isFrozen(g.policy));assert.ok(Object.isFrozen(g.policy.latch));
     assert.equal(Reflect.get(g,"guard"),undefined);assert.equal(Reflect.get(g,"store"),undefined);assert.equal(Reflect.get(g,"entries"),undefined);
     const pending=g.status();assert.ok(pending instanceof Promise);const status=await pending;assert.equal(status.seq,1);assert.ok(Object.isFrozen(status));
   }finally{await g.close();}}finally{f.close();}
 });
 const payment=()=>craftLegacy({header:[1,0,1],keys:[key(1),key(2),key(0)],instructions:[{program:2,accounts:[0,1],data:[2,0,0,0,1,0,0,0,0,0,0,0]}]});
+const report=(g:OwnedGuard,hash:unknown,outcome:unknown):Promise<void>=>{const call=Reflect.get(g,"report");assert.equal(typeof call,"function","private trusted SDK report must exist");return Reflect.apply(call,g,[hash,outcome]);};
+for(const outcome of ["unknown","failed","expired","landed"])test(`SNP-5/7: private report records ${outcome} durably with caller attribution and preserves used receipts`,async()=>{
+  const f=await fixture();try{const g=await f.open();let hash:string;
+    try{const message=payment(),decision=await g.check({message,at:1000},identity("report-"+outcome));assert.equal(decision.allow,true);hash=decision.hash;
+      await g.redeem(message,hash);const before=await g.status();assert.equal(await report(g,hash,outcome),undefined);assert.equal((await g.status()).seq,before.seq+1);
+      const last=JSON.parse(fs.readFileSync(f.path,"utf8").trimEnd().split("\n").at(-1)!);assert.equal(last.kind,"report");assert.equal(last.decision,hash);assert.equal(last.outcome,outcome);assert.equal(last.source,"caller");assert.equal(last.at,1000);
+      await refused(()=>g.redeem(message,hash));
+    }finally{await g.close();}
+    const restored=await f.open();try{const before=await restored.status();if(outcome==="unknown"){await report(restored,hash!,"unknown");assert.equal((await restored.status()).seq,before.seq+1);}else{await refused(()=>report(restored,hash!,outcome));assert.deepEqual(await restored.status(),before);}}finally{await restored.close();}
+  }finally{f.close();}
+});
+test("SNP-7: private report queues behind control work and before observations and closure",async()=>{
+  const f=await fixture(),original=asyncFs.open;try{const g=await f.open();try{
+    const decision=await g.check({message:payment(),at:1000},identity("report-fifo")),before=await g.status();assert.equal(decision.allow,true);
+    let unlock!:()=>void,reached!:()=>void,held=false;const gate=new Promise<void>(r=>unlock=r),reading=new Promise<void>(r=>reached=r);
+    asyncFs.open=(async(...args:Parameters<typeof asyncFs.open>)=>{const handle=await Reflect.apply(original,asyncFs,args);if(!held&&String(args[0]).endsWith(".jsonl")){held=true;reached();await gate;}return handle;}) as typeof asyncFs.open;
+    const preceding=g.beginRequest(identity("before-report"),"status",{},2000);await reading;
+    let pending:Promise<void>,observed:ReturnType<OwnedGuard["status"]>,closing:Promise<void>;
+    try{pending=report(g,decision.hash,"unknown");observed=g.status();closing=g.close();}finally{unlock();}
+    const start=await preceding;await pending!;
+    assert.equal(start.seq,before.seq);assert.equal((await observed!).seq,before.seq+2);await closing!;
+    const last=JSON.parse(fs.readFileSync(f.path,"utf8").trimEnd().split("\n").at(-1)!);assert.equal(last.kind,"report");assert.equal(last.at,2000);
+    await refused(()=>report(g,decision.hash,"unknown"));
+  }finally{asyncFs.open=original;await g.close();}}finally{asyncFs.open=original;f.close();}
+});
+test("SNP-7: private report refuses malformed, denied and foreign decisions without evaluating caller coercions",async()=>{
+  const f=await fixture();try{const g=await f.open();try{
+    const admitted=await g.check({message:payment(),at:1000},identity("report-valid")),denied=await g.check({message:Uint8Array.of(255),at:1001},identity("report-denied"));assert.equal(admitted.allow,true);assert.equal(denied.allow,false);
+    const before=await g.status(),bytes=fs.readFileSync(f.path);let coerced=0;const hostile={toString(){coerced++;return "unknown";}};
+    for(const [hash,outcome] of [[admitted.hash,hostile],[hostile,"unknown"],[null,"unknown"],[admitted.hash,"unsupported"],[denied.hash,"failed"],["f".repeat(64),"landed"]])await refused(()=>report(g,hash,outcome));
+    assert.equal(coerced,0);assert.deepEqual(await g.status(),before);assert.deepEqual(fs.readFileSync(f.path),bytes);
+    await report(g,admitted.hash,"unknown");assert.equal((await g.status()).seq,before.seq+1);
+  }finally{await g.close();}}finally{f.close();}
+});
+test("STO-1/SNP-5/7: failed private report hides diagnostics and preserves unresolved reservation on restart",async()=>{
+  const f=await fixture(),original=fs.writeSync;let hash:string;try{const g=await f.open();try{
+    const message=payment(),decision=await g.check({message,at:1000},identity("report-storage"));assert.equal(decision.allow,true);hash=decision.hash;const before=await g.status(),bytes=fs.readFileSync(f.path);
+    fs.writeSync=(()=>{throw new Error("PRIVATE_SENTINEL: report storage unavailable");}) as typeof fs.writeSync;syncBuiltinESMExports();
+    await assert.rejects(report(g,hash,"expired"),(error:Error)=>error.name==="OwnedGuardError"&&Reflect.get(error,"code")==="owned-guard"&&!error.message.includes("PRIVATE_SENTINEL"));
+    fs.writeSync=original;syncBuiltinESMExports();assert.deepEqual(await g.status(),before);assert.deepEqual(fs.readFileSync(f.path),bytes);await refused(()=>report(g,hash,"expired"));
+  }finally{fs.writeSync=original;syncBuiltinESMExports();await g.close();}
+    const restored=await f.open();try{const retry=await restored.check({message:payment(),at:2000},identity("still-pending"));assert.equal(retry.allow,false);assert.equal(retry.rule,"intent-in-flight");await report(restored,hash!,"expired");}finally{await restored.close();}
+  }finally{fs.writeSync=original;syncBuiltinESMExports();f.close();}
+});
 const releasePrompt=(g:OwnedGuard,expires="2026-10-10T00:00:00.000Z"):Promise<string>=>{const call=Reflect.get(g,"releaseText");assert.equal(typeof call,"function","private release text must exist");return Reflect.apply(call,g,[expires]);};
 const releaseLatch=(g:OwnedGuard,text:string,signature:Uint8Array,at:number):Promise<Readonly<{released:boolean;reason:string}>>=>{const call=Reflect.get(g,"release");assert.equal(typeof call,"function","private release must exist");return Reflect.apply(call,g,[text,signature,at]);};
 async function latch(g:OwnedGuard){for(let i=0;i<3;i++)await g.check({message:Uint8Array.of(255),at:2000+i*1000},identity("latch-"+i));assert.equal((await g.status()).latched,true);}

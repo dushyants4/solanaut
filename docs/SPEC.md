@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.83** · 2026-10-09 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.84** · 2026-10-09 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -1472,3 +1472,16 @@ Evidence: `evals/sdk/owned-release.md`.
 | Draft 4.81 | 2026-10-09 | Allocate STO-5: match raw record bytes with descriptor size before torn-tail repair, and repair using byte offsets. Preserve short-read data-loss failures, initial fault diagnostic mismatch and full-run fixture failures. Scope checkpoint fault injection to its actual inode while retaining every fault/assertion. Corrected definition 42/seed 42719 follows definition 41's failed run with earlier inputs/limits retained. No bounded-read, power-loss or stable milestone claim. |
 | Draft 4.82 | 2026-10-09 | Refine STO-1/2 and record D37: verify exact synced physical append delta before acknowledgement/cache mutation. Preserve missing/extra-write failures, moved mutation-site diagnostic and nonempty-journal test miss; add positive controls. Definition 43/seed 43907 retains prior inputs/limits. No authenticated-content, bounded-state or stable milestone claim. |
 | Draft 4.83 | 2026-10-09 | Refine OWN-2/STO-2 and record D38: post-sync journal/mutex identity checks refuse replacement before acknowledgement/cache mutation, preserving foreign evidence. Four actual replacement cases fail first; retain prior cases/faults. Definition 44/seed 44317 retains earlier inputs/limits. No atomic-host or stable milestone claim. |
+| Draft 4.84 | 2026-10-09 | Queue private trusted SDK reports with caller attribution and current journal time; preserve reservations on failed writes and used receipts across outcomes/restart. Primitive inputs refuse coercions; no socket/RPC authority or root export. Preserve absent-method failures and stalled FIFO fixture, adding cleanup. Definition 45/seed 45691 retains prior inputs/limits. Isolated lifecycle, bounded state and stable qualification remain owed. |
+
+Internal SNP-5/7 convention under ADR-019: private `report(hash, outcome)` queues
+the existing trusted SDK report operation with admission, control, redemption,
+operator actions, observations and close. Inputs are primitive hash/outcome
+values; invalid values refuse without invoking caller coercions. Outcomes retain
+caller attribution and the latest journal time when executed. Synced append is
+required before success; a failed append returns the fixed facade error and
+preserves unresolved state. No report request identity or authoritative RPC
+evidence is manufactured by this method. Socket reports remain payload-bound
+request hints reconciled by the signer; isolated mode cannot trust this caller
+outcome directly. Full state/history retention remains unchanged. Evidence:
+`evals/sdk/owned-report.md`.

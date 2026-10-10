@@ -5,6 +5,12 @@ import {spawnSync} from "node:child_process";
 const path="packages/sdk/src/owned-guard.ts",source=readFileSync(path,"utf8"),directory=".sandbox/solanaut-1/owned-facade/faults";
 mkdirSync(directory,{recursive:true});
 const faults=[
+  ["report-fifo","report(decisionHash:string,outcome:Outcome){return captured(()=>{","report(decisionHash:string,outcome:Outcome){return (capture=>capture()())(()=>{","queues behind control work"],
+  ["report-commit","guard.report(decisionHash,outcome);","void decisionHash;void outcome;","private report records failed"],
+  ["report-outcome","guard.report(decisionHash,outcome);","guard.report(decisionHash,\"unknown\");","private report records failed"],
+  ["report-decision","guard.report(decisionHash,outcome);","guard.report(\"f\".repeat(64),outcome);","private report records failed"],
+  ["report-primitives","if(typeof decisionHash!==\"string\"||typeof outcome!==\"string\"||!OUTCOMES.includes(outcome))throw new OwnedGuardError();","void decisionHash;void outcome;","without evaluating caller coercions"],
+  ["report-storage","guard.report(decisionHash,outcome);","try{guard.report(decisionHash,outcome);}catch{}","failed private report hides diagnostics"],
   ["release-fifo","release(text:string,signature:Uint8Array,at:number){return captured(()=>{","release(text:string,signature:Uint8Array,at:number){return (capture=>capture()())(()=>{","captures shared signatures behind control"],
   ["release-text-fifo","releaseText(expires:string){return captured(()=>{","releaseText(expires:string){return (capture=>capture()().catch(()=>{throw new OwnedGuardError();}))(()=>{","captures shared signatures behind control"],
   ["release-bytes","const signatureBytes=new Uint8Array(signature);","const signatureBytes=signature;","captures shared signatures behind control"],

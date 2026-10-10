@@ -1,5 +1,11 @@
 # evals/ — receipts
 
+Private trusted SDK report: `sdk/owned-report.md` retains absent-method failures,
+initial stalled FIFO fixture and installed prior-candidate failure. Queued caller
+reporting is not authoritative isolated reporting. Native/type/source/compiled
+checks pass with exact restored identities; quiet AST fails the unchanged staged
+wait, leaving complete coverage open, CLAIMS S108.
+
 Current durable-writer crash run: `sdk/storage-kills-current.md` uses the exact
 49f6d63 implementation and maintained workload on this host's Btrfs filesystem.
 All 100 kills/recoveries/replays pass, with preserved exemplar/trial/input hashes;

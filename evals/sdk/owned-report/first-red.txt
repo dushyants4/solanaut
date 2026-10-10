@@ -1,0 +1,189 @@
+✔ SNP-7/OWN-2: factory keeps the guard and history private with a frozen asynchronous surface (122.45356ms)
+✖ SNP-5/7: private report records unknown durably with caller attribution and preserves used receipts (61.719191ms)
+✖ SNP-5/7: private report records failed durably with caller attribution and preserves used receipts (41.877712ms)
+✖ SNP-5/7: private report records expired durably with caller attribution and preserves used receipts (45.920716ms)
+✖ SNP-5/7: private report records landed durably with caller attribution and preserves used receipts (37.429055ms)
+
+Interrupted while running:
+
+⚠ SNP-7: private report queues behind control work and before observations and closure (packages/sdk/test/owned-guard.test.ts:52:1)
+✖ SNP-7: private report queues behind control work and before observations and closure (60092.557289ms)
+✖ SNP-7: private report refuses malformed, denied and foreign decisions without evaluating caller coercions
+✖ STO-1/SNP-5/7: failed private report hides diagnostics and preserves unresolved reservation on restart
+✖ SNP-5/7: private operator release captures shared signatures behind control work and preserves reservations
+✖ OPR-2/SNP-7: private release refuses invalid prompts, signatures, scope and expiry without opening the latch
+✖ STO-1/OPR-2/SNP-5: failed private operator release hides diagnostics and preserves latch across restart
+✖ LIF-2/SNP-7: private redemption captures bytes, queues observations and survives restart once
+✖ LIF-2/OPR-2: private redemption refuses changed bytes, foreign receipts and expired lifetimes without consuming them
+✖ STO-1/OPR-2/LIF-2: private redemption never acknowledges a failed append or exposes storage diagnostics
+✖ OPR-2/VER-1: missing, empty and unsigned established histories refuse without creating a fresh identity
+✖ POL-4/OPR-2: configuration cannot upgrade, roll back, substitute a guard or start on invalid signatures
+✖ OWN-2/SNP-7: competing opens and corrupt index fail closed and release failed startup ownership
+✖ SNP-7/LIF-4: queued inputs, detached replies and observations share one FIFO
+✖ LIF-1/SNP-7: private admissions copy shared bytes and cannot mutate durable replies
+✖ OWN-2/LIF-4: close drains preceding work, denies later calls and releases ownership once
+✖ LIF-4/OPR-2: refusal does not poison the queue and raw diagnostics never escape
+✖ OPR-2/SNP-7: startup captures signed configuration before its first await
+✖ OPR-2/STO-1/LIF-1: an unrecorded admission never exposes storage diagnostics as a decision
+ℹ tests 23
+ℹ suites 0
+ℹ pass 1
+ℹ fail 4
+ℹ cancelled 18
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 60522.668416
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-guard.test.ts:42:62
+✖ SNP-5/7: private report records unknown durably with caller attribution and preserves used receipts (61.719191ms)
+  AssertionError [ERR_ASSERTION]: private trusted SDK report must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at report (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:41:116)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:45:85)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-guard.test.ts:42:62
+✖ SNP-5/7: private report records failed durably with caller attribution and preserves used receipts (41.877712ms)
+  AssertionError [ERR_ASSERTION]: private trusted SDK report must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at report (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:41:116)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:45:85)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-guard.test.ts:42:62
+✖ SNP-5/7: private report records expired durably with caller attribution and preserves used receipts (45.920716ms)
+  AssertionError [ERR_ASSERTION]: private trusted SDK report must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at report (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:41:116)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:45:85)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-guard.test.ts:42:62
+✖ SNP-5/7: private report records landed durably with caller attribution and preserves used receipts (37.429055ms)
+  AssertionError [ERR_ASSERTION]: private trusted SDK report must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at report (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:41:116)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:45:85)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-guard.test.ts:52:1
+✖ SNP-7: private report queues behind control work and before observations and closure (60092.557289ms)
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/owned-guard.test.ts:64:1
+✖ SNP-7: private report refuses malformed, denied and foreign decisions without evaluating caller coercions
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/owned-guard.test.ts:73:1
+✖ STO-1/SNP-5/7: failed private report hides diagnostics and preserves unresolved reservation on restart
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/owned-guard.test.ts:86:1
+✖ SNP-5/7: private operator release captures shared signatures behind control work and preserves reservations
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/owned-guard.test.ts:102:1
+✖ OPR-2/SNP-7: private release refuses invalid prompts, signatures, scope and expiry without opening the latch
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/owned-guard.test.ts:113:1
+✖ STO-1/OPR-2/SNP-5: failed private operator release hides diagnostics and preserves latch across restart
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/owned-guard.test.ts:126:1
+✖ LIF-2/SNP-7: private redemption captures bytes, queues observations and survives restart once
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/owned-guard.test.ts:140:1
+✖ LIF-2/OPR-2: private redemption refuses changed bytes, foreign receipts and expired lifetimes without consuming them
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/owned-guard.test.ts:148:1
+✖ STO-1/OPR-2/LIF-2: private redemption never acknowledges a failed append or exposes storage diagnostics
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/owned-guard.test.ts:156:1
+✖ OPR-2/VER-1: missing, empty and unsigned established histories refuse without creating a fresh identity
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/owned-guard.test.ts:166:1
+✖ POL-4/OPR-2: configuration cannot upgrade, roll back, substitute a guard or start on invalid signatures
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/owned-guard.test.ts:177:1
+✖ OWN-2/SNP-7: competing opens and corrupt index fail closed and release failed startup ownership
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/owned-guard.test.ts:183:1
+✖ SNP-7/LIF-4: queued inputs, detached replies and observations share one FIFO
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/owned-guard.test.ts:196:1
+✖ LIF-1/SNP-7: private admissions copy shared bytes and cannot mutate durable replies
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/owned-guard.test.ts:206:1
+✖ OWN-2/LIF-4: close drains preceding work, denies later calls and releases ownership once
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/owned-guard.test.ts:213:1
+✖ LIF-4/OPR-2: refusal does not poison the queue and raw diagnostics never escape
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/owned-guard.test.ts:221:1
+✖ OPR-2/SNP-7: startup captures signed configuration before its first await
+  'Promise resolution is still pending but the event loop has already resolved'
+
+test at packages/sdk/test/owned-guard.test.ts:227:1
+✖ OPR-2/STO-1/LIF-1: an unrecorded admission never exposes storage diagnostics as a decision
+  'Promise resolution is still pending but the event loop has already resolved'

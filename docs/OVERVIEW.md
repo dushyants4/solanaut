@@ -1,10 +1,16 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 54** · 2026-10-09 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 55** · 2026-10-09 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
+
+The private facade queues trusted SDK outcome reports with its other mutations
+and observations. It delegates the existing durable caller-attributed report
+path and uses the latest journal time, with fixed errors and primitive inputs.
+An isolated report still needs authoritative RPC evidence; this adds no socket
+method or root export. Component evidence: `evals/sdk/owned-report.md`.
 
 After syncing each append, the file store rechecks its held mutex and named
 journal identity before validating size or mutating its cache. Replacement fails

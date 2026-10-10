@@ -1,0 +1,22 @@
+✖ OWN-2/SNP-7: competing opens and corrupt index fail closed and release failed startup ownership (66.750178ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 151.282956
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-guard.test.ts:179:1
+✖ OWN-2/SNP-7: competing opens and corrupt index fail closed and release failed startup ownership (66.750178ms)
+  OwnedGuardError: owned guard cannot establish or complete the requested operation
+      at openOwnedGuard (file:///home/dashy/Projects/Solanaut/packages/sdk/src/owned-guard.ts:56:11)
+      at Object.open (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:27:202)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:182:76)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    code: 'owned-guard'
+  }

@@ -1,0 +1,18 @@
+✖ SNP-7: private report queues behind control work and before observations and closure (87.790588ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 183.63479
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-guard.test.ts:52:1
+✖ SNP-7: private report queues behind control work and before observations and closure (87.790588ms)
+  OwnedGuardError: owned guard cannot establish or complete the requested operation
+      at file:///home/dashy/Projects/Solanaut/packages/sdk/src/owned-guard.ts:64:107 {
+    code: 'owned-guard'
+  }

@@ -1,0 +1,176 @@
+✔ SNP-7/OWN-2: factory keeps the guard and history private with a frozen asynchronous surface (65.142578ms)
+✖ SNP-5/7: private report records unknown durably with caller attribution and preserves used receipts (49.621328ms)
+✖ SNP-5/7: private report records failed durably with caller attribution and preserves used receipts (41.201319ms)
+✖ SNP-5/7: private report records expired durably with caller attribution and preserves used receipts (42.156665ms)
+✖ SNP-5/7: private report records landed durably with caller attribution and preserves used receipts (40.525393ms)
+✖ SNP-7: private report queues behind control work and before observations and closure (39.482029ms)
+✖ SNP-7: private report refuses malformed, denied and foreign decisions without evaluating caller coercions (42.123583ms)
+✖ STO-1/SNP-5/7: failed private report hides diagnostics and preserves unresolved reservation on restart (32.809918ms)
+✔ SNP-5/7: private operator release captures shared signatures behind control work and preserves reservations (141.695346ms)
+✔ OPR-2/SNP-7: private release refuses invalid prompts, signatures, scope and expiry without opening the latch (81.925142ms)
+✔ STO-1/OPR-2/SNP-5: failed private operator release hides diagnostics and preserves latch across restart (58.490366ms)
+✔ LIF-2/SNP-7: private redemption captures bytes, queues observations and survives restart once (44.646277ms)
+✔ LIF-2/OPR-2: private redemption refuses changed bytes, foreign receipts and expired lifetimes without consuming them (32.324249ms)
+✔ STO-1/OPR-2/LIF-2: private redemption never acknowledges a failed append or exposes storage diagnostics (32.753215ms)
+✔ OPR-2/VER-1: missing, empty and unsigned established histories refuse without creating a fresh identity (41.681662ms)
+✔ POL-4/OPR-2: configuration cannot upgrade, roll back, substitute a guard or start on invalid signatures (38.435625ms)
+✔ OWN-2/SNP-7: competing opens and corrupt index fail closed and release failed startup ownership (40.189126ms)
+✔ SNP-7/LIF-4: queued inputs, detached replies and observations share one FIFO (43.518062ms)
+✔ LIF-1/SNP-7: private admissions copy shared bytes and cannot mutate durable replies (35.277039ms)
+✔ OWN-2/LIF-4: close drains preceding work, denies later calls and releases ownership once (36.111645ms)
+✔ LIF-4/OPR-2: refusal does not poison the queue and raw diagnostics never escape (38.355981ms)
+✔ OPR-2/SNP-7: startup captures signed configuration before its first await (30.572553ms)
+✔ OPR-2/STO-1/LIF-1: an unrecorded admission never exposes storage diagnostics as a decision (37.600554ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 16
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1182.454813
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-guard.test.ts:42:62
+✖ SNP-5/7: private report records unknown durably with caller attribution and preserves used receipts (49.621328ms)
+  AssertionError [ERR_ASSERTION]: private trusted SDK report must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at report (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:41:116)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:45:85)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-guard.test.ts:42:62
+✖ SNP-5/7: private report records failed durably with caller attribution and preserves used receipts (41.201319ms)
+  AssertionError [ERR_ASSERTION]: private trusted SDK report must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at report (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:41:116)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:45:85)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-guard.test.ts:42:62
+✖ SNP-5/7: private report records expired durably with caller attribution and preserves used receipts (42.156665ms)
+  AssertionError [ERR_ASSERTION]: private trusted SDK report must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at report (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:41:116)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:45:85)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-guard.test.ts:42:62
+✖ SNP-5/7: private report records landed durably with caller attribution and preserves used receipts (40.525393ms)
+  AssertionError [ERR_ASSERTION]: private trusted SDK report must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at report (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:41:116)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:45:85)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-guard.test.ts:52:1
+✖ SNP-7: private report queues behind control work and before observations and closure (39.482029ms)
+  AssertionError [ERR_ASSERTION]: private trusted SDK report must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at report (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:41:116)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:59:17)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-guard.test.ts:66:1
+✖ SNP-7: private report refuses malformed, denied and foreign decisions without evaluating caller coercions (42.123583ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    Comparison {
+  +   code: 'ERR_ASSERTION',
+  +   name: 'AssertionError'
+  -   code: 'owned-guard',
+  -   name: 'OwnedGuardError'
+    }
+  
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:70:175)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [AssertionError],
+    expected: [Object],
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/owned-guard.test.ts:75:1
+✖ STO-1/SNP-5/7: failed private report hides diagnostics and preserves unresolved reservation on restart (32.809918ms)
+  AssertionError [ERR_ASSERTION]: private trusted SDK report must exist
+  + actual - expected
+  
+  + 'undefined'
+  - 'function'
+  
+      at report (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:41:116)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:79:26)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'function',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

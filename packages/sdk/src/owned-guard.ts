@@ -6,13 +6,15 @@ import {fileStore,lookupOwnedRequestIndex,type EntryStore} from "./record.ts";
 import {createGuard,checkOwnedRequest,beginOwnedRequest,finishOwnedRequest,ownedRequestResult,type Guard,type GuardStatus,type ProposalV1,type Decision} from "./guard.ts";
 import type {RequestIdentity} from "./request.ts";
 import type {ControlMethod} from "./control-request.ts";
-import type {ControlRequestEntry,ControlResponseEntry} from "./log.ts";
+import {OUTCOMES,type Outcome,type ControlRequestEntry,type ControlResponseEntry} from "./log.ts";
 import {parseReleaseText} from "./latch.ts";
 
 export interface OwnedGuardOptions {path:string;policy:unknown;authorization:PolicyAuthorization}
 export interface OwnedGuard {
   check(proposal:ProposalV1,identity:RequestIdentity):Promise<Decision>;
   redeem(message:Uint8Array,decisionHash:string,blockHeight?:bigint):Promise<Readonly<{ok:boolean;reason:string}>>;
+  /** Trusted SDK outcome; isolated clients still require authoritative chain reads. */
+  report(decisionHash:string,outcome:Outcome):Promise<void>;
   releaseText(expires:string):Promise<string>;
   release(text:string,signature:Uint8Array,at:number):Promise<Readonly<{released:boolean;reason:string}>>;
   beginRequest(identity:RequestIdentity,method:ControlMethod,payload:unknown,at:number):Promise<ControlRequestEntry>;
@@ -90,6 +92,10 @@ function facade(guard:Guard):OwnedGuard {
         if(!result.ok)throw new OwnedGuardError();
         return detached(result);
       };
+    });},
+    report(decisionHash:string,outcome:Outcome){return captured(()=>{
+      if(typeof decisionHash!=="string"||typeof outcome!=="string"||!OUTCOMES.includes(outcome))throw new OwnedGuardError();
+      return async()=>{guard.report(decisionHash,outcome);};
     });},
     releaseText(expires:string){return captured(()=>{
       if(typeof expires!=="string")throw new OwnedGuardError();

@@ -1,0 +1,5 @@
+product_sources: 51 exact hashes match
+evaluation_inputs: 87 exact hashes match
+compiled_files: 86 exact hashes match
+archive: exact hash matches
+compiled faults: 144 caught; restored baseline passes

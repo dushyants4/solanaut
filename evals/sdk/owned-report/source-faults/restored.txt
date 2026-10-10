@@ -1,0 +1,31 @@
+✔ SNP-7/OWN-2: factory keeps the guard and history private with a frozen asynchronous surface (71.726204ms)
+✔ SNP-5/7: private report records unknown durably with caller attribution and preserves used receipts (57.047331ms)
+✔ SNP-5/7: private report records failed durably with caller attribution and preserves used receipts (46.799722ms)
+✔ SNP-5/7: private report records expired durably with caller attribution and preserves used receipts (45.903151ms)
+✔ SNP-5/7: private report records landed durably with caller attribution and preserves used receipts (44.769331ms)
+✔ SNP-7: private report queues behind control work and before observations and closure (41.606412ms)
+✔ SNP-7: private report refuses malformed, denied and foreign decisions without evaluating caller coercions (38.593008ms)
+✔ STO-1/SNP-5/7: failed private report hides diagnostics and preserves unresolved reservation on restart (48.342168ms)
+✔ SNP-5/7: private operator release captures shared signatures behind control work and preserves reservations (65.785574ms)
+✔ OPR-2/SNP-7: private release refuses invalid prompts, signatures, scope and expiry without opening the latch (42.090254ms)
+✔ STO-1/OPR-2/SNP-5: failed private operator release hides diagnostics and preserves latch across restart (45.601714ms)
+✔ LIF-2/SNP-7: private redemption captures bytes, queues observations and survives restart once (44.252896ms)
+✔ LIF-2/OPR-2: private redemption refuses changed bytes, foreign receipts and expired lifetimes without consuming them (33.433599ms)
+✔ STO-1/OPR-2/LIF-2: private redemption never acknowledges a failed append or exposes storage diagnostics (31.129327ms)
+✔ OPR-2/VER-1: missing, empty and unsigned established histories refuse without creating a fresh identity (44.672683ms)
+✔ POL-4/OPR-2: configuration cannot upgrade, roll back, substitute a guard or start on invalid signatures (42.026713ms)
+✔ OWN-2/SNP-7: competing opens and corrupt index fail closed and release failed startup ownership (49.569427ms)
+✔ SNP-7/LIF-4: queued inputs, detached replies and observations share one FIFO (45.228973ms)
+✔ LIF-1/SNP-7: private admissions copy shared bytes and cannot mutate durable replies (36.508273ms)
+✔ OWN-2/LIF-4: close drains preceding work, denies later calls and releases ownership once (38.536458ms)
+✔ LIF-4/OPR-2: refusal does not poison the queue and raw diagnostics never escape (41.504193ms)
+✔ OPR-2/SNP-7: startup captures signed configuration before its first await (30.863865ms)
+✔ OPR-2/STO-1/LIF-1: an unrecorded admission never exposes storage diagnostics as a decision (32.162483ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1116.112063

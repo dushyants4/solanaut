@@ -1,5 +1,13 @@
 # PROGRESS.md
 
+Private queued trusted SDK reports are being qualified under ADR-019. Seven
+absent-method tests fail first; the FIFO fixture's initial stalled read is
+preserved and corrected with cleanup. Source/type/installed checks are in
+`evals/sdk/owned-report.md`; native/type/source/compiled checks pass with exact
+restored identities. Quiet serial AST fails the unchanged staged wait, so
+complete coverage remains open. Isolated reports
+still need authoritative RPC evidence, and no milestone closes.
+
 The existing real 100-kill workload passes all recoveries/replays on exact
 `49f6d63`, Linux/Node 26.7.0/Btrfs. Frozen inputs, trial digests and recovered
 record exemplar live in `evals/sdk/storage-kills-current.md`, CLAIMS S107. This

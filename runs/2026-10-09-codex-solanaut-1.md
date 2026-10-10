@@ -12,6 +12,15 @@ each component. Preserve every accepted security and release gate.
 
 ## Did
 
+Continue the private facade with queued trusted SDK report under ADR-019. Seven
+absent-method cases fail first. Delegate existing durable caller-attributed
+outcomes, require primitive inputs, keep current journal time and fixed errors.
+All 23 focused cases, 39 retained facade source faults and nineteen installed
+cases pass with typecheck. The exact frozen-surface assertion adds only report;
+mutable guard/history exposure stays refused. Definition 45/seed 45691 retains
+prior populations/limits before full measurement. No socket, RPC authority,
+principal signing/key load or root export is added.
+
 Exact `49f6d63` crash run completes with all 100 actual kills, kernel-owned
 recoveries and recomputed replays passing on Btrfs/Node 26.7.0. All completed
 records are byte-identical; retain their digests and complete exemplar, environment
@@ -294,6 +303,23 @@ Current-day run record and project register; subsequent replay component paths
 and qualification evidence will be recorded as work proceeds.
 
 ## Found
+
+Private trusted-report pre-commit close passes eight of ten: only the dirty tree
+and deliberately unpushed HEAD fail. Secret, claims, knowledge and boundary
+checks pass. Commit and source-history backup remain local by user instruction.
+
+Queued trusted report qualification passes all 879 native cases. Quiet serial
+AST executes 879: 878 pass and one unchanged real staged-baseline wait fails.
+Preserve raw reports/output; no complete coverage or floor pass. All 144 compiled
+faults catch; restored nineteen-case baseline and final typecheck pass. All bound
+product/evaluation/emitted-file/archive hashes match after exact restoration.
+
+The first report FIFO fixture pauses a read and fails to release it when the
+expected absent method assertion throws. Preserve partial output and terminate
+only observed test Node PID 2642222; no other process is stopped. Add gate release
+in `finally`, then the corrected red run executes 23: seven absent-method
+failures, sixteen prior passes and no cancellation. First installed candidate
+also fails. This fixture correction weakens no assertion or acceptance limit.
 
 Post-sync identity passes all 872 native cases, typecheck, focused/source and
 installed tests. Quiet serial AST executes 872: 871 pass and one unchanged real

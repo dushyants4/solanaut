@@ -1,5 +1,14 @@
 # DOCUMENTS.md — the document register
 
+2026-10-09 private trusted reporting registers SPEC Draft 4.84/SNP-5/7, OVERVIEW
+55, RISKS 1.76, PROGRESS, HANDOFF, continuing run, `evals/sdk/owned-report.md`
+and its index. Preserve seven absent-method failures, initial FIFO fixture stall
+and initial installed failure. Definition 45/seed 45691 retains earlier inputs/
+limits. CLAIMS S108 records native/type/source/installed/compiled passes and exact
+restored identities. Quiet serial AST fails the unchanged staged wait; no complete
+coverage/floor pass. Isolated
+reporting, bounded state and stable qualification remain owed.
+
 2026-10-09 current crash qualification registers
 `evals/sdk/storage-kills-current.md`, its raw output/environment record,
 evaluation index, HANDOFF and continuing run. Exact implementation 49f6d63;

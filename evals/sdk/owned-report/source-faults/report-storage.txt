@@ -1,0 +1,25 @@
+✖ STO-1/SNP-5/7: failed private report hides diagnostics and preserves unresolved reservation on restart (71.033606ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 164.652644
+
+✖ failing tests:
+
+test at packages/sdk/test/owned-guard.test.ts:75:1
+✖ STO-1/SNP-5/7: failed private report hides diagnostics and preserves unresolved reservation on restart (71.033606ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/owned-guard.test.ts:79:5)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: [Function (anonymous)],
+    operator: 'rejects',
+    diff: 'simple'
+  }

@@ -243,6 +243,18 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-09 private trusted report: crash receipt is locally committed as
+`ae6ba56`, with verified bundle/exact clean clone/full fsck; clean close fails
+only unpushed HEAD. Add queued trusted SDK outcome reporting under ADR-019,
+without root/socket exports or authoritative RPC claims. Preserve seven absent-
+method failures and the FIFO fixture stall/targeted test termination; release
+the artificial gate in `finally`. All prior cases/faults remain. Definition
+45/seed 45691 retains earlier inputs/limits. All 879 native, 23 focused and
+nineteen installed cases pass; 39 source and 144 compiled faults catch/restored,
+with final typecheck and bound identities matching. Quiet serial AST executes
+879: 878 pass and the unchanged staged wait fails; no floor pass. Broader qualification continues
+without H9/H11 acceptance, signer expansion or remote push.
+
 2026-10-09 crash qualification: post-sync identity is locally committed as
 `49f6d63`, with verified bundle/exact clean clone/full fsck. Clean close passes
 nine of ten, with only unpushed HEAD failing. Run the existing real 100-kill

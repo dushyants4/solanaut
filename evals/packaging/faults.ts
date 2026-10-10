@@ -15,6 +15,12 @@ function battery() {
 const baseline = battery();
 assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
 const faults = [
+  { name: "facade-report-fifo", path: "dist/src/owned-guard.js", caught: "installed private trusted report", damage: (text: string) => text.replace("report(decisionHash, outcome) {\n            return captured(() => {", "report(decisionHash, outcome) {\n            return (capture => capture()())(() => {") },
+  { name: "facade-report-commit", path: "dist/src/owned-guard.js", caught: "installed private trusted report", damage: (text: string) => text.replace("guard.report(decisionHash, outcome);", "void decisionHash; void outcome;") },
+  { name: "facade-report-outcome", path: "dist/src/owned-guard.js", caught: "installed private trusted report", damage: (text: string) => text.replace("guard.report(decisionHash, outcome);", 'guard.report(decisionHash, "unknown");') },
+  { name: "facade-report-decision", path: "dist/src/owned-guard.js", caught: "installed private trusted report", damage: (text: string) => text.replace("guard.report(decisionHash, outcome);", 'guard.report("f".repeat(64), outcome);') },
+  { name: "facade-report-primitives", path: "dist/src/owned-guard.js", caught: "installed private trusted report", damage: (text: string) => text.replace('typeof decisionHash !== "string" || typeof outcome !== "string" || !OUTCOMES.includes(outcome)', "false") },
+  { name: "facade-report-storage", path: "dist/src/owned-guard.js", caught: "installed private trusted report", damage: (text: string) => text.replace("guard.report(decisionHash, outcome);", "try { guard.report(decisionHash, outcome); } catch {}") },
   { name: "record-post-append-owner", path: "dist/src/record.js", caught: "installed writer refuses journal", damage: (text: string) => text.replace("fsyncSync(fd);\n                owner.held();\n                sameFile(fd, path);", "fsyncSync(fd);\n                sameFile(fd, path);") },
   { name: "record-post-append-inode", path: "dist/src/record.js", caught: "installed writer refuses journal", damage: (text: string) => text.replace("fsyncSync(fd);\n                owner.held();\n                sameFile(fd, path);", "fsyncSync(fd);\n                owner.held();") },
   { name: "record-append-completion", path: "dist/src/record.js", caught: "installed writer refuses inconsistent", damage: (text: string) => text.replace("synced.size !== current.size + BigInt(bytes.length)", "false") },
@@ -175,7 +181,7 @@ for (const fault of faults) {
     const result = battery();
     const output = result.stdout + result.stderr;
     assert.equal(result.status, 1, output);
-    assert.match(output, /tests 18\b/, "a harness setup failure is not a caught product fault");
+    assert.match(output, /tests 19\b/, "a harness setup failure is not a caught product fault");
     const failures = output.split("\n").filter((line) => /[✖]|not ok/.test(line));
     assert.ok(failures.some((line) => line.includes(fault.caught)), output);
     console.log(`caught package fault: ${fault.name}`);

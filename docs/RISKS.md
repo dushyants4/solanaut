@@ -1,5 +1,10 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
+Private queued reporting remains trusted SDK bookkeeping with caller attribution.
+It must not be wired as authoritative isolated-agent outcome telemetry. A socket
+report remains a hint; the signer must reconcile chain evidence before releasing
+reservations. Evidence: `evals/sdk/owned-report.md`; bounded state is still owed.
+
 Journal or mutex replacement during append now refuses after sync, before
 acknowledgement/cache mutation. A changed inode permanently fails the writer and
 is preserved for recovery. This is observed identity consistency, not protection
@@ -10,7 +15,7 @@ the writer permanently. This checks physical byte count under the trusted host
 boundary; it does not detect every same-size concurrent modification or prove
 power-loss durability. Evidence: `evals/sdk/record-write-completion.md`.
 
-> **1.75** · 2026-10-09 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.76** · 2026-10-09 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 Local-only commits now replace the previous standing push grant. The unchanged
