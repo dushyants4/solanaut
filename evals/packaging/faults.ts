@@ -15,6 +15,8 @@ function battery() {
 const baseline = battery();
 assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
 const faults = [
+  { name: "record-post-append-owner", path: "dist/src/record.js", caught: "installed writer refuses journal", damage: (text: string) => text.replace("fsyncSync(fd);\n                owner.held();\n                sameFile(fd, path);", "fsyncSync(fd);\n                sameFile(fd, path);") },
+  { name: "record-post-append-inode", path: "dist/src/record.js", caught: "installed writer refuses journal", damage: (text: string) => text.replace("fsyncSync(fd);\n                owner.held();\n                sameFile(fd, path);", "fsyncSync(fd);\n                owner.held();") },
   { name: "record-append-completion", path: "dist/src/record.js", caught: "installed writer refuses inconsistent", damage: (text: string) => text.replace("synced.size !== current.size + BigInt(bytes.length)", "false") },
   { name: "record-append-base", path: "dist/src/record.js", caught: "installed writer refuses inconsistent", damage: (text: string) => text.replace("synced.size !== current.size + BigInt(bytes.length)", "synced.size !== BigInt(bytes.length)") },
   { name: "record-read-completion", path: "dist/src/record.js", caught: "installed record rejects inconsistent", damage: (text: string) => text.replace("BigInt(bytes.length) !== before.size", "false") },
@@ -173,7 +175,7 @@ for (const fault of faults) {
     const result = battery();
     const output = result.stdout + result.stderr;
     assert.equal(result.status, 1, output);
-    assert.match(output, /tests 17\b/, "a harness setup failure is not a caught product fault");
+    assert.match(output, /tests 18\b/, "a harness setup failure is not a caught product fault");
     const failures = output.split("\n").filter((line) => /[✖]|not ok/.test(line));
     assert.ok(failures.some((line) => line.includes(fault.caught)), output);
     console.log(`caught package fault: ${fault.name}`);

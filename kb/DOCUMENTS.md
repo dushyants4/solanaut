@@ -1,5 +1,18 @@
 # DOCUMENTS.md — the document register
 
+2026-10-09 post-sync identity registers SPEC Draft 4.83/OWN-2/STO-2, OVERVIEW 54,
+RISKS 1.75, STORAGE Draft 14, PROGRESS, HANDOFF, continuing run and
+`evals/sdk/record-write-identity.md` with its index. Preserve actual inode
+replacement first failures and installed prior-candidate failure. Definition
+44/seed 44317 retains earlier inputs/limits. Native/type/source/compiled pass
+with exact restored identities; quiet serial AST fails the unchanged staged
+wait. CLAIMS S106 records scoped evidence; complete coverage remains open.
+
+The private PRODUCT-PAGE editorial note and STAGED-RELEASE current-evidence note
+now distinguish historical preview artefacts from the local recovery candidate.
+Reader-facing feature copy, scope/version proposal and publication decisions
+remain unchanged; no preview freeze or stable/public clearance is asserted.
+
 2026-10-09 physical append completion registers SPEC Draft 4.82/STO-1/2, OVERVIEW
 53, RISKS 1.74, STORAGE Draft 13, PROGRESS, HANDOFF, continuing run,
 `evals/sdk/record-write-completion.md` and its index. Preserve first source/

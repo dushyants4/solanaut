@@ -1,0 +1,48 @@
+✔ OWN-1: SDK refuses stale ownership instead of removing the lock (64.379712ms)
+✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (17.751178ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (361.741337ms)
+✔ OWN-3: established protected records are not recreated if missing (8.273742ms)
+✔ OWN-2/4: manual refuses a hardlinked journal alias and releases failed startup ownership (9.211946ms)
+✔ OWN-2/4: kernel refuses a hardlinked journal alias and releases failed startup ownership (8.055531ms)
+✔ OWN-2/4: kernel startup refuses a hardlinked mutex without changing its evidence (6.510381ms)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (28.877587ms)
+✔ STO-2/SIG-8/OWN-2: manual refuses missing-write physical append evidence before acknowledgement (6.895228ms)
+✔ STO-2/SIG-8/OWN-2: manual refuses extra-write physical append evidence before acknowledgement (6.953641ms)
+✔ STO-2/SIG-8/OWN-2: kernel refuses missing-write physical append evidence before acknowledgement (7.810149ms)
+✔ STO-2/SIG-8/OWN-2: kernel refuses extra-write physical append evidence before acknowledgement (11.808345ms)
+✔ OWN-2/STO-2/SIG-8: manual refuses record replacement during append before acknowledgement (13.558112ms)
+✔ OWN-2/STO-2/SIG-8: manual refuses lock replacement during append before acknowledgement (5.132848ms)
+✔ OWN-2/STO-2/SIG-8: kernel refuses record replacement during append before acknowledgement (5.075953ms)
+✔ OWN-2/STO-2/SIG-8: kernel refuses lock replacement during append before acknowledgement (6.729731ms)
+✔ STO-1/SIG-8: manual acknowledges complete appends to a nonempty journal (5.714ms)
+✔ STO-1/SIG-8: kernel acknowledges complete appends to a nonempty journal (4.838068ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (4.993112ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (4.683255ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (4.090488ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (5.720593ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (7.589854ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (6.347416ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (7.77416ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (16.82959ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (17.680718ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (7.573957ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal append during startup read and releases ownership (22.619319ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal truncate during startup read and releases ownership (22.238484ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal overwrite during startup read and releases ownership (41.86261ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal append during startup read and releases ownership (30.21287ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal truncate during startup read and releases ownership (24.432507ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal overwrite during startup read and releases ownership (26.128946ms)
+✔ STO-5/SIG-8/OWN-2: manual rejects short startup reads without truncating acknowledged entries (8.900492ms)
+✔ STO-5/SIG-8/OWN-2: manual rejects oversized startup reads without truncating acknowledged entries (13.019009ms)
+✔ STO-5/SIG-8/OWN-2: kernel rejects short startup reads without truncating acknowledged entries (9.927017ms)
+✔ STO-5/SIG-8/OWN-2: kernel rejects oversized startup reads without truncating acknowledged entries (10.001088ms)
+✔ STO-5/SIG-8: manual repairs a genuinely torn UTF-8 tail using byte boundaries (7.98882ms)
+✔ STO-5/SIG-8: kernel repairs a genuinely torn UTF-8 tail using byte boundaries (6.735973ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 40
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 657.832282

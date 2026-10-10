@@ -234,6 +234,7 @@ export function fileStore(path: string, options: FileStoreOptions = {}): EntrySt
         const bytes = Buffer.from(`${canonicalJSON(entry)}\n`);
         writeAll(fd, bytes);
         fsyncSync(fd);
+        owner.held(); sameFile(fd, path);
         const synced = fstatSync(fd, { bigint: true });
         if (synced.size !== current.size + BigInt(bytes.length)) throw new Error("the record append length was inconsistent");
         expected = synced;

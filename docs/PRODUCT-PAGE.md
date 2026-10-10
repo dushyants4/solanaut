@@ -1,5 +1,10 @@
 # Solanaut product page — private review draft
 
+Editorial review, 2026-10-09: retain the SDK-preview copy and claim scopes below.
+Current recovery component receipts are linked from [STAGED-RELEASE](release/STAGED-RELEASE.md).
+They do not supply stable, audited, isolated-service or publication clearance.
+Historical preview artefacts remain distinct from later local candidates.
+
 2026-10-08 · integrator/archivist preparation. This is reviewable page copy for a
 devnet SDK preview, not an approved publication or stable-release announcement.
 No public download or supported isolated-service installation is offered.

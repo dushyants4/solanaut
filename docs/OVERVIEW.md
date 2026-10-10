@@ -1,10 +1,15 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 53** · 2026-10-09 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 54** · 2026-10-09 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
+
+After syncing each append, the file store rechecks its held mutex and named
+journal identity before validating size or mutating its cache. Replacement fails
+the store permanently while preserving both inodes and foreign-marker evidence.
+Local evidence: `evals/sdk/record-write-identity.md`; the host remains trusted.
 
 The file writer verifies the synced physical size delta equals the exact entry
 bytes before acknowledgement and cache mutation. Missing or extra physical

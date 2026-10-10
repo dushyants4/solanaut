@@ -12,6 +12,23 @@ each component. Preserve every accepted security and release gate.
 
 ## Did
 
+Post-sync identity qualification completes locally: all 138 retained compiled
+faults catch, restored eighteen-case consumer baseline and final typecheck pass,
+with every bound product/evaluation/emitted-file/archive hash matching. Native
+passes all 872; quiet AST fails the unchanged staged wait. Preserve failures,
+close, commit locally and verify backup before the existing 100-kill crash run.
+Private product-page/staged-release editorial notes distinguish current local
+components from historical preview artefacts without changing feature copy,
+proposed version, publication or stable-release scope.
+
+Continue from local `3fe0f0d` with post-sync identity under ADR-019. Four actual
+manual/kernel journal/mutex replacements during append fail first on acknowledged
+sequence. Recheck held owner and named journal after sync before size validation
+and cache mutation; preserve both inodes and foreign-marker cleanup refusal.
+All forty focused cases and seventeen source faults pass/restored; installed
+previous candidate fails and rebuilt eighteen-case consumer/typecheck pass.
+Definition 44/seed 44317 retains earlier inputs/limits before full measurement.
+
 Physical append qualification completes locally: all 136 retained compiled
 faults catch, restored seventeen-case consumer baseline and final typecheck pass,
 and every bound product/evaluation/emitted-file/archive identity matches. Native
@@ -264,6 +281,14 @@ Current-day run record and project register; subsequent replay component paths
 and qualification evidence will be recorded as work proceeds.
 
 ## Found
+
+Post-sync identity passes all 872 native cases, typecheck, focused/source and
+installed tests. Quiet serial AST executes 872: 871 pass and one unchanged real
+staged-baseline wait fails. Preserve raw reports and output; no complete coverage
+or floor pass. The 138-trial compiled campaign continues. Performance review
+finds only report validation, with complete runner/reference baseline still owed;
+do not claim timing measurements. The existing real 100-kill workload can qualify
+the changed durable append path after the coherent commit, with its scope intact.
 
 Append qualification passes all 868 native cases, thirty-six focused cases,
 fifteen source faults, seventeen installed cases and typecheck. Quiet serial AST

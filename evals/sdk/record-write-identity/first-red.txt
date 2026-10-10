@@ -1,0 +1,118 @@
+✔ OWN-1: SDK refuses stale ownership instead of removing the lock (89.271ms)
+✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (32.967708ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (385.345647ms)
+✔ OWN-3: established protected records are not recreated if missing (7.175171ms)
+✔ OWN-2/4: manual refuses a hardlinked journal alias and releases failed startup ownership (7.704302ms)
+✔ OWN-2/4: kernel refuses a hardlinked journal alias and releases failed startup ownership (9.593958ms)
+✔ OWN-2/4: kernel startup refuses a hardlinked mutex without changing its evidence (6.729299ms)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (10.65935ms)
+✔ STO-2/SIG-8/OWN-2: manual refuses missing-write physical append evidence before acknowledgement (4.256027ms)
+✔ STO-2/SIG-8/OWN-2: manual refuses extra-write physical append evidence before acknowledgement (3.757501ms)
+✔ STO-2/SIG-8/OWN-2: kernel refuses missing-write physical append evidence before acknowledgement (3.829302ms)
+✔ STO-2/SIG-8/OWN-2: kernel refuses extra-write physical append evidence before acknowledgement (3.339974ms)
+✖ OWN-2/STO-2/SIG-8: manual refuses record replacement during append before acknowledgement (4.754225ms)
+✖ OWN-2/STO-2/SIG-8: manual refuses lock replacement during append before acknowledgement (3.49236ms)
+✖ OWN-2/STO-2/SIG-8: kernel refuses record replacement during append before acknowledgement (3.501035ms)
+✖ OWN-2/STO-2/SIG-8: kernel refuses lock replacement during append before acknowledgement (4.097568ms)
+✔ STO-1/SIG-8: manual acknowledges complete appends to a nonempty journal (4.953192ms)
+✔ STO-1/SIG-8: kernel acknowledges complete appends to a nonempty journal (3.601958ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (3.658362ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (5.535775ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (2.938982ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (2.5632ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (3.119467ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (3.356668ms)
+✔ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (3.659641ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (3.214406ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (2.946847ms)
+✔ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (3.19405ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal append during startup read and releases ownership (8.3465ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal truncate during startup read and releases ownership (6.90492ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal overwrite during startup read and releases ownership (6.78754ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal append during startup read and releases ownership (6.517036ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal truncate during startup read and releases ownership (6.919427ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal overwrite during startup read and releases ownership (6.466321ms)
+✔ STO-5/SIG-8/OWN-2: manual rejects short startup reads without truncating acknowledged entries (6.69819ms)
+✔ STO-5/SIG-8/OWN-2: manual rejects oversized startup reads without truncating acknowledged entries (7.535152ms)
+✔ STO-5/SIG-8/OWN-2: kernel rejects short startup reads without truncating acknowledged entries (6.201709ms)
+✔ STO-5/SIG-8/OWN-2: kernel rejects oversized startup reads without truncating acknowledged entries (6.685157ms)
+✔ STO-5/SIG-8: manual repairs a genuinely torn UTF-8 tail using byte boundaries (4.403619ms)
+✔ STO-5/SIG-8: kernel repairs a genuinely torn UTF-8 tail using byte boundaries (4.342068ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 36
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 824.376447
+
+✖ failing tests:
+
+test at packages/sdk/test/storage-failures.test.ts:55:97
+✖ OWN-2/STO-2/SIG-8: manual refuses record replacement during append before acknowledgement (4.754225ms)
+  AssertionError [ERR_ASSERTION]: a replaced journal or mutex cannot acknowledge a transition
+  
+  0 !== -1
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:70:41)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: -1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:55:97
+✖ OWN-2/STO-2/SIG-8: manual refuses lock replacement during append before acknowledgement (3.49236ms)
+  AssertionError [ERR_ASSERTION]: a replaced journal or mutex cannot acknowledge a transition
+  
+  0 !== -1
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:70:41)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: -1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:55:97
+✖ OWN-2/STO-2/SIG-8: kernel refuses record replacement during append before acknowledgement (3.501035ms)
+  AssertionError [ERR_ASSERTION]: a replaced journal or mutex cannot acknowledge a transition
+  
+  0 !== -1
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:70:41)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: -1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:55:97
+✖ OWN-2/STO-2/SIG-8: kernel refuses lock replacement during append before acknowledgement (4.097568ms)
+  AssertionError [ERR_ASSERTION]: a replaced journal or mutex cannot acknowledge a transition
+  
+  0 !== -1
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:70:41)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: -1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

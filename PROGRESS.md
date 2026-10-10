@@ -1,5 +1,12 @@
 # PROGRESS.md
 
+Post-sync journal/mutex identity is being qualified under ADR-019. Actual inode
+replacement during write first fails in both modes. Focused/source/type passes
+and initial installed failure live in `evals/sdk/record-write-identity.md`;
+native/type/source/compiled pass with exact restored identities. Quiet serial AST
+fails the unchanged staged wait; complete coverage stays open and no milestone
+closes, CLAIMS S106.
+
 Physical append completion is being qualified under ADR-019. The candidate
 checks the synced physical byte delta before acknowledgement. Source faults and
 positive nonempty-journal controls live in `evals/sdk/record-write-completion.md`;

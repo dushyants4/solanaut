@@ -1,5 +1,10 @@
 # evals/ — receipts
 
+Post-sync journal/mutex identity: `sdk/record-write-identity.md` retains actual
+replacement acknowledgement failures and initial installed failure. Native/type/
+source/compiled pass with exact restored identities; quiet serial AST fails the
+unchanged staged wait. Complete coverage and stable milestones remain open.
+
 Physical append completion: `sdk/record-write-completion.md` preserves missing/
 extra-write acknowledgements, fault-site diagnostic and nonempty-journal test
 miss. Native/type/source/compiled pass with exact restored identities; quiet

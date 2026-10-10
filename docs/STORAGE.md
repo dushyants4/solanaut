@@ -1,11 +1,16 @@
 # Persistent record ownership
 
+Post-sync acknowledgement requires the original held mutex and named journal
+inode to remain current. Replacement refuses and permanently fails the writer;
+do not remove a foreign marker during cleanup. Stop all writers and verify both
+inodes before operator recovery. Evidence: `evals/sdk/record-write-identity.md`.
+
 After each complete append and sync, the physical byte count must equal the
 previous count plus the canonical entry bytes. A mismatch acknowledges nothing
 and permanently fails the writer. Retain physical evidence and stop all writers
 before operator recovery. Evidence: `evals/sdk/record-write-completion.md`.
 
-> **Draft 13** · 2026-10-09 · owner: integrator · for: SDK users and Linux operators.
+> **Draft 14** · 2026-10-09 · owner: integrator · for: SDK users and Linux operators.
 > Register: `kb/DOCUMENTS.md`. Foundation evidence: `evals/sdk/ownership.md` (claim S16).
 
 An ordinary `createGuard({ policy, log: path })` uses manual SDK ownership. It refuses an

@@ -243,6 +243,16 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-09 post-sync identity: physical length correction is locally committed
+as `3fe0f0d`, with verified source-history bundle and exact clean clone/full fsck.
+Clean close passes nine of ten, with only unpushed HEAD failing. Actual journal
+and mutex replacement during append first acknowledge in both modes. Recheck
+both identities after sync before cache mutation, preserving foreign markers.
+Definition 44/seed 44317 retains earlier inputs/limits; source and installed
+failures remain. Native/type/source/compiled pass with exact restored identities;
+quiet serial AST fails the unchanged staged wait. Local commit/backup and the
+existing crash battery follow without H9/H11 acceptance, signer expansion or push.
+
 2026-10-09 physical append completion: `72dde39` runtime evidence is locally
 committed, with verified bundle/exact clean clone/full fsck. Clean close passes
 nine of ten, failing only unpushed HEAD as required by the user. Reproduce

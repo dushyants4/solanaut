@@ -1,0 +1,362 @@
+✔ OWN-1: SDK refuses stale ownership instead of removing the lock (32.975489ms)
+✔ OWN-2: kernel lock outlives its acquisition helper, excludes other writers and preserves its inode on close (7.762682ms)
+✔ OWN-2: a crashed kernel owner releases ownership and competing restarts admit exactly one writer (331.314309ms)
+✔ OWN-3: established protected records are not recreated if missing (7.032535ms)
+✔ OWN-2/4: manual refuses a hardlinked journal alias and releases failed startup ownership (8.428803ms)
+✔ OWN-2/4: kernel refuses a hardlinked journal alias and releases failed startup ownership (11.197067ms)
+✔ OWN-2/4: kernel startup refuses a hardlinked mutex without changing its evidence (6.307733ms)
+✔ STO-1/SIG-8: short writes complete before an admission is acknowledged (20.939803ms)
+✖ STO-2/SIG-8/OWN-2: manual refuses missing-write physical append evidence before acknowledgement (7.525931ms)
+✖ STO-2/SIG-8/OWN-2: manual refuses extra-write physical append evidence before acknowledgement (5.314606ms)
+✖ STO-2/SIG-8/OWN-2: kernel refuses missing-write physical append evidence before acknowledgement (5.277557ms)
+✖ STO-2/SIG-8/OWN-2: kernel refuses extra-write physical append evidence before acknowledgement (4.511579ms)
+✖ OWN-2/STO-2/SIG-8: manual refuses record replacement during append before acknowledgement (4.208563ms)
+✖ OWN-2/STO-2/SIG-8: manual refuses lock replacement during append before acknowledgement (3.816527ms)
+✖ OWN-2/STO-2/SIG-8: kernel refuses record replacement during append before acknowledgement (3.911567ms)
+✖ OWN-2/STO-2/SIG-8: kernel refuses lock replacement during append before acknowledgement (3.850146ms)
+✔ STO-1/SIG-8: manual acknowledges complete appends to a nonempty journal (4.86455ms)
+✔ STO-1/SIG-8: kernel acknowledges complete appends to a nonempty journal (3.309462ms)
+✔ STO-2/SIG-8: ENOSPC denies and permanently shuts this writer (3.817684ms)
+✔ STO-2/SIG-8: EACCES denies and permanently shuts this writer (3.986971ms)
+✔ STO-2/SIG-8: zero-progress denies and permanently shuts this writer (3.459946ms)
+✔ STO-2/SIG-8: fsync denies and permanently shuts this writer (3.6014ms)
+✖ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (4.715618ms)
+✖ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (4.487365ms)
+✖ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (4.306293ms)
+✖ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (4.588284ms)
+✖ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (4.195304ms)
+✖ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (6.578367ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal append during startup read and releases ownership (49.955391ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal truncate during startup read and releases ownership (31.766085ms)
+✔ STO-4/SIG-8/OWN-2: manual refuses journal overwrite during startup read and releases ownership (40.004099ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal append during startup read and releases ownership (32.623648ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal truncate during startup read and releases ownership (26.545699ms)
+✔ STO-4/SIG-8/OWN-2: kernel refuses journal overwrite during startup read and releases ownership (14.273975ms)
+✔ STO-5/SIG-8/OWN-2: manual rejects short startup reads without truncating acknowledged entries (10.004752ms)
+✔ STO-5/SIG-8/OWN-2: manual rejects oversized startup reads without truncating acknowledged entries (9.165365ms)
+✔ STO-5/SIG-8/OWN-2: kernel rejects short startup reads without truncating acknowledged entries (7.580648ms)
+✔ STO-5/SIG-8/OWN-2: kernel rejects oversized startup reads without truncating acknowledged entries (7.816742ms)
+✔ STO-5/SIG-8: manual repairs a genuinely torn UTF-8 tail using byte boundaries (5.847713ms)
+✔ STO-5/SIG-8: kernel repairs a genuinely torn UTF-8 tail using byte boundaries (4.950314ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 26
+ℹ fail 14
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 499.544525
+
+✖ failing tests:
+
+test at packages/sdk/test/storage-failures.test.ts:32:110
+✖ STO-2/SIG-8/OWN-2: manual refuses missing-write physical append evidence before acknowledgement (7.525931ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /closed or failed/. Input:
+  
+  'Error: canonical JSON has no form for a undefined'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:52:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: canonical JSON has no form for a undefined
+        at canonicalJSON (file:///home/dashy/Projects/Solanaut/packages/sdk/src/canonical.ts:19:9)
+        at Object.append (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:234:38)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:52:31
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:52:12)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /closed or failed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:32:110
+✖ STO-2/SIG-8/OWN-2: manual refuses extra-write physical append evidence before acknowledgement (5.314606ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /closed or failed/. Input:
+  
+  'Error: the owned record changed outside this writer'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:52:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: the owned record changed outside this writer
+        at Object.append (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:233:131)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:52:31
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:52:12)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /closed or failed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:32:110
+✖ STO-2/SIG-8/OWN-2: kernel refuses missing-write physical append evidence before acknowledgement (5.277557ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /closed or failed/. Input:
+  
+  'Error: canonical JSON has no form for a undefined'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:52:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: canonical JSON has no form for a undefined
+        at canonicalJSON (file:///home/dashy/Projects/Solanaut/packages/sdk/src/canonical.ts:19:9)
+        at Object.append (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:234:38)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:52:31
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:52:12)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /closed or failed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:32:110
+✖ STO-2/SIG-8/OWN-2: kernel refuses extra-write physical append evidence before acknowledgement (4.511579ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /closed or failed/. Input:
+  
+  'Error: the owned record changed outside this writer'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:52:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: the owned record changed outside this writer
+        at Object.append (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:233:131)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:52:31
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:52:12)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /closed or failed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:55:97
+✖ OWN-2/STO-2/SIG-8: manual refuses record replacement during append before acknowledgement (4.208563ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /closed or failed/. Input:
+  
+  'Error: the record or ownership inode was replaced'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:75:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: the record or ownership inode was replaced
+        at sameFile (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:109:82)
+        at Object.append (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:231:23)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:75:31
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:75:12)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /closed or failed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:55:97
+✖ OWN-2/STO-2/SIG-8: manual refuses lock replacement during append before acknowledgement (3.816527ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /closed or failed/. Input:
+  
+  'Error: the record or ownership inode was replaced'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:75:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: the record or ownership inode was replaced
+        at sameFile (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:109:82)
+        at Object.held (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:141:17)
+        at Object.append (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:231:15)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:75:31
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:75:12)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /closed or failed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:55:97
+✖ OWN-2/STO-2/SIG-8: kernel refuses record replacement during append before acknowledgement (3.911567ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /closed or failed/. Input:
+  
+  'Error: the record or ownership inode was replaced'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:75:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: the record or ownership inode was replaced
+        at sameFile (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:109:82)
+        at Object.append (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:231:23)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:75:31
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:75:12)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /closed or failed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:55:97
+✖ OWN-2/STO-2/SIG-8: kernel refuses lock replacement during append before acknowledgement (3.850146ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /closed or failed/. Input:
+  
+  'Error: the record or ownership inode was replaced'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:75:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: the record or ownership inode was replaced
+        at sameFile (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:109:82)
+        at Object.held (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:141:17)
+        at Object.append (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:231:15)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:75:31
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:75:12)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /closed or failed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:114:114
+✖ STO-2/3/SIG-8/OWN-2: manual writer refuses external append on its held inode (4.715618ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception: the store itself remains failed even behind another guard
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:146:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /closed or failed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:114:114
+✖ STO-2/3/SIG-8/OWN-2: manual writer refuses external truncate on its held inode (4.487365ms)
+  AssertionError [ERR_ASSERTION]: the store itself remains failed even behind another guard
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:146:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: the owned record changed outside this writer
+        at Object.append (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:233:131)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:146:31
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:146:12)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /closed or failed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:114:114
+✖ STO-2/3/SIG-8/OWN-2: manual writer refuses external overwrite on its held inode (4.306293ms)
+  AssertionError [ERR_ASSERTION]: the store itself remains failed even behind another guard
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:146:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: the owned record changed outside this writer
+        at Object.append (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:233:131)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:146:31
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:146:12)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /closed or failed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:114:114
+✖ STO-2/3/SIG-8/OWN-2: kernel writer refuses external append on its held inode (4.588284ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception: the store itself remains failed even behind another guard
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:146:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /closed or failed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:114:114
+✖ STO-2/3/SIG-8/OWN-2: kernel writer refuses external truncate on its held inode (4.195304ms)
+  AssertionError [ERR_ASSERTION]: the store itself remains failed even behind another guard
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:146:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: the owned record changed outside this writer
+        at Object.append (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:233:131)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:146:31
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:146:12)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /closed or failed/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at packages/sdk/test/storage-failures.test.ts:114:114
+✖ STO-2/3/SIG-8/OWN-2: kernel writer refuses external overwrite on its held inode (6.578367ms)
+  AssertionError [ERR_ASSERTION]: the store itself remains failed even behind another guard
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:146:12)
+      at async Test.run (node:internal/test_runner/test:1404:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: the owned record changed outside this writer
+        at Object.append (file:///home/dashy/Projects/Solanaut/packages/sdk/src/record.ts:233:131)
+        at file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:146:31
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/packages/sdk/test/storage-failures.test.ts:146:12)
+        at async Test.run (node:internal/test_runner/test:1404:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:969:7),
+    expected: /closed or failed/,
+    operator: 'throws',
+    diff: 'simple'
+  }

@@ -190,6 +190,22 @@ test("PKG-1/STO-2: installed writer refuses inconsistent physical append lengths
   assert.equal(result.status,0,result.stderr);assert.equal(result.error,undefined);assert.equal(result.signal,null);assert.equal(result.stdout,"inconsistent appends refused\n");
 });
 
+test("PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append", () => {
+  const script=`
+    import {createGuard} from '@solanaut/sdk';import fs from 'node:fs';import {syncBuiltinESMExports} from 'node:module';import {tmpdir} from 'node:os';import {join} from 'node:path';
+    const {fileStore}=await import(new URL('./record.js',import.meta.resolve('@solanaut/sdk'))),directory=fs.mkdtempSync(join(tmpdir(),'solanaut-write-identity-'));
+    try{for(const ownership of ['manual','kernel'])for(const target of ['record','lock']){
+      const path=join(directory,ownership+'-'+target+'.jsonl'),store=fileStore(path,{ownership}),g=await createGuard({policy:JSON.parse(process.argv[1]),log:store}),inode=fs.statSync(path).ino,write=fs.writeSync,replaced=path+(target==='lock'?'.lock':''),original=fs.readFileSync(replaced);let changed=false;
+      try{fs.writeSync=(...args)=>{const count=Reflect.apply(write,fs,args);if(!changed&&fs.fstatSync(args[0]).ino===inode){changed=true;fs.renameSync(replaced,replaced+'.moved');fs.writeFileSync(replaced,original);}return count;};syncBuiltinESMExports();
+        const first=g.check({message:new Uint8Array(Buffer.from(process.argv[2],'base64')),at:1000});if(!changed||first.seq!==-1||first.rule!=='fail-closed'||store.entries.length!==0)throw new Error('installed writer acknowledged replaced evidence');
+        fs.writeSync=write;syncBuiltinESMExports();const moved=fs.readFileSync(replaced+'.moved');if(g.check({message:new Uint8Array(Buffer.from(process.argv[2],'base64')),at:2000}).seq!==-1||!fs.readFileSync(replaced+'.moved').equals(moved))throw new Error('installed replaced writer resumed');
+      }finally{fs.writeSync=write;syncBuiltinESMExports();let closeError;try{g.close();}catch(error){closeError=error;}if(ownership==='manual'&&target==='lock'){if(!/inode was replaced/.test(closeError?.message??''))throw new Error('foreign manual marker was not protected');}else if(closeError)throw closeError;store.close();if(!fs.readFileSync(replaced).equals(original))throw new Error('foreign evidence changed');}
+    }}finally{fs.rmSync(directory,{recursive:true,force:true});}
+    console.log('post-write replacements refused');`;
+  const result=spawnSync(process.execPath,["--input-type=module","-e",script,inputPolicy,Buffer.from(transfer(2)).toString("base64")],{cwd:consumer,encoding:"utf8",timeout:15000});
+  assert.equal(result.status,0,result.stderr);assert.equal(result.error,undefined);assert.equal(result.signal,null);assert.equal(result.stdout,"post-write replacements refused\n");
+});
+
 test("PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts", () => {
   const script = `
     import {createGuard,replay,memoryStore} from '@solanaut/sdk';

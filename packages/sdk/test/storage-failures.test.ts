@@ -52,6 +52,34 @@ for (const ownership of ["manual", "kernel"] as const) for (const fault of ["mis
     assert.throws(() => store.append(undefined!), /closed or failed/);
   } finally { restore(); g.close(); store.close(); }
 });
+for (const ownership of ["manual", "kernel"] as const) for (const target of ["record", "lock"]) test(`OWN-2/STO-2/SIG-8: ${ownership} refuses ${target} replacement during append before acknowledgement`, async () => {
+  const path = record(), { fileStore } = await import("../src/record.ts"), store = fileStore(path, { ownership });
+  const g = await createGuard({ policy: WORKLOAD_POLICY, log: store }), inode = fs.statSync(path).ino, write = fs.writeSync;
+  const replaced = path + (target === "lock" ? ".lock" : ""), original = fs.readFileSync(replaced);
+  let changed = false;
+  mock.method(fs, "writeSync", (...args: unknown[]) => {
+    const count = Reflect.apply(write, fs, args);
+    if (!changed && typeof args[0] === "number" && fs.fstatSync(args[0]).ino === inode) {
+      changed = true; fs.renameSync(replaced, replaced + ".moved"); fs.writeFileSync(replaced, original);
+    }
+    return count;
+  });
+  syncBuiltinESMExports();
+  try {
+    const first = g.check({ message: payment(), at: 1000 });
+    assert.equal(changed, true); assert.equal(first.seq, -1, "a replaced journal or mutex cannot acknowledge a transition");
+    assert.equal(first.rule, "fail-closed"); assert.equal(g.entries().length, 0);
+    restore(); const evidence = fs.readFileSync(replaced), moved = fs.readFileSync(replaced + ".moved");
+    assert.equal(g.check({ message: payment(), at: 2000 }).seq, -1);
+    assert.deepEqual(fs.readFileSync(replaced), evidence); assert.deepEqual(fs.readFileSync(replaced + ".moved"), moved);
+    assert.throws(() => store.append(undefined!), /closed or failed/);
+  } finally {
+    restore();
+    if (ownership === "manual" && target === "lock") assert.throws(() => g.close(), /inode was replaced/);
+    else g.close();
+    store.close(); assert.deepEqual(fs.readFileSync(replaced), original, "never remove or repair another inode");
+  }
+});
 for (const ownership of ["manual", "kernel"] as const) test(`STO-1/SIG-8: ${ownership} acknowledges complete appends to a nonempty journal`, async () => {
   const path = record(), { fileStore } = await import("../src/record.ts"), store = fileStore(path, { ownership });
   const g = await createGuard({ policy: WORKLOAD_POLICY, log: store });

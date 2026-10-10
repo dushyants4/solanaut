@@ -1,5 +1,19 @@
 # Staged devnet release — review draft
 
+Current engineering review, 2026-10-09: locally committed `3fe0f0d` plus the
+post-sync identity candidate being qualified. The original preview manifests
+below remain historical evidence; no replacement preview freeze or clearance is
+inferred. New component evidence is [read completion](../../evals/sdk/record-read-completion.md),
+[append completion](../../evals/sdk/record-write-completion.md) and
+[post-sync identity](../../evals/sdk/record-write-identity.md), CLAIMS S103/S105/S106.
+Native/type/installed checks have scoped local passes; unchanged staged-wait
+failures remain open. Post-sync compiled qualification and restored identities
+pass, with the full limits retained; no complete coverage gate follows.
+Existing Node 24 results stay separately scoped, CLAIMS S104. No remote push is
+authorised, hosted execution remains H13-blocked, and H9/H11/H12 remain pending.
+The [current evidence map](../plans/2026-10-07_release-evidence-map.md) identifies
+bounded state, isolated deployment and independent/human gates still owed.
+
 2026-10-08 · private integrator/archivist preparation · reviewed base revision
 `5b00257b20c8bbfc643d0fc093f6e509dc3a3d38`; corrected private SDK candidate
 `39c24de89a3e860cd9e4a08517a616481c5c72ca`, identified by the
