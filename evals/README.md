@@ -1,5 +1,10 @@
 # evals/ — receipts
 
+Current durable-writer crash run: `sdk/storage-kills-current.md` uses the exact
+49f6d63 implementation and maintained workload on this host's Btrfs filesystem.
+All 100 kills/recoveries/replays pass, with preserved exemplar/trial/input hashes;
+no power-loss or exhaustive send-boundary claim, CLAIMS S107.
+
 Post-sync journal/mutex identity: `sdk/record-write-identity.md` retains actual
 replacement acknowledgement failures and initial installed failure. Native/type/
 source/compiled pass with exact restored identities; quiet serial AST fails the

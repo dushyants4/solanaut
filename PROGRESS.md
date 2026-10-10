@@ -1,5 +1,10 @@
 # PROGRESS.md
 
+The existing real 100-kill workload passes all recoveries/replays on exact
+`49f6d63`, Linux/Node 26.7.0/Btrfs. Frozen inputs, trial digests and recovered
+record exemplar live in `evals/sdk/storage-kills-current.md`, CLAIMS S107. This
+does not qualify power loss, all signer/send boundaries or stable release.
+
 Post-sync journal/mutex identity is being qualified under ADR-019. Actual inode
 replacement during write first fails in both modes. Focused/source/type passes
 and initial installed failure live in `evals/sdk/record-write-identity.md`;

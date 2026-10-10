@@ -243,6 +243,16 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-09 crash qualification: post-sync identity is locally committed as
+`49f6d63`, with verified bundle/exact clean clone/full fsck. Clean close passes
+nine of ten, with only unpushed HEAD failing. Run the existing real 100-kill
+workload without changing seed/definition/limits after other workers stop.
+Current `.sandbox/` filesystem reports Btrfs; keep this scope separate from
+historical ext4 results. All 100 kills/recoveries/replays pass; preserved exemplar,
+trial digests and frozen inputs match, CLAIMS S107. No power-loss, exhaustive
+signer-boundary or independent claim. Local archival commit/backup follow;
+no push or human decision is inferred.
+
 2026-10-09 post-sync identity: physical length correction is locally committed
 as `3fe0f0d`, with verified source-history bundle and exact clean clone/full fsck.
 Clean close passes nine of ten, with only unpushed HEAD failing. Actual journal

@@ -1,5 +1,13 @@
 # DOCUMENTS.md — the document register
 
+2026-10-09 current crash qualification registers
+`evals/sdk/storage-kills-current.md`, its raw output/environment record,
+evaluation index, HANDOFF and continuing run. Exact implementation 49f6d63;
+maintained seed/definition/limits unchanged. Current scratch filesystem is
+Btrfs, not the historical ext4 receipt's scope. All 100 kills/recoveries/replays
+pass with verified input/trial/exemplar hashes, CLAIMS S107. Complete release
+reliability and performance runner/baseline remain owed.
+
 2026-10-09 post-sync identity registers SPEC Draft 4.83/OWN-2/STO-2, OVERVIEW 54,
 RISKS 1.75, STORAGE Draft 14, PROGRESS, HANDOFF, continuing run and
 `evals/sdk/record-write-identity.md` with its index. Preserve actual inode

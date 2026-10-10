@@ -12,6 +12,19 @@ each component. Preserve every accepted security and release gate.
 
 ## Did
 
+Exact `49f6d63` crash run completes with all 100 actual kills, kernel-owned
+recoveries and recomputed replays passing on Btrfs/Node 26.7.0. All completed
+records are byte-identical; retain their digests and complete exemplar, environment
+and frozen inputs, with post-run hashes verified. No product/workload/seed/limit
+changes. Preserve acknowledgement-boundary scope and historical ext4 distinction;
+archive the receipt locally, without independent or stable qualification claims.
+
+Commit post-sync identity locally as `49f6d63`, verify local Git bundle/exact
+clean clone/full fsck, and observe clean close nine of ten, only unpushed HEAD
+failing. Start existing real 100-kill workload against that exact revision after
+other workers stop. Preserve seed/definition/limits. Actual scratch filesystem
+reports Btrfs; never borrow the historical ext4 scope. Raw results follow.
+
 Post-sync identity qualification completes locally: all 138 retained compiled
 faults catch, restored eighteen-case consumer baseline and final typecheck pass,
 with every bound product/evaluation/emitted-file/archive hash matching. Native

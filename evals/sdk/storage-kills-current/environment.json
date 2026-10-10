@@ -1,0 +1,20 @@
+{
+  "revision": "49f6d6369e58d7f4c6c4f0cbd41705c080f498af",
+  "node": "v26.7.0",
+  "system": "Linux",
+  "kernel": "7.2.5-3-omarchy",
+  "architecture": "x86_64",
+  "filesystem": "btrfs",
+  "seed": 202610061,
+  "captured_at_utc": "2026-10-10T02:38:21.128013+00:00",
+  "inputs": {
+    "evals/ci/kills.ts": "b1864b21076046bb502a37c3c99723c320fc2e3b07d81e7c5ceaec6b0dcd0cc0",
+    "evals/ci/kill-child.ts": "bfae9035504aade78866f2e70fad6c2eba090d3a6e2666f4f53112620430fdaa",
+    "packages/sdk/test/support/workload.ts": "f120af72bff08c470a941b41db93029e1e46edcdd954dd4ab1010a2429e90097",
+    "packages/sdk/test/support/kit.ts": "d635e07542cbbddf95928cc4b8874c293053d22dc1bea4e82b404a1d5356d5c5",
+    "packages/sdk/src/record.ts": "6942c58974a79ac5258d54f0a208ab9ff0c3a69a0ce3dbb4e63050682e476c44",
+    "packages/sdk/src/guard.ts": "ed161e6724f2691f8b738a4fc8f3c4d8cbfa4950450262ce50bd424b014d6943",
+    "packages/sdk/src/state.ts": "adfeb1c2ddaf96c48551ba40a6ebe2140da7d972780fa1af8f3e28d38f396b87",
+    "packages/sdk/src/log.ts": "30fa1359c4edd95a79d926e428ecf209874ca48bfcf16a5ccfba60125a9e9b1d"
+  }
+}
