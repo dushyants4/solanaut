@@ -1,5 +1,10 @@
 # DOCUMENTS.md — the document register
 
+2026-10-11 registers installed timing helper/current bindings/relocated analysis,
+archived-pin and replay-count refusals, complete samples/persisted history and
+controls, receipt/index; CLAIMS S142, PROGRESS, HANDOFF and continuing run.
+Original analysis/workload and historical evidence remain; no gate or milestone change.
+
 2026-10-11 registers installed queued-admission helper/frozen inputs/relocated
 runner, full-population faults and existing-runtime controls, receipt/index;
 CLAIMS S141, PROGRESS, HANDOFF and continuing run. No product, maintained gate,

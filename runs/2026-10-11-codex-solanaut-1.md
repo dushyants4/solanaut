@@ -7,6 +7,17 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Admission checkpoint 54b15d5 has a verified complete local bundle, exact clean
+restore and confirmed successful full fsck. Continue current installed timing
+qualification: freeze candidate identities before execution, retain the original
+analysis/workload/head and explicitly relocate public imports. Archived old pins
+refuse current adapter bytes, then a planted incomplete replay refuses before
+healthy memory/file profiles. Actual persisted bytes replay separately. Preserve
+every sample and lossless compressed history; register S142 without constructing
+a complete performance report from partial evidence. Original controls/typecheck
+pass, inputs match, installed bytes restore and consumer/job finish. The initial
+timing read guesses a nonexistent filename; the receipt locates the actual runner.
+
 Crash diagnostic checkpoint 792f6d0 has a complete verified local bundle and
 exact clean restore. Continue with the unchanged logical admission workload
 through the installed SDK: public SDK imports and explicit reference helpers
@@ -183,6 +194,19 @@ the unchanged original companion control also passes. Outputs stay separate,
 with no installation or full runtime/matrix claim.
 
 ## Found
+
+Installed-timing pre-commit close passes all checks except uncommitted work and
+deliberately unpushed HEAD, including the staged tracked-file secret scan.
+Review source/definition relocations, all observations and exact persisted
+history/compression bindings; credential-shaped search has no hits. Preserve
+the raw typecheck trailing blank line despite the whitespace warning. All owned
+diagnostic/control/backup jobs complete; product and protected files stay unchanged.
+
+Installed timing is a scoped current-artifact diagnostic, not isolated pre-log,
+ready-to-admit restart, reference-baseline regression or full CI-2 qualification.
+Local Git backup verification may overlap; the host is not reserved. Preserve
+archived-pin refusal as expected revision binding, not a production defect.
+The full native H11 failure remains unchanged; partial timings do not erase it.
 
 Direct backup fsck completes successfully. Installed-admission pre-commit close
 passes all checks except dirty work and deliberately unpushed HEAD. Staged diff

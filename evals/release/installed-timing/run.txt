@@ -1,0 +1,1 @@
+installed scoped timings complete; persisted history verified; full performance gate remains unqualified

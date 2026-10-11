@@ -1,5 +1,9 @@
 # PROGRESS.md
 
+Current installed SDK has scoped memory/synced-file timings and separate actual
+persisted replay proof, S142. Full performance, restart, baseline regression and
+stable gates remain unqualified; no milestone advances.
+
 Installed SDK queued admissions reproduce the original pending-window and
 complete-evidence checks after caught full-population faults, S141. This is
 logical SDK concurrency; isolated service and stable gates remain unqualified.

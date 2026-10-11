@@ -1,0 +1,6 @@
+{"plantedGeneratedDecisions":10000}
+Error: replay incomplete or divergent
+    at validateProfile (file:///tmp/solanaut-installed-timing-gdzu2ezr/measure.mjs:20:151)
+    at measure (file:///tmp/solanaut-installed-timing-gdzu2ezr/measure.mjs:52:5)
+    at async main (file:///tmp/solanaut-installed-timing-gdzu2ezr/measure.mjs:79:21)
+    at async file:///tmp/solanaut-installed-timing-gdzu2ezr/measure.mjs:90:9

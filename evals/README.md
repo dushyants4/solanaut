@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`release/installed-timing.md`: unchanged scoped analysis measures current installed
+SDK memory/synced-file profiles and separately replays persisted bytes, S142.
+Full performance, restart/reference-baseline and stable qualification remain owed.
+
 `release/installed-admissions.md`: original thousand queued proposals through
 the installed SDK, S141. Complete cap/identity/amount fault populations fail
 before existing-runtime controls. No parallel-process or isolated-service claim.

@@ -1,0 +1,12 @@
+✔ CI-2: scoped timings require a complete frozen mixed history (3.016521ms)
+✔ CI-2: every measured decision has a positive integral duration (0.936804ms)
+✔ CI-2: replay completion and mixed operations cannot be inferred from counts (2.087365ms)
+✔ CI-2: clocks and storage labels refuse malformed or impossible observations (0.707856ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 142.881918

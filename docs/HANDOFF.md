@@ -271,6 +271,13 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-11 current installed SDK scoped timings complete, S142. Freeze fresh
+candidate identities with unchanged workload/analysis; archived pins and planted
+incomplete replay refuse before healthy memory/file measurement. Actual persisted
+bytes replay separately. All samples, exact compressed history and metadata remain.
+No isolated before-log/restart/dashboard/reference-baseline/full performance or
+stable qualification follows; H11 and external requirements remain.
+
 2026-10-11 original queued-admission workload passes through the installed SDK,
 S141. Complete cap, identity and amount faults refuse before restored existing
 runtime controls. Bound inputs remain unchanged and consumer/job finish. This

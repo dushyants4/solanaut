@@ -1,0 +1,17 @@
+{
+  "complete": true,
+  "profiles": [
+    {
+      "storage": "memory",
+      "head": "cb4674cdc5851f2c1d6645df4c1d36f30eb7cf616b95010b27dbe6487c65254c",
+      "decisions": 10000
+    },
+    {
+      "storage": "synced-file",
+      "head": "cb4674cdc5851f2c1d6645df4c1d36f30eb7cf616b95010b27dbe6487c65254c",
+      "decisions": 10000
+    }
+  ],
+  "inputIdentitiesVerified": true,
+  "fullPerformanceGate": false
+}
