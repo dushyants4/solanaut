@@ -1,0 +1,19 @@
+✔ CI-2: real wire, signatures and accounts compare in all supported formats (14.944634ms)
+✔ CI-2: mismatched bytes, roles, quantities and names cannot evade comparison (2.437736ms)
+✔ CI-2: client prefix decoding requires a named guard refusal for trailing data (1.357288ms)
+✔ CI-2: the frozen corpus has distinct transactions and refuses any changed byte (22.922513ms)
+✔ CI-2: matching bytes do not excuse missing framing or duplicate identities (0.587191ms)
+✔ CI-2: pinned complete real-transaction differential populations pass (1.035766ms)
+✔ CI-2: unsuccessful or interrupted differential processes fail (0.430011ms)
+✔ CI-2: corpus substitutions and invalid pins cannot qualify (0.412934ms)
+✔ CI-2: missing transactions, formats and supported program evidence fail (0.399946ms)
+✔ CI-2: incomplete execution, signature evidence and any mismatch fail (0.26595ms)
+✔ CI-2: fabricated, duplicate aggregate and invalid strict-refusal counts fail (0.224008ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 232.329595

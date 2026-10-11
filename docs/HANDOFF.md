@@ -269,6 +269,13 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-11 qualifies the installed current SDK against the original frozen real
+corpus, S138. Import/location-only relocation preserves comparator and gate
+semantics; complete installed fault populations fail before restored controls on
+existing runtimes. Product/reference/corpus/archive hashes remain unchanged and
+the consumer/job finish. No fresh population, Token-2022, isolated/live signing,
+full runtime/hosted/AST or stable milestone credit.
+
 2026-10-11 reconciles THREAT-MODEL Draft 6 with current loop, prepared D41,
 recovery/core/package and publication/schema findings. Historical D21 gate
 results remain scoped to their revision. All proposed ADRs and independent

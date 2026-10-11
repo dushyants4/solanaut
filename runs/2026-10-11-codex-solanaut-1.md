@@ -7,6 +7,22 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Installed real-corpus qualification completes. Each isolated fault executes the
+full frozen population and fails, then exact installed bytes restore. Both
+existing runtime controls agree with the original measurement; bound inputs
+match, the temporary consumer is removed and the owned process finishes.
+Original comparator controls/typecheck pass; register S138 and retain all raw
+evidence. Run a fresh required native baseline separately after installed
+faults complete; do not infer its result from this component qualification.
+
+Continue from clean abed480. Re-read queue/readiness and fetch without pushing.
+Both live fence probes refuse and no probe file appears. Choose CI-2 installed
+real-corpus qualification under accepted ADR-009: preserve the frozen corpus
+and comparator, relocate only imports to the actual compiled package and bound
+repository reference clients. Plan isolated installed faults and existing-runtime
+controls; no network, mainnet send, source or gate mutation. An initial archive
+inspection uses the wrong compiled member path and fails without changing files.
+
 Schema checkpoint 0810716 is locally committed with complete verified bundle,
 exact clean restore and successful full fsck. Clean close leaves only intentional
 remote synchronisation unmet. Reconcile the existing threat-model draft with
@@ -136,6 +152,18 @@ the unchanged original companion control also passes. Outputs stay separate,
 with no installation or full runtime/matrix claim.
 
 ## Found
+
+Installed-differential pre-commit close passes every check except dirty work
+and deliberately unpushed HEAD. Review staged source/prose/bindings; raw native
+assertion indentation and the final typecheck blank line are preserved verbatim
+despite whitespace diagnostics. D41 restoration binding still passes and no
+product file changes. The completed installed worker is no longer alive.
+
+The fresh required native baseline fails solely at H11's unchanged real staged
+baseline wait. Preserve its complete raw output in the installed-differential
+receipt directory. No skip/cancellation/todo or unchanged pass-seeking rerun;
+installed component results do not override the native gate. Product integration
+and dependent candidate work remain subject to that failed gate.
 
 Inventory pre-commit close passes all checks except uncommitted work and the
 deliberately unpushed HEAD. Staged diff review retains the raw typecheck output's

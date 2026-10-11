@@ -1,5 +1,9 @@
 # PROGRESS.md
 
+Current installed SDK public decoding/classification matches the retained real
+corpus on existing runtimes after caught complete-population faults, S138. Scope
+and raw proof are explicit; no fresh population or stable milestone advances.
+
 Strict SDK inventory schema compilation refuses an unsupported installed format
 before report validation, S137. A supported approved validator remains owed;
 the draft is not schema-qualified and no milestone advances.

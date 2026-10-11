@@ -1,0 +1,6 @@
+{
+  "pid": 784705,
+  "group": 784699,
+  "command": "uv run --script evals/release/installed-differential.py",
+  "state": "running"
+}

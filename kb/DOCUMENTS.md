@@ -1,5 +1,9 @@
 # DOCUMENTS.md — the document register
 
+2026-10-11 registers installed real-corpus helper/frozen inputs/relocated sources,
+complete faults and runtime controls, receipt/index; CLAIMS S138, PROGRESS,
+HANDOFF and continuing run. No source, corpus, maintained gate or milestone change.
+
 2026-10-11 registers THREAT-MODEL Draft 6, HANDOFF and continuing run.
 Current findings/receipts and pending proposals reconcile the review draft;
 historical evidence is retained and no independent review or gate credit follows.

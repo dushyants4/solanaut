@@ -1,5 +1,10 @@
 # evals/ — receipts
 
+`release/installed-differential.md`: unchanged retained real-corpus comparisons
+through the installed compiled SDK on existing runtimes, S138. Complete installed
+fault populations fail first and exact bytes restore; no fresh chain sample,
+Token-2022, isolated deployment or full release qualification.
+
 `release/schema-probe.md`: strict official-schema compilation refuses an
 unsupported installed format before inventory validation, S137. No ignored-format
 pass or tool installation; full schema qualification remains owed.

@@ -1,0 +1,142 @@
+{
+  "faults": [
+    {
+      "fault": "wire",
+      "exit": 1,
+      "evidence": {
+        "digest": "9fb8fb620976ed7a715afad371e82c544b78192c5e3c9401593da64a4d9a7419",
+        "transactions": 1578,
+        "signatures": 0,
+        "versions": {
+          "0": 258,
+          "1": 457,
+          "legacy": 863
+        },
+        "programs": {
+          "system": 0,
+          "token": 0,
+          "computeBudget": 0
+        },
+        "completed": 1578,
+        "mismatches": 1578,
+        "strictRefusals": 0
+      }
+    },
+    {
+      "fault": "message",
+      "exit": 1,
+      "evidence": {
+        "digest": "9fb8fb620976ed7a715afad371e82c544b78192c5e3c9401593da64a4d9a7419",
+        "transactions": 1578,
+        "signatures": 0,
+        "versions": {
+          "0": 258,
+          "1": 457,
+          "legacy": 863
+        },
+        "programs": {
+          "system": 0,
+          "token": 0,
+          "computeBudget": 0
+        },
+        "completed": 1578,
+        "mismatches": 1578,
+        "strictRefusals": 0
+      }
+    },
+    {
+      "fault": "resolution",
+      "exit": 1,
+      "evidence": {
+        "digest": "9fb8fb620976ed7a715afad371e82c544b78192c5e3c9401593da64a4d9a7419",
+        "transactions": 1578,
+        "signatures": 0,
+        "versions": {
+          "0": 258,
+          "1": 457,
+          "legacy": 863
+        },
+        "programs": {
+          "system": 0,
+          "token": 0,
+          "computeBudget": 0
+        },
+        "completed": 1578,
+        "mismatches": 1578,
+        "strictRefusals": 0
+      }
+    },
+    {
+      "fault": "instruction",
+      "exit": 1,
+      "evidence": {
+        "digest": "9fb8fb620976ed7a715afad371e82c544b78192c5e3c9401593da64a4d9a7419",
+        "transactions": 1578,
+        "signatures": 894,
+        "versions": {
+          "0": 258,
+          "1": 457,
+          "legacy": 863
+        },
+        "programs": {
+          "system": 0,
+          "token": 0,
+          "computeBudget": 0
+        },
+        "completed": 1578,
+        "mismatches": 689,
+        "strictRefusals": 0
+      }
+    }
+  ],
+  "controls": [
+    {
+      "node": "26.7.0",
+      "exit": 0,
+      "evidence": {
+        "digest": "9fb8fb620976ed7a715afad371e82c544b78192c5e3c9401593da64a4d9a7419",
+        "transactions": 1578,
+        "signatures": 1599,
+        "versions": {
+          "0": 258,
+          "1": 457,
+          "legacy": 863
+        },
+        "programs": {
+          "system": 482,
+          "token": 147,
+          "computeBudget": 1055
+        },
+        "completed": 1578,
+        "mismatches": 0,
+        "strictRefusals": 66
+      }
+    },
+    {
+      "node": "24.19.0",
+      "exit": 0,
+      "evidence": {
+        "digest": "9fb8fb620976ed7a715afad371e82c544b78192c5e3c9401593da64a4d9a7419",
+        "transactions": 1578,
+        "signatures": 1599,
+        "versions": {
+          "0": 258,
+          "1": 457,
+          "legacy": 863
+        },
+        "programs": {
+          "system": 482,
+          "token": 147,
+          "computeBudget": 1055
+        },
+        "completed": 1578,
+        "mismatches": 0,
+        "strictRefusals": 66
+      }
+    }
+  ],
+  "installedBytesRestored": true,
+  "boundInputsUnchanged": true,
+  "consumerRemoved": true,
+  "releaseClearance": false
+}

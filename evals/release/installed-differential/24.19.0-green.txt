@@ -1,0 +1,2 @@
+{"digest":"9fb8fb620976ed7a715afad371e82c544b78192c5e3c9401593da64a4d9a7419","transactions":1578,"signatures":1599,"versions":{"0":258,"1":457,"legacy":863},"programs":{"system":482,"token":147,"computeBudget":1055},"completed":1578,"mismatches":0,"strictRefusals":66}
+Pinned real-transaction differential gate passes
