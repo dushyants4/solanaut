@@ -1,5 +1,10 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
+ADR-024's proposed failure budget awaits H16. It may stop unrelated useful
+traffic and cannot cancel prior admissions. Trusted reports, durable latching,
+release epochs and compatible history need fresh qualification; the proposal
+provides no achieved bound or release exception.
+
 The history-content evidence runner's lexical output check allows a symlinked
 parent to redirect evidence writes. The workspace-only regression confirms it;
 the maintained runner is unchanged. Separate proposed-copy preflight evidence

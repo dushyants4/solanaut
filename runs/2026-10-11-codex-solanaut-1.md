@@ -7,6 +7,18 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Traffic checkpoint 5cb7f50 has a verified complete local bundle, exact clean
+restore and successful full fsck. Move to architect for remaining RT-3 questions.
+Its repository-local PATTERNS/GAPS references are absent; record missing guidance
+without consulting another project's workspace.
+
+Propose ADR-024 and H16: a signed cumulative failure window with shape-independent
+counting, durable latch/release epochs, source trust and versioned history.
+Specify fresh workload/fault obligations and costs; choose no policy values
+from observed streams and implement no dependent code. No new measured claim
+or formal milestone credit follows. An initial multi-file patch fails because
+the RISKS heading differs from its expected context; no partial edits occur.
+
 Reliability checkpoint 7fd964b is locally committed and backed up with exact
 clean restore/full fsck. Reproduce the original synthetic traffic domains and
 seeds after freezing current inputs. Benign traffic passes, but alternating and

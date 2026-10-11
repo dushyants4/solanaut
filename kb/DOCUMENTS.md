@@ -1,5 +1,9 @@
 # DOCUMENTS.md — the document register
 
+2026-10-11 registers proposed ADR-024, H16, PROGRESS, RISKS and continuing run.
+The design cites existing S135 evidence and retains all current limits. No new
+measurement, accepted policy value, implementation or milestone credit follows.
+
 2026-10-11 registers original current synthetic traffic/loop reproduction,
 frozen inputs, full non-stop findings and benign/control output, receipt/index;
 CLAIMS S135, PROGRESS, HANDOFF and continuing record. No tuning or new population,

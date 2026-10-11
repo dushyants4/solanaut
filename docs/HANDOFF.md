@@ -159,6 +159,14 @@ devnet.
 
 ## 5. Questions and requests for the human
 
+**H16 — failed-outcome/alternating-loop decision (2026-10-11).** Accept, reject
+or revise `design/ADR-024-failed-outcome-budget.md`: an operator-signed cumulative
+failed-outcome window budget, independent of shape and Keel tuning, with durable
+latching and release epochs. S135 preserves the current non-stop findings.
+Values must precede fresh qualification. No dependent policy/profile/state/signer
+implementation before acceptance and no readiness gate changes. Generic
+continuation is not acceptance; independent work may continue while this waits.
+
 **H13 — hosted CI account availability (2026-10-09).** Exact archival run
 `37949577048` cannot start any job. GitHub's annotations say recent account
 payments failed or the spending limit needs increasing. The human account owner
@@ -254,6 +262,13 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 | O8 | .github/workflows/ci.yml | Exact unapplied independent diff: `evals/release/history-bytes/owner-ci.patch`; add pinned existing uv action and the nested PUB-1 content tests/faults to runtime jobs. Merge additively with other owed runtime-step drafts. | Thirteen component cases and nine omission trials are local proof. Read-only patch validation passes; all existing steps, matrix and limits remain. Actual history still refuses H15; this step cannot grant publication clearance. Owner application and exact hosted qualification remain owed. | no |
 
 ## 7. Codex's log
+
+2026-10-11 proposes ADR-024 for remaining RT-3 questions, H16. It specifies
+global failed-report counting, source trust, durable latch/release epochs,
+policy-history reconstruction and compatibility, with fresh evaluation/fault
+obligations. No defaults, source/gate change, acceptance or milestone credit.
+Architect-seat references `kb/PATTERNS.md` and `kb/GAPS.md` are absent here;
+no other workspace is searched or consulted.
 
 2026-10-11 original synthetic traffic reproduces its benign pass and known
 RT-3 limits on the current product: alternating/distinct failed outcomes still

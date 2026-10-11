@@ -1,5 +1,9 @@
 # PROGRESS.md
 
+ADR-024 proposes a failed-outcome budget for remaining RT-3 questions; H16
+requires acceptance before implementation. Current non-stop findings remain,
+no policy values are selected and no milestone advances.
+
 Current original synthetic traffic passes its benign gate but retains the
 alternating and distinct failed-outcome non-stop limits, S135. Both findings
 remain explicit alongside stopped streams; no controller tuning, broad loop
