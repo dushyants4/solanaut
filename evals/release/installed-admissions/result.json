@@ -1,0 +1,88 @@
+{
+  "faults": [
+    {
+      "fault": "ignore-window-cap",
+      "exit": 1,
+      "evidence": {
+        "proposed": 1000,
+        "admitted": 1000,
+        "denied": 0,
+        "recorded": 1000,
+        "destinations": 1000,
+        "identities": 1000,
+        "reserved": "1000000000",
+        "deniedRules": []
+      }
+    },
+    {
+      "fault": "drop-request",
+      "exit": 1,
+      "evidence": {
+        "proposed": 1000,
+        "admitted": 7,
+        "denied": 993,
+        "recorded": 1000,
+        "destinations": 1000,
+        "identities": 0,
+        "reserved": "7000000",
+        "deniedRules": [
+          "over-window-cap"
+        ]
+      }
+    },
+    {
+      "fault": "wrong-amount",
+      "exit": 1,
+      "evidence": {
+        "proposed": 1000,
+        "admitted": 6,
+        "denied": 994,
+        "recorded": 1000,
+        "destinations": 1000,
+        "identities": 1000,
+        "reserved": "6000006",
+        "deniedRules": [
+          "over-window-cap"
+        ]
+      }
+    }
+  ],
+  "controls": [
+    {
+      "node": "26.7.0",
+      "exit": 0,
+      "evidence": {
+        "proposed": 1000,
+        "admitted": 7,
+        "denied": 993,
+        "recorded": 1000,
+        "destinations": 1000,
+        "identities": 1000,
+        "reserved": "7000000",
+        "deniedRules": [
+          "over-window-cap"
+        ]
+      }
+    },
+    {
+      "node": "24.19.0",
+      "exit": 0,
+      "evidence": {
+        "proposed": 1000,
+        "admitted": 7,
+        "denied": 993,
+        "recorded": 1000,
+        "destinations": 1000,
+        "identities": 1000,
+        "reserved": "7000000",
+        "deniedRules": [
+          "over-window-cap"
+        ]
+      }
+    }
+  ],
+  "installedBytesRestored": true,
+  "boundInputsUnchanged": true,
+  "consumerRemoved": true,
+  "releaseClearance": false
+}

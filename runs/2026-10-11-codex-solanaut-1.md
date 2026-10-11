@@ -7,6 +7,15 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Crash diagnostic checkpoint 792f6d0 has a complete verified local bundle and
+exact clean restore. Continue with the unchanged logical admission workload
+through the installed SDK: public SDK imports and explicit reference helpers
+only. Full-population cap, request-binding and amount faults fail first; exact
+bytes restore before existing-runtime controls. Original controls and typecheck
+pass, inputs match and consumer/job finish. Register S141 without isolated
+concurrency or stable credit. A guessed compiled scratch path read fails; the
+actual archive member inspection supplies the required compiled anchors.
+
 Replay checkpoint 7da99f1 has a verified complete local bundle, exact clean
 restore and successful full fsck. Diagnose installed acknowledged-prefix recovery
 without changing the maintained gate. Freeze original inputs and the fresh
@@ -174,6 +183,16 @@ the unchanged original companion control also passes. Outputs stay separate,
 with no installation or full runtime/matrix claim.
 
 ## Found
+
+Direct backup fsck completes successfully. Installed-admission pre-commit close
+passes all checks except dirty work and deliberately unpushed HEAD. Staged diff
+and exact bindings are reviewed; the credential-word hit is the run record's
+secret-scan description, not credential material. Raw typecheck's final blank
+line is retained despite its whitespace warning. No product or protected edits.
+
+An asynchronous fsck session handle is unavailable when polled. Its retained
+log is empty, but that alone is not a confirmed exit; run direct fsck again
+to obtain completion explicitly before claiming this checkpoint's integrity.
 
 Installed-kill pre-commit close passes eight checks, including the staged
 tracked-file secret scan, and fails only dirty work and deliberately unpushed

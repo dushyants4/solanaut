@@ -1,0 +1,2 @@
+import {measureAdmissions, validateAdmissions} from "./concurrency.ts";
+const result = await measureAdmissions(); console.log(JSON.stringify(result)); validateAdmissions(result);

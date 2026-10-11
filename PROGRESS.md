@@ -1,5 +1,9 @@
 # PROGRESS.md
 
+Installed SDK queued admissions reproduce the original pending-window and
+complete-evidence checks after caught full-population faults, S141. This is
+logical SDK concurrency; isolated service and stable gates remain unqualified.
+
 Installed crash recovery exposes a maintained replay-count blind spot, S140.
 A separate proposed copy catches inconsistent results and passes existing-runtime
 recovery controls; O9 remains unapplied. No stable milestone advances.

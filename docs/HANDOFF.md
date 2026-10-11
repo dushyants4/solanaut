@@ -271,6 +271,12 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-11 original queued-admission workload passes through the installed SDK,
+S141. Complete cap, identity and amount faults refuse before restored existing
+runtime controls. Bound inputs remain unchanged and consumer/job finish. This
+is synchronous SDK admission after a JS barrier, not isolated/parallel service
+qualification. H11 and O9 remain; no stable milestone advances.
+
 2026-10-11 installed crash recovery confirms a replay-count blind spot, S140.
 Original seed still reports complete replay after an injected zero-count success.
 Separate proposed-copy analysis on a predeclared fresh seed catches inconsistent

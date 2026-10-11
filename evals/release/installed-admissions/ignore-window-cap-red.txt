@@ -1,0 +1,10 @@
+{"proposed":1000,"admitted":1000,"denied":0,"recorded":1000,"destinations":1000,"identities":1000,"reserved":"1000000000","deniedRules":[]}
+file:///tmp/solanaut-installed-admissions-hkdavbw6/concurrency.ts:9
+  if (result.admitted !== 7 || result.denied + result.admitted !== result.proposed) throw new Error("concurrent admission totals differ");
+                                                                                          ^
+
+Error: concurrent admission totals differ
+    at validateAdmissions (file:///tmp/solanaut-installed-admissions-hkdavbw6/concurrency.ts:9:91)
+    at file:///tmp/solanaut-installed-admissions-hkdavbw6/driver.ts:2:80
+
+Node.js v26.7.0

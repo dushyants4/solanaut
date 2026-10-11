@@ -1,0 +1,10 @@
+{"proposed":1000,"admitted":7,"denied":993,"recorded":1000,"destinations":1000,"identities":0,"reserved":"7000000","deniedRules":["over-window-cap"]}
+file:///tmp/solanaut-installed-admissions-hkdavbw6/concurrency.ts:10
+  if ([result.recorded, result.destinations, result.identities].some((count) => count !== result.proposed)) throw new Error("concurrent evidence incomplete or deduplicated");
+                                                                                                                  ^
+
+Error: concurrent evidence incomplete or deduplicated
+    at validateAdmissions (file:///tmp/solanaut-installed-admissions-hkdavbw6/concurrency.ts:10:115)
+    at file:///tmp/solanaut-installed-admissions-hkdavbw6/driver.ts:2:80
+
+Node.js v26.7.0

@@ -1,5 +1,10 @@
 # DOCUMENTS.md — the document register
 
+2026-10-11 registers installed queued-admission helper/frozen inputs/relocated
+runner, full-population faults and existing-runtime controls, receipt/index;
+CLAIMS S141, PROGRESS, HANDOFF and continuing run. No product, maintained gate,
+workload, public contract or stable milestone change.
+
 2026-10-11 registers installed kill diagnostic/frozen inputs/relocated sources,
 the maintained false-completeness output, separate proposed-copy faults and
 runtime controls, receipt/index; CLAIMS S140, SPEC, RISKS, PROGRESS, HANDOFF O9

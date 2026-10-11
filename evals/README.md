@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`release/installed-admissions.md`: original thousand queued proposals through
+the installed SDK, S141. Complete cap/identity/amount fault populations fail
+before existing-runtime controls. No parallel-process or isolated-service claim.
+
 `release/installed-kills.md`: installed acknowledged-prefix recovery reveals a
 maintained replay-count miss, S140. Separate fresh-seed proposal catches three
 faults and passes existing-runtime controls. O9 is unapplied; no full release credit.
