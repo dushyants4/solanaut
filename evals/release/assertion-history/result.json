@@ -1,0 +1,75 @@
+{
+  "faults": [
+    {
+      "fault": "omit-modified",
+      "exit": 1
+    },
+    {
+      "fault": "first-parent-only",
+      "exit": 1
+    },
+    {
+      "fault": "omit-deleted",
+      "exit": 1
+    },
+    {
+      "fault": "skip-scope-refusal",
+      "exit": 1
+    },
+    {
+      "fault": "skip-mode-check",
+      "exit": 1
+    },
+    {
+      "fault": "skip-pin-check",
+      "exit": 1
+    },
+    {
+      "fault": "false-review-clearance",
+      "exit": 1
+    }
+  ],
+  "actualCounts": {
+    "A": 103,
+    "M": 142,
+    "D": 0,
+    "T": 0
+  },
+  "commits": 138,
+  "editedTestFiles": [
+    "apps/signer/test/core.test.ts",
+    "apps/signer/test/handler.test.ts",
+    "apps/signer/test/rpc.test.ts",
+    "apps/signer/test/service.test.ts",
+    "apps/signer/test/socket.test.ts",
+    "evals/ci/bite-source.test.ts",
+    "evals/ci/coverage-hook.test.ts",
+    "evals/ci/coverage.test.ts",
+    "evals/ci/history.test.ts",
+    "evals/ci/mutation-recovery.test.ts",
+    "evals/ci/mutation-stage.test.ts",
+    "evals/ci/mutation-stop.test.ts",
+    "evals/ci/mutation.test.ts",
+    "evals/ci/ordinary-serial.test.ts",
+    "evals/ci/properties.test.ts",
+    "evals/ci/run-supervisor.test.ts",
+    "evals/packaging/packed-sdk.test.ts",
+    "packages/sdk/test/archive-cli.test.ts",
+    "packages/sdk/test/checkpoint-owned-recovery.test.ts",
+    "packages/sdk/test/checkpoint-prefix.test.ts",
+    "packages/sdk/test/checkpoint-publication.test.ts",
+    "packages/sdk/test/checkpoint-state.test.ts",
+    "packages/sdk/test/checkpoint.test.ts",
+    "packages/sdk/test/durable.test.ts",
+    "packages/sdk/test/owned-guard.test.ts",
+    "packages/sdk/test/ownership.test.ts",
+    "packages/sdk/test/sending-client.test.ts",
+    "packages/sdk/test/signed-policy.test.ts",
+    "packages/sdk/test/signing-history.test.ts",
+    "packages/sdk/test/storage-failures.test.ts"
+  ],
+  "boundInputsUnchanged": true,
+  "candidateRemoved": true,
+  "reviewComplete": false,
+  "releaseClearance": false
+}

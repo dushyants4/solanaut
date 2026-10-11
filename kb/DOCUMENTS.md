@@ -1,5 +1,10 @@
 # DOCUMENTS.md — the document register
 
+2026-10-11 registers assertion-history inventory/helper/tests/frozen campaign,
+initial vacuity/complete red evidence, copied faults, runtime controls, actual
+metadata and separate net diff, receipt/index; CLAIMS S143, PROGRESS, HANDOFF
+and continuing run. No protected gate, historical clearance or milestone change.
+
 2026-10-11 registers installed timing helper/current bindings/relocated analysis,
 archived-pin and replay-count refusals, complete samples/persisted history and
 controls, receipt/index; CLAIMS S142, PROGRESS, HANDOFF and continuing run.

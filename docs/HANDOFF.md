@@ -271,6 +271,13 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-11 named-test assertion-review preparation is in
+`evals/release/assertion-history.md`, S143. All-parent metadata includes edits
+to tests added after Beta; synthetic omissions and false-review completion
+refuse. Net baseline-existing durable assertion changes have their accepted
+ADR-019 reason recorded in the continuing run. Historical edge content/reasons
+and Claude's independent review remain pending; H15 is unchanged. No milestone advances.
+
 2026-10-11 current installed SDK scoped timings complete, S142. Freeze fresh
 candidate identities with unchanged workload/analysis; archived pins and planted
 incomplete replay refuse before healthy memory/file measurement. Actual persisted

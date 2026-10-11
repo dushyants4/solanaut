@@ -1,0 +1,67 @@
+✖ PUB-1 assertion preparation retains edits to tests added after baseline (90.711774ms)
+✔ PUB-1 assertion preparation records deletion and rename as complete old/new paths (61.113377ms)
+✖ PUB-1 assertion preparation includes branch commits and every merge-parent edge (92.88367ms)
+✔ PUB-1 assertion preparation refuses aliases, missing objects and unrelated baseline (158.151752ms)
+✔ PUB-1 assertion preparation refuses a test outside its bounded code roots (58.423308ms)
+✔ PUB-1 assertion preparation refuses a test symlink before any blob read (59.2314ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 4
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 577.195157
+
+✖ failing tests:
+
+test at evals/release/assertion-history.test.mjs:23:1
+✖ PUB-1 assertion preparation retains edits to tests added after baseline (90.711774ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      A: 1,
+      D: 0,
+  +   M: 0,
+  -   M: 2,
+      T: 0
+    }
+  
+      at file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:30:10
+      at fixture (file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:19:47)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:23:87)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { A: 1, M: 0, D: 0, T: 0 },
+    expected: { A: 1, M: 2, D: 0, T: 0 },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at evals/release/assertion-history.test.mjs:43:1
+✖ PUB-1 assertion preparation includes branch commits and every merge-parent edge (92.88367ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 4
+  
+      at file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:50:63
+      at fixture (file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:19:47)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:43:95)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 4,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

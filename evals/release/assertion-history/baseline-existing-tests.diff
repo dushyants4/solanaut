@@ -1,0 +1,31 @@
+diff --git a/packages/sdk/test/durable.test.ts b/packages/sdk/test/durable.test.ts
+index 30cd23f..59bb5d2 100644
+--- a/packages/sdk/test/durable.test.ts
++++ b/packages/sdk/test/durable.test.ts
+@@ -11,6 +11,7 @@ import { join } from "node:path";
+ import { test } from "node:test";
+ import { createGuard, replay, type Entry, type EntryStore } from "../src/guard.ts";
+ import { seal } from "../src/log.ts";
++import { fileStore } from "../src/record.ts";
+ import { craftLegacy, key } from "./support/craft.ts";
+ import { rng } from "./support/kit.ts";
+ import { runFrom, step, TOTAL_STEPS, WORKLOAD_POLICY } from "./support/workload.ts";
+@@ -133,7 +134,7 @@ test("a record that is broken before its last line refuses to start: fail closed
+   await variant("two entries swapped", (ls) => ([ls[2], ls[3]] = [ls[3]!, ls[2]!], ls), /breaks at seq/)();
+ });
+ 
+-test("one writer: a second guard on an open record refuses; a lock left by a dead process is taken over", async () => {
++test("one writer: a second guard refuses; stale SDK ownership requires kernel recovery", async () => {
+   const path = join(scratch(), "guard.jsonl");
+   const a = await createGuard({ policy: WORKLOAD_POLICY, log: path });
+   await assert.rejects(createGuard({ policy: WORKLOAD_POLICY, log: path }), /locked/);
+@@ -144,7 +145,8 @@ test("one writer: a second guard on an open record refuses; a lock left by a dea
+ 
+   const dead = spawnSync(process.execPath, ["-e", "process.stdout.write(String(process.pid))"], { encoding: "utf8" });
+   writeFileSync(`${path}.lock`, JSON.stringify({ pid: Number(dead.stdout), host: hostname(), at: 0 }));
+-  const b = await createGuard({ policy: WORKLOAD_POLICY, log: path });
++  await assert.rejects(createGuard({ policy: WORKLOAD_POLICY, log: path }), /locked/);
++  const b = await createGuard({ policy: WORKLOAD_POLICY, log: fileStore(path, { ownership: "kernel" }) });
+   b.close();
+ });
+ 

@@ -1,0 +1,155 @@
+✖ PUB-1 assertion preparation retains edits to tests added after baseline (94.630789ms)
+✖ PUB-1 assertion preparation records deletion and rename as complete old/new paths (50.329604ms)
+✖ PUB-1 assertion preparation includes branch commits and every merge-parent edge (76.363453ms)
+✖ PUB-1 assertion preparation refuses aliases, missing objects and unrelated baseline (39.934041ms)
+✖ PUB-1 assertion preparation refuses a test outside its bounded code roots (49.35527ms)
+✖ PUB-1 assertion preparation refuses a test symlink before any blob read (50.68826ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 0
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 417.5363
+
+✖ failing tests:
+
+test at evals/release/assertion-history.test.mjs:23:1
+✖ PUB-1 assertion preparation retains edits to tests added after baseline (94.630789ms)
+  AssertionError [ERR_ASSERTION]: /usr/bin/python: can't open file '/home/dashy/Projects/Solanaut/evals/release/assertion-history.py': [Errno 2] No such file or directory
+  
+  
+  2 !== 0
+  
+      at file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:28:52
+      at fixture (file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:19:47)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:23:87)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/release/assertion-history.test.mjs:35:1
+✖ PUB-1 assertion preparation records deletion and rename as complete old/new paths (50.329604ms)
+  AssertionError [ERR_ASSERTION]: /usr/bin/python: can't open file '/home/dashy/Projects/Solanaut/evals/release/assertion-history.py': [Errno 2] No such file or directory
+  
+  
+  2 !== 0
+  
+      at file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:38:52
+      at fixture (file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:19:47)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:35:97)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/release/assertion-history.test.mjs:43:1
+✖ PUB-1 assertion preparation includes branch commits and every merge-parent edge (76.363453ms)
+  AssertionError [ERR_ASSERTION]: /usr/bin/python: can't open file '/home/dashy/Projects/Solanaut/evals/release/assertion-history.py': [Errno 2] No such file or directory
+  
+  
+  2 !== 0
+  
+      at file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:48:52
+      at fixture (file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:19:47)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:43:95)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/release/assertion-history.test.mjs:54:1
+✖ PUB-1 assertion preparation refuses aliases, missing objects and unrelated baseline (39.934041ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  2 !== 0
+  
+      at file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:56:10
+      at fixture (file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:19:47)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:54:99)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at evals/release/assertion-history.test.mjs:64:1
+✖ PUB-1 assertion preparation refuses a test outside its bounded code roots (49.35527ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /test path outside bounded roots/. Input:
+  
+  "/usr/bin/python: can't open file '/home/dashy/Projects/Solanaut/evals/release/assertion-history.py': [Errno 2] No such file or directory\n"
+  
+      at file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:67:45
+      at fixture (file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:19:47)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:64:89)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: "/usr/bin/python: can't open file '/home/dashy/Projects/Solanaut/evals/release/assertion-history.py': [Errno 2] No such file or directory\n",
+    expected: /test path outside bounded roots/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at evals/release/assertion-history.test.mjs:70:1
+✖ PUB-1 assertion preparation refuses a test symlink before any blob read (50.68826ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /test object is not a regular blob/. Input:
+  
+  "/usr/bin/python: can't open file '/home/dashy/Projects/Solanaut/evals/release/assertion-history.py': [Errno 2] No such file or directory\n"
+  
+      at file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:74:10
+      at fixture (file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:19:47)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:70:87)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: "/usr/bin/python: can't open file '/home/dashy/Projects/Solanaut/evals/release/assertion-history.py': [Errno 2] No such file or directory\n",
+    expected: /test object is not a regular blob/,
+    operator: 'match',
+    diff: 'simple'
+  }

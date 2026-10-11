@@ -1,0 +1,14 @@
+✔ PUB-1 assertion preparation retains edits to tests added after baseline (79.636724ms)
+✔ PUB-1 assertion preparation records deletion and rename as complete old/new paths (55.156261ms)
+✔ PUB-1 assertion preparation includes branch commits and every merge-parent edge (91.799181ms)
+✔ PUB-1 assertion preparation refuses aliases, missing objects and unrelated baseline (152.165704ms)
+✔ PUB-1 assertion preparation refuses a test outside its bounded code roots (55.404396ms)
+✔ PUB-1 assertion preparation refuses a test symlink before any blob read (55.261782ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 539.405847

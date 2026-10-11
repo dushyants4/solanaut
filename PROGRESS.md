@@ -1,5 +1,9 @@
 # PROGRESS.md
 
+Bounded named-test history inventory and the baseline-existing durable assertion
+reason are prepared, S143. Historical content/reason review remains pending;
+no protected gate, independent review or stable milestone credit follows.
+
 Current installed SDK has scoped memory/synced-file timings and separate actual
 persisted replay proof, S142. Full performance, restart, baseline regression and
 stable gates remain unqualified; no milestone advances.

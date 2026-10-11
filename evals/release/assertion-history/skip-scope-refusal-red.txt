@@ -1,0 +1,36 @@
+✔ PUB-1 assertion preparation retains edits to tests added after baseline (83.511177ms)
+✔ PUB-1 assertion preparation records deletion and rename as complete old/new paths (57.81566ms)
+✔ PUB-1 assertion preparation includes branch commits and every merge-parent edge (89.868915ms)
+✔ PUB-1 assertion preparation refuses aliases, missing objects and unrelated baseline (163.426964ms)
+✖ PUB-1 assertion preparation refuses a test outside its bounded code roots (71.172574ms)
+✔ PUB-1 assertion preparation refuses a test symlink before any blob read (59.162983ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 582.549518
+
+✖ failing tests:
+
+test at evals/release/assertion-history.test.mjs:64:1
+✖ PUB-1 assertion preparation refuses a test outside its bounded code roots (71.172574ms)
+  AssertionError [ERR_ASSERTION]: Expected "actual" to be strictly unequal to: 0
+      at file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:67:10
+      at fixture (file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:19:47)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:64:89)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 0,
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }

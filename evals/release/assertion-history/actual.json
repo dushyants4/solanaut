@@ -1,0 +1,1872 @@
+{
+  "format": 1,
+  "baseline": "e925f1dfaabc7eedae361764a401baf7f9e9868b",
+  "head": "753769dcd435b9334e59e921727c04afd6cb6859",
+  "commits": [
+    "2030ef78340a7689ed28d64cbf3709afdb5cba93",
+    "31abf16def1af6b941974ebf5751c6e1193381d5",
+    "f16938c352c6019d2ef3904b4f3fc72b9341cb0f",
+    "5b4d3d615173345afcb6b3936d5451b323d182e6",
+    "6b0dc045dc7806649024ba63d926982b1c07383c",
+    "4a60f0af95ea8e060ea534a219aa5dee1fd5e725",
+    "033cd87553f9b87f1e4369cd0d66cf0913d452cb",
+    "425dcc832ad152eaad997ec45438efa95bf8d584",
+    "948d6a557344b450cbea026141309356a51ed52f",
+    "54ba32f218dca70b666ea86e8b8cb34f9084fb68",
+    "c9a84e099f904f19f500152d62f4fe2ea6ff0319",
+    "aecdf8edf78d529468bc8419252be8bea5e3cb22",
+    "f810612e82e35d439895900722bcd7ddf9c68588",
+    "7b55b37cf9a9751195463545c069615c9c73e395",
+    "7c42a410e635caf8344ba6d4774071e498b3746d",
+    "4af8e801fe63658e5b93440dd14f3fc7b2d13f51",
+    "b7d24a57cb68ae8cb4f99463f81997cd585f08c2",
+    "a40375a4d9f64c34c8eab46b3fd94a85c735a8ce",
+    "d64a9439ceb8e9b0148fee39f57f078efa9d057d",
+    "8b92594ce59caccae2464288b631d4040fce19ea",
+    "2d4b0cbd780557b0bac2ed6e3a7f71987fe78ac4",
+    "f6c8641e3117199cbafeed3f1ba0ffd94ba67847",
+    "f27337da7fd9b6730cd7add29f2d175a340b6585",
+    "f9c0cecc7786f9278228f533ffa8bdbcf55e94ec",
+    "dc1d6b19553bc6cc3abb36f6a0b6b47020fd5813",
+    "b41c8c71919db53a5a85c4de77a94dfc8ed4a9d9",
+    "59b2e1cfd982db02b0a91ec0311aa66048b70944",
+    "f6316712a0d79c04b3840cd6321c70cbcb126843",
+    "b758463cd2a0b8368bee72c9dc770fa14ff40ab5",
+    "3c36cb64d53db7c9d1e6704fd4aab8c18e7e6f36",
+    "91589b38ac8cb564605583e6759203b564ffd07b",
+    "f1b6010949d5729cf40cb459a364c81723486aad",
+    "22235e7a6b0abc3b96e5aafe37a93541d4042b0a",
+    "657e338f8f2fd329ab084ab8b14bbbc27a30160d",
+    "9775c837d2702ca416711b2056e8a1a0c80cf673",
+    "4c7c2d96f0ec9aec8a006e225cb44d440abdedc3",
+    "13bb0752ffee61e08b94f161673b318b763f3617",
+    "00c42e89fd137251659934ffbc28e013ee95a804",
+    "e508246ffb8479fcfc7a806916d88b79ec7c3af3",
+    "a4dba77e71495b2d2d12d6df80a644987fa79081",
+    "0978aaa8dbb30d3ae8a0e8db17e4c2c3cb1fe523",
+    "a94ecf06bdac8725fbd9e08961e1f998f0af5065",
+    "11cd688df2568bd9891b9e411d3dc486591b2b79",
+    "afa0b21bee61886ab23bcfbbb942efc24ec8c793",
+    "068e90c9ae4e333d9b9f412900bd478b84b350ad",
+    "3a142ea515cf5ca68eab6115f8c9853a946b16af",
+    "b6d91945ebc687df96bb09755a3bfc79bd8e4499",
+    "ddc8bb0af5a986eb6fd7faa46edfd4f9dbbe9ccd",
+    "f8d22f95ecc87537c9ad6e55e59cb097f37a3007",
+    "fdae9b4bfb732bdc435a03bcf8caa5c2e609fe5f",
+    "9ac6e7cc57fbb4c38e2265a3b8967efb7a85fccd",
+    "805e8bb612f61a867b55edc7f6d8f0b08e6f141e",
+    "40fa2fc9353105dc39576f37bb88e1a63148b423",
+    "afed152194958b21467653ccd136acfdf8d461a7",
+    "23f57d5373d12dcb1c5b932e36e1462ac551016b",
+    "b9c06eb49856026b9ab2806f0824974af07640db",
+    "afe482a5505517430b0dd21b54e6fd09eb088874",
+    "26925421d283b4a41146e2243ab3b585e051ef77",
+    "6d81f8b747c1b04003b8bd83f12bed6e5fcbca51",
+    "6162efb3ea45a2997eb771ea40fd6b251befb549",
+    "0c61fa365ec59bf75daf83567d6be2d3aa5cf37d",
+    "995c5b073c31a9d0cc1ee9c79500ed3af0675e8a",
+    "f05c84dea1da1ff5c92a0b904520e9326023f4c9",
+    "49f753b3b5e806b68b45608b11984b1484f9703f",
+    "9a6480fe2291600b4b8460c38e113c844b010ff8",
+    "c2c2f5cfe7a33c627ce721325b1e06cb1e1587af",
+    "b3524547a3055e04f7d12d3f20565020ba81d522",
+    "a4d1c25a153c6cf5adf26f8b93189b2b58791938",
+    "5b00257b20c8bbfc643d0fc093f6e509dc3a3d38",
+    "39c24de89a3e860cd9e4a08517a616481c5c72ca",
+    "43f20c08b264c1fab9d40166dd357e5b71c7a293",
+    "5a33e698703446708729a8271a7a4c38a3a7dce7",
+    "0310911a0b8e97c1b1622a673ab42954052bfd3b",
+    "c2df0433912490fa934884a130ae81ae6c54d4de",
+    "588a1eff19d1cb02cb61b4f42b046d17201ff317",
+    "0332c977eb0dadec8a5592324fb8ad1f76ab2db0",
+    "7118ae242b25f50305c0b49d6f9c9c4da2e30df9",
+    "d0d8dc344c902548ac964f16cdd9f223a9f1e4af",
+    "8a343d42b0d60dd188ba7fc5f2d9a198d6346364",
+    "0a199aab336fc80431b3d0f360eefd06be06f486",
+    "9996f001e2b5ed817c347f2546d765ba1abe2911",
+    "789bc7b8b6b949c6d6125efba76a329c3cfddda8",
+    "b1d8ed153ed162293bb923a5134703ea4eb3ca7c",
+    "4325a0350e7b80dfb3ab5155ec9e6c7ae59717e5",
+    "36a1ae793e08855e817496837fcf5d7ea34abd37",
+    "c891c8cc99aea4d5de531f2f5e4426dabc95feb2",
+    "944579d469c9f4712f4e74d6cbfff3a394ba0cdb",
+    "fe6369f207a636a7324cbbbe8c636142a7e83033",
+    "4d9d1fe02f69e057b3ae1691d7ce34f2bd5ed2cc",
+    "46922d5c5d851218ffbc6f162ba1c35efff5d32f",
+    "7a64856926752cf27ef25711816c93648ccde402",
+    "fba638ad2d55b359771a6cf4ac517a3b1c6521ad",
+    "f5380fbf2fac1bf079a584acd3e57bf37c9e539a",
+    "12e3895046c0ead8bb75b0e3eff769eab3cb62cf",
+    "8b1d29de91a25dec2f4944a4cfa33e43e38524a3",
+    "84cac38725cb5ad1fdea9ff20bf004686cc41aa1",
+    "67948e693ff6790d39b903d947131d013ed50332",
+    "701372e8de28160ec8965a3600de184d20f0c00a",
+    "72dde3929b84ea77c8e0c9f5cbddfcbbaf0da62a",
+    "3fe0f0d6859d20f5982cc6cb7e7808a93f964909",
+    "49f6d6369e58d7f4c6c4f0cbd41705c080f498af",
+    "ae6ba560102fe54a0b1a584b4bcc74abf1f9e558",
+    "4addaa4694e017a6a0b1269668a1d4b006e53dc7",
+    "227b0bb95476feccebaa9516ca88c86a90050acb",
+    "826d05864271f3b2af05c8a8eb11243b1755c50f",
+    "f6d5e298924e752ba05cb97eb02914634b95f42f",
+    "f1e253ffb791b7e3ca3710427f9a26ee90ec8504",
+    "2dd8264b06dec9cc3fd48cfef79fb3ba20964f8f",
+    "206744723dd00b70ad96b6701ad29a3c526f2dce",
+    "e16c9df4a54ba0adf6b8d07c0dd1d86ab9b4c890",
+    "f4f3d9282af983908bbd2a7e4f3b5f6212d96795",
+    "b5498e8f919181e1cf397dd8dc684b0bf7450a1a",
+    "71a1ef444f55ee636ddec66618b3b11bd104946e",
+    "32abc738f436b392f41a0a77643838a143eb3d35",
+    "001c6c97d10604ac0751af7a6ebc81df6230b609",
+    "69ada72d35b4298db61cb5dd4b22bad2771d863e",
+    "e7d92e1edeb86d6de2d9da36899d2e918f16341e",
+    "1633231b4765438152e2bb9c78278bc9fe923062",
+    "11234ccf65d80c1a0d2162a53321b6c2e9acc9a7",
+    "e71523834fcffe92cd902fbaf21c74465ac6c805",
+    "fc3caff2579450d752545cb52ebcd693c0557b13",
+    "be7d29694f13418f1ff0a48b0b6a5721e08797c4",
+    "e537f636717137b75ddaa6c3a729efca2a639215",
+    "5852778c0593f73c3a93912137e0a8b244ea4651",
+    "6c61cf3157be2f1b2c492b783287a7136400b640",
+    "6b1f78d6f4ed0c956831a625d29f8a00c9455e00",
+    "fd5ec6ef6bd38acc8907626b2b09554191b03d8a",
+    "7fd964b5314814e46cbcb1d7a684f467a63c17b7",
+    "5cb7f507e2e3ca0f46cefa46cf471c4d1c7fdabe",
+    "fa2f6e24ec0f30e02e7b53f65b71486ab6d995b6",
+    "25b4c4520dee786f30b8baf9506eaa1734900917",
+    "0810716542ffd74280baa4766e3a58e0aefef0fc",
+    "abed480e5d4a79fb4de65a6ab9413d6b87474889",
+    "ddc335819682296f789807f8f6c30a93a5187da8",
+    "7da99f1cd45fd4ac6671344aa1eb63d99faa26f9",
+    "792f6d0392e673d55f9bfdf515dcab01d3ab34a4",
+    "54b15d5fcbc9bb5171656cfed13951f05e8a8841",
+    "753769dcd435b9334e59e921727c04afd6cb6859"
+  ],
+  "edges": [
+    {
+      "parent": "e925f1dfaabc7eedae361764a401baf7f9e9868b",
+      "commit": "2030ef78340a7689ed28d64cbf3709afdb5cba93",
+      "status": "A",
+      "path": "packages/sdk/test/latch-c.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "2030ef78340a7689ed28d64cbf3709afdb5cba93",
+      "commit": "31abf16def1af6b941974ebf5751c6e1193381d5",
+      "status": "A",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "31abf16def1af6b941974ebf5751c6e1193381d5",
+      "commit": "f16938c352c6019d2ef3904b4f3fc72b9341cb0f",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "6b0dc045dc7806649024ba63d926982b1c07383c",
+      "commit": "4a60f0af95ea8e060ea534a219aa5dee1fd5e725",
+      "status": "A",
+      "path": "packages/sdk/test/signed-policy.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "4a60f0af95ea8e060ea534a219aa5dee1fd5e725",
+      "commit": "033cd87553f9b87f1e4369cd0d66cf0913d452cb",
+      "status": "M",
+      "path": "packages/sdk/test/durable.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "4a60f0af95ea8e060ea534a219aa5dee1fd5e725",
+      "commit": "033cd87553f9b87f1e4369cd0d66cf0913d452cb",
+      "status": "A",
+      "path": "packages/sdk/test/ownership.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "4a60f0af95ea8e060ea534a219aa5dee1fd5e725",
+      "commit": "033cd87553f9b87f1e4369cd0d66cf0913d452cb",
+      "status": "A",
+      "path": "packages/sdk/test/storage-failures.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "033cd87553f9b87f1e4369cd0d66cf0913d452cb",
+      "commit": "425dcc832ad152eaad997ec45438efa95bf8d584",
+      "status": "A",
+      "path": "packages/sdk/test/request-identity.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "425dcc832ad152eaad997ec45438efa95bf8d584",
+      "commit": "948d6a557344b450cbea026141309356a51ed52f",
+      "status": "A",
+      "path": "packages/sdk/test/signing-history.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "948d6a557344b450cbea026141309356a51ed52f",
+      "commit": "54ba32f218dca70b666ea86e8b8cb34f9084fb68",
+      "status": "A",
+      "path": "apps/signer/test/core.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "54ba32f218dca70b666ea86e8b8cb34f9084fb68",
+      "commit": "c9a84e099f904f19f500152d62f4fe2ea6ff0319",
+      "status": "A",
+      "path": "apps/signer/test/rpc.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "c9a84e099f904f19f500152d62f4fe2ea6ff0319",
+      "commit": "aecdf8edf78d529468bc8419252be8bea5e3cb22",
+      "status": "A",
+      "path": "apps/signer/test/clock.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "c9a84e099f904f19f500152d62f4fe2ea6ff0319",
+      "commit": "aecdf8edf78d529468bc8419252be8bea5e3cb22",
+      "status": "A",
+      "path": "packages/sdk/test/authority.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "aecdf8edf78d529468bc8419252be8bea5e3cb22",
+      "commit": "f810612e82e35d439895900722bcd7ddf9c68588",
+      "status": "M",
+      "path": "apps/signer/test/rpc.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "f810612e82e35d439895900722bcd7ddf9c68588",
+      "commit": "7b55b37cf9a9751195463545c069615c9c73e395",
+      "status": "A",
+      "path": "apps/signer/test/socket.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "7b55b37cf9a9751195463545c069615c9c73e395",
+      "commit": "7c42a410e635caf8344ba6d4774071e498b3746d",
+      "status": "A",
+      "path": "packages/sdk/test/control-request.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "7c42a410e635caf8344ba6d4774071e498b3746d",
+      "commit": "4af8e801fe63658e5b93440dd14f3fc7b2d13f51",
+      "status": "M",
+      "path": "apps/signer/test/socket.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "4af8e801fe63658e5b93440dd14f3fc7b2d13f51",
+      "commit": "b7d24a57cb68ae8cb4f99463f81997cd585f08c2",
+      "status": "M",
+      "path": "apps/signer/test/core.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "4af8e801fe63658e5b93440dd14f3fc7b2d13f51",
+      "commit": "b7d24a57cb68ae8cb4f99463f81997cd585f08c2",
+      "status": "A",
+      "path": "apps/signer/test/handler.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "b7d24a57cb68ae8cb4f99463f81997cd585f08c2",
+      "commit": "a40375a4d9f64c34c8eab46b3fd94a85c735a8ce",
+      "status": "M",
+      "path": "apps/signer/test/handler.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "b7d24a57cb68ae8cb4f99463f81997cd585f08c2",
+      "commit": "a40375a4d9f64c34c8eab46b3fd94a85c735a8ce",
+      "status": "M",
+      "path": "apps/signer/test/socket.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "d64a9439ceb8e9b0148fee39f57f078efa9d057d",
+      "commit": "8b92594ce59caccae2464288b631d4040fce19ea",
+      "status": "M",
+      "path": "apps/signer/test/core.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "2d4b0cbd780557b0bac2ed6e3a7f71987fe78ac4",
+      "commit": "f6c8641e3117199cbafeed3f1ba0ffd94ba67847",
+      "status": "A",
+      "path": "apps/signer/test/policy-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "2d4b0cbd780557b0bac2ed6e3a7f71987fe78ac4",
+      "commit": "f6c8641e3117199cbafeed3f1ba0ffd94ba67847",
+      "status": "M",
+      "path": "packages/sdk/test/signing-history.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "f6c8641e3117199cbafeed3f1ba0ffd94ba67847",
+      "commit": "f27337da7fd9b6730cd7add29f2d175a340b6585",
+      "status": "A",
+      "path": "apps/signer/test/service.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "f27337da7fd9b6730cd7add29f2d175a340b6585",
+      "commit": "f9c0cecc7786f9278228f533ffa8bdbcf55e94ec",
+      "status": "M",
+      "path": "apps/signer/test/service.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "f27337da7fd9b6730cd7add29f2d175a340b6585",
+      "commit": "f9c0cecc7786f9278228f533ffa8bdbcf55e94ec",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "f27337da7fd9b6730cd7add29f2d175a340b6585",
+      "commit": "f9c0cecc7786f9278228f533ffa8bdbcf55e94ec",
+      "status": "A",
+      "path": "packages/sdk/test/sending-client.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "f9c0cecc7786f9278228f533ffa8bdbcf55e94ec",
+      "commit": "dc1d6b19553bc6cc3abb36f6a0b6b47020fd5813",
+      "status": "A",
+      "path": "evals/ci/bite.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "dc1d6b19553bc6cc3abb36f6a0b6b47020fd5813",
+      "commit": "b41c8c71919db53a5a85c4de77a94dfc8ed4a9d9",
+      "status": "A",
+      "path": "evals/ci/properties.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "dc1d6b19553bc6cc3abb36f6a0b6b47020fd5813",
+      "commit": "b41c8c71919db53a5a85c4de77a94dfc8ed4a9d9",
+      "status": "A",
+      "path": "packages/sdk/test/properties.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "b41c8c71919db53a5a85c4de77a94dfc8ed4a9d9",
+      "commit": "59b2e1cfd982db02b0a91ec0311aa66048b70944",
+      "status": "A",
+      "path": "evals/ci/fuzz.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "59b2e1cfd982db02b0a91ec0311aa66048b70944",
+      "commit": "f6316712a0d79c04b3840cd6321c70cbcb126843",
+      "status": "M",
+      "path": "evals/ci/properties.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "59b2e1cfd982db02b0a91ec0311aa66048b70944",
+      "commit": "f6316712a0d79c04b3840cd6321c70cbcb126843",
+      "status": "A",
+      "path": "packages/sdk/test/caps.property.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "f6316712a0d79c04b3840cd6321c70cbcb126843",
+      "commit": "b758463cd2a0b8368bee72c9dc770fa14ff40ab5",
+      "status": "A",
+      "path": "evals/ci/replay.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "b758463cd2a0b8368bee72c9dc770fa14ff40ab5",
+      "commit": "3c36cb64d53db7c9d1e6704fd4aab8c18e7e6f36",
+      "status": "A",
+      "path": "evals/ci/concurrency.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "3c36cb64d53db7c9d1e6704fd4aab8c18e7e6f36",
+      "commit": "91589b38ac8cb564605583e6759203b564ffd07b",
+      "status": "A",
+      "path": "evals/ci/kills.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "91589b38ac8cb564605583e6759203b564ffd07b",
+      "commit": "f1b6010949d5729cf40cb459a364c81723486aad",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "91589b38ac8cb564605583e6759203b564ffd07b",
+      "commit": "f1b6010949d5729cf40cb459a364c81723486aad",
+      "status": "A",
+      "path": "packages/sdk/test/archive.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "f1b6010949d5729cf40cb459a364c81723486aad",
+      "commit": "22235e7a6b0abc3b96e5aafe37a93541d4042b0a",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "f1b6010949d5729cf40cb459a364c81723486aad",
+      "commit": "22235e7a6b0abc3b96e5aafe37a93541d4042b0a",
+      "status": "A",
+      "path": "packages/sdk/test/archive-cli.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "22235e7a6b0abc3b96e5aafe37a93541d4042b0a",
+      "commit": "657e338f8f2fd329ab084ab8b14bbbc27a30160d",
+      "status": "M",
+      "path": "apps/signer/test/rpc.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "22235e7a6b0abc3b96e5aafe37a93541d4042b0a",
+      "commit": "657e338f8f2fd329ab084ab8b14bbbc27a30160d",
+      "status": "M",
+      "path": "apps/signer/test/socket.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "22235e7a6b0abc3b96e5aafe37a93541d4042b0a",
+      "commit": "657e338f8f2fd329ab084ab8b14bbbc27a30160d",
+      "status": "A",
+      "path": "evals/ci/coverage-hook.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "22235e7a6b0abc3b96e5aafe37a93541d4042b0a",
+      "commit": "657e338f8f2fd329ab084ab8b14bbbc27a30160d",
+      "status": "A",
+      "path": "evals/ci/coverage-instrument.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "22235e7a6b0abc3b96e5aafe37a93541d4042b0a",
+      "commit": "657e338f8f2fd329ab084ab8b14bbbc27a30160d",
+      "status": "A",
+      "path": "evals/ci/coverage-merge.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "22235e7a6b0abc3b96e5aafe37a93541d4042b0a",
+      "commit": "657e338f8f2fd329ab084ab8b14bbbc27a30160d",
+      "status": "A",
+      "path": "evals/ci/coverage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "22235e7a6b0abc3b96e5aafe37a93541d4042b0a",
+      "commit": "657e338f8f2fd329ab084ab8b14bbbc27a30160d",
+      "status": "A",
+      "path": "packages/sdk/test/boundary-validation.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "22235e7a6b0abc3b96e5aafe37a93541d4042b0a",
+      "commit": "657e338f8f2fd329ab084ab8b14bbbc27a30160d",
+      "status": "M",
+      "path": "packages/sdk/test/signed-policy.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "657e338f8f2fd329ab084ab8b14bbbc27a30160d",
+      "commit": "9775c837d2702ca416711b2056e8a1a0c80cf673",
+      "status": "A",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "657e338f8f2fd329ab084ab8b14bbbc27a30160d",
+      "commit": "9775c837d2702ca416711b2056e8a1a0c80cf673",
+      "status": "A",
+      "path": "evals/ci/mutation.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "4c7c2d96f0ec9aec8a006e225cb44d440abdedc3",
+      "commit": "13bb0752ffee61e08b94f161673b318b763f3617",
+      "status": "A",
+      "path": "evals/ci/differential-check.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "4c7c2d96f0ec9aec8a006e225cb44d440abdedc3",
+      "commit": "13bb0752ffee61e08b94f161673b318b763f3617",
+      "status": "A",
+      "path": "evals/ci/differential-run.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "4c7c2d96f0ec9aec8a006e225cb44d440abdedc3",
+      "commit": "13bb0752ffee61e08b94f161673b318b763f3617",
+      "status": "A",
+      "path": "evals/ci/differential.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "4c7c2d96f0ec9aec8a006e225cb44d440abdedc3",
+      "commit": "13bb0752ffee61e08b94f161673b318b763f3617",
+      "status": "A",
+      "path": "evals/ci/performance.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "13bb0752ffee61e08b94f161673b318b763f3617",
+      "commit": "00c42e89fd137251659934ffbc28e013ee95a804",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "13bb0752ffee61e08b94f161673b318b763f3617",
+      "commit": "00c42e89fd137251659934ffbc28e013ee95a804",
+      "status": "A",
+      "path": "evals/ci/traffic-run.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "13bb0752ffee61e08b94f161673b318b763f3617",
+      "commit": "00c42e89fd137251659934ffbc28e013ee95a804",
+      "status": "A",
+      "path": "evals/ci/traffic-workload.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "13bb0752ffee61e08b94f161673b318b763f3617",
+      "commit": "00c42e89fd137251659934ffbc28e013ee95a804",
+      "status": "A",
+      "path": "evals/ci/traffic.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "13bb0752ffee61e08b94f161673b318b763f3617",
+      "commit": "00c42e89fd137251659934ffbc28e013ee95a804",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "13bb0752ffee61e08b94f161673b318b763f3617",
+      "commit": "00c42e89fd137251659934ffbc28e013ee95a804",
+      "status": "A",
+      "path": "packages/sdk/test/archive-anchor.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "13bb0752ffee61e08b94f161673b318b763f3617",
+      "commit": "00c42e89fd137251659934ffbc28e013ee95a804",
+      "status": "M",
+      "path": "packages/sdk/test/archive-cli.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "00c42e89fd137251659934ffbc28e013ee95a804",
+      "commit": "e508246ffb8479fcfc7a806916d88b79ec7c3af3",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "00c42e89fd137251659934ffbc28e013ee95a804",
+      "commit": "e508246ffb8479fcfc7a806916d88b79ec7c3af3",
+      "status": "A",
+      "path": "packages/sdk/test/prepare-policy-cli.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "e508246ffb8479fcfc7a806916d88b79ec7c3af3",
+      "commit": "a4dba77e71495b2d2d12d6df80a644987fa79081",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "0978aaa8dbb30d3ae8a0e8db17e4c2c3cb1fe523",
+      "commit": "a94ecf06bdac8725fbd9e08961e1f998f0af5065",
+      "status": "A",
+      "path": "evals/ci/history.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "a94ecf06bdac8725fbd9e08961e1f998f0af5065",
+      "commit": "11cd688df2568bd9891b9e411d3dc486591b2b79",
+      "status": "A",
+      "path": "evals/ci/property-trial.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "11cd688df2568bd9891b9e411d3dc486591b2b79",
+      "commit": "afa0b21bee61886ab23bcfbbb942efc24ec8c793",
+      "status": "A",
+      "path": "evals/ci/coverage-options.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "11cd688df2568bd9891b9e411d3dc486591b2b79",
+      "commit": "afa0b21bee61886ab23bcfbbb942efc24ec8c793",
+      "status": "M",
+      "path": "evals/ci/coverage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "11cd688df2568bd9891b9e411d3dc486591b2b79",
+      "commit": "afa0b21bee61886ab23bcfbbb942efc24ec8c793",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "11cd688df2568bd9891b9e411d3dc486591b2b79",
+      "commit": "afa0b21bee61886ab23bcfbbb942efc24ec8c793",
+      "status": "A",
+      "path": "packages/sdk/test/checkpoint.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "068e90c9ae4e333d9b9f412900bd478b84b350ad",
+      "commit": "3a142ea515cf5ca68eab6115f8c9853a946b16af",
+      "status": "A",
+      "path": "evals/ci/bite-source.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "068e90c9ae4e333d9b9f412900bd478b84b350ad",
+      "commit": "3a142ea515cf5ca68eab6115f8c9853a946b16af",
+      "status": "A",
+      "path": "evals/ci/run-completion.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "3a142ea515cf5ca68eab6115f8c9853a946b16af",
+      "commit": "b6d91945ebc687df96bb09755a3bfc79bd8e4499",
+      "status": "A",
+      "path": "evals/ci/run-supervisor.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "b6d91945ebc687df96bb09755a3bfc79bd8e4499",
+      "commit": "ddc8bb0af5a986eb6fd7faa46edfd4f9dbbe9ccd",
+      "status": "M",
+      "path": "evals/ci/run-supervisor.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "ddc8bb0af5a986eb6fd7faa46edfd4f9dbbe9ccd",
+      "commit": "f8d22f95ecc87537c9ad6e55e59cb097f37a3007",
+      "status": "A",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "f8d22f95ecc87537c9ad6e55e59cb097f37a3007",
+      "commit": "fdae9b4bfb732bdc435a03bcf8caa5c2e609fe5f",
+      "status": "A",
+      "path": "evals/ci/dependency.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "fdae9b4bfb732bdc435a03bcf8caa5c2e609fe5f",
+      "commit": "9ac6e7cc57fbb4c38e2265a3b8967efb7a85fccd",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "9ac6e7cc57fbb4c38e2265a3b8967efb7a85fccd",
+      "commit": "805e8bb612f61a867b55edc7f6d8f0b08e6f141e",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "9ac6e7cc57fbb4c38e2265a3b8967efb7a85fccd",
+      "commit": "805e8bb612f61a867b55edc7f6d8f0b08e6f141e",
+      "status": "M",
+      "path": "packages/sdk/test/checkpoint.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "805e8bb612f61a867b55edc7f6d8f0b08e6f141e",
+      "commit": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+      "status": "M",
+      "path": "evals/ci/coverage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "805e8bb612f61a867b55edc7f6d8f0b08e6f141e",
+      "commit": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+      "status": "A",
+      "path": "evals/ci/mutation/retired-9ac6e7c/inputs/packages/sdk/test/adapters.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "805e8bb612f61a867b55edc7f6d8f0b08e6f141e",
+      "commit": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+      "status": "A",
+      "path": "evals/ci/mutation/retired-9ac6e7c/inputs/packages/sdk/test/admission.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "805e8bb612f61a867b55edc7f6d8f0b08e6f141e",
+      "commit": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+      "status": "A",
+      "path": "evals/ci/mutation/retired-9ac6e7c/inputs/packages/sdk/test/boundary-validation.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "805e8bb612f61a867b55edc7f6d8f0b08e6f141e",
+      "commit": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+      "status": "A",
+      "path": "evals/ci/mutation/retired-9ac6e7c/inputs/packages/sdk/test/classify.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "805e8bb612f61a867b55edc7f6d8f0b08e6f141e",
+      "commit": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+      "status": "A",
+      "path": "evals/ci/mutation/retired-9ac6e7c/inputs/packages/sdk/test/decode.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "805e8bb612f61a867b55edc7f6d8f0b08e6f141e",
+      "commit": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+      "status": "A",
+      "path": "evals/ci/mutation/retired-9ac6e7c/inputs/packages/sdk/test/drain.battery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "805e8bb612f61a867b55edc7f6d8f0b08e6f141e",
+      "commit": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+      "status": "A",
+      "path": "evals/ci/mutation/retired-9ac6e7c/inputs/packages/sdk/test/durable.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "805e8bb612f61a867b55edc7f6d8f0b08e6f141e",
+      "commit": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+      "status": "A",
+      "path": "evals/ci/mutation/retired-9ac6e7c/inputs/packages/sdk/test/inspect.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "805e8bb612f61a867b55edc7f6d8f0b08e6f141e",
+      "commit": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+      "status": "A",
+      "path": "evals/ci/mutation/retired-9ac6e7c/inputs/packages/sdk/test/keel.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "805e8bb612f61a867b55edc7f6d8f0b08e6f141e",
+      "commit": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+      "status": "A",
+      "path": "evals/ci/mutation/retired-9ac6e7c/inputs/packages/sdk/test/latch-c.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "805e8bb612f61a867b55edc7f6d8f0b08e6f141e",
+      "commit": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+      "status": "A",
+      "path": "evals/ci/mutation/retired-9ac6e7c/inputs/packages/sdk/test/ownership.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "805e8bb612f61a867b55edc7f6d8f0b08e6f141e",
+      "commit": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+      "status": "A",
+      "path": "evals/ci/mutation/retired-9ac6e7c/inputs/packages/sdk/test/pin-table.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "805e8bb612f61a867b55edc7f6d8f0b08e6f141e",
+      "commit": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+      "status": "A",
+      "path": "evals/ci/mutation/retired-9ac6e7c/inputs/packages/sdk/test/policy.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "805e8bb612f61a867b55edc7f6d8f0b08e6f141e",
+      "commit": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+      "status": "A",
+      "path": "evals/ci/mutation/retired-9ac6e7c/inputs/packages/sdk/test/request-identity.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "805e8bb612f61a867b55edc7f6d8f0b08e6f141e",
+      "commit": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+      "status": "A",
+      "path": "evals/ci/mutation/retired-9ac6e7c/inputs/packages/sdk/test/sensor.battery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "805e8bb612f61a867b55edc7f6d8f0b08e6f141e",
+      "commit": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+      "status": "A",
+      "path": "evals/ci/mutation/retired-9ac6e7c/inputs/packages/sdk/test/signed-policy.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "805e8bb612f61a867b55edc7f6d8f0b08e6f141e",
+      "commit": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+      "status": "A",
+      "path": "evals/ci/mutation/retired-9ac6e7c/inputs/packages/sdk/test/signing-history.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "805e8bb612f61a867b55edc7f6d8f0b08e6f141e",
+      "commit": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+      "status": "A",
+      "path": "evals/ci/mutation/retired-9ac6e7c/inputs/packages/sdk/test/storage-failures.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "805e8bb612f61a867b55edc7f6d8f0b08e6f141e",
+      "commit": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "805e8bb612f61a867b55edc7f6d8f0b08e6f141e",
+      "commit": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+      "status": "A",
+      "path": "packages/sdk/test/checkpoint-archives.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "805e8bb612f61a867b55edc7f6d8f0b08e6f141e",
+      "commit": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+      "status": "A",
+      "path": "packages/sdk/test/malformed-replay.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+      "commit": "afed152194958b21467653ccd136acfdf8d461a7",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+      "commit": "afed152194958b21467653ccd136acfdf8d461a7",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+      "commit": "afed152194958b21467653ccd136acfdf8d461a7",
+      "status": "M",
+      "path": "evals/ci/mutation.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "afed152194958b21467653ccd136acfdf8d461a7",
+      "commit": "23f57d5373d12dcb1c5b932e36e1462ac551016b",
+      "status": "M",
+      "path": "evals/ci/coverage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "afed152194958b21467653ccd136acfdf8d461a7",
+      "commit": "23f57d5373d12dcb1c5b932e36e1462ac551016b",
+      "status": "A",
+      "path": "packages/sdk/test/checkpoint-prefix.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "23f57d5373d12dcb1c5b932e36e1462ac551016b",
+      "commit": "b9c06eb49856026b9ab2806f0824974af07640db",
+      "status": "M",
+      "path": "evals/ci/coverage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "23f57d5373d12dcb1c5b932e36e1462ac551016b",
+      "commit": "b9c06eb49856026b9ab2806f0824974af07640db",
+      "status": "A",
+      "path": "packages/sdk/test/checkpoint-state.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "b9c06eb49856026b9ab2806f0824974af07640db",
+      "commit": "afe482a5505517430b0dd21b54e6fd09eb088874",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "b9c06eb49856026b9ab2806f0824974af07640db",
+      "commit": "afe482a5505517430b0dd21b54e6fd09eb088874",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "afe482a5505517430b0dd21b54e6fd09eb088874",
+      "commit": "26925421d283b4a41146e2243ab3b585e051ef77",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "afe482a5505517430b0dd21b54e6fd09eb088874",
+      "commit": "26925421d283b4a41146e2243ab3b585e051ef77",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "afe482a5505517430b0dd21b54e6fd09eb088874",
+      "commit": "26925421d283b4a41146e2243ab3b585e051ef77",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "afe482a5505517430b0dd21b54e6fd09eb088874",
+      "commit": "26925421d283b4a41146e2243ab3b585e051ef77",
+      "status": "M",
+      "path": "packages/sdk/test/checkpoint-state.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "afe482a5505517430b0dd21b54e6fd09eb088874",
+      "commit": "26925421d283b4a41146e2243ab3b585e051ef77",
+      "status": "M",
+      "path": "packages/sdk/test/signed-policy.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "26925421d283b4a41146e2243ab3b585e051ef77",
+      "commit": "6d81f8b747c1b04003b8bd83f12bed6e5fcbca51",
+      "status": "M",
+      "path": "evals/ci/coverage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "26925421d283b4a41146e2243ab3b585e051ef77",
+      "commit": "6d81f8b747c1b04003b8bd83f12bed6e5fcbca51",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "26925421d283b4a41146e2243ab3b585e051ef77",
+      "commit": "6d81f8b747c1b04003b8bd83f12bed6e5fcbca51",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "26925421d283b4a41146e2243ab3b585e051ef77",
+      "commit": "6d81f8b747c1b04003b8bd83f12bed6e5fcbca51",
+      "status": "A",
+      "path": "evals/ci/ordinary-serial.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "26925421d283b4a41146e2243ab3b585e051ef77",
+      "commit": "6d81f8b747c1b04003b8bd83f12bed6e5fcbca51",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "26925421d283b4a41146e2243ab3b585e051ef77",
+      "commit": "6d81f8b747c1b04003b8bd83f12bed6e5fcbca51",
+      "status": "A",
+      "path": "packages/sdk/test/checkpoint-bundle.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "6d81f8b747c1b04003b8bd83f12bed6e5fcbca51",
+      "commit": "6162efb3ea45a2997eb771ea40fd6b251befb549",
+      "status": "M",
+      "path": "evals/ci/coverage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "6d81f8b747c1b04003b8bd83f12bed6e5fcbca51",
+      "commit": "6162efb3ea45a2997eb771ea40fd6b251befb549",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "6d81f8b747c1b04003b8bd83f12bed6e5fcbca51",
+      "commit": "6162efb3ea45a2997eb771ea40fd6b251befb549",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "6d81f8b747c1b04003b8bd83f12bed6e5fcbca51",
+      "commit": "6162efb3ea45a2997eb771ea40fd6b251befb549",
+      "status": "M",
+      "path": "evals/ci/ordinary-serial.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "6d81f8b747c1b04003b8bd83f12bed6e5fcbca51",
+      "commit": "6162efb3ea45a2997eb771ea40fd6b251befb549",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "6d81f8b747c1b04003b8bd83f12bed6e5fcbca51",
+      "commit": "6162efb3ea45a2997eb771ea40fd6b251befb549",
+      "status": "A",
+      "path": "packages/sdk/test/checkpoint-envelope.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "6162efb3ea45a2997eb771ea40fd6b251befb549",
+      "commit": "0c61fa365ec59bf75daf83567d6be2d3aa5cf37d",
+      "status": "M",
+      "path": "evals/ci/coverage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "6162efb3ea45a2997eb771ea40fd6b251befb549",
+      "commit": "0c61fa365ec59bf75daf83567d6be2d3aa5cf37d",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "6162efb3ea45a2997eb771ea40fd6b251befb549",
+      "commit": "0c61fa365ec59bf75daf83567d6be2d3aa5cf37d",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "6162efb3ea45a2997eb771ea40fd6b251befb549",
+      "commit": "0c61fa365ec59bf75daf83567d6be2d3aa5cf37d",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "6162efb3ea45a2997eb771ea40fd6b251befb549",
+      "commit": "0c61fa365ec59bf75daf83567d6be2d3aa5cf37d",
+      "status": "A",
+      "path": "packages/sdk/test/checkpoint-publication.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "0c61fa365ec59bf75daf83567d6be2d3aa5cf37d",
+      "commit": "995c5b073c31a9d0cc1ee9c79500ed3af0675e8a",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "0c61fa365ec59bf75daf83567d6be2d3aa5cf37d",
+      "commit": "995c5b073c31a9d0cc1ee9c79500ed3af0675e8a",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "0c61fa365ec59bf75daf83567d6be2d3aa5cf37d",
+      "commit": "995c5b073c31a9d0cc1ee9c79500ed3af0675e8a",
+      "status": "M",
+      "path": "packages/sdk/test/checkpoint-prefix.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "995c5b073c31a9d0cc1ee9c79500ed3af0675e8a",
+      "commit": "f05c84dea1da1ff5c92a0b904520e9326023f4c9",
+      "status": "M",
+      "path": "evals/ci/coverage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "995c5b073c31a9d0cc1ee9c79500ed3af0675e8a",
+      "commit": "f05c84dea1da1ff5c92a0b904520e9326023f4c9",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "995c5b073c31a9d0cc1ee9c79500ed3af0675e8a",
+      "commit": "f05c84dea1da1ff5c92a0b904520e9326023f4c9",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "995c5b073c31a9d0cc1ee9c79500ed3af0675e8a",
+      "commit": "f05c84dea1da1ff5c92a0b904520e9326023f4c9",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "995c5b073c31a9d0cc1ee9c79500ed3af0675e8a",
+      "commit": "f05c84dea1da1ff5c92a0b904520e9326023f4c9",
+      "status": "A",
+      "path": "packages/sdk/test/checkpoint-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "f05c84dea1da1ff5c92a0b904520e9326023f4c9",
+      "commit": "49f753b3b5e806b68b45608b11984b1484f9703f",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "f05c84dea1da1ff5c92a0b904520e9326023f4c9",
+      "commit": "49f753b3b5e806b68b45608b11984b1484f9703f",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "f05c84dea1da1ff5c92a0b904520e9326023f4c9",
+      "commit": "49f753b3b5e806b68b45608b11984b1484f9703f",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "f05c84dea1da1ff5c92a0b904520e9326023f4c9",
+      "commit": "49f753b3b5e806b68b45608b11984b1484f9703f",
+      "status": "A",
+      "path": "packages/sdk/test/checkpoint-owned-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "49f753b3b5e806b68b45608b11984b1484f9703f",
+      "commit": "9a6480fe2291600b4b8460c38e113c844b010ff8",
+      "status": "M",
+      "path": "evals/ci/history.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "9a6480fe2291600b4b8460c38e113c844b010ff8",
+      "commit": "c2c2f5cfe7a33c627ce721325b1e06cb1e1587af",
+      "status": "M",
+      "path": "evals/ci/coverage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "9a6480fe2291600b4b8460c38e113c844b010ff8",
+      "commit": "c2c2f5cfe7a33c627ce721325b1e06cb1e1587af",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "9a6480fe2291600b4b8460c38e113c844b010ff8",
+      "commit": "c2c2f5cfe7a33c627ce721325b1e06cb1e1587af",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "9a6480fe2291600b4b8460c38e113c844b010ff8",
+      "commit": "c2c2f5cfe7a33c627ce721325b1e06cb1e1587af",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "9a6480fe2291600b4b8460c38e113c844b010ff8",
+      "commit": "c2c2f5cfe7a33c627ce721325b1e06cb1e1587af",
+      "status": "A",
+      "path": "packages/sdk/test/archive-stream.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "c2c2f5cfe7a33c627ce721325b1e06cb1e1587af",
+      "commit": "b3524547a3055e04f7d12d3f20565020ba81d522",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "c2c2f5cfe7a33c627ce721325b1e06cb1e1587af",
+      "commit": "b3524547a3055e04f7d12d3f20565020ba81d522",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "c2c2f5cfe7a33c627ce721325b1e06cb1e1587af",
+      "commit": "b3524547a3055e04f7d12d3f20565020ba81d522",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "c2c2f5cfe7a33c627ce721325b1e06cb1e1587af",
+      "commit": "b3524547a3055e04f7d12d3f20565020ba81d522",
+      "status": "A",
+      "path": "packages/sdk/test/replay-stream.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "b3524547a3055e04f7d12d3f20565020ba81d522",
+      "commit": "a4d1c25a153c6cf5adf26f8b93189b2b58791938",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "b3524547a3055e04f7d12d3f20565020ba81d522",
+      "commit": "a4d1c25a153c6cf5adf26f8b93189b2b58791938",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "b3524547a3055e04f7d12d3f20565020ba81d522",
+      "commit": "a4d1c25a153c6cf5adf26f8b93189b2b58791938",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "b3524547a3055e04f7d12d3f20565020ba81d522",
+      "commit": "a4d1c25a153c6cf5adf26f8b93189b2b58791938",
+      "status": "M",
+      "path": "packages/sdk/test/checkpoint-publication.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "b3524547a3055e04f7d12d3f20565020ba81d522",
+      "commit": "a4d1c25a153c6cf5adf26f8b93189b2b58791938",
+      "status": "A",
+      "path": "packages/sdk/test/record-loading.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "a4d1c25a153c6cf5adf26f8b93189b2b58791938",
+      "commit": "5b00257b20c8bbfc643d0fc093f6e509dc3a3d38",
+      "status": "A",
+      "path": "evals/ci/bite-partitions.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "a4d1c25a153c6cf5adf26f8b93189b2b58791938",
+      "commit": "5b00257b20c8bbfc643d0fc093f6e509dc3a3d38",
+      "status": "M",
+      "path": "evals/ci/bite-source.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "5b00257b20c8bbfc643d0fc093f6e509dc3a3d38",
+      "commit": "39c24de89a3e860cd9e4a08517a616481c5c72ca",
+      "status": "M",
+      "path": "evals/ci/coverage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "5b00257b20c8bbfc643d0fc093f6e509dc3a3d38",
+      "commit": "39c24de89a3e860cd9e4a08517a616481c5c72ca",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "5b00257b20c8bbfc643d0fc093f6e509dc3a3d38",
+      "commit": "39c24de89a3e860cd9e4a08517a616481c5c72ca",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "5b00257b20c8bbfc643d0fc093f6e509dc3a3d38",
+      "commit": "39c24de89a3e860cd9e4a08517a616481c5c72ca",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "5b00257b20c8bbfc643d0fc093f6e509dc3a3d38",
+      "commit": "39c24de89a3e860cd9e4a08517a616481c5c72ca",
+      "status": "A",
+      "path": "packages/sdk/test/redeem-replay.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "5b00257b20c8bbfc643d0fc093f6e509dc3a3d38",
+      "commit": "39c24de89a3e860cd9e4a08517a616481c5c72ca",
+      "status": "A",
+      "path": "packages/sdk/test/report-replay.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "5b00257b20c8bbfc643d0fc093f6e509dc3a3d38",
+      "commit": "39c24de89a3e860cd9e4a08517a616481c5c72ca",
+      "status": "A",
+      "path": "packages/sdk/test/request-index.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "39c24de89a3e860cd9e4a08517a616481c5c72ca",
+      "commit": "43f20c08b264c1fab9d40166dd357e5b71c7a293",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "39c24de89a3e860cd9e4a08517a616481c5c72ca",
+      "commit": "43f20c08b264c1fab9d40166dd357e5b71c7a293",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "39c24de89a3e860cd9e4a08517a616481c5c72ca",
+      "commit": "43f20c08b264c1fab9d40166dd357e5b71c7a293",
+      "status": "M",
+      "path": "packages/sdk/test/sending-client.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "43f20c08b264c1fab9d40166dd357e5b71c7a293",
+      "commit": "5a33e698703446708729a8271a7a4c38a3a7dce7",
+      "status": "M",
+      "path": "evals/ci/coverage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "43f20c08b264c1fab9d40166dd357e5b71c7a293",
+      "commit": "5a33e698703446708729a8271a7a4c38a3a7dce7",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "43f20c08b264c1fab9d40166dd357e5b71c7a293",
+      "commit": "5a33e698703446708729a8271a7a4c38a3a7dce7",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "43f20c08b264c1fab9d40166dd357e5b71c7a293",
+      "commit": "5a33e698703446708729a8271a7a4c38a3a7dce7",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "43f20c08b264c1fab9d40166dd357e5b71c7a293",
+      "commit": "5a33e698703446708729a8271a7a4c38a3a7dce7",
+      "status": "M",
+      "path": "packages/sdk/test/checkpoint-publication.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "43f20c08b264c1fab9d40166dd357e5b71c7a293",
+      "commit": "5a33e698703446708729a8271a7a4c38a3a7dce7",
+      "status": "A",
+      "path": "packages/sdk/test/request-index-publication.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "0310911a0b8e97c1b1622a673ab42954052bfd3b",
+      "commit": "c2df0433912490fa934884a130ae81ae6c54d4de",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "0310911a0b8e97c1b1622a673ab42954052bfd3b",
+      "commit": "c2df0433912490fa934884a130ae81ae6c54d4de",
+      "status": "A",
+      "path": "evals/ci/mutation-stop.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "c2df0433912490fa934884a130ae81ae6c54d4de",
+      "commit": "588a1eff19d1cb02cb61b4f42b046d17201ff317",
+      "status": "M",
+      "path": "evals/ci/mutation-stop.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "588a1eff19d1cb02cb61b4f42b046d17201ff317",
+      "commit": "0332c977eb0dadec8a5592324fb8ad1f76ab2db0",
+      "status": "A",
+      "path": "apps/firewall/test/filter.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "588a1eff19d1cb02cb61b4f42b046d17201ff317",
+      "commit": "0332c977eb0dadec8a5592324fb8ad1f76ab2db0",
+      "status": "M",
+      "path": "evals/ci/coverage-hook.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "588a1eff19d1cb02cb61b4f42b046d17201ff317",
+      "commit": "0332c977eb0dadec8a5592324fb8ad1f76ab2db0",
+      "status": "M",
+      "path": "evals/ci/coverage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "0332c977eb0dadec8a5592324fb8ad1f76ab2db0",
+      "commit": "7118ae242b25f50305c0b49d6f9c9c4da2e30df9",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "0332c977eb0dadec8a5592324fb8ad1f76ab2db0",
+      "commit": "7118ae242b25f50305c0b49d6f9c9c4da2e30df9",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "0332c977eb0dadec8a5592324fb8ad1f76ab2db0",
+      "commit": "7118ae242b25f50305c0b49d6f9c9c4da2e30df9",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "0332c977eb0dadec8a5592324fb8ad1f76ab2db0",
+      "commit": "7118ae242b25f50305c0b49d6f9c9c4da2e30df9",
+      "status": "A",
+      "path": "packages/sdk/test/request-index-lookup.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "d0d8dc344c902548ac964f16cdd9f223a9f1e4af",
+      "commit": "8a343d42b0d60dd188ba7fc5f2d9a198d6346364",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "d0d8dc344c902548ac964f16cdd9f223a9f1e4af",
+      "commit": "8a343d42b0d60dd188ba7fc5f2d9a198d6346364",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "d0d8dc344c902548ac964f16cdd9f223a9f1e4af",
+      "commit": "8a343d42b0d60dd188ba7fc5f2d9a198d6346364",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "d0d8dc344c902548ac964f16cdd9f223a9f1e4af",
+      "commit": "8a343d42b0d60dd188ba7fc5f2d9a198d6346364",
+      "status": "A",
+      "path": "packages/sdk/test/owned-request-admission.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "0a199aab336fc80431b3d0f360eefd06be06f486",
+      "commit": "9996f001e2b5ed817c347f2546d765ba1abe2911",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "0a199aab336fc80431b3d0f360eefd06be06f486",
+      "commit": "9996f001e2b5ed817c347f2546d765ba1abe2911",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "0a199aab336fc80431b3d0f360eefd06be06f486",
+      "commit": "9996f001e2b5ed817c347f2546d765ba1abe2911",
+      "status": "A",
+      "path": "packages/sdk/test/replay-command.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "0a199aab336fc80431b3d0f360eefd06be06f486",
+      "commit": "9996f001e2b5ed817c347f2546d765ba1abe2911",
+      "status": "M",
+      "path": "packages/sdk/test/signed-policy.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "789bc7b8b6b949c6d6125efba76a329c3cfddda8",
+      "commit": "b1d8ed153ed162293bb923a5134703ea4eb3ca7c",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "789bc7b8b6b949c6d6125efba76a329c3cfddda8",
+      "commit": "b1d8ed153ed162293bb923a5134703ea4eb3ca7c",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "789bc7b8b6b949c6d6125efba76a329c3cfddda8",
+      "commit": "b1d8ed153ed162293bb923a5134703ea4eb3ca7c",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "789bc7b8b6b949c6d6125efba76a329c3cfddda8",
+      "commit": "b1d8ed153ed162293bb923a5134703ea4eb3ca7c",
+      "status": "A",
+      "path": "packages/sdk/test/owned-control-request.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "4325a0350e7b80dfb3ab5155ec9e6c7ae59717e5",
+      "commit": "36a1ae793e08855e817496837fcf5d7ea34abd37",
+      "status": "M",
+      "path": "evals/ci/coverage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "4325a0350e7b80dfb3ab5155ec9e6c7ae59717e5",
+      "commit": "36a1ae793e08855e817496837fcf5d7ea34abd37",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "4325a0350e7b80dfb3ab5155ec9e6c7ae59717e5",
+      "commit": "36a1ae793e08855e817496837fcf5d7ea34abd37",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "4325a0350e7b80dfb3ab5155ec9e6c7ae59717e5",
+      "commit": "36a1ae793e08855e817496837fcf5d7ea34abd37",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "4325a0350e7b80dfb3ab5155ec9e6c7ae59717e5",
+      "commit": "36a1ae793e08855e817496837fcf5d7ea34abd37",
+      "status": "A",
+      "path": "packages/sdk/test/owned-guard.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "c891c8cc99aea4d5de531f2f5e4426dabc95feb2",
+      "commit": "944579d469c9f4712f4e74d6cbfff3a394ba0cdb",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "c891c8cc99aea4d5de531f2f5e4426dabc95feb2",
+      "commit": "944579d469c9f4712f4e74d6cbfff3a394ba0cdb",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "c891c8cc99aea4d5de531f2f5e4426dabc95feb2",
+      "commit": "944579d469c9f4712f4e74d6cbfff3a394ba0cdb",
+      "status": "M",
+      "path": "packages/sdk/test/owned-guard.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "fe6369f207a636a7324cbbbe8c636142a7e83033",
+      "commit": "4d9d1fe02f69e057b3ae1691d7ce34f2bd5ed2cc",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "fe6369f207a636a7324cbbbe8c636142a7e83033",
+      "commit": "4d9d1fe02f69e057b3ae1691d7ce34f2bd5ed2cc",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "fe6369f207a636a7324cbbbe8c636142a7e83033",
+      "commit": "4d9d1fe02f69e057b3ae1691d7ce34f2bd5ed2cc",
+      "status": "M",
+      "path": "packages/sdk/test/owned-guard.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "46922d5c5d851218ffbc6f162ba1c35efff5d32f",
+      "commit": "7a64856926752cf27ef25711816c93648ccde402",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "46922d5c5d851218ffbc6f162ba1c35efff5d32f",
+      "commit": "7a64856926752cf27ef25711816c93648ccde402",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "46922d5c5d851218ffbc6f162ba1c35efff5d32f",
+      "commit": "7a64856926752cf27ef25711816c93648ccde402",
+      "status": "M",
+      "path": "packages/sdk/test/owned-guard.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "7a64856926752cf27ef25711816c93648ccde402",
+      "commit": "fba638ad2d55b359771a6cf4ac517a3b1c6521ad",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "7a64856926752cf27ef25711816c93648ccde402",
+      "commit": "fba638ad2d55b359771a6cf4ac517a3b1c6521ad",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "7a64856926752cf27ef25711816c93648ccde402",
+      "commit": "fba638ad2d55b359771a6cf4ac517a3b1c6521ad",
+      "status": "M",
+      "path": "packages/sdk/test/storage-failures.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "8b1d29de91a25dec2f4944a4cfa33e43e38524a3",
+      "commit": "84cac38725cb5ad1fdea9ff20bf004686cc41aa1",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "8b1d29de91a25dec2f4944a4cfa33e43e38524a3",
+      "commit": "84cac38725cb5ad1fdea9ff20bf004686cc41aa1",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "8b1d29de91a25dec2f4944a4cfa33e43e38524a3",
+      "commit": "84cac38725cb5ad1fdea9ff20bf004686cc41aa1",
+      "status": "M",
+      "path": "packages/sdk/test/ownership.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "84cac38725cb5ad1fdea9ff20bf004686cc41aa1",
+      "commit": "67948e693ff6790d39b903d947131d013ed50332",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "84cac38725cb5ad1fdea9ff20bf004686cc41aa1",
+      "commit": "67948e693ff6790d39b903d947131d013ed50332",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "84cac38725cb5ad1fdea9ff20bf004686cc41aa1",
+      "commit": "67948e693ff6790d39b903d947131d013ed50332",
+      "status": "M",
+      "path": "packages/sdk/test/storage-failures.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "67948e693ff6790d39b903d947131d013ed50332",
+      "commit": "701372e8de28160ec8965a3600de184d20f0c00a",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "67948e693ff6790d39b903d947131d013ed50332",
+      "commit": "701372e8de28160ec8965a3600de184d20f0c00a",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "67948e693ff6790d39b903d947131d013ed50332",
+      "commit": "701372e8de28160ec8965a3600de184d20f0c00a",
+      "status": "M",
+      "path": "packages/sdk/test/checkpoint-owned-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "67948e693ff6790d39b903d947131d013ed50332",
+      "commit": "701372e8de28160ec8965a3600de184d20f0c00a",
+      "status": "M",
+      "path": "packages/sdk/test/storage-failures.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "72dde3929b84ea77c8e0c9f5cbddfcbbaf0da62a",
+      "commit": "3fe0f0d6859d20f5982cc6cb7e7808a93f964909",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "72dde3929b84ea77c8e0c9f5cbddfcbbaf0da62a",
+      "commit": "3fe0f0d6859d20f5982cc6cb7e7808a93f964909",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "72dde3929b84ea77c8e0c9f5cbddfcbbaf0da62a",
+      "commit": "3fe0f0d6859d20f5982cc6cb7e7808a93f964909",
+      "status": "M",
+      "path": "packages/sdk/test/storage-failures.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "3fe0f0d6859d20f5982cc6cb7e7808a93f964909",
+      "commit": "49f6d6369e58d7f4c6c4f0cbd41705c080f498af",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "3fe0f0d6859d20f5982cc6cb7e7808a93f964909",
+      "commit": "49f6d6369e58d7f4c6c4f0cbd41705c080f498af",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "3fe0f0d6859d20f5982cc6cb7e7808a93f964909",
+      "commit": "49f6d6369e58d7f4c6c4f0cbd41705c080f498af",
+      "status": "M",
+      "path": "packages/sdk/test/storage-failures.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "ae6ba560102fe54a0b1a584b4bcc74abf1f9e558",
+      "commit": "4addaa4694e017a6a0b1269668a1d4b006e53dc7",
+      "status": "M",
+      "path": "evals/ci/mutation-recovery.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "ae6ba560102fe54a0b1a584b4bcc74abf1f9e558",
+      "commit": "4addaa4694e017a6a0b1269668a1d4b006e53dc7",
+      "status": "M",
+      "path": "evals/packaging/packed-sdk.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "ae6ba560102fe54a0b1a584b4bcc74abf1f9e558",
+      "commit": "4addaa4694e017a6a0b1269668a1d4b006e53dc7",
+      "status": "M",
+      "path": "packages/sdk/test/owned-guard.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "826d05864271f3b2af05c8a8eb11243b1755c50f",
+      "commit": "f6d5e298924e752ba05cb97eb02914634b95f42f",
+      "status": "A",
+      "path": "evals/packaging/parallel-experiment.test.mjs",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "f6d5e298924e752ba05cb97eb02914634b95f42f",
+      "commit": "f1e253ffb791b7e3ca3710427f9a26ee90ec8504",
+      "status": "M",
+      "path": "packages/sdk/test/owned-guard.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "f6d5e298924e752ba05cb97eb02914634b95f42f",
+      "commit": "f1e253ffb791b7e3ca3710427f9a26ee90ec8504",
+      "status": "A",
+      "path": "packages/sdk/test/owned-signing.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "b5498e8f919181e1cf397dd8dc684b0bf7450a1a",
+      "commit": "71a1ef444f55ee636ddec66618b3b11bd104946e",
+      "status": "A",
+      "path": "packages/sdk/test/adapter-wire.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "1633231b4765438152e2bb9c78278bc9fe923062",
+      "commit": "11234ccf65d80c1a0d2162a53321b6c2e9acc9a7",
+      "status": "A",
+      "path": "evals/ci/sdk-timing/measure.test.mjs",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "11234ccf65d80c1a0d2162a53321b6c2e9acc9a7",
+      "commit": "e71523834fcffe92cd902fbaf21c74465ac6c805",
+      "status": "A",
+      "path": "packages/sdk/test/adapter-buffer.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "e71523834fcffe92cd902fbaf21c74465ac6c805",
+      "commit": "fc3caff2579450d752545cb52ebcd693c0557b13",
+      "status": "A",
+      "path": "evals/ci/sdk-timing-current/measure.test.mjs",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "be7d29694f13418f1ff0a48b0b6a5721e08797c4",
+      "commit": "e537f636717137b75ddaa6c3a729efca2a639215",
+      "status": "A",
+      "path": "evals/release/history-bytes.test.mjs",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "e537f636717137b75ddaa6c3a729efca2a639215",
+      "commit": "5852778c0593f73c3a93912137e0a8b244ea4651",
+      "status": "A",
+      "path": "evals/release/history-output.test.mjs",
+      "review": "pending content and assertion reason review"
+    }
+  ],
+  "counts": {
+    "A": 103,
+    "M": 142,
+    "D": 0,
+    "T": 0
+  },
+  "fileBlobsRead": false,
+  "assertionEditsReviewed": false,
+  "publicHistoryCleared": false,
+  "scope": "all parent edges for named Node test files in SDK/app test roots and evals; not every executable battery or public history"
+}

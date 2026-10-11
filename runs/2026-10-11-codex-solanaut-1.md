@@ -7,6 +7,24 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Continue from clean 753769d; re-read instructions/queue and fetch without push.
+Prepare the required assertion-review handoff. Freeze Beta-to-head metadata for
+named Node tests; include every parent edge and intermediate edits to new tests.
+Correct an initially vacuous invalid-pin negative with a positive empty-range
+control before implementation. All cases then fail first; copied-source faults
+refuse before final existing-runtime controls. Actual inventory remains explicitly
+unreviewed, metadata only, and separate from H15. Typecheck passes and owned job
+finishes. A guessed ADR filename read fails; the file inventory locates ADR-019.
+
+Baseline-existing test assertion change list, frozen e925f1d..753769d:
+`packages/sdk/test/durable.test.ts` replaces implicit stale SDK lock takeover
+with an explicit locked refusal, then preserves positive recovery using kernel
+ownership. Accepted ADR-019 requires removal of the non-atomic stale-takeover
+race; the existing live-second-writer assertion is unchanged. S16's ownership
+receipt already records the reason/first failures/faults. This builder-authored
+net review does not approve the historical modifications to post-Beta tests;
+their exact parent/commit/path queue remains in the new inventory for Claude.
+
 Admission checkpoint 54b15d5 has a verified complete local bundle, exact clean
 restore and confirmed successful full fsck. Continue current installed timing
 qualification: freeze candidate identities before execution, retain the original
@@ -194,6 +212,21 @@ the unchanged original companion control also passes. Outputs stay separate,
 with no installation or full runtime/matrix claim.
 
 ## Found
+
+Assertion-inventory pre-commit close passes every check except dirty work and
+deliberately unpushed HEAD. Staged scope/bindings are reviewed. Credential-word
+search hits only the existing run record's scan description; no credential
+material is present. Preserve raw Node assertion indentation, original diff
+context and typecheck trailing blank line despite whitespace diagnostics.
+Begin a separate content inspection of the mutation-recovery test's historical
+edges. Its first large display is truncated; do not call that review complete.
+
+An initial invalid-pin negative passes against a missing helper, because any
+process error satisfies rejection. Preserve the miss and add its positive
+empty-range control before building. The final complete initial battery fails
+every case as required. The actual historical inventory is not content or
+assertion-reason clearance; historical review and H15 remain pending. No test,
+protected gate, source coefficient or readiness target is changed.
 
 Installed-timing pre-commit close passes all checks except uncommitted work and
 deliberately unpushed HEAD, including the staged tracked-file secret scan.

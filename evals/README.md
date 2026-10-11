@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`release/assertion-history.md`: all-parent metadata inventory for named Node
+tests plus a separate baseline-existing assertion reason, S143. Preserve the
+initial vacuous control and corrected failures. Historical review remains pending.
+
 `release/installed-timing.md`: unchanged scoped analysis measures current installed
 SDK memory/synced-file profiles and separately replays persisted bytes, S142.
 Full performance, restart/reference-baseline and stable qualification remain owed.

@@ -1,0 +1,37 @@
+✖ PUB-1 assertion preparation retains edits to tests added after baseline (77.882958ms)
+✔ PUB-1 assertion preparation records deletion and rename as complete old/new paths (57.376343ms)
+✔ PUB-1 assertion preparation includes branch commits and every merge-parent edge (92.073927ms)
+✔ PUB-1 assertion preparation refuses aliases, missing objects and unrelated baseline (161.421069ms)
+✔ PUB-1 assertion preparation refuses a test outside its bounded code roots (60.028068ms)
+✔ PUB-1 assertion preparation refuses a test symlink before any blob read (61.127798ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 568.021587
+
+✖ failing tests:
+
+test at evals/release/assertion-history.test.mjs:23:1
+✖ PUB-1 assertion preparation retains edits to tests added after baseline (77.882958ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:32:10
+      at fixture (file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:19:47)
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/release/assertion-history.test.mjs:23:87)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

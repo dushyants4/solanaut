@@ -1,0 +1,10 @@
+{
+  "baseline": "e925f1dfaabc7eedae361764a401baf7f9e9868b",
+  "head": "753769dcd435b9334e59e921727c04afd6cb6859",
+  "inputs": {
+    "evals/release/assertion-history.py": "d5558a80b0c01a4223a17064ac7d23c9c7d1ce609eb45e643752b03714853b20",
+    "evals/release/assertion-history.test.mjs": "2500704199965ad31b8dab6eaec5fc2c66e5d5016d9b3ef36ded8f7f2434ba7a",
+    "evals/release/assertion-history-run.py": "63d6fa9ae71562c40bed9550374f4c3cbff7ce6dbc336fb1669d57a6d23fb08f"
+  },
+  "scope": "bounded named Node tests, all ancestry/parent edges, metadata only"
+}
