@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`release/assertion-owned.md`: private owned-guard modification reasons and current
+facade/signing checks, S148. Exact surface expansion retains privacy/immutability
+checks; broader/independent review and stable gates remain open.
+
 `release/assertion-storage.md`: selected storage/checkpoint historical reasons
 and unchanged current focused checks, S147. Fixture corrections preserve their
 fault scenarios; broader/independent review and stable gates remain open.

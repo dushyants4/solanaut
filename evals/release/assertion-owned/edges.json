@@ -1,0 +1,57 @@
+[
+  {
+    "parent": "c891c8cc99aea4d5de531f2f5e4426dabc95feb2",
+    "commit": "944579d469c9f4712f4e74d6cbfff3a394ba0cdb",
+    "status": "M",
+    "path": "packages/sdk/test/owned-guard.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "ba22e0e513b0531fc6667a682b975e921ea31ab3edfb9d07f41af8b5f574aa6c",
+    "afterSha256": "92cd3cf53d612a444c929a40ef578a8dc7be46ec4c2ad455541ed33a38eb9de7",
+    "diffSha256": "6771df195e801d4130003652dbe1676a4e49989e15a316c1fa9bc53c74bf4f69",
+    "currentTestEqualsSelectedRevision": false
+  },
+  {
+    "parent": "fe6369f207a636a7324cbbbe8c636142a7e83033",
+    "commit": "4d9d1fe02f69e057b3ae1691d7ce34f2bd5ed2cc",
+    "status": "M",
+    "path": "packages/sdk/test/owned-guard.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "92cd3cf53d612a444c929a40ef578a8dc7be46ec4c2ad455541ed33a38eb9de7",
+    "afterSha256": "28a7b0989893b98317d92f5fc137e2349424b714f2c7303404b74943012d0698",
+    "diffSha256": "da3fe6f8ed4a5573e8647599e641ee97b7dc93b41915c56f4459019ed79619b3",
+    "currentTestEqualsSelectedRevision": false
+  },
+  {
+    "parent": "46922d5c5d851218ffbc6f162ba1c35efff5d32f",
+    "commit": "7a64856926752cf27ef25711816c93648ccde402",
+    "status": "M",
+    "path": "packages/sdk/test/owned-guard.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "28a7b0989893b98317d92f5fc137e2349424b714f2c7303404b74943012d0698",
+    "afterSha256": "45a383e0734984cb2b71af3e9c3fd0068644077c9c0e78f52decdef1a89f59bb",
+    "diffSha256": "d2dd32fbf58da9a92dcce54898595a31a9fb507ef66dea9053fdded1f7c0a89e",
+    "currentTestEqualsSelectedRevision": false
+  },
+  {
+    "parent": "ae6ba560102fe54a0b1a584b4bcc74abf1f9e558",
+    "commit": "4addaa4694e017a6a0b1269668a1d4b006e53dc7",
+    "status": "M",
+    "path": "packages/sdk/test/owned-guard.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "45a383e0734984cb2b71af3e9c3fd0068644077c9c0e78f52decdef1a89f59bb",
+    "afterSha256": "f474fb8dcafc99474661cfcad0e8df59549a7f0e6390ca6975a647fc75a95182",
+    "diffSha256": "6041ab594ec6a9b477f35cdf0f2d136759cce96ab9053f3f34b027cbc87768e6",
+    "currentTestEqualsSelectedRevision": false
+  },
+  {
+    "parent": "f6d5e298924e752ba05cb97eb02914634b95f42f",
+    "commit": "f1e253ffb791b7e3ca3710427f9a26ee90ec8504",
+    "status": "M",
+    "path": "packages/sdk/test/owned-guard.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "f474fb8dcafc99474661cfcad0e8df59549a7f0e6390ca6975a647fc75a95182",
+    "afterSha256": "4a097ecf3f40838078e606b38889d11d95c1d5b122c184cf2cccb426368440b1",
+    "diffSha256": "d8d148a2fc9bb9dce2ae01d6d5330f7090a0fae13efb3bc6fbc6e9db21b5bb65",
+    "currentTestEqualsSelectedRevision": true
+  }
+]

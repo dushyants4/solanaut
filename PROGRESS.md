@@ -1,5 +1,9 @@
 # PROGRESS.md
 
+Private owned-guard historical assertion reasons and current focused checks
+are recorded, S148. Private surface expansion retains hidden-history checks;
+broader/independent review and stable gates remain open.
+
 Selected storage/checkpoint assertion reasons and current focused checks are
 recorded, S147. Broader/independent review and H11 remain; no stable milestone
 or protected test changes.

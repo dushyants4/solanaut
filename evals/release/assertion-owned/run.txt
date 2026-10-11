@@ -1,0 +1,1 @@
+owned-guard assertion diffs collected; broader and independent review remain pending

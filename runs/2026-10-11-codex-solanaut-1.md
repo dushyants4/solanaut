@@ -7,6 +7,14 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Storage-review checkpoint 396f096 has a verified complete local bundle, exact
+clean restore and successful full fsck. Continue owned-guard modification reasons;
+read all complete patches and bind current identity. Current facade and separate
+signing-journal checks pass; typecheck exits successfully. Distinguish private
+surface additions from exposed history/socket changes and trusted caller reporting
+from RPC authority. Preserve the earlier FIFO fixture stall/correction in its
+original receipt; no blanket cleanup or independent review claim follows.
+
 Interface-review checkpoint 042409a has a verified complete local bundle, exact
 clean restore and successful full fsck. Continue seven selected storage/checkpoint
 historical reasons with complete patches and current identities. All current
@@ -248,6 +256,11 @@ the unchanged original companion control also passes. Outputs stay separate,
 with no installation or full runtime/matrix claim.
 
 ## Found
+
+Owned-review pre-commit close passes eight checks and fails only dirty work and
+deliberately unpushed HEAD. Staged diff/source/prose review and credential-shaped
+search are clean apart from the preserved raw typecheck final blank line's
+whitespace warning. Original tests, first failures and planted faults stay intact.
 
 Storage-review pre-commit close passes eight checks and fails only dirty work
 and deliberately unpushed HEAD. Review staged source/prose and exact historical
