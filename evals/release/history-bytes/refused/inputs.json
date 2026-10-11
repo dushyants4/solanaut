@@ -1,0 +1,12 @@
+{
+  "measuredAt": "2026-10-10T23:58:13.776Z",
+  "node": "v26.7.0",
+  "platform": "linux",
+  "repository": "/home/dashy/Projects/Solanaut/.sandbox/local-backups/restore-batch-candidate",
+  "sourceHashes": {
+    "evals/ci/history.ts": "a182dc3bc12c883d5e7d04f9b830443cb108c1e2f6623da785c07cdf65a0590f",
+    "evals/release/history-bytes.mjs": "be0d80fb17cf8c0ff8806005895f20ba3491659865d8a4358a0cb6bfd2e58831",
+    "evals/release/history-bytes-run.mjs": "3af2524f56abd27c2b85aed939abbcf7a64dee66106490a88bbf68be59dd4a76",
+    "evals/release/history-bytes.test.mjs": "84de09ddc9a1757cf9ea5a7fad201f2b9d3429766915d06e390f62b7439e176a"
+  }
+}

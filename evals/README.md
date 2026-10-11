@@ -1,5 +1,10 @@
 # evals/ — receipts
 
+`release/history-bytes.md`: separate PUB-1 blob companion, initial failures/missed
+omission, thirteen synthetic component cases and nine final faults. Actual
+restored history refuses sensitive path metadata before contents, H15/S128;
+no partial success or publication clearance is inferred.
+
 `sdk/adapter-batch.md`: D41 reproduces premature signed-admission expiry after
 wallet array edits. Prepared private membership passes component/installed
 checks; full native still fails H11, so product integration remains deferred.

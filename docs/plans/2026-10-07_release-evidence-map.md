@@ -1,5 +1,10 @@
 # Solanaut 1.0 — current release evidence map
 
+PUB-1's separate byte companion has local synthetic/fault proof, S128. Actual
+be7d296 restored history refuses private-directory metadata before file-blob
+contents; H15 needs human scope/review settlement. No partial content clearance
+or publication permission follows. [Receipt](../../evals/release/history-bytes.md).
+
 D41 is open in the current product: wallet batch-array edits can prematurely
 expire visible valid signing and defeat cleanup. Its prepared private membership
 correction has first-failure/source/emitted/installed evidence in

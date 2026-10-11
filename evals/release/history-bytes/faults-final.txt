@@ -1,0 +1,1 @@
+content companion faults caught and restored

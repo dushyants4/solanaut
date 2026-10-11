@@ -140,6 +140,11 @@ registry package or release channel is created by this proposal.
 
 ## Evidence and present blockers
 
+Complete proposed-public-history review remains blocked on H15's sensitive
+path classification. The [read-only companion](../../evals/release/history-bytes.md)
+refuses before file-blob contents and provides no content, secret or rights
+clearance. Human scope/review settlement remains required before publication.
+
 The current wallet batch path has D41's membership defect. A wallet can reorder
 or remove batch entries after signing, defeating cleanup and prematurely expiring
 admissions. [The prepared correction](../../evals/sdk/adapter-batch.md) remains

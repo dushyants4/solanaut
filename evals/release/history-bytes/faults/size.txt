@@ -1,0 +1,54 @@
+✔ PUB-1: every historical text and binary blob is read and independently hashed (231.22537ms)
+✔ PUB-1: same-size blob read cannot qualify (282.365245ms)
+✖ PUB-1: short blob read cannot qualify (156.59154ms)
+✔ PUB-1: nonbytes blob read cannot qualify (151.487753ms)
+✔ PUB-1: missing blob read cannot qualify (308.029277ms)
+✔ PUB-1: omitted inventory blobs cannot hide historical bytes (196.872349ms)
+✔ PUB-1: a changed scope during blob reads refuses the receipt (213.615101ms)
+✔ PUB-1: key-shaped historical paths require review before their contents are read (0.853676ms)
+✔ PUB-1: sensitive path metadata refuses before any blob reader runs (205.087062ms)
+✔ PUB-1: gitlink metadata cannot claim complete target content (201.188309ms)
+✔ PUB-1: SHA-256 Git object framing verifies every binary/text blob (157.953732ms)
+✔ PUB-1: the CLI writes complete hashed synthetic evidence without clearance (291.497209ms)
+✔ PUB-1: the CLI retains preflight refusal without a completed content receipt (258.101268ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 12
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2921.719558
+
+✖ failing tests:
+
+test at evals/release/history-bytes.test.mjs:41:68
+✖ PUB-1: short blob read cannot qualify (156.59154ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /blob size/. Input:
+  
+  'Error: blob hash differs from inventory'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/release/history-bytes.test.mjs:43:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: blob hash differs from inventory
+        at verifyHistoryBytes (file:///home/dashy/Projects/Solanaut/evals/release/history-bytes.mjs:33:35)
+        at file:///home/dashy/Projects/Solanaut/evals/release/history-bytes.test.mjs:43:25
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/release/history-bytes.test.mjs:43:12)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /blob size/,
+    operator: 'throws',
+    diff: 'simple'
+  }

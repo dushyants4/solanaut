@@ -1,0 +1,39 @@
+✔ PUB-1: every historical text and binary blob is read and independently hashed (131.77902ms)
+✖ PUB-1: same-size blob read cannot qualify (124.80447ms)
+✔ PUB-1: short blob read cannot qualify (89.682024ms)
+✔ PUB-1: nonbytes blob read cannot qualify (86.809992ms)
+✔ PUB-1: missing blob read cannot qualify (90.727678ms)
+✔ PUB-1: omitted inventory blobs cannot hide historical bytes (88.0564ms)
+✔ PUB-1: a changed scope during blob reads refuses the receipt (146.782546ms)
+✔ PUB-1: key-shaped historical paths require review before their contents are read (0.305063ms)
+✔ PUB-1: sensitive path metadata refuses before any blob reader runs (140.432842ms)
+✔ PUB-1: gitlink metadata cannot claim complete target content (142.19373ms)
+✔ PUB-1: SHA-256 Git object framing verifies every binary/text blob (125.814043ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 10
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1283.128617
+
+✖ failing tests:
+
+test at evals/release/history-bytes.test.mjs:41:68
+✖ PUB-1: same-size blob read cannot qualify (124.80447ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/release/history-bytes.test.mjs:43:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /blob hash/,
+    operator: 'throws',
+    diff: 'simple'
+  }

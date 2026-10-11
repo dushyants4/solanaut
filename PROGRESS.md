@@ -1,5 +1,10 @@
 # PROGRESS.md
 
+The separate PUB-1 content companion passes synthetic cases and planted faults,
+CLAIMS S128. Actual be7d296 restored history refuses a sensitive path classification
+before file-blob reads; H15 requires human scope/review settlement. No historical
+content clearance, CI/runtime milestone or stable release is claimed.
+
 D41 batch membership defects reproduce at fc3caff. A private membership candidate
 passes focused/source/emitted/installed checks, but corrected full native still
 fails H11's unchanged wait. Preserve the candidate without product integration.

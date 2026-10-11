@@ -1,0 +1,14 @@
+{
+  "caught": [
+    "inventory",
+    "size",
+    "hash",
+    "scope",
+    "sensitive-path",
+    "gitlink",
+    "object-format",
+    "cli-refusal",
+    "cli-clearance"
+  ],
+  "restored": true
+}

@@ -1,0 +1,52 @@
+✔ PUB-1: every historical text and binary blob is read and independently hashed (133.088944ms)
+✔ PUB-1: same-size blob read cannot qualify (94.454088ms)
+✔ PUB-1: short blob read cannot qualify (95.997465ms)
+✔ PUB-1: nonbytes blob read cannot qualify (89.029605ms)
+✔ PUB-1: missing blob read cannot qualify (126.451048ms)
+✔ PUB-1: omitted inventory blobs cannot hide historical bytes (106.432985ms)
+✔ PUB-1: a changed scope during blob reads refuses the receipt (159.243378ms)
+✔ PUB-1: key-shaped historical paths require review before their contents are read (0.60908ms)
+✖ PUB-1: sensitive path metadata refuses before any blob reader runs (154.328087ms)
+✔ PUB-1: gitlink metadata cannot claim complete target content (148.339462ms)
+✔ PUB-1: SHA-256 Git object framing verifies every binary/text blob (127.350086ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 10
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1364.149246
+
+✖ failing tests:
+
+test at evals/release/history-bytes.test.mjs:75:1
+✖ PUB-1: sensitive path metadata refuses before any blob reader runs (154.328087ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /sensitive historical path/. Input:
+  
+  'Error: blob size differs from inventory'
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/release/history-bytes.test.mjs:82:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: blob size differs from inventory
+        at verifyHistoryBytes (file:///home/dashy/Projects/Solanaut/evals/release/history-bytes.mjs:30:43)
+        at file:///home/dashy/Projects/Solanaut/evals/release/history-bytes.test.mjs:82:25
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/release/history-bytes.test.mjs:82:12)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1397:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+        at Test.postRun (node:internal/test_runner/test:1537:19)
+        at Test.run (node:internal/test_runner/test:1462:12),
+    expected: /sensitive historical path/,
+    operator: 'throws',
+    diff: 'simple'
+  }

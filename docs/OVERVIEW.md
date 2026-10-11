@@ -1,10 +1,15 @@
 # OVERVIEW.md — the codebase, as it is
 
-> **Draft 60** · 2026-10-10 · owner: integrator · for: engineers new to this repository, and judges
+> **Draft 61** · 2026-10-10 · owner: integrator · for: engineers new to this repository, and judges
 > reading the code · describes the tree **as it is today**, through milestone 2a.10 of `docs/ROADMAP.md`. What it will
 > become is `docs/SPEC.md`; why is `docs/ARCHITECTURE.md` and `design/`; in what order is `docs/ROADMAP.md`.
 
 ## 1. What is here
+
+A separate evaluator companion can verify complete inventoried historical blob
+bytes without printing them. Its real preflight refuses sensitive path metadata
+before reads, with scope and failure evidence retained in
+`evals/release/history-bytes.md`. This changes no product or protected gate.
 
 D41's private batch membership correction remains prepared, not integrated.
 Wallet array edits can currently defeat cleanup and prematurely release signed

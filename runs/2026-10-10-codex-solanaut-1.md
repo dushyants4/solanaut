@@ -10,6 +10,18 @@ push. Preserve all release, independent and human gates.
 
 ## Did
 
+Resume at clean backed-up be7d296; fetch succeeds with no push. Both boundary
+probes refuse and no probe file appears. Build separate read-only PUB-1 byte
+verification under the approved publication-review mission. Initial stub failures
+and size-omission miss are preserved; strengthen the truncation diagnosis, then
+complete component/CLI and omission trials with exact restoration. Existing Node
+24 also passes the complete component population, without runtime installation.
+Actual restored history preflight refuses private-directory metadata before any
+file-blob contents; retain scope, inputs and explicit refusal without reading or
+citing private contents. H15 and exact unapplied additive O8 record the owed work.
+Mandatory full native again fails only H11; typecheck passes. Product and all
+protected gates remain unchanged. No publication or stable milestone follows.
+
 Resume at clean fc3caff; fetch succeeds, no push. Both live boundary probes
 refuse and no probe file appears. The new batch regression reproduces signed
 admissions incorrectly expiring after wallet array reversal/removal, plus
@@ -262,6 +274,26 @@ This dated continuation satisfies the current-day run-record requirement without
 changing the close checker or discarding the preceding record.
 
 ## Found
+
+The real content-verification attempt refuses, not passes. One private-directory
+path classification blocks the complete scope before file-blob reads; this is
+not evidence of a secret or confidential contents. Nothing is skipped or removed.
+The initial CLI failed before writing structured refusal evidence; preserve that
+raw output/runner, then save metadata/inputs and explicit non-completion.
+The first size omission survives because a hash mismatch also refuses truncation;
+strengthened diagnostic assertions catch it. Earlier trial outputs remain intact.
+Two combined shell invocations are boundary-refused for protected path words
+alongside mutation. Split exact reads from permitted writes as the guard directs;
+no protected write or different-path workaround occurs. Product baseline H11
+failure remains alongside component passes, without a changed wait.
+Staged diff review flags whitespace in raw assertions, exact patch context and
+typecheck EOF; preserve those bytes rather than normalise evidence. The broad
+key-pattern scan pauses commit for scope/secret-review prose, Token test nouns
+and historical token-related filenames. All hits are reviewed; no credential
+value or private-key marker is found. Pre-commit close passes eight of ten,
+only dirty tree and deliberately unpushed HEAD fail. No full-close pass is claimed.
+The restored product hash check still passes; local archival commit and full
+bundle/exact clean restore follow. No Solanaut test/validator/soak remains running.
 
 D41 is a confirmed current product defect. Wallet reversal/removal after valid
 signing reports expired instead of unknown and misses cleanup; caller membership

@@ -232,6 +232,8 @@ Codex appends; the human answers in place. Open at the transfer:
 
 | H14 | 2026-10-09 | SNP-7 compact owned retention | **Decision requested:** accept or reject `design/ADR-023-bounded-owned-working-state.md`. Existing state/checkpoint/index construction retains full history; deleting maps would lose late lifecycle and duplicate-request evidence. Proposal: separately versioned compact owned checkpoints, verified disk consultation for evicted facts, explicit operator-owned active-decision/pending-control capacity with durable pre-admission refusal, and maintenance reconstruction for window extensions. No limit values, dependency, migration or signer expansion is authorised before acceptance; all readiness targets stay unchanged. Independent component and runtime work continues. |
 
+| H15 | 2026-10-10 | proposed public history | **Decision/review owed:** settle the private-directory path classification in the exact be7d296 restored history before complete file-blob review. `evals/release/history-bytes.md` retains metadata-only scope and refusal. This is not a secret finding; no private contents are read or cited, no entries are skipped and no refs/history/drop bytes change. The human determines the proposed public scope and conducts any confidential review; generic resume is not permission to override private/key restrictions. |
+
 ## 6. Owed edits, to files Codex may not change
 
 Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.codex/`, `.claude/`,
@@ -249,7 +251,18 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 | O6 | evals/ci/mutation-recovery.test.ts | Exact unapplied diff: `evals/ci/baseline-latency/owner-wait.patch`; H11's proposed 20,000→60,000 ms harness wait and diagnostic text only. Apply only after human acceptance. | Unchanged source reproduces H11; original staged child naturally passes 573 cases in 22.223 seconds. Generated review copy passes all six original recovery cases. Backend, selected population, seed, score/readiness targets and completion checks stay unchanged. Current gate remains failed; matrix/hosted/maintained qualification follows owner application. | no |
 | O7 | .github/workflows/ci.yml | Exact unapplied combined diff: `evals/sdk/adapter-batch/owner-ci.patch`; supersedes O5's application while retaining D39/D40 steps and adding D41 source/emitted/installed batch trials. Apply only after D41 product integration qualifies. | Local prepared component catches membership omissions. Full native still fails H11, so D41 remains unintegrated; source trials deliberately refuse the original product. Read-only patch validation passes. Matrix, limits and existing checks remain unchanged; exact hosted qualification stays owed. | no |
 
+| O8 | .github/workflows/ci.yml | Exact unapplied independent diff: `evals/release/history-bytes/owner-ci.patch`; add pinned existing uv action and the nested PUB-1 content tests/faults to runtime jobs. Merge additively with other owed runtime-step drafts. | Thirteen component cases and nine omission trials are local proof. Read-only patch validation passes; all existing steps, matrix and limits remain. Actual history still refuses H15; this step cannot grant publication clearance. Owner application and exact hosted qualification remain owed. | no |
+
 ## 7. Codex's log
+
+2026-10-10 PUB-1 content companion from clean backed-up be7d296: initial
+stub failures, a missed size omission and strengthened diagnosis are retained.
+Thirteen final component cases pass on existing Node 26/24; nine omissions
+are caught with exact restoration. Actual restored history refuses sensitive
+path metadata before file-blob reads, H15. Structured metadata/refusal and
+source pins are retained; no entry is skipped and no contents are quoted.
+The root native baseline still fails only H11; typecheck passes. O8 is an
+unapplied additive CI draft. No product, gate, publication or milestone changes.
 
 2026-10-10 D41/ADP-1 from fc3caff: reproduce wallet reversal/removal releasing
 visible valid signing and caller array edits changing admission membership.

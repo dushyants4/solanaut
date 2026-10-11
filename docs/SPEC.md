@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.89** · 2026-10-10 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.90** · 2026-10-10 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -1022,6 +1022,17 @@ score. Full population qualification remains owed (`evals/ci/mutation-recovery.m
 |---|---|---|
 | PUB-1 | a read-only inventory captures HEAD and every local ref, all reachable commits and historical file blobs/paths/modes/sizes, including deleted content, symlinks and gitlinks; shallow/incomplete/changing history refuses; inventory is explicitly not confidentiality, secret, source-rights or publication clearance | independent Git fixture oracles, divergent/tagged/deleted histories, unusual paths, missing objects, shallow history and changed-ref cases; retained manifest identifies the exact inspected revision and scope |
 
+PUB-1 supplementary review convention: the separate read-only blob companion
+requires the original complete inventory before and after reads. It refuses
+gitlinks or sensitive path classifications before file contents; on a permitted
+complete scope it verifies every blob's byte length/Git object hash/SHA-256, and never emits a completed
+receipt on partial failure. Its fixed per-object containment is 64 MiB and its
+Git-read deadline is thirty seconds; exceeding either refuses rather than skips.
+These are evaluator resource bounds, not lowered release targets. Actual current
+history preflight refuses a private-directory classification before blob reads;
+H15 and `evals/release/history-bytes.md` retain the finding. The protected inventory
+gate, product and publication clearance remain unchanged.
+
 ### 13.16 Individual deployment and operator lifecycle
 
 Allocated from the approved mission and accepted ADR-019/020; targets remain in READINESS
@@ -1493,6 +1504,7 @@ Evidence: `evals/sdk/owned-release.md`.
 | Draft 4.87 | 2026-10-10 | D40/ADP-1 privately copies raw buffer returns at legacy/versioned message capture and serialised send. Preserve reproduced alias failures and earlier D39 evidence; no public method or trust boundary change. |
 | Draft 4.88 | 2026-10-10 | Integrate the exact D40 correction after fresh full native/type passes; preserve earlier deferral and current H11 serial-coverage failure. No public API, profile, policy, signer or readiness gate change. |
 | Draft 4.89 | 2026-10-10 | D41 reproduces premature expiry after wallet array edits and prepares private batch membership under ADR-009. Native H11 failure prevents integration; preserve the candidate, first failures and component qualification without changing the gate. |
+| Draft 4.90 | 2026-10-10 | PUB-1 separate blob-verification companion preserves complete scope, explicit refusal and no-clearance semantics. Actual history preflight refuses sensitive path metadata before reads; H15 remains human-owned. No protected gate or product changes. |
 
 Internal SNP-5/7 convention under ADR-019: private `report(hash, outcome)` queues
 the existing trusted SDK report operation with admission, control, redemption,

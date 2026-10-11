@@ -1,0 +1,12 @@
+{
+  "caught": [
+    "inventory",
+    "size",
+    "hash",
+    "scope",
+    "sensitive-path",
+    "gitlink",
+    "object-format"
+  ],
+  "restored": true
+}

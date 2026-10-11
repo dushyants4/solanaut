@@ -1,0 +1,19 @@
+--- a/.github/workflows/ci.yml
++++ b/.github/workflows/ci.yml
+@@ -55,6 +55,16 @@
+       - name: latch fault injections
+         if: ${{ !cancelled() }}
+         run: npm run test:latch:faults
++      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0, existing harness pin
++        if: ${{ !cancelled() }}
++        with:
++          enable-cache: false
++      - name: history content companion and faults
++        if: ${{ !cancelled() }}
++        run: |
++          node --test evals/release/history-bytes.test.mjs
++          uv run --script evals/release/history-bytes/faults.py
++
+ 
+   bite:
+     name: maintained fault campaigns (${{ matrix.partition }})

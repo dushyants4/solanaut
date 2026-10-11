@@ -1,5 +1,12 @@
 # DOCUMENTS.md — the document register
 
+2026-10-10 registers PUB-1 historical blob companion, CLI/tests/faults, original
+misses and raw proof, current restored metadata/refusal/source pins, O8 draft
+and receipt; CLAIMS S128, SPEC 4.90, OVERVIEW 61, RISKS 1.81, PROGRESS, HANDOFF,
+evaluation index and continuing run. Actual content reads refuse before file
+blobs, pending H15. No product, protected gate or publication clearance changes.
+The release evidence map and staged-release draft also record that scope blocker.
+
 2026-10-10 registers D41 prepared batch-membership receipt, bound source/test
 snapshots, helper, raw failures/component/installed qualification and deferred
 O7 CI draft; CLAIMS S127, SPEC 4.89, RISKS 1.80, SDK 22, OVERVIEW 60, PROGRESS,
