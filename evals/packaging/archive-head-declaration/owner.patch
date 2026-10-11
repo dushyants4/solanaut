@@ -1,0 +1,11 @@
+--- a/evals/packaging/packed-sdk.test.ts
++++ b/evals/packaging/packed-sdk.test.ts
+@@ -292,6 +292,8 @@
+     const archiveOptions: ArchiveOptions = {maxLineBytes:1024,expectedAnchor:{seq:0,head:'a'.repeat(64)}};
+     const receipt: ArchiveReceipt = await verifyArchive('history.jsonl',archiveOptions);
+     const code: ArchiveErrorCode = 'anchor';
++    const headCode: ArchiveErrorCode = 'head';
++    void headCode;
+     const anchorSequence: number | undefined = receipt.anchor?.seq;
+     // @ts-expect-error anchor sequence is a safe integer number, not a decimal string
+     verifyArchive('history.jsonl',{expectedAnchor:{seq:'0',head:'a'.repeat(64)}});

@@ -516,3 +516,10 @@ reporting, S140 (`evals/release/installed-kills.md`). Actual kill/recovery evide
 remains separate. O9 proposes a count consistency assertion and has separate
 fresh-seed proof; owner application is still owed. Even consistent counters cannot
 establish execution by an untrusted backend or replace semantic replay checks.
+
+The maintained consumer type fixture tests archive `anchor` but no longer tests
+the earlier `head` error-code member. Removing only head from a copied actual
+archive declaration escapes all package cases, S154. Runtime head-pin refusal
+still passes and the current product type is intact. A proposed copied fixture
+retains both examples and catches the omission; O10 is unapplied. This does not
+establish exhaustive declaration compatibility or mutation coverage.

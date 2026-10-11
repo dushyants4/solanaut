@@ -1,0 +1,27 @@
+✔ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (174.263078ms)
+✔ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (172.481561ms)
+✔ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (78.95967ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (82.903965ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (122.960313ms)
+✔ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (102.138628ms)
+✔ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (110.012222ms)
+✔ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (148.590991ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (152.315716ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (0.506811ms)
+✔ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (294.634373ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (147.732178ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (126.887827ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (125.483244ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (54.678379ms)
+✔ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (915.116921ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (45.988228ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (92.308082ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (44.117749ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3827.227933

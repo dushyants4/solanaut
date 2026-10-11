@@ -1,0 +1,41 @@
+{
+  "results": [
+    {
+      "kind": "baseline",
+      "proposed": false,
+      "status": 0,
+      "tests": 19,
+      "pass": 19
+    },
+    {
+      "kind": "head-fault",
+      "proposed": false,
+      "status": 0,
+      "tests": 19,
+      "pass": 19
+    },
+    {
+      "kind": "anchor-fault",
+      "proposed": false,
+      "status": 1,
+      "tests": 19,
+      "pass": 18
+    },
+    {
+      "kind": "head-fault",
+      "proposed": true,
+      "status": 1,
+      "tests": 19,
+      "pass": 18
+    },
+    {
+      "kind": "baseline",
+      "proposed": true,
+      "status": 0,
+      "tests": 19,
+      "pass": 19
+    }
+  ],
+  "maintainedGateChanged": false,
+  "releaseClearance": false
+}

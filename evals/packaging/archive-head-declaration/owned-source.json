@@ -1,0 +1,7 @@
+{
+  "maintainedTestSha256": "cf9bc91894df8684652c64cd2f2633ce7f8781d1a4f97a88e5ccbfcd6d5b7bfe",
+  "proposalPatchSha256": "2f169ad441c3c618d4526503b9f3f4cee390f09e538a95b2bc7f7b9145dab44a",
+  "prepareSha256": "ea798a9bbf2484114d2918c607bf3d94be98acc9fe8034a2c5ca637ab81318b9",
+  "protectedGateChanged": false,
+  "releaseClearance": false
+}

@@ -1,0 +1,10 @@
+{
+  "revision": "39622d4cfc3c82a88b5bc0ce0c9f8223c1a6c672",
+  "archiveSha256": "55e8753409bb04960271418e1a3d907b8f3130ff16c10a0a143080be50af489d",
+  "maintainedTestSha256": "cf9bc91894df8684652c64cd2f2633ce7f8781d1a4f97a88e5ccbfcd6d5b7bfe",
+  "proposedTestSha256": "364f6257a147e6fd9556de4e9def653ff538f038ac31769c9b33836fb891096f",
+  "changes": "relocate fixture imports/root only; add retained head error-code type example alongside anchor",
+  "sourceChanged": false,
+  "maintainedGateChanged": false,
+  "releaseClearance": false
+}

@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`packaging/archive-head-declaration.md`: installed head declaration omission
+escapes maintained checks while anchor omission is caught; proposed copy retains
+both examples, S154. O10 is unapplied; no stable release credit.
+
 `release/assertion-other.md`: smaller historical signing/ownership/snapshot and
 evaluation assertion reasons with current focused checks, S153. Packed-consumer
 and broader/independent review remain; no stable milestone advances.

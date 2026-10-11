@@ -821,6 +821,13 @@ decision count. A planted zero-count success escapes the original gate. Separate
 fresh-seed proposal proof checks count consistency; exact O9 remains unapplied.
 Returned counters still assume a trusted backend and do not prove semantic replay.
 
+PKG-2 / CI-2 diagnostic S154 (`evals/packaging/archive-head-declaration.md`)
+finds that replacing the typed head example with anchor leaves head declaration
+removal undetected by maintained consumer cases. Runtime head-pin refusal remains
+checked and current product type is intact. A proposed copy retains both examples;
+exact O10 remains unapplied. No full declaration/mutation/native or stable
+qualification follows from these component controls.
+
 The mutation programme freezes full decoder/policy file scope and selected tests before
 measurement (`evals/ci/mutation.md`). Its staged-source isolation and strict report checks
 are maintained fault campaigns. The required Stryker score remains unmeasured at preparation;

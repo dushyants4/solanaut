@@ -7,6 +7,17 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Small-edit checkpoint 39622d4 has a verified complete local bundle, exact clean
+restore and successful full fsck. Inspect remaining consumer replacement blocks,
+without full added-case/patch clearance. Actual D40 declaration copies expose
+a lost typed head example: maintained cases miss head removal and catch anchor
+removal. Proposed copy retains both, catches head omission and passes the actual
+archive. Hash-bound reproduction confirms complete populations and unchanged
+source/archive. Exact read-only owner patch validation passes; O10 is owed.
+The first combined documentation patch fails context matching before any file
+change; apply ordered hunks using the observed owed row instead. No protected
+gate/product edit or publication occurs.
+
 Staging-review checkpoint 66335f9 has a verified complete local bundle, exact
 clean restore and successful full fsck. Continue fifteen smaller historical
 modification reasons with exact frozen selection, full patches and current
@@ -295,6 +306,12 @@ the unchanged original companion control also passes. Outputs stay separate,
 with no installation or full runtime/matrix claim.
 
 ## Found
+
+Archive-declaration pre-commit close passes eight checks and fails only dirty
+work and deliberately unpushed HEAD. Staged source/prose/bindings are reviewed;
+credential-shaped search has no hits. Preserve raw assertion indentation despite
+whitespace warnings. All owned controls finish; original package/test identities
+and read-only patch validation still pass. O10 remains unapplied and H11 fails.
 
 Small-edit review pre-commit close passes eight checks and fails only dirty work
 and deliberately unpushed HEAD. Staged patches/source/prose are reviewed;

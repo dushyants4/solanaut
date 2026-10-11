@@ -1,5 +1,9 @@
 # PROGRESS.md
 
+Installed archive declaration diagnostic finds a maintained head-member check
+gap, S154. Proposed copied evidence catches it; O10 remains unapplied. Current
+product type is intact and no stable milestone advances.
+
 Remaining small historical assertion reasons and current focused checks are
 recorded, S153. Safety/fixture corrections and supervisor containment limitations
 remain explicit; no stable milestone or independent approval follows.

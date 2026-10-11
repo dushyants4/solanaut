@@ -1,0 +1,51 @@
+✔ PKG-1/SNP-5/7: installed private trusted report queues, persists and refuses failed writes (216.401779ms)
+✔ PKG-1/SNP-7: private owned facade restores and serializes installed JavaScript outside the workspace (246.891132ms)
+✔ PKG-1/STO-2/SIG-8: installed writer refuses live journal damage and cannot revive after repair (162.427925ms)
+✔ PKG-1/OWN-2: installed record refuses journal and mutex aliases with failed-startup cleanup (97.27474ms)
+✔ PKG-1/STO-4: installed record rejects changes during startup read and releases ownership (222.556928ms)
+✔ PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails (250.15989ms)
+✔ PKG-1/STO-2: installed writer refuses inconsistent physical append lengths before acknowledgement (174.252505ms)
+✔ PKG-1/OWN-2: installed writer refuses journal and mutex replacement during append (144.84376ms)
+✔ PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts (189.9136ms)
+✔ PKG-1: the packed runtime has no executable TypeScript, test fixtures or development dependencies (0.548724ms)
+✖ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (450.219124ms)
+✔ SNP-1/PKG-1: installed archive verification checks real history and rejects a wrong pin (134.515638ms)
+✔ ANC-3/PKG-1: installed API and command bind an externally trusted archive anchor (161.193356ms)
+✔ POL-1/5/PKG-1: installed policy command prepares canonical public signing text (142.455971ms)
+✔ SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuses altered state (63.98045ms)
+✔ SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay refusals outside the workspace (1122.086358ms)
+✔ PKG-1/OWN-2: installed record-only operations avoid evaluation imports (57.999717ms)
+✔ PKG-3: installed replay and table-pin commands execute with their documented usage exits (119.394213ms)
+✔ CLT-1/PKG-1: installed sending client has explicit methods and typed connection failure without a loader (56.680298ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5125.495645
+
+✖ failing tests:
+
+test at evals/packaging/packed-sdk.test.ts:272:1
+✖ PKG-2: consumer declarations resolve and reject invalid sensor telemetry (450.219124ms)
+  AssertionError [ERR_ASSERTION]: consumer.ts(22,11): error TS2322: Type '"anchor"' is not assignable to type 'ArchiveErrorCode'.
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/packaging/packed-sdk.test.ts:321:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)
+      at Test.postRun (node:internal/test_runner/test:1537:19)
+      at Test.run (node:internal/test_runner/test:1462:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

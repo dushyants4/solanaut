@@ -1,5 +1,10 @@
 # DOCUMENTS.md — the document register
 
+2026-10-11 registers archive declaration preparation/reproducer, frozen inputs,
+complete maintained miss/catch and proposed controls, package-file bindings,
+unapplied owner patch and receipt/index; CLAIMS S154, SPEC, RISKS, PROGRESS,
+HANDOFF O10 and continuing run. No protected gate or product changes.
+
 2026-10-11 registers remaining small assertion collector, frozen selections/full
 patches, historical/current bindings, current focused output and receipt/index;
 CLAIMS S153, PROGRESS, HANDOFF and continuing run. No protected test changes.
