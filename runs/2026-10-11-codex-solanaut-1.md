@@ -7,6 +7,19 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Core qualification checkpoint 6b1f78d is committed and backed up; exact clean
+restore and full fsck pass. Its clean close passes all checks except deliberately
+unpushed HEAD. Prepare an npm CycloneDX consumer graph from the exact current
+private tarball, with missing-dependency refusal before the healthy control.
+The output names the consumer root; it is not a package-centred R.1 SBOM or
+licence/provenance clearance. Preserve that limitation rather than relabel it.
+
+Actual generator refuses missing Gubernaut, then succeeds after exact directory
+restoration. Retain report/graph, generator failure, identity and artefact hashes;
+SDK tarball SHA-512 and original SHA-256 match. The synthetic root remains in
+the raw output and SDK licence is absent. Temporary consumer is removed;
+register S133 without claiming package-centred SBOM or any release completion.
+
 Runtime build checkpoint 6c61cf3 is committed locally, with complete bundle and
 restore verification. Freeze current product/CI/test identities and fresh
 unchanged-domain fuzz/property seeds before the core qualification. Existing

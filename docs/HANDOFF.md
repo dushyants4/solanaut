@@ -255,6 +255,13 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-11 current private SDK consumer inventory preserves npm's actual
+missing-dependency refusal before the healthy control. Component versions,
+dependency edges and SDK tarball hash agree, S133. The original report keeps its
+synthetic consumer root and absent SDK licence; it is not relabelled as a frozen
+package-centred R.1 artefact. No licence, metadata, product/gate, publication or
+stable milestone changes. Complete per-package release SBOMs remain owed.
+
 2026-10-11 current frozen source completes the unchanged million-input fuzz,
 seven source properties and Node 26/24 mixed replay workloads. Actual installed
 D40 public decoder exports pass identical property domains on both runtimes,

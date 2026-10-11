@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`release/sdk-inventory.md`: actual current private SDK consumer CycloneDX report
+with a missing-dependency failure first and tarball-hash agreement, S133. Keep
+the synthetic root visible; this does not fulfil frozen package SBOM/licence gates.
+
 `release/core-runtime.md`: current frozen-input synthetic fuzz/property and
 existing-runtime mixed replay completion, S131. Earlier H11 and maintained
 failures remain; no full CI or stable milestone follows.

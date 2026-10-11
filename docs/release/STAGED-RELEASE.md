@@ -1,5 +1,10 @@
 # Staged devnet release — review draft
 
+The current [consumer inventory](../../evals/release/sdk-inventory.md), S133,
+also records the exact private SDK dependency graph and tarball binding. Its
+synthetic consumer root and absent SDK licence remain visible; it does not
+complete frozen package SBOMs, rights review or any release qualification.
+
 Current same-host D40 qualification also has fresh
 [runtime build identity](../../evals/release/runtime-builds.md),
 [source core workloads](../../evals/release/core-runtime.md) and

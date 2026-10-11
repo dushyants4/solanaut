@@ -1,0 +1,1 @@
+current SDK consumer inventory retained; missing dependency refused before control

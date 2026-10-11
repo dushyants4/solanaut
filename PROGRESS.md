@@ -1,5 +1,10 @@
 # PROGRESS.md
 
+Current private SDK consumer inventory binds the installed dependency graph and
+tarball after an actual missing-dependency refusal, S133. Synthetic-root scope
+and absent SDK licence are explicit. This is not a frozen package SBOM or R.1
+completion; no formal milestone advances.
+
 Current source completes the unchanged synthetic fuzz/property and Node 26/24
 mixed replay workloads, S131. The actual installed D40 tarball also passes the
 original decoder property domains on both runtimes after caught isolated faults,

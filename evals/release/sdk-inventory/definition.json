@@ -1,0 +1,8 @@
+{
+  "revision": "6b1f78d6f4ed0c956831a625d29f8a00c9455e00",
+  "archiveSha256": "55e8753409bb04960271418e1a3d907b8f3130ff16c10a0a143080be50af489d",
+  "runnerSha256": "f3e742544171f1da2b8f06b7370464f4afe54434b9c870d953f2ac22954f074b",
+  "node": "v26.7.0",
+  "npm": "11.19.0",
+  "scope": "npm CycloneDX consumer graph with exact private SDK; not package-centred R.1 clearance"
+}

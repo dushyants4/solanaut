@@ -1,0 +1,10 @@
+{
+  "generatorMissingDependencyExit": 1,
+  "components": 2,
+  "dependencyNodes": 3,
+  "artifactHashMatched": true,
+  "consumerRemoved": true,
+  "licenseClearance": false,
+  "releaseClearance": false,
+  "sbomSha256": "55ee1731bc4dee0b6bebccd63c971497bea5a2784d41f4fd4bf24d86c687c37f"
+}

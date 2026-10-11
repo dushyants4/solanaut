@@ -1,5 +1,10 @@
 # DOCUMENTS.md — the document register
 
+2026-10-11 registers current private SDK consumer inventory, missing-dependency
+refusal, unchanged artifact/runner binding, raw report/graph and receipt/index;
+CLAIMS S133, PROGRESS, HANDOFF, staged-release draft and continuing record.
+Synthetic-root scope and absent SDK licence remain explicit; no release gate changes.
+
 2026-10-11 registers frozen current core qualification, owned job metadata,
 complete fuzz/property/replay/control logs and inputs; installed compiled SDK
 property relocation, first failures, exact restore and existing-runtime controls;
