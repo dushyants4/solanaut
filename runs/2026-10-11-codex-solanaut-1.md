@@ -7,6 +7,14 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Schema checkpoint 0810716 is locally committed with complete verified bundle,
+exact clean restore and successful full fsck. Clean close leaves only intentional
+remote synchronisation unmet. Reconcile the existing threat-model draft with
+current evidence and pending proposals, retaining historical component results.
+An initial read uses the wrong document location; the repository file inventory
+locates `docs/papers/THREAT-MODEL.md`. No other workspace is consulted.
+Draft reconciliation grants no acceptance, independent review or milestone.
+
 Inventory checkpoint 25b4c45 is committed, with complete verified local bundle,
 exact clean restore and successful full fsck. Attempt official schema qualification
 using the already installed Ajv graph; install nothing. Download official schema

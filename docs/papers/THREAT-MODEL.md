@@ -1,9 +1,9 @@
 # THREAT-MODEL.md — what Solanaut defends, against whom, and what is left
 
-> **Draft 5** · 2026-10-07 · owner: architect · builder-authored reconciliation for independent review,
+> **Draft 6** · 2026-10-11 · owner: architect · builder-authored reconciliation for independent review,
 > not an Alpha review or specialist audit. For: reviewers and auditors · not public.
 > Design: `docs/SPEC.md`, ADR-004 to ADR-020; stable clarifications ADR-019/020 are accepted.
-> ADR-008 remains deferred; ADR-021/022 remain proposed.
+> ADR-008 remains deferred; ADR-021/022/023/024 remain proposed.
 > Claims: `docs/CLAIMS.md`.
 > Register: `kb/DOCUMENTS.md`.
 
@@ -57,7 +57,7 @@ Claude's independent RT-2 and the specialist audit. Delivery risks are in `docs/
 | T3 | a drain through an opaque programme's CPI | A1 | accepted stable default denies opaque programmes (ADR-020); bounded execution needs a separately accepted execution-relative design | SDK denial available; bounded execution unbuilt | a trusted SDK policy can knowingly allow unbounded opaque calls; intervening deposits defeat the old absolute balance-floor design |
 | T4 | a slow drain under the caps | A1, A2 | per-window caps, reserved at admission; the dashboard | built for SOL, tokens and fees: reserved at admission (`evals/sdk/admission.md`) | at most the window cap per window |
 | T5 | an oversized send of a listed token | A2 | a per-mint, per-transaction cap | built [S8] | at most the cap |
-| T6 | a retry loop burning fees | A2 | Keel, fee windows and attempts per intent | scoped synthetic evidence [S3, S45] | alternating and distinct failed-outcome streams remain unrefused within S45's horizon; policy limits still bind, without guaranteed changing-intent detection or an on-chain result |
+| T6 | a retry loop burning fees | A2 | Keel, fee windows and attempts per intent | scoped synthetic evidence [S3, S45, S135] | current alternating and distinct failed-outcome streams remain unrefused in their frozen horizons; policy limits still bind. ADR-024 proposes a separate budget, pending H16; no achieved changing-intent bound or on-chain result |
 | T7 | a double payment from re-signing before expiry | A2 | effects-keyed intents and conservative unresolved reservations | SDK handling, including D14–D20 (`docs/SPEC.md` §10) | false caller height/status in SDK mode; no fixed window may erase a still-live unresolved attempt. Durable nonces remain denied (T19) |
 | T8 | bytes changed between check and signature | A3, A8 | receipts bound to the message hash; adapters compare the signed message with the admitted one | built: receipts, and adapters that compare the signed message (`evals/sdk/adapters.md`) | in process, A3 can call the key directly (T9) |
 | T9 | agent-process code bypasses the guard | A3 | dedicated signer user and protected Unix socket (ADR-013) | local components [S23, S30]; installed isolation unqualified | SDK/same-user mode remains bypassable; an attribution flag is not permission evidence; signer-host/root compromise remains trusted |
@@ -113,9 +113,39 @@ not a demonstrated remote signing bypass. Full snapshot derivation must validate
 record semantics as well as hashes and signatures. The current signature-size bound
 does not establish bounded memory for caller-owned JSON.
 
-ADR-021/022 remain proposed; do not count their budget or enrolment/rotation/PDA changes as
+ADR-021/022/023/024 remain proposed; do not count their budget, enrolment/rotation,
+compact retention or failed-outcome changes as
 accepted or deployed. This draft is builder-authored and awaits Claude's independent RT-2,
 the Alpha review and the specialist audit. It establishes no security or release clearance.
+
+### Current candidate reconciliation
+
+- **Wallet representation and batch ownership (T8, T28):** D39/D40's local SDK
+  corrections compare captured wire and privately copy raw message/send storage
+  [S125]. D41's batch-membership correction is prepared, not integrated [S127].
+  Its initial failures remain relevant to the current product. Trusted SDK key
+  access and required human Phantom qualification remain separate residuals.
+- **Recovery and retained state (T12, T24, T25):** signed state/prefix, archive,
+  publication and recovery component receipts now exist in `evals/sdk/`.
+  These do not establish a complete installed recovery path. Current acknowledged
+  SDK crash/replay evidence [S134] is not power-loss or signing/send qualification.
+  Full retained working state remains unbounded; ADR-023 awaits H14.
+- **Core and packaging evidence (T9, T13, T14):** current synthetic decoding,
+  properties and mixed replay [S131/S132], and existing-runtime private package
+  builds [S130], provide scoped builder evidence. They do not replace full native,
+  AST/mutation, hosted CI, isolated deployment or independent audit. H11 remains
+  an unresolved gate finding, and hosted account availability is H13.
+- **Public history and inventory (T9, T13):** actual history content review
+  refuses a sensitive path classification before file-blob reads [S128/H15].
+  It is not a secret finding or history clearance. The SDK inventory is a derived
+  draft [S136]; strict official-schema compilation fails before report validation
+  [S137]. Licence, rights, complete history, all-package SBOM and provenance
+  obligations remain. No publication decision follows from local artifacts.
+
+Earlier D21 ordinary/AST results above describe that historical component
+revision; they are not a current full-gate pass. Current non-stop loop findings,
+prepared batch correction, storage/host residuals and all independent obligations
+must remain visible in any candidate review.
 
 ## 6. Invariants every change must keep
 
@@ -145,3 +175,4 @@ the Alpha review and the specialist audit. It establishes no security or release
 | Draft 3 | 2026-10-03 | The Beta review: each threat's status as built, with its claim row or receipt; the Alpha's mitigations named by ADR (013 to 018); residuals narrowed where the Beta closed them, and T6's shape-changing loop named. |
 | Draft 4 | 2026-10-06 | Builder-authored stable/devnet reconciliation for independent review: scoped component evidence, unresolved-intent/anchor/loop wording and recovery/operator surfaces; no independent-review or release claim. |
 | Draft 5 | 2026-10-07 | Checkpoint-key asset, scoped signature/catalogue components and reproduced D21 history-semantic gap; integrated snapshot and independent qualification remain owed. |
+| Draft 6 | 2026-10-11 | Current loop limits and pending budget design, prepared batch correction, scoped recovery/core/package evidence, retained-state and publication/schema blockers. Historical component results remain scoped; no independent or release clearance. |

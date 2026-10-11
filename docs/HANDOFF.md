@@ -269,6 +269,11 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-11 reconciles THREAT-MODEL Draft 6 with current loop, prepared D41,
+recovery/core/package and publication/schema findings. Historical D21 gate
+results remain scoped to their revision. All proposed ADRs and independent
+obligations stay explicit; this is not Alpha or specialist review.
+
 2026-10-11 strict schema qualification attempt fails during compilation, before
 artifact validation, S137. Existing tools, official hashed scratch schemas and
 exact raw refusal/input identities are retained. Permissive exploratory warnings

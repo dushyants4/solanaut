@@ -1,5 +1,9 @@
 # DOCUMENTS.md — the document register
 
+2026-10-11 registers THREAT-MODEL Draft 6, HANDOFF and continuing run.
+Current findings/receipts and pending proposals reconcile the review draft;
+historical evidence is retained and no independent review or gate credit follows.
+
 2026-10-11 registers the failed strict schema diagnostic/source pins/raw status,
 receipt/index, CLAIMS S137, PROGRESS, HANDOFF and continuing run. No ignored-format
 pass, tool installation, gate change or milestone credit.
