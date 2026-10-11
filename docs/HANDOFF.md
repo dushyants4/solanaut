@@ -271,6 +271,12 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-11 selected interface/history assertion reasons and current focused
+checks are in `evals/release/assertion-interfaces.md`, S146. Original refusals,
+timeout and coverage checks persist or strengthen in this selection. Current
+focused results do not replace H11, broader history or independent qualification;
+no protected test or stable milestone changes.
+
 2026-10-11 selected package-consumer assertion reasons are in
 `evals/release/assertion-packaging.md`, S145. Preserve complete selected patches
 and exact revision/diff hashes. The expanded spawn arguments retain their

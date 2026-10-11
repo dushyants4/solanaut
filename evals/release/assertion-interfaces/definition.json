@@ -1,0 +1,15 @@
+{
+  "baseline": "e925f1dfaabc7eedae361764a401baf7f9e9868b",
+  "head": "753769dcd435b9334e59e921727c04afd6cb6859",
+  "inventorySha256": "f813d4f9f5c54e8bfd0dd5e626680abb3978f1789a42c08309d35c7eb09eaf4b",
+  "collectorSha256": "24b8045361cecb61071b8ae959da6be0a32ce95b1d359d424aad037670e9ac32",
+  "selected": {
+    "evals/ci/ordinary-serial.test.ts": "6162efb",
+    "evals/ci/history.test.ts": "9a6480f",
+    "packages/sdk/test/sending-client.test.ts": "43f20c0",
+    "evals/ci/coverage-hook.test.ts": "0332c97",
+    "packages/sdk/test/signed-policy.test.ts": "9996f00"
+  },
+  "currentRevision": "e241b5bbd643bf0f36f7182da99349d4db8249b6",
+  "scope": "selected historical diffs/current test identities, not complete or independent assertion review"
+}

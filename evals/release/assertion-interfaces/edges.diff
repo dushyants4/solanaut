@@ -1,0 +1,126 @@
+6162efb3ea45a2997eb771ea40fd6b251befb549
+diff --git a/evals/ci/ordinary-serial.test.ts b/evals/ci/ordinary-serial.test.ts
+index 9070bbb..5f7022a 100644
+--- a/evals/ci/ordinary-serial.test.ts
++++ b/evals/ci/ordinary-serial.test.ts
+@@ -19,5 +19,5 @@ test("CI-2: the root test command actually serialises files instead of appending
+     // Retain the previous CI suffix: it must not be relied upon for scheduling.
+     const env={...process.env};delete env.NODE_TEST_CONTEXT;
+-    const result=spawnSync(process.execPath,[...tokens.slice(1,first),...paths,"--test-concurrency=1"],{encoding:"utf8",timeout:5000,env});
++    const result=spawnSync(process.execPath,["--test-concurrency=2",...tokens.slice(1,first),...paths,"--test-concurrency=1"],{encoding:"utf8",timeout:5000,env});
+     assert.equal(result.status,0,result.stdout+result.stderr);assert.match(result.stdout,/tests 2\b/);
+     const events=readFileSync(output,"utf8").trim().split("\n").map(line=>JSON.parse(line));
+
+9a6480fe2291600b4b8460c38e113c844b010ff8
+diff --git a/evals/ci/history.test.ts b/evals/ci/history.test.ts
+index 1ac1a9b..7af3d81 100644
+--- a/evals/ci/history.test.ts
++++ b/evals/ci/history.test.ts
+@@ -93,10 +93,12 @@ test("PUB-1: shared blobs retain each historical path and file mode", () => fixt
+ }));
+ test("PUB-1: malformed tree framing and object metadata refuse", () => {
+-  for (const variant of ["tree", "size", "count", "duplicate"]) fixture((root, git) => {
++  for (const variant of ["tree", "size", "count", "truncated", "duplicate"]) fixture((root, git) => {
++    if(variant==="truncated"){writeFileSync(join(root,"extra.txt"),"second blob\n");git(["add","."]);git(["commit","-m","extra blob"]);}
+     const read: GitRead = (args, input) => {
+       const output = git(args, input);
+       if (variant === "tree" && args[0] === "ls-tree") return output.slice(0, -1);
+-      if (variant === "size" && args[0] === "cat-file") return output.replace(/ blob \d+\n/, " blob 9007199254740992\n");
+-      if (variant === "count" && args[0] === "cat-file") return "";
++      if (variant === "size" && args[0] === "cat-file" && args[1]?.startsWith("--batch-check")) return output.replace(/ blob \d+\n/, " blob 9007199254740992\n");
++      if (variant === "count" && args[0] === "cat-file" && args[1]?.startsWith("--batch-check")) return "";
++      if (variant === "truncated" && args[0] === "cat-file" && args[1]?.startsWith("--batch-check")) return output.trimEnd().split("\n")[0]+"\n";
+       if (variant === "duplicate" && args[0] === "rev-list") return output + output;
+       return output;
+@@ -132,2 +134,14 @@ test("PUB-1: cached commit graphs cannot authorise missing historical commit obj
+   assert.throws(() => inventoryHistory(root), /object|history|git read/);
+ }));
++test("PUB-1: commit-body read failure cannot be replaced by graph or tree metadata", () => fixture((root, git) => {
++  const firstTree=git(["rev-parse","HEAD^{tree}"]).trim();writeFileSync(join(root,"past.txt"),"second\n");git(["add","."]);git(["commit","-m","second"]);const head=git(["rev-parse","HEAD"]).trim();
++  for(const mode of ["missing","corrupt","parent","tree"]){
++    const read:GitRead=(args,input)=>{
++      if((mode==="missing"||mode==="corrupt")&&args[0]==="cat-file"&&args[1]==="commit"){if(mode==="missing")throw new Error("historical commit object cannot be read");return git(args,input)+"corrupt";}
++      if(mode==="parent"&&args[0]==="rev-list")return head+"\n";
++      if(mode==="tree"&&args[0]==="rev-parse"&&args[2]===head+"^{tree}")return firstTree+"\n";
++      return git(args,input);
++    };
++    assert.throws(()=>inventoryHistory(root,read),/commit|object|history/);
++  }
++}));
+
+43f20c08b264c1fab9d40166dd357e5b71c7a293
+diff --git a/packages/sdk/test/sending-client.test.ts b/packages/sdk/test/sending-client.test.ts
+index 1ee1572..483fd13 100644
+--- a/packages/sdk/test/sending-client.test.ts
++++ b/packages/sdk/test/sending-client.test.ts
+@@ -81,9 +81,35 @@ test("CLT-4: absolute timeout is not extended by response activity", async () =>
+ });
+ test("CLT-1/3: invalid configuration and payloads refuse before connecting", async () => {
+-  for (const options of [{ socket: "relative", clientId: "a" }, { socket: "/socket", clientId: "" }, { socket: "/socket", clientId: "a", timeoutMs: 30_001 }]) assert.throws(() => createSendingClient(options), /socket|identity|timeout/);
+   const host = await server((_r, socket) => socket.destroy());
+   try {
++    const inputError = (error: unknown) => error instanceof SignerClientError && error.code === "input" && !error.mayHaveExecuted;
++    const configure = createSendingClient as (options?: unknown) => unknown;
++    const invalidContainers = [undefined, null, false, 0, "input", 1n, Symbol("input"), [] as unknown, (() => {}) as unknown];
++    const configuration = { socket: host.path, clientId: "a" };
++    assert.throws(() => configure(), inputError, "missing options");
++    for (const options of [...invalidContainers, Object.assign([], configuration), Object.assign(() => {}, configuration)]) {
++      assert.throws(() => configure(options), inputError, "invalid options container");
++    }
++    for (const options of [{ socket: "relative", clientId: "a" }, { socket: "/socket", clientId: "" }, { socket: "/socket", clientId: "a", timeoutMs: 30_001 }, { ...configuration, timeoutMs: NaN }]) {
++      assert.throws(() => configure(options), inputError, "invalid configuration field");
++    }
+     const client = createSendingClient({ socket: host.path, clientId: "a" });
+-    for (const request of [{ id: "", message: Uint8Array.of(1) }, { id: "one", message: new Uint8Array(6145) }, { id: "one", message: Uint8Array.of(1), group: "x".repeat(257) }, { id: "one", message: Uint8Array.of(1), deadline: NaN }]) await assert.rejects(client.propose(request), /identity|message|group|deadline/);
++    for (const name of ["propose", "report", "status"] as const) {
++      const method = client[name] as (input?: unknown) => Promise<unknown>;
++      const request = name === "propose" ? { id: "one", message: Uint8Array.of(1) } : name === "report" ? { id: "one", decision } : { id: "one" };
++      await assert.rejects(async () => await method(), inputError, `${name}: missing payload`);
++      for (const input of [...invalidContainers, Object.assign([], request), Object.assign(() => {}, request)]) {
++        await assert.rejects(async () => await method(input), inputError, `${name}: invalid payload container`);
++      }
++      for (const input of [{ ...request, id: "" }, { ...request, deadline: NaN }]) {
++        await assert.rejects(async () => await method(input), inputError, `${name}: invalid identity/deadline`);
++      }
++    }
++    for (const request of [{ id: "", message: Uint8Array.of(1) }, { id: "one", message: new Uint8Array(6145) }, { id: "one", message: Uint8Array.of(1), group: "x".repeat(257) }, { id: "one", message: Uint8Array.of(1), deadline: NaN }]) {
++      await assert.rejects(client.propose(request), inputError, "invalid proposal field");
++    }
++    await assert.rejects(client.propose({ id: "one", message: [] } as any), inputError, "message must remain bytes");
++    await assert.rejects(client.propose({ id: "one", message: Uint8Array.of(1), group: 1 } as any), inputError, "group must remain text");
++    await assert.rejects(client.report({ id: "one", decision: "invalid" }), inputError, "invalid decision hash");
+     assert.equal(host.calls(), 0);
+   } finally { await host.close(); }
+
+0332c977eb0dadec8a5592324fb8ad1f76ab2db0
+diff --git a/evals/ci/coverage-hook.test.ts b/evals/ci/coverage-hook.test.ts
+index 830c480..8e56d52 100644
+--- a/evals/ci/coverage-hook.test.ts
++++ b/evals/ci/coverage-hook.test.ts
+@@ -8,5 +8,5 @@ test("CI-2: explicit hook records real SDK execution with statement and branch m
+   const directory=mkdtempSync(join(tmpdir(),"solanaut-coverage-probe-"));
+   try {
+-    const result=spawnSync(process.execPath,["--import","./evals/ci/coverage-hook.ts","--input-type=module","-e","import {encodeBase58} from './packages/sdk/src/base58.ts'; if(encodeBase58(new Uint8Array([0,1]))!=='12') process.exitCode=1;"],{encoding:"utf8",timeout:5000,env:{...process.env,SOLANAUT_COVERAGE_DIR:directory}});
++    const result=spawnSync(process.execPath,["--import","./evals/ci/coverage-hook.ts","--input-type=module","-e","import {encodeBase58} from './packages/sdk/src/base58.ts'; import {createToolFilter} from './apps/firewall/src/filter.ts';createToolFilter({cluster:'devnet',tools:[]}); if(encodeBase58(new Uint8Array([0,1]))!=='12') process.exitCode=1;"],{encoding:"utf8",timeout:5000,env:{...process.env,SOLANAUT_COVERAGE_DIR:directory}});
+     assert.equal(result.status,0,result.stderr);
+     const reports=readdirSync(directory); assert.equal(reports.length,1,"hook must persist execution evidence");
+@@ -16,4 +16,5 @@ test("CI-2: explicit hook records real SDK execution with statement and branch m
+     assert.ok(Object.values(coverage.s).some(value=>Number(value)>0));
+     assert.ok(Object.keys(coverage.branchMap).length>0);
++    assert.ok(report["apps/firewall/src/filter.ts"],"firewall execution cannot be omitted from coverage");
+     assert.ok(!report["evals/ci/coverage-hook.ts"],"test tooling is outside product coverage");
+   } finally { rmSync(directory,{recursive:true,force:true}); }
+
+9996f001e2b5ed817c347f2546d765ba1abe2911
+diff --git a/packages/sdk/test/signed-policy.test.ts b/packages/sdk/test/signed-policy.test.ts
+index b9324bd..1ff2d42 100644
+--- a/packages/sdk/test/signed-policy.test.ts
++++ b/packages/sdk/test/signed-policy.test.ts
+@@ -179,5 +179,6 @@ test("POL-4: the operator replay command uses signed history and an external pub
+   const untrusted = spawnSync(process.execPath, ["packages/sdk/bin/replay.ts", path, "-"], { encoding: "utf8" });
+   assert.equal(untrusted.status, 1);
+-  assert.match(untrusted.stdout, /externally pinned/);
++  assert.equal(untrusted.stdout, "diverges at seq 0, field chain\n  recorded: [redacted]\n  recomputed: [redacted]\n");
++  assert.equal(untrusted.stderr, "");
+ });
+ test("POL-4: extending the window reconstructs spending pruned under the old window", async () => {

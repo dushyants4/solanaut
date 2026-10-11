@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`release/assertion-interfaces.md`: selected historical interface/history checks,
+explicit builder reasons and unchanged current focused checks, S146. Broader
+history, independent review and full native/release qualification remain owed.
+
 `release/assertion-packaging.md`: selected historical consumer-test patches and
 explicit builder reasons, S145. Full test-history/independent review remains owed;
 no current execution or gate correction is claimed.

@@ -1,5 +1,9 @@
 # DOCUMENTS.md — the document register
 
+2026-10-11 registers selected interface/history collector, frozen bindings/full
+patches, current focused output and reasons, receipt/index; CLAIMS S146,
+PROGRESS, HANDOFF and continuing run. No protected test or milestone changes.
+
 2026-10-11 registers selected package-assertion collector/binding/complete patches,
 old/new/diff hashes and reasons, receipt/index; CLAIMS S145, PROGRESS, HANDOFF
 and continuing run. Broader history review remains; no protected test changes.

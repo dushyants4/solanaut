@@ -1,0 +1,62 @@
+[
+  {
+    "parent": "6d81f8b747c1b04003b8bd83f12bed6e5fcbca51",
+    "commit": "6162efb3ea45a2997eb771ea40fd6b251befb549",
+    "status": "M",
+    "path": "evals/ci/ordinary-serial.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "1cfe2c5e1a87dbacc326a4c645efb51032cd4adf7d26acbe6a867264b9fd79e0",
+    "afterSha256": "77d2f7064e2b2e856c82d89d479d890ef14f11847b472356cec1edd4205942d1",
+    "diffSha256": "45fc5ed06894758c7cbfbc779da176c697d8bb4754d364cbcc1f1920c2ac59b9",
+    "currentTestSha256": "77d2f7064e2b2e856c82d89d479d890ef14f11847b472356cec1edd4205942d1",
+    "currentTestEqualsSelectedRevision": true
+  },
+  {
+    "parent": "49f753b3b5e806b68b45608b11984b1484f9703f",
+    "commit": "9a6480fe2291600b4b8460c38e113c844b010ff8",
+    "status": "M",
+    "path": "evals/ci/history.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "a4d1abe066ad65b2cbb2b35a0642ba8d3a25ac8c4a79d09e6ee34e24908f4497",
+    "afterSha256": "4daf76b51161674a05ef33007d0b713dfd1500822f121be4ff25908d760c44a6",
+    "diffSha256": "fa2f99caf3defc021a6ffa613cb5e0d95d18eeb50bcf4795bab2cc72374068ff",
+    "currentTestSha256": "4daf76b51161674a05ef33007d0b713dfd1500822f121be4ff25908d760c44a6",
+    "currentTestEqualsSelectedRevision": true
+  },
+  {
+    "parent": "39c24de89a3e860cd9e4a08517a616481c5c72ca",
+    "commit": "43f20c08b264c1fab9d40166dd357e5b71c7a293",
+    "status": "M",
+    "path": "packages/sdk/test/sending-client.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "f512865b82bc4a6f13826a43375487ad248878a86260b6e70de72c5eea709742",
+    "afterSha256": "82da403477e6cb751cdb8a5c9e886c1a8e99ddd01cb74759f9c5bb31493c09be",
+    "diffSha256": "5486f97cf004134547a6175e44b9b1f1de74d69b4c74002fe2ebf19f18f2b2a8",
+    "currentTestSha256": "82da403477e6cb751cdb8a5c9e886c1a8e99ddd01cb74759f9c5bb31493c09be",
+    "currentTestEqualsSelectedRevision": true
+  },
+  {
+    "parent": "588a1eff19d1cb02cb61b4f42b046d17201ff317",
+    "commit": "0332c977eb0dadec8a5592324fb8ad1f76ab2db0",
+    "status": "M",
+    "path": "evals/ci/coverage-hook.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "a07b37fcbf8450ffc209ed749ebad5021534a776ac1c2520620eea946fce31c7",
+    "afterSha256": "1da8209601c0df6958c497c29ba3526b9d9308331fd2bb2f4a67b42fa7094e3f",
+    "diffSha256": "cef1d5ae92bb732512e44ffe96cf234c329e82c16a11276799eabd03c4ffe783",
+    "currentTestSha256": "1da8209601c0df6958c497c29ba3526b9d9308331fd2bb2f4a67b42fa7094e3f",
+    "currentTestEqualsSelectedRevision": true
+  },
+  {
+    "parent": "0a199aab336fc80431b3d0f360eefd06be06f486",
+    "commit": "9996f001e2b5ed817c347f2546d765ba1abe2911",
+    "status": "M",
+    "path": "packages/sdk/test/signed-policy.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "a2029ec90094a8063f5a02cd0b66e4fea21ae4d33936a9de50e3ce5e573e71ae",
+    "afterSha256": "18a4f794aac545f64bb13842222ceaf9ae82d88e8a766c6f63e9ac651a61d2d9",
+    "diffSha256": "d20b34c502fe78d109191841ecc25227977f0398d6b65dfa0376d87f5e2c6523",
+    "currentTestSha256": "18a4f794aac545f64bb13842222ceaf9ae82d88e8a766c6f63e9ac651a61d2d9",
+    "currentTestEqualsSelectedRevision": true
+  }
+]

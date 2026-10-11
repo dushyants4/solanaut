@@ -7,6 +7,15 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Package-reason checkpoint e241b5b has a verified complete local bundle, exact
+clean restore and successful full fsck. Continue five selected interface/history
+assertion reasons. Bind current test identities and inspect complete patches;
+unchanged focused tests pass and typecheck exits successfully. Record preserved
+deadlines/refusals, typed input predicates, targeted history corruption, expanded
+firewall coverage and privacy-safe replay diagnostics. No protected test changes.
+A guessed coverage-hook receipt is absent; use the firewall filter receipt found
+in the bounded document inventory instead.
+
 Recovery-reason checkpoint 8d51c77 has a verified complete local bundle, exact
 clean restore and successful full fsck. Continue selected package-consumer
 assertion review. Preserve full selected patches and old/new/diff hashes; read
@@ -231,6 +240,11 @@ the unchanged original companion control also passes. Outputs stay separate,
 with no installation or full runtime/matrix claim.
 
 ## Found
+
+Interface-review pre-commit close passes eight checks, including tracked-file
+secret scanning, and fails only dirty work and deliberately unpushed HEAD.
+Staged diff and selected source/prose are reviewed; diff whitespace is clean
+and credential-shaped search has no hits. No product or protected test changes.
 
 Selected consumer-review pre-commit close passes every check except dirty work
 and deliberately unpushed HEAD. Staged full selection, hashes and reasons are

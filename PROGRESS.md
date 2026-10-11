@@ -1,5 +1,9 @@
 # PROGRESS.md
 
+Selected interface/history assertion reasons and current focused checks are
+recorded, S146. Broader/independent review and H11 remain; no protected test or
+stable milestone changes.
+
 Selected package-consumer historical assertion reasons are recorded, S145.
 Broader/independent review and release gates remain; no protected test or stable
 milestone changes.
