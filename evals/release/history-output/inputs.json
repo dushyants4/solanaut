@@ -1,0 +1,7 @@
+{
+  "evals/release/history-bytes-run.mjs": "3af2524f56abd27c2b85aed939abbcf7a64dee66106490a88bbf68be59dd4a76",
+  "evals/release/history-output.candidate.mjs": "d457599a5604defbd7b32ea354ca5ada21dc9ecc517cefeb919d98ead40722c7",
+  "evals/release/history-output.test.mjs": "403e072fca481105c10a3d3af330b03ecd575b625e631c45d6017640df9a2e66",
+  "evals/release/history-output/faults.py": "1bf11dbd24c93b5e9f69854b004dc71882634b89ae19acddeb6410cb42de9cdc",
+  "evals/release/history-output/owner.patch": "a9aa46c676551452338ddb1ddec6ad77e15d6a5e1c5264fdaf3418caad5d79c1"
+}

@@ -1,5 +1,10 @@
 # PROGRESS.md
 
+PUB-1's maintained evidence runner accepts symlinked output parents. The new
+workspace-only regression fails; proposed-copy proof and an exact unapplied edit
+are preserved in `evals/release/history-output.md`, CLAIMS S129. No maintained
+correction or stable milestone credit follows.
+
 The separate PUB-1 content companion passes synthetic cases and planted faults,
 CLAIMS S128. Actual be7d296 restored history refuses a sensitive path classification
 before file-blob reads; H15 requires human scope/review settlement. No historical

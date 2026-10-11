@@ -1,5 +1,10 @@
 # evals/ — receipts
 
+`release/history-output.md`: maintained PUB-1 runner accepts a redirected output
+parent. Workspace-only regression fails; a separate proposed copy refuses before
+directory creation, with fault proof and an exact unapplied owner edit. S129;
+the maintained runner remains unchanged and publication clearance stays open.
+
 `release/history-bytes.md`: separate PUB-1 blob companion, initial failures/missed
 omission, thirteen synthetic component cases and nine final faults. Actual
 restored history refuses sensitive path metadata before contents, H15/S128;

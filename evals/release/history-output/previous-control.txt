@@ -1,0 +1,21 @@
+✔ PUB-1: every historical text and binary blob is read and independently hashed (122.953783ms)
+✔ PUB-1: same-size blob read cannot qualify (88.569352ms)
+✔ PUB-1: short blob read cannot qualify (80.882258ms)
+✔ PUB-1: nonbytes blob read cannot qualify (77.32804ms)
+✔ PUB-1: missing blob read cannot qualify (101.870369ms)
+✔ PUB-1: omitted inventory blobs cannot hide historical bytes (108.051528ms)
+✔ PUB-1: a changed scope during blob reads refuses the receipt (156.058371ms)
+✔ PUB-1: key-shaped historical paths require review before their contents are read (0.462469ms)
+✔ PUB-1: sensitive path metadata refuses before any blob reader runs (146.352108ms)
+✔ PUB-1: gitlink metadata cannot claim complete target content (141.786691ms)
+✔ PUB-1: SHA-256 Git object framing verifies every binary/text blob (126.147426ms)
+✔ PUB-1: the CLI writes complete hashed synthetic evidence without clearance (241.782223ms)
+✔ PUB-1: the CLI retains preflight refusal without a completed content receipt (220.650213ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1730.474217

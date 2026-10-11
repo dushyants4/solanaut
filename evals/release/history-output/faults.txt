@@ -1,0 +1,1 @@
+proposed output-parent faults caught; exact candidate restored

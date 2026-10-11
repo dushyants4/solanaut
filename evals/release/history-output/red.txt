@@ -1,0 +1,31 @@
+✖ PUB-1: redirected output parents refuse before any evidence write (206.709454ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 274.107796
+
+✖ failing tests:
+
+test at evals/release/history-output.test.mjs:7:1
+✖ PUB-1: redirected output parents refuse before any evidence write (206.709454ms)
+  AssertionError [ERR_ASSERTION]: {"revision":"0b4a8bd342f7f9e4b96fd0e4bc0831318c8cb334","inventoryDigest":"c69bdbf1cf8f5243b2855f0554ff4b55c149df97df779f2b3764b1e57c2af265","contentDigest":"4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945","blobs":0,"bytes":0,"skipped":0,"clearance":false}
+  
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///home/dashy/Projects/Solanaut/evals/release/history-output.test.mjs:20:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

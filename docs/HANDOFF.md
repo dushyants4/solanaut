@@ -255,6 +255,15 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-11 PUB-1 evidence output finding: maintained runner accepts a directory
+symlink and redirects writes. Workspace-only regression fails; exact proposed
+edit is `evals/release/history-output/owner.patch`, with separate candidate/control
+and omission/late-check proof in the receipt. The evaluator does not fix the
+maintained runner it reviewed; owner application and additive CI qualification
+remain owed. No private contents or external paths are accessed. S128/H15 scope
+refusal, H11 and stable gates remain unchanged. Product and protected gates do
+not change; local-only commits and verified backups continue.
+
 2026-10-10 PUB-1 content companion from clean backed-up be7d296: initial
 stub failures, a missed size omission and strengthened diagnosis are retained.
 Thirteen final component cases pass on existing Node 26/24; nine omissions

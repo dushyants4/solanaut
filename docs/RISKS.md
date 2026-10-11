@@ -1,5 +1,11 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
+The history-content evidence runner's lexical output check allows a symlinked
+parent to redirect evidence writes. The workspace-only regression confirms it;
+the maintained runner is unchanged. Separate proposed-copy preflight evidence
+and exact owner edit are in `evals/release/history-output.md`. This does not
+establish atomic protection against concurrent filesystem replacement.
+
 Publication review still has no content clearance. The restored be7d296 history
 contains private-directory path metadata that refuses the new blob companion's
 preflight before file reads. H15 needs human scope/review settlement; this is not

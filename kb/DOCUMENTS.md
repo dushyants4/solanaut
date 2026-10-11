@@ -1,5 +1,11 @@
 # DOCUMENTS.md — the document register
 
+2026-10-11 registers PUB-1 output-parent finding, separate regression/proposed
+copy, exact unapplied owner edit, raw failure/control/fault proof and input pins;
+receipt/index, CLAIMS S129, PROGRESS, RISKS, HANDOFF and dated run continuation.
+Previous S128 proof and all product/protected files remain unchanged. This is
+an evaluator finding and proposed-copy qualification, not maintained correction.
+
 2026-10-10 registers PUB-1 historical blob companion, CLI/tests/faults, original
 misses and raw proof, current restored metadata/refusal/source pins, O8 draft
 and receipt; CLAIMS S128, SPEC 4.90, OVERVIEW 61, RISKS 1.81, PROGRESS, HANDOFF,
