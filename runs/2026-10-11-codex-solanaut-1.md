@@ -7,6 +7,14 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Interface-review checkpoint 042409a has a verified complete local bundle, exact
+clean restore and successful full fsck. Continue seven selected storage/checkpoint
+historical reasons with complete patches and current identities. All current
+focused tests pass and typecheck exits successfully. Distinguish shared-policy
+fixture isolation and checkpoint-inode read targeting from removed scenarios;
+record retained checks and new physical-evidence refusals. No protected test,
+product, threshold, wait or architecture changes.
+
 Package-reason checkpoint e241b5b has a verified complete local bundle, exact
 clean restore and successful full fsck. Continue five selected interface/history
 assertion reasons. Bind current test identities and inspect complete patches;
@@ -240,6 +248,11 @@ the unchanged original companion control also passes. Outputs stay separate,
 with no installation or full runtime/matrix claim.
 
 ## Found
+
+Storage-review pre-commit close passes eight checks and fails only dirty work
+and deliberately unpushed HEAD. Review staged source/prose and exact historical
+patches; credential-shaped search has no hits. Preserve typecheck's raw final
+blank line despite its diff whitespace warning. No protected test changes.
 
 Interface-review pre-commit close passes eight checks, including tracked-file
 secret scanning, and fails only dirty work and deliberately unpushed HEAD.

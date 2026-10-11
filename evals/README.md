@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`release/assertion-storage.md`: selected storage/checkpoint historical reasons
+and unchanged current focused checks, S147. Fixture corrections preserve their
+fault scenarios; broader/independent review and stable gates remain open.
+
 `release/assertion-interfaces.md`: selected historical interface/history checks,
 explicit builder reasons and unchanged current focused checks, S146. Broader
 history, independent review and full native/release qualification remain owed.

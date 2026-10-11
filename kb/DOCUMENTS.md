@@ -1,5 +1,9 @@
 # DOCUMENTS.md — the document register
 
+2026-10-11 registers selected storage/checkpoint collector, full patches and
+revision/diff/current bindings, focused/typecheck output and receipt/index;
+CLAIMS S147, PROGRESS, HANDOFF and continuing run. No protected test changes.
+
 2026-10-11 registers selected interface/history collector, frozen bindings/full
 patches, current focused output and reasons, receipt/index; CLAIMS S146,
 PROGRESS, HANDOFF and continuing run. No protected test or milestone changes.

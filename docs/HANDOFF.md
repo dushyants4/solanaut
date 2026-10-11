@@ -271,6 +271,12 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-11 selected storage/checkpoint assertion reasons and current focused
+checks are in `evals/release/assertion-storage.md`, S147. Shared-policy cloning
+and checkpoint-inode fault scoping preserve the intended mutation/refusal cases;
+storage additions strengthen evidence checks. Broader/Claude review, H11 and
+release gates remain pending; no protected test or milestone changes.
+
 2026-10-11 selected interface/history assertion reasons and current focused
 checks are in `evals/release/assertion-interfaces.md`, S146. Original refusals,
 timeout and coverage checks persist or strengthen in this selection. Current

@@ -1,0 +1,23 @@
+{
+  "baseline": "e925f1dfaabc7eedae361764a401baf7f9e9868b",
+  "head": "753769dcd435b9334e59e921727c04afd6cb6859",
+  "inventorySha256": "f813d4f9f5c54e8bfd0dd5e626680abb3978f1789a42c08309d35c7eb09eaf4b",
+  "collectorSha256": "718434fea66fe34227e28009d19d7debe33ba67e4f8dc8f1808a869855c44c45",
+  "selected": {
+    "packages/sdk/test/checkpoint-state.test.ts": [
+      "2692542"
+    ],
+    "packages/sdk/test/checkpoint-owned-recovery.test.ts": [
+      "701372e"
+    ],
+    "packages/sdk/test/storage-failures.test.ts": [
+      "fba638a",
+      "67948e6",
+      "701372e",
+      "3fe0f0d",
+      "49f6d63"
+    ]
+  },
+  "currentRevision": "042409a54c2180fe42a4a7fc38ce91d7d7f79bcd",
+  "scope": "selected storage/checkpoint diffs, not complete or independent history review"
+}

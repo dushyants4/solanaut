@@ -1,5 +1,9 @@
 # PROGRESS.md
 
+Selected storage/checkpoint assertion reasons and current focused checks are
+recorded, S147. Broader/independent review and H11 remain; no stable milestone
+or protected test changes.
+
 Selected interface/history assertion reasons and current focused checks are
 recorded, S146. Broader/independent review and H11 remain; no protected test or
 stable milestone changes.

@@ -1,0 +1,268 @@
+26925421d283b4a41146e2243ab3b585e051ef77
+diff --git a/packages/sdk/test/checkpoint-state.test.ts b/packages/sdk/test/checkpoint-state.test.ts
+index 0611f35..23895ff 100644
+--- a/packages/sdk/test/checkpoint-state.test.ts
++++ b/packages/sdk/test/checkpoint-state.test.ts
+@@ -16,7 +16,7 @@ const endpoint=(entries:readonly Entry[])=>({seq:entries.length,head:entries.at(
+ async function setup(){
+   const operator=generateKeyPairSync("ed25519"),agent=generateKeyPairSync("ed25519");
+   const address=(pair:typeof operator)=>encodeBase58(Buffer.from(pair.publicKey.export({format:"jwk"}).x!,"base64url"));
+-  const policy={...WORKLOAD_POLICY,principal:[address(agent)],latch:{...WORKLOAD_POLICY.latch,releaseKey:address(operator)}};
++  const policy={...structuredClone(WORKLOAD_POLICY),principal:[address(agent)],latch:{...WORKLOAD_POLICY.latch,releaseKey:address(operator)}};
+   const trust={operatorKey:address(operator),guardId:policy.latch.guardId,cluster:policy.latch.cluster},issued="2026-10-07T00:00:00.000Z";
+   const authorization=(p:unknown,version:number)=>{const text=preparePolicyText(p,version,issued);return {...trust,version,issued,text,signature:sign(null,Buffer.from(text),operator.privateKey).toString("base64")};};
+   const store=memoryStore(),guard=await createGuard({policy,authorization:authorization(policy,1),log:store});
+@@ -82,6 +82,7 @@ test("SNP-3/5: missing trust, unsupported history and asynchronous caller change
+     await refused(prepareCheckpointState([x.store.entries[0]!,changed],undefined,endpoint([x.store.entries[0]!,changed]),x.trust));
+     const entries=[...x.store.entries],context=endpoint(entries),trust={...x.trust},expected=await prepareCheckpointState(entries,x.policy,context,trust);
+     const pending=prepareCheckpointState(entries,x.policy,context,trust);entries.length=0;context.seq=0;context.head="";trust.guardId="foreign";x.policy.sol.maxPerTx=0n;x.policy.windowMs=80_000;assert.deepEqual(await pending,expected);
++    assert.equal(WORKLOAD_POLICY.sol.maxPerTx,1_000_000_000n);
+   }finally{x.guard.close();}
+ });
+ test("SNP-3/5: pending control identities and completed answers remain distinct",async()=>{
+
+fba638ad2d55b359771a6cf4ac517a3b1c6521ad
+diff --git a/packages/sdk/test/storage-failures.test.ts b/packages/sdk/test/storage-failures.test.ts
+index 1f4f79f..5fa77c9 100644
+--- a/packages/sdk/test/storage-failures.test.ts
++++ b/packages/sdk/test/storage-failures.test.ts
+@@ -49,3 +49,38 @@ for (const failure of ["ENOSPC", "EACCES", "zero-progress", "fsync"]) test(`STO-
+     assert.equal(g.entries().length, 0);
+   } finally { restore(); g.close(); }
+ });
++for (const ownership of ["manual", "kernel"] as const) for (const damage of ["append", "truncate", "overwrite"]) test(`STO-2/3/SIG-8/OWN-2: ${ownership} writer refuses external ${damage} on its held inode`, async () => {
++  const path = record();
++  const { fileStore } = await import("../src/record.ts");
++  const store = fileStore(path, { ownership });
++  const g = await createGuard({ policy: WORKLOAD_POLICY, log: store });
++  try {
++    assert.equal(g.check({ message: payment(), at: 1000 }).allow, true);
++    const before = fs.statSync(path, { bigint: true }), original = fs.readFileSync(path, "utf8");
++    if (damage === "append") {
++      fs.appendFileSync(path, "{}\n");
++      // A coarse or stale timestamp must not hide a changed byte count.
++      const stat = fs.fstatSync;
++      mock.method(fs, "fstatSync", (...args: unknown[]) => {
++        const value = Reflect.apply(stat, fs, args);
++        return typeof value.size === "bigint" && value.ino === before.ino ? Object.assign(value, { mtimeNs: before.mtimeNs, ctimeNs: before.ctimeNs }) : value;
++      });
++      syncBuiltinESMExports();
++    }
++    else if (damage === "truncate") fs.truncateSync(path, 0);
++    else {
++      assert.ok(original.includes('"at":1000'));
++      fs.writeFileSync(path, original.replace('"at":1000', '"at":9000'));
++      fs.utimesSync(path, before.atime, before.mtime);
++    }
++    const damaged = fs.readFileSync(path, "utf8");
++    const denied = g.check({ message: payment(), at: 2000 });
++    assert.equal(denied.allow, false); assert.equal(denied.rule, "fail-closed"); assert.equal(denied.seq, -1);
++    assert.equal(fs.readFileSync(path, "utf8"), damaged, "no line may follow unverified external bytes");
++    assert.equal(g.entries().length, 1, "no uncommitted transition enters the cache");
++    fs.writeFileSync(path, original);
++    assert.equal(g.check({ message: payment(), at: 3000 }).seq, -1, "repair cannot revive this failed writer");
++    assert.equal(fs.readFileSync(path, "utf8"), original);
++    assert.throws(() => store.append(store.entries[0]!), /closed or failed/, "the store itself remains failed even behind another guard");
++  } finally { restore(); g.close(); store.close(); }
++});
+
+67948e693ff6790d39b903d947131d013ed50332
+diff --git a/packages/sdk/test/storage-failures.test.ts b/packages/sdk/test/storage-failures.test.ts
+index 5fa77c9..6355379 100644
+--- a/packages/sdk/test/storage-failures.test.ts
++++ b/packages/sdk/test/storage-failures.test.ts
+@@ -84,3 +84,28 @@ for (const ownership of ["manual", "kernel"] as const) for (const damage of ["ap
+     assert.throws(() => store.append(store.entries[0]!), /closed or failed/, "the store itself remains failed even behind another guard");
+   } finally { restore(); g.close(); store.close(); }
+ });
++for (const ownership of ["manual", "kernel"] as const) for (const damage of ["append", "truncate", "overwrite"]) test(`STO-4/SIG-8/OWN-2: ${ownership} refuses journal ${damage} during startup read and releases ownership`, async () => {
++  const path = record(), seed = await createGuard({ policy: WORKLOAD_POLICY, log: path });
++  assert.equal(seed.check({ message: payment(), at: 1000 }).allow, true); seed.close();
++  const original = fs.readFileSync(path, "utf8"), inode = fs.statSync(path).ino, read = fs.readFileSync;
++  const { fileStore } = await import("../src/record.ts");
++  let changed = false;
++  mock.method(fs, "readFileSync", (...args: unknown[]) => {
++    const value = Reflect.apply(read, fs, args);
++    if (!changed && typeof args[0] === "number" && typeof value === "string" && fs.fstatSync(args[0]).ino === inode) {
++      changed = true;
++      if (damage === "append") fs.appendFileSync(path, "{}\n");
++      else if (damage === "truncate") fs.truncateSync(path, 0);
++      else fs.writeFileSync(path, original.replace('"at":1000', '"at":9000'));
++    }
++    return value;
++  });
++  syncBuiltinESMExports();
++  try {
++    assert.throws(() => { const store = fileStore(path, { ownership, create: false }); store.close(); }, /record changed during read/);
++    assert.equal(changed, true, "the actual descriptor read must cross the injected change");
++  } finally { restore(); }
++  const damaged = fs.readFileSync(path, "utf8"); assert.notEqual(damaged, original);
++  fs.writeFileSync(path, original);
++  const restored = fileStore(path, { ownership, create: false }); restored.close();
++});
+
+701372e8de28160ec8965a3600de184d20f0c00a
+diff --git a/packages/sdk/test/checkpoint-owned-recovery.test.ts b/packages/sdk/test/checkpoint-owned-recovery.test.ts
+index fd98126..8fbacfb 100644
+--- a/packages/sdk/test/checkpoint-owned-recovery.test.ts
++++ b/packages/sdk/test/checkpoint-owned-recovery.test.ts
+@@ -64,7 +64,8 @@ test("SNP-6: missing, oversized, corrupt and unsupported checkpoint files use ve
+     if(kind==="corrupt")writeFileSync(current,"corrupt");
+     if(kind==="symlink"){evidence=join(f.directory,"evidence");writeFileSync(evidence,f.encoded.text);symlinkSync(evidence,current);}
+     if(kind==="directory")mkdirSync(current);
+-    fs.readSync=((...args:Parameters<typeof fs.readSync>)=>{reads++;return Reflect.apply(originalRead,fs,args);}) as typeof fs.readSync;syncBuiltinESMExports();
++    const inode=kind==="missing"?undefined:fs.statSync(current).ino;
++    fs.readSync=((...args:Parameters<typeof fs.readSync>)=>{if(fs.fstatSync(args[0]).ino===inode)reads++;return Reflect.apply(originalRead,fs,args);}) as typeof fs.readSync;syncBuiltinESMExports();
+     const got=await recover(f.store,f.options);assert.equal(got.mode,"full-replay");assert.equal(got.reason,kind==="missing"?"missing-checkpoint":"invalid-checkpoint");assert.notEqual(JSON.parse(got.state).state.latched,null);
+     if(kind!=="corrupt")assert.equal(reads,0,"unsupported checkpoint sources must refuse before reading their content");
+     if(evidence)assert.equal(readFileSync(evidence,"utf8"),f.encoded.text);if(kind==="corrupt")assert.equal(readFileSync(current,"utf8"),"corrupt");
+@@ -84,8 +85,8 @@ test("OWN-2: closure, append, cache mutation and inode replacement during replay
+   }finally{f.close();}}
+ });
+ test("SNP-6: short checkpoint reads finish; growth and read errors use verified fallback",async()=>{
+-  for(const fault of ["short","growth","read-error","negative","fraction","excess"]){const f=await fixture(),original=fs.readSync;let reads=0;
+-    try{fs.readSync=((fd:number,buffer:Buffer,offset:number,length:number,position:number|null)=>{reads++;if(fault==="read-error")throw Object.assign(new Error("injected read failure"),{code:"EIO"});
++  for(const fault of ["short","growth","read-error","negative","fraction","excess"]){const f=await fixture(),original=fs.readSync,inode=fs.statSync(f.path+".checkpoint").ino;let reads=0;
++    try{fs.readSync=((fd:number,buffer:Buffer,offset:number,length:number,position:number|null)=>{if(fs.fstatSync(fd).ino!==inode)return original(fd,buffer,offset,length,position);reads++;if(fault==="read-error")throw Object.assign(new Error("injected read failure"),{code:"EIO"});
+       if(fault==="negative")return -1;if(fault==="fraction")return 0.5;if(fault==="excess")return length+1;
+       const count=original(fd,buffer,offset,Math.min(length,97),position);if(fault==="growth"&&reads===1)fs.appendFileSync(f.path+".checkpoint","changed");return count;}) as typeof fs.readSync;syncBuiltinESMExports();
+       const got=await recover(f.store,f.options);assert.ok(reads>0);assert.equal(got.mode,fault==="short"?"checkpoint":"full-replay");
+
+701372e8de28160ec8965a3600de184d20f0c00a
+diff --git a/packages/sdk/test/storage-failures.test.ts b/packages/sdk/test/storage-failures.test.ts
+index 6355379..d3a9d76 100644
+--- a/packages/sdk/test/storage-failures.test.ts
++++ b/packages/sdk/test/storage-failures.test.ts
+@@ -92,7 +92,7 @@ for (const ownership of ["manual", "kernel"] as const) for (const damage of ["ap
+   let changed = false;
+   mock.method(fs, "readFileSync", (...args: unknown[]) => {
+     const value = Reflect.apply(read, fs, args);
+-    if (!changed && typeof args[0] === "number" && typeof value === "string" && fs.fstatSync(args[0]).ino === inode) {
++    if (!changed && typeof args[0] === "number" && (typeof value === "string" || Buffer.isBuffer(value)) && fs.fstatSync(args[0]).ino === inode) {
+       changed = true;
+       if (damage === "append") fs.appendFileSync(path, "{}\n");
+       else if (damage === "truncate") fs.truncateSync(path, 0);
+@@ -109,3 +109,35 @@ for (const ownership of ["manual", "kernel"] as const) for (const damage of ["ap
+   fs.writeFileSync(path, original);
+   const restored = fileStore(path, { ownership, create: false }); restored.close();
+ });
++for (const ownership of ["manual", "kernel"] as const) for (const fault of ["short", "oversized"]) test(`STO-5/SIG-8/OWN-2: ${ownership} rejects ${fault} startup reads without truncating acknowledged entries`, async () => {
++  const path = record(), seed = await createGuard({ policy: WORKLOAD_POLICY, log: path });
++  assert.equal(seed.check({ message: payment(), at: 1000 }).allow, true); seed.close();
++  const original = fs.readFileSync(path), inode = fs.statSync(path).ino, read = fs.readFileSync;
++  const { fileStore } = await import("../src/record.ts");
++  let changed = false, failure: Error | undefined;
++  mock.method(fs, "readFileSync", (...args: unknown[]) => {
++    const value = Reflect.apply(read, fs, args);
++    if (!changed && typeof args[0] === "number" && fs.fstatSync(args[0]).ino === inode) {
++      changed = true;
++      if (typeof value === "string") return fault === "short" ? value.slice(0, -2) : value + "{";
++      return fault === "short" ? value.subarray(0, value.length - 2) : Buffer.concat([value, Buffer.from("{")]);
++    }
++    return value;
++  });
++  syncBuiltinESMExports();
++  try { try { fileStore(path, { ownership, create: false }).close(); } catch (error) { failure = error as Error; } }
++  finally { restore(); }
++  assert.equal(changed, true); assert.deepEqual(fs.readFileSync(path), original, "an incomplete read cannot repair or discard an acknowledged line");
++  assert.match(failure?.message ?? "", /record read was incomplete/);
++  const restored = fileStore(path, { ownership, create: false }); assert.equal(restored.entries.length, 1); restored.close();
++});
++for (const ownership of ["manual", "kernel"] as const) test(`STO-5/SIG-8: ${ownership} repairs a genuinely torn UTF-8 tail using byte boundaries`, async () => {
++  const path = record(), seed = await createGuard({ policy: WORKLOAD_POLICY, log: path });
++  assert.equal(seed.check({ message: payment(), at: 1000 }).allow, true); seed.close();
++  const original = fs.readFileSync(path); fs.appendFileSync(path, Buffer.from([0xf0, 0x9f]));
++  const { fileStore } = await import("../src/record.ts");
++  let restored: ReturnType<typeof fileStore> | undefined;
++  assert.doesNotThrow(() => { restored = fileStore(path, { ownership, create: false }); }, "a genuinely torn UTF-8 tail must remain recoverable");
++  assert.ok(restored);
++  try { assert.equal(restored.entries.length, 1); assert.deepEqual(fs.readFileSync(path), original); } finally { restored.close(); }
++});
+
+3fe0f0d6859d20f5982cc6cb7e7808a93f964909
+diff --git a/packages/sdk/test/storage-failures.test.ts b/packages/sdk/test/storage-failures.test.ts
+index d3a9d76..2f6cae9 100644
+--- a/packages/sdk/test/storage-failures.test.ts
++++ b/packages/sdk/test/storage-failures.test.ts
+@@ -29,6 +29,40 @@ test("STO-1/SIG-8: short writes complete before an admission is acknowledged", a
+     assert.equal(JSON.parse(bytes).hash, d.hash);
+   } finally { restore(); g.close(); }
+ });
++for (const ownership of ["manual", "kernel"] as const) for (const fault of ["missing-write", "extra-write"]) test(`STO-2/SIG-8/OWN-2: ${ownership} refuses ${fault} physical append evidence before acknowledgement`, async () => {
++  const path = record(), { fileStore } = await import("../src/record.ts"), store = fileStore(path, { ownership });
++  const g = await createGuard({ policy: WORKLOAD_POLICY, log: store }), inode = fs.statSync(path).ino, write = fs.writeSync;
++  let changed = false;
++  mock.method(fs, "writeSync", (...args: unknown[]) => {
++    if (!changed && typeof args[0] === "number" && fs.fstatSync(args[0]).ino === inode) {
++      changed = true;
++      if (fault === "missing-write") return args[3];
++      const count = Reflect.apply(write, fs, args); write(args[0], Buffer.from("{}\n")); return count;
++    }
++    return Reflect.apply(write, fs, args);
++  });
++  syncBuiltinESMExports();
++  try {
++    const first = g.check({ message: payment(), at: 1000 });
++    assert.equal(changed, true); assert.equal(first.seq, -1, "physical append disagreement must not acknowledge a decision");
++    assert.equal(first.rule, "fail-closed"); assert.equal(g.entries().length, 0);
++    const evidence = fs.readFileSync(path); restore();
++    assert.equal(g.check({ message: payment(), at: 2000 }).seq, -1);
++    assert.deepEqual(fs.readFileSync(path), evidence, "failed writer must retain physical evidence without another append");
++    assert.throws(() => store.append(undefined!), /closed or failed/);
++  } finally { restore(); g.close(); store.close(); }
++});
++for (const ownership of ["manual", "kernel"] as const) test(`STO-1/SIG-8: ${ownership} acknowledges complete appends to a nonempty journal`, async () => {
++  const path = record(), { fileStore } = await import("../src/record.ts"), store = fileStore(path, { ownership });
++  const g = await createGuard({ policy: WORKLOAD_POLICY, log: store });
++  try {
++    assert.equal(g.check({ message: payment(), at: 1000 }).seq, 0);
++    assert.equal(g.check({ message: payment(), at: 1001 }).seq, 1);
++    const lines = fs.readFileSync(path, "utf8").trimEnd().split("\n");
++    assert.equal(lines.length, 2); assert.equal(store.entries.length, 2);
++    assert.deepEqual(lines.map(line => JSON.parse(line).hash), store.entries.map(entry => entry.hash));
++  } finally { g.close(); store.close(); }
++});
+ for (const failure of ["ENOSPC", "EACCES", "zero-progress", "fsync"]) test(`STO-2/SIG-8: ${failure} denies and permanently shuts this writer`, async () => {
+   const path = record();
+   const g = await createGuard({ policy: WORKLOAD_POLICY, log: path });
+
+49f6d6369e58d7f4c6c4f0cbd41705c080f498af
+diff --git a/packages/sdk/test/storage-failures.test.ts b/packages/sdk/test/storage-failures.test.ts
+index 2f6cae9..6af4c62 100644
+--- a/packages/sdk/test/storage-failures.test.ts
++++ b/packages/sdk/test/storage-failures.test.ts
+@@ -52,6 +52,34 @@ for (const ownership of ["manual", "kernel"] as const) for (const fault of ["mis
+     assert.throws(() => store.append(undefined!), /closed or failed/);
+   } finally { restore(); g.close(); store.close(); }
+ });
++for (const ownership of ["manual", "kernel"] as const) for (const target of ["record", "lock"]) test(`OWN-2/STO-2/SIG-8: ${ownership} refuses ${target} replacement during append before acknowledgement`, async () => {
++  const path = record(), { fileStore } = await import("../src/record.ts"), store = fileStore(path, { ownership });
++  const g = await createGuard({ policy: WORKLOAD_POLICY, log: store }), inode = fs.statSync(path).ino, write = fs.writeSync;
++  const replaced = path + (target === "lock" ? ".lock" : ""), original = fs.readFileSync(replaced);
++  let changed = false;
++  mock.method(fs, "writeSync", (...args: unknown[]) => {
++    const count = Reflect.apply(write, fs, args);
++    if (!changed && typeof args[0] === "number" && fs.fstatSync(args[0]).ino === inode) {
++      changed = true; fs.renameSync(replaced, replaced + ".moved"); fs.writeFileSync(replaced, original);
++    }
++    return count;
++  });
++  syncBuiltinESMExports();
++  try {
++    const first = g.check({ message: payment(), at: 1000 });
++    assert.equal(changed, true); assert.equal(first.seq, -1, "a replaced journal or mutex cannot acknowledge a transition");
++    assert.equal(first.rule, "fail-closed"); assert.equal(g.entries().length, 0);
++    restore(); const evidence = fs.readFileSync(replaced), moved = fs.readFileSync(replaced + ".moved");
++    assert.equal(g.check({ message: payment(), at: 2000 }).seq, -1);
++    assert.deepEqual(fs.readFileSync(replaced), evidence); assert.deepEqual(fs.readFileSync(replaced + ".moved"), moved);
++    assert.throws(() => store.append(undefined!), /closed or failed/);
++  } finally {
++    restore();
++    if (ownership === "manual" && target === "lock") assert.throws(() => g.close(), /inode was replaced/);
++    else g.close();
++    store.close(); assert.deepEqual(fs.readFileSync(replaced), original, "never remove or repair another inode");
++  }
++});
+ for (const ownership of ["manual", "kernel"] as const) test(`STO-1/SIG-8: ${ownership} acknowledges complete appends to a nonempty journal`, async () => {
+   const path = record(), { fileStore } = await import("../src/record.ts"), store = fileStore(path, { ownership });
+   const g = await createGuard({ policy: WORKLOAD_POLICY, log: store });
