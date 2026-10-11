@@ -1,5 +1,9 @@
 # PROGRESS.md
 
+Selected package-consumer historical assertion reasons are recorded, S145.
+Broader/independent review and release gates remain; no protected test or stable
+milestone changes.
+
 Mutation-recovery test historical reasons and same-revision literal pin checks
 are recorded, S144. Builder review is scoped to that file; independent/broader
 review and H11 remain open. No protected test or milestone changes.

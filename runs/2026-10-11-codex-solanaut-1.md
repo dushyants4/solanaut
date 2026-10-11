@@ -7,6 +7,15 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Recovery-reason checkpoint 8d51c77 has a verified complete local bundle, exact
+clean restore and successful full fsck. Continue selected package-consumer
+assertion review. Preserve full selected patches and old/new/diff hashes; read
+the complete selection without truncation. Record reasons for stronger signature
+output checks, envelope files/refusals, preserved corrupt-index refusal, owned
+redemption/restart checks and Buffer-aware startup fault injection. No execution
+results are relabelled as current; no test or gate changes. An absent guessed
+owned-control receipt is a read failure only; existing precise receipts are used.
+
 Assertion inventory 740f1ac has a verified complete local bundle, exact clean
 restore and successful full fsck. Continue with the mutation-recovery test's
 historical assertion reasons. Preserve complete patches and same-revision
@@ -222,6 +231,18 @@ the unchanged original companion control also passes. Outputs stay separate,
 with no installation or full runtime/matrix claim.
 
 ## Found
+
+Selected consumer-review pre-commit close passes every check except dirty work
+and deliberately unpushed HEAD. Staged full selection, hashes and reasons are
+reviewed; credential-shaped search has no hits. Raw patch context whitespace
+remains unchanged despite its diff diagnostics. Begin a separate review of
+selected client, policy, history and coverage-hook edits; no broad clearance yet.
+
+The broad package-history display is truncated and does not establish complete
+review. Its changed spawn line initially deserves deadline scrutiny; the full
+diff shows the deadline unchanged and only transfer arguments added. Preserve
+that distinction rather than invent an unapproved wait change. Selected complete
+patches support the recorded reasons; all remaining historical review is owed.
 
 Scoped historical-reason pre-commit close passes every check except dirty work
 and deliberately unpushed HEAD. Staged full-patch/source-hash/literal bindings

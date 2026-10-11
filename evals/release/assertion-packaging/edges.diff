@@ -1,0 +1,175 @@
+805e8bb612f61a867b55edc7f6d8f0b08e6f141e
+diff --git a/evals/packaging/packed-sdk.test.ts b/evals/packaging/packed-sdk.test.ts
+index 1ed51cc..e676d1b 100644
+--- a/evals/packaging/packed-sdk.test.ts
++++ b/evals/packaging/packed-sdk.test.ts
+@@ -176,8 +176,16 @@ test("SNP-3/PKG-1: installed checkpoint binding verifies both domains and refuse
+     try {verifyCheckpointBinding(body,signatures,trust,{...digests,stateDigest:hash('altered')});}
+     catch(error){refusal={typed:error instanceof CheckpointBindingError,code:error.code};}
+-    console.log(JSON.stringify({seq:verified.seq,immutable:Object.isFrozen(verified),refusal}));`;
++    const original=Buffer.from;let signatureRefusals=0;
++    Buffer.from=function(value,...options){
++      if(typeof value==='string' && options[0]==='base64' && value.length!==88)throw new Error('invalid signature reached installed decoder');
++      return Reflect.apply(original,Buffer,[value,...options]);
++    };
++    for(const field of ['snapshot','prefix'])try{verifyCheckpointBinding(body,{...signatures,[field]:'A'.repeat(1000000)},trust,digests);}
++    catch(error){if(error instanceof CheckpointBindingError)signatureRefusals++;else throw error;}
++    Buffer.from=original;
++    console.log(JSON.stringify({seq:verified.seq,immutable:Object.isFrozen(verified),refusal,signatureRefusals}));`;
+   const result=spawnSync(process.execPath,["--input-type=module","-e",script],{cwd:consumer,encoding:"utf8"});
+   assert.equal(result.status,0,result.stderr);
+-  assert.deepEqual(JSON.parse(result.stdout),{seq:1,immutable:true,refusal:{typed:true,code:"checkpoint-binding"}});
++  assert.deepEqual(JSON.parse(result.stdout),{seq:1,immutable:true,refusal:{typed:true,code:"checkpoint-binding"},signatureRefusals:2});
+ });
+ 
+
+6162efb3ea45a2997eb771ea40fd6b251befb549
+diff --git a/evals/packaging/packed-sdk.test.ts b/evals/packaging/packed-sdk.test.ts
+index 33a513a..0158948 100644
+--- a/evals/packaging/packed-sdk.test.ts
++++ b/evals/packaging/packed-sdk.test.ts
+@@ -221,4 +221,5 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay
+     const {prepareCheckpointState,CheckpointStateError}=await import(new URL('./checkpoint-state.js',import.meta.resolve('@solanaut/sdk')));
+     const {prepareCheckpointBundle}=await import(new URL('./checkpoint-bundle.js',import.meta.resolve('@solanaut/sdk')));
++    const {prepareCheckpointEnvelope,verifyCheckpointEnvelope,CheckpointEnvelopeError}=await import(new URL('./checkpoint-envelope.js',import.meta.resolve('@solanaut/sdk')));
+     const operator=generateKeyPairSync('ed25519'),agent=generateKeyPairSync('ed25519');
+     const address=pair=>encodeBase58(Buffer.from(pair.publicKey.export({format:'jwk'}).x,'base64url'));
+@@ -253,5 +254,13 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay
+     const bundle=await prepareCheckpointBundle(entries,undefined,receipts,context,trust,checkpointTrust);
+     if(bundle.state!==state.text || bundle.prefix!==prefix.text || !Object.isFrozen(bundle) || !Object.isFrozen(bundle.binding))throw new Error('bundle payload consistency differs');
+-    verifyCheckpointBinding(bundle.binding,{snapshot:sign(null,Buffer.from(bundle.snapshotText),checkpoint.privateKey).toString('base64'),prefix:sign(null,Buffer.from(bundle.prefixText),checkpoint.privateKey).toString('base64')},checkpointTrust,{archiveDigest:hash(bundle.archives),stateDigest:hash(bundle.state),prefixDigest:hash(bundle.prefix)});
++    const signatures={snapshot:sign(null,Buffer.from(bundle.snapshotText),checkpoint.privateKey).toString('base64'),prefix:sign(null,Buffer.from(bundle.prefixText),checkpoint.privateKey).toString('base64')};
++    verifyCheckpointBinding(bundle.binding,signatures,checkpointTrust,{archiveDigest:hash(bundle.archives),stateDigest:hash(bundle.state),prefixDigest:hash(bundle.prefix)});
++    const encoded=prepareCheckpointEnvelope({binding:bundle.binding,signatures,archives:bundle.archives,state:bundle.state,prefix:bundle.prefix},checkpointTrust,1000000);
++    const decoded=verifyCheckpointEnvelope(encoded.text,checkpointTrust,Buffer.byteLength(encoded.text));
++    if(encoded.digest!==hash(encoded.text) || decoded.state!==bundle.state || decoded.prefix!==bundle.prefix || !Object.isFrozen(decoded))throw new Error('envelope round trip differs');
++    for(const [text,limit] of [[encoded.text,Buffer.byteLength(encoded.text)-1],[encoded.text.replace('uncertain','altered'),1000000],[' '+encoded.text,1000000]]){
++      let refused=false;try{verifyCheckpointEnvelope(text,checkpointTrust,limit);}catch(error){refused=error instanceof CheckpointEnvelopeError;}
++      if(!refused)throw new Error('envelope tampering or bound accepted');
++    }
+     if(prefix.digest!==hash(prefix.text) || state.digest!==hash(state.text) || !Object.isFrozen(prefix) || !Object.isFrozen(state))throw new Error('payload digest or immutability differs');
+     if(JSON.stringify(s.profile)!==JSON.stringify(p.profile) || Object.keys(EVALUATION_PROFILE).some(k=>s.profile[k]!==EVALUATION_PROFILE[k]))throw new Error('payload profile differs');
+@@ -270,5 +279,5 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay
+   const result=spawnSync(process.execPath,["--input-type=module","-e",script,inputPolicy,Buffer.from(transfer(2)).toString("base64")],{cwd:consumer,encoding:"utf8"});
+   assert.equal(result.status,0,result.stderr);assert.deepEqual(JSON.parse(result.stdout),{events:1,requests:2,uncertain:true});
+-  for(const name of ["checkpoint-prefix","checkpoint-state","checkpoint-bundle"])for(const extension of ["js","d.ts"])assert.ok(packed.files.some((file:{path:string})=>file.path==="dist/src/"+name+"."+extension));
++  for(const name of ["checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope"])for(const extension of ["js","d.ts"])assert.ok(packed.files.some((file:{path:string})=>file.path==="dist/src/"+name+"."+extension));
+ });
+ 
+
+8a343d42b0d60dd188ba7fc5f2d9a198d6346364
+diff --git a/evals/packaging/packed-sdk.test.ts b/evals/packaging/packed-sdk.test.ts
+index 02efbfa..5eba084 100644
+--- a/evals/packaging/packed-sdk.test.ts
++++ b/evals/packaging/packed-sdk.test.ts
+@@ -225,4 +225,5 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay
+     import {tmpdir} from 'node:os';
+     import {join} from 'node:path';
++    import {registerHooks} from 'node:module';
+     const {prepareCheckpointPrefix,rebuildCheckpointPrefix,CheckpointPrefixError}=await import(new URL('./checkpoint-prefix.js',import.meta.resolve('@solanaut/sdk')));
+     const {prepareCheckpointState,CheckpointStateError}=await import(new URL('./checkpoint-state.js',import.meta.resolve('@solanaut/sdk')));
+@@ -231,5 +232,5 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay
+     const {fileStore,publishOwnedCheckpoint,recoverOwnedCheckpoint,publishOwnedRequestIndex,lookupOwnedRequestIndex,RequestIndexLookupError,RequestIndexPublicationError}=await import(new URL('./record.js',import.meta.resolve('@solanaut/sdk')));
+     const {verifyArchive,streamArchive}=await import(new URL('./archive.js',import.meta.resolve('@solanaut/sdk')));
+-    const {replay,replayStream}=await import(new URL('./guard.js',import.meta.resolve('@solanaut/sdk')));
++    const {replay,replayStream,checkOwnedRequest,OwnedRequestAdmissionError}=await import(new URL('./guard.js',import.meta.resolve('@solanaut/sdk')));
+     const {seal}=await import(new URL('./log.js',import.meta.resolve('@solanaut/sdk')));
+     const {prepareCheckpointRecovery}=await import(new URL('./checkpoint-recovery.js',import.meta.resolve('@solanaut/sdk')));
+@@ -382,6 +383,29 @@ test("SNP-3/5/PKG-1: compiled checkpoint payloads preserve lifecycle and replay
+       if(current.seq!==store.entries.length || current.head!==tailReply.hash || current.indexSeq!==context.seq || current.row?.start.hash!==tail.hash || current.row?.response?.hash!==tailReply.hash || !Object.isFrozen(current.row.response))throw new Error('installed current lookup skipped or altered tail');
+       const absent=await lookupOwnedRequestIndex(store,{clientId:'client',id:'absent'},{policyTrust:trust});if(absent.row!==null || absent.head!==tailReply.hash)throw new Error('installed current absence lacks tail binding');
++      if('checkOwnedRequest' in await import('@solanaut/sdk'))throw new Error('internal owned admission leaked into stable exports');
++      const beforeRetry=live.status().seq,historicalDecision=await checkOwnedRequest(live,{message:new Uint8Array(message),at:2000,blockHeight:200n},{clientId:'client',id:'payment'});
++      if(historicalDecision.hash!==d.hash || !Object.isFrozen(historicalDecision) || live.status().seq!==beforeRetry || live.redeem(message,d.hash,10n).ok)throw new Error('installed indexed retry changed history or reused receipt');
++      const conflict=await checkOwnedRequest(live,{message:new Uint8Array(message),at:2000,intent:'different'},{clientId:'client',id:'payment'});
++      const methodConflict=await checkOwnedRequest(live,{message:new Uint8Array(message),at:2000},{clientId:'client',id:'tail'});
++      if(conflict.allow || conflict.seq!==-1 || methodConflict.allow || methodConflict.seq!==-1 || live.status().seq!==beforeRetry)throw new Error('installed indexed collision admitted or recorded');
++      const queued=await Promise.all([checkOwnedRequest(live,{message:new Uint8Array(message),at:2001},{clientId:'client',id:'queued'}),checkOwnedRequest(live,{message:new Uint8Array(message),at:2002},{clientId:'client',id:'queued'})]);
++      if(queued[0].hash!==queued[1].hash || queued[0].seq!==beforeRetry || live.status().seq!==beforeRetry+1)throw new Error('installed indexed queue admitted duplicate identity');
++      if(!Object.isFrozen(queued[0].keel) || !Object.isFrozen(queued[0].amounts) || !Object.isFrozen(queued[0].amounts.tokens) || queued[0]===store.entries.at(-1) || queued[0].amounts===store.entries.at(-1).amounts)throw new Error('installed fresh admission reply aliases mutable log state');
++      const freshBefore=JSON.stringify(store.entries);try{queued[0].amounts.sol='999';}catch{}if(JSON.stringify(store.entries)!==freshBefore)throw new Error('installed admission reply changed log');
++      const freshRetry=await checkOwnedRequest(live,{message:new Uint8Array(message),at:2003},{clientId:'client',id:'queued'});if(freshRetry.hash!==queued[0].hash || live.status().seq!==beforeRetry+1)throw new Error('installed immutable fresh reply failed later lookup');
++      const shared=new Uint8Array(new SharedArrayBuffer(message.length));shared.set(message);const capturedShared=Buffer.from(shared).toString('base64'),pendingShared=checkOwnedRequest(live,{message:shared,at:2004},{clientId:'client',id:'shared'});shared.fill(255);
++      if((await pendingShared).message!==capturedShared)throw new Error('installed queued admission retained shared byte backing');
++      let admissionOwnerRefused=false;try{await checkOwnedRequest({...live},{message:new Uint8Array(message),at:2003},{clientId:'client',id:'forged'});}catch(error){admissionOwnerRefused=error instanceof OwnedRequestAdmissionError && error.code==='owned-request-admission';}if(!admissionOwnerRefused)throw new Error('installed forged admission guard accepted');
+       const pointerBeforeLookup=readFileSync(recordPath+'.request-index','utf8');writeFileSync(recordPath+'.request-index','corrupt');
+-      try{let refused=false;try{await lookupOwnedRequestIndex(store,{clientId:'client',id:'tail'},{policyTrust:trust});}catch(error){refused=error instanceof RequestIndexLookupError && error.code==='request-index-lookup';}if(!refused || readFileSync(recordPath+'.request-index','utf8')!=='corrupt')throw new Error('installed corrupt lookup pointer accepted or repaired');}finally{writeFileSync(recordPath+'.request-index',pointerBeforeLookup);}
++      try{let refused=false;try{await lookupOwnedRequestIndex(store,{clientId:'client',id:'tail'},{policyTrust:trust});}catch(error){refused=error instanceof RequestIndexLookupError && error.code==='request-index-lookup';}if(!refused || readFileSync(recordPath+'.request-index','utf8')!=='corrupt')throw new Error('installed corrupt lookup pointer accepted or repaired');
++        const beforeRefusal=live.status().seq;let admissionRefused=false;try{await checkOwnedRequest(live,{message:new Uint8Array(message),at:2004},{clientId:'client',id:'corrupt'});}catch(error){admissionRefused=error instanceof OwnedRequestAdmissionError && error.code==='owned-request-admission';}if(!admissionRefused || live.status().seq!==beforeRefusal || readFileSync(recordPath+'.request-index','utf8')!=='corrupt')throw new Error('installed corrupt index authorised admission');
++      }finally{writeFileSync(recordPath+'.request-index',pointerBeforeLookup);}
++      const actualRecordURL=new URL('./record.js',import.meta.resolve('@solanaut/sdk')).href,gapGuardURL=new URL('./guard.js?owned-gap',import.meta.resolve('@solanaut/sdk')).href;
++      const gapSource='import * as real from '+JSON.stringify(actualRecordURL)+';export * from '+JSON.stringify(actualRecordURL)+';export async function lookupOwnedRequestIndex(...args){const answer=await real.lookupOwnedRequestIndex(...args);globalThis.afterOwnedAdmissionLookup();return answer;}';
++      const gapHook=registerHooks({resolve(specifier,context,next){if(specifier==='./record.js' && context.parentURL===gapGuardURL)return {url:'data:text/javascript,'+encodeURIComponent(gapSource),shortCircuit:true};return next(specifier,context);}});let gapModule;
++      try{gapModule=await import(gapGuardURL);}finally{gapHook.deregister();}
++      const gapGuard=await gapModule.createGuard({policy,authorization,log:store}),beforeGap=gapGuard.status().seq;globalThis.afterOwnedAdmissionLookup=()=>gapGuard.check({message:Uint8Array.of(255),at:2005});
++      try{let gapRefused=false;try{await gapModule.checkOwnedRequest(gapGuard,{message:new Uint8Array(message),at:2006},{clientId:'client',id:'gap'});}catch(error){gapRefused=error instanceof gapModule.OwnedRequestAdmissionError && error.code==='owned-request-admission';}if(!gapRefused || gapGuard.status().seq!==beforeGap+1 || store.entries.some(entry=>entry.kind==='decision' && entry.request?.id==='gap'))throw new Error('installed stale absence authorised commit');}
++      finally{delete globalThis.afterOwnedAdmissionLookup;gapGuard.close();}
+     }finally{store.close();rmSync(directory,{recursive:true,force:true});}
+     if(prefix.digest!==hash(prefix.text) || state.digest!==hash(state.text) || !Object.isFrozen(prefix) || !Object.isFrozen(state))throw new Error('payload digest or immutability differs');
+
+4d9d1fe02f69e057b3ae1691d7ce34f2bd5ed2cc
+diff --git a/evals/packaging/packed-sdk.test.ts b/evals/packaging/packed-sdk.test.ts
+index bf7d654..9d39218 100644
+--- a/evals/packaging/packed-sdk.test.ts
++++ b/evals/packaging/packed-sdk.test.ts
+@@ -50,4 +50,10 @@ test("PKG-1/SNP-7: private owned facade restores and serializes installed JavaSc
+       try{
+         if(!Object.isFrozen(g)||!Object.isFrozen(g.policy.latch)||'guard' in g||'store' in g||'entries' in g)throw new Error('installed facade exposed mutable authority');
++        const message=new Uint8Array(Buffer.from(process.argv[2],'base64')),admitted=await g.check({message,at:900,blockHeight:10n,lastValidBlockHeight:20n},{clientId:'client',id:'redeem'});
++        if(!admitted.allow)throw new Error('installed redemption fixture denied');
++        await refuse(()=>g.redeem(message,admitted.hash,21n));
++        const shared=new Uint8Array(new SharedArrayBuffer(message.length));shared.set(message);const redeeming=g.redeem(shared,admitted.hash,10n),redemptionStatus=g.status();shared.fill(255);
++        const redeemed=await redeeming;if(!redeemed.ok||!Object.isFrozen(redeemed)||(await redemptionStatus).seq!==admitted.seq+2)throw new Error('installed redemption capture or durability failed');
++        await refuse(()=>g.redeem(message,admitted.hash,10n));
+         const id={clientId:'client',id:'captured'},payload={decision:'a'.repeat(64)},pending=g.beginRequest(id,'report',payload,1000),observed=g.status();id.id='changed';payload.decision='b'.repeat(64);
+         const start=await pending;if(start.request.id!=='captured'||JSON.parse(start.payload).decision!=='a'.repeat(64)||(await observed).seq!==start.seq+1)throw new Error('installed facade capture or FIFO failed');
+@@ -60,8 +66,8 @@ test("PKG-1/SNP-7: private owned facade restores and serializes installed JavaSc
+       }finally{await g.close();}
+       const index=readFileSync(path+'.request-index');writeFileSync(path+'.request-index','corrupt');await refuse(()=>openOwnedGuard(options()));writeFileSync(path+'.request-index',index);
+-      const restored=await openOwnedGuard(options());await restored.close();
++      const restored=await openOwnedGuard(options());try{const decision=readFileSync(path,'utf8').trim().split(String.fromCharCode(10)).map(line=>JSON.parse(line)).find(entry=>entry.kind==='decision'&&entry.request?.id==='redeem');await refuse(()=>restored.redeem(new Uint8Array(Buffer.from(process.argv[2],'base64')),decision.hash,10n));}finally{await restored.close();}
+     }finally{rmSync(directory,{recursive:true,force:true});}
+     console.log('private owned facade qualified');`;
+-  const result=spawnSync(process.execPath,["--input-type=module","-e",script,inputPolicy],{cwd:consumer,encoding:"utf8",timeout:15000});
++  const result=spawnSync(process.execPath,["--input-type=module","-e",script,inputPolicy,Buffer.from(transfer(2)).toString("base64")],{cwd:consumer,encoding:"utf8",timeout:15000});
+   assert.equal(result.status,0,result.stderr);assert.equal(result.error,undefined);assert.equal(result.signal,null);assert.equal(result.stdout,"private owned facade qualified\n");
+ });
+
+701372e8de28160ec8965a3600de184d20f0c00a
+diff --git a/evals/packaging/packed-sdk.test.ts b/evals/packaging/packed-sdk.test.ts
+index 4df8e47..aa6022b 100644
+--- a/evals/packaging/packed-sdk.test.ts
++++ b/evals/packaging/packed-sdk.test.ts
+@@ -140,5 +140,5 @@ test("PKG-1/STO-4: installed record rejects changes during startup read and rele
+       const original=fs.readFileSync(path,'utf8'),inode=fs.statSync(path).ino,read=fs.readFileSync;let changed=false,denied=false;
+       try{
+-        fs.readFileSync=(...args)=>{const value=Reflect.apply(read,fs,args);if(!changed&&typeof args[0]==='number'&&typeof value==='string'&&fs.fstatSync(args[0]).ino===inode){changed=true;if(damage==='append')fs.appendFileSync(path,'{}'+String.fromCharCode(10));else if(damage==='truncate')fs.truncateSync(path,0);else fs.writeFileSync(path,original.replace('"at":1000','"at":9000'));}return value;};syncBuiltinESMExports();
++        fs.readFileSync=(...args)=>{const value=Reflect.apply(read,fs,args);if(!changed&&typeof args[0]==='number'&&(typeof value==='string'||Buffer.isBuffer(value))&&fs.fstatSync(args[0]).ino===inode){changed=true;if(damage==='append')fs.appendFileSync(path,'{}'+String.fromCharCode(10));else if(damage==='truncate')fs.truncateSync(path,0);else fs.writeFileSync(path,original.replace('"at":1000','"at":9000'));}return value;};syncBuiltinESMExports();
+         try{fileStore(path,{ownership,create:false}).close();}catch(error){denied=/record changed during read/.test(error.message);}
+       }finally{fs.readFileSync=read;syncBuiltinESMExports();}
+@@ -151,4 +151,25 @@ test("PKG-1/STO-4: installed record rejects changes during startup read and rele
+ });
+ 
++test("PKG-1/STO-5: installed record rejects inconsistent read lengths and safely repairs genuine UTF-8 tails", () => {
++  const script=`
++    import {createGuard} from '@solanaut/sdk';import fs from 'node:fs';import {syncBuiltinESMExports} from 'node:module';import {tmpdir} from 'node:os';import {join} from 'node:path';
++    const base=import.meta.resolve('@solanaut/sdk'),{fileStore}=await import(new URL('./record.js',base)),directory=fs.mkdtempSync(join(tmpdir(),'solanaut-read-completion-'));
++    try{for(const ownership of ['manual','kernel']){
++      for(const fault of ['short','oversized']){
++        const path=join(directory,ownership+'-'+fault+'.jsonl'),seed=await createGuard({policy:JSON.parse(process.argv[1]),log:path});
++        if(!seed.check({message:new Uint8Array(Buffer.from(process.argv[2],'base64')),at:1000}).allow)throw new Error('read completion fixture denied');seed.close();
++        const original=fs.readFileSync(path),inode=fs.statSync(path).ino,read=fs.readFileSync;let changed=false,denied=false;
++        try{fs.readFileSync=(...args)=>{const value=Reflect.apply(read,fs,args);if(!changed&&typeof args[0]==='number'&&fs.fstatSync(args[0]).ino===inode){changed=true;if(typeof value==='string')return fault==='short'?value.slice(0,-2):value+'{';return fault==='short'?value.subarray(0,value.length-2):Buffer.concat([value,Buffer.from('{')]);}return value;};syncBuiltinESMExports();try{fileStore(path,{ownership,create:false}).close();}catch(error){denied=/record read was incomplete/.test(error.message);}}
++        finally{fs.readFileSync=read;syncBuiltinESMExports();}
++        if(!changed||!denied||!fs.readFileSync(path).equals(original))throw new Error('installed incomplete read removed or accepted acknowledged history');
++        fileStore(path,{ownership,create:false}).close();
++        fs.appendFileSync(path,Buffer.from([240,159]));const restored=fileStore(path,{ownership,create:false});try{if(restored.entries.length!==1||!fs.readFileSync(path).equals(original))throw new Error('installed genuine UTF-8 tail recovery failed');}finally{restored.close();}
++      }
++    }}finally{fs.rmSync(directory,{recursive:true,force:true});}
++    console.log('incomplete reads refused without loss');`;
++  const result=spawnSync(process.execPath,["--input-type=module","-e",script,inputPolicy,Buffer.from(transfer(2)).toString("base64")],{cwd:consumer,encoding:"utf8",timeout:15000});
++  assert.equal(result.status,0,result.stderr);assert.equal(result.error,undefined);assert.equal(result.signal,null);assert.equal(result.stdout,"incomplete reads refused without loss\n");
++});
++
+ test("PKG-1: installed JavaScript verifies Keel and gives the source's payment/drain verdicts", () => {
+   const script = `

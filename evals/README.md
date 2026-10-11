@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`release/assertion-packaging.md`: selected historical consumer-test patches and
+explicit builder reasons, S145. Full test-history/independent review remains owed;
+no current execution or gate correction is claimed.
+
 `release/assertion-recovery.md`: bounded mutation-recovery historical diffs,
 literal pin observations and builder-reviewed reasons, S144. Not execution,
 independent review or correction of H11's failed wait.

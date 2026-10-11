@@ -1,0 +1,14 @@
+{
+  "baseline": "e925f1dfaabc7eedae361764a401baf7f9e9868b",
+  "head": "753769dcd435b9334e59e921727c04afd6cb6859",
+  "inventorySha256": "f813d4f9f5c54e8bfd0dd5e626680abb3978f1789a42c08309d35c7eb09eaf4b",
+  "collectorSha256": "5edb4fbe212d002e1076ad10c2393e225e2dc985f6f3d711dcf8c20de61c1866",
+  "selectedCommitPrefixes": [
+    "4d9d1fe",
+    "6162efb",
+    "701372e",
+    "805e8bb",
+    "8a343d4"
+  ],
+  "scope": "selected historical package-consumer assertions, not complete package or public-history review"
+}

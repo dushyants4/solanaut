@@ -271,6 +271,12 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-11 selected package-consumer assertion reasons are in
+`evals/release/assertion-packaging.md`, S145. Preserve complete selected patches
+and exact revision/diff hashes. The expanded spawn arguments retain their
+original deadline; existing refusal checks are distinguished from additional
+coverage. Broader/Claude review remains pending; no gate or milestone changes.
+
 2026-10-11 builder-reviewed historical mutation-recovery test reasons are in
 `evals/release/assertion-recovery.md`, S144. Literal expected pins match each
 same-revision runner; full patches remain. Existing wait, completion/refusal
