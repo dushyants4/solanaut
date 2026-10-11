@@ -1,0 +1,31 @@
+{
+  "baseline": "e925f1dfaabc7eedae361764a401baf7f9e9868b",
+  "head": "753769dcd435b9334e59e921727c04afd6cb6859",
+  "modificationEdges": 142,
+  "edgesLinkedToScopedBuilderReasons": 63,
+  "edgesWithoutIndexedReason": 79,
+  "pendingByPath": {
+    "evals/ci/bite-source.test.ts": 1,
+    "evals/ci/coverage.test.ts": 13,
+    "evals/ci/mutation-stage.test.ts": 18,
+    "evals/ci/mutation-stop.test.ts": 1,
+    "evals/ci/mutation.test.ts": 1,
+    "evals/ci/properties.test.ts": 1,
+    "evals/ci/run-supervisor.test.ts": 1,
+    "evals/packaging/packed-sdk.test.ts": 33,
+    "packages/sdk/test/archive-cli.test.ts": 1,
+    "packages/sdk/test/checkpoint-prefix.test.ts": 1,
+    "packages/sdk/test/checkpoint-publication.test.ts": 2,
+    "packages/sdk/test/checkpoint.test.ts": 1,
+    "packages/sdk/test/durable.test.ts": 1,
+    "packages/sdk/test/ownership.test.ts": 1,
+    "packages/sdk/test/signed-policy.test.ts": 2,
+    "packages/sdk/test/signing-history.test.ts": 1
+  },
+  "scope": "indexes six scoped builder reason receipts; does not read remaining patches or grant approval",
+  "initialAdditionsReviewed": false,
+  "completeHistoryReview": false,
+  "independentReview": false,
+  "publicHistoryClearance": false,
+  "releaseClearance": false
+}

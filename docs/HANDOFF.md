@@ -271,6 +271,12 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-11 scoped assertion-reason index and remaining queue are in
+`evals/release/assertion-review-map.md`, S150. Exact edges link to builder receipts;
+copied duplicate/foreign/range faults refuse. Initial additions, broader history
+and Claude's independent review remain open. Reference counts are not release
+progress; all public/independent/stable clearance flags stay false.
+
 2026-10-11 signer assertion modification reasons and current focused checks are
 in `evals/release/assertion-signer.md`, S149. Retain deadline/refusal/recovery and
 typed saturation checks, corrected trickle framing and earlier fixture failures.

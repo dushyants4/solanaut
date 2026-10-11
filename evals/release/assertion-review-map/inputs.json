@@ -1,0 +1,22 @@
+{
+  "evals/release/assertion-history/actual.json": "f813d4f9f5c54e8bfd0dd5e626680abb3978f1789a42c08309d35c7eb09eaf4b",
+  "evals/release/assertion-recovery/definition.json": "bf7dc99746642fad432ffe0de5f8ebb3ca1f81285251f8d6ca9b640c359e83d5",
+  "evals/release/assertion-recovery.md": "5a64d523ebf0943e8e25388237d96540259500e52dfb42c98c68530841c3f7c3",
+  "evals/release/assertion-recovery/edges.json": "1b48e8cc83d73a0ac7b2ca5daa15350e00c3d1b84e4ac83fbae133bbd085f850",
+  "evals/release/assertion-packaging/definition.json": "d724d435a4d37708fa4eebc7547ae99156eaaa77e402be50fd50e44f6a1befa8",
+  "evals/release/assertion-packaging.md": "07d9d0449a3e7d2475bb286a1c6c4fdf35ae2d1b15ab749c0b9871096ed0be4b",
+  "evals/release/assertion-packaging/edges.json": "70739cd66b1f8b9ea28957d91f01937c2af8159a59b0540fca92d4cbf85252c6",
+  "evals/release/assertion-interfaces/definition.json": "e06d8af1bdff9574e17f854b6bdce9d6528f8a1b46b0f4a9bc6ef493fb20f6ac",
+  "evals/release/assertion-interfaces.md": "00307d5ed3e5a91b83e5bc1c1e0e8b8a041ec93d4a4cc01149d945affd2e8754",
+  "evals/release/assertion-interfaces/edges.json": "8681d36ea566688502272a22d300879361233d4df4f2d1635212cbaa56dd4cc8",
+  "evals/release/assertion-storage/definition.json": "a4414d7158fe0dc355987716f1b7be0aabf0acb38965f4c87bb39723f6362cf8",
+  "evals/release/assertion-storage.md": "cc63365f0eadca9c9f3b57d9188e07ea436f874587ec1d6f664b97bda880b2a2",
+  "evals/release/assertion-storage/edges.json": "64b28336aba096a0fbe1b21f816da1f75a19a10e908ef82ce6c6bc38a718c6ee",
+  "evals/release/assertion-owned/definition.json": "5b20ded6ebfca287d13800466198043c697a10ae0e3d4cfca0d43b691c74ab6d",
+  "evals/release/assertion-owned.md": "1520a0aa46288fce539c2930ede984727feef2e38bf25dc43356b97ff3196ff7",
+  "evals/release/assertion-owned/edges.json": "bbe81c588607e319ce6122c4e03b2e2b66f3cc7a59c76142cb5e3ba7846b2796",
+  "evals/release/assertion-signer/definition.json": "31f00e20121e2d7e94e394bdb8d0da8a1791e83ce44c87366ccc6ab258f0547c",
+  "evals/release/assertion-signer.md": "9b12d13f028800e3613204b80ec88341d17f00fa049286c0e3729153fcaefd29",
+  "evals/release/assertion-signer/edges.json": "7046c379776746376b36670447a3c76a18a518a7fb052c35f07f1ce864c767d4",
+  "evals/release/assertion-review-map.py": "c70ea63a426a6151d3b9152b90d90bbda17fa2eaf896ecc175dbcc9e858e9db4"
+}

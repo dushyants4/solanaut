@@ -1,5 +1,9 @@
 # PROGRESS.md
 
+Scoped historical assertion-reason handoff map is recorded, S150. Pending edits
+are explicit; reference coverage is not independent approval or release progress.
+No formal milestone advances.
+
 Signer test modification reasons and current focused checks are recorded, S149.
 Same-user/fake-RPC evidence remains distinct from dedicated-user/live validation;
 line-budget, native, independent and stable gates remain open.

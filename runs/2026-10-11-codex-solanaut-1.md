@@ -7,6 +7,13 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Signer-review checkpoint 6356854 has a verified complete local bundle, exact clean
+restore and successful full fsck. Build a data-only handoff map joining scoped
+reason receipts to frozen historical modifications. Bind input bytes and preserve
+an explicit pending list. Isolated copied-input controls reject duplicates,
+foreign edges and mismatched ranges; an equivalent script preserves reproduction.
+No reference count grants independent/public-history or formal release credit.
+
 Owned-review checkpoint 66aee1a has a verified complete local bundle, exact clean
 restore and successful full fsck. Continue signer test modification review; read
 all complete patches and bind current identities. Current focused cases and
@@ -264,6 +271,11 @@ the unchanged original companion control also passes. Outputs stay separate,
 with no installation or full runtime/matrix claim.
 
 ## Found
+
+Review-map pre-commit close passes eight checks and fails only dirty work and
+deliberately unpushed HEAD. Staged source/prose and exact metadata links are
+reviewed; diff whitespace and credential-shaped search are clean. This map
+references scoped reasons, not independent approval or complete history clearance.
 
 Signer-review pre-commit close passes eight checks and fails only dirty work
 and deliberately unpushed HEAD. Staged historical patches/source/prose are read;

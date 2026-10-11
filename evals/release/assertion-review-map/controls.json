@@ -1,0 +1,29 @@
+{
+  "scriptSha256": "c70ea63a426a6151d3b9152b90d90bbda17fa2eaf896ecc175dbcc9e858e9db4",
+  "results": [
+    {
+      "fault": "none",
+      "status": 0,
+      "stdout": "{\n  \"baseline\": \"e925f1dfaabc7eedae361764a401baf7f9e9868b\",\n  \"head\": \"753769dcd435b9334e59e921727c04afd6cb6859\",\n  \"modificationEdges\": 142,\n  \"edgesLinkedToScopedBuilderReasons\": 63,\n  \"edgesWithoutIndexedReason\": 79,\n  \"pendingByPath\": {\n    \"evals/ci/bite-source.test.ts\": 1,\n    \"evals/ci/coverage.test.ts\": 13,\n    \"evals/ci/mutation-stage.test.ts\": 18,\n    \"evals/ci/mutation-stop.test.ts\": 1,\n    \"evals/ci/mutation.test.ts\": 1,\n    \"evals/ci/properties.test.ts\": 1,\n    \"evals/ci/run-supervisor.test.ts\": 1,\n    \"evals/packaging/packed-sdk.test.ts\": 33,\n    \"packages/sdk/test/archive-cli.test.ts\": 1,\n    \"packages/sdk/test/checkpoint-prefix.test.ts\": 1,\n    \"packages/sdk/test/checkpoint-publication.test.ts\": 2,\n    \"packages/sdk/test/checkpoint.test.ts\": 1,\n    \"packages/sdk/test/durable.test.ts\": 1,\n    \"packages/sdk/test/ownership.test.ts\": 1,\n    \"packages/sdk/test/signed-policy.test.ts\": 2,\n    \"packages/sdk/test/signing-history.test.ts\": 1\n  },\n  \"scope\": \"indexes six scoped builder reason receipts; does not read remaining patches or grant approval\",\n  \"initialAdditionsReviewed\": false,\n  \"completeHistoryReview\": false,\n  \"independentReview\": false,\n  \"publicHistoryClearance\": false,\n  \"releaseClearance\": false\n}\n",
+      "stderr": ""
+    },
+    {
+      "fault": "duplicate-edge",
+      "status": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/home/dashy/Projects/Solanaut/.sandbox/assertion-review-map-controls/duplicate-edge/evals/release/assertion-review-map.py\", line 44, in <module>\n    assert identity not in references, \"duplicate reason reference must not inflate the index\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: duplicate reason reference must not inflate the index\n"
+    },
+    {
+      "fault": "foreign-edge",
+      "status": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/home/dashy/Projects/Solanaut/.sandbox/assertion-review-map-controls/foreign-edge/evals/release/assertion-review-map.py\", line 43, in <module>\n    assert identity in known, \"receipt references an edge outside the frozen modification inventory\"\n           ^^^^^^^^^^^^^^^^^\nAssertionError: receipt references an edge outside the frozen modification inventory\n"
+    },
+    {
+      "fault": "wrong-range",
+      "status": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/home/dashy/Projects/Solanaut/.sandbox/assertion-review-map-controls/wrong-range/evals/release/assertion-review-map.py\", line 38, in <module>\n    assert definition[\"baseline\"] == inventory[\"baseline\"] and definition[\"head\"] == inventory[\"head\"]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+    }
+  ]
+}

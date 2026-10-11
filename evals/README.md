@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`release/assertion-review-map.md`: exact links from historical modifications to
+scoped builder reasons and an explicit pending queue, S150. Copied input defects
+refuse; the data index grants no complete/independent/public/release clearance.
+
 `release/assertion-signer.md`: signer test modification reasons and current focused
 checks, S149. Earlier fixture failures and lost-output limitation remain explicit;
 broader/independent review and full signer/stable qualification remain open.
