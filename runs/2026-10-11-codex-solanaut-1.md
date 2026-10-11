@@ -7,6 +7,19 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Resume from clean 5852778, fetch succeeds and both live probes refuse. No probe
+file is created. Prepare fresh PKG-1/2/3 same-host build/pack and installed-package
+qualification under existing Node 26/24. Preserve the prior D41 scratch stage
+before invoking the approved build; all product inputs are frozen at D40.
+No runtime installation, source change or licence/publication decision occurs.
+
+Fresh approved builds and packs match across the installed runtimes and their
+different npm versions; original installed-package suites pass on each. Four
+comparison substitutions refuse. Frozen product/build inputs remain identical,
+prior D41 scratch restores in full and its binding check passes. Typecheck
+passes; register S130 and archive complete scope/raw proof. Commit and backup
+this coherent preparation before any longer qualification.
+
 Continue from e537f63. Its complete local bundle verifies; restored HEAD
 matches exactly, its working tree is clean and full Git fsck exits zero.
 The preceding clean close passes every gate except remote synchronisation,
@@ -31,6 +44,10 @@ the unchanged original companion control also passes. Outputs stay separate,
 with no installation or full runtime/matrix claim.
 
 ## Found
+
+A combined read naming protected instructions and a build-related search term
+is refused by the boundary heuristic before execution. Split the read-only
+instruction read and ordinary file search as directed; no protected edit occurs.
 
 Stable 1.0 remains unqualified. The previous full native run fails H11's
 original staged-baseline wait; history content preflight refuses H15's scope

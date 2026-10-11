@@ -1,5 +1,10 @@
 # evals/ — receipts
 
+`release/runtime-builds.md`: fresh current D40 build and tarball identity under
+installed Node 26/24, each with the original installed-package population.
+Prior D41 scratch is restored and old proof retained. S130; same-host preparation
+only, without full runtime/CI, provenance or stable-release credit.
+
 `release/history-output.md`: maintained PUB-1 runner accepts a redirected output
 parent. Workspace-only regression fails; a separate proposed copy refuses before
 directory creation, with fault proof and an exact unapplied owner edit. S129;

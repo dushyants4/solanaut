@@ -1,0 +1,451 @@
+[
+  {
+    "id": "@solanaut/sdk@0.0.0",
+    "name": "@solanaut/sdk",
+    "version": "0.0.0",
+    "size": 85442,
+    "unpackedSize": 332450,
+    "shasum": "b45229ec22f69fd8cd5019431e8d21cb6dbf289f",
+    "integrity": "sha512-iYRMydBkfOM+FGE716eJZDbhAjXMIdH0IHkhjJ5t48hm9NFEVlrsFHcuISmSMefIh9M/zKqfZ4KHT/9Q1qw1Ag==",
+    "filename": "solanaut-sdk-0.0.0.tgz",
+    "files": [
+      {
+        "path": "dist/bin/pin-table.d.ts",
+        "size": 11,
+        "mode": 420
+      },
+      {
+        "path": "dist/bin/pin-table.js",
+        "size": 2039,
+        "mode": 493
+      },
+      {
+        "path": "dist/bin/prepare-policy.d.ts",
+        "size": 11,
+        "mode": 420
+      },
+      {
+        "path": "dist/bin/prepare-policy.js",
+        "size": 3340,
+        "mode": 493
+      },
+      {
+        "path": "dist/bin/replay.d.ts",
+        "size": 11,
+        "mode": 420
+      },
+      {
+        "path": "dist/bin/replay.js",
+        "size": 3779,
+        "mode": 493
+      },
+      {
+        "path": "dist/bin/verify-archive.d.ts",
+        "size": 11,
+        "mode": 420
+      },
+      {
+        "path": "dist/bin/verify-archive.js",
+        "size": 3004,
+        "mode": 493
+      },
+      {
+        "path": "dist/src/adapters/agent-kit.d.ts",
+        "size": 1314,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/adapters/agent-kit.js",
+        "size": 12546,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/adapters/kit.d.ts",
+        "size": 965,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/adapters/kit.js",
+        "size": 3675,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/adapters/rpc.d.ts",
+        "size": 1671,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/adapters/rpc.js",
+        "size": 4225,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/adapters/sending-client.d.ts",
+        "size": 1317,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/adapters/sending-client.js",
+        "size": 7070,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/archive.d.ts",
+        "size": 1125,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/archive.js",
+        "size": 8094,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/authority.d.ts",
+        "size": 296,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/authority.js",
+        "size": 528,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/base58.d.ts",
+        "size": 281,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/base58.js",
+        "size": 2223,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/canonical.d.ts",
+        "size": 134,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/canonical.js",
+        "size": 1324,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-archives.d.ts",
+        "size": 397,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-archives.js",
+        "size": 3621,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-bundle.d.ts",
+        "size": 766,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-bundle.js",
+        "size": 3158,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-envelope.d.ts",
+        "size": 785,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-envelope.js",
+        "size": 2884,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-errors.d.ts",
+        "size": 286,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-errors.js",
+        "size": 440,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-prefix.d.ts",
+        "size": 922,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-prefix.js",
+        "size": 4086,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-publication.d.ts",
+        "size": 951,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-publication.js",
+        "size": 5642,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-recovery.d.ts",
+        "size": 858,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-recovery.js",
+        "size": 5866,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-state.d.ts",
+        "size": 490,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint-state.js",
+        "size": 3005,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint.d.ts",
+        "size": 1332,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/checkpoint.js",
+        "size": 4749,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/classify.d.ts",
+        "size": 3686,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/classify.js",
+        "size": 15013,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/control-request.d.ts",
+        "size": 907,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/control-request.js",
+        "size": 2270,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/errors.d.ts",
+        "size": 641,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/errors.js",
+        "size": 543,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/guard.d.ts",
+        "size": 7167,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/guard.js",
+        "size": 43197,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/index.d.ts",
+        "size": 2751,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/index.js",
+        "size": 1585,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/inspect.d.ts",
+        "size": 2005,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/inspect.js",
+        "size": 3604,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/latch.d.ts",
+        "size": 580,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/latch.js",
+        "size": 2337,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/log.d.ts",
+        "size": 4514,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/log.js",
+        "size": 885,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/message.d.ts",
+        "size": 3342,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/message.js",
+        "size": 14416,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/owned-guard.d.ts",
+        "size": 2078,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/owned-guard.js",
+        "size": 7397,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/pda.d.ts",
+        "size": 478,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/pda.js",
+        "size": 3268,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/policy.d.ts",
+        "size": 2834,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/policy.js",
+        "size": 9525,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/profile.d.ts",
+        "size": 556,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/profile.js",
+        "size": 515,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/record.d.ts",
+        "size": 2602,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/record.js",
+        "size": 20944,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/request-index-publication.d.ts",
+        "size": 1981,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/request-index-publication.js",
+        "size": 12824,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/request-index.d.ts",
+        "size": 1919,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/request-index.js",
+        "size": 13563,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/request.d.ts",
+        "size": 588,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/request.js",
+        "size": 1221,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/sensor.d.ts",
+        "size": 3997,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/sensor.js",
+        "size": 5473,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/signed-policy.d.ts",
+        "size": 795,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/signed-policy.js",
+        "size": 4071,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/signing.d.ts",
+        "size": 911,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/signing.js",
+        "size": 3686,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/state.d.ts",
+        "size": 3698,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/state.js",
+        "size": 15396,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/tables.d.ts",
+        "size": 528,
+        "mode": 420
+      },
+      {
+        "path": "dist/src/tables.js",
+        "size": 2204,
+        "mode": 420
+      },
+      {
+        "path": "package.json",
+        "size": 723,
+        "mode": 420
+      }
+    ],
+    "entryCount": 87,
+    "bundled": []
+  }
+]

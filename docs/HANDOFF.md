@@ -255,6 +255,13 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-11 current D40 release builds and packs match under existing Node 26/24
+despite different npm versions; each original installed package suite passes.
+Four comparison substitutions refuse, frozen inputs match and the previous D41
+scratch stage restores exactly. `evals/release/runtime-builds.md`, S130 retain
+full scope and raw proof. No installation, product/gate/version change, Node 22,
+full CI, provenance, public release or stable milestone credit follows.
+
 2026-10-11 PUB-1 evidence output finding: maintained runner accepts a directory
 symlink and redirects writes. Workspace-only regression fails; exact proposed
 edit is `evals/release/history-output/owner.patch`, with separate candidate/control

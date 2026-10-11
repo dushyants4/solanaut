@@ -1,5 +1,10 @@
 # DOCUMENTS.md — the document register
 
+2026-10-11 registers current existing-runtime build/pack qualification, frozen
+inputs, raw installed suites and comparator refusals, restoration evidence and
+receipt/index; CLAIMS S130, PROGRESS, HANDOFF and continuing run. Current product
+and all earlier scratch/candidate evidence remain unchanged after restoration.
+
 2026-10-11 registers PUB-1 output-parent finding, separate regression/proposed
 copy, exact unapplied owner edit, raw failure/control/fault proof and input pins;
 receipt/index, CLAIMS S129, PROGRESS, RISKS, HANDOFF and dated run continuation.

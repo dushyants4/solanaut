@@ -1,5 +1,10 @@
 # PROGRESS.md
 
+Fresh current private SDK builds match across installed Node 26/24, and each
+passes the original installed-package population, CLAIMS S130. The prior D41
+scratch stage is restored exactly. This is same-host preparation; Node 22,
+full native/CI, provenance, clean deployment and stable milestones remain open.
+
 PUB-1's maintained evidence runner accepts symlinked output parents. The new
 workspace-only regression fails; proposed-copy proof and an exact unapplied edit
 are preserved in `evals/release/history-output.md`, CLAIMS S129. No maintained
