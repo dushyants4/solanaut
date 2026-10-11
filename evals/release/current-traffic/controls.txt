@@ -1,0 +1,21 @@
+✔ RT-1: actual guard reconciles every frozen benign proposal (282.000669ms)
+✔ RT-3: every loop preserves refusal, posture and failed-outcome evidence (12.474526ms)
+✔ RT-1: frozen traffic definitions produce complete deterministic populations (30.250903ms)
+✔ RT-1: frozen spacing, burst cadence and recurring effects are retained (7.772575ms)
+✔ RT-1: priority prices remain bounded and profile substitutions fail (11.442223ms)
+✔ RT-1: complete frozen benign populations pass (1.652903ms)
+✔ RT-1: Wilson upper bound is unrounded and includes sampling uncertainty (0.350482ms)
+✔ RT-1: failed, interrupted and unsupported traffic measurements fail (0.591389ms)
+✔ RT-1: missing, repeated and substituted profiles cannot shrink the workload (0.28413ms)
+✔ RT-1: short or incomplete profiles cannot silently exclude proposals (0.245732ms)
+✔ RT-1: all false stops count and a failed confidence target fails (0.398334ms)
+✔ RT-1: denial classifications must reconcile to every stop (0.320084ms)
+✔ RT-1: invalid confidence populations fail rather than produce NaN (0.224101ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 478.467605

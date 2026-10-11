@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`release/current-traffic.md`: original current synthetic benign traffic passes,
+while alternating and distinct failed-outcome non-stop limits remain explicit,
+S135. Reused frozen population, unchanged domains/controller; no broad stop claim.
+
 `release/current-reliability.md`: original SDK acknowledged kill/replay and
 logical-admission workloads complete on current unchanged D40, S134. Exact
 inputs and raw proof retained; no isolated, power-loss or stable qualification.

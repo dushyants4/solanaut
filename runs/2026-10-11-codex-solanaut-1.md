@@ -7,6 +7,13 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Reliability checkpoint 7fd964b is locally committed and backed up with exact
+clean restore/full fsck. Reproduce the original synthetic traffic domains and
+seeds after freezing current inputs. Benign traffic passes, but alternating and
+distinct failed-outcome streams still have no refusal in their original horizons.
+Keep these findings alongside stopped streams as S135; controls/typecheck pass
+and all bound inputs remain unchanged. No tuning or expanded claim occurs.
+
 Inventory checkpoint fd5ec6e is locally committed and its complete bundle,
 exact clean restore and full Git fsck pass. Freeze current source and original
 reliability definitions before running the maintained SDK kill and logical
@@ -88,6 +95,11 @@ the unchanged original companion control also passes. Outputs stay separate,
 with no installation or full runtime/matrix claim.
 
 ## Found
+
+The benign traffic gate's success does not resolve the original RT-3 loop limits.
+Alternating and distinct failed-outcome streams remain unstopped within the
+fixed horizons. Reusing the original population adds no independent statistical
+sample; no universal loop-stop or deployed false-stop claim is warranted.
 
 A combined read naming protected instructions and a build-related search term
 is refused by the boundary heuristic before execution. Split the read-only

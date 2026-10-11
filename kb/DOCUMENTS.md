@@ -1,5 +1,10 @@
 # DOCUMENTS.md — the document register
 
+2026-10-11 registers original current synthetic traffic/loop reproduction,
+frozen inputs, full non-stop findings and benign/control output, receipt/index;
+CLAIMS S135, PROGRESS, HANDOFF and continuing record. No tuning or new population,
+product/gate/architecture change or stable milestone credit follows.
+
 2026-10-11 registers current original SDK kill/replay/admission qualification,
 frozen inputs, owned process identities and complete raw logs, receipt/index;
 CLAIMS S134, PROGRESS, HANDOFF and continuing record. Original definitions and

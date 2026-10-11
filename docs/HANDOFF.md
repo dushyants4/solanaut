@@ -255,6 +255,13 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-11 original synthetic traffic reproduces its benign pass and known
+RT-3 limits on the current product: alternating/distinct failed outcomes still
+have no refusal within the original horizons. S135 preserves both findings,
+full raw postures and unchanged source/domain/seed identities. Original controls
+and typecheck pass. No tuning, new statistical sample, universal stop claim or
+stable milestone credit follows; the accepted review/architecture process stands.
+
 2026-10-11 current SDK original acknowledged kill/replay and same-event-loop
 admission workloads complete with frozen source/fixture hashes unchanged, S134.
 Existing validator controls/typecheck pass and all owned workers finish. Exact

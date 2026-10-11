@@ -1,5 +1,10 @@
 # PROGRESS.md
 
+Current original synthetic traffic passes its benign gate but retains the
+alternating and distinct failed-outcome non-stop limits, S135. Both findings
+remain explicit alongside stopped streams; no controller tuning, broad loop
+claim or stable milestone credit follows.
+
 Current SDK acknowledged kill/replay and logical admissions reproduce their
 original complete workloads, S134. This does not qualify isolated signing,
 power-loss recovery, bounded restart, full CI or any stable milestone.
