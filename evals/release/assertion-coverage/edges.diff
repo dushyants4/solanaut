@@ -1,0 +1,192 @@
+afa0b21bee61886ab23bcfbbb942efc24ec8c793
+diff --git a/evals/ci/coverage.test.ts b/evals/ci/coverage.test.ts
+index e64f1c7..4904421 100644
+--- a/evals/ci/coverage.test.ts
++++ b/evals/ci/coverage.test.ts
+@@ -24,4 +24,8 @@ test("CI-2: a critical branch deficit fails even when aggregate totals pass", ()
+   files[0]!.branches.covered=100; files[2]!.branches.covered=84;
+   assert.throws(()=>requireCoverage(files,inventory),/core.ts/);
++  const checkpoint = {path:"packages/sdk/src/checkpoint.ts",statements:{covered:100,total:100},branches:{covered:84,total:100}};
++  const complete = good(); complete[1]!.branches.covered=100;
++  complete[0]!.branches.covered=100;
++  assert.throws(()=>requireCoverage([...complete,checkpoint],[...inventory,checkpoint.path]),/checkpoint.ts/);
+ });
+ test("CI-2: missing, extra and duplicate files cannot disappear from coverage", () => {
+
+40fa2fc9353105dc39576f37bb88e1a63148b423
+diff --git a/evals/ci/coverage.test.ts b/evals/ci/coverage.test.ts
+index 4904421..9dab85a 100644
+--- a/evals/ci/coverage.test.ts
++++ b/evals/ci/coverage.test.ts
+@@ -24,8 +24,10 @@ test("CI-2: a critical branch deficit fails even when aggregate totals pass", ()
+   files[0]!.branches.covered=100; files[2]!.branches.covered=84;
+   assert.throws(()=>requireCoverage(files,inventory),/core.ts/);
+-  const checkpoint = {path:"packages/sdk/src/checkpoint.ts",statements:{covered:100,total:100},branches:{covered:84,total:100}};
+-  const complete = good(); complete[1]!.branches.covered=100;
+-  complete[0]!.branches.covered=100;
+-  assert.throws(()=>requireCoverage([...complete,checkpoint],[...inventory,checkpoint.path]),/checkpoint.ts/);
++  for(const name of ["checkpoint.ts","checkpoint-archives.ts"]){
++    const checkpoint = {path:"packages/sdk/src/"+name,statements:{covered:100,total:100},branches:{covered:84,total:100}};
++    const complete = good(); complete[1]!.branches.covered=100;
++    complete[0]!.branches.covered=100;
++    assert.throws(()=>requireCoverage([...complete,checkpoint],[...inventory,checkpoint.path]),(error:unknown)=>error instanceof Error && error.message.includes(name));
++  }
+ });
+ test("CI-2: missing, extra and duplicate files cannot disappear from coverage", () => {
+
+23f57d5373d12dcb1c5b932e36e1462ac551016b
+diff --git a/evals/ci/coverage.test.ts b/evals/ci/coverage.test.ts
+index 9dab85a..3d5fd7f 100644
+--- a/evals/ci/coverage.test.ts
++++ b/evals/ci/coverage.test.ts
+@@ -24,5 +24,5 @@ test("CI-2: a critical branch deficit fails even when aggregate totals pass", ()
+   files[0]!.branches.covered=100; files[2]!.branches.covered=84;
+   assert.throws(()=>requireCoverage(files,inventory),/core.ts/);
+-  for(const name of ["checkpoint.ts","checkpoint-archives.ts"]){
++  for(const name of ["checkpoint.ts","checkpoint-archives.ts","checkpoint-prefix.ts"]){
+     const checkpoint = {path:"packages/sdk/src/"+name,statements:{covered:100,total:100},branches:{covered:84,total:100}};
+     const complete = good(); complete[1]!.branches.covered=100;
+
+b9c06eb49856026b9ab2806f0824974af07640db
+diff --git a/evals/ci/coverage.test.ts b/evals/ci/coverage.test.ts
+index 3d5fd7f..e654629 100644
+--- a/evals/ci/coverage.test.ts
++++ b/evals/ci/coverage.test.ts
+@@ -24,5 +24,5 @@ test("CI-2: a critical branch deficit fails even when aggregate totals pass", ()
+   files[0]!.branches.covered=100; files[2]!.branches.covered=84;
+   assert.throws(()=>requireCoverage(files,inventory),/core.ts/);
+-  for(const name of ["checkpoint.ts","checkpoint-archives.ts","checkpoint-prefix.ts"]){
++  for(const name of ["checkpoint.ts","checkpoint-archives.ts","checkpoint-prefix.ts","checkpoint-state.ts"]){
+     const checkpoint = {path:"packages/sdk/src/"+name,statements:{covered:100,total:100},branches:{covered:84,total:100}};
+     const complete = good(); complete[1]!.branches.covered=100;
+
+6d81f8b747c1b04003b8bd83f12bed6e5fcbca51
+diff --git a/evals/ci/coverage.test.ts b/evals/ci/coverage.test.ts
+index e654629..d80b969 100644
+--- a/evals/ci/coverage.test.ts
++++ b/evals/ci/coverage.test.ts
+@@ -24,5 +24,5 @@ test("CI-2: a critical branch deficit fails even when aggregate totals pass", ()
+   files[0]!.branches.covered=100; files[2]!.branches.covered=84;
+   assert.throws(()=>requireCoverage(files,inventory),/core.ts/);
+-  for(const name of ["checkpoint.ts","checkpoint-archives.ts","checkpoint-prefix.ts","checkpoint-state.ts"]){
++  for(const name of ["checkpoint.ts","checkpoint-archives.ts","checkpoint-prefix.ts","checkpoint-state.ts","checkpoint-bundle.ts"]){
+     const checkpoint = {path:"packages/sdk/src/"+name,statements:{covered:100,total:100},branches:{covered:84,total:100}};
+     const complete = good(); complete[1]!.branches.covered=100;
+
+6162efb3ea45a2997eb771ea40fd6b251befb549
+diff --git a/evals/ci/coverage.test.ts b/evals/ci/coverage.test.ts
+index d80b969..ef64ff3 100644
+--- a/evals/ci/coverage.test.ts
++++ b/evals/ci/coverage.test.ts
+@@ -24,5 +24,5 @@ test("CI-2: a critical branch deficit fails even when aggregate totals pass", ()
+   files[0]!.branches.covered=100; files[2]!.branches.covered=84;
+   assert.throws(()=>requireCoverage(files,inventory),/core.ts/);
+-  for(const name of ["checkpoint.ts","checkpoint-archives.ts","checkpoint-prefix.ts","checkpoint-state.ts","checkpoint-bundle.ts"]){
++  for(const name of ["checkpoint.ts","checkpoint-archives.ts","checkpoint-prefix.ts","checkpoint-state.ts","checkpoint-bundle.ts","checkpoint-envelope.ts"]){
+     const checkpoint = {path:"packages/sdk/src/"+name,statements:{covered:100,total:100},branches:{covered:84,total:100}};
+     const complete = good(); complete[1]!.branches.covered=100;
+
+0c61fa365ec59bf75daf83567d6be2d3aa5cf37d
+diff --git a/evals/ci/coverage.test.ts b/evals/ci/coverage.test.ts
+index ef64ff3..98e7409 100644
+--- a/evals/ci/coverage.test.ts
++++ b/evals/ci/coverage.test.ts
+@@ -24,5 +24,5 @@ test("CI-2: a critical branch deficit fails even when aggregate totals pass", ()
+   files[0]!.branches.covered=100; files[2]!.branches.covered=84;
+   assert.throws(()=>requireCoverage(files,inventory),/core.ts/);
+-  for(const name of ["checkpoint.ts","checkpoint-archives.ts","checkpoint-prefix.ts","checkpoint-state.ts","checkpoint-bundle.ts","checkpoint-envelope.ts"]){
++  for(const name of ["checkpoint.ts","checkpoint-archives.ts","checkpoint-prefix.ts","checkpoint-state.ts","checkpoint-bundle.ts","checkpoint-envelope.ts","checkpoint-publication.ts"]){
+     const checkpoint = {path:"packages/sdk/src/"+name,statements:{covered:100,total:100},branches:{covered:84,total:100}};
+     const complete = good(); complete[1]!.branches.covered=100;
+
+f05c84dea1da1ff5c92a0b904520e9326023f4c9
+diff --git a/evals/ci/coverage.test.ts b/evals/ci/coverage.test.ts
+index 98e7409..8682efc 100644
+--- a/evals/ci/coverage.test.ts
++++ b/evals/ci/coverage.test.ts
+@@ -24,5 +24,5 @@ test("CI-2: a critical branch deficit fails even when aggregate totals pass", ()
+   files[0]!.branches.covered=100; files[2]!.branches.covered=84;
+   assert.throws(()=>requireCoverage(files,inventory),/core.ts/);
+-  for(const name of ["checkpoint.ts","checkpoint-archives.ts","checkpoint-prefix.ts","checkpoint-state.ts","checkpoint-bundle.ts","checkpoint-envelope.ts","checkpoint-publication.ts"]){
++  for(const name of ["checkpoint.ts","checkpoint-archives.ts","checkpoint-prefix.ts","checkpoint-state.ts","checkpoint-bundle.ts","checkpoint-envelope.ts","checkpoint-publication.ts","checkpoint-recovery.ts"]){
+     const checkpoint = {path:"packages/sdk/src/"+name,statements:{covered:100,total:100},branches:{covered:84,total:100}};
+     const complete = good(); complete[1]!.branches.covered=100;
+
+c2c2f5cfe7a33c627ce721325b1e06cb1e1587af
+diff --git a/evals/ci/coverage.test.ts b/evals/ci/coverage.test.ts
+index 8682efc..8af2e37 100644
+--- a/evals/ci/coverage.test.ts
++++ b/evals/ci/coverage.test.ts
+@@ -24,5 +24,5 @@ test("CI-2: a critical branch deficit fails even when aggregate totals pass", ()
+   files[0]!.branches.covered=100; files[2]!.branches.covered=84;
+   assert.throws(()=>requireCoverage(files,inventory),/core.ts/);
+-  for(const name of ["checkpoint.ts","checkpoint-archives.ts","checkpoint-prefix.ts","checkpoint-state.ts","checkpoint-bundle.ts","checkpoint-envelope.ts","checkpoint-publication.ts","checkpoint-recovery.ts"]){
++  for(const name of ["checkpoint.ts","checkpoint-archives.ts","checkpoint-prefix.ts","checkpoint-state.ts","checkpoint-bundle.ts","checkpoint-envelope.ts","checkpoint-publication.ts","checkpoint-recovery.ts","archive.ts"]){
+     const checkpoint = {path:"packages/sdk/src/"+name,statements:{covered:100,total:100},branches:{covered:84,total:100}};
+     const complete = good(); complete[1]!.branches.covered=100;
+
+39c24de89a3e860cd9e4a08517a616481c5c72ca
+diff --git a/evals/ci/coverage.test.ts b/evals/ci/coverage.test.ts
+index 8af2e37..b110b84 100644
+--- a/evals/ci/coverage.test.ts
++++ b/evals/ci/coverage.test.ts
+@@ -24,5 +24,5 @@ test("CI-2: a critical branch deficit fails even when aggregate totals pass", ()
+   files[0]!.branches.covered=100; files[2]!.branches.covered=84;
+   assert.throws(()=>requireCoverage(files,inventory),/core.ts/);
+-  for(const name of ["checkpoint.ts","checkpoint-archives.ts","checkpoint-prefix.ts","checkpoint-state.ts","checkpoint-bundle.ts","checkpoint-envelope.ts","checkpoint-publication.ts","checkpoint-recovery.ts","archive.ts"]){
++  for(const name of ["checkpoint.ts","checkpoint-archives.ts","checkpoint-prefix.ts","checkpoint-state.ts","checkpoint-bundle.ts","checkpoint-envelope.ts","checkpoint-publication.ts","checkpoint-recovery.ts","archive.ts","request-index.ts"]){
+     const checkpoint = {path:"packages/sdk/src/"+name,statements:{covered:100,total:100},branches:{covered:84,total:100}};
+     const complete = good(); complete[1]!.branches.covered=100;
+
+5a33e698703446708729a8271a7a4c38a3a7dce7
+diff --git a/evals/ci/coverage.test.ts b/evals/ci/coverage.test.ts
+index b110b84..4079b58 100644
+--- a/evals/ci/coverage.test.ts
++++ b/evals/ci/coverage.test.ts
+@@ -24,5 +24,5 @@ test("CI-2: a critical branch deficit fails even when aggregate totals pass", ()
+   files[0]!.branches.covered=100; files[2]!.branches.covered=84;
+   assert.throws(()=>requireCoverage(files,inventory),/core.ts/);
+-  for(const name of ["checkpoint.ts","checkpoint-archives.ts","checkpoint-prefix.ts","checkpoint-state.ts","checkpoint-bundle.ts","checkpoint-envelope.ts","checkpoint-publication.ts","checkpoint-recovery.ts","archive.ts","request-index.ts"]){
++  for(const name of ["checkpoint.ts","checkpoint-archives.ts","checkpoint-prefix.ts","checkpoint-state.ts","checkpoint-bundle.ts","checkpoint-envelope.ts","checkpoint-publication.ts","checkpoint-recovery.ts","archive.ts","request-index.ts","request-index-publication.ts"]){
+     const checkpoint = {path:"packages/sdk/src/"+name,statements:{covered:100,total:100},branches:{covered:84,total:100}};
+     const complete = good(); complete[1]!.branches.covered=100;
+
+0332c977eb0dadec8a5592324fb8ad1f76ab2db0
+diff --git a/evals/ci/coverage.test.ts b/evals/ci/coverage.test.ts
+index 4079b58..cdb3a47 100644
+--- a/evals/ci/coverage.test.ts
++++ b/evals/ci/coverage.test.ts
+@@ -6,4 +6,5 @@ const good = (): CoverageFile[] => [
+   {path:"packages/sdk/src/base58.ts",statements:{covered:95,total:100},branches:{covered:95,total:100}},
+   {path:"apps/signer/src/core.ts",statements:{covered:95,total:100},branches:{covered:90,total:100}},
++  {path:"apps/firewall/src/filter.ts",statements:{covered:95,total:100},branches:{covered:90,total:100}},
+ ];
+ const inventory = good().map(file=>file.path);
+@@ -14,5 +15,5 @@ test("CI-2: failed or missing test-process completion cannot qualify coverage",(
+ test("CI-2: exact statement and branch floors pass without rounding", () => {
+   assert.doesNotThrow(()=>requireCoverage(good(),inventory));
+-  for (const [index,metric] of [[0,"statements"],[1,"branches"],[2,"statements"],[2,"branches"]] as const) {
++  for (const [index,metric] of [[0,"statements"],[1,"branches"],[2,"statements"],[2,"branches"],[3,"statements"],[3,"branches"]] as const) {
+     const files=good(); files[index]![metric].covered--;
+     assert.throws(()=>requireCoverage(files,inventory),/coverage/i);
+@@ -24,4 +25,7 @@ test("CI-2: a critical branch deficit fails even when aggregate totals pass", ()
+   files[0]!.branches.covered=100; files[2]!.branches.covered=84;
+   assert.throws(()=>requireCoverage(files,inventory),/core.ts/);
++  const firewall=good();firewall[3]!.branches.covered=84;
++  const helper={path:"apps/firewall/src/helper.ts",statements:{covered:1000,total:1000},branches:{covered:1000,total:1000}};
++  assert.throws(()=>requireCoverage([...firewall,helper],[...inventory,helper.path]),/filter.ts/);
+   for(const name of ["checkpoint.ts","checkpoint-archives.ts","checkpoint-prefix.ts","checkpoint-state.ts","checkpoint-bundle.ts","checkpoint-envelope.ts","checkpoint-publication.ts","checkpoint-recovery.ts","archive.ts","request-index.ts","request-index-publication.ts"]){
+     const checkpoint = {path:"packages/sdk/src/"+name,statements:{covered:100,total:100},branches:{covered:84,total:100}};
+
+36a1ae793e08855e817496837fcf5d7ea34abd37
+diff --git a/evals/ci/coverage.test.ts b/evals/ci/coverage.test.ts
+index cdb3a47..c2fca42 100644
+--- a/evals/ci/coverage.test.ts
++++ b/evals/ci/coverage.test.ts
+@@ -28,5 +28,5 @@ test("CI-2: a critical branch deficit fails even when aggregate totals pass", ()
+   const helper={path:"apps/firewall/src/helper.ts",statements:{covered:1000,total:1000},branches:{covered:1000,total:1000}};
+   assert.throws(()=>requireCoverage([...firewall,helper],[...inventory,helper.path]),/filter.ts/);
+-  for(const name of ["checkpoint.ts","checkpoint-archives.ts","checkpoint-prefix.ts","checkpoint-state.ts","checkpoint-bundle.ts","checkpoint-envelope.ts","checkpoint-publication.ts","checkpoint-recovery.ts","archive.ts","request-index.ts","request-index-publication.ts"]){
++  for(const name of ["checkpoint.ts","checkpoint-archives.ts","checkpoint-prefix.ts","checkpoint-state.ts","checkpoint-bundle.ts","checkpoint-envelope.ts","checkpoint-publication.ts","checkpoint-recovery.ts","archive.ts","request-index.ts","request-index-publication.ts","owned-guard.ts"]){
+     const checkpoint = {path:"packages/sdk/src/"+name,statements:{covered:100,total:100},branches:{covered:84,total:100}};
+     const complete = good(); complete[1]!.branches.covered=100;

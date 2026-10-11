@@ -271,6 +271,12 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-11 coverage assertion modification reasons and current checker controls
+are in `evals/release/assertion-coverage.md`, S151. Additions retain every prior
+critical-file deficit and extend firewall checks without changing floors.
+S150's earlier frozen map does not yet index this receipt. No fresh instrumented
+coverage, independent approval or stable milestone advance follows.
+
 2026-10-11 scoped assertion-reason index and remaining queue are in
 `evals/release/assertion-review-map.md`, S150. Exact edges link to builder receipts;
 copied duplicate/foreign/range faults refuse. Initial additions, broader history

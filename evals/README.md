@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`release/assertion-coverage.md`: critical-file and firewall coverage assertion
+history reasons plus current checker controls, S151. Original floors/populations
+persist; actual instrumented and independent/stable qualification remain owed.
+
 `release/assertion-review-map.md`: exact links from historical modifications to
 scoped builder reasons and an explicit pending queue, S150. Copied input defects
 refuse; the data index grants no complete/independent/public/release clearance.

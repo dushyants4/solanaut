@@ -1,0 +1,25 @@
+{
+  "baseline": "e925f1dfaabc7eedae361764a401baf7f9e9868b",
+  "head": "753769dcd435b9334e59e921727c04afd6cb6859",
+  "inventorySha256": "f813d4f9f5c54e8bfd0dd5e626680abb3978f1789a42c08309d35c7eb09eaf4b",
+  "collectorSha256": "2288cc9c718d5b1b5d1f98efb87954425f1af4cb0aff0a7457ddc019d7f66ff0",
+  "selectedCommitPrefixes": [
+    "0332c97",
+    "0c61fa3",
+    "23f57d5",
+    "36a1ae7",
+    "39c24de",
+    "40fa2fc",
+    "5a33e69",
+    "6162efb",
+    "6d81f8b",
+    "afa0b21",
+    "b9c06eb",
+    "c2c2f5c",
+    "f05c84d"
+  ],
+  "path": "evals/ci/coverage.test.ts",
+  "currentRevision": "b770f7c1737dbbd88ebe06a9ee79dc60d4191e75",
+  "currentTestSha256": "e78efbb9c7e7431417d05f9d2f9e460ffa98b128b9e58e60f081be1bdea5a1ec",
+  "scope": "coverage test modification patches only, not full coverage or independent history review"
+}

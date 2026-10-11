@@ -1,5 +1,9 @@
 # DOCUMENTS.md — the document register
 
+2026-10-11 registers coverage assertion collector, complete historical patches,
+revision/diff/current bindings, focused checker output and receipt/index;
+CLAIMS S151, PROGRESS, HANDOFF and continuing run. No protected test changes.
+
 2026-10-11 registers assertion-review data index/control reproduction, input
 hashes, per-edge links/pending queue, grouped summary/raw controls and receipt/index;
 CLAIMS S150, PROGRESS, HANDOFF and continuing run. No milestone changes.

@@ -1,5 +1,9 @@
 # PROGRESS.md
 
+Coverage assertion modification reasons and current checker controls are
+recorded, S151. Expanded deficit populations retain prior checks; this is not
+fresh instrumented coverage or a stable milestone advance.
+
 Scoped historical assertion-reason handoff map is recorded, S150. Pending edits
 are explicit; reference coverage is not independent approval or release progress.
 No formal milestone advances.

@@ -7,6 +7,14 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Review-map checkpoint b770f7c has a verified complete local bundle, exact clean
+restore and successful full fsck. Continue all coverage-test modification reasons;
+inspect complete patches and bind current identity. Added critical files preserve
+earlier deficits; firewall additions preserve SDK/signer exact floors and require
+its isolated deficit despite passing helper counters. Current synthetic checker
+controls pass, without implying actual instrumented coverage. No TS changes
+since the successful signer-review typecheck; no unchanged full-gate repeat.
+
 Signer-review checkpoint 6356854 has a verified complete local bundle, exact clean
 restore and successful full fsck. Build a data-only handoff map joining scoped
 reason receipts to frozen historical modifications. Bind input bytes and preserve
@@ -271,6 +279,11 @@ the unchanged original companion control also passes. Outputs stay separate,
 with no installation or full runtime/matrix claim.
 
 ## Found
+
+Coverage-review pre-commit close passes eight checks and fails only dirty work
+and deliberately unpushed HEAD. Staged source/prose/patch review, diff whitespace
+and credential-shaped search are clean. Synthetic checker passes are not a fresh
+coverage report; all original full-run failures remain.
 
 Review-map pre-commit close passes eight checks and fails only dirty work and
 deliberately unpushed HEAD. Staged source/prose and exact metadata links are
