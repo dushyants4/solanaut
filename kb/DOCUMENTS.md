@@ -1,5 +1,12 @@
 # DOCUMENTS.md — the document register
 
+2026-10-11 registers RPC redaction diagnostic, initial/response fixtures and
+complete failures on existing runtimes, source/input bindings, explicit fixture
+typecheck, candidate/reproduction hashes/full outputs, both caught omissions,
+candidate RPC/strict type checks and unapplied suggested diffs/receipt;
+CLAIMS S156, SPEC D42, RPC,
+RISKS, PROGRESS, HANDOFF and continuing run. No product or protected gate changes.
+
 2026-10-11 registers remaining consumer assertion collector/complete patches,
 reason receipt and final index/control reproducer, frozen bindings and retained
 initial outputs; CLAIMS S155, SPEC, RISKS, PROGRESS, HANDOFF and continuing run.

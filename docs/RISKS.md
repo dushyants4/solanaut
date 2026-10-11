@@ -528,3 +528,9 @@ S155's complete frozen modification-reason index is builder-authored reference
 allocation, not independent acceptance of those changes or public-history
 clearance. Initial additions and supporting/later history remain separate;
 the known declaration miss and native failure remain unresolved.
+
+RPC catch sites retain provider-controlled exception text in health and thrown
+refusals, D42/S156 (`evals/signer/rpc-redaction.md`). Malformed synthetic response
+bodies reproduce the privacy gap; no real secret or deployed exposure is found.
+Fixed diagnostic categories and privacy tests must precede operational health
+wiring. Suggested remediation remains unapplied while H11 blocks integration.

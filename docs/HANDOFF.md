@@ -272,6 +272,16 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-11 records unresolved RPC diagnostic redaction D42/S156 in
+`evals/signer/rpc-redaction.md`. Malformed fake response bodies propagate synthetic
+private text into read/send refusal and health; both existing runtime populations
+retain failures. No real credential or deployed exposure is found. Explicit
+fixture typecheck and contextual suggested-patch validation pass, but the patch
+is unapplied and H11 prevents product integration. Retain all original RPC gates.
+Separate copied correction/reproducer passes the privacy and complete relocated
+RPC cases on both existing runtimes and catches both catch-site omissions.
+Original product tests stay red; full integrated/maintained qualification remains owed.
+
 2026-10-11 completes scoped builder reason allocation for the frozen named-test
 modifications in `evals/release/assertion-reasons-complete.md`, S155. Remaining
 consumer patches are read in full and exact references bound. Initial additions,

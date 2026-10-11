@@ -1,0 +1,11 @@
+✔ RPC-3/OPR-2: healthy provider diagnostic control has no synthetic private text (40.603807ms)
+✔ RPC-2/OPR-2: read refusal and health must redact provider-controlled error text (2.895507ms)
+✔ RPC-2/OPR-2: send refusal and health must redact provider-controlled error text (2.973283ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 300.74053

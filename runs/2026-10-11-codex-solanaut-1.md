@@ -7,6 +7,24 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Reason-index checkpoint 32ddf33 has a verified complete local bundle and exact
+clean restore. A poll of the earlier fsck session reports unknown process ID;
+do not assume its exit, and rerun full fsck to a confirmed successful completion.
+Clean close fails only the deliberately unpushed HEAD. Deployment inspection
+confirms unfinished manifests/dedicated-user/provider-health wiring and finds
+raw RPC diagnostic propagation. D42 first fails on synthetic fetch exceptions;
+preserve that fixture/outputs, then strengthen to malformed fake HTTP bodies.
+Both installed runtimes retain redaction failures with healthy controls. No real
+network/credential/key or source change. Explicit fixture typecheck and corrected
+contextual suggested-patch validation pass; root typecheck alone excludes the
+diagnostic. Product correction remains pending the H11 gate, S156.
+Prepare a separate source copy from the exact contextual suggestion. Original
+privacy cases stay red; copied correction and complete relocated RPC cases pass
+on both existing runtimes, while provider/send catch omissions fail individually.
+The first copy uses the original standalone child; the hash-bound reproducer
+also relocates that child to candidate source. Preserve both, complete outputs,
+hashes and explicit candidate/fixture strict typecheck. Product remains unchanged.
+
 Archive declaration checkpoint b37b6f6 has a verified complete local bundle,
 exact clean restored revision and successful full fsck. Clean close passes all
 but the deliberately unpushed HEAD; fetch is read-only and succeeds. Read every
@@ -317,6 +335,20 @@ the unchanged original companion control also passes. Outputs stay separate,
 with no installation or full runtime/matrix claim.
 
 ## Found
+
+RPC-redaction pre-commit close passes eight checks, failing only dirty work and
+the deliberately unpushed HEAD. Complete scripts/prose/patch and bindings are
+reviewed; original product hashes still match and credential-shaped search has
+no hits. Preserve raw assertion indentation despite whitespace diagnostics.
+Omission outputs show each intended path fails while its peer/control pass;
+owned candidate/child workers finish. Full native H11 remains unqualified.
+
+RPC refusal/health redaction assertions fail for both read/send on synthetic
+response text. This is an unresolved privacy finding, not actual credential or
+deployed exposure. Preserve earlier thrown-fetch failures alongside stronger
+response-body observations. An initial zero-context suggested diff fails ordinary
+read-only validation; preserve it before generating the contextual suggestion.
+The latter validates without application, not a product correction/pass.
 
 Reason-index pre-commit close passes eight checks, failing only dirty work and
 the deliberately unpushed HEAD. Staged scripts/prose/bindings and all selected

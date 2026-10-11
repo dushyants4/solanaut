@@ -1,0 +1,25 @@
+✔ RPC-1: pins devnet identity and validates observed blockhash/lifetime with confirmed context (31.861386ms)
+✔ RPC-1: cross-cluster substitution denies; blockhash mismatch or invalidity denies (4.441245ms)
+✔ RPC-2: malformed and non-integral heights or context cannot become authority (3.838032ms)
+✔ RPC-2: response ID/version, missing result, and oversized body refuse (3.231036ms)
+✔ RPC-3: one-provider outage permits conservative reads; total outage reports degraded (11.410928ms)
+✔ RPC-3: stale or conflicting observations cannot authorize a new proposal (1.505277ms)
+✔ RPC-4: chain outcome requires agreeing committed evidence; missing/stale/conflicting stays unresolved (5.840318ms)
+✔ RPC-4: failed outcome needs matching committed failure from both providers (1.1943ms)
+✔ RPC-2/SIG-9: rate-limited reads back off, but send has exactly one attempt with node retries disabled (3.099643ms)
+✔ RPC-2: hung reads end at their deadline and expired calls make no network request (31.368814ms)
+✔ RPC-2: a standalone process keeps its owned request deadline alive (158.946114ms)
+✔ RPC-1/2: unsafe endpoint sets and invalid deadlines cannot configure a provider (0.794757ms)
+✔ RPC-2: missing bodies and rate limits beyond the request deadline deny reads (0.665984ms)
+✔ RPC-1/2: malformed blockhashes and an expired lifetime deny observation (2.388516ms)
+✔ RPC-3: provider slot rollback cannot replace previously observed context (0.908153ms)
+✔ RPC-4: malformed signature status arrays and future or invalid committed outcomes stay unresolved (4.240003ms)
+✔ RPC-2: a response delivered after the host deadline cannot become authoritative (0.565446ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 431.256098

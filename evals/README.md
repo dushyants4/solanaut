@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`signer/rpc-redaction.md`: unresolved D42 provider-text disclosure through RPC
+refusal and health diagnostics, S156. Both runtime probes retain failures;
+separate copied correction/RPC checks catch both omissions, but remain unintegrated.
+
 `release/assertion-reasons-complete.md` and `release/assertion-consumers.md`:
 complete scoped reason allocation for frozen named-test modifications, S155.
 Copied data faults refuse; the confirmed declaration gap, initial additions,

@@ -1,0 +1,72 @@
+{
+  "originalInputs": {
+    "apps/signer/src/rpc.ts": "3b884a20f2105d9368ef2d480dd1b9d11c34e3e06042221a4131ba28c72f595c",
+    "evals/signer/rpc-redaction.test.ts": "e2d74993a4c2821b60522dd2f854842205e7b7d528203b9041b7e35f47e69e1c"
+  },
+  "maintainedTestSha256": "060eeba138cfdc5b3236e768633545baec5451b3960d3f4e79f7f64d7b50b7a0",
+  "candidateFiles": {
+    ".sandbox/rpc-redaction-candidate/candidate.test.ts": "e8c103baff1d304f35c2e1cff31116a5452a32db344b9b4d82d191f27de97d43",
+    ".sandbox/rpc-redaction-candidate/provider-omission.test.ts": "75a774805ddfded1c670cda267761a2e593795e11b6f5b75ede6c40d6bcb39af",
+    ".sandbox/rpc-redaction-candidate/send-omission.test.ts": "a9f355c23a35ca7c11f80c26acb7aa4caaa90e738e24939d896e0db03db8154b",
+    ".sandbox/rpc-redaction-candidate/maintained.test.ts": "3738a024a08f01893a7a5a5217d48dae9f2bfb2a461c96e46c13f77bd24bfec6",
+    ".sandbox/rpc-redaction-candidate/candidate/rpc.ts": "81aab7d55e830a3f29bd187dfda387b1e03e653efde9fbbff0613d891d504bc5",
+    ".sandbox/rpc-redaction-candidate/candidate/core.ts": "74d1e674be1092928232cded0b8417163f6b3a6e35508607f539f3191d10db5c",
+    ".sandbox/rpc-redaction-candidate/provider-omission/rpc.ts": "9f765bcd7409c18f13dc764374b6f34094b2622b3009567d5dc2a3072943c990",
+    ".sandbox/rpc-redaction-candidate/provider-omission/core.ts": "74d1e674be1092928232cded0b8417163f6b3a6e35508607f539f3191d10db5c",
+    ".sandbox/rpc-redaction-candidate/send-omission/rpc.ts": "65907b0e04de3aed2edeb858368131ebab796505341c95aaba7e0ceb7a07ef45",
+    ".sandbox/rpc-redaction-candidate/send-omission/core.ts": "74d1e674be1092928232cded0b8417163f6b3a6e35508607f539f3191d10db5c"
+  },
+  "results": [
+    {
+      "runtime": "v26.7.0",
+      "kind": "candidate",
+      "status": 0,
+      "output": "candidate-node26.txt"
+    },
+    {
+      "runtime": "v26.7.0",
+      "kind": "provider-omission",
+      "status": 1,
+      "output": "provider-omission-node26.txt"
+    },
+    {
+      "runtime": "v26.7.0",
+      "kind": "send-omission",
+      "status": 1,
+      "output": "send-omission-node26.txt"
+    },
+    {
+      "runtime": "v26.7.0",
+      "kind": "maintained",
+      "status": 0,
+      "output": "maintained-node26.txt"
+    },
+    {
+      "runtime": "v24.19.0",
+      "kind": "candidate",
+      "status": 0,
+      "output": "candidate-node24.txt"
+    },
+    {
+      "runtime": "v24.19.0",
+      "kind": "provider-omission",
+      "status": 1,
+      "output": "provider-omission-node24.txt"
+    },
+    {
+      "runtime": "v24.19.0",
+      "kind": "send-omission",
+      "status": 1,
+      "output": "send-omission-node24.txt"
+    },
+    {
+      "runtime": "v24.19.0",
+      "kind": "maintained",
+      "status": 0,
+      "output": "maintained-node24.txt"
+    }
+  ],
+  "productChanged": false,
+  "integrated": false,
+  "releaseClearance": false
+}

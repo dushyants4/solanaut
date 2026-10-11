@@ -1,0 +1,20 @@
+--- a/apps/signer/src/rpc.ts
++++ b/apps/signer/src/rpc.ts
+@@ -72,7 +72,7 @@
+       if (slot < floor || slot < p.slot) throw new Error("stale RPC context");
+       p.slot = slot; floor = Math.max(floor, slot);
+       const value = await action(); p.healthy = true; p.reason = ""; return value;
+-    } catch (error) { p.healthy = false; p.reason = (error as Error).message; throw error; }
++    } catch { p.healthy = false; p.reason = "provider unavailable"; throw new Error("RPC provider unavailable"); }
+   }
+   async function available<T>(deadline: number, action: (p: typeof providers[number]) => Promise<T>): Promise<T[]> {
+     const results = await Promise.allSettled(providers.map((p) => provider(p, deadline, () => action(p))));
+@@ -104,7 +104,7 @@
+       const ready = await available(deadline, async (p) => p);
+       const p = ready[0]!;
+       try { return base58(await call(p, "sendTransaction", [Buffer.from(wire).toString("base64"), { encoding: "base64", preflightCommitment: "confirmed", skipPreflight: false, maxRetries: 0, minContextSlot: floor }], deadline, true), 64); }
+-      catch (error) { p.healthy = false; p.reason = (error as Error).message; throw error; }
++      catch { p.healthy = false; p.reason = "send unavailable"; throw new Error("RPC send unavailable"); }
+     },
+     async outcome(signature, deadline): Promise<Outcome | null> {
+       base58(signature, 64);

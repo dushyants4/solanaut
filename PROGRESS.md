@@ -1,5 +1,9 @@
 # PROGRESS.md
 
+RPC diagnostics propagate synthetic provider response text in both refusals and
+health, D42/S156. Existing-runtime product tests remain red; a separate copied
+correction passes scoped checks/faults. H11 blocks integration; no milestone advances.
+
 Frozen named-test modification reasons now have a complete scoped builder
 reference index, S155. Initial additions and independent/public-history approval
 remain separate; O10/H11 are unresolved and no stable milestone advances.

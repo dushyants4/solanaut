@@ -1,0 +1,27 @@
+{
+  "revision": "32ddf3330cff60b59753938c1e30ccd0b374db8a",
+  "inputs": {
+    "apps/signer/src/rpc.ts": "3b884a20f2105d9368ef2d480dd1b9d11c34e3e06042221a4131ba28c72f595c",
+    "evals/signer/rpc-redaction.test.ts": "a7bcf44582b923741c1981886976b863d3bea2ca914930397c24814c690f9bc7"
+  },
+  "results": [
+    {
+      "runtime": "v26.7.0",
+      "status": 1,
+      "tests": 3,
+      "pass": 1,
+      "fail": 2
+    },
+    {
+      "runtime": "v24.19.0",
+      "status": 1,
+      "tests": 3,
+      "pass": 1,
+      "fail": 2
+    }
+  ],
+  "sourceChanged": false,
+  "networkRequests": false,
+  "independentReview": false,
+  "releaseClearance": false
+}

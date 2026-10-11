@@ -1,0 +1,9 @@
+diff --git a/apps/signer/src/rpc.ts b/apps/signer/src/rpc.ts
+--- a/apps/signer/src/rpc.ts
++++ b/apps/signer/src/rpc.ts
+@@ -75 +75 @@
+-    } catch (error) { p.healthy = false; p.reason = (error as Error).message; throw error; }
++    } catch { p.healthy = false; p.reason = "provider unavailable"; throw new Error("RPC provider unavailable"); }
+@@ -106 +106 @@
+-      catch (error) { p.healthy = false; p.reason = (error as Error).message; throw error; }
++      catch { p.healthy = false; p.reason = "send unavailable"; throw new Error("RPC send unavailable"); }

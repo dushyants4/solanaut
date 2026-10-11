@@ -1,0 +1,71 @@
+{
+  "results": [
+    {
+      "runtime": "v26.7.0",
+      "kind": "original",
+      "status": 1
+    },
+    {
+      "runtime": "v26.7.0",
+      "kind": "candidate",
+      "status": 0
+    },
+    {
+      "runtime": "v26.7.0",
+      "kind": "provider-omission",
+      "status": 1
+    },
+    {
+      "runtime": "v26.7.0",
+      "kind": "send-omission",
+      "status": 1
+    },
+    {
+      "runtime": "v26.7.0",
+      "kind": "maintained",
+      "status": 0
+    },
+    {
+      "runtime": "v24.19.0",
+      "kind": "original",
+      "status": 1
+    },
+    {
+      "runtime": "v24.19.0",
+      "kind": "candidate",
+      "status": 0
+    },
+    {
+      "runtime": "v24.19.0",
+      "kind": "provider-omission",
+      "status": 1
+    },
+    {
+      "runtime": "v24.19.0",
+      "kind": "send-omission",
+      "status": 1
+    },
+    {
+      "runtime": "v24.19.0",
+      "kind": "maintained",
+      "status": 0
+    }
+  ],
+  "generatedInputs": {
+    ".sandbox/rpc-redaction-reproduce/candidate.test.ts": "e8c103baff1d304f35c2e1cff31116a5452a32db344b9b4d82d191f27de97d43",
+    ".sandbox/rpc-redaction-reproduce/provider-omission.test.ts": "75a774805ddfded1c670cda267761a2e593795e11b6f5b75ede6c40d6bcb39af",
+    ".sandbox/rpc-redaction-reproduce/send-omission.test.ts": "a9f355c23a35ca7c11f80c26acb7aa4caaa90e738e24939d896e0db03db8154b",
+    ".sandbox/rpc-redaction-reproduce/deadline-child.ts": "aad5e9211450572ac840594dd65881ffe67e7cec4db9e13595f468289094c2d8",
+    ".sandbox/rpc-redaction-reproduce/maintained.test.ts": "a2431e5a8ef5fd0b621123a9c584f5962987bdf6ceab97a16825883514bce86e",
+    ".sandbox/rpc-redaction-reproduce/candidate/rpc.ts": "81aab7d55e830a3f29bd187dfda387b1e03e653efde9fbbff0613d891d504bc5",
+    ".sandbox/rpc-redaction-reproduce/candidate/core.ts": "74d1e674be1092928232cded0b8417163f6b3a6e35508607f539f3191d10db5c",
+    ".sandbox/rpc-redaction-reproduce/provider-omission/rpc.ts": "9f765bcd7409c18f13dc764374b6f34094b2622b3009567d5dc2a3072943c990",
+    ".sandbox/rpc-redaction-reproduce/provider-omission/core.ts": "74d1e674be1092928232cded0b8417163f6b3a6e35508607f539f3191d10db5c",
+    ".sandbox/rpc-redaction-reproduce/send-omission/rpc.ts": "65907b0e04de3aed2edeb858368131ebab796505341c95aaba7e0ceb7a07ef45",
+    ".sandbox/rpc-redaction-reproduce/send-omission/core.ts": "74d1e674be1092928232cded0b8417163f6b3a6e35508607f539f3191d10db5c"
+  },
+  "deadlineChildSourceSha256": "febfb4f9acb0de8a448e3a11ac2a446e48c06385c9f0d17f50eed9fc10d7e061",
+  "productChanged": false,
+  "integrated": false,
+  "releaseClearance": false
+}
