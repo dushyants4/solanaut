@@ -1,0 +1,480 @@
+033cd87553f9b87f1e4369cd0d66cf0913d452cb
+diff --git a/packages/sdk/test/durable.test.ts b/packages/sdk/test/durable.test.ts
+index 30cd23f..59bb5d2 100644
+--- a/packages/sdk/test/durable.test.ts
++++ b/packages/sdk/test/durable.test.ts
+@@ -12,4 +12,5 @@ import { test } from "node:test";
+ import { createGuard, replay, type Entry, type EntryStore } from "../src/guard.ts";
+ import { seal } from "../src/log.ts";
++import { fileStore } from "../src/record.ts";
+ import { craftLegacy, key } from "./support/craft.ts";
+ import { rng } from "./support/kit.ts";
+@@ -134,5 +135,5 @@ test("a record that is broken before its last line refuses to start: fail closed
+ });
+ 
+-test("one writer: a second guard on an open record refuses; a lock left by a dead process is taken over", async () => {
++test("one writer: a second guard refuses; stale SDK ownership requires kernel recovery", async () => {
+   const path = join(scratch(), "guard.jsonl");
+   const a = await createGuard({ policy: WORKLOAD_POLICY, log: path });
+@@ -145,5 +146,6 @@ test("one writer: a second guard on an open record refuses; a lock left by a dea
+   const dead = spawnSync(process.execPath, ["-e", "process.stdout.write(String(process.pid))"], { encoding: "utf8" });
+   writeFileSync(`${path}.lock`, JSON.stringify({ pid: Number(dead.stdout), host: hostname(), at: 0 }));
+-  const b = await createGuard({ policy: WORKLOAD_POLICY, log: path });
++  await assert.rejects(createGuard({ policy: WORKLOAD_POLICY, log: path }), /locked/);
++  const b = await createGuard({ policy: WORKLOAD_POLICY, log: fileStore(path, { ownership: "kernel" }) });
+   b.close();
+ });
+
+f6c8641e3117199cbafeed3f1ba0ffd94ba67847
+diff --git a/packages/sdk/test/signing-history.test.ts b/packages/sdk/test/signing-history.test.ts
+index 1f43b54..075dfc1 100644
+--- a/packages/sdk/test/signing-history.test.ts
++++ b/packages/sdk/test/signing-history.test.ts
+@@ -25,4 +25,20 @@ async function admitted(log?: string) {
+   return { g, d, signed: { stage: "signed", decision: d.hash, ...signed } };
+ }
++for (const outcome of ["landed", "failed", "expired"] as const) test(`LIF-7: final ${outcome} evidence forbids new signing/send intent live and on replay`, async () => {
++  for (const alreadySigned of [false, true]) {
++    const { g, d, signed } = await admitted();
++    try {
++      assert.equal(g.redeem(message, d.hash, 10n).ok, true);
++      if (alreadySigned) record(g, signed);
++      g.report(d.hash, outcome);
++      const event = alreadySigned ? { stage: "send-started", decision: d.hash, blockHeight: "11" } : signed;
++      const before = g.entries().length;
++      assert.throws(() => record(g, event), /final|reported|settled/);
++      assert.equal(g.entries().length, before);
++      const forged = seal({ kind: "signing", v: 1, seq: before, prev: g.entries().at(-1)!.hash, at: 1000, event } as never);
++      assert.equal((await replay([...g.entries(), forged], policy)).ok, false);
++    } finally { g.close(); }
++  }
++});
+ test("LIF-2: signature evidence requires durable redemption; valid lifecycle replays", async () => {
+   const { g, d, signed } = await admitted();
+@@ -37,4 +53,14 @@ test("LIF-2: signature evidence requires durable redemption; valid lifecycle rep
+   } finally { g.close(); }
+ });
++test("LIF-7: unknown evidence preserves the admitted signing/send lifecycle", async () => {
++  const { g, d, signed } = await admitted();
++  try {
++    g.report(d.hash, "unknown");
++    assert.equal(g.redeem(message, d.hash, 10n).ok, true);
++    assert.doesNotThrow(() => record(g, signed));
++    assert.doesNotThrow(() => record(g, { stage: "send-started", decision: d.hash, blockHeight: "11" }));
++    assert.equal((await replay(g.entries(), policy)).ok, true);
++  } finally { g.close(); }
++});
+ for (const fault of ["wrong-bytes", "wrong-signature", "wrong-wire", "noncanonical-base64"]) test(`LIF-2: ${fault} cannot be persisted as signed evidence`, async () => {
+   const { g, d, signed } = await admitted();
+
+f6316712a0d79c04b3840cd6321c70cbcb126843
+diff --git a/evals/ci/properties.test.ts b/evals/ci/properties.test.ts
+index 3c6bad9..44dcfd8 100644
+--- a/evals/ci/properties.test.ts
++++ b/evals/ci/properties.test.ts
+@@ -2,5 +2,5 @@ import { strict as assert } from "node:assert";
+ import { test } from "node:test";
+ import * as fc from "fast-check";
+-import { checkProperty, propertySeed, validateCompletion } from "./properties.ts";
++import { checkAsyncProperty, checkProperty, propertySeed, validateCompletion } from "./properties.ts";
+ 
+ test("CI-2 property gate refuses reduced budgets, incomplete runs, skips and failures", () => {
+@@ -23,2 +23,9 @@ test("CI-2 runner throws on a failing property and completes the required succes
+   assert.equal(executions, 10_000);
+ });
++test("CI-2 asynchronous runner enforces failures and the completed execution floor", async () => {
++  await assert.rejects(checkAsyncProperty("under-budget", fc.asyncProperty(fc.boolean(), async () => true), 1));
++  await assert.rejects(checkAsyncProperty("async-false", fc.asyncProperty(fc.boolean(), async () => false)), /property failed/);
++  let executions = 0;
++  await checkAsyncProperty("async-count", fc.asyncProperty(fc.boolean(), async () => { executions++; return true; }));
++  assert.equal(executions, 10_000);
++});
+
+657e338f8f2fd329ab084ab8b14bbbc27a30160d
+diff --git a/packages/sdk/test/signed-policy.test.ts b/packages/sdk/test/signed-policy.test.ts
+index 72e0f5e..5cce945 100644
+--- a/packages/sdk/test/signed-policy.test.ts
++++ b/packages/sdk/test/signed-policy.test.ts
+@@ -12,5 +12,5 @@ import { createGuard, replay } from "../src/guard.ts";
+ import { inspectRecord } from "../src/inspect.ts";
+ import { seal, type Entry } from "../src/log.ts";
+-import { preparePolicyText, verifyPolicyAuthorization, type PolicyAuthorization } from "../src/signed-policy.ts";
++import { preparePolicyText, verifyPolicyAuthorization, verifyPolicyEntry, type PolicyAuthorization } from "../src/signed-policy.ts";
+ import { sensorV1 } from "../src/sensor.ts";
+ import { WORKLOAD_POLICY } from "./support/workload.ts";
+@@ -52,4 +52,15 @@ test("POL-2: even a correctly signed dishonest summary is rejected", () => {
+   assert.throws(() => verifyPolicyAuthorization(policy, a), /text|summary/);
+ });
++test("POL-2: missing authorization and non-text signature cannot authenticate",()=> {
++  assert.throws(()=>verifyPolicyAuthorization(policy,null as never),/required/);
++  assert.throws(()=>verifyPolicyAuthorization(policy,{...authorization(),signature:new Uint8Array(64)} as never),/missing/);
++});
++test("VER-2: equivalent but noncanonical recorded policy is not accepted as signed history",async()=> {
++  const g=await createGuard({policy,authorization:authorization()});
++  try {
++    const entry=g.entries().find(e=>e.kind==="policy"); assert.ok(entry && entry.kind==="policy");
++    assert.throws(()=>verifyPolicyEntry({...entry,policy:JSON.stringify(JSON.parse(entry.policy),null,2)},trust),/canonical/);
++  } finally {g.close();}
++});
+ test("POL-3: the principal cannot become the pinned operator", async () => {
+   const p = { ...policy, principal: [operatorKey] };
+
+00c42e89fd137251659934ffbc28e013ee95a804
+diff --git a/packages/sdk/test/archive-cli.test.ts b/packages/sdk/test/archive-cli.test.ts
+index 994d060..d5b7ba4 100644
+--- a/packages/sdk/test/archive-cli.test.ts
++++ b/packages/sdk/test/archive-cli.test.ts
+@@ -13,4 +13,16 @@ const bytes = JSON.stringify(entry) + "\n", path = join(directory, "history.json
+ writeFileSync(path, bytes);
+ const invoke = (...args: string[]) => spawnSync(process.execPath, ["packages/sdk/bin/verify-archive.ts", ...args], { encoding: "utf8", timeout: 3000 });
++test("ANC-3/SNP-2: explicit anchor flags return its bound receipt or typed refusal",()=> {
++  const passed=invoke(path,"--anchor-seq","0","--anchor-head",entry.hash);
++  assert.equal(passed.status,0,passed.stderr); assert.deepEqual(JSON.parse(passed.stdout).anchor,{seq:0,head:entry.hash});
++  for(const [seq,head] of [["1",entry.hash],["0","0".repeat(64)]]) {
++    const refused=invoke(path,"--anchor-seq",seq!,"--anchor-head",head!);
++    assert.equal(refused.status,1,refused.stderr); assert.equal(JSON.parse(refused.stderr).error.code,"anchor"); assert.equal(refused.stdout,"");
++  }
++  assert.equal(readFileSync(path,"utf8"),bytes);
++});
++test("ANC-3/SNP-2: incomplete, duplicate and malformed anchor pairs are usage errors",()=> {
++  for(const flags of [["--anchor-seq","0"],["--anchor-head",entry.hash],["--anchor-seq","00","--anchor-head",entry.hash],["--anchor-seq","-1","--anchor-head",entry.hash],["--anchor-seq","0","--anchor-head","wrong"],["--anchor-seq","0","--anchor-head",entry.hash,"--anchor-seq","0"]]) assert.equal(invoke(path,...flags).status,2);
++});
+ test("SNP-2: command returns a pinned JSON receipt and leaves source unchanged", () => {
+   const digest = createHash("sha256").update(bytes).digest("hex");
+
+ddc8bb0af5a986eb6fd7faa46edfd4f9dbbe9ccd
+diff --git a/evals/ci/run-supervisor.test.ts b/evals/ci/run-supervisor.test.ts
+index 17a9c03..001aa9d 100644
+--- a/evals/ci/run-supervisor.test.ts
++++ b/evals/ci/run-supervisor.test.ts
+@@ -153,4 +153,67 @@ test("CI-2: malformed operator commands refuse before creating a run",()=>{
+   finally {cleanup(f.base);}
+ });
++test("CI-2: a frozen evaluation environment excludes caller injection in supervisor and child",async()=>{
++  const f=fixture();let ticket:RunTicket|undefined;
++  const prior=process.env.NODE_OPTIONS,foreign=process.env.SOLANAUT_FOREIGN_FIXTURE;
++  try {
++    const marker=join(f.base,"injected"),preload=join(f.base,"injection.mjs");
++    writeFileSync(preload,`import {writeFileSync} from 'node:fs';writeFileSync(${JSON.stringify(marker)},'executed');`);
++    process.env.NODE_OPTIONS="--import="+pathToFileURL(preload).href;process.env.SOLANAUT_FOREIGN_FIXTURE="fixture";
++    const cmd={...command("console.log(JSON.stringify({seed:process.env.FUZZ_SEED,foreign:process.env.SOLANAUT_FOREIGN_FIXTURE??null,options:process.env.NODE_OPTIONS??null}))"),env:{PATH:process.env.PATH!,LANG:"C.UTF-8",FUZZ_SEED:"23093",FUZZ_RUNS:"5000"}};
++    ticket=launchSupervisedRun(f.directory,cmd,"a".repeat(64));const value=await result(ticket);
++    assert.equal(requireRunCompletion(value,ticket.identity),0);
++    assert.equal(existsSync(marker),false,"supervisor never loads the caller preload");
++    assert.deepEqual(JSON.parse(readFileSync(join(f.directory,"output.txt"),"utf8").trim()),{seed:"23093",foreign:null,options:null});
++    assert.deepEqual(JSON.parse(readFileSync(join(f.directory,"spec.json"),"utf8")).command.env,cmd.env);
++  } finally {
++    if(prior===undefined)delete process.env.NODE_OPTIONS;else process.env.NODE_OPTIONS=prior;
++    if(foreign===undefined)delete process.env.SOLANAUT_FOREIGN_FIXTURE;else process.env.SOLANAUT_FOREIGN_FIXTURE=foreign;
++    cleanup(f.base,ticket);
++  }
++});
++test("CI-2: evaluation environment rejects loader and undeclared variable overrides",()=>{
++  const f=fixture();
++  try {for(const env of [{NODE_OPTIONS:"--import=untrusted"},{LD_PRELOAD:"untrusted"},{FUZZ_SEED:4},{PATH:"bad\0path"},null])assert.throws(()=>launchSupervisedRun(f.directory,{...command("process.exit(0)"),env} as unknown as RunCommand,"a".repeat(64)));assert.equal(existsSync(f.directory),false);}
++  finally {cleanup(f.base);}
++});
++test("CI-2: child environment uses the specification despite a different worker environment",()=>{
++  const f=fixture();
++  try {
++    mkdirSync(f.directory,{mode:0o700});writeFileSync(join(f.directory,"commit.sha256"),"",{mode:0o600});
++    const cmd={...command("console.log(JSON.stringify({seed:process.env.FUZZ_SEED,foreign:process.env.SOLANAUT_FOREIGN_FIXTURE??null}))"),env:{PATH:process.env.PATH!,FUZZ_SEED:"23093",FUZZ_RUNS:"5000"}};
++    const identity={runId:"child-environment",inputHash:"a".repeat(64),commandHash:createHash("sha256").update(JSON.stringify(cmd)).digest("hex")};
++    const text=JSON.stringify({format:1,identity,command:cmd})+"\n";writeFileSync(join(f.directory,"spec.json"),text,{mode:0o600});
++    const worker=spawnSync(process.execPath,[resolve("tools/run-supervisor.ts"),f.directory,createHash("sha256").update(text).digest("hex")],{encoding:"utf8",timeout:5000,env:{...process.env,NODE_OPTIONS:undefined,FUZZ_SEED:"wrong",SOLANAUT_FOREIGN_FIXTURE:"fixture"}});
++    assert.equal(worker.status,0,worker.stderr);assert.equal(worker.error,undefined);
++    assert.deepEqual(JSON.parse(worker.stdout.trim()),{seed:"23093",foreign:null});
++    assert.equal(requireRunCompletion(readSupervisedResult({directory:f.directory,identity,supervisorPid:worker.pid}),identity),0);
++  } finally {cleanup(f.base);}
++});
++test("CI-2: supervisor interruption cannot qualify a child that exits zero on termination",async()=>{
++  const f=fixture();let ticket:RunTicket|undefined;
++  try {
++    const ready=join(f.base,"ready"),code=`import {writeFileSync} from 'node:fs';process.on('SIGTERM',()=>process.exit(0));writeFileSync(${JSON.stringify(ready)},'ready');setInterval(()=>{},20);setTimeout(()=>process.exit(0),7000);`;
++    ticket=launchSupervisedRun(f.directory,command(code,{timeoutMs:10000}),"a".repeat(64));
++    const end=Date.now()+5000;while(!existsSync(ready) && Date.now()<end)await sleep(20);assert.equal(existsSync(ready),true);
++    process.kill(ticket.supervisorPid,"SIGTERM");const value=await result(ticket);
++    assert.equal(value.status,0);assert.equal(value.timedOut,false);assert.equal(value.error,"supervisor interrupted");assert.throws(()=>requireRunCompletion(value,ticket!.identity));
++    assert.throws(()=>process.kill(value.childPid,0));
++  } finally {cleanup(f.base,ticket);}
++});
++test("CI-2: killed supervisor leaves no eligible completion and requires external child containment",async()=>{
++  const f=fixture();let ticket:RunTicket|undefined;let pid:number|undefined;
++  try {
++    const ready=join(f.base,"ready"),code=`import {writeFileSync} from 'node:fs';writeFileSync(${JSON.stringify(ready)},JSON.stringify({pid:process.pid}));setInterval(()=>{},20);setTimeout(()=>process.exit(0),7000);`;
++    ticket=launchSupervisedRun(f.directory,command(code,{timeoutMs:10000}),"a".repeat(64));
++    const end=Date.now()+5000;while(!existsSync(ready) && Date.now()<end)await sleep(20);assert.equal(existsSync(ready),true);
++    pid=JSON.parse(readFileSync(ready,"utf8")).pid;assert.equal(Number.isSafeInteger(pid) && pid!>0,true);
++    process.kill(ticket.supervisorPid,"SIGKILL");
++    let stopped=false;
++    while(Date.now()<end) {try {const stat=readFileSync(`/proc/${ticket.supervisorPid}/stat`,"utf8");if(stat.slice(stat.lastIndexOf(")")+2).startsWith("Z ")){stopped=true;break;}}catch(error){if((error as NodeJS.ErrnoException).code==="ENOENT"){stopped=true;break;}throw error;}await sleep(20);}
++    assert.equal(stopped,true,"actual supervisor death was observed");
++    assert.equal(readSupervisedResult(ticket),null);assert.throws(()=>requireRunCompletion(null,ticket!.identity));
++    process.kill(pid!,0);process.kill(-pid!,"SIGKILL");
++  } finally {if(pid)try {process.kill(-pid,"SIGKILL");}catch{}cleanup(f.base,ticket);}
++});
+ test("CI-2: normal child exit with a surviving worker cannot qualify",async()=>{
+   const f=fixture();let ticket:RunTicket|undefined;
+
+805e8bb612f61a867b55edc7f6d8f0b08e6f141e
+diff --git a/packages/sdk/test/checkpoint.test.ts b/packages/sdk/test/checkpoint.test.ts
+index 9d02964..8216927 100644
+--- a/packages/sdk/test/checkpoint.test.ts
++++ b/packages/sdk/test/checkpoint.test.ts
+@@ -58,4 +58,8 @@ test("SNP-3: snapshot and prefix signatures are not interchangeable", () => {
+ test("SNP-3: missing, malformed and noncanonical signatures deny", () => {
+   const f = fixture(); const a = f.authorize();
++  const alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
++  const noncanonical=a.snapshot.slice(0,85)+alphabet[alphabet.indexOf(a.snapshot[85]!)+1]+"==";
++  assert.deepEqual(Buffer.from(noncanonical,"base64"),Buffer.from(a.snapshot,"base64"));
++  assert.throws(()=>verifyCheckpointBinding(f.binding,{...a,snapshot:noncanonical},f.trust,f.digests),CheckpointBindingError);
+   for (const bad of [undefined, null, 1, {}, [], "", "!", a.snapshot + " ", Buffer.alloc(63).toString("base64")]) for (const field of ["snapshot", "prefix"] as const) assert.throws(() => verifyCheckpointBinding(f.binding, { ...a, [field]: bad } as CheckpointSignatures, f.trust, f.digests), CheckpointBindingError);
+ });
+@@ -122,2 +126,20 @@ test("SNP-3: excessive public keys refuse before unbounded base58 decoding", ()
+   assert.deepEqual(JSON.parse(result.stdout), {refused:4});
+ });
++test("SNP-3: invalid signature lengths refuse before base64 decoding",()=>{
++  const f=fixture(),a=f.authorize();
++  const script=`
++    import {verifyCheckpointBinding,CheckpointBindingError} from './packages/sdk/src/checkpoint.ts';
++    const f=JSON.parse(process.argv[1]),original=Buffer.from;let refused=0;
++    Buffer.from=function(value,...options){
++      if(typeof value==='string' && options[0]==='base64' && value.length!==88)throw new Error('invalid length reached decoder');
++      return Reflect.apply(original,Buffer,[value,...options]);
++    };
++    for(const size of [0,4,84,87,89,1000000])for(const field of ['snapshot','prefix']){
++      try{verifyCheckpointBinding(f.binding,{...f.a,[field]:'A'.repeat(size)},f.trust,f.digests);}
++      catch(error){if(error instanceof CheckpointBindingError)refused++;else throw error;}
++    }
++    console.log(JSON.stringify({refused}));`;
++  const result=spawnSync(process.execPath,["--input-type=module","-e",script,JSON.stringify({binding:f.binding,trust:f.trust,digests:f.digests,a})],{encoding:"utf8",timeout:3000});
++  assert.equal(result.status,0,JSON.stringify({status:result.status,signal:result.signal,error:result.error?.message})+result.stderr);
++  assert.deepEqual(JSON.parse(result.stdout),{refused:12});
++});
+
+afed152194958b21467653ccd136acfdf8d461a7
+diff --git a/evals/ci/mutation.test.ts b/evals/ci/mutation.test.ts
+index 83cb4fa..745021a 100644
+--- a/evals/ci/mutation.test.ts
++++ b/evals/ci/mutation.test.ts
+@@ -21,6 +21,7 @@ test("CI-2: missing, foreign and changed mutation sources fail closed",()=> {
+ });
+ test("CI-2: ignored, pending and malformed mutant results are rejected",()=> {
+-  for(const status of ["Ignored","Pending","bogus"]) {
+-    const bad=report(); bad.files["packages/sdk/src/policy.ts"].mutants[0]!.status=status;
++  // A surviving position preserves the floor even if a bad status is wrongly counted.
++  for(const index of [9,0])for(const status of ["Ignored","Pending","bogus"]) {
++    const bad=report(); bad.files["packages/sdk/src/policy.ts"].mutants[index]!.status=status;
+     assert.throws(()=>requireMutationReport(bad,sources,0),/status/);
+   }
+@@ -44,2 +45,14 @@ test("CI-2: malformed report roots and schema versions are refused",()=> {
+   for(const bad of [null,{},[],{...report(),schemaVersion:"2"}]) assert.throws(()=>requireMutationReport(bad,sources,0),/report/);
+ });
++test("CI-2: added authentication files cannot dilute the retained mutation floor",()=>{
++  const bothSources={...sources,"packages/sdk/src/checkpoint.ts":sources["packages/sdk/src/policy.ts"]};
++  const combined=(oldKilled:number,newKilled:number,invalid=false)=>{
++    const old=report(oldKilled,10-oldKilled),additional=report(newKilled,10-newKilled).files["packages/sdk/src/policy.ts"];
++    additional.mutants=additional.mutants.map(m=>({...m,id:"auth-"+m.id,status:invalid?"RuntimeError":m.status}));
++    return {...old,files:{...old.files,"packages/sdk/src/checkpoint.ts":additional}};
++  };
++  assert.equal(requireMutationReport(combined(8,8),bothSources,0).score,80);
++  assert.throws(()=>requireMutationReport(combined(7,10),bothSources,0),/population.*80/);
++  assert.throws(()=>requireMutationReport(combined(10,7),bothSources,0),/population.*80/);
++  assert.throws(()=>requireMutationReport(combined(8,8,true),bothSources,0),/valid.*population/);
++});
+
+26925421d283b4a41146e2243ab3b585e051ef77
+diff --git a/packages/sdk/test/signed-policy.test.ts b/packages/sdk/test/signed-policy.test.ts
+index 5cce945..b9324bd 100644
+--- a/packages/sdk/test/signed-policy.test.ts
++++ b/packages/sdk/test/signed-policy.test.ts
+@@ -12,5 +12,5 @@ import { createGuard, replay } from "../src/guard.ts";
+ import { inspectRecord } from "../src/inspect.ts";
+ import { seal, type Entry } from "../src/log.ts";
+-import { preparePolicyText, verifyPolicyAuthorization, verifyPolicyEntry, type PolicyAuthorization } from "../src/signed-policy.ts";
++import { preparePolicyText, verifyPolicyAuthorization, verifyPolicyEntry, PolicyAuthorizationError, type PolicyAuthorization } from "../src/signed-policy.ts";
+ import { sensorV1 } from "../src/sensor.ts";
+ import { WORKLOAD_POLICY } from "./support/workload.ts";
+@@ -56,4 +56,19 @@ test("POL-2: missing authorization and non-text signature cannot authenticate",(
+   assert.throws(()=>verifyPolicyAuthorization(policy,{...authorization(),signature:new Uint8Array(64)} as never),/missing/);
+ });
++test("POL-2: invalid encoded signature lengths refuse before base64 allocation",()=>{
++  const original=Buffer.from;
++  Buffer.from=function(value:unknown,...options:unknown[]){
++    if(typeof value==="string" && options[0]==="base64" && value.length!==88)throw new Error("invalid policy signature reached decoder");
++    return Reflect.apply(original,Buffer,[value,...options]);
++  } as typeof Buffer.from;
++  try{
++    for(const length of [0,1,87,89,1_000_000])assert.throws(()=>verifyPolicyAuthorization(policy,{...authorization(),signature:"A".repeat(length)}),error=>error instanceof PolicyAuthorizationError && error.code==="policy-authorization");
++  }finally{Buffer.from=original;}
++});
++test("POL-2: signature bytes are captured once before size and crypto verification",()=>{
++  const a=authorization(),valid=a.signature;let reads=0;
++  Object.defineProperty(a,"signature",{get(){reads++;return reads===1?valid:"A".repeat(1_000_000);}});
++  assert.equal(verifyPolicyAuthorization(policy,a).latch.releaseKey,operatorKey);assert.equal(reads,1);
++});
+ test("VER-2: equivalent but noncanonical recorded policy is not accepted as signed history",async()=> {
+   const g=await createGuard({policy,authorization:authorization()});
+
+995c5b073c31a9d0cc1ee9c79500ed3af0675e8a
+diff --git a/packages/sdk/test/checkpoint-prefix.test.ts b/packages/sdk/test/checkpoint-prefix.test.ts
+index b8e1192..831a50d 100644
+--- a/packages/sdk/test/checkpoint-prefix.test.ts
++++ b/packages/sdk/test/checkpoint-prefix.test.ts
+@@ -8,4 +8,5 @@ import { memoryStore } from "../src/record.ts";
+ import { preparePolicyText } from "../src/signed-policy.ts";
+ import { prepareCheckpointPrefix } from "../src/checkpoint-prefix.ts";
++import * as prefixModule from "../src/checkpoint-prefix.ts";
+ import { createGuard } from "../src/guard.ts";
+ import { canonicalJSON, sha256hex } from "../src/canonical.ts";
+@@ -19,8 +20,39 @@ async function history():Promise<Entry[]> {
+ const endpoint=(entries:readonly Entry[])=>({seq:entries.length,head:entries.at(-1)?.hash??""});
+ const refused=(work:Promise<unknown>)=>assert.rejects(work,{name:"CheckpointPrefixError",code:"checkpoint-prefix"});
++const rebuild=(entries:unknown,policy:unknown,context:unknown,text:unknown,trust?:unknown):Promise<{controller:Governor;events:number;seq:number;head:string}>=>Promise.resolve().then(()=>Reflect.apply(Reflect.get(prefixModule,"rebuildCheckpointPrefix"),undefined,[entries,policy,context,text,trust]));
+ test("SNP-3/5: genesis has canonical empty events and a payload digest",async()=>{
+   const got=await prepareCheckpointPrefix([],WORKLOAD_POLICY,{seq:0,head:""});
+   assert.equal(got.text,canonicalJSON({format:1,kind:"solanaut-checkpoint-keel-prefix",profile:EVALUATION_PROFILE,seq:0,head:"",events:[]})+"\n");
+   assert.equal(got.digest,sha256hex(got.text));assert.ok(Object.isFrozen(got));
++  const rebuilt=await rebuild([],WORKLOAD_POLICY,{seq:0,head:""},got.text),reference=await Governor.create();
++  assert.deepEqual({events:rebuilt.events,seq:rebuilt.seq,head:rebuilt.head},{events:0,seq:0,head:""});
++  const telemetry={intensity:.1,valence:0,repetition:0};assert.deepEqual(rebuilt.controller.tick(telemetry),reference.tick(telemetry));
++});
++test("SNP-5: a rebuilt controller agrees with full-history ticks and resets on its next decision",async()=>{
++  const entries=await history(),context=endpoint(entries),prefix=await prepareCheckpointPrefix(entries,WORKLOAD_POLICY,context),reference=await Governor.create();
++  for(const entry of entries){if(entry.kind==="release")reference.reset();else if(entry.kind==="decision" && entry.telemetry!==null && entry.posture!==null)reference.tick(entry.telemetry);}
++  const rebuilt=await rebuild(entries,WORKLOAD_POLICY,context,prefix.text);
++  assert.deepEqual({events:rebuilt.events,seq:rebuilt.seq,head:rebuilt.head},{events:JSON.parse(prefix.text).events.length,...context});assert.ok(Object.isFrozen(rebuilt));
++  for(const telemetry of [{intensity:1,valence:-1,repetition:1},{intensity:0,valence:0,repetition:0},{intensity:.4,valence:.2,repetition:.3}])assert.deepEqual(rebuilt.controller.tick(telemetry),reference.tick(telemetry));
++});
++test("SNP-5: reordered, missing, altered or injected controller events cannot rebuild",async()=>{
++  const entries=await history(),context=endpoint(entries),prefix=await prepareCheckpointPrefix(entries,WORKLOAD_POLICY,context),body=JSON.parse(prefix.text);
++  for(const changed of [{...body,events:body.events.slice(1)},{...body,events:[...body.events].reverse()},{...body,temperatureMax:0},{...body,events:[...body.events,{kind:"reset",seq:context.seq,hash:context.head}]}])await refused(rebuild(entries,WORKLOAD_POLICY,context,canonicalJSON(changed)+"\n"));
++  for(const text of [null,prefix.text+" ","invalid"])await refused(rebuild(entries,WORKLOAD_POLICY,context,text));
++});
++test("SNP-5: rebuild uses captured history, endpoint and prefix through asynchronous validation",async()=>{
++  const entries=await history(),context=endpoint(entries),prefix=await prepareCheckpointPrefix(entries,WORKLOAD_POLICY,context),work=rebuild(entries,WORKLOAD_POLICY,context,prefix.text);
++  // The wrapper dispatches on a microtask; mutate only after the implementation has captured input.
++  await Promise.resolve();entries.splice(0);context.seq=0;context.head="";
++  const got=await work;assert.notEqual(got.seq,0);assert.equal(got.head,JSON.parse(prefix.text).head);
++});
++test("SNP-5: a fresh controller that diverges from recorded postures refuses rebuild",async()=>{
++  const entries=await history(),context=endpoint(entries),prefix=await prepareCheckpointPrefix(entries,WORKLOAD_POLICY,context),original=Governor.create;let calls=0;
++  try{
++    Governor.create=async()=>{const controller=await Reflect.apply(original,Governor,[]);calls++;
++      if(calls===2){const tick=controller.tick.bind(controller);controller.tick=telemetry=>{const result=tick(telemetry);return {...result,posture:result.posture==="DEFAULT"?"REGROUND":"DEFAULT"};};}
++      return controller;};
++    await refused(rebuild(entries,WORKLOAD_POLICY,context,prefix.text));assert.equal(calls,2);
++  }finally{Governor.create=original;}
+ });
+ test("SNP-3/5: mixed history retains every tick and reset, with source sequence/hash",async()=>{
+@@ -71,4 +103,7 @@ test("SNP-3/5: signed policy changes require externally pinned policy trust",asy
+   const next={...policy,sol:{...policy.sol,maxPerTx:2_000_000_000n}},restored=await createGuard({policy:next,authorization:auth(next,2),log:store});step(restored,1);restored.close();
+   const got=await prepareCheckpointPrefix(store.entries,undefined,endpoint(store.entries),trust);assert.equal(JSON.parse(got.text).events.length,2);
++  const rebuilt=await rebuild(store.entries,undefined,endpoint(store.entries),got.text,trust);assert.equal(rebuilt.events,2);
++  await refused(rebuild(store.entries,undefined,endpoint(store.entries),got.text));
++  await refused(rebuild(store.entries,undefined,endpoint(store.entries),got.text,{...trust,guardId:"foreign"}));
+   await refused(prepareCheckpointPrefix(store.entries,undefined,endpoint(store.entries)));
+   await refused(prepareCheckpointPrefix(store.entries,undefined,endpoint(store.entries),{...trust,guardId:"foreign"}));
+
+a4d1c25a153c6cf5adf26f8b93189b2b58791938
+diff --git a/packages/sdk/test/checkpoint-publication.test.ts b/packages/sdk/test/checkpoint-publication.test.ts
+index 2b7aff4..4975674 100644
+--- a/packages/sdk/test/checkpoint-publication.test.ts
++++ b/packages/sdk/test/checkpoint-publication.test.ts
+@@ -43,4 +43,13 @@ async function snapshot(f:Awaited<ReturnType<typeof fixture>>,name="archive.json
+ const publish=(store:record.EntryStore,text:unknown,options:unknown):Promise<{seq:number;head:string;digest:string;bytes:number}>=>Reflect.apply(Reflect.get(record,"publishOwnedCheckpoint"),undefined,[store,text,options]);
+ const refused=(work:()=>Promise<unknown>)=>assert.rejects(Promise.resolve().then(work),error=>error instanceof Error && error.name==="CheckpointPublicationError" && Reflect.get(error,"code")==="checkpoint-publication");
++test("SNP-4: publication pins are captured before asynchronous module loading",async()=>{
++  const f=await fixture();try{
++    const s=await snapshot(f),options=structuredClone(s.options),pending=publish(f.store,s.encoded.text,options);
++    options.maxBytes=1;options.archives.length=0;options.checkpointTrust.checkpointKey=options.checkpointTrust.anchorKey;
++    assert.deepEqual(await pending,{...s.context,digest:s.encoded.digest,bytes:Buffer.byteLength(s.encoded.text)});
++    const limited={...s.options,maxBytes:1},denied=publish(f.store,s.encoded.text,limited);limited.maxBytes=1000000;
++    await refused(()=>denied);assert.equal(readFileSync(f.path+".checkpoint","utf8"),s.encoded.text);
++  }finally{f.close();}
++});
+ test("SNP-4: actual owned publication preserves the previous authenticated envelope on replacement",async()=>{
+   const f=await fixture();try{
+
+5b00257b20c8bbfc643d0fc093f6e509dc3a3d38
+diff --git a/evals/ci/bite-source.test.ts b/evals/ci/bite-source.test.ts
+index f610183..2af47a7 100644
+--- a/evals/ci/bite-source.test.ts
++++ b/evals/ci/bite-source.test.ts
+@@ -9,4 +9,5 @@ test("CI-1: restoration fingerprints include operator TypeScript tools",()=>{
+   try {
+     for(const root of ["packages","apps","evals","tools"]) mkdirSync(join(directory,root));
++    mkdirSync(join(directory,".github/workflows"),{recursive:true});
+     const path=join(directory,"tools/run.ts");writeFileSync(path,"original");
+     const original=sourceFingerprint(directory);writeFileSync(path,"fault");
+
+5a33e698703446708729a8271a7a4c38a3a7dce7
+diff --git a/packages/sdk/test/checkpoint-publication.test.ts b/packages/sdk/test/checkpoint-publication.test.ts
+index 4975674..a444d08 100644
+--- a/packages/sdk/test/checkpoint-publication.test.ts
++++ b/packages/sdk/test/checkpoint-publication.test.ts
+@@ -112,4 +112,14 @@ test("SNP-4: record changes during replay refuse the stale candidate",async()=>{
+   }finally{f.close();}
+ });
++test("SNP-4: cached history changes during validation refuse before checkpoint replacement",async()=>{
++  const f=await fixture();const saved=f.store.entries[0]!;
++  try{const s=await snapshot(f);await publish(f.store,s.encoded.text,s.options);
++    const disk=readFileSync(f.path),pending=publish(f.store,s.encoded.text,s.options);
++    f.store.entries[0]={...saved,at:42};
++    await refused(()=>pending);
++    assert.deepEqual(readFileSync(f.path),disk);
++    assert.equal(readFileSync(f.path+".checkpoint","utf8"),s.encoded.text);
++  }finally{f.store.entries[0]=saved;f.close();}
++});
+ test("SNP-4: corrupt cached history and manual ownership cannot publish",async()=>{
+   const f=await fixture();try{const s=await snapshot(f);const saved=f.store.entries[0]!;f.store.entries[0]={...saved,at:42};await refused(()=>publish(f.store,s.encoded.text,s.options));f.store.entries[0]=saved;
+
+588a1eff19d1cb02cb61b4f42b046d17201ff317
+diff --git a/evals/ci/mutation-stop.test.ts b/evals/ci/mutation-stop.test.ts
+index 50e76ef..d1f7a5e 100644
+--- a/evals/ci/mutation-stop.test.ts
++++ b/evals/ci/mutation-stop.test.ts
+@@ -24,4 +24,9 @@ test("CI-2: completed or corrupt bound evidence cannot trigger a fresh PID signa
+     for(const supervisorPid of [0,1,-1,NaN])await assert.rejects(stopSupervisedRun({...ticket,supervisorPid}),/invalid supervisor PID/);assert.equal(signals,0);
+     marker=readFileSync(join(ticket.directory,"commit.sha256"),"utf8");const path=join(ticket.directory,"result.json"),original=readFileSync(path,"utf8");
++    for(const [file,text] of [[path,original],[join(ticket.directory,"commit.sha256"),marker]] as const){
++      rmSync(file);
++      try{assert.throws(()=>readSupervisedResult(ticket),/supervised completion evidence is missing/);await assert.rejects(stopSupervisedRun(ticket),/supervised completion evidence is missing/);assert.equal(signals,0,"missing committed evidence must not signal a potentially reused PID");}
++      finally{writeFileSync(file,text,{mode:0o600});}
++    }
+     for(const [change,reason] of [[{state:"pending"},/invalid supervisor completion/],[{error:"process group termination unconfirmed"},/process group shutdown is unconfirmed/]] as const){
+       const text=JSON.stringify({...JSON.parse(original),...change})+"\n";writeFileSync(path,text);writeFileSync(join(ticket.directory,"commit.sha256"),createHash("sha256").update(text).digest("hex")+"\n");
+
+84cac38725cb5ad1fdea9ff20bf004686cc41aa1
+diff --git a/packages/sdk/test/ownership.test.ts b/packages/sdk/test/ownership.test.ts
+index 778ee7b..20a1711 100644
+--- a/packages/sdk/test/ownership.test.ts
++++ b/packages/sdk/test/ownership.test.ts
+@@ -2,5 +2,5 @@
+ import { strict as assert } from "node:assert";
+ import { spawn, spawnSync } from "node:child_process";
+-import { existsSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
++import { existsSync, linkSync, mkdtempSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
+ import { hostname, tmpdir } from "node:os";
+ import { join } from "node:path";
+@@ -57,2 +57,20 @@ test("OWN-3: established protected records are not recreated if missing", () =>
+   const existing = fileStore(path, { ownership: "kernel", create: false }); existing.close();
+ });
++for (const ownership of ["manual", "kernel"] as const) test(`OWN-2/4: ${ownership} refuses a hardlinked journal alias and releases failed startup ownership`, () => {
++  const path = record(), alias = path + ".alias";
++  const owner = fileStore(path, { ownership });
++  try {
++    linkSync(path, alias);
++    assert.throws(() => { const other = fileStore(alias, { ownership, create: false }); other.close(); }, /single-link/, "another pathname must not acquire the same journal through a different mutex");
++  } finally { owner.close(); unlinkSync(alias); }
++  const reopened = fileStore(path, { ownership, create: false }); reopened.close();
++  const aliasOwner = fileStore(alias, { ownership }); aliasOwner.close();
++});
++test("OWN-2/4: kernel startup refuses a hardlinked mutex without changing its evidence", () => {
++  const path = record(), owner = fileStore(path, { ownership: "kernel" }); owner.close();
++  const mutex = path + ".lock", alias = mutex + ".alias", before = readFileSync(mutex);
++  linkSync(mutex, alias);
++  try { assert.throws(() => { const other = fileStore(path, { ownership: "kernel", create: false }); other.close(); }, /single-link/); assert.deepEqual(readFileSync(mutex), before); }
++  finally { unlinkSync(alias); }
++  const reopened = fileStore(path, { ownership: "kernel", create: false }); reopened.close();
++});

@@ -7,6 +7,14 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Staging-review checkpoint 66335f9 has a verified complete local bundle, exact
+clean restore and successful full fsck. Continue fifteen smaller historical
+modification reasons with exact frozen selection, full patches and current
+identities. Current focused checks pass, including deliberately owned process
+faults/containment. Retain the distinction between accepted kernel recovery,
+finality/capture/evidence checks and historical fixture repair. No automatic
+supervisor-KILL cleanup, independent or stable qualification is inferred.
+
 Coverage-review checkpoint fdbce77 has a verified complete local bundle, exact
 clean restore and successful full fsck. Continue mutation-staging modification
 reasons; read every full patch and compare literal expected membership with each
@@ -287,6 +295,11 @@ the unchanged original companion control also passes. Outputs stay separate,
 with no installation or full runtime/matrix claim.
 
 ## Found
+
+Small-edit review pre-commit close passes eight checks and fails only dirty work
+and deliberately unpushed HEAD. Staged patches/source/prose are reviewed;
+credential-shaped search has no hits. Preserve original blank patch context
+despite its whitespace warnings. Original protected tests and failed gates stay.
 
 Staging-review pre-commit close passes eight checks and fails only dirty work
 and deliberately unpushed HEAD. Staged source/prose/full patches are reviewed;

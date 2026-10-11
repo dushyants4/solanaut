@@ -271,6 +271,13 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-11 smaller historical assertion reasons and current focused checks are
+in `evals/release/assertion-other.md`, S153. Explicit kernel recovery replaces
+dead-PID takeover under accepted ADR-019; other changes retain prior checks and
+add finality/capture/alias/evidence refusals. Supervisor KILL's separate child
+containment remains a limit. S150's earlier map does not yet index this receipt;
+packed-consumer/broader/Claude review and stable gates remain pending.
+
 2026-10-11 mutation-staging assertion reasons and current copied-policy control
 are in `evals/release/assertion-stage.md`, S152. Expected file membership grows
 without removing earlier cases; explicit absent assertions remain identified.

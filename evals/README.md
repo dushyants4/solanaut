@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`release/assertion-other.md`: smaller historical signing/ownership/snapshot and
+evaluation assertion reasons with current focused checks, S153. Packed-consumer
+and broader/independent review remain; no stable milestone advances.
+
 `release/assertion-stage.md`: mutation-staging history reasons, same-revision
 literal observations and current copied-policy control, S152. Interrupted campaigns
 remain; no completed score, H11 correction or stable milestone follows.

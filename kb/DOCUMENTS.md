@@ -1,5 +1,9 @@
 # DOCUMENTS.md — the document register
 
+2026-10-11 registers remaining small assertion collector, frozen selections/full
+patches, historical/current bindings, current focused output and receipt/index;
+CLAIMS S153, PROGRESS, HANDOFF and continuing run. No protected test changes.
+
 2026-10-11 registers mutation-stage assertion collector, complete patches and
 historical/helper/current bindings, literal observations, focused control and
 receipt/index; CLAIMS S152, PROGRESS, HANDOFF and continuing run.

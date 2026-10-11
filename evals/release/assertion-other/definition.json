@@ -1,0 +1,161 @@
+{
+  "baseline": "e925f1dfaabc7eedae361764a401baf7f9e9868b",
+  "head": "753769dcd435b9334e59e921727c04afd6cb6859",
+  "inventorySha256": "f813d4f9f5c54e8bfd0dd5e626680abb3978f1789a42c08309d35c7eb09eaf4b",
+  "pendingSha256": "d9df72e8dd01c73d74b7d5a577c31ea2abf51ddf685388bbb38a2d889a1d31a1",
+  "collectorSha256": "fe3b960ac745127db477887e971045dda8b04582be83e77e5694f53bc45ed7c5",
+  "selected": [
+    {
+      "parent": "4a60f0af95ea8e060ea534a219aa5dee1fd5e725",
+      "commit": "033cd87553f9b87f1e4369cd0d66cf0913d452cb",
+      "status": "M",
+      "path": "packages/sdk/test/durable.test.ts",
+      "review": "pending content and assertion reason review",
+      "builderReasonReceipt": null,
+      "independentReview": false,
+      "releaseClearance": false
+    },
+    {
+      "parent": "2d4b0cbd780557b0bac2ed6e3a7f71987fe78ac4",
+      "commit": "f6c8641e3117199cbafeed3f1ba0ffd94ba67847",
+      "status": "M",
+      "path": "packages/sdk/test/signing-history.test.ts",
+      "review": "pending content and assertion reason review",
+      "builderReasonReceipt": null,
+      "independentReview": false,
+      "releaseClearance": false
+    },
+    {
+      "parent": "59b2e1cfd982db02b0a91ec0311aa66048b70944",
+      "commit": "f6316712a0d79c04b3840cd6321c70cbcb126843",
+      "status": "M",
+      "path": "evals/ci/properties.test.ts",
+      "review": "pending content and assertion reason review",
+      "builderReasonReceipt": null,
+      "independentReview": false,
+      "releaseClearance": false
+    },
+    {
+      "parent": "22235e7a6b0abc3b96e5aafe37a93541d4042b0a",
+      "commit": "657e338f8f2fd329ab084ab8b14bbbc27a30160d",
+      "status": "M",
+      "path": "packages/sdk/test/signed-policy.test.ts",
+      "review": "pending content and assertion reason review",
+      "builderReasonReceipt": null,
+      "independentReview": false,
+      "releaseClearance": false
+    },
+    {
+      "parent": "13bb0752ffee61e08b94f161673b318b763f3617",
+      "commit": "00c42e89fd137251659934ffbc28e013ee95a804",
+      "status": "M",
+      "path": "packages/sdk/test/archive-cli.test.ts",
+      "review": "pending content and assertion reason review",
+      "builderReasonReceipt": null,
+      "independentReview": false,
+      "releaseClearance": false
+    },
+    {
+      "parent": "b6d91945ebc687df96bb09755a3bfc79bd8e4499",
+      "commit": "ddc8bb0af5a986eb6fd7faa46edfd4f9dbbe9ccd",
+      "status": "M",
+      "path": "evals/ci/run-supervisor.test.ts",
+      "review": "pending content and assertion reason review",
+      "builderReasonReceipt": null,
+      "independentReview": false,
+      "releaseClearance": false
+    },
+    {
+      "parent": "9ac6e7cc57fbb4c38e2265a3b8967efb7a85fccd",
+      "commit": "805e8bb612f61a867b55edc7f6d8f0b08e6f141e",
+      "status": "M",
+      "path": "packages/sdk/test/checkpoint.test.ts",
+      "review": "pending content and assertion reason review",
+      "builderReasonReceipt": null,
+      "independentReview": false,
+      "releaseClearance": false
+    },
+    {
+      "parent": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+      "commit": "afed152194958b21467653ccd136acfdf8d461a7",
+      "status": "M",
+      "path": "evals/ci/mutation.test.ts",
+      "review": "pending content and assertion reason review",
+      "builderReasonReceipt": null,
+      "independentReview": false,
+      "releaseClearance": false
+    },
+    {
+      "parent": "afe482a5505517430b0dd21b54e6fd09eb088874",
+      "commit": "26925421d283b4a41146e2243ab3b585e051ef77",
+      "status": "M",
+      "path": "packages/sdk/test/signed-policy.test.ts",
+      "review": "pending content and assertion reason review",
+      "builderReasonReceipt": null,
+      "independentReview": false,
+      "releaseClearance": false
+    },
+    {
+      "parent": "0c61fa365ec59bf75daf83567d6be2d3aa5cf37d",
+      "commit": "995c5b073c31a9d0cc1ee9c79500ed3af0675e8a",
+      "status": "M",
+      "path": "packages/sdk/test/checkpoint-prefix.test.ts",
+      "review": "pending content and assertion reason review",
+      "builderReasonReceipt": null,
+      "independentReview": false,
+      "releaseClearance": false
+    },
+    {
+      "parent": "b3524547a3055e04f7d12d3f20565020ba81d522",
+      "commit": "a4d1c25a153c6cf5adf26f8b93189b2b58791938",
+      "status": "M",
+      "path": "packages/sdk/test/checkpoint-publication.test.ts",
+      "review": "pending content and assertion reason review",
+      "builderReasonReceipt": null,
+      "independentReview": false,
+      "releaseClearance": false
+    },
+    {
+      "parent": "a4d1c25a153c6cf5adf26f8b93189b2b58791938",
+      "commit": "5b00257b20c8bbfc643d0fc093f6e509dc3a3d38",
+      "status": "M",
+      "path": "evals/ci/bite-source.test.ts",
+      "review": "pending content and assertion reason review",
+      "builderReasonReceipt": null,
+      "independentReview": false,
+      "releaseClearance": false
+    },
+    {
+      "parent": "43f20c08b264c1fab9d40166dd357e5b71c7a293",
+      "commit": "5a33e698703446708729a8271a7a4c38a3a7dce7",
+      "status": "M",
+      "path": "packages/sdk/test/checkpoint-publication.test.ts",
+      "review": "pending content and assertion reason review",
+      "builderReasonReceipt": null,
+      "independentReview": false,
+      "releaseClearance": false
+    },
+    {
+      "parent": "c2df0433912490fa934884a130ae81ae6c54d4de",
+      "commit": "588a1eff19d1cb02cb61b4f42b046d17201ff317",
+      "status": "M",
+      "path": "evals/ci/mutation-stop.test.ts",
+      "review": "pending content and assertion reason review",
+      "builderReasonReceipt": null,
+      "independentReview": false,
+      "releaseClearance": false
+    },
+    {
+      "parent": "8b1d29de91a25dec2f4944a4cfa33e43e38524a3",
+      "commit": "84cac38725cb5ad1fdea9ff20bf004686cc41aa1",
+      "status": "M",
+      "path": "packages/sdk/test/ownership.test.ts",
+      "review": "pending content and assertion reason review",
+      "builderReasonReceipt": null,
+      "independentReview": false,
+      "releaseClearance": false
+    }
+  ],
+  "currentRevision": "66335f940f131b743b60fdff6e39c2099e8299f6",
+  "scope": "remaining small modification patches from frozen index, not complete or independent history review"
+}

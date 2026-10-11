@@ -1,5 +1,9 @@
 # PROGRESS.md
 
+Remaining small historical assertion reasons and current focused checks are
+recorded, S153. Safety/fixture corrections and supervisor containment limitations
+remain explicit; no stable milestone or independent approval follows.
+
 Mutation-staging assertion reasons and current copied-policy control are
 recorded, S152. File-list matches are not completed mutation or native evidence;
 H11, independent and stable gates remain open.
