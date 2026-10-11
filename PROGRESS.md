@@ -1,5 +1,9 @@
 # PROGRESS.md
 
+Installed crash recovery exposes a maintained replay-count blind spot, S140.
+A separate proposed copy catches inconsistent results and passes existing-runtime
+recovery controls; O9 remains unapplied. No stable milestone advances.
+
 Current installed SDK reproduces original mixed replay on existing runtimes,
 S139. Frozen-head checks catch outcome drift even when changed history agrees
 with its own replay. This does not qualify persisted/isolated recovery or advance

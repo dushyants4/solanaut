@@ -1,0 +1,11 @@
+// Test-only owner: persist a selected prefix, acknowledge it, then await process death.
+import { createGuard } from "@solanaut/sdk";
+import { fileStore } from "@solanaut/sdk";
+import { step, TOTAL_STEPS, WORKLOAD_POLICY } from "./workload.ts";
+const [path, value, ...extra] = process.argv.slice(2); const point = Number(value);
+if (!path || extra.length || !Number.isInteger(point) || point < 1 || point >= TOTAL_STEPS) throw new Error("invalid kill fixture arguments");
+const guard = await createGuard({ policy: WORKLOAD_POLICY, log: fileStore(path, { ownership: "kernel" }) });
+for (let index = 0; index < point; index++) step(guard, index);
+if (guard.entries().length !== point) throw new Error("kill fixture did not persist its prefix");
+setInterval(() => {}, 1000);
+process.stdout.write(`ready ${point}\n`);

@@ -1,0 +1,53 @@
+{
+  "faults": [
+    {
+      "fault": "zero-count",
+      "exit": 1,
+      "trialsStarted": 1
+    },
+    {
+      "fault": "one-count",
+      "exit": 1,
+      "trialsStarted": 1
+    },
+    {
+      "fault": "not-ok",
+      "exit": 1,
+      "trialsStarted": 1
+    }
+  ],
+  "controls": [
+    {
+      "node": "26.7.0",
+      "exit": 0,
+      "evidence": {
+        "kills": 100,
+        "completed": 100,
+        "replayed": 100
+      }
+    },
+    {
+      "node": "24.19.0",
+      "exit": 0,
+      "evidence": {
+        "kills": 100,
+        "completed": 100,
+        "replayed": 100
+      }
+    }
+  ],
+  "maintainedMiss": {
+    "exit": 0,
+    "evidence": {
+      "kills": 100,
+      "completed": 100,
+      "replayed": 100
+    },
+    "injectedReplayDecisions": 0
+  },
+  "installedBytesRestored": true,
+  "boundInputsUnchanged": true,
+  "consumerRemoved": true,
+  "maintainedGateChanged": false,
+  "releaseClearance": false
+}

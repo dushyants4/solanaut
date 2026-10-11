@@ -267,7 +267,15 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 | O8 | .github/workflows/ci.yml | Exact unapplied independent diff: `evals/release/history-bytes/owner-ci.patch`; add pinned existing uv action and the nested PUB-1 content tests/faults to runtime jobs. Merge additively with other owed runtime-step drafts. | Thirteen component cases and nine omission trials are local proof. Read-only patch validation passes; all existing steps, matrix and limits remain. Actual history still refuses H15; this step cannot grant publication clearance. Owner application and exact hosted qualification remain owed. | no |
 
+| O9 | evals/ci/kills.ts | Exact replacement in `evals/release/installed-kills/owed-edit.txt`: after `assert.equal(recomputed.ok, true);`, add `assert.equal(recomputed.decisions, guard.entries().filter((entry) => entry.kind === "decision").length, "replay decision count differs");` before `result.replayed++;`. Retain maintained seed, deadline and population. | S140 confirms successful zero-count replay escapes the original installed battery. Separate proposed-copy proof on a predeclared fresh seed catches inconsistent counters and passes installed recovery. Counts still assume a trusted replay backend; owner application and maintained/hosted qualification remain owed. No target is lowered. | no |
+
 ## 7. Codex's log
+
+2026-10-11 installed crash recovery confirms a replay-count blind spot, S140.
+Original seed still reports complete replay after an injected zero-count success.
+Separate proposed-copy analysis on a predeclared fresh seed catches inconsistent
+results before restored existing-runtime controls. O9 is unapplied; maintained
+gate, thresholds and product stay unchanged. No stable milestone advancement.
 
 2026-10-11 qualifies original mixed replay through the installed SDK, S139.
 Unchanged workload/head and complete generated histories refuse installed faults,

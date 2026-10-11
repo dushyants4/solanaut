@@ -1,0 +1,12 @@
+✔ CI-2 kill gate requires actual SIGKILL and the exact persisted acknowledgement (1.095997ms)
+✔ CI-2 kill gate rejects short and incomplete recovery/replay counts (0.260929ms)
+✔ CI-2 kill gate accepts the full verified battery (0.123025ms)
+✔ CI-2 kernel recovery: a verified killed owner releases the mutex and restores its persisted state (272.766769ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 516.091968

@@ -1,5 +1,10 @@
 # DOCUMENTS.md — the document register
 
+2026-10-11 registers installed kill diagnostic/frozen inputs/relocated sources,
+the maintained false-completeness output, separate proposed-copy faults and
+runtime controls, receipt/index; CLAIMS S140, SPEC, RISKS, PROGRESS, HANDOFF O9
+and continuing run. No product, maintained gate or milestone change.
+
 2026-10-11 registers installed replay helper/frozen inputs/relocated fixtures,
 complete fault evidence and runtime controls, receipt/index; CLAIMS S139,
 PROGRESS, HANDOFF and continuing run. Definition/head and all earlier findings

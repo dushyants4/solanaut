@@ -509,3 +509,10 @@ This does not replace pinned archive verification or a kernel-owned startup path
 Requests/responses/signing facts still remain in memory; no bounded memory,
 restart-to-ready or performance gate follows from removing the full input array.
 Initial fixture failures, source faults and installed evidence remain retained.
+
+The maintained crash battery accepts replay success without checking the returned
+decision count. An installed zero-count stub confirms false replay-completeness
+reporting, S140 (`evals/release/installed-kills.md`). Actual kill/recovery evidence
+remains separate. O9 proposes a count consistency assertion and has separate
+fresh-seed proof; owner application is still owed. Even consistent counters cannot
+establish execution by an untrusted backend or replace semantic replay checks.

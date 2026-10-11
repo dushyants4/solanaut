@@ -1,0 +1,21 @@
+kill trial 1: point=68; record=/home/dashy/Projects/Solanaut/.sandbox/installed-kills/proposed/trial-BZwVkI/record.jsonl
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: replay decision count differs
+
+0 !== 115
+
+    at measureKills (file:///tmp/solanaut-installed-kills-qtrcoqtv/proposed.ts:51:116)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///tmp/solanaut-installed-kills-qtrcoqtv/proposed.ts:57:18 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 115,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

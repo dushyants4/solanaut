@@ -7,6 +7,14 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Replay checkpoint 7da99f1 has a verified complete local bundle, exact clean
+restore and successful full fsck. Diagnose installed acknowledged-prefix recovery
+without changing the maintained gate. Freeze original inputs and the fresh
+proposal seed before results. Preserve the original gate's false-completeness
+output and exact owner replacement; separate proposed-copy faults fail before
+healthy installed controls. Bound inputs remain unchanged and installed bytes
+restore. Register S140 and O9 with no product or milestone advancement.
+
 Consumer SDK Draft 23 and the staged-release draft link the current installed
 decoder/classifier/replay proof while explicitly preserving H11 and incomplete
 isolated/service/snapshot qualification. Source and public contracts stay unchanged.
@@ -166,6 +174,21 @@ the unchanged original companion control also passes. Outputs stay separate,
 with no installation or full runtime/matrix claim.
 
 ## Found
+
+Installed-kill pre-commit close passes eight checks, including the staged
+tracked-file secret scan, and fails only dirty work and deliberately unpushed
+HEAD. Staged helper/bindings/relocated sources and documentation are reviewed;
+credential-shaped search has no hits. Preserve the raw typecheck final blank
+line despite the diff whitespace warning. Owned diagnostic and child/control
+jobs finish; no product or protected gate is changed. Node 22 is not installed,
+so neither an installation nor a full runtime-matrix claim is made.
+
+Installed replay stub reports success with zero decisions; the original kill
+battery nevertheless reports complete replay after its actual kill/recovery
+population. This is a confirmed maintained gate miss under injection, not a
+production replay defect. The proposed copy checks returned-count consistency;
+it still assumes a trusted replay backend and cannot prove execution from counters.
+Owner application remains owed; original failures and prior healthy evidence stay.
 
 Installed-replay pre-commit close passes every check except dirty work and
 deliberately unpushed HEAD. Review helper/relocated sources and exact bindings;

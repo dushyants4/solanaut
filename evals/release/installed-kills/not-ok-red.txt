@@ -1,0 +1,21 @@
+kill trial 1: point=68; record=/home/dashy/Projects/Solanaut/.sandbox/installed-kills/proposed/trial-j0L4nz/record.jsonl
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+false !== true
+
+    at measureKills (file:///tmp/solanaut-installed-kills-qtrcoqtv/proposed.ts:51:81)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///tmp/solanaut-installed-kills-qtrcoqtv/proposed.ts:57:18 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.7.0

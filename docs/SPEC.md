@@ -815,6 +815,12 @@ reopens exclusive kernel ownership and compares completed histories/replay with 
 It runs 100 independent SDK trials after acknowledged persistence. This does not exercise
 unacknowledged write, signing/send or power-loss boundaries, nor isolated-user lifecycle.
 
+CI-2 diagnostic S140 (`evals/release/installed-kills.md`) finds that the maintained
+battery increments replay completion from `ok` without checking the returned
+decision count. A planted zero-count success escapes the original gate. Separate
+fresh-seed proposal proof checks count consistency; exact O9 remains unapplied.
+Returned counters still assume a trusted backend and do not prove semantic replay.
+
 The mutation programme freezes full decoder/policy file scope and selected tests before
 measurement (`evals/ci/mutation.md`). Its staged-source isolation and strict report checks
 are maintained fault campaigns. The required Stryker score remains unmeasured at preparation;

@@ -1,0 +1,58 @@
+import { strict as assert } from "node:assert";
+import { spawn } from "node:child_process";
+import { mkdirSync, mkdtempSync } from "node:fs";
+import { resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import { createGuard, replay } from "@solanaut/sdk";
+import { fileStore } from "@solanaut/sdk";
+import { rng } from "file:///home/dashy/Projects/Solanaut/packages/sdk/test/support/kit.ts";
+import { runFrom, TOTAL_STEPS, WORKLOAD_POLICY } from "./workload.ts";
+export interface KillEvidence { kills: number; completed: number; replayed: number }
+export function validateKills(result: KillEvidence): void {
+  if (!Number.isSafeInteger(result.kills) || result.kills < 100) throw new Error("kill count below required floor");
+  if (result.completed !== result.kills || result.replayed !== result.kills) throw new Error("kill recovery or replay incomplete");
+}
+export function validateExit(signal: string | null, acknowledged: number, expected: number): void {
+  if (signal !== "SIGKILL" || acknowledged !== expected) throw new Error("kill exit or persisted acknowledgement differs");
+}
+export async function killPrefix(path: string, point: number): Promise<void> {
+  await new Promise<void>((done, fail) => {
+    const child = spawn(process.execPath, ["/tmp/solanaut-installed-kills-qtrcoqtv/kill-child.ts", path, String(point)], { stdio: ["ignore", "pipe", "pipe"] });
+    let output = "", errors = "", acknowledged = 0, timedOut = false;
+    const timer = setTimeout(() => { timedOut = true; child.kill("SIGKILL"); }, 10_000);
+    child.stderr.on("data", (chunk: Buffer) => { errors = (errors + chunk.toString()).slice(-4096); });
+    child.stdout.on("data", (chunk: Buffer) => {
+      output += chunk.toString();
+      if (output === `ready ${point}\n`) { acknowledged = point; child.kill("SIGKILL"); }
+      if (output.length > 1024) { timedOut = true; child.kill("SIGKILL"); }
+    });
+    child.once("error", (error) => { clearTimeout(timer); child.kill("SIGKILL"); fail(error); });
+    child.once("exit", (_code, signal) => {
+      clearTimeout(timer);
+      try { if (timedOut) throw new Error(`kill child deadline/output failure: ${errors}`); validateExit(signal, acknowledged, point); done(); }
+      catch (error) { fail(new Error(`kill child failed: ${String(error)} ${errors}`)); }
+    });
+  });
+}
+export async function measureKills(): Promise<KillEvidence> {
+  const reference = await createGuard({ policy: WORKLOAD_POLICY });
+  let hashes: string[];
+  try { runFrom(reference); hashes = reference.entries().map((entry) => entry.hash); } finally { reference.close(); }
+  const base = "/home/dashy/Projects/Solanaut/.sandbox/installed-kills/original/"; mkdirSync(base, { recursive: true });
+  const random = rng(202610061); const result: KillEvidence = { kills: 0, completed: 0, replayed: 0 };
+  for (let index = 0; index < 100; index++) {
+    const point = random.int(1, TOTAL_STEPS - 1); const directory = mkdtempSync(base + "trial-"); const path = directory + "/record.jsonl";
+    console.log(`kill trial ${index + 1}: point=${point}; record=${path}`);
+    await killPrefix(path, point); result.kills++;
+    const guard = await createGuard({ policy: WORKLOAD_POLICY, log: fileStore(path, { ownership: "kernel", create: false }) });
+    try {
+      assert.equal(guard.entries().length, point); runFrom(guard);
+      assert.deepEqual(guard.entries().map((entry) => entry.hash), hashes); result.completed++;
+      const recomputed = await replay(guard.entries(), WORKLOAD_POLICY); assert.equal(recomputed.ok, true); result.replayed++;
+    } finally { guard.close(); }
+  }
+  return result;
+}
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  const result = await measureKills(); console.log(JSON.stringify(result)); validateKills(result);
+}

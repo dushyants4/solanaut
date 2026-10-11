@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`release/installed-kills.md`: installed acknowledged-prefix recovery reveals a
+maintained replay-count miss, S140. Separate fresh-seed proposal catches three
+faults and passes existing-runtime controls. O9 is unapplied; no full release credit.
+
 `release/installed-replay.md`: original mixed workload/head through the installed
 SDK on existing runtimes, S139. Complete generation and actual replay are
 distinguished; frozen-head checks catch internally consistent outcome drift.

@@ -1,0 +1,5 @@
+In evals/ci/kills.ts replace:
+assert.equal(recomputed.ok, true); result.replayed++;
+with:
+assert.equal(recomputed.ok, true); assert.equal(recomputed.decisions, guard.entries().filter((entry) => entry.kind === "decision").length, "replay decision count differs"); result.replayed++;
+Keep the maintained seed unchanged; the separate proposal proof uses fresh seed 202610113.
