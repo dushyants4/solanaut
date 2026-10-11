@@ -1,0 +1,17 @@
+✔ CI-2 SDK concurrency gate rejects reduced budget and incorrect admission/outcome totals (0.857579ms)
+✔ CI-2 SDK concurrency gate rejects missing evidence, deduplicated work and wrong refusal rules (0.274953ms)
+✔ CI-2 SDK concurrency gate accepts complete bounded admission evidence (0.104737ms)
+{"proposed":1000,"admitted":7,"denied":993,"recorded":1000,"destinations":1000,"identities":1000,"reserved":"7000000","deniedRules":["over-window-cap"]}
+✔ CI-2 SDK concurrency: a thousand queued callers admit exactly the pending-window bound (252.900379ms)
+✔ CI-2 kill gate requires actual SIGKILL and the exact persisted acknowledgement (1.431344ms)
+✔ CI-2 kill gate rejects short and incomplete recovery/replay counts (0.321664ms)
+✔ CI-2 kill gate accepts the full verified battery (0.096643ms)
+✔ CI-2 kernel recovery: a verified killed owner releases the mutex and restores its persisted state (176.10728ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 503.343813

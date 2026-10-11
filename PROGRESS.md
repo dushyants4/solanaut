@@ -1,5 +1,9 @@
 # PROGRESS.md
 
+Current SDK acknowledged kill/replay and logical admissions reproduce their
+original complete workloads, S134. This does not qualify isolated signing,
+power-loss recovery, bounded restart, full CI or any stable milestone.
+
 Current private SDK consumer inventory binds the installed dependency graph and
 tarball after an actual missing-dependency refusal, S133. Synthetic-root scope
 and absent SDK licence are explicit. This is not a frozen package SBOM or R.1

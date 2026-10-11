@@ -1,0 +1,1 @@
+{"proposed":1000,"admitted":7,"denied":993,"recorded":1000,"destinations":1000,"identities":1000,"reserved":"7000000","deniedRules":["over-window-cap"]}

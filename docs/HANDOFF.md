@@ -255,6 +255,12 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-11 current SDK original acknowledged kill/replay and same-event-loop
+admission workloads complete with frozen source/fixture hashes unchanged, S134.
+Existing validator controls/typecheck pass and all owned workers finish. Exact
+receipt retains original definitions, complete logs and scope: no power-loss,
+isolated signer, bounded restart, full CI or stable milestone follows.
+
 2026-10-11 current private SDK consumer inventory preserves npm's actual
 missing-dependency refusal before the healthy control. Component versions,
 dependency edges and SDK tarball hash agree, S133. The original report keeps its

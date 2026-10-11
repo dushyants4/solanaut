@@ -7,6 +7,17 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Inventory checkpoint fd5ec6e is locally committed and its complete bundle,
+exact clean restore and full Git fsck pass. Freeze current source and original
+reliability definitions before running the maintained SDK kill and logical
+concurrency workloads. Keep original seeds/targets and distinguish acknowledged
+SIGKILL boundaries from power loss and event-loop callers from isolated signers.
+
+Original reliability workloads complete, with every acknowledged recovery/replay
+and the logical admission totals matching. Existing validator controls pass,
+every frozen hash remains unchanged and all owned workers finish. Retain complete
+raw proof and scope as S134; no isolated, power-loss or stable qualification.
+
 Core qualification checkpoint 6b1f78d is committed and backed up; exact clean
 restore and full fsck pass. Its clean close passes all checks except deliberately
 unpushed HEAD. Prepare an npm CycloneDX consumer graph from the exact current

@@ -1,5 +1,10 @@
 # DOCUMENTS.md — the document register
 
+2026-10-11 registers current original SDK kill/replay/admission qualification,
+frozen inputs, owned process identities and complete raw logs, receipt/index;
+CLAIMS S134, PROGRESS, HANDOFF and continuing record. Original definitions and
+all earlier fault/failure evidence remain unchanged, with scope limits explicit.
+
 2026-10-11 registers current private SDK consumer inventory, missing-dependency
 refusal, unchanged artifact/runner binding, raw report/graph and receipt/index;
 CLAIMS S133, PROGRESS, HANDOFF, staged-release draft and continuing record.

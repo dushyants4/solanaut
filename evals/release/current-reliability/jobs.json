@@ -1,0 +1,37 @@
+[
+  {
+    "name": "controls",
+    "command": [
+      "node",
+      "--test",
+      "evals/ci/kills.test.ts",
+      "evals/ci/concurrency.test.ts"
+    ],
+    "pid": 452170,
+    "pgid": 452170,
+    "exit": 0
+  },
+  {
+    "name": "concurrency",
+    "command": [
+      "node",
+      "--input-type=module",
+      "-e",
+      "import {measureAdmissions,validateAdmissions} from \"./evals/ci/concurrency.ts\";const r=await measureAdmissions();console.log(JSON.stringify(r));validateAdmissions(r);"
+    ],
+    "pid": 452213,
+    "pgid": 452213,
+    "exit": 0
+  },
+  {
+    "name": "kills",
+    "command": [
+      "npm",
+      "run",
+      "test:kills"
+    ],
+    "pid": 452221,
+    "pgid": 452221,
+    "exit": 0
+  }
+]

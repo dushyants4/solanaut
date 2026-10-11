@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`release/current-reliability.md`: original SDK acknowledged kill/replay and
+logical-admission workloads complete on current unchanged D40, S134. Exact
+inputs and raw proof retained; no isolated, power-loss or stable qualification.
+
 `release/sdk-inventory.md`: actual current private SDK consumer CycloneDX report
 with a missing-dependency failure first and tarball-hash agreement, S133. Keep
 the synthetic root visible; this does not fulfil frozen package SBOM/licence gates.
