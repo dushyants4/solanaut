@@ -1,0 +1,95 @@
+{
+  "faults": [
+    {
+      "fault": "replayed-count",
+      "exit": 1,
+      "evidence": {
+        "ok": true,
+        "decisions": 10000,
+        "replayed": 0,
+        "entries": 13651,
+        "head": "cb4674cdc5851f2c1d6645df4c1d36f30eb7cf616b95010b27dbe6487c65254c",
+        "kinds": [
+          "decision",
+          "redeem",
+          "release",
+          "report"
+        ]
+      }
+    },
+    {
+      "fault": "skip-reports",
+      "exit": 1,
+      "evidence": {
+        "ok": false,
+        "decisions": 10000,
+        "replayed": 6,
+        "entries": 13651,
+        "head": "cb4674cdc5851f2c1d6645df4c1d36f30eb7cf616b95010b27dbe6487c65254c",
+        "kinds": [
+          "decision",
+          "redeem",
+          "release",
+          "report"
+        ]
+      }
+    },
+    {
+      "fault": "landed-substitution",
+      "exit": 1,
+      "evidence": {
+        "ok": true,
+        "decisions": 10000,
+        "replayed": 10000,
+        "entries": 14131,
+        "head": "27f4d5fc54d0f38ec362b5d507dcb7e2f8c05d58bdffe4ab4f9c5ec9b0d3f582",
+        "kinds": [
+          "decision",
+          "redeem",
+          "release",
+          "report"
+        ]
+      }
+    }
+  ],
+  "controls": [
+    {
+      "node": "26.7.0",
+      "exit": 0,
+      "evidence": {
+        "ok": true,
+        "decisions": 10000,
+        "replayed": 10000,
+        "entries": 13651,
+        "head": "cb4674cdc5851f2c1d6645df4c1d36f30eb7cf616b95010b27dbe6487c65254c",
+        "kinds": [
+          "decision",
+          "redeem",
+          "release",
+          "report"
+        ]
+      }
+    },
+    {
+      "node": "24.19.0",
+      "exit": 0,
+      "evidence": {
+        "ok": true,
+        "decisions": 10000,
+        "replayed": 10000,
+        "entries": 13651,
+        "head": "cb4674cdc5851f2c1d6645df4c1d36f30eb7cf616b95010b27dbe6487c65254c",
+        "kinds": [
+          "decision",
+          "redeem",
+          "release",
+          "report"
+        ]
+      }
+    }
+  ],
+  "installedBytesRestored": true,
+  "boundInputsUnchanged": true,
+  "consumerRemoved": true,
+  "releaseClearance": false
+}

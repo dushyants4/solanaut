@@ -269,6 +269,12 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-11 qualifies original mixed replay through the installed SDK, S139.
+Unchanged workload/head and complete generated histories refuse installed faults,
+including internally consistent landed substitution. Existing-runtime controls
+pass after exact restoration; inputs match and consumer/job finish. No persisted,
+snapshot, isolated-service, full CI or stable milestone credit; H11 remains failed.
+
 2026-10-11 qualifies the installed current SDK against the original frozen real
 corpus, S138. Import/location-only relocation preserves comparator and gate
 semantics; complete installed fault populations fail before restored controls on

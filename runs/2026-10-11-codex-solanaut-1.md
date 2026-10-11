@@ -7,6 +7,20 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Consumer SDK Draft 23 and the staged-release draft link the current installed
+decoder/classifier/replay proof while explicitly preserving H11 and incomplete
+isolated/service/snapshot qualification. Source and public contracts stay unchanged.
+
+Differential checkpoint ddc3358 has a verified complete local bundle, exact
+clean restore and successful full fsck. Freeze the original mixed replay
+workload/head and relocate only its imports to the actual installed SDK.
+Isolated count, skipped-report and landed-substitution faults fail before
+healthy controls. The last produces internally consistent replay but refuses
+the original expected head, preserving a useful semantic-drift counterexample.
+Existing runtime controls agree, exact bytes restore, inputs match, consumer
+is removed and owned job finishes. Original controls/typecheck pass; register
+S139 with no persisted/snapshot/service or stable milestone claim.
+
 Installed real-corpus qualification completes. Each isolated fault executes the
 full frozen population and fails, then exact installed bytes restore. Both
 existing runtime controls agree with the original measurement; bound inputs
@@ -152,6 +166,12 @@ the unchanged original companion control also passes. Outputs stay separate,
 with no installation or full runtime/matrix claim.
 
 ## Found
+
+Installed-replay pre-commit close passes every check except dirty work and
+deliberately unpushed HEAD. Review helper/relocated sources and exact bindings;
+retain the raw typecheck final blank line despite its whitespace diagnostic.
+The completed worker is no longer alive, D41 restoration binding passes and
+no product file changes. Independent/publication/milestone credit remains absent.
 
 Installed-differential pre-commit close passes every check except dirty work
 and deliberately unpushed HEAD. Review staged source/prose/bindings; raw native

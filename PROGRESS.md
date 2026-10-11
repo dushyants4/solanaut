@@ -1,5 +1,10 @@
 # PROGRESS.md
 
+Current installed SDK reproduces original mixed replay on existing runtimes,
+S139. Frozen-head checks catch outcome drift even when changed history agrees
+with its own replay. This does not qualify persisted/isolated recovery or advance
+the stable milestone count.
+
 Current installed SDK public decoding/classification matches the retained real
 corpus on existing runtimes after caught complete-population faults, S138. Scope
 and raw proof are explicit; no fresh population or stable milestone advances.

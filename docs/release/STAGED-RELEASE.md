@@ -1,5 +1,11 @@
 # Staged devnet release — review draft
 
+The current installed SDK also has
+[retained real-corpus comparisons](../../evals/release/installed-differential.md)
+and [mixed replay qualification](../../evals/release/installed-replay.md),
+S138/S139. These scoped package checks preserve failed fault histories and do
+not replace the failed native gate, installed isolation or the stable programme.
+
 The [derived package inventory](../../evals/release/package-inventory.md), S136,
 binds a separate draft to the actual SDK manifest and archive after preserving
 npm's root naming finding. It does not replace raw output or complete schema,

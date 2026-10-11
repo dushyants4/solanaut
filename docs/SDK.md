@@ -1,7 +1,14 @@
 # SDK reference — private candidate
 
-> **Draft 22** · 2026-10-10 · owner: integrator · for: developers integrating the candidate.
+> **Draft 23** · 2026-10-11 · owner: integrator · for: developers integrating the candidate.
 > Register: `kb/DOCUMENTS.md`. This describes current exports, not a stable-release promise.
+
+The current compiled private package has scoped
+[real-corpus decoder/classifier checks](../evals/release/installed-differential.md)
+and [mixed replay checks](../evals/release/installed-replay.md), CLAIMS S138/S139.
+These exercise installed public exports on the available runtimes. They do not
+qualify an isolated service, snapshots or a stable release; the current full
+native baseline still fails H11's unchanged staged-baseline wait.
 
 The current wallet batch path has an open membership defect, D41: wallet array
 reversal/removal after signing can defeat cleanup and prematurely expire signed

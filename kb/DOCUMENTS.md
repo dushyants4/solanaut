@@ -1,5 +1,12 @@
 # DOCUMENTS.md — the document register
 
+2026-10-11 registers installed replay helper/frozen inputs/relocated fixtures,
+complete fault evidence and runtime controls, receipt/index; CLAIMS S139,
+PROGRESS, HANDOFF and continuing run. Definition/head and all earlier findings
+remain unchanged; no product, gate or milestone change.
+SDK Draft 23 and the staged-release draft link current installed evidence while
+retaining H11, isolated-service and stable-release limits.
+
 2026-10-11 registers installed real-corpus helper/frozen inputs/relocated sources,
 complete faults and runtime controls, receipt/index; CLAIMS S138, PROGRESS,
 HANDOFF and continuing run. No source, corpus, maintained gate or milestone change.

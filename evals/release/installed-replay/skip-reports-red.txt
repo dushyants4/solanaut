@@ -1,0 +1,10 @@
+{"ok":false,"decisions":10000,"replayed":6,"entries":13651,"head":"cb4674cdc5851f2c1d6645df4c1d36f30eb7cf616b95010b27dbe6487c65254c","kinds":["decision","redeem","release","report"]}
+file:///tmp/solanaut-installed-replay-w1jf5p6k/replay.ts:9
+  if (!evidence.ok || evidence.replayed !== evidence.decisions || !Number.isSafeInteger(evidence.entries) || evidence.entries < evidence.decisions) throw new Error("replay incomplete or divergent");
+                                                                                                                                                          ^
+
+Error: replay incomplete or divergent
+    at validateReplay (file:///tmp/solanaut-installed-replay-w1jf5p6k/replay.ts:9:155)
+    at file:///tmp/solanaut-installed-replay-w1jf5p6k/replay.ts:28:78
+
+Node.js v26.7.0

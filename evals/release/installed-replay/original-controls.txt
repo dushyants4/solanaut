@@ -1,0 +1,12 @@
+✔ CI-2 replay gate rejects short histories and unsuccessful/incomplete recomputation (1.629902ms)
+✔ CI-2 replay gate rejects changed/missing digests and missing workload kinds (0.295773ms)
+✔ CI-2 replay gate accepts a complete mixed history matching the pinned digest (0.100069ms)
+✔ CI-2 replay campaign: per-tx cap regression covers the mixed workload's missing boundary (24.818733ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 164.651802

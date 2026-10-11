@@ -1,5 +1,10 @@
 # evals/ — receipts
 
+`release/installed-replay.md`: original mixed workload/head through the installed
+SDK on existing runtimes, S139. Complete generation and actual replay are
+distinguished; frozen-head checks catch internally consistent outcome drift.
+No persistence/snapshot/isolated-service or full release qualification.
+
 `release/installed-differential.md`: unchanged retained real-corpus comparisons
 through the installed compiled SDK on existing runtimes, S138. Complete installed
 fault populations fail first and exact bytes restore; no fresh chain sample,

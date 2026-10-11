@@ -1,0 +1,10 @@
+{"ok":true,"decisions":10000,"replayed":10000,"entries":14131,"head":"27f4d5fc54d0f38ec362b5d507dcb7e2f8c05d58bdffe4ab4f9c5ec9b0d3f582","kinds":["decision","redeem","release","report"]}
+file:///tmp/solanaut-installed-replay-w1jf5p6k/replay.ts:10
+  if (!/^[a-f0-9]{64}$/.test(expected) || evidence.head !== expected) throw new Error("replay baseline digest differs");
+                                                                            ^
+
+Error: replay baseline digest differs
+    at validateReplay (file:///tmp/solanaut-installed-replay-w1jf5p6k/replay.ts:10:77)
+    at file:///tmp/solanaut-installed-replay-w1jf5p6k/replay.ts:28:78
+
+Node.js v26.7.0
