@@ -272,6 +272,11 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-11 reconciles private PRODUCT-PAGE/STAGED-RELEASE editorial status with
+prepared/unintegrated D41/D42 and unapplied O10. Rename the stale unblocked-work
+heading and state H11/H13/H14/H15 dependencies. Scoped builder reason allocation
+does not replace independent judgement. No new claim, release decision or gate edit.
+
 2026-10-11 records unresolved RPC diagnostic redaction D42/S156 in
 `evals/signer/rpc-redaction.md`. Malformed fake response bodies propagate synthetic
 private text into read/send refusal and health; both existing runtime populations

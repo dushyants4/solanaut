@@ -1,5 +1,12 @@
 # Solanaut product page — private review draft
 
+Editorial update, 2026-10-11: the page remains unapproved. Wallet batch correction
+D41 and RPC diagnostic correction D42 are prepared separately and unintegrated
+while H11 fails. The maintained package declaration check also owes O10; the
+actual SDK type remains intact. See [the release status](release/STAGED-RELEASE.md)
+and [RPC diagnostic evidence](../evals/signer/rpc-redaction.md), S156. Component
+passes supply no stable deployment, supported installation or publication approval.
+
 Editorial review, 2026-10-09: retain the SDK-preview copy and claim scopes below.
 Current recovery component receipts are linked from [STAGED-RELEASE](release/STAGED-RELEASE.md).
 They do not supply stable, audited, isolated-service or publication clearance.

@@ -7,6 +7,13 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+RPC diagnostic checkpoint 4143a79 has a verified complete local bundle, exact
+clean restored revision and successful full fsck. All candidate/child workers
+finish and clean close fails only the deliberately unpushed HEAD. Reconcile the
+private page/staged-release draft with prepared D41/D42 and unapplied O10.
+Replace stale unblocked-work wording with actual implementation/hosted/bounded
+state/public-history dependencies. No publication, readiness or gate changes.
+
 Reason-index checkpoint 32ddf33 has a verified complete local bundle and exact
 clean restore. A poll of the earlier fsck session reports unknown process ID;
 do not assume its exit, and rerun full fsck to a confirmed successful completion.
@@ -335,6 +342,11 @@ the unchanged original companion control also passes. Outputs stay separate,
 with no installation or full runtime/matrix claim.
 
 ## Found
+
+Release-draft reconciliation pre-commit close passes every check except dirty
+work and the deliberately unpushed HEAD. Reviewed prose preserves existing
+claim scopes and local links resolve; whitespace check is clean. No test,
+product, protected gate or release approval changes through this checkpoint.
 
 RPC-redaction pre-commit close passes eight checks, failing only dirty work and
 the deliberately unpushed HEAD. Complete scripts/prose/patch and bindings are

@@ -1,5 +1,15 @@
 # Staged devnet release — review draft
 
+Current editorial status, 2026-10-11: the proposed product page and staged release
+remain unapproved. [RPC diagnostic evidence](../../evals/signer/rpc-redaction.md),
+D42/S156, reproduces provider-text propagation and prepares a separate copied
+correction. It is not integrated while H11 fails. The probe tests the signer RPC
+module with synthetic fixtures and establishes no actual credential disclosure
+or deployed dashboard exposure. Stable operator deployment requires full qualification.
+The [package declaration diagnostic](../../evals/packaging/archive-head-declaration.md),
+S154, also leaves O10's maintained regression unapplied. Actual head declarations
+are intact, but a passing consumer battery does not close that known check gap.
+
 The current installed SDK also has
 [retained real-corpus comparisons](../../evals/release/installed-differential.md)
 and [mixed replay qualification](../../evals/release/installed-replay.md),
@@ -210,20 +220,31 @@ are still owed; no completed licence register is assumed. Dependency findings
 must distinguish shipped runtime dependencies from development tools, with
 explicit disposition before claiming they resolved.
 
-## Next unblocked engineering and release work
+## Remaining engineering and release work
 
-- Finish candidate qualification of D22/D23, preserving both malformed-history findings.
-- Qualify the accepted request-index component, then integrate bounded state and
-  actual owned streamed restoration. Preserve exact payload bindings, historical
+- Finish exact candidate and hosted qualification of the locally corrected
+  D22/D23 paths, preserving both malformed-history findings. H11 and H13 remain.
+- Integrate and fully qualify the prepared D41/D42 corrections after H11 is
+  resolved; copied passes do not supply product or maintained-gate clearance.
+- Qualify the accepted request-index component, then, after H14 acceptance,
+  integrate bounded state and actual owned streamed restoration. Preserve exact payload bindings, historical
   replies, unresolved reservations, used receipts and latch state. Missing or
   corrupt index evidence must rebuild from verified history or refuse.
 - Finish the scoped SDK consumption instructions, export/error inventory,
   release notes and dependency/notices review while core integration continues.
 - Prepare the exact public-history review manifest and review checklist without
-  changing visibility or asserting publication clearance.
+  changing visibility or asserting publication clearance. H15 must be resolved
+  before the complete content review.
 - Freeze performance and operational workloads before measurement; run them
   separately from fault workers. Complete the full mutation programme rather
   than treating a successful staged baseline as its score.
+
+These are remaining items with dependencies, not a list of currently unblocked
+implementation tasks. The frozen assertion modification reasons now have their
+[scoped builder index](../../evals/release/assertion-reasons-complete.md), S155;
+initial additions, supporting/later history and independent judgement remain.
+O6/O9/O10 owner application is separate from preparing their evidence. Generic
+continuation does not accept architecture proposals or authorise protected edits.
 
 Signer expansion still depends on H9; account provisioning on H4; the proposed
 anchor ceremony on H10. Claude owns independent RT-2 and Alpha review. The human

@@ -1,5 +1,9 @@
 # DOCUMENTS.md — the document register
 
+2026-10-11 reconciles PRODUCT-PAGE and release/STAGED-RELEASE with unapplied
+D41/D42/O10 and H11, and states dependencies instead of describing blocked work
+as unblocked. Register HANDOFF and continuing run; no copy/publication clearance.
+
 2026-10-11 registers RPC redaction diagnostic, initial/response fixtures and
 complete failures on existing runtimes, source/input bindings, explicit fixture
 typecheck, candidate/reproduction hashes/full outputs, both caught omissions,
