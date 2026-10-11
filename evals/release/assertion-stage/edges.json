@@ -1,0 +1,529 @@
+[
+  {
+    "parent": "13bb0752ffee61e08b94f161673b318b763f3617",
+    "commit": "00c42e89fd137251659934ffbc28e013ee95a804",
+    "status": "M",
+    "path": "evals/ci/mutation-stage.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "18581019ce52538af7e129e48b06fa9d5a19bce4deeae1a2c2692cf2176040c9",
+    "afterSha256": "59459d83c0671a3bdcd422938af87c0ebdaa185e4b485787a6a26199bb71bfa4",
+    "helperSha256": "9c446b9739e3ffa2093304808193094df2720a09557240c2f28da63dfd5fe494",
+    "diffSha256": "e329f3ac1e936722a87cb0dd483c92326f4121e7852e1aeec135b8f3eeb06d14",
+    "observations": {
+      "MUTATION_PATHS": {
+        "added": [],
+        "removed": [],
+        "expectedCount": 8,
+        "literalMatchesHelper": true
+      },
+      "MUTATION_TESTS": {
+        "expectedAssertionAbsent": true
+      }
+    }
+  },
+  {
+    "parent": "e508246ffb8479fcfc7a806916d88b79ec7c3af3",
+    "commit": "a4dba77e71495b2d2d12d6df80a644987fa79081",
+    "status": "M",
+    "path": "evals/ci/mutation-stage.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "59459d83c0671a3bdcd422938af87c0ebdaa185e4b485787a6a26199bb71bfa4",
+    "afterSha256": "072dcf1381fdf59ace56b0c842f6c9f87e6accedf731afac42e03360522422b2",
+    "helperSha256": "b253ab1f2b9510a8d692e9ce9180bf16d17068b11af4c41fc520bbf2436721cb",
+    "diffSha256": "0d906bc99e04e7b8e327d451fa22cc69b38f5c40e7a74eeb68676d943c3abfd9",
+    "observations": {
+      "MUTATION_PATHS": {
+        "added": [],
+        "removed": [],
+        "expectedCount": 8,
+        "literalMatchesHelper": true
+      },
+      "MUTATION_TESTS": {
+        "expectedAssertionAbsent": true
+      }
+    }
+  },
+  {
+    "parent": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+    "commit": "afed152194958b21467653ccd136acfdf8d461a7",
+    "status": "M",
+    "path": "evals/ci/mutation-stage.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "072dcf1381fdf59ace56b0c842f6c9f87e6accedf731afac42e03360522422b2",
+    "afterSha256": "a6bc106b63fc494e84a4fbeb21dde720fa570d316481d669385c2d6d76b99109",
+    "helperSha256": "30ff0a15f9b9fe2063ad2a07ed7daf897830cca994de2ce7d173a9e56695629e",
+    "diffSha256": "2af464e155212743b5bc83a38530e119b74dbe31515189042bc36e3a9f6e97a8",
+    "observations": {
+      "MUTATION_PATHS": {
+        "added": [
+          "checkpoint",
+          "checkpoint-archives"
+        ],
+        "removed": [],
+        "expectedCount": 10,
+        "literalMatchesHelper": true
+      },
+      "MUTATION_TESTS": {
+        "added": [
+          "adapters",
+          "admission",
+          "boundary-validation",
+          "classify",
+          "decode",
+          "drain.battery",
+          "durable",
+          "inspect",
+          "keel",
+          "latch-c",
+          "ownership",
+          "pin-table",
+          "policy",
+          "request-identity",
+          "sensor.battery",
+          "signed-policy",
+          "signing-history",
+          "storage-failures",
+          "checkpoint",
+          "checkpoint-archives",
+          "malformed-replay"
+        ],
+        "removed": [],
+        "expectedCount": 21,
+        "literalMatchesHelper": true
+      }
+    }
+  },
+  {
+    "parent": "afe482a5505517430b0dd21b54e6fd09eb088874",
+    "commit": "26925421d283b4a41146e2243ab3b585e051ef77",
+    "status": "M",
+    "path": "evals/ci/mutation-stage.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "a6bc106b63fc494e84a4fbeb21dde720fa570d316481d669385c2d6d76b99109",
+    "afterSha256": "783ad410898b347671886164e90d61207e8f0ec604d21295f7bd2759bb7cc33f",
+    "helperSha256": "9b2fa36ce5dc404649b588ee9c8a6aa2aa039a0777b1c68c8ee6206e7b18503d",
+    "diffSha256": "f956625d02a50c8a2cbf8d19846912a037a6be51dc4d0d0c1c23c7acde29f975",
+    "observations": {
+      "MUTATION_PATHS": {
+        "added": [
+          "checkpoint-prefix",
+          "checkpoint-state",
+          "signed-policy"
+        ],
+        "removed": [],
+        "expectedCount": 13,
+        "literalMatchesHelper": true
+      },
+      "MUTATION_TESTS": {
+        "added": [
+          "checkpoint-prefix",
+          "checkpoint-state"
+        ],
+        "removed": [],
+        "expectedCount": 23,
+        "literalMatchesHelper": true
+      }
+    }
+  },
+  {
+    "parent": "26925421d283b4a41146e2243ab3b585e051ef77",
+    "commit": "6d81f8b747c1b04003b8bd83f12bed6e5fcbca51",
+    "status": "M",
+    "path": "evals/ci/mutation-stage.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "783ad410898b347671886164e90d61207e8f0ec604d21295f7bd2759bb7cc33f",
+    "afterSha256": "c17d32af65de97600436987220df103fd36232da24c40ae51e45d05e88e9e235",
+    "helperSha256": "c71728c5af572feb2fcbf919a28bf738327f2472da7c9ed46d034949729f1880",
+    "diffSha256": "81104f0ff3308595418f65b24bebb2c24bb0705fe54985b16c5da9402eaa9a49",
+    "observations": {
+      "MUTATION_PATHS": {
+        "added": [
+          "checkpoint-bundle"
+        ],
+        "removed": [],
+        "expectedCount": 14,
+        "literalMatchesHelper": true
+      },
+      "MUTATION_TESTS": {
+        "added": [
+          "checkpoint-bundle"
+        ],
+        "removed": [],
+        "expectedCount": 24,
+        "literalMatchesHelper": true
+      }
+    }
+  },
+  {
+    "parent": "6d81f8b747c1b04003b8bd83f12bed6e5fcbca51",
+    "commit": "6162efb3ea45a2997eb771ea40fd6b251befb549",
+    "status": "M",
+    "path": "evals/ci/mutation-stage.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "c17d32af65de97600436987220df103fd36232da24c40ae51e45d05e88e9e235",
+    "afterSha256": "bca3b3154110ef530e1a93aaf987ebd4ca3e996a2b0f1fe86ca4f1b73974b7df",
+    "helperSha256": "5ac1caa0cc16d1a2b0716ac960ca455addbcda194e6a3dd539ed071447d172a7",
+    "diffSha256": "fefaac73ad0879513224d68f12025c6815f7151a9e885941b5cbd4556427fc5a",
+    "observations": {
+      "MUTATION_PATHS": {
+        "added": [
+          "checkpoint-envelope"
+        ],
+        "removed": [],
+        "expectedCount": 15,
+        "literalMatchesHelper": true
+      },
+      "MUTATION_TESTS": {
+        "added": [
+          "checkpoint-envelope"
+        ],
+        "removed": [],
+        "expectedCount": 25,
+        "literalMatchesHelper": true
+      }
+    }
+  },
+  {
+    "parent": "6162efb3ea45a2997eb771ea40fd6b251befb549",
+    "commit": "0c61fa365ec59bf75daf83567d6be2d3aa5cf37d",
+    "status": "M",
+    "path": "evals/ci/mutation-stage.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "bca3b3154110ef530e1a93aaf987ebd4ca3e996a2b0f1fe86ca4f1b73974b7df",
+    "afterSha256": "7f684a0d9761e5b1f27711b3799a3bea292e132eedeeacbf8e7d479fccfcc2c1",
+    "helperSha256": "56d6dcb397861b347f3718b9151c18efd2180dd79904bdf59f5bf724d2df65aa",
+    "diffSha256": "6fffb50228469aeed432205c48cf09f2becc3eadd01cbc442035efdb5ffac9ea",
+    "observations": {
+      "MUTATION_PATHS": {
+        "added": [
+          "record",
+          "checkpoint-publication"
+        ],
+        "removed": [],
+        "expectedCount": 17,
+        "literalMatchesHelper": true
+      },
+      "MUTATION_TESTS": {
+        "added": [
+          "checkpoint-publication"
+        ],
+        "removed": [],
+        "expectedCount": 26,
+        "literalMatchesHelper": true
+      }
+    }
+  },
+  {
+    "parent": "995c5b073c31a9d0cc1ee9c79500ed3af0675e8a",
+    "commit": "f05c84dea1da1ff5c92a0b904520e9326023f4c9",
+    "status": "M",
+    "path": "evals/ci/mutation-stage.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "7f684a0d9761e5b1f27711b3799a3bea292e132eedeeacbf8e7d479fccfcc2c1",
+    "afterSha256": "8598403acdd161ca5ba1d76d6372b1b35f7e461cdad385a2f4966343c6c598bd",
+    "helperSha256": "7965059ff8d0b708e11e10ee698c8f7ec0e9dff4ca77a8d5dd9957e7f983deeb",
+    "diffSha256": "ff0cbcda56a0565708860855c8b5e2f8286a1b94070c486b61c005c7cd2a2579",
+    "observations": {
+      "MUTATION_PATHS": {
+        "added": [
+          "checkpoint-recovery"
+        ],
+        "removed": [],
+        "expectedCount": 18,
+        "literalMatchesHelper": true
+      },
+      "MUTATION_TESTS": {
+        "added": [
+          "checkpoint-recovery"
+        ],
+        "removed": [],
+        "expectedCount": 27,
+        "literalMatchesHelper": true
+      }
+    }
+  },
+  {
+    "parent": "f05c84dea1da1ff5c92a0b904520e9326023f4c9",
+    "commit": "49f753b3b5e806b68b45608b11984b1484f9703f",
+    "status": "M",
+    "path": "evals/ci/mutation-stage.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "8598403acdd161ca5ba1d76d6372b1b35f7e461cdad385a2f4966343c6c598bd",
+    "afterSha256": "c4844f6f7743fb828cceaa36280e2dafd0f4c897a663521c64261d26d68e8e65",
+    "helperSha256": "1162f465188d3c1ecd047527cdf1cf79a9e1efc6894c2878a615d722cc89451c",
+    "diffSha256": "4069190a3a61579750bb561cce5e98ad35a174d921ef352e173d89d12896a31f",
+    "observations": {
+      "MUTATION_PATHS": {
+        "added": [],
+        "removed": [],
+        "expectedCount": 18,
+        "literalMatchesHelper": true
+      },
+      "MUTATION_TESTS": {
+        "added": [
+          "checkpoint-owned-recovery"
+        ],
+        "removed": [],
+        "expectedCount": 28,
+        "literalMatchesHelper": true
+      }
+    }
+  },
+  {
+    "parent": "9a6480fe2291600b4b8460c38e113c844b010ff8",
+    "commit": "c2c2f5cfe7a33c627ce721325b1e06cb1e1587af",
+    "status": "M",
+    "path": "evals/ci/mutation-stage.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "c4844f6f7743fb828cceaa36280e2dafd0f4c897a663521c64261d26d68e8e65",
+    "afterSha256": "881725f896d8243c869a20acef3bcd60fac4e90c789ee8e02caf7f106f3ee55b",
+    "helperSha256": "6ef18caf86d5f59708f4a4d72ef2d7f0c645fb2bf1df2ddae8f29f2b3e3a8286",
+    "diffSha256": "748e9f3c16050010c05546ec55f894597876ab8bb1bdbc79264c798a819986fe",
+    "observations": {
+      "MUTATION_PATHS": {
+        "added": [
+          "archive"
+        ],
+        "removed": [],
+        "expectedCount": 19,
+        "literalMatchesHelper": true
+      },
+      "MUTATION_TESTS": {
+        "added": [
+          "archive",
+          "archive-anchor",
+          "archive-stream"
+        ],
+        "removed": [],
+        "expectedCount": 31,
+        "literalMatchesHelper": true
+      }
+    }
+  },
+  {
+    "parent": "c2c2f5cfe7a33c627ce721325b1e06cb1e1587af",
+    "commit": "b3524547a3055e04f7d12d3f20565020ba81d522",
+    "status": "M",
+    "path": "evals/ci/mutation-stage.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "881725f896d8243c869a20acef3bcd60fac4e90c789ee8e02caf7f106f3ee55b",
+    "afterSha256": "24604896f9a14de31d014421c6253a260378ef5208651d67b712aef0cdaf1b11",
+    "helperSha256": "0f4ff1a3373f3e050e842aa44253788d292efd37f9e77d82857cc8183682327a",
+    "diffSha256": "bd9f4bfb81acdb1ad121c6d0b8661f71d7be075201d5c064bc6dc79828e2f9ce",
+    "observations": {
+      "MUTATION_PATHS": {
+        "added": [],
+        "removed": [],
+        "expectedCount": 19,
+        "literalMatchesHelper": true
+      },
+      "MUTATION_TESTS": {
+        "added": [
+          "replay-stream"
+        ],
+        "removed": [],
+        "expectedCount": 32,
+        "literalMatchesHelper": true
+      }
+    }
+  },
+  {
+    "parent": "b3524547a3055e04f7d12d3f20565020ba81d522",
+    "commit": "a4d1c25a153c6cf5adf26f8b93189b2b58791938",
+    "status": "M",
+    "path": "evals/ci/mutation-stage.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "24604896f9a14de31d014421c6253a260378ef5208651d67b712aef0cdaf1b11",
+    "afterSha256": "18dca3950b34320b01bf4f3bc4c4c7afd5b8821347196af60727e77a1064f28c",
+    "helperSha256": "e052f3dfee60ccd43254e306309c39644d60786879486de3eea71177eee7ae89",
+    "diffSha256": "0749a792d698a56066d6f3ab5412bc8d4b2fbb2c3160b41f6a5ca09dbdfbd4aa",
+    "observations": {
+      "MUTATION_PATHS": {
+        "added": [
+          "checkpoint-errors"
+        ],
+        "removed": [],
+        "expectedCount": 20,
+        "literalMatchesHelper": true
+      },
+      "MUTATION_TESTS": {
+        "added": [
+          "record-loading"
+        ],
+        "removed": [],
+        "expectedCount": 33,
+        "literalMatchesHelper": true
+      }
+    }
+  },
+  {
+    "parent": "5b00257b20c8bbfc643d0fc093f6e509dc3a3d38",
+    "commit": "39c24de89a3e860cd9e4a08517a616481c5c72ca",
+    "status": "M",
+    "path": "evals/ci/mutation-stage.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "18dca3950b34320b01bf4f3bc4c4c7afd5b8821347196af60727e77a1064f28c",
+    "afterSha256": "4c1d561e83076e07c15b847ee2469c370c50b0d7135aa811c95ecdaa9d97925b",
+    "helperSha256": "b241d8f7c25c2b2fafbe1fc99c5cc349a6bca8e79e726e776e638f05ddd63fd5",
+    "diffSha256": "9f31b4a82f7b46593fc05dd7f5392bbbeeb810a92ef6fe58d60ff84f3a60e85e",
+    "observations": {
+      "MUTATION_PATHS": {
+        "added": [
+          "request-index"
+        ],
+        "removed": [],
+        "expectedCount": 21,
+        "literalMatchesHelper": true
+      },
+      "MUTATION_TESTS": {
+        "added": [
+          "report-replay",
+          "request-index",
+          "redeem-replay"
+        ],
+        "removed": [],
+        "expectedCount": 36,
+        "literalMatchesHelper": true
+      }
+    }
+  },
+  {
+    "parent": "43f20c08b264c1fab9d40166dd357e5b71c7a293",
+    "commit": "5a33e698703446708729a8271a7a4c38a3a7dce7",
+    "status": "M",
+    "path": "evals/ci/mutation-stage.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "4c1d561e83076e07c15b847ee2469c370c50b0d7135aa811c95ecdaa9d97925b",
+    "afterSha256": "ae614e2dafdcade6b44aedd63877af2ba341c9e3e33c0e69893cf182579860ed",
+    "helperSha256": "59088ca1af3c1305ac3d5b190543ec78114ae8f5d0755d93da73be8c417b4c8c",
+    "diffSha256": "61782abab12f15cacd2701bab7678997271bcba7b31123cbe7821b4d365d1180",
+    "observations": {
+      "MUTATION_PATHS": {
+        "added": [
+          "request-index-publication"
+        ],
+        "removed": [],
+        "expectedCount": 22,
+        "literalMatchesHelper": true
+      },
+      "MUTATION_TESTS": {
+        "added": [
+          "request-index-publication"
+        ],
+        "removed": [],
+        "expectedCount": 37,
+        "literalMatchesHelper": true
+      }
+    }
+  },
+  {
+    "parent": "0332c977eb0dadec8a5592324fb8ad1f76ab2db0",
+    "commit": "7118ae242b25f50305c0b49d6f9c9c4da2e30df9",
+    "status": "M",
+    "path": "evals/ci/mutation-stage.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "ae614e2dafdcade6b44aedd63877af2ba341c9e3e33c0e69893cf182579860ed",
+    "afterSha256": "3d15e324e2089de2949e87b35179ae521d5515b485e17329fee86698d92a4b23",
+    "helperSha256": "96e02741090b1444e67ce3614be4bb39b3b6ea15d7f2a95703f9b57820748e5e",
+    "diffSha256": "36a5da7ca7894fc68620925acd1058c478144a1213ce5fca000739a8b142fb6c",
+    "observations": {
+      "MUTATION_PATHS": {
+        "added": [],
+        "removed": [],
+        "expectedCount": 22,
+        "literalMatchesHelper": true
+      },
+      "MUTATION_TESTS": {
+        "added": [
+          "request-index-lookup"
+        ],
+        "removed": [],
+        "expectedCount": 38,
+        "literalMatchesHelper": true
+      }
+    }
+  },
+  {
+    "parent": "d0d8dc344c902548ac964f16cdd9f223a9f1e4af",
+    "commit": "8a343d42b0d60dd188ba7fc5f2d9a198d6346364",
+    "status": "M",
+    "path": "evals/ci/mutation-stage.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "3d15e324e2089de2949e87b35179ae521d5515b485e17329fee86698d92a4b23",
+    "afterSha256": "f50917f547a3990879d4a8bf889410f0d8da428b2ad0ab8675b1733c451f04c1",
+    "helperSha256": "e44be794d89dc0c8a1345c0f3355b0d781dce55e52f7a10914fd507601d73937",
+    "diffSha256": "0146f46972431846b38d25ae43955d481788464ee25a5582f00b6cb1ba0c7392",
+    "observations": {
+      "MUTATION_PATHS": {
+        "added": [],
+        "removed": [],
+        "expectedCount": 22,
+        "literalMatchesHelper": true
+      },
+      "MUTATION_TESTS": {
+        "added": [
+          "owned-request-admission"
+        ],
+        "removed": [],
+        "expectedCount": 39,
+        "literalMatchesHelper": true
+      }
+    }
+  },
+  {
+    "parent": "789bc7b8b6b949c6d6125efba76a329c3cfddda8",
+    "commit": "b1d8ed153ed162293bb923a5134703ea4eb3ca7c",
+    "status": "M",
+    "path": "evals/ci/mutation-stage.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "f50917f547a3990879d4a8bf889410f0d8da428b2ad0ab8675b1733c451f04c1",
+    "afterSha256": "d445eb555ced4194b1e4fcfe0f80122929bf75a1290c8bb547e848fe5d1e7d42",
+    "helperSha256": "58c333f5ce1811a8ff2c50af671128983682f9ac0bce5af7d87f8fb6a19cea17",
+    "diffSha256": "b2cc060815d8406ca0454252a9d5904cee085cc264f0a37616c61206398cd72a",
+    "observations": {
+      "MUTATION_PATHS": {
+        "added": [],
+        "removed": [],
+        "expectedCount": 22,
+        "literalMatchesHelper": true
+      },
+      "MUTATION_TESTS": {
+        "added": [
+          "owned-control-request"
+        ],
+        "removed": [],
+        "expectedCount": 40,
+        "literalMatchesHelper": true
+      }
+    }
+  },
+  {
+    "parent": "4325a0350e7b80dfb3ab5155ec9e6c7ae59717e5",
+    "commit": "36a1ae793e08855e817496837fcf5d7ea34abd37",
+    "status": "M",
+    "path": "evals/ci/mutation-stage.test.ts",
+    "review": "pending content and assertion reason review",
+    "beforeSha256": "d445eb555ced4194b1e4fcfe0f80122929bf75a1290c8bb547e848fe5d1e7d42",
+    "afterSha256": "f8281853cda39589a2b004d63b8f4725026a9b2f8d8f2f304a91f634e4d07f5b",
+    "helperSha256": "def1bd5070077c2065f67613c8b58cd2d5ed8b31402d432f985d83a74a8b424a",
+    "diffSha256": "59420668c624276b8d2fe934730e31ab81bf20fb6808841b9facafff570f94e6",
+    "observations": {
+      "MUTATION_PATHS": {
+        "added": [
+          "owned-guard"
+        ],
+        "removed": [],
+        "expectedCount": 23,
+        "literalMatchesHelper": true
+      },
+      "MUTATION_TESTS": {
+        "added": [
+          "owned-guard"
+        ],
+        "removed": [],
+        "expectedCount": 41,
+        "literalMatchesHelper": true
+      }
+    }
+  }
+]

@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`release/assertion-stage.md`: mutation-staging history reasons, same-revision
+literal observations and current copied-policy control, S152. Interrupted campaigns
+remain; no completed score, H11 correction or stable milestone follows.
+
 `release/assertion-coverage.md`: critical-file and firewall coverage assertion
 history reasons plus current checker controls, S151. Original floors/populations
 persist; actual instrumented and independent/stable qualification remain owed.

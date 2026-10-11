@@ -1,5 +1,9 @@
 # PROGRESS.md
 
+Mutation-staging assertion reasons and current copied-policy control are
+recorded, S152. File-list matches are not completed mutation or native evidence;
+H11, independent and stable gates remain open.
+
 Coverage assertion modification reasons and current checker controls are
 recorded, S151. Expanded deficit populations retain prior checks; this is not
 fresh instrumented coverage or a stable milestone advance.

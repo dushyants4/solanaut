@@ -271,6 +271,12 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-11 mutation-staging assertion reasons and current copied-policy control
+are in `evals/release/assertion-stage.md`, S152. Expected file membership grows
+without removing earlier cases; explicit absent assertions remain identified.
+S150's earlier frozen map does not yet index this receipt. H11/O6 and complete
+mutation/independent/stable qualification remain pending.
+
 2026-10-11 coverage assertion modification reasons and current checker controls
 are in `evals/release/assertion-coverage.md`, S151. Additions retain every prior
 critical-file deficit and extend firewall checks without changing floors.

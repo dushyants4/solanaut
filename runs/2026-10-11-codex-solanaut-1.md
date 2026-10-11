@@ -7,6 +7,14 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Coverage-review checkpoint fdbce77 has a verified complete local bundle, exact
+clean restore and successful full fsck. Continue mutation-staging modification
+reasons; read every full patch and compare literal expected membership with each
+same-revision helper. No earlier asserted file disappears; first absent test-list
+assertions remain marked absent. Current staging control passes its copied-policy
+baseline and catches its copied fault without altering original source. This is
+not a full selected baseline, completed score or H11 remediation.
+
 Review-map checkpoint b770f7c has a verified complete local bundle, exact clean
 restore and successful full fsck. Continue all coverage-test modification reasons;
 inspect complete patches and bind current identity. Added critical files preserve
@@ -279,6 +287,11 @@ the unchanged original companion control also passes. Outputs stay separate,
 with no installation or full runtime/matrix claim.
 
 ## Found
+
+Staging-review pre-commit close passes eight checks and fails only dirty work
+and deliberately unpushed HEAD. Staged source/prose/full patches are reviewed;
+diff whitespace and credential-shaped search are clean. Literal matches neither
+prove full campaign completion nor justify a readiness exception.
 
 Coverage-review pre-commit close passes eight checks and fails only dirty work
 and deliberately unpushed HEAD. Staged source/prose/patch review, diff whitespace

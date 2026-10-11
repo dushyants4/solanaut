@@ -1,5 +1,9 @@
 # DOCUMENTS.md — the document register
 
+2026-10-11 registers mutation-stage assertion collector, complete patches and
+historical/helper/current bindings, literal observations, focused control and
+receipt/index; CLAIMS S152, PROGRESS, HANDOFF and continuing run.
+
 2026-10-11 registers coverage assertion collector, complete historical patches,
 revision/diff/current bindings, focused checker output and receipt/index;
 CLAIMS S151, PROGRESS, HANDOFF and continuing run. No protected test changes.

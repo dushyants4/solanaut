@@ -1,0 +1,266 @@
+00c42e89fd137251659934ffbc28e013ee95a804
+diff --git a/evals/ci/mutation-stage.test.ts b/evals/ci/mutation-stage.test.ts
+index 49417ba..02e654b 100644
+--- a/evals/ci/mutation-stage.test.ts
++++ b/evals/ci/mutation-stage.test.ts
+@@ -17,5 +17,6 @@ test("CI-2: mutation staging copies only the frozen inputs and tests execute its
+     assert.deepEqual(config.mutate,MUTATION_PATHS); assert.equal(config.thresholds.break,80);
+     assert.equal(config.inPlace,false); assert.equal(config.ignoreStatic,false); assert.equal(config.coverageAnalysis,"off");
+-    assert.equal(config.commandRunner.command,"node --test "+MUTATION_TESTS.join(" "));
++    assert.equal(config.commandRunner.command,"node --test --test-isolation=none "+MUTATION_TESTS.join(" "));
++    assert.deepEqual(config.reporters,["clear-text","progress-append-only","json"]);
+     assert.equal(config.mutator,undefined); assert.equal(config.incremental,undefined);
+     const env={...process.env}; delete env.NODE_TEST_CONTEXT;
+
+a4dba77e71495b2d2d12d6df80a644987fa79081
+diff --git a/evals/ci/mutation-stage.test.ts b/evals/ci/mutation-stage.test.ts
+index 02e654b..2e3d431 100644
+--- a/evals/ci/mutation-stage.test.ts
++++ b/evals/ci/mutation-stage.test.ts
+@@ -5,4 +5,5 @@ import { mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSyn
+ import { resolve, join } from "node:path";
+ import { MUTATION_PATHS, MUTATION_TESTS, stageMutation } from "./mutation-stage.ts";
++import * as staging from "./mutation-stage.ts";
+ test("CI-2: mutation staging copies only the frozen inputs and tests execute its changed source",()=> {
+   mkdirSync(".sandbox/solanaut-1/mutation",{recursive:true});
+@@ -11,4 +12,5 @@ test("CI-2: mutation staging copies only the frozen inputs and tests execute its
+   try {
+     const sources=stageMutation(root,destination);
++    assert.equal(Reflect.get(staging,"MUTATION_RUN_LIMIT_MS"),43_200_000);
+     assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables"].map(name=>"packages/sdk/src/"+name+".ts"));
+     assert.deepEqual(Object.keys(sources),MUTATION_PATHS);
+@@ -17,4 +19,5 @@ test("CI-2: mutation staging copies only the frozen inputs and tests execute its
+     assert.deepEqual(config.mutate,MUTATION_PATHS); assert.equal(config.thresholds.break,80);
+     assert.equal(config.inPlace,false); assert.equal(config.ignoreStatic,false); assert.equal(config.coverageAnalysis,"off");
++    assert.equal(config.concurrency,4); assert.equal(config.timeoutMS,10_000); assert.equal(config.timeoutFactor,1.5);
+     assert.equal(config.commandRunner.command,"node --test --test-isolation=none "+MUTATION_TESTS.join(" "));
+     assert.deepEqual(config.reporters,["clear-text","progress-append-only","json"]);
+
+afed152194958b21467653ccd136acfdf8d461a7
+diff --git a/evals/ci/mutation-stage.test.ts b/evals/ci/mutation-stage.test.ts
+index 2e3d431..5548fec 100644
+--- a/evals/ci/mutation-stage.test.ts
++++ b/evals/ci/mutation-stage.test.ts
+@@ -13,5 +13,6 @@ test("CI-2: mutation staging copies only the frozen inputs and tests execute its
+     const sources=stageMutation(root,destination);
+     assert.equal(Reflect.get(staging,"MUTATION_RUN_LIMIT_MS"),43_200_000);
+-    assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables"].map(name=>"packages/sdk/src/"+name+".ts"));
++    assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables","checkpoint","checkpoint-archives"].map(name=>"packages/sdk/src/"+name+".ts"));
++    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay"].map(name=>"packages/sdk/test/"+name+".test.ts"));
+     assert.deepEqual(Object.keys(sources),MUTATION_PATHS);
+     assert.deepEqual(readdirSync(destination).sort(),["node_modules","package.json","packages","stryker.config.json"]);
+
+26925421d283b4a41146e2243ab3b585e051ef77
+diff --git a/evals/ci/mutation-stage.test.ts b/evals/ci/mutation-stage.test.ts
+index 5548fec..7f35140 100644
+--- a/evals/ci/mutation-stage.test.ts
++++ b/evals/ci/mutation-stage.test.ts
+@@ -13,6 +13,6 @@ test("CI-2: mutation staging copies only the frozen inputs and tests execute its
+     const sources=stageMutation(root,destination);
+     assert.equal(Reflect.get(staging,"MUTATION_RUN_LIMIT_MS"),43_200_000);
+-    assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables","checkpoint","checkpoint-archives"].map(name=>"packages/sdk/src/"+name+".ts"));
+-    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay"].map(name=>"packages/sdk/test/"+name+".test.ts"));
++    assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables","checkpoint","checkpoint-archives","checkpoint-prefix","checkpoint-state","signed-policy"].map(name=>"packages/sdk/src/"+name+".ts"));
++    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state"].map(name=>"packages/sdk/test/"+name+".test.ts"));
+     assert.deepEqual(Object.keys(sources),MUTATION_PATHS);
+     assert.deepEqual(readdirSync(destination).sort(),["node_modules","package.json","packages","stryker.config.json"]);
+
+6d81f8b747c1b04003b8bd83f12bed6e5fcbca51
+diff --git a/evals/ci/mutation-stage.test.ts b/evals/ci/mutation-stage.test.ts
+index 7f35140..85f8a56 100644
+--- a/evals/ci/mutation-stage.test.ts
++++ b/evals/ci/mutation-stage.test.ts
+@@ -13,6 +13,6 @@ test("CI-2: mutation staging copies only the frozen inputs and tests execute its
+     const sources=stageMutation(root,destination);
+     assert.equal(Reflect.get(staging,"MUTATION_RUN_LIMIT_MS"),43_200_000);
+-    assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables","checkpoint","checkpoint-archives","checkpoint-prefix","checkpoint-state","signed-policy"].map(name=>"packages/sdk/src/"+name+".ts"));
+-    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state"].map(name=>"packages/sdk/test/"+name+".test.ts"));
++    assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables","checkpoint","checkpoint-archives","checkpoint-prefix","checkpoint-state","signed-policy","checkpoint-bundle"].map(name=>"packages/sdk/src/"+name+".ts"));
++    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state","checkpoint-bundle"].map(name=>"packages/sdk/test/"+name+".test.ts"));
+     assert.deepEqual(Object.keys(sources),MUTATION_PATHS);
+     assert.deepEqual(readdirSync(destination).sort(),["node_modules","package.json","packages","stryker.config.json"]);
+
+6162efb3ea45a2997eb771ea40fd6b251befb549
+diff --git a/evals/ci/mutation-stage.test.ts b/evals/ci/mutation-stage.test.ts
+index 85f8a56..3cdc73e 100644
+--- a/evals/ci/mutation-stage.test.ts
++++ b/evals/ci/mutation-stage.test.ts
+@@ -13,6 +13,6 @@ test("CI-2: mutation staging copies only the frozen inputs and tests execute its
+     const sources=stageMutation(root,destination);
+     assert.equal(Reflect.get(staging,"MUTATION_RUN_LIMIT_MS"),43_200_000);
+-    assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables","checkpoint","checkpoint-archives","checkpoint-prefix","checkpoint-state","signed-policy","checkpoint-bundle"].map(name=>"packages/sdk/src/"+name+".ts"));
+-    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state","checkpoint-bundle"].map(name=>"packages/sdk/test/"+name+".test.ts"));
++    assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables","checkpoint","checkpoint-archives","checkpoint-prefix","checkpoint-state","signed-policy","checkpoint-bundle","checkpoint-envelope"].map(name=>"packages/sdk/src/"+name+".ts"));
++    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope"].map(name=>"packages/sdk/test/"+name+".test.ts"));
+     assert.deepEqual(Object.keys(sources),MUTATION_PATHS);
+     assert.deepEqual(readdirSync(destination).sort(),["node_modules","package.json","packages","stryker.config.json"]);
+
+0c61fa365ec59bf75daf83567d6be2d3aa5cf37d
+diff --git a/evals/ci/mutation-stage.test.ts b/evals/ci/mutation-stage.test.ts
+index 3cdc73e..4b779d5 100644
+--- a/evals/ci/mutation-stage.test.ts
++++ b/evals/ci/mutation-stage.test.ts
+@@ -13,6 +13,6 @@ test("CI-2: mutation staging copies only the frozen inputs and tests execute its
+     const sources=stageMutation(root,destination);
+     assert.equal(Reflect.get(staging,"MUTATION_RUN_LIMIT_MS"),43_200_000);
+-    assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables","checkpoint","checkpoint-archives","checkpoint-prefix","checkpoint-state","signed-policy","checkpoint-bundle","checkpoint-envelope"].map(name=>"packages/sdk/src/"+name+".ts"));
+-    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope"].map(name=>"packages/sdk/test/"+name+".test.ts"));
++    assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables","checkpoint","checkpoint-archives","checkpoint-prefix","checkpoint-state","signed-policy","checkpoint-bundle","checkpoint-envelope","record","checkpoint-publication"].map(name=>"packages/sdk/src/"+name+".ts"));
++    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication"].map(name=>"packages/sdk/test/"+name+".test.ts"));
+     assert.deepEqual(Object.keys(sources),MUTATION_PATHS);
+     assert.deepEqual(readdirSync(destination).sort(),["node_modules","package.json","packages","stryker.config.json"]);
+
+f05c84dea1da1ff5c92a0b904520e9326023f4c9
+diff --git a/evals/ci/mutation-stage.test.ts b/evals/ci/mutation-stage.test.ts
+index 4b779d5..79592e6 100644
+--- a/evals/ci/mutation-stage.test.ts
++++ b/evals/ci/mutation-stage.test.ts
+@@ -13,6 +13,6 @@ test("CI-2: mutation staging copies only the frozen inputs and tests execute its
+     const sources=stageMutation(root,destination);
+     assert.equal(Reflect.get(staging,"MUTATION_RUN_LIMIT_MS"),43_200_000);
+-    assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables","checkpoint","checkpoint-archives","checkpoint-prefix","checkpoint-state","signed-policy","checkpoint-bundle","checkpoint-envelope","record","checkpoint-publication"].map(name=>"packages/sdk/src/"+name+".ts"));
+-    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication"].map(name=>"packages/sdk/test/"+name+".test.ts"));
++    assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables","checkpoint","checkpoint-archives","checkpoint-prefix","checkpoint-state","signed-policy","checkpoint-bundle","checkpoint-envelope","record","checkpoint-publication","checkpoint-recovery"].map(name=>"packages/sdk/src/"+name+".ts"));
++    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication","checkpoint-recovery"].map(name=>"packages/sdk/test/"+name+".test.ts"));
+     assert.deepEqual(Object.keys(sources),MUTATION_PATHS);
+     assert.deepEqual(readdirSync(destination).sort(),["node_modules","package.json","packages","stryker.config.json"]);
+
+49f753b3b5e806b68b45608b11984b1484f9703f
+diff --git a/evals/ci/mutation-stage.test.ts b/evals/ci/mutation-stage.test.ts
+index 79592e6..67fce71 100644
+--- a/evals/ci/mutation-stage.test.ts
++++ b/evals/ci/mutation-stage.test.ts
+@@ -14,5 +14,5 @@ test("CI-2: mutation staging copies only the frozen inputs and tests execute its
+     assert.equal(Reflect.get(staging,"MUTATION_RUN_LIMIT_MS"),43_200_000);
+     assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables","checkpoint","checkpoint-archives","checkpoint-prefix","checkpoint-state","signed-policy","checkpoint-bundle","checkpoint-envelope","record","checkpoint-publication","checkpoint-recovery"].map(name=>"packages/sdk/src/"+name+".ts"));
+-    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication","checkpoint-recovery"].map(name=>"packages/sdk/test/"+name+".test.ts"));
++    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication","checkpoint-recovery","checkpoint-owned-recovery"].map(name=>"packages/sdk/test/"+name+".test.ts"));
+     assert.deepEqual(Object.keys(sources),MUTATION_PATHS);
+     assert.deepEqual(readdirSync(destination).sort(),["node_modules","package.json","packages","stryker.config.json"]);
+
+c2c2f5cfe7a33c627ce721325b1e06cb1e1587af
+diff --git a/evals/ci/mutation-stage.test.ts b/evals/ci/mutation-stage.test.ts
+index 67fce71..b73e8c5 100644
+--- a/evals/ci/mutation-stage.test.ts
++++ b/evals/ci/mutation-stage.test.ts
+@@ -13,6 +13,6 @@ test("CI-2: mutation staging copies only the frozen inputs and tests execute its
+     const sources=stageMutation(root,destination);
+     assert.equal(Reflect.get(staging,"MUTATION_RUN_LIMIT_MS"),43_200_000);
+-    assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables","checkpoint","checkpoint-archives","checkpoint-prefix","checkpoint-state","signed-policy","checkpoint-bundle","checkpoint-envelope","record","checkpoint-publication","checkpoint-recovery"].map(name=>"packages/sdk/src/"+name+".ts"));
+-    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication","checkpoint-recovery","checkpoint-owned-recovery"].map(name=>"packages/sdk/test/"+name+".test.ts"));
++    assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables","checkpoint","checkpoint-archives","checkpoint-prefix","checkpoint-state","signed-policy","checkpoint-bundle","checkpoint-envelope","record","checkpoint-publication","checkpoint-recovery","archive"].map(name=>"packages/sdk/src/"+name+".ts"));
++    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication","checkpoint-recovery","checkpoint-owned-recovery","archive","archive-anchor","archive-stream"].map(name=>"packages/sdk/test/"+name+".test.ts"));
+     assert.deepEqual(Object.keys(sources),MUTATION_PATHS);
+     assert.deepEqual(readdirSync(destination).sort(),["node_modules","package.json","packages","stryker.config.json"]);
+
+b3524547a3055e04f7d12d3f20565020ba81d522
+diff --git a/evals/ci/mutation-stage.test.ts b/evals/ci/mutation-stage.test.ts
+index b73e8c5..d6a0b8a 100644
+--- a/evals/ci/mutation-stage.test.ts
++++ b/evals/ci/mutation-stage.test.ts
+@@ -14,5 +14,5 @@ test("CI-2: mutation staging copies only the frozen inputs and tests execute its
+     assert.equal(Reflect.get(staging,"MUTATION_RUN_LIMIT_MS"),43_200_000);
+     assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables","checkpoint","checkpoint-archives","checkpoint-prefix","checkpoint-state","signed-policy","checkpoint-bundle","checkpoint-envelope","record","checkpoint-publication","checkpoint-recovery","archive"].map(name=>"packages/sdk/src/"+name+".ts"));
+-    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication","checkpoint-recovery","checkpoint-owned-recovery","archive","archive-anchor","archive-stream"].map(name=>"packages/sdk/test/"+name+".test.ts"));
++    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication","checkpoint-recovery","checkpoint-owned-recovery","archive","archive-anchor","archive-stream","replay-stream"].map(name=>"packages/sdk/test/"+name+".test.ts"));
+     assert.deepEqual(Object.keys(sources),MUTATION_PATHS);
+     assert.deepEqual(readdirSync(destination).sort(),["node_modules","package.json","packages","stryker.config.json"]);
+
+a4d1c25a153c6cf5adf26f8b93189b2b58791938
+diff --git a/evals/ci/mutation-stage.test.ts b/evals/ci/mutation-stage.test.ts
+index d6a0b8a..605a850 100644
+--- a/evals/ci/mutation-stage.test.ts
++++ b/evals/ci/mutation-stage.test.ts
+@@ -13,6 +13,6 @@ test("CI-2: mutation staging copies only the frozen inputs and tests execute its
+     const sources=stageMutation(root,destination);
+     assert.equal(Reflect.get(staging,"MUTATION_RUN_LIMIT_MS"),43_200_000);
+-    assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables","checkpoint","checkpoint-archives","checkpoint-prefix","checkpoint-state","signed-policy","checkpoint-bundle","checkpoint-envelope","record","checkpoint-publication","checkpoint-recovery","archive"].map(name=>"packages/sdk/src/"+name+".ts"));
+-    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication","checkpoint-recovery","checkpoint-owned-recovery","archive","archive-anchor","archive-stream","replay-stream"].map(name=>"packages/sdk/test/"+name+".test.ts"));
++    assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables","checkpoint","checkpoint-archives","checkpoint-prefix","checkpoint-state","signed-policy","checkpoint-bundle","checkpoint-envelope","record","checkpoint-publication","checkpoint-recovery","archive","checkpoint-errors"].map(name=>"packages/sdk/src/"+name+".ts"));
++    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication","checkpoint-recovery","checkpoint-owned-recovery","archive","archive-anchor","archive-stream","replay-stream","record-loading"].map(name=>"packages/sdk/test/"+name+".test.ts"));
+     assert.deepEqual(Object.keys(sources),MUTATION_PATHS);
+     assert.deepEqual(readdirSync(destination).sort(),["node_modules","package.json","packages","stryker.config.json"]);
+
+39c24de89a3e860cd9e4a08517a616481c5c72ca
+diff --git a/evals/ci/mutation-stage.test.ts b/evals/ci/mutation-stage.test.ts
+index 605a850..09f59fc 100644
+--- a/evals/ci/mutation-stage.test.ts
++++ b/evals/ci/mutation-stage.test.ts
+@@ -13,6 +13,6 @@ test("CI-2: mutation staging copies only the frozen inputs and tests execute its
+     const sources=stageMutation(root,destination);
+     assert.equal(Reflect.get(staging,"MUTATION_RUN_LIMIT_MS"),43_200_000);
+-    assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables","checkpoint","checkpoint-archives","checkpoint-prefix","checkpoint-state","signed-policy","checkpoint-bundle","checkpoint-envelope","record","checkpoint-publication","checkpoint-recovery","archive","checkpoint-errors"].map(name=>"packages/sdk/src/"+name+".ts"));
+-    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication","checkpoint-recovery","checkpoint-owned-recovery","archive","archive-anchor","archive-stream","replay-stream","record-loading"].map(name=>"packages/sdk/test/"+name+".test.ts"));
++    assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables","checkpoint","checkpoint-archives","checkpoint-prefix","checkpoint-state","signed-policy","checkpoint-bundle","checkpoint-envelope","record","checkpoint-publication","checkpoint-recovery","archive","checkpoint-errors","request-index"].map(name=>"packages/sdk/src/"+name+".ts"));
++    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication","checkpoint-recovery","checkpoint-owned-recovery","archive","archive-anchor","archive-stream","replay-stream","record-loading","report-replay","request-index","redeem-replay"].map(name=>"packages/sdk/test/"+name+".test.ts"));
+     assert.deepEqual(Object.keys(sources),MUTATION_PATHS);
+     assert.deepEqual(readdirSync(destination).sort(),["node_modules","package.json","packages","stryker.config.json"]);
+
+5a33e698703446708729a8271a7a4c38a3a7dce7
+diff --git a/evals/ci/mutation-stage.test.ts b/evals/ci/mutation-stage.test.ts
+index 09f59fc..6fb5251 100644
+--- a/evals/ci/mutation-stage.test.ts
++++ b/evals/ci/mutation-stage.test.ts
+@@ -13,6 +13,6 @@ test("CI-2: mutation staging copies only the frozen inputs and tests execute its
+     const sources=stageMutation(root,destination);
+     assert.equal(Reflect.get(staging,"MUTATION_RUN_LIMIT_MS"),43_200_000);
+-    assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables","checkpoint","checkpoint-archives","checkpoint-prefix","checkpoint-state","signed-policy","checkpoint-bundle","checkpoint-envelope","record","checkpoint-publication","checkpoint-recovery","archive","checkpoint-errors","request-index"].map(name=>"packages/sdk/src/"+name+".ts"));
+-    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication","checkpoint-recovery","checkpoint-owned-recovery","archive","archive-anchor","archive-stream","replay-stream","record-loading","report-replay","request-index","redeem-replay"].map(name=>"packages/sdk/test/"+name+".test.ts"));
++    assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables","checkpoint","checkpoint-archives","checkpoint-prefix","checkpoint-state","signed-policy","checkpoint-bundle","checkpoint-envelope","record","checkpoint-publication","checkpoint-recovery","archive","checkpoint-errors","request-index","request-index-publication"].map(name=>"packages/sdk/src/"+name+".ts"));
++    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication","checkpoint-recovery","checkpoint-owned-recovery","archive","archive-anchor","archive-stream","replay-stream","record-loading","report-replay","request-index","redeem-replay","request-index-publication"].map(name=>"packages/sdk/test/"+name+".test.ts"));
+     assert.deepEqual(Object.keys(sources),MUTATION_PATHS);
+     assert.deepEqual(readdirSync(destination).sort(),["node_modules","package.json","packages","stryker.config.json"]);
+
+7118ae242b25f50305c0b49d6f9c9c4da2e30df9
+diff --git a/evals/ci/mutation-stage.test.ts b/evals/ci/mutation-stage.test.ts
+index 6fb5251..449959f 100644
+--- a/evals/ci/mutation-stage.test.ts
++++ b/evals/ci/mutation-stage.test.ts
+@@ -14,5 +14,5 @@ test("CI-2: mutation staging copies only the frozen inputs and tests execute its
+     assert.equal(Reflect.get(staging,"MUTATION_RUN_LIMIT_MS"),43_200_000);
+     assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables","checkpoint","checkpoint-archives","checkpoint-prefix","checkpoint-state","signed-policy","checkpoint-bundle","checkpoint-envelope","record","checkpoint-publication","checkpoint-recovery","archive","checkpoint-errors","request-index","request-index-publication"].map(name=>"packages/sdk/src/"+name+".ts"));
+-    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication","checkpoint-recovery","checkpoint-owned-recovery","archive","archive-anchor","archive-stream","replay-stream","record-loading","report-replay","request-index","redeem-replay","request-index-publication"].map(name=>"packages/sdk/test/"+name+".test.ts"));
++    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication","checkpoint-recovery","checkpoint-owned-recovery","archive","archive-anchor","archive-stream","replay-stream","record-loading","report-replay","request-index","redeem-replay","request-index-publication","request-index-lookup"].map(name=>"packages/sdk/test/"+name+".test.ts"));
+     assert.deepEqual(Object.keys(sources),MUTATION_PATHS);
+     assert.deepEqual(readdirSync(destination).sort(),["node_modules","package.json","packages","stryker.config.json"]);
+
+8a343d42b0d60dd188ba7fc5f2d9a198d6346364
+diff --git a/evals/ci/mutation-stage.test.ts b/evals/ci/mutation-stage.test.ts
+index 449959f..bc4aa8b 100644
+--- a/evals/ci/mutation-stage.test.ts
++++ b/evals/ci/mutation-stage.test.ts
+@@ -14,5 +14,5 @@ test("CI-2: mutation staging copies only the frozen inputs and tests execute its
+     assert.equal(Reflect.get(staging,"MUTATION_RUN_LIMIT_MS"),43_200_000);
+     assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables","checkpoint","checkpoint-archives","checkpoint-prefix","checkpoint-state","signed-policy","checkpoint-bundle","checkpoint-envelope","record","checkpoint-publication","checkpoint-recovery","archive","checkpoint-errors","request-index","request-index-publication"].map(name=>"packages/sdk/src/"+name+".ts"));
+-    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication","checkpoint-recovery","checkpoint-owned-recovery","archive","archive-anchor","archive-stream","replay-stream","record-loading","report-replay","request-index","redeem-replay","request-index-publication","request-index-lookup"].map(name=>"packages/sdk/test/"+name+".test.ts"));
++    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication","checkpoint-recovery","checkpoint-owned-recovery","archive","archive-anchor","archive-stream","replay-stream","record-loading","report-replay","request-index","redeem-replay","request-index-publication","request-index-lookup","owned-request-admission"].map(name=>"packages/sdk/test/"+name+".test.ts"));
+     assert.deepEqual(Object.keys(sources),MUTATION_PATHS);
+     assert.deepEqual(readdirSync(destination).sort(),["node_modules","package.json","packages","stryker.config.json"]);
+
+b1d8ed153ed162293bb923a5134703ea4eb3ca7c
+diff --git a/evals/ci/mutation-stage.test.ts b/evals/ci/mutation-stage.test.ts
+index bc4aa8b..52d63b4 100644
+--- a/evals/ci/mutation-stage.test.ts
++++ b/evals/ci/mutation-stage.test.ts
+@@ -14,5 +14,5 @@ test("CI-2: mutation staging copies only the frozen inputs and tests execute its
+     assert.equal(Reflect.get(staging,"MUTATION_RUN_LIMIT_MS"),43_200_000);
+     assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables","checkpoint","checkpoint-archives","checkpoint-prefix","checkpoint-state","signed-policy","checkpoint-bundle","checkpoint-envelope","record","checkpoint-publication","checkpoint-recovery","archive","checkpoint-errors","request-index","request-index-publication"].map(name=>"packages/sdk/src/"+name+".ts"));
+-    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication","checkpoint-recovery","checkpoint-owned-recovery","archive","archive-anchor","archive-stream","replay-stream","record-loading","report-replay","request-index","redeem-replay","request-index-publication","request-index-lookup","owned-request-admission"].map(name=>"packages/sdk/test/"+name+".test.ts"));
++    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication","checkpoint-recovery","checkpoint-owned-recovery","archive","archive-anchor","archive-stream","replay-stream","record-loading","report-replay","request-index","redeem-replay","request-index-publication","request-index-lookup","owned-request-admission","owned-control-request"].map(name=>"packages/sdk/test/"+name+".test.ts"));
+     assert.deepEqual(Object.keys(sources),MUTATION_PATHS);
+     assert.deepEqual(readdirSync(destination).sort(),["node_modules","package.json","packages","stryker.config.json"]);
+
+36a1ae793e08855e817496837fcf5d7ea34abd37
+diff --git a/evals/ci/mutation-stage.test.ts b/evals/ci/mutation-stage.test.ts
+index 52d63b4..4c6db6f 100644
+--- a/evals/ci/mutation-stage.test.ts
++++ b/evals/ci/mutation-stage.test.ts
+@@ -13,6 +13,6 @@ test("CI-2: mutation staging copies only the frozen inputs and tests execute its
+     const sources=stageMutation(root,destination);
+     assert.equal(Reflect.get(staging,"MUTATION_RUN_LIMIT_MS"),43_200_000);
+-    assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables","checkpoint","checkpoint-archives","checkpoint-prefix","checkpoint-state","signed-policy","checkpoint-bundle","checkpoint-envelope","record","checkpoint-publication","checkpoint-recovery","archive","checkpoint-errors","request-index","request-index-publication"].map(name=>"packages/sdk/src/"+name+".ts"));
+-    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication","checkpoint-recovery","checkpoint-owned-recovery","archive","archive-anchor","archive-stream","replay-stream","record-loading","report-replay","request-index","redeem-replay","request-index-publication","request-index-lookup","owned-request-admission","owned-control-request"].map(name=>"packages/sdk/test/"+name+".test.ts"));
++    assert.deepEqual(MUTATION_PATHS,["base58","classify","guard","message","pda","policy","state","tables","checkpoint","checkpoint-archives","checkpoint-prefix","checkpoint-state","signed-policy","checkpoint-bundle","checkpoint-envelope","record","checkpoint-publication","checkpoint-recovery","archive","checkpoint-errors","request-index","request-index-publication","owned-guard"].map(name=>"packages/sdk/src/"+name+".ts"));
++    assert.deepEqual(MUTATION_TESTS,["adapters","admission","boundary-validation","classify","decode","drain.battery","durable","inspect","keel","latch-c","ownership","pin-table","policy","request-identity","sensor.battery","signed-policy","signing-history","storage-failures","checkpoint","checkpoint-archives","malformed-replay","checkpoint-prefix","checkpoint-state","checkpoint-bundle","checkpoint-envelope","checkpoint-publication","checkpoint-recovery","checkpoint-owned-recovery","archive","archive-anchor","archive-stream","replay-stream","record-loading","report-replay","request-index","redeem-replay","request-index-publication","request-index-lookup","owned-request-admission","owned-control-request","owned-guard"].map(name=>"packages/sdk/test/"+name+".test.ts"));
+     assert.deepEqual(Object.keys(sources),MUTATION_PATHS);
+     assert.deepEqual(readdirSync(destination).sort(),["node_modules","package.json","packages","stryker.config.json"]);

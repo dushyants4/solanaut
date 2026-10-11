@@ -1,0 +1,137 @@
+{
+  "baseline": "e925f1dfaabc7eedae361764a401baf7f9e9868b",
+  "head": "753769dcd435b9334e59e921727c04afd6cb6859",
+  "inventorySha256": "f813d4f9f5c54e8bfd0dd5e626680abb3978f1789a42c08309d35c7eb09eaf4b",
+  "collectorSha256": "39ff7c18fc508a27eed413593434a3547f64bb5a5bba2e4d7f88afec6b1b7f63",
+  "selected": [
+    {
+      "parent": "13bb0752ffee61e08b94f161673b318b763f3617",
+      "commit": "00c42e89fd137251659934ffbc28e013ee95a804",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "e508246ffb8479fcfc7a806916d88b79ec7c3af3",
+      "commit": "a4dba77e71495b2d2d12d6df80a644987fa79081",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "40fa2fc9353105dc39576f37bb88e1a63148b423",
+      "commit": "afed152194958b21467653ccd136acfdf8d461a7",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "afe482a5505517430b0dd21b54e6fd09eb088874",
+      "commit": "26925421d283b4a41146e2243ab3b585e051ef77",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "26925421d283b4a41146e2243ab3b585e051ef77",
+      "commit": "6d81f8b747c1b04003b8bd83f12bed6e5fcbca51",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "6d81f8b747c1b04003b8bd83f12bed6e5fcbca51",
+      "commit": "6162efb3ea45a2997eb771ea40fd6b251befb549",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "6162efb3ea45a2997eb771ea40fd6b251befb549",
+      "commit": "0c61fa365ec59bf75daf83567d6be2d3aa5cf37d",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "995c5b073c31a9d0cc1ee9c79500ed3af0675e8a",
+      "commit": "f05c84dea1da1ff5c92a0b904520e9326023f4c9",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "f05c84dea1da1ff5c92a0b904520e9326023f4c9",
+      "commit": "49f753b3b5e806b68b45608b11984b1484f9703f",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "9a6480fe2291600b4b8460c38e113c844b010ff8",
+      "commit": "c2c2f5cfe7a33c627ce721325b1e06cb1e1587af",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "c2c2f5cfe7a33c627ce721325b1e06cb1e1587af",
+      "commit": "b3524547a3055e04f7d12d3f20565020ba81d522",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "b3524547a3055e04f7d12d3f20565020ba81d522",
+      "commit": "a4d1c25a153c6cf5adf26f8b93189b2b58791938",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "5b00257b20c8bbfc643d0fc093f6e509dc3a3d38",
+      "commit": "39c24de89a3e860cd9e4a08517a616481c5c72ca",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "43f20c08b264c1fab9d40166dd357e5b71c7a293",
+      "commit": "5a33e698703446708729a8271a7a4c38a3a7dce7",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "0332c977eb0dadec8a5592324fb8ad1f76ab2db0",
+      "commit": "7118ae242b25f50305c0b49d6f9c9c4da2e30df9",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "d0d8dc344c902548ac964f16cdd9f223a9f1e4af",
+      "commit": "8a343d42b0d60dd188ba7fc5f2d9a198d6346364",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "789bc7b8b6b949c6d6125efba76a329c3cfddda8",
+      "commit": "b1d8ed153ed162293bb923a5134703ea4eb3ca7c",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    },
+    {
+      "parent": "4325a0350e7b80dfb3ab5155ec9e6c7ae59717e5",
+      "commit": "36a1ae793e08855e817496837fcf5d7ea34abd37",
+      "status": "M",
+      "path": "evals/ci/mutation-stage.test.ts",
+      "review": "pending content and assertion reason review"
+    }
+  ],
+  "currentRevision": "fdbce77c0c1ba9b13e673e13087e5d13579b0dd9",
+  "currentTestSha256": "f8281853cda39589a2b004d63b8f4725026a9b2f8d8f2f304a91f634e4d07f5b",
+  "scope": "mutation-stage modification diffs/literal observations, not completed mutation or independent review"
+}
