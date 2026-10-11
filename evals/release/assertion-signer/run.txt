@@ -1,0 +1,1 @@
+signer assertion patches collected; broader and independent review remain pending

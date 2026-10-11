@@ -271,6 +271,12 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-11 signer assertion modification reasons and current focused checks are
+in `evals/release/assertion-signer.md`, S149. Retain deadline/refusal/recovery and
+typed saturation checks, corrected trickle framing and earlier fixture failures.
+The original recovery receipt's lost scratch output remains a limitation.
+Same-user/fake-RPC evidence does not resolve H9, H11 or stable qualification.
+
 2026-10-11 private owned-guard assertion reasons and current facade/signing
 checks are in `evals/release/assertion-owned.md`, S148. Exact private-surface
 additions preserve hidden-history/immutability checks; caller reports remain

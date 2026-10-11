@@ -1,5 +1,9 @@
 # PROGRESS.md
 
+Signer test modification reasons and current focused checks are recorded, S149.
+Same-user/fake-RPC evidence remains distinct from dedicated-user/live validation;
+line-budget, native, independent and stable gates remain open.
+
 Private owned-guard historical assertion reasons and current focused checks
 are recorded, S148. Private surface expansion retains hidden-history checks;
 broader/independent review and stable gates remain open.

@@ -7,6 +7,14 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Owned-review checkpoint 66aee1a has a verified complete local bundle, exact clean
+restore and successful full fsck. Continue signer test modification review; read
+all complete patches and bind current identities. Current focused cases and
+typecheck pass. Reasons distinguish corrected EPIPE response parsing, retained
+deadlines, framing checks unmasked by message bounds, durable refusal/recovery
+and conservative provider/saturation checks. Original recovery scratch-output
+loss is explicitly retained as a limitation, not reconstructed evidence.
+
 Storage-review checkpoint 396f096 has a verified complete local bundle, exact
 clean restore and successful full fsck. Continue owned-guard modification reasons;
 read all complete patches and bind current identity. Current facade and separate
@@ -256,6 +264,11 @@ the unchanged original companion control also passes. Outputs stay separate,
 with no installation or full runtime/matrix claim.
 
 ## Found
+
+Signer-review pre-commit close passes eight checks and fails only dirty work
+and deliberately unpushed HEAD. Staged historical patches/source/prose are read;
+credential-shaped search has no hits. Retain the raw typecheck final blank line
+despite its whitespace warning. Current focused checks do not replace H11.
 
 Owned-review pre-commit close passes eight checks and fails only dirty work and
 deliberately unpushed HEAD. Staged diff/source/prose review and credential-shaped

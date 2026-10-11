@@ -1,5 +1,9 @@
 # DOCUMENTS.md — the document register
 
+2026-10-11 registers signer assertion collector, complete historical patches,
+revision/diff/current bindings, current focused/typecheck outputs and receipt/index;
+CLAIMS S149, PROGRESS, HANDOFF and continuing run. No protected test changes.
+
 2026-10-11 registers private owned-guard collector, full historical patches,
 revision/diff/current bindings, current facade/signing/typecheck outputs and
 receipt/index; CLAIMS S148, PROGRESS, HANDOFF and continuing run.

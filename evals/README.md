@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`release/assertion-signer.md`: signer test modification reasons and current focused
+checks, S149. Earlier fixture failures and lost-output limitation remain explicit;
+broader/independent review and full signer/stable qualification remain open.
+
 `release/assertion-owned.md`: private owned-guard modification reasons and current
 facade/signing checks, S148. Exact surface expansion retains privacy/immutability
 checks; broader/independent review and stable gates remain open.

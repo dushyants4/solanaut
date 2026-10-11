@@ -1,0 +1,29 @@
+{
+  "baseline": "e925f1dfaabc7eedae361764a401baf7f9e9868b",
+  "head": "753769dcd435b9334e59e921727c04afd6cb6859",
+  "inventorySha256": "f813d4f9f5c54e8bfd0dd5e626680abb3978f1789a42c08309d35c7eb09eaf4b",
+  "collectorSha256": "763c21aa7656141a6901217efd73c78225951829b297a64deec99898f8d723b2",
+  "selected": {
+    "apps/signer/test/rpc.test.ts": [
+      "f810612",
+      "657e338"
+    ],
+    "apps/signer/test/socket.test.ts": [
+      "4af8e80",
+      "a40375a",
+      "657e338"
+    ],
+    "apps/signer/test/core.test.ts": [
+      "b7d24a5",
+      "8b92594"
+    ],
+    "apps/signer/test/handler.test.ts": [
+      "a40375a"
+    ],
+    "apps/signer/test/service.test.ts": [
+      "f9c0cec"
+    ]
+  },
+  "currentRevision": "66aee1a014c7b44b455d1d4c14e938327e1325eb",
+  "scope": "bounded signer test modification patches, not complete or independent history review"
+}
