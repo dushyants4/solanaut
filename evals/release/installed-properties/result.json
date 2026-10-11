@@ -1,0 +1,14 @@
+{
+  "runtimes": [
+    "26.7.0",
+    "24.19.0"
+  ],
+  "faultsCaught": [
+    "address",
+    "decoder",
+    "resolve"
+  ],
+  "restored": true,
+  "inputsUnchanged": true,
+  "clearance": false
+}

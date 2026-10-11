@@ -1,0 +1,29 @@
+property starting: sol-per-tx; seed=101123; requested=10000
+property completed: sol-per-tx; seed=101123; runs=10000; skips=0
+property starting: sol-window; seed=101123; requested=10000
+property completed: sol-window; seed=101123; runs=10000; skips=0
+✔ CI-2 SOL per-tx property: full u64 and adjacent boundaries admit exactly within cap (4981.102182ms)
+✔ CI-2 SOL window property: pending admissions match independent reservation sum (10034.220272ms)
+property starting: address; seed=101123; requested=10000
+property completed: address; seed=101123; runs=10000; skips=0
+property starting: decoder-legacy; seed=101123; requested=10000
+property completed: decoder-legacy; seed=101123; runs=10000; skips=0
+property starting: decoder-0; seed=101123; requested=10000
+property completed: decoder-0; seed=101123; runs=10000; skips=0
+property starting: decoder-1; seed=101123; requested=10000
+property completed: decoder-1; seed=101123; runs=10000; skips=0
+property starting: arbitrary-bytes; seed=101123; requested=10000
+property completed: arbitrary-bytes; seed=101123; runs=10000; skips=0
+✔ CI-2 address property: canonical 32-byte base58 agrees with kit (312.044672ms)
+✔ CI-2 decoder property: legacy bytes and resolved instructions agree with kit (9778.246788ms)
+✔ CI-2 decoder property: 0 bytes and resolved instructions agree with kit (12115.349271ms)
+✔ CI-2 decoder property: 1 bytes and resolved instructions agree with kit (11581.751951ms)
+✔ CI-2 malformed property: arbitrary bytes match kit or have a named decoder refusal (91.667894ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 34188.861893

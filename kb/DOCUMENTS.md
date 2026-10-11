@@ -1,5 +1,11 @@
 # DOCUMENTS.md — the document register
 
+2026-10-11 registers frozen current core qualification, owned job metadata,
+complete fuzz/property/replay/control logs and inputs; installed compiled SDK
+property relocation, first failures, exact restore and existing-runtime controls;
+two receipts/index, CLAIMS S131/S132, PROGRESS, HANDOFF, staged-release evidence
+and continuing run. Earlier failures and all product/protected gates remain intact.
+
 2026-10-11 registers current existing-runtime build/pack qualification, frozen
 inputs, raw installed suites and comparator refusals, restoration evidence and
 receipt/index; CLAIMS S130, PROGRESS, HANDOFF and continuing run. Current product

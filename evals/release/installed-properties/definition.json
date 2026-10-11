@@ -1,0 +1,12 @@
+{
+  "revision": "6c61cf3157be2f1b2c492b783287a7136400b640",
+  "archiveSha256": "55e8753409bb04960271418e1a3d907b8f3130ff16c10a0a143080be50af489d",
+  "inputs": {
+    "packages/sdk/test/properties.test.ts": "ea0176ccaf6db12414228c04e7e7f692871ed8561268fa26d0aa6f482bdb8845",
+    "packages/sdk/test/support/kit.ts": "d635e07542cbbddf95928cc4b8874c293053d22dc1bea4e82b404a1d5356d5c5",
+    "evals/ci/properties.ts": "f46247fbb44d7ee21b418c4664e733299e73855ceeb80ff8c5b461107fef163b",
+    "evals/release/installed-properties.py": "da5c2059857a47a71f4e1735ae5632d644b00aff0ef4d36af628a91bf550e923"
+  },
+  "seed": 101131,
+  "scope": "installed public decoder/codec only; repository kit/fast-check/domain oracle, no full runtime matrix"
+}

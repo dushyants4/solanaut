@@ -255,6 +255,14 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-11 current frozen source completes the unchanged million-input fuzz,
+seven source properties and Node 26/24 mixed replay workloads. Actual installed
+D40 public decoder exports pass identical property domains on both runtimes,
+after three isolated named faults fail first and restore exactly. S131/S132
+receipts retain raw completions, definitions, process identities and oracle
+scope. Typecheck and existing validator controls pass. No shared source or
+protected gate changes; H11, full CI and every stable/external gate remain open.
+
 2026-10-11 current D40 release builds and packs match under existing Node 26/24
 despite different npm versions; each original installed package suite passes.
 Four comparison substitutions refuse, frozen inputs match and the previous D41

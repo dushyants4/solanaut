@@ -1,0 +1,28 @@
+property starting: address; seed=101131; requested=10000
+✖ CI-2 address property: canonical 32-byte base58 agrees with kit (5.568098ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 237.180518
+
+✖ failing tests:
+
+test at cases.ts:15:1
+✖ CI-2 address property: canonical 32-byte base58 agrees with kit (5.568098ms)
+  Error: property failed: address
+  Property failed after 1 tests
+  { seed: 101131, path: "0", endOnFailure: true }
+  Counterexample: [Uint8Array.from([195,2,252,6,57,27,151,204,1,250,0,248,129,255,6,115,255,116,1,152,128,48,60,255,1,250,254,50,5,0,254,197])]
+  Shrunk 0 time(s)
+  
+  Hint: Enable verbose mode in order to have the list of all failing values encountered during the run
+      at checkProperty (file:///home/dashy/Projects/Solanaut/evals/ci/properties.ts:39:28)
+      at TestContext.<anonymous> (file:///tmp/solanaut-installed-properties-6fx1chwd/cases.ts:16:3)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1397:25)
+      at Test.start (node:internal/test_runner/test:1257:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)

@@ -1,5 +1,13 @@
 # evals/ — receipts
 
+`release/core-runtime.md`: current frozen-input synthetic fuzz/property and
+existing-runtime mixed replay completion, S131. Earlier H11 and maintained
+failures remain; no full CI or stable milestone follows.
+
+`release/installed-properties.md`: identical decoder domains against the actual
+installed D40 compiled SDK, with named first failures and exact restoration,
+S132. Repository kit/fast-check oracle; no clean-machine/independent evidence.
+
 `release/runtime-builds.md`: fresh current D40 build and tarball identity under
 installed Node 26/24, each with the original installed-package population.
 Prior D41 scratch is restored and old proof retained. S130; same-host preparation

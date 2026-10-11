@@ -1,5 +1,13 @@
 # Staged devnet release — review draft
 
+Current same-host D40 qualification also has fresh
+[runtime build identity](../../evals/release/runtime-builds.md),
+[source core workloads](../../evals/release/core-runtime.md) and
+[installed decoder properties](../../evals/release/installed-properties.md),
+CLAIMS S130–S132. These are scoped local preparation; D41 remains unintegrated,
+H11 remains unresolved, and no preview freeze, publication clearance or stable
+individual deployment is inferred.
+
 Local D40/ADP-1 correction privately copies raw buffer captures after fresh
 reproduced alias failures. Its [current receipt](../../evals/sdk/adapter-buffer-current.md)
 records full native/type passes and the exact preserved private archive, S125.

@@ -1,5 +1,11 @@
 # PROGRESS.md
 
+Current source completes the unchanged synthetic fuzz/property and Node 26/24
+mixed replay workloads, S131. The actual installed D40 tarball also passes the
+original decoder property domains on both runtimes after caught isolated faults,
+S132. These scoped passes do not waive H11, full CI, independent/external gates
+or advance the formal stable milestone count.
+
 Fresh current private SDK builds match across installed Node 26/24, and each
 passes the original installed-package population, CLAIMS S130. The prior D41
 scratch stage is restored exactly. This is same-host preparation; Node 22,

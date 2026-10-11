@@ -1,0 +1,62 @@
+{
+  "complete": true,
+  "inputsUnchanged": true,
+  "jobs": [
+    {
+      "name": "fuzz-26",
+      "command": [
+        "npm",
+        "run",
+        "test:fuzz"
+      ],
+      "env": {
+        "SOLANAUT_FUZZ_SEED": "101119"
+      },
+      "pid": 432722,
+      "pgid": 432722,
+      "exit": 0
+    },
+    {
+      "name": "properties-26",
+      "command": [
+        "node",
+        "--test",
+        "packages/sdk/test/properties.test.ts",
+        "packages/sdk/test/caps.property.test.ts"
+      ],
+      "env": {
+        "SOLANAUT_PROPERTY_SEED": "101123"
+      },
+      "pid": 438878,
+      "pgid": 438878,
+      "exit": 0
+    },
+    {
+      "name": "replay-26",
+      "command": [
+        "npm",
+        "run",
+        "test:replay"
+      ],
+      "env": {},
+      "pid": 442420,
+      "pgid": 442420,
+      "exit": 0
+    },
+    {
+      "name": "replay-24",
+      "command": [
+        "mise",
+        "exec",
+        "node@24.19.0",
+        "--",
+        "node",
+        "evals/ci/replay.ts"
+      ],
+      "env": {},
+      "pid": 442489,
+      "pgid": 442489,
+      "exit": 0
+    }
+  ]
+}

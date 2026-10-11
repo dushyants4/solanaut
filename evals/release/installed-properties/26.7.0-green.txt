@@ -1,0 +1,23 @@
+property starting: address; seed=101131; requested=10000
+property completed: address; seed=101131; runs=10000; skips=0
+property starting: decoder-legacy; seed=101131; requested=10000
+property completed: decoder-legacy; seed=101131; runs=10000; skips=0
+property starting: decoder-0; seed=101131; requested=10000
+property completed: decoder-0; seed=101131; runs=10000; skips=0
+property starting: decoder-1; seed=101131; requested=10000
+property completed: decoder-1; seed=101131; runs=10000; skips=0
+property starting: arbitrary-bytes; seed=101131; requested=10000
+property completed: arbitrary-bytes; seed=101131; runs=10000; skips=0
+✔ CI-2 address property: canonical 32-byte base58 agrees with kit (185.795449ms)
+✔ CI-2 decoder property: legacy bytes and resolved instructions agree with kit (5475.449663ms)
+✔ CI-2 decoder property: 0 bytes and resolved instructions agree with kit (6072.186753ms)
+✔ CI-2 decoder property: 1 bytes and resolved instructions agree with kit (6144.049721ms)
+✔ CI-2 malformed property: arbitrary bytes match kit or have a named decoder refusal (81.682254ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 18138.338106

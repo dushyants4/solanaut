@@ -7,6 +7,26 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Runtime build checkpoint 6c61cf3 is committed locally, with complete bundle and
+restore verification. Freeze current product/CI/test identities and fresh
+unchanged-domain fuzz/property seeds before the core qualification. Existing
+mixed replay workloads run on Node 26 and 24; Node 22 is not installed. Long
+worker logs and owned process identities live under .sandbox until completion.
+No source, threshold, population or coefficient changes during measurement.
+
+The core fuzz, property and mixed replay commands complete with unchanged inputs.
+Next run identical decoder property domains against the actual D40 tarball's
+installed public exports outside the repository. Before positive controls, plant
+three isolated installed faults against their named properties; keep oracle and
+source copies unchanged. Full controls use the existing property floor on both
+installed runtimes, without claiming clean-machine or independent qualification.
+
+All source workloads and installed controls pass, with every completion retained
+and all frozen input hashes matching. Existing validator controls/typecheck also
+pass. Installed fault bytes restore exactly and temporary consumers are removed.
+Register S131/S132 and preserve complete source/runtime/oracle scope. No full
+native or CI pass, architecture acceptance or stable milestone follows.
+
 Resume from clean 5852778, fetch succeeds and both live probes refuse. No probe
 file is created. Prepare fresh PKG-1/2/3 same-host build/pack and installed-package
 qualification under existing Node 26/24. Preserve the prior D41 scratch stage
