@@ -1,0 +1,7 @@
+{
+  "baseline": "e925f1dfaabc7eedae361764a401baf7f9e9868b",
+  "head": "753769dcd435b9334e59e921727c04afd6cb6859",
+  "inventorySha256": "f813d4f9f5c54e8bfd0dd5e626680abb3978f1789a42c08309d35c7eb09eaf4b",
+  "collectorSha256": "31b085adacb72d800f26880e2423b8715a04badefc14bfb091a2baa11d4d6f8e",
+  "scope": "only the pinned mutation-recovery test and runner; manual reasons, not a gate or execution proof"
+}

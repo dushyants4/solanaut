@@ -1,5 +1,9 @@
 # DOCUMENTS.md — the document register
 
+2026-10-11 registers scoped mutation-recovery history collector/binding/full
+patches/literal observations/reasons, receipt/index; CLAIMS S144, PROGRESS,
+HANDOFF and continuing run. No protected test, source or stable milestone changes.
+
 2026-10-11 registers assertion-history inventory/helper/tests/frozen campaign,
 initial vacuity/complete red evidence, copied faults, runtime controls, actual
 metadata and separate net diff, receipt/index; CLAIMS S143, PROGRESS, HANDOFF

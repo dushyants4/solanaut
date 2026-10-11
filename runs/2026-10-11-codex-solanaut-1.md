@@ -7,6 +7,16 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Assertion inventory 740f1ac has a verified complete local bundle, exact clean
+restore and successful full fsck. Continue with the mutation-recovery test's
+historical assertion reasons. Preserve complete patches and same-revision
+test/runner hashes; every expected definition/seed literal matches the runner.
+Use a compact complete changed-line view and separately inspect all folded
+numbers after the initial large display truncation. Record scoped reasons for
+pin/count updates, added status/option assertions, diagnostic text and confirmed
+teardown. No test or protected helper is changed. A guessed isolation receipt
+path is absent; the file inventory locates the runtime receipt instead.
+
 Continue from clean 753769d; re-read instructions/queue and fetch without push.
 Prepare the required assertion-review handoff. Freeze Beta-to-head metadata for
 named Node tests; include every parent edge and intermediate edits to new tests.
@@ -212,6 +222,17 @@ the unchanged original companion control also passes. Outputs stay separate,
 with no installation or full runtime/matrix claim.
 
 ## Found
+
+Scoped historical-reason pre-commit close passes every check except dirty work
+and deliberately unpushed HEAD. Staged full-patch/source-hash/literal bindings
+and reasons are reviewed; whitespace and credential-shaped checks find nothing.
+No product/protected edit or new execution qualification is claimed.
+
+Historical literal pin agreement is not executed test-population or baseline
+success. Expected population edits increase rather than remove cases, but
+historical operational qualification still requires its original receipts.
+The same original baseline wait remains, and H11 is unresolved. This scoped
+builder review does not clear other assertions or Claude's independent review.
 
 Assertion-inventory pre-commit close passes every check except dirty work and
 deliberately unpushed HEAD. Staged scope/bindings are reviewed. Credential-word

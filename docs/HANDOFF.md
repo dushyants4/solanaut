@@ -271,6 +271,12 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-11 builder-reviewed historical mutation-recovery test reasons are in
+`evals/release/assertion-recovery.md`, S144. Literal expected pins match each
+same-revision runner; full patches remain. Existing wait, completion/refusal
+assertions and corrected teardown semantics are distinguished. Broader/Claude
+review remains pending, O6 is unapplied and H11 still fails. No milestone advances.
+
 2026-10-11 named-test assertion-review preparation is in
 `evals/release/assertion-history.md`, S143. All-parent metadata includes edits
 to tests added after Beta; synthetic omissions and false-review completion

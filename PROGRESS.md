@@ -1,5 +1,9 @@
 # PROGRESS.md
 
+Mutation-recovery test historical reasons and same-revision literal pin checks
+are recorded, S144. Builder review is scoped to that file; independent/broader
+review and H11 remain open. No protected test or milestone changes.
+
 Bounded named-test history inventory and the baseline-existing durable assertion
 reason are prepared, S143. Historical content/reason review remains pending;
 no protected gate, independent review or stable milestone credit follows.

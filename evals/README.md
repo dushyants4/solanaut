@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`release/assertion-recovery.md`: bounded mutation-recovery historical diffs,
+literal pin observations and builder-reviewed reasons, S144. Not execution,
+independent review or correction of H11's failed wait.
+
 `release/assertion-history.md`: all-parent metadata inventory for named Node
 tests plus a separate baseline-existing assertion reason, S143. Preserve the
 initial vacuous control and corrected failures. Historical review remains pending.
