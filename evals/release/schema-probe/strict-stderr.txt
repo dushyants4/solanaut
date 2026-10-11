@@ -1,0 +1,17 @@
+/home/dashy/Projects/Solanaut/node_modules/ajv/dist/vocabularies/format/format.js:63
+                throw new Error(unknownMsg());
+                      ^
+
+Error: unknown format "iri-reference" ignored in schema at path "#/properties/url/items"
+    at unknownFormat (/home/dashy/Projects/Solanaut/node_modules/ajv/dist/vocabularies/format/format.js:63:23)
+    at validateFormat (/home/dashy/Projects/Solanaut/node_modules/ajv/dist/vocabularies/format/format.js:50:17)
+    at Object.code (/home/dashy/Projects/Solanaut/node_modules/ajv/dist/vocabularies/format/format.js:22:13)
+    at keywordCode (/home/dashy/Projects/Solanaut/node_modules/ajv/dist/compile/validate/index.js:464:13)
+    at /home/dashy/Projects/Solanaut/node_modules/ajv/dist/compile/validate/index.js:222:17
+    at CodeGen.code (/home/dashy/Projects/Solanaut/node_modules/ajv/dist/compile/codegen/index.js:439:13)
+    at CodeGen.block (/home/dashy/Projects/Solanaut/node_modules/ajv/dist/compile/codegen/index.js:568:18)
+    at iterateKeywords (/home/dashy/Projects/Solanaut/node_modules/ajv/dist/compile/validate/index.js:219:9)
+    at groupKeywords (/home/dashy/Projects/Solanaut/node_modules/ajv/dist/compile/validate/index.js:200:13)
+    at /home/dashy/Projects/Solanaut/node_modules/ajv/dist/compile/validate/index.js:192:13
+
+Node.js v26.7.0

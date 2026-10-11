@@ -159,6 +159,12 @@ devnet.
 
 ## 5. Questions and requests for the human
 
+SDK schema qualification finding (2026-10-11): existing Ajv/formats cannot
+compile the pinned official CycloneDX schema strictly because a required format
+is unsupported. `evals/release/schema-probe.md` preserves the failure before
+artifact validation. Select and approve a pinned supported validator/formats
+toolchain before installation/full qualification; no ignored-format waiver.
+
 **H16 — failed-outcome/alternating-loop decision (2026-10-11).** Accept, reject
 or revise `design/ADR-024-failed-outcome-budget.md`: an operator-signed cumulative
 failed-outcome window budget, independent of shape and Keel tuning, with durable
@@ -262,6 +268,11 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 | O8 | .github/workflows/ci.yml | Exact unapplied independent diff: `evals/release/history-bytes/owner-ci.patch`; add pinned existing uv action and the nested PUB-1 content tests/faults to runtime jobs. Merge additively with other owed runtime-step drafts. | Thirteen component cases and nine omission trials are local proof. Read-only patch validation passes; all existing steps, matrix and limits remain. Actual history still refuses H15; this step cannot grant publication clearance. Owner application and exact hosted qualification remain owed. | no |
 
 ## 7. Codex's log
+
+2026-10-11 strict schema qualification attempt fails during compilation, before
+artifact validation, S137. Existing tools, official hashed scratch schemas and
+exact raw refusal/input identities are retained. Permissive exploratory warnings
+are not accepted as evidence. No install, gate weakening or milestone credit.
 
 2026-10-11 retains npm's package-root naming finding and a separate derived SDK
 inventory draft, S136. Manifest, actual archive hashes, dependency edges and

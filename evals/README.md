@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`release/schema-probe.md`: strict official-schema compilation refuses an
+unsupported installed format before inventory validation, S137. No ignored-format
+pass or tool installation; full schema qualification remains owed.
+
 `release/package-inventory.md`: original npm root naming finding plus a separate
 manifest/archive-bound derived draft, first failures and isolated faults, S136.
 Raw generation stays intact; schema, licence and R.1 qualification remain owed.

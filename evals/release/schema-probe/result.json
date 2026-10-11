@@ -1,0 +1,13 @@
+{
+  "revision": "25b4c4520dee786f30b8baf9506eaa1734900917",
+  "exit": 1,
+  "schemaCompilation": false,
+  "reportValidation": false,
+  "fullSchemaClearance": false,
+  "inputs": {
+    "evals/release/schema-probe.mjs": "39947fbabbba3136010e83921d035ec5b78657db85f08be8f5f3cc89bfb959ef",
+    "evals/release/package-inventory/derived-package.cdx.json": "1a2f82522ff4309ff53b4144151ed7a5ad213cd253c2a04552257d0613be7ca0",
+    "node_modules/ajv/package.json": "1f9033ee5a6515e7d76938b7072941862d1ed228a6879cc7fe10cdeb75107989",
+    "node_modules/ajv-formats/package.json": "402fb4bcfa457f0226813f3976ac42839dd619907c075c108efba8600d7edb69"
+  }
+}

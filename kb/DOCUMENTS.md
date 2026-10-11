@@ -1,5 +1,9 @@
 # DOCUMENTS.md — the document register
 
+2026-10-11 registers the failed strict schema diagnostic/source pins/raw status,
+receipt/index, CLAIMS S137, PROGRESS, HANDOFF and continuing run. No ignored-format
+pass, tool installation, gate change or milestone credit.
+
 2026-10-11 registers derived package-inventory receipt/helpers/controls and raw
 npm finding, exact bindings and faults; CLAIMS S136, PROGRESS, HANDOFF,
 staged-release draft, evaluation index and continuing record. No gate change.

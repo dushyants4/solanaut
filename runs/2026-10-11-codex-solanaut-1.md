@@ -7,6 +7,13 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Inventory checkpoint 25b4c45 is committed, with complete verified local bundle,
+exact clean restore and successful full fsck. Attempt official schema qualification
+using the already installed Ajv graph; install nothing. Download official schema
+inputs to scratch, pin their hashes and retain strict compilation refusal before
+report validation. Permissive exploratory warnings do not establish qualification.
+Register S137, retaining the unmet format/toolchain requirement and prior draft.
+
 Proposal checkpoint fa2f6e2 is committed with complete verified bundle, exact
 clean restore and successful full fsck. Clean close passes all checks except
 deliberately unpushed HEAD. Inspect performance preparation: report validation

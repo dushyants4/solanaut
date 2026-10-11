@@ -1,5 +1,9 @@
 # PROGRESS.md
 
+Strict SDK inventory schema compilation refuses an unsupported installed format
+before report validation, S137. A supported approved validator remains owed;
+the draft is not schema-qualified and no milestone advances.
+
 The current private SDK has a manifest/archive-bound derived inventory draft,
 S136, with raw npm naming findings preserved. Controls and isolated faults pass;
 schema, licence and complete R.1 qualification remain owed. No milestone advances.
