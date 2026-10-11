@@ -1,0 +1,42 @@
+{
+  "scriptSha256": "7e7c6f9909bc3d05eca860239ea5015d4ec83d5dc3b0b3eb5767f7f3c81ed20c",
+  "controlSha256": "e01c13e34dfb910254c0afe097f6a7f908bce8309c7444ca95483f2038068871",
+  "results": [
+    {
+      "fault": "none",
+      "status": 0,
+      "stdout": "{\n  \"baseline\": \"e925f1dfaabc7eedae361764a401baf7f9e9868b\",\n  \"head\": \"753769dcd435b9334e59e921727c04afd6cb6859\",\n  \"modificationEdges\": 142,\n  \"edgesLinkedToScopedBuilderReasons\": 142,\n  \"edgesWithoutIndexedReason\": 0,\n  \"reasonReceipts\": 10,\n  \"scope\": \"complete reference allocation for frozen named-test modifications only\",\n  \"confirmedMaintainedGap\": \"S154 head declaration check; O10 unapplied\",\n  \"initialAdditionsReviewed\": false,\n  \"completeHistoryReview\": false,\n  \"independentReview\": false,\n  \"publicHistoryClearance\": false,\n  \"releaseClearance\": false\n}\n",
+      "stderr": ""
+    },
+    {
+      "fault": "duplicate-edge",
+      "status": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/home/dashy/Projects/Solanaut/.sandbox/assertion-reasons-controls/duplicate-edge/evals/release/assertion-reasons-complete.py\", line 40, in <module>\n    assert identity not in references, \"duplicate modification reason\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: duplicate modification reason\n"
+    },
+    {
+      "fault": "foreign-edge",
+      "status": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/home/dashy/Projects/Solanaut/.sandbox/assertion-reasons-controls/foreign-edge/evals/release/assertion-reasons-complete.py\", line 39, in <module>\n    assert identity in known, \"foreign modification reason\"\n           ^^^^^^^^^^^^^^^^^\nAssertionError: foreign modification reason\n"
+    },
+    {
+      "fault": "wrong-range",
+      "status": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/home/dashy/Projects/Solanaut/.sandbox/assertion-reasons-controls/wrong-range/evals/release/assertion-reasons-complete.py\", line 33, in <module>\n    assert definition[\"baseline\"] == inventory[\"baseline\"] and definition[\"head\"] == inventory[\"head\"], \"receipt range differs\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: receipt range differs\n"
+    },
+    {
+      "fault": "missing-edge",
+      "status": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/home/dashy/Projects/Solanaut/.sandbox/assertion-reasons-controls/missing-edge/evals/release/assertion-reasons-complete.py\", line 46, in <module>\n    assert set(references) == known, \"missing modification reason\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: missing modification reason\n"
+    },
+    {
+      "fault": "invalid-binding",
+      "status": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/home/dashy/Projects/Solanaut/.sandbox/assertion-reasons-controls/invalid-binding/evals/release/assertion-reasons-complete.py\", line 44, in <module>\n    assert isinstance(value, str) and len(value) == 64 and all(c in \"0123456789abcdef\" for c in value), \"invalid content binding\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: invalid content binding\n"
+    }
+  ]
+}

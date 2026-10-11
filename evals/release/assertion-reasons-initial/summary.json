@@ -1,0 +1,15 @@
+{
+  "baseline": "e925f1dfaabc7eedae361764a401baf7f9e9868b",
+  "head": "753769dcd435b9334e59e921727c04afd6cb6859",
+  "modificationEdges": 142,
+  "edgesLinkedToScopedBuilderReasons": 142,
+  "edgesWithoutIndexedReason": 0,
+  "reasonReceipts": 10,
+  "scope": "complete reference allocation for frozen named-test modifications only",
+  "confirmedMaintainedGap": "S154 head declaration check; O10 unapplied",
+  "initialAdditionsReviewed": false,
+  "completeHistoryReview": false,
+  "independentReview": false,
+  "publicHistoryClearance": false,
+  "releaseClearance": false
+}

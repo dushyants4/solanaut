@@ -272,6 +272,13 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-11 completes scoped builder reason allocation for the frozen named-test
+modifications in `evals/release/assertion-reasons-complete.md`, S155. Remaining
+consumer patches are read in full and exact references bound. Initial additions,
+supporting/later/public history and Claude's independent judgement remain owed;
+S150 remains its original checkpoint. Initial index schema/reference corrections
+and copied fault refusals are preserved. O10/H11 and stable gates stay open.
+
 2026-10-11 installed archive declaration diagnostic is in
 `evals/packaging/archive-head-declaration.md`, S154. Removing the copied head
 type member escapes all maintained consumer cases; anchor removal is caught.

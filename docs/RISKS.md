@@ -523,3 +523,8 @@ archive declaration escapes all package cases, S154. Runtime head-pin refusal
 still passes and the current product type is intact. A proposed copied fixture
 retains both examples and catches the omission; O10 is unapplied. This does not
 establish exhaustive declaration compatibility or mutation coverage.
+
+S155's complete frozen modification-reason index is builder-authored reference
+allocation, not independent acceptance of those changes or public-history
+clearance. Initial additions and supporting/later history remain separate;
+the known declaration miss and native failure remain unresolved.

@@ -1,5 +1,10 @@
 # evals/ — receipts
 
+`release/assertion-reasons-complete.md` and `release/assertion-consumers.md`:
+complete scoped reason allocation for frozen named-test modifications, S155.
+Copied data faults refuse; the confirmed declaration gap, initial additions,
+independent/public-history review and stable gates remain open.
+
 `packaging/archive-head-declaration.md`: installed head declaration omission
 escapes maintained checks while anchor omission is caught; proposed copy retains
 both examples, S154. O10 is unapplied; no stable release credit.

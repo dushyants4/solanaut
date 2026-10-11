@@ -1,5 +1,10 @@
 # DOCUMENTS.md — the document register
 
+2026-10-11 registers remaining consumer assertion collector/complete patches,
+reason receipt and final index/control reproducer, frozen bindings and retained
+initial outputs; CLAIMS S155, SPEC, RISKS, PROGRESS, HANDOFF and continuing run.
+Protected gates/product remain unchanged; no release approval follows.
+
 2026-10-11 registers archive declaration preparation/reproducer, frozen inputs,
 complete maintained miss/catch and proposed controls, package-file bindings,
 unapplied owner patch and receipt/index; CLAIMS S154, SPEC, RISKS, PROGRESS,

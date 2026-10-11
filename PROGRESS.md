@@ -1,5 +1,9 @@
 # PROGRESS.md
 
+Frozen named-test modification reasons now have a complete scoped builder
+reference index, S155. Initial additions and independent/public-history approval
+remain separate; O10/H11 are unresolved and no stable milestone advances.
+
 Installed archive declaration diagnostic finds a maintained head-member check
 gap, S154. Proposed copied evidence catches it; O10 remains unapplied. Current
 product type is intact and no stable milestone advances.

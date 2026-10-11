@@ -828,6 +828,12 @@ checked and current product type is intact. A proposed copy retains both example
 exact O10 remains unapplied. No full declaration/mutation/native or stable
 qualification follows from these component controls.
 
+CI-2 / handoff diagnostic S155 (`evals/release/assertion-reasons-complete.md`)
+allocates exact builder reason references for the frozen named-test modification
+inventory. Initial additions, supporting/later history and independent review
+remain separate. The head declaration gap and unapplied O10 persist; complete
+reference allocation grants no native gate or stable release qualification.
+
 The mutation programme freezes full decoder/policy file scope and selected tests before
 measurement (`evals/ci/mutation.md`). Its staged-source isolation and strict report checks
 are maintained fault campaigns. The required Stryker score remains unmeasured at preparation;

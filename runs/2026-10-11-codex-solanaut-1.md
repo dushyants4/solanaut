@@ -7,6 +7,17 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Archive declaration checkpoint b37b6f6 has a verified complete local bundle,
+exact clean restored revision and successful full fsck. Clean close passes all
+but the deliberately unpushed HEAD; fetch is read-only and succeeds. Read every
+remaining consumer modification patch, bind the complete stream and write its
+scoped reasons, preserving the confirmed lost head declaration check. Final
+frozen modification reason index allocates every edge exactly once; copied
+duplicate/foreign/range/missing/binding controls refuse and originals stay fixed.
+Initial recovery-field schema failure and draft reference corrections remain
+recorded; preserve initial successful index/control outputs before regeneration.
+No protected test or product change, independent approval or stable credit.
+
 Small-edit checkpoint 39622d4 has a verified complete local bundle, exact clean
 restore and successful full fsck. Inspect remaining consumer replacement blocks,
 without full added-case/patch clearance. Actual D40 declaration copies expose
@@ -306,6 +317,20 @@ the unchanged original companion control also passes. Outputs stay separate,
 with no installation or full runtime/matrix claim.
 
 ## Found
+
+Reason-index pre-commit close passes eight checks, failing only dirty work and
+the deliberately unpushed HEAD. Staged scripts/prose/bindings and all selected
+patches are reviewed; credential-shaped search has no hits. Preserve historical
+patch context spaces despite whitespace diagnostics. Final receipt references,
+input hashes, control refusal reasons and read/durable patch identity verify;
+no product or protected test changes and no owned worker remains.
+
+The initial complete-reason collector raises KeyError for beforeSha256 in the
+recovery receipt, which actually binds testSha256/runnerSha256. Correct the
+diagnostic collector to validate that existing schema explicitly. The first
+successful index binds draft consumer references with incorrect receipt paths;
+preserve its original receipt/index/control data, correct references and collect
+again. This affects diagnostic provenance, not product/gate behaviour.
 
 Archive-declaration pre-commit close passes eight checks and fails only dirty
 work and deliberately unpushed HEAD. Staged source/prose/bindings are reviewed;
