@@ -1,5 +1,10 @@
 # Staged devnet release — review draft
 
+The [derived package inventory](../../evals/release/package-inventory.md), S136,
+binds a separate draft to the actual SDK manifest and archive after preserving
+npm's root naming finding. It does not replace raw output or complete schema,
+licence, frozen SBOM or R.1 clearance.
+
 The current [consumer inventory](../../evals/release/sdk-inventory.md), S133,
 also records the exact private SDK dependency graph and tarball binding. Its
 synthetic consumer root and absent SDK licence remain visible; it does not

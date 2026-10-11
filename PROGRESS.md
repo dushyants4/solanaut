@@ -1,5 +1,9 @@
 # PROGRESS.md
 
+The current private SDK has a manifest/archive-bound derived inventory draft,
+S136, with raw npm naming findings preserved. Controls and isolated faults pass;
+schema, licence and complete R.1 qualification remain owed. No milestone advances.
+
 ADR-024 proposes a failed-outcome budget for remaining RT-3 questions; H16
 requires acceptance before implementation. Current non-stop findings remain,
 no policy values are selected and no milestone advances.

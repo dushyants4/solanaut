@@ -1,0 +1,41 @@
+F...EE
+======================================================================
+ERROR: test_INV_3_unexpected_component_refuses (__main__.InventoryTests.test_INV_3_unexpected_component_refuses)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/solanaut-inventory-fault-c465i0wm/package-inventory.test.py", line 56, in test_INV_3_unexpected_component_refuses
+    result = inventory.project(raw, manifest, archive)
+  File "/tmp/solanaut-inventory-fault-c465i0wm/package-inventory.py", line 18, in project
+    validate(result, manifest, archive)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/solanaut-inventory-fault-c465i0wm/package-inventory.py", line 39, in validate
+    raise ValueError("dependency graph differs from pinned manifest")
+ValueError: dependency graph differs from pinned manifest
+
+======================================================================
+ERROR: test_INV_3_wrong_runtime_version_refuses (__main__.InventoryTests.test_INV_3_wrong_runtime_version_refuses)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/solanaut-inventory-fault-c465i0wm/package-inventory.test.py", line 50, in test_INV_3_wrong_runtime_version_refuses
+    result = inventory.project(raw, manifest, archive)
+  File "/tmp/solanaut-inventory-fault-c465i0wm/package-inventory.py", line 18, in project
+    validate(result, manifest, archive)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/solanaut-inventory-fault-c465i0wm/package-inventory.py", line 39, in validate
+    raise ValueError("dependency graph differs from pinned manifest")
+ValueError: dependency graph differs from pinned manifest
+
+======================================================================
+FAIL: test_INV_1_projection_binds_manifest_without_mutating_raw (__main__.InventoryTests.test_INV_1_projection_binds_manifest_without_mutating_raw)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/solanaut-inventory-fault-c465i0wm/package-inventory.test.py", line 27, in test_INV_1_projection_binds_manifest_without_mutating_raw
+    self.assertEqual(raw, prior)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: {'bom[75 chars]e': 'sdk', 'version': '0.0.0', 'bom-ref': '@so[594 chars][]}]} != {'bom[75 chars]e': 'package', 'version': '0.0.0', 'bom-ref': [302 chars][]}]}
+Diff is 1234 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.014s
+
+FAILED (failures=1, errors=2)

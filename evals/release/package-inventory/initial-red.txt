@@ -1,0 +1,62 @@
+FFFFFF
+======================================================================
+FAIL: test_INV_1_projection_binds_manifest_without_mutating_raw (__main__.InventoryTests.test_INV_1_projection_binds_manifest_without_mutating_raw)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/dashy/Projects/Solanaut/evals/release/package-inventory.test.py", line 25, in test_INV_1_projection_binds_manifest_without_mutating_raw
+    self.assertEqual(result["metadata"]["component"]["name"], "sdk")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'package' != 'sdk'
+- package
++ sdk
+
+
+======================================================================
+FAIL: test_INV_1_raw_directory_name_is_not_package_identity (__main__.InventoryTests.test_INV_1_raw_directory_name_is_not_package_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/dashy/Projects/Solanaut/evals/release/package-inventory.test.py", line 31, in test_INV_1_raw_directory_name_is_not_package_identity
+    with self.assertRaisesRegex(ValueError, "root identity"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_INV_2_wrong_archive_hash_refuses (__main__.InventoryTests.test_INV_2_wrong_archive_hash_refuses)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/dashy/Projects/Solanaut/evals/release/package-inventory.test.py", line 37, in test_INV_2_wrong_archive_hash_refuses
+    with self.assertRaisesRegex(ValueError, "archive hash"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_INV_3_missing_edge_refuses (__main__.InventoryTests.test_INV_3_missing_edge_refuses)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/dashy/Projects/Solanaut/evals/release/package-inventory.test.py", line 43, in test_INV_3_missing_edge_refuses
+    with self.assertRaisesRegex(ValueError, "dependency graph"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_INV_3_unexpected_component_refuses (__main__.InventoryTests.test_INV_3_unexpected_component_refuses)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/dashy/Projects/Solanaut/evals/release/package-inventory.test.py", line 55, in test_INV_3_unexpected_component_refuses
+    with self.assertRaisesRegex(ValueError, "runtime component"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_INV_3_wrong_runtime_version_refuses (__main__.InventoryTests.test_INV_3_wrong_runtime_version_refuses)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/dashy/Projects/Solanaut/evals/release/package-inventory.test.py", line 49, in test_INV_3_wrong_runtime_version_refuses
+    with self.assertRaisesRegex(ValueError, "runtime component"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.003s
+
+FAILED (failures=6)

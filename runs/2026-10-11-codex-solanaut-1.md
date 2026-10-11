@@ -7,6 +7,20 @@ retain all architecture, independent, human and release gates.
 
 ## Did
 
+Proposal checkpoint fa2f6e2 is committed with complete verified bundle, exact
+clean restore and successful full fsck. Clean close passes all checks except
+deliberately unpushed HEAD. Inspect performance preparation: report validation
+exists, but the full timing runner/reference baseline remain owed. No timings
+are measured or performance gate credit claimed.
+
+Continue release inventory preparation. npm's actual package-root output names
+the extraction root rather than the artifact manifest name. Preserve it and
+build a separate manifest/archive-bound draft with tests-first controls and
+copied-source faults. Original generated metadata and earlier S133 stay intact.
+Runtime integrity matches the generated offline lock; bound inputs stay unchanged,
+temporary extraction is removed and typecheck passes. Register S136 with explicit
+schema/licence/release limitations; no maintained gate or product change.
+
 Traffic checkpoint 5cb7f50 has a verified complete local bundle, exact clean
 restore and successful full fsck. Move to architect for remaining RT-3 questions.
 Its repository-local PATTERNS/GAPS references are absent; record missing guidance
@@ -107,6 +121,18 @@ the unchanged original companion control also passes. Outputs stay separate,
 with no installation or full runtime/matrix claim.
 
 ## Found
+
+Inventory pre-commit close passes all checks except uncommitted work and the
+deliberately unpushed HEAD. Staged diff review retains the raw typecheck output's
+final blank line verbatim; its whitespace warning is recorded, not edited out
+of captured evidence. Credential-word search finds no matching material in the
+new inventory outputs. No product or protected file changes.
+
+A combined redirected report-control command and close invocation is refused
+by the boundary heuristic before execution. Split the ordinary test/log command
+from the unchanged close invocation as the guard directs; no gate edit occurs.
+The original performance-report controls pass, but they are synthetic report
+checks and establish no measured latency, throughput, restart or freshness.
 
 The benign traffic gate's success does not resolve the original RT-3 loop limits.
 Alternating and distinct failed-outcome streams remain unstopped within the

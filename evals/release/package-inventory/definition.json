@@ -1,0 +1,8 @@
+{
+  "revision": "fa2f6e24ec0f30e02e7b53f65b71486ab6d995b6",
+  "archiveSha256": "55e8753409bb04960271418e1a3d907b8f3130ff16c10a0a143080be50af489d",
+  "runnerSha256": "7586c5bdfdfe3dc8f687813d6d29cb8e58189e0607596c53c95f4ad1782343ed",
+  "node": "v26.7.0",
+  "npm": "11.19.0",
+  "scope": "derived draft inventory; original npm output retained, no schema or release clearance"
+}

@@ -1,0 +1,11 @@
+{
+  "archiveSha256": "55e8753409bb04960271418e1a3d907b8f3130ff16c10a0a143080be50af489d",
+  "rawSha256": "bc3f6ec2916b9547b6d386ea1c15ac5661ffa80e7b82884db6c617d864c3213d",
+  "derivedSha256": "1a2f82522ff4309ff53b4144151ed7a5ad213cd253c2a04552257d0613be7ca0",
+  "rawRootRefused": true,
+  "runtimeIntegrityMatched": true,
+  "temporaryConsumerRemoved": true,
+  "fullSchemaValidation": false,
+  "licenseClearance": false,
+  "releaseClearance": false
+}

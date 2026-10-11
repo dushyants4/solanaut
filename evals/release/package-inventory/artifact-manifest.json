@@ -1,0 +1,29 @@
+{
+  "name": "@solanaut/sdk",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "The Solanaut guard: a deterministic transaction policy plus Gubernaut Keel's control loop.",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js"
+    }
+  },
+  "types": "./dist/src/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "bin": {
+    "solanaut-replay": "./dist/bin/replay.js",
+    "solanaut-pin-table": "./dist/bin/pin-table.js",
+    "solanaut-verify-archive": "./dist/bin/verify-archive.js",
+    "solanaut-prepare-policy": "./dist/bin/prepare-policy.js"
+  },
+  "dependencies": {
+    "@gubernaut/core": "1.0.1"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "faults": [
+    {
+      "name": "root",
+      "exit": 1,
+      "completeControls": true
+    },
+    {
+      "name": "archive",
+      "exit": 1,
+      "completeControls": true
+    },
+    {
+      "name": "graph",
+      "exit": 1,
+      "completeControls": true
+    },
+    {
+      "name": "alias",
+      "exit": 1,
+      "completeControls": true
+    }
+  ],
+  "originalModuleSha256": "7586c5bdfdfe3dc8f687813d6d29cb8e58189e0607596c53c95f4ad1782343ed",
+  "testSha256": "7ab27be90fda4270ca1a94ce9da8911941835f11004876649e2965891492ab8f",
+  "originalsUnchanged": true,
+  "controlsExit": 0
+}

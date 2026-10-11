@@ -1,0 +1,14 @@
+...F..
+======================================================================
+FAIL: test_INV_3_missing_edge_refuses (__main__.InventoryTests.test_INV_3_missing_edge_refuses)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/solanaut-inventory-fault-ic3aqpsl/package-inventory.test.py", line 46, in test_INV_3_missing_edge_refuses
+    with self.assertRaisesRegex(ValueError, "dependency graph"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+FAILED (failures=1)

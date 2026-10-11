@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`release/package-inventory.md`: original npm root naming finding plus a separate
+manifest/archive-bound derived draft, first failures and isolated faults, S136.
+Raw generation stays intact; schema, licence and R.1 qualification remain owed.
+
 `release/current-traffic.md`: original current synthetic benign traffic passes,
 while alternating and distinct failed-outcome non-stop limits remain explicit,
 S135. Reused frozen population, unchanged domains/controller; no broad stop claim.

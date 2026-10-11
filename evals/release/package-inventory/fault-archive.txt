@@ -1,0 +1,14 @@
+..F...
+======================================================================
+FAIL: test_INV_2_wrong_archive_hash_refuses (__main__.InventoryTests.test_INV_2_wrong_archive_hash_refuses)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/solanaut-inventory-fault-wg6s4wc_/package-inventory.test.py", line 40, in test_INV_2_wrong_archive_hash_refuses
+    with self.assertRaisesRegex(ValueError, "archive hash"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+FAILED (failures=1)

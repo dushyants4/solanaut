@@ -1,5 +1,9 @@
 # DOCUMENTS.md — the document register
 
+2026-10-11 registers derived package-inventory receipt/helpers/controls and raw
+npm finding, exact bindings and faults; CLAIMS S136, PROGRESS, HANDOFF,
+staged-release draft, evaluation index and continuing record. No gate change.
+
 2026-10-11 registers proposed ADR-024, H16, PROGRESS, RISKS and continuing run.
 The design cites existing S135 evidence and retains all current limits. No new
 measurement, accepted policy value, implementation or milestone credit follows.

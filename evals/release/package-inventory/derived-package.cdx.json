@@ -1,0 +1,91 @@
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:31542e9e-6819-450c-a55c-42e96a3f76f8",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-10-11T06:02:05.904Z",
+    "lifecycles": [
+      {
+        "phase": "pre-build"
+      }
+    ],
+    "tools": [
+      {
+        "vendor": "npm",
+        "name": "cli",
+        "version": "11.19.0"
+      }
+    ],
+    "component": {
+      "bom-ref": "@solanaut/sdk@0.0.0",
+      "type": "library",
+      "name": "sdk",
+      "version": "0.0.0",
+      "scope": "required",
+      "description": "The Solanaut guard: a deterministic transaction policy plus Gubernaut Keel's control loop.",
+      "purl": "pkg:npm/%40solanaut/sdk@0.0.0",
+      "properties": [
+        {
+          "name": "cdx:npm:package:private",
+          "value": "true"
+        }
+      ],
+      "externalReferences": [],
+      "group": "@solanaut",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "55e8753409bb04960271418e1a3d907b8f3130ff16c10a0a143080be50af489d"
+        },
+        {
+          "alg": "SHA-512",
+          "content": "89844cc9d0647ce33e14613bd7a7896436e10235cc21d1f42079218c9e6de3c866f4d144565aec14772e21299231e7c887d33fccaa9f6782874fff50d6ac3502"
+        }
+      ]
+    }
+  },
+  "components": [
+    {
+      "bom-ref": "@gubernaut/core@1.0.1",
+      "type": "library",
+      "name": "@gubernaut/core",
+      "version": "1.0.1",
+      "scope": "required",
+      "purl": "pkg:npm/%40gubernaut/core@1.0.1",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/@gubernaut/core/-/core-1.0.1.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "48e9bb91f4654f75c87618fb3aff3dd256788b76c063f13d5a82fe441c9dc8bbeccd819bbc72d27e8deed8553198d0e1546f1ee2dd81e31a6646a135a814a54c"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "@solanaut/sdk@0.0.0",
+      "dependsOn": [
+        "@gubernaut/core@1.0.1"
+      ]
+    },
+    {
+      "ref": "@gubernaut/core@1.0.1",
+      "dependsOn": []
+    }
+  ]
+}

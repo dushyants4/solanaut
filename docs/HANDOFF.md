@@ -263,6 +263,12 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 ## 7. Codex's log
 
+2026-10-11 retains npm's package-root naming finding and a separate derived SDK
+inventory draft, S136. Manifest, actual archive hashes, dependency edges and
+runtime lock integrity agree. Tests fail first; copied faults are caught without
+mutating measured originals. No full schema/licence/provenance/R.1 clearance,
+source/gate/version changes or milestone credit. Raw S133 remains intact.
+
 2026-10-11 proposes ADR-024 for remaining RT-3 questions, H16. It specifies
 global failed-report counting, source trust, durable latch/release epochs,
 policy-history reconstruction and compatibility, with fresh evaluation/fault

@@ -1,0 +1,1 @@
+manifest-bound derived inventory retained; original root finding preserved
