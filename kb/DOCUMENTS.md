@@ -1,5 +1,9 @@
 # DOCUMENTS.md — the document register
 
+2026-10-13: native signer executable/process and omission receipts, source-fault
+runners and compact hashes; SPEC allocations/defects, SIGNER/CLIENT/SDK/OVERVIEW,
+current assertion table, CLAIMS S160, PROGRESS, HANDOFF and continuing record.
+
 2026-10-13: same-user socket disclosure/follow-up receipt, source-fault runner
 and hash manifest; CLIENT, SIGNER, SPEC, current assertion table, CLAIMS S159,
 PROGRESS, HANDOFF and the continuing record. Raw output stays under sandbox.

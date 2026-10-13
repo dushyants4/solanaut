@@ -200,7 +200,7 @@ process isolation. Do not use these interfaces to fabricate chain outcomes or se
 | `PolicyError` (`rule: invalid-policy`) | Correct its field problems; no guard started. |
 | `PolicyAuthorizationError` (`code: policy-authorization`) | Verify the independent trust pin and exact signed text/version; do not disable verification to start. |
 | `DecodeError` (`rule`) | Correct unsupported/malformed bytes or table pins; classification/admission remains required afterwards. |
-| `SolanautDenied` (`ref`, `class`) | Stop on `refused`, inspect an `invalid` proposal, and reconcile a `retry-later` result before another attempt. `ref` is the recorded decision sequence, or −1 when none was persisted. The default error carries no rule, reason, decision or cause. |
+| `SolanautDenied` (`ref`, `class`) | Stop on `refused`, inspect an `invalid` proposal, and reconcile a `retry-later` result before another attempt. `ref` identifies the associated recorded decision, or −1 when the refusal has none. An adapter-only refusal can follow an earlier admission/signature; −1 does not prove nothing happened. The default error carries no rule, reason, decision or cause. |
 | `SignerClientError` (`code`, `mayHaveExecuted`, optional `remoteCode`) | Follow [CLIENT](CLIENT.md). Preserve requests whenever execution is uncertain. |
 | `ArchiveError` (`code`) | Follow [STORAGE](STORAGE.md); structural success still needs authenticated replay and a recovery drill. |
 | `CheckpointBindingError` (`code: checkpoint-binding`) | Refuse this checkpoint binding. Check the external pins, both signatures, exact profile and independently computed payload digests; complete restore still needs verified replay. |

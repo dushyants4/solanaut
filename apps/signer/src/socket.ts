@@ -24,16 +24,16 @@ export async function startSocket(path: string, handler: (request: Record<string
   const sockets = new Set<Socket>();
   const server = createServer((s) => {
     s.on("error", () => s.destroy());
-    if (sockets.size >= 64) { s.end('{"ok":false,"error":{"code":"busy"}}\n', () => s.destroy()); return; }
+    if (sockets.size >= 64) { s.end('{"ok":false,"error":{"ref":-1,"class":"retry-later"}}\n', () => s.destroy()); return; }
     sockets.add(s);
     let buffer = Buffer.alloc(0); let dispatched = false; let done = false;
     const finish = (body: unknown) => {
       if (done) return; let wire: string;
       try { wire = JSON.stringify(body); if (Buffer.byteLength(wire) > 16_383) throw new Error("response too large"); }
-      catch { wire = '{"ok":false,"error":{"code":"internal"}}'; }
+      catch { wire = '{"ok":false,"error":{"ref":-1,"class":"refused"}}'; }
       done = true; clearTimeout(timer); s.end(wire + "\n", () => s.destroy());
     };
-    const fail = (code: string) => finish({ ok: false, error: { code } });
+    const fail = (code: string) => finish({ ok: false, error: { ref: -1, class: code === "busy" || code === "timeout" ? "retry-later" : code === "protocol" || code === "method" ? "invalid" : "refused" } });
     const timer = setTimeout(() => fail("timeout"), timeoutMs);
     s.on("close", () => { clearTimeout(timer); sockets.delete(s); });
     s.on("data", (chunk) => {

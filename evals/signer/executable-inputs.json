@@ -1,0 +1,371 @@
+{
+  "evidence": [
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-key-red.txt",
+      "bytes": 11318,
+      "sha256": "3608d744f2315161f1bd07732d871b9459441c35ca91db03c510684f2dfa19d3"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-key-focused.txt",
+      "bytes": 960,
+      "sha256": "239c424020672383d3ce5705f8106ef8cc6a80d9b845ca7fde978aa265d4350b"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-inputs-red.txt",
+      "bytes": 3873,
+      "sha256": "5dd5f60cc01af34a083c02698444e307c2959bb7603c52fb37d853194b354337"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-negative.txt",
+      "bytes": 1187,
+      "sha256": "fd0dc9fbf4777ca69c8ab0ecfcfca0943ecaeb0e3a4e0b501edbb017bbc0ebf9"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-startup.txt",
+      "bytes": 351,
+      "sha256": "4d9923723c966d549e3790d7804cb4e3c9fee7fbd589b0d7068fe9d4fda778d4"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-root-focused.txt",
+      "bytes": 1421,
+      "sha256": "679bf94b679f17da9ed272b42d487b98738a5bb91a960acb814226b1472c5f01"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-descriptors.txt",
+      "bytes": 2547,
+      "sha256": "c4b33872f2dfb6fb88926922bc45b17725e50c0b0e732f9a528dee24d3f16641"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-protected-corrected.txt",
+      "bytes": 434,
+      "sha256": "6ec6d83aad3aa12e29f484bfafd47af394841cea872d893132372209c48cddcd"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-key-instrumented-first.txt",
+      "bytes": 4431,
+      "sha256": "c72a77bbb5476fe94e938fa43f1f97c22159126fcdc8fee315d410a2539bf4b6"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-key-instrumented-corrected.txt",
+      "bytes": 2410,
+      "sha256": "e52a62442fd572ec2e91a5297dd55975ecb9357f2a1fb31a46499f5765ad4620"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-parent-permission-red.txt",
+      "bytes": 1457,
+      "sha256": "bcb4191effa3aa4b92a3fe56a458afc7f7cc36284f48178ef76c2b77fe310169"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-key-mode-initial-fault.txt",
+      "bytes": 957,
+      "sha256": "fed2cfcb87faca866205ceb0bb5f808207b421a26197ee64e8454ab7e9a414b7"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-read-boundaries-focused.txt",
+      "bytes": 752,
+      "sha256": "50f9df6e1a3c3f4260500bf1868dc89a8e7b10b5cd1079185c453cc26f2b2cfb"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-refined.txt",
+      "bytes": 1946,
+      "sha256": "815117eadb4b1e1000c5c65184d9b648ab0ef0da3e1fa448df2f104388ce5633"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-principal-binding-focused.txt",
+      "bytes": 465,
+      "sha256": "6815993bd5f7851f821f7d11f94c95aeede7641dce8dca28a43ffc670c7730f6"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-decode-class-red.txt",
+      "bytes": 2153,
+      "sha256": "7c7ccfbaf4d6f9e5758f09f86e4b75d08deb9739521c4021c107e7d0decf6394"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-decode-class-corrected.txt",
+      "bytes": 1162,
+      "sha256": "13fe77950e0c5567f8998807b4c058b0c5e98b45cb945826c49176716c8969df"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-transport-red.txt",
+      "bytes": 2739,
+      "sha256": "8c817c735bd89c20bcd9515e71523dd47ce2e314c81891e83cc1ca5c96f05894"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-transport-first-green.txt",
+      "bytes": 12506,
+      "sha256": "cb8ba31c8a7c7c0afe143bc8e5fed843c22202b51db5957f9221e98b0d9a93cb"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-transport-corrected.txt",
+      "bytes": 2880,
+      "sha256": "3c4010cc8a05f23b3ee4fd93bdb1a6ec8f7310817415b6dc64a8e798d2844d35"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-process-first.txt",
+      "bytes": 914,
+      "sha256": "bffd1bdd022d9bd7abebf246df01f0d59ed57e4676b07f43d4c0ac1da276b96b"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-process-corrected.txt",
+      "bytes": 241,
+      "sha256": "38e0823fec3db4862fbc2698c649f71a0cd6a804d1ecc1faf39e7b07313c0696"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-process-final.txt",
+      "bytes": 241,
+      "sha256": "eb5661fbcf68ccca131498574cf9d6c392ba480adad0ee147530b5183550bf59"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-full.txt",
+      "bytes": 104273,
+      "sha256": "8233f3d6faf5b22517406fff091d1b3e581080ccc130ab73ca6f7320dc6c1bf9"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-full-final.txt",
+      "bytes": 104468,
+      "sha256": "f31243d20c77ba3b07a0d5ceabcd52bb45c31580ac40b7d8b497ff2b73824699"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-typecheck-final.txt",
+      "bytes": 37,
+      "sha256": "396901319daac4a4413b23478852db3c572014f86c71d148273565f0f3332696"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-build.txt",
+      "bytes": 117,
+      "sha256": "e8a2f89bb4fc6971c684d9092f08bc3b6b7c8c6a7c861d81a634abc7fffd6a45"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-installed.txt",
+      "bytes": 2246,
+      "sha256": "3d7ae7b6e43a87e236e0e1a5ee9ed47a9007830dc04116194c66fd66040b2249"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-coverage.txt",
+      "bytes": 121840,
+      "sha256": "0189e56520fae816d644779b22e6aad38eaae33967324aa108a3903bf3368da7"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-coverage-summary.json",
+      "bytes": 15425,
+      "sha256": "b806d003e072a28fdd14009b5c9745163f10b7bd69b831bb5f703a49a4a9209d"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-fault-run.txt",
+      "bytes": 82,
+      "sha256": "06a14a689621ae929732b65c7e69efc80947e5379dd5dc148db3e57e1e0adec4"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-transport-fault-run.txt",
+      "bytes": 74,
+      "sha256": "7fcbf57b808bb0535b487d7f9c80df2cc194d31cf91be9e5a52af2e17006d14c"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-followup-fault-run.txt",
+      "bytes": 85,
+      "sha256": "9d9357582322e8d54598c60f5a943ac4bb9c18beb9c404e82026bb4838ae8217"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-socket-faults.txt",
+      "bytes": 396,
+      "sha256": "94adf0c11cdf6a32bf08ff7b60c47b38d642a5674f4e61a2515ab21b53d8f576"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-client-faults.txt",
+      "bytes": 969,
+      "sha256": "499ea7860b501caed99697ce9658831c7310bb7d7cb36c17b0e477fae807f2b2"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-service-faults.txt",
+      "bytes": 398,
+      "sha256": "165d68b46e85a6732ee47cdc361d53bd6c803445bafa26d3aa0626912233a849"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-faults/blocking-descriptor.txt",
+      "bytes": 1710,
+      "sha256": "8f477ecdba8b2e5a11e70765167e3ced9f1f9fe4fd74656f0c646248e9e24184"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-faults/follow-symlink.txt",
+      "bytes": 1706,
+      "sha256": "5204d377dbefc6b07d7bfc553f8b73dbfd1a3b87a65527025845e2d530dc5c2b"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-faults/read-before-permission-refusal.txt",
+      "bytes": 1683,
+      "sha256": "c9bea6b956d75882b1fc2b82876872cc344d9fce53d7c3401e294f5aa1038436"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-faults/reset-existing-identity.txt",
+      "bytes": 1158,
+      "sha256": "c8e065600e8a426b1892a31739ab38e738a12b47b99fff1ddffb1c48ef796876"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-faults/restored.txt",
+      "bytes": 2172,
+      "sha256": "8426fe3cc6a4f1149e07e0f6217c0bcb5472e382400df353e5d407366784e25f"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-faults/result.json",
+      "bytes": 1625,
+      "sha256": "7047e21011efba531580fb84904bf09309ba6ac3858d557c5bb842c583084824"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-faults/unbounded-buffer.txt",
+      "bytes": 1683,
+      "sha256": "ab01a1d89435d8d00b35f65b60980c3907d68c1ef2ffcc906debe1d974674b89"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-faults/unsafe-parent-after-read.txt",
+      "bytes": 1674,
+      "sha256": "15315cc62ba1ac0226cbf1b41d66fd15b4c8080a28e8464c11036f85d52a63af"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-faults/wrong-principal.txt",
+      "bytes": 1225,
+      "sha256": "cb7dc4866185fe290d09c7fdebb0c3496d4ffa9c9f844d48c2ba2bf550c241f9"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-executable-faults/wrong-public-half.txt",
+      "bytes": 1582,
+      "sha256": "9f8dc6ae4fe39741cf03860dd2c17ecd74347f85d94cee1d6602fd0406dc5525"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-transport-faults/accept-private-error-fields.txt",
+      "bytes": 2548,
+      "sha256": "070d982791b646935809c00066e31e7effb6bdec7334c0318356b6260f5648cf"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-transport-faults/diagnostic-instead-of-class.txt",
+      "bytes": 2758,
+      "sha256": "382e7126c59fd7172be9211c5a92495879550014edba51cc25e3bfe4d0b1e6f9"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-transport-faults/invalid-proposal-as-retry.txt",
+      "bytes": 2149,
+      "sha256": "04b92d32e1a14d00db47132f64d29c303adece00fc034376c582afd8db960e4a"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-transport-faults/missing-transport-reference.txt",
+      "bytes": 2719,
+      "sha256": "f1cf403f29b4ab6dfdea5aef6cd7bf07c75ffb2c96e5846b92ef02ea7fc8b0aa"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-transport-faults/restored.txt",
+      "bytes": 2420,
+      "sha256": "acf504ae09f4ee07edabdb34e301bb3746c20269b3160fccf31343892662ff42"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-transport-faults/result.json",
+      "bytes": 1041,
+      "sha256": "28740b80912995d55300caef2c71d2f690c34cb5964c9b029a9500d5c4f27db3"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-followup-faults-executable/no-backoff.txt",
+      "bytes": 1842,
+      "sha256": "cbfb01117161ced37a684c7a5b54fe3975c607f61ebbd481b031af789613c659"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-followup-faults-executable/no-followup.txt",
+      "bytes": 3051,
+      "sha256": "6970c43af894d4c986969ace33c70e43a10c994f6c1086938738112eca1ca989"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-followup-faults-executable/no-timer-cancellation.txt",
+      "bytes": 3201,
+      "sha256": "7dc927e5f30a03414a40a3cd0b919db965b789ad4ecb676d77139ff4946c36ec"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-followup-faults-executable/overlapping-recovery.txt",
+      "bytes": 2107,
+      "sha256": "b0a3d617726651b76902d21baa0aafd2fbc0570b0be2145c1705eb3dd0383fab"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-followup-faults-executable/private-client-fields.txt",
+      "bytes": 1876,
+      "sha256": "31807ab90171aed03327e51a2326403bc4027515e0c0818155c2760b46ba3a97"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-followup-faults-executable/private-denial.txt",
+      "bytes": 6149,
+      "sha256": "3efd7c081a02813fbc86c9c194bc4cee323b04cbb7c550fb44bc524f7240e663"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-followup-faults-executable/private-status.txt",
+      "bytes": 3324,
+      "sha256": "91c11757086c18b790b27881333ca254f94404e704892fd3d2249457375a68f7"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-followup-faults-executable/restored.txt",
+      "bytes": 3035,
+      "sha256": "a0bc4c6e23341bed490630ac62c1f35c89aa922868522ba89010d8beca3939c9"
+    },
+    {
+      "path": ".sandbox/evidence/2026-10-13-development/signer-followup-faults-executable/result.json",
+      "bytes": 1356,
+      "sha256": "e7fe3d54da87c1b82c61639f31fd8dae5445cca9dd5d0b318cd7ad3b515d3029"
+    }
+  ],
+  "sourceInventory": [
+    {
+      "path": "apps/signer/src/clock.ts",
+      "lines": 5,
+      "sha256": "dabb511d573a7cbe19bc56e71fa928d8b7e0e88f022d391c75d29579ad76c2af"
+    },
+    {
+      "path": "apps/signer/src/core.ts",
+      "lines": 108,
+      "sha256": "74d1e674be1092928232cded0b8417163f6b3a6e35508607f539f3191d10db5c"
+    },
+    {
+      "path": "apps/signer/src/handler.ts",
+      "lines": 57,
+      "sha256": "9bc599c47ee061c341140abe2fb6e03434b738c4d084b9635903cf9d07e454dd"
+    },
+    {
+      "path": "apps/signer/src/key.ts",
+      "lines": 25,
+      "sha256": "ea60ed7ccb360c15b6b777c3d57e27f0344e65e9da1d5b5015059a2c48abddbd"
+    },
+    {
+      "path": "apps/signer/src/main.ts",
+      "lines": 46,
+      "sha256": "1eace8c78bec5516032c4afc733e6d069d493298a1ebb7e2eed78b67c1779819"
+    },
+    {
+      "path": "apps/signer/src/protected-file.ts",
+      "lines": 22,
+      "sha256": "9170810230a4b1d60b4a6b9f5e591a8b2818653580a50fcfeafc00c3cb052178"
+    },
+    {
+      "path": "apps/signer/src/rpc.ts",
+      "lines": 127,
+      "sha256": "f132d2073b89123b34009f2a9d374de6f43a422f472e6497474e41b330288691"
+    },
+    {
+      "path": "apps/signer/src/service.ts",
+      "lines": 71,
+      "sha256": "a3b1cdb9dfadbf16f71b0acc219f0abcedc521b04622fbef72f304d6524da847"
+    },
+    {
+      "path": "apps/signer/src/socket.ts",
+      "lines": 63,
+      "sha256": "5f211d88a1b3717f88da768c7b2cf7ceacf3f6ca038892d56a50951a67dd26f6"
+    },
+    {
+      "path": "packages/sdk/src/signing.ts",
+      "lines": 55,
+      "sha256": "6a13979210438c3a1771e95eb18ee695c04a4d43cb7054e8d6225f8754f3e904"
+    },
+    {
+      "path": "packages/sdk/src/authority.ts",
+      "lines": 11,
+      "sha256": "68f16afbd4eaeb8cd5f287288d66e6b44a2f876340e66806aa67e0b980783bfc"
+    },
+    {
+      "path": "packages/sdk/src/control-request.ts",
+      "lines": 33,
+      "sha256": "32956faf9eb8cf57fcaef48d33aa9a97d91477a6d06545fb673433467d552c06"
+    }
+  ]
+}

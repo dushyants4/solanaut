@@ -331,16 +331,21 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 
 | O12 | Hosted runtime qualification | After the existing installed-package test step, add a step named `running signer disclosure and follow-up faults` with `run: python evals/signer/followup-faults.py`. Preserve all existing steps, limits and matrix; apply alongside runner remediation. | The new running-path source population needs maintained omission trials; local evidence is `evals/signer/followup.md`. No hosted clearance or deadline increase is inferred. | no |
 
+| O13 | Hosted native signer qualification | After O12, add `native signer key/config/transport faults` with `run: python evals/signer/executable-faults.py` followed by `python evals/signer/transport-faults.py`. Keep every existing step/limit/runtime. Separately qualify `node --test evals/signer/process.test.ts` in an owner-approved job with the pinned Solana keygen toolchain; no skip or implicit tool installation. | Local executable source trials and a keygen-backed process rehearsal exist; SDK tarball evidence alone does not qualify the executable. Claude owns these gate additions. | no |
+
+| O14 | tools/claims_lint.py | Immediately after `own = rows(s1)`, insert `own_ids = {cid for cid, _ in own}` and `errors += [f"{cid}: Solanaut claim is outside §1" for cid, _ in rows(text) if cid.startswith("S") and cid not in own_ids]`. Add a self-test with a measured S-row moved below §2 and observe refusal. | The initially misplaced new measured row passes lint while omitted from its count; corrected document placement passes. Preserve all existing rules and populations. Claude owns the gate edit. | no |
+
 ## 7. Codex's log
 
-2026-10-13: integrated wallet batch membership and RPC text-redaction fixes;
-removed reviewed stale worktrees/branches and froze accepted SPEC contracts.
-SDK callbacks hold private reasons; class/reference errors and signed full mode work.
-The same-user service projects socket replies and follows signed attempts automatically.
-Local source, package and serial coverage checks pass; original campaigns stay intact.
+2026-10-13: product batch/RPC fixes and private SDK/socket denial channels integrated;
+reviewed stale worktrees/branches removed and accepted SPEC contracts frozen.
+The native same-user signer loads protected key/config and explicit signed history.
+Automatic follow-up and a scoped real process kill/restart against fake providers work.
+Local source, compiled SDK and serial coverage checks pass; original campaigns remain.
 Receipts: `evals/release/integrated-fixes.md`, `evals/release/disclosure.md`,
-`evals/signer/followup.md`. Next: protected key loading, executable and real kills.
-Hosted runner edits remain Claude's; a live smoke test needs an operator RPC pair.
+`evals/signer/followup.md`, `evals/signer/executable.md`. No Alpha/stable gate credit.
+Live RPC/config and dedicated-user checks wait; continue signer/policy/token qualification.
+Hosted and additive gate edits remain Claude's, with exact owed snippets above.
 
 
 2026-10-11 reconciles private PRODUCT-PAGE/STAGED-RELEASE editorial status with

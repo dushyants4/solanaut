@@ -72,12 +72,52 @@ Socket status projects mode, keyIsolation, recoveryIncomplete and degraded. Sock
 denials expose only status/class/reference, including historical retries and full
 development policies; private journal evidence is unchanged. Background follow-up
 uses the same recovery path, coalesces overlapping passes, backs off on incomplete
-passes, and cancels/drains before releasing ownership. Key loading, an executable
-and dedicated-user deployment remain owed; this is not an installable isolated
-service. Earlier evidence: `evals/signer/service.md`.
+passes, and cancels/drains before releasing ownership. The native executable now
+loads protected configuration and its devnet key, constructs the RPC boundary,
+then starts the same-user service. Dedicated-user deployment and installed release
+artefacts remain owed. Earlier factory evidence: `evals/signer/service.md`.
 The human accepted ADR-021's larger budget, now reflected in SIG-11; all signer
 app source and signer-specific helpers count. The complete running candidate
 still needs its explicit source inventory. No release gate is marked achieved.
 The SDK's distinct sending client consumes this socket protocol (`docs/CLIENT.md`, S31).
 The client/service integration is tested with fake RPC; the client has no signing key or
 partial-signing methods. The existing signing adapters retain their SDK semantics.
+
+## Native same-user candidate
+
+This is a development executable, not the installed stable release. Use the
+approved native Node runtime from TOOLCHAIN. Keep its protected files outside
+the model's tool context; same-user code can still read them.
+
+Prepare an owned, real config file at an absolute path, mode 0600 in a 0700
+directory. Its exact fields are `cluster: "devnet"`, absolute `keypair`, `record`
+and `socket` paths, `policy`, and `authorization` from the operator-signing
+workflow in [POLICY](POLICY.md). It contains no RPC URLs or credentials. The
+key file must be made with `solana-keygen`, mode 0400 in an owned real 0700
+directory, and match the policy's sole principal. The history directory is 0700;
+the socket directory is 0750. Symlinked paths and linked key files refuse.
+
+Create the new history explicitly, once:
+
+```sh
+node apps/signer/src/main.ts --same-user --config /absolute/config.json --init
+```
+
+This refuses an existing record and never clears one. Configure the operator's
+distinct devnet RPC endpoints through SOLANAUT_RPC_A/B in the environment, then:
+
+```sh
+node apps/signer/src/main.ts --same-user --config /absolute/config.json
+```
+
+The ready line reports `same-user` and `keyIsolation: false`, without key or
+endpoint data. SIGTERM/SIGINT request orderly draining. After a kill, restart
+with the same protected config/history; keep the original request ID and bytes.
+Never delete history to get past a refusal or create a new payment ID to resolve
+uncertainty. Agent status is coarse; inspect the operator's record for details.
+
+Native startup uses bounded descriptor reads, complete keypair validation and
+fixed-category failures. `signer startup refused` deliberately omits underlying
+input/endpoint text; inspect permissions, paths, signed policy and the operator
+environment locally. The SDK's installed-package evidence does not qualify
+this executable's distribution, dedicated-user isolation or Linux lifecycle.

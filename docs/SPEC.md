@@ -433,7 +433,7 @@ Built at milestone 2a.7 (`evals/sdk/keel.md`).
 - **`SolanautDenied`**, under accepted ADR-025, carries `{ref, class}` by default.
   Its message and stack contain only the class and reference, never a rule,
   reason, policy value, address or decision object. The reference is the recorded
-  decision sequence; `-1` explicitly means no recorded decision exists (including
+  decision sequence; `-1` means this refusal has no associated recorded decision (including
   adapter-only refusals and failed persistence). No unrelated decision is substituted.
 - **Operator channel:** `createGuard({onRefusal})` receives a detached, deeply
   frozen `{rule, reason, decision}` after a denied decision is persisted, exactly
@@ -579,6 +579,9 @@ Each is fixed test-first: the evaluator writes the failing test, and the builder
 | D40 | Raw buffer serializer returns leave admitted messages or verified wire aliased to externally mutable storage | local 32abc73, reproduced on 2026-10-10 | **implementation corrected locally:** privately copy both legacy/versioned object-message captures and serialised send wire. `evals/sdk/adapter-buffer-current.md` records fresh tests-first reproduction, source/emitted/installed proof and full native/type passes. Serial coverage still fails H11; no floor or stable gate credit. Earlier deferral/failures remain in `evals/sdk/adapter-buffer.md`. Deterministic alias tests are not concurrent scheduler or isolated-service qualification |
 | D41 | Wallet batch membership edits can make cleanup expire visible valid signing and omit caller objects; caller edits during awaits change requested membership | local fc3caff, reproduced on 2026-10-10 | **corrected and integrated on 2026-10-13:** `evals/release/integrated-fixes.md` records new first-failure reproduction, ordinary regressions, caught source omissions and passing full native/type checks. Earlier prepared/failed evidence remains in `evals/sdk/adapter-batch.md`. Hosted, isolated/live and stable qualification remain separate |
 | D42 | RPC provider error/body text propagates into thrown refusals and provider health diagnostics | local 32ddf33, reproduced on 2026-10-11 | **corrected and integrated on 2026-10-13:** `evals/release/integrated-fixes.md` records new first-failure reproduction, ordinary regressions, caught source omissions and passing full native/type checks. Earlier prepared/failed evidence remains in `evals/signer/rpc-redaction.md`. Hosted, isolated/live and stable qualification remain separate |
+| D43 | New key/config descriptor prototype accepts parent permission loss during its read | uncommitted native executable candidate, reproduced on 2026-10-13 | **corrected in the builder candidate:** recheck parent owner/mode after reading, in addition to inode/path identity. Public-file first failure and omission trial are retained; no key contents are printed or copied. Full qualification remains in progress |
+| D44 | Production-style decoding failures before RPC are returned as passing RPC failures | same-user service at fe21906209b851a6592a9097218568adcabee7ac, reproduced on 2026-10-13 | **corrected in the builder candidate:** classify unavailable proposal tombstones using immutable canonical payload syntax; malformed/unsupported bytes are invalid. Decision rules, signing/control journals and reservations are unchanged. First failure and durable retry regression are retained; release qualification remains separate |
+| D45 | Socket transport refusals use diagnostic codes instead of the accepted class/reference channel | same-user socket at fe21906209b851a6592a9097218568adcabee7ac, reproduced on 2026-10-13 | **corrected in the builder candidate:** only verdict/reference/class leave the transport, including busy, timeout, malformed frames and handler failure. The client validates that envelope and retains execution uncertainty; original framing, limits and fault populations remain. No private policy value was found in the old fixed transport codes |
 
 **Status:** closed at milestone 2a.5 (`evals/sdk/admission.md`), test-first: D1, D2, D5, D6, D7, D9, D10 and D12. D12
 closed early: the guard decodes bytes itself, so `packages/sdk/src` imports no web3.js. D11 closed at milestone 2a.6
@@ -702,6 +705,24 @@ Agent status exposes only mode, keyIsolation, recoveryIncomplete and degraded;
 policy identity/version, denial counters and rule-named latch state remain operator-side.
 Live follow-up uses the same recover/report path as startup, runs serially,
 backs off on incomplete passes, and is cancelled/drained before ownership release.
+Transport refusals also carry only `{ok:false,error:{ref:-1,class}}`: busy/timeout
+are retry-later, malformed framing/unknown methods invalid, and unknown internal
+failures refused. A missing reference cannot establish absence of an admission;
+clients retain execution uncertainty and never automatically resend.
+
+Executable allocation (same accepted ADRs): native development runs
+`node apps/signer/src/main.ts --same-user --config <absolute-public-config>`;
+`--init` is a separate explicit history-creation operation. The config is an
+owned real regular file, mode 0600, in a real owned 0700 directory, bounded to
+128 KiB. It contains only cluster, keypair/record/socket absolute paths, policy
+and signed authorization. Cluster must be devnet and the loaded public key must
+be the policy's sole principal. Serving requires SOLANAUT_RPC_A/B from the
+environment; endpoints/credentials are never printed or written into config.
+The key is an owned real regular 0400 file in a real owned 0700 directory, with
+one link and a bounded descriptor read. Validate the complete Solana keypair
+format and matching public half; expose only its address and signing function.
+Fixed-category failures discard paths, raw key bytes and underlying exceptions.
+SIGTERM/SIGINT drain the service before exit; restart uses established history.
 
 | ID | Requirement | From | Verified by |
 |---|---|---|---|

@@ -58,6 +58,10 @@ reviewed stale worktrees/branches. Accepted SPEC contracts precede their code.
 SDK adapters now expose class/reference errors and private operator callbacks;
 signed development disclosure is marked and replay-checked. The operator demo
 reads its private journal and no longer calls an uncertain send "not sent".
+The native executable loads protected key/config inputs and starts the service;
+explicit init preserves existing identities. A keygen-backed process kill/restart
+against fake providers retains one signature/send and follows settlement.
+Transport failures now use the class channel too; execution uncertainty remains.
 The running same-user service now projects socket replies and follows signed
 attempts automatically, coalescing passes and draining/cancelling before close.
 Source, installed-package and unchanged serial coverage checks pass; preserved
@@ -88,7 +92,58 @@ after the existing installed-package test step in each runtime job, insert:
 Preserve all earlier steps, the runtime matrix and job limits. This is an owed
 addition, not permission to run past a limit; combine with package remediation.
 
+Exact owed native-source workflow addition (O13, after O12):
+```yaml
+      - name: native signer key/config/transport faults
+        run: |
+          python evals/signer/executable-faults.py
+          python evals/signer/transport-faults.py
+```
+The separate `node --test evals/signer/process.test.ts` requires an owner-approved
+job with the pinned existing Solana keygen toolchain. No implicit installation,
+skip or deadline increase is authorised here. Original campaigns remain intact.
+
+Exact owed claim-placement check (O14): immediately after `own = rows(s1)` in
+`tools/claims_lint.py`, insert:
+```python
+    own_ids = {cid for cid, _ in own}
+    errors += [f"{cid}: Solanaut claim is outside §1" for cid, _ in rows(text) if cid.startswith("S") and cid not in own_ids]
+```
+Add this entry to the existing FAULTS dictionary, retaining every prior case:
+```python
+    "an own claim outside §1": GOOD + "\n| S3 | orphan | **measured** | missing |\n",
+```
+Owner qualification must observe its initial failure and restored pass; no
+source gate edit is applied here.
+
 ## Found
+
+The new measured row was initially appended outside CLAIMS §1. Lint checks its
+paths but does not count/validate that own claim; move it into the own-claim
+section. Its status/date/commands remain unchanged. An additive owner check for
+misplaced S-rows is owed, so a future placement mistake cannot pass silently.
+
+Transport refusals still used diagnostic codes rather than the accepted channel
+(D45, missing class/reference). New tests fail first; existing assertion changes
+retain every frame/identity/timeout/slot check and are in the single current table.
+No private policy value was found in those old fixed codes. The final native,
+compiled SDK, serial coverage and source fault controls pass without gate changes.
+
+The new descriptor prototype misses parent mode changes during a read (D43,
+parent permission loss). A real public-file regression fails first; recheck its
+owner/mode after reading. The native provider decodes before admission, exposing
+D44, invalid proposals misclassified as retry-later. Immutable syntax projection
+corrects that channel without changing journals or decisions; its regression
+fails first and includes a durable retry. A negative reference means no associated
+decision for this refusal, not proof that no earlier admission/signature exists.
+The first real-process fixture provides the wrong blockhash, so observation
+correctly refuses before send; preserve the failure and match the crafted hash.
+Instrumented subprocess warnings break exact diagnostic assertions. Disable
+runtime warnings only in those test children; production needs no loader flags.
+The first short-read fixture ceiling is below its own public JSON size; correct
+the fixture and check the inclusive boundary. An initial mode-check omission
+escapes malformed key-file tests (also masked by the post-read check); add a
+valid public descriptor and prove unsafe modes refuse before any byte read.
 
 Pre-commit claim lint refuses the new follow-up row because it only links the
 receipt's commands. Add literal regenerating commands to that row; no claim or
@@ -128,10 +183,11 @@ split the commands as the boundary instructions prescribe. No bypass or gate edi
 
 ## Open
 
-Run the same-user signer with protected devnet key loading, class-only socket
-replies and automatic follow-up; the latter two now work. Next are the key loader,
-executable and real kill/restart tests. The funded agent still needs an operator
-RPC pair for the live smoke test. Then continue the revised queue. Hosted runner
+The native same-user signer now runs with protected key/config loading and a
+scoped real process-kill rehearsal against fake providers. Live devnet still
+needs operator RPC/config; dedicated-user checks remain human-owned. Complete
+finalized lookup handling and the full signer reliability batteries, then the
+signed-policy and Token-2022 queue. Hosted runner
 edits remain Claude's; package publication, funding and OS users are human-owned.
 
 ## Provenance

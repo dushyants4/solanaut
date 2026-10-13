@@ -7,7 +7,7 @@ import subprocess
 from pathlib import Path
 
 root = Path.cwd()
-out = root / ".sandbox/evidence/2026-10-13-development/signer-followup-faults-bounded"
+out = root / ".sandbox/evidence/2026-10-13-development/signer-followup-faults-executable"
 out.mkdir(parents=True, exist_ok=False)
 service = root / "apps/signer/src/service.ts"
 client = root / "packages/sdk/src/adapters/sending-client.ts"
@@ -41,7 +41,7 @@ try:
         code, raw = run([test], name)
         (out / (name + ".txt")).write_text(raw)
         assert code == 1 and "AssertionError" in raw, (name, raw)
-        assert "tests " + ("11" if path == client else "9") in raw, name
+        assert "tests " + ("11" if path == client else "10") in raw, name
         assert all(token in raw for token in ["cancelled 0", "skipped 0", "todo 0"]), name
         results.append({"fault": name, "caught": True, "sha256": hashlib.sha256(raw.encode()).hexdigest()})
         path.write_bytes(original[path])
@@ -51,7 +51,7 @@ finally:
 assert all(p.read_bytes() == data for p, data in original.items())
 code, raw = run(["apps/signer/test/disclosure-followup.test.ts", "apps/signer/test/service.test.ts", "packages/sdk/test/sending-client.test.ts"], "restored")
 (out / "restored.txt").write_text(raw)
-assert code == 0 and "pass 28" in raw
+assert code == 0 and "pass 29" in raw
 (out / "result.json").write_text(json.dumps({"faults": results, "restored": True,
     "sourceSha256": {str(p.relative_to(root)): hashlib.sha256(data).hexdigest() for p, data in original.items()}}, indent=2) + "\n")
-print("seven follow-up/privacy faults caught; exact source restored; 28 combined cases pass")
+print("seven follow-up/privacy faults caught; exact source restored; 29 combined cases pass")

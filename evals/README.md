@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`signer/executable.md`: native same-user startup, protected key/config loading,
+explicit history creation and real kill/restart against fake providers. Class-only
+transport and decode corrections preserve safety; complete signer gates remain.
+
 `signer/followup.md`: the running same-user service projects class-only socket
 denials and follows signed attempts automatically; original campaigns remain
 intact. Executable/key loading and complete signer qualification remain owed.

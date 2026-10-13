@@ -291,7 +291,9 @@ exactly its members: it checks before the wallet signs, verifies what the wallet
 itself, and reports the outcome. What it only signs, it follows up by signature before the next check, and reports what
 the chain says. A failed send is reported `failed` only when the RPC refused the bytes. `guardedSigner(signer, guard)`
 checks and verifies the same way for a kit partial signer. Both throw
-`SolanautDenied { rule, reason, decision }`.
+`SolanautDenied { ref, class }` by default. Private rule/reason/decision details
+go to the operator's callback and journal; signed development disclosure can
+add rule/reason to SDK errors. The signer socket always projects the class channel.
 
 **State** (`state.ts`) changes only by applying an entry. Given a `log` path, the record is a file (`record.ts`):
 one JSON entry per line, synced before the guard answers, locked to one guard. On start the guard applies every entry
@@ -348,8 +350,10 @@ helper advances monotonically; operational wiring and OS-isolation evidence rema
 - **Claims:** every public sentence traces to `docs/CLAIMS.md`.
 - **Tiers:** T3 files (the guard, the doctor, the claims, the evals, the public surface) change only with the gate
   shown failing first. T4 (public, mainnet, submission) is the human's.
-- **Environment:** there are no runtime environment variables. The guard keeps no clock; proposals carry their time.
-- **What is not here yet:** a licence, and `programs/`. The on-chain drill, the scenes and the cockpit have run on
+- **Environment:** trusted SDK proposals carry caller time; the signer stamps an anchored monotonic clock.
+  Its native executable reads SOLANAUT_RPC_A/B from the operator's environment.
+- **Public source:** Apache-2.0 is accepted. The stable anchor and individual installation remain unfinished.
+  The on-chain drill, the scenes and the cockpit have run on
   devnet (`evals/onchain/squads-devnet.md`, `evals/e2e/scenes-devnet.md`).
 
 ## Changes
@@ -358,8 +362,12 @@ The signer recovery pass now isolates attempt failures and returns completion re
 still following signed bytes after pre-send refusal (`evals/signer/recovery.md`). This is
 executor evidence; operational supervision remains owed.
 The same-user host factory now composes protected signed history, ownership, clock,
-recovery, handler and socket (`evals/signer/service.md`). Signing/RPC remain host-supplied;
-installed/isolated operation and the existing implementation budget gate remain unachieved.
+recovery, handler and socket (`evals/signer/service.md`). The native executable now
+loads protected configuration and a devnet key, creates trusted RPC clients and
+starts that service. It follows signed attempts automatically; private journal
+evidence is projected to class/reference replies. Explicit `--init` creates fresh
+signed history, while normal startup requires its existing record. Installed and
+dedicated-user deployment plus complete signer qualification remain unfinished.
 Consumers can use the distinct SDK socket sending client (`docs/CLIENT.md`) instead of
 partial signing. Its compiled candidate exports and declarations have installed evidence;
 the product service is still not qualified for installation.

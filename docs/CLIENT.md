@@ -39,7 +39,9 @@ Agent status contains mode, keyIsolation, recoveryIncomplete and degraded; polic
 identity/version, denial counters and latch state stay operator-side. The running
 service now reconciles signed attempts automatically without another client call.
 
-`SignerClientError` exposes `code`, `mayHaveExecuted` and an optional fixed `remoteCode`.
+`SignerClientError` exposes `code` and `mayHaveExecuted`. A validated transport
+refusal additionally exposes `class` and `ref`; `remoteCode` retains the same
+class as a compatibility field. Private peer text or extra fields are rejected.
 Missing arguments, primitive values and array/function containers are refused
 before field access or transmission with `input` and `mayHaveExecuted: false`.
 Valid object fields still undergo identity, message, grouping and deadline checks.
@@ -50,7 +52,7 @@ Valid object fields still undergo identity, message, grouping and deadline check
 | `connection` | connection failed or closed without an answer | inspect uncertainty and signer status |
 | `timeout` | client's absolute wait ended | keep the request ID/bytes; reconcile before new work |
 | `protocol` | reply shape, identity or framing failed validation | treat the endpoint as unavailable and inspect diagnostics |
-| `remote` | peer returned a bounded transport refusal | inspect the fixed remote code and endpoint health |
+| `remote` | peer returned a bounded class/reference refusal | stop or reconcile according to its class and execution uncertainty |
 
 If `mayHaveExecuted` is true, preserve the request and inspect/reconcile it. Never create
 a new ID merely to retry that payment. False means this client did not transmit a proposal;

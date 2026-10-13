@@ -5,17 +5,17 @@
 | | |
 |---|---|
 | **Beta (Leg 2)** | **Achieved.** Built and validated on devnet; signed off by the human on 2026-10-05 and tagged `milestone/beta`. The evidence is listed under *Measured so far* below. |
-| **Alpha (Leg 3)** | **In progress**, built by Codex since 2026-10-05 (`docs/HANDOFF.md`). The signer, operator-signed policies, crash-safe storage and recovery, ADR-012's latch rule and much heavier testing are built and tested as components; the signer does not yet run as a process. No Alpha milestone is reached yet. On 2026-10-13 Claude reviewed the work (`docs/reviews/2026-10-13-codex-leg3.md`), and the human accepted the decisions it was waiting on. |
-| **Tests** | **960 of 960 pass**, and typecheck, installed-package checks and exact serial AST coverage pass locally (2026-10-13; `evals/signer/followup.md`, CLAIMS S159). Hosted run `38445834857` preserves prior green jobs; runtime package-fault jobs are cancelled and fault partition two fails pending Claude's runner/termination edits. |
+| **Alpha (Leg 3)** | **In progress**, built by Codex since 2026-10-05 (`docs/HANDOFF.md`). The signer, operator-signed policies, crash-safe storage and recovery, ADR-012's latch rule and much heavier testing are built and tested as components; a native same-user signer now runs, while installed/dedicated-user and complete signer qualification remain. No Alpha milestone is reached yet. On 2026-10-13 Claude reviewed the work (`docs/reviews/2026-10-13-codex-leg3.md`), and the human accepted the decisions it was waiting on. |
+| **Tests** | **983 of 983 pass**, and typecheck, installed SDK and exact serial AST coverage pass locally (2026-10-13; `evals/signer/executable.md`, CLAIMS S160). Hosted `38449067365` keeps prior green jobs and also passes the Node 24 runtime job; Node 22/26 package-fault jobs are cancelled and partition two fails pending Claude's runner edits. |
 | **Public** | **Public since 2026-10-12**: Apache-2.0, a plain-language README and reading guide. The human's private drop was removed from every commit; old commit IDs map to new ones in `docs/HISTORY-MAP.md` (`runs/2026-10-12-public-readiness.md`, `runs/2026-10-13-public-bridge.md`). |
 
 ## Detailed log, newest first
 
-**2026-10-13 · Product fixes, private denials and automatic signer follow-up integrated.**
-Wallet batches retain signed reservations; operator callbacks hold private SDK reasons.
-The same-user socket projects class/reference denials and reconciles signed attempts automatically.
-Local tests, typecheck, installed-package checks and serial coverage pass; receipts S157–S159.
-Hosted runner edits remain Claude's; key loading, the executable and isolation remain unfinished.
+**2026-10-13 · Native same-user signer now runs.** Protected keys/config and explicit signed-history init
+feed the service; class-only SDK/socket replies and automatic follow-up work. A real process kill/restart
+against fake providers retains its signed attempt without another send. Product fixes remain integrated.
+Local full tests/typecheck, compiled SDK and serial coverage pass; receipts S157–S160.
+Hosted runner edits, live RPC/config, dedicated-user and complete Alpha/release qualification remain.
 
 **2026-10-13 · Review, and the decisions it was waiting on.** Claude reviewed Codex's Leg 3 work: safe and honest,
 but heavy on evidence and light on integrated product (`docs/reviews/2026-10-13-codex-leg3.md`). The human accepted

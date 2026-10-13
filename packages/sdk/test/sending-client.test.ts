@@ -122,11 +122,14 @@ test("CLT-1: caller byte mutations cannot change the serialized proposal", async
     await request; assert.equal(seen, "AQ==");
   } finally { await host.close(); }
 });
-test("CLT-2/3: remote refusals use fixed typed codes without exposing peer messages", async () => {
-  const host = await server((_r, socket) => socket.end('{"ok":false,"error":{"code":"busy","message":"private detail"}}\n'));
-  try {
-    await assert.rejects(createSendingClient({ socket: host.path, clientId: "a" }).status({ id: "one" }), (e: unknown) => e instanceof SignerClientError && e.code === "remote" && !e.message.includes("private detail"));
-  } finally { await host.close(); }
+test("CLT-2/3: remote refusals use fixed typed classes and reject private peer fields", async () => {
+  for (const error of [{ ref: -1, class: "retry-later" }, { code: "busy", message: "private detail" }, { ref: -1, class: "refused", message: "private detail" }]) {
+    const host = await server((_r, socket) => socket.end(JSON.stringify({ok:false,error})+'\n'));
+    try {
+      await assert.rejects(createSendingClient({ socket: host.path, clientId: "a" }).status({ id: "one" }),
+        (e: unknown) => e instanceof SignerClientError && !e.message.includes("private detail") && ("message" in error ? e.code === "protocol" : e.code === "remote" && e.class === "retry-later" && e.ref === -1));
+    } finally { await host.close(); }
+  }
 });
 test("CLT-1/3: durable denied, uncertain and pre-admission refusal answers remain distinct", async () => {
   for (const result of [{ status: "denied", ref: 7, class: "refused" }, { stage: "response", decision, status: "uncertain", signature }, { stage: "response", decision, status: "uncertain" }, { status: "denied", ref: -1, class: "retry-later" }, { status: "denied", ref: 8, class: "invalid" }]) {

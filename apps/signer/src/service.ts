@@ -1,4 +1,4 @@
-import { createGuard, fileStore, SolanautDenied, verifyPolicyAuthorization, type PolicyAuthorization } from "@solanaut/sdk";
+import { createGuard, decodeMessage, fileStore, SolanautDenied, verifyPolicyAuthorization, type DeniedRule, type PolicyAuthorization } from "@solanaut/sdk";
 import { lstatSync, realpathSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { createSignerCore, type CoreOptions } from "./core.ts";
@@ -36,7 +36,12 @@ export async function startSigner(options: ServiceOptions) {
     const value = result as Record<string, unknown>;
     if (value.status === "denied") {
       const d = guard.entries().find(e => e.kind === "decision" && e.hash === value.decision);
-      const error = new SolanautDenied(d?.kind === "decision" ? d.rule ?? "fail-closed" : "rpc-unavailable", "", d?.kind === "decision" ? d : null);
+      let rule: DeniedRule = d?.kind === "decision" ? d.rule ?? "fail-closed" : "rpc-unavailable";
+      if (!d && request.method === "propose" && value.code === "unavailable") {
+        try { const bytes = Buffer.from(request.message as string, "base64"); if (bytes.toString("base64") !== request.message) throw new Error(); decodeMessage(bytes); }
+        catch { rule = "malformed-proposal"; }
+      }
+      const error = new SolanautDenied(rule, "", d?.kind === "decision" ? d : null);
       return { status: "denied", ref: error.ref, class: error.class };
     }
     if (request.method === "status") return { mode: "same-user", "keyIsolation": false, recoveryIncomplete: value.recoveryIncomplete === true, degraded: value.degraded === true };

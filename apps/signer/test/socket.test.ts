@@ -28,7 +28,7 @@ test("SIG-2: only propose/report/status dispatch, with one bounded response and 
       assert.equal(r.ok, true); assert.equal(r.id, "request"); assert.equal(r.result.mode, "same-user");
     }
     const denied = await exchange(path, JSON.stringify({ ...request(), method: "release" }) + "\n");
-    assert.equal(denied.ok, false); assert.equal(denied.error.code, "method");
+    assert.equal(denied.ok, false); assert.deepEqual(denied.error, {ref:-1,class:"invalid"});
     assert.deepEqual(seen, ["propose", "report", "status"]);
   } finally { await service.close(); }
 });
@@ -46,7 +46,7 @@ test("SIG-2/3: malformed JSON, unknown fields, bad IDs/deadlines and multiple fr
   const service = await startSocket(path, async () => { calls++; return {}; });
   try {
     for (const frame of ["{bad}\n", "[]\n", JSON.stringify({ ...request(), id: "" }) + "\n", JSON.stringify({ ...request(), deadline: "tomorrow" }) + "\n", JSON.stringify({ ...request(), key: "forbidden" }) + "\n", JSON.stringify(request()) + "\n" + JSON.stringify(request()) + "\n"]) {
-      const r = await exchange(path, frame); assert.equal(r.ok, false); assert.equal(r.error.code, "protocol");
+      const r = await exchange(path, frame); assert.equal(r.ok, false); assert.deepEqual(r.error, {ref:-1,class:"invalid"});
     }
     assert.equal(calls, 0);
   } finally { await service.close(); }
@@ -56,19 +56,19 @@ test("SIG-2: oversized or invalid UTF-8 frames refuse before dispatch", async ()
   const service = await startSocket(path, async () => { calls++; return {}; }, { timeoutMs: 100 });
   try {
     for (const bytes of [Buffer.alloc(16_385, 65), Buffer.from(JSON.stringify({ ...request("propose"), message: "x".repeat(16_384) }) + "\n"), Buffer.from([0xff, 0x0a])]) {
-      const r = await exchange(path, bytes); assert.equal(r.ok, false); assert.equal(r.error.code, "protocol");
+      const r = await exchange(path, bytes); assert.equal(r.ok, false); assert.deepEqual(r.error, {ref:-1,class:"invalid"});
     }
     assert.equal(calls, 0);
   } finally { await service.close(); }
 });
 test("SIG-3: idle and unfinished requests end within the configured bounded read timeout", async () => {
   const { path } = location(); const service = await startSocket(path, async () => ({}), { timeoutMs: 30 });
-  try { for (const bytes of [null, "{"]) { const r = await exchange(path, bytes); assert.equal(r.error.code, "timeout"); } }
+  try { for (const bytes of [null, "{"]) { const r = await exchange(path, bytes); assert.deepEqual(r.error, {ref:-1,class:"retry-later"}); } }
   finally { await service.close(); }
 });
-test("SIG-1: handler errors return a fixed code without exposing internal exception text", async () => {
+test("SIG-1: handler errors return a fixed class without exposing internal exception text", async () => {
   const { path } = location(); const service = await startSocket(path, async () => { throw new Error("internal-marker-must-not-leave"); });
-  try { const r = await exchange(path, JSON.stringify(request()) + "\n"); assert.equal(r.error.code, "internal"); assert.equal(JSON.stringify(r).includes("internal-marker"), false); }
+  try { const r = await exchange(path, JSON.stringify(request()) + "\n"); assert.deepEqual(r.error, {ref:-1,class:"refused"}); assert.equal(JSON.stringify(r).includes("internal-marker"), false); }
   finally { await service.close(); }
 });
 test("SIG-10: existing non-socket and symlink paths are never removed", async () => {
@@ -95,13 +95,13 @@ test("SIG-3: trickling bytes cannot extend the absolute connection deadline", as
       socket.on("error", (e) => { error = e; }); socket.on("data", (b) => { body += b.toString(); clearInterval(timer); });
       socket.on("close", () => { clearInterval(timer); try { resolve({ body: JSON.parse(body), count }); } catch (e) { reject(error ?? e); } });
     });
-    assert.equal(result.body.error.code, "timeout"); assert.ok(result.count < 15, "trickle extended deadline");
+    assert.deepEqual(result.body.error, {ref:-1,class:"retry-later"}); assert.ok(result.count < 15, "trickle extended deadline");
   } finally { await service.close(); }
 });
-test("SIG-1/2: oversized or unserialisable handler responses become fixed internal errors", async () => {
+test("SIG-1/2: oversized or unserialisable handler responses become fixed class refusals", async () => {
   for (const result of [{ huge: "x".repeat(16_384) }, { bigint: 1n }]) {
     const { path } = location(); const service = await startSocket(path, async () => result, { timeoutMs: 100 });
-    try { const r = await exchange(path, JSON.stringify(request()) + "\n"); assert.equal(r.ok, false); assert.equal(r.error.code, "internal"); }
+    try { const r = await exchange(path, JSON.stringify(request()) + "\n"); assert.equal(r.ok, false); assert.deepEqual(r.error, {ref:-1,class:"refused"}); }
     finally { await service.close(); }
   }
 });
@@ -138,7 +138,7 @@ test("SIG-2/3: clients holding their half open cannot exhaust completed connecti
 });
 test("SIG-2: a proposal exceeding the core's message bound is an invalid frame before dispatch", async () => {
   const { path } = location(); let calls = 0; const service = await startSocket(path, async () => { calls++; return {}; });
-  try { const r = await exchange(path, JSON.stringify({ ...request("propose"), message: "x".repeat(8193) }) + "\n"); assert.equal(r.ok, false); assert.equal(r.error.code, "protocol"); assert.equal(calls, 0); }
+  try { const r = await exchange(path, JSON.stringify({ ...request("propose"), message: "x".repeat(8193) }) + "\n"); assert.equal(r.ok, false); assert.deepEqual(r.error, {ref:-1,class:"invalid"}); assert.equal(calls, 0); }
   finally { await service.close(); }
 });
 test("SIG-3: invalid read timeout configuration refuses startup", async () => {
@@ -150,12 +150,12 @@ test("SIG-2: malformed report references are protocol refusals without handler c
   try {
     for(const decision of [null,7,"short","A".repeat(64)]) {
       const result=await exchange(path,JSON.stringify({...request("report"),decision})+"\n");
-      assert.equal(result.error.code,"protocol");
+      assert.deepEqual(result.error,{ref:-1,class:"invalid"});
     }
     assert.equal(calls,0);
   } finally {await service.close();}
 });
-test("SIG-2/3: unfinished clients saturate the bounded slots and the next client receives busy", async () => {
+test("SIG-2/3: unfinished clients saturate the bounded slots and the next client receives a temporary refusal", async () => {
   const {path}=location(), held:ReturnType<typeof connect>[]=[];
   const service=await startSocket(path,async()=>({ready:true}));
   try {
@@ -164,6 +164,6 @@ test("SIG-2/3: unfinished clients saturate the bounded slots and the next client
     })));
     await new Promise<void>(resolve=>setImmediate(resolve));
     const client=createSendingClient({socket:path,clientId:"agent"});
-    await assert.rejects(client.status({id:"overflow"}),error=>error instanceof SignerClientError && error.code==="remote" && error.remoteCode==="busy" && !error.mayHaveExecuted);
+    await assert.rejects(client.status({id:"overflow"}),error=>error instanceof SignerClientError && error.code==="remote" && error.class==="retry-later" && error.ref===-1 && !error.mayHaveExecuted);
   } finally {for(const socket of held) socket.destroy(); await service.close();}
 });

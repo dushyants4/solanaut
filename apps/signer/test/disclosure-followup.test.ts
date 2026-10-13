@@ -8,6 +8,7 @@ import { join } from "node:path";
 import { test } from "node:test";
 import { createGuard, createSendingClient, encodeBase58, fileStore, preparePolicyText, type Entry } from "@solanaut/sdk";
 import { startSigner, type ServiceOptions } from "../src/service.ts";
+import { decodeMessage } from "@solanaut/sdk";
 import { WORKLOAD_POLICY } from "../../../packages/sdk/test/support/workload.ts";
 import { craftLegacy, key } from "../../../packages/sdk/test/support/craft.ts";
 
@@ -145,5 +146,16 @@ test("SIG-7/9: incomplete automatic reconciliation backs off without releasing o
     t.mock.timers.tick(3000); await settle(); assert.equal(reads, 2, "next failed pass doubles it again");
     t.mock.timers.tick(1000); await settle(); assert.equal(reads, 3);
     assert.equal(f.sends(), 1); assert.equal(f.entries().filter(e => e.kind === "report").length, 0);
+  } finally { await service.close(); }
+});
+test("DISC-1/SIG-2: production-style decoding failures before RPC are invalid on durable retry", async () => {
+  const f = await fixture();
+  f.options.rpc.observe = async message => { decodeMessage(message); return { height: 10n, lastValidBlockHeight: 100n }; };
+  const service = await startSigner(f.options);
+  try {
+    const request = { ...f.request(2), message: Buffer.from([255]).toString("base64") };
+    assert.deepEqual((await exchange(f.options.socket, request)).result, { status: "denied", ref: -1, class: "invalid" });
+    assert.deepEqual((await exchange(f.options.socket, { ...request, deadline: 0 })).result, { status: "denied", ref: -1, class: "invalid" });
+    assert.equal(f.sends(), 0);
   } finally { await service.close(); }
 });

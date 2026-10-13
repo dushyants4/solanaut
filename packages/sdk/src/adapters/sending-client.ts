@@ -13,8 +13,11 @@ export class SignerClientError extends Error {
   readonly code: SignerClientCode;
   readonly mayHaveExecuted: boolean;
   readonly remoteCode: string | undefined;
-  constructor(code: SignerClientCode, message: string, mayHaveExecuted = false, remoteCode?: string) {
+  readonly ref: number | undefined;
+  readonly class: DenialClass | undefined;
+  constructor(code: SignerClientCode, message: string, mayHaveExecuted = false, remoteCode?: string, ref?: number) {
     super(message); this.name = "SignerClientError"; this.code = code; this.mayHaveExecuted = mayHaveExecuted; this.remoteCode = remoteCode;
+    this.ref = ref; this.class = ["refused", "retry-later", "invalid"].includes(remoteCode ?? "") ? remoteCode as DenialClass : undefined;
   }
 }
 const identity = (value: unknown) => typeof value === "string" && /^[A-Za-z0-9._:-]{1,128}$/.test(value);
@@ -40,7 +43,7 @@ export function createSendingClient(options: SendingClientOptions) {
         if (done) return; done = true; clearTimeout(timer); socket.destroy();
         if (error) reject(error); else resolve(result);
       };
-      const fail = (code: SignerClientCode, remoteCode?: string) => finish(new SignerClientError(code, `signer ${code} error`, method === "propose" && written, remoteCode));
+      const fail = (code: SignerClientCode, remoteCode?: string, ref?: number) => finish(new SignerClientError(code, `signer ${code} error`, method === "propose" && written, remoteCode, ref));
       const timer = setTimeout(() => fail("timeout"), timeoutMs);
       socket.once("connect", () => { if (done) return; written = true; socket.write(frame); });
       socket.on("error", () => fail("connection")); socket.once("end", () => fail("connection")); socket.once("close", () => fail("connection"));
@@ -53,7 +56,11 @@ export function createSendingClient(options: SendingClientOptions) {
           if (end !== buffer.length - 1) throw new Error("multiple frames");
           const text = new TextDecoder("utf-8", { fatal: true }).decode(buffer.subarray(0, end)); const body = JSON.parse(text);
           if (!body || typeof body !== "object" || Array.isArray(body) || JSON.stringify(body) !== text) throw new Error("invalid envelope");
-          if (body.ok === false && typeof body.error?.code === "string") { fail("remote", ["busy", "timeout", "protocol", "method", "internal"].includes(body.error.code) ? body.error.code : "unknown"); return; }
+          if (body.ok === false) {
+            const error = body.error;
+            if (!record(error) || Object.keys(body).some(key => !["ok", "error"].includes(key)) || Object.keys(error).sort().join(",") !== "class,ref" || !Number.isSafeInteger(error.ref) || error.ref < -1 || !["refused", "retry-later", "invalid"].includes(error.class)) throw new Error("invalid refusal envelope");
+            fail("remote", error.class, error.ref); return;
+          }
           if (body.ok !== true || body.id !== id || !("result" in body) || Object.keys(body).some((key) => !["ok", "id", "result"].includes(key))) throw new Error("mismatched envelope");
           const r = body.result;
           if (!r || typeof r !== "object" || Array.isArray(r)) throw new Error("invalid result");
