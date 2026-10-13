@@ -6,8 +6,8 @@
 |---|---|
 | **Beta (Leg 2)** | **Achieved.** Built and validated on devnet; signed off by the human on 2026-10-05 and tagged `milestone/beta`. The evidence is listed under *Measured so far* below. |
 | **Alpha (Leg 3)** | **In progress**, built by Codex since 2026-10-05 (`docs/HANDOFF.md`). The signer process, operator-signed policies, crash-safe storage and recovery, ADR-012's latch rule and much heavier testing are built and tested as components. No Alpha milestone is reached yet; several wait on the human's decisions (H9 to H16 in `docs/HANDOFF.md` §5). |
-| **Tests** | On 2026-10-12, locally: 900 of 901 pass, and the typecheck passes. The one failure is the known staged-baseline wait (H11). Hosted CI cannot start jobs because of the account's billing (H13). |
-| **Public** | Prepared for publication on 2026-10-12: Apache-2.0 licence, a plain-language README and reading guide, and the human's private drop removed (`runs/2026-10-12-public-readiness.md`). |
+| **Tests** | On a fresh clone of the public repository: 900 of 901 pass, and the typecheck passes. The one failure is the known staged-baseline wait (H11). Hosted CI runs again now that the repository is public: on `c7ba219`, 9 of 15 jobs pass. The failures are the open findings: H11, the maintained fault campaigns, the AST floors, and two jobs past their 10-minute limit. |
+| **Public** | **Public since 2026-10-12**: Apache-2.0, a plain-language README and reading guide. The human's private drop was removed from every commit; old commit IDs map to new ones in `docs/HISTORY-MAP.md` (`runs/2026-10-12-public-readiness.md`, `runs/2026-10-13-public-bridge.md`). |
 
 ## Detailed log, newest first
 

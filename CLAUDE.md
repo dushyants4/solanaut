@@ -54,7 +54,7 @@ are in `uv run --script tools/boundary_guard.py --explain`.
 | **T1 · Draft** | docs, `kb/`, `runs/`, drafts | the seat's workflow |
 | **T2 · Build** | product code: `packages/`, `apps/`, `programs/` | tests and typecheck green, diff read |
 | **T3 · Gate** | the guard, the doctor, the claims list, the evals, the public SDK surface | **the gate shown failing on an injected fault first** |
-| **T3s · Sync** | commit and push to the **private** `origin` | gates green; standing grant |
+| **T3s · Sync** | commit and push `main` to `origin`, **public since 2026-10-12**: a push publishes | gates green; standing grant, confirmed by the human on 2026-10-13 |
 | **T4 · Publish** | mainnet, real funds, making the repo public, the Colosseum submission, posting anywhere, a package publish | **the human, at the moment, every time** |
 
 **No key that holds real funds ever lives in this tree.** Devnet keys live in `keys/`
@@ -99,6 +99,11 @@ refuse T4 commands. Codex may not edit `AGENTS.md`, this file, `.codex/`, `.clau
 or the gates. The transfer, Codex's work queue and log, the edits it owes, and the return to Claude
 are in `docs/HANDOFF.md`: read it first when resuming. Gubernaut's `gub` control plane is **not**
 used here; it belongs to APEX.
+
+**Public since 2026-10-12, with a rewritten history.** The human's private drop was removed from every commit before
+the repository went public. The full original history is in the human's private `solanaut-archive` repository. Push
+only `main`; the local `codex/*` branches descend from the old history and must never be pushed (`AGENTS.md`, law 10).
+Old commit IDs map to new ones in `docs/HISTORY-MAP.md`.
 
 **Plan mode** writes plans to `docs/plans/` (`"plansDirectory"` in `.claude/settings.json`). The default,
 `~/.claude/plans/`, is denied by the boundary guard.

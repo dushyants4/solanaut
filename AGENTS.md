@@ -73,6 +73,13 @@ These do not bend for a deadline, a passing test, or a plausible reason.
    - No threshold in `docs/READINESS.md` is lowered without the human.
    - No coefficient is tuned after looking at a battery's result; a change of definition is re-run on fresh seeds.
    - A failing gate is a finding, recorded at the same size as a pass.
+10. **Public, with a rewritten history.** Since 2026-10-12 `origin` is public, and its history was rewritten to remove
+   the human's private drop.
+   - **Push only `main`.** Never push a branch or tag made before that date, such as the local `codex/*` branches: they
+     descend from the old history, and pushing one publishes the drop again. `.codex/rules/solanaut.rules` refuses the
+     common forms.
+   - **Port work from an old branch by cherry-pick or patch,** never by merge or rebase.
+   - **Commit IDs cited before 2026-10-12** map to today's in `docs/HISTORY-MAP.md`.
 
 ## Tiers: how expensive it is to be wrong
 
@@ -82,7 +89,7 @@ These do not bend for a deadline, a passing test, or a plausible reason.
 | T1 · Draft | docs, `kb/`, `runs/`, drafts | the seat's workflow |
 | T2 · Build | product code: `packages/`, `apps/`, `programs/` | tests and typecheck green, diff read |
 | T3 · Gate | the guard's rules, the doctor, the claims list, the evals, the public SDK surface | **the gate shown failing on an injected fault first** |
-| T3s · Sync | commit and push to the private `origin` | gates green; a standing grant |
+| T3s · Sync | commit and push `main` to `origin`, public since 2026-10-12: a push publishes | gates green; a standing grant, confirmed by the human on 2026-10-13 |
 | T4 · Publish | mainnet, real funds, making the repo public, the submission, posting anywhere, a package publish | **the human, at the moment, every time** |
 
 ## How Codex is fenced here, and what to do when the fence holds

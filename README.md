@@ -34,8 +34,8 @@ It sits between the agent and its key. The agent **proposes** a transaction, Sol
 it be **signed**.
 
 ```mermaid
-flowchart LR
-    A["AI agent"] -- "proposes a transaction" --> P["1. Policy check<br/>allowed programs, allowed<br/>destinations, spending caps"]
+flowchart TD
+    A["AI agent"] -- "proposes a transaction" --> P["1. Policy check<br/>allowed programs, payees and spending caps"]
     P -- "passes" --> K["2. Loop check<br/>Gubernaut Keel"]
     K -- "passes" --> S["Signed and sent"]
     P -- "fails" --> D["Refused before signing,<br/>naming the rule"]
@@ -120,6 +120,9 @@ The full reading guide is [docs/README.md](docs/README.md).
 - **Alpha: in progress.** A separate signer process, operator-signed policies, stronger crash recovery and much heavier
   testing are built and tested piece by piece. They are not yet a released milestone.
   See [PROGRESS.md](PROGRESS.md) and [docs/ROADMAP.md](docs/ROADMAP.md).
+- **CI runs on every push, and is honest about what is still open.** A red mark next to a commit means one of the
+  stricter release gates still fails: a timing test, the full fault campaigns or the coverage floors. Each is tracked in
+  [PROGRESS.md](PROGRESS.md), not hidden.
 
 ## How it was built
 

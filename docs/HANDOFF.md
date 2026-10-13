@@ -159,6 +159,19 @@ devnet.
 
 ## 5. Questions and requests for the human
 
+**Public, 2026-10-12 (Claude, at the human's direction): read this before anything else.**
+- **The repository is public.** Its history was rewritten to remove the human's private drop, and the full original
+  history is in the human's private `solanaut-archive`.
+- **Every commit ID changed.** Old IDs map to new ones in `docs/HISTORY-MAP.md` (receipt:
+  `evals/release/history-rewrite.md`).
+- **Push only `main`.** Your three local `codex/*` branches, and their worktrees' uncommitted work, descend from the old
+  history: never push them. Port anything you need by cherry-pick or patch (`AGENTS.md`, law 10;
+  `.codex/rules/solanaut.rules`).
+- **Pushing stays a standing grant,** confirmed by the human on 2026-10-13, but every push now publishes.
+- **H13 is moot for now:** as a public repository, hosted CI runs again. On `c7ba219`, 9 of 15 jobs pass. The failures
+  are the open findings: the H11 wait, the maintained fault campaigns, the AST floors, and two jobs past their
+  10-minute limit.
+
 SDK schema qualification finding (2026-10-11): existing Ajv/formats cannot
 compile the pinned official CycloneDX schema strictly because a required format
 is unsupported. `evals/release/schema-probe.md` preserves the failure before

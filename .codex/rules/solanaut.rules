@@ -9,7 +9,13 @@ prefix_rule(pattern=["gh", "repo", ["edit", "create", "delete", "rename", "archi
 prefix_rule(pattern=["gh", "release"], decision="forbidden", justification="A release is tier T4: the human's.")
 prefix_rule(pattern=["gh", "gist"], decision="forbidden", justification="Posting anywhere is tier T4: the human's.")
 prefix_rule(pattern=["git", "push", ["--force", "-f", "--force-with-lease", "--mirror", "--delete", "-d"]], decision="forbidden", justification="History on origin is never rewritten or deleted by an agent.")
-prefix_rule(pattern=["git", "remote", ["add", "set-url", "remove", "rename"]], decision="forbidden", justification="origin is the private remote; the human changes remotes.")
+prefix_rule(pattern=["git", "remote", ["add", "set-url", "remove", "rename"]], decision="forbidden", justification="origin is the public repository, since 2026-10-12; the human changes remotes.")
+
+# The history was rewritten on 2026-10-12 to remove the human's private drop. These local branches, and any branch
+# made before that date, descend from the old history: pushing one would publish the drop again (AGENTS.md, law 10).
+prefix_rule(pattern=["git", "push", "--all"], decision="forbidden", justification="Only main is pushed; old branches carry the pre-rewrite history (AGENTS.md, law 10).")
+prefix_rule(pattern=["git", "push", "origin", ["--all", "codex/owned-admission-component", "codex/replay-command-component", "codex/request-index-component"]], decision="forbidden", justification="This branch descends from the pre-rewrite history, which holds the human's private drop (AGENTS.md, law 10).")
+prefix_rule(pattern=["git", "push", ["-u", "--set-upstream"], "origin", ["codex/owned-admission-component", "codex/replay-command-component", "codex/request-index-component"]], decision="forbidden", justification="This branch descends from the pre-rewrite history, which holds the human's private drop (AGENTS.md, law 10).")
 prefix_rule(pattern=["solana", "config"], decision="forbidden", justification="Never touch the Solana CLI's global config; pass --url and --keypair explicitly.")
 prefix_rule(pattern=["node", "tools/colosseum_entry.mjs"], decision="forbidden", justification="The Colosseum submission is tier T4, set aside by the human until testing is done.")
 
