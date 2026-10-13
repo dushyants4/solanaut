@@ -69,8 +69,8 @@ test("CI-2: an asynchronously started real staged baseline finishes without rela
     ticket=JSON.parse(readFileSync(join(stage!,"ticket.json"),"utf8"));
     const specification=JSON.parse(readFileSync(join(ticket!.directory,"spec.json"),"utf8"));
     assert.equal(specification.command.args[1],"--experimental-test-isolation=none");
-    const end=Date.now()+20000;while(readSupervisedResult(ticket!)===null && Date.now()<end)await sleep(20);
-    assert.notEqual(readSupervisedResult(ticket!),null,"staged baseline incomplete after unchanged wait; "+JSON.stringify(ticket!.identity)+"\n"+readFileSync(join(ticket!.directory,"output.txt"),"utf8"));
+    const end=Date.now()+60000;while(readSupervisedResult(ticket!)===null && Date.now()<end)await sleep(20);
+    assert.notEqual(readSupervisedResult(ticket!),null,"staged baseline incomplete after configured harness wait; "+JSON.stringify(ticket!.identity)+"\n"+readFileSync(join(ticket!.directory,"output.txt"),"utf8"));
     assert.equal((readSupervisedResult(ticket!) as {status:number|null}).status,0,readFileSync(join(ticket!.directory,"output.txt"),"utf8"));
     const before=readFileSync(join(ticket!.directory,"result.json"));
     for(let attempt=0;attempt<2;attempt++) {const finish=spawnSync(process.execPath,["evals/ci/mutation-run.ts","--finish",stage!],{encoding:"utf8",timeout:10000});assert.equal(finish.status,0,finish.stdout+finish.stderr);assert.match(finish.stdout,/baseline passes; no mutation score measured/);assert.deepEqual(readFileSync(join(ticket!.directory,"result.json")),before);}

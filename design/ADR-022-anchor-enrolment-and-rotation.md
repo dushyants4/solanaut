@@ -1,6 +1,7 @@
 # ADR-022 · Anchor enrolment and authority rotation
 
-**Status: proposed, not accepted.** 2026-10-06. No dependent program implementation.
+**Status: accepted by the human on 2026-10-13** (proposed 2026-10-06; `docs/HANDOFF.md` §5, H10). The ANC-1
+and ADR-015 edits under *Acceptance and evidence* come first, then the program.
 ADR-020 requires operator-authorised enrolment and rotation. ANC-1 and ADR-015 still
 specify a program with only `anchor(head, seq)`. Their account contract does not describe
 how those distinct ceremonies establish and change the trusted authority.

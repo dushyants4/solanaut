@@ -52,3 +52,21 @@ adds input preflight and reads actual Git HEAD, preventing later different sourc
 from being labelled as this revision. `node evals/ci/baseline-latency/observe.mjs
 --check-inputs` confirms those prerequisites without launching another workload.
 No fresh timing result is attributed to that preflight-only invocation.
+
+## Applied, 2026-10-13
+
+The human accepted H11 on 2026-10-13, after Claude's review (`docs/reviews/2026-10-13-codex-leg3.md`). Claude applied
+`owner-wait.patch` unchanged: the wait is 60,000 ms, and the diagnostic reads "configured harness wait". Nothing else in
+the test changed.
+
+- **Before:** `npm test` on a fresh clone of `c7ba219` passed 900 of 901. The one failure was this wait
+  (`runs/2026-10-13-public-bridge.md`).
+- **After:**
+  - `node --test evals/ci/mutation-recovery.test.ts` passes 6 of 6, and the staged baseline finished in 24.6 seconds;
+  - `npm test` passes 901 of 901, in 150 seconds;
+  - `npm run typecheck` passes.
+
+  Run with `TMPDIR` under `.sandbox/`.
+
+The hosted runtime matrix, the AST floors and the maintained fault campaigns still need their own passes. O2, O3 and the
+job limits are separate work.

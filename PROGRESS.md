@@ -1,15 +1,21 @@
 # PROGRESS.md
 
-## Where Solanaut stands, 2026-10-12
+## Where Solanaut stands, 2026-10-13
 
 | | |
 |---|---|
 | **Beta (Leg 2)** | **Achieved.** Built and validated on devnet; signed off by the human on 2026-10-05 and tagged `milestone/beta`. The evidence is listed under *Measured so far* below. |
-| **Alpha (Leg 3)** | **In progress**, built by Codex since 2026-10-05 (`docs/HANDOFF.md`). The signer process, operator-signed policies, crash-safe storage and recovery, ADR-012's latch rule and much heavier testing are built and tested as components. No Alpha milestone is reached yet; several wait on the human's decisions (H9 to H16 in `docs/HANDOFF.md` §5). |
-| **Tests** | On a fresh clone of the public repository: 900 of 901 pass, and the typecheck passes. The one failure is the known staged-baseline wait (H11). Hosted CI runs again now that the repository is public: on `c7ba219`, 9 of 15 jobs pass. The failures are the open findings: H11, the maintained fault campaigns, the AST floors, and two jobs past their 10-minute limit. |
+| **Alpha (Leg 3)** | **In progress**, built by Codex since 2026-10-05 (`docs/HANDOFF.md`). The signer, operator-signed policies, crash-safe storage and recovery, ADR-012's latch rule and much heavier testing are built and tested as components; the signer does not yet run as a process. No Alpha milestone is reached yet. On 2026-10-13 Claude reviewed the work (`docs/reviews/2026-10-13-codex-leg3.md`), and the human accepted the decisions it was waiting on. |
+| **Tests** | **901 of 901 pass**, and the typecheck passes (2026-10-13, after the human accepted H11's longer harness wait; `evals/ci/baseline-latency.md`). Hosted CI on `bf743bf`, before that change: 9 of 15 jobs pass. The runtime test jobs ran past their 10-minute limit, and the maintained fault campaigns and the AST floors failed. A green CI comes first (`docs/HANDOFF.md` §4). |
 | **Public** | **Public since 2026-10-12**: Apache-2.0, a plain-language README and reading guide. The human's private drop was removed from every commit; old commit IDs map to new ones in `docs/HISTORY-MAP.md` (`runs/2026-10-12-public-readiness.md`, `runs/2026-10-13-public-bridge.md`). |
 
 ## Detailed log, newest first
+
+**2026-10-13 · Review, and the decisions it was waiting on.** Claude reviewed Codex's Leg 3 work: safe and honest,
+but heavy on evidence and light on integrated product (`docs/reviews/2026-10-13-codex-leg3.md`). The human accepted
+a longer harness wait (H11), which makes all 901 tests pass; the signer's line budget, the anchor's ceremonies,
+bounded working state and a failure budget of 5 in 10 minutes; and ADR-025, their own point that an agent should not
+learn why it was refused. Next: a green CI, then the signer as a running process.
 
 RPC diagnostics propagate synthetic provider response text in both refusals and
 health, D42/S156. Existing-runtime product tests remain red; a separate copied

@@ -1,5 +1,9 @@
 # DOCUMENTS.md — the document register
 
+2026-10-13: docs/reviews/2026-10-13-codex-leg3.md registered, Claude's review of Codex's Leg 3 work, which sets the
+order of work in docs/HANDOFF.md §4. The human accepted H9, H10, H11, H14, H16 and the new ADR-025 the same day.
+Record: `runs/2026-10-13-codex-review.md`.
+
 2026-10-13: docs/HISTORY-MAP.md registered, the map from the commit IDs cited before the history rewrite of
 2026-10-12 to the new ones (`evals/release/history-rewrite.md`).
 
@@ -860,6 +864,7 @@ substantive change; *last reviewed* moves at every review.
 | [README.md](../README.md) | 5 | current | integrator | everyone, judges first | 2026-10-12 | 2c.1 |
 | [docs/README.md](../docs/README.md) | 1.0 | current | integrator | everyone: the reading guide | 2026-10-12 | every leg |
 | [docs/HISTORY-MAP.md](../docs/HISTORY-MAP.md) | 1.0 | current | archivist | anyone following a commit ID cited before 2026-10-12 | 2026-10-13 | — (generated; fixed) |
+| [docs/reviews/2026-10-13-codex-leg3.md](../docs/reviews/2026-10-13-codex-leg3.md) | 1.0 | current | architect | Codex, the human: the review of Leg 3 so far, and the order of work | 2026-10-13 | the next review |
 | [docs/PRODUCT-PAGE.md](../docs/PRODUCT-PAGE.md) | Draft 1 | review (private) | integrator | human and page reviewers | 2026-10-08 | R.1 |
 | [docs/PREVIEW.md](../docs/PREVIEW.md) | Draft 1 | draft (private candidate) | integrator | SDK evaluators | 2026-10-08 | 5.3 |
 | [docs/release/STAGED-RELEASE.md](../docs/release/STAGED-RELEASE.md) | Draft 1 | review (private scope) | integrator, archivist | human and release reviewers | 2026-10-08 | R.1 |

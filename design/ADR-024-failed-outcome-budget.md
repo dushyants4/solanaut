@@ -1,9 +1,11 @@
 # ADR-024 · A deterministic budget for failed outcomes
 
-**Status: proposed, not accepted.** 2026-10-11. Answers the remaining
-failed-outcome and alternating-loop questions in SPEC §12 / RT-3. No dependent
-policy, evaluator, record or signer change is authorised before human acceptance.
-ADR-012 option C, ADR-019 and every readiness gate remain required.
+**Status: accepted by the human on 2026-10-13** (proposed 2026-10-11; `docs/HANDOFF.md`
+§5, H16), with the values chosen before qualification: `outcomes.maxFailures` 5 and
+`outcomes.windowMs` 600000, five failed outcomes in ten minutes. Answers the remaining
+failed-outcome and alternating-loop questions in SPEC §12 / RT-3. Format allocations
+and requirement IDs come before code. ADR-012 option C, ADR-019 and every readiness
+gate remain required.
 
 ## Context and evidence
 

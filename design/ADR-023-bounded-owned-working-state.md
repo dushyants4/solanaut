@@ -1,7 +1,8 @@
 # ADR-023 · Bounded owned working state
 
-**Status: proposed, not accepted.** 2026-10-09. The human decides before
-dependent retention, checkpoint-format or resource-admission changes. ADR-019's
+**Status: accepted by the human on 2026-10-13** (proposed 2026-10-09; `docs/HANDOFF.md`
+§5, H14). Built after the signer runs as a process (3.1); limit values are declared
+before qualification. ADR-019's
 security contracts and all readiness thresholds remain required.
 
 ## Context and inspected evidence

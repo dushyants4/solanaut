@@ -42,7 +42,7 @@ cannot see decides whether it may. This page tells you what to read, in what ord
 | [POLICY.md](POLICY.md), [POLICIES.md](POLICIES.md) | operator-signed policies: preparing, signing and verifying them |
 | [STORAGE.md](STORAGE.md), [REQUESTS.md](REQUESTS.md) | how the guard's record survives crashes, and how requests are identified |
 | [PACKAGING.md](PACKAGING.md) | how the SDK is built and checked as a package |
-| [../design/](../design/) | the decision records, ADR-001 to ADR-024 |
+| [../design/](../design/) | the decision records, ADR-001 to ADR-025 |
 
 ## The plan and where it stands
 
@@ -62,6 +62,7 @@ need them to understand the product.
 | Read | What it covers |
 |---|---|
 | [HANDOFF.md](HANDOFF.md) | the hand-over from Claude Code to Codex, with Codex's work log |
+| [reviews/](reviews/) | Claude's reviews of Codex's work, the latest first: [2026-10-13](reviews/2026-10-13-codex-leg3.md) |
 | [HISTORY-MAP.md](HISTORY-MAP.md) | commit IDs cited before 2026-10-12, mapped to today's history |
 | [plans/](plans/) | the approved plans |
 | [PRODUCT-PAGE.md](PRODUCT-PAGE.md), [release/STAGED-RELEASE.md](release/STAGED-RELEASE.md) | drafts for a future product page and release, not yet approved |

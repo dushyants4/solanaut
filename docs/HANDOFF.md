@@ -42,6 +42,8 @@
 | 2026-09-30 | The licence, the judges' access and the Colosseum submission are set aside until testing is done. The submission window closes 2026-10-12, 11:59pm PT; whether to submit, and what, is the human's (T4). |
 | 2026-10-01 | Outside agent CLIs are not run unattended from Claude's session. The human runs Codex here directly. |
 | 2026-10-05 | The Beta review is signed off. The Alpha's scope is approved as drafted. ADR-012's option C is accepted. Leg 3 is handed to Codex. |
+| 2026-10-12 | The repository goes public under Apache-2.0, its history rewritten to remove the private drop (`docs/HISTORY-MAP.md`). |
+| 2026-10-13 | Pushing `main` stays a standing grant. H11 is accepted: the harness wait is 60 seconds (O6, applied by Claude). ADR-021, ADR-022, ADR-023 (built after the signer runs), ADR-024 (5 failed outcomes in 10 minutes) and ADR-025 (denial reasons go to the operator, not the agent) are accepted. Claude's review, `docs/reviews/2026-10-13-codex-leg3.md`, sets the order of work in §4. |
 
 ## 3. What Codex owns, and what it does not
 
@@ -54,6 +56,30 @@
 | | editing `AGENTS.md`, `CLAUDE.md`, `.codex/`, `.claude/`, the boundary policy or the gates: owed edits, §6 |
 
 ## 4. The work queue, in order
+
+**Revised order, 2026-10-13: read `docs/reviews/2026-10-13-codex-leg3.md` first.** Its rules on integration, evidence
+and plain records apply to every session. The mission and the items below keep their detail and their gates; this is
+the order to take them in:
+
+1. **Green `main`.** Integrate the D41 and D42 fixes, now that O6 is applied. Claude applies O2, O3, O9 and O10 and
+   settles the job limits, until every CI job passes.
+2. **Tidy up.** Remove the three stale `codex/*` worktrees and their branches: nothing in them is missing from `main`.
+3. **ADR-025 in the SDK's adapters, then 3.1: the signer as a running process.**
+   - ADR-021's 1,000-line budget applies.
+   - Same-user mode comes first, and the socket's replies follow ADR-025.
+   - Then a devnet run through the signer.
+4. **3.2:** the signed policy inside the signer.
+5. **3.3: Token-2022 and token accounts.**
+   - Its decoding and classification need only the SDK, so they can go ahead whenever other work is blocked.
+   - Re-reading mutable settings at admission needs 3.1.
+6. **ADR-024's failure budget:** 5 failed outcomes in 10 minutes.
+7. **3.7: the anchor program (ADR-022),** once H1 and H3 are met.
+8. **3.5's offline parts, then 3.8.**
+   - Phantom's stock MCP routes broadcast before they return, so a firewall in front of them cannot check the final
+     bytes before sending. 3.5 needs a route that only signs, or a fallback, and that design goes back to the human.
+   - Take up 3.6 only if ElizaOS's advisories are fixed upstream.
+9. **ADR-023's bounded state.**
+10. **3.10's preparation,** then hand back to Claude (§8).
 
 **Solanaut 1.0 mission, approved in this session on 2026-10-05:**
 `docs/plans/2026-10-05_solanaut-1.md` extends this queue through individual Linux/devnet deployment
@@ -172,13 +198,24 @@ devnet.
   are the open findings: the H11 wait, the maintained fault campaigns, the AST floors, and two jobs past their
   10-minute limit.
 
+**Answered by the human, 2026-10-13, after Claude's review:**
+- **Accepted:**
+  - H9 (ADR-021) and H10 (ADR-022);
+  - H11, with O6 applied by Claude;
+  - H14 (ADR-023), built after the signer runs;
+  - H16 (ADR-024), at 5 failed outcomes in 10 minutes;
+  - ADR-025, the human's own direction: denial reasons go to the operator, not the agent.
+- **Closed:** H13 and H15, both settled by the public release.
+- **Deferred:** the schema-validator finding waits for the freeze.
+- **Still open:** H1 to H5, H8 and H12. Claude recommends accepting H12's version string and publishing later.
+
 SDK schema qualification finding (2026-10-11): existing Ajv/formats cannot
 compile the pinned official CycloneDX schema strictly because a required format
 is unsupported. `evals/release/schema-probe.md` preserves the failure before
 artifact validation. Select and approve a pinned supported validator/formats
 toolchain before installation/full qualification; no ignored-format waiver.
 
-**H16 — failed-outcome/alternating-loop decision (2026-10-11).** Accept, reject
+**H16 — failed-outcome/alternating-loop decision (2026-10-11). Accepted 2026-10-13, at 5 failed outcomes in 10 minutes.** Accept, reject
 or revise `design/ADR-024-failed-outcome-budget.md`: an operator-signed cumulative
 failed-outcome window budget, independent of shape and Keel tuning, with durable
 latching and release epochs. S135 preserves the current non-stop findings.
@@ -186,7 +223,7 @@ Values must precede fresh qualification. No dependent policy/profile/state/signe
 implementation before acceptance and no readiness gate changes. Generic
 continuation is not acceptance; independent work may continue while this waits.
 
-**H13 — hosted CI account availability (2026-10-09).** Exact archival run
+**H13 — hosted CI account availability (2026-10-09). Closed 2026-10-13: public repositories run hosted CI.** Exact archival run
 `37949577048` cannot start any job. GitHub's annotations say recent account
 payments failed or the spending limit needs increasing. The human account owner
 must resolve the account setting; Codex makes no purchase or billing change.
@@ -221,7 +258,7 @@ Current private metadata stays `0.0.0`/private. This preview does not satisfy or
 relax stable 1.0 gates; source/history/notices review and exact hosted qualification
 remain owed. Continue independent core/release work while these decisions wait.
 
-**H11 — expanded real mutation-baseline harness wait.** Hosted 6d81f8b run
+**H11 — expanded real mutation-baseline harness wait. Accepted 2026-10-13; O6 applied by Claude.** Hosted 6d81f8b run
 37654130653 still fails Node 22's unchanged baseline wait with serial execution.
 Retained exact logs: `evals/sdk/checkpoint-bundle/hosted-6d81f8b/`. Proposed
 edit in `evals/ci/mutation-recovery.test.ts`: replace
@@ -253,13 +290,13 @@ Codex appends; the human answers in place. Open at the transfer:
 | H7 | 2026-10-05 | Solanaut 1.0 foundations | **Accepted:** the human said “Go aheaaad, Continue the plan” after the explicit acceptance request for ADR-019 and ADR-020. Their dependent implementation may proceed. No readiness threshold or T4 permission changed. |
 | H8 | 2026-10-05 | qualification | **External resources:** recruit outside developers, choose/fund the specialist audit and live bounty, and provide reliable devnet RPC for its soak. No contact or purchase made by Codex; all thresholds retained. |
 
-| H9 | 2026-10-06 | signer completion / SIG-11 | **Decision requested:** accept or reject `design/ADR-021-signer-implementation-budget.md`. The partial signer is 501 lines under the recorded conservative count (402 app + 99 signer-specific SDK helper lines), before key loading and remaining operational work. Proposal: 1,000 physical lines across the same scope, with all other gates unchanged. Until acceptance the 500-line gate is not achieved and dependent expansion waits; independent work continues. |
+| H9 | 2026-10-06 | signer completion / SIG-11 | **Accepted 2026-10-13.** Was a decision request: accept or reject `design/ADR-021-signer-implementation-budget.md`. The partial signer is 501 lines under the recorded conservative count (402 app + 99 signer-specific SDK helper lines), before key loading and remaining operational work. Proposal: 1,000 physical lines across the same scope, with all other gates unchanged. Until acceptance the 500-line gate is not achieved and dependent expansion waits; independent work continues. |
 
-| H10 | 2026-10-06 | anchor program / ANC-1 | **Decision requested:** accept or reject `design/ADR-022-anchor-enrolment-and-rotation.md`. Accepted ADR-020 requires operator enrolment/rotation, but ANC-1 still specifies only `anchor(head, seq)` without its ceremony account contract. Proposal: explicit enrol/anchor/rotate instructions with a stable operator namespace and preserved history. This changes the accepted instruction surface; no dependent program implementation until acceptance. Generic externally pinned archive verification is independent and can proceed. |
+| H10 | 2026-10-06 | anchor program / ANC-1 | **Accepted 2026-10-13.** Was a decision request: accept or reject `design/ADR-022-anchor-enrolment-and-rotation.md`. Accepted ADR-020 requires operator enrolment/rotation, but ANC-1 still specifies only `anchor(head, seq)` without its ceremony account contract. Proposal: explicit enrol/anchor/rotate instructions with a stable operator namespace and preserved history. This changes the accepted instruction surface; no dependent program implementation until acceptance. Generic externally pinned archive verification is independent and can proceed. |
 
-| H14 | 2026-10-09 | SNP-7 compact owned retention | **Decision requested:** accept or reject `design/ADR-023-bounded-owned-working-state.md`. Existing state/checkpoint/index construction retains full history; deleting maps would lose late lifecycle and duplicate-request evidence. Proposal: separately versioned compact owned checkpoints, verified disk consultation for evicted facts, explicit operator-owned active-decision/pending-control capacity with durable pre-admission refusal, and maintenance reconstruction for window extensions. No limit values, dependency, migration or signer expansion is authorised before acceptance; all readiness targets stay unchanged. Independent component and runtime work continues. |
+| H14 | 2026-10-09 | SNP-7 compact owned retention | **Accepted 2026-10-13, to be built after the signer runs.** Was a decision request: accept or reject `design/ADR-023-bounded-owned-working-state.md`. Existing state/checkpoint/index construction retains full history; deleting maps would lose late lifecycle and duplicate-request evidence. Proposal: separately versioned compact owned checkpoints, verified disk consultation for evicted facts, explicit operator-owned active-decision/pending-control capacity with durable pre-admission refusal, and maintenance reconstruction for window extensions. No limit values, dependency, migration or signer expansion is authorised before acceptance; all readiness targets stay unchanged. Independent component and runtime work continues. |
 
-| H15 | 2026-10-10 | proposed public history | **Decision/review owed:** settle the private-directory path classification in the exact be7d296 restored history before complete file-blob review. `evals/release/history-bytes.md` retains metadata-only scope and refusal. This is not a secret finding; no private contents are read or cited, no entries are skipped and no refs/history/drop bytes change. The human determines the proposed public scope and conducts any confidential review; generic resume is not permission to override private/key restrictions. |
+| H15 | 2026-10-10 | proposed public history | **Closed 2026-10-13:** the human published the repository on 2026-10-12, with the private drop removed from its history. Was: settle the private-directory path classification in the exact be7d296 restored history before complete file-blob review. `evals/release/history-bytes.md` retains metadata-only scope and refusal. This is not a secret finding; no private contents are read or cited, no entries are skipped and no refs/history/drop bytes change. The human determines the proposed public scope and conducts any confidential review; generic resume is not permission to override private/key restrictions. |
 
 ## 6. Owed edits, to files Codex may not change
 
@@ -270,12 +307,12 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 | # | File | Exact edit | Why | Applied |
 |---|---|---|---|---|
 | | | | | |
-| O1 | AGENTS.md, build convention | Replace `TypeScript run natively by Node 26, with no build step; ESM;` with `TypeScript run natively by Node 26 for development; a release-only build emits JavaScript and declarations for npm consumers; ESM;` | Explicitly approved by the human in the Solanaut 1.0 mission. | no |
+| O1 | AGENTS.md, build convention | Replace `TypeScript run natively by Node 26, with no build step; ESM;` with `TypeScript run natively by Node 26 for development; a release-only build emits JavaScript and declarations for npm consumers; ESM;` | Explicitly approved by the human in the Solanaut 1.0 mission. | yes, 2026-10-13, by Claude |
 | O2 | evals/packaging/faults.ts | Exact unapplied diff: `evals/packaging/parallel-experiment/owner-draft.patch`; retain all fault declarations and original initial control, import the measured isolated runner and replace sequential mutation with its complete execution. Add `node --test evals/packaging/parallel-experiment.test.mjs` to maintained qualification and verify cleanup/partial refusal before acceptance. | S111 prototype catches the entire original population inside the unchanged outer deadline; S110 actual maintained gate remains failed. Extra original control and changed entry point need fresh owner qualification. No process limit or readiness target changes. | no |
 | O3 | Proposed parallel package runner | Exact unapplied diff: `evals/packaging/parallel-lifecycle/corrected/termination-owner.patch`; send SIGTERM once per owned child group, escalate to SIGKILL after the declared grace if still live, clear escalation on close. Combine with O2 and freshly qualify unchanged full populations/entry point before adoption. | S114 observes ignored SIGTERM leaving the original proposed parent waiting. Corrected fixture refuses incomplete execution; missing/late escalation and false completion are caught. Nominal S111 completion is not universal termination evidence. Maintained gate/deadline remain unchanged. | no |
 | O4 | .github/workflows/ci.yml | Exact unapplied diff: `evals/sdk/adapter-wire/owner-ci.patch`; use the existing pinned uv action in runtime jobs, pack the private SDK, execute actual installed ADP-1 cases and source/emitted fault trials. Retain all current steps, runtime matrix and limits. | D39's new wire boundary has local tests/fault evidence; protected CI needs owner application and exact hosted/runtime qualification. `git apply --check` accepts the draft. No deadline, assertion, population or threshold is weakened. | no |
 | O5 | .github/workflows/ci.yml | Exact unapplied combined diff: `evals/sdk/adapter-buffer/owner-ci.patch`; supersedes O4's application by retaining its installed/source/emitted trials and adding D40 private-buffer installation and copy-omission trials. | Private raw-buffer ownership has local fault evidence. Existing pinned action, runtime matrix, job limits and earlier gates stay unchanged. Read-only patch validation passes; owner application and exact hosted/matrix qualification remain owed. | no |
-| O6 | evals/ci/mutation-recovery.test.ts | Exact unapplied diff: `evals/ci/baseline-latency/owner-wait.patch`; H11's proposed 20,000→60,000 ms harness wait and diagnostic text only. Apply only after human acceptance. | Unchanged source reproduces H11; original staged child naturally passes 573 cases in 22.223 seconds. Generated review copy passes all six original recovery cases. Backend, selected population, seed, score/readiness targets and completion checks stay unchanged. Current gate remains failed; matrix/hosted/maintained qualification follows owner application. | no |
+| O6 | evals/ci/mutation-recovery.test.ts | Exact unapplied diff: `evals/ci/baseline-latency/owner-wait.patch`; H11's proposed 20,000→60,000 ms harness wait and diagnostic text only. Apply only after human acceptance. | Unchanged source reproduces H11; original staged child naturally passes 573 cases in 22.223 seconds. Generated review copy passes all six original recovery cases. Backend, selected population, seed, score/readiness targets and completion checks stay unchanged. Current gate remains failed; matrix/hosted/maintained qualification follows owner application. | yes, 2026-10-13, by Claude |
 | O7 | .github/workflows/ci.yml | Exact unapplied combined diff: `evals/sdk/adapter-batch/owner-ci.patch`; supersedes O5's application while retaining D39/D40 steps and adding D41 source/emitted/installed batch trials. Apply only after D41 product integration qualifies. | Local prepared component catches membership omissions. Full native still fails H11, so D41 remains unintegrated; source trials deliberately refuse the original product. Read-only patch validation passes. Matrix, limits and existing checks remain unchanged; exact hosted qualification stays owed. | no |
 
 | O8 | .github/workflows/ci.yml | Exact unapplied independent diff: `evals/release/history-bytes/owner-ci.patch`; add pinned existing uv action and the nested PUB-1 content tests/faults to runtime jobs. Merge additively with other owed runtime-step drafts. | Thirteen component cases and nine omission trials are local proof. Read-only patch validation passes; all existing steps, matrix and limits remain. Actual history still refuses H15; this step cannot grant publication clearance. Owner application and exact hosted qualification remain owed. | no |

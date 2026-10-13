@@ -1,7 +1,7 @@
 # ADR-021 · Signer implementation budget
 
-**Status: proposed, not accepted.** 2026-10-06. The human decides. Dependent expansion
-of signer startup/key loading waits; independent consumer and validation work continues.
+**Status: accepted by the human on 2026-10-13** (proposed 2026-10-06; `docs/HANDOFF.md` §5, H9).
+SIG-11's ceiling becomes 1,000 physical lines, counted as below. The edit to `docs/SPEC.md` comes first.
 
 ## Context and evidence
 

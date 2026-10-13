@@ -142,7 +142,8 @@ and receipts say so. The Alpha's independent red team (RT-2) is Claude's, on ret
 3. **Tests first.** At least one per requirement ID, named by the ID. Run them and see each fail for the right reason,
    then save that output for the receipt.
 4. **Build to the tests.** Match the code around it:
-   - TypeScript run natively by Node 26, with no build step; ESM; `node:test`; `@solana/kit`; never
+   - TypeScript run natively by Node 26 for development; a release-only build emits JavaScript and declarations for
+     npm consumers; ESM; `node:test`; `@solana/kit`; never
      `@solana/web3.js`;
    - small functions;
    - a comment where the code cannot say why.
