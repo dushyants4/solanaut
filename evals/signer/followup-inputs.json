@@ -1,0 +1,147 @@
+[
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-build.txt",
+    "bytes": 117,
+    "sha256": "e8a2f89bb4fc6971c684d9092f08bc3b6b7c8c6a7c861d81a634abc7fffd6a45"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-coverage.txt",
+    "bytes": 118493,
+    "sha256": "78cc167cf025b9fc8d94f94f5140564058683824fe9e52b019cf8a4057a6399d"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-existing-client-faults.txt",
+    "bytes": 969,
+    "sha256": "499ea7860b501caed99697ce9658831c7310bb7d7cb36c17b0e477fae807f2b2"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-existing-faults.txt",
+    "bytes": 398,
+    "sha256": "165d68b46e85a6732ee47cdc361d53bd6c803445bafa26d3aa0626912233a849"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-expanded.txt",
+    "bytes": 2847,
+    "sha256": "aba3a16b3a98a9208dcd9b6690546f9e808397aca83270f2514f62aa916d30ad"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-faults-initial-timeout.txt",
+    "bytes": 317,
+    "sha256": "e13f05694eee5bdb9f63f9233a753345912a00217d4b781efd931a8bafe9df7e"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-final-focused.txt",
+    "bytes": 967,
+    "sha256": "563cefbeb1173bea6ed42acd4f5b8d0d6b82ff69cfe5c9fe7549d0839068d97e"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-first-green.txt",
+    "bytes": 4081,
+    "sha256": "7fbf7eea3272c132f637d2b8ad5e1e9027b03e05baddbfd37378ff7c18c236cf"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-focused.txt",
+    "bytes": 2616,
+    "sha256": "f4f3cf03a4d7f3e1247e1de03c58b2422e2547dce9df6538558550fce7c5bb79"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-full.txt",
+    "bytes": 102087,
+    "sha256": "580cb6c224e5e0fc455081809ec1a5f4c618ddafdd6bf254ac3fbe9acfdb5603"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-installed.txt",
+    "bytes": 2250,
+    "sha256": "f2b0ebd7f9edb636d75839bbf37748e9b15909eecccf37e371c60a9d53f13dbc"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-private-status.txt",
+    "bytes": 1055,
+    "sha256": "d7538a5c8b299c8255813d35cb3848760357c403e2ee7359fc5b46c525e7e51f"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-red-complete.txt",
+    "bytes": 5977,
+    "sha256": "6385b491665bd0939306347780df4c80da0961e03636efae9a7b1e73aee6f2ad"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-red.txt",
+    "bytes": 4763,
+    "sha256": "483150dae56b002a463803527b6eb48cecdf75bf9bc008ed0071e5a4e0e54ae5"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-typecheck.txt",
+    "bytes": 37,
+    "sha256": "396901319daac4a4413b23478852db3c572014f86c71d148273565f0f3332696"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-faults-initial.py",
+    "bytes": 2975,
+    "sha256": "74dda8bc919ceecf3a6d9bdf668e776b090dfed0969203dff650cec07da822c3"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-coverage-summary.json",
+    "bytes": 14513,
+    "sha256": "1a5affa181a9d971d4f50efa13b56cdea95cdccec71d93a6fa9300af5cb9ffc0"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-devnet-agent-balance.txt",
+    "bytes": 12,
+    "sha256": "8a57fa545286804ad8f5cb8e9c2aa98a2332fe90bbd44ef33e982f1d40a7f35b"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-faults/private-denial.txt",
+    "bytes": 5086,
+    "sha256": "36fc84af68a1736230b7c51f9f264da65c3185656f9b9fb0d4a325e81368cf84"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-faults/private-status.txt",
+    "bytes": 3218,
+    "sha256": "3957565f527dd140ada66cc4520bb7fbaae5cd56b9c5af8755da7e3e891f997a"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-faults-bounded/no-backoff.txt",
+    "bytes": 1736,
+    "sha256": "86c642021f6d5805da6b32eb8735e82ef5fb6efd3c038b25ea70db470a79a38a"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-faults-bounded/no-followup.txt",
+    "bytes": 2942,
+    "sha256": "8b082c76e287cb832611acac352ad52c901f54e984ed2806de8df8d2f149a2c7"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-faults-bounded/no-timer-cancellation.txt",
+    "bytes": 2507,
+    "sha256": "d989006df6b75205b034fd88c046313194968c0bc27f025843709ad5c80d4dce"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-faults-bounded/overlapping-recovery.txt",
+    "bytes": 1997,
+    "sha256": "66adc5c7c1fe7641c3f527a9618d6d21cbf5ca5c6d3f72a44e4757d48d3fd753"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-faults-bounded/private-client-fields.txt",
+    "bytes": 1877,
+    "sha256": "8cd6fd12a7ab9e09679a46ad6a427ec79a0ee7d16d450f6d3773ba48289ee33a"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-faults-bounded/private-denial.txt",
+    "bytes": 5083,
+    "sha256": "107dcf6bb428174b6417cbbe06d0e9bc9271a24045415fc78c0e8e8cc2807cdc"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-faults-bounded/private-status.txt",
+    "bytes": 3217,
+    "sha256": "58f80a3aa2dda7b6a0ab3eb1b55243a9983573cc3e8e9a18d95f511390a5b9d1"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-faults-bounded/restored.txt",
+    "bytes": 2922,
+    "sha256": "0429c1445084a08e3cdb9349c948dd561e925e82f283150d4f606679abbb01b7"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/signer-followup-faults-bounded/result.json",
+    "bytes": 1356,
+    "sha256": "7f87561dd8d5c3f5c165e1a230cc380243bf02e231a6a505d0c462232d909b05"
+  }
+]

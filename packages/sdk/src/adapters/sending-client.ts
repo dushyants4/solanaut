@@ -2,8 +2,9 @@ import { Socket } from "node:net";
 import { isAbsolute } from "node:path";
 import { decodeBase58 } from "../base58.ts";
 import type { SigningEvent } from "../signing.ts";
-export interface SignerRefusal { status: "denied"; code: "deadline" | "unavailable" }
-export type SendingResult = Extract<SigningEvent, { stage: "response" }> | SignerRefusal;
+import type { DenialClass } from "../errors.ts";
+export interface SignerRefusal { status: "denied"; ref: number; class: DenialClass }
+export type SendingResult = (Extract<SigningEvent, { stage: "response" }> & { status: "sent" | "uncertain" }) | SignerRefusal;
 export type ReportResult = { decision: string; outcome: "landed" | "failed" | "expired" | "unresolved" } | SignerRefusal;
 export interface SendingClientOptions { socket: string; clientId: string; timeoutMs?: number }
 export interface SendingRequest { id: string; deadline?: number }
@@ -20,7 +21,7 @@ const identity = (value: unknown) => typeof value === "string" && /^[A-Za-z0-9._
 const hash = (value: unknown) => typeof value === "string" && /^[0-9a-f]{64}$/.test(value);
 const record = (value: unknown) => value !== null && typeof value === "object" && !Array.isArray(value);
 function signature(value: unknown): boolean { try { return typeof value === "string" && decodeBase58(value).length === 64; } catch { return false; } }
-const refusal = (r: Record<string, unknown>) => r.status === "denied" && ["deadline", "unavailable"].includes(String(r.code)) && Object.keys(r).every((key) => ["status", "code"].includes(key));
+const refusal = (r: Record<string, unknown>) => r.status === "denied" && typeof r.ref === "number" && Number.isSafeInteger(r.ref) && r.ref >= -1 && ["refused", "retry-later", "invalid"].includes(String(r.class)) && Object.keys(r).every((key) => ["status", "ref", "class"].includes(key));
 export function createSendingClient(options: SendingClientOptions) {
   if (!record(options)) throw new SignerClientError("input", "options must be an object");
   const { socket: path, clientId } = options; const timeoutMs = options.timeoutMs ?? 30_000;
@@ -56,7 +57,7 @@ export function createSendingClient(options: SendingClientOptions) {
           if (body.ok !== true || body.id !== id || !("result" in body) || Object.keys(body).some((key) => !["ok", "id", "result"].includes(key))) throw new Error("mismatched envelope");
           const r = body.result;
           if (!r || typeof r !== "object" || Array.isArray(r)) throw new Error("invalid result");
-          if (method === "propose" && (r.stage !== "response" || !hash(r.decision) || !["denied", "sent", "uncertain"].includes(r.status) || (r.status === "sent" ? !signature(r.signature) : r.status === "denied" ? r.signature !== undefined : r.signature !== undefined && !signature(r.signature)) || Object.keys(r).some((key) => !["stage", "decision", "status", "signature"].includes(key)))) {
+          if (method === "propose" && (r.stage !== "response" || !hash(r.decision) || !["sent", "uncertain"].includes(r.status) || (r.status === "sent" ? !signature(r.signature) : r.signature !== undefined && !signature(r.signature)) || Object.keys(r).some((key) => !["stage", "decision", "status", "signature"].includes(key)))) {
             if (!refusal(r)) throw new Error("invalid proposal result");
           }
           if (method === "report" && (r.decision !== (payload as { decision: string }).decision || !["landed", "failed", "expired", "unresolved"].includes(r.outcome) || Object.keys(r).some((key) => !["decision", "outcome"].includes(key)))) {

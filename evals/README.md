@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`signer/followup.md`: the running same-user service projects class-only socket
+denials and follows signed attempts automatically; original campaigns remain
+intact. Executable/key loading and complete signer qualification remain owed.
+
 `release/disclosure.md`: class-only SDK adapter errors and operator callbacks
 are integrated, including signed development disclosure and replay markers.
 First failures, current assertion reasons and omission faults remain explicit.

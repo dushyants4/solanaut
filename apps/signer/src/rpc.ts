@@ -10,7 +10,7 @@ const base58 = (value: unknown, size: number): string => {
   if (typeof value !== "string" || decodeBase58(value).length !== size) throw new Error("invalid RPC base58 response shape");
   return value;
 };
-export function createTrustedRpc(urls: readonly string[], options: RpcOptions = {}): CoreOptions["rpc"] & { health(): unknown } {
+export function createTrustedRpc(urls: readonly string[], options: RpcOptions = {}): CoreOptions["rpc"] & { health(): { degraded: boolean; providers: { healthy: boolean; reason: string; slot: number }[] } } {
   if (urls.length !== 2 || new Set(urls).size !== 2) throw new Error("configure two distinct RPC providers");
   const providers = urls.map((url) => {
     const u = new URL(url);

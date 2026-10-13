@@ -6,16 +6,16 @@
 |---|---|
 | **Beta (Leg 2)** | **Achieved.** Built and validated on devnet; signed off by the human on 2026-10-05 and tagged `milestone/beta`. The evidence is listed under *Measured so far* below. |
 | **Alpha (Leg 3)** | **In progress**, built by Codex since 2026-10-05 (`docs/HANDOFF.md`). The signer, operator-signed policies, crash-safe storage and recovery, ADR-012's latch rule and much heavier testing are built and tested as components; the signer does not yet run as a process. No Alpha milestone is reached yet. On 2026-10-13 Claude reviewed the work (`docs/reviews/2026-10-13-codex-leg3.md`), and the human accepted the decisions it was waiting on. |
-| **Tests** | **951 of 951 pass**, and typecheck passes locally (2026-10-13; `evals/release/disclosure.md`, CLAIMS S158). Hosted run `38437894194` preserves the prior passing jobs; runtime package-fault jobs are cancelled and fault partition two fails pending Claude's runner/termination edits. Product work follows the accepted revised queue. |
+| **Tests** | **960 of 960 pass**, and typecheck, installed-package checks and exact serial AST coverage pass locally (2026-10-13; `evals/signer/followup.md`, CLAIMS S159). Hosted run `38445834857` preserves prior green jobs; runtime package-fault jobs are cancelled and fault partition two fails pending Claude's runner/termination edits. |
 | **Public** | **Public since 2026-10-12**: Apache-2.0, a plain-language README and reading guide. The human's private drop was removed from every commit; old commit IDs map to new ones in `docs/HISTORY-MAP.md` (`runs/2026-10-12-public-readiness.md`, `runs/2026-10-13-public-bridge.md`). |
 
 ## Detailed log, newest first
 
-**2026-10-13 · Product fixes and denial disclosure integrated.** Wallet batch edits retain signed reservations;
-RPC exceptions and default SDK adapter denials no longer expose private reasons to the model.
-Operator callbacks, signed development disclosure and replay markers work; local tests/typecheck pass.
-Evidence: `evals/release/integrated-fixes.md` and `evals/release/disclosure.md`.
-Hosted package-fault runner edits remain Claude's; next is the running signer.
+**2026-10-13 · Product fixes, private denials and automatic signer follow-up integrated.**
+Wallet batches retain signed reservations; operator callbacks hold private SDK reasons.
+The same-user socket projects class/reference denials and reconciles signed attempts automatically.
+Local tests, typecheck, installed-package checks and serial coverage pass; receipts S157–S159.
+Hosted runner edits remain Claude's; key loading, the executable and isolation remain unfinished.
 
 **2026-10-13 · Review, and the decisions it was waiting on.** Claude reviewed Codex's Leg 3 work: safe and honest,
 but heavy on evidence and light on integrated product (`docs/reviews/2026-10-13-codex-leg3.md`). The human accepted

@@ -46,7 +46,7 @@ test("SIG-1/2/10: same-user startup wires signed guard, clock, socket and durabl
   try {
     const status = await exchange(f.options.socket, request("status", "status"));
     assert.equal(status.ok, true); assert.equal(status.result.mode, "same-user");
-    assert.equal(status.result.keyIsolation, false); assert.equal(status.result.policyVersion, 1);
+    assert.equal(status.result.keyIsolation, false); assert.equal(service.status().keyIsolation, false); assert.equal(status.result.policyVersion, undefined); assert.equal(service.status().policyVersion, 1);
     const sent = await exchange(f.options.socket, pay); assert.equal(sent.result.status, "sent");
     const decision = f.entries().find((e) => e.kind === "decision");
     assert.equal(decision?.kind === "decision" && decision.source, "signer");

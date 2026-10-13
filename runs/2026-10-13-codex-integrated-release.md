@@ -58,6 +58,10 @@ reviewed stale worktrees/branches. Accepted SPEC contracts precede their code.
 SDK adapters now expose class/reference errors and private operator callbacks;
 signed development disclosure is marked and replay-checked. The operator demo
 reads its private journal and no longer calls an uncertain send "not sent".
+The running same-user service now projects socket replies and follows signed
+attempts automatically, coalescing passes and draining/cancelling before close.
+Source, installed-package and unchanged serial coverage checks pass; preserved
+service/client campaigns retain their original fault sites and populations.
 Receipts bind local tests, first failures and omission faults without raw logs
 in Git. No stable milestone is claimed; next is the running signer.
 
@@ -75,7 +79,30 @@ Exact owed mutation edits (O11, additive scope, Claude's gate):
 Retain every prior input, score floor and deadline. Freeze the next definition
 and fresh seed before its run; no mutation score is claimed by source faults.
 
+Exact owed running-path workflow addition (O12, Claude's gate): immediately
+after the existing installed-package test step in each runtime job, insert:
+```yaml
+      - name: running signer disclosure and follow-up faults
+        run: python evals/signer/followup-faults.py
+```
+Preserve all earlier steps, the runtime matrix and job limits. This is an owed
+addition, not permission to run past a limit; combine with package remediation.
+
 ## Found
+
+Pre-commit claim lint refuses the new follow-up row because it only links the
+receipt's commands. Add literal regenerating commands to that row; no claim or
+lint rule changes. The remaining pre-commit close failure is the uncommitted tree.
+
+The new follow-up fault campaign catches denial/status leaks, then its omitted
+scheduler exposes an unbounded drain-test wait. The runner restores source on
+timeout; process inspection finds no surviving worker. Initial partial timeout
+output was not retained, which is stated in its diagnostic. Bound the test wait
+and the runner's owned process group; retain the initial script and earlier logs.
+The existing sending-client fault gate freezes named-test count. Keep added
+negative denial cases within its existing response-shape test, removing no case;
+retain its count and all original faults. Service fault sites also remain intact.
+Status must not expose the rule-named latch flag; only the operator retains it.
 
 The first disclosure full run fails old private error-field assertions, not
 transaction-safety behaviour. Their operator-side replacements are listed once
@@ -102,7 +129,9 @@ split the commands as the boundary instructions prescribe. No bypass or gate edi
 ## Open
 
 Run the same-user signer with protected devnet key loading, class-only socket
-replies and automatic follow-up; then continue the revised queue. Hosted runner
+replies and automatic follow-up; the latter two now work. Next are the key loader,
+executable and real kill/restart tests. The funded agent still needs an operator
+RPC pair for the live smoke test. Then continue the revised queue. Hosted runner
 edits remain Claude's; package publication, funding and OS users are human-owned.
 
 ## Provenance

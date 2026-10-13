@@ -1,6 +1,6 @@
 # Signer development and trust boundary
 
-> **Draft 9** · 2026-10-06 · owner: integrator · for: operators and signer developers.
+> **Draft 10** · 2026-10-13 · owner: integrator · for: operators and signer developers.
 > Register: `kb/DOCUMENTS.md`. The operational service is still being implemented.
 
 The executor and devnet RPC boundary live under `apps/signer/src/`. Their current evidence uses
@@ -67,9 +67,14 @@ read its separate final report for settlement. Unknown reports leave the lifecyc
 It requires valid signed authorization and existing protected history, takes kernel ownership,
 restores with the anchored clock and recovers before listening. Close drains socket and host
 recovery work before releasing ownership. Host-provided signing/RPC must respect deadlines.
-Its status exposes policy/guard/recovery state and explicitly says key isolation is false.
-Key loading, provider-health projection, background follow-up, an executable and dedicated-user
-mode remain owed; this is not an installable isolated service. Evidence: `evals/signer/service.md`.
+Operator status exposes policy/guard/recovery state and explicitly says key isolation is false.
+Socket status projects mode, keyIsolation, recoveryIncomplete and degraded. Socket
+denials expose only status/class/reference, including historical retries and full
+development policies; private journal evidence is unchanged. Background follow-up
+uses the same recovery path, coalesces overlapping passes, backs off on incomplete
+passes, and cancels/drains before releasing ownership. Key loading, an executable
+and dedicated-user deployment remain owed; this is not an installable isolated
+service. Earlier evidence: `evals/signer/service.md`.
 The human accepted ADR-021's larger budget, now reflected in SIG-11; all signer
 app source and signer-specific helpers count. The complete running candidate
 still needs its explicit source inventory. No release gate is marked achieved.

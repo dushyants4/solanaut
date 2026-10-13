@@ -129,10 +129,20 @@ test("CLT-2/3: remote refusals use fixed typed codes without exposing peer messa
   } finally { await host.close(); }
 });
 test("CLT-1/3: durable denied, uncertain and pre-admission refusal answers remain distinct", async () => {
-  for (const result of [{ stage: "response", decision, status: "denied" }, { stage: "response", decision, status: "uncertain", signature }, { stage: "response", decision, status: "uncertain" }, { status: "denied", code: "unavailable" }, { status: "denied", code: "deadline" }]) {
+  for (const result of [{ status: "denied", ref: 7, class: "refused" }, { stage: "response", decision, status: "uncertain", signature }, { stage: "response", decision, status: "uncertain" }, { status: "denied", ref: -1, class: "retry-later" }, { status: "denied", ref: 8, class: "invalid" }]) {
     const host = await server((r, socket) => socket.end(answer(r, result)));
     try { assert.deepEqual(await createSendingClient({ socket: host.path, clientId: "a" }).propose({ id: "one", message: Uint8Array.of(1) }), result); }
     finally { await host.close(); }
+  }
+  // ADR-025: old denial shapes are now refused; all negative cases stay in this maintained population.
+  for (const result of [{ stage: "response", decision, status: "denied" }, { status: "denied", code: "deadline" },
+    { status: "denied", ref: 1, class: "refused", rule: "PRIVATE_RULE" }, { status: "denied", ref: -2, class: "refused" },
+    { status: "denied", ref: 1.5, class: "refused" }, { status: "denied", ref: 1, class: "other" }, { status: "denied", ref: null, class: "invalid" }]) {
+    const host = await server((r, socket) => socket.end(answer(r, result)));
+    try {
+      await assert.rejects(createSendingClient({ socket: host.path, clientId: "a" }).propose({ id: "one", message: Uint8Array.of(1) }),
+        (e: unknown) => e instanceof SignerClientError && e.code === "protocol" && e.mayHaveExecuted && !e.message.includes("PRIVATE_RULE"));
+    } finally { await host.close(); }
   }
 });
 test("CLT-1: request identity is captured before caller mutation", async () => {

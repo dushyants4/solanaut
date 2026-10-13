@@ -1,5 +1,9 @@
 # DOCUMENTS.md — the document register
 
+2026-10-13: same-user socket disclosure/follow-up receipt, source-fault runner
+and hash manifest; CLIENT, SIGNER, SPEC, current assertion table, CLAIMS S159,
+PROGRESS, HANDOFF and the continuing record. Raw output stays under sandbox.
+
 2026-10-13: ADR-025 SDK implementation receipt/hash manifest and fault script,
 one current assertion-change table, SDK reference/README privacy contract,
 CLAIMS S158, RISKS, PROGRESS, HANDOFF and continuing plain session record.

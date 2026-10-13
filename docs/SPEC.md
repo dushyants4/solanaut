@@ -693,6 +693,16 @@ and accepted: ADR-013 to ADR-018 (§13.11).
 
 ### 13.1 Signer process (milestone 3.1)
 
+Running-path allocation, 2026-10-13 (ADR-013/019/025): socket denial results are
+`{status:"denied", ref, class}` even under signed development full disclosure.
+The private signing/control journals keep their original response evidence;
+projection occurs on every return, including historical retries. A malformed
+proposal is invalid; pre-admission RPC/deadline failure is retry-later with −1.
+Agent status exposes only mode, keyIsolation, recoveryIncomplete and degraded;
+policy identity/version, denial counters and rule-named latch state remain operator-side.
+Live follow-up uses the same recover/report path as startup, runs serially,
+backs off on incomplete passes, and is cancelled/drained before ownership release.
+
 | ID | Requirement | From | Verified by |
 |---|---|---|---|
 | SIG-1 | The key lives only in `solanaut-signer`. The agent gets receipts and signatures, never key material | §2, T9 | a test that no API reachable from the agent returns key bytes |

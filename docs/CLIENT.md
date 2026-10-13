@@ -1,6 +1,6 @@
 # Sending client
 
-> **Draft 2** · 2026-10-08 · owner: integrator · for: Node SDK consumers.
+> **Draft 3** · 2026-10-13 · owner: integrator · for: Node SDK consumers.
 > Register: `kb/DOCUMENTS.md`. Private candidate; installation and isolated deployment
 > remain under development. Local evidence: S31, `evals/sdk/sending-client.md`.
 
@@ -26,13 +26,18 @@ Keep the chosen ID and exact bytes/group through uncertainty. A different paymen
 its own ID. IDs follow the signer's identity alphabet. Each call uses a fresh connection;
 the client does not automatically reconnect or retry a request.
 
-An admission answer includes a decision hash and `denied`, `sent` or `uncertain` status.
-`sent` does not mean landed. A pre-admission refusal instead contains a fixed `deadline`
-or `unavailable` code. A denied admission's named rule is in its decision record; this
-reply does not yet include the full decision. `report({ id, decision })` asks the signer
+An allowed attempt answers with a decision hash and `sent` or `uncertain` status.
+`sent` does not mean landed. Every denial uses `{status: "denied", ref, class}`;
+an unrecorded pre-admission refusal has reference −1. Classes follow SPEC's frozen
+table. The rule and reason stay in the operator's record, even under signed full
+development disclosure. The client rejects legacy denial shapes and extra fields.
+`report({ id, decision })` asks the signer
 to read authoritative outcome evidence and returns a final outcome or `unresolved`.
 Callers never supply outcomes. `status({ id })` returns the host's keyless projection;
 check its mode and limitations rather than treating it as an isolation attestation.
+Agent status contains mode, keyIsolation, recoveryIncomplete and degraded; policy
+identity/version, denial counters and latch state stay operator-side. The running
+service now reconciles signed attempts automatically without another client call.
 
 `SignerClientError` exposes `code`, `mayHaveExecuted` and an optional fixed `remoteCode`.
 Missing arguments, primitive values and array/function containers are refused
