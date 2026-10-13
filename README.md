@@ -121,8 +121,8 @@ The full reading guide is [docs/README.md](docs/README.md).
   testing are built and tested piece by piece. They are not yet a released milestone.
   See [PROGRESS.md](PROGRESS.md) and [docs/ROADMAP.md](docs/ROADMAP.md).
 - **CI runs on every push, and is honest about what is still open.** A red mark next to a commit means one of the
-  stricter release gates still fails: a timing test, the full fault campaigns or the coverage floors. Each is tracked in
-  [PROGRESS.md](PROGRESS.md), not hidden.
+  stricter release gates still fails. Today that is the full fault campaigns, which do not yet finish inside the job's
+  time limit. It is tracked in [PROGRESS.md](PROGRESS.md), not hidden.
 
 ## How it was built
 

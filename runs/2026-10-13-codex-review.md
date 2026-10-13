@@ -61,6 +61,11 @@ after you run a partner session with it to keep the dev job going as per plans f
   - The three runtime test jobs failed `npm test` on H11. Then their installed-package fault injections ran past the
     10-minute limit, and the jobs were cancelled.
   - The AST floors failed, and so did fault partitions 1 and 2.
+- **CI on `652cad5`, after O6, run `38366574082`:** 12 of 15 jobs pass, up from 9.
+  - Newly green: the AST floors, the Node 22.18 test job, and fault partition 1.
+  - Still red: the Node 24 and 26.7 test jobs, cancelled at the 10-minute limit about 450 seconds into the package
+    fault injections, and fault partition 2.
+  - Both wait on O2 and O3.
 - **No requirement test exists yet** for TOK (3.3), OPQ (3.4) or DSH (3.8), and `programs/` is empty (3.7).
 - **The owned facade (`owned-guard.ts`) is used only by tests.** The signer app uses the plain guard.
 - **The three `codex/*` worktrees hold nothing that `main` lacks.** The checks are in the review's *Provenance*.

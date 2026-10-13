@@ -208,6 +208,8 @@ devnet.
 - **Closed:** H13 and H15, both settled by the public release.
 - **Deferred:** the schema-validator finding waits for the freeze.
 - **Still open:** H1 to H5, H8 and H12. Claude recommends accepting H12's version string and publishing later.
+- **CI on `652cad5`, after O6:** 12 of 15 jobs pass, up from 9. Still red: two runtime test jobs, cancelled at the
+  10-minute limit in the package fault injections, and fault partition 2. Both wait on O2 and O3.
 
 SDK schema qualification finding (2026-10-11): existing Ajv/formats cannot
 compile the pinned official CycloneDX schema strictly because a required format
