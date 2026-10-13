@@ -143,6 +143,7 @@ interface DecisionV1 extends EntryBase {
   shape: string | null;                       // hash of programs and destinations: the sensor's "same shape"
   amounts: { sol: string; tokens: { mint: string; amount: string }[]; fees: string } | null; // what an ALLOW reserves
   allow: boolean;
+  disclosure?: "full";                      // signed development mode; omitted under class/legacy policies
   rule?: RuleV1;                              // on every denial
   reason: string;
   posture: "DEFAULT" | "INHIBIT" | "REGROUND" | null; // null if Keel never ran for this proposal

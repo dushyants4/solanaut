@@ -1,5 +1,12 @@
 # Staged devnet release — review draft
 
+Current status, 2026-10-13: the accepted harness wait is applied; wallet batch
+membership and RPC privacy corrections are integrated (CLAIMS S157). Default
+SDK denial disclosure is class-only (S158). The repository is public; the SDK
+package remains unpublished. Hosted fault-runner corrections, the running
+signer and the stable release gates remain required. Older pending notes below
+retain their historical scopes and do not reopen answered decisions.
+
 Current editorial status, 2026-10-11: the proposed product page and staged release
 remain unapproved. [RPC diagnostic evidence](../../evals/signer/rpc-redaction.md),
 D42/S156, reproduces provider-text propagation and prepares a separate copied

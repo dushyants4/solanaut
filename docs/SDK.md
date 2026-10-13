@@ -1,24 +1,23 @@
 # SDK reference — private candidate
 
-> **Draft 23** · 2026-10-11 · owner: integrator · for: developers integrating the candidate.
+> **Draft 24** · 2026-10-13 · owner: integrator · for: developers integrating the candidate.
 > Register: `kb/DOCUMENTS.md`. This describes current exports, not a stable-release promise.
 
 The current compiled private package has scoped
 [real-corpus decoder/classifier checks](../evals/release/installed-differential.md)
 and [mixed replay checks](../evals/release/installed-replay.md), CLAIMS S138/S139.
 These exercise installed public exports on the available runtimes. They do not
-qualify an isolated service, snapshots or a stable release; the current full
-native baseline still fails H11's unchanged staged-baseline wait.
+qualify an isolated service, snapshots or a stable release. The accepted harness
+wait is applied; hosted package-fault runner corrections remain owed.
 
-The current wallet batch path has an open membership defect, D41: wallet array
-reversal/removal after signing can defeat cleanup and prematurely expire signed
-admissions. The prepared correction in [adapter-batch](../evals/sdk/adapter-batch.md)
-is not integrated because full native testing fails H11. Do not treat the current
-batch adapter as qualified against mutable wallet membership.
+Wallet batch membership and provider-text redaction corrections are integrated.
+Their initial failures remain in [adapter-batch](../evals/sdk/adapter-batch.md)
+and [rpc-redaction](../evals/signer/rpc-redaction.md); current integration evidence
+is [integrated-fixes](../evals/release/integrated-fixes.md).
 
 The sending wallet wrapper verifies the captured serialised wire's admitted
-message and wallet signature before RPC. A refusal uses
-`wallet-changed-message`; discard the rejected transaction object and inspect the
+message and wallet signature before RPC. A refusal names
+`wallet-changed-message` to the operator; discard the rejected transaction object and inspect the
 recorded outcome before retrying. Previously verified signing remains unknown
 even if serialisation erases its object signature. Trusted SDK inputs and direct
 key access remain its stated limits. Evidence: [adapter-wire](../evals/sdk/adapter-wire.md),
@@ -83,6 +82,27 @@ controls its key. `createSendingClient` uses the distinct signer protocol; its d
 and isolation qualification remain incomplete. See [CLIENT](CLIENT.md) and [SIGNER](SIGNER.md).
 
 ## Guard and record
+
+Send private refusal details to your operator log, outside the model's context:
+
+```ts
+const guard = await createGuard({ policy, onRefusal: refusal => operatorLog(refusal) });
+```
+
+The callback receives a detached, deeply frozen `{rule, reason, decision}` after
+persistence. An adapter-only refusal has `decision: null`; a storage failure has
+an unrecorded decision with reference −1. Reusing an already recorded request
+does not emit the callback again. Callback failures produce a fixed operator
+diagnostic on stderr and cannot change the verdict or its record.
+
+For development, add `disclosure: "full"` to the policy **before signing it**,
+then pass its verified `authorization` to `createGuard`. This exposes `rule` and
+`reason` on adapter errors and marks decisions `disclosure: "full"`. It never
+attaches the decision or an exception cause. Unsigned full disclosure refuses
+startup. Omission retains the legacy policy bytes and defaults to `"class"`.
+These adapter boundaries hide details from model feedback; trusted SDK callers
+can still inspect the guard directly. Signer socket disclosure is separate and
+must always use the class contract.
 
 | Export or method | Contract |
 |---|---|
@@ -180,7 +200,7 @@ process isolation. Do not use these interfaces to fabricate chain outcomes or se
 | `PolicyError` (`rule: invalid-policy`) | Correct its field problems; no guard started. |
 | `PolicyAuthorizationError` (`code: policy-authorization`) | Verify the independent trust pin and exact signed text/version; do not disable verification to start. |
 | `DecodeError` (`rule`) | Correct unsupported/malformed bytes or table pins; classification/admission remains required afterwards. |
-| `SolanautDenied` (`rule`, `reason`, optional `decision`) | Treat the adapter refusal as a denied action. Inspect the policy or request; repeatedly signing the same denied bytes is not recovery. `DeniedRule` types these refusals. |
+| `SolanautDenied` (`ref`, `class`) | Stop on `refused`, inspect an `invalid` proposal, and reconcile a `retry-later` result before another attempt. `ref` is the recorded decision sequence, or −1 when none was persisted. The default error carries no rule, reason, decision or cause. |
 | `SignerClientError` (`code`, `mayHaveExecuted`, optional `remoteCode`) | Follow [CLIENT](CLIENT.md). Preserve requests whenever execution is uncertain. |
 | `ArchiveError` (`code`) | Follow [STORAGE](STORAGE.md); structural success still needs authenticated replay and a recovery drill. |
 | `CheckpointBindingError` (`code: checkpoint-binding`) | Refuse this checkpoint binding. Check the external pins, both signatures, exact profile and independently computed payload digests; complete restore still needs verified replay. |

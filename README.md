@@ -47,7 +47,8 @@ flowchart TD
 2. **A loop brake.** [Gubernaut Keel](https://www.npmjs.com/package/@gubernaut/core), an open-source control loop, reads
    three numbers about the stream of proposals and stops an agent that keeps retrying the same failing transaction.
 
-Every refusal names the rule that made it, and nothing refused is ever signed. If anything goes wrong inside the guard,
+Every refusal names the rule to the operator; the agent receives a class and record reference. Nothing refused by the
+guard is signed through its adapters. If anything goes wrong inside the guard,
 the answer is no. On-chain, a **Squads v4 spending limit** caps what the agent's key can move, even if the key itself is
 stolen.
 
@@ -70,8 +71,9 @@ Every number above, with its scope and the command that reproduces it, is in [do
 - **It is not an injection detector, and not "un-hackable".** Its defence against prompt injection is the policy, which
   does not need to notice anything. If you allow an address, a fooled agent can still pay it.
 - **The policy is only as safe as where it is kept.** It must stay out of the agent's reach.
-- **A refusal still explains itself to the agent.** Today a refused agent is told which rule stopped it, including
-  a cap's value. A change that gives the reason to you alone is accepted and next in line
+- **Denial classes do not hide the policy from neighbouring code.** SDK adapters give the model a class and reference;
+  operator callbacks receive the reason. Code in the same process can still inspect the guard, and an agent can learn
+  by probing. Operator-signed full disclosure is available for development
   ([ADR-025](design/ADR-025-denial-disclosure.md)).
 - **Devnet only.** No real funds, and no detection rate is claimed.
 

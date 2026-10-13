@@ -25,6 +25,8 @@ export type TokenProgram = "token" | "token-2022";
 
 export interface PolicyV1 {
   version: 1;
+  /** Omitted remains class-only without changing legacy canonical policy bytes. */
+  disclosure?: "class" | "full";
   /** The guarded keys: their outflows are what the policy checks. */
   principal: string[];
   /** `opaque`: whether allowlisted programs the guard does not decode may run at all. */
@@ -67,9 +69,9 @@ export function createPolicy(input: unknown): { policy: Policy; hash: string } {
   const problems: string[] = [];
   const v = new Validator(problems);
   const p = v.object(input, "policy", [
-    "version", "principal", "programs", "destinations", "sol", "tokens", "fees", "lookupTables", "windowMs", "intents",
+    "version", "disclosure", "principal", "programs", "destinations", "sol", "tokens", "fees", "lookupTables", "windowMs", "intents",
     "latch", "messages", "cosign", "sensor",
-  ]);
+  ], ["disclosure"]);
   if (!p) throw new PolicyError(problems);
 
   if (p.version !== 1) problems.push(`version must be 1, not ${describe(p.version)}`);
@@ -133,11 +135,14 @@ export function createPolicy(input: unknown): { policy: Policy; hash: string } {
     problems.push(`sensor.expectedPerMinute must be a positive number, not ${describe(sensor.expectedPerMinute)}`);
   }
 
+  const disclosure = p.disclosure;
+  if (disclosure !== undefined && disclosure !== "class" && disclosure !== "full") problems.push('disclosure must be "class" or "full"');
   if (problems.length) throw new PolicyError(problems);
 
   // Every field below was checked above; build the copy from known fields only.
   const policy: PolicyV1 = {
     version: 1,
+    ...(disclosure === undefined ? {} : { disclosure: disclosure as "class" | "full" }),
     principal: principal!,
     programs: { allow: programsAllow!, opaque: programs!.opaque as "deny" | "allow" },
     destinations: { allow: destinationsAllow! },
@@ -184,14 +189,14 @@ class Validator {
   }
 
   /** A plain object with exactly these keys: a missing key, or one it does not know, is a problem. */
-  object(v: unknown, path: string, keys: string[]): Record<string, unknown> | undefined {
+  object(v: unknown, path: string, keys: string[], optional: readonly string[] = []): Record<string, unknown> | undefined {
     if (v === null || typeof v !== "object" || Array.isArray(v)) {
       this.#problems.push(`${path} must be an object, not ${describe(v)}`);
       return undefined;
     }
     const o = v as Record<string, unknown>;
     for (const k of Object.keys(o)) if (!keys.includes(k)) this.#problems.push(`${path === "policy" ? k : `${path}.${k}`} is not a policy v1 field`);
-    for (const k of keys) if (!(k in o)) this.#problems.push(`${path === "policy" ? k : `${path}.${k}`} is missing`);
+    for (const k of keys) if (!optional.includes(k) && !(k in o)) this.#problems.push(`${path === "policy" ? k : `${path}.${k}`} is missing`);
     return o;
   }
 

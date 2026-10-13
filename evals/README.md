@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`release/disclosure.md`: class-only SDK adapter errors and operator callbacks
+are integrated, including signed development disclosure and replay markers.
+First failures, current assertion reasons and omission faults remain explicit.
+
 `release/integrated-fixes.md`: wallet batch membership and RPC privacy fixes
 now run in the product, with ordinary regressions, restored omission faults and
 passing local full tests/typecheck. Hosted runner edits remain Claude's.

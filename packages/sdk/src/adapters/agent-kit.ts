@@ -28,7 +28,7 @@ import type { Decision } from "../log.ts";
 import { verifyEd25519 } from "../latch.ts";
 import { encodeBase58 } from "../base58.ts";
 import { decodeMessage, decodeTransaction } from "../message.ts";
-import { SolanautDenied } from "../errors.ts";
+import { denied, adapterBoundary } from "../errors.ts";
 import { jsonRpc, type RpcLike } from "./rpc.ts";
 
 export type { RpcLike } from "./rpc.ts";
@@ -163,12 +163,14 @@ export function guardedWallet<Tx = any>(wallet: BaseWalletLike<Tx>, guard: Guard
 
   async function admit(tx: Tx): Promise<Admitted> {
     const message = messageOf(tx);
-    const blockHeight = await rpc.getBlockHeight();
+    let blockHeight: bigint;
+    try { blockHeight = await rpc.getBlockHeight(); }
+    catch { throw denied(guard, "rpc-unavailable", "RPC height unavailable", null); }
     const lastValidBlockHeight = blockHeight + BLOCKHASH_LIFETIME;
     const decision = guard.check({ message, at: now(), blockHeight, lastValidBlockHeight });
-    if (!decision.allow) throw new SolanautDenied(decision.rule!, decision.reason, decision);
+    if (!decision.allow) throw denied(guard, decision.rule!, decision.reason, decision);
     const receipt = guard.redeem(message, decision.hash, blockHeight);
-    if (!receipt.ok) throw new SolanautDenied("fail-closed", receipt.reason, decision);
+    if (!receipt.ok) throw denied(guard, "fail-closed", receipt.reason, decision);
     return { message, decision, lastValidBlockHeight };
   }
 
@@ -226,7 +228,7 @@ export function guardedWallet<Tx = any>(wallet: BaseWalletLike<Tx>, guard: Guard
     }
     if (signed.length === admitted.length && admitted.every((a, i) => signedAsAdmitted(signed[i], a))) return { signed, admitted };
     release(txs, signed, admitted);
-    throw new SolanautDenied("wallet-changed-message", "the wallet signed something other than the admitted messages, not with its key, or not all of them; its signatures were removed", null);
+    throw denied(guard, "wallet-changed-message", "the wallet signed something other than the admitted messages, not with its key, or not all of them; its signatures were removed", null);
   }
 
   /** Sign only: the caller sends. Follow each up, since nothing else will report it. */
@@ -254,7 +256,7 @@ export function guardedWallet<Tx = any>(wallet: BaseWalletLike<Tx>, guard: Guard
       try { guard.report(a.decision.hash, "unknown"); } catch {
         // A failed journal keeps the original admission; never acknowledge a send.
       }
-      throw new SolanautDenied("wallet-changed-message", "the serialized transaction does not carry the admitted message and wallet signature; its signatures were removed", null);
+      throw denied(guard, "wallet-changed-message", "the serialized transaction does not carry the admitted message and wallet signature; its signatures were removed", null);
     }
     let signature: string;
     try {
@@ -265,7 +267,7 @@ export function guardedWallet<Tx = any>(wallet: BaseWalletLike<Tx>, guard: Guard
       const refused = (e as { refused?: unknown } | null)?.refused === true;
       guard.report(a.decision.hash, refused ? "failed" : "unknown");
       if (!refused) follow(signed[0]!, a);
-      throw e;
+      throw denied(guard, "rpc-unavailable", refused ? "RPC rejected the transaction" : "RPC send outcome unresolved", a.decision);
     }
     const outcome = await rpc.confirm(signature, a.lastValidBlockHeight).catch(() => "unknown" as const);
     guard.report(a.decision.hash, outcome);
@@ -275,12 +277,12 @@ export function guardedWallet<Tx = any>(wallet: BaseWalletLike<Tx>, guard: Guard
 
   return Object.freeze({
     publicKey: wallet.publicKey,
-    signTransaction: async <T extends Tx>(tx: T) => (await signOnly([tx]))[0] as T,
-    signAllTransactions: async <T extends Tx>(txs: T[]) => (await signOnly(txs)) as T[],
-    signAndSendTransaction: signAndSend,
-    sendTransaction: async <T extends Tx>(tx: T) => (await signAndSend(tx)).signature,
+    signTransaction: async <T extends Tx>(tx: T) => adapterBoundary(guard, async () => (await signOnly([tx]))[0] as T),
+    signAllTransactions: async <T extends Tx>(txs: T[]) => adapterBoundary(guard, async () => (await signOnly(txs)) as T[]),
+    signAndSendTransaction: <T extends Tx>(tx: T, options?: unknown) => adapterBoundary(guard, () => signAndSend(tx, options)),
+    sendTransaction: async <T extends Tx>(tx: T) => adapterBoundary(guard, async () => (await signAndSend(tx)).signature),
     signMessage: async (_message: Uint8Array): Promise<Uint8Array> => {
-      throw new SolanautDenied("message-signing-denied", "policy v1 never signs off-chain messages: a raw signature over chosen bytes can be a transaction signature", null);
+      throw denied(guard, "message-signing-denied", "policy v1 never signs off-chain messages: a raw signature over chosen bytes can be a transaction signature", null);
     },
   });
 }

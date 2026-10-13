@@ -53,9 +53,37 @@ currently passing job. I propose no change to the revised work order.
 
 ## Changed
 
-This session's record; product changes and receipts follow their qualification.
+Integrated wallet batch membership and fixed RPC diagnostics, then removed the
+reviewed stale worktrees/branches. Accepted SPEC contracts precede their code.
+SDK adapters now expose class/reference errors and private operator callbacks;
+signed development disclosure is marked and replay-checked. The operator demo
+reads its private journal and no longer calls an uncertain send "not sent".
+Receipts bind local tests, first failures and omission faults without raw logs
+in Git. No stable milestone is claimed; next is the running signer.
+
+Exact owed mutation edits (O11, additive scope, Claude's gate):
+- `evals/ci/mutation-stage.ts`, source-list suffix:
+  `"owned-guard.ts"].map(name=>"packages/sdk/src/"+name)` →
+  `"owned-guard.ts","errors.ts"].map(name=>"packages/sdk/src/"+name)`.
+- Same file, test-list suffix:
+  `"owned-guard"].map(name=>"packages/sdk/test/"+name+".test.ts")` →
+  `"owned-guard","disclosure"].map(name=>"packages/sdk/test/"+name+".test.ts")`.
+- `evals/ci/mutation-stage.test.ts`, source expectation suffix:
+  `"owned-guard"].map(name=>"packages/sdk/src/"+name+".ts")` →
+  `"owned-guard","errors"].map(name=>"packages/sdk/src/"+name+".ts")`.
+- Same test, test expectation: the identical test-list replacement above.
+Retain every prior input, score floor and deadline. Freeze the next definition
+and fresh seed before its run; no mutation score is claimed by source faults.
 
 ## Found
+
+The first disclosure full run fails old private error-field assertions, not
+transaction-safety behaviour. Their operator-side replacements are listed once
+in the current review table; all original first failures remain retained.
+The optional coverage run used the default concurrent command rather than CI's
+accepted serial command. Its staged baseline exceeds the unchanged harness wait
+under that load. Preserve the failure; qualify the actual hosted serial command
+after it finishes. No timeout, population or threshold changes.
 
 Package fault jobs still need Claude's parallel runner and termination edits;
 this does not suspend the revised product queue. No gate is weakened here.
@@ -73,9 +101,9 @@ split the commands as the boundary instructions prescribe. No bypass or gate edi
 
 ## Open
 
-Complete the baseline, integrate wallet batch membership and RPC diagnostic
-redaction, then follow the revised queue. Publishing packages, funding keys and
-dedicated OS users remain human-owned.
+Run the same-user signer with protected devnet key loading, class-only socket
+replies and automatic follow-up; then continue the revised queue. Hosted runner
+edits remain Claude's; package publication, funding and OS users are human-owned.
 
 ## Provenance
 

@@ -3,6 +3,7 @@ import {strict as assert} from "node:assert";
 import {test} from "node:test";
 import {generateKeyPairSync,sign} from "node:crypto";
 import {createGuard} from "../src/guard.ts";
+import {SolanautDenied,type Refusal} from "../src/errors.ts";
 import {guardedWallet,type BaseWalletLike,type RpcLike} from "../src/adapters/agent-kit.ts";
 import {encodeBase58} from "../src/base58.ts";
 import {WORKLOAD_POLICY} from "./support/workload.ts";
@@ -36,7 +37,7 @@ for(const BufferType of [ArrayBuffer,SharedArrayBuffer]){
     }finally{g.close();}
   });
   for(const versioned of [false,true])test(`ADP-1/ADR-009: ${versioned?"versioned":"legacy"} admission privately captures raw ${BufferType.name} message`,async()=>{
-    const f=fixture(),g=await createGuard({policy:f.policy});try{
+    const refusals:Refusal[]=[],f=fixture(),g=await createGuard({policy:f.policy,onRefusal:r=>{refusals.push(r);}});try{
       const backing=new BufferType(f.admitted.length);new Uint8Array(backing).set(f.admitted);
       const tx=versioned?{message:{serialize:()=>backing,staticAccountKeys:[f.wallet.publicKey]},signatures:[f.signature],serialize:()=>f.wire(new Uint8Array(backing))}:Object.assign(f.tx,{serializeMessage:()=>backing,serialize:()=>f.wire(new Uint8Array(backing))});
       const wallet={...f.wallet,signTransaction:async (value:any)=>{
@@ -45,7 +46,8 @@ for(const BufferType of [ArrayBuffer,SharedArrayBuffer]){
         if(versioned)value.signatures[0]=signature;else value.signatures[0].signature=signature;
         return value;
       }};
-      await assert.rejects(guardedWallet<any>(wallet,g,{rpc:f.rpc,now:()=>1000}).signAndSendTransaction(tx),(error:Error)=>Reflect.get(error,"rule")==="wallet-changed-message");
+      await assert.rejects(guardedWallet<any>(wallet,g,{rpc:f.rpc,now:()=>1000}).signAndSendTransaction(tx),error=>error instanceof SolanautDenied&&error.class==="refused"&&error.rule===undefined&&error.reason===undefined);
+      assert.equal(refusals.length,1);assert.equal(refusals[0]!.rule,"wallet-changed-message");
       assert.equal(f.sent.length,0,"mutated admission never reaches RPC");
     }finally{g.close();}
   });

@@ -6,6 +6,7 @@
 // cannot decide, or cannot record, does not sign.
 
 import { readFileSync } from "node:fs";
+import { registerRefusalChannel, notifyRefusal, type RefusalObserver } from "./errors.ts";
 import { fileURLToPath } from "node:url";
 import { Governor, wasmDigest, type Posture, type Telemetry } from "@gubernaut/core";
 import { effectsOf, type ClassifyContext, type EffectsV1 } from "./classify.ts";
@@ -76,6 +77,8 @@ export interface ProposalV1 {
 }
 
 export interface GuardOptions {
+  /** Operator-only observer; never include its output in model tool responses. */
+  onRefusal?: RefusalObserver;
   /** Trusted signer-host attribution; SDK callers can bypass it, so this is not an isolation proof. */
   authority?: RuntimeAuthority;
   /** Policy v1. Validated here (rule 0): an invalid policy throws a PolicyError and no guard exists. */
@@ -252,6 +255,7 @@ function evaluateRules(env: Env, p: ProposalV1): DecisionBody {
   const at = typeof p?.at === "number" && Number.isFinite(p.at) && p.at >= 0 ? p.at : (state.maxAt ?? 0);
   const base = {
     kind: "decision" as const,
+    ...(policy.disclosure === "full" ? { disclosure: "full" as const } : {}),
     at,
     source: env.authority ? "signer" as const : "caller" as const,
     ...(env.authority ? { deployment: env.authority } : {}),
@@ -394,6 +398,9 @@ export async function createGuard(opts: GuardOptions): Promise<Guard> {
   if (authority && policy.latch.cluster !== "devnet") throw new Error("signer authority requires a devnet policy");
   const authorization = opts.authorization && Object.freeze({ ...opts.authorization });
   if (authorization) verifyPolicyAuthorization(policy, authorization);
+  if (policy.disclosure === "full" && !authorization) throw new PolicyAuthorizationError("full disclosure requires an operator-signed policy");
+  const observer = opts.onRefusal;
+  if (observer !== undefined && typeof observer !== "function") throw new Error("onRefusal must be a function");
   if (authorization && opts.sensor && opts.sensor !== sensorV1) throw new Error("signed policy evaluation profile requires sensor v1");
   const env: Env = { policy, policyHash, ctx: contextOf(policy), sensor: opts.sensor ?? sensorV1, gov: await Governor.create(), state: initialState(), trust: authorization, authority };
   const { state, gov } = env;
@@ -437,8 +444,11 @@ export async function createGuard(opts: GuardOptions): Promise<Guard> {
     return entry;
   }
 
-  const unrecorded = (reason: string): Decision =>
-    Object.freeze({ kind: "decision", v: 1, seq: -1, prev: state.head, hash: "", at: state.maxAt ?? 0, source: "caller", message: "", blockHeight: null, lastValidBlockHeight: null, intentKey: null, group: null, messageHash: null, shape: null, amounts: null, allow: false, rule: "fail-closed", reason, posture: null, telemetry: null, temperatureMax: null, policyHash, keel: KEEL }) as Decision;
+  const unrecorded = (reason: string): Decision => {
+    const decision = Object.freeze({ kind: "decision", v: 1, seq: -1, prev: state.head, hash: "", at: state.maxAt ?? 0, source: "caller", message: "", blockHeight: null, lastValidBlockHeight: null, intentKey: null, group: null, messageHash: null, shape: null, amounts: null, allow: false, rule: "fail-closed", reason, posture: null, telemetry: null, temperatureMax: null, policyHash, keel: KEEL }) as Decision;
+    notifyRefusal(guard, "fail-closed", reason, decision);
+    return decision;
+  };
 
   if (authorization && (!env.policyEntry || env.policyEntry.version !== authorization.version)) {
     const a = authorization;
@@ -461,7 +471,9 @@ export async function createGuard(opts: GuardOptions): Promise<Guard> {
       }
       const previous = store.entries.findLast((e): e is DecisionEntry => e.kind === "decision");
       const body = evaluate(env, p, previous);
-      return commit<DecisionEntry>(binding ? { ...body, request: binding } : body);
+      const decision = commit<DecisionEntry>(binding ? { ...body, request: binding } : body);
+      if (!decision.allow) notifyRefusal(guard, decision.rule!, decision.reason, decision);
+      return decision;
     } catch (err) {
       // Nothing may be signed on a decision that is not in the record.
       return unrecorded(shut ?? `the guard could not decide, so it denies: ${(err as Error)?.message ?? String(err)}`);
@@ -569,6 +581,7 @@ export async function createGuard(opts: GuardOptions): Promise<Guard> {
     policy,
     policyHash,
   };
+  registerRefusalChannel(guard, policy.disclosure ?? "class", observer);
   if (authorization) {
     let queue: Promise<void> = Promise.resolve();
     const startControl = guard.beginRequest, completeControl = guard.finishRequest;
@@ -651,7 +664,7 @@ export interface ReplayResult {
   divergence: { seq: number; field: string; recorded: unknown; recomputed: unknown } | null;
 }
 
-const COMPARED = ["allow", "rule", "intentKey", "messageHash", "amounts", "posture", "telemetry", "temperatureMax", "expires", "latch"] as const;
+const COMPARED = ["allow", "rule", "intentKey", "messageHash", "amounts", "posture", "telemetry", "temperatureMax", "expires", "latch", "disclosure"] as const;
 
 export class StreamReplayError extends Error {
   readonly code = "stream-replay";

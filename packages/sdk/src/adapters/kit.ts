@@ -10,7 +10,7 @@
 import type { Guard } from "../guard.ts";
 import type { Decision } from "../log.ts";
 import { verifyEd25519 } from "../latch.ts";
-import { SolanautDenied } from "../errors.ts";
+import { denied, adapterBoundary } from "../errors.ts";
 import type { RpcLike } from "./rpc.ts";
 
 /** A kit Transaction, as far as the guard reads it. */
@@ -59,11 +59,13 @@ export function guardedSigner<S extends PartialSignerLike>(signer: S, guard: Gua
       for (const tx of transactions) {
         const message = new Uint8Array(tx.messageBytes);
         const lastValidBlockHeight = lastValidBlockHeightOf(tx.lifetimeConstraint);
-        const blockHeight = opts.rpc ? await opts.rpc.getBlockHeight() : undefined;
+        let blockHeight: bigint | undefined;
+        try { blockHeight = opts.rpc ? await opts.rpc.getBlockHeight() : undefined; }
+        catch { throw denied(guard, "rpc-unavailable", "RPC height unavailable", null); }
         const decision = guard.check({ message, at: now(), blockHeight, lastValidBlockHeight });
-        if (!decision.allow) throw new SolanautDenied(decision.rule!, decision.reason, decision);
+        if (!decision.allow) throw denied(guard, decision.rule!, decision.reason, decision);
         const receipt = guard.redeem(message, decision.hash, blockHeight ?? lastValidBlockHeight);
-        if (!receipt.ok) throw new SolanautDenied("fail-closed", receipt.reason, decision);
+        if (!receipt.ok) throw denied(guard, "fail-closed", receipt.reason, decision);
         admitted.push({ message, decision });
       }
     } catch (e) {
@@ -88,10 +90,10 @@ export function guardedSigner<S extends PartialSignerLike>(signer: S, guard: Gua
     if (signatures.length !== admitted.length || !admitted.every((_, i) => valid(i))) {
       // A message the signer validly signed may yet land, so it is held as unknown; the rest were never signed.
       admitted.forEach((a, i) => report(a.decision, valid(i) ? "unknown" : "expired"));
-      throw new SolanautDenied("wallet-changed-message", "the signer did not return one signature per transaction, each verifying over its admitted message", null);
+      throw denied(guard, "wallet-changed-message", "the signer did not return one signature per transaction, each verifying over its admitted message", null);
     }
     return signatures;
   }
 
-  return Object.freeze({ address: signer.address, signTransactions });
+  return Object.freeze({ address: signer.address, signTransactions: (transactions: readonly KitTransactionLike[], config?: unknown) => adapterBoundary(guard, () => signTransactions(transactions, config)) });
 }

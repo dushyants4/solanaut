@@ -35,7 +35,7 @@ import { guardedSigner } from "../src/adapters/kit.ts";
 import { jsonRpc, RpcRefused } from "../src/adapters/rpc.ts";
 import { createServer } from "node:http";
 import { once } from "node:events";
-import { SolanautDenied } from "../src/errors.ts";
+import { SolanautDenied, type Refusal } from "../src/errors.ts";
 import { encodeBase58 } from "../src/base58.ts";
 import type { PolicyInput } from "../src/policy.ts";
 import { PROGRAMS } from "../src/classify.ts";
@@ -108,12 +108,15 @@ const pay = (to: PublicKey, lamports: number) => SystemProgram.transfer({ fromPu
 
 let clock = 1_000_000;
 const now = () => (clock += 30_000);
-const guard = () => createGuard({ policy: policy() });
+const operatorRefusals: Refusal[] = [];
+const guard = () => createGuard({ policy: policy(), onRefusal: refusal => { operatorRefusals.push(refusal); } });
 
 async function rejectsWith(p: Promise<unknown>, rule: string) {
   await assert.rejects(p, (e: unknown) => {
     assert.ok(e instanceof SolanautDenied, `expected SolanautDenied, got ${(e as Error)?.name}: ${(e as Error)?.message}`);
-    assert.equal(e.rule, rule, e.reason);
+    assert.equal(operatorRefusals.at(-1)?.rule, rule);
+    assert.equal(e.rule, undefined); assert.equal(e.reason, undefined);
+    assert.equal(e.ref, operatorRefusals.at(-1)?.decision?.seq ?? -1);
     return true;
   });
 }
@@ -146,9 +149,10 @@ test("signTransaction: an allowed payment is signed by the wrapped wallet; a dra
   const drain = legacy(pay(attacker, 1_000));
   await assert.rejects(w.signTransaction(drain), (e: unknown) => {
     assert.ok(e instanceof SolanautDenied);
-    assert.equal(e.rule, "destination-not-allowed");
-    assert.match(e.reason, /not an allowed destination/);
-    assert.equal(e.decision?.allow, false);
+    assert.equal(operatorRefusals.at(-1)?.rule, "destination-not-allowed");
+    assert.match(operatorRefusals.at(-1)!.reason, /not an allowed destination/);
+    assert.equal(operatorRefusals.at(-1)?.decision?.allow, false);
+    assert.equal(e.class, "refused"); assert.equal("decision" in e, false);
     return true;
   });
   assert.deepEqual(calls, ["signTransaction"], "the wallet never saw the drain");
@@ -178,7 +182,8 @@ test("the adapters give the same verdicts as the SDK, for legacy and v0 transact
         await w.signTransaction(tx);
         got = "allow";
       } catch (e) {
-        got = (e as SolanautDenied).rule;
+        assert.ok(e instanceof SolanautDenied);
+        got = operatorRefusals.at(-1)!.rule;
       }
       assert.equal(got, expected.allow ? "allow" : expected.rule, `${build.name}: ${label}`);
     }
@@ -251,7 +256,7 @@ test("wallet-changed-message carries no decision, on guardedWallet (guardedSigne
     },
   };
   const w = guardedWallet(modifying, await guard(), { rpc: fakeRpc().rpc, now });
-  await assert.rejects(w.signTransaction(legacy(pay(treasury, 1_000))), (e: unknown) => e instanceof SolanautDenied && e.rule === "wallet-changed-message" && e.decision === null);
+  await assert.rejects(w.signTransaction(legacy(pay(treasury, 1_000))), (e: unknown) => e instanceof SolanautDenied && !("decision" in e) && operatorRefusals.at(-1)?.rule === "wallet-changed-message" && operatorRefusals.at(-1)?.decision === null);
 });
 
 // --- batches, sending, messages -----------------------------------------------------------------------
@@ -289,7 +294,7 @@ test("signAndSendTransaction: checks, signs, sends exactly the admitted bytes it
 test("a send the RPC refuses is reported failed, and rethrown", async () => {
   const g = await guard();
   const w = guardedWallet(keypairWallet(), g, { rpc: fakeRpc({ refuse: true }).rpc, now });
-  await assert.rejects(w.signAndSendTransaction(legacy(pay(treasury, 9))), /simulation failed/);
+  await assert.rejects(w.signAndSendTransaction(legacy(pay(treasury, 9))), (e: unknown) => e instanceof SolanautDenied && e.class === "retry-later" && operatorRefusals.at(-1)?.reason === "RPC rejected the transaction");
   const last = g.entries().at(-1)!;
   assert.deepEqual([last.kind, last.kind === "report" && last.outcome], ["report", "failed"]);
 });
@@ -297,7 +302,7 @@ test("a send the RPC refuses is reported failed, and rethrown", async () => {
 test("a send whose fate is unknown is reported unknown, not failed: the signed bytes may still land, so a re-sign is refused", async () => {
   const g = await guard();
   const w = guardedWallet(keypairWallet(), g, { rpc: fakeRpc({ drop: true }).rpc, now });
-  await assert.rejects(w.signAndSendTransaction(legacy(pay(treasury, 10))), /fetch failed/);
+  await assert.rejects(w.signAndSendTransaction(legacy(pay(treasury, 10))), (e: unknown) => e instanceof SolanautDenied && e.class === "retry-later" && operatorRefusals.at(-1)?.reason === "RPC send outcome unresolved");
   const last = g.entries().at(-1)!;
   assert.deepEqual([last.kind, last.kind === "report" && last.outcome], ["report", "unknown"]);
   // The same payment again, with a new blockhash, while the first could still land: the double-send intents stop.
@@ -321,7 +326,7 @@ test("D14, sign-only: before the next proposal, guardedWallet reads the outcome 
   await rejectsWith(w.signTransaction(legacy(pay(treasury, 21))), "intent-in-flight");
   assert.deepEqual(reports(), ["landed"], "at exactly its last valid height it can still land: nothing to report yet");
   at.height = 1_151n;
-  const third = await w.signTransaction(legacy(pay(treasury, 21))).then(() => "allowed", (e: SolanautDenied) => e.rule);
+  const third = await w.signTransaction(legacy(pay(treasury, 21))).then(() => "allowed", () => operatorRefusals.at(-1)!.rule);
   assert.deepEqual(reports(), ["landed", "expired"], "unseen and past its expiry: it can never land, and it did not");
   assert.notEqual(third, "intent-in-flight", "the expired report freed the intent; what Keel makes of the retry is Keel's");
 });
@@ -374,7 +379,7 @@ test("guardedSigner: checks every transaction first, all or nothing, reads expir
 
   const forger = { address: kitSigner.address, signTransactions: async (txs: readonly any[]) => txs.map(() => ({ [kitSigner.address]: new Uint8Array(64) })) };
   await rejectsWith(guardedSigner(forger as never, await guard(), { now }).signTransactions([tx(treasury, 13n)]), "wallet-changed-message");
-  await assert.rejects(guardedSigner(forger as never, await guard(), { now }).signTransactions([tx(treasury, 14n)]), (e: unknown) => e instanceof SolanautDenied && e.decision === null, "SPEC §8: wallet-changed-message carries no decision (evaluator case E22)");
+  await assert.rejects(guardedSigner(forger as never, await guard(), { now }).signTransactions([tx(treasury, 14n)]), (e: unknown) => e instanceof SolanautDenied && !("decision" in e) && operatorRefusals.at(-1)?.decision === null, "SPEC §8: the operator retains the null decision (evaluator case E22)");
 });
 
 // --- the JSON-RPC client ----------------------------------------------------------------------------

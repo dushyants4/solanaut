@@ -70,8 +70,9 @@ recovery work before releasing ownership. Host-provided signing/RPC must respect
 Its status exposes policy/guard/recovery state and explicitly says key isolation is false.
 Key loading, provider-health projection, background follow-up, an executable and dedicated-user
 mode remain owed; this is not an installable isolated service. Evidence: `evals/signer/service.md`.
-The recorded count is over the existing SIG-11 ceiling; ADR-021 is proposed and awaits the
-human. No release or budget gate is marked achieved.
+The human accepted ADR-021's larger budget, now reflected in SIG-11; all signer
+app source and signer-specific helpers count. The complete running candidate
+still needs its explicit source inventory. No release gate is marked achieved.
 The SDK's distinct sending client consumes this socket protocol (`docs/CLIENT.md`, S31).
 The client/service integration is tested with fake RPC; the client has no signing key or
 partial-signing methods. The existing signing adapters retain their SDK semantics.

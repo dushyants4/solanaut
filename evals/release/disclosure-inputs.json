@@ -1,0 +1,112 @@
+[
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/disclosure-red.txt",
+    "bytes": 35388,
+    "sha256": "829c70ab75a9ad2a820cedb99f0cc144adaf771632b9c5905025cbecb2506984"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/disclosure-green.txt",
+    "bytes": 10144,
+    "sha256": "0203eb37128cb9fc85df1857ee62e03c01ea8211b8ab6943a206d9b220ea2313"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/disclosure-corrected.txt",
+    "bytes": 3320,
+    "sha256": "31549d78710430a4e5e882e64212479fb89d4001997b43055503a3f4f22f50ec"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/disclosure-adapters-corrected.txt",
+    "bytes": 5463,
+    "sha256": "07d41cc0eca68c1c2e069d317f310a674ff2bc803acc04d1e98ed4e68fe6ae64"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/disclosure-extended.txt",
+    "bytes": 5975,
+    "sha256": "e0815c937d2f46c84e7b58d711d3e226deb2061d77abdea22350a0361e18bf02"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/disclosure-final-focused.txt",
+    "bytes": 3930,
+    "sha256": "dd5f9613413b47db19fcf2a2e35e701ccbcf44277854e0efb6c6272ecc6ddcff"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/disclosure-wire-corrected.txt",
+    "bytes": 5277,
+    "sha256": "ec15e96452f731586ac8659450d8b9e20f076ced64ce8eeff4bb4abdce65bc0e"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/disclosure-full.txt",
+    "bytes": 108756,
+    "sha256": "7736ef481b9fdd4052416ddd5771639782fea5faf18d9aaa42d966045f63659c"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/disclosure-full-corrected.txt",
+    "bytes": 101143,
+    "sha256": "b126084c6335ebbd74d239d375a77d13ed3adea3b95975dce90495851d1bd33a"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/disclosure-package-build.txt",
+    "bytes": 117,
+    "sha256": "e8a2f89bb4fc6971c684d9092f08bc3b6b7c8c6a7c861d81a634abc7fffd6a45"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/disclosure-installed.txt",
+    "bytes": 2250,
+    "sha256": "9ecf39132a6728236b29b80e518112352968d066e20e872320595ee6dcac25d0"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/disclosure-faults/full-default.txt",
+    "bytes": 6224,
+    "sha256": "3a3b1b6023ea8602d55f5f2e28a20ed403748c547ef27776313a7f4f3c7c0fc5"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/disclosure-faults/leaked-limit.txt",
+    "bytes": 32844,
+    "sha256": "cec8263cc24829830265f6afcd3086927e2302874889ce8a95bfad657a9efa4a"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/disclosure-faults/leaked-rule.txt",
+    "bytes": 26991,
+    "sha256": "a4e3640ea69ec85513bc98e40446ca32c0c7888a8033e95ba64ab0e112db8063"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/disclosure-faults/missing-marker.txt",
+    "bytes": 5340,
+    "sha256": "980f3c1ff440e3744d645ec22a29b0fb014eaf07534a109b00159d1f720f581b"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/disclosure-faults/restored.txt",
+    "bytes": 3933,
+    "sha256": "b0ad467db19b2c7a74f71443994ee7ef3c5b94767306427da0e4a9d02f50212f"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/disclosure-faults/result.json",
+    "bytes": 1168,
+    "sha256": "383e97c22136bac81fba138f34f0eb81a5d787d42c6579a292ec0118ed045a5f"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/disclosure-faults/skipped-callback.txt",
+    "bytes": 7767,
+    "sha256": "c40e7c85ece5616aca1eec7fff923ee23e8677259e83104528c882ffb3c1d3de"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/disclosure-faults/unsigned-full.txt",
+    "bytes": 4590,
+    "sha256": "4549337bad93b4b0a83646d970b9ebe75870e20ad481c5b9c1f5a8a28f6033b8"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/disclosure-coverage.txt",
+    "bytes": 159838,
+    "sha256": "6b63843dacfcc5dda2cf41c83954dad63d3c456d3ca3b99a0c7fd6d8e84db6b1"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/disclosure-coverage-serial.txt",
+    "bytes": 117369,
+    "sha256": "2cca150bcb3a431fa436f9550064554617f2d4e3087f9ff87330c60ba3446bb3"
+  },
+  {
+    "path": ".sandbox/evidence/2026-10-13-development/disclosure-coverage-summary.json",
+    "bytes": 14513,
+    "sha256": "b2370100fca4edceb80299b1c7a17c741affdab4999f7fffdcb27c0072738908"
+  }
+]

@@ -1,4 +1,10 @@
-# Solanaut product page — private review draft
+# Solanaut product page — review draft
+
+Current status, 2026-10-13: wallet batch membership and RPC diagnostic privacy
+fixes are integrated (S157). SDK adapter denials now return a class/reference
+by default, with reasons delivered to the operator (S158). The repository is
+public; package publication, page approval and stable deployment are still owed.
+The earlier pending H11/D41/D42 notes below describe their historical evidence.
 
 Editorial update, 2026-10-11: the page remains unapproved. Wallet batch correction
 D41 and RPC diagnostic correction D42 are prepared separately and unintegrated

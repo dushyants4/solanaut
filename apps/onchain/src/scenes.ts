@@ -138,9 +138,17 @@ async function propose(g: Guard, w: BaseWalletLike, scene: string, what: string,
     return { allow: true as const, signature, outcome };
   } catch (e) {
     if (e instanceof SolanautDenied) {
-      const d = e.decision as DecisionEntry | null;
-      say(`${head} DENY ${e.rule.padEnd(24)} ${keel(d ?? undefined).padEnd(36)} ${d?.latch ? "LATCHES the guard; " : ""}not signed, not sent`);
-      return { allow: false as const, rule: e.rule };
+      // This is the operator's console; recover its details from the private record.
+      const d = e.ref >= 0 ? g.entries().find((entry): entry is DecisionEntry => entry.kind === "decision" && entry.seq === e.ref) : decisionOn(g, message);
+      if (d?.allow) {
+        const report = g.entries().findLast(entry => entry.kind === "report" && entry.decision === d.hash);
+        const outcome = report?.kind === "report" ? report.outcome : "unknown";
+        say(`${head} ALLOW                         ${keel(d).padEnd(36)} wrapper refused; outcome ${outcome}; inspect before retry`);
+        return { allow: true as const, refused: outcome === "failed", outcome };
+      }
+      const rule = d?.rule ?? e.class;
+      say(`${head} DENY ${rule.padEnd(24)} ${keel(d).padEnd(36)} ${d?.latch ? "LATCHES the guard; " : ""}not signed, not sent`);
+      return { allow: false as const, rule };
     }
     if ((e as { refused?: unknown }).refused === true) {
       say(`${head} ALLOW                         ${keel(decisionOn(g, message)).padEnd(36)} sent; the RPC refused it: ${(e as Error).message.split("\n")[0]!.slice(0, 60)}`);

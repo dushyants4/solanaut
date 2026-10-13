@@ -1,5 +1,12 @@
 # RISKS.md — what could stop the Alpha, and what is done about it
 
+SDK adapter denial reasons now go to an operator callback, with class/reference
+errors by default (ADR-025). The same process can inspect the guard or bypass
+its adapters; probing still permits inference. Operator logs must stay outside
+the model's context. The signer socket and dashboard still need this separation.
+ADR-024 is accepted; its implementation and qualification remain outstanding.
+The historical pending-decision notes below do not reopen the answered H16/H15.
+
 ADR-024's proposed failure budget awaits H16. It may stop unrelated useful
 traffic and cannot cancel prior admissions. Trusted reports, durable latching,
 release epochs and compatible history need fresh qualification; the proposal

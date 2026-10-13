@@ -6,15 +6,16 @@
 |---|---|
 | **Beta (Leg 2)** | **Achieved.** Built and validated on devnet; signed off by the human on 2026-10-05 and tagged `milestone/beta`. The evidence is listed under *Measured so far* below. |
 | **Alpha (Leg 3)** | **In progress**, built by Codex since 2026-10-05 (`docs/HANDOFF.md`). The signer, operator-signed policies, crash-safe storage and recovery, ADR-012's latch rule and much heavier testing are built and tested as components; the signer does not yet run as a process. No Alpha milestone is reached yet. On 2026-10-13 Claude reviewed the work (`docs/reviews/2026-10-13-codex-leg3.md`), and the human accepted the decisions it was waiting on. |
-| **Tests** | **901 of 901 pass**, and the typecheck passes (2026-10-13, after the human accepted H11's longer harness wait; `evals/ci/baseline-latency.md`). Hosted CI on `652cad5`, with that change: 12 of 15 jobs pass, up from 9. Two runtime test jobs run past their 10-minute limit in the package fault injections, and one fault-campaign partition fails; both wait on owed edits O2 and O3. A green CI comes first (`docs/HANDOFF.md` §4). |
+| **Tests** | **951 of 951 pass**, and typecheck passes locally (2026-10-13; `evals/release/disclosure.md`, CLAIMS S158). Hosted run `38437894194` preserves the prior passing jobs; runtime package-fault jobs are cancelled and fault partition two fails pending Claude's runner/termination edits. Product work follows the accepted revised queue. |
 | **Public** | **Public since 2026-10-12**: Apache-2.0, a plain-language README and reading guide. The human's private drop was removed from every commit; old commit IDs map to new ones in `docs/HISTORY-MAP.md` (`runs/2026-10-12-public-readiness.md`, `runs/2026-10-13-public-bridge.md`). |
 
 ## Detailed log, newest first
 
-**2026-10-13 · Product fixes integrated.** Wallet batch edits no longer release possibly signed payments,
-and RPC errors no longer expose provider text. Full local tests and typecheck pass; the first failures
-and planted faults are retained in `evals/release/integrated-fixes.md`.
-Hosted package-fault runner edits remain Claude's; next are denial disclosure and the running signer.
+**2026-10-13 · Product fixes and denial disclosure integrated.** Wallet batch edits retain signed reservations;
+RPC exceptions and default SDK adapter denials no longer expose private reasons to the model.
+Operator callbacks, signed development disclosure and replay markers work; local tests/typecheck pass.
+Evidence: `evals/release/integrated-fixes.md` and `evals/release/disclosure.md`.
+Hosted package-fault runner edits remain Claude's; next is the running signer.
 
 **2026-10-13 · Review, and the decisions it was waiting on.** Claude reviewed Codex's Leg 3 work: safe and honest,
 but heavy on evidence and light on integrated product (`docs/reviews/2026-10-13-codex-leg3.md`). The human accepted

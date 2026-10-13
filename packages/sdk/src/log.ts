@@ -54,6 +54,8 @@ export interface Amounts {
 
 export interface DecisionEntry extends EntryBase {
   kind: "decision";
+  /** Explicit development disclosure; absent means the legacy/class channel. */
+  disclosure?: "full";
   /** Optional SDK request identity, committed atomically with this decision. */
   request?: import("./request.ts").RequestBinding;
   /** Where time, heights and outcomes came from (docs/SPEC.md §2.1). */

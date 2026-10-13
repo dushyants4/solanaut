@@ -325,15 +325,17 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 | O9 | evals/ci/kills.ts | Exact replacement in `evals/release/installed-kills/owed-edit.txt`: after `assert.equal(recomputed.ok, true);`, add `assert.equal(recomputed.decisions, guard.entries().filter((entry) => entry.kind === "decision").length, "replay decision count differs");` before `result.replayed++;`. Retain maintained seed, deadline and population. | S140 confirms successful zero-count replay escapes the original installed battery. Separate proposed-copy proof on a predeclared fresh seed catches inconsistent counters and passes installed recovery. Counts still assume a trusted replay backend; owner application and maintained/hosted qualification remain owed. No target is lowered. | no |
 | O10 | evals/packaging/packed-sdk.test.ts | Exact unapplied diff: `evals/packaging/archive-head-declaration/owner.patch`. After the existing typed anchor example, add `const headCode: ArchiveErrorCode = 'head';` and `void headCode;` inside the same consumer fixture. Retain every earlier case/assertion/deadline. | S154 confirms removal of head from a copied actual D40 declaration escapes all maintained package cases while anchor removal fails the typed case. The proposed copied fixture catches head removal and passes the actual archive; read-only patch validation passes. Current product type is intact. Owner application and maintained/hosted qualification remain owed. | no |
 
+| O11 | Mutation staging and its frozen-list test | Exact additive replacements are in the continuing run record under Changed: add errors.ts to source scope and disclosure.test.ts to selected tests, mirrored in the frozen-list assertions. Preserve all previous inputs and thresholds; freeze a fresh definition/seed before qualification. | ADR-025 introduces maintained source tests and a new critical error boundary. Source omission trials pass locally; this does not establish the required mutation score. Claude owns the gate edits. | no |
+
 ## 7. Codex's log
 
-2026-10-13: integrated wallet batch membership and RPC diagnostic redaction fixes
-(D41/D42), retaining their first failures and adding ordinary product regressions.
-Local full tests/typecheck and source fault controls pass; raw output is hash-bound
-outside Git. The partner response accepts the revised queue. Hosted runner edits
-remain Claude's; continue cleanup, accepted SPEC contracts and denial disclosure.
-Removed the reviewed stale worktrees/branches; froze accepted signer, anchor,
-failure-profile and denial-disclosure contracts in SPEC before implementation.
+2026-10-13: integrated wallet batch membership and RPC text-redaction fixes;
+removed reviewed stale worktrees/branches and froze accepted SPEC contracts.
+SDK adapters now return class/reference errors; operator callbacks hold reasons.
+Signed full disclosure and replay markers pass local qualification, S158;
+transaction-safety assertions retain their checks through the operator channel.
+Receipts: `evals/release/integrated-fixes.md`, `evals/release/disclosure.md`.
+Hosted runner edits remain Claude's; next is the running same-user signer.
 
 
 2026-10-11 reconciles private PRODUCT-PAGE/STAGED-RELEASE editorial status with

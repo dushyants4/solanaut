@@ -1,5 +1,11 @@
 # DOCUMENTS.md — the document register
 
+2026-10-13: ADR-025 SDK implementation receipt/hash manifest and fault script,
+one current assertion-change table, SDK reference/README privacy contract,
+CLAIMS S158, RISKS, PROGRESS, HANDOFF and continuing plain session record.
+SPEC's decision annotation, SIGNER's accepted budget and current product-page/
+staged-release status are reconciled; no page or package publication is approved.
+
 2026-10-13: integrated wallet batch/RPC privacy receipt, fault script and compact
 hash manifest; ordinary regressions, CLAIMS, SPEC, RISKS, PROGRESS, HANDOFF and
 the plain session record. Raw output remains under owned sandbox evidence.
