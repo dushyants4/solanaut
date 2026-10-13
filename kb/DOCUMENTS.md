@@ -1,5 +1,9 @@
 # DOCUMENTS.md — the document register
 
+2026-10-13: integrated wallet batch/RPC privacy receipt, fault script and compact
+hash manifest; ordinary regressions, CLAIMS, SPEC, RISKS, PROGRESS, HANDOFF and
+the plain session record. Raw output remains under owned sandbox evidence.
+
 2026-10-13: claim S2 corrected. "The model never sees the policy" overstated today's code: each refusal tells the
 agent its rule and, for the caps, the cap's value. It now reads "the model cannot change it", and the same
 wording is fixed in README, docs/README, PRODUCT, ARCHITECTURE, LITEPAPER, PITCH and the glossary. "Never sees"

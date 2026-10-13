@@ -17,10 +17,10 @@ preflight before file reads. H15 needs human scope/review settlement; this is no
 a secret finding, and no entry or human-drop byte is changed. Component proof is
 `evals/release/history-bytes.md`; all existing release gates remain required.
 
-Wallet batch-array edits after signing can currently expire admissions that may
-still land and leave caller signatures outside cleanup (D41). Private membership
-is prepared and component-tested in `evals/sdk/adapter-batch.md`; full native still
-fails H11, so the product correction is not integrated. SDK key holders can also
+Wallet batch-array edits after signing formerly expired admissions that could
+still land and left caller signatures outside cleanup (D41). Private membership
+is now integrated with passing native/type and source-fault checks in
+`evals/release/integrated-fixes.md`; earlier failures remain. SDK key holders can also
 retain/send signatures outside the wrapper. Isolated signing remains essential.
 
 Raw ArrayBuffer/SharedArrayBuffer serializer returns must be privately copied:
@@ -529,8 +529,8 @@ allocation, not independent acceptance of those changes or public-history
 clearance. Initial additions and supporting/later history remain separate;
 the known declaration miss and native failure remain unresolved.
 
-RPC catch sites retain provider-controlled exception text in health and thrown
-refusals, D42/S156 (`evals/signer/rpc-redaction.md`). Malformed synthetic response
-bodies reproduce the privacy gap; no real secret or deployed exposure is found.
-Fixed diagnostic categories and privacy tests must precede operational health
-wiring. Suggested remediation remains unapplied while H11 blocks integration.
+RPC catch sites formerly retained provider-controlled exception text in health
+and thrown refusals, D42 (`evals/signer/rpc-redaction.md`). Fixed categories are
+now integrated and covered by ordinary regressions and omission faults in
+`evals/release/integrated-fixes.md`. No real secret or deployed exposure was
+found; operational health wiring and isolated/live qualification remain owed.

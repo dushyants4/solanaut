@@ -1,0 +1,64 @@
+{
+  "startingRevision": "6fd36da9308d1d244450b894832538a568bac3b6",
+  "raw": {
+    ".sandbox/evidence/2026-10-13-development/baseline.txt": {
+      "bytes": 96791,
+      "sha256": "397138d1a0727b24eda0d48b4782fed95df94471afac882b3cf06cd26fae09fc"
+    },
+    ".sandbox/evidence/2026-10-13-development/fixes-red.txt": {
+      "bytes": 5283,
+      "sha256": "ffc5ebc1c46fa227313d4427cf480800f9ab69c4b3822c53d369e23c960d9c7f"
+    },
+    ".sandbox/evidence/2026-10-13-development/integrated.txt": {
+      "bytes": 97453,
+      "sha256": "a1dc8d770136784f82cea28fa07d2fc57c4ebc5bb769b9043a219299c784bf53"
+    },
+    ".sandbox/evidence/2026-10-13-development/initial-fault-harness.py": {
+      "bytes": 3035,
+      "sha256": "9a6323d4b8e20a76bde8e5c338caae334f69684987c6d048846e0be2f3245b0c"
+    },
+    ".sandbox/evidence/2026-10-13-development/integration-faults-initial/caller-membership.txt": {
+      "bytes": 1694,
+      "sha256": "999a906afab6d708fe703616de0e2189561f037817ae0192a744bc3c46d11cf8"
+    },
+    ".sandbox/evidence/2026-10-13-development/integration-faults/result.json": {
+      "bytes": 1067,
+      "sha256": "573f78d697b6446faf10e2c5764eacee2ed051c2770a28186929618c629a5c32"
+    }
+  },
+  "faults": {
+    "faults": [
+      {
+        "fault": "caller-membership",
+        "caught": true,
+        "rawSha256": "c1451664478401bdc0b910b2765b64e0b5ac6cc1b6e3032e106dd495f52a10e9"
+      },
+      {
+        "fault": "wallet-membership",
+        "caught": true,
+        "rawSha256": "4bdf02ba7758b698b7b8d8d30a808282725db1081846838720f585acbc569f99"
+      },
+      {
+        "fault": "signed-reservation",
+        "caught": true,
+        "rawSha256": "e73b4038e939762cbb933d84658a92eb0edac07e94b8a57339ec40ec9529af25"
+      },
+      {
+        "fault": "provider-private-text",
+        "caught": true,
+        "rawSha256": "1817d6afec81ce19a065f88dc12c6a48441a9e189c35a49135f71b0bc9af83c1"
+      },
+      {
+        "fault": "send-private-text",
+        "caught": true,
+        "rawSha256": "c25e4879521a2c8a09bf87474ce2e1865afdb3a7e8c056af598e567a15fdf7e3"
+      }
+    ],
+    "restored": true,
+    "sourceSha256": {
+      "packages/sdk/src/adapters/agent-kit.ts": "3c5f09874312dd5c5526616737b33329e0ce49659f70882f7974dea383464425",
+      "apps/signer/src/rpc.ts": "81aab7d55e830a3f29bd187dfda387b1e03e653efde9fbbff0613d891d504bc5"
+    }
+  },
+  "scope": "builder-authored local source integration, not independent/live/stable qualification"
+}

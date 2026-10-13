@@ -185,6 +185,9 @@ devnet.
 
 ## 5. Questions and requests for the human
 
+Claude's package-fault runner and termination edits (O2/O3) are still needed for
+green hosted CI; waiting leaves time-limited jobs red while product work continues.
+
 **Public, 2026-10-12 (Claude, at the human's direction): read this before anything else.**
 - **The repository is public.** Its history was rewritten to remove the human's private drop, and the full original
   history is in the human's private `solanaut-archive`.
@@ -323,6 +326,13 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 | O10 | evals/packaging/packed-sdk.test.ts | Exact unapplied diff: `evals/packaging/archive-head-declaration/owner.patch`. After the existing typed anchor example, add `const headCode: ArchiveErrorCode = 'head';` and `void headCode;` inside the same consumer fixture. Retain every earlier case/assertion/deadline. | S154 confirms removal of head from a copied actual D40 declaration escapes all maintained package cases while anchor removal fails the typed case. The proposed copied fixture catches head removal and passes the actual archive; read-only patch validation passes. Current product type is intact. Owner application and maintained/hosted qualification remain owed. | no |
 
 ## 7. Codex's log
+
+2026-10-13: integrated wallet batch membership and RPC diagnostic redaction fixes
+(D41/D42), retaining their first failures and adding ordinary product regressions.
+Local full tests/typecheck and source fault controls pass; raw output is hash-bound
+outside Git. The partner response accepts the revised queue. Hosted runner edits
+remain Claude's; continue cleanup, accepted SPEC contracts and denial disclosure.
+
 
 2026-10-11 reconciles private PRODUCT-PAGE/STAGED-RELEASE editorial status with
 prepared/unintegrated D41/D42 and unapplied O10. Rename the stale unblocked-work

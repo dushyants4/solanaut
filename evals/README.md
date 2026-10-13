@@ -1,5 +1,9 @@
 # evals/ — receipts
 
+`release/integrated-fixes.md`: wallet batch membership and RPC privacy fixes
+now run in the product, with ordinary regressions, restored omission faults and
+passing local full tests/typecheck. Hosted runner edits remain Claude's.
+
 `signer/rpc-redaction.md`: unresolved D42 provider-text disclosure through RPC
 refusal and health diagnostics, S156. Both runtime probes retain failures;
 separate copied correction/RPC checks catch both omissions, but remain unintegrated.

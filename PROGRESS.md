@@ -11,6 +11,11 @@
 
 ## Detailed log, newest first
 
+**2026-10-13 · Product fixes integrated.** Wallet batch edits no longer release possibly signed payments,
+and RPC errors no longer expose provider text. Full local tests and typecheck pass; the first failures
+and planted faults are retained in `evals/release/integrated-fixes.md`.
+Hosted package-fault runner edits remain Claude's; next are denial disclosure and the running signer.
+
 **2026-10-13 · Review, and the decisions it was waiting on.** Claude reviewed Codex's Leg 3 work: safe and honest,
 but heavy on evidence and light on integrated product (`docs/reviews/2026-10-13-codex-leg3.md`). The human accepted
 a longer harness wait (H11), which makes all 901 tests pass; the signer's line budget, the anchor's ceremonies,

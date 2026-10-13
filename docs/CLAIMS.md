@@ -367,7 +367,10 @@ H11 remain open. No stable-release credit follows.
   evidence.
 
 
+| S157 | Wallet batch membership and RPC diagnostic privacy corrections are integrated | **measured (builder-authored local source qualification)** | `evals/release/integrated-fixes.md`, 2026-10-13 Toronto, starting 6fd36da9308d1d244450b894832538a568bac3b6. Baseline `npm test` passes 901 and typecheck; newly integrated regressions initially pass two/fail five of seven. Exact prepared corrections pass 55 combined adapter/RPC cases, all 908 full native tests and typecheck, with no skip/cancellation/todo. `uv run --script evals/release/integrated-fixes-faults.py` catches five source omissions and restores exact bytes; seven restored regressions pass. `node evals/signer/rpc-faults.ts` still catches eight existing faults. Initial diagnostic-runner expectation mismatch is preserved and narrowed to the exact expected refusal; no product assertion/deadline/population changes. Raw output remains under .sandbox/evidence with hashes in integrated-fixes-inputs.json; earlier failures stay intact. Node 26.7.0 on local Linux, synthetic keys/fake RPC, no actual chain/isolated/independent/stable qualification. Hosted parallel runner/workflow additions remain Claude's |
+
 ## 2. Gubernaut's figures Solanaut may quote, with their scope
+
 
 Sources: the public packages and repositories, checked 2026-09-27.
 [`@gubernaut/core` on npm](https://www.npmjs.com/package/@gubernaut/core) (version 1.0.1, the one

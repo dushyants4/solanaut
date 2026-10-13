@@ -213,11 +213,13 @@ export function guardedWallet<Tx = any>(wallet: BaseWalletLike<Tx>, guard: Guard
   }
 
   async function signAll(txs: Tx[]): Promise<{ signed: Tx[]; admitted: Admitted[] }> {
+    // Keep membership for admission and cleanup separate from caller and wallet array edits.
+    txs = [...txs];
     await reconcile();
     const admitted = await admitAll(txs);
     let signed: Tx[];
     try {
-      signed = txs.length === 1 ? [await wallet.signTransaction(txs[0]!)] : await wallet.signAllTransactions(txs);
+      signed = txs.length === 1 ? [await wallet.signTransaction(txs[0]!)] : await wallet.signAllTransactions([...txs]);
     } catch (e) {
       release(txs, [], admitted);
       throw e;
