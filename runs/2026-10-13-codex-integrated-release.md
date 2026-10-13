@@ -17,6 +17,16 @@ preserved batch membership and RPC diagnostic corrections after reproducing
 five failures in seven regressions. Combined checks pass 55, full tests pass
 908 and typecheck passes. Five omissions and the eight existing RPC faults are
 caught with exact source restoration. Compact receipt names raw hashes.
+Committed and pushed main as 5db0515; CI run 38435674371 starts. Verified stale
+worktree statuses against the review, including dependency symlinks to this
+repository. Request-index source files match main; replay drafts are older,
+with their reseal corrections and added cases already in main. A stricter
+byte-match-to-committed-history check fails because the old receipt was an
+uncommitted draft, not a new change. Read the actual differences, then removed
+the three reviewed worktrees and branches; none was pushed. Freeze accepted
+signer budget, anchor namespace/ceremonies, failure profile and disclosure
+contracts in SPEC before their implementation. Unrecorded refusals use -1;
+callback failures are fixed stderr operator records outside the decision chain.
 
 ### Partner response
 
@@ -56,6 +66,10 @@ Pre-commit close passes all checks except the expected uncommitted tree. Diff
 review and credential-shaped scan find no secret; only main will be pushed.
 The pre-change hosted run 38390912158 is failed; its jobs are checked separately
 from the passing local source qualification. No hosted logs are committed.
+The SPEC-only step leaves product source/tests unchanged after the 908-test
+pass. Link/claim checks and close pass except the expected dirty tree. A combined
+staging/close command triggers the protected-path heuristic before execution;
+split the commands as the boundary instructions prescribe. No bypass or gate edit.
 
 ## Open
 

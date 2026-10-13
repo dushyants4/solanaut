@@ -6,8 +6,9 @@
 ## Context
 
 - **The threat.** T12: the record rewritten. The hash chain catches an edit in the middle, but not a wholesale rewrite,
-  which recomputes every hash. SPEC §9 fixes the program: `solanaut_anchor`, one instruction,
-  `anchor(head: [u8; 32], seq: u64)`, writing the head to one PDA per guard and emitting `DecisionAnchored`.
+  which recomputes every hash. SPEC §9 fixes the program: `solanaut_anchor`, with
+  enrolment, `anchor(head: [u8; 32], seq: u64)` and rotation under accepted ADR-022,
+  writing the head to its configured guard PDA and emitting `DecisionAnchored`.
 - **What is open.** How often to anchor, on what events, and which key pays, given that every lamport the principal
   spends counts against the policy's caps.
 - **The trade.** Anything after the last anchor can be rewritten undetected, so the interval is the exposure. Each
@@ -41,7 +42,11 @@
      authority. It is outside the principal.
    - The operator funds it. It may sign only `solanaut_anchor` transactions, and the signer refuses to use it for
      anything else.
-3. **The PDA.** Seeds: `"anchor"` and the SHA-256 of `latch.guardId`. One per guard identity.
+3. **The PDA, superseded by accepted ADR-022 on 2026-10-13.** Seeds are
+   `"anchor"`, the original enrolment operator public key and SHA-256 of canonical
+   JSON containing `domain: "solanaut-anchor-identity-v1"`, `cluster: "devnet"`,
+   `guardId` and `namespaceOperator`. The original namespace remains fixed when
+   current authorities rotate; configuration pins the program and network too.
 4. **The check.**
    - `replay` and restore, given an RPC, read the PDA, and require the entry at the anchored `seq` to hash to the
      anchored head.

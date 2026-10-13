@@ -429,8 +429,38 @@ Built at milestone 2a.7 (`evals/sdk/keel.md`).
   - `sendTransaction`: check, sign, send and report, the same as above;
   - `signMessage`: denied. A raw ed25519 signature over a message's bytes is a valid transaction signature.
   - After signing, it compares the signed message with the admitted one and throws on any difference.
-- **`SolanautDenied`** is the typed error carrying `{rule, reason, decision}`. A denied agent gets a named rule to act
-  on, not a hang or a silent retry.
+- **`SolanautDenied`**, under accepted ADR-025, carries `{ref, class}` by default.
+  Its message and stack contain only the class and reference, never a rule,
+  reason, policy value, address or decision object. The reference is the recorded
+  decision sequence; `-1` explicitly means no recorded decision exists (including
+  adapter-only refusals and failed persistence). No unrelated decision is substituted.
+- **Operator channel:** `createGuard({onRefusal})` receives a detached, deeply
+  frozen `{rule, reason, decision}` after a denied decision is persisted, exactly
+  once. Adapter-only refusals use the same callback with their decision or null;
+  adapters do not notify twice for a denial already delivered by `check`.
+  Synchronous/asynchronous callback failures produce a fixed structured operator
+  diagnostic on stderr, without the thrown text. They never change a decision or
+  edit its sealed journal entry; this is an operator diagnostic outside the decision chain.
+- **Disclosure policy:** omitted `disclosure` means `class`, preserving the
+  canonical bytes/hash of legacy policies. Explicit `class` or `full` is copied,
+  frozen and included in signed policy text. `full` requires verified operator
+  authorisation and returns rule/reason for development; it never exposes the
+  decision object. Full-mode decisions carry `disclosure: "full"`; replay checks
+  that annotation. Legacy/class decisions omit it. No evaluation rule changes.
+  The signer socket always uses class-only refusals, even under development full mode.
+
+The class table is frozen before implementation tests. Unknown causes default
+to `refused`; no class is inferred by searching reason text.
+
+| Class | Rules / operational causes |
+|---|---|
+| `invalid` | `invalid-policy`, `malformed-proposal`, `unsupported-version` |
+| `retry-later` | `intent-in-flight`, `blockhash-expired`, `rpc-unavailable` |
+| `refused` | `lookup-table-unpinned`, `latched`, `durable-nonce-denied`, `other-signer`, `program-not-allowed`, `opaque-program`, `instruction-denied`, `destination-not-allowed`, `mint-not-allowed`, `token-mint-unknown`, `over-per-tx-cap`, `over-fee-cap`, `intent-attempts-exhausted`, `over-window-cap`, `loop-reground`, `inhibit-cap`, `fail-closed`, `message-signing-denied`, `wallet-changed-message`, `failure-budget` |
+
+Operational/adapter causes in this table do not add admission rules. Retrying a
+class must not automatically resend uncertain signed bytes. These choices implement
+ADR-025 while retaining truthful unrecorded refusals and unchanged legacy history.
 - **`@solana/kit` signer:** a `TransactionPartialSigner` whose `signTransactions` checks each transaction's message
   bytes, then delegates to the wrapped signer ([source](../kb/sources/2026-09-30_solana-kit-signers.md)). Wrapping a
   modifying or sending signer is out of scope in the Beta.
@@ -456,8 +486,8 @@ Built at milestone 2a.7 (`evals/sdk/keel.md`).
     a batch is refused, every decision admitted for it is reported `expired`: its bytes were never signed, so they
     cannot land. When the wallet throws, the same holds, except for a message it signed in place before throwing,
     which is held as above.
-  - **`SolanautDenied`** carries `{ rule, reason, decision }`. Two rules have no decision behind them:
-    `message-signing-denied` and `wallet-changed-message`.
+  - Adapter-only `message-signing-denied` and `wallet-changed-message` retain
+    their operator reason; class-only agent errors have no decision object.
   - **`jsonRpc(url)`** is the RPC client: `getBlockHeight`, `sendTransaction` with base64 bytes, and
     `getSignatureStatuses` polled until the signature lands or fails, its blockhash expires, or a timeout gives
     `unknown`, reading the height before the status. Reads back off and try again through a failed read, such as
@@ -674,7 +704,7 @@ and accepted: ADR-013 to ADR-018 (§13.11).
 | SIG-8 | One writer, restore by replay on start, and a failed write shuts it | §7 | the restart battery, 100 kills (`docs/READINESS.md`) |
 | SIG-9 | Reads back off through rate limits; a send is never retried by the client | §8, RK16 | an RPC answering 429 |
 | SIG-10 | It runs as its own OS user, or the documents state that it does not and what that leaves | T9, T29 | [ADR-013](../design/ADR-013-signer-process.md), accepted: its own user, a Unix socket in a group-only directory, and a same-user mode that says so |
-| SIG-11 | 500 lines or fewer, stated before it is written and measured after | §8 | a line count in its receipt |
+| SIG-11 | 1,000 physical source lines or fewer, stated before writing and measured after; all signer app source and signer-specific helpers in any directory count, including comments/blank lines | accepted ADR-021 | explicit file list and line count in the receipt; no moving code to evade the budget |
 
 ### 13.2 Operator-signed policy (milestone 3.2)
 
@@ -737,7 +767,7 @@ and the installed replacement ceremony remain owed (`docs/POLICY.md`, `evals/sdk
 
 | ID | Requirement | From | Verified by |
 |---|---|---|---|
-| ANC-1 | `solanaut_anchor`, in Anchor 1.2, has one instruction, `anchor(head: [u8; 32], seq: u64)`, which writes the head to one PDA per guard and emits `DecisionAnchored` | §9 | a devnet anchor |
+| ANC-1 | `solanaut_anchor`, in Anchor 1.2, has operator-authorised enrolment and authority rotation, and `anchor(head: [u8; 32], seq: u64)`, which writes the head to its configured guard PDA and emits `DecisionAnchored` | accepted ADR-022 | enrol/anchor/rotation signature and namespace refusals, then devnet evidence |
 | ANC-2 | Only the guard's anchor authority may anchor, and `seq` must increase | T12 | a stale or foreign anchor refused |
 | ANC-3 | Replay checked against the anchored head detects a record rewritten before that anchor | T12 | a rewritten record |
 | ANC-4 | A verified build and a `security.txt` | §9 | the verification result |
@@ -748,8 +778,11 @@ an externally supplied exact sequence/head must occur in the verified archive, i
 continuation segments. Pins are captured before asynchronous reads. A fully resealed
 pre-anchor rewrite refuses; post-anchor rewrites remain outside its coverage. The caller
 must authenticate pin provenance; this does not provide state replay or chain identity
-verification (`evals/sdk/archive-anchor.md`). ADR-022 proposes enrolment/rotation contracts
-and awaits acceptance; ANC-1 above remains unchanged, and the programme is not implemented.
+verification (`evals/sdk/archive-anchor.md`). ADR-022's enrolment/rotation and
+namespace contracts are accepted; the programme remains to be implemented.
+
+| ANC-6 | Enrolment requires the namespace operator and proposed anchor authority, creates the configured identity once and permits the first actual anchor at sequence zero | accepted ADR-022 | missing/wrong signatures, duplicate enrolment and foreign identity/namespace fixtures |
+| ANC-7 | Authority rotation requires the current operator and successor authorities; it preserves identity, head/sequence and anchoring status, without old-anchor veto or reset | accepted ADR-022 | old-anchor rejection after rotation, unchanged history and restarted-client pin mismatch |
 
 ### 13.8 Dashboard v1 (milestone 3.8)
 
@@ -1078,6 +1111,40 @@ wallet/RPC authority, public method, policy rule or signer budget expansion.
 | ID | Requirement | Verified by |
 |---|---|---|
 | ADP-1 | The sending adapter privately copies admitted messages and serialised wire, including raw ArrayBuffer/SharedArrayBuffer returns, and verifies the admitted message and wallet signature before RPC. Invalid/malformed wire refuses as wallet-changed-message and strips exposed object signatures even if unknown reporting fails. Previously verified signing remains unresolved if serialisation erases evidence; no premature reservation release | altered message/signature/malformed wire, raw-buffer aliasing at admission/send, destructive serializer, failed-report cleanup, one-call positive control and source/installed fault cases |
+
+### 13.18 Denial disclosure and failure-budget allocations
+
+These implement accepted ADR-025 and ADR-024. They allocate formats before code;
+they are not claims that these behaviours are already built.
+
+| ID | Requirement | Verified by |
+|---|---|---|
+| DISC-1 | Class-only adapter errors expose ref/class and no rule/reason/decision, cause, policy text, addresses or amounts, using §8's frozen table | every rule, both adapters, malformed/adapter-only refusals and serialised/stack inspection |
+| DISC-2 | The operator receives a detached frozen full refusal once after recording; callback errors are fixed operator diagnostics and do not change decisions | journal-before-callback, duplicate prevention, mutation and synchronous/asynchronous callback faults |
+| DISC-3 | Full disclosure requires signed policy authority; full decisions are marked and replay verifies the marker; omitted class preserves legacy canonical policy bytes | unsigned/wrong signature, tampering, round-trip and unchanged legacy-policy hashes |
+| FAIL-1 | Policy schema 2 carries positive safe-integer outcomes.maxFailures/windowMs; the accepted preset is 5/600000 | malformed fields, missing budget and authorised activation |
+| FAIL-2 | Count each admitted decision's first terminal failed report once in (now-windowMs,now], across all intents; unknown/expired/denied and duplicates add none | threshold-minus-one/threshold, boundaries, changed shapes, interleaved success and late outcomes |
+| FAIL-3 | Persist the report and resulting latch atomically before acknowledgement; prior pending attempts retain their reservations | append/crash/competing-writer faults and restored latch |
+| FAIL-4 | Verified release starts a new durable epoch; success/time/policy changes do not release the latch; later failures of old pending attempts count in the new epoch | release, pending attempts and unsigned reset faults |
+| FAIL-5 | Budget/window activation reconstructs eligible history and can latch immediately; missing history refuses activation | larger windows, lowered limits and cache/history omission faults |
+| FAIL-6 | New-profile decisions/reports/checkpoints replay under explicitly versioned semantics; legacy histories never acquire retrospective failure latches | mixed profiles, snapshots, installed readers and incompatible rollback |
+| FAIL-7 | Signer hints cannot create failed evidence or release reservations; agreeing provider evidence is required | caller-authority, provider loss and conflict fixtures |
+
+Allocated policy schema 2 retains prior policy fields and adds `outcomes`; it is
+distinct from the monotonically increasing operator authorisation version.
+Its evaluation profile uses `record: 2`, `rules: "policy-v2-failure-budget"`,
+and retains the pinned decoder/sensor/Keel identities. Failure-budget activation
+is an authenticated policy entry, not an unsigned reset. New-profile entries use
+envelope version 2; legacy entries retain version 1 and their original profile.
+Readers must reject unsupported profile/envelope combinations and incompatible
+rollback. Mixed-history replay selects the authenticated active profile per entry.
+
+New-profile checkpoint state uses format 2, binding `failureBudget` with
+`epochSeq` (latest verified release or null), and eligible failed-report references
+`{decision, seq, at}`. Counts are derived from verified reports, never trusted as
+standalone numbers. Rebuilding Keel through replay remains required. Future compact
+retention must retain/reconstruct these references under accepted ADR-023.
+These allocations do not activate the new budget in legacy policy-v1 history.
 
 ## Changes
 

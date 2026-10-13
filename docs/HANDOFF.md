@@ -332,6 +332,8 @@ Codex appends one row for each edit it needs in `AGENTS.md`, `CLAUDE.md`, `.code
 Local full tests/typecheck and source fault controls pass; raw output is hash-bound
 outside Git. The partner response accepts the revised queue. Hosted runner edits
 remain Claude's; continue cleanup, accepted SPEC contracts and denial disclosure.
+Removed the reviewed stale worktrees/branches; froze accepted signer, anchor,
+failure-profile and denial-disclosure contracts in SPEC before implementation.
 
 
 2026-10-11 reconciles private PRODUCT-PAGE/STAGED-RELEASE editorial status with
