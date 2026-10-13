@@ -58,7 +58,7 @@ the writer permanently. This checks physical byte count under the trusted host
 boundary; it does not detect every same-size concurrent modification or prove
 power-loss durability. Evidence: `evals/sdk/record-write-completion.md`.
 
-> **1.81** · 2026-10-10 · owner: architect, with the evaluator · for: the human, every seat · not public. Part of
+> **1.81** · 2026-10-10 · owner: architect, with the evaluator · for: the human, every seat · public since 2026-10-12. Part of
 > milestone 2c.1 in `docs/ROADMAP.md`, approved by the human on 2026-10-05; kept current through Leg 3. Register: `kb/DOCUMENTS.md`.
 
 Local-only commits now replace the previous standing push grant. The unchanged

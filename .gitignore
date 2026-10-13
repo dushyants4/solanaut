@@ -27,6 +27,10 @@ id.json
 .obsidian/community-plugins.json
 .trash/
 
+# The human's private intake drop stays on this disk. It was removed from git and its history on
+# 2026-10-12, before the repository went public.
+Docs-Dashy-Drop/
+
 # Confidential notes stay on this disk: only the folder's README is tracked.
 kb/private/*
 !kb/private/README.md

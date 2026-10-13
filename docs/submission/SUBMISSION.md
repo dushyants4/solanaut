@@ -1,7 +1,7 @@
 # SUBMISSION.md — what Colosseum needs, and who does what
 
 > **Draft 2** · 2026-09-30 · owner: **the human (T4)**, drafted by the archivist · for: the human ·
-> not public. Deadline: **2026-10-12, 11:59pm PT**. Sources: the official rules (`docs/HACKATHON.md`),
+> public since 2026-10-12. Deadline: **2026-10-12, 11:59pm PT**. Sources: the official rules (`docs/HACKATHON.md`),
 > [the FAQ](../../kb/sources/2026-09-27_colosseum-faq.md) and
 > [the World's Fair page](../../kb/sources/2026-09-27_colosseum-worldsfair.md).
 

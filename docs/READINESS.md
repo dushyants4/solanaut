@@ -1,7 +1,7 @@
 # READINESS.md — from MVP to a certified, shippable release
 
 > **2.0** · 2026-10-05 · owner: operator, with the evaluator · for: the human, every seat, and future auditors ·
-> not public. Milestones, not dates (`docs/ROADMAP.md`). Nothing here is claimed until its evidence exists
+> public since 2026-10-12. Milestones, not dates (`docs/ROADMAP.md`). Nothing here is claimed until its evidence exists
 > (`docs/CLAIMS.md`). This is not legal advice. Register: `kb/DOCUMENTS.md`.
 
 ## What "certified" means here

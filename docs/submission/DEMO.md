@@ -1,6 +1,6 @@
 # DEMO.md — the technical demo script
 
-> **Draft 3** · 2026-10-01 · owner: integrator · for: Colosseum's judges · not public. Length: **no more than three
+> **Draft 3** · 2026-10-01 · owner: integrator · for: Colosseum's judges · public since 2026-10-12. Length: **no more than three
 > minutes** (Colosseum's FAQ, [source](../../kb/sources/2026-09-27_colosseum-faq.md)). It covers the Solana
 > integration. Claims: `docs/CLAIMS.md`. A scene is recorded only once its milestone in `docs/ROADMAP.md` is
 > achieved; until then the narration says "being built".

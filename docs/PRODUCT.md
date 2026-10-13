@@ -2,7 +2,7 @@
 
 > **1.0** · 2026-09-30 · **signed off by the human on 2026-09-30**, which achieves milestone 1.1 in `docs/ROADMAP.md` ·
 > owner: architect ·
-> for: every seat, judges, and anyone deciding whether to use Solanaut · not public until the human says so. Facts cite
+> for: every seat, judges, and anyone deciding whether to use Solanaut · public since 2026-10-12. Facts cite
 > `docs/CLAIMS.md` rows as [S1] or [M4]; sentences about the design are marked *design* and describe what is
 > specified, not what is built. Register: `kb/DOCUMENTS.md`.
 

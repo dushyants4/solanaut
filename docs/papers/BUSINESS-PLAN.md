@@ -2,7 +2,7 @@
 
 > **Draft 2** · 2026-09-30 · owner: drafted by the architect **for the human, whose decision it is**
 > (the entity, the licence and the funding are T4) · for: the human, and judges (rules §8 score a
-> business plan) · not public. Figures cite `docs/CLAIMS.md` or `kb/sources/`. **Every price, target
+> business plan) · public since 2026-10-12. Figures cite `docs/CLAIMS.md` or `kb/sources/`. **Every price, target
 > and threshold below is a hypothesis, not a measurement.** Register: `kb/DOCUMENTS.md`.
 
 ## Summary

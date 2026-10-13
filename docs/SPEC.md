@@ -1,7 +1,7 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
 > **Draft 4.90** · 2026-10-10 · owner: architect · for: the builder, evaluator and integrator seats, and judges
-> reading the code · not public. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
+> reading the code · public since 2026-10-12. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
 > Register: `kb/DOCUMENTS.md`.

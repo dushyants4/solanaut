@@ -1,7 +1,7 @@
 # HANDOFF.md — Claude to Codex, and back
 
 > **Draft 1** · 2026-10-05 · from Claude, the session that built and verified the Beta, to Codex · for: Codex, the
-> human, and Claude on its return · not public. The rules Codex works under: `AGENTS.md`. Register:
+> human, and Claude on its return · public since 2026-10-12. The rules Codex works under: `AGENTS.md`. Register:
 > `kb/DOCUMENTS.md`. Codex keeps §5, §6 and §7 current; everything else changes only when the human or Claude says so.
 
 ## 1. Where Solanaut stands at the transfer

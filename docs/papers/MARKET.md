@@ -1,6 +1,6 @@
 # MARKET.md — the market Solanaut enters
 
-> **Draft 2** · 2026-09-30 · owner: archivist (research) · for: the human and judges · not public.
+> **Draft 2** · 2026-09-30 · owner: archivist (research) · for: the human and judges · public since 2026-10-12.
 > Facts cite `kb/sources/` notes with the date checked. A fact marked *(via-agent)* was read only by a
 > research agent. Statements about other products are what their public documents said on 2026-09-27,
 > not claims about how those products behave. Register: `kb/DOCUMENTS.md`.

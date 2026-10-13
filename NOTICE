@@ -1,0 +1,7 @@
+Solanaut
+Copyright 2026 Dushyant Sharma
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+Solanaut depends on Gubernaut Keel (@gubernaut/core 1.0.1, Apache-2.0,
+Copyright 2026 Gubernaut Research), used unmodified as a published npm package.

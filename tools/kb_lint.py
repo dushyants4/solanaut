@@ -20,7 +20,8 @@ Checks:
   4  kb/DOCUMENTS.md and the documents on disk agree           (the register is the truth)
   5  nothing in kb/private/ but its README is tracked           (confidential stays local)
   6  CLAUDE.md's seat table matches tools/scaffold.py SEATS     (a copy nothing checked)
-  7  WARN: a drop file not registered in kb/intake/ by SHA-256  (an ingest is owed)
+  7  nothing in Docs-Dashy-Drop/ is tracked, and it is ignored  (the human's drop stays local)
+     WARN: a drop file not registered in kb/intake/ by SHA-256  (an ingest is owed)
 
 A checker that cannot see must fail loudly: an unreadable file, a missing register or a git
 that will not answer is an ERROR, never a skip.
@@ -259,10 +260,16 @@ def check_seats(rep: Report) -> None:
 
 
 def check_drop(rep: Report) -> None:
-    """Check 7, a warning: the drop is the human's, and an ingest may simply be owed."""
+    """Check 7. The drop is the human's private inbox, on this disk only since 2026-10-12, when it
+    was removed from git and its history before the repository went public. Tracking any of it is
+    an ERROR; a clone has no drop, which is not one. An unregistered file in it is a WARN."""
+    for f in git("ls-files", DROP):
+        rep.error(f"{f}: tracked by git, but {DROP} must stay on this disk")
+    probe = subprocess.run(["git", "check-ignore", "-q", f"{DROP}probe.md"], cwd=ROOT)
+    if probe.returncode != 0:
+        rep.error(f"{DROP} is not gitignored: the human's private drop could be committed")
     drop = ROOT / DROP
     if not drop.is_dir():
-        rep.error(f"{DROP} is missing")
         return
     intake = "".join(p.read_text(encoding="utf-8") for p in sorted((KB / "intake").glob("*.md")))
     for p in sorted(drop.rglob("*")):

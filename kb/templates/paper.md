@@ -1,6 +1,6 @@
 # {{title}}
 
-> **Draft 1** · {{date}} · owner: <seat> · for: <audience> · not public.
+> **Draft 1** · {{date}} · owner: <seat> · for: <audience> · public.
 > Every public sentence traces to `docs/CLAIMS.md`; this document's row is in `kb/DOCUMENTS.md`.
 
 ## Summary

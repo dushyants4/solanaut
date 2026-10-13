@@ -1,7 +1,7 @@
 # THREAT-MODEL.md — what Solanaut defends, against whom, and what is left
 
 > **Draft 6** · 2026-10-11 · owner: architect · builder-authored reconciliation for independent review,
-> not an Alpha review or specialist audit. For: reviewers and auditors · not public.
+> not an Alpha review or specialist audit. For: reviewers and auditors · public since 2026-10-12.
 > Design: `docs/SPEC.md`, ADR-004 to ADR-020; stable clarifications ADR-019/020 are accepted.
 > ADR-008 remains deferred; ADR-021/022/023/024 remain proposed.
 > Claims: `docs/CLAIMS.md`.

@@ -1,7 +1,7 @@
 # Solanaut: a reference monitor for AI agents' Solana wallets
 
-> **Draft 3** · 2026-10-01 · owner: architect · for: judges and developers · not public until the
-> human says so. Figures cite `docs/CLAIMS.md` rows as [S1], [G6], [M4]. Register: `kb/DOCUMENTS.md`.
+> **Draft 3** · 2026-10-01 · owner: architect · for: judges and developers · public since
+> 2026-10-12. Figures cite `docs/CLAIMS.md` rows as [S1], [G6], [M4]. Register: `kb/DOCUMENTS.md`.
 
 ## Summary
 

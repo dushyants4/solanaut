@@ -384,9 +384,10 @@ at 4f186fa) and [gubernaut.com/releases](https://gubernaut.com/releases).
 
 ## 3. The drop documents, triaged
 
-`Docs-Dashy-Drop/` (registered in `kb/intake/2026-09-27_dashy-drop.md`) holds AI-drafted strategy
-notes. They are useful as ideas and **not a source for any claim.** Each claim below was checked
-against the sources in §2 and the official hackathon rules.
+`Docs-Dashy-Drop/` held the human's AI-drafted planning notes (`kb/intake/2026-09-27_dashy-drop.md`). They
+were useful as ideas and **never a source for any claim**, and were removed from the repository and its history
+on 2026-10-12, before it went public. Each claim below was checked against the sources in §2 and the official
+hackathon rules.
 
 | Drop claim | Verdict | Why |
 |---|---|---|
@@ -401,7 +402,7 @@ against the sources in §2 and the official hackathon rules.
 | "Judges penalize legacy code" | **not in the rules** | The official rules (§8) judge functionality, impact, novelty, UX, open-source composability and business plan. §9 and the FAQ require *disclosing* prior work |
 | "Gubernaut is the only token-free governor in existence" / "zero competition" | **unverified** | A market claim with no source. Do not say it |
 | Latency of LLM guardrails (200–800 ms), multisig co-signers (400–1200 ms) | **unverified** | No source given. Do not quote |
-| "$250,000 pre-seed for 7%" | **half-verified** | colosseum.com/worldsfair says accepted teams receive "$250,000 pre-seed funding". The equity figure has no source here |
+| The accelerator's funding terms | **half-verified** | colosseum.com/worldsfair says accepted teams receive "$250,000 pre-seed funding". No other term has a source here |
 | Mainnet Fortress Vault, $5–10k SOL, pay-to-attack fees | **out of scope** | `design/ADR-003-devnet-only.md`: the human chose devnet only on 2026-09-27 |
 | Ratings ("Colosseum win probability 9.2 / 10" and the like) | **not facts** | Opinions from a drafting model |
 

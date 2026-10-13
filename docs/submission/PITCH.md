@@ -1,7 +1,7 @@
 # PITCH.md — the pitch: one line, thirty seconds, four paragraphs, and the video script
 
 > **Draft 3** · 2026-09-30 · owner: drafted for **the human, who delivers it (T4)** · for: Colosseum's
-> judges · not public. The video runs 2 to 3 minutes, per Colosseum's FAQ
+> judges · public since 2026-10-12. The video runs 2 to 3 minutes, per Colosseum's FAQ
 > ([source](../../kb/sources/2026-09-27_colosseum-faq.md)). Every fact, spoken or written, carries its
 > `docs/CLAIMS.md` ID; nothing is said that has no row.
 

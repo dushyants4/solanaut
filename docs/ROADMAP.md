@@ -1,7 +1,7 @@
 # ROADMAP.md — the parlay: five legs, won by achievement
 
 > **Draft 3** · 2026-10-05 · owner: archivist, drafted with the architect · for: the human, every seat, and judges ·
-> not public. **Milestones, not dates:** each milestone is reached when its gate passes, never by a calendar, at the
+> public since 2026-10-12. **Milestones, not dates:** each milestone is reached when its gate passes, never by a calendar, at the
 > human's instruction of 2026-09-30. Specs: `docs/SPEC.md`. Tests and certification: `docs/READINESS.md`.
 > Register: `kb/DOCUMENTS.md`.
 
