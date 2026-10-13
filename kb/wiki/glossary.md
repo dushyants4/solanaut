@@ -44,7 +44,7 @@ The words Solanaut's documents use, with one meaning each.
 | **Milestone** | a named achievement in `docs/ROADMAP.md`, reached when its gate passes, never by a date |
 | **Opaque program** | an allowlisted program whose instructions the guard does not decode |
 | **Pinned table** | a lookup table whose address and first entries the policy names; an index past the pin is denied |
-| **Policy** | configuration the model never sees: allowlists and caps. Solanaut's injection defence |
+| **Policy** | configuration the model cannot change, kept outside it: allowlists and caps. Solanaut's injection defence |
 | **Posture** | Keel's output: DEFAULT (benign), INHIBIT (an escalating spiral), REGROUND (a saturating loop) |
 | **Principal** | the keys a policy guards; effects are the outflows they authorise |
 | **Priority fee** | `ceil(compute_unit_price × compute_unit_limit / 1,000,000)` lamports in legacy and v0, on top of 5,000 lamports per signature; a lamport total in a v1 message's config |

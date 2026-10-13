@@ -1,5 +1,11 @@
 # DOCUMENTS.md — the document register
 
+2026-10-13: claim S2 corrected. "The model never sees the policy" overstated today's code: each refusal tells the
+agent its rule and, for the caps, the cap's value. It now reads "the model cannot change it", and the same
+wording is fixed in README, docs/README, PRODUCT, ARCHITECTURE, LITEPAPER, PITCH and the glossary. "Never sees"
+waits for ADR-025. Raised by the APEX session, relaying Gubernaut's marketing; record:
+`runs/2026-10-13-codex-review.md`.
+
 2026-10-13: docs/reviews/2026-10-13-codex-leg3.md registered, Claude's review of Codex's Leg 3 work, which sets the
 order of work in docs/HANDOFF.md §4. The human accepted H9, H10, H11, H14, H16 and the new ADR-025 the same day.
 Record: `runs/2026-10-13-codex-review.md`.

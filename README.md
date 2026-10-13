@@ -2,7 +2,7 @@
 
 **A transaction firewall for Solana AI agents.**
 
-Before an AI agent's wallet signs anything, Solanaut checks it against rules the agent can neither see nor change.
+Before an AI agent's wallet signs anything, Solanaut checks it against rules the agent cannot change.
 An agent that has been tricked still cannot pay an address you never allowed.
 
 ![Licence: Apache-2.0](https://img.shields.io/badge/licence-Apache--2.0-blue)
@@ -43,7 +43,7 @@ flowchart TD
 ```
 
 1. **A policy.** You write it: which programs the agent may call, which addresses it may pay, and how much it may spend
-   per transaction and per time window. The model never sees it and cannot change it.
+   per transaction and per time window. The model cannot change it.
 2. **A loop brake.** [Gubernaut Keel](https://www.npmjs.com/package/@gubernaut/core), an open-source control loop, reads
    three numbers about the stream of proposals and stops an agent that keeps retrying the same failing transaction.
 
@@ -70,6 +70,9 @@ Every number above, with its scope and the command that reproduces it, is in [do
 - **It is not an injection detector, and not "un-hackable".** Its defence against prompt injection is the policy, which
   does not need to notice anything. If you allow an address, a fooled agent can still pay it.
 - **The policy is only as safe as where it is kept.** It must stay out of the agent's reach.
+- **A refusal still explains itself to the agent.** Today a refused agent is told which rule stopped it, including
+  a cap's value. A change that gives the reason to you alone is accepted and next in line
+  ([ADR-025](design/ADR-025-denial-disclosure.md)).
 - **Devnet only.** No real funds, and no detection rate is claimed.
 
 ## Try it in two minutes

@@ -50,6 +50,16 @@ after you run a partner session with it to keep the dev job going as per plans f
    - the reading guide and the document register list the review;
    - `PROGRESS.md` gets today's status and a plain entry.
 
+8. **Corrected claim S2,** after the APEX session relayed a question from Gubernaut's marketing about the new
+   gubernaut.com/solanaut page.
+   - **The finding.** S2 said the model "never sees or sets" the policy. "Never sets" holds, and it is tested.
+     "Never sees" does not hold today: each refusal tells the agent its rule and, for the spending and fee caps,
+     the cap's value, the window's length and its use (`guard.ts:325-351`, in `SolanautDenied`'s message).
+   - **The fix.** The register now says "cannot change", and so do the README, the reading guide, PRODUCT,
+     ARCHITECTURE, the litepaper, the pitch and the glossary. The README states the limit plainly.
+   - **"Never sees"** is now on the register's list of words not to use until ADR-025 is built.
+   - **The APEX session was told** before its page deploys. That page's wording is its human's decision.
+
 ## Found
 
 - **Product against evidence, from the Beta to `bf743bf`:**

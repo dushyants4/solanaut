@@ -42,7 +42,7 @@ has expired can pay twice.
 | Solanaut is | Solanaut is not |
 |---|---|
 | a transaction firewall between an agent and its key: the agent proposes, Solanaut admits or denies by a named rule, and only then is anything signed | a wallet, a custodian, or a key service |
-| a deterministic policy the model never sees, plus a control loop for retries and fee escalation | a prompt-injection detector: its injection defence is the policy, which does not need to notice anything [G1] |
+| a deterministic policy the model cannot change, plus a control loop for retries and fee escalation | a prompt-injection detector: its injection defence is the policy, which does not need to notice anything [G1] |
 | composed with Squads v4, whose spending limit bounds a stolen key on-chain [M9] | a replacement for on-chain limits |
 | honest about limits: every denial names its rule, and every number has a source | "un-hackable", or "the only" anything (`docs/CLAIMS.md` §4) |
 
@@ -52,7 +52,7 @@ has expired can pay twice.
 2. **Classify every instruction.** Each instruction of a known program moves value, grants authority, is benign, or is
    unknown. Value is checked against the policy; authority grants and unknown instructions are denied.
 3. **Apply the policy.** Programs, destinations, mints, and per-transaction, per-window and fee caps: configuration the
-   model never sees.
+   model cannot change.
 4. **Stop loops and double-sends.** Keel, a pre-existing open-source control loop, reads three numbers about the
    proposal stream and can only restrict [G1]. Intents keep a payment from being re-signed while an earlier attempt
    could still land.

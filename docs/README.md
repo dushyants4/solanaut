@@ -1,7 +1,7 @@
 # Solanaut's documents: a reading guide
 
 Solanaut is a transaction firewall for Solana AI agents: before an agent's wallet signs anything, a policy the agent
-cannot see decides whether it may. This page tells you what to read, in what order, and how long it takes.
+cannot change decides whether it may. This page tells you what to read, in what order, and how long it takes.
 
 ## Start here
 

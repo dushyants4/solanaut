@@ -15,7 +15,7 @@ agent (ElizaOS · Solana Agent Kit · @solana/kit · MCP clients · any code)
    ├─ decode    legacy · v0 with pinned lookup tables · v1 from its config; unknown versions → DENY
    ├─ classify  an allowlist per instruction; durable nonces and other signers → DENY
    ├─ policy    principal · programs · destinations · mints · per-tx, per-window and fee caps
-   │            configuration the model never sees: holds even if the model is fully compromised
+   │            configuration the model cannot change: holds even if the model is fully compromised
    ├─ intents   keyed by effects: no new attempt while an earlier one could still land
    ├─ sensor    the proposal stream → intensity, valence, repetition
    ├─ Keel      @gubernaut/core 1.0.1 (pinned) → DEFAULT / INHIBIT / REGROUND: may only restrict

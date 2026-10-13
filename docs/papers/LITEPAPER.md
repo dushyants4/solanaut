@@ -15,7 +15,7 @@ come from three causes, each documented [M1–M7]:
 Defences inside the model help little once its context is poisoned [M3].
 
 Solanaut puts a small, deterministic check between the agent and its key. The agent **proposes** a
-transaction. Solanaut **admits** or denies it, by a named rule, against a policy the model never sees.
+transaction. Solanaut **admits** or denies it, by a named rule, against a policy the model cannot change.
 Only then is it **signed**.
 
 A control loop, Gubernaut Keel [G1], watches the stream of proposals and stops one that has become a
