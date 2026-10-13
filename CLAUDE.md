@@ -175,7 +175,7 @@ whatever has passed its gate.
 | `evals/` | receipts: every gate shown failing, then passing |
 | `runs/` | one record per session, `YYYY-MM-DD-<slug>.md` |
 | `.obsidian/` | the vault's shared settings. Open this folder in Obsidian; per-user state is gitignored |
-| `Docs-Dashy-Drop/` | the human's drop and the vault's raw inbox. **Read-only**, byte for byte; triaged in `kb/intake/` |
+| `Docs-Dashy-Drop/` | the human's private drop and the vault's raw inbox, **on this disk only**: gitignored, and removed from git and its history on 2026-10-12, before the repository went public. **Read-only**; triaged in `kb/intake/` |
 
 ## Claims
 

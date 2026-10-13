@@ -67,7 +67,7 @@ These do not bend for a deadline, a passing test, or a plausible reason.
 7. **Claims.** Every public sentence about Solanaut or Gubernaut traces to a `docs/CLAIMS.md` row; a number not there
    is not said. Gubernaut's figures are quoted as "Gubernaut reports …", with their scope. A new measured number gets a
    row with its regenerating command, its receipt in `evals/` and its date. `claims_lint` enforces this.
-8. **Read-only.** `Docs-Dashy-Drop/` is the human's drop: read-only, byte for byte. `kb/private/` is never cited.
+8. **Read-only.** `Docs-Dashy-Drop/` is the human's private drop: read-only, on this disk only, never committed. `kb/private/` is never cited.
 9. **Gates.**
    - No gate is weakened to pass.
    - No threshold in `docs/READINESS.md` is lowered without the human.
