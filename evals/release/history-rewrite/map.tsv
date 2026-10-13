@@ -1,0 +1,202 @@
+old_commit	new_commit	date	subject
+154d45798e159b63796846c769e0f237f945a422	f6d632856d4bb65973ea01877abdf9495f0594af	2026-09-27	setup: Solanaut, isolated from the Gubernaut workspace, on the Office pattern
+fcf0ab919cd12c55d8c7dbb762303fe67fc3e0c4	7225931c3997f16e8ee9290771e632461a671a70	2026-09-27	close: phase 0 recorded; the Colosseum draft, and the tool that made it
+235f3431b82a986d8b31bc18a889dc3b5b28e66e	985772227414cb90016ea31682f7cd9700908d7e	2026-09-27	kb: the knowledge vault, and the research it holds
+65d54b8dd0b6ec99f56c8e314f5536fe9d9e70de	1cc24b5127f162a288a366a0d41bfccb11b294fa	2026-09-27	research: the foundation — the MVP spec, draft-1 papers, the vault's gate, both milestones reviewed
+0b76e5ad6f2f1a2f2e6e1677e2e6f34c9beccf3e	2cf3a8e31b692e97905405b5528dc82b78ca28be	2026-09-27	pitch: the written pitch in four paragraphs, filed as PITCH.md Draft 2
+d2540e7f76deb5d0c8156de1f272c4021654b231	474b7760dd2e0a7f0f3faff68135745edae74d00	2026-09-30	review: the verified review, and a roadmap built on milestones
+0c32d688ce1d6d9e61233c0f99e5dc749bad115d	e1bc83d7ca00914bf7f79ebf96cdb7ced84bca39	2026-09-30	ci: the safety net (2a.1), and the human's decisions of 2026-09-30
+48c8c37cff73fe1da9e68f1aaad5f2aaaeb5f538	126f633b813ef111628ec554f5ec920c44be8bf5	2026-09-30	ci: no uv cache; the tools have no dependencies
+db18bb02bc5bd420aeb257c08fbfe6539992260a	89fb251e920ec193d16f53743ef93010868905bb	2026-09-30	sdk: the byte decoder (2a.2) — legacy, v0 with pinned tables, and v1, without web3.js
+44c6c619b0c7ad8d7fed174b1bba1af3076a00d4	cbfe607d7201506c405efa6a86d681f26a8ccd20	2026-09-30	sdk: the instruction classifier (2a.3) — an allowlist per instruction, nonces, signers, fees
+be31f11eb1102aa2f7c6eb7059c3c4326c22e6d4	ce9b3cb83125f911cbe17b1d28e6a32b93c8efc9	2026-10-01	sdk: policy v1 (2a.4) — validated at creation, frozen, hashed
+8664bd556c55287622b218e9e19e90a3bc6bde86	fb5e906e51f3f9a36faddd2f5fa1f8e6ae3c3c41	2026-10-01	sdk: admission (2a.5) — rules 0 to 19, receipts, intents, the latch
+1fad2f75435372a21acab82586b7353f64d322ae	4c2f3988f93d5ab7635c6da2b2007715b2bb2421	2026-10-01	sdk: durable state (2a.6) — the record is the state, restored by replay
+2f4caaba29d2b3ee5c5cd1eaf98d55d7671eb166	298bb038722429c18f287d79ee9922c7bda45a24	2026-10-01	sdk: Keel hardened and sensor v1 (2a.7) — bytes hashed, telemetry checked, measured
+95659b79bb1cb38c76c507a0c709512d7ffd7eb7	7021772a582e6ab351b317ee32244bd3ecccb658	2026-10-01	sdk: the adapters (2a.8) — guardedWallet, guardedSigner, SolanautDenied
+9c41beb69475a974907d947444e8def773282f45	9fb6dc80551b74730f6e91592a672feb1cf34ef4	2026-10-01	onchain: the Squads v4 drill (2a.9), rehearsed on a local validator
+f55d8a58c038982d8b632ab182b85f0d84979c7f	195acd8fdd23185b48f419fa449694342f12589c	2026-10-01	cockpit: dashboard v0 (2a.10) — the record and the Squads limit, read-only, on localhost
+0c982ff16e370ed17087704f36228ac856d65fc7	2274f6e7d8afe8f7ae1f9f8534e1a8255473f3c4	2026-10-01	evals: the drain battery — 40 incident-shaped transactions, each denied by its named rule
+54f8c12f8f86f3cf9f75b7795b6ba6a6770acca8	4bf454e11db9a97372cd7da4292e6695c6a315e0	2026-10-01	close: the Beta build session — run record, claims S8 and S9, the Beta gate receipt
+d93a4e558401a8eab79a05ddfa78575d2b6a0e3b	c643a62b813ad876dde6156c2aaced95bcb629a6	2026-10-01	agentkit: a Solana Agent Kit agent behind the guard by one line (2b.3, the kit's half)
+5fa5f9196f8cdf5b73c50a1fb72d2b038d555955	60b52d2e0a03ae8329efc1caa98e3ea9551bb3fe	2026-10-01	devnet: 2a.9 and 2a.10 achieved; the demo's scenes and the agent on devnet; D13 closed, D14 found
+7421c51d2421ea192df934396572f1b85304203c	026336cdb34ce4666f0d927eca15f455e40b6de6	2026-10-01	intents: D14 closed — an unreported attempt may have landed, so it holds its intent
+0e409728fe8d1a5840d2934efa75dffdcedd31d3	a246a9240ea1d154356972ebe1f21d36e5909b1c	2026-10-01	latch: when REGROUND latches, measured under four rules; ADR-012 proposed
+b6f3b5d54b4362bda75a151fa15890e87cbbf5d8	ba2615ee9540090d168c496acec60da5d1956a5c	2026-10-01	claims: every measured row names the command that regenerates it (2b.2), gated
+c8a0e73e014879cf3cb229cde4029619c5c8b0a8	7d047aa552d81deb2b9bea6f87be4480d4856886	2026-10-01	beta review (2b.4): the draft; README, ARCHITECTURE and LITEPAPER brought to the Beta as built
+86f72d042e99f2112350d128c8624c3f576bd28e	4fde313b21537a15b19dc40e93a79aa2f2d7fe4f	2026-10-01	risks: the register for the Alpha's scope (2c.1), Draft 1
+19c168dcbce820d8e6647467e52a79af68f6a623	a1f7209367d659efa0166fabef3adf83952ea75c	2026-10-01	readiness: the Alpha's thresholds against the Beta, for confirmation at 2c.1
+be1319802c3f86daf3ca7888a2c3ecd1cf9c80e6	f26a74a05f9e2f2f6fa6096bd7f9697aa0546ff5	2026-10-01	spec: Draft 4 — the Alpha as 51 requirements with IDs (2c.1)
+94ba49cc8397e5e28f3a9091aa12ad2eea0602fd	26d66f4b784fd4ddff21a7113dc759c6e49a452d	2026-10-01	design: ADR-013 (the signer process) and ADR-014 (the operator-signed policy), proposed
+c65f41a880d1f53e9b06a16be14e5bb782f7ab78	2a433920880b292be58252525e5d77c141366f64	2026-10-01	design: ADR-015, the log anchor's cadence and payer, proposed
+19068517467611a8c56a8cef32c8d2afde8735a0	0617f312c0b6bef59ea1a2d0ec13d8c15b0b96fd	2026-10-03	evals: the independent evaluator harness, committed; ADR-016 (Token-2022), proposed
+53548226179865c292bfc532e2a0d40ed38b4d3c	2e85804135e745cc9ea4c828f79590c9bf827bed	2026-10-03	design: ADR-017, ElizaOS integration, proposed — the key never enters ElizaOS
+39c6f05f9d954ea3d79606e07a8db61e2fe27cf4	85811bae534139881434991e1c4c30b70a82db97	2026-10-03	design: ADR-018, bounding opaque programs, proposed — every Alpha ADR now written
+81b372e1416b042c47c8957238f344c5f1306ed6	17c17191e1d98042a5d90debd43d32b85f944505	2026-10-03	threat model: Draft 3 — each threat's status as built, with its evidence
+d7159177fa8d4b1d0fa03bba9d3f43262b23994a	d44e832e1b8ffa3d7ee5488109c9267258d8eda1	2026-10-03	progress: 2b.2 done; 2b.4 and 2c.1 drafted for the human; the independent run under way
+b34bcf7f434b35eb9d41d3797464d6dc4630295a	60227563fd111f1f4b57981f90d6c89971e8b750	2026-10-03	adapters: D15 and D16, found by the independent evaluator, closed test-first; S7 scoped
+e7b69ffdcb5eae3a2bc5e4ba519d279b8493f1b6	ec9513866ce07fc165c4dbcdcde052dba91c2304	2026-10-03	sensor: fee escalation against landed payments, measured (RK20); R&D, not built yet
+f02135c71debe5699f7f30eb9d3dfc74b81bc428	7991c6b7dcb52109babc35c3158f3e7b9fc78c4c	2026-10-03	guard: D17 to D20, found by the independent evaluator run, closed test-first; the run is done
+8e43e26efd321d0fa6c651a54e50d18828d69cd0	e8dc7b6f64e832eee3a95515bb0359e1d2ad2941	2026-10-03	sensor: fee escalation scored only against a payment that did not land (RK20), built test-first
+688bb1cb19eb51a5e68b96f33d5fd6ff3f1a6622	a5ab842587b369fe2346a54505afd14483ed8925	2026-10-03	close: the run record for 2026-10-01 to 2026-10-03; the Beta review completed for sign-off
+90acb0a87e47e530613e246d3ce811029aee0dbb	707f01e872c308a1769fe56939d1a610038b8abb	2026-10-05	harness: the boundary guard for Codex, shown failing first; .codex/ hook, sandbox and T4 rules
+e925f1dfaabc7eedae361764a401baf7f9e9868b	7154cf21837ed5df7c702faf0729e29ae0d38ca9	2026-10-05	handoff: Leg 2 won (the Beta signed off, the Alpha's scope approved, ADR-012 C); Leg 3 handed to Codex
+2030ef78340a7689ed28d64cbf3709afdb5cba93	c1de3abfd846ad8b4c78c829592702d7ad7237b0	2026-10-05	latch: implement ADR-012 C and record 1.0 mission, verified by regressions and planted faults
+31abf16def1af6b941974ebf5751c6e1193381d5	f07751b1bd918af10d997b2c2ac76f58f8a7221a	2026-10-05	packaging: stage compiled SDK, verified by installed consumers and planted faults
+f16938c352c6019d2ef3904b4f3fc72b9341cb0f	131dc609fdaf9d56f205f9993ce2958c007058bf	2026-10-05	ci: maintain package fault checks, verified with a fresh offline cache
+5b4d3d615173345afcb6b3936d5451b323d182e6	d43e18b1f8317bcd5f41a0f95630340dd82aaa7f	2026-10-05	ci: maintain latch fault injections, verified by seven assertion failures
+6b0dc045dc7806649024ba63d926982b1c07383c	b1b88b988dd56737c13902e877e07036204ce972	2026-10-05	design: record accepted recovery and operator contracts, verified by baseline gates
+4a60f0af95ea8e060ea534a219aa5dee1fd5e725	b55bd3765aac1cc521594167d800400aef26eb78	2026-10-05	policy: verify signed history and evaluator versions, tested with adversarial restarts
+033cd87553f9b87f1e4369cd0d66cf0913d452cb	288d716b4cff25efe9bafbfefe063957e0c2d57b	2026-10-05	sdk: hold exclusive recovery ownership, verified with storage faults
+425dcc832ad152eaad997ec45438efa95bf8d584	cd15b567f7236a3f251d494b8901ceedf4b43022	2026-10-05	sdk: bind request identities to admissions, verified with replay faults
+948d6a557344b450cbea026141309356a51ed52f	d139685dd1c87e6e8cc27502978e3f6167330eb6	2026-10-05	sdk: persist verified signing lifecycle, tested with forged evidence
+54ba32f218dca70b666ea86e8b8cb34f9084fb68	19d2fae41d5c573e6a6572d400f6681fef7ba9bd	2026-10-05	signer: recover requests conservatively, tested across durable boundaries
+c9a84e099f904f19f500152d62f4fe2ea6ff0319	52eb2714077a2c877f353ee78617cd90a5bce436	2026-10-05	signer: validate devnet RPC boundary, verified with provider faults
+aecdf8edf78d529468bc8419252be8bea5e3cb22	f95bc69748a059469d2e9760825dbd8b2f2ec950	2026-10-05	signer: record host authority and monotonic time, fault-tested
+f810612e82e35d439895900722bcd7ddf9c68588	1cafd7d7cd9acbf1371eb1062ab3b75196bf650a	2026-10-05	signer: own RPC deadline lifetime, verified by standalone regression
+7b55b37cf9a9751195463545c069615c9c73e395	397ed6fdf5c3aec54ae1d1b9b66373bb5cc4e54d	2026-10-05	signer: bound Unix socket requests, verified by real sockets and seven faults
+7c42a410e635caf8344ba6d4774071e498b3746d	f553681682ea94ae4b09b4d72622d9b5d0a24739	2026-10-05	sdk: journal control request identities and answers, verified by eight faults
+4af8e801fe63658e5b93440dd14f3fc7b2d13f51	f90be6ace6e1c4a4d8e0c59d555ba624029a0ae4	2026-10-05	signer: release completed socket slots, verified by half-open regression
+b7d24a57cb68ae8cb4f99463f81997cd585f08c2	494628255e6cfd237445589d2ea4e5a5f0b7497f	2026-10-05	signer: wire durable control replies and deadlines, verified by fault batteries
+a40375a4d9f64c34c8eab46b3fd94a85c735a8ce	9c5601b60220f904c65505706d73e9d7e5ae29c4	2026-10-06	signer: persist pre-admission refusals, verified by executor and fault batteries
+d64a9439ceb8e9b0148fee39f57f078efa9d057d	01dd4099636710edd924910a6752174b42165245	2026-10-06	records: record refusal runtime CI and clean close evidence
+8b92594ce59caccae2464288b631d4040fce19ea	0807e2ae820799a12d5bd54808f932dbe15cd5f4	2026-10-06	signer: isolate recovery failures, verified regressions and faults
+2d4b0cbd780557b0bac2ed6e3a7f71987fe78ac4	f55d257249d152a2b9a577274712cf78ce15937e	2026-10-06	records: record recovery runtime CI and clean close evidence
+f6c8641e3117199cbafeed3f1ba0ffd94ba67847	7234a2ed42fed6d4e99ee8919766a2fdae898a68	2026-10-06	signer: forbid settled signing, verified policy recovery and faults
+f27337da7fd9b6730cd7add29f2d175a340b6585	bde78bb3e517e0bdca55f8d597f6f6fb1aa02932	2026-10-06	signer: compose same-user startup and draining, verified faults; budget gate open
+f9c0cecc7786f9278228f533ffa8bdbcf55e94ec	7509d3e038947bcc4c2811c47f1434ec5f962785	2026-10-06	sdk: add explicit socket sending client, verified faults and installed consumers
+dc1d6b19553bc6cc3abb36f6a0b6b47020fd5813	ff05bf253f6b66263ecf0caa38387cd246ada24b	2026-10-06	ci: run maintained faults sequentially, verified inventory and restoration failures
+b41c8c71919db53a5a85c4de77a94dfc8ed4a9d9	6677bbbe659a3954d2ea93e9de7b2987ae36fac3	2026-10-06	ci: enforce property execution floors, verified oracle and fault cases
+59b2e1cfd982db02b0a91ec0311aa66048b70944	6771327852a081f8ea3df22fe1f4f81c8547e9c4	2026-10-06	ci: enforce million-input decoder fuzz, verified completion and fault gates
+f6316712a0d79c04b3840cd6321c70cbcb126843	4a4ef718b8a0eaa19cac13ea1460ff931c625774	2026-10-06	ci: qualify SOL cap boundaries, verified reservation and async properties
+b758463cd2a0b8368bee72c9dc770fa14ff40ab5	f66e4eafe5a02eb3005e2cbd5b58d582bc8db7a5	2026-10-06	ci: pin mixed replay history, verified ten thousand decisions and fault regressions
+3c36cb64d53db7c9d1e6704fd4aab8c18e7e6f36	4dc47bb641ef1cd6428b3d7bdaa8c80dbace10eb	2026-10-06	ci: qualify queued SDK admissions, verified exact cap and complete evidence
+91589b38ac8cb564605583e6759203b564ffd07b	a4197d3b6cf128ac9c5753cf0f7dbe31df34eedc	2026-10-06	ci: verify persisted-prefix SIGKILL recovery, tested signals and restoration faults
+f1b6010949d5729cf40cb459a364c81723486aad	da23a1b48f1990a3cac7169aac49aeaff479b773	2026-10-06	sdk: verify bounded archives, tested pins, source failures and packed consumers
+22235e7a6b0abc3b96e5aafe37a93541d4042b0a	f7bc18021d6e160100ea2f9bcaa11206a18c2e0e	2026-10-06	sdk: add read-only archive command, verified arguments and installed binary
+657e338f8f2fd329ab084ab8b14bbbc27a30160d	2ec031d8fa5668dbcfdfbcd96542ac3df501d8aa	2026-10-06	ci: enforce AST coverage floors, calibrated counters and verified failure paths
+9775c837d2702ca416711b2056e8a1a0c80cf673	73e29ec5da29aa9cc9cb88ceba2ce05f48a512d8	2026-10-06	ci: prepare Stryker qualification, verified staging and report faults
+4c7c2d96f0ec9aec8a006e225cb44d440abdedc3	689d18f0a83d3758cf90bc7a8b4b7f379130b5fc	2026-10-06	docs: document candidate SDK contracts, reviewed exports and error actions
+13bb0752ffee61e08b94f161673b318b763f3617	8bb6e48a044064aaf380a2ceac7c0072a16d07dc	2026-10-06	ci: pin real transaction comparisons and timing reports, verified with faults
+00c42e89fd137251659934ffbc28e013ee95a804	c0c89a2215e7e6e13d161a15ebe99c488749f2a0	2026-10-06	validation: bind archive anchors and qualify traffic, tests and planted faults
+e508246ffb8479fcfc7a806916d88b79ec7c3af3	8393e9cd3dbc7e7e739f9a242663337485cea7e9	2026-10-06	sdk: prepare public policy signing requests, command and installed fault tests
+a4dba77e71495b2d2d12d6df80a644987fa79081	f889db1a8f663301718adfb8761b587cd42179ac	2026-10-06	qualification: extend mutation runtime and reconcile threats, baseline and faults verified
+0978aaa8dbb30d3ae8a0e8db17e4c2c3cb1fe523	8618f33c26181af820d70a8c80f08fbfaff8934b	2026-10-06	history: allocate accepted snapshot recovery requirements, documentation checks verified
+a94ecf06bdac8725fbd9e08961e1f998f0af5065	9942843ba50d9b2bcdd832aa55bc5e8fb096f1fc	2026-10-07	review: inventory reachable history, verified cases and planted faults
+11cd688df2568bd9891b9e411d3dc486591b2b79	5ebccc904e9e1ff84fa9a57fc1f9f5196842f40c	2026-10-07	ci: retain actual fault counterexamples, verified process and property regressions
+afa0b21bee61886ab23bcfbbb942efc24ec8c793	f5d063f2352039f7b351aec66306746fcba832e8	2026-10-07	sdk: authenticate checkpoint bindings, verified faults and installed artefacts
+068e90c9ae4e333d9b9f412900bd478b84b350ad	a1f2992edefd542a3375e8ea2066974495fb14b4	2026-10-07	release: allocate Linux and dependency qualification, verified maps and dry-run limits
+3a142ea515cf5ca68eab6115f8c9853a946b16af	850b1acba612655812a2dd6d364cf95d620f03f5	2026-10-07	ci: bind completion records, verified fixtures and fault restoration
+b6d91945ebc687df96bb09755a3bfc79bd8e4499	ae35caefd93b28838b3dc11f0df27d3f437ff09e	2026-10-07	ci: supervise actual child runs, verified interruption and publication faults
+ddc8bb0af5a986eb6fd7faa46edfd4f9dbbe9ccd	118c36e1515b03df2ddc674a650fb839d467bbfe	2026-10-07	ci: bind evaluation environments, verified isolation and interruption faults
+f8d22f95ecc87537c9ad6e55e59cb097f37a3007	6d004a88c243e105febfeb084cb89a3a32c31045	2026-10-07	ci: recover mutation execution, verified baseline and binding faults
+fdae9b4bfb732bdc435a03bcf8caa5c2e609fe5f	46fdbbd23120c1b73b05a1c012728ceac337dd6f	2026-10-07	deps: patch scoped query resolution, verified installed regressions
+9ac6e7cc57fbb4c38e2265a3b8967efb7a85fccd	eca889e351fc3f7d83ce0e35ca5ff0ed6767093c	2026-10-07	ci: correct baseline runtime option, verified captured command and faults
+805e8bb612f61a867b55edc7f6d8f0b08e6f141e	fdc75626f18f64be2f155cbabfe7d69c47afc083	2026-10-07	sdk: bound checkpoint signature decoding, verified source and packed faults
+40fa2fc9353105dc39576f37bb88e1a63148b423	1f32cdd399ef75426d02a19bd112b7530098308d	2026-10-07	sdk: harden checkpoint history foundation, verified source and packed faults
+afed152194958b21467653ccd136acfdf8d461a7	ff3d573ad1e7a69c29e0666a59f8f580180804db	2026-10-07	ci: preserve mutation populations and serialize runtime tests, verified faults
+23f57d5373d12dcb1c5b932e36e1462ac551016b	19b9f04887de01720b3ce46d42db20a04f769941	2026-10-07	sdk: derive validated checkpoint Keel events, verified replay and faults
+b9c06eb49856026b9ab2806f0824974af07640db	d0e055f01c430d97a9a169fdc48d3c9f91289775	2026-10-07	sdk: derive checkpoint admission state, verified lifecycle replay and faults
+afe482a5505517430b0dd21b54e6fd09eb088874	f42001b09f6e67a240f5f4536ca6d725a1eefa99	2026-10-07	evals: verify compiled checkpoint payloads and retain baseline diagnostics
+26925421d283b4a41146e2243ab3b585e051ef77	a52211b0ed01b123708da84aff6b61aeb2a33d0b	2026-10-07	sdk: bound policy signature decoding, source and installed faults verified
+6d81f8b747c1b04003b8bd83f12bed6e5fcbca51	89b636052646eae5a4f9c5af7c8d7229b36ed117	2026-10-07	sdk: assemble checkpoint signing bundles, verify faults and serial CI execution
+6162efb3ea45a2997eb771ea40fd6b251befb549	2d0e3d145222b4c36f46b5019641df9342a5479f	2026-10-07	sdk: authenticate checkpoint envelopes, verify source and installed faults
+0c61fa365ec59bf75daf83567d6be2d3aa5cf37d	fc364167c82448d71813cf5b7516b3af5be7a023	2026-10-07	sdk: publish owned checkpoints, verified by replay and storage faults
+995c5b073c31a9d0cc1ee9c79500ed3af0675e8a	308a43dcafc92d4e82a637f5bd43b3a5751771ff	2026-10-07	sdk: rebuild validated Keel prefixes, verify source and installed faults
+f05c84dea1da1ff5c92a0b904520e9326023f4c9	96579407abfd3a5be87b42e12cba3f9adae56a51	2026-10-07	sdk: prepare verified checkpoint recovery, validate fallback and tail faults
+49f753b3b5e806b68b45608b11984b1484f9703f	34843841e2bec652c4ce6200278a9c955dcf701a	2026-10-07	sdk: recover checkpoints under kernel ownership, catch alias and lifecycle faults
+9a6480fe2291600b4b8460c38e113c844b010ff8	791c801dc5eae36bcd2f41459d8f76bb440b21a5	2026-10-07	ci: verify actual historical commit bodies, catch cached metadata and object faults
+c2c2f5cfe7a33c627ce721325b1e06cb1e1587af	c695fd716eb43337a80fe7aef923441ff43d0e9a	2026-10-07	sdk: stream immutable archives, verify completion and cancellation with faults
+b3524547a3055e04f7d12d3f20565020ba81d522	6d5ff6a588a834dfabfa98f24e0b411e65cc8665	2026-10-07	sdk: recompute streamed history, preserve array and producer isolation with faults
+a4d1c25a153c6cf5adf26f8b93189b2b58791938	2b9ce95bbb4e9ebdeb37bf16d57f7fe28d1d7ef1	2026-10-07	sdk: defer checkpoint imports, verify captured pins and installed record isolation
+5b00257b20c8bbfc643d0fc093f6e509dc3a3d38	5691c68a38f15f72f426f31cfbe7e42a24958283	2026-10-08	ci: partition every fault campaign, prove coverage and preserve release accounting
+39c24de89a3e860cd9e4a08517a616481c5c72ca	430d91e3620e9c542fa277dbfc52638619caabb1	2026-10-08	sdk: validate recovery transitions and stage indexed preview, verified by source and installed faults
+43f20c08b264c1fab9d40166dd357e5b71c7a293	f43e40d127c576aa0586fc038ec4f0ea1c024b01	2026-10-08	client: validate runtime containers and refresh private preview, verified by source and installed faults
+5a33e698703446708729a8271a7a4c38a3a7dce7	96544f36422131d6b221bd0bc11fc79b6987e01c	2026-10-08	sdk: publish owned request indexes, verified by storage and installed faults
+0310911a0b8e97c1b1622a673ab42954052bfd3b	961d96466116ae17e15dd6abf16f3b5dea7de5d5	2026-10-08	evals: retain ignored qualification logs, verified by close checks
+c2df0433912490fa934884a130ae81ae6c54d4de	66095a52ec7677bbb9100a377433ec00e65cdc56	2026-10-08	ci: confirm mutation shutdown, verified by process and fault batteries
+588a1eff19d1cb02cb61b4f42b046d17201ff317	692317aa3c8d3edee2be325e47aee45f449f9d5d	2026-10-08	ci: refuse missing completion evidence, verified by process faults
+0332c977eb0dadec8a5592324fb8ad1f76ab2db0	80af1251d29c08f4c7b0037159d636784f66b188	2026-10-08	firewall: filter tools and devnet calls, verified by adversarial and AST checks
+7118ae242b25f50305c0b49d6f9c9c4da2e30df9	e095f94402d12e57ada1eaaa93e8dea56f93e079	2026-10-08	sdk: bind owned request lookup to current history, verified by faults and packed consumers
+d0d8dc344c902548ac964f16cdd9f223a9f1e4af	abacb5059f8535b6cd25c38f9e5f5b8e76413871	2026-10-08	research: qualify Phantom route evidence, checked against exact primary archives
+8a343d42b0d60dd188ba7fc5f2d9a198d6346364	9323092d4ad63d78b0950a6e3ec6746fd6749827	2026-10-09	sdk: serialize owned admissions, verified with replay and fault gates
+0a199aab336fc80431b3d0f360eefd06be06f486	6c89e43b45904267c0550f3973681c4c953321fa	2026-10-09	records: preserve resumed qualification, checked with unchanged close gates
+9996f001e2b5ed817c347f2546d765ba1abe2911	2bce3972cb6cc4b692be052f8d3f34ae6bab1450	2026-10-09	sdk: harden read-only replay, verified with source and installed faults
+789bc7b8b6b949c6d6125efba76a329c3cfddda8	5aae98e3aab5bb8700c3f4b4750afbb3dd378c5b	2026-10-09	docs: retain replay CI refusal and verified local close
+b1d8ed153ed162293bb923a5134703ea4eb3ca7c	d020ee1bcf7ebdb5d867e55acb79a3610e18265d	2026-10-09	sdk: serialize owned controls, verified with source and packed faults
+4325a0350e7b80dfb3ab5155ec9e6c7ae59717e5	6b8f9c82432c7a41c6f858e2812b59951df611e4	2026-10-09	records: retain local backup verification and unpushed finding
+36a1ae793e08855e817496837fcf5d7ea34abd37	e8da039bb0be703073efcf0275bb0ea368fabc29	2026-10-09	sdk: own asynchronous admissions, verified locally with AST wait finding
+c891c8cc99aea4d5de531f2f5e4426dabc95feb2	59e6d97c33bd9294cf1572ce5e4870d803bc466e	2026-10-09	records: preserve local facade backup and qualification findings
+944579d469c9f4712f4e74d6cbfff3a394ba0cdb	9720d1bdce3d3b1cc45b5c63fae1ebfcd6104dcc	2026-10-09	sdk: refuse unrecorded owned admissions, verified with storage and packed faults
+fe6369f207a636a7324cbbbe8c636142a7e83033	16e4f35ba3baad103e7fda248bcd83b7dc1736f8	2026-10-09	records: retain D32 local backup and outstanding qualification
+4d9d1fe02f69e057b3ae1691d7ce34f2bd5ed2cc	806308df02eff005f1376363ef06944f3232350a	2026-10-09	sdk: queue private redemption, verify receipt and write failures
+46922d5c5d851218ffbc6f162ba1c35efff5d32f	472c6920b91152d8673e94e64af1d33fc0857dbd	2026-10-09	records: preserve redemption backup and driver timeout evidence
+7a64856926752cf27ef25711816c93648ccde402	5143214989b0af1dc44890a8f38393cbbdd8996a	2026-10-09	sdk: queue private operator release, verified by native AST and retained faults
+fba638ad2d55b359771a6cf4ac517a3b1c6521ad	24d1a741e71e92205d35b49bba3d75fb57bc6599	2026-10-09	storage: refuse live journal changes, verified by ownership and installed faults
+f5380fbf2fac1bf079a584acd3e57bf37c9e539a	9e80ac574cc627994e6e93b5f7b8f4e115131425	2026-10-09	release: qualify existing Node 24, verified by native AST and installed consumers
+12e3895046c0ead8bb75b0e3eff769eab3cb62cf	ddbb20208817446232cb8cdca381834e64ad3a2a	2026-10-09	docs: scope runtime regeneration commands, verified by unchanged close checks
+8b1d29de91a25dec2f4944a4cfa33e43e38524a3	4c1ae1ea09dc430ab5158c0c38c4d1cd9226348a	2026-10-09	release: verify Node 24 fault rejection, all retained trials caught and restored
+84cac38725cb5ad1fdea9ff20bf004686cc41aa1	1104b00b2091884c145529460896ac0501a6b491	2026-10-09	storage: refuse aliased journal ownership, verified by source and installed faults
+67948e693ff6790d39b903d947131d013ed50332	3d5642571d743d436d190407377f7f943a7c4981	2026-10-09	storage: verify record reads before repair, checked by startup and installed faults
+701372e8de28160ec8965a3600de184d20f0c00a	52f095c10f553e881be65bf1baa2fc5b66df90d3	2026-10-09	sdk: preserve history on incomplete reads, verified with faults and AST
+72dde3929b84ea77c8e0c9f5cbddfcbbaf0da62a	8e7a5597405749e69d197e8a22cd934dde9a7df7	2026-10-09	release: qualify current reads on Node 24, retain AST failure and fault passes
+3fe0f0d6859d20f5982cc6cb7e7808a93f964909	b50293db70d7be2c736e7805659f3cacccb49558	2026-10-09	sdk: verify synced append lengths, proven with storage and package faults
+49f6d6369e58d7f4c6c4f0cbd41705c080f498af	45727c609ccd643ef0f164224b32a8ed4b7d65f0	2026-10-09	sdk: reject post-sync inode replacement, verified with storage and package faults
+ae6ba560102fe54a0b1a584b4bcc74abf1f9e558	e7a30344f27643836778dd664ced4be9240ecb36	2026-10-09	evals: qualify current durable writer with 100 recovered and replayed kills
+4addaa4694e017a6a0b1269668a1d4b006e53dc7	5c54d63a0e608e011766cafb482cbff828214b2f	2026-10-09	sdk: queue trusted outcome reports, verified with source and installed faults
+227b0bb95476feccebaa9516ca88c86a90050acb	93886995f5774742b4ecf111fca76b87c04a4697	2026-10-09	release: qualify current Node 24 candidate, retain coverage and retention findings
+826d05864271f3b2af05c8a8eb11243b1755c50f	f6cfc85ea27b0c91e1051efcb0a8874216777910	2026-10-10	ci: preserve full runner failures, verify restoration without relaxing limits
+f6d5e298924e752ba05cb97eb02914634b95f42f	094f60aa81ef9dbae49eff6acbd14562384391e0	2026-10-10	eval: qualify isolated package fault execution, preserve validator misses
+f1e253ffb791b7e3ca3710427f9a26ee90ec8504	b9003193ee8945a4377bb25390f63bb884450a09	2026-10-10	sdk: queue private signing journal facts, verified by durable lifecycle faults
+2dd8264b06dec9cc3fd48cfef79fb3ba20964f8f	fc881fd4930d903e2420becbdd591adbc6e2a8f7	2026-10-10	eval: qualify current journal on Node 24, retain coverage failure
+206744723dd00b70ad96b6701ad29a3c526f2dce	4cd21748bc0717c4b95b670eb66b01e9709bfa88	2026-10-10	eval: expose ignored termination, verify corrected owned-child cleanup
+e16c9df4a54ba0adf6b8d07c0dd1d86ab9b4c890	71f7b764012ed7dd7158985fff024159b53ba49b	2026-10-10	eval: qualify full corrected package proposal, preserve gate ownership
+f4f3d9282af983908bbd2a7e4f3b5f6212d96795	4c89e0dc935f7c2cba88b24b1f7ab9856d3acbd1	2026-10-10	release: qualify proposed entry and repeat private artefact build
+b5498e8f919181e1cf397dd8dc684b0bf7450a1a	4d8cba368fa38f71a7639d8d39ab320df5008a72	2026-10-10	release: inventory current local history, retain publication limits
+71a1ef444f55ee636ddec66618b3b11bd104946e	a1e45121aceb4b4fdc55cc1a93686d6f0d145b34	2026-10-10	sdk: verify serialised wallet sends, pass native and installed faults
+32abc738f436b392f41a0a77643838a143eb3d35	6273b0133cb1300c7c93312ff3d2591cecd93b22	2026-10-10	ci: preserve full maintained D39 failures, verify exact restoration
+001c6c97d10604ac0751af7a6ebc81df6230b609	9a6888e79e8d0b4b92a21b2ba2073cb4172e5f24	2026-10-10	sdk: archive raw-buffer correction, retain repeated H11 gate failures
+69ada72d35b4298db61cb5dd4b22bad2771d863e	3031ddbd0cfe851ce077f1ea2b007217a3aa2e66	2026-10-10	records: preserve raw-evidence whitespace finding
+e7d92e1edeb86d6de2d9da36899d2e918f16341e	94f0badc33d6c57d3b42f8311b04470738c250cb	2026-10-10	release: qualify prepared wallet archive on installed Node 24
+1633231b4765438152e2bb9c78278bc9fe923062	1cddb19c85aa33d508a216b85e8a6fca436441e9	2026-10-10	ci: diagnose original baseline latency, validate unapplied wait proposal
+11234ccf65d80c1a0d2162a53321b6c2e9acc9a7	3648e25aa583a641c355618b82f164906e500289	2026-10-10	ci: measure frozen SDK storage and replay, verify raw history and faults
+e71523834fcffe92cd902fbaf21c74465ac6c805	d51e92d9ad5f22e88de3f0dea28b6700f3a69ac8	2026-10-10	sdk: privately own wallet byte captures, verify native and installed regressions
+fc3caff2579450d752545cb52ebcd693c0557b13	9d19b114d8e3ba639a63eca3a3b89814bedde9e7	2026-10-10	ci: bind corrected SDK timing, retain slower observations and refusal proof
+be7d29694f13418f1ff0a48b0b6a5721e08797c4	64c1af5ceff4773542cf19589ec30f5aae8b6ec0	2026-10-10	sdk: preserve batch reservation candidate, verify failures and installed faults
+e537f636717137b75ddaa6c3a729efca2a639215	2e05dc32518797a8588ae04ccc57a8aefea56486	2026-10-10	release: prepare blob verification, retain scope refusal and fault proof
+5852778c0593f73c3a93912137e0a8b244ea4651	db66257fa3a5065aa8b72b81ab91d2e238bcfd67	2026-10-11	release: retain output confinement finding, qualify proposed copy
+6c61cf3157be2f1b2c492b783287a7136400b640	2a369b5cea3bb746bd1f14d0495579572278a01a	2026-10-11	release: reproduce current SDK on existing runtimes, verify installed packages
+6b1f78d6f4ed0c956831a625d29f8a00c9455e00	22f65bca71865c49282bb852d13d1a8851ef4650	2026-10-11	release: qualify frozen core and installed decoder properties, retain scoped evidence
+fd5ec6ef6bd38acc8907626b2b09554191b03d8a	f7a3cc6257c5128c1f41e91246618a3e95a80ffa	2026-10-11	release: inventory current private SDK graph, observe missing dependency refusal
+7fd964b5314814e46cbcb1d7a684f467a63c17b7	697ace62b42a1a0f3de5fbf44e7d12751112f9b4	2026-10-11	release: reproduce current SDK recovery and admissions, verify frozen inputs
+5cb7f507e2e3ca0f46cefa46cf471c4d1c7fdabe	602d54d359e8cfd2167206670b501f13b3a31491	2026-10-11	release: reproduce benign traffic, preserve unresolved loop limits
+fa2f6e24ec0f30e02e7b53f65b71486ab6d995b6	5ca496f225ab22c84aaaecf117d65705ade2d116	2026-10-11	design: propose failed outcome budget, preserve current loop findings
+25b4c4520dee786f30b8baf9506eaa1734900917	2cab6984c5f67c55e42c0dbe223c117009d0f665	2026-10-11	release: bind private package inventory, catch identity and graph faults
+0810716542ffd74280baa4766e3a58e0aefef0fc	f226bd8c99dceedeb6f766cdec2e1884951983d5	2026-10-11	release: retain strict schema refusal, bind official inputs
+abed480e5d4a79fb4de65a6ab9413d6b87474889	68f69eab0ab2864be395d5fd1f389d192b4e0ed4	2026-10-11	docs: reconcile current threat model, retain unresolved release findings
+ddc335819682296f789807f8f6c30a93a5187da8	cf1fec08e61e8b085f5f03dc5d9fb22249cf28dc	2026-10-11	release: qualify installed real corpus, retain native gate failure
+7da99f1cd45fd4ac6671344aa1eb63d99faa26f9	b52c8c46268827730b375695fe333831e6ad8f35	2026-10-11	release: qualify installed mixed replay, catch self consistent outcome drift
+792f6d0392e673d55f9bfdf515dcab01d3ab34a4	f9533c5ebc1b41dda8cd718311b104715e9e894c	2026-10-11	release: diagnose replay completion blind spot, verify installed recovery
+54b15d5fcbc9bb5171656cfed13951f05e8a8841	7495619554b6dfff835f8d249ae027593923ab56	2026-10-11	release: qualify installed queued admissions, catch cap and identity faults
+753769dcd435b9334e59e921727c04afd6cb6859	51d930978bfad7f1705927c39b41bd94df2784b7	2026-10-11	release: measure current installed SDK, verify complete persisted replay
+740f1acbd7c4074cc7958012c4e63c55d236f351	15513de65d6a3f8cd627824225379109f21a9d8e	2026-10-11	release: inventory assertion history, catch omitted edits and false clearance
+8d51c77df9c8b253d17867c2ba5775b015486d51	42e761111c12488a3fff5db83767d353a87cd125	2026-10-11	release: review recovery assertion reasons, bind historical runner pins
+e241b5bbd643bf0f36f7182da99349d4db8249b6	7a46b88e6247cfe2fecb2c66e4c5dd9db6f73b18	2026-10-11	release: record selected consumer assertion reasons, preserve original checks
+042409a54c2180fe42a4a7fc38ce91d7d7f79bcd	cd3410f9b2165d73531d516817d068df871ffc45	2026-10-11	release: review typed-error assertions, verify focused current checks
+396f0968bc9d2838d3c866dd22a3bd09e4b31d05	14d5443b56a4693754f86fb7399b09dcaf6a4ca9	2026-10-11	release: explain recovery fixtures, verify current storage checks
+66aee1a014c7b44b455d1d4c14e938327e1325eb	d70ad40ac540d93d369519d07f1e8fbb423d64e5	2026-10-11	release: review private facade assertions, verify current lifecycle checks
+6356854b6134eaf062a0928e58edc8033d674606	0cfae79330ba80b3025e444c90e5f734629f0765	2026-10-11	release: review signer assertion history, verify focused boundary checks
+b770f7c1737dbbd88ebe06a9ee79dc60d4191e75	414be2ee5f98aabc5c3c0f958475b16e2251b69e	2026-10-11	release: index scoped assertion reasons, reject malformed reference inputs
+fdbce77c0c1ba9b13e673e13087e5d13579b0dd9	6f1970b9835a099c70965a0a8809f17d6f00f9c0	2026-10-11	release: explain coverage assertion expansions, verify current controls
+66335f940f131b743b60fdff6e39c2099e8299f6	89b4ead77d35a03ae31eaafad0d93bc1457ae216	2026-10-11	release: review staging assertions, verify copied-policy execution
+39622d4cfc3c82a88b5bc0ce0c9f8223c1a6c672	7481e856198974ba95805ba8bb8a7b501b9cbdc0	2026-10-11	release: explain smaller assertion changes, verify focused recovery checks
+b37b6f6f4bcbb52edf33f277ea65c38fa3349334	499d16a111b6d80a6882cd70ff1afce5f660f0d8	2026-10-11	packaging: expose lost head type check, prove proposed consumer regression
+32ddf3330cff60b59753938c1e30ccd0b374db8a	b3b34165f9719d69ff1fbf315cdeab95311ba0e5	2026-10-11	release: index frozen assertion reasons, retain confirmed consumer gap
+4143a79ba015ed5fa3dc1f46ccfb58c9f232b066	7a26c97d2e2d9cd25f023950652f4b332e8f62e9	2026-10-11	signer: expose RPC diagnostic disclosure, verify separate redaction candidate
+7be8f41250e1b76450c346575e520ece14df6597	6b12fdf2cbfc29b2edc10efc81e661e457e6e8f1	2026-10-11	docs: reconcile release draft blockers, verify scoped claims and links
+9a33b3696ff641ae1bb664a1150df8adb4ed4776	e7e19015dce78c78015d9f7afe3ee938947721dd	2026-10-12	public: Apache-2.0, a plain-language README and reading guide, private drop removed
+3c349d2c28b76116ed87c5441f6d870cfd96710f	4de85af929146fa60591cbc78aaf587eada5b97e	2026-10-12	records: public-readiness audit and run record; drop rows in CLAUDE.md and AGENTS.md
+tag:milestone/0	7225931c3997f16e8ee9290771e632461a671a70		old commit fcf0ab919cd12c55d8c7dbb762303fe67fc3e0c4
+tag:milestone/R	1cc24b5127f162a288a366a0d41bfccb11b294fa		old commit 65d54b8dd0b6ec99f56c8e314f5536fe9d9e70de
+tag:milestone/R2	474b7760dd2e0a7f0f3faff68135745edae74d00		old commit d2540e7f76deb5d0c8156de1f272c4021654b231
+tag:milestone/beta	7154cf21837ed5df7c702faf0729e29ae0d38ca9		old commit e925f1dfaabc7eedae361764a401baf7f9e9868b

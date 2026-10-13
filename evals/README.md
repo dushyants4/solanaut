@@ -240,6 +240,7 @@ support limitations; they establish no live compatibility or release clearance.
 
 | Gate | Shown failing | Then passing | Receipt |
 |---|---|---|---|
+| history rewrite · publication | planted `prefix` and `offset` faults: 195 and 400 problems | 197 commit pairs identical but for the removed folder; GitHub's copy holds no drop blob; a fresh clone passes 900/901 (H11) | `release/history-rewrite.md` |
 | private operator release · SNP-5/7, OPR-2, STO-1 | absent source/installed APIs; rule-field fixture and overbroad FIFO trial failures retained | queued prompts/captured signatures, reserved spending and failed-write latch preservation; local native/AST and retained faults pass, S98 | `sdk/owned-release.md` |
 | live record consistency · STO-2/3, SIG-8, OWN-2 | wrong option, acknowledged damaged history, installed failure and two semantic misses retained | native/type/source/compiled pass; quiet serial AST fails unchanged baseline wait, S99 | `sdk/live-record.md` |
 | existing Node runtime follow-up · PKG-1/2, CI-2 | quiet Node 26 AST deadline failure retained | unchanged Node 24 native/AST/typecheck/installed populations pass, S100; no complete runtime matrix | `release/node24-current.md` |

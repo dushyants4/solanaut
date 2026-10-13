@@ -8,6 +8,9 @@ Gubernaut's figures are **Gubernaut's**, quoted as "Gubernaut reports …" with 
 restated as Solanaut's own results. Facts about other people's incidents and products are quoted with
 their source and scope (§5).
 
+**Commit IDs cited before 2026-10-12** belong to the history as it was before the rewrite that removed the human's
+private drop. Each one maps to its unchanged successor in `docs/HISTORY-MAP.md`.
+
 This is a T3 file: a change needs a source, not a preference. Papers cite rows by ID, for example
 [S1], [G6] or [M4]. Sources are public, and each has a note in `kb/sources/` with the date it was
 checked.

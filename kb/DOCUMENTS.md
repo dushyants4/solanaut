@@ -1,5 +1,8 @@
 # DOCUMENTS.md — the document register
 
+2026-10-13: docs/HISTORY-MAP.md registered, the map from the commit IDs cited before the history rewrite of
+2026-10-12 to the new ones (`evals/release/history-rewrite.md`).
+
 2026-10-12, before the repository went public: README 5 rewritten in plain language for judges; docs/README.md
 added as the reading guide; the Apache-2.0 licence chosen by the human; "not public" labels lifted from documents
 now public; the human's private drop removed (`kb/intake/2026-09-27_dashy-drop.md`). Record:
@@ -856,6 +859,7 @@ substantive change; *last reviewed* moves at every review.
 |---|---|---|---|---|---|---|
 | [README.md](../README.md) | 5 | current | integrator | everyone, judges first | 2026-10-12 | 2c.1 |
 | [docs/README.md](../docs/README.md) | 1.0 | current | integrator | everyone: the reading guide | 2026-10-12 | every leg |
+| [docs/HISTORY-MAP.md](../docs/HISTORY-MAP.md) | 1.0 | current | archivist | anyone following a commit ID cited before 2026-10-12 | 2026-10-13 | — (generated; fixed) |
 | [docs/PRODUCT-PAGE.md](../docs/PRODUCT-PAGE.md) | Draft 1 | review (private) | integrator | human and page reviewers | 2026-10-08 | R.1 |
 | [docs/PREVIEW.md](../docs/PREVIEW.md) | Draft 1 | draft (private candidate) | integrator | SDK evaluators | 2026-10-08 | 5.3 |
 | [docs/release/STAGED-RELEASE.md](../docs/release/STAGED-RELEASE.md) | Draft 1 | review (private scope) | integrator, archivist | human and release reviewers | 2026-10-08 | R.1 |

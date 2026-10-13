@@ -62,6 +62,7 @@ need them to understand the product.
 | Read | What it covers |
 |---|---|
 | [HANDOFF.md](HANDOFF.md) | the hand-over from Claude Code to Codex, with Codex's work log |
+| [HISTORY-MAP.md](HISTORY-MAP.md) | commit IDs cited before 2026-10-12, mapped to today's history |
 | [plans/](plans/) | the approved plans |
 | [PRODUCT-PAGE.md](PRODUCT-PAGE.md), [release/STAGED-RELEASE.md](release/STAGED-RELEASE.md) | drafts for a future product page and release, not yet approved |
 | [../evals/](../evals/) | the evidence: every test gate, seen failing first, then passing |
