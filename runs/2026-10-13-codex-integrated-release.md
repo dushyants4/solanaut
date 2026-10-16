@@ -190,6 +190,10 @@ finalized lookup handling and the full signer reliability batteries, then the
 signed-policy and Token-2022 queue. Hosted runner
 edits remain Claude's; package publication, funding and OS users are human-owned.
 
+The SIG-8 native-kill contract and driver are committed at 437a761. A 12-boundary pilot passed after shortening the
+Unix socket path to fit Linux's address limit. The frozen 100-case run is active in PID 2202034; its output and exit
+status are under `.sandbox/evidence/2026-10-13-development/`. This is qualification work, not a release claim.
+
 ## Provenance
 
 Builder-authored evidence. Baseline output is retained under

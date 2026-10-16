@@ -346,6 +346,7 @@ Receipts: `evals/release/integrated-fixes.md`, `evals/release/disclosure.md`,
 `evals/signer/followup.md`, `evals/signer/executable.md`. No Alpha/stable gate credit.
 Live RPC/config and dedicated-user checks wait; continue signer/policy/token qualification.
 Hosted and additive gate edits remain Claude's, with exact owed snippets above.
+The frozen 100-case native SIGKILL battery passes all boundaries; no live-devnet or isolated-user claim follows.
 
 
 2026-10-11 reconciles private PRODUCT-PAGE/STAGED-RELEASE editorial status with

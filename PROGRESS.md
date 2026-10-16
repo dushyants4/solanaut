@@ -13,8 +13,9 @@
 
 **2026-10-13 · Native same-user signer now runs.** Protected keys/config and explicit signed-history init
 feed the service; class-only SDK/socket replies and automatic follow-up work. A real process kill/restart
-against fake providers retains its signed attempt without another send. Product fixes remain integrated.
-Local full tests/typecheck, compiled SDK and serial coverage pass; receipts S157–S160.
+against fake providers retains its signed attempt without another send. The frozen 100-case native kill battery
+now passes all declared boundaries and deterministic replay (S161); this remains builder-authored qualification.
+Local full tests/typecheck, compiled SDK and serial coverage pass; receipts S157–S161.
 Hosted runner edits, live RPC/config, dedicated-user and complete Alpha/release qualification remain.
 
 **2026-10-13 · Review, and the decisions it was waiting on.** Claude reviewed Codex's Leg 3 work: safe and honest,
