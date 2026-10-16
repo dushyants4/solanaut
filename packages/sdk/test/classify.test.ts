@@ -254,6 +254,11 @@ test("TransferChecked names its mint and decimals, under Token and under Token-2
   assert.equal(wrongProgram.tokens[0]!.toOwner, null, "a Token-2022 associated account is not the Token program's");
 });
 
+test("Token-2022 TransferCheckedWithFee is value-moving while Token keeps discriminator 26 denied", () => {
+  assert.deepEqual(classifyInstruction(PROGRAMS.token2022, Uint8Array.of(26)), { name: "TransferCheckedWithFee", class: "value-moving" });
+  assert.equal(classifyInstruction(PROGRAMS.token, Uint8Array.of(26)).class, "denied");
+});
+
 test("Token: Approve, CloseAccount and the other authority-granting instructions are denied; Revoke and SyncNative are benign", async () => {
   const acct = await ata(AGENT, USDC);
   const e = fx([
@@ -278,7 +283,7 @@ test("Token: every discriminator has the class the spec gives it, under both tok
         try { ref = TokenInstruction[identifyTokenInstruction(Uint8Array.of(d))]!; } catch { /* the client does not know it */ }
         if (ref !== null) assert.equal(c.name, ref, `discriminator ${d}`);
       }
-      const expected = moving.includes(c.name) ? "value-moving" : benign.includes(c.name) ? "benign" : "denied";
+      const expected = (moving.includes(c.name) || (program === PROGRAMS.token2022 && c.name === "TransferCheckedWithFee")) ? "value-moving" : benign.includes(c.name) ? "benign" : "denied";
       assert.equal(c.class, expected, `${program} discriminator ${d} (${c.name})`);
       if (denied.includes(c.name)) assert.equal(c.class, "denied");
     }

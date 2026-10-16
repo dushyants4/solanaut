@@ -124,6 +124,7 @@ const TOKEN_NAMES = [
   "BurnChecked", "InitializeAccount2", "SyncNative", "InitializeAccount3", "InitializeMultisig2", "InitializeMint2",
   "GetAccountDataSize", "InitializeImmutableOwner", "AmountToUiAmount", "UiAmountToAmount",
 ];
+const TOKEN_2022_EXTRA: Record<number, string> = { 26: "TransferCheckedWithFee" };
 const TOKEN_EXTRA: Record<number, string> = { 38: "WithdrawExcessLamports", 45: "UnwrapLamports", 255: "Batch" };
 const TOKEN_MOVING = new Set(["Transfer", "TransferChecked"]);
 const TOKEN_BENIGN = new Set(["Revoke", "SyncNative", "InitializeAccount", "InitializeAccount2", "InitializeAccount3"]);
@@ -147,8 +148,8 @@ export function classifyInstruction(program: string, data: Uint8Array): { name: 
     case PROGRAMS.token2022: {
       if (data.length < 1) return { name: "unknown", class: "denied" };
       const d = data[0]!;
-      const name = TOKEN_NAMES[d] ?? (program === PROGRAMS.token ? TOKEN_EXTRA[d] : undefined) ?? `unknown(${d})`;
-      return { name, class: TOKEN_MOVING.has(name) ? "value-moving" : TOKEN_BENIGN.has(name) ? "benign" : "denied" };
+      const name = TOKEN_NAMES[d] ?? (program === PROGRAMS.token ? TOKEN_EXTRA[d] : TOKEN_2022_EXTRA[d]) ?? `unknown(${d})`;
+      return { name, class: (TOKEN_MOVING.has(name) || name === "TransferCheckedWithFee") ? "value-moving" : TOKEN_BENIGN.has(name) ? "benign" : "denied" };
     }
     case PROGRAMS.computeBudget: {
       if (data.length < 1) return { name: "unknown", class: "denied" };
@@ -321,8 +322,9 @@ function systemOutflow(name: string, data: Uint8Array, a: AccountMeta[], princip
 function tokenOutflow(name: string, program: "token" | "token-2022", data: Uint8Array, a: AccountMeta[], ctx: ClassifyContext): TokenOutflow | string {
   // Transfer: u8 3, u64 amount; accounts: source, destination, authority.
   // TransferChecked: u8 12, u64 amount, u8 decimals; accounts: source, mint, destination, authority.
-  const checked = name === "TransferChecked";
-  if (data.length !== (checked ? 10 : 9) || a.length < (checked ? 4 : 3)) return `data or accounts do not match ${name}'s layout`;
+  const feeChecked = name === "TransferCheckedWithFee";
+  const checked = feeChecked || name === "TransferChecked";
+  if (data.length !== (feeChecked ? 19 : checked ? 10 : 9) || a.length < (checked ? 4 : 3)) return `data or accounts do not match ${name}'s layout`;
   const source = a[0]!.address;
   const toAccount = a[checked ? 2 : 1]!.address;
   const authority = a[checked ? 3 : 2]!;
