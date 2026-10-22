@@ -4,20 +4,20 @@ import {readFileSync,writeFileSync} from "node:fs";
 import {spawnSync} from "node:child_process";
 const path="packages/sdk/src/state.ts",source=readFileSync(path,"utf8");
 const run=()=>spawnSync(process.execPath,["--test","packages/sdk/test/report-replay.test.ts"],{encoding:"utf8",timeout:15_000});
-const validation='  if (e.kind === "report") verifyReport(s, e);';
+const validation='  if (entry.kind === "report") verifyReport(state, entry);';
 const faults=[
   ["entire report refusal",validation,""],
-  ["outcome enum",'if (!OUTCOMES.includes(e.outcome))','if (false)'],
-  ["source enum",'if (e.source !== "caller" && e.source !== "signer")','if (false)'],
-  ["finite time",'if (!Number.isFinite(e.at) || e.at < 0) throw new Error("recorded report time is invalid");','if (e.at < 0) throw new Error("recorded report time is invalid");'],
-  ["negative time",'if (!Number.isFinite(e.at) || e.at < 0) throw new Error("recorded report time is invalid");','if (!Number.isFinite(e.at)) throw new Error("recorded report time is invalid");'],
+  ["outcome enum",'if (!OUTCOMES.includes(entry.outcome))','if (false)'],
+  ["source enum",'if (entry.source !== "caller" && entry.source !== "signer")','if (false)'],
+  ["finite time",'if (!Number.isFinite(entry.at) || entry.at < 0) throw new Error("recorded report time is invalid");','if (entry.at < 0) throw new Error("recorded report time is invalid");'],
+  ["negative time",'if (!Number.isFinite(entry.at) || entry.at < 0) throw new Error("recorded report time is invalid");','if (!Number.isFinite(entry.at)) throw new Error("recorded report time is invalid");'],
   ["permanent finality",'if (!unresolved(attempt)) throw new Error("recorded report names an attempt with a final outcome");','if (false) throw new Error("recorded report names an attempt with a final outcome");'],
-  ["reservation validation",'if (!s.allowed.has(e.decision) || !r || !attempt)','if (false)'],
-  ["validation after mutation",validation+'\n  if (e.kind === "redeem") verifyRedeem(s, e, signedPolicyHash);\n  s.seq += 1;\n  s.head = e.hash;\n  s.maxAt = Math.max(s.maxAt ?? e.at, e.at);','  if (e.kind === "redeem") verifyRedeem(s, e, signedPolicyHash);\n  s.seq += 1;\n  s.head = e.hash;\n  s.maxAt = Math.max(s.maxAt ?? e.at, e.at);\n'+validation],
-  ["unknown releases value",'if (e.outcome === "failed" || e.outcome === "expired")','if (e.outcome === "failed" || e.outcome === "expired" || e.outcome === "unknown")'],
-  ["repeat unknown inflates sensor",'if (attempt.status === "unknown") s.sensor.unknownStreak = Math.max(0, s.sensor.unknownStreak - 1);',''],
-  ["expired retains fees",'if (e.outcome === "expired") r.feesReleased = true;',''],
-  ["final signing not settled",'if (e.outcome !== "unknown" && s.signing.has(e.decision)) s.signing.get(e.decision)!.settled = true;',''],
+  ["reservation validation",'if (!state.allowed.has(entry.decision) || !reservation || !attempt)','if (false)'],
+  ["validation after mutation",validation+'\n  if (entry.kind === "redeem") verifyRedeem(state, entry, signedPolicyHash);\n  state.seq += 1;\n  state.head = entry.hash;\n  state.maxAt = Math.max(state.maxAt ?? entry.at, entry.at);','  if (entry.kind === "redeem") verifyRedeem(state, entry, signedPolicyHash);\n  state.seq += 1;\n  state.head = entry.hash;\n  state.maxAt = Math.max(state.maxAt ?? entry.at, entry.at);\n'+validation],
+  ["unknown releases value",'if (entry.outcome === "failed" || entry.outcome === "expired")','if (entry.outcome === "failed" || entry.outcome === "expired" || entry.outcome === "unknown")'],
+  ["repeat unknown inflates sensor",'if (attempt.status === "unknown") state.sensor.unknownStreak = Math.max(0, state.sensor.unknownStreak - 1);',''],
+  ["expired retains fees",'if (entry.outcome === "expired") reservation.feesReleased = true;',''],
+  ["final signing not settled",'if (entry.outcome !== "unknown" && state.signing.has(entry.decision)) state.signing.get(entry.decision)!.settled = true;',''],
 ] as const;
 const baseline=run();assert.equal(baseline.status,0,baseline.stdout+baseline.stderr);
 for(const [name,before,after] of faults){

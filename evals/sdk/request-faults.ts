@@ -5,8 +5,8 @@ import { readFileSync, writeFileSync } from "node:fs";
 const faults = [
   ["ignore-retry", "guard.ts", "if (recorded) {", "if (false && recorded) {"],
   ["ignore-changed-payload", "guard.ts", "recorded.request!.digest !== binding.digest", "false"],
-  ["ignore-recorded-binding", "state.ts", "verifyRequest(e, policy.latch.guardId);", "void e;"],
-  ["ignore-duplicate-history", "state.ts", "if (s.requests.has(requestKey(e.request)))", "if (false)"],
+  ["ignore-recorded-binding", "state.ts", "verifyRequest(entry, policy.latch.guardId);", "void entry;"],
+  ["ignore-duplicate-history", "state.ts", "if (state.requests.has(requestKey(entry.request)))", "if (false)"],
 ] as const;
 const battery = () => spawnSync(process.execPath, ["--test", "packages/sdk/test/request-identity.test.ts"], { encoding: "utf8", timeout: 30_000 });
 const baseline = battery();

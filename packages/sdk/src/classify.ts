@@ -134,28 +134,23 @@ const TOKEN_BENIGN = new Set(["Revoke", "SyncNative", "InitializeAccount", "Init
 const COMPUTE_NAMES = ["RequestUnits", "RequestHeapFrame", "SetComputeUnitLimit", "SetComputeUnitPrice", "SetLoadedAccountsDataSizeLimit"];
 const COMPUTE_BENIGN = new Set(["RequestHeapFrame", "SetComputeUnitLimit", "SetComputeUnitPrice", "SetLoadedAccountsDataSizeLimit"]);
 
-const u32 = (d: Uint8Array, o: number) => (d[o]! | (d[o + 1]! << 8) | (d[o + 2]! << 16) | (d[o + 3]! << 24)) >>> 0;
-const u64 = (d: Uint8Array, o: number) => BigInt(u32(d, o)) | (BigInt(u32(d, o + 4)) << 32n);
 
 /** An instruction's name and class, from its program and the discriminator at the start of its data. */
 export function classifyInstruction(program: string, data: Uint8Array): { name: string; class: InstructionClass } {
   switch (program) {
     case PROGRAMS.system: {
       if (data.length < 4) return { name: "unknown", class: "denied" };
-      const d = u32(data, 0);
-      const name = SYSTEM_NAMES[d] ?? `unknown(${d})`;
+      const discriminator = readU32(data, 0);
+      const name = SYSTEM_NAMES[discriminator] ?? `unknown(${discriminator})`;
       return { name, class: SYSTEM_MOVING.has(name) ? "value-moving" : "denied" };
     }
     case PROGRAMS.token:
     case PROGRAMS.token2022: {
       if (data.length < 1) return { name: "unknown", class: "denied" };
-      const d = data[0]!;
-      if (program === PROGRAMS.token2022 && d === 26) {
-        const name = data.length < 2 ? "unknown(26)" : TRANSFER_FEE_NAMES[data[1]!] ?? `unknown(26.${data[1]})`;
-        return { name, class: name === "TransferCheckedWithFee" ? "value-moving" : "denied" };
-      }
-      const name = TOKEN_NAMES[d] ?? (program === PROGRAMS.token ? TOKEN_EXTRA[d] : undefined) ?? `unknown(${d})`;
-      return { name, class: TOKEN_MOVING.has(name) ? "value-moving" : TOKEN_BENIGN.has(name) ? "benign" : "denied" };
+      const discriminator = data[0]!;
+      if (program === PROGRAMS.token2022 && discriminator === 26) return transferFeeInstruction(data);
+      const name = TOKEN_NAMES[discriminator] ?? (program === PROGRAMS.token ? TOKEN_EXTRA[discriminator] : undefined) ?? `unknown(${discriminator})`;
+      return { name, class: tokenClass(name) };
     }
     case PROGRAMS.computeBudget: {
       if (data.length < 1) return { name: "unknown", class: "denied" };
@@ -168,6 +163,18 @@ export function classifyInstruction(program: string, data: Uint8Array): { name: 
     default:
       return { name: "opaque", class: "opaque" };
   }
+}
+
+/** Token-2022's transfer-fee extension: its second byte names the sub-instruction, and only one of them moves value. */
+function transferFeeInstruction(data: Uint8Array): { name: string; class: InstructionClass } {
+  const name = data.length < 2 ? "unknown(26)" : TRANSFER_FEE_NAMES[data[1]!] ?? `unknown(26.${data[1]})`;
+  return { name, class: name === "TransferCheckedWithFee" ? "value-moving" : "denied" };
+}
+
+function tokenClass(name: string): InstructionClass {
+  if (TOKEN_MOVING.has(name)) return "value-moving";
+  if (TOKEN_BENIGN.has(name)) return "benign";
+  return "denied";
 }
 
 const LABEL: Record<string, string> = {
@@ -184,7 +191,7 @@ export function effectsOf(message: Uint8Array, ctx: ClassifyContext): EffectsV1 
 }
 
 export function classify(resolved: ResolvedMessage, ctx: ClassifyContext, messageHash: string): EffectsV1 {
-  const m = resolved.message;
+  const message = resolved.message;
   const principal = new Set(ctx.principal);
   const tips = new Set(ctx.tipAccounts);
   const sol: SolOutflow[] = [];
@@ -197,79 +204,101 @@ export function classify(resolved: ResolvedMessage, ctx: ClassifyContext, messag
   let defaultUnits = 0;
   let precompileSignatures = 0;
 
-  resolved.instructions.forEach((ix, index) => {
-    const { program, data, accounts } = ix;
+  for (const [index, instruction] of resolved.instructions.entries()) {
+    const { program, data, accounts } = instruction;
     if (!programs.includes(program)) programs.push(program);
-    const { name, class: cls } = classifyInstruction(program, data);
-    const deny = (reason: string, rule: DeniedInstruction["rule"] = "instruction-denied") =>
+    const { name, class: instructionClass } = classifyInstruction(program, data);
+    const deny = (reason: string, rule: DeniedInstruction["rule"] = "instruction-denied") => {
       denied.push({ index, program, instruction: `${LABEL[program]}.${name}`, rule, reason });
+    };
 
     defaultUnits += program === PROGRAMS.system || program === PROGRAMS.computeBudget ? BUILTIN_UNITS : DEFAULT_UNITS;
     if (PRECOMPILES.has(program) && data.length > 0) precompileSignatures += data[0]!;
 
     if (program === PROGRAMS.system) {
-      if (NONCE.has(name)) return deny(`${name} is a durable-nonce instruction; nonce transactions never expire, so intents cannot reason about them`, "durable-nonce-denied");
-      if (cls === "denied") return deny(name.startsWith("unknown") ? "not a System instruction this guard knows" : `${name} hands an account to another program`);
-      const out = systemOutflow(name, data, accounts, principal);
-      if (typeof out === "string") return deny(out);
-      if (out) sol.push(out);
-      return;
+      if (NONCE.has(name)) {
+        deny(`${name} is a durable-nonce instruction; nonce transactions never expire, so intents cannot reason about them`, "durable-nonce-denied");
+        continue;
+      }
+      if (instructionClass === "denied") {
+        deny(name.startsWith("unknown") ? "not a System instruction this guard knows" : `${name} hands an account to another program`);
+        continue;
+      }
+      const outflow = systemOutflow(name, data, accounts, principal);
+      if (typeof outflow === "string") deny(outflow);
+      else if (outflow) sol.push(outflow);
+      continue;
     }
     if (program === PROGRAMS.token || program === PROGRAMS.token2022) {
-      if (cls === "denied") return deny(name.startsWith("unknown") ? "not on the instruction allowlist" : `${name} grants authority or destroys value, and is never signed`);
-      if (cls === "benign") return;
-      const out = tokenOutflow(name, program === PROGRAMS.token ? "token" : "token-2022", data, accounts, ctx);
-      if (typeof out === "string") return deny(out);
-      tokens.push(out);
-      return;
+      if (instructionClass === "denied") {
+        deny(name.startsWith("unknown") ? "not on the instruction allowlist" : `${name} grants authority or destroys value, and is never signed`);
+        continue;
+      }
+      if (instructionClass === "benign") continue;
+      const outflow = tokenOutflow(name, program === PROGRAMS.token ? "token" : "token-2022", data, accounts, ctx);
+      if (typeof outflow === "string") deny(outflow);
+      else tokens.push(outflow);
+      continue;
     }
     if (program === PROGRAMS.computeBudget) {
-      if (m.version === 1) return deny("a v1 message takes its compute budget from its config; a ComputeBudget instruction in it runs as a no-op and would mislead any reader");
-      if (cls === "denied") return deny(name === "RequestUnits" ? "RequestUnits is deprecated" : "not a ComputeBudget instruction this guard knows");
+      if (message.version === 1) {
+        deny("a v1 message takes its compute budget from its config; a ComputeBudget instruction in it runs as a no-op and would mislead any reader");
+        continue;
+      }
+      if (instructionClass === "denied") {
+        deny(name === "RequestUnits" ? "RequestUnits is deprecated" : "not a ComputeBudget instruction this guard knows");
+        continue;
+      }
       const size = name === "SetComputeUnitPrice" ? 9 : 5;
-      if (data.length !== size) return deny(`${name} takes ${size} bytes of data, not ${data.length}`);
-      if (computeSeen.has(name)) return deny(`a second ${name}: the runtime refuses the transaction, and the fee would be ambiguous`);
+      if (data.length !== size) {
+        deny(`${name} takes ${size} bytes of data, not ${data.length}`);
+        continue;
+      }
+      if (computeSeen.has(name)) {
+        deny(`a second ${name}: the runtime refuses the transaction, and the fee would be ambiguous`);
+        continue;
+      }
       computeSeen.add(name);
-      if (name === "SetComputeUnitLimit") explicitLimit = u32(data, 1);
-      if (name === "SetComputeUnitPrice") price = u64(data, 1);
-      return;
+      if (name === "SetComputeUnitLimit") explicitLimit = readU32(data, 1);
+      if (name === "SetComputeUnitPrice") price = readU64(data, 1);
+      continue;
     }
     // Memo is benign; any other program is opaque, decided by the policy as a whole.
-  });
+  }
 
   let computeUnitLimit: number;
   let priorityFee: bigint;
-  if (m.version === 1) {
-    computeUnitLimit = m.config?.computeUnitLimit ?? 0;
-    priorityFee = m.config?.priorityFeeLamports ?? 0n;
+  if (message.version === 1) {
+    computeUnitLimit = message.config?.computeUnitLimit ?? 0;
+    priorityFee = message.config?.priorityFeeLamports ?? 0n;
   } else {
     computeUnitLimit = Math.min(explicitLimit ?? defaultUnits, MAX_UNITS);
     priorityFee = (price * BigInt(computeUnitLimit) + 999_999n) / 1_000_000n;
   }
 
   let tipTotal = 0n;
-  const payments = sol.filter((s) => {
-    if (!tips.has(s.to)) return true;
-    tipTotal += s.lamports;
+  const payments = sol.filter((outflow) => {
+    if (!tips.has(outflow.to)) return true;
+    tipTotal += outflow.lamports;
     return false;
   });
 
-  const signers = resolved.accounts.filter((a) => a.signer).map((a) => a.address);
-  const opaque = programs.filter((p) => !DECODED_PROGRAMS.has(p));
+  const signers = resolved.accounts.filter((account) => account.signer).map((account) => account.address);
+  const opaque = programs.filter((program) => !DECODED_PROGRAMS.has(program));
   const first = resolved.instructions[0];
   const nonce = first !== undefined && first.program === PROGRAMS.system && classifyInstruction(first.program, first.data).name === "AdvanceNonceAccount";
 
-  const sorted = (xs: unknown[]) => xs.map(canonicalJSON).sort();
+  const sorted = (values: unknown[]) => values.map(canonicalJSON).sort();
   const intentKey = sha256hex(
     canonicalJSON({ feePayer: resolved.accounts[0]!.address, signers: [...signers].sort(), opaque: [...opaque].sort(), sol: sorted(payments), tokens: sorted(tokens), nonce }),
   );
 
   return {
-    version: m.version,
+    version: message.version,
     messageHash,
     feePayer: resolved.accounts[0]!.address,
     signers,
-    otherSigners: signers.filter((s) => !principal.has(s)),
+    otherSigners: signers.filter((signer) => !principal.has(signer)),
     programs,
     opaque,
     sol: payments,
@@ -278,54 +307,55 @@ export function classify(resolved: ResolvedMessage, ctx: ClassifyContext, messag
     nonce,
     computeUnitLimit,
     priorityFee,
-    baseFee: BASE_FEE_PER_SIGNATURE * BigInt(m.header.numRequiredSignatures + precompileSignatures),
+    baseFee: BASE_FEE_PER_SIGNATURE * BigInt(message.header.numRequiredSignatures + precompileSignatures),
     tips: tipTotal,
     intentKey,
   };
 }
 
 /** A value-moving System instruction's outflow, null if it moves nothing, or why it is denied. */
-function systemOutflow(name: string, data: Uint8Array, a: AccountMeta[], principal: Set<string>): SolOutflow | null | string {
-  const bad = `data or accounts do not match ${name}'s layout`;
+function systemOutflow(name: string, data: Uint8Array, accounts: AccountMeta[], principal: Set<string>): SolOutflow | null | string {
+  const mismatch = `data or accounts do not match ${name}'s layout`;
   switch (name) {
     case "Transfer":
-      if (data.length !== 12 || a.length < 2) return bad;
-      return { from: a[0]!.address, to: a[1]!.address, lamports: u64(data, 4), kind: "transfer" };
+      if (data.length !== 12 || accounts.length < 2) return mismatch;
+      return { from: accounts[0]!.address, to: accounts[1]!.address, lamports: readU64(data, 4), kind: "transfer" };
     case "TransferWithSeed": {
       // u32 11, u64 lamports, seed (u64 length, bytes), owner pubkey; accounts: from, base, to.
-      if (data.length < 20 || a.length < 3) return bad;
-      const seedLen = u64(data, 12);
-      if (BigInt(data.length) !== 20n + seedLen + 32n) return bad;
-      return { from: a[0]!.address, to: a[2]!.address, lamports: u64(data, 4), kind: "transfer" };
+      if (data.length < 20 || accounts.length < 3) return mismatch;
+      const seedLength = readU64(data, 12);
+      if (BigInt(data.length) !== 20n + seedLength + 32n) return mismatch;
+      return { from: accounts[0]!.address, to: accounts[2]!.address, lamports: readU64(data, 4), kind: "transfer" };
     }
     case "CreateAccount":
       // u32 0, u64 lamports, u64 space, owner pubkey; accounts: from, new.
-      if (data.length !== 52 || a.length < 2) return bad;
-      return { from: a[0]!.address, to: a[1]!.address, lamports: u64(data, 4), kind: "new-account" };
+      if (data.length !== 52 || accounts.length < 2) return mismatch;
+      return { from: accounts[0]!.address, to: accounts[1]!.address, lamports: readU64(data, 4), kind: "new-account" };
     case "CreateAccountWithSeed": {
       // u32 3, base pubkey, seed (u64 length, bytes), u64 lamports, u64 space, owner pubkey; accounts: from, new[, base].
-      if (data.length < 44 || a.length < 2) return bad;
-      const seedLen = u64(data, 36);
-      if (BigInt(data.length) !== 44n + seedLen + 48n) return bad;
-      const at = 44 + Number(seedLen);
-      return { from: a[0]!.address, to: a[1]!.address, lamports: u64(data, at), kind: "new-account" };
+      if (data.length < 44 || accounts.length < 2) return mismatch;
+      const seedLength = readU64(data, 36);
+      if (BigInt(data.length) !== 44n + seedLength + 48n) return mismatch;
+      const lamportsAt = 44 + Number(seedLength);
+      return { from: accounts[0]!.address, to: accounts[1]!.address, lamports: readU64(data, lamportsAt), kind: "new-account" };
     }
     case "CreateAccountAllowPrefund": {
       // SIMD-0312: u32 13, u64 lamports, u64 space, owner pubkey; accounts: new, then the funder if lamports > 0.
-      if (data.length !== 52 || a.length < 1) return bad;
-      if (principal.has(a[0]!.address)) {
+      if (data.length !== 52 || accounts.length < 1) return mismatch;
+      if (principal.has(accounts[0]!.address)) {
         return "CreateAccountAllowPrefund would assign a principal account, with its lamports, to another program";
       }
-      const lamports = u64(data, 4);
+      const lamports = readU64(data, 4);
       if (lamports === 0n) return null;
-      if (a.length < 2) return "CreateAccountAllowPrefund moves lamports but names no funding account";
-      return { from: a[1]!.address, to: a[0]!.address, lamports, kind: "new-account" };
+      if (accounts.length < 2) return "CreateAccountAllowPrefund moves lamports but names no funding account";
+      return { from: accounts[1]!.address, to: accounts[0]!.address, lamports, kind: "new-account" };
     }
   }
-  return bad;
+  return mismatch;
 }
 
-function tokenOutflow(name: string, program: "token" | "token-2022", data: Uint8Array, a: AccountMeta[], ctx: ClassifyContext): TokenOutflow | string {
+/** A token transfer's outflow, or why it is denied. A plain Transfer's mint is inferred from the principal's associated account. */
+function tokenOutflow(name: string, program: "token" | "token-2022", data: Uint8Array, accounts: AccountMeta[], ctx: ClassifyContext): TokenOutflow | string {
   // Transfer: u8 3, u64 amount; accounts: source, destination, authority.
   // TransferChecked: u8 12, u64 amount, u8 decimals; accounts: source, mint, destination, authority.
   // TransferCheckedWithFee (Token-2022): u8 26, u8 1, u64 amount, u8 decimals, u64 fee; accounts as TransferChecked.
@@ -333,19 +363,31 @@ function tokenOutflow(name: string, program: "token" | "token-2022", data: Uint8
   const feeChecked = name === "TransferCheckedWithFee";
   const checked = feeChecked || name === "TransferChecked";
   const amountAt = feeChecked ? 2 : 1;
-  if (data.length !== (feeChecked ? 19 : checked ? 10 : 9) || a.length < (checked ? 4 : 3)) return `data or accounts do not match ${name}'s layout`;
-  const source = a[0]!.address;
-  const toAccount = a[checked ? 2 : 1]!.address;
-  const authority = a[checked ? 3 : 2]!;
+  const dataLength = feeChecked ? 19 : checked ? 10 : 9;
+  if (data.length !== dataLength || accounts.length < (checked ? 4 : 3)) return `data or accounts do not match ${name}'s layout`;
+  const source = accounts[0]!.address;
+  const toAccount = accounts[checked ? 2 : 1]!.address;
+  const authority = accounts[checked ? 3 : 2]!;
   if (!authority.signer) return `the transfer's authority ${authority.address} does not sign: a multisig authority is not supported`;
 
-  let mint: string | null = checked ? a[1]!.address : null;
+  let mint: string | null = checked ? accounts[1]!.address : null;
   if (!mint) {
-    for (const p of ctx.principal) {
-      const listed = ctx.tokens.find((t) => t.program === program && associatedTokenAddress(p, t.mint, program) === source);
-      if (listed) { mint = listed.mint; break; }
+    for (const owner of ctx.principal) {
+      const listed = ctx.tokens.find((token) => token.program === program && associatedTokenAddress(owner, token.mint, program) === source);
+      if (listed) {
+        mint = listed.mint;
+        break;
+      }
     }
   }
-  const toOwner = mint === null ? null : ctx.destinations.find((d) => associatedTokenAddress(d, mint!, program) === toAccount) ?? null;
-  return { program, mint, fromAccount: source, authority: authority.address, toAccount, toOwner, amount: u64(data, amountAt), decimals: checked ? data[amountAt + 8]! : null };
+  const toOwner = mint === null ? null : ctx.destinations.find((destination) => associatedTokenAddress(destination, mint!, program) === toAccount) ?? null;
+  return { program, mint, fromAccount: source, authority: authority.address, toAccount, toOwner, amount: readU64(data, amountAt), decimals: checked ? data[amountAt + 8]! : null };
+}
+
+function readU32(data: Uint8Array, offset: number) {
+  return (data[offset]! | (data[offset + 1]! << 8) | (data[offset + 2]! << 16) | (data[offset + 3]! << 24)) >>> 0;
+}
+
+function readU64(data: Uint8Array, offset: number) {
+  return BigInt(readU32(data, offset)) | (BigInt(readU32(data, offset + 4)) << 32n);
 }

@@ -43,6 +43,15 @@ export interface Reservation {
   feesReleased: boolean;
 }
 
+/** What the sensors remember of the proposal stream, from one release of the latch to the next. */
+export interface SensorMemory {
+  recent: { intentKey: string; shape: string; fees: bigint; landed: boolean }[];
+  failureStreak: number;
+  unknownStreak: number;
+  lastAt: number | null;
+  times: number[];
+}
+
 export interface GuardState {
   signing: Map<string, SigningHistory>;
   /** Full request history until the accepted disk index replaces in-memory retention. */
@@ -61,7 +70,7 @@ export interface GuardState {
   reservations: Map<string, Reservation>;
   intents: Map<string, Intent>;
   redeemed: Set<string>;
-  sensor: { recent: { intentKey: string; shape: string; fees: bigint; landed: boolean }[]; failureStreak: number; unknownStreak: number; lastAt: number | null; times: number[] };
+  sensor: SensorMemory;
 }
 
 export function initialState(): GuardState {
@@ -83,205 +92,231 @@ export function initialState(): GuardState {
   };
 }
 
-const big = (s: string | null) => (s === null ? null : BigInt(s));
-
+/** The longest window any policy in the record, or the current one, has used. */
 export function retentionWindow(entries: readonly Entry[], current: number): number {
   let window = current;
-  for (const e of entries) if (e.kind === "policy") window = Math.max(window, createPolicy(JSON.parse(e.policy)).policy.windowMs);
+  for (const entry of entries) if (entry.kind === "policy") window = Math.max(window, createPolicy(JSON.parse(entry.policy)).policy.windowMs);
   return window;
 }
 
 /** The effective time of a proposal at `at`: never earlier than anything already recorded. */
-export const nowFor = (s: GuardState, at: number) => Math.max(at, s.maxAt ?? at);
+export const nowFor = (state: GuardState, at: number) => Math.max(at, state.maxAt ?? at);
 
 /** An attempt that could still land: its outcome is not final, and no trusted height shows its blockhash expired. */
-export function couldStillLand(a: Attempt, blockHeight: bigint | null): boolean {
-  if (a.status !== "pending" && a.status !== "unknown") return false;
-  return !(blockHeight !== null && a.lastValidBlockHeight !== null && blockHeight > a.lastValidBlockHeight);
+export function couldStillLand(attempt: Attempt, blockHeight: bigint | null): boolean {
+  if (attempt.status !== "pending" && attempt.status !== "unknown") return false;
+  return !(blockHeight !== null && attempt.lastValidBlockHeight !== null && blockHeight > attempt.lastValidBlockHeight);
 }
 
 /**
  * An attempt whose outcome nobody has reported as final. Past its last valid height it can no longer
  * land, but it may already have: until a report says which, it holds its intent (D14).
  */
-export const unresolved = (a: Attempt): boolean => a.status === "pending" || a.status === "unknown";
+export const unresolved = (attempt: Attempt): boolean => attempt.status === "pending" || attempt.status === "unknown";
 
 /**
  * The live attempts at these effects, or null if the next allowed one starts a new intent. An
  * intent ends when an attempt lands, or once its window has passed since its first attempt with
  * nothing still able to land, so an exhausted intent is not blocked forever.
  */
-export function currentIntent(s: GuardState, policy: Policy, intentKey: string, now: number, blockHeight: bigint | null): Intent | null {
-  const i = s.intents.get(intentKey);
-  if (!i || i.done) return null;
-  if (now - i.firstAt >= policy.windowMs && !i.attempts.some((a) => couldStillLand(a, blockHeight))) return null;
-  return i;
+export function currentIntent(state: GuardState, policy: Policy, intentKey: string, now: number, blockHeight: bigint | null): Intent | null {
+  const intent = state.intents.get(intentKey);
+  if (!intent || intent.done) return null;
+  if (now - intent.firstAt >= policy.windowMs && !intent.attempts.some((attempt) => couldStillLand(attempt, blockHeight))) return null;
+  return intent;
 }
 
 /**
  * What the window ending at `now` already holds. An attempt that a trusted height shows can still land stays counted
  * past the window, or a short window would admit a second payment beside it (D20).
  */
-export function windowTotals(s: GuardState, policy: Policy, now: number, blockHeight: bigint | null = null) {
+export function windowTotals(state: GuardState, policy: Policy, now: number, blockHeight: bigint | null = null) {
   let sol = 0n;
   let fees = 0n;
   const tokens = new Map<string, bigint>();
-  const stillLanding = (hash: string, r: Reservation) => {
+  const stillLanding = (hash: string, reservation: Reservation) => {
     if (blockHeight === null) return false;
-    const a = s.intents.get(r.intentKey)?.attempts.find((x) => x.decision === hash);
-    return a !== undefined && unresolved(a) && a.lastValidBlockHeight !== null && blockHeight <= a.lastValidBlockHeight;
+    const attempt = state.intents.get(reservation.intentKey)?.attempts.find((candidate) => candidate.decision === hash);
+    return attempt !== undefined && unresolved(attempt) && attempt.lastValidBlockHeight !== null && blockHeight <= attempt.lastValidBlockHeight;
   };
-  for (const [hash, r] of s.reservations) {
-    if (r.at <= now - policy.windowMs && !stillLanding(hash, r)) continue;
-    if (!r.valueReleased) {
-      sol += r.sol;
-      for (const [mint, amount] of r.tokens) tokens.set(mint, (tokens.get(mint) ?? 0n) + amount);
+  for (const [hash, reservation] of state.reservations) {
+    if (reservation.at <= now - policy.windowMs && !stillLanding(hash, reservation)) continue;
+    if (!reservation.valueReleased) {
+      sol += reservation.sol;
+      for (const [mint, amount] of reservation.tokens) tokens.set(mint, (tokens.get(mint) ?? 0n) + amount);
     }
-    if (!r.feesReleased) fees += r.fees;
+    if (!reservation.feesReleased) fees += reservation.fees;
   }
   return { sol, fees, tokens };
 }
 
-function verifyReport(s: GuardState, e: ReportEntry): void {
-  if (!OUTCOMES.includes(e.outcome)) throw new Error("recorded report outcome is unsupported");
-  if (e.source !== "caller" && e.source !== "signer") throw new Error("recorded report attribution is unsupported");
-  if (!Number.isFinite(e.at) || e.at < 0) throw new Error("recorded report time is invalid");
-  const r = s.reservations.get(e.decision);
-  const attempt = r && s.intents.get(r.intentKey)?.attempts.find((a) => a.decision === e.decision);
-  if (!s.allowed.has(e.decision) || !r || !attempt) throw new Error(`report for ${e.decision}, which holds no reservation`);
-  if (!unresolved(attempt)) throw new Error("recorded report names an attempt with a final outcome");
-}
-
-function verifyRedeem(s: GuardState, e: RedeemEntry, signedPolicyHash?: string): void {
-  if (!Number.isFinite(e.at) || e.at < 0) throw new Error("recorded redemption time is invalid");
-  const d = s.allowed.get(e.decision), r = s.reservations.get(e.decision);
-  const attempt = r && s.intents.get(r.intentKey)?.attempts.find((a) => a.decision === e.decision);
-  if (!d || !r || !attempt) throw new Error("recorded redemption names no allowed reservation");
-  if (s.redeemed.has(e.decision)) throw new Error("recorded receipt was already used");
-  if (!unresolved(attempt)) throw new Error("recorded redemption names a final outcome");
-  // Unsigned SDK records carry no historical policy selection; preserve their restore contract.
-  if (signedPolicyHash !== undefined && d.policyHash !== signedPolicyHash) throw new Error("recorded redemption names another signed policy");
-  let height: bigint | null = null;
-  if (e.blockHeight !== null) {
-    try {
-      if (typeof e.blockHeight !== "string") throw new Error();
-      height = BigInt(e.blockHeight);
-      if (height.toString() !== e.blockHeight) throw new Error();
-    } catch { throw new Error("recorded redemption height is invalid"); }
-  }
-  if (d.expires && (height === null || height > BigInt(d.expires.lastValidBlockHeight))) throw new Error("recorded redemption has missing or expired lifetime evidence");
-}
-
 /** Apply one entry. Deterministic: the same entries, in the same order, give the same state. */
-export function apply(s: GuardState, e: Entry, policy: Policy, signedPolicyHash?: string): void {
-  if (e.v !== 1) throw new Error("unsupported record format version");
-  if (e.kind === "decision") {
-    if (e.source === "signer") { if (!e.deployment) throw new Error("signer authority is missing"); copyAuthority(e.deployment); }
-    else if (e.deployment) throw new Error("caller decision cannot claim signer authority");
+export function apply(state: GuardState, entry: Entry, policy: Policy, signedPolicyHash?: string): void {
+  if (entry.v !== 1) throw new Error("unsupported record format version");
+  if (entry.kind === "decision") verifyAttribution(entry);
+  if (entry.kind === "decision" && entry.request) {
+    verifyRequest(entry, policy.latch.guardId);
+    if (state.requests.has(requestKey(entry.request))) throw new Error("duplicate recorded request identity");
   }
-  if (e.kind === "decision" && e.request) {
-    verifyRequest(e, policy.latch.guardId);
-    if (s.requests.has(requestKey(e.request))) throw new Error("duplicate recorded request identity");
-  }
-  if (e.kind === "request") verifyControlStart(e, policy.latch.guardId, s.requests);
-  if (e.kind === "response") verifyControlResponse(e, s.requests, s.responses);
-  if (e.seq !== s.seq || e.prev !== s.head) {
-    throw new Error(`the record breaks at seq ${e.seq}: expected seq ${s.seq} after ${s.head || "the start"}`);
+  if (entry.kind === "request") verifyControlStart(entry, policy.latch.guardId, state.requests);
+  if (entry.kind === "response") verifyControlResponse(entry, state.requests, state.responses);
+  if (entry.seq !== state.seq || entry.prev !== state.head) {
+    throw new Error(`the record breaks at seq ${entry.seq}: expected seq ${state.seq} after ${state.head || "the start"}`);
   }
   // Recovery enforces the live report contract before advancing any state (D22).
-  if (e.kind === "report") verifyReport(s, e);
-  if (e.kind === "redeem") verifyRedeem(s, e, signedPolicyHash);
-  s.seq += 1;
-  s.head = e.hash;
-  s.maxAt = Math.max(s.maxAt ?? e.at, e.at);
+  if (entry.kind === "report") verifyReport(state, entry);
+  if (entry.kind === "redeem") verifyRedeem(state, entry, signedPolicyHash);
+  state.seq += 1;
+  state.head = entry.hash;
+  state.maxAt = Math.max(state.maxAt ?? entry.at, entry.at);
 
-  switch (e.kind) {
-    case "request": s.requests.set(requestKey(e.request), e); return;
-    case "response": s.responses.set(e.request, e); return;
+  switch (entry.kind) {
+    case "request":
+      state.requests.set(requestKey(entry.request), entry);
+      return;
+    case "response":
+      state.responses.set(entry.request, entry);
+      return;
     case "policy":
       return; // The guard verifies and selects it; this entry changes no admission state.
-    case "decision": {
-      if (e.request) s.signing.set(e.hash, { decision: e });
-      if (e.request) s.requests.set(requestKey(e.request), e);
-      if (e.intentKey !== null && e.shape !== null) {
-        s.sensor.recent.push({ intentKey: e.intentKey, shape: e.shape, fees: BigInt(e.amounts?.fees ?? "0"), landed: false });
-        if (s.sensor.recent.length > RECENT) s.sensor.recent.shift();
-        s.sensor.lastAt = e.at;
-        s.sensor.times.push(e.at);
-        s.sensor.times = s.sensor.times.filter((t) => t > s.maxAt! - SENSOR_V1.minuteMs);
-        if (!e.allow) s.sensor.failureStreak += 1;
-      }
-      if (e.allow && e.intentKey !== null && e.amounts !== null) {
-        const blockHeight = big(e.blockHeight);
-        let intent = currentIntent(s, policy, e.intentKey, nowFor(s, e.at), blockHeight);
-        if (!intent) {
-          intent = { firstAt: e.at, attempts: [], done: false };
-          s.intents.set(e.intentKey, intent);
-        }
-        intent.attempts.push({ decision: e.hash, lastValidBlockHeight: big(e.lastValidBlockHeight), status: "pending" });
-        s.reservations.set(e.hash, {
-          at: e.at,
-          intentKey: e.intentKey,
-          sol: BigInt(e.amounts.sol),
-          tokens: new Map(e.amounts.tokens.map((t) => [t.mint, BigInt(t.amount)])),
-          fees: BigInt(e.amounts.fees),
-          valueReleased: false,
-          feesReleased: false,
-        });
-        s.allowed.set(e.hash, e);
-      }
-      s.consecutiveDenials = e.allow ? 0 : s.consecutiveDenials + 1;
-      if (!s.latched && e.latch) s.latched = { seq: e.seq };
-      prune(s, policy);
-      return;
-    }
-    case "report": {
-      if (e.outcome !== "unknown" && s.signing.has(e.decision)) s.signing.get(e.decision)!.settled = true;
-      const r = s.reservations.get(e.decision)!;
-      const attempt = s.intents.get(r.intentKey)!.attempts.find((a) => a.decision === e.decision)!;
-      // An unknown outcome that becomes known stops counting as unknown.
-      if (attempt.status === "unknown") s.sensor.unknownStreak = Math.max(0, s.sensor.unknownStreak - 1);
-      attempt.status = e.outcome;
-      if (e.outcome === "landed") {
-        s.intents.get(r.intentKey)!.done = true;
-        s.sensor.failureStreak = 0;
-        s.sensor.unknownStreak = 0;
-        for (const x of s.sensor.recent) if (x.intentKey === r.intentKey) x.landed = true;
-      }
-      if (e.outcome === "failed" || e.outcome === "expired") {
-        r.valueReleased = true;
-        if (e.outcome === "expired") r.feesReleased = true;
-        s.sensor.failureStreak += 1;
-      }
-      if (e.outcome === "unknown") s.sensor.unknownStreak += 1;
-      prune(s, policy);
-      return;
-    }
-    case "release": {
-      // Verified again, as the live guard verified it, so an edited record cannot release a latch (D17).
-      const problem = releaseProblem(s, e, policy);
-      if (problem) throw new Error(`the record's release at seq ${e.seq} does not verify: ${problem}`);
-      // The operator has looked: start the stream over. The windows and intents stand.
-      s.latched = null;
-      s.consecutiveDenials = 0;
-      s.sensor = { recent: [], failureStreak: 0, unknownStreak: 0, lastAt: s.sensor.lastAt, times: [] };
-      return;
-    }
-    case "signing": {
-      const h = s.signing.get(e.event.decision);
-      verifySigning(e.event, h, h?.redeemed === true, createPolicy(policy).hash);
-      if (e.event.stage === "signed") h!.signed = e.event;
-      if (e.event.stage === "send-started") h!.started = e.event;
-      if (e.event.stage === "response") h!.response = e.event;
-      return;
-    }
+    case "decision":
+      return applyDecision(state, entry, policy);
+    case "report":
+      return applyReport(state, entry, policy);
+    case "release":
+      return applyRelease(state, entry, policy);
+    case "signing":
+      return applySigning(state, entry, policy);
     case "redeem":
-      s.redeemed.add(e.decision);
-      if (s.signing.has(e.decision)) s.signing.get(e.decision)!.redeemed = true;
-      return;
+      return applyRedeem(state, entry);
     default:
       throw new Error("unsupported record entry kind");
   }
+}
+
+/** A decision made by the signer names its deployment; a caller's never does. */
+function verifyAttribution(entry: DecisionEntry): void {
+  if (entry.source === "signer") {
+    if (!entry.deployment) throw new Error("signer authority is missing");
+    copyAuthority(entry.deployment);
+  } else if (entry.deployment) {
+    throw new Error("caller decision cannot claim signer authority");
+  }
+}
+
+function verifyReport(state: GuardState, entry: ReportEntry): void {
+  if (!OUTCOMES.includes(entry.outcome)) throw new Error("recorded report outcome is unsupported");
+  if (entry.source !== "caller" && entry.source !== "signer") throw new Error("recorded report attribution is unsupported");
+  if (!Number.isFinite(entry.at) || entry.at < 0) throw new Error("recorded report time is invalid");
+  const reservation = state.reservations.get(entry.decision);
+  const attempt = reservation && state.intents.get(reservation.intentKey)?.attempts.find((candidate) => candidate.decision === entry.decision);
+  if (!state.allowed.has(entry.decision) || !reservation || !attempt) throw new Error(`report for ${entry.decision}, which holds no reservation`);
+  if (!unresolved(attempt)) throw new Error("recorded report names an attempt with a final outcome");
+}
+
+function verifyRedeem(state: GuardState, entry: RedeemEntry, signedPolicyHash?: string): void {
+  if (!Number.isFinite(entry.at) || entry.at < 0) throw new Error("recorded redemption time is invalid");
+  const decision = state.allowed.get(entry.decision);
+  const reservation = state.reservations.get(entry.decision);
+  const attempt = reservation && state.intents.get(reservation.intentKey)?.attempts.find((candidate) => candidate.decision === entry.decision);
+  if (!decision || !reservation || !attempt) throw new Error("recorded redemption names no allowed reservation");
+  if (state.redeemed.has(entry.decision)) throw new Error("recorded receipt was already used");
+  if (!unresolved(attempt)) throw new Error("recorded redemption names a final outcome");
+  // Unsigned SDK records carry no historical policy selection; preserve their restore contract.
+  if (signedPolicyHash !== undefined && decision.policyHash !== signedPolicyHash) throw new Error("recorded redemption names another signed policy");
+  let height: bigint | null = null;
+  if (entry.blockHeight !== null) {
+    try {
+      if (typeof entry.blockHeight !== "string") throw new Error();
+      height = BigInt(entry.blockHeight);
+      if (height.toString() !== entry.blockHeight) throw new Error();
+    } catch {
+      throw new Error("recorded redemption height is invalid");
+    }
+  }
+  if (decision.expires && (height === null || height > BigInt(decision.expires.lastValidBlockHeight))) throw new Error("recorded redemption has missing or expired lifetime evidence");
+}
+
+/** A decision feeds the sensors; an allowed one starts or joins an intent and reserves what it moves. */
+function applyDecision(state: GuardState, entry: DecisionEntry, policy: Policy): void {
+  if (entry.request) state.signing.set(entry.hash, { decision: entry });
+  if (entry.request) state.requests.set(requestKey(entry.request), entry);
+  if (entry.intentKey !== null && entry.shape !== null) {
+    state.sensor.recent.push({ intentKey: entry.intentKey, shape: entry.shape, fees: BigInt(entry.amounts?.fees ?? "0"), landed: false });
+    if (state.sensor.recent.length > RECENT) state.sensor.recent.shift();
+    state.sensor.lastAt = entry.at;
+    state.sensor.times.push(entry.at);
+    state.sensor.times = state.sensor.times.filter((time) => time > state.maxAt! - SENSOR_V1.minuteMs);
+    if (!entry.allow) state.sensor.failureStreak += 1;
+  }
+  if (entry.allow && entry.intentKey !== null && entry.amounts !== null) {
+    const blockHeight = heightOrNull(entry.blockHeight);
+    let intent = currentIntent(state, policy, entry.intentKey, nowFor(state, entry.at), blockHeight);
+    if (!intent) {
+      intent = { firstAt: entry.at, attempts: [], done: false };
+      state.intents.set(entry.intentKey, intent);
+    }
+    intent.attempts.push({ decision: entry.hash, lastValidBlockHeight: heightOrNull(entry.lastValidBlockHeight), status: "pending" });
+    state.reservations.set(entry.hash, {
+      at: entry.at,
+      intentKey: entry.intentKey,
+      sol: BigInt(entry.amounts.sol),
+      tokens: new Map(entry.amounts.tokens.map((token) => [token.mint, BigInt(token.amount)])),
+      fees: BigInt(entry.amounts.fees),
+      valueReleased: false,
+      feesReleased: false,
+    });
+    state.allowed.set(entry.hash, entry);
+  }
+  state.consecutiveDenials = entry.allow ? 0 : state.consecutiveDenials + 1;
+  if (!state.latched && entry.latch) state.latched = { seq: entry.seq };
+  prune(state, policy);
+}
+
+/** An outcome settles the attempt, and releases what its reservation held: "failed" the value, "expired" the fees too. */
+function applyReport(state: GuardState, entry: ReportEntry, policy: Policy): void {
+  if (entry.outcome !== "unknown" && state.signing.has(entry.decision)) state.signing.get(entry.decision)!.settled = true;
+  const reservation = state.reservations.get(entry.decision)!;
+  const attempt = state.intents.get(reservation.intentKey)!.attempts.find((candidate) => candidate.decision === entry.decision)!;
+  // An unknown outcome that becomes known stops counting as unknown.
+  if (attempt.status === "unknown") state.sensor.unknownStreak = Math.max(0, state.sensor.unknownStreak - 1);
+  attempt.status = entry.outcome;
+  if (entry.outcome === "landed") {
+    state.intents.get(reservation.intentKey)!.done = true;
+    state.sensor.failureStreak = 0;
+    state.sensor.unknownStreak = 0;
+    for (const recent of state.sensor.recent) if (recent.intentKey === reservation.intentKey) recent.landed = true;
+  }
+  if (entry.outcome === "failed" || entry.outcome === "expired") {
+    reservation.valueReleased = true;
+    if (entry.outcome === "expired") reservation.feesReleased = true;
+    state.sensor.failureStreak += 1;
+  }
+  if (entry.outcome === "unknown") state.sensor.unknownStreak += 1;
+  prune(state, policy);
+}
+
+function applyRelease(state: GuardState, entry: Extract<Entry, { kind: "release" }>, policy: Policy): void {
+  // Verified again, as the live guard verified it, so an edited record cannot release a latch (D17).
+  const problem = releaseProblem(state, entry, policy);
+  if (problem) throw new Error(`the record's release at seq ${entry.seq} does not verify: ${problem}`);
+  // The operator has looked: start the stream over. The windows and intents stand.
+  state.latched = null;
+  state.consecutiveDenials = 0;
+  state.sensor = { recent: [], failureStreak: 0, unknownStreak: 0, lastAt: state.sensor.lastAt, times: [] };
+}
+
+function applySigning(state: GuardState, entry: Extract<Entry, { kind: "signing" }>, policy: Policy): void {
+  const history = state.signing.get(entry.event.decision);
+  verifySigning(entry.event, history, history?.redeemed === true, createPolicy(policy).hash);
+  if (entry.event.stage === "signed") history!.signed = entry.event;
+  if (entry.event.stage === "send-started") history!.started = entry.event;
+  if (entry.event.stage === "response") history!.response = entry.event;
+}
+
+function applyRedeem(state: GuardState, entry: RedeemEntry): void {
+  state.redeemed.add(entry.decision);
+  if (state.signing.has(entry.decision)) state.signing.get(entry.decision)!.redeemed = true;
 }
 
 /**
@@ -289,20 +324,20 @@ export function apply(s: GuardState, e: Entry, policy: Policy, signedPolicyHash?
  * against its own recorded time, and the release key's signature over its text. The policy hash in the text is bound
  * by the signature, and is not compared, since a record outlives a policy change.
  */
-function releaseProblem(s: GuardState, e: Extract<Entry, { kind: "release" }>, policy: Policy): string | null {
-  if (!s.latched) return "the guard was not latched";
-  const f = parseReleaseText(e.text);
-  if (!f) return "its text is not a release message";
-  if (f.guardId !== policy.latch.guardId || f.cluster !== policy.latch.cluster) return "it names another guard or cluster";
-  if (f.seq !== e.latchSeq || f.seq !== s.latched.seq) return `it releases the latch at seq ${f.seq}, and the guard latched at ${s.latched.seq}`;
-  if (!(Date.parse(f.expires) > e.at)) return `it had expired at ${f.expires}`;
+function releaseProblem(state: GuardState, entry: Extract<Entry, { kind: "release" }>, policy: Policy): string | null {
+  if (!state.latched) return "the guard was not latched";
+  const fields = parseReleaseText(entry.text);
+  if (!fields) return "its text is not a release message";
+  if (fields.guardId !== policy.latch.guardId || fields.cluster !== policy.latch.cluster) return "it names another guard or cluster";
+  if (fields.seq !== entry.latchSeq || fields.seq !== state.latched.seq) return `it releases the latch at seq ${fields.seq}, and the guard latched at ${state.latched.seq}`;
+  if (!(Date.parse(fields.expires) > entry.at)) return `it had expired at ${fields.expires}`;
   let signature: Uint8Array;
   try {
-    signature = new Uint8Array(Buffer.from(e.signature, "base64"));
+    signature = new Uint8Array(Buffer.from(entry.signature, "base64"));
   } catch {
     return "its signature is not base64";
   }
-  if (!verifyEd25519(policy.latch.releaseKey, new TextEncoder().encode(e.text), signature)) return "the signature is not the release key's, over its text";
+  if (!verifyEd25519(policy.latch.releaseKey, new TextEncoder().encode(entry.text), signature)) return "the signature is not the release key's, over its text";
   return null;
 }
 
@@ -311,19 +346,23 @@ function releaseProblem(s: GuardState, e: Extract<Entry, { kind: "release" }>, p
  * intents with nothing left to count or wait for. Driven only by recorded times, so a restore
  * prunes exactly as the live guard did.
  */
-function prune(s: GuardState, policy: Policy): void {
-  const horizon = (s.maxAt ?? 0) - Math.max(policy.windowMs, s.retentionMs);
-  for (const [hash, r] of s.reservations) {
-    if (r.at > horizon) continue;
-    const intent = s.intents.get(r.intentKey);
-    const attempt = intent?.attempts.find((a) => a.decision === hash);
-    if (attempt && (attempt.status === "pending" || attempt.status === "unknown")) continue;
-    s.reservations.delete(hash);
-    s.allowed.delete(hash);
-    s.redeemed.delete(hash);
+function prune(state: GuardState, policy: Policy): void {
+  const horizon = (state.maxAt ?? 0) - Math.max(policy.windowMs, state.retentionMs);
+  for (const [hash, reservation] of state.reservations) {
+    if (reservation.at > horizon) continue;
+    const intent = state.intents.get(reservation.intentKey);
+    const attempt = intent?.attempts.find((candidate) => candidate.decision === hash);
+    if (attempt && unresolved(attempt)) continue;
+    state.reservations.delete(hash);
+    state.allowed.delete(hash);
+    state.redeemed.delete(hash);
   }
-  for (const [key, intent] of s.intents) {
-    const live = intent.attempts.some((a) => s.reservations.has(a.decision));
-    if (!live && (intent.done || intent.firstAt <= horizon)) s.intents.delete(key);
+  for (const [key, intent] of state.intents) {
+    const live = intent.attempts.some((attempt) => state.reservations.has(attempt.decision));
+    if (!live && (intent.done || intent.firstAt <= horizon)) state.intents.delete(key);
   }
+}
+
+function heightOrNull(height: string | null) {
+  return height === null ? null : BigInt(height);
 }

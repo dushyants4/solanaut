@@ -5,25 +5,25 @@ import {spawnSync} from "node:child_process";
 const state="packages/sdk/src/state.ts",guard="packages/sdk/src/guard.ts",inspect="packages/sdk/src/inspect.ts";
 const originals=new Map([state,guard,inspect].map(path=>[path,readFileSync(path,"utf8")]));
 const run=()=>spawnSync(process.execPath,["--test","packages/sdk/test/redeem-replay.test.ts"],{encoding:"utf8",timeout:15_000});
-const validation='  if (e.kind === "redeem") verifyRedeem(s, e, signedPolicyHash);';
+const validation='  if (entry.kind === "redeem") verifyRedeem(state, entry, signedPolicyHash);';
 const faults=[
   ["entire redemption refusal",state,validation,""],
-  ["finite redemption time",state,'if (!Number.isFinite(e.at) || e.at < 0) throw new Error("recorded redemption time is invalid");','if (e.at < 0) throw new Error("recorded redemption time is invalid");'],
-  ["negative redemption time",state,'if (!Number.isFinite(e.at) || e.at < 0) throw new Error("recorded redemption time is invalid");','if (!Number.isFinite(e.at)) throw new Error("recorded redemption time is invalid");'],
-  ["allowed reservation",state,'if (!d || !r || !attempt) throw new Error("recorded redemption names no allowed reservation");','if (false) throw new Error("recorded redemption names no allowed reservation");'],
-  ["single-use receipt",state,'if (s.redeemed.has(e.decision)) throw new Error("recorded receipt was already used");','if (false) throw new Error("recorded receipt was already used");'],
+  ["finite redemption time",state,'if (!Number.isFinite(entry.at) || entry.at < 0) throw new Error("recorded redemption time is invalid");','if (entry.at < 0) throw new Error("recorded redemption time is invalid");'],
+  ["negative redemption time",state,'if (!Number.isFinite(entry.at) || entry.at < 0) throw new Error("recorded redemption time is invalid");','if (!Number.isFinite(entry.at)) throw new Error("recorded redemption time is invalid");'],
+  ["allowed reservation",state,'if (!decision || !reservation || !attempt) throw new Error("recorded redemption names no allowed reservation");','if (false) throw new Error("recorded redemption names no allowed reservation");'],
+  ["single-use receipt",state,'if (state.redeemed.has(entry.decision)) throw new Error("recorded receipt was already used");','if (false) throw new Error("recorded receipt was already used");'],
   ["permanent receipt finality",state,'if (!unresolved(attempt)) throw new Error("recorded redemption names a final outcome");','if (false) throw new Error("recorded redemption names a final outcome");'],
-  ["signed chronological policy",state,'if (signedPolicyHash !== undefined && d.policyHash !== signedPolicyHash)','if (false)'],
-  ["unsigned historical compatibility",state,'if (signedPolicyHash !== undefined && d.policyHash !== signedPolicyHash)','if (d.policyHash !== signedPolicyHash)'],
-  ["canonical receipt height",state,'if (height.toString() !== e.blockHeight) throw new Error();',''],
-  ["inclusive expiry",state,'height > BigInt(d.expires.lastValidBlockHeight)','height >= BigInt(d.expires.lastValidBlockHeight)'],
-  ["expiry verification",state,'if (d.expires && (height === null || height > BigInt(d.expires.lastValidBlockHeight)))','if (false)'],
-  ["mandatory expiry height",state,'if (d.expires && (height === null || height > BigInt(d.expires.lastValidBlockHeight)))','if (d.expires && (height !== null && height > BigInt(d.expires.lastValidBlockHeight)))'],
-  ["live negative bigint compatibility",state,'if (d.expires && (height === null || height > BigInt(d.expires.lastValidBlockHeight)))','if (d.expires && (height === null || height < 0n || height > BigInt(d.expires.lastValidBlockHeight)))'],
-  ["unbounded receipt null height",state,'if (d.expires && (height === null || height > BigInt(d.expires.lastValidBlockHeight)))','if (height === null || (d.expires && height > BigInt(d.expires.lastValidBlockHeight)))'],
-  ["validation before state mutation",state,validation+'\n  s.seq += 1;\n  s.head = e.hash;\n  s.maxAt = Math.max(s.maxAt ?? e.at, e.at);','  s.seq += 1;\n  s.head = e.hash;\n  s.maxAt = Math.max(s.maxAt ?? e.at, e.at);\n'+validation],
-  ["used receipt state",state,'      s.redeemed.add(e.decision);',''],
-  ["signing redemption state",state,'      if (s.signing.has(e.decision)) s.signing.get(e.decision)!.redeemed = true;',''],
+  ["signed chronological policy",state,'if (signedPolicyHash !== undefined && decision.policyHash !== signedPolicyHash)','if (false)'],
+  ["unsigned historical compatibility",state,'if (signedPolicyHash !== undefined && decision.policyHash !== signedPolicyHash)','if (decision.policyHash !== signedPolicyHash)'],
+  ["canonical receipt height",state,'if (height.toString() !== entry.blockHeight) throw new Error();',''],
+  ["inclusive expiry",state,'height > BigInt(decision.expires.lastValidBlockHeight)','height >= BigInt(decision.expires.lastValidBlockHeight)'],
+  ["expiry verification",state,'if (decision.expires && (height === null || height > BigInt(decision.expires.lastValidBlockHeight)))','if (false)'],
+  ["mandatory expiry height",state,'if (decision.expires && (height === null || height > BigInt(decision.expires.lastValidBlockHeight)))','if (decision.expires && (height !== null && height > BigInt(decision.expires.lastValidBlockHeight)))'],
+  ["live negative bigint compatibility",state,'if (decision.expires && (height === null || height > BigInt(decision.expires.lastValidBlockHeight)))','if (decision.expires && (height === null || height < 0n || height > BigInt(decision.expires.lastValidBlockHeight)))'],
+  ["unbounded receipt null height",state,'if (decision.expires && (height === null || height > BigInt(decision.expires.lastValidBlockHeight)))','if (height === null || (decision.expires && height > BigInt(decision.expires.lastValidBlockHeight)))'],
+  ["validation before state mutation",state,validation+'\n  state.seq += 1;\n  state.head = entry.hash;\n  state.maxAt = Math.max(state.maxAt ?? entry.at, entry.at);','  state.seq += 1;\n  state.head = entry.hash;\n  state.maxAt = Math.max(state.maxAt ?? entry.at, entry.at);\n'+validation],
+  ["used receipt state",state,'  state.redeemed.add(entry.decision);',''],
+  ["signing redemption state",state,'  if (state.signing.has(entry.decision)) state.signing.get(entry.decision)!.redeemed = true;',''],
   ["restore and replay policy context",guard,'  apply(env.state, entry, env.policy, env.policyEntry ? env.policyHash : undefined);\n  if (entry.kind === "release") env.governor.reset();','  apply(env.state, entry, env.policy);\n  if (entry.kind === "release") env.governor.reset();'],
   ["inspection policy context",inspect,'    apply(state, e, policy, previous ? hash : undefined);','    apply(state, e, policy);'],
 ] as const;

@@ -4,8 +4,8 @@ import { spawnSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 const faults = [
   ["skip-final-executor-check", "apps/signer/src/core.ts", 'if (guard.entries().some((e) => e.kind === "report" && e.decision === d!.hash && e.outcome !== "unknown"))', "if (false)"],
-  ["forget-final-history", "packages/sdk/src/state.ts", 'if (e.outcome !== "unknown" && s.signing.has(e.decision))', "if (false)"],
-  ["unknown-becomes-final", "packages/sdk/src/state.ts", 'if (e.outcome !== "unknown" && s.signing.has(e.decision))', "if (s.signing.has(e.decision))"],
+  ["forget-final-history", "packages/sdk/src/state.ts", 'if (entry.outcome !== "unknown" && state.signing.has(entry.decision))', "if (false)"],
+  ["unknown-becomes-final", "packages/sdk/src/state.ts", 'if (entry.outcome !== "unknown" && state.signing.has(entry.decision))', "if (state.signing.has(entry.decision))"],
   ["allow-settled-signing", "packages/sdk/src/signing.ts", 'if (history.settled && event.stage !== "response")', "if (false)"],
   ["allow-old-policy-send", "packages/sdk/src/signing.ts", 'if (d.policyHash !== policyHash) throw new Error("send under another policy is refused");', "void policyHash;"],
 ] as const;

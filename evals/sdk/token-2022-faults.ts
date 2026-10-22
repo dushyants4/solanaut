@@ -10,7 +10,7 @@ const faults = [
   ["amount-at-the-tag", "const amountAt = feeChecked ? 2 : 1;", "const amountAt = 1;"],
   ["decimals-in-the-amount", "decimals: checked ? data[amountAt + 8]! : null", "decimals: checked ? data[9]! : null"],
   ["any-sub-instruction-moves", 'return { name, class: name === "TransferCheckedWithFee" ? "value-moving" : "denied" };', 'return { name: "TransferCheckedWithFee", class: "value-moving" };'],
-  ["token-program-fee-extension", "if (program === PROGRAMS.token2022 && d === 26) {", "if (d === 26) {"],
+  ["token-program-fee-extension", "if (program === PROGRAMS.token2022 && discriminator === 26)", "if (discriminator === 26)"],
 ] as const;
 const battery = () => spawnSync(process.execPath, ["--test", "packages/sdk/test/classify.test.ts"], { encoding: "utf8", timeout: 60_000 });
 

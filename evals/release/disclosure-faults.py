@@ -11,7 +11,7 @@ errors = root / "packages/sdk/src/errors.ts"
 guard = root / "packages/sdk/src/guard.ts"
 original = {p: p.read_bytes() for p in [errors, guard]}
 faults = [
-    ("leaked-rule", errors, 'this.ref = ref; this.class = classification;', 'this.ref = ref; this.class = classification; Object.assign(this, {rule});'),
+    ("leaked-rule", errors, 'this.class = classification;', 'this.class = classification; Object.assign(this, {rule});'),
     ("leaked-limit", errors, 'super(`${classification} (decision ${ref})`);', 'super(`${classification} (decision ${ref}): ${reason}`);'),
     ("skipped-callback", guard, 'if (!decision.allow) notifyRefusal(guard, decision.rule!, decision.reason, decision);', '// omitted operator callback'),
     ("full-default", errors, 'channels.get(guard)?.disclosure === "full"', 'channels.get(guard)?.disclosure !== "full"'),

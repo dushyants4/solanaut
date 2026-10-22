@@ -62,80 +62,79 @@ export type Policy = DeepReadonly<PolicyV1>;
 
 const U64_MAX = 2n ** 64n - 1n;
 const CLUSTERS: readonly Cluster[] = ["localnet", "devnet", "mainnet-beta"];
-const describe = (v: unknown) => (typeof v === "string" ? JSON.stringify(v) : typeof v === "bigint" ? `${v}n` : String(v));
 
 /** Validate, copy, freeze and hash. Throws a PolicyError listing every problem found. */
 export function createPolicy(input: unknown): { policy: Policy; hash: string } {
   const problems: string[] = [];
-  const v = new Validator(problems);
-  const p = v.object(input, "policy", [
+  const check = new Validator(problems);
+  const fields = check.object(input, "policy", [
     "version", "disclosure", "principal", "programs", "destinations", "sol", "tokens", "fees", "lookupTables", "windowMs", "intents",
     "latch", "messages", "cosign", "sensor",
   ], ["disclosure"]);
-  if (!p) throw new PolicyError(problems);
+  if (!fields) throw new PolicyError(problems);
 
-  if (p.version !== 1) problems.push(`version must be 1, not ${describe(p.version)}`);
-  const principal = v.addresses(p.principal, "principal");
+  if (fields.version !== 1) problems.push(`version must be 1, not ${describe(fields.version)}`);
+  const principal = check.addresses(fields.principal, "principal");
   if (principal && principal.length === 0) problems.push("principal must name at least one key");
 
-  const programs = v.object(p.programs, "programs", ["allow", "opaque"]);
-  const programsAllow = programs && v.addresses(programs.allow, "programs.allow");
+  const programs = check.object(fields.programs, "programs", ["allow", "opaque"]);
+  const programsAllow = programs && check.addresses(programs.allow, "programs.allow");
   if (programs && programs.opaque !== "deny" && programs.opaque !== "allow") problems.push(`programs.opaque must be "deny" or "allow", not ${describe(programs.opaque)}`);
 
-  const destinations = v.object(p.destinations, "destinations", ["allow"]);
-  const destinationsAllow = destinations && v.addresses(destinations.allow, "destinations.allow");
+  const destinations = check.object(fields.destinations, "destinations", ["allow"]);
+  const destinationsAllow = destinations && check.addresses(destinations.allow, "destinations.allow");
 
-  const sol = v.object(p.sol, "sol", ["maxPerTx", "maxPerWindow"]);
-  const solCaps = sol && { maxPerTx: v.amount(sol.maxPerTx, "sol.maxPerTx"), maxPerWindow: v.amount(sol.maxPerWindow, "sol.maxPerWindow") };
+  const sol = check.object(fields.sol, "sol", ["maxPerTx", "maxPerWindow"]);
+  const solCaps = sol && { maxPerTx: check.amount(sol.maxPerTx, "sol.maxPerTx"), maxPerWindow: check.amount(sol.maxPerWindow, "sol.maxPerWindow") };
 
-  const tokens = v.list(p.tokens, "tokens", (t, path) => {
-    const o = v.object(t, path, ["mint", "program", "maxPerTx", "maxPerWindow"]);
-    if (!o) return undefined;
-    const mint = v.address(o.mint, `${path}.mint`);
-    if (o.program !== "token" && o.program !== "token-2022") problems.push(`${path}.program must be "token" or "token-2022", not ${describe(o.program)}`);
-    return { mint, program: o.program as TokenProgram, maxPerTx: v.amount(o.maxPerTx, `${path}.maxPerTx`), maxPerWindow: v.amount(o.maxPerWindow, `${path}.maxPerWindow`) };
+  const tokens = check.list(fields.tokens, "tokens", (item, path) => {
+    const token = check.object(item, path, ["mint", "program", "maxPerTx", "maxPerWindow"]);
+    if (!token) return undefined;
+    const mint = check.address(token.mint, `${path}.mint`);
+    if (token.program !== "token" && token.program !== "token-2022") problems.push(`${path}.program must be "token" or "token-2022", not ${describe(token.program)}`);
+    return { mint, program: token.program as TokenProgram, maxPerTx: check.amount(token.maxPerTx, `${path}.maxPerTx`), maxPerWindow: check.amount(token.maxPerWindow, `${path}.maxPerWindow`) };
   });
-  v.unique(tokens?.map((t) => t?.mint), "tokens", "mint");
+  check.unique(tokens?.map((token) => token?.mint), "tokens", "mint");
 
-  const fees = v.object(p.fees, "fees", ["maxPriorityPerTx", "maxPerWindow", "tipAccounts"]);
+  const fees = check.object(fields.fees, "fees", ["maxPriorityPerTx", "maxPerWindow", "tipAccounts"]);
   const feeCaps = fees && {
-    maxPriorityPerTx: v.amount(fees.maxPriorityPerTx, "fees.maxPriorityPerTx"),
-    maxPerWindow: v.amount(fees.maxPerWindow, "fees.maxPerWindow"),
-    tipAccounts: v.addresses(fees.tipAccounts, "fees.tipAccounts"),
+    maxPriorityPerTx: check.amount(fees.maxPriorityPerTx, "fees.maxPriorityPerTx"),
+    maxPerWindow: check.amount(fees.maxPerWindow, "fees.maxPerWindow"),
+    tipAccounts: check.addresses(fees.tipAccounts, "fees.tipAccounts"),
   };
 
-  const tables = v.list(p.lookupTables, "lookupTables", (t, path) => {
-    const o = v.object(t, path, ["address", "entries"]);
-    return o ? { address: v.address(o.address, `${path}.address`), entries: v.addresses(o.entries, `${path}.entries`) } : undefined;
+  const tables = check.list(fields.lookupTables, "lookupTables", (item, path) => {
+    const table = check.object(item, path, ["address", "entries"]);
+    return table ? { address: check.address(table.address, `${path}.address`), entries: check.addresses(table.entries, `${path}.entries`) } : undefined;
   });
-  v.unique(tables?.map((t) => t?.address), "lookupTables", "address");
+  check.unique(tables?.map((table) => table?.address), "lookupTables", "address");
 
-  const windowMs = v.count(p.windowMs, "windowMs");
-  const intents = v.object(p.intents, "intents", ["maxAttempts"]);
-  const maxAttempts = intents && v.count(intents.maxAttempts, "intents.maxAttempts");
+  const windowMs = check.count(fields.windowMs, "windowMs");
+  const intents = check.object(fields.intents, "intents", ["maxAttempts"]);
+  const maxAttempts = intents && check.count(intents.maxAttempts, "intents.maxAttempts");
 
-  const latch = v.object(p.latch, "latch", ["afterDenials", "releaseKey", "guardId", "cluster"]);
-  let latchOut;
+  const latch = check.object(fields.latch, "latch", ["afterDenials", "releaseKey", "guardId", "cluster"]);
+  let latchCopy;
   if (latch) {
-    const releaseKey = v.address(latch.releaseKey, "latch.releaseKey");
+    const releaseKey = check.address(latch.releaseKey, "latch.releaseKey");
     if (releaseKey && principal?.includes(releaseKey)) problems.push("latch.releaseKey is a principal key: the agent could release its own latch");
     if (typeof latch.guardId !== "string" || !/^[\x20-\x7e]{1,64}$/.test(latch.guardId)) {
       problems.push(`latch.guardId must be 1 to 64 printable ASCII characters on one line, not ${describe(latch.guardId)}`);
     }
     if (!CLUSTERS.includes(latch.cluster as Cluster)) problems.push(`latch.cluster must be one of ${CLUSTERS.join(", ")}, not ${describe(latch.cluster)}`);
-    latchOut = { afterDenials: v.count(latch.afterDenials, "latch.afterDenials"), releaseKey, guardId: latch.guardId, cluster: latch.cluster };
+    latchCopy = { afterDenials: check.count(latch.afterDenials, "latch.afterDenials"), releaseKey, guardId: latch.guardId, cluster: latch.cluster };
   }
 
-  for (const k of ["messages", "cosign"] as const) {
-    const o = v.object(p[k], k, ["allow"]);
-    if (o && o.allow !== false) problems.push(`${k}.allow must be false in policy v1`);
+  for (const name of ["messages", "cosign"] as const) {
+    const section = check.object(fields[name], name, ["allow"]);
+    if (section && section.allow !== false) problems.push(`${name}.allow must be false in policy v1`);
   }
-  const sensor = v.object(p.sensor, "sensor", ["expectedPerMinute"]);
+  const sensor = check.object(fields.sensor, "sensor", ["expectedPerMinute"]);
   if (sensor && !(typeof sensor.expectedPerMinute === "number" && Number.isFinite(sensor.expectedPerMinute) && sensor.expectedPerMinute > 0)) {
     problems.push(`sensor.expectedPerMinute must be a positive number, not ${describe(sensor.expectedPerMinute)}`);
   }
 
-  const disclosure = p.disclosure;
+  const disclosure = fields.disclosure;
   if (disclosure !== undefined && disclosure !== "class" && disclosure !== "full") problems.push('disclosure must be "class" or "full"');
   if (problems.length) throw new PolicyError(problems);
 
@@ -152,7 +151,7 @@ export function createPolicy(input: unknown): { policy: Policy; hash: string } {
     lookupTables: tables as PolicyV1["lookupTables"],
     windowMs: windowMs!,
     intents: { maxAttempts: maxAttempts! },
-    latch: latchOut as PolicyV1["latch"],
+    latch: latchCopy as PolicyV1["latch"],
     messages: { allow: false },
     cosign: { allow: false },
     sensor: { expectedPerMinute: sensor!.expectedPerMinute as number },
@@ -168,20 +167,28 @@ export function contextOf(policy: Policy): ClassifyContext {
   return {
     principal: policy.principal,
     destinations: policy.destinations.allow,
-    tokens: policy.tokens.map((t) => ({ mint: t.mint, program: t.program })),
+    tokens: policy.tokens.map((token) => ({ mint: token.mint, program: token.program })),
     tipAccounts: policy.fees.tipAccounts,
-    lookupTables: policy.lookupTables.map((t) => ({ address: t.address, entries: t.entries })),
+    lookupTables: policy.lookupTables.map((table) => ({ address: table.address, entries: table.entries })),
   };
 }
 
-function deepFreeze<T>(o: T): DeepReadonly<T> {
-  if (o && typeof o === "object") {
-    for (const v of Object.values(o)) deepFreeze(v);
-    Object.freeze(o);
-  }
-  return o as DeepReadonly<T>;
+/** A value as a problem quotes it: strings in quotes, bigints with their n. */
+function describe(value: unknown) {
+  if (typeof value === "string") return JSON.stringify(value);
+  if (typeof value === "bigint") return `${value}n`;
+  return String(value);
 }
 
+function deepFreeze<T>(value: T): DeepReadonly<T> {
+  if (value && typeof value === "object") {
+    for (const child of Object.values(value)) deepFreeze(child);
+    Object.freeze(value);
+  }
+  return value as DeepReadonly<T>;
+}
+
+/** Checks one field at a time, and writes down every problem rather than stopping at the first. */
 class Validator {
   readonly #problems: string[];
   constructor(problems: string[]) {
@@ -189,59 +196,60 @@ class Validator {
   }
 
   /** A plain object with exactly these keys: a missing key, or one it does not know, is a problem. */
-  object(v: unknown, path: string, keys: string[], optional: readonly string[] = []): Record<string, unknown> | undefined {
-    if (v === null || typeof v !== "object" || Array.isArray(v)) {
-      this.#problems.push(`${path} must be an object, not ${describe(v)}`);
+  object(value: unknown, path: string, keys: string[], optional: readonly string[] = []): Record<string, unknown> | undefined {
+    if (value === null || typeof value !== "object" || Array.isArray(value)) {
+      this.#problems.push(`${path} must be an object, not ${describe(value)}`);
       return undefined;
     }
-    const o = v as Record<string, unknown>;
-    for (const k of Object.keys(o)) if (!keys.includes(k)) this.#problems.push(`${path === "policy" ? k : `${path}.${k}`} is not a policy v1 field`);
-    for (const k of keys) if (!optional.includes(k) && !(k in o)) this.#problems.push(`${path === "policy" ? k : `${path}.${k}`} is missing`);
-    return o;
+    const fields = value as Record<string, unknown>;
+    const named = (key: string) => (path === "policy" ? key : `${path}.${key}`);
+    for (const key of Object.keys(fields)) if (!keys.includes(key)) this.#problems.push(`${named(key)} is not a policy v1 field`);
+    for (const key of keys) if (!optional.includes(key) && !(key in fields)) this.#problems.push(`${named(key)} is missing`);
+    return fields;
   }
 
-  list<T>(v: unknown, path: string, each: (item: unknown, path: string) => T | undefined): (T | undefined)[] | undefined {
-    if (!Array.isArray(v)) {
-      this.#problems.push(`${path} must be a list, not ${describe(v)}`);
+  list<T>(value: unknown, path: string, each: (item: unknown, path: string) => T | undefined): (T | undefined)[] | undefined {
+    if (!Array.isArray(value)) {
+      this.#problems.push(`${path} must be a list, not ${describe(value)}`);
       return undefined;
     }
-    return v.map((item, i) => each(item, `${path}[${i}]`));
+    return value.map((item, i) => each(item, `${path}[${i}]`));
   }
 
-  address(v: unknown, path: string): string | undefined {
-    if (typeof v === "string" && isAddress(v)) return v;
-    this.#problems.push(`${path} must be a base58 address of 32 bytes, not ${describe(v)}`);
+  address(value: unknown, path: string): string | undefined {
+    if (typeof value === "string" && isAddress(value)) return value;
+    this.#problems.push(`${path} must be a base58 address of 32 bytes, not ${describe(value)}`);
     return undefined;
   }
 
-  addresses(v: unknown, path: string): string[] | undefined {
-    const out = this.list(v, path, (a, p) => this.address(a, p));
-    return out?.every((a) => a !== undefined) ? (out as string[]) : undefined;
+  addresses(value: unknown, path: string): string[] | undefined {
+    const addresses = this.list(value, path, (item, itemPath) => this.address(item, itemPath));
+    return addresses?.every((address) => address !== undefined) ? (addresses as string[]) : undefined;
   }
 
-  amount(v: unknown, path: string): bigint | undefined {
-    let n: bigint | undefined;
-    if (typeof v === "bigint") n = v;
-    else if (typeof v === "string" && /^(0|[1-9][0-9]*)$/.test(v)) n = BigInt(v);
-    if (n === undefined || n < 0n || n > U64_MAX) {
-      this.#problems.push(`${path} must be a whole number from 0 to 2^64-1, as a bigint or a decimal string, not ${describe(v)}`);
+  amount(value: unknown, path: string): bigint | undefined {
+    let amount: bigint | undefined;
+    if (typeof value === "bigint") amount = value;
+    else if (typeof value === "string" && /^(0|[1-9][0-9]*)$/.test(value)) amount = BigInt(value);
+    if (amount === undefined || amount < 0n || amount > U64_MAX) {
+      this.#problems.push(`${path} must be a whole number from 0 to 2^64-1, as a bigint or a decimal string, not ${describe(value)}`);
       return undefined;
     }
-    return n;
+    return amount;
   }
 
-  count(v: unknown, path: string): number | undefined {
-    if (typeof v === "number" && Number.isSafeInteger(v) && v > 0) return v;
-    this.#problems.push(`${path} must be a whole number above 0, not ${describe(v)}`);
+  count(value: unknown, path: string): number | undefined {
+    if (typeof value === "number" && Number.isSafeInteger(value) && value > 0) return value;
+    this.#problems.push(`${path} must be a whole number above 0, not ${describe(value)}`);
     return undefined;
   }
 
   unique(values: (string | undefined)[] | undefined, path: string, field: string): void {
     const seen = new Set<string>();
-    for (const x of values ?? []) {
-      if (x === undefined) continue;
-      if (seen.has(x)) this.#problems.push(`${path} lists ${field} ${x} twice`);
-      seen.add(x);
+    for (const value of values ?? []) {
+      if (value === undefined) continue;
+      if (seen.has(value)) this.#problems.push(`${path} lists ${field} ${value} twice`);
+      seen.add(value);
     }
   }
 }

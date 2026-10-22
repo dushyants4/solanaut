@@ -6,7 +6,12 @@
 // heights are decimal strings, bytes are base64.
 
 import type { Posture, Telemetry } from "@gubernaut/core";
+import type { RuntimeAuthority } from "./authority.ts";
 import { canonicalJSON, sha256hex } from "./canonical.ts";
+import type { ControlMethod } from "./control-request.ts";
+import type { EVALUATION_PROFILE } from "./profile.ts";
+import type { RequestBinding } from "./request.ts";
+import type { SigningEvent } from "./signing.ts";
 
 export type RuleV1 =
   | "invalid-policy"
@@ -57,10 +62,10 @@ export interface DecisionEntry extends EntryBase {
   /** Explicit development disclosure; absent means the legacy/class channel. */
   disclosure?: "full";
   /** Optional SDK request identity, committed atomically with this decision. */
-  request?: import("./request.ts").RequestBinding;
+  request?: RequestBinding;
   /** Where time, heights and outcomes came from (docs/SPEC.md §2.1). */
   source: "caller" | "signer";
-  deployment?: import("./authority.ts").RuntimeAuthority;
+  deployment?: RuntimeAuthority;
   /** The proposal's message bytes, base64, so the record replays on its own; "" if they were not bytes. */
   message: string;
   blockHeight: string | null;
@@ -120,20 +125,21 @@ export interface PolicyEntry extends EntryBase {
   issued: string;
   text: string;
   signature: string;
-  profile: typeof import("./profile.ts").EVALUATION_PROFILE;
+  profile: typeof EVALUATION_PROFILE;
 }
 
 export interface SigningEntry extends EntryBase {
   kind: "signing";
-  event: import("./signing.ts").SigningEvent;
+  event: SigningEvent;
 }
 
 export interface ControlRequestEntry extends EntryBase {
   kind: "request";
-  request: import("./request.ts").RequestBinding;
-  method: import("./control-request.ts").ControlMethod;
+  request: RequestBinding;
+  method: ControlMethod;
   payload: string;
 }
+
 export interface ControlResponseEntry extends EntryBase {
   kind: "response";
   request: string;
