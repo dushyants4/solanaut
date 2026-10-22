@@ -55,7 +55,14 @@ const faults = [
   { name: "owned-control-start-capture", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("startControl(id, method, JSON.parse(payload), at)", "startControl(id, method, input, at)") },
   { name: "owned-control-answer-capture", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("completeControl(startHash, JSON.parse(result))", "completeControl(startHash, input)") },
   { name: "owned-control-immutable", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace('row.response.kind !== "response" || row.response.result !== result', 'row.response.kind !== "response"') },
-  { name: "owned-control-freeze", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("deepFreeze(reply);", "void 0;") },
+  { name: "owned-control-freeze", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text
+    // Control replies only: copied, as before, but not frozen. Admission replies stay frozen, so the
+    // battery's admission check passes and its control-reply checks are the ones that must catch this.
+    .replace("return frozenCopy(row.start);", "return structuredClone(row.start);")
+    .replace("return frozenCopy(startControl(", "return structuredClone(startControl(")
+    .replace("return frozenCopy(row.response);", "return structuredClone(row.response);")
+    .replace("return frozenCopy(completeControl(", "return structuredClone(completeControl(")
+    .replace("return frozenCopy(JSON.parse(row.response.result));", "return structuredClone(JSON.parse(row.response.result));") },
   { name: "owned-control-private-start", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("startControl(id, method, JSON.parse(payload), at)", "guard.beginRequest(id, method, JSON.parse(payload), at)") },
   { name: "owned-control-private-response", path: "dist/src/guard.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("completeControl(startHash, JSON.parse(result))", "guard.finishRequest(startHash, JSON.parse(result))") },
   { name: "replay-cli-trust", path: "dist/bin/replay.js", caught: "compiled checkpoint payloads", damage: (text: string) => text.replace("replayStream(open, policy, undefined, trust)", "replayStream(open, policy, undefined)") },
