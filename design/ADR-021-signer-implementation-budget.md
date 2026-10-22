@@ -1,6 +1,7 @@
 # ADR-021 · Signer implementation budget
 
-**Status: accepted by the human on 2026-10-13** (proposed 2026-10-06; `docs/HANDOFF.md` §5, H9).
+**Status: accepted by the human on 2026-10-13** (proposed 2026-10-06; `docs/HANDOFF.md` §5, H9). **Amended 2026-10-22,
+accepted by the human the same day:** the ceiling is 2,000 lines as formatted (below).
 SIG-11's ceiling becomes 1,000 physical lines, counted as below. The edit to `docs/SPEC.md` comes first.
 
 ## Context and evidence
@@ -46,3 +47,20 @@ Keep functions small and record all counted files. The specialist audit and inde
 red team cover the full source, including extracted helpers. Human acceptance must be
 recorded here and in HANDOFF before dependent expansion; protected requirement/harness edits
 remain owed to the human or Claude where applicable.
+
+## Amendment, 2026-10-22: count the code as formatted
+
+**Accepted by the human on 2026-10-22**, when the code was reshaped to the house style (`STYLE.md`).
+
+The budget was being met by density. The counted files were written several statements to a
+line with few spaces: 623 physical lines on 2026-10-22, against the 1,000 allowed. That is the
+compression this ADR warns "would obscure security review". Formatted one statement per line,
+with Prettier 3.6.2 at a print width of 120, the same code is 1,231 lines; the files' new opening
+comments make it 1,260 (`evals/signer/sig-11-formatted.md`).
+
+**Decision.** SIG-11's ceiling is **2,000 physical lines, counted on the code as formatted** with
+those settings, by the same command, over the same files, with the same rule: no exclusions for
+blank lines or comments, and no moving or renaming code to change the count. 2,000 gives the
+formatted code the allowance 1,000 dense lines gave: the ratio measured here is 1,231 to 623,
+and 1,000 dense lines scale to about 1,976. It is a reviewability limit, as before, and no other
+gate changes.

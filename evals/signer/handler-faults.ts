@@ -12,7 +12,7 @@ const faults = [
   ["omit-request-deadline", "await core.report(r.decision as string, r.deadline as number);", "await core.report(r.decision as string);"],
   ["ignore-control-namespace", 'prior.method !== "propose" || prior.payload !== controlPayload("propose", input)', "false"],
   ["omit-refusal-answer", 'guard.finishRequest(start.hash, { status: "denied", code: validDeadline() ? "unavailable" : "deadline" });', 'void start;'],
-  ["admission-as-refusal", 'if (guard.entries().some((e) => e.kind === "decision" && e.request && requestKey(e.request) === key)) throw error;', 'void error;'],
+  ["admission-as-refusal", 'if (guard.entries().some((e) => e.kind === "decision" && e.request && requestKey(e.request) === key))\n            throw error;', 'void error;'],
 ] as const;
 const battery = () => spawnSync(process.execPath, ["--test", "apps/signer/test/handler.test.ts"], { encoding: "utf8", timeout: 30_000 });
 const baseline = battery(); assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);

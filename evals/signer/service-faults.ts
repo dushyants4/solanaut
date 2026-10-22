@@ -4,13 +4,13 @@ import { spawnSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 const path = "apps/signer/src/service.ts"; const original = readFileSync(path, "utf8");
 const faults = [
-  ["accept-unsigned-bootstrap", 'const authorization = Object.freeze({ ...options.authorization }); const policy = verifyPolicyAuthorization(options.policy, authorization);', 'const authorization = undefined as never; const policy = options.policy as ReturnType<typeof verifyPolicyAuthorization>;'],
+  ["accept-unsigned-bootstrap", 'const authorization = Object.freeze({ ...options.authorization });\n  const policy = verifyPolicyAuthorization(options.policy, authorization);', 'const authorization = undefined as never; const policy = options.policy as ReturnType<typeof verifyPolicyAuthorization>;'],
   ["ignore-history-mode", '(s.mode & 0o777) !== mode', "false"],
   ["claim-key-isolation", "keyIsolation: false", "keyIsolation: true"],
   ["hide-recovery-error", "recoveryIncomplete = results.some((r) => !r.complete)", "recoveryIncomplete = false"],
-  ["release-before-drain", "await Promise.allSettled([...work]); guard.close();", "guard.close(); await Promise.allSettled([...work]);"],
+  ["release-before-drain", "await Promise.allSettled([...work]);\n        guard.close();", "guard.close(); await Promise.allSettled([...work]);"],
   ["skip-work-drain", "await Promise.allSettled([...work]);", "void work;"],
-  ["skip-recovery-tracking", "return track(core.recover().then((results) => { recoveryIncomplete = results.some((r) => !r.complete); return results; }));", "return core.recover().then((results) => { recoveryIncomplete = results.some((r) => !r.complete); return results; });"],
+  ["skip-recovery-tracking", "return track(\n        core.recover().then((results) => {\n          recoveryIncomplete = results.some((r) => !r.complete);\n          return results;\n        }),\n      );", "return core.recover().then((results) => { recoveryIncomplete = results.some((r) => !r.complete); return results; });"],
   ["allow-recovery-after-stop", 'function recover() {\n    if (closing) return Promise.reject(new Error("signer is stopping"));', "function recover() {\n    void closing;"],
 ] as const;
 const battery = () => spawnSync(process.execPath, ["--test", "apps/signer/test/service.test.ts"], { encoding: "utf8", timeout: 30_000 });

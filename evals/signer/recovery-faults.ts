@@ -4,9 +4,9 @@ import { spawnSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 const path = "apps/signer/src/core.ts"; const original = readFileSync(path, "utf8");
 const faults = [
-  ["abort-on-attempt-error", "catch { complete = false; }\n      //", 'catch { throw new Error("recovery aborted"); }\n      //'],
-  ["hide-attempt-error", "catch { complete = false; }\n      //", "catch { complete = true; }\n      //"],
-  ["skip-chain-after-refusal", "try { if (e.allow) await report(e.hash); }", "try { if (e.allow && complete) await report(e.hash); }"],
+  ["abort-on-attempt-error", "} catch {\n          complete = false;\n        }\n        // Failed pre-send work", "} catch {\n          throw new Error(\"recovery aborted\");\n        }\n        // Failed pre-send work"],
+  ["hide-attempt-error", "} catch {\n          complete = false;\n        }\n        // Failed pre-send work", "} catch {\n          complete = true;\n        }\n        // Failed pre-send work"],
+  ["skip-chain-after-refusal", "try {\n          if (e.allow) await report(e.hash);\n        }", "try { if (e.allow && complete) await report(e.hash); }"],
   ["invent-recovery-success", "results.push({ decision: e.hash, complete });", "results.push({ decision: e.hash, complete: true });"],
 ] as const;
 const battery = () => spawnSync(process.execPath, ["--test", "apps/signer/test/core.test.ts"], { encoding: "utf8", timeout: 30_000 });

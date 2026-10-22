@@ -10,7 +10,7 @@ const faults = [
   ["unbounded-frame", "buffer.length + bytes.length > 16_384", "false"],
   ["unbounded-response", "Buffer.byteLength(wire) > 16_383", "false"],
   ["activity-deadline", 'const timer = setTimeout(() => fail("timeout"), timeoutMs);', 'const timer = setTimeout(() => fail("timeout"), timeoutMs); s.on("data", () => timer.refresh());'],
-  ["replace-live-listener", 'probe.once("connect", () => { probe.destroy(); reject(new Error("socket has a live listener")); });', 'probe.once("connect", () => { probe.destroy(); resolve(); });'],
+  ["replace-live-listener", 'probe.once("connect", () => {\n        probe.destroy();\n        reject(new Error("socket has a live listener"));\n      });', 'probe.once("connect", () => { probe.destroy(); resolve(); });'],
   ["hold-completed-slot", String.raw`s.end(wire + "\n", () => s.destroy());`, String.raw`s.end(wire + "\n");`],
   ["oversized-proposal", "r.message.length > 8192", "false"],
 ] as const;

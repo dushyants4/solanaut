@@ -1,6 +1,6 @@
 # SPEC.md — Solanaut's MVP baseline, v1
 
-> **Draft 4.90** · 2026-10-10 · owner: architect · for: the builder, evaluator and integrator seats, and judges
+> **Draft 4.91** · 2026-10-22 · owner: architect · for: the builder, evaluator and integrator seats, and judges
 > reading the code · public since 2026-10-12. Decisions: `design/ADR-004` (admission and receipts), `ADR-005` (transaction
 > coverage, partly superseded), `ADR-006` (on-chain backstop), `ADR-009` (trust and coverage), `ADR-010` (the log is
 > the state), `ADR-011` (Phantom and the dashboard). Claims: `docs/CLAIMS.md`. Roadmap: `docs/ROADMAP.md`.
@@ -736,7 +736,7 @@ SIGTERM/SIGINT drain the service before exit; restart uses established history.
 | SIG-8 | One writer, restore by replay on start, and a failed write shuts it | §7 | the restart battery, 100 kills (`docs/READINESS.md`) |
 | SIG-9 | Reads back off through rate limits; a send is never retried by the client | §8, RK16 | an RPC answering 429 |
 | SIG-10 | It runs as its own OS user, or the documents state that it does not and what that leaves | T9, T29 | [ADR-013](../design/ADR-013-signer-process.md), accepted: its own user, a Unix socket in a group-only directory, and a same-user mode that says so |
-| SIG-11 | 1,000 physical source lines or fewer, stated before writing and measured after; all signer app source and signer-specific helpers in any directory count, including comments/blank lines | accepted ADR-021 | explicit file list and line count in the receipt; no moving code to evade the budget |
+| SIG-11 | 2,000 physical source lines or fewer, counted on the code as formatted (Prettier 3.6.2, width 120), stated before writing and measured after; all signer app source and signer-specific helpers in any directory count, including comments/blank lines | accepted ADR-021, amended 2026-10-22 | explicit file list and line count in the receipt; no moving code to evade the budget |
 
 ### 13.2 Operator-signed policy (milestone 3.2)
 
@@ -1624,6 +1624,7 @@ Evidence: `evals/sdk/owned-release.md`.
 | Draft 4.88 | 2026-10-10 | Integrate the exact D40 correction after fresh full native/type passes; preserve earlier deferral and current H11 serial-coverage failure. No public API, profile, policy, signer or readiness gate change. |
 | Draft 4.89 | 2026-10-10 | D41 reproduces premature expiry after wallet array edits and prepares private batch membership under ADR-009. Native H11 failure prevents integration; preserve the candidate, first failures and component qualification without changing the gate. |
 | Draft 4.90 | 2026-10-10 | PUB-1 separate blob-verification companion preserves complete scope, explicit refusal and no-clearance semantics. Actual history preflight refuses sensitive path metadata before reads; H15 remains human-owned. No protected gate or product changes. |
+| Draft 4.91 | 2026-10-22 | SIG-11 counts the signer's code as formatted, with a ceiling of 2,000 lines (ADR-021, amended and accepted by the human the same day): formatted one statement per line, the 623 dense lines are 1,231. |
 
 Internal SNP-5/7 convention under ADR-019: private `report(hash, outcome)` queues
 the existing trusted SDK report operation with admission, control, redemption,

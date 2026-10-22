@@ -2,7 +2,7 @@ import { strict as assert } from "node:assert";
 import { spawnSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 const faults = [
-  ["mutable-host-configuration", "packages/sdk/src/authority.ts", 'return Object.freeze({ mode: value.mode, clock: Object.freeze({ wall: clock.wall, monotonicNs: clock.monotonicNs }) });', 'return value;'],
+  ["mutable-host-configuration", "packages/sdk/src/authority.ts", 'return Object.freeze({\n    mode: value.mode,\n    clock: Object.freeze({ wall: clock.wall, monotonicNs: clock.monotonicNs }),\n  });', 'return value;'],
   ["caller-decision-attribution", "packages/sdk/src/guard.ts", 'source: env.authority ? ("signer" as const) : ("caller" as const),', 'source: "caller" as const,'],
   ["caller-report-attribution", "packages/sdk/src/guard.ts", 'source: authority ? "signer" : "caller"', 'source: "caller"'],
   ["allow-non-devnet", "packages/sdk/src/guard.ts", 'if (authority && policy.latch.cluster !== "devnet")', 'if (false)'],

@@ -4,10 +4,10 @@ import { spawnSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 const path = "apps/signer/src/rpc.ts"; const original = readFileSync(path, "utf8");
 const faults = [
-  ["ignore-network", 'if (await call(p, "getGenesisHash", [], deadline) !== DEVNET_GENESIS)', "if (false)"],
+  ["ignore-network", 'if ((await call(p, "getGenesisHash", [], deadline)) !== DEVNET_GENESIS)', "if (false)"],
   ["fractional-height", "!Number.isSafeInteger(value)", "false"],
   ["ignore-context", 'if (slot < floor || slot < p.slot || !("value" in result))', 'if (!("value" in result))'],
-  ["one-provider-outcome", 'if (values.length !== 2 || !values[0] || !values[1] || JSON.stringify(values[0]) !== JSON.stringify(values[1])) return null;', 'if (values.length === 1) return values[0]?.outcome ?? null; if (values.length !== 2 || !values[0] || !values[1] || JSON.stringify(values[0]) !== JSON.stringify(values[1])) return null;'],
+  ["one-provider-outcome", 'if (values.length !== 2 || !values[0] || !values[1] || JSON.stringify(values[0]) !== JSON.stringify(values[1]))\n        return null;', 'if (values.length === 1) return values[0]?.outcome ?? null; if (values.length !== 2 || !values[0] || !values[1] || JSON.stringify(values[0]) !== JSON.stringify(values[1])) return null;'],
   ["retry-send", "if (!send && attempt < 2 &&", "if (attempt < 2 &&"],
   ["ignore-blockhash", "if (blockhash !== hash)", "if (false)"],
   ["ignore-envelope-id", "body.id !== requestId", "false"],

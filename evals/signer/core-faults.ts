@@ -7,7 +7,7 @@ const faults = [
   ["ignore-deadline", "if (!Number.isFinite(value) || value <= now() || value > now() + 30_000)", "if (false)"],
   ["ignore-completed-payload", "if (old && old.request!.digest !== binding.digest)", "if (false)"],
   ["invent-outcome", 'const outcome = await rpc.outcome(signed.signature, requestDeadline);', 'const outcome = (await rpc.outcome(signed.signature, requestDeadline)) ?? "landed";'],
-  ["late-outcome", 'const outcome = await rpc.outcome(signed.signature, requestDeadline); deadline(requestDeadline);', 'const outcome = await rpc.outcome(signed.signature, requestDeadline);'],
+  ["late-outcome", 'const outcome = await rpc.outcome(signed.signature, requestDeadline);\n    deadline(requestDeadline);', 'const outcome = await rpc.outcome(signed.signature, requestDeadline);'],
   ["send-without-intent", 'guard.recordSigning({ stage: "send-started", decision: d.hash, blockHeight: height.toString() });', 'void height;'],
   ["forget-persisted-response", "if (old.response) return old.response;", "if (false) return old.response!;"],
 ] as const;

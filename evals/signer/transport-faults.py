@@ -13,8 +13,8 @@ service = root / "apps/signer/src/service.ts"
 client = root / "packages/sdk/src/adapters/sending-client.ts"
 original = {p: p.read_bytes() for p in [socket, service, client]}
 faults = [
-    ("diagnostic-instead-of-class", socket, 'class: code === "busy" || code === "timeout" ? "retry-later" : code === "protocol" || code === "method" ? "invalid" : "refused"', 'class: code', 'apps/signer/test/transport-disclosure.test.ts', 2),
-    ("missing-transport-reference", socket, 'error: { ref: -1, class: code', 'error: { class: code', 'apps/signer/test/transport-disclosure.test.ts', 2),
+    ("diagnostic-instead-of-class", socket, 'class:\n            code === "busy" || code === "timeout"\n              ? "retry-later"\n              : code === "protocol" || code === "method"\n                ? "invalid"\n                : "refused"', 'class:\n            code', 'apps/signer/test/transport-disclosure.test.ts', 2),
+    ("missing-transport-reference", socket, 'error: {\n          ref: -1,\n          class:\n            code', 'error: { class: code', 'apps/signer/test/transport-disclosure.test.ts', 2),
     ("invalid-proposal-as-retry", service, '!d && request.method === "propose" && value.code === "unavailable"', 'false', 'apps/signer/test/disclosure-followup.test.ts', 10),
     ("accept-private-error-fields", client, 'Object.keys(error).sort().join(",") !== "class,ref"', 'false', 'packages/sdk/test/sending-client.test.ts', 11),
 ]

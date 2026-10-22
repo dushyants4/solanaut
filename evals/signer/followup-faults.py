@@ -14,8 +14,8 @@ client = root / "packages/sdk/src/adapters/sending-client.ts"
 original = {p: p.read_bytes() for p in [service, client]}
 faults = [
     ("private-denial", service, 'if (value.status === "denied")', 'if (false && value.status === "denied")'),
-    ("private-status", service, 'if (request.method === "status") return { mode: "same-user", "keyIsolation": false, recoveryIncomplete: value.recoveryIncomplete === true, degraded: value.degraded === true };', 'if (request.method === "status") return result;'),
-    ("no-followup", service, '  follow();\n  let stopped:', '  // omitted scheduling\n  let stopped:'),
+    ("private-status", service, 'if (request.method === "status")\n      return {\n        mode: "same-user",\n        "keyIsolation": false,\n        recoveryIncomplete: value.recoveryIncomplete === true,\n        degraded: value.degraded === true,\n      };', 'if (request.method === "status") return result;'),
+    ("no-followup", service, 'follow();\n  let stopped:', '  // omitted scheduling\n  let stopped:'),
     ("no-timer-cancellation", service, 'clearTimeout(timer);', 'void timer;'),
     ("no-backoff", service, 'delay = recoveryIncomplete ? Math.min(delay * 2, 30_000) : 1000;', 'delay = 1000;'),
     ("overlapping-recovery", service, 'if (recovery) return recovery;', 'void recovery;'),

@@ -14,8 +14,8 @@ faults = [
     ("caller-membership", batch, "txs = [...txs];", "// omitted capture", "packages/sdk/test/adapter-batch.test.ts", 4),
     ("wallet-membership", batch, "wallet.signAllTransactions([...txs])", "wallet.signAllTransactions(txs)", "packages/sdk/test/adapter-batch.test.ts", 4),
     ("signed-reservation", batch, 'guard.report(a.decision.hash, "unknown");', 'guard.report(a.decision.hash, "expired");', "packages/sdk/test/adapter-batch.test.ts", 4),
-    ("provider-private-text", rpc, '} catch { p.healthy = false; p.reason = "provider unavailable"; throw new Error("RPC provider unavailable"); }', '} catch (error) { p.healthy = false; p.reason = (error as Error).message; throw error; }', "apps/signer/test/rpc-redaction.test.ts", 3),
-    ("send-private-text", rpc, 'catch { p.healthy = false; p.reason = "send unavailable"; throw new Error("RPC send unavailable"); }', 'catch (error) { p.healthy = false; p.reason = (error as Error).message; throw error; }', "apps/signer/test/rpc-redaction.test.ts", 3),
+    ("provider-private-text", rpc, '} catch {\n      p.healthy = false;\n      p.reason = "provider unavailable";\n      throw new Error("RPC provider unavailable");\n    }', '} catch (error) { p.healthy = false; p.reason = (error as Error).message; throw error; }', "apps/signer/test/rpc-redaction.test.ts", 3),
+    ("send-private-text", rpc, 'catch {\n        p.healthy = false;\n        p.reason = "send unavailable";\n        throw new Error("RPC send unavailable");\n      }', 'catch (error) { p.healthy = false; p.reason = (error as Error).message; throw error; }', "apps/signer/test/rpc-redaction.test.ts", 3),
 ]
 results = []
 try:
