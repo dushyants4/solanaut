@@ -31,25 +31,11 @@ import { fileURLToPath } from "node:url";
 import { Connection, Keypair, LAMPORTS_PER_SOL, PublicKey, SystemProgram, Transaction, TransactionInstruction } from "@solana/web3.js";
 import { createGuard, fileStore, guardedWallet, jsonRpc, PROGRAMS, replay, SolanautDenied, type BaseWalletLike, type Entry, type Guard, type PolicyInput, type RpcLike } from "@solanaut/sdk";
 
-const arg = (name: string) => {
-  const i = process.argv.indexOf(`--${name}`);
-  return i > 0 ? process.argv[i + 1] : undefined;
-};
-const need = (name: string) => {
-  const v = arg(name);
-  if (!v) {
-    console.error(`--${name} is required: node apps/onchain/src/scenes.ts --url <rpc> --agent <keyfile> --operator <keyfile> --treasury <pubkey> --dir <dir>`);
-    process.exit(2);
-  }
-  return v;
-};
-const load = (path: string) => Keypair.fromSecretKey(Uint8Array.from(JSON.parse(readFileSync(path, "utf8"))));
-
-const url = need("url");
-const dir = need("dir");
-const agent = load(need("agent"));
-const operator = load(need("operator"));
-const treasury = new PublicKey(need("treasury"));
+const url = required("url");
+const dir = required("dir");
+const agent = keypairFrom(required("agent"));
+const operator = keypairFrom(required("operator"));
+const treasury = new PublicKey(required("treasury"));
 const child = process.argv.includes("--child");
 const local = /127\.0\.0\.1|localhost/.test(url);
 const connection = new Connection(url, "confirmed");
@@ -57,10 +43,184 @@ const rpc = jsonRpc(url, { pollMs: local ? 500 : 2_000 });
 const record = join(dir, "guard.jsonl");
 const policyFile = join(dir, "policy.json");
 
-const sol = (n: number) => Math.round(n * LAMPORTS_PER_SOL);
-const short = (s: string) => `${s.slice(0, 8)}…`;
-const explorer = (sig: string) => `https://explorer.solana.com/tx/${sig}?cluster=${local ? "custom&customUrl=" + encodeURIComponent(url) : "devnet"}`;
-const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+/** The fixed DER header of a PKCS #8 ed25519 private key; the key's 32-byte seed follows it. */
+const ED25519_PKCS8_HEADER = Buffer.from("302e020100300506032b657004220420", "hex");
+
+type DecisionEntry = Extract<Entry, { kind: "decision" }>;
+
+async function main() {
+  if (child) return untilTheCrash();
+
+  await fundTheAgent();
+  const loopAgent = Keypair.generate();
+  const policy = policyFor(loopAgent.publicKey);
+  startTheRecord(policy);
+
+  const sent = await runTheFirstProcessUntilKilled();
+  const { guard, wallet } = await restoreAfterTheCrash(policy, sent);
+
+  const attacker = Keypair.generate().publicKey;
+  await fooled(guard, wallet, attacker);
+  await standingAuthority(guard, wallet, attacker);
+  await looping(guard, loopAgent);
+  await theRelease(guard, wallet);
+  await summarise(guard, policy);
+  guard.close();
+}
+
+// --- the first process: scenes up to the crash -----------------------------------------------------
+
+async function untilTheCrash() {
+  const policy = JSON.parse(readFileSync(policyFile, "utf8")) as PolicyInput;
+  const guard = await createGuard({ policy, log: fileStore(record, { ownership: "kernel" }) });
+  const wallet = guardedWallet(walletOf(agent), guard, { rpc });
+  await benign(guard, wallet);
+  await reSigningTooEarly(guard, wallet);
+  await theCrash(guard);
+}
+
+async function benign(guard: Guard, wallet: BaseWalletLike) {
+  say("\nbenign · payments to the treasury");
+  await propose(guard, wallet, "benign", "0.001 SOL to the treasury", await payTheTreasury(0.001));
+  await propose(guard, wallet, "benign", "0.0015 SOL to the treasury", await payTheTreasury(0.0015));
+}
+
+async function reSigningTooEarly(guard: Guard, wallet: BaseWalletLike) {
+  say("\nscene 5 · re-signing too early");
+  const seq = guard.status().seq;
+  const first = propose(guard, wallet, "5 re-sign", "0.002 SOL to the treasury: the first attempt", await payTheTreasury(0.002));
+  await until(() => guard.entries().some((entry) => entry.kind === "redeem" && entry.seq >= seq), "the first attempt's receipt");
+  await propose(guard, wallet, "5 re-sign", "the same, new blockhash, the first still in flight", await payTheTreasury(0.002));
+  await first;
+  operatorReleases(guard, "5 re-sign");
+}
+
+async function theCrash(guard: Guard) {
+  say("\nscene 7 · the crash: the guard's process is killed after the send, before the outcome is recorded");
+  // The RPC sends, then the process dies where it would have waited for the outcome.
+  const killedAfterSend: RpcLike = {
+    ...rpc,
+    confirm: async (signature) => {
+      say(`SENT ${signature}`);
+      say(`  7 crash    0.0012 SOL to the treasury: sent ${explorerLink(signature)}; now SIGKILL`);
+      process.kill(process.pid, "SIGKILL");
+      return new Promise(() => {});
+    },
+  };
+  const doomed = guardedWallet(walletOf(agent), guard, { rpc: killedAfterSend });
+  await doomed.signAndSendTransaction(await payTheTreasury(0.0012));
+  throw new Error("still alive after SIGKILL");
+}
+
+// --- the second process: restore, then the rest -----------------------------------------------------
+
+/** On a local validator, airdrop what the agent needs; anywhere, refuse to start without it. */
+async function fundTheAgent() {
+  if (local && (await connection.getBalance(agent.publicKey)) < solToLamports(0.05)) {
+    const airdrop = await connection.requestAirdrop(agent.publicKey, LAMPORTS_PER_SOL);
+    await connection.confirmTransaction(airdrop, "confirmed");
+  }
+  const balance = await connection.getBalance(agent.publicKey);
+  if (balance < solToLamports(0.012)) {
+    console.error(`the agent ${agent.publicKey.toBase58()} holds ${balance / LAMPORTS_PER_SOL} SOL on ${url}; the scenes need 0.012. Fund it and run again.`);
+    process.exit(1);
+  }
+}
+
+/** Write the policy for the cockpit, start an empty record, and say what is about to run. */
+function startTheRecord(policy: PolicyInput) {
+  mkdirSync(dir, { recursive: true });
+  rmSync(record, { force: true });
+  writeFileSync(policyFile, JSON.stringify(policy, (_key, value) => (typeof value === "bigint" ? value.toString() : value), 2));
+  say(`Solanaut scenes · ${url}`);
+  say(`agent ${agent.publicKey.toBase58()} · treasury ${treasury.toBase58()} · operator ${operator.publicKey.toBase58()}`);
+  say(`policy: System and Token; the treasury only; 0.005 SOL a payment, 0.03 an hour; record ${record}`);
+}
+
+/** Run the first scenes in a child process, relay what it says, and return the signature it sent before it was killed. */
+async function runTheFirstProcessUntilKilled(): Promise<string> {
+  const first = spawn(process.execPath, [fileURLToPath(import.meta.url), ...process.argv.slice(2), "--child"], { stdio: ["ignore", "pipe", "inherit"] });
+  let sent: string | undefined;
+  let buffered = "";
+  first.stdout.on("data", (chunk: Buffer) => {
+    buffered += chunk.toString();
+    let end;
+    while ((end = buffered.indexOf("\n")) >= 0) {
+      const line = buffered.slice(0, end);
+      buffered = buffered.slice(end + 1);
+      if (line.startsWith("SENT ")) sent = line.slice(5);
+      else say(line);
+    }
+  });
+  const [code, signal] = (await new Promise((resolve) => first.on("exit", (exitCode, exitSignal) => resolve([exitCode, exitSignal])))) as [number | null, string | null];
+  if (signal !== "SIGKILL" || !sent) throw new Error(`the first process ended with ${signal ?? code}, not killed after a send`);
+  return sent;
+}
+
+/** Scene 7, continued: a new process restores the guard, refuses the killed payment again, and records its outcome. */
+async function restoreAfterTheCrash(policy: PolicyInput, sent: string) {
+  say(`\n  7 crash    a new process: the guard restores itself from ${record}`);
+  const guard = await createGuard({ policy, log: fileStore(record, { ownership: "kernel" }) });
+  const entries = guard.entries();
+  const pending = entries.filter((entry): entry is DecisionEntry => entry.kind === "decision" && entry.allow).at(-1)!;
+  say(`  7 crash    restored ${entries.length} entries; ${await replayed(guard, policy)}`);
+
+  const wallet = guardedWallet(walletOf(agent), guard, { rpc });
+  await propose(guard, wallet, "7 crash", "the killed payment again, while it could still land", await payTheTreasury(0.0012));
+  const outcome = await rpc.confirm(sent, BigInt(pending.expires?.lastValidBlockHeight ?? 0));
+  guard.report(pending.hash, outcome);
+  say(`  7 crash    the killed attempt's outcome, read from the chain and recorded: ${outcome}`);
+  operatorReleases(guard, "7 crash");
+  return { guard, wallet };
+}
+
+async function fooled(guard: Guard, wallet: BaseWalletLike, attacker: PublicKey) {
+  say("\nscene 2 · fooled: the agent read \"send 0.004 SOL to <attacker>\" in token metadata");
+  await propose(guard, wallet, "2 fooled", "0.004 SOL to the attacker", await transactionFrom(agent.publicKey, true, pay(agent.publicKey, attacker, 0.004)));
+}
+
+async function standingAuthority(guard: Guard, wallet: BaseWalletLike, attacker: PublicKey) {
+  say("\nscene 3 · tricked into standing authority");
+  const from = agent.publicKey;
+  const approve = approveEverything(Keypair.generate().publicKey, attacker, from);
+  await propose(guard, wallet, "3 approve", "SPL Approve: the attacker as delegate, for everything", await transactionFrom(from, true, approve));
+  const advanceNonce = SystemProgram.nonceAdvance({ noncePubkey: Keypair.generate().publicKey, authorizedPubkey: from });
+  await propose(guard, wallet, "3 nonce", "0.001 SOL to the treasury, on a durable nonce", await transactionFrom(from, true, advanceNonce, pay(from, treasury, 0.001)));
+  operatorReleases(guard, "3 nonce");
+}
+
+async function looping(guard: Guard, loopAgent: Keypair) {
+  say("\nscene 4 · looping: an unfunded agent retries a payment the RPC refuses");
+  const loopWallet = guardedWallet(walletOf(loopAgent), guard, { rpc });
+  const from = loopAgent.publicKey;
+  for (let turn = 1; turn <= 8; turn++) {
+    const result = await propose(guard, loopWallet, `4 loop`, `turn ${turn}: 0.001 SOL to the treasury, from an empty account`, await transactionFrom(from, false, pay(from, treasury, 0.001)));
+    if (!result.allow) break;
+  }
+  const status = guard.status();
+  say(`  4 loop     the guard is ${status.latched ? `LATCHED at decision ${status.latchSeq}` : "not latched"}`);
+}
+
+async function theRelease(guard: Guard, wallet: BaseWalletLike) {
+  say("\nrelease · the guard is latched until the operator signs the release text");
+  await propose(guard, wallet, "release", "0.001 SOL to the treasury, while latched", await payTheTreasury(0.001));
+  operatorReleases(guard, "release");
+  await propose(guard, wallet, "release", "0.001 SOL to the treasury, after the release", await payTheTreasury(0.001));
+}
+
+/** Count the record's entries by kind and verdict, and replay it once more. */
+async function summarise(guard: Guard, policy: PolicyInput) {
+  const counts: Record<string, number> = {};
+  for (const entry of guard.entries()) {
+    const kind = entry.kind === "decision" ? (entry.allow ? "allow" : `deny ${entry.rule}`) : entry.kind;
+    counts[kind] = (counts[kind] ?? 0) + 1;
+  }
+  const tally = Object.entries(counts).map(([kind, count]) => `${kind} ${count}`).join(" · ");
+  say(`\nthe record: ${guard.entries().length} entries · ${tally}`);
+  say(await replayed(guard, policy));
+}
+
+// --- the steps every scene shares ------------------------------------------------------------------
 
 /** The policy: the agent and the loop's unfunded agent, System and Token, the treasury only, small caps. */
 function policyFor(loopAgent: PublicKey): PolicyInput {
@@ -69,7 +229,7 @@ function policyFor(loopAgent: PublicKey): PolicyInput {
     principal: [agent.publicKey.toBase58(), loopAgent.toBase58()],
     programs: { allow: [PROGRAMS.system, PROGRAMS.token, PROGRAMS.computeBudget, PROGRAMS.memo], opaque: "deny" },
     destinations: { allow: [treasury.toBase58()] },
-    sol: { maxPerTx: BigInt(sol(0.005)), maxPerWindow: BigInt(sol(0.03)) },
+    sol: { maxPerTx: BigInt(solToLamports(0.005)), maxPerWindow: BigInt(solToLamports(0.03)) },
     tokens: [],
     fees: { maxPriorityPerTx: 100_000n, maxPerWindow: 10_000_000n, tipAccounts: [] },
     lookupTables: [],
@@ -83,12 +243,15 @@ function policyFor(loopAgent: PublicKey): PolicyInput {
 }
 
 /** A wallet over a keypair, as Solana Agent Kit's KeypairWallet signs: in place. It never sends; the guard does. */
-function walletOf(kp: Keypair): BaseWalletLike<Transaction> {
-  const signOne = <T extends Transaction>(tx: T): T => (tx.partialSign(kp), tx);
+function walletOf(keypair: Keypair): BaseWalletLike<Transaction> {
+  const signOne = <T extends Transaction>(transaction: T): T => {
+    transaction.partialSign(keypair);
+    return transaction;
+  };
   return {
-    publicKey: kp.publicKey,
-    signTransaction: async <T extends Transaction>(tx: T) => signOne(tx),
-    signAllTransactions: async <T extends Transaction>(txs: T[]) => txs.map(signOne),
+    publicKey: keypair.publicKey,
+    signTransaction: async <T extends Transaction>(transaction: T) => signOne(transaction),
+    signAllTransactions: async <T extends Transaction>(transactions: T[]) => transactions.map(signOne),
     signAndSendTransaction: async () => {
       throw new Error("the guard sends; the wallet never does");
     },
@@ -98,230 +261,151 @@ function walletOf(kp: Keypair): BaseWalletLike<Transaction> {
   };
 }
 
+/** Propose a transaction through the guarded wallet, and say what happened. */
+async function propose(guard: Guard, wallet: BaseWalletLike, scene: string, what: string, transaction: Transaction) {
+  const head = `  ${scene.padEnd(10)} ${what.padEnd(54)}`;
+  const message = Buffer.from(transaction.serializeMessage()).toString("base64");
+  try {
+    const { signature } = await wallet.signAndSendTransaction(transaction);
+    const decision = decisionOn(guard, message);
+    const report = guard.entries().find((entry) => entry.kind === "report" && entry.decision === decision?.hash);
+    const outcome = report?.kind === "report" ? report.outcome : "not reported";
+    say(`${head} ALLOW                         ${keel(decision).padEnd(36)} sent, ${outcome}: ${explorerLink(signature)}`);
+    return { allow: true as const, signature, outcome };
+  } catch (error) {
+    if (error instanceof SolanautDenied) return explainDenial(guard, error, head, message);
+    if ((error as { refused?: unknown }).refused === true) {
+      say(`${head} ALLOW                         ${keel(decisionOn(guard, message)).padEnd(36)} sent; the RPC refused it: ${(error as Error).message.split("\n")[0]!.slice(0, 60)}`);
+      return { allow: true as const, refused: true };
+    }
+    throw error;
+  }
+}
+
+/** This is the operator's console: the agent's error names only a class, so recover the details from the private record. */
+function explainDenial(guard: Guard, denied: SolanautDenied, head: string, message: string) {
+  const decision = denied.ref >= 0 ? guard.entries().find((entry): entry is DecisionEntry => entry.kind === "decision" && entry.seq === denied.ref) : decisionOn(guard, message);
+  if (decision?.allow) {
+    const report = guard.entries().findLast((entry) => entry.kind === "report" && entry.decision === decision.hash);
+    const outcome = report?.kind === "report" ? report.outcome : "unknown";
+    say(`${head} ALLOW                         ${keel(decision).padEnd(36)} wrapper refused; outcome ${outcome}; inspect before retry`);
+    return { allow: true as const, refused: outcome === "failed", outcome };
+  }
+  const rule = decision?.rule ?? denied.class;
+  say(`${head} DENY ${rule.padEnd(24)} ${keel(decision).padEnd(36)} ${decision?.latch ? "LATCHES the guard; " : ""}not signed, not sent`);
+  return { allow: false as const, rule };
+}
+
+/** The latest decision on these message bytes. */
+function decisionOn(guard: Guard, message: string) {
+  return guard.entries().filter((entry): entry is DecisionEntry => entry.kind === "decision" && entry.message === message).at(-1);
+}
+
+/** Keel's posture and the sensor's three numbers, for a decision. */
+function keel(decision: DecisionEntry | undefined) {
+  const telemetry = decision?.telemetry;
+  const numbers = telemetry ? ` I ${telemetry.intensity.toFixed(2)} V ${telemetry.valence.toFixed(2)} R ${telemetry.repetition.toFixed(2)}` : "";
+  return `${decision?.posture ?? "-"}${numbers}`;
+}
+
+/** The operator's release: an ed25519 signature, by the policy's release key, over the guard's release text. */
+function operatorReleases(guard: Guard, scene: string) {
+  const status = guard.status();
+  if (!status.latched) return;
+  const text = guard.releaseText(new Date(Date.now() + 10 * 60_000).toISOString());
+  const key = createPrivateKey({ key: Buffer.concat([ED25519_PKCS8_HEADER, Buffer.from(operator.secretKey.subarray(0, 32))]), format: "der", type: "pkcs8" });
+  const released = guard.release(text, new Uint8Array(sign(null, Buffer.from(text), key)), Date.now());
+  say(`  ${scene.padEnd(10)} latched at decision ${status.latchSeq}; the operator signs "${text.split("\n").slice(1, 5).join(" · ")} · …": ${released.released ? "released" : `refused: ${released.reason}`}`);
+}
+
+async function replayed(guard: Guard, policy: PolicyInput) {
+  const result = await replay(guard.entries(), policy);
+  if (result.ok) return `replay: ${result.decisions} decisions, 0 divergences`;
+  return `replay DIVERGED at seq ${result.divergence?.seq}, field ${result.divergence?.field}`;
+}
+
+function payTheTreasury(amount: number) {
+  return transactionFrom(agent.publicKey, true, pay(agent.publicKey, treasury, amount));
+}
+
 let lastBlockhash = "";
+
 /** A transaction from `from`, with the cluster's latest blockhash; with `fresh`, one this script has not used. */
-async function tx(from: PublicKey, fresh: boolean, ...ixs: TransactionInstruction[]) {
+async function transactionFrom(from: PublicKey, fresh: boolean, ...instructions: TransactionInstruction[]) {
   let { blockhash } = await connection.getLatestBlockhash("confirmed");
   for (let i = 0; fresh && blockhash === lastBlockhash && i < 50; i++) {
     await sleep(200);
     ({ blockhash } = await connection.getLatestBlockhash("confirmed"));
   }
   lastBlockhash = blockhash;
-  return new Transaction({ feePayer: from, recentBlockhash: blockhash }).add(...ixs);
-}
-const pay = (from: PublicKey, to: PublicKey, amount: number) => SystemProgram.transfer({ fromPubkey: from, toPubkey: to, lamports: sol(amount) });
-
-/** Print a line, synchronously: a line written just before the process is killed must not be lost. */
-const say = (line: string) => writeSync(1, `${line}\n`);
-
-type DecisionEntry = Extract<Entry, { kind: "decision" }>;
-
-/** Keel's posture and the sensor's three numbers, for a decision. */
-function keel(d: DecisionEntry | undefined) {
-  const t = d?.telemetry;
-  return `${d?.posture ?? "-"}${t ? ` I ${t.intensity.toFixed(2)} V ${t.valence.toFixed(2)} R ${t.repetition.toFixed(2)}` : ""}`;
+  return new Transaction({ feePayer: from, recentBlockhash: blockhash }).add(...instructions);
 }
 
-/** The latest decision on these message bytes. */
-const decisionOn = (g: Guard, message: string) => g.entries().filter((e): e is DecisionEntry => e.kind === "decision" && e.message === message).at(-1);
-
-/** Propose a transaction through the guarded wallet, and say what happened. */
-async function propose(g: Guard, w: BaseWalletLike, scene: string, what: string, t: Transaction) {
-  const head = `  ${scene.padEnd(10)} ${what.padEnd(54)}`;
-  const message = Buffer.from(t.serializeMessage()).toString("base64");
-  try {
-    const { signature } = await w.signAndSendTransaction(t);
-    const d = decisionOn(g, message);
-    const report = g.entries().find((e) => e.kind === "report" && e.decision === d?.hash);
-    const outcome = report?.kind === "report" ? report.outcome : "not reported";
-    say(`${head} ALLOW                         ${keel(d).padEnd(36)} sent, ${outcome}: ${explorer(signature)}`);
-    return { allow: true as const, signature, outcome };
-  } catch (e) {
-    if (e instanceof SolanautDenied) {
-      // This is the operator's console; recover its details from the private record.
-      const d = e.ref >= 0 ? g.entries().find((entry): entry is DecisionEntry => entry.kind === "decision" && entry.seq === e.ref) : decisionOn(g, message);
-      if (d?.allow) {
-        const report = g.entries().findLast(entry => entry.kind === "report" && entry.decision === d.hash);
-        const outcome = report?.kind === "report" ? report.outcome : "unknown";
-        say(`${head} ALLOW                         ${keel(d).padEnd(36)} wrapper refused; outcome ${outcome}; inspect before retry`);
-        return { allow: true as const, refused: outcome === "failed", outcome };
-      }
-      const rule = d?.rule ?? e.class;
-      say(`${head} DENY ${rule.padEnd(24)} ${keel(d).padEnd(36)} ${d?.latch ? "LATCHES the guard; " : ""}not signed, not sent`);
-      return { allow: false as const, rule };
-    }
-    if ((e as { refused?: unknown }).refused === true) {
-      say(`${head} ALLOW                         ${keel(decisionOn(g, message)).padEnd(36)} sent; the RPC refused it: ${(e as Error).message.split("\n")[0]!.slice(0, 60)}`);
-      return { allow: true as const, refused: true };
-    }
-    throw e;
-  }
+function pay(from: PublicKey, to: PublicKey, amount: number) {
+  return SystemProgram.transfer({ fromPubkey: from, toPubkey: to, lamports: solToLamports(amount) });
 }
 
-/** The operator's release: an ed25519 signature, by the policy's release key, over the guard's release text. */
-function operatorReleases(g: Guard, scene: string) {
-  const s = g.status();
-  if (!s.latched) return;
-  const text = g.releaseText(new Date(Date.now() + 10 * 60_000).toISOString());
-  const key = createPrivateKey({ key: Buffer.concat([Buffer.from("302e020100300506032b657004220420", "hex"), Buffer.from(operator.secretKey.subarray(0, 32))]), format: "der", type: "pkcs8" });
-  const released = g.release(text, new Uint8Array(sign(null, Buffer.from(text), key)), Date.now());
-  say(`  ${scene.padEnd(10)} latched at decision ${s.latchSeq}; the operator signs "${text.split("\n").slice(1, 5).join(" · ")} · …": ${released.released ? "released" : `refused: ${released.reason}`}`);
+/** An SPL Token Approve that makes `delegate` the delegate of `tokenAccount` for the largest amount there is. */
+function approveEverything(tokenAccount: PublicKey, delegate: PublicKey, owner: PublicKey) {
+  const data = Buffer.alloc(9);
+  data[0] = 4; // Approve
+  data.writeBigUInt64LE(18_446_744_073_709_551_615n, 1);
+  return new TransactionInstruction({
+    programId: new PublicKey(PROGRAMS.token),
+    keys: [
+      { pubkey: tokenAccount, isSigner: false, isWritable: true },
+      { pubkey: delegate, isSigner: false, isWritable: false },
+      { pubkey: owner, isSigner: true, isWritable: false },
+    ],
+    data,
+  });
 }
 
-/** Wait until `f` holds, polling. */
-async function until(f: () => boolean, what: string) {
+/** Wait until `holds` holds, polling. */
+async function until(holds: () => boolean, what: string) {
   for (let i = 0; i < 600; i++) {
-    if (f()) return;
+    if (holds()) return;
     await sleep(50);
   }
   throw new Error(`timed out waiting for ${what}`);
 }
 
-async function replayed(g: Guard, policy: PolicyInput) {
-  const r = await replay(g.entries(), policy);
-  return r.ok ? `replay: ${r.decisions} decisions, 0 divergences` : `replay DIVERGED at seq ${r.divergence?.seq}, field ${r.divergence?.field}`;
+/** Print a line, synchronously: a line written just before the process is killed must not be lost. */
+function say(line: string) {
+  writeSync(1, `${line}\n`);
 }
 
-// --- the first process: scenes up to the crash -----------------------------------------------------
-
-async function untilTheCrash() {
-  const policy = JSON.parse(readFileSync(policyFile, "utf8")) as PolicyInput;
-  const g = await createGuard({ policy, log: fileStore(record, { ownership: "kernel" }) });
-  const w = guardedWallet(walletOf(agent), g, { rpc });
-  const a = agent.publicKey;
-
-  say("\nbenign · payments to the treasury");
-  await propose(g, w, "benign", "0.001 SOL to the treasury", await tx(a, true, pay(a, treasury, 0.001)));
-  await propose(g, w, "benign", "0.0015 SOL to the treasury", await tx(a, true, pay(a, treasury, 0.0015)));
-
-  say("\nscene 5 · re-signing too early");
-  const seq = g.status().seq;
-  const first = propose(g, w, "5 re-sign", "0.002 SOL to the treasury: the first attempt", await tx(a, true, pay(a, treasury, 0.002)));
-  await until(() => g.entries().some((e) => e.kind === "redeem" && e.seq >= seq), "the first attempt's receipt");
-  await propose(g, w, "5 re-sign", "the same, new blockhash, the first still in flight", await tx(a, true, pay(a, treasury, 0.002)));
-  await first;
-  operatorReleases(g, "5 re-sign");
-
-  say("\nscene 7 · the crash: the guard's process is killed after the send, before the outcome is recorded");
-  // The RPC sends, then the process dies where it would have waited for the outcome.
-  const killedAfterSend: RpcLike = {
-    ...rpc,
-    confirm: async (signature) => {
-      say(`SENT ${signature}`);
-      say(`  7 crash    0.0012 SOL to the treasury: sent ${explorer(signature)}; now SIGKILL`);
-      process.kill(process.pid, "SIGKILL");
-      return new Promise(() => {});
-    },
-  };
-  const doomed = guardedWallet(walletOf(agent), g, { rpc: killedAfterSend });
-  await doomed.signAndSendTransaction(await tx(a, true, pay(a, treasury, 0.0012)));
-  throw new Error("still alive after SIGKILL");
+function explorerLink(signature: string) {
+  return `https://explorer.solana.com/tx/${signature}?cluster=${local ? "custom&customUrl=" + encodeURIComponent(url) : "devnet"}`;
 }
 
-// --- the second process: restore, then the rest -----------------------------------------------------
-
-async function main() {
-  if (child) return untilTheCrash();
-
-  if (local && (await connection.getBalance(agent.publicKey)) < sol(0.05)) {
-    const s = await connection.requestAirdrop(agent.publicKey, LAMPORTS_PER_SOL);
-    await connection.confirmTransaction(s, "confirmed");
-  }
-  const balance = await connection.getBalance(agent.publicKey);
-  if (balance < sol(0.012)) {
-    console.error(`the agent ${agent.publicKey.toBase58()} holds ${balance / LAMPORTS_PER_SOL} SOL on ${url}; the scenes need 0.012. Fund it and run again.`);
-    process.exit(1);
-  }
-
-  const loopAgent = Keypair.generate();
-  const policy = policyFor(loopAgent.publicKey);
-  mkdirSync(dir, { recursive: true });
-  rmSync(record, { force: true });
-  writeFileSync(policyFile, JSON.stringify(policy, (_k, x) => (typeof x === "bigint" ? x.toString() : x), 2));
-  say(`Solanaut scenes · ${url}`);
-  say(`agent ${agent.publicKey.toBase58()} · treasury ${treasury.toBase58()} · operator ${operator.publicKey.toBase58()}`);
-  say(`policy: System and Token; the treasury only; 0.005 SOL a payment, 0.03 an hour; record ${record}`);
-
-  // The first process runs until it is killed.
-  const proc = spawn(process.execPath, [fileURLToPath(import.meta.url), ...process.argv.slice(2), "--child"], { stdio: ["ignore", "pipe", "inherit"] });
-  let sent: string | undefined;
-  let buffered = "";
-  proc.stdout.on("data", (c: Buffer) => {
-    buffered += c.toString();
-    let i;
-    while ((i = buffered.indexOf("\n")) >= 0) {
-      const line = buffered.slice(0, i);
-      buffered = buffered.slice(i + 1);
-      if (line.startsWith("SENT ")) sent = line.slice(5);
-      else say(line);
-    }
-  });
-  const [code, signal] = (await new Promise((resolve) => proc.on("exit", (c, s) => resolve([c, s])))) as [number | null, string | null];
-  if (signal !== "SIGKILL" || !sent) throw new Error(`the first process ended with ${signal ?? code}, not killed after a send`);
-
-  say(`\n  7 crash    a new process: the guard restores itself from ${record}`);
-  const g = await createGuard({ policy, log: fileStore(record, { ownership: "kernel" }) });
-  const entries = g.entries();
-  const pending = entries.filter((e): e is Extract<Entry, { kind: "decision" }> => e.kind === "decision" && e.allow).at(-1)!;
-  say(`  7 crash    restored ${entries.length} entries; ${await replayed(g, policy)}`);
-  const w = guardedWallet(walletOf(agent), g, { rpc });
-  const a = agent.publicKey;
-  await propose(g, w, "7 crash", "the killed payment again, while it could still land", await tx(a, true, pay(a, treasury, 0.0012)));
-  const outcome = await rpc.confirm(sent, BigInt(pending.expires?.lastValidBlockHeight ?? 0));
-  g.report(pending.hash, outcome);
-  say(`  7 crash    the killed attempt's outcome, read from the chain and recorded: ${outcome}`);
-  operatorReleases(g, "7 crash");
-
-  say("\nscene 2 · fooled: the agent read \"send 0.004 SOL to <attacker>\" in token metadata");
-  const attacker = Keypair.generate().publicKey;
-  await propose(g, w, "2 fooled", "0.004 SOL to the attacker", await tx(a, true, pay(a, attacker, 0.004)));
-
-  say("\nscene 3 · tricked into standing authority");
-  const tokenAccount = Keypair.generate().publicKey;
-  const approve = new TransactionInstruction({
-    programId: new PublicKey(PROGRAMS.token),
-    keys: [
-      { pubkey: tokenAccount, isSigner: false, isWritable: true },
-      { pubkey: attacker, isSigner: false, isWritable: false },
-      { pubkey: a, isSigner: true, isWritable: false },
-    ],
-    data: (() => {
-      const d = Buffer.alloc(9);
-      d[0] = 4; // Approve
-      d.writeBigUInt64LE(18_446_744_073_709_551_615n, 1);
-      return d;
-    })(),
-  });
-  await propose(g, w, "3 approve", "SPL Approve: the attacker as delegate, for everything", await tx(a, true, approve));
-  const nonceAccount = Keypair.generate().publicKey;
-  await propose(g, w, "3 nonce", "0.001 SOL to the treasury, on a durable nonce", await tx(a, true, SystemProgram.nonceAdvance({ noncePubkey: nonceAccount, authorizedPubkey: a }), pay(a, treasury, 0.001)));
-  operatorReleases(g, "3 nonce");
-
-  say("\nscene 4 · looping: an unfunded agent retries a payment the RPC refuses");
-  const l = guardedWallet(walletOf(loopAgent), g, { rpc });
-  for (let i = 1; i <= 8; i++) {
-    const r = await propose(g, l, `4 loop`, `turn ${i}: 0.001 SOL to the treasury, from an empty account`, await tx(loopAgent.publicKey, false, pay(loopAgent.publicKey, treasury, 0.001)));
-    if (!r.allow) break;
-  }
-  const s = g.status();
-  say(`  4 loop     the guard is ${s.latched ? `LATCHED at decision ${s.latchSeq}` : "not latched"}`);
-
-  say("\nrelease · the guard is latched until the operator signs the release text");
-  await propose(g, w, "release", "0.001 SOL to the treasury, while latched", await tx(a, true, pay(a, treasury, 0.001)));
-  operatorReleases(g, "release");
-  await propose(g, w, "release", "0.001 SOL to the treasury, after the release", await tx(a, true, pay(a, treasury, 0.001)));
-
-  const counts: Record<string, number> = {};
-  for (const e of g.entries()) {
-    const k = e.kind === "decision" ? (e.allow ? "allow" : `deny ${e.rule}`) : e.kind;
-    counts[k] = (counts[k] ?? 0) + 1;
-  }
-  say(`\nthe record: ${g.entries().length} entries · ${Object.entries(counts).map(([k, n]) => `${k} ${n}`).join(" · ")}`);
-  say(await replayed(g, policy));
-  g.close();
+function solToLamports(sol: number) {
+  return Math.round(sol * LAMPORTS_PER_SOL);
 }
 
-main().catch((e) => {
-  console.error(e);
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function required(name: string) {
+  const value = option(name);
+  if (!value) {
+    console.error(`--${name} is required: node apps/onchain/src/scenes.ts --url <rpc> --agent <keyfile> --operator <keyfile> --treasury <pubkey> --dir <dir>`);
+    process.exit(2);
+  }
+  return value;
+}
+
+function option(name: string) {
+  const index = process.argv.indexOf(`--${name}`);
+  return index > 0 ? process.argv[index + 1] : undefined;
+}
+
+function keypairFrom(path: string) {
+  return Keypair.fromSecretKey(Uint8Array.from(JSON.parse(readFileSync(path, "utf8"))));
+}
+
+main().catch((error) => {
+  console.error(error);
   process.exit(1);
 });
