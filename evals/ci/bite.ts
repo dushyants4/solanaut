@@ -8,11 +8,14 @@ export const CAMPAIGNS = ["ci/bite-faults.ts", "ci/bite-partitions-faults.ts", "
 export function validateInventory(paths: readonly string[]): void {
   if (JSON.stringify([...paths].sort()) !== JSON.stringify([...CAMPAIGNS].sort())) throw new Error("fault campaign inventory differs from the maintained list");
 }
+/** Campaigns too long for a partition's 300 s, run instead in shards by a CI job of their own (ci.yml, package-faults). */
+export const OWN_JOB: readonly string[] = ["packaging/faults.ts"];
 export function selectCampaigns(args:readonly string[]):readonly string[]{
   if(args.length===0)return [...CAMPAIGNS];
   if(args.length!==2 || args[0]!=="--partition" || !/^[123]$/.test(args[1]!))throw new Error("invalid fault partition arguments");
-  const index=Number(args[1])-1,start=Math.floor(CAMPAIGNS.length*index/3),end=Math.floor(CAMPAIGNS.length*(index+1)/3);
-  return CAMPAIGNS.slice(start,end);
+  const partitioned=CAMPAIGNS.filter(path=>!OWN_JOB.includes(path));
+  const index=Number(args[1])-1,start=Math.floor(partitioned.length*index/3),end=Math.floor(partitioned.length*(index+1)/3);
+  return partitioned.slice(start,end);
 }
 export function executeCampaigns(run: (path: string) => number | null, fingerprint: () => string,args:readonly string[]=[]): { ok: boolean; failed: string[]; skipped: string[] } {
   const campaigns=selectCampaigns(args);

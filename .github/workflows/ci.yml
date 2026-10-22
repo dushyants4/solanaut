@@ -49,9 +49,6 @@ jobs:
       - name: installed package checks
         if: ${{ !cancelled() }}
         run: npm run test:package
-      - name: installed package fault injections
-        if: ${{ !cancelled() }}
-        run: npm run test:package:faults
       - name: latch fault injections
         if: ${{ !cancelled() }}
         run: npm run test:latch:faults
@@ -77,6 +74,30 @@ jobs:
       - run: npm cache add @gubernaut/core@1.0.1
       - name: sequential fault campaigns with restoration checks
         run: npm run test:bite -- --partition ${{ matrix.partition }}
+
+  package-faults:
+    # The installed-package campaign plants 144 faults, each run through npm pack, install and the
+    # installed battery: about 16 minutes whole, so four shards of 36 share it.
+    name: installed package fault injections (${{ matrix.shard }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 26.7.0
+          cache: npm
+      - run: npm ci
+      - run: npm run release:prepare
+      - run: npm cache add @gubernaut/core@1.0.1
+      - name: one shard of the installed package fault injections
+        run: npm run test:package:faults -- --shard ${{ matrix.shard }}/4
 
   fuzz:
     name: million-input decoder fuzz

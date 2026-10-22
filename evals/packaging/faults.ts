@@ -12,8 +12,6 @@ function battery() {
     cwd: root, encoding: "utf8", env: { ...process.env, SOLANAUT_PACKAGE: stage },
   });
 }
-const baseline = battery();
-assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
 const faults = [
   { name: "facade-report-fifo", path: "dist/src/owned-guard.js", caught: "installed private trusted report", damage: (text: string) => text.replace("report(decisionHash, outcome) {\n            return captured(() => {", "report(decisionHash, outcome) {\n            return (capture => capture()())(() => {") },
   { name: "facade-report-commit", path: "dist/src/owned-guard.js", caught: "installed private trusted report", damage: (text: string) => text.replace("guard.report(decisionHash, outcome);", "void decisionHash; void outcome;") },
@@ -168,7 +166,17 @@ const faults = [
   } },
   { name: "cli", path: "dist/bin/replay.js", caught: "installed replay", damage: (text: string) => text.replace(/^#![^\n]*\n/, "") },
 ];
-for (const fault of faults) {
+
+// `--shard k/n` runs every n-th fault from the k-th, so n CI jobs share the campaign, which takes
+// about 16 minutes whole. `--list` prints the names it would run, and runs nothing.
+const selected = selectShard(faults, process.argv.slice(2).filter((arg) => arg !== "--list"));
+if (process.argv.includes("--list")) {
+  for (const fault of selected) console.log(fault.name);
+  process.exit(0);
+}
+const baseline = battery();
+assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
+for (const fault of selected) {
   const path = join(stage, fault.path);
   const original = readFileSync(path);
   try {
@@ -192,3 +200,12 @@ for (const fault of faults) {
 const restored = battery();
 assert.equal(restored.status, 0, restored.stdout + restored.stderr);
 console.log("All package faults caught; restored candidate passes");
+
+function selectShard<T>(all: readonly T[], args: readonly string[]): readonly T[] {
+  if (args.length === 0) return all;
+  const shard = args.length === 2 && args[0] === "--shard" ? /^([1-9][0-9]*)\/([1-9][0-9]*)$/.exec(args[1]!) : null;
+  if (!shard || Number(shard[1]) > Number(shard[2])) throw new Error("usage: node evals/packaging/faults.ts [--list] [--shard k/n]");
+  const index = Number(shard[1]) - 1;
+  const count = Number(shard[2]);
+  return all.filter((_, position) => position % count === index);
+}

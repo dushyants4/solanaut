@@ -5,7 +5,14 @@ const run=()=>spawnSync(process.execPath,["--test","evals/ci/bite-partitions.tes
 const baseline=run();assert.equal(baseline.status,0,baseline.stdout+baseline.stderr);
 const faults=[
   ["duplicate-partition","evals/ci/bite.ts","const index=Number(args[1])-1","const index=0"],
-  ["missing-tail","evals/ci/bite.ts","return CAMPAIGNS.slice(start,end);","return CAMPAIGNS.slice(start,end-1);"],
+  ["missing-tail","evals/ci/bite.ts","return partitioned.slice(start,end);","return partitioned.slice(start,end-1);"],
+  ["own-job-extra","evals/ci/bite.ts",'export const OWN_JOB: readonly string[] = ["packaging/faults.ts"];','export const OWN_JOB: readonly string[] = ["packaging/faults.ts", "sdk/request-faults.ts"];'],
+  ["own-job-unpartitioned","evals/ci/bite.ts","const partitioned=CAMPAIGNS.filter(path=>!OWN_JOB.includes(path));","const partitioned=[...CAMPAIGNS];"],
+  ["shard-skips-faults","evals/packaging/faults.ts","return all.filter((_, position) => position % count === index);","return all.filter((_, position) => position % count === index && position < 140);"],
+  ["list-hides-faults","evals/packaging/faults.ts","for (const fault of selected) console.log(fault.name);","for (const fault of selected.slice(1)) console.log(fault.name);"],
+  ["workflow-missing-shard",".github/workflows/ci.yml","shard: [1, 2, 3, 4]","shard: [1, 2, 3]"],
+  ["workflow-shard-command",".github/workflows/ci.yml","--shard ${{ matrix.shard }}/4","--shard 1/4"],
+  ["workflow-skip-package-job",".github/workflows/ci.yml","name: installed package fault injections (${{ matrix.shard }})","name: installed package fault injections (${{ matrix.shard }})\n    if: false"],
   ["invalid-partition","evals/ci/bite.ts","/^[123]$/","/^[1234]$/"],
   ["implicit-subset","evals/ci/bite.ts","if(args.length===0)return [...CAMPAIGNS];","if(args.length===0)return CAMPAIGNS.slice(1);"],
   ["failure-loss","evals/ci/bite.ts","if (result !== 0) failed.push(path);","if (false) failed.push(path);"],
@@ -19,7 +26,7 @@ const faults=[
 ] as const;
 for(const [name,path,before,after] of faults){
   const source=readFileSync(path,"utf8");assert.equal(source.split(before).length,2,"missing or ambiguous partition fault: "+name);
-  try{writeFileSync(path,source.replace(before,after));const changed=run();assert.equal(changed.status,1,changed.stdout+changed.stderr);assert.equal(changed.signal,null);assert.equal(changed.error,undefined);assert.match(changed.stdout,/tests 8\b/);console.log("caught fault partition fault: "+name);}
+  try{writeFileSync(path,source.replace(before,after));const changed=run();assert.equal(changed.status,1,changed.stdout+changed.stderr);assert.equal(changed.signal,null);assert.equal(changed.error,undefined);assert.match(changed.stdout,/tests 9\b/);console.log("caught fault partition fault: "+name);}
   finally{writeFileSync(path,source);}
 }
 const restored=run();assert.equal(restored.status,0,restored.stdout+restored.stderr);
