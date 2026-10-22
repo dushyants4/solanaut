@@ -200,6 +200,7 @@ repeated; `docs/CLAIMS.md` lists each one and why.
 6. Ask rather than assume. A plausible answer is worse than a question.
 7. Synchronise at every milestone: commit, push `origin`. Work only on this disk has not happened.
 8. Nothing goes public, gets submitted, or touches real funds without the human.
+9. Write code to `STYLE.md`: it reads top-down like prose, in the domain's words, one statement per line.
 
 ## Close every session
 

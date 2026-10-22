@@ -141,7 +141,7 @@ and receipts say so. The Alpha's independent red team (RT-2) is Claude's, on ret
      and take the next item.
 3. **Tests first.** At least one per requirement ID, named by the ID. Run them and see each fail for the right reason,
    then save that output for the receipt.
-4. **Build to the tests.** Match the code around it:
+4. **Build to the tests.** Write it to `STYLE.md`:
    - TypeScript run natively by Node 26 for development; a release-only build emits JavaScript and declarations for
      npm consumers; ESM; `node:test`; `@solana/kit`; never
      `@solana/web3.js`;
@@ -219,7 +219,8 @@ returns to:
 
 ## Style
 
-- **Code** reads like the code around it. The density and the naming of its comments match.
+- **Code** is written to `STYLE.md`: it reads top-down like prose, in the domain's words, one statement per line,
+  with comments that say why.
 - **Documents** are plain and short, in British spelling, as the rest of this repository is.
   - Every number carries its scope, and "measured" is never written where "specified" is meant.
   - Nothing is called done until its evidence is in `evals/` or `runs/`.
