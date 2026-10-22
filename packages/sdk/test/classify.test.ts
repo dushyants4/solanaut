@@ -255,8 +255,45 @@ test("TransferChecked names its mint and decimals, under Token and under Token-2
 });
 
 test("Token-2022 TransferCheckedWithFee is value-moving while Token keeps discriminator 26 denied", () => {
-  assert.deepEqual(classifyInstruction(PROGRAMS.token2022, Uint8Array.of(26)), { name: "TransferCheckedWithFee", class: "value-moving" });
-  assert.equal(classifyInstruction(PROGRAMS.token, Uint8Array.of(26)).class, "denied");
+  assert.deepEqual(classifyInstruction(PROGRAMS.token2022, Uint8Array.of(26, 1)), { name: "TransferCheckedWithFee", class: "value-moving" });
+  assert.equal(classifyInstruction(PROGRAMS.token2022, Uint8Array.of(26)).class, "denied");
+  assert.equal(classifyInstruction(PROGRAMS.token, Uint8Array.of(26, 1)).class, "denied");
+});
+
+// Token-2022's instruction 26 is its transfer-fee extension: the second byte names the
+// sub-instruction, and TransferCheckedWithFee is sub-instruction 1, followed by the gross amount
+// (u64), the decimals (u8) and the fee (u64). Its accounts are TransferChecked's.
+const transferFee = async (data: number[]) => ({
+  programAddress: TOKEN_2022,
+  accounts: [
+    { address: await ata(AGENT, PYUSD, TOKEN_2022), role: 1 },
+    { address: PYUSD, role: 0 },
+    { address: await ata(TREASURY, PYUSD, TOKEN_2022), role: 1 },
+    { address: AGENT, role: 2, signer: signer(AGENT) },
+  ],
+  data: Uint8Array.from(data),
+}) as Instruction;
+const u64le = (value: bigint) => [...new Uint8Array(new BigUint64Array([value]).buffer)];
+
+test("Token-2022 TransferCheckedWithFee is read at its real layout, so an amount past 2^56 is counted whole", async () => {
+  for (const amount of [5n, 2n ** 56n + 5n]) {
+    const e = fx([await transferFee([26, 1, ...u64le(amount), 6, ...u64le(3n)])]);
+    assert.deepEqual(e.denied, []);
+    assert.equal(e.tokens.length, 1);
+    const [moved] = e.tokens;
+    assert.deepEqual([moved!.program, moved!.mint, moved!.toOwner, moved!.amount, moved!.decimals], ["token-2022", PYUSD, TREASURY, amount, 6]);
+  }
+});
+
+test("Token-2022's other transfer-fee instructions, padded to TransferCheckedWithFee's length, are denied and move nothing", async () => {
+  const names = ["InitializeTransferFeeConfig", "WithdrawWithheldTokensFromMint", "WithdrawWithheldTokensFromAccounts", "HarvestWithheldTokensToMint", "SetTransferFee"];
+  for (const [sub, name] of [[0, names[0]], [2, names[1]], [3, names[2]], [4, names[3]], [5, names[4]]] as const) {
+    assert.deepEqual(classifyInstruction(PROGRAMS.token2022, Uint8Array.of(26, sub)), { name, class: "denied" });
+    const e = fx([await transferFee([26, sub, ...new Array(17).fill(0)])]);
+    assert.deepEqual(e.tokens, []);
+    assert.deepEqual(deniedNames(e), [`instruction-denied:Token-2022.${name}`]);
+  }
+  assert.equal(classifyInstruction(PROGRAMS.token2022, Uint8Array.of(26, 9)).class, "denied");
 });
 
 test("Token: Approve, CloseAccount and the other authority-granting instructions are denied; Revoke and SyncNative are benign", async () => {

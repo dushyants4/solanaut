@@ -124,7 +124,9 @@ const TOKEN_NAMES = [
   "BurnChecked", "InitializeAccount2", "SyncNative", "InitializeAccount3", "InitializeMultisig2", "InitializeMint2",
   "GetAccountDataSize", "InitializeImmutableOwner", "AmountToUiAmount", "UiAmountToAmount",
 ];
-const TOKEN_2022_EXTRA: Record<number, string> = { 26: "TransferCheckedWithFee" };
+// Token-2022's instruction 26 is its transfer-fee extension, and the second byte names which of these it is.
+// Only TransferCheckedWithFee moves value; the others configure, withdraw or harvest fees, and are denied.
+const TRANSFER_FEE_NAMES = ["InitializeTransferFeeConfig", "TransferCheckedWithFee", "WithdrawWithheldTokensFromMint", "WithdrawWithheldTokensFromAccounts", "HarvestWithheldTokensToMint", "SetTransferFee"];
 const TOKEN_EXTRA: Record<number, string> = { 38: "WithdrawExcessLamports", 45: "UnwrapLamports", 255: "Batch" };
 const TOKEN_MOVING = new Set(["Transfer", "TransferChecked"]);
 const TOKEN_BENIGN = new Set(["Revoke", "SyncNative", "InitializeAccount", "InitializeAccount2", "InitializeAccount3"]);
@@ -148,8 +150,12 @@ export function classifyInstruction(program: string, data: Uint8Array): { name: 
     case PROGRAMS.token2022: {
       if (data.length < 1) return { name: "unknown", class: "denied" };
       const d = data[0]!;
-      const name = TOKEN_NAMES[d] ?? (program === PROGRAMS.token ? TOKEN_EXTRA[d] : TOKEN_2022_EXTRA[d]) ?? `unknown(${d})`;
-      return { name, class: (TOKEN_MOVING.has(name) || name === "TransferCheckedWithFee") ? "value-moving" : TOKEN_BENIGN.has(name) ? "benign" : "denied" };
+      if (program === PROGRAMS.token2022 && d === 26) {
+        const name = data.length < 2 ? "unknown(26)" : TRANSFER_FEE_NAMES[data[1]!] ?? `unknown(26.${data[1]})`;
+        return { name, class: name === "TransferCheckedWithFee" ? "value-moving" : "denied" };
+      }
+      const name = TOKEN_NAMES[d] ?? (program === PROGRAMS.token ? TOKEN_EXTRA[d] : undefined) ?? `unknown(${d})`;
+      return { name, class: TOKEN_MOVING.has(name) ? "value-moving" : TOKEN_BENIGN.has(name) ? "benign" : "denied" };
     }
     case PROGRAMS.computeBudget: {
       if (data.length < 1) return { name: "unknown", class: "denied" };
@@ -322,8 +328,11 @@ function systemOutflow(name: string, data: Uint8Array, a: AccountMeta[], princip
 function tokenOutflow(name: string, program: "token" | "token-2022", data: Uint8Array, a: AccountMeta[], ctx: ClassifyContext): TokenOutflow | string {
   // Transfer: u8 3, u64 amount; accounts: source, destination, authority.
   // TransferChecked: u8 12, u64 amount, u8 decimals; accounts: source, mint, destination, authority.
+  // TransferCheckedWithFee (Token-2022): u8 26, u8 1, u64 amount, u8 decimals, u64 fee; accounts as TransferChecked.
+  // The amount counted is the gross amount, which is what leaves the source.
   const feeChecked = name === "TransferCheckedWithFee";
   const checked = feeChecked || name === "TransferChecked";
+  const amountAt = feeChecked ? 2 : 1;
   if (data.length !== (feeChecked ? 19 : checked ? 10 : 9) || a.length < (checked ? 4 : 3)) return `data or accounts do not match ${name}'s layout`;
   const source = a[0]!.address;
   const toAccount = a[checked ? 2 : 1]!.address;
@@ -338,5 +347,5 @@ function tokenOutflow(name: string, program: "token" | "token-2022", data: Uint8
     }
   }
   const toOwner = mint === null ? null : ctx.destinations.find((d) => associatedTokenAddress(d, mint!, program) === toAccount) ?? null;
-  return { program, mint, fromAccount: source, authority: authority.address, toAccount, toOwner, amount: u64(data, 1), decimals: checked ? data[9]! : null };
+  return { program, mint, fromAccount: source, authority: authority.address, toAccount, toOwner, amount: u64(data, amountAt), decimals: checked ? data[amountAt + 8]! : null };
 }
