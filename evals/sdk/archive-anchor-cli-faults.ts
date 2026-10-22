@@ -3,10 +3,10 @@ import {spawnSync} from "node:child_process";
 import {readFileSync,writeFileSync} from "node:fs";
 const path="packages/sdk/bin/verify-archive.ts",original=readFileSync(path,"utf8");
 const faults=[
-  ["paired-flags",'seen.has("--anchor-seq")!==seen.has("--anchor-head")',"false"],
-  ["sequence-value","anchorSeq=Number(value)","anchorSeq=Number(value)+1"],
-  ["head-value","head:anchorHead!",'head:"0".repeat(64)'],
-  ["drop-anchor","if(anchorSeq!==undefined)","if(false)"],
+  ["paired-flags",'seen.has("--anchor-seq") !== seen.has("--anchor-head")',"false"],
+  ["sequence-value","anchorSeq = Number(value)","anchorSeq=Number(value)+1"],
+  ["head-value","head: anchorHead!",'head:"0".repeat(64)'],
+  ["drop-anchor","if (anchorSeq !== undefined)","if(false)"],
 ] as const;
 const run=()=>spawnSync(process.execPath,["--test","--test-name-pattern=ANC-3","packages/sdk/test/archive-cli.test.ts"],{encoding:"utf8",timeout:30_000});
 const baseline=run(); assert.equal(baseline.status,0,baseline.stdout+baseline.stderr);

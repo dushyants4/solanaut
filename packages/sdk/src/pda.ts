@@ -42,7 +42,8 @@ const MARKER = new TextEncoder().encode("ProgramDerivedAddress");
 
 /** [address, bump]. Throws only if no bump works, which does not happen in practice. */
 export function findProgramAddress(seeds: Uint8Array[], program: string): [string, number] {
-  if (seeds.length > 16 || seeds.some((s) => s.length > 32)) throw new Error("at most 16 seeds of at most 32 bytes each");
+  if (seeds.length > 16 || seeds.some((s) => s.length > 32))
+    throw new Error("at most 16 seeds of at most 32 bytes each");
   const programBytes = decodeBase58(program);
   for (let bump = 255; bump >= 0; bump--) {
     const h = createHash("sha256");
@@ -54,7 +55,10 @@ export function findProgramAddress(seeds: Uint8Array[], program: string): [strin
   throw new Error("no viable bump seed");
 }
 
-const TOKEN_PROGRAM = { token: "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA", "token-2022": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb" } as const;
+const TOKEN_PROGRAM = {
+  token: "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+  "token-2022": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+} as const;
 const ASSOCIATED_TOKEN_PROGRAM = "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL";
 
 // Derivation costs a few hash-and-curve rounds; a guard asks about the same owners and mints
@@ -67,7 +71,10 @@ export function associatedTokenAddress(owner: string, mint: string, program: "to
   const key = `${owner}:${mint}:${program}`;
   const hit = cache.get(key);
   if (hit) return hit;
-  const [address] = findProgramAddress([decodeBase58(owner), decodeBase58(TOKEN_PROGRAM[program]), decodeBase58(mint)], ASSOCIATED_TOKEN_PROGRAM);
+  const [address] = findProgramAddress(
+    [decodeBase58(owner), decodeBase58(TOKEN_PROGRAM[program]), decodeBase58(mint)],
+    ASSOCIATED_TOKEN_PROGRAM,
+  );
   if (cache.size >= CACHE_MAX) cache.delete(cache.keys().next().value!);
   cache.set(key, address);
   return address;

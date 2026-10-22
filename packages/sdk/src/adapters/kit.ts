@@ -23,7 +23,10 @@ export interface KitTransactionLike {
 /** kit's TransactionPartialSigner. */
 export interface PartialSignerLike {
   readonly address: string;
-  signTransactions(transactions: readonly KitTransactionLike[], config?: unknown): Promise<readonly Readonly<Record<string, Uint8Array>>[]>;
+  signTransactions(
+    transactions: readonly KitTransactionLike[],
+    config?: unknown,
+  ): Promise<readonly Readonly<Record<string, Uint8Array>>[]>;
 }
 
 export interface GuardedSignerOptions {
@@ -40,9 +43,14 @@ function lastValidBlockHeightOf(lifetime: unknown): bigint | undefined {
   return undefined;
 }
 
-export function guardedSigner<S extends PartialSignerLike>(signer: S, guard: Guard, opts: GuardedSignerOptions = {}): PartialSignerLike & { readonly address: S["address"] } {
+export function guardedSigner<S extends PartialSignerLike>(
+  signer: S,
+  guard: Guard,
+  opts: GuardedSignerOptions = {},
+): PartialSignerLike & { readonly address: S["address"] } {
   const now = opts.now ?? Date.now;
-  if (!guard.policy.principal.includes(signer.address)) throw new Error(`the signer's address ${signer.address} is not in the policy's principal`);
+  if (!guard.policy.principal.includes(signer.address))
+    throw new Error(`the signer's address ${signer.address} is not in the policy's principal`);
 
   const report = (d: Decision, outcome: "expired" | "unknown") => {
     try {
@@ -60,8 +68,11 @@ export function guardedSigner<S extends PartialSignerLike>(signer: S, guard: Gua
         const message = new Uint8Array(tx.messageBytes);
         const lastValidBlockHeight = lastValidBlockHeightOf(tx.lifetimeConstraint);
         let blockHeight: bigint | undefined;
-        try { blockHeight = opts.rpc ? await opts.rpc.getBlockHeight() : undefined; }
-        catch { throw denied(guard, "rpc-unavailable", "RPC height unavailable", null); }
+        try {
+          blockHeight = opts.rpc ? await opts.rpc.getBlockHeight() : undefined;
+        } catch {
+          throw denied(guard, "rpc-unavailable", "RPC height unavailable", null);
+        }
         const decision = guard.check({ message, at: now(), blockHeight, lastValidBlockHeight });
         if (!decision.allow) throw denied(guard, decision.rule!, decision.reason, decision);
         const receipt = guard.redeem(message, decision.hash, blockHeight ?? lastValidBlockHeight);
@@ -90,10 +101,19 @@ export function guardedSigner<S extends PartialSignerLike>(signer: S, guard: Gua
     if (signatures.length !== admitted.length || !admitted.every((_, i) => valid(i))) {
       // A message the signer validly signed may yet land, so it is held as unknown; the rest were never signed.
       admitted.forEach((a, i) => report(a.decision, valid(i) ? "unknown" : "expired"));
-      throw denied(guard, "wallet-changed-message", "the signer did not return one signature per transaction, each verifying over its admitted message", null);
+      throw denied(
+        guard,
+        "wallet-changed-message",
+        "the signer did not return one signature per transaction, each verifying over its admitted message",
+        null,
+      );
     }
     return signatures;
   }
 
-  return Object.freeze({ address: signer.address, signTransactions: (transactions: readonly KitTransactionLike[], config?: unknown) => adapterBoundary(guard, () => signTransactions(transactions, config)) });
+  return Object.freeze({
+    address: signer.address,
+    signTransactions: (transactions: readonly KitTransactionLike[], config?: unknown) =>
+      adapterBoundary(guard, () => signTransactions(transactions, config)),
+  });
 }

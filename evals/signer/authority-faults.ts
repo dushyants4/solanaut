@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 const faults = [
   ["mutable-host-configuration", "packages/sdk/src/authority.ts", 'return Object.freeze({ mode: value.mode, clock: Object.freeze({ wall: clock.wall, monotonicNs: clock.monotonicNs }) });', 'return value;'],
-  ["caller-decision-attribution", "packages/sdk/src/guard.ts", 'source: env.authority ? "signer" as const : "caller" as const,', 'source: "caller" as const,'],
+  ["caller-decision-attribution", "packages/sdk/src/guard.ts", 'source: env.authority ? ("signer" as const) : ("caller" as const),', 'source: "caller" as const,'],
   ["caller-report-attribution", "packages/sdk/src/guard.ts", 'source: authority ? "signer" : "caller"', 'source: "caller"'],
   ["allow-non-devnet", "packages/sdk/src/guard.ts", 'if (authority && policy.latch.cluster !== "devnet")', 'if (false)'],
   ["use-changing-wall-clock", "apps/signer/src/clock.ts", 'anchor.wall + Number(monotonic() - origin) / 1_000_000', 'wall()'],

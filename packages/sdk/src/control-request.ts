@@ -1,4 +1,4 @@
-// ADR-019: durable non-admission requests share the proposal identity namespace.
+// Durable control requests, other than admissions, share the proposals' identity namespace (ADR-019).
 import { canonicalJSON, sha256hex } from "./canonical.ts";
 import { bindRequest, requestKey, type RequestIdentity } from "./request.ts";
 import type { ControlRequestEntry, ControlResponseEntry, DecisionEntry } from "./log.ts";

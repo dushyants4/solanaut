@@ -29,10 +29,15 @@ export interface CockpitOptions {
 }
 
 const here = (name: string) => fileURLToPath(new URL(name, import.meta.url));
-const PAGE = { "/": ["page.html", "text/html; charset=utf-8"], "/cockpit.js": ["cockpit.js", "text/javascript; charset=utf-8"], "/cockpit.css": ["cockpit.css", "text/css; charset=utf-8"] } as const;
+const PAGE = {
+  "/": ["page.html", "text/html; charset=utf-8"],
+  "/cockpit.js": ["cockpit.js", "text/javascript; charset=utf-8"],
+  "/cockpit.css": ["cockpit.css", "text/css; charset=utf-8"],
+} as const;
 
 const HEADERS = {
-  "content-security-policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'",
+  "content-security-policy":
+    "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'",
   "x-content-type-options": "nosniff",
   "referrer-policy": "no-referrer",
   "x-frame-options": "DENY",
@@ -48,11 +53,19 @@ const json = (v: unknown) => JSON.stringify(v, (_k, x) => (typeof x === "bigint"
 function readRecord(path: string): Entry[] {
   const text = readFileSync(path, "utf8");
   // A last line without its newline is a write in progress: the guard has not answered on it yet.
-  return text.slice(0, text.lastIndexOf("\n") + 1).split("\n").filter(Boolean).map((l) => JSON.parse(l) as Entry);
+  return text
+    .slice(0, text.lastIndexOf("\n") + 1)
+    .split("\n")
+    .filter(Boolean)
+    .map((l) => JSON.parse(l) as Entry);
 }
 
 async function rpcCall<T>(url: string, method: string, params: unknown[]): Promise<T> {
-  const res = await fetch(url, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ jsonrpc: "2.0", id: 1, method, params }) });
+  const res = await fetch(url, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ jsonrpc: "2.0", id: 1, method, params }),
+  });
   const body = (await res.json()) as { result?: T; error?: { message?: string } };
   if (body.error) throw new Error(`${method}: ${body.error.message}`);
   return body.result as T;
@@ -80,8 +93,16 @@ export function programError(err: unknown, logs: readonly string[]): string | nu
 
 async function chain(o: CockpitOptions, cache: Map<string, Recent>) {
   if (!o.rpc || !o.squads) return { configured: false };
-  const s = JSON.parse(readFileSync(o.squads, "utf8")) as { multisig: string; vault: string; spendingLimit: string; agent: string };
-  const info = await rpcCall<{ value: { data: [string, string] } | null }>(o.rpc, "getAccountInfo", [s.spendingLimit, { encoding: "base64", commitment: "confirmed" }]);
+  const s = JSON.parse(readFileSync(o.squads, "utf8")) as {
+    multisig: string;
+    vault: string;
+    spendingLimit: string;
+    agent: string;
+  };
+  const info = await rpcCall<{ value: { data: [string, string] } | null }>(o.rpc, "getAccountInfo", [
+    s.spendingLimit,
+    { encoding: "base64", commitment: "confirmed" },
+  ]);
   let limit = null;
   if (info.value) {
     const [sl] = multisig.generated.SpendingLimit.deserialize(Buffer.from(info.value.data[0], "base64"));
@@ -95,7 +116,11 @@ async function chain(o: CockpitOptions, cache: Map<string, Recent>) {
     };
   }
   const vault = await rpcCall<{ value: number }>(o.rpc, "getBalance", [s.vault, { commitment: "confirmed" }]);
-  const sigs = await rpcCall<{ signature: string; slot: number; err: unknown; confirmationStatus?: string }[]>(o.rpc, "getSignaturesForAddress", [s.agent, { limit: 10, commitment: "confirmed" }]);
+  const sigs = await rpcCall<{ signature: string; slot: number; err: unknown; confirmationStatus?: string }[]>(
+    o.rpc,
+    "getSignaturesForAddress",
+    [s.agent, { limit: 10, commitment: "confirmed" }],
+  );
   const recent: Recent[] = [];
   for (const x of sigs) {
     const known = cache.get(x.signature);
@@ -104,9 +129,23 @@ async function chain(o: CockpitOptions, cache: Map<string, Recent>) {
       continue;
     }
     // v1 transactions have been live since 2026-09-15: a read that does not opt in fails on them.
-    const tx = await rpcCall<{ slot: number; version: number | "legacy"; meta: { err: unknown; fee: number; logMessages?: string[] } | null } | null>(o.rpc, "getTransaction", [x.signature, { encoding: "json", commitment: "confirmed", maxSupportedTransactionVersion: 1 }]);
+    const tx = await rpcCall<{
+      slot: number;
+      version: number | "legacy";
+      meta: { err: unknown; fee: number; logMessages?: string[] } | null;
+    } | null>(o.rpc, "getTransaction", [
+      x.signature,
+      { encoding: "json", commitment: "confirmed", maxSupportedTransactionVersion: 1 },
+    ]);
     const err = tx?.meta ? tx.meta.err : x.err;
-    const r: Recent = { signature: x.signature, slot: x.slot, ok: err === null, error: programError(err, tx?.meta?.logMessages ?? []), fee: tx?.meta?.fee ?? null, version: tx?.version ?? null };
+    const r: Recent = {
+      signature: x.signature,
+      slot: x.slot,
+      ok: err === null,
+      error: programError(err, tx?.meta?.logMessages ?? []),
+      fee: tx?.meta?.fee ?? null,
+      version: tx?.version ?? null,
+    };
     // A finalized transaction never changes, so it is read once; a public RPC limits each method's rate.
     if (tx && x.confirmationStatus === "finalized") {
       cache.set(x.signature, r);
@@ -114,7 +153,14 @@ async function chain(o: CockpitOptions, cache: Map<string, Recent>) {
     }
     recent.push(r);
   }
-  return { configured: true, multisig: s.multisig, spendingLimit: s.spendingLimit, limit, vault: String(vault.value), recent };
+  return {
+    configured: true,
+    multisig: s.multisig,
+    spendingLimit: s.spendingLimit,
+    limit,
+    vault: String(vault.value),
+    recent,
+  };
 }
 
 export function createCockpit(o: CockpitOptions): Server {
@@ -122,7 +168,8 @@ export function createCockpit(o: CockpitOptions): Server {
   const finalized = new Map<string, Recent>();
   const server = createServer(async (req: IncomingMessage, res: ServerResponse) => {
     const port = (server.address() as { port: number } | null)?.port;
-    if (req.headers.host !== `127.0.0.1:${port}` && req.headers.host !== `localhost:${port}`) return send(res, 421, json({ error: "this cockpit answers only on 127.0.0.1 and localhost" }));
+    if (req.headers.host !== `127.0.0.1:${port}` && req.headers.host !== `localhost:${port}`)
+      return send(res, 421, json({ error: "this cockpit answers only on 127.0.0.1 and localhost" }));
     if (req.method !== "GET") return send(res, 405, json({ error: "the cockpit is read-only" }));
     const path = new URL(req.url ?? "/", "http://localhost").pathname;
     try {
@@ -148,11 +195,17 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   const record = arg("record");
   const policyPath = arg("policy");
   if (!record || !policyPath) {
-    console.error("usage: npm run cockpit -- --record <guard.jsonl> --policy <policy.json> [--rpc <url> --squads <squads.json>] [--port 8787]");
+    console.error(
+      "usage: npm run cockpit -- --record <guard.jsonl> --policy <policy.json> [--rpc <url> --squads <squads.json>] [--port 8787]",
+    );
     process.exit(2);
   }
   const port = Number(arg("port") ?? 8787);
-  createCockpit({ record, policy: policyPath, rpc: arg("rpc"), squads: arg("squads") }).listen(port, "127.0.0.1", () => {
-    console.log(`cockpit: http://127.0.0.1:${port}  (read-only; no keys; record ${record})`);
-  });
+  createCockpit({ record, policy: policyPath, rpc: arg("rpc"), squads: arg("squads") }).listen(
+    port,
+    "127.0.0.1",
+    () => {
+      console.log(`cockpit: http://127.0.0.1:${port}  (read-only; no keys; record ${record})`);
+    },
+  );
 }

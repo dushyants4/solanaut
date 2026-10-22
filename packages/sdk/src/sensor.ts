@@ -10,7 +10,12 @@ import type { Policy } from "./policy.ts";
 /** What a sensor may read of the guard's state. Rebuilt from the record on restore. */
 export interface SensorView {
   /** The last parsed proposals, oldest first: their intent, shape, fees with tips, and whether that intent has since landed. */
-  readonly recent: readonly { readonly intentKey: string; readonly shape: string; readonly fees: bigint; readonly landed?: boolean }[];
+  readonly recent: readonly {
+    readonly intentKey: string;
+    readonly shape: string;
+    readonly fees: bigint;
+    readonly landed?: boolean;
+  }[];
   /** Denials, failed and expired outcomes since the last landed one. */
   readonly failureStreak: number;
   /** Unknown outcomes since the last landed one. */
@@ -28,9 +33,14 @@ const ratio = (amount: bigint, cap: bigint) => (cap === 0n ? (amount > 0n ? 1 : 
 
 /** The largest share of a per-transaction cap this message would use: SOL, or any listed mint. */
 function value(e: EffectsV1, policy: Policy): number {
-  let v = ratio(e.sol.reduce((t, x) => t + x.lamports, 0n), policy.sol.maxPerTx);
+  let v = ratio(
+    e.sol.reduce((t, x) => t + x.lamports, 0n),
+    policy.sol.maxPerTx,
+  );
   for (const t of policy.tokens) {
-    const amount = e.tokens.filter((x) => x.mint === t.mint && x.program === t.program).reduce((sum, x) => sum + x.amount, 0n);
+    const amount = e.tokens
+      .filter((x) => x.mint === t.mint && x.program === t.program)
+      .reduce((sum, x) => sum + x.amount, 0n);
     v = Math.max(v, ratio(amount, t.maxPerTx));
   }
   return v;
@@ -52,7 +62,10 @@ export const sensorV0: Sensor = (e, s, policy, at, shape) => {
   const valence = clamp(0.2 - 0.3 * s.failureStreak, -1, 1);
   let repetition = 0;
   for (const prev of s.recent.slice(-RECENT)) {
-    if (prev.intentKey === e.intentKey) { repetition = 1; break; }
+    if (prev.intentKey === e.intentKey) {
+      repetition = 1;
+      break;
+    }
     if (prev.shape === shape) repetition = Math.max(repetition, 0.5);
   }
   return { intensity, valence, repetition };

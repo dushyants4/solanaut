@@ -27,14 +27,23 @@ const address = rest[0]!;
 const res = await fetch(url, {
   method: "POST",
   headers: { "content-type": "application/json" },
-  body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "getAccountInfo", params: [address, { encoding: "base64", commitment: "finalized" }] }),
+  body: JSON.stringify({
+    jsonrpc: "2.0",
+    id: 1,
+    method: "getAccountInfo",
+    params: [address, { encoding: "base64", commitment: "finalized" }],
+  }),
 });
 if (!res.ok) usage(`the RPC answered HTTP ${res.status}`);
-const body = (await res.json()) as { error?: { message: string }; result?: { value: { owner: string; data: [string, string] } | null } };
+const body = (await res.json()) as {
+  error?: { message: string };
+  result?: { value: { owner: string; data: [string, string] } | null };
+};
 if (body.error) usage(`the RPC refused: ${body.error.message}`);
 const account = body.result?.value;
 if (!account) usage(`no account at ${address}`);
-if (account.owner !== LOOKUP_TABLE_PROGRAM) usage(`${address} is owned by ${account.owner}, not the lookup table program`);
+if (account.owner !== LOOKUP_TABLE_PROGRAM)
+  usage(`${address} is owned by ${account.owner}, not the lookup table program`);
 if (account.data[1] !== "base64") usage(`the RPC returned ${account.data[1]}, not base64`);
 
 try {

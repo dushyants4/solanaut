@@ -7,10 +7,10 @@ const baseline=run();assert.equal(baseline.status,0,baseline.stdout+baseline.std
 const faults=[
   ["entry-hash","entry.hash !== hash","false"],
   ["immutable-entry","yield immutable(entry);","yield entry;"],
-  ["immutable-descendants","for(const item of Object.values(value))immutable(item);",""],
-  ["immutable-receipt","return immutable({ entries:","return ({ entries:"],
+  ["immutable-descendants","for (const item of Object.values(value)) immutable(item);",""],
+  ["immutable-receipt","return immutable({\n          entries:","return ({ entries:"],
   ["close-on-cancellation","await handle.close()","void 0"],
-  ["natural-source-check","before.size !== after.size || before.mtimeNs !== after.mtimeNs || before.ctimeNs !== after.ctimeNs ||\n        after.nlink !== 1n || !named.isFile() || named.ino !== before.ino || named.dev !== before.dev","false"],
+  ["natural-source-check","before.size !== after.size ||\n          before.mtimeNs !== after.mtimeNs ||\n          before.ctimeNs !== after.ctimeNs ||\n          after.nlink !== 1n ||\n          !named.isFile() ||\n          named.ino !== before.ino ||\n          named.dev !== before.dev","false"],
   ["head-pin","head !== expectedHead","false"],
   ["digest-pin","sha256 !== expectedDigest","false"],
   ["mutable-pin","head !== expectedHead","head !== options.expectedHead"],

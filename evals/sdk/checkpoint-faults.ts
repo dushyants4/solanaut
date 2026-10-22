@@ -39,7 +39,7 @@ for (const [name, from, to] of faults) {
 }
 const entry = "packages/sdk/src/index.ts", entrySource = readFileSync(entry, "utf8");
 try {
-  const damaged = entrySource.replace(/^export .*from "\.\/checkpoint\.ts";\n/m, ""); assert.notEqual(damaged, entrySource);
+  const damaged = entrySource.replace(/^export \{[^}]*\} from "\.\/checkpoint\.ts";\n/m, ""); assert.notEqual(damaged, entrySource);
   writeFileSync(entry, damaged); const changed = run(); assert.equal(changed.status, 1, changed.stdout + changed.stderr);
   assert.match(changed.stdout, /candidate SDK entry exports/); assert.match(changed.stdout, /tests 19\b/);
   console.log("caught checkpoint fault: candidate-export");

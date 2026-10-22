@@ -125,13 +125,22 @@ export function resolveMessage(message: DecodedMessage, pins: readonly PinnedTab
   const readonly: AccountMeta[] = [];
   for (const lookup of message.lookups) {
     const pin = byAddress.get(lookup.table);
-    if (!pin) throw new DecodeError("lookup-table-unpinned", `lookup table ${lookup.table} is not pinned in the policy`);
+    if (!pin)
+      throw new DecodeError("lookup-table-unpinned", `lookup table ${lookup.table} is not pinned in the policy`);
     const load = (index: number, isWritable: boolean) => {
       const address = pin.entries[index];
       if (address === undefined) {
-        throw new DecodeError("lookup-table-unpinned", `index ${index} of lookup table ${lookup.table} is past its ${pin.entries.length} pinned entries`);
+        throw new DecodeError(
+          "lookup-table-unpinned",
+          `index ${index} of lookup table ${lookup.table} is past its ${pin.entries.length} pinned entries`,
+        );
       }
-      (isWritable ? writable : readonly).push({ address, signer: false, writable: isWritable, lookup: { table: lookup.table, index } });
+      (isWritable ? writable : readonly).push({
+        address,
+        signer: false,
+        writable: isWritable,
+        lookup: { table: lookup.table, index },
+      });
     };
     for (const index of lookup.writableIndexes) load(index, true);
     for (const index of lookup.readonlyIndexes) load(index, false);
@@ -166,11 +175,16 @@ export function decodeTransaction(wire: Uint8Array): { message: Uint8Array; sign
     const { message, end } = read(wire, 0);
     const n = message.header.numRequiredSignatures;
     if (wire.length - end !== 64 * n) {
-      throw malformed(`a v1 message requiring ${n} signatures must be followed by ${64 * n} bytes, not ${wire.length - end}`);
+      throw malformed(
+        `a v1 message requiring ${n} signatures must be followed by ${64 * n} bytes, not ${wire.length - end}`,
+      );
     }
     const messageBytes = wire.slice(0, end);
     checkSize(message, messageBytes.length);
-    return { message: messageBytes, signatures: Array.from({ length: n }, (_, i) => wire.slice(end + 64 * i, end + 64 * (i + 1))) };
+    return {
+      message: messageBytes,
+      signatures: Array.from({ length: n }, (_, i) => wire.slice(end + 64 * i, end + 64 * (i + 1))),
+    };
   }
   const reader = new Reader(wire);
   const n = reader.shortU16("the signature count");
@@ -179,7 +193,9 @@ export function decodeTransaction(wire: Uint8Array): { message: Uint8Array; sign
   const message = decodeMessage(messageBytes);
   if (message.version === 1) throw malformed("a v1 message is never preceded by its signatures");
   if (message.header.numRequiredSignatures !== n) {
-    throw malformed(`the transaction carries ${n} signatures, but its message requires ${message.header.numRequiredSignatures}`);
+    throw malformed(
+      `the transaction carries ${n} signatures, but its message requires ${message.header.numRequiredSignatures}`,
+    );
   }
   return { message: messageBytes, signatures };
 }
@@ -198,7 +214,10 @@ function versionOf(first: number): MessageVersion {
   if ((first & 0x80) === 0) return "legacy";
   const version = first & 0x7f;
   if (version === 0 || version === 1) return version;
-  throw new DecodeError("unsupported-version", `message version ${version} (first byte 0x${first.toString(16)}) is not legacy, 0 or 1`);
+  throw new DecodeError(
+    "unsupported-version",
+    `message version ${version} (first byte 0x${first.toString(16)}) is not legacy, 0 or 1`,
+  );
 }
 
 function readHeader(reader: Reader): MessageHeader {
@@ -220,7 +239,10 @@ function readLegacyOrV0(reader: Reader, version: "legacy" | 0): DecodedMessage {
   const instructions: CompiledInstruction[] = [];
   for (let i = 0; i < instructionCount; i++) {
     const programIndex = reader.u8(`instruction ${i}'s program`);
-    const accountIndices = reader.u8s(reader.shortU16(`instruction ${i}'s account count`), `instruction ${i}'s accounts`);
+    const accountIndices = reader.u8s(
+      reader.shortU16(`instruction ${i}'s account count`),
+      `instruction ${i}'s accounts`,
+    );
     const data = reader.bytes(reader.shortU16(`instruction ${i}'s data length`), `instruction ${i}'s data`);
     instructions.push({ programIndex, accountIndices, data });
   }
@@ -229,8 +251,14 @@ function readLegacyOrV0(reader: Reader, version: "legacy" | 0): DecodedMessage {
     const lookupCount = reader.shortU16("the lookup count");
     for (let i = 0; i < lookupCount; i++) {
       const table = reader.address(`lookup ${i}'s table`);
-      const writableIndexes = reader.u8s(reader.shortU16(`lookup ${i}'s writable count`), `lookup ${i}'s writable indexes`);
-      const readonlyIndexes = reader.u8s(reader.shortU16(`lookup ${i}'s read-only count`), `lookup ${i}'s read-only indexes`);
+      const writableIndexes = reader.u8s(
+        reader.shortU16(`lookup ${i}'s writable count`),
+        `lookup ${i}'s writable indexes`,
+      );
+      const readonlyIndexes = reader.u8s(
+        reader.shortU16(`lookup ${i}'s read-only count`),
+        `lookup ${i}'s read-only indexes`,
+      );
       lookups.push({ table, writableIndexes, readonlyIndexes });
     }
   }
@@ -245,15 +273,19 @@ function readV1(reader: Reader): DecodedMessage {
   const lifetimeToken = reader.address("the lifetime token");
   const instructionCount = reader.u8("the instruction count");
   const accountCount = reader.u8("the account count");
-  if (accountCount > MAX_V1_ACCOUNTS) throw malformed(`a v1 message holds at most ${MAX_V1_ACCOUNTS} accounts; this one declares ${accountCount}`);
+  if (accountCount > MAX_V1_ACCOUNTS)
+    throw malformed(`a v1 message holds at most ${MAX_V1_ACCOUNTS} accounts; this one declares ${accountCount}`);
   const staticAccounts: string[] = [];
   for (let i = 0; i < accountCount; i++) staticAccounts.push(reader.address(`account ${i}`));
 
   if ((mask & ~V1_KNOWN_CONFIG_BITS) !== 0) {
-    throw malformed(`the config mask 0x${mask.toString(16)} sets bits this decoder does not know, so it cannot find where the config ends`);
+    throw malformed(
+      `the config mask 0x${mask.toString(16)} sets bits this decoder does not know, so it cannot find where the config ends`,
+    );
   }
   const fee = mask & 0b11;
-  if (fee === 0b01 || fee === 0b10) throw malformed("the config mask sets one of the two priority-fee bits without the other");
+  if (fee === 0b01 || fee === 0b10)
+    throw malformed("the config mask sets one of the two priority-fee bits without the other");
   const config: V1Config = {};
   if (fee === 0b11) config.priorityFeeLamports = reader.u64("the priority fee");
   if (mask & 0b100) config.computeUnitLimit = reader.u32("the compute-unit limit");
@@ -282,23 +314,29 @@ function sanitize(message: DecodedMessage): void {
   const nStatic = message.staticAccounts.length;
   if (req === 0) throw malformed("the header requires no signature, so there is no fee payer");
   if (roSigned >= req) throw malformed("the header makes every signer read-only, the fee payer included");
-  if (req + roUnsigned > nStatic) throw malformed(`the header counts ${req} signers and ${roUnsigned} read-only accounts, but the message lists ${nStatic} accounts`);
+  if (req + roUnsigned > nStatic)
+    throw malformed(
+      `the header counts ${req} signers and ${roUnsigned} read-only accounts, but the message lists ${nStatic} accounts`,
+    );
   if (new Set(message.staticAccounts).size !== nStatic) throw malformed("an account is listed twice");
 
   const tables = new Set<string>();
   let loaded = 0;
   for (const lookup of message.lookups) {
-    if (lookup.writableIndexes.length + lookup.readonlyIndexes.length === 0) throw malformed(`lookup table ${lookup.table} loads no account`);
+    if (lookup.writableIndexes.length + lookup.readonlyIndexes.length === 0)
+      throw malformed(`lookup table ${lookup.table} loads no account`);
     if (tables.has(lookup.table)) throw malformed(`lookup table ${lookup.table} is listed twice`);
     tables.add(lookup.table);
     loaded += lookup.writableIndexes.length + lookup.readonlyIndexes.length;
   }
   const total = nStatic + loaded;
-  if (total > MAX_ACCOUNTS) throw malformed(`the message loads ${total} accounts; one-byte indexes reach ${MAX_ACCOUNTS}`);
+  if (total > MAX_ACCOUNTS)
+    throw malformed(`the message loads ${total} accounts; one-byte indexes reach ${MAX_ACCOUNTS}`);
 
   message.instructions.forEach((instruction, i) => {
     if (instruction.programIndex === 0) throw malformed(`instruction ${i} names the fee payer as its program`);
-    if (instruction.programIndex >= nStatic) throw malformed(`instruction ${i}'s program index ${instruction.programIndex} is not a static account`);
+    if (instruction.programIndex >= nStatic)
+      throw malformed(`instruction ${i}'s program index ${instruction.programIndex} is not a static account`);
     for (const index of instruction.accountIndices) {
       if (index >= total) throw malformed(`instruction ${i}'s account index ${index} is past the ${total} accounts`);
     }
@@ -309,9 +347,13 @@ function sanitize(message: DecodedMessage): void {
 function checkSize(message: DecodedMessage, messageBytes: number): void {
   const signatures = message.header.numRequiredSignatures;
   const signatureCountBytes = signatures < 0x80 ? 1 : 2;
-  const size = message.version === 1 ? messageBytes + 64 * signatures : signatureCountBytes + 64 * signatures + messageBytes;
+  const size =
+    message.version === 1 ? messageBytes + 64 * signatures : signatureCountBytes + 64 * signatures + messageBytes;
   const max = message.version === 1 ? MAX_V1_TRANSACTION_BYTES : MAX_LEGACY_TRANSACTION_BYTES;
-  if (size > max) throw malformed(`signed, this transaction would be ${size} bytes; a ${message.version === 1 ? "v1" : "legacy or v0"} transaction holds at most ${max}`);
+  if (size > max)
+    throw malformed(
+      `signed, this transaction would be ${size} bytes; a ${message.version === 1 ? "v1" : "legacy or v0"} transaction holds at most ${max}`,
+    );
 }
 
 /** A cursor over bytes that throws on any read past the end, so a short message is malformed, never zero. */
@@ -329,7 +371,8 @@ class Reader {
   }
 
   #need(n: number, what: string) {
-    if (this.#offset + n > this.#bytes.length) throw malformed(`the bytes end inside ${what}, at byte ${this.#offset} of ${this.#bytes.length}`);
+    if (this.#offset + n > this.#bytes.length)
+      throw malformed(`the bytes end inside ${what}, at byte ${this.#offset} of ${this.#bytes.length}`);
   }
 
   u8(what: string): number {

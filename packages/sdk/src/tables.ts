@@ -21,11 +21,15 @@ export interface LookupTableState {
 }
 
 export function decodeLookupTableAccount(data: Uint8Array): LookupTableState {
-  if (data.length < META_SIZE) throw new Error(`a lookup table account is at least ${META_SIZE} bytes; this one is shorter than that (${data.length})`);
+  if (data.length < META_SIZE)
+    throw new Error(
+      `a lookup table account is at least ${META_SIZE} bytes; this one is shorter than that (${data.length})`,
+    );
   const view = new DataView(data.buffer, data.byteOffset, data.byteLength);
   const type = view.getUint32(0, true);
   if (type !== 1) throw new Error(`the account is not an initialized lookup table (type ${type})`);
-  if ((data.length - META_SIZE) % 32 !== 0) throw new Error(`the entries are not a whole number of addresses (${data.length - META_SIZE} bytes)`);
+  if ((data.length - META_SIZE) % 32 !== 0)
+    throw new Error(`the entries are not a whole number of addresses (${data.length - META_SIZE} bytes)`);
   const deactivationSlot = view.getBigUint64(4, true);
   const hasAuthority = data[21] === 1;
   const entries: string[] = [];

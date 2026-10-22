@@ -17,12 +17,12 @@ if compiled:
     environment["SOLANAUT_OWNED_MODULE"] = path.resolve().as_uri()
     environment["NODE_DISABLE_COMPILE_CACHE"] = "1"
 faults = [
-    ("capture", "const fact = structuredClone(event);" if compiled else "const fact=structuredClone(event);", "const fact=event;"),
+    ("capture", "const fact = structuredClone(event);" if compiled else "const fact = structuredClone(event);", "const fact=event;"),
     ("commit", "guard.recordSigning(fact)", "undefined"),
     ("immutable-reply", "detached(guard.recordSigning(fact))", "structuredClone(guard.recordSigning(fact))"),
     ("wrong-stage", "guard.recordSigning(fact)", 'guard.recordSigning({...fact,stage:"response",status:"uncertain",signature:undefined})'),
-    ("storage", "return async () => detached(guard.recordSigning(fact));" if compiled else "return async()=>detached(guard.recordSigning(fact));", "return async()=>{try{return detached(guard.recordSigning(fact));}catch{return {};}};"),
-    ("fifo", "recordSigning(event) {\n            return captured(() => {" if compiled else "recordSigning(event:SigningEvent){return captured(()=>{", "recordSigning(event){return (capture=>capture()())(()=>{"),
+    ("storage", "return async () => detached(guard.recordSigning(fact));" if compiled else "return async () => detached(guard.recordSigning(fact));", "return async()=>{try{return detached(guard.recordSigning(fact));}catch{return {};}};"),
+    ("fifo", "recordSigning(event) {\n            return captured(() => {" if compiled else "recordSigning(event: SigningEvent) {\n      return captured(() => {", "recordSigning(event){return (capture=>capture()())(()=>{"),
 ]
 def battery(name):
     result = subprocess.run(["node", "--test", "packages/sdk/test/owned-signing.test.ts"], env=environment, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=60)

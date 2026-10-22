@@ -8,12 +8,12 @@ const faults=[
   ["policy-capture","policySeed = structuredClone(policyInput)","policySeed = policyInput"],
   ["trust-capture","pins = structuredClone(trust)","pins = trust"],
   ["future-window","retentionMs = Math.max(retentionMs, createPolicy(JSON.parse(entry.policy)).policy.windowMs)","retentionMs = 0"],
-  ["signed-sensor","if (firstPolicy && sensor !== sensorV1) throw new StreamReplayError","if (false) throw new StreamReplayError"],
+  ["signed-sensor","if (firstPolicy && sensor !== sensorV1)\n      throw new StreamReplayError","if (false) throw new StreamReplayError"],
   ["source-match","checked !== count || checkedFingerprint !== fingerprint","false"],
   ["source-fingerprint","checkedFingerprint !== fingerprint","false"],
   ["producer-copy","yield JSON.parse(text) as Entry;","yield input;"],
   ["decision-recomputation","const result = await recompute(env, records());","const result: ReplayResult = {ok:true,decisions:0,divergence:null}; for await(const _entry of records())void 0;"],
-  ["array-yields","  for (const entry of entries) {\n    const divergence = checker.accept(entry);\n    if (divergence) return divergence;\n  }","  return recompute(env, entries);"],
+  ["array-yields","\n  for (const entry of entries) {\n    const divergence = checker.accept(entry);\n    if (divergence) return divergence;\n  }","  return recompute(env, entries);"],
 ] as const;
 for(const [name,before,after] of faults){
   assert.equal(source.split(before).length,2,"missing or ambiguous stream replay fault: "+name);

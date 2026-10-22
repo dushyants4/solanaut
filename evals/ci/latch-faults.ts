@@ -8,7 +8,7 @@ import { fileURLToPath } from "node:url";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const path = join(root, "packages/sdk/src/guard.ts");
 const original = readFileSync(path, "utf8");
-const reground = 'body.posture === "REGROUND" && (body.rule === "loop-reground" || (previous?.allow === false && previous.posture === "REGROUND"))';
+const reground = 'body.posture === "REGROUND" &&\n    (body.rule === "loop-reground" || (previous?.allow === false && previous.posture === "REGROUND"))';
 const predecessor = 'store.entries.findLast((entry): entry is DecisionEntry => entry.kind === "decision")';
 const faults = [
   ["v0", reground, 'body.posture === "REGROUND"'],

@@ -26,7 +26,12 @@ export interface Inspection {
     fees: { used: string; cap: string };
     tokens: { mint: string; used: string; cap: string }[];
   };
-  intents: { key: string; firstAt: number; done: boolean; attempts: { decision: string; status: string; lastValidBlockHeight: string | null }[] }[];
+  intents: {
+    key: string;
+    firstAt: number;
+    done: boolean;
+    attempts: { decision: string; status: string; lastValidBlockHeight: string | null }[];
+  }[];
   /** The last 50 decisions, newest first. */
   decisions: {
     seq: number;
@@ -55,7 +60,8 @@ export function inspectRecord(entries: readonly Entry[], policyInput: unknown, t
   const releases: { seq: number; at: number; latchSeq: number }[] = [];
   const counts = { allow: 0, deny: {} as Record<string, number> };
   for (const e of entries) {
-    if (hashOf(e) !== e.hash) throw new Error(`the record is damaged: the hash of seq ${e.seq} does not match its entry`);
+    if (hashOf(e) !== e.hash)
+      throw new Error(`the record is damaged: the hash of seq ${e.seq} does not match its entry`);
     if (e.kind === "policy") {
       policy = verifyPolicyEntry(e, trust, previous);
       hash = createPolicy(policy).hash;
@@ -77,7 +83,11 @@ export function inspectRecord(entries: readonly Entry[], policyInput: unknown, t
     key,
     firstAt: i.firstAt,
     done: i.done,
-    attempts: i.attempts.map((a) => ({ decision: a.decision, status: a.status, lastValidBlockHeight: a.lastValidBlockHeight?.toString() ?? null })),
+    attempts: i.attempts.map((a) => ({
+      decision: a.decision,
+      status: a.status,
+      lastValidBlockHeight: a.lastValidBlockHeight?.toString() ?? null,
+    })),
   }));
   const latest = decisions.at(-1);
   return {
@@ -88,27 +98,35 @@ export function inspectRecord(entries: readonly Entry[], policyInput: unknown, t
     head: state.head,
     latched: state.latched ? { seq: state.latched.seq } : null,
     consecutiveDenials: state.consecutiveDenials,
-    inFlight: [...state.intents.values()].filter((i) => !i.done && i.attempts.some((a) => couldStillLand(a, height))).length,
+    inFlight: [...state.intents.values()].filter((i) => !i.done && i.attempts.some((a) => couldStillLand(a, height)))
+      .length,
     keel: latest ? { version: latest.keel.version, verified: latest.keel.verified } : null,
     window: {
       windowMs: policy.windowMs,
       sol: { used: w.sol.toString(), cap: policy.sol.maxPerWindow.toString() },
       fees: { used: w.fees.toString(), cap: policy.fees.maxPerWindow.toString() },
-      tokens: policy.tokens.map((t) => ({ mint: t.mint, used: (w.tokens.get(t.mint) ?? 0n).toString(), cap: t.maxPerWindow.toString() })),
+      tokens: policy.tokens.map((t) => ({
+        mint: t.mint,
+        used: (w.tokens.get(t.mint) ?? 0n).toString(),
+        cap: t.maxPerWindow.toString(),
+      })),
     },
     intents,
-    decisions: decisions.slice(-50).reverse().map((d) => ({
-      seq: d.seq,
-      at: d.at,
-      allow: d.allow,
-      rule: d.rule ?? null,
-      reason: d.reason,
-      posture: d.posture,
-      telemetry: d.telemetry,
-      sol: d.amounts?.sol ?? null,
-      fees: d.amounts?.fees ?? null,
-      latch: d.latch === true,
-    })),
+    decisions: decisions
+      .slice(-50)
+      .reverse()
+      .map((d) => ({
+        seq: d.seq,
+        at: d.at,
+        allow: d.allow,
+        rule: d.rule ?? null,
+        reason: d.reason,
+        posture: d.posture,
+        telemetry: d.telemetry,
+        sol: d.amounts?.sol ?? null,
+        fees: d.amounts?.fees ?? null,
+        latch: d.latch === true,
+      })),
     releases: releases.slice(-20).reverse(),
     counts,
   };

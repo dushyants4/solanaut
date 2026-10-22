@@ -77,7 +77,8 @@ const equal = (a: Uint8Array, b: Uint8Array) => a.length === b.length && a.every
 function messageOf(tx: any): Uint8Array {
   // A raw buffer creates a view; the second constructor privately owns the captured bytes.
   if (tx && typeof tx.serializeMessage === "function") return new Uint8Array(new Uint8Array(tx.serializeMessage()));
-  if (tx && tx.message && typeof tx.message.serialize === "function") return new Uint8Array(new Uint8Array(tx.message.serialize()));
+  if (tx && tx.message && typeof tx.message.serialize === "function")
+    return new Uint8Array(new Uint8Array(tx.message.serialize()));
   throw new TypeError("not a web3.js Transaction or VersionedTransaction");
 }
 
@@ -93,7 +94,10 @@ function signatureOf(tx: any, key: string): Uint8Array | null {
 
 /** The transaction's id, its first signature, if the wallet's key made it: the fee payer's. */
 function idOf(tx: any, key: string): string | null {
-  const first = typeof tx.serializeMessage === "function" ? tx.signatures?.[0] : { publicKey: tx.message?.staticAccountKeys?.[0], signature: tx.signatures?.[0] };
+  const first =
+    typeof tx.serializeMessage === "function"
+      ? tx.signatures?.[0]
+      : { publicKey: tx.message?.staticAccountKeys?.[0], signature: tx.signatures?.[0] };
   if (first?.publicKey?.toBase58?.() !== key || !first.signature) return null;
   return encodeBase58(new Uint8Array(first.signature));
 }
@@ -108,12 +112,18 @@ function strip(tx: any): void {
   }
 }
 
-export function guardedWallet<Tx = any>(wallet: BaseWalletLike<Tx>, guard: Guard, opts: GuardedWalletOptions): BaseWalletLike<Tx> {
-  if (!opts?.rpc) throw new Error("guardedWallet needs an RPC: it sends the bytes it checked itself, and reads block heights");
+export function guardedWallet<Tx = any>(
+  wallet: BaseWalletLike<Tx>,
+  guard: Guard,
+  opts: GuardedWalletOptions,
+): BaseWalletLike<Tx> {
+  if (!opts?.rpc)
+    throw new Error("guardedWallet needs an RPC: it sends the bytes it checked itself, and reads block heights");
   const rpc = typeof opts.rpc === "string" ? jsonRpc(opts.rpc) : opts.rpc;
   const now = opts.now ?? Date.now;
   const key = wallet.publicKey.toBase58();
-  if (!guard.policy.principal.includes(key)) throw new Error(`the wallet's key ${key} is not in the policy's principal`);
+  if (!guard.policy.principal.includes(key))
+    throw new Error(`the wallet's key ${key} is not in the policy's principal`);
 
   const unreported = new Map<string, Unreported>();
 
@@ -134,7 +144,12 @@ export function guardedWallet<Tx = any>(wallet: BaseWalletLike<Tx>, guard: Guard
         continue;
       }
       // The height was read before the status: past it, a signature the chain does not show never landed.
-      const outcome = status === "landed" || status === "failed" ? status : status === null && height > u.lastValidBlockHeight ? "expired" : null;
+      const outcome =
+        status === "landed" || status === "failed"
+          ? status
+          : status === null && height > u.lastValidBlockHeight
+            ? "expired"
+            : null;
       if (!outcome) continue;
       try {
         guard.report(u.decision, outcome);
@@ -147,7 +162,12 @@ export function guardedWallet<Tx = any>(wallet: BaseWalletLike<Tx>, guard: Guard
 
   const follow = (tx: Tx, a: Admitted) => {
     const id = idOf(tx, key);
-    if (id) unreported.set(a.decision.hash, { decision: a.decision.hash, signature: id, lastValidBlockHeight: a.lastValidBlockHeight });
+    if (id)
+      unreported.set(a.decision.hash, {
+        decision: a.decision.hash,
+        signature: id,
+        lastValidBlockHeight: a.lastValidBlockHeight,
+      });
   };
 
   /** Release decisions that will never be signed: their bytes cannot land. */
@@ -164,8 +184,11 @@ export function guardedWallet<Tx = any>(wallet: BaseWalletLike<Tx>, guard: Guard
   async function admit(tx: Tx): Promise<Admitted> {
     const message = messageOf(tx);
     let blockHeight: bigint;
-    try { blockHeight = await rpc.getBlockHeight(); }
-    catch { throw denied(guard, "rpc-unavailable", "RPC height unavailable", null); }
+    try {
+      blockHeight = await rpc.getBlockHeight();
+    } catch {
+      throw denied(guard, "rpc-unavailable", "RPC height unavailable", null);
+    }
     const lastValidBlockHeight = blockHeight + BLOCKHASH_LIFETIME;
     const decision = guard.check({ message, at: now(), blockHeight, lastValidBlockHeight });
     if (!decision.allow) throw denied(guard, decision.rule!, decision.reason, decision);
@@ -226,9 +249,15 @@ export function guardedWallet<Tx = any>(wallet: BaseWalletLike<Tx>, guard: Guard
       release(txs, [], admitted);
       throw e;
     }
-    if (signed.length === admitted.length && admitted.every((a, i) => signedAsAdmitted(signed[i], a))) return { signed, admitted };
+    if (signed.length === admitted.length && admitted.every((a, i) => signedAsAdmitted(signed[i], a)))
+      return { signed, admitted };
     release(txs, signed, admitted);
-    throw denied(guard, "wallet-changed-message", "the wallet signed something other than the admitted messages, not with its key, or not all of them; its signatures were removed", null);
+    throw denied(
+      guard,
+      "wallet-changed-message",
+      "the wallet signed something other than the admitted messages, not with its key, or not all of them; its signatures were removed",
+      null,
+    );
   }
 
   /** Sign only: the caller sends. Follow each up, since nothing else will report it. */
@@ -248,15 +277,32 @@ export function guardedWallet<Tx = any>(wallet: BaseWalletLike<Tx>, guard: Guard
       wire = new Uint8Array(new Uint8Array((signed[0] as any).serialize()));
       const decoded = decodeTransaction(wire);
       const index = decodeMessage(decoded.message).staticAccounts.indexOf(key);
-      if (!equal(decoded.message, a.message) || index < 0 || !verifyEd25519(key, a.message, decoded.signatures[index] ?? new Uint8Array())) throw new Error("serialized transaction differs from admission");
+      if (
+        !equal(decoded.message, a.message) ||
+        index < 0 ||
+        !verifyEd25519(key, a.message, decoded.signatures[index] ?? new Uint8Array())
+      )
+        throw new Error("serialized transaction differs from admission");
     } catch {
       // Signing already verified; a serializer erasing evidence cannot free the admission.
-      if (signedId) unreported.set(a.decision.hash, { decision: a.decision.hash, signature: signedId, lastValidBlockHeight: a.lastValidBlockHeight });
+      if (signedId)
+        unreported.set(a.decision.hash, {
+          decision: a.decision.hash,
+          signature: signedId,
+          lastValidBlockHeight: a.lastValidBlockHeight,
+        });
       [tx, ...signed].forEach(strip);
-      try { guard.report(a.decision.hash, "unknown"); } catch {
+      try {
+        guard.report(a.decision.hash, "unknown");
+      } catch {
         // A failed journal keeps the original admission; never acknowledge a send.
       }
-      throw denied(guard, "wallet-changed-message", "the serialized transaction does not carry the admitted message and wallet signature; its signatures were removed", null);
+      throw denied(
+        guard,
+        "wallet-changed-message",
+        "the serialized transaction does not carry the admitted message and wallet signature; its signatures were removed",
+        null,
+      );
     }
     let signature: string;
     try {
@@ -267,7 +313,12 @@ export function guardedWallet<Tx = any>(wallet: BaseWalletLike<Tx>, guard: Guard
       const refused = (e as { refused?: unknown } | null)?.refused === true;
       guard.report(a.decision.hash, refused ? "failed" : "unknown");
       if (!refused) follow(signed[0]!, a);
-      throw denied(guard, "rpc-unavailable", refused ? "RPC rejected the transaction" : "RPC send outcome unresolved", a.decision);
+      throw denied(
+        guard,
+        "rpc-unavailable",
+        refused ? "RPC rejected the transaction" : "RPC send outcome unresolved",
+        a.decision,
+      );
     }
     const outcome = await rpc.confirm(signature, a.lastValidBlockHeight).catch(() => "unknown" as const);
     guard.report(a.decision.hash, outcome);
@@ -278,11 +329,19 @@ export function guardedWallet<Tx = any>(wallet: BaseWalletLike<Tx>, guard: Guard
   return Object.freeze({
     publicKey: wallet.publicKey,
     signTransaction: async <T extends Tx>(tx: T) => adapterBoundary(guard, async () => (await signOnly([tx]))[0] as T),
-    signAllTransactions: async <T extends Tx>(txs: T[]) => adapterBoundary(guard, async () => (await signOnly(txs)) as T[]),
-    signAndSendTransaction: <T extends Tx>(tx: T, options?: unknown) => adapterBoundary(guard, () => signAndSend(tx, options)),
-    sendTransaction: async <T extends Tx>(tx: T) => adapterBoundary(guard, async () => (await signAndSend(tx)).signature),
+    signAllTransactions: async <T extends Tx>(txs: T[]) =>
+      adapterBoundary(guard, async () => (await signOnly(txs)) as T[]),
+    signAndSendTransaction: <T extends Tx>(tx: T, options?: unknown) =>
+      adapterBoundary(guard, () => signAndSend(tx, options)),
+    sendTransaction: async <T extends Tx>(tx: T) =>
+      adapterBoundary(guard, async () => (await signAndSend(tx)).signature),
     signMessage: async (_message: Uint8Array): Promise<Uint8Array> => {
-      throw denied(guard, "message-signing-denied", "policy v1 never signs off-chain messages: a raw signature over chosen bytes can be a transaction signature", null);
+      throw denied(
+        guard,
+        "message-signing-denied",
+        "policy v1 never signs off-chain messages: a raw signature over chosen bytes can be a transaction signature",
+        null,
+      );
     },
   });
 }

@@ -27,7 +27,7 @@ try {
   assert.equal(result.status, 1, result.stdout + result.stderr); assert.match(result.stdout + result.stderr, /AssertionError/);
   console.log("caught replay product fault: previously-missed-per-tx-cap");
 } finally { writeFileSync(guardPath, source); }
-const destination = 'if (sol) return { rule: "destination-not-allowed"';
+const destination = 'if (sol)\n    return {\n      rule: "destination-not-allowed"';
 assert.equal(source.split(destination).length, 2);
 try {
   writeFileSync(guardPath, source.replace(destination, 'if (false) return { rule: "destination-not-allowed"'));

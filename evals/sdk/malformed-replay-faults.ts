@@ -7,8 +7,8 @@ const faults=[
   ["posture","entry.posture !== null || ",""],
   ["telemetry","entry.telemetry !== null || ",""],
   ["temperature","entry.temperatureMax !== null","false"],
-  ["invalid-input-scope",' && entry.input === "invalid"',""] ,
-  ["entire-refusal",'if (entry.kind === "decision" && entry.input === "invalid" && (entry.posture !== null || entry.telemetry !== null || entry.temperatureMax !== null))','if (false)'],
+  ["invalid-input-scope",' &&\n    entry.input === "invalid"',""] ,
+  ["entire-refusal",'if (\n    entry.kind === "decision" &&\n    entry.input === "invalid" &&\n    (entry.posture !== null || entry.telemetry !== null || entry.temperatureMax !== null)\n  )','if (false)'],
 ] as const;
 const baseline=run();assert.equal(baseline.status,0,baseline.stdout+baseline.stderr);
 for(const [name,before,after] of faults){

@@ -5,7 +5,7 @@ const path = "packages/sdk/bin/verify-archive.ts", original = readFileSync(path,
 const print = "console.log(JSON.stringify(await verifyArchive(input.path, input.options)))";
 const faults = [
   ["duplicate-flag", "seen.has(flag)", "false"],
-  ["unknown-flag", 'default: throw new Error("usage")', "default: break"],
+  ["unknown-flag", 'default:\n        throw new Error("usage")', "default: break"],
   ["noncanonical-integer", "!/^(0|[1-9][0-9]*)$/.test(value)", "false"],
   ["drop-head-pin", "options.expectedHead = value", "options.expectedHead = undefined"],
   ["invent-receipt", print, "console.log(JSON.stringify({entries:0}))"],

@@ -7,22 +7,22 @@ const path = "packages/sdk/src/record.ts";
 const original = readFileSync(path, "utf8");
 const faults = [
   ["ignore-kernel-lock", "if (result.status !== 0)", "if (false)"],
-  ["automatic-stale-takeover", 'if ((error as NodeJS.ErrnoException).code === "EEXIST") throw', 'if ((error as NodeJS.ErrnoException).code === "EEXIST") return lock(path, "kernel"); if (false) throw'],
-  ["unlink-mutex", 'if (mode === "manual") { sameFile(fd, lockPath); unlinkSync(lockPath); }', '{ sameFile(fd, lockPath); unlinkSync(lockPath); }'],
+  ["automatic-stale-takeover", 'if ((error as NodeJS.ErrnoException).code === "EEXIST")\n      throw', 'if ((error as NodeJS.ErrnoException).code === "EEXIST") return lock(path, "kernel"); if (false) throw'],
+  ["unlink-mutex", 'if (mode === "manual") {\n          sameFile(fd, lockPath);\n          unlinkSync(lockPath);\n        }', '{\n          sameFile(fd, lockPath);\n          unlinkSync(lockPath);\n        }'],
   ["create-missing-history", 'options.create === false ? 0 : constants.O_CREAT', 'constants.O_CREAT'],
   ["incomplete-short-write", "offset += written;", "return;"],
   ["ignore-sync-failure", "fsyncSync(fd);\n        owner.held", "try { fsyncSync(fd); } catch {}\n        owner.held"],
   ["ignore-external-size", "current.size !== expected.size ||", "false ||"],
-  ["ignore-external-times", "current.mtimeNs !== expected.mtimeNs || current.ctimeNs !== expected.ctimeNs", "false"],
-  ["revive-damaged-writer", "failed = true; throw error;", "failed = false; throw error;"],
+  ["ignore-external-times", "current.mtimeNs !== expected.mtimeNs ||\n          current.ctimeNs !== expected.ctimeNs", "false"],
+  ["revive-damaged-writer", "expected = synced;\n      } catch (error) {\n        failed = true;", "expected = synced;\n      } catch (error) {\n        failed = false;"],
   ["ignore-single-link", "held.nlink !== 1n || named.nlink !== 1n", "false"],
   ["ignore-read-stability", "before.size !== after.size || before.mtimeNs !== after.mtimeNs || before.ctimeNs !== after.ctimeNs", "false"],
   ["ignore-read-completion", "BigInt(bytes.length) !== before.size", "false"],
   ["decoded-read-count", "BigInt(bytes.length) !== before.size", 'BigInt(Buffer.byteLength(bytes.toString("utf8"))) !== before.size'],
   ["ignore-append-completion", "synced.size !== current.size + BigInt(bytes.length)", "false"],
   ["ignore-append-base", "synced.size !== current.size + BigInt(bytes.length)", "synced.size !== BigInt(bytes.length)"],
-  ["ignore-post-append-owner", "owner.held(); sameFile(fd, path);\n        const synced", "sameFile(fd, path);\n        const synced"],
-  ["ignore-post-append-record", "owner.held(); sameFile(fd, path);\n        const synced", "owner.held();\n        const synced"],
+  ["ignore-post-append-owner", "owner.held();\n        sameFile(fd, path);\n        const synced", "sameFile(fd, path);\n        const synced"],
+  ["ignore-post-append-record", "owner.held();\n        sameFile(fd, path);\n        const synced", "owner.held();\n        const synced"],
 ] as const;
 const outputDirectory = ".sandbox/solanaut-1/ownership-faults";
 mkdirSync(outputDirectory, { recursive: true });

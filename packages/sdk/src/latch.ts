@@ -24,7 +24,14 @@ export interface ReleaseFields {
 }
 
 export function releaseText(f: ReleaseFields): string {
-  return ["solanaut latch release", `guard: ${f.guardId}`, `cluster: ${f.cluster}`, `policy: ${f.policyHash}`, `seq: ${f.seq}`, `expires: ${f.expires}`].join("\n");
+  return [
+    "solanaut latch release",
+    `guard: ${f.guardId}`,
+    `cluster: ${f.cluster}`,
+    `policy: ${f.policyHash}`,
+    `seq: ${f.seq}`,
+    `expires: ${f.expires}`,
+  ].join("\n");
 }
 
 const SHAPE =

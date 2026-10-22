@@ -3,15 +3,15 @@ import {spawnSync} from "node:child_process";
 import {readFileSync,writeFileSync} from "node:fs";
 const path="packages/sdk/bin/prepare-policy.ts",original=readFileSync(path,"utf8");
 const faults=[
-  ["version-binding","version:Number(version)","version:Number(version)+1"],
-  ["text-binding","preparePolicyText(policy,options.version,options.issued)","preparePolicyText(policy,options.version+1,options.issued)"],
-  ["identity-binding","guardId:policy.latch.guardId",'guardId:"foreign"'],
-  ["cluster-restriction",'policy.latch.cluster!=="devnet" && policy.latch.cluster!=="localnet"',"false"],
-  ["bounded-source","limit=1_048_576","limit=2_097_152"],
+  ["version-binding","version: Number(version)","version:Number(version)+1"],
+  ["text-binding","preparePolicyText(policy, options.version, options.issued)","preparePolicyText(policy,options.version+1,options.issued)"],
+  ["identity-binding","guardId: policy.latch.guardId",'guardId:"foreign"'],
+  ["cluster-restriction",'policy.latch.cluster !== "devnet" && policy.latch.cluster !== "localnet"',"false"],
+  ["bounded-source","limit = 1_048_576","limit=2_097_152"],
   ["symlink-refusal","constants.O_RDONLY | constants.O_NOFOLLOW | constants.O_NONBLOCK","constants.O_RDONLY | constants.O_NONBLOCK"],
-  ["policy-error",'code:"policy"','code:"source"'],
+  ["policy-error",'code: "policy"','code: "source"'],
   ["version-spelling","/^[1-9][0-9]*$/","/^[0-9]+$/"],
-  ["timestamp-spelling","new Date(issued).toISOString()!==issued","false"],
+  ["timestamp-spelling","new Date(issued).toISOString() !== issued","false"],
 ] as const;
 const run=()=>spawnSync(process.execPath,["--test","packages/sdk/test/prepare-policy-cli.test.ts"],{encoding:"utf8",timeout:30_000});
 const baseline=run(); assert.equal(baseline.status,0,baseline.stdout+baseline.stderr);

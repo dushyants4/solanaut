@@ -6,7 +6,8 @@ import { createHash } from "node:crypto";
 export function canonicalJSON(value: unknown): string {
   if (typeof value === "bigint") return JSON.stringify(value.toString());
   if (value === null || typeof value === "number" || typeof value === "string" || typeof value === "boolean") {
-    if (typeof value === "number" && !Number.isFinite(value)) throw new Error(`canonical JSON has no form for ${value}`);
+    if (typeof value === "number" && !Number.isFinite(value))
+      throw new Error(`canonical JSON has no form for ${value}`);
     return JSON.stringify(value);
   }
   if (Array.isArray(value)) return `[${value.map(canonicalJSON).join(",")}]`;

@@ -17,9 +17,27 @@
 
 import { generateKeyPairSync } from "node:crypto";
 import { readFileSync } from "node:fs";
-import { Connection, Keypair, LAMPORTS_PER_SOL, PublicKey, sendAndConfirmTransaction, SystemProgram, Transaction, type TransactionInstruction } from "@solana/web3.js";
+import {
+  Connection,
+  Keypair,
+  LAMPORTS_PER_SOL,
+  PublicKey,
+  sendAndConfirmTransaction,
+  SystemProgram,
+  Transaction,
+  type TransactionInstruction,
+} from "@solana/web3.js";
 import { KeypairWallet, SolanaAgentKit, signOrSendTX } from "solana-agent-kit";
-import { createGuard, encodeBase58, guardedWallet, PROGRAMS, SolanautDenied, type BaseWalletLike, type Guard, type PolicyInput } from "@solanaut/sdk";
+import {
+  createGuard,
+  encodeBase58,
+  guardedWallet,
+  PROGRAMS,
+  SolanautDenied,
+  type BaseWalletLike,
+  type Guard,
+  type PolicyInput,
+} from "@solanaut/sdk";
 
 const url = option("url") ?? "http://127.0.0.1:8899";
 const funderFile = option("funder");
@@ -27,7 +45,9 @@ const connection = new Connection(url, "confirmed");
 const agentKey = Keypair.generate();
 const treasury = option("treasury") ? new PublicKey(option("treasury")!) : Keypair.generate().publicKey;
 const attacker = Keypair.generate().publicKey;
-const operator = encodeBase58(Buffer.from(generateKeyPairSync("ed25519").publicKey.export({ format: "jwk" }).x!, "base64url"));
+const operator = encodeBase58(
+  Buffer.from(generateKeyPairSync("ed25519").publicKey.export({ format: "jwk" }).x!, "base64url"),
+);
 
 const policy: PolicyInput = {
   version: 1,
@@ -64,17 +84,40 @@ async function main() {
   console.log("\nwith Solanaut: new SolanaAgentKit(guardedWallet(wallet, guard, { rpc }), rpc, {})");
   const guard = await createGuard({ policy });
   const inner = counted(new KeypairWallet(agentKey, url));
-  const agent = new SolanaAgentKit(guardedWallet(inner.wallet as unknown as BaseWalletLike, guard, { rpc: url }) as never, url, {});
+  const agent = new SolanaAgentKit(
+    guardedWallet(inner.wallet as unknown as BaseWalletLike, guard, { rpc: url }) as never,
+    url,
+    {},
+  );
   const guarded = [
-    await attempt(inner, "a whole transaction: pay the treasury", async () => signOrSendTX(agent, await wholeTransaction(pay(treasury, 0.011))), guard),
-    await attempt(inner, "a whole transaction: pay the attacker", async () => signOrSendTX(agent, await wholeTransaction(pay(attacker, 0.05))), guard),
-    await attempt(inner, "instructions (the plugins' path): pay the treasury", () => signOrSendTX(agent, [pay(treasury, 0.012)]), guard),
+    await attempt(
+      inner,
+      "a whole transaction: pay the treasury",
+      async () => signOrSendTX(agent, await wholeTransaction(pay(treasury, 0.011))),
+      guard,
+    ),
+    await attempt(
+      inner,
+      "a whole transaction: pay the attacker",
+      async () => signOrSendTX(agent, await wholeTransaction(pay(attacker, 0.05))),
+      guard,
+    ),
+    await attempt(
+      inner,
+      "instructions (the plugins' path): pay the treasury",
+      () => signOrSendTX(agent, [pay(treasury, 0.012)]),
+      guard,
+    ),
     await attempt(inner, "instructions: pay the attacker", () => signOrSendTX(agent, [pay(attacker, 0.05)]), guard),
   ];
 
-  const verdicts = guard.entries().flatMap((entry) => (entry.kind === "decision" ? [entry.allow ? "allow" : entry.rule] : []));
+  const verdicts = guard
+    .entries()
+    .flatMap((entry) => (entry.kind === "decision" ? [entry.allow ? "allow" : entry.rule] : []));
   console.log(`\nthe guard's record: ${guard.entries().length} entries; ${verdicts.join(", ")}`);
-  console.log(`treasury holds ${(await connection.getBalance(treasury)) / LAMPORTS_PER_SOL} SOL; the attacker holds ${(await connection.getBalance(attacker)) / LAMPORTS_PER_SOL} SOL`);
+  console.log(
+    `treasury holds ${(await connection.getBalance(treasury)) / LAMPORTS_PER_SOL} SOL; the attacker holds ${(await connection.getBalance(attacker)) / LAMPORTS_PER_SOL} SOL`,
+  );
   console.log(JSON.stringify({ unguarded, guarded }));
 }
 
@@ -83,9 +126,17 @@ async function fundTheAgent() {
   // The kit's own Connection reads at "finalized", web3.js's default: wait until the float is there too.
   if (funderFile) {
     const funder = Keypair.fromSecretKey(Uint8Array.from(JSON.parse(readFileSync(funderFile, "utf8"))));
-    const float = SystemProgram.transfer({ fromPubkey: funder.publicKey, toPubkey: agentKey.publicKey, lamports: 0.08 * LAMPORTS_PER_SOL });
-    const funded = await sendAndConfirmTransaction(connection, new Transaction().add(float), [funder], { commitment: "finalized" });
-    console.log(`the agent ${agentKey.publicKey.toBase58()} was paid a float of 0.08 SOL by ${funder.publicKey.toBase58()}: ${funded}`);
+    const float = SystemProgram.transfer({
+      fromPubkey: funder.publicKey,
+      toPubkey: agentKey.publicKey,
+      lamports: 0.08 * LAMPORTS_PER_SOL,
+    });
+    const funded = await sendAndConfirmTransaction(connection, new Transaction().add(float), [funder], {
+      commitment: "finalized",
+    });
+    console.log(
+      `the agent ${agentKey.publicKey.toBase58()} was paid a float of 0.08 SOL by ${funder.publicKey.toBase58()}: ${funded}`,
+    );
   } else {
     const airdrop = await connection.requestAirdrop(agentKey.publicKey, 2 * LAMPORTS_PER_SOL);
     await connection.confirmTransaction(airdrop, "finalized");
@@ -127,7 +178,9 @@ async function attempt(counter: CountedWallet, label: string, run: () => Promise
   } catch (error) {
     const denied = error instanceof SolanautDenied;
     const rule = denied ? ruleOf(error, guard) : (error as Error).message.split("\n")[0]!.slice(0, 60);
-    console.log(`  ${label.padEnd(58)} ${denied ? "DENIED" : "ERROR"}: ${rule}   wallet asked to sign ${counter.signs()}×`);
+    console.log(
+      `  ${label.padEnd(58)} ${denied ? "DENIED" : "ERROR"}: ${rule}   wallet asked to sign ${counter.signs()}×`,
+    );
     return { label, result: denied ? `denied: ${rule}` : `error: ${rule}`, signs: counter.signs() };
   }
 }
@@ -142,7 +195,11 @@ function ruleOf(denied: SolanautDenied, guard?: Guard): string {
 }
 
 function pay(to = treasury, sol = 0.01): TransactionInstruction {
-  return SystemProgram.transfer({ fromPubkey: agentKey.publicKey, toPubkey: to, lamports: Math.round(sol * LAMPORTS_PER_SOL) });
+  return SystemProgram.transfer({
+    fromPubkey: agentKey.publicKey,
+    toPubkey: to,
+    lamports: Math.round(sol * LAMPORTS_PER_SOL),
+  });
 }
 
 async function wholeTransaction(instruction: TransactionInstruction) {

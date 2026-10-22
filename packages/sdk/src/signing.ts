@@ -1,4 +1,4 @@
-// ADR-019: journal facts, not RPC actions. Count this helper in the signer's line budget.
+// The signing journal records facts, not RPC actions (ADR-019). It counts in the signer's line budget.
 import { encodeBase58 } from "./base58.ts";
 import { decodeMessage, decodeTransaction } from "./message.ts";
 import { verifyEd25519 } from "./latch.ts";

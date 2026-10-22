@@ -22,7 +22,15 @@
 // signatures and timings, never a secret key. Keys are made with solana-keygen in keys/.
 
 import { readFileSync, writeFileSync } from "node:fs";
-import { Connection, Keypair, LAMPORTS_PER_SOL, PublicKey, SystemProgram, Transaction, sendAndConfirmTransaction } from "@solana/web3.js";
+import {
+  Connection,
+  Keypair,
+  LAMPORTS_PER_SOL,
+  PublicKey,
+  SystemProgram,
+  Transaction,
+  sendAndConfirmTransaction,
+} from "@solana/web3.js";
 import * as multisig from "@sqds/multisig";
 
 const arg = (name: string) => {
@@ -31,7 +39,9 @@ const arg = (name: string) => {
 };
 const url = arg("url");
 if (!url) {
-  console.error("usage: node apps/onchain/src/squads.ts --url <rpc> --operator <keyfile> --agent <keyfile> --treasury <keyfile>");
+  console.error(
+    "usage: node apps/onchain/src/squads.ts --url <rpc> --operator <keyfile> --agent <keyfile> --treasury <keyfile>",
+  );
   process.exit(2);
 }
 const load = (path: string | undefined, label: string) => {
@@ -49,7 +59,14 @@ const link = (sig: string) => `https://explorer.solana.com/tx/${sig}?cluster=${c
 const sol = (n: number) => Math.round(n * LAMPORTS_PER_SOL);
 
 const LIMIT = sol(0.02);
-const record: Record<string, unknown> = { cluster: url, at: new Date().toISOString(), operator: operator.publicKey.toBase58(), agent: agent.publicKey.toBase58(), treasury: treasury.toBase58(), attacker: attacker.toBase58() };
+const record: Record<string, unknown> = {
+  cluster: url,
+  at: new Date().toISOString(),
+  operator: operator.publicKey.toBase58(),
+  agent: agent.publicKey.toBase58(),
+  treasury: treasury.toBase58(),
+  attacker: attacker.toBase58(),
+};
 const step = (name: string, value: unknown) => {
   record[name] = value;
   console.log(`${name}: ${typeof value === "string" ? value : JSON.stringify(value)}`);
@@ -67,7 +84,10 @@ async function confirmed(signature: string): Promise<{ err: unknown; logs: strin
       if (s && (s.confirmationStatus === "confirmed" || s.confirmationStatus === "finalized")) {
         at ??= performance.now();
         // A public RPC can report the status before it serves the transaction: wait for both.
-        const tx = await connection.getTransaction(signature, { commitment: "confirmed", maxSupportedTransactionVersion: 1 });
+        const tx = await connection.getTransaction(signature, {
+          commitment: "confirmed",
+          maxSupportedTransactionVersion: 1,
+        });
         if (tx) return { err: s.err, logs: tx.meta?.logMessages ?? [], at, slot: tx.slot };
       }
     } catch (e) {
@@ -81,13 +101,18 @@ async function confirmed(signature: string): Promise<{ err: unknown; logs: strin
 }
 
 /** The Squads error a failed transaction's logs name, if any. */
-const squadsError = (logs: string[]) => logs.map((l) => /Error Code: (\w+)/.exec(l)?.[1]).find(Boolean) ?? logs.find((l) => /failed|Error/.test(l)) ?? "no error in the logs";
+const squadsError = (logs: string[]) =>
+  logs.map((l) => /Error Code: (\w+)/.exec(l)?.[1]).find(Boolean) ??
+  logs.find((l) => /failed|Error/.test(l)) ??
+  "no error in the logs";
 
 async function main() {
   const balance = await connection.getBalance(operator.publicKey);
   if (balance < sol(0.15)) {
     if (!local) {
-      console.error(`the operator ${operator.publicKey.toBase58()} holds ${balance / LAMPORTS_PER_SOL} SOL on ${url}; it needs 0.15. Fund it from https://faucet.solana.com and run again.`);
+      console.error(
+        `the operator ${operator.publicKey.toBase58()} holds ${balance / LAMPORTS_PER_SOL} SOL on ${url}; it needs 0.15. Fund it from https://faucet.solana.com and run again.`,
+      );
       process.exit(1);
     }
     await confirmed(await connection.requestAirdrop(operator.publicKey, 2 * LAMPORTS_PER_SOL));
@@ -125,10 +150,14 @@ async function main() {
   const [vaultPda] = multisig.getVaultPda({ multisigPda, index: 0 });
   step("vault", vaultPda.toBase58());
   if (!resumed) {
-    const funded = await sendAndConfirmTransaction(connection, new Transaction().add(
-      SystemProgram.transfer({ fromPubkey: operator.publicKey, toPubkey: vaultPda, lamports: sol(0.1) }),
-      SystemProgram.transfer({ fromPubkey: operator.publicKey, toPubkey: agent.publicKey, lamports: sol(0.01) }),
-    ), [operator]);
+    const funded = await sendAndConfirmTransaction(
+      connection,
+      new Transaction().add(
+        SystemProgram.transfer({ fromPubkey: operator.publicKey, toPubkey: vaultPda, lamports: sol(0.1) }),
+        SystemProgram.transfer({ fromPubkey: operator.publicKey, toPubkey: agent.publicKey, lamports: sol(0.01) }),
+      ),
+      [operator],
+    );
     step("fund", link(funded));
   }
 
@@ -163,20 +192,43 @@ async function main() {
   // The operator holds the config; the agent's key is on the limit, and not in the multisig.
   const ms = await multisig.accounts.Multisig.fromAccountAddress(connection, multisigPda);
   const sl = await multisig.accounts.SpendingLimit.fromAccountAddress(connection, spendingLimit);
-  step("multisigMembers", ms.members.map((m) => m.key.toBase58()));
-  step("limitMembers", sl.members.map((k) => k.toBase58()));
-  step("limitDestinations", sl.destinations.map((k) => k.toBase58()));
+  step(
+    "multisigMembers",
+    ms.members.map((m) => m.key.toBase58()),
+  );
+  step(
+    "limitMembers",
+    sl.members.map((k) => k.toBase58()),
+  );
+  step(
+    "limitDestinations",
+    sl.destinations.map((k) => k.toBase58()),
+  );
   step("limitRemaining", Number(sl.remainingAmount) / LAMPORTS_PER_SOL);
-  if (!ms.configAuthority.equals(operator.publicKey)) throw new Error("the operator must be the multisig's config authority");
-  if (ms.members.some((m) => m.key.equals(agent.publicKey))) throw new Error("the agent's key must not be a multisig member");
-  if (!sl.multisig.equals(multisigPda) || sl.members.length !== 1 || !sl.members[0]!.equals(agent.publicKey)) throw new Error("the limit must belong to this multisig and name the agent's key only");
-  if (sl.destinations.length !== 1 || !sl.destinations[0]!.equals(treasury)) throw new Error("the limit must name the treasury only");
-  if ((await connection.getBalance(agent.publicKey)) < sol(0.001)) throw new Error("the agent's key needs a fee float of 0.001 SOL: run once without --multisig, or fund it");
+  if (!ms.configAuthority.equals(operator.publicKey))
+    throw new Error("the operator must be the multisig's config authority");
+  if (ms.members.some((m) => m.key.equals(agent.publicKey)))
+    throw new Error("the agent's key must not be a multisig member");
+  if (!sl.multisig.equals(multisigPda) || sl.members.length !== 1 || !sl.members[0]!.equals(agent.publicKey))
+    throw new Error("the limit must belong to this multisig and name the agent's key only");
+  if (sl.destinations.length !== 1 || !sl.destinations[0]!.equals(treasury))
+    throw new Error("the limit must name the treasury only");
+  if ((await connection.getBalance(agent.publicKey)) < sol(0.001))
+    throw new Error("the agent's key needs a fee float of 0.001 SOL: run once without --multisig, or fund it");
 
   // 4. The agent's key alone, as a thief holding it would: within the limit, past it, and elsewhere.
   const use = async (amount: number, destination: PublicKey) => {
     const signature = await multisig.rpc.spendingLimitUse({
-      connection, feePayer: agent, member: agent, multisigPda, spendingLimit, vaultIndex: 0, amount, decimals: 9, destination, sendOptions: { skipPreflight: true },
+      connection,
+      feePayer: agent,
+      member: agent,
+      multisigPda,
+      spendingLimit,
+      vaultIndex: 0,
+      amount,
+      decimals: 9,
+      destination,
+      sendOptions: { skipPreflight: true },
     });
     const { err, logs } = await confirmed(signature);
     return { signature: link(signature), ok: err === null, error: err === null ? null : squadsError(logs) };
@@ -185,7 +237,21 @@ async function main() {
   step("usePastLimit", await use(sol(0.015), treasury));
   step("useUnlistedDestination", await use(sol(0.001), attacker));
 
-  if (arg("out")) writeFileSync(arg("out")!, JSON.stringify({ cluster: url, multisig: multisigPda.toBase58(), vault: vaultPda.toBase58(), spendingLimit: spendingLimit.toBase58(), agent: agent.publicKey.toBase58() }, null, 2));
+  if (arg("out"))
+    writeFileSync(
+      arg("out")!,
+      JSON.stringify(
+        {
+          cluster: url,
+          multisig: multisigPda.toBase58(),
+          vault: vaultPda.toBase58(),
+          spendingLimit: spendingLimit.toBase58(),
+          agent: agent.publicKey.toBase58(),
+        },
+        null,
+        2,
+      ),
+    );
   if (process.argv.includes("--keep")) {
     step("revoke", "skipped (--keep): the limit stays in place");
     console.log(`\n${JSON.stringify(record)}`);
@@ -195,14 +261,26 @@ async function main() {
   // 5. The revoke, timed from send to confirmed, then the next use.
   const slot0 = await connection.getSlot("processed");
   const t0 = performance.now();
-  const removed = await multisig.rpc.multisigRemoveSpendingLimit({ connection, feePayer: operator, multisigPda, configAuthority: operator.publicKey, spendingLimit, rentCollector: operator.publicKey });
+  const removed = await multisig.rpc.multisigRemoveSpendingLimit({
+    connection,
+    feePayer: operator,
+    multisigPda,
+    configAuthority: operator.publicKey,
+    spendingLimit,
+    rentCollector: operator.publicKey,
+  });
   const sent = performance.now();
   const { at, slot } = await confirmed(removed);
   step("revoke", link(removed));
   // Timed on the client to the first confirmed status it saw, so at most one poll late; the send
   // includes the RPC's preflight simulation. The chain's own measure is the slots between the slot
   // current at the send and the slot the removal landed in.
-  step("revokeMs", { total: Math.round(at - t0), send: Math.round(sent - t0), sentToConfirmed: Math.round(at - sent), pollMs: POLL_MS });
+  step("revokeMs", {
+    total: Math.round(at - t0),
+    send: Math.round(sent - t0),
+    sentToConfirmed: Math.round(at - sent),
+    pollMs: POLL_MS,
+  });
   step("revokeSlots", slot - slot0);
   step("useAfterRevoke", await use(sol(0.001), treasury));
 

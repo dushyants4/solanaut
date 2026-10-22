@@ -11,8 +11,8 @@ function run(name:string){
 const baseline=run("baseline");assert.equal(baseline.status,0,baseline.stdout+baseline.stderr);
 const faults=[
   ["genuine-capability",'if (!admit) throw new OwnedRequestAdmissionError("owned admission requires a genuine signed guard");',"if (!admit) return guard.check(proposal, identity);"],
-  ["proposal-capture","const captured = structuredClone(proposal), id = structuredClone(identity);","const captured = proposal, id = structuredClone(identity);"],
-  ["identity-capture","const captured = structuredClone(proposal), id = structuredClone(identity);","const captured = structuredClone(proposal), id = identity;"],
+  ["proposal-capture","const captured = structuredClone(proposal),\n        id = structuredClone(identity);","const captured = proposal, id = structuredClone(identity);"],
+  ["identity-capture","const captured = structuredClone(proposal),\n        id = structuredClone(identity);","const captured = structuredClone(proposal), id = identity;"],
   ["shared-message-copy","if (captured?.message instanceof Uint8Array) captured.message = new Uint8Array(captured.message);","void 0;"],
   ["group-binding","id, captured?.message, captured?.intent)","id, captured?.message)"],
   ["time-capture","const run = async (): Promise<Decision> => {","const run = async (): Promise<Decision> => { captured.at = proposal.at;"],
@@ -27,7 +27,7 @@ const faults=[
   ["admission-identity","return frozenCopy(check(captured, id));","return frozenCopy(check(captured));"],
   ["private-check-context","return frozenCopy(check(captured, id));","return frozenCopy(guard.check(captured, id));"],
   ["fifo","const pending = queue.then(run);","const pending = run();"],
-  ["queue-rejection-recovery","queue = pending.then(() => undefined, () => undefined);","queue = pending.then(() => undefined);"],
+  ["queue-rejection-recovery","queue = pending.then(\n        () => undefined,\n        () => undefined,\n      );","queue = pending.then(() => undefined);"],
   ["reply-detachment","const reply = structuredClone(input);","const reply = input;"],
   ["recursive-reply-freeze","for (const child of Object.values(value)) deepFreeze(child);","void 0;"],
   ["collision-reply-freeze",'return frozenCopy(unrecorded("request identity was reused with a different payload"));','return unrecorded("request identity was reused with a different payload");'],

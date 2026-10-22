@@ -12,7 +12,7 @@ output.mkdir(parents=True, exist_ok=True)
 faults = [
     ("message", "!equal(decoded.message, a.message)", "false"),
     ("signature", "!verifyEd25519(key, a.message, decoded.signatures[index] ?? new Uint8Array())", "false"),
-    ("reservation", 'try { guard.report(a.decision.hash, "unknown"); }', 'try { guard.report(a.decision.hash, "expired"); }'),
+    ("reservation", '[tx, ...signed].forEach(strip);\n      try {\n        guard.report(a.decision.hash, "unknown");', '[tx, ...signed].forEach(strip);\n      try {\n        guard.report(a.decision.hash, "expired");'),
     ("strip", '[tx, ...signed].forEach(strip);', 'void tx;'),
     ("second-serialization", "rpc.sendRawTransaction(wire, options)", "rpc.sendRawTransaction(new Uint8Array((signed[0] as any).serialize()), options)"),
 ]

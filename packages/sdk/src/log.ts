@@ -145,7 +145,15 @@ export interface ControlResponseEntry extends EntryBase {
   request: string;
   result: string;
 }
-export type Entry = DecisionEntry | ReportEntry | ReleaseEntry | RedeemEntry | PolicyEntry | SigningEntry | ControlRequestEntry | ControlResponseEntry;
+export type Entry =
+  | DecisionEntry
+  | ReportEntry
+  | ReleaseEntry
+  | RedeemEntry
+  | PolicyEntry
+  | SigningEntry
+  | ControlRequestEntry
+  | ControlResponseEntry;
 export type Decision = DecisionEntry;
 
 /** Hash an entry's body and freeze the result. */

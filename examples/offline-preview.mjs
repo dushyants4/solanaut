@@ -28,15 +28,29 @@ function transfer(destination) {
   view.setBigUint64(4, 1n, true);
   // Legacy message: header, account list, synthetic blockhash and one instruction.
   return Uint8Array.from([
-    1, 0, 1, 3,
-    ...publicBytes(1), ...publicBytes(destination), ...publicBytes(0),
+    1,
+    0,
+    1,
+    3,
+    ...publicBytes(1),
+    ...publicBytes(destination),
+    ...publicBytes(0),
     ...publicBytes(8),
-    1, 2, 2, 0, 1, data.length, ...data,
+    1,
+    2,
+    2,
+    0,
+    1,
+    data.length,
+    ...data,
   ]);
 }
 
 function requireResult(condition, message) {
-  if (!condition) throw new Error(`${message} Check the reviewed SDK artefact and unchanged example policy; do not bypass the guard.`);
+  if (!condition)
+    throw new Error(
+      `${message} Check the reviewed SDK artefact and unchanged example policy; do not bypass the guard.`,
+    );
 }
 
 const guard = await createGuard({ policy });
@@ -54,7 +68,10 @@ try {
   // Synthetic caller bookkeeping exercises an unresolved outcome, not chain evidence.
   guard.report(payment.hash, "unknown");
   const denied = guard.check({ message: transfer(3), at: 2000, blockHeight: 10n, lastValidBlockHeight: 100n });
-  requireResult(!denied.allow && denied.rule === "destination-not-allowed", "The unlisted destination did not receive its expected denial.");
+  requireResult(
+    !denied.allow && denied.rule === "destination-not-allowed",
+    "The unlisted destination did not receive its expected denial.",
+  );
 
   const reproduced = await replay(guard.entries(), policy);
   requireResult(reproduced.ok, "The in-memory example history did not reproduce through replay.");

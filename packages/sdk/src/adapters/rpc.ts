@@ -72,11 +72,19 @@ export function jsonRpc(url: string, o: JsonRpcOptions = {}): RpcLike {
   }
   const getBlockHeight = async () => BigInt(await read<number>("getBlockHeight", [{ commitment }]));
   type Status = { err: unknown; confirmationStatus?: string } | null;
-  const outcomeOf = (s: Status) => (s && (s.confirmationStatus === "confirmed" || s.confirmationStatus === "finalized") ? (s.err ? "failed" : "landed") : null);
+  const outcomeOf = (s: Status) =>
+    s && (s.confirmationStatus === "confirmed" || s.confirmationStatus === "finalized")
+      ? s.err
+        ? "failed"
+        : "landed"
+      : null;
   return {
     getBlockHeight,
     sendRawTransaction: (wire, options) =>
-      call<string>("sendTransaction", [Buffer.from(wire).toString("base64"), { encoding: "base64", preflightCommitment: commitment, ...(options as object | undefined) }]),
+      call<string>("sendTransaction", [
+        Buffer.from(wire).toString("base64"),
+        { encoding: "base64", preflightCommitment: commitment, ...(options as object | undefined) },
+      ]),
     async confirm(signature, lastValidBlockHeight) {
       const deadline = Date.now() + timeoutMs;
       let errors = 0;
@@ -85,7 +93,13 @@ export function jsonRpc(url: string, o: JsonRpcOptions = {}): RpcLike {
           // The height first: past the last valid height, a signature the status read then cannot see never
           // landed. Read the other way round, one processed at its last valid height could be called expired.
           const height = await getBlockHeight();
-          const s = (await call<{ value: Status[] }>("getSignatureStatuses", [[signature], { searchTransactionHistory: false }])).value[0] ?? null;
+          const s =
+            (
+              await call<{ value: Status[] }>("getSignatureStatuses", [
+                [signature],
+                { searchTransactionHistory: false },
+              ])
+            ).value[0] ?? null;
           const outcome = outcomeOf(s);
           if (outcome) return outcome;
           if (s === null && height > lastValidBlockHeight) return "expired";
@@ -100,7 +114,9 @@ export function jsonRpc(url: string, o: JsonRpcOptions = {}): RpcLike {
       return "unknown";
     },
     async getSignatureStatus(signature) {
-      const s = (await read<{ value: Status[] }>("getSignatureStatuses", [[signature], { searchTransactionHistory: true }])).value[0] ?? null;
+      const s =
+        (await read<{ value: Status[] }>("getSignatureStatuses", [[signature], { searchTransactionHistory: true }]))
+          .value[0] ?? null;
       return outcomeOf(s) ?? (s ? "pending" : null);
     },
   };

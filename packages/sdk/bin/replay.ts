@@ -15,23 +15,53 @@ import type { PolicyTrust } from "../src/signed-policy.ts";
 function publicJSON(path: string): unknown {
   const fd = openSync(path, constants.O_RDONLY | constants.O_NOFOLLOW | constants.O_NONBLOCK);
   try {
-    const before = fstatSync(fd, { bigint: true }), limit = 1_048_576;
+    const before = fstatSync(fd, { bigint: true }),
+      limit = 1_048_576;
     if (!before.isFile() || before.nlink !== 1n || before.size > BigInt(limit)) throw new Error("source");
-    const buffer = Buffer.alloc(limit + 1); let bytes = 0, count: number;
-    while (bytes < buffer.length && (count = readSync(fd, buffer, bytes, buffer.length - bytes, null)) > 0) bytes += count;
-    const after = fstatSync(fd, { bigint: true }), named = lstatSync(path, { bigint: true });
-    if (bytes > limit || BigInt(bytes) !== before.size || before.size !== after.size || before.mtimeNs !== after.mtimeNs ||
-      before.ctimeNs !== after.ctimeNs || after.nlink !== 1n || !named.isFile() || named.nlink !== 1n ||
-      named.ino !== before.ino || named.dev !== before.dev || named.size !== before.size ||
-      named.mtimeNs !== before.mtimeNs || named.ctimeNs !== before.ctimeNs) throw new Error("source");
+    const buffer = Buffer.alloc(limit + 1);
+    let bytes = 0,
+      count: number;
+    while (bytes < buffer.length && (count = readSync(fd, buffer, bytes, buffer.length - bytes, null)) > 0)
+      bytes += count;
+    const after = fstatSync(fd, { bigint: true }),
+      named = lstatSync(path, { bigint: true });
+    if (
+      bytes > limit ||
+      BigInt(bytes) !== before.size ||
+      before.size !== after.size ||
+      before.mtimeNs !== after.mtimeNs ||
+      before.ctimeNs !== after.ctimeNs ||
+      after.nlink !== 1n ||
+      !named.isFile() ||
+      named.nlink !== 1n ||
+      named.ino !== before.ino ||
+      named.dev !== before.dev ||
+      named.size !== before.size ||
+      named.mtimeNs !== before.mtimeNs ||
+      named.ctimeNs !== before.ctimeNs
+    )
+      throw new Error("source");
     return JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(buffer.subarray(0, bytes)));
-  } finally { closeSync(fd); }
+  } finally {
+    closeSync(fd);
+  }
 }
 function publicTrust(input: unknown): PolicyTrust {
   if (!input || typeof input !== "object" || Array.isArray(input)) throw new Error("trust");
-  const value = input as Record<string, unknown>, keys = Object.keys(value);
-  if (keys.length !== 3 || keys.some(key => !["operatorKey", "guardId", "cluster"].includes(key) || typeof value[key] !== "string" || !value[key])) throw new Error("trust");
-  return { operatorKey: value.operatorKey as string, guardId: value.guardId as string, cluster: value.cluster as string };
+  const value = input as Record<string, unknown>,
+    keys = Object.keys(value);
+  if (
+    keys.length !== 3 ||
+    keys.some(
+      (key) => !["operatorKey", "guardId", "cluster"].includes(key) || typeof value[key] !== "string" || !value[key],
+    )
+  )
+    throw new Error("trust");
+  return {
+    operatorKey: value.operatorKey as string,
+    guardId: value.guardId as string,
+    cluster: value.cluster as string,
+  };
 }
 
 const [recordPath, policyPath, trustPath, ...extra] = process.argv.slice(2);
@@ -54,7 +84,10 @@ try {
 let entries = 0;
 const open = async function* () {
   let count = 0;
-  for await (const entry of streamArchive(recordPath)) { count++; yield entry; }
+  for await (const entry of streamArchive(recordPath)) {
+    count++;
+    yield entry;
+  }
   entries = count;
 };
 const res = await replayStream(open, policy, undefined, trust).catch(() => {

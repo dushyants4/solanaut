@@ -11,7 +11,9 @@ export type DeniedRule =
   | "message-signing-denied"
   /** The wallet signed something other than the admitted message, or its signature does not verify over it. */
   | "wallet-changed-message"
-  | "blockhash-expired" | "rpc-unavailable" | "failure-budget";
+  | "blockhash-expired"
+  | "rpc-unavailable"
+  | "failure-budget";
 
 export type DenialClass = "refused" | "retry-later" | "invalid";
 
@@ -25,15 +27,32 @@ export type RefusalObserver = (refusal: Refusal) => void | Promise<void>;
 
 /** What an agent may do about each rule: fix its input, wait and try again, or nothing. */
 const CLASSES: Readonly<Record<string, DenialClass>> = Object.freeze({
-  "invalid-policy": "invalid", "malformed-proposal": "invalid", "unsupported-version": "invalid",
-  "intent-in-flight": "retry-later", "blockhash-expired": "retry-later", "rpc-unavailable": "retry-later",
-  "lookup-table-unpinned": "refused", latched: "refused", "durable-nonce-denied": "refused",
-  "other-signer": "refused", "program-not-allowed": "refused", "opaque-program": "refused",
-  "instruction-denied": "refused", "destination-not-allowed": "refused", "mint-not-allowed": "refused",
-  "token-mint-unknown": "refused", "over-per-tx-cap": "refused", "over-fee-cap": "refused",
-  "intent-attempts-exhausted": "refused", "over-window-cap": "refused", "loop-reground": "refused",
-  "inhibit-cap": "refused", "fail-closed": "refused", "message-signing-denied": "refused",
-  "wallet-changed-message": "refused", "failure-budget": "refused",
+  "invalid-policy": "invalid",
+  "malformed-proposal": "invalid",
+  "unsupported-version": "invalid",
+  "intent-in-flight": "retry-later",
+  "blockhash-expired": "retry-later",
+  "rpc-unavailable": "retry-later",
+  "lookup-table-unpinned": "refused",
+  latched: "refused",
+  "durable-nonce-denied": "refused",
+  "other-signer": "refused",
+  "program-not-allowed": "refused",
+  "opaque-program": "refused",
+  "instruction-denied": "refused",
+  "destination-not-allowed": "refused",
+  "mint-not-allowed": "refused",
+  "token-mint-unknown": "refused",
+  "over-per-tx-cap": "refused",
+  "over-fee-cap": "refused",
+  "intent-attempts-exhausted": "refused",
+  "over-window-cap": "refused",
+  "loop-reground": "refused",
+  "inhibit-cap": "refused",
+  "fail-closed": "refused",
+  "message-signing-denied": "refused",
+  "wallet-changed-message": "refused",
+  "failure-budget": "refused",
 });
 
 /** Each guard's disclosure and operator observer, captured when it was created. */
