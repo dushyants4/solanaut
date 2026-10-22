@@ -8,7 +8,7 @@ const faults = [
   ["ignore-signal", "evals/ci/kills.ts", 'signal !== "SIGKILL"', "false"],
   ["ignore-acknowledgement", "evals/ci/kills.ts", "acknowledged !== expected", "false"],
   ["send-wrong-signal", "evals/ci/kills.ts", 'acknowledged = point; child.kill("SIGKILL")', 'acknowledged = point; child.kill("SIGTERM")'],
-  ["skip-state-restore", "packages/sdk/src/guard.ts", "for (const e of store.entries)", "for (const e of [])"],
+  ["skip-state-restore", "packages/sdk/src/guard.ts", "for (const entry of store.entries)", "for (const entry of [])"],
 ] as const;
 const battery = () => spawnSync(process.execPath, ["--test", "evals/ci/kills.test.ts"], { encoding: "utf8", timeout: 30_000 });
 for (const [name, path, from, to] of faults) {

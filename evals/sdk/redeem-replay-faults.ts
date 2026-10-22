@@ -24,7 +24,7 @@ const faults=[
   ["validation before state mutation",state,validation+'\n  s.seq += 1;\n  s.head = e.hash;\n  s.maxAt = Math.max(s.maxAt ?? e.at, e.at);','  s.seq += 1;\n  s.head = e.hash;\n  s.maxAt = Math.max(s.maxAt ?? e.at, e.at);\n'+validation],
   ["used receipt state",state,'      s.redeemed.add(e.decision);',''],
   ["signing redemption state",state,'      if (s.signing.has(e.decision)) s.signing.get(e.decision)!.redeemed = true;',''],
-  ["restore and replay policy context",guard,'  apply(env.state, e, env.policy, env.policyEntry ? env.policyHash : undefined);\n  if (e.kind === "release") env.gov.reset();','  apply(env.state, e, env.policy);\n  if (e.kind === "release") env.gov.reset();'],
+  ["restore and replay policy context",guard,'  apply(env.state, entry, env.policy, env.policyEntry ? env.policyHash : undefined);\n  if (entry.kind === "release") env.governor.reset();','  apply(env.state, entry, env.policy);\n  if (entry.kind === "release") env.governor.reset();'],
   ["inspection policy context",inspect,'    apply(state, e, policy, previous ? hash : undefined);','    apply(state, e, policy);'],
 ] as const;
 function complete(label:string,expected:number){

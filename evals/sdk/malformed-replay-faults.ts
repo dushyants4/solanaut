@@ -4,11 +4,11 @@ import { spawnSync } from "node:child_process";
 const path="packages/sdk/src/guard.ts",source=readFileSync(path,"utf8");
 const run=()=>spawnSync(process.execPath,["--test","packages/sdk/test/malformed-replay.test.ts"],{encoding:"utf8",timeout:15000});
 const faults=[
-  ["posture","e.posture !== null || ",""],
-  ["telemetry","e.telemetry !== null || ",""],
-  ["temperature","e.temperatureMax !== null","false"],
-  ["invalid-input-scope",' && e.input === "invalid"',""] ,
-  ["entire-refusal",'if (e.kind === "decision" && e.input === "invalid" && (e.posture !== null || e.telemetry !== null || e.temperatureMax !== null))','if (false)'],
+  ["posture","entry.posture !== null || ",""],
+  ["telemetry","entry.telemetry !== null || ",""],
+  ["temperature","entry.temperatureMax !== null","false"],
+  ["invalid-input-scope",' && entry.input === "invalid"',""] ,
+  ["entire-refusal",'if (entry.kind === "decision" && entry.input === "invalid" && (entry.posture !== null || entry.telemetry !== null || entry.temperatureMax !== null))','if (false)'],
 ] as const;
 const baseline=run();assert.equal(baseline.status,0,baseline.stdout+baseline.stderr);
 for(const [name,before,after] of faults){

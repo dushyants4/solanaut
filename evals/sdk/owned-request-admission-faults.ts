@@ -22,15 +22,15 @@ const faults=[
   ["current-head","evidence.seq !== state.seq || evidence.head !== state.head","false"],
   ["late-closure",'if (shut || evidence.seq !== state.seq',"if (evidence.seq !== state.seq"],
   ["payload-collision",'historical.kind !== "decision" || historical.request!.digest !== binding.digest',"false"],
-  ["historical-answer","return admissionReply(historical);","return admissionReply({...historical,at:captured.at});"],
-  ["historical-policy-retry","return admissionReply(historical);",'if(historical.policyHash !== policyHash)return admissionReply(unrecorded("old policy"));return admissionReply(historical);'],
-  ["admission-identity","return admissionReply(check(captured, id));","return admissionReply(check(captured));"],
-  ["private-check-context","return admissionReply(check(captured, id));","return admissionReply(guard.check(captured, id));"],
+  ["historical-answer","return frozenCopy(historical);","return frozenCopy({...historical,at:captured.at});"],
+  ["historical-policy-retry","return frozenCopy(historical);",'if(historical.policyHash !== policyHash)return frozenCopy(unrecorded("old policy"));return frozenCopy(historical);'],
+  ["admission-identity","return frozenCopy(check(captured, id));","return frozenCopy(check(captured));"],
+  ["private-check-context","return frozenCopy(check(captured, id));","return frozenCopy(guard.check(captured, id));"],
   ["fifo","const pending = queue.then(run);","const pending = run();"],
   ["queue-rejection-recovery","queue = pending.then(() => undefined, () => undefined);","queue = pending.then(() => undefined);"],
-  ["reply-detachment","const reply = structuredClone(decision); freeze(reply); return reply;","const reply = decision; freeze(reply); return reply;"],
-  ["recursive-reply-freeze","for (const child of Object.values(value)) freeze(child);","void 0;"],
-  ["collision-reply-freeze",'return admissionReply(unrecorded("request identity was reused with a different payload"));','return unrecorded("request identity was reused with a different payload");'],
+  ["reply-detachment","const reply = structuredClone(input);","const reply = input;"],
+  ["recursive-reply-freeze","for (const child of Object.values(value)) deepFreeze(child);","void 0;"],
+  ["collision-reply-freeze",'return frozenCopy(unrecorded("request identity was reused with a different payload"));','return unrecorded("request identity was reused with a different payload");'],
 ] as const;
 const misses:string[]=[];
 for(const [name,before,after] of faults){

@@ -20,17 +20,17 @@ for (const [name, from, to] of faults) {
   } finally { writeFileSync(path, original); }
 }
 const guardPath = "packages/sdk/src/guard.ts"; const source = readFileSync(guardPath, "utf8");
-const site = "t.sol > policy.sol.maxPerTx"; assert.equal(source.split(site).length, 2);
+const site = "total.sol > policy.sol.maxPerTx"; assert.equal(source.split(site).length, 2);
 try {
   writeFileSync(guardPath, source.replace(site, "false"));
   const result = battery();
   assert.equal(result.status, 1, result.stdout + result.stderr); assert.match(result.stdout + result.stderr, /AssertionError/);
   console.log("caught replay product fault: previously-missed-per-tx-cap");
 } finally { writeFileSync(guardPath, source); }
-const destination = 'if (sol) return decide(false, "destination-not-allowed"';
+const destination = 'if (sol) return { rule: "destination-not-allowed"';
 assert.equal(source.split(destination).length, 2);
 try {
-  writeFileSync(guardPath, source.replace(destination, 'if (false) return decide(false, "destination-not-allowed"'));
+  writeFileSync(guardPath, source.replace(destination, 'if (false) return { rule: "destination-not-allowed"'));
   const result = spawnSync(process.execPath, [path], { encoding: "utf8", timeout: 60_000 });
   assert.equal(result.status, 1, result.stdout + result.stderr); assert.match(result.stderr, /baseline digest differs/);
   console.log("caught replay product fault: changed-record-and-evaluation");

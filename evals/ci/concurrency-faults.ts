@@ -21,7 +21,7 @@ for (const [name, from, to] of faults) {
   } finally { writeFileSync(path, original); }
 }
 const guardPath = "packages/sdk/src/guard.ts"; const source = readFileSync(guardPath, "utf8");
-const site = "w.sol + t.sol > policy.sol.maxPerWindow"; assert.equal(source.split(site).length, 2);
+const site = "reserved.sol + total.sol > policy.sol.maxPerWindow"; assert.equal(source.split(site).length, 2);
 try {
   writeFileSync(guardPath, source.replace(site, "false")); const result = battery();
   assert.equal(result.status, 1, result.stdout + result.stderr); assert.match(result.stdout + result.stderr, /concurrent admission totals differ/);

@@ -3,10 +3,10 @@ import { spawnSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 import { requirePropertyFaultExit } from "./properties.ts";
 const faults = [
-  ["per-tx-boundary", "packages/sdk/src/guard.ts", "t.sol > policy.sol.maxPerTx", "t.sol >= policy.sol.maxPerTx", "packages/sdk/test/caps.property.test.ts", "per-tx"],
-  ["per-tx-disabled", "packages/sdk/src/guard.ts", "t.sol > policy.sol.maxPerTx", "false", "packages/sdk/test/caps.property.test.ts", "per-tx"],
-  ["window-boundary", "packages/sdk/src/guard.ts", "w.sol + t.sol > policy.sol.maxPerWindow", "w.sol + t.sol >= policy.sol.maxPerWindow", "packages/sdk/test/caps.property.test.ts", "window"],
-  ["ignore-reservation", "packages/sdk/src/guard.ts", "w.sol + t.sol > policy.sol.maxPerWindow", "t.sol > policy.sol.maxPerWindow", "packages/sdk/test/caps.property.test.ts", "window"],
+  ["per-tx-boundary", "packages/sdk/src/guard.ts", "total.sol > policy.sol.maxPerTx", "total.sol >= policy.sol.maxPerTx", "packages/sdk/test/caps.property.test.ts", "per-tx"],
+  ["per-tx-disabled", "packages/sdk/src/guard.ts", "total.sol > policy.sol.maxPerTx", "false", "packages/sdk/test/caps.property.test.ts", "per-tx"],
+  ["window-boundary", "packages/sdk/src/guard.ts", "reserved.sol + total.sol > policy.sol.maxPerWindow", "reserved.sol + total.sol >= policy.sol.maxPerWindow", "packages/sdk/test/caps.property.test.ts", "window"],
+  ["ignore-reservation", "packages/sdk/src/guard.ts", "reserved.sol + total.sol > policy.sol.maxPerWindow", "total.sol > policy.sol.maxPerWindow", "packages/sdk/test/caps.property.test.ts", "window"],
   ["async-short-run", "evals/ci/properties.ts", "await fc.check(property, propertyTrialOptions(runs, seed, process.env.SOLANAUT_PROPERTY_TRIAL))", "await fc.check(property, {...propertyTrialOptions(runs, seed, process.env.SOLANAUT_PROPERTY_TRIAL),numRuns:1})", "evals/ci/properties.test.ts", "asynchronous"],
 ] as const;
 for (const [name, path, from, to, tests, pattern] of faults) {

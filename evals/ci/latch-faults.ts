@@ -9,15 +9,15 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const path = join(root, "packages/sdk/src/guard.ts");
 const original = readFileSync(path, "utf8");
 const reground = 'body.posture === "REGROUND" && (body.rule === "loop-reground" || (previous?.allow === false && previous.posture === "REGROUND"))';
-const predecessor = 'store.entries.findLast((e): e is DecisionEntry => e.kind === "decision")';
+const predecessor = 'store.entries.findLast((entry): entry is DecisionEntry => entry.kind === "decision")';
 const faults = [
   ["v0", reground, 'body.posture === "REGROUND"'],
   ["only-keel", reground, 'body.posture === "REGROUND" && body.rule === "loop-reground"'],
   ["only-previous", reground, 'body.posture === "REGROUND" && previous?.allow === false && previous.posture === "REGROUND"'],
   ["last-entry", predecessor, 'store.entries.at(-1) as DecisionEntry | undefined'],
-  ["no-replay-predecessor", "evaluate(env, p, prior)", "evaluate(env, p, undefined)"],
+  ["no-replay-predecessor", "evaluate(env, proposalOf(entry), prior)", "evaluate(env, proposalOf(entry), undefined)"],
   ["no-denial-threshold", "state.consecutiveDenials + 1 >= policy.latch.afterDenials || regroundTrips", "regroundTrips"],
-  ["skip-intervening-decision", predecessor, 'store.entries.findLast((e): e is DecisionEntry => e.kind === "decision" && e.posture === "REGROUND")'],
+  ["skip-intervening-decision", predecessor, 'store.entries.findLast((entry): entry is DecisionEntry => entry.kind === "decision" && entry.posture === "REGROUND")'],
 ] as const;
 
 function battery() {
