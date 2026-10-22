@@ -1,10 +1,11 @@
 import {strict as assert} from "node:assert";
-import {mkdtempSync,readFileSync,rmSync,writeFileSync} from "node:fs";
+import {mkdirSync,mkdtempSync,readFileSync,rmSync,writeFileSync} from "node:fs";
 import {resolve} from "node:path";
 import {spawnSync} from "node:child_process";
 const record="packages/sdk/src/record.ts",publication="packages/sdk/src/checkpoint-publication.ts";
 const sources=new Map([record,publication].map(path=>[path,readFileSync(path,"utf8")]));
 const run=()=>{
+  mkdirSync(resolve(".sandbox/solanaut-1"),{recursive:true});
   const temporary=mkdtempSync(resolve(".sandbox/solanaut-1/publication-fault-"));
   try{return spawnSync(process.execPath,["--test","--experimental-test-isolation=none","packages/sdk/test/checkpoint-publication.test.ts"],{encoding:"utf8",timeout:15000,killSignal:"SIGKILL",env:{...process.env,TMPDIR:temporary}});}
   finally{rmSync(temporary,{recursive:true,force:true});}
