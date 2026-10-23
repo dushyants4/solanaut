@@ -45,7 +45,8 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   validateInventory((readdirSync("evals", { recursive: true }) as string[]).filter((path) => /(?:^|\/|-)faults\.ts$/.test(path)));
   const result = executeCampaigns((path) => {
     console.log(`Running fault campaign: ${path}`);
-    const run = spawnSync(process.execPath, ["evals/" + path], { stdio: "inherit", timeout: 300_000 });
+    // A full local run includes the campaigns CI shards in their own job; give them the half hour they need.
+    const run = spawnSync(process.execPath, ["evals/" + path], { stdio: "inherit", timeout: OWN_JOB.includes(path) ? 1_800_000 : 300_000 });
     return run.status;
   }, sourceFingerprint,process.argv.slice(2));
   console.log(JSON.stringify(result)); process.exitCode = result.ok ? 0 : 1;
