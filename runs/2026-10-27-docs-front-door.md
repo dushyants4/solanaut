@@ -72,6 +72,12 @@ ease of user understandability etc." The scope was Claude's to decide, as for th
   - the README's snippet used a top-level `return`; `--issued` needs the `.000Z` form; the Agent Kit line needs two
     casts in TypeScript; the postures were never explained; the SDK guide carried a table of internals that belongs
     in OVERVIEW §5, where its details now are.
+- **An intermittent signer test on Node 22.18.0.** CI run `40399232227` for `3d60645` failed one job: 986 of 987
+  tests passed, and `DISC-1/CLT-1: sending client consumes the class-only denial from the running service`
+  (`apps/signer/test/disclosure-followup.test.ts:105`) found no decision entry in the record, so the denial it got was
+  probably one with no recorded decision (reference −1). The test and the signer are unchanged since 2026-10-13; the
+  same job passed on Node 24 and 26.7 in that run and on all four earlier green runs; it passed 30 of 30 times here on
+  Node 26.7.0 and 24.19.0; and the re-run of the failed job passed, making the run 19 of 19. The cause is not found.
 - **ADR-012's status line** still says "Not built yet", though `evals/sdk/latch-c.md` records it built on 2026-10-05.
   ADRs are records kept as written; it is left for the architect.
 
@@ -83,13 +89,17 @@ ease of user understandability etc." The scope was Claude's to decide, as for th
 - **Not restructured:** `docs/SPEC.md` (1,649 lines, the architect's), `docs/HANDOFF.md` (a working record), the
   papers, and `docs/CLIENT.md`, `docs/POLICY.md`, `docs/POLICIES.md` and `docs/REQUESTS.md`, which are already
   organized by task.
+- **The intermittent `DISC-1/CLT-1` failure** is owed to the evaluator: find what makes the running service answer a
+  refused proposal without a recorded decision, on Node 22.18.0 or under load. Its log is in run `40399232227`,
+  attempt 1.
 - Still owed from the session before: the one-line fix in `evals/release/integrated-fixes-faults.py`, for the evaluator.
 
 ## Provenance
 
 - Node 26.7.0, npm 12.2.1 on this machine (the walkthrough's plain install and pack work with it); Linux, Toronto.
-- Gates: `npm test`, `npm run typecheck`, `uv run --script tools/kb_lint.py` (every link resolves),
-  `uv run --script tools/claims_lint.py`, `uv run --script tools/session_close.py`, and CI on the push.
+- Gates: `npm test` (987 of 987), `npm run typecheck`, `uv run --script tools/kb_lint.py` (every link resolves),
+  `uv run --script tools/claims_lint.py`, `uv run --script tools/session_close.py` (10 of 10), and CI run
+  `40399232227`: 18 of 19 on its first attempt, 19 of 19 after the failed job's re-run.
 - The independent read ran `npm run sandbox`, `examples/offline-preview.mjs`, the cockpit demo, `replay`,
   `verify-archive` and `prepare-policy`, and type-checked the README's snippet against solana-agent-kit 2.0.10.
 - The sandbox also runs on Node 24.19.0, which the README now names.
