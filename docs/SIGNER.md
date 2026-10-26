@@ -1,7 +1,14 @@
 # Signer development and trust boundary
 
-> **Draft 10** · 2026-10-13 · owner: integrator · for: operators and signer developers.
+> **Draft 11** · 2026-10-27 · owner: integrator · for: operators and signer developers.
 > Register: `kb/DOCUMENTS.md`. The operational service is still being implemented.
+
+The signer is the separate process that holds the agent's key, so the agent does not. It admits each proposal
+through the guard, signs and sends the exact admitted bytes once, and follows the outcome. Agents reach it through
+the SDK's sending client ([CLIENT](CLIENT.md)). Today it runs as a same-user development executable; the
+dedicated-user deployment that isolates the key is still owed. The last section shows how to run it.
+
+## The trust boundary
 
 The executor and devnet RPC boundary live under `apps/signer/src/`. Their current evidence uses
 fake RPCs and reconstructed restart states (`evals/signer/core.md`, `evals/signer/rpc.md`). The
@@ -24,6 +31,8 @@ signed policy authorization. Its socket methods remain only `propose`, `report` 
 SDK journal methods are trusted host APIs and are not exposed as socket methods. Installation,
 protected configuration and installed-package qualification remain in progress.
 
+## The socket
+
 `socket.ts` now supplies a Linux transport boundary, tested with real local sockets (S23,
 `evals/signer/socket.md`). Requests are exactly one canonical `JSON.stringify` object and a
 newline, at most 16,384 bytes. Duplicate keys, additional fields, invalid UTF-8 and multiple
@@ -39,6 +48,8 @@ record's exclusive kernel ownership may a service recover an owned abandoned soc
 a live listener or non-socket path is refused. The transport helper does not acquire that
 ownership itself. Closing a timed-out connection does not rewind signing work already
 dispatched: retry/recovery uses the journal and never automatically resends uncertain bytes.
+
+## Requests and recovery
 
 `handler.ts` now connects control requests to the journal and host actions (S26). It coalesces
 identical active requests, refuses cross-method identity reuse, and returns completed answers
@@ -63,6 +74,8 @@ reservations remain counted. Final chain reports prevent subsequent signing or s
 including on replay. An interrupted signed response completes as uncertain without sending;
 read its separate final report for settlement. Unknown reports leave the lifecycle unresolved.
 
+## The service
+
 `startSigner()` now composes those pieces for explicitly trusted same-user hosts (S30).
 It requires valid signed authorization and existing protected history, takes kernel ownership,
 restores with the anchored clock and recovers before listening. Close drains socket and host
@@ -78,7 +91,8 @@ then starts the same-user service. Dedicated-user deployment and installed relea
 artefacts remain owed. Earlier factory evidence: `evals/signer/service.md`.
 The human accepted ADR-021's larger budget, now reflected in SIG-11; all signer
 app source and signer-specific helpers count. The complete running candidate
-still needs its explicit source inventory. No release gate is marked achieved.
+still needs its explicit source inventory. As formatted, the budgeted code is 1,260 lines of the amended
+2,000 (`evals/signer/sig-11-formatted.md`, S164). No release gate is marked achieved.
 The SDK's distinct sending client consumes this socket protocol (`docs/CLIENT.md`, S31).
 The client/service integration is tested with fake RPC; the client has no signing key or
 partial-signing methods. The existing signing adapters retain their SDK semantics.

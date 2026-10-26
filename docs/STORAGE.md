@@ -1,17 +1,13 @@
 # Persistent record ownership
 
-Post-sync acknowledgement requires the original held mutex and named journal
-inode to remain current. Replacement refuses and permanently fails the writer;
-do not remove a foreign marker during cleanup. Stop all writers and verify both
-inodes before operator recovery. Evidence: `evals/sdk/record-write-identity.md`.
-
-After each complete append and sync, the physical byte count must equal the
-previous count plus the canonical entry bytes. A mismatch acknowledges nothing
-and permanently fails the writer. Retain physical evidence and stop all writers
-before operator recovery. Evidence: `evals/sdk/record-write-completion.md`.
-
-> **Draft 14** · 2026-10-09 · owner: integrator · for: SDK users and Linux operators.
+> **Draft 15** · 2026-10-27 · owner: integrator · for: SDK users and Linux operators.
 > Register: `kb/DOCUMENTS.md`. Foundation evidence: `evals/sdk/ownership.md` (claim S16).
+
+The guard's record is its state (ADR-010), so where it lives decides what survives a crash. This page says how to
+give a guard a persistent record on Linux, what the writer checks before it acknowledges an entry, and how to verify
+a stopped archive.
+
+## Choosing ownership
 
 An ordinary `createGuard({ policy, log: path })` uses manual SDK ownership. It refuses an
 existing ownership marker even if its PID is dead. Stop every writer before operator repair;
@@ -27,6 +23,63 @@ const guard = await createGuard({ policy, log: store, authorization });
 `create: false` is for an established identity. Initial setup must explicitly create its record
 using `fileStore(path, { ownership: "kernel" })`, close it, and retain that history thereafter.
 This SDK option is a foundation; the isolated signer's enforced bootstrap workflow is still owed.
+
+The writer opens a stable mutex inode and passes its descriptor to `/usr/bin/flock` for
+nonblocking exclusive acquisition. The parent retains that descriptor until close or death.
+The utility's exit does not release the parent's lock: Linux associates it with the shared
+open-file description. See [Linux flock semantics](https://man7.org/linux/man-pages/man2/flock.2.html).
+Kernel mode never unlinks its mutex. Manual mode cannot take over a kernel marker.
+
+Use an operator-owned directory on a local Linux filesystem. The agent must not be able to
+replace the record or its mutex. Network filesystems, distributed writers and mixed old/new
+active binaries are unsupported. Stop all old writers before upgrading to this ownership mode.
+The initial Ubuntu reference installation still needs clean-machine qualification.
+
+## What the writer checks
+
+The store completes short writes and syncs before acknowledgement. A write or sync failure
+closes the writer; restart may retain an unacknowledged complete entry conservatively. This
+does not prove power-loss durability. Back up history and ownership configuration together;
+verified backup, rollback, snapshots and the full recovery programme remain release work.
+
+The live journal and its mutex must both be single-link regular files. Hardlinked
+aliases refuse ownership rather than opening the same journal through different
+pathname locks. Stop all writers and retain evidence before resolving an alias;
+do not remove mutex names to clear a lock. Failed startup releases its acquired
+ownership. This does not prevent privileged concurrent host changes. Evidence:
+`evals/sdk/record-alias.md`.
+
+Post-sync acknowledgement requires the original held mutex and named journal
+inode to remain current. Replacement refuses and permanently fails the writer;
+do not remove a foreign marker during cleanup. Stop all writers and verify both
+inodes before operator recovery. Evidence: `evals/sdk/record-write-identity.md`.
+
+After each complete append and sync, the physical byte count must equal the
+previous count plus the canonical entry bytes. A mismatch acknowledges nothing
+and permanently fails the writer. Retain physical evidence and stop all writers
+before operator recovery. Evidence: `evals/sdk/record-write-completion.md`.
+
+Before each append, the writer also compares descriptor byte count and nanosecond
+modification/change times with completed startup or its last synced append.
+External changes fail that store permanently without adding another line. Restoring
+the original bytes does not revive it. Stop all writers, retain evidence and verify
+the intended history before a compatible restart. This is a metadata consistency
+check under the signer-host trust boundary; it neither authenticates content nor
+prevents privileged changes during a write. Evidence: `evals/sdk/live-record.md`.
+
+Record reads also compare descriptor size and nanosecond modification/change times
+before and after reading, and recheck inode identity. Observed changes refuse before
+parsing or torn-tail repair. Failed startup releases ownership and retains the
+changed evidence. Stop all writers and verify the intended immutable history before
+operator recovery; a metadata comparison does not freeze the host or source.
+Evidence: `evals/sdk/record-read-stability.md`.
+The complete raw read must match the descriptor's byte count before any repair.
+A short or oversized result refuses while retaining the original evidence.
+Genuine incomplete tails are cut at byte newline boundaries, preserving complete
+entries even when the suffix contains a partial UTF-8 character. Evidence:
+`evals/sdk/record-read-completion.md`. Full-history allocation remains unbounded.
+
+## Internal maintenance
 
 Internal maintenance now also publishes derived request-index generations under
 actual kernel ownership. Each new generation is complete and synced before an
@@ -56,48 +109,7 @@ historical map and array: pruning requires a distinct private async facade so
 trusted synchronous APIs cannot bypass historical lookup. Evidence:
 `evals/sdk/owned-request-admission.md`. Full memory/startup gates remain owed.
 
-The writer opens a stable mutex inode and passes its descriptor to `/usr/bin/flock` for
-nonblocking exclusive acquisition. The parent retains that descriptor until close or death.
-The utility's exit does not release the parent's lock: Linux associates it with the shared
-open-file description. See [Linux flock semantics](https://man7.org/linux/man-pages/man2/flock.2.html).
-Kernel mode never unlinks its mutex. Manual mode cannot take over a kernel marker.
-
-Use an operator-owned directory on a local Linux filesystem. The agent must not be able to
-replace the record or its mutex. Network filesystems, distributed writers and mixed old/new
-active binaries are unsupported. Stop all old writers before upgrading to this ownership mode.
-The initial Ubuntu reference installation still needs clean-machine qualification.
-
-The live journal and its mutex must both be single-link regular files. Hardlinked
-aliases refuse ownership rather than opening the same journal through different
-pathname locks. Stop all writers and retain evidence before resolving an alias;
-do not remove mutex names to clear a lock. Failed startup releases its acquired
-ownership. This does not prevent privileged concurrent host changes. Evidence:
-`evals/sdk/record-alias.md`.
-
-The store completes short writes and syncs before acknowledgement. A write or sync failure
-closes the writer; restart may retain an unacknowledged complete entry conservatively. This
-does not prove power-loss durability. Back up history and ownership configuration together;
-verified backup, rollback, snapshots and the full recovery programme remain release work.
-
-Record reads also compare descriptor size and nanosecond modification/change times
-before and after reading, and recheck inode identity. Observed changes refuse before
-parsing or torn-tail repair. Failed startup releases ownership and retains the
-changed evidence. Stop all writers and verify the intended immutable history before
-operator recovery; a metadata comparison does not freeze the host or source.
-Evidence: `evals/sdk/record-read-stability.md`.
-The complete raw read must match the descriptor's byte count before any repair.
-A short or oversized result refuses while retaining the original evidence.
-Genuine incomplete tails are cut at byte newline boundaries, preserving complete
-entries even when the suffix contains a partial UTF-8 character. Evidence:
-`evals/sdk/record-read-completion.md`. Full-history allocation remains unbounded.
-
-Before each append, the writer also compares descriptor byte count and nanosecond
-modification/change times with completed startup or its last synced append.
-External changes fail that store permanently without adding another line. Restoring
-the original bytes does not revive it. Stop all writers, retain evidence and verify
-the intended history before a compatible restart. This is a metadata consistency
-check under the signer-host trust boundary; it neither authenticates content nor
-prevents privileged changes during a write. Evidence: `evals/sdk/live-record.md`.
+## Verifying an archive
 
 For a stopped, immutable archive, the SDK exports `verifyArchive(path, options)`:
 
@@ -129,6 +141,8 @@ anchor cannot prove it and is refused. This verifies an external pin; it does no
 authenticate RPC, program, network, guard identity or authority. Obtain those bindings through
 the operator's trusted configuration and verified chain evidence. A rewrite after the latest
 successful anchor remains outside its coverage. No fixed wall-clock exposure is promised.
+
+### The command
 
 The installed candidate also supplies a read-only operator command:
 

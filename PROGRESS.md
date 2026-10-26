@@ -1,6 +1,6 @@
 # PROGRESS.md
 
-## Where Solanaut stands, 2026-10-26
+## Where Solanaut stands, 2026-10-27
 
 | | |
 |---|---|
@@ -10,6 +10,14 @@
 | **Public** | **Public since 2026-10-12**: Apache-2.0, a plain-language README and reading guide. The human's private drop was removed from every commit; old commit IDs map to new ones in `docs/HISTORY-MAP.md` (`runs/2026-10-12-public-readiness.md`, `runs/2026-10-13-public-bridge.md`). |
 
 ## Detailed log, newest first
+
+**2026-10-27 · The front door rewritten for reading.** At the human's request, Claude rewrote what a visitor reads
+first. The README now opens on the sandbox's real output, the policy as plain data and the guard's four calls. The SDK
+folder and the apps folder have pages of their own, and `examples/guarded-payment.mjs` is a complete guarded payment
+that runs offline. The SDK guide became a guide, then a reference; OVERVIEW, PREVIEW, PACKAGING, STORAGE and SIGNER
+put their substance before their change notes. PREVIEW's walkthrough, which pointed at this machine's paths, now
+builds from any checkout and was run end to end. Stale notes were corrected against S125, S157, S163 and S164, and an
+independent read's findings were verified and fixed (`runs/2026-10-27-docs-front-door.md`).
 
 **2026-10-26 · The public code reshaped for reading, and CI green.** At the human's request, Claude reshaped the code
 to `STYLE.md`, a house style drawn from DHH's and 37signals' principles: the guard reads as its rules, the domain model

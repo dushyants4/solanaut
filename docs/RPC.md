@@ -1,6 +1,6 @@
 # Signer RPC boundary
 
-> **Draft 2** · 2026-10-05 · owner: integrator · for: operators and signer developers.
+> **Draft 3** · 2026-10-27 · owner: integrator · for: operators and signer developers.
 > Evidence: `evals/signer/rpc.md`, claim S20. Register: `kb/DOCUMENTS.md`.
 
 Configure distinct operator-controlled providers outside the agent's write permissions. Remote
@@ -25,8 +25,7 @@ The module is tested offline through fake HTTP providers. The service must wire 
 monotonic clock and protected configuration. It does not yet implement lookup-table reads or a proof
 that unseen expired transactions never landed. An absent status keeps its reservation.
 
-Current provider diagnostics have an unresolved redaction gap, D42/S156:
-[the local response-body probe](../evals/signer/rpc-redaction.md) shows raw parser
-error text in refusals and health. The service's future provider-health wiring
-must follow correction and privacy qualification. Synthetic evidence establishes
-no actual credential leak or deployed operator/dashboard exposure.
+Provider diagnostics keep fixed categories, without raw provider or parser text. The gap was found first by
+[a local response-body probe](../evals/signer/rpc-redaction.md) (D42, S156), which showed raw parser error text in
+refusals and health; the correction is integrated ([integrated-fixes](../evals/release/integrated-fixes.md), S157).
+That synthetic evidence established no actual credential leak, and no deployed operator or dashboard exposure.

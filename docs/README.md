@@ -32,16 +32,21 @@ cannot change decides whether it may. This page tells you what to read, in what 
 
 ## For developers
 
+Start with the [SDK guide](SDK.md): its first five sections take you from an empty file to a guarded payment.
+
 | Read | What it covers |
 |---|---|
-| [OVERVIEW.md](OVERVIEW.md) | the code as it is: layout, dependencies, logic, how to run it |
-| [SDK.md](SDK.md) | the SDK reference |
-| [PREVIEW.md](PREVIEW.md) | running the compiled SDK offline |
-| [SPEC.md](SPEC.md) | the full specification: data models, the rules in order, receipts, adapters, test batteries |
+| [SDK.md](SDK.md) | the guide, then the reference: every export, every error, and what is still internal |
+| [PREVIEW.md](PREVIEW.md) | building the compiled SDK and running it offline, in a project of your own |
+| [../packages/sdk/](../packages/sdk/README.md) | the SDK's files and its commands |
+| [../apps/](../apps/README.md) | the sandbox, the dashboard, the signer and the devnet scripts, with the command for each |
+| [OVERVIEW.md](OVERVIEW.md) | the code as it is: layout, dependencies, logic, workflows |
+| [POLICY.md](POLICY.md), [POLICIES.md](POLICIES.md) | operator-signed policies: POLICY for the operator preparing a signature, POLICIES for the developer verifying signed history |
 | [SIGNER.md](SIGNER.md), [RPC.md](RPC.md), [CLIENT.md](CLIENT.md) | the separate signer process, its RPC boundary, and its client |
-| [POLICY.md](POLICY.md), [POLICIES.md](POLICIES.md) | operator-signed policies: preparing, signing and verifying them |
 | [STORAGE.md](STORAGE.md), [REQUESTS.md](REQUESTS.md) | how the guard's record survives crashes, and how requests are identified |
 | [PACKAGING.md](PACKAGING.md) | how the SDK is built and checked as a package |
+| [SPEC.md](SPEC.md) | the full specification: data models, the rules in order, receipts, adapters, test batteries |
+| [../STYLE.md](../STYLE.md) | how the code is written |
 | [../design/](../design/) | the decision records, ADR-001 to ADR-025 |
 
 ## The plan and where it stands

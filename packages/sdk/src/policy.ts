@@ -1,4 +1,4 @@
-// Policy v1 (docs/SPEC.md §3): what an agent may sign, written by the operator, never seen or
+// Policy v1 (docs/SPEC.md §3): what an agent may sign, written by the operator, and never
 // changed by the model. It is checked once, when it is created (rule 0): a policy with any
 // problem throws, so no guard exists to run on it. A valid policy is copied field by field,
 // frozen all the way down, and hashed; the hash goes into every decision.
