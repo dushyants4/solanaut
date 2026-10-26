@@ -5,7 +5,7 @@ measurement it rests on, taken when the signer was reshaped to the house style.
 
 | | Lines |
 |---|---|
-| Counted files as written, dense, at `421a118` | 623 |
+| Counted files as written, dense, at `6253a7b` | 623 |
 | The same files formatted, Prettier 3.6.2, `--print-width 120 --trailing-comma all --quote-props preserve` | 1,231 |
 | Formatted, with the files' opening comments and one named constant added | 1,260 |
 | Ceiling, as amended | 2,000 |

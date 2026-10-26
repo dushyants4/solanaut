@@ -1,15 +1,24 @@
 # PROGRESS.md
 
-## Where Solanaut stands, 2026-10-13
+## Where Solanaut stands, 2026-10-26
 
 | | |
 |---|---|
 | **Beta (Leg 2)** | **Achieved.** Built and validated on devnet; signed off by the human on 2026-10-05 and tagged `milestone/beta`. The evidence is listed under *Measured so far* below. |
 | **Alpha (Leg 3)** | **In progress**, built by Codex since 2026-10-05 (`docs/HANDOFF.md`). The signer, operator-signed policies, crash-safe storage and recovery, ADR-012's latch rule and much heavier testing are built and tested as components; a native same-user signer now runs, while installed/dedicated-user and complete signer qualification remain. No Alpha milestone is reached yet. On 2026-10-13 Claude reviewed the work (`docs/reviews/2026-10-13-codex-leg3.md`), and the human accepted the decisions it was waiting on. |
-| **Tests** | **983 of 983 pass**, and typecheck, installed SDK and exact serial AST coverage pass locally (2026-10-13; `evals/signer/executable.md`, CLAIMS S160). Hosted `38449067365` keeps prior green jobs and also passes the Node 24 runtime job; Node 22/26 package-fault jobs are cancelled and partition two fails pending Claude's runner edits. |
+| **Tests** | **987 of 987 pass**, and typecheck, installed SDK and exact serial AST coverage pass locally (2026-10-26). **CI is green on `main`**: all 19 jobs, with every maintained fault campaign and the 144 installed-package faults in four shards of their own job (run `40342320596`; `evals/ci/green.md`, CLAIMS S163). |
 | **Public** | **Public since 2026-10-12**: Apache-2.0, a plain-language README and reading guide. The human's private drop was removed from every commit; old commit IDs map to new ones in `docs/HISTORY-MAP.md` (`runs/2026-10-12-public-readiness.md`, `runs/2026-10-13-public-bridge.md`). |
 
 ## Detailed log, newest first
+
+**2026-10-26 · The public code reshaped for reading, and CI green.** At the human's request, Claude reshaped the code
+to `STYLE.md`, a house style drawn from DHH's and 37signals' principles: the guard reads as its rules, the domain model
+uses the domain's words, all the code shares one format, and the signer follows ADR-021 as amended to count formatted
+lines (1,260 of 2,000, S164). No behaviour changed: every string literal is the same, and every fault site was
+rewritten to the same mutation and caught. CI had been red since at least 2026-10-07, for three reasons outside the
+product code; all 19 jobs now pass (S163). The reshape surfaced a Token-2022 decoding defect, fixed test first (S162,
+corrected), and the Agent Kit demo again prints the rule that refused. One Python evidence script carries a check made
+stale by ADR-025, at the baseline too; it is owed to the evaluator (`runs/2026-10-26-dhh-reshape.md`).
 
 **2026-10-13 · Native same-user signer now runs.** Protected keys/config and explicit signed-history init
 feed the service; class-only SDK/socket replies and automatic follow-up work. A real process kill/restart

@@ -125,9 +125,10 @@ The full reading guide is [docs/README.md](docs/README.md).
 - **Alpha: in progress.** A separate signer process, operator-signed policies, stronger crash recovery and much heavier
   testing are built and tested piece by piece. They are not yet a released milestone.
   See [PROGRESS.md](PROGRESS.md) and [docs/ROADMAP.md](docs/ROADMAP.md).
-- **CI runs on every push, and is honest about what is still open.** A red mark next to a commit means one of the
-  stricter release gates still fails. Today that is the full fault campaigns, which do not yet finish inside the job's
-  time limit. It is tracked in [PROGRESS.md](PROGRESS.md), not hidden.
+- **CI runs on every push, and passes.** All 19 jobs pass on `main`: the tests on three Node versions, every
+  maintained fault campaign, the installed-package faults, fuzzing, replay, kill recovery, coverage floors and
+  differential decoding ([evals/ci/green.md](evals/ci/green.md)). A red mark next to a commit means a gate caught
+  something, and it stays visible.
 
 ## How it was built
 
